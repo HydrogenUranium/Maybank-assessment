@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/deutschepostagdiscover" mode="merge"/>
+    <filter root="/content/deutschepostagdiscover" mode="merge"/>
+    <filter root="/content/dam/deutschepostagdiscover/asset.jpg" mode="merge"/>
+    <filter root="/content/experience-fragments/deutschepostagdiscover" mode="merge"/>
+</workspaceFilter>
