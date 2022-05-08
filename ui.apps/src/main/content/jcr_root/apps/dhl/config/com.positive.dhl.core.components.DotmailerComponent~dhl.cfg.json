@@ -1,0 +1,11 @@
+{
+    "APIUsername": "$[env.DOTMAILER_USERNAME]",
+    "APIPwd": "$[secret.DOTMAILER_PASSWORD]",
+    "BypassProxy": "true",
+    "DefaultFromAddress": "discover@dhl-news.com",
+    "CampaignID.Welcome": "484515",
+    "CampaignID.ShipnowWelcome": "881571",
+    "CampaignID.ResetPwd": "239982",
+    "CampaignID.ResetPwdConfirm": "239984",
+    "CampaignID.AccountDeleted": "239979"
+}
