@@ -1,2 +1,2 @@
 #base=css
-animated-pages.css
+css/animated-pages.css
