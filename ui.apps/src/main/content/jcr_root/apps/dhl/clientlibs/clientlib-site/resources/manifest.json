@@ -1,0 +1,31 @@
+{
+  "short_name": "Discover",
+  "name": "Discover DHL",
+  "icons": [
+    {
+    "src": "/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/discover/?pwa=true",
+  "background_color": "#ffcc00",
+  "theme_color": "#d40511",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -1,7 +1,0 @@
-{
-    "scripts": [
-        "create path (sling:OrderedFolder) /content/dam/deutschepostagdiscover",
-        "create path (nt:unstructured) /content/dam/deutschepostagdiscover/jcr:content",
-        "set properties on /content/dam/deutschepostagdiscover/jcr:content\n  set cq:conf{String} to /conf/deutschepostagdiscover\n  set jcr:title{String} to \"Deutsche Post AG Discover\"\nend"
-    ]
-}

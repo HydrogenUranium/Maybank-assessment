@@ -1,0 +1,23 @@
+<aside class="socialStatic disable-offline">
+    <h2 class="socialStatic__title">${ 'SHARE' @ i18n, context='html' }</h2>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59538ab4cc278723"></script>
+    <div class="addthis_inline_share_toolbox"></div>
+</aside>
+
+<sly data-sly-use.contentBanner="com.positive.dhl.core.models.ContentBanner" data-sly-test="${contentBanner.Hasbanner}" data-sly-unwrap>
+<style type="text/css">
+  @media screen and (min-width: 768px) {#applyForAccountPanel--article--id { background-image: url(${contentBanner.Img @context='unsafe'}) !important;} }
+</style>
+<div id="applyForAccountPanel--article--id" class="applyForAccountPanel applyForAccountPanel--article" style="background-image: url('${contentBanner.Imgmob @context='unsafe'}');">
+    <div class="col-12">
+        <h4 class="applyForAccountPanel__subtitle">${contentBanner.Subtitle}</h4>
+        <h3 class="applyForAccountPanel__title">${contentBanner.Title}</h3>
+    </div>
+    <div class="col-12">
+        <ul class="applyForAccountPanel__points" data-sly-list.point=${contentBanner.Points}>
+            <li>${point}</li>
+        </ul>
+        <a class="applyForAccountPanel__cta" href="${contentBanner.Url}" title="${contentBanner.Urltitle}"><span>${contentBanner.Urltitle}</span></a>
+    </div>
+</div>
+</sly>

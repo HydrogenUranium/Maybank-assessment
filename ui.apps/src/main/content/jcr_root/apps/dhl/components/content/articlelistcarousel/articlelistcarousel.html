@@ -1,0 +1,49 @@
+<!--/*
+    Copyright 2015 Adobe Systems Incorporated
+  
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+        http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/-->
+<div id="uniqueIdCategoryCarousel" class="carousel slide" data-ride="carousel" data-sly-use.pages="com.positive.dhl.core.models.ArticleList">
+	<div class="carousel-inner" data-sly-list="${pages.articles}">
+		<article id="uniqueIdSlide${item.index}" class="carousel-item${(item.index == 0 ? ' active' : '')}">
+			<style type="text/css">@media screen and (max-width: 768px) { #uniqueIdSlide${item.index @context='unsafe'} .categoryCarousel__image.hidden-lg-up { background-image: url('${item.listimage @context='unsafe'}') !important; } }</style>
+			<div data-href="${item.path}.html" class="categoryHero__link">
+				<div style="${'background-image: url(\'{0}\');' @context='unsafe',format=[item.listimage]}" class="categoryHero__image"></div>
+				<div class="categoryHero__text">
+					<span class="categoryHero__metadata">
+						<span class="categoryHero__category">${item.grouptitle}</span>
+						<sly data-sly-unwrap data-sly-test="${item.readtime}"><span class="readTime">${item.readtime}</span></sly>
+					</span>
+					<h2 class="categoryHero__articleTitle">${item.title}</h2>
+					<span href="${item.path}.html" class="hero__cta--red d-none d-md-inline-block d-lg-none">${ "Read more" @ i18n, context='html' } </span>
+					<p class="categoryHero__articleIntro d-none d-large-block">${item.brief}</p>
+				</div>
+			</div>
+		</article>
+	</div>
+	
+	<sly data-sly-unwrap data-sly-test="${(pages.articles.size > 1)}">
+	<a class="carousel-control-prev d-none d-lg-block" href="#uniqueIdCategoryCarousel" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">${ "Previous" @ i18n, context='html' }</span>
+	</a>
+	<a class="carousel-control-next  d-none d-lg-block" href="#uniqueIdCategoryCarousel" role="button" data-slide="next"> 
+		<span class="carousel-control-next-icon" aria-hidden="true"></span> 
+		<span class="sr-only">${ "Next" @ i18n, context='html' }</span>
+	</a>
+	
+	<ol class="carousel-indicators" data-sly-list="${pages.articles}">
+		<li data-target="#uniqueIdCategoryCarousel" data-slide-to="${item.index}" class="${(item.index == 0 ? 'active' : '')}"></li>
+	</ol>
+	</sly>
+</div>

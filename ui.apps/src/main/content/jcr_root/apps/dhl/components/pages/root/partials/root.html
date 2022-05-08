@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions" style="background: #fff;">
+    <head>
+		<sly data-sly-test="${(currentSession.userID == null || currentSession.userID == 'anonymous')}" data-sly-unwrap> 
+			<script src="//assets.adobedtm.com/cd52279ef3fa/3cec625096bb/launch-${dhlpage.trackingid}.min.js" async></script>
+
+			<sly data-sly-test="${(dhlpage.gtmtrackingid != '')}" data-sly-unwrap> 
+			<!-- Google Tag Manager -->
+			<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','${dhlpage.gtmtrackingid @ context = "unsafe"}');</script>
+			<!-- End Google Tag Manager -->
+    		</sly>
+    	</sly>
+    	
+    	<meta name="dhl-path-prefix" content="${dhlpage.pathprefix}" />
+    	
+        <sly data-sly-include="partials/head.html" data-sly-unwrap/>
+        <sly data-sly-include="partials/headlibs.html" data-sly-unwrap/>
+    </head>
+    <body style="background: #fff;" data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants">
+		<sly data-sly-test="${(currentSession.userID == null || currentSession.userID == 'anonymous')}" data-sly-unwrap> 
+		<sly data-sly-test="${(dhlpage.gtmtrackingid != '')}" data-sly-unwrap> 
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${dhlpage.gtmtrackingid @ context = 'unsafe'}"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+    	</sly>
+		</sly>
+
+        <header class="header">
+			<div class="container">
+				<div class="row">
+		      		<div class="col-6 col-lg-3">
+						<div class="header__logoWrap">
+							<a class="header__logo" href="${currentpage.path}.html" title="Discover DHL"><span class="sr-only">Discover DHL</span></a>
+						</div>
+					</div>
+					<div class="col-6 col-lg-9">
+						<ul class="header__desktopLinks d-block">
+					        <li class="header__desktopLinkItem" data-sly-test="${languageVariants.getCurrentRegion.length > 0}">
+					        	<sly data-sly-test="${languageVariants.getLanguageVariants.size > 0}" data-sly-unwrap>
+					        	<sly data-sly-list="${languageVariants.getLanguageVariants}" data-sly-unwrap>
+						            <a href="${item.link}.html" class="header__lang${ ((item.current) ? ' header__lang--selected' : '') @ context='html' }">${ item.name @ i18n, context='html' }</a>
+						        </sly>
+						        </sly>
+					            <a href="#" class="header__desktopCountry">
+					              <span class="icon"></span>
+					              <span class="title">${ languageVariants.getCurrentRegion @ i18n, context='html' }</span>
+					            </a>
+					        </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<div class="header__countrySelectPanel">
+				<div class="mob">
+					<div class="welcomes">
+						<p class="country">${ languageVariants.getCurrentRegion }</p>
+						<a href="#">${ 'Select Location' @ i18n, context='html' }</a>
+					</div>
+					<sly data-sly-test="${languageVariants.getLanguageVariants.size > 1}" data-sly-unwrap>
+					<div class="langs" data-sly-list="${languageVariants.getLanguageVariants}">
+						<a href="${item.link}.html" data-home="${ item.home }.html" class="lang${ ((item.current) ? ' lang--selected' : '') @ context='html' }">${item.name}</a>
+					</div>
+					</sly>
+					<div class="countries">
+						<ul data-sly-list="${ languageVariants.getAllLanguageVariants }">
+							<li><a href="${ item.link }.html" data-home="${ item.home }.html">${ item.name @ i18n, context='html' }</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="desktop" data-sly-test="${(languageVariants.getAllLanguageVariants.size > 1)}">
+					<div class="welcomes">
+						<h3>${ 'Welcome' @ i18n, context='html' }</h3>
+						<p>${ 'Please Select a Location' @ i18n, context='html' }</p>
+		
+						<div class="countries">
+							<div class="container">
+								<div class="row">
+									<div class="col-12 col-xl-8 offset-xl-2">
+										<sly data-sly-list.group="${ languageVariants.getAllLanguageVariantsGrouped }" data-sly-unwrap>
+										<div class="row">
+											<sly data-sly-list.item="${ group }" data-sly-unwrap>
+		              						<div class="col"><a href="${ item.link }.html" data-home="${ item.home }.html">${ item.name @ i18n, context='html' }</a></div>
+		              						</sly>
+		              					</div>
+		              					</sly>
+		            				</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+        
+		<div class="root__countrySelectPanel">
+		    <div class="mask">
+		        <svg width="100"  height="100"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;">
+		            <circle class="loader-svg" cx="50" cy="50" fill="none" stroke="var(--color)" stroke-width="var(--stroke-width)" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(159.821 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="0.6s" begin="0s" repeatCount="indefinite"></animateTransform></circle>
+		            <style>
+		            :root { --color: #ccc; --stroke-width: 7; }
+		            
+		            @supports (-ms-ime-align: auto) {
+		                .loader-svg { -webkit-animation: rotation 0.6s infinite linear; animation: rotation 0.6s infinite linear; -webkit-transform-origin: center; -ms-transform-origin: center; transform-origin: center; }
+		            
+		                @-webkit-keyframes rotation {
+		                    from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+		                    to { -webkit-transform: rotate(359deg); transform: rotate(359deg); }
+		                }
+		                
+		                @keyframes rotation {
+		                    from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+		                    to { -webkit-transform: rotate(359deg); transform: rotate(359deg); }
+		                }
+		            }
+		            </style>
+		        </svg>
+		    </div>
+			<script id="languagesData" type="application/ld+json">
+				${ languageVariants.getAllLanguagesJSON @ context='unsafe' }
+			</script>
+			<div class="desktop" data-sly-test="${(languageVariants.getAllLanguageVariants.size > 1)}">
+				<div class="welcomes">
+						<div class="container">
+							<div class="row">
+								<div class="col-12 col-xl-8 offset-xl-2">
+									<h3>${ 'Welcome' @ i18n, context='html' }</h3>
+									<p>${ 'Please Select a Location' @ i18n, context='html' }</p>
+								</div>
+							</div>
+						</div>
+					</div>
+	
+					<div class="countries">
+						<div class="container">
+							<div class="row">
+								<div class="col-12 col-xl-8 offset-xl-2">
+									<sly data-sly-list.group="${ languageVariants.getAllLanguageVariantsGrouped }" data-sly-unwrap>
+									<div class="row">
+										<sly data-sly-list.item="${ group }" data-sly-unwrap>
+	              						<div class="col"><a href="${ item.link }.html" data-home="${ item.home }.html">${ item.name @ i18n, context='html' }</a></div>
+	              						</sly>
+	              					</div>
+	              					</sly>
+	            				</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--/* Include the site client libraries (loading only the JS in the footer, CSS was loaded in the header) */-->
+		<script type="text/javascript" src="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site.20220302.js"></script>
+		
+		<script src="https://r1-t.trackedlink.net/_dmpt.js" type="text/javascript"></script>
+    </body>
+</html>

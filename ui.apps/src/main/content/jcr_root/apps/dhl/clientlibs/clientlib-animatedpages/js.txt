@@ -1,0 +1,4 @@
+#base=js
+vendor.min.js
+animated.min.js
+rellax.min.js

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured">
+    <content jcr:primaryType="nt:unstructured">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs jcr:primaryType="nt:unstructured">
+                <items jcr:primaryType="nt:unstructured" sling:hideChildren="permissions">
+                    <dhl jcr:primaryType="nt:unstructured" jcr:title="DHL Properties" sling:resourceType="granite/ui/components/foundation/section">
+                        <layout jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" margin="{Boolean}false"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <dhl
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="DHL Article properties"
+                                        sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <topbanner
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/select"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Top Banner"
+                                                name="./topbanner"
+                                                required="{Boolean}true">
+
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <banner0 jcr:primaryType="nt:unstructured" text="No banner" value="0" />
+                                                    <banner1 jcr:primaryType="nt:unstructured" text="Banner 1" value="1" />
+                                                    <banner2 jcr:primaryType="nt:unstructured" text="Banner 2" value="2" />
+                                                </items>
+                                            </topbanner>
+                                            <contentbanner
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/select"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Content Banner"
+                                                name="./contentbanner"
+                                                required="{Boolean}true">
+
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <banner0 jcr:primaryType="nt:unstructured" text="No banner" value="0" />
+                                                    <banner1 jcr:primaryType="nt:unstructured" text="Banner 1" value="1" />
+                                                    <banner2 jcr:primaryType="nt:unstructured" text="Banner 2" value="2" />
+                                                </items>
+                                            </contentbanner>
+
+                                            <amparticlepath
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="AMP article location"
+                                                name="./amparticlepath"
+                                                rootPath="/content/dhl"
+                                                required="{Boolean}false"/>
+
+                                            <heroimagemob
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Article 'Hero' Image (mobile)"
+                                                name="./heroimagemob"
+                                                rootPath="/content/dam"
+                                                required="{Boolean}true"/>
+                                            <heroimagetab
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Article 'Hero' Image (tablet)"
+                                                name="./heroimagetab"
+                                                rootPath="/content/dam"
+                                                required="{Boolean}true"/>
+                                            <heroimagedt
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Article 'Hero' Image (desktop)"
+                                                name="./heroimagedt"
+                                                rootPath="/content/dam"
+                                                required="{Boolean}true"/>
+                                            <listimage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Article List Image"
+                                                name="./listimage"
+                                                rootPath="/content/dam"
+                                                required="{Boolean}true"/>
+                                            <description
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textarea"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Brief Description"
+                                                name="./listbrief"
+                                                required="{Boolean}true"/>
+                                            <readtime
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Read time"
+                                                name="./readtime"
+                                                required="{Boolean}false"/>
+
+                                            <author
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Author name"
+                                                name="./author"
+                                                required="{Boolean}false"/>
+                                            <authortitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Author title"
+                                                name="./authortitle"
+                                                required="{Boolean}false"/>
+                                            <authorimage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Author image"
+                                                name="./authorimage"
+                                                rootPath="/content/dam"
+                                                required="{Boolean}false"/>
+                                                
+                                            <mediatype
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/select"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Media Category"
+                                                name="./mediatype"
+                                                required="{Boolean}true">
+
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <article jcr:primaryType="nt:unstructured" text="article" value="article" />
+                                                    <video jcr:primaryType="nt:unstructured" text="video" value="video" />
+                                                    <competition jcr:primaryType="nt:unstructured" text="competition" value="competition" />
+                                                    <infographic jcr:primaryType="nt:unstructured" text="infographic" value="infographic" />
+                                                    <download jcr:primaryType="nt:unstructured" text="download" value="download" />
+                                                    <gallery jcr:primaryType="nt:unstructured" text="gallery" value="gallery" />
+                                                    <interactive jcr:primaryType="nt:unstructured" text="interactive" value="interactive" />
+                                                </items>
+                                            </mediatype>
+                                            <youtubeid
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Youtube Video ID (if applicable)"
+                                                name="./youtubeid"
+                                                required="{Boolean}false"/>
+                                                
+                                            <relatedarticles
+                                                jcr:primaryType="nt:unstructured"
+                                                name="./relatedarticles"
+                                                fieldLabel="Related Articles"
+                                                fieldDescription="Click + to add new item"
+                                                composite="{Boolean}true"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+
+                                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    name="./items">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <url
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldLabel="Url"
+                                                            name="./url"/>
+                                                    </items>
+                                                </field>
+                                            </relatedarticles>
+                                            <custompublishdate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/datepicker"
+                                                fieldLabel="'Custom' Publish Date"
+                                                name="./custompublishdate"/>
+
+                                            <showshipnow
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                                name="./showshipnow"
+                                                text="Show 'Ship Now' overlay"
+                                                value="true"/>
+
+                                            <customstyles
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textarea"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="Custom style(s)"
+                                                name="./customstyles"
+                                                required="{Boolean}false"/>
+
+                                            <gatetitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                fieldLabel="Login Gate Heading"
+                                                name="./gatetitle"/>
+                                            <gatesubtitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                fieldLabel="Login Gate Sub-Heading"
+                                                name="./gatesubtitle"/>
+                                            <gatecontent
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textarea"
+                                                fieldLabel="Login Gate Content"
+                                                name="./gatecontent"/>
+                                        </items>
+                                    </dhl>
+                                    <dhlsocial
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="DHL Social/Sharing properties"
+                                        sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <ogtagimage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                allowBulkEdit="{Boolean}true"
+                                                fieldLabel="OG Tag Image"
+                                                name="./ogtagimage"
+                                                rootPath="/content/dam"/>
+                                        </items>
+                                    </dhlsocial>
+                                </items>
+                            </column>
+                        </items>
+                    </dhl>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,78 @@
+<!--/*
+    Copyright 2015 Adobe Systems Incorporated
+  
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+        http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/-->
+
+<sly data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants" data-sly-unwrap>
+  <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <meta name="theme-color" content="#d40511">
+  <link rel="manifest" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/manifest.json">
+  <link rel="icon" sizes="192x192" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/192.png">
+  <link rel="icon" sizes="128x128" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/128.png">
+  <link rel="apple-touch-icon" sizes="128x128" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/128.png">
+  <link rel="apple-touch-icon-precomposed" sizes="128x128" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/128.png">
+
+  <title>${currentPage.pageTitle || currentPage.name}</title>
+  <meta name="description" content="${properties.jcr:description}"/>
+
+  <link rel="alternate" href="${dhlpage.fullUrl}" hreflang="${languageVariants.getCurrentLanguage}" />
+  <link rel="canonical" href="${dhlpage.fullUrl}" />
+
+  <sly data-sly-unwrap data-sly-test="${ dhlpage.noindex == true }">
+    <meta name="robots" content="noindex" />
+  </sly>
+
+  <link rel="shortcut icon" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/favicon_dhl.ico">
+  <link rel="icon" sizes="16x16 32x32 64x64" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/favicon_dhl.ico">
+  <link rel="icon" type="image/png" sizes="196x196" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/192.png">
+  <link rel="icon" type="image/png" sizes="160x160" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/160.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/96.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/64.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/16.png">
+  <link rel="apple-touch-icon" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/180.png">
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://apis.google.com/js/api:client.js"></script>
+
+  <script type="text/javascript" src="//platform.linkedin.com/in.js">
+    api_key: 86y0x90b8zt01a
+    authorize: false
+  </script>
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://discover.dhl.com${currentPage.path}" />
+  <meta property="og:title" content="${currentPage.pageTitle || currentPage.name}" />
+  <meta property="og:description" content="${properties.jcr:description}" />
+  <meta property="og:image" content="https://discover.dhl.com${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/192.png" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:url" content="https://discover.dhl.com${currentPage.path}" />
+  <meta name="twitter:title" content="${currentPage.pageTitle || currentPage.name}" />
+  <meta name="twitter:description" content="${properties.jcr:description}" />
+  <meta name="twitter:image" content="https://discover.dhl.com${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/192.png" />
+
+  <meta name="google-signin-client_id" content="530300053917-ee8p43bdbd6lee4i81nu5l526k44ni6v.apps.googleusercontent.com">
+</sly>

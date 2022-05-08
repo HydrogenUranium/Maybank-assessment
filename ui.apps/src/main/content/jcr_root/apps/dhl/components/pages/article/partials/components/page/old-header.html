@@ -1,0 +1,52 @@
+<sly data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage" data-sly-unwrap>
+	<sly data-sly-test="${(articlePage.article.youtubeid.length > 0)}" data-sly-unwrap>
+	<div class="articleCarouselHomepage articleCarouselHomepage--static articleCarouselHomepage--video" id="uniqueIdArticleHeroVideo">
+		<style type="text/css">
+			@media screen and (min-width: 768px) { #uniqueIdArticleHeroVideo .articleCarouselHomepage__image {background-image: url('${articlePage.article.heroimagetab @ context='unsafe'}') !important;} }
+			@media screen and (min-width: 991px) { #uniqueIdArticleHeroVideo {background-image: url('${articlePage.article.heroimagedt @ context='unsafe'}');} }
+		</style>
+		<div class="articleCarouselHomepage__image hidden-lg-up" style="background-image: url('${articlePage.article.heroimagemob @ context='unsafe'}');"><span class="sr-only">${articlePage.article.title}</span></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-lg-6">
+					<div class="articleCarouselHomepage__content">
+						<h2>${articlePage.article.grouptitle}</h2>
+						<h1>${articlePage.article.fullTitle}</h1>
+						<time date="${articlePage.article.created}" class="hidden-md-down">${articlePage.article.createdfriendly}</time>
+						<p class="hidden-sm-down">${articlePage.article.brief}</p>
+						<time date="${articlePage.article.created}" class="hidden-lg-up">${articlePage.article.createdfriendly}</time>
+						<i class="articleCarouselHomepage__icon articleCarouselHomepage__icon--${articlePage.article.icon}"><span class="sr-only">${articlePage.article.icon}</span></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="articleCarouselHomepage__play"><span class="sr-only">Play</span></div>
+		<div class="articleCarouselHomepage__video">
+			<iframe width="100%" src="https://www.youtube.com/embed/${articlePage.article.youtubeid}?rel=0&amp;controls=1&amp;modestbranding=1" frameborder="0" allowfullscreen></iframe>
+		</div>
+	</div>
+	</sly>
+	<sly data-sly-test="${(articlePage.article.youtubeid.length <= 0)}" data-sly-unwrap>
+	<div class="articleCarouselHomepage articleCarouselHomepage--static" id="uniqueIdArticleHeroHomepage">
+		<style type="text/css">
+			@media screen and (min-width: 768px) { #uniqueIdArticleHeroHomepage .articleCarouselHomepage__image {background-image: url('${articlePage.article.heroimagetab @ context='unsafe'}') !important;} }
+			@media screen and (min-width: 991px) { #uniqueIdArticleHeroHomepage {background-image: url('${articlePage.article.heroimagedt @ context='unsafe'}');} }
+		</style>
+		<div class="articleCarouselHomepage__image hidden-lg-up" style="background-image: url('${articlePage.article.heroimagemob @ context='unsafe'}');"><span class="sr-only">${articlePage.article.title}</span></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-lg-7">
+					<div class="articleCarouselHomepage__content">
+						<h2>${articlePage.article.grouptitle}</h2>
+						<h1>${articlePage.article.fullTitle}</h1>
+						<time date="${articlePage.article.created}" class="hidden-md-down">${articlePage.article.createdfriendly}</time>
+						<p class="hidden-sm-down">${articlePage.article.brief}</p>
+						<time date="${articlePage.article.created}" class="hidden-lg-up">${articlePage.article.createdfriendly}</time>
+						<i class="articleCarouselHomepage__icon articleCarouselHomepage__icon--${articlePage.article.icon}"><span class="sr-only">${articlePage.article.icon}</span></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</sly>
+</sly>

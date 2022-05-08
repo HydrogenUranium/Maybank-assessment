@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Properties"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <textside
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/select"
+                        allowBulkEdit="{Boolean}true"
+                        fieldLabel="Text side"
+                        name="./textside"
+                        required="{Boolean}true">
+
+                        <items jcr:primaryType="nt:unstructured">
+                            <left jcr:primaryType="nt:unstructured" text="Left" value="left" />
+                            <right jcr:primaryType="nt:unstructured" text="Right" value="right" />
+                        </items>
+                    </textside>
+                    <layout
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/select"
+                        allowBulkEdit="{Boolean}true"
+                        fieldLabel="Layout"
+                        name="./style"
+                        required="{Boolean}true">
+
+                        <items jcr:primaryType="nt:unstructured">
+                            <onethird jcr:primaryType="nt:unstructured" text="Text one-third" value="one-third" />
+                            <half jcr:primaryType="nt:unstructured" text="Text half" value="half" />
+                            <twothirds jcr:primaryType="nt:unstructured" text="Text two-thirds" value="two-thirds" />
+                        </items>
+                    </layout>
+                    <colour
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/select"
+                        allowBulkEdit="{Boolean}true"
+                        fieldLabel="Colour"
+                        name="./colour"
+                        required="{Boolean}true">
+
+                        <items jcr:primaryType="nt:unstructured">
+                            <yellow jcr:primaryType="nt:unstructured" text="Yellow" value="yellow" />
+                            <white jcr:primaryType="nt:unstructured" text="White" value="white" />
+                            <grey jcr:primaryType="nt:unstructured" text="Grey" value="grey" />
+                        </items>
+                    </colour>
+                    <title
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        fieldLabel="Title"
+                        name="./title"/>
+                    <content
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textarea"
+                        fieldLabel="Content"
+                        name="./content"/>
+                    <image
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                        rootPath="/content/dam"
+                        fieldLabel="Image"
+                        name="./image"/>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

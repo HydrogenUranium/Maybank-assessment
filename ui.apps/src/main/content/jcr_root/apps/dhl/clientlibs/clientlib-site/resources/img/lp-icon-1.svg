@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70" height="57" viewBox="0 0 70 57">
+    <defs>
+        <path id="a" d="M.053.03H2.93v.784H.053z"/>
+        <path id="c" d="M.033.03h3.084v.784H.033z"/>
+        <path id="e" d="M.018.03h1.71v.784H.019z"/>
+        <path id="h" d="M28.445 1.341a3.53 3.53 0 0 0-3.526 3.532v45.914a3.53 3.53 0 0 0 3.526 3.532h21.114a3.53 3.53 0 0 0 3.525-3.532V4.876a3.532 3.532 0 0 0-3.528-3.535H28.445z"/>
+        <filter id="g" width="114.2%" height="107.6%" x="-7.1%" y="-1.9%" filterUnits="objectBoundingBox">
+            <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation=".5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.041185462 0"/>
+        </filter>
+        <linearGradient id="i" x1="50%" x2="50%" y1="27.443%" y2="100%">
+            <stop offset="0%" stop-color="#FC0"/>
+            <stop offset="100%" stop-color="#FFEFB2"/>
+        </linearGradient>
+        <path id="j" d="M.045.025h2.472v.651H.045z"/>
+        <path id="l" d="M.029.025h2.648v.651H.029z"/>
+        <path id="n" d="M.015.025h1.47v.651H.015z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#E9E9E9" fill-rule="nonzero" d="M22.14 43.536H7.463a1.408 1.408 0 1 1 0-2.816h12.431a25.967 25.967 0 0 1-1.894-3.219H1.43a1.408 1.408 0 1 1 0-2.817h15.38a25.788 25.788 0 0 1-.913-3.218H7.464a1.408 1.408 0 1 1 0-2.817h7.988a26.29 26.29 0 0 1-.135-2.663C15.317 11.634 26.952 0 41.303 0 55.655 0 67.29 11.634 67.29 25.986S55.655 51.972 41.303 51.972c-7.586 0-14.413-3.251-19.164-8.436z"/>
+        <path fill="#D40511" d="M56.89 14.63h5.948v-2.116c0-.08.04-.153.106-.195a.222.222 0 0 1 .22-.01l5.785 2.955a.23.23 0 0 1 .123.206.23.23 0 0 1-.124.205l-5.784 2.956a.226.226 0 0 1-.22-.01.232.232 0 0 1-.106-.194V16.31H56.89a.228.228 0 0 1-.225-.23v-1.22c0-.127.101-.23.225-.23z"/>
+        <g transform="translate(48.39 28.836)">
+            <rect width="20.936" height="19.26" x=".262" y=".262" fill="#FC0" fill-rule="nonzero" stroke="#CAA200" stroke-width=".523" rx="1.569"/>
+            <path fill-rule="nonzero" stroke="#D40511" stroke-width="2.092" d="M21.054 15.544H.404"/>
+            <path fill="#D40511" d="M8.976 4.397v.1h1.379l.08-.1zM8.976 4.221v.1h1.527l.08-.1zM8.976 4.572v.1h1.231l.08-.1zM18.388 4.397l-.08.1h1.453v-.1zM18.24 4.572l-.08.1h1.601v-.1zM18.536 4.221l-.08.1h1.305v-.1zM10.389 4.666l.692-.82h.859c.094 0 .093.031.047.086l-.175.208c-.025.029-.069.081.077.081h1.15a1.239 1.239 0 0 1-.963.445H10.39zM14.352 4.221l-.375.445h-.99l.375-.445h.99zM15.784 4.221l-.376.445h-.99l.376-.445h.99zM16.106 4.221l-.108.128c-.124.146-.014.317.392.317h1.59l.375-.445h-2.25z"/>
+            <g transform="translate(10.475 3.306)">
+                <mask id="b" fill="#fff">
+                    <use xlink:href="#a"/>
+                </mask>
+                <path fill="#D40511" d="M.397.03L.053.438H1.93c.095 0 .093.032.047.086l-.174.21c-.024.028-.068.08.078.08h.767l.228-.27C3.018.377 2.889.03 2.385.03H.397z" mask="url(#b)"/>
+            </g>
+            <g transform="translate(13.414 3.306)">
+                <mask id="d" fill="#fff">
+                    <use xlink:href="#c"/>
+                </mask>
+                <path fill="#D40511" d="M2.455.814H.033L.695.03h.99l-.38.45h.443l.38-.45h.989z" mask="url(#d)"/>
+            </g>
+            <g transform="translate(16.173 3.306)">
+                <mask id="f" fill="#fff">
+                    <use xlink:href="#e"/>
+                </mask>
+                <path fill="#D40511" d="M1.729.03l-.662.784H.017L.68.03H1.73z" mask="url(#f)"/>
+            </g>
+        </g>
+        <use fill="#000" filter="url(#g)" xlink:href="#h"/>
+        <use fill="#302F2F" xlink:href="#h"/>
+        <path fill="#FFF" fill-rule="nonzero" d="M25.925 5.7h26.489v43.925H25.925z"/>
+        <path fill-rule="nonzero" stroke="#979797" stroke-linecap="round" stroke-width=".805" d="M35.201 17.651h7.154M35.196 19.663h12.188M35.196 29.387h12.188M35.201 27.375h7.154M35.196 39.11h12.188M35.201 37.099h7.154" opacity=".5"/>
+        <path fill="url(#i)" fill-rule="nonzero" d="M25.925 5.7h26.489v5.365H25.925z"/>
+        <path fill="#D40511" d="M27.325 9.016v.1h1.184l.068-.1zM27.325 8.87v.1h1.311l.069-.1zM27.325 9.162v.1h1.057l.068-.1zM35.408 9.016l-.069.1h1.248v-.1zM35.28 9.162l-.068.1h1.375v-.1zM35.535 8.87l-.069.1h1.12v-.1zM28.538 9.24l.594-.681h.738c.081 0 .08.026.04.072l-.15.172c-.02.024-.059.068.067.068h.988c-.082.094-.349.37-.828.37h-1.449zM31.942 8.87l-.322.37h-.85l.322-.37h.85zM33.172 8.87l-.323.37H32l.323-.37h.85zM33.448 8.87l-.092.107c-.107.121-.013.263.336.263h1.365l.322-.37h-1.931z"/>
+        <g transform="translate(28.612 8.11)">
+            <mask id="k" fill="#fff">
+                <use xlink:href="#j"/>
+            </mask>
+            <path fill="#D40511" d="M.341.025L.045.364h1.613c.082 0 .08.026.04.071L1.55.61c-.02.024-.059.067.067.067h.66L2.47.452c.121-.139.01-.427-.423-.427H.34z" mask="url(#k)"/>
+        </g>
+        <g transform="translate(31.136 8.11)">
+            <mask id="m" fill="#fff">
+                <use xlink:href="#l"/>
+            </mask>
+            <path fill="#D40511" d="M2.108.676H.028l.57-.651h.85L1.12.398h.38l.326-.373h.85z" mask="url(#m)"/>
+        </g>
+        <g transform="translate(33.506 8.11)">
+            <mask id="o" fill="#fff">
+                <use xlink:href="#n"/>
+            </mask>
+            <path fill="#D40511" d="M1.485.025l-.57.651h-.9l.57-.651h.9z" mask="url(#o)"/>
+        </g>
+        <path fill="#696969" d="M33.82 4.359h8.016a.51.51 0 0 0 .519-.503.512.512 0 0 0-.519-.503H33.82a.51.51 0 0 0-.518.503c0 .279.23.503.518.503zM44.87 4.359a.536.536 0 0 0 .355-.151.51.51 0 0 0 .147-.357.522.522 0 0 0-.312-.463.519.519 0 0 0-.548.112.499.499 0 0 0-.106.16.508.508 0 0 0 .464.698z"/>
+        <circle cx="30.954" cy="18.777" r="2.682" fill="#FC0" fill-rule="nonzero"/>
+        <text fill="#323232" font-family="FrutigerLTStd-BlackCn, Frutiger LT Std" font-size="4.024" font-style="condensed" font-weight="700" letter-spacing="-.175">
+            <tspan x="29.949" y="20.1">1</tspan>
+        </text>
+        <circle cx="30.954" cy="28.501" r="2.682" fill="#FC0" fill-rule="nonzero"/>
+        <text fill="#323232" font-family="FrutigerLTStd-BlackCn, Frutiger LT Std" font-size="4.024" font-style="condensed" font-weight="700" letter-spacing="-.175">
+            <tspan x="29.949" y="29.824">2</tspan>
+        </text>
+        <circle cx="30.954" cy="38.224" r="2.682" fill="#FC0" fill-rule="nonzero"/>
+        <text fill="#323232" font-family="FrutigerLTStd-BlackCn, Frutiger LT Std" font-size="4.024" font-style="condensed" font-weight="700" letter-spacing="-.175">
+            <tspan x="29.949" y="39.548">3</tspan>
+        </text>
+    </g>
+</svg>

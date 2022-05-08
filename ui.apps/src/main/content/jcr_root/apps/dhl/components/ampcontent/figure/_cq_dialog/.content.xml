@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Properties"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <alignment
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/select"
+                        allowBulkEdit="{Boolean}true"
+                        fieldLabel="Alignment"
+                        name="./alignment"
+                        required="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <left jcr:primaryType="nt:unstructured" text="left" value="left" />
+                            <right jcr:primaryType="nt:unstructured" text="right" value="right" />
+                            <full jcr:primaryType="nt:unstructured" text="full" value="full" />
+                        </items>
+                    </alignment>
+
+                    <imagernd
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                        fieldLabel="Figure image (789x444)"
+                        rootPath="/content/dam"
+                        name="./imagernd"/>
+
+                    <caption1
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        fieldLabel="Caption (title)"
+                        name="./caption1"/>
+
+                    <caption2
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        fieldLabel="Caption (description)"
+                        name="./caption2"/>
+                        
+                    <content
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                        useFixedInlineToolbar="{Boolean}true"
+                        features="*"
+                        fieldLabel="Content"
+                        name="./content">
+                        
+                        <rtePlugins jcr:primaryType="nt:unstructured">
+                            <format
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <justify
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <links jcr:primaryType="nt:unstructured">
+                                <linkDialogConfig
+                                        jcr:primaryType="nt:unstructured"
+                                        height="{Long}316">
+                                    <linkAttributes jcr:primaryType="cq:WidgetCollection">
+                                        <linkAdvanced
+                                                jcr:primaryType="cq:Widget"
+                                                collapsed="{Boolean}true"
+                                                collapsible="{Boolean}true"
+                                                inputValue="advanced"
+                                                name="./linkdialog/cq:adhocLinkTrackingTab"
+                                                title="Link tracking"
+                                                xtype="dialogfieldset">
+                                            <items jcr:primaryType="cq:WidgetCollection">
+                                                <enable
+                                                        jcr:primaryType="nt:unstructured"
+                                                        attribute="enabletracking"
+                                                        fieldDescription="override analytics framework settings"
+                                                        fieldLabel="Custom link tracking"
+                                                        name="./linkdialog/cq:adhocLinkTrackingEnableTracking"
+                                                        xtype="checkbox">
+                                                    <listeners
+                                                            jcr:primaryType="nt:unstructured"
+                                                            check="function(component){var dlg=component.findParentByType('rtelinkdialog');dlg.enableSCFields(component.checked);}"/>
+                                                </enable>
+                                                <events
+                                                        jcr:primaryType="nt:unstructured"
+                                                        attribute="adhocevents"
+                                                        fieldDescription="e.g.: event2, event7"
+                                                        fieldLabel="Include SiteCatalyst events"
+                                                        name="./linkdialog/cq:adhocLinkTrackingEvents"
+                                                        xtype="textfield"/>
+                                                <evars
+                                                        jcr:primaryType="nt:unstructured"
+                                                        attribute="adhocevars"
+                                                        fieldDescription="e.g.: eVar1: pagedata.url, prop4: 'const'"
+                                                        fieldLabel="Include SiteCatalyst variables"
+                                                        name="./linkdialog/cq:adhocLinkTrackingEvars"
+                                                        xtype="textfield"/>
+                                            </items>
+                                        </linkAdvanced>
+                                    </linkAttributes>
+                                </linkDialogConfig>
+                            </links>
+                            <lists
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <paraformat
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*">
+                                <formats jcr:primaryType="cq:WidgetCollection">
+                                    <p
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Paragraph"
+                                            tag="p"/>
+                                    <h1
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 1"
+                                            tag="h1"/>
+                                    <h2
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 2"
+                                            tag="h2"/>
+                                    <h3
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 3"
+                                            tag="h3"/>
+                                    <h4
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 4"
+                                            tag="h4"/>
+                                </formats>
+                            </paraformat>
+                        </rtePlugins>
+                        <uiSettings jcr:primaryType="nt:unstructured">
+                            <cui jcr:primaryType="nt:unstructured">
+                                <inline
+                                        jcr:primaryType="nt:unstructured"
+                                        toolbar="[#format,-,#justify,-,#lists,-,links#modifylink,links#unlink,links#anchor,-,#styles,#paraformat,-,subsuperscript#subscript,subsuperscript#superscript,-,edit#cut,edit#copy,edit#paste-plaintext,edit#paste-wordhtml,-,findreplace#find,findreplace#replace,-,undo#undo,undo#redo,-,spellcheck#checktext,-,misctools#specialchars,-,#styles,-,table#table]">
+                                    <popovers jcr:primaryType="nt:unstructured">
+                                        <format
+                                                jcr:primaryType="nt:unstructured"
+                                                items="[format#bold,format#italic,format#underline]"
+                                                ref="format"/>
+                                        <justify
+                                                jcr:primaryType="nt:unstructured"
+                                                items="[justify#justifyleft,justify#justifycenter,justify#justifyright]"
+                                                ref="justify"/>
+                                        <lists
+                                                jcr:primaryType="nt:unstructured"
+                                                items="[lists#unordered,lists#ordered,lists#outdent,lists#indent]"
+                                                ref="lists"/>
+                                        <styles
+                                                jcr:primaryType="nt:unstructured"
+                                                items="styles:getStyles:styles-pulldown"
+                                                ref="styles"/>
+                                        <paraformat
+                                                jcr:primaryType="nt:unstructured"
+                                                items="paraformat:getFormats:paraformat-pulldown"
+                                                ref="paraformat"/>
+                                    </popovers>
+                                </inline>
+                            </cui>
+                        </uiSettings>
+                    </content>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:description="A DHL landing page"
+    jcr:primaryType="cq:Template"
+    jcr:title="DHL Landing page (Oct 2018)"
+    allowedPaths="[/content/dhl/.+]"
+    ranking="{Long}100">
+    <jcr:content
+        jcr:primaryType="cq:PageContent"
+        sling:resourceType="dhl/components/pages/landing"
+        heroimagedt="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/articleHeroHomepage-desk.jpg"
+        heroimagemob="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/articleHeroHomepage.jpg"
+        heroimagetab="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/articleHeroHomepage-tab.jpg">
+        
+        <title
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dhl/components/content/title"/>
+
+        <par
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/parsys">
+            <text
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/content/text"
+                text="&lt;h3>Why it makes sense to open a DHL account&lt;/h3>&#xa;&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ornare ipsum ligula, egestas placerat quam ultricies non. Nunc at tellus imperdiet, malesuada lacus sed, tempor elit. In sed arcu purus. Pellentesque bibendum egestas molestie. Donec aliquam sed dui ac tincidunt. Praesent ante erat, imperdiet non turpis sit amet, rutrum aliquam nulla. Phasellus a elit nec neque tristique facilisis in vitae elit. &lt;/p>&#xa;"
+                textIsRich="true"/>
+        </par>
+
+        <partwo
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/parsys">
+        </partwo>
+        
+        <parthree
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/parsys">
+        </parthree>
+    </jcr:content>
+</jcr:root>

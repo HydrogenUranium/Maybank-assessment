@@ -1,0 +1,110 @@
+<!--/*
+    Copyright 2015 Adobe Systems Incorporated
+  
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+        http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+<h1 data-sly-resource="${'title'}"></h1>
+<div class="page__par" data-sly-resource="par"></div>
+
+*/-->
+<template data-sly-template.data="${@accountactions}">
+<div class="page-body landing-page october-2018" data-sly-use.landingPage="com.positive.dhl.core.models.LandingPage">
+	<div class="hero hero--divider hero--noMasthead" id="heroItemIdOne">
+		<div class="container d-lg-flex align-items-end">
+			<div class="row justify-content-start">
+				<div class="col-12 col-lg-10 col-xl-8 offset-lg-2">
+					<div class="hero__itemContent">
+						<h1 class="hero__title">${landingPage.fullTitle}</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-10 col-xl-8">
+				<sly data-sly-include="partials/components/page/social.html" data-sly-unwrap />
+				
+				<div class="wysiwyg wysiwyg--article">
+					<div class="page__par" data-sly-resource="par"></div>
+				</div>
+				<div class="page__partwo" data-sly-resource="partwo"></div>
+			</div>
+		</div>
+	</div>
+	
+	<sly data-sly-test="${landingPage.relatedArticles.size > 0}" data-sly-unwrap>
+	<div class='similarStories d-sm-block d-lg-none'>
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-12 ">
+	                <h2 class="similarStories__title">${ 'Similar stories' @ i18n, context='html' }</h2>
+	                <ul class="similarStories__list" data-sly-list="${landingPage.relatedArticles}">
+	                    <li class="similarStories__list-item"><a href="${item.path}.html" class="similarStories__link">${item.title}</a></li>
+	                </ul>
+	            </div>
+	        </div>  
+	    </div>
+	</div>
+	<div class='similarStories d-none d-lg-block'>
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-12 ">
+	                <h2 class="similarStories__title">${ 'Similar stories' @ i18n, context='html' }</h2>
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div id="carouselControls" class="carousel slide" data-ride="carousel">
+	                <div class="carousel-inner">
+	                    <div class="carousel-item active" data-sly-list="${landingPage.relatedArticles}">
+	                    <sly data-sly-unwrap data-sly-test="${(item.third && item.index != 0)}">
+	                    ${'</div>' @context='unsafe'}
+	                    ${'<div class="carousel-item">' @context='unsafe'}
+	                    </sly>
+	                        <div class="col-4" style="align-self: flex-start;">
+								<article class="articlePanel${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}" id="articlePanelUniqueId">
+									<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="${'background-image: url(\'{0}\');' @context='unsafe',format=[item.listimage]}">
+										<span class="sr-only">${item.title}</span>
+									</a>
+									<div class="articlePanel__content">
+										<a href="${item.path}.html" title="${item.title}">
+											<h2 class="articlePanel__title">${item.title}</h2>
+											<p class="articlePanel__description">${item.brief}</p>
+										</a>
+										<h3 class="articlePanel__subTitle">
+											<a href="${item.path}.html" title="Business">${item.grouptitle}</a> <sly data-sly-unwrap data-sly-test="${(item.readtime.length > 0)}">&middot; <a class="noUnderline" href="${item.path}.html" title="${item.title}">3 min read</sly></a>
+										</h3>
+									</div>
+								</article>
+							</div>
+	                    </div>
+	                </div>
+	                <a data-sly-test="${landingPage.relatedArticles.size > 3}" class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+	                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	                    <span class="sr-only">${ 'Previous' @ i18n, context='html' }</span>
+	                </a>
+	                <a data-sly-test="${landingPage.relatedArticles.size > 3}" class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+	                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	                    <span class="sr-only">${ 'Next' @ i18n, context='html' }</span>
+	                </a>
+	            </div>
+	        </div>  
+	    </div>
+	</div>
+	</sly>
+	
+	<!-- articleGrid -->
+	<div class="page__parthree" data-sly-resource="parthree"></div>
+</div>
+</template>

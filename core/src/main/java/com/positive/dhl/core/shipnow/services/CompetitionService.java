@@ -1,0 +1,62 @@
+package com.positive.dhl.core.shipnow.services;
+
+import com.day.commons.datasource.poolservice.DataSourceNotFoundException;
+import com.day.commons.datasource.poolservice.DataSourcePool;
+import com.positive.dhl.core.helpers.DatabaseHelpers;
+import com.positive.dhl.core.shipnow.models.ValidatedRequestEntry;
+import com.positive.dhl.core.shipnow.models.ValidationType;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.sql.DataSource;
+import java.sql.*;
+
+public class CompetitionService {
+    private static final Logger log = LoggerFactory.getLogger(CompetitionService.class);
+
+    /**
+     *
+     */
+    public static ValidatedRequestEntry PrepareFromRequest(SlingHttpServletRequest request) {
+        ValidatedRequestEntry entry = new ValidatedRequestEntry();
+        entry.AddRequiredField("email", request, ValidationType.Email);
+        entry.AddRequiredField("firstname", request, ValidationType.NotEmpty);
+        entry.AddRequiredField("lastname", request, ValidationType.NotEmpty);
+        entry.AddRequiredField("path", request, ValidationType.NotEmpty);
+
+        String[] optionalFields = new String[] { "position", "contact", "size", "sector", "answer", "answer2", "answer3", "answer4", "answer5" };
+        for (String optionalField : optionalFields) {
+            entry.AddOptionalField(optionalField, request);
+        }
+
+        return entry;
+    }
+    /**
+     *
+     */
+    public static Boolean Register(DataSourcePool dataSourcePool, ValidatedRequestEntry entry) {
+        boolean output = false;
+
+        try {
+            DataSource dataSource = (DataSource)dataSourcePool.getDataSource(DatabaseHelpers.DATA_SOURCE_NAME);
+
+            try (Connection connection = dataSource.getConnection()) {
+                try (PreparedStatement statement = connection.prepareStatement("INSERT INTO `competitions` (`competitionpath`, `firstname`, `lastname`, `email`, `position`, `contact`, `sector`, `size`, `answer`, `answer2`, `answer3`, `answer4`, `answer5`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                    String[] keys = new String[]{"path", "firstname", "lastname", "email", "position", "contact", "size", "sector", "answer", "answer2", "answer3", "answer4", "answer5"};
+                    for (int i = 0; i < keys.length; i++) {
+                        statement.setString((i + 1), entry.get(keys[i]).toString());
+                    }
+
+                    statement.executeUpdate();
+                }
+            }
+            output = true;
+
+        } catch (DataSourceNotFoundException | SQLException ex) {
+            log.error("An error occurred attempting Register", ex);
+        }
+
+        return output;
+    }
+}

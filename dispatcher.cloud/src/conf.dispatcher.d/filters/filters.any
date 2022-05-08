@@ -1,0 +1,23 @@
+$include "./default_filters.any"
+
+### CHECK
+/1000 {
+     /type "allow"
+     /path "/content/dhl/*"
+     /selectors "*"
+     /extension '(json|xml|html|txt)'
+}
+
+### CHECK
+/2000 { /type "allow" /method "GET" /url "/libs/granite/csrf/token.json*" }
+
+### bespoke DHL api endpoints
+/3001 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/*" } ## ??
+/3002 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/login/index.json" }
+/3003 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/tags*" }
+
+/3004 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/sitemap*" }
+/3005 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/robots*" }
+/3006 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/google*" }
+/3007 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/searchsuggest*" }
+/3008 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/tags*" }

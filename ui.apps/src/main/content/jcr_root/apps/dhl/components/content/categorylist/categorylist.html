@@ -1,0 +1,83 @@
+<!--/*
+    Copyright 2015 Adobe Systems Incorporated
+  
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+        http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/-->
+<div class="categoryListing d-none d-lg-block" data-sly-use.categoryListing="com.positive.dhl.core.models.CategoryListing">
+	<div class="container">
+		<div class="row categoryListing__grid">
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="categoryList" data-sly-test="${categoryListing.path1 != null && categoryListing.path1.length > 0}">
+					<h2 class="categoryList__title">
+						<a href="${categoryListing.path1}.html" title="${categoryListing.Category1.name}">${categoryListing.Category1.name}</a>
+					</h2>
+					<p style="display: none;">${categoryListing.Category1.dev}</p>
+					<ul class="categoryList__list" data-sly-list="${categoryListing.Category1.articles}">
+						<li class="categoryList__list-item"><a href="${item.path}.html" title="${item.title}"> ${item.title}<span class="readTime" data-sly-test="${item.readtime != null && item.readtime.length > 0}">${item.readtime}</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="categoryList" data-sly-test="${categoryListing.path2 != null && categoryListing.path2.length > 0}">
+					<h2 class="categoryList__title">
+						<a href="${categoryListing.path2}.html" title="${categoryListing.Category2.name}">${categoryListing.Category2.name}</a>
+					</h2>
+					<ul class="categoryList__list" data-sly-list="${categoryListing.Category2.articles}">
+						<li class="categoryList__list-item"><a href="${item.path}.html" title="${item.title}"> ${item.title}<span class="readTime" data-sly-test="${item.readtime != null && item.readtime.length > 0}">${item.readtime}</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="categoryList" data-sly-test="${categoryListing.path3 != null && categoryListing.path3.length > 0}">
+					<h2 class="categoryList__title">
+						<a href="${categoryListing.path3}.html" title="${categoryListing.Category3.name}">${categoryListing.Category3.name}</a>
+					</h2>
+					<ul class="categoryList__list" data-sly-list="${categoryListing.Category3.articles}">
+						<li class="categoryList__list-item"><a href="${item.path}.html" title="${item.title}"> ${item.title}<span class="readTime" data-sly-test="${item.readtime != null && item.readtime.length > 0}">${item.readtime}</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="categoryList" data-sly-test="${categoryListing.path4 != null && categoryListing.path4.length > 0}">
+					<h2 class="categoryList__title">
+						<a href="${categoryListing.path4}.html" title="${categoryListing.Category4.name}">${categoryListing.Category4.name}</a>
+					</h2>
+					<ul class="categoryList__list" data-sly-list="${categoryListing.Category4.articles}">
+						<li class="categoryList__list-item"><a href="${item.path}.html" title="${item.title}"> ${item.title}<span class="readTime" data-sly-test="${item.readtime != null && item.readtime.length > 0}">${item.readtime}</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="categoryList" data-sly-test="${categoryListing.path5 != null && categoryListing.path5.length > 0}">
+					<h2 class="categoryList__title">
+						<a href="${categoryListing.path5}.html" title="${categoryListing.Category5.name}">${categoryListing.Category5.name}</a>
+					</h2>
+					<ul class="categoryList__list" data-sly-list="${categoryListing.Category5.articles}">
+						<li class="categoryList__list-item"><a href="${item.path}.html" title="${item.title}"> ${item.title}<span class="readTime" data-sly-test="${item.readtime != null && item.readtime.length > 0}">${item.readtime}</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="categoryList" data-sly-test="${categoryListing.path6 != null && categoryListing.path6.length > 0}">
+					<h2 class="categoryList__title">
+						<a href="${categoryListing.path6}.html" title="${categoryListing.Category6.name}">${categoryListing.Category6.name}</a>
+					</h2>
+					<ul class="categoryList__list" data-sly-list="${categoryListing.Category6.articles}">
+						<li class="categoryList__list-item"><a href="${item.path}.html" title="${item.title}"> ${item.title}<span class="readTime" data-sly-test="${item.readtime != null && item.readtime.length > 0}">${item.readtime}</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+  

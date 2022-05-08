@@ -1,0 +1,59 @@
+<!--/*
+    Copyright 2015 Adobe Systems Incorporated
+  
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+        http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/-->
+<div class="hero hero--divider hero--saved">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-lg-10 col-xl-8">
+				<div class="hero__itemContent">
+				<h1 class="hero__title">${properties.title}</h1>
+				<p class="hero__intro">${ 'Seen something you like the look of and want to keep it for later?' @ i18n, context='html' }<br />
+					${ 'Heres where you can find, and read, the articles that matter most to you.' @ i18n, context='html' }</p>
+				<a class="hero__editSavedArticles d-lg-none" href="#edit"><span></span><span></span><span></span>${ 'Edit List' @ i18n, context='html' }</a>
+				</div>
+			</div>
+			<div class="col-12 col-lg-2 col-xl-4 d-none d-lg-flex align-items-end">
+				<a class="hero__editSavedArticles" href="#edit"><span></span><span></span><span></span>${ 'Edit List' @ i18n, context='html' }</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="articleGrid articleGrid--saved">
+	<div class="container">
+		<div class="row articleGrid__grid">
+			<div class="col-12">
+				<h2 class="articleGrid__title">${ 'Loading your saved articles' @ i18n, context='html' }</h2>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/template" id="articleGrid__panelTemplate">
+	<div class="col-12 col-md-6 col-lg-4">
+		<style type="text/css"></style>
+		<article class="articlePanel" id="">
+		<a class="articlePanel__image" href="" title="" style="">
+			<span class="sr-only"></span>
+		</a>
+		<div class="articlePanel__content">
+			<a href="" title="">
+			<h1 class="articlePanel__title"></h1>
+			<p class="articlePanel__description"></p>
+			</a>
+			<h2 class="articlePanel__subTitle"><a href="" title=""></a> &bull; <a href="" title=""></a></h2>
+		</div>
+		</article>
+	</div>
+</script>

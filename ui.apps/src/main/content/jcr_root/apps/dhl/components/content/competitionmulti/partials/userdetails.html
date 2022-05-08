@@ -1,0 +1,36 @@
+<sly data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions" data-sly-unwrap>
+<div class="form-group">
+	<h3>1. Enter your details</h3>
+</div>
+<div class="form-group">
+	<p class="competitionDataCapture__text">Already a Discover member? <a href="${accountactions.loginUrl @context = 'unsafe'}">Log in</a></p>
+</div>
+
+<div class="form-group uk-only" data-sly-test="${properties.ukonly}">
+	<label class="form-check-label">
+		<input type="checkbox" name="register__termsAndConditions_uk" class="form-check-input" required>
+		${properties.ukonlytc @ context='html'}
+	</label>
+</div>
+<div class="row">
+	<div class="col-12 col-md-6">
+		<div class="form-group">
+			<label for="register__firstName" class="sr-only">First name*</label>
+			<input type="text" class="form-control" name="register__firstName" id="register__firstName" placeholder="First name*" data-msg="${ 'Enter first name' @ i18n, context='html' }" required>
+		</div>
+	</div>
+	<div class="col-12 col-md-6">
+		<div class="form-group">
+			<label for="register__lastName" class="sr-only">Last name*</label>
+			<input type="text" class="form-control" name="register__lastName" id="register__lastName" placeholder="Last name*" data-msg="${ 'Enter last name' @ i18n, context='html' }" required>
+		</div>
+	</div>
+	<div class="col-12">
+		<div class="form-group">
+			<label for="register__yourEmail" class="sr-only">Your email*</label>
+			<input type="text" class="form-control" name="register__yourEmail" id="register__yourEmail" placeholder="Your email*" data-msg="${ 'Enter a valid email address' @ i18n, context='html' }" aria-describedby="register__yourEmailHelp" required>
+		</div>
+		<small id="register__yourEmailHelp" class="form-text">${accountactions.signupEmailPrivacyMessage @context='html'}</small>
+	</div>
+</div>
+</sly>
