@@ -1,4 +1,3 @@
-#base=js
 js/vendor.min.js
 js/animated.min.js
 js/rellax.min.js
