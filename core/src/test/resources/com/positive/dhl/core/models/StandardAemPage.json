@@ -1,0 +1,656 @@
+{
+	"standardpage": {
+		"jcr:primaryType": "cq:Page",
+		"jcr:createdBy": "admin",
+		"jcr:created": "Sat Sep 26 2020 04:02:17 GMT+0000",
+		"jcr:content": {
+			"jcr:primaryType": "cq:PageContent",
+			"jcr:mixinTypes": [
+				"cq:LiveRelationship",
+				"cq:LiveSync",
+				"cq:PropertyLiveSyncCancelled",
+				"mix:versionable"
+			],
+			"subtitle": "How subscription models are changing e-commerce habits",
+			"jcr:createdBy": "admin",
+			"jcr:title": "Consumer Insight: The Subscription Economy",
+			"custompublishdate": "Fri Feb 28 2020 00:00:00 GMT+0000",
+			"cq:propertyInheritanceCancelled": [
+				"pageTitle",
+				"navTitle",
+				"subtitle",
+				"jcr:description",
+				"sling:vanityPath",
+				"sling:redirect",
+				"hideInNav",
+				"cq:tags"
+			],
+			"cq:lastReplicationAction": "Activate",
+			"viewcount": 58,
+			"jcr:versionHistory": "3e5af0d0-9964-4966-8271-dfd45fe29e1f",
+			"author": "Sam Steele",
+			"amparticlepath": "/content/dhl/business/finding-new-customers/The-subscription-economy/The-Subscription-Economy",
+			"cq:template": "/apps/dhl/templates/dhl-article-page",
+			"cq:lastReplicatedBy": "admin",
+			"listbrief": "How subscription models are changing e-commerce habits",
+			"listimage": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+			"heroimagemob": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+			"heroimagetab": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+			"readtime": "4 min read",
+			"jcr:predecessors": [
+				"a97c2467-8183-4af9-b0b3-2ec161b52f88"
+			],
+			"cq:contextHubSegmentsPath": "/etc/segmentation/contexthub",
+			"jcr:created": "Sat Sep 26 2020 04:02:17 GMT+0000",
+			"cq:lastReplicated": "Tue Sep 29 2020 22:50:51 GMT+0000",
+			"cq:lastModified": "Tue Aug 11 2020 12:10:11 GMT+0200",
+			"mediatype@Delete": "article",
+			"contentbanner": "2",
+			"topbanner": "2",
+			"jcr:description": "The advent of subscription models in e-commerce has revolutionized many industries, audiences have changed too. Uncover what this means for your business in 2020. ",
+			"jcr:baseVersion": "a97c2467-8183-4af9-b0b3-2ec161b52f88",
+			"jcr:isCheckedOut": true,
+			"authorimage": "/content/dam/dhl/site-image/roundels/laptop.png",
+			"authortitle": "Senior Content Writer, Discover",
+			"pageTitle": "How the subscription economy changed online buying behaviour | Discover DHL",
+			"cq:tags": [
+				"dhl:default/smartdraw",
+				"dhl:default/dhl_express",
+				"dhl:default/how_to_open_an_accountwithdhl",
+				"dhl:default/hellofresh",
+				"dhl:default/barkbox",
+				"dhl:default/muso",
+				"dhl:default/disney",
+				"dhl:default/subscription_marketing",
+				"dhl:default/how_to_find_new_customers",
+				"dhl:default/ecommerce_advice",
+				"dhl:default/dollar_shave_club",
+				"dhl:ecommerce",
+				"dhl:default/ipsy"
+			],
+			"jcr:uuid": "3801e8b6-1167-4a49-945c-22a33b67dfc5",
+			"sling:resourceType": "dhl/components/pages/article",
+			"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
+			"heroimagedt": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Desktop_1920x918_2.jpg",
+			"cq:lastRolledoutBy": "admin",
+			"ogtagimage": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg",
+			"cq:lastModifiedBy": "admin",
+			"navTitle": "How the subscription economy changed online buying behaviour",
+			"mediatype": "article",
+			"title": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:mixinTypes": [
+					"cq:LiveRelationship"
+				],
+				"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+				"sling:resourceType": "dhl/components/content/title",
+				"cq:lastRolledoutBy": "admin"
+			},
+			"par": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:mixinTypes": [
+					"cq:LiveRelationship"
+				],
+				"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+				"sling:resourceType": "wcm/foundation/components/parsys",
+				"cq:lastRolledoutBy": "admin",
+				"text_46295041": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"jcr:created": "Fri Feb 28 2020 10:54:29 GMT+0100",
+					"text": "<h3>- New study reveals cost of wasted subscriptions</h3>\n<h3>- Subscription market continues to grow</h3>\n<h3>- Saving money, convenience key factors for customers</h3>\n",
+					"jcr:lastModified": "Fri Feb 28 2020 10:57:13 GMT+0100",
+					"sling:resourceType": "dhl/components/content/text",
+					"textIsRich": "true"
+				},
+				"text": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"cq:isCancelledForChildren": true,
+					"jcr:lastModifiedBy": "admin",
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"text": "<p>&nbsp;</p>\n<h4><b>Shoppers can get almost anything on a subscription basis now, but what does that mean for businesses in 2020? We take a look at the state of the subscription economy, and the impact it\u2019s had on&nbsp;online&nbsp;buyer behavior.</b><br>\n</h4>\n",
+					"jcr:lastModified": "Tue Apr 21 2020 11:31:12 GMT+0200",
+					"sling:resourceType": "dhl/components/content/text",
+					"textIsRich": "true",
+					"cq:lastRolledoutBy": "admin"
+				},
+				"text_563807768": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"jcr:createdBy": "admin",
+					"cq:isCancelledForChildren": true,
+					"jcr:lastModifiedBy": "admin",
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"jcr:created": "Fri Dec 07 2018 12:09:19 GMT+0100",
+					"text": "<p>From the good old days of newspaper boys, timetabled deliveries have grown exponentially. And now, whether it\u2019s razors, makeup, or even furniture, the rise in regularly-received goods and services \u2013 thanks to a small (or large) monthly fee \u2013&nbsp;have seen all sorts arriving on doorsteps at scheduled intervals.&nbsp;<a href=\"https://discover.dhl.com/business/entrepreneurship/subscription-marketing\" style=\"font-size: 0.8125rem; background-color: rgb(255, 255, 255);\">Subscription models</a>&nbsp;are, of course, something we\u2019ve covered before on Discover, but a lot can change in a year.<br>\n</p>\n<p>New research<sup>1</sup>&nbsp;on the phenomenon has revealed that in the UK, an estimated £25bn is spent each year on unused subscriptions \u2013&nbsp;an average of £39 per person per month. It&#39;s gym subscriptions that are the biggest culprit, but there are plenty more services cashing in on those who are unwilling to cancel. In fact, in the States, US$348 is wasted every year by those who have unused entertainment subscriptions<sup>2</sup>.</p>\n<p>Jennifer Savary, an assistant professor of marketing at the University of Arizona\u2019s Eller College of Management and co-author of \u2018The Uncertain Self: How Self-Concept Structure Affects Subscription Choice\u2019<sup>3</sup>, has written extensively on the subject, in an attempt to understand the psychology behind subscriptions.</p>\n<p><i>&quot;We know that people don&#39;t like to waste money but, for some reason, unused subscriptions are catching us out. I am particularly interested in why people want to be seen in a certain way, so I approached this research through that lens.&quot;</i></p>\n<p>Of course, the ease with which people can sign up \u2013&nbsp;with free trials a no-brainer for both buyer and seller \u2013 means that the rise in subscriptions is showing no signs of stopping. But why are so many people signing up for so many services?</p>\n<p><i>&quot;When you separate payment from consumption, it doesn&#39;t hurt so badly because there\u2019s not a specific moment of monetary transaction \u2013 that\u2019s a benefit. There&#39;s also research looking at what we might call a \u2018cognitive miser\u2019. People want to minimize their effort and because it&#39;s hard to cancel subscriptions, they often forget.&quot;</i></p>\n",
+					"jcr:lastModified": "Mon Aug 10 2020 14:55:04 GMT+0200",
+					"sling:resourceType": "dhl/components/content/text",
+					"textIsRich": "true",
+					"cq:lastRolledoutBy": "admin"
+				},
+				"subscribepanel": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"sling:resourceType": "wcm/msm/components/ghost"
+				},
+				"text_906140948": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship"
+					],
+					"sling:resourceType": "wcm/msm/components/ghost"
+				},
+				"subscribepanel_580697853": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"ctatitle": "Subscribe",
+					"jcr:created": "Fri Feb 28 2020 10:40:00 GMT+0100",
+					"title": "Sign up to the Discover newsletter",
+					"jcr:lastModified": "Fri Feb 28 2020 10:41:14 GMT+0100",
+					"sling:resourceType": "dhl/components/content/subscribepanel"
+				},
+				"text_1526141757": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"jcr:createdBy": "admin",
+					"cq:isCancelledForChildren": true,
+					"jcr:lastModifiedBy": "admin",
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"jcr:created": "Fri Dec 07 2018 12:11:53 GMT+0100",
+					"text": "<p><b>Self-concept clarity &amp; the subscription economy</b></p>\n<p>There&#39;s an established concept in psychology called &#39;self-concept clarity&#39;, which relates to how certain people are about their identities. Having a subscription to a product or service helps reflect who a person believes themselves to be \u2013&nbsp;whether that\u2019s a vegetable box, headphones, or something more obscure \u2013&nbsp;and that\u2019s what makes subscriptions services appealing. Some people who subscribe to The Economist may never read it, but wouldn\u2019t dream of cancelling, as it strips away part of their identity.</p>\n<p>Self-identity is ever-changing, and can be impacted by significant life events. Not just things like moving house or getting married but wider events such as the current Brexit-related uncertainty in the UK, for example. At these times, people\u2019s sense of self can be brought into question \u2013&nbsp;and these moments present an opportunity for brands, encouraging potential customers to align to the right type of subscription to help people feel more in control. Take&nbsp;Kindur\u2019s SmartDraw&nbsp;service as an example<sup>4</sup>. The retirement planning company is leaning into the&nbsp;subscription business model&nbsp;to help older people manage their retirement funds. Allowing customers to create a monthly retirement paycheck, its aim is to make managing finances in retirement as simple as when one was working.</p>\n",
+					"jcr:lastModified": "Wed Feb 26 2020 12:44:57 GMT+0100",
+					"sling:resourceType": "dhl/components/content/text",
+					"textIsRich": "true",
+					"cq:lastRolledoutBy": "admin"
+				},
+				"figure_1669621279": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"sling:resourceType": "wcm/msm/components/ghost"
+				},
+				"figure_1029453200": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"imagernd": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/nuraphone.jpg",
+					"jcr:created": "Thu Feb 27 2020 15:42:46 GMT+0100",
+					"jcr:lastModified": "Fri Feb 28 2020 10:52:21 GMT+0100",
+					"sling:resourceType": "dhl/components/content/figure",
+					"textIsRich": "true",
+					"alignment": "full"
+				},
+				"text_1198660826": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"jcr:createdBy": "admin",
+					"cq:isCancelledForChildren": true,
+					"jcr:lastModifiedBy": "admin",
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"jcr:created": "Fri Dec 07 2018 12:12:28 GMT+0100",
+					"text": "<h4><b>What&#39;s in it for buyers?</b></h4>\n<p>With&nbsp;subscription businesses growing in the<b>&nbsp;</b><a href=\"https://discover.dhl.com/e-commerce\"><b>e-commerce market&nbsp;</b></a>by more than&nbsp;100%&nbsp;annually between 2013 and 2018<sup>5</sup>, according to McKinsey &amp; Company, this model shows no signs of slowing.&nbsp;But what keeps people coming back? According to Whistl<sup>6</sup>,&nbsp;60% of Britons&nbsp;say that they sign up for subscription services to save money \u2013 while 45% do so for the convenience and 30% for the added perks or benefits, such as with Amazon Prime.</p>\n<p>&quot;32% of Americans&nbsp;intend to sign up to a subscription box in the next six months&quot;<sup>7</sup><br>\n</p>\n<p>Of those who subscribe, 22% value personalized experiences, according to McKinsey. Epsilon<sup>8</sup>, meanwhile, has found that 80% of people are more likely to make a purchase if a brand offers a personalized experience, and Deloitte<sup>9</sup>&nbsp;discovered that 20% are willing to pay a premium for a personalized product. Which leads us on to Nura, a company renowned for offering premium headphones that automatically adapt to each user&#39;s hearing profile.<br>\n</p>\n<p>Through NuraNow, it\u2019s offering the same quality on a subscription basis, removing the initial price barrier. Subscribers pay a monthly fee of between&nbsp;US$9 and US$15, with an up-front fee of up to US$100.&nbsp;After two years, subscribers receive a new pair of headphones, and can keep the old ones, too. Delivered as an impeccably-packaged product, users also receive exclusive content from artists associated with Nura, access to competitions for concert tickets, free music downloads, and exclusive merchandise. Having piloted the idea in Australia, where it sold out in less than a week, Nura has now expanded to the US and UK. Although it should be noted that when the subscription is stopped, all the products have to be returned\u2026</p>\n",
+					"jcr:lastModified": "Wed Feb 26 2020 12:47:17 GMT+0100",
+					"sling:resourceType": "dhl/components/content/text",
+					"textIsRich": "true",
+					"cq:lastRolledoutBy": "admin"
+				},
+				"figure_1382134606": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"imagernd": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Listicle_AOB_447x227_4.jpg",
+					"jcr:created": "Thu Feb 27 2020 15:44:32 GMT+0100",
+					"jcr:lastModified": "Thu Feb 27 2020 15:44:51 GMT+0100",
+					"sling:resourceType": "dhl/components/content/figure",
+					"textIsRich": "true",
+					"alignment": "full"
+				},
+				"text_1652292815": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"jcr:createdBy": "admin",
+					"cq:isCancelledForChildren": true,
+					"jcr:lastModifiedBy": "admin",
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"jcr:created": "Fri Dec 07 2018 12:12:56 GMT+0100",
+					"text": "<p><b>The future of the subscription business model</b></p>\n<p>Despite their popularity, research from Muso<sup>10</sup>&nbsp;has suggested that we may have reached \u2018peak subscription\u2019 \u2013&nbsp;and there\u2019s nowhere more prevalent for this than the increasingly competitive streaming platform sector. Between an overload of choice and&nbsp;competitive pricing&nbsp;structures, brands are having to work even harder to keep viewers loyal. Priced at just US$6.99 per month,&nbsp;Disney+&nbsp;offers access to an ad-free catalogue of Disney-owned movies and TV series, and it\u2019s set to shake up the industry by either moving viewers away from traditional viewing or snatching a share of subscribers from rival services.</p>\n<p><b>So, is subscription right for your business?</b></p>\n<p>\u201cA lot of times, [companies are] paying 2-4 months\u2019 worth of revenue upfront to acquire a customer, and they need that 5th, 6th, 7th month of renewals to actually make any profit on that customer.\u201d Amir Elaguizy, Co-founder, Cratejoy</p>\n<p>McKinsey &amp; Company identified three main types of subscription service:</p>\n<ul>\n<li><b>Curation:&nbsp;</b>New items for customers to sample and use, which account for 55% of subscriptions.</li>\n<li><b>Replenishment:&nbsp;</b>Replacements of the same types of products (32%).</li>\n<li><b>Access:</b>&nbsp;Perks and discounts on items (13%).</li>\n</ul>\n<p>And, in a survey conducted by Clutch<sup>11</sup>, the five most popular subscription services were:</p>\n<ul>\n<li><b>Dollar Shave Club</b>: 29%</li>\n<li><b>Ipsy</b>: 21%</li>\n<li><b>Blue Apron</b>: 17%</li>\n<li><b>BarkBox</b>: 17%</li>\n<li><b>HelloFresh</b>: 16%</li>\n</ul>\n",
+					"jcr:lastModified": "Wed Feb 26 2020 12:37:20 GMT+0100",
+					"sling:resourceType": "dhl/components/content/text",
+					"textIsRich": "true",
+					"cq:lastRolledoutBy": "admin"
+				},
+				"figure_378703651": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"jcr:createdBy": "admin",
+					"cq:isCancelledForChildren": true,
+					"jcr:lastModifiedBy": "admin",
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"imagernd": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Listicle_AOB_447x227_2.jpg",
+					"jcr:created": "Fri Dec 07 2018 12:18:18 GMT+0100",
+					"jcr:lastModified": "Thu Feb 27 2020 15:38:52 GMT+0100",
+					"sling:resourceType": "dhl/components/content/figure",
+					"textIsRich": "true",
+					"cq:lastRolledoutBy": "admin",
+					"alignment": "full"
+				},
+				"text_614863728": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"jcr:createdBy": "admin",
+					"cq:isCancelledForChildren": true,
+					"jcr:lastModifiedBy": "admin",
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"jcr:created": "Fri Dec 07 2018 12:13:23 GMT+0100",
+					"text": "<p>Subscription comes with its own set of challenges \u2013&nbsp;especially when the items you provide are bigger, such as with furniture company, Feather<sup>12</sup>. And even if your products are smaller,&nbsp;<a href=\"https://discover.dhl.com/business/entrepreneurship/startup-logistics\">logistics at scale can be a challenge</a>, so it\u2019s important to choose a partner who can accommodate your offering. Subscription services do offer a more enhanced ability to predict stock requirements \u2013&nbsp;which can be hugely beneficial. Regardless of all these, it\u2019s also crucial to partner with a logistics company who know cross-border trade when you\u2019re looking to grow globally.</p>\n<p>DHL Express operates in over 220 countries and territories, and therefore offers your business huge potential global expansion \u2013 promising door-to-door delivery and the ability for customers to track their shipment, wherever it may be. DHL Express can also provide paperless clearance for getting your goods through customs faster, preventing any potential delays which may impact a subscriber\u2019s experience and their likelihood to stay on.</p>\n<p>Coupled with the ability to offer time-definite delivery, opening&nbsp;<a href=\"https://discover.dhl.com/ship-now\">an account</a>&nbsp;with DHL and subscribing to their services means that, contrary to what you\u2019re giving consumers, there\u2019ll be no surprises \u2013 just reliable, efficient shipping you\u2019ll certainly want to stick with long term.</p>\n",
+					"jcr:lastModified": "Tue Apr 21 2020 11:39:22 GMT+0200",
+					"sling:resourceType": "dhl/components/content/text",
+					"textIsRich": "true",
+					"cq:lastRolledoutBy": "admin"
+				},
+				"figure_1230850459": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"sling:resourceType": "wcm/msm/components/ghost"
+				},
+				"text_1298997383": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship",
+						"cq:LiveSyncCancelled"
+					],
+					"jcr:createdBy": "admin",
+					"cq:isCancelledForChildren": true,
+					"jcr:lastModifiedBy": "admin",
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"jcr:created": "Fri Dec 07 2018 12:15:32 GMT+0100",
+					"text": "<h4>Takeaways:</h4>\n<ul>\n<li>Consider how personalization could be used</li>\n<li>Tap into how people see themselves in the world, and how your product would reflect their self-value</li>\n<li>Read our article \u2013 <a href=\"https://discover.dhl.com/business/entrepreneurship/subscription-marketing\">Subscription Marketing: What You Need To Know</a><br>\n</li>\n</ul>\n<p>&nbsp;</p>\n<h4><span style=\"font-weight: normal;\"><i>SOURCES:</i></span></h4>\n<p>1&nbsp;<a href=\"https://www.thisismoney.co.uk/money/bills/article-7934637/How-25bn-year-wasted-subscriptions-Britons-dont-use.html\">NatWest</a></p>\n<p>2&nbsp;<a href=\"https://finance.yahoo.com/news/thousands-americans-waste-364-subscriptions-090000514.html?guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAAG_HVyZoF4T4Umzp3ghsAJCIVGx71VU6IdwWQfJThVCdRh0S5Uhop2Coy8-XRNs43f_9ZG5hANQX5GKcCuwTqdjJmq4kRL7ndQ1uoV_tGbKW6VrqgrReHh6Wc6NsqbXlt0HKKEpybPttKTGTM4ef1FS8L2uGA4EQpFw1XurmAwj4&amp;guccounter=2\">GOBankingRates</a></p>\n<p>3&nbsp;<a href=\"https://academic.oup.com/jcr/article-abstract/46/5/887/5498871\">The Uncertain Self: How Self-Concept Structure Affects Subscription Choice</a></p>\n<p>4<a href=\"https://www.businesswire.com/news/home/20191018005308/en/Kindur-Introduces-SmartDraw-New-Subscription-Service-Baby\">&nbsp;Business Wire</a></p>\n<p>5&nbsp;<a href=\"https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/thinking-inside-the-subscription-box-new-research-on-ecommerce-consumers\">McKinsey &amp; Company</a></p>\n<p>6&nbsp;<a href=\"https://www.whistl.co.uk/news/subscription-services-a-whistl-survey\">Whistl</a></p>\n<p>7&nbsp;<a href=\"https://eu.usatoday.com/story/money/2019/03/04/age-amazon-services-like-birchbox-grow-popularity/3018289002/\">USA Today</a></p>\n<p>8&nbsp;<a href=\"https://us.epsilon.com/pressroom/new-epsilon-research-indicates-80-of-consumers-are-more-likely-to-make-a-purchase-when-brands-offer-personalized-experiences\">Epsilon</a></p>\n<p>9&nbsp;<a href=\"https://www2.deloitte.com/content/dam/Deloitte/ch/Documents/consumer-business/ch-en-consumer-business-made-to-order-consumer-review.pdf\">Deloitte</a></p>\n<p>10&nbsp;<a href=\"https://deadline.com/tag/muso/\">Muso</a></p>\n<p>11&nbsp;<a href=\"https://clutch.co/logistics/resources/subscription-box-service-statistics#TOPBRANDS\">Clutch</a></p>\n<p>12&nbsp;<a href=\"https://www.livefeather.com/\">Feather</a></p>\n",
+					"jcr:lastModified": "Fri Feb 28 2020 10:39:39 GMT+0100",
+					"sling:resourceType": "dhl/components/content/text",
+					"textIsRich": "true",
+					"cq:lastRolledoutBy": "admin"
+				}
+			},
+			"partwo": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:mixinTypes": [
+					"cq:LiveRelationship"
+				],
+				"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+				"sling:resourceType": "wcm/foundation/components/parsys",
+				"cq:lastRolledoutBy": "admin",
+				"html5embed": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship"
+					],
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"sling:resourceType": "dhl/components/content/html5embed",
+					"cq:lastRolledoutBy": "admin"
+				}
+			},
+			"parthree": {
+				"jcr:primaryType": "nt:unstructured",
+				"jcr:mixinTypes": [
+					"cq:LiveRelationship"
+				],
+				"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+				"sling:resourceType": "wcm/foundation/components/parsys",
+				"cq:lastRolledoutBy": "admin",
+				"taglist": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship"
+					],
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"sling:resourceType": "dhl/components/content/taglist",
+					"cq:lastRolledoutBy": "admin"
+				},
+				"quotectapanel": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship"
+					],
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"sling:resourceType": "dhl/components/content/quotectapanel",
+					"cq:lastRolledoutBy": "admin"
+				},
+				"articlelistcategory": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship"
+					],
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"sling:resourceType": "dhl/components/content/articlelistcategoryexplore",
+					"cq:lastRolledoutBy": "admin"
+				},
+				"articlegrid": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:mixinTypes": [
+						"cq:LiveRelationship"
+					],
+					"jcr:createdBy": "admin",
+					"jcr:lastModifiedBy": "admin",
+					"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"jcr:created": "Fri Dec 07 2018 12:21:02 GMT+0100",
+					"jcr:lastModified": "Wed Feb 26 2020 12:06:53 GMT+0100",
+					"sling:resourceType": "dhl/components/content/articlegrid",
+					"category0": "/content/dhl/business/finding-new-customers",
+					"category1": "/content/dhl/business/getting-to-market",
+					"category2": "/content/dhl/business/managing-your-business",
+					"category3": "/content/dhl/business/market-intelligence",
+					"cq:lastRolledoutBy": "admin",
+					"items": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:mixinTypes": [
+							"cq:LiveRelationship"
+						],
+						"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+						"cq:lastRolledoutBy": "admin",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:mixinTypes": [
+								"cq:LiveRelationship"
+							],
+							"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+							"path": "/content/dhl/business/finding-new-customers/never-stop-marketing",
+							"cq:lastRolledoutBy": "admin"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:mixinTypes": [
+								"cq:LiveRelationship"
+							],
+							"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+							"path": "/content/dhl/business/finding-new-customers/influencer-marketing-101",
+							"cq:lastRolledoutBy": "admin"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:mixinTypes": [
+								"cq:LiveRelationship"
+							],
+							"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+							"path": "/content/dhl/business/finding-new-customers/connecting-the-unconnected1",
+							"cq:lastRolledoutBy": "admin"
+						},
+						"item3": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:mixinTypes": [
+								"cq:LiveRelationship"
+							],
+							"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+							"path": "/content/dhl/e-commerce/international-guides/reaching-chinese-millennials",
+							"cq:lastRolledoutBy": "admin"
+						},
+						"item4": {
+							"jcr:primaryType": "nt:unstructured",
+							"jcr:mixinTypes": [
+								"cq:LiveRelationship"
+							],
+							"cq:lastRolledout": "Wed Feb 26 2020 12:06:53 GMT+0100",
+							"path": "/content/dhl/e-commerce/international-guides/country-guides-home/country-guide-china",
+							"cq:lastRolledoutBy": "admin"
+						}
+					}
+				}
+			},
+			"cq:LiveSyncConfig": {
+				"jcr:primaryType": "cq:LiveCopy",
+				"cq:rolloutConfigs": [],
+				"cq:isDeep": true,
+				"cq:master": "/content/dhl/business/finding-new-customers/selling-tea-to-china"
+			},
+			"items": {
+				"jcr:primaryType": "nt:unstructured",
+				"item0": {
+					"jcr:primaryType": "nt:unstructured",
+					"url": "https://discover.dhl.com/business/entrepreneurship/subscription-marketing"
+				},
+				"item1": {
+					"jcr:primaryType": "nt:unstructured",
+					"url": "https://discover.dhl.com/business/entrepreneurship/startup-logistics"
+				},
+				"item2": {
+					"jcr:primaryType": "nt:unstructured",
+					"url": "/content/dhl/e-commerce/e-commerce-advice/find-your-e-commerce-market"
+				}
+			}
+		},
+		"The-Subscription-Economy": {
+			"jcr:primaryType": "cq:Page",
+			"jcr:createdBy": "admin",
+			"jcr:created": "Sat Sep 26 2020 04:02:18 GMT+0000",
+			"jcr:content": {
+				"jcr:primaryType": "cq:PageContent",
+				"jcr:mixinTypes": [
+					"mix:versionable"
+				],
+				"subtitle": "How subscription models are changing e-commerce habits",
+				"jcr:createdBy": "admin",
+				"jcr:title": "Consumer Insight: The Subscription Economy",
+				"custompublishdate": "Fri Feb 28 2020 00:00:00 GMT+0000",
+				"cq:lastReplicationAction": "Activate",
+				"viewcount": 2,
+				"jcr:versionHistory": "d2ac3067-85dc-473c-83d3-c623f9d13925",
+				"author": "Sam Steele",
+				"cq:template": "/apps/dhl/templates/dhl-amp-article-page",
+				"cq:lastReplicatedBy": "admin",
+				"listbrief": "How subscription models are changing e-commerce habits",
+				"listimage": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+				"heroimagemob": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+				"heroimagetab": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+				"readtime": "4 min read",
+				"jcr:predecessors": [
+					"60bb933d-fe96-499b-9be1-b30c2c30bfa8"
+				],
+				"cq:contextHubSegmentsPath": "/etc/segmentation/contexthub",
+				"jcr:created": "Sat Sep 26 2020 04:02:18 GMT+0000",
+				"cq:lastReplicated": "Tue Sep 29 2020 22:50:58 GMT+0000",
+				"cq:lastModified": "Tue Apr 21 2020 11:44:28 GMT+0200",
+				"mediatype@Delete": "article",
+				"fullarticlepath": "/content/dhl/business/finding-new-customers/The-subscription-economy",
+				"jcr:description": "The advent of subscription models in e-commerce has revolutionized many industries, audiences have changed too. Uncover what this means for your business in 2020. ",
+				"jcr:baseVersion": "60bb933d-fe96-499b-9be1-b30c2c30bfa8",
+				"jcr:isCheckedOut": true,
+				"authorimage": "/content/dam/dhl/site-image/roundels/laptop.png",
+				"authortitle": "Senior Content Writer, Discover",
+				"pageTitle": "How the subscription economy changed online buying behaviour | Discover DHL",
+				"cq:tags": [
+					"dhl:ecommerce"
+				],
+				"jcr:uuid": "b5bdeeb5-ea0d-4a04-a1b7-05d85ab511df",
+				"sling:resourceType": "dhl/components/pages/amparticle",
+				"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
+				"heroimagedt": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Desktop_1920x918.jpg",
+				"cq:lastModifiedBy": "admin",
+				"navTitle": "How the subscription economy changed online buying behaviour",
+				"mediatype": "article",
+				"title": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "dhl/components/content/title"
+				},
+				"par": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/parsys",
+					"text": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:lastModifiedBy": "admin",
+						"text": "<h3>- New study reveals cost of wasted subscriptions</h3>\n<h3>- Subscription market continues to grow</h3>\n<h3>- Saving money, convenience key factors for customers</h3>\n",
+						"jcr:lastModified": "Tue Apr 21 2020 11:30:31 GMT+0200",
+						"sling:resourceType": "dhl/components/content/text",
+						"textIsRich": "true"
+					},
+					"text_579768574": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Tue Apr 21 2020 11:30:45 GMT+0200",
+						"text": "<h4><b>Shoppers can get almost anything on a subscription basis now, but what does that mean for businesses in 2020? We take a look at the state of the subscription economy, and the impact it\u2019s had on&nbsp;online&nbsp;buyer behavior.</b><br>\n</h4>\n",
+						"jcr:lastModified": "Tue Apr 21 2020 11:31:27 GMT+0200",
+						"sling:resourceType": "dhl/components/content/text",
+						"textIsRich": "true"
+					},
+					"text_1737751841": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Tue Apr 21 2020 11:31:40 GMT+0200",
+						"text": "<p>From the good old days of newspaper boys, timetabled deliveries have grown exponentially. And now, whether it\u2019s razors, makeup, or even furniture, the rise in regularly-received goods and services \u2013 thanks to a small (or large) monthly fee \u2013&nbsp;have seen all sorts arriving on doorsteps at scheduled intervals.&nbsp;<a href=\"https://discover.dhl.com/business/entrepreneurship/subscription-marketing\">Subscription models</a>&nbsp;are, of course, something we\u2019ve covered before on Discover, but a lot can change in a year.<br>\n</p>\n<p>New research<sup>1</sup>&nbsp;on the phenomenon has revealed that in the UK, an estimated £25bn is spent each year on unused subscriptions \u2013&nbsp;an average of £39 per person per month. It&#39;s gym subscriptions that are the biggest culprit, but there are plenty more services cashing in on those who are unwilling to cancel. In fact, in the States, US$348 is wasted every year by those who have unused entertainment subscriptions<sup>2</sup>.</p>\n<p>Jennifer Savary, an assistant professor of marketing at the University of Arizona\u2019s Eller College of Management and co-author of \u2018The Uncertain Self: How Self-Concept Structure Affects Subscription Choice\u2019<sup>3</sup>, has written extensively on the subject, in an attempt to understand the psychology behind subscriptions.</p>\n<p><i>&quot;We know that people don&#39;t like to waste money but, for some reason, unused subscriptions are catching us out. I am particularly interested in why people want to be seen in a certain way, so I approached this research through that lens.&quot;</i></p>\n<p>Of course, the ease with which people can sign up \u2013&nbsp;with free trials a no-brainer for both buyer and seller \u2013 means that the rise in subscriptions is showing no signs of stopping. But why are so many people signing up for so many services?</p>\n<p><i>&quot;When you separate payment from consumption, it doesn&#39;t hurt so badly because there\u2019s not a specific moment of monetary transaction \u2013 that\u2019s a benefit. There&#39;s also research looking at what we might call a \u2018cognitive miser\u2019. People want to minimize their effort and because it&#39;s hard to cancel subscriptions, they often forget.&quot;</i></p>\n",
+						"jcr:lastModified": "Tue Apr 21 2020 11:34:37 GMT+0200",
+						"sling:resourceType": "dhl/components/content/text",
+						"textIsRich": "true"
+					},
+					"subscribepanel": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"ctatitle": "Subscribe",
+						"jcr:created": "Tue Apr 21 2020 11:32:25 GMT+0200",
+						"title": "Sign up to the Discover newsletter",
+						"jcr:lastModified": "Tue Apr 21 2020 11:32:35 GMT+0200",
+						"sling:resourceType": "dhl/components/ampcontent/subscribepanel"
+					},
+					"text_2081293278": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Tue Apr 21 2020 11:32:43 GMT+0200",
+						"text": "<p><b>Self-concept clarity &amp; the subscription economy</b></p>\n<p>There&#39;s an established concept in psychology called &#39;self-concept clarity&#39;, which relates to how certain people are about their identities. Having a subscription to a product or service helps reflect who a person believes themselves to be \u2013&nbsp;whether that\u2019s a vegetable box, headphones, or something more obscure \u2013&nbsp;and that\u2019s what makes subscriptions services appealing. Some people who subscribe to The Economist may never read it, but wouldn\u2019t dream of cancelling, as it strips away part of their identity.</p>\n<p>Self-identity is ever-changing, and can be impacted by significant life events. Not just things like moving house or getting married but wider events such as the current Brexit-related uncertainty in the UK, for example. At these times, people\u2019s sense of self can be brought into question \u2013&nbsp;and these moments present an opportunity for brands, encouraging potential customers to align to the right type of subscription to help people feel more in control. Take&nbsp;Kindur\u2019s SmartDraw&nbsp;service as an example<sup>4</sup>. The retirement planning company is leaning into the&nbsp;subscription business model&nbsp;to help older people manage their retirement funds. Allowing customers to create a monthly retirement paycheck, its aim is to make managing finances in retirement as simple as when one was working.</p>\n",
+						"jcr:lastModified": "Tue Apr 21 2020 11:33:23 GMT+0200",
+						"sling:resourceType": "dhl/components/content/text",
+						"textIsRich": "true"
+					},
+					"figure": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"imagernd": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/nuraphone.jpg",
+						"jcr:created": "Tue Apr 21 2020 11:34:56 GMT+0200",
+						"jcr:lastModified": "Tue Apr 21 2020 11:35:14 GMT+0200",
+						"sling:resourceType": "dhl/components/ampcontent/figure",
+						"textIsRich": "true",
+						"alignment": "full"
+					},
+					"text_1760450916": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Tue Apr 21 2020 11:35:28 GMT+0200",
+						"text": "<h4><b>What&#39;s in it for buyers?</b></h4>\n<p>With&nbsp;subscription businesses growing in the<b>&nbsp;</b><a href=\"https://discover.dhl.com/e-commerce\"><b>e-commerce market&nbsp;</b></a>by more than&nbsp;100%&nbsp;annually between 2013 and 2018<sup>5</sup>, according to McKinsey &amp; Company, this model shows no signs of slowing.&nbsp;But what keeps people coming back? According to Whistl<sup>6</sup>,&nbsp;60% of Britons&nbsp;say that they sign up for subscription services to save money \u2013 while 45% do so for the convenience and 30% for the added perks or benefits, such as with Amazon Prime.</p>\n<p>&quot;32% of Americans&nbsp;intend to sign up to a subscription box in the next six months&quot;<sup>7</sup><br>\n</p>\n<p>Of those who subscribe, 22% value personalized experiences, according to McKinsey. Epsilon<sup>8</sup>, meanwhile, has found that 80% of people are more likely to make a purchase if a brand offers a personalized experience, and Deloitte<sup>9</sup>&nbsp;discovered that 20% are willing to pay a premium for a personalized product. Which leads us on to Nura, a company renowned for offering premium headphones that automatically adapt to each user&#39;s hearing profile.<br>\n</p>\n<p>Through NuraNow, it\u2019s offering the same quality on a subscription basis, removing the initial price barrier. Subscribers pay a monthly fee of between&nbsp;US$9 and US$15, with an up-front fee of up to US$100.&nbsp;After two years, subscribers receive a new pair of headphones, and can keep the old ones, too. Delivered as an impeccably-packaged product, users also receive exclusive content from artists associated with Nura, access to competitions for concert tickets, free music downloads, and exclusive merchandise. Having piloted the idea in Australia, where it sold out in less than a week, Nura has now expanded to the US and UK. Although it should be noted that when the subscription is stopped, all the products have to be returned\u2026</p>\n",
+						"jcr:lastModified": "Tue Apr 21 2020 11:36:38 GMT+0200",
+						"sling:resourceType": "dhl/components/content/text",
+						"textIsRich": "true"
+					},
+					"figure_1241208731": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"imagernd": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Listicle_AOB_447x227_4.jpg",
+						"jcr:created": "Tue Apr 21 2020 11:37:01 GMT+0200",
+						"jcr:lastModified": "Tue Apr 21 2020 11:37:19 GMT+0200",
+						"sling:resourceType": "dhl/components/ampcontent/figure",
+						"textIsRich": "true",
+						"alignment": "full"
+					},
+					"text_265238059": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Tue Apr 21 2020 11:37:34 GMT+0200",
+						"text": "<p><b>The future of the subscription business model</b></p>\n<p>Despite their popularity, research from Muso<sup>10&nbsp;</sup>has suggested that we may have reached \u2018peak subscription\u2019 \u2013&nbsp;and there\u2019s nowhere more prevalent for this than the increasingly competitive streaming platform sector. Between an overload of choice and&nbsp;competitive pricing&nbsp;structures, brands are having to work even harder to keep viewers loyal. Priced at just US$6.99 per month,&nbsp;Disney+&nbsp;offers access to an ad-free catalogue of Disney-owned movies and TV series, and it\u2019s set to shake up the industry by either moving viewers away from traditional viewing or snatching a share of subscribers from rival services.</p>\n<p><b>So, is subscription right for your business?</b></p>\n<p>\u201cA lot of times, [companies are] paying 2-4 months\u2019 worth of revenue upfront to acquire a customer, and they need that 5th, 6th, 7th month of renewals to actually make any profit on that customer.\u201d Amir Elaguizy, Co-founder, Cratejoy</p>\n<p>McKinsey &amp; Company identified three main types of subscription service:</p>\n<ul>\n<li><b>Curation:&nbsp;</b>New items for customers to sample and use, which account for 55% of subscriptions.</li>\n<li><b>Replenishment:&nbsp;</b>Replacements of the same types of products (32%).</li>\n<li><b>Access:</b>&nbsp;Perks and discounts on items (13%).</li>\n</ul>\n<p>And, in a survey conducted by Clutch<sup>11</sup>, the five most popular subscription services were:</p>\n<ul>\n<li><b>Dollar Shave Club</b>: 29%</li>\n<li><b>Ipsy</b>: 21%</li>\n<li><b>Blue Apron</b>: 17%</li>\n<li><b>BarkBox</b>: 17%</li>\n<li><b>HelloFresh</b>: 16%</li>\n</ul>\n",
+						"jcr:lastModified": "Tue Apr 21 2020 11:38:08 GMT+0200",
+						"sling:resourceType": "dhl/components/content/text",
+						"textIsRich": "true"
+					},
+					"figure_2007596289": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"imagernd": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Listicle_AOB_447x227_2.jpg",
+						"jcr:created": "Tue Apr 21 2020 11:38:21 GMT+0200",
+						"jcr:lastModified": "Tue Apr 21 2020 11:38:42 GMT+0200",
+						"sling:resourceType": "dhl/components/ampcontent/figure",
+						"textIsRich": "true",
+						"alignment": "full"
+					},
+					"text_1648672962": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Tue Apr 21 2020 11:38:50 GMT+0200",
+						"text": "<p>Subscription comes with its own set of challenges \u2013&nbsp;especially when the items you provide are bigger, such as with furniture company, Feather<sup>12</sup>. And even if your products are smaller,&nbsp;<a href=\"https://discover.dhl.com/business/entrepreneurship/startup-logistics\">logistics at scale can be a challenge</a>, so it\u2019s important to choose a partner who can accommodate your offering. Subscription services do offer a more enhanced ability to predict stock requirements \u2013&nbsp;which can be hugely beneficial. Regardless of all these, it\u2019s also crucial to partner with a logistics company who know cross-border trade when you\u2019re looking to grow globally.</p>\n<p>DHL Express operates in over 220 countries and territories, and therefore offers your business huge potential global expansion \u2013 promising door-to-door delivery and the ability for customers to track their shipment, wherever it may be. DHL Express can also provide paperless clearance for getting your goods through customs faster, preventing any potential delays which may impact a subscriber\u2019s experience and their likelihood to stay on.</p>\n<p>Coupled with the ability to offer time-definite delivery, opening&nbsp;<a href=\"https://discover.dhl.com/ship-now\">an account</a>&nbsp;with DHL and subscribing to their services means that, contrary to what you\u2019re giving consumers, there\u2019ll be no surprises \u2013 just reliable, efficient shipping you\u2019ll certainly want to stick with long term.</p>\n",
+						"jcr:lastModified": "Tue Apr 21 2020 11:39:18 GMT+0200",
+						"sling:resourceType": "dhl/components/content/text",
+						"textIsRich": "true"
+					},
+					"text_1272984330": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Tue Apr 21 2020 11:39:30 GMT+0200",
+						"text": "<h4>Takeaways:</h4>\n<ul>\n<li>Consider how personalization could be used</li>\n<li>Tap into how people see themselves in the world, and how your product would reflect their self-value</li>\n<li>Read our article \u2013&nbsp;<a href=\"https://discover.dhl.com/business/entrepreneurship/subscription-marketing\">Subscription Marketing: What You Need To Know</a><br>\n</li>\n</ul>\n<p>&nbsp;</p>\n<h4><i>SOURCES:</i></h4>\n<p>1&nbsp;<a href=\"https://www.thisismoney.co.uk/money/bills/article-7934637/How-25bn-year-wasted-subscriptions-Britons-dont-use.html\" target=\"_blank\">NatWest</a></p>\n<p>2&nbsp;<a href=\"https://finance.yahoo.com/news/thousands-americans-waste-364-subscriptions-090000514.html?guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAAG_HVyZoF4T4Umzp3ghsAJCIVGx71VU6IdwWQfJThVCdRh0S5Uhop2Coy8-XRNs43f_9ZG5hANQX5GKcCuwTqdjJmq4kRL7ndQ1uoV_tGbKW6VrqgrReHh6Wc6NsqbXlt0HKKEpybPttKTGTM4ef1FS8L2uGA4EQpFw1XurmAwj4&amp;guccounter=2\" target=\"_blank\">GOBankingRates</a></p>\n<p>3&nbsp;<a href=\"https://academic.oup.com/jcr/article-abstract/46/5/887/5498871\" target=\"_blank\">The Uncertain Self: How Self-Concept Structure Affects Subscription Choice</a></p>\n<p>4<a href=\"https://www.businesswire.com/news/home/20191018005308/en/Kindur-Introduces-SmartDraw-New-Subscription-Service-Baby\" target=\"_blank\">&nbsp;Business Wire</a></p>\n<p>5&nbsp;<a href=\"https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/thinking-inside-the-subscription-box-new-research-on-ecommerce-consumers\" target=\"_blank\">McKinsey &amp; Company</a></p>\n<p>6&nbsp;<a href=\"https://www.whistl.co.uk/news/subscription-services-a-whistl-survey\" target=\"_blank\">Whistl</a></p>\n<p>7&nbsp;<a href=\"https://eu.usatoday.com/story/money/2019/03/04/age-amazon-services-like-birchbox-grow-popularity/3018289002/\" target=\"_blank\">USA Today</a></p>\n<p>8&nbsp;<a href=\"https://us.epsilon.com/pressroom/new-epsilon-research-indicates-80-of-consumers-are-more-likely-to-make-a-purchase-when-brands-offer-personalized-experiences\" target=\"_blank\">Epsilon</a></p>\n<p>9&nbsp;<a href=\"https://www2.deloitte.com/content/dam/Deloitte/ch/Documents/consumer-business/ch-en-consumer-business-made-to-order-consumer-review.pdf\" target=\"_blank\">Deloitte</a></p>\n<p>10&nbsp;<a href=\"https://deadline.com/tag/muso/\" target=\"_blank\">Muso</a></p>\n<p>11&nbsp;<a href=\"https://clutch.co/logistics/resources/subscription-box-service-statistics#TOPBRANDS\" target=\"_blank\">Clutch</a></p>\n<p>12&nbsp;<a href=\"https://www.livefeather.com/\" target=\"_blank\">Feather</a></p>\n",
+						"jcr:lastModified": "Tue Apr 21 2020 11:41:23 GMT+0200",
+						"sling:resourceType": "dhl/components/content/text",
+						"textIsRich": "true"
+					}
+				},
+				"partwo": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/parsys"
+				},
+				"parthree": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "wcm/foundation/components/parsys"
+				},
+				"items": {
+					"jcr:primaryType": "nt:unstructured",
+					"item0": {
+						"jcr:primaryType": "nt:unstructured",
+						"url": "https://discover.dhl.com/business/entrepreneurship/subscription-marketing"
+					},
+					"item1": {
+						"jcr:primaryType": "nt:unstructured",
+						"url": "https://discover.dhl.com/business/entrepreneurship/startup-logistics"
+					},
+					"item2": {
+						"jcr:primaryType": "nt:unstructured",
+						"url": "/content/dhl/e-commerce/e-commerce-advice/find-your-e-commerce-market"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,225 @@
+<div class="animatedForm forms parallaxSection" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
+  <div class="container" data-sly-use.shipNowForm="com.positive.dhl.core.models.ShipNowForm">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="animatedForm__wrapper parallaxSection__tile" data-min-top="-100">
+          <div class="animatedForm__topWrapper">
+            <img src="/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/penMan.gif" class="animatedForm__image" alt="Pen">
+            <div class="animatedForm__title">Apply for a DHL Express Business Account</div>
+            <div class="animatedForm__text">For global reach, business rates and state-of-the-art tracking, an account with DHL Express is your next step.</div>
+            <a href="https://www.dhl.com/discover/en-global/ship-now" target="_blank" class="animatedForm__cta">Or click here to ship now without an account.<div class="animatedForm__icon"></div></a>
+          </div>
+          <div class="animatedForm__formWrapper">
+            <div class="animatedForm__formTitle">We just need a few details...</div>
+
+            <div class="shipNowMulti__formstep--step1">
+              <form action="#" id="businessForm" class="form forms ship-now-twostep form1" method="get">
+              <div class="animatedForm__barImage1"></div>
+                <div class="animatedForm__row">
+                  <div class="animatedForm__box">
+                    <input id="shipnow_firstname" class="info" name="firstname" type="text" placeholder="First name*" required data-msg="Enter first name" />
+                  </div>
+                  <div class="animatedForm__box animatedForm__box--alt">
+                    <input id="shipnow_lastname" class="info" name="lastname" type="text" placeholder="Last name*" required data-msg="Enter last name" />
+                  </div>
+                </div>
+
+                <input type="email" placeholder="Business email address*" id="shipnow_email" name="email" required data-msg="Enter a valid email address" />
+                <div class="animatedForm__terms">${accountactions.signupEmailPrivacyMessage @context='html'}</div>
+                <button type="submit" id="submit" class="animatedForm__button">Next</button>
+              </form>
+            </div>
+
+            <div class="shipNowMulti__formstep--step2" style="display: none;" data-thanks="/content/dhl/ship-now/thanks-sn.html">
+              <form action="#" id="businessForm" class="animatedForm__secondForm form forms ship-now-twostep form2" method="get" action="/apps/dhl/discoverdhlapi/shipnow/index.json" data-source="${shipNowForm.source}" data-lo="${shipNowForm.lead_originator}" novalidate>
+                <input type="hidden" name="home" value="${accountactions.getHomeUrl}" />
+                <div class="animatedForm__barImage2"></div>
+                <div class="animatedForm__row">
+                  <div class="animatedForm__box">
+                    <input type="text" id="shipnow_companyname" class="info" placeholder="Company name*" name="company" required data-msg="Enter a valid company name" />
+                  </div>
+                  <div class="animatedForm__box animatedForm__box--alt">
+                    <input id="shipnow_phone" class="info" type="text" placeholder="Phone number*" name="phone" required data-msg="Enter a valid phone number" />
+                  </div>
+                </div>
+                <div class="animatedForm__box animatedForm__box">
+                  <input type="text" id="shipnow_address" class="info" value="" placeholder="Address*" name="address" required data-msg="Enter a valid address" />
+                </div>
+                <div class="animatedForm__row animatedForm__row--alt">
+                  <div class="animatedForm__box animatedForm__box--small">
+                    <input id="shipnow_zip" class="info" type="text" placeholder="ZIP or Postcode*" name="postcode" required data-msg="Enter ZIP/postcode" />
+                  </div>
+                  <div class="animatedForm__box animatedForm__box--smallAlt">
+                    <input id="shipnow_city" class="info" type="text" placeholder="City*" name="city" required data-msg="Enter city" />
+                  </div>
+                </div>
+                <div class="animatedForm__box">
+                  <select id="shipnow_country" name="country" required data-msg="Select country">
+                    <option selected="selected" value="">Country*</option>
+                    <option value="Afghanistan|AF|USD">Afghanistan</option>
+                    <option value="Albania|AL|EUR">Albania</option>
+                    <option value="Algeria|DZ|EUR">Algeria</option>
+                    <option value="Angola|AO|AOA">Angola</option>
+                    <option value="Argentina|AR|USD">Argentina</option>
+                    <option value="Armenia|AM|USD">Armenia</option>
+                    <option value="Australia|AU|AUD">Australia</option>
+                    <option value="Austria|AT|EUR">Austria</option>
+                    <option value="Azerbaijan|AZ|USD">Azerbaijan</option>
+                    <option value="Bahrain|BH|BHD">Bahrain</option>
+                    <option value="Bangladesh|BD|USD">Bangladesh</option>
+                    <option value="Belarus|BY|USD">Belarus</option>
+                    <option value="Belgium|BE|EUR">Belgium</option>
+                    <option value="Benin|BJ|XOF">Benin</option>
+                    <option value="Bolivia|BO|USD">Bolivia</option>
+                    <option value="Bosnia|BA|BAM">Bosnia</option>
+                    <option value="Botswana|BW|BWP">Botswana</option>
+                    <option value="Brasil|BR|USD">Brasil</option>
+                    <option value="Brunei|BN|BND">Brunei</option>
+                    <option value="Bulgaria|BG|BGN">Bulgaria</option>
+                    <option value="Burkina Faso|BF|XOF">Burkina Faso</option>
+                    <option value="Burundi|BI|BIF">Burundi</option>
+                    <option value="Cambodia|KH|USD">Cambodia</option>
+                    <option value="Cameroon|CM|XAF">Cameroon</option>
+                    <option value="Canada|CA|CAD">Canada</option>
+                    <option value="Chad|TD|XAF">Chad</option>
+                    <option value="Chile|CL|USD">Chile</option>
+                    <option value="China|CN|CNY">China</option>
+                    <option value="Colombia|CO|USD">Colombia</option>
+                    <option value="Congo|CG|XAF">Congo</option>
+                    <option value="Costa Rica|CR|USD">Costa Rica</option>
+                    <option value="Cote Divoire|CI|XOF">Cote Divoire</option>
+                    <option value="Croatia|HR|EUR">Croatia</option>
+                    <option value="Cyprus|CY|EUR">Cyprus</option>
+                    <option value="Czech Republic|CZ|CZK">Czech Republic</option>
+                    <option value="Democratic Republic of Congo|CD|USD">Democratic Republic of Congo</option>
+                    <option value="Denmark|DK|DKK">Denmark</option>
+                    <option value="Dominican Republic|DO|USD">Dominican Republic</option>
+                    <option value="Ecuador|EC|USD">Ecuador</option>
+                    <option value="Egypt|EG|EGP">Egypt</option>
+                    <option value="El Salvador|SV|USD">El Salvador</option>
+                    <option value="Equatorial Guinea|GQ|XAF">Equatorial Guinea</option>
+                    <option value="Estonia|EE|EUR">Estonia</option>
+                    <option value="Ethiopia|ET|ETB">Ethiopia</option>
+                    <option value="Fiji|FJ|FJD">Fiji</option>
+                    <option value="Finland|FI|EUR">Finland</option>
+                    <option value="France|FR|EUR">France</option>
+                    <option value="Gabon|GA|XAF">Gabon</option>
+                    <option value="Gambia|GM|GMD">Gambia</option>
+                    <option value="Georgia|GE|USD">Georgia</option>
+                    <option value="Germany|DE|EUR">Germany</option>
+                    <option value="Ghana|GH|GHS">Ghana</option>
+                    <option value="Greece|GR|EUR">Greece</option>
+                    <option value="Guatemala|GT|USD">Guatemala</option>
+                    <option value="Guinea|GN|GNF">Guinea</option>
+                    <option value="Honduras|HN|USD">Honduras</option>
+                    <option value="Hong Kong|HK|HKD">Hong Kong</option>
+                    <option value="Hungary|HU|HUF">Hungary</option>
+                    <option value="Iceland|IS|ISK">Iceland</option>
+                    <option value="India|IN|INR">India</option>
+                    <option value="Indonesia|ID|USD">Indonesia</option>
+                    <option value="Iran|IR|IRR">Iran</option>
+                    <option value="Iraq|IQ|USD">Iraq</option>
+                    <option value="Ireland|IE|EUR">Ireland</option>
+                    <option value="Israel|IL|USD">Israel</option>
+                    <option value="Italy|IT|EUR">Italy</option>
+                    <option value="Japan|JP|JPY">Japan</option>
+                    <option value="Jordan|JO|JOD">Jordan</option>
+                    <option value="Kazakhstan|KZ|USD">Kazakhstan</option>
+                    <option value="Kenya|KE|KES">Kenya</option>
+                    <option value="Korea|KR|KRW">Korea</option>
+                    <option value="Kuwait|KW|KWD">Kuwait</option>
+                    <option value="Kyrgyzstan|KG|USD">Kyrgyzstan</option>
+                    <option value="Laos|LA|USD">Laos</option>
+                    <option value="Latvia|LV|EUR">Latvia</option>
+                    <option value="Lebanon|LB|USD">Lebanon</option>
+                    <option value="Lesotho|LS|LSL">Lesotho</option>
+                    <option value="Liberia|LR|LRD">Liberia</option>
+                    <option value="Libya|LY|LYD">Libya</option>
+                    <option value="Lithuania|LT|EUR">Lithuania</option>
+                    <option value="Luxemburg|LU|EUR">Luxemburg</option>
+                    <option value="Macau|MO|HKD">Macau</option>
+                    <option value="Macedonia|MK|EUR">Macedonia</option>
+                    <option value="Madagascar|MG|MGA">Madagascar</option>
+                    <option value="Malawi|MW|MWK">Malawi</option>
+                    <option value="Malaysia|MY|MYR">Malaysia</option>
+                    <option value="Mali|ML|XOF">Mali</option>
+                    <option value="Malta|MT|EUR">Malta</option>
+                    <option value="Mauritania|MR|MRO">Mauritania</option>
+                    <option value="Mauritius|MU|MUR">Mauritius</option>
+                    <option value="Mexico|MX|MXP">Mexico</option>
+                    <option value="Moldova|MD|USD">Moldova</option>
+                    <option value="Morocco|MA|MAD">Morocco</option>
+                    <option value="Mozambique|MZ|MZN">Mozambique</option>
+                    <option value="Myanmar|MM|USD">Myanmar</option>
+                    <option value="Namibia|NA|NAD">Namibia</option>
+                    <option value="Nepal|NP|USD">Nepal</option>
+                    <option value="Netherlands|NL|EUR">Netherlands</option>
+                    <option value="New Zealand|NZ|NZD">New Zealand</option>
+                    <option value="Nicaragua|NI|USD">Nicaragua</option>
+                    <option value="Niger|NE|XOF">Niger</option>
+                    <option value="Nigeria|NG|NGN">Nigeria</option>
+                    <option value="Norway|NO|NOK">Norway</option>
+                    <option value="Oman|OM|OMR">Oman</option>
+                    <option value="Pakistan|PK|USD">Pakistan</option>
+                    <option value="Panama|PA|USD">Panama</option>
+                    <option value="Papua New Guinea|PG|PGK">Papua New Guinea</option>
+                    <option value="Paraguay|PY|USD">Paraguay</option>
+                    <option value="Peru|PE|USD">Peru</option>
+                    <option value="Philippines|PH|PHP">Philippines</option>
+                    <option value="Poland|PL|PLN">Poland</option>
+                    <option value="Portugal|PT|EUR">Portugal</option>
+                    <option value="Qatar|QA|QAR">Qatar</option>
+                    <option value="Reunion|RE|EUR">Reunion</option>
+                    <option value="Romania|RO|EUR">Romania</option>
+                    <option value="Russia|RU|USD">Russia</option>
+                    <option value="Rwanda|RW|RWF">Rwanda</option>
+                    <option value="Saudi Arabia|SA|SAR">Saudi Arabia</option>
+                    <option value="Senegal|SN|XOF">Senegal</option>
+                    <option value="Serbia|RS|EUR">Serbia</option>
+                    <option value="Sierra Leone|SL|SLL">Sierra Leone</option>
+                    <option value="Singapore|SG|SGD">Singapore</option>
+                    <option value="Slovakia|SK|EUR">Slovakia</option>
+                    <option value="Slovenia|SI|EUR">Slovenia</option>
+                    <option value="South Africa|ZA|ZAR">South Africa</option>
+                    <option value="South Sudan|SS|SSP">South Sudan</option>
+                    <option value="Spain|ES|EUR">Spain</option>
+                    <option value="Spain|ES|EUR">Spain</option>
+                    <option value="Sri Lanka|LK|USD">Sri Lanka</option>
+                    <option value="Sudan|SD|SDG">Sudan</option>
+                    <option value="Swaziland|SZ|SZL">Swaziland</option>
+                    <option value="Sweden|SE|SEK">Sweden</option>
+                    <option value="Switzerland|CH|CHF">Switzerland</option>
+                    <option value="Syria|SY|SYP">Syria</option>
+                    <option value="Taiwan|TW|TWD">Taiwan</option>
+                    <option value="Tajikistan|TJ|USD">Tajikistan</option>
+                    <option value="Tanzania|TZ|TZS">Tanzania</option>
+                    <option value="Thailand|TH|THB">Thailand</option>
+                    <option value="Togo|TG|XOF">Togo</option>
+                    <option value="Turkey|TR|EUR">Turkey</option>
+                    <option value="UAE|AE|AED" data-nonmandatory="true">UAE</option>
+                    <option value="Uganda|UG|UGX">Uganda</option>
+                    <option value="Ukraine|UA|USD">Ukraine</option>
+                    <option value="United Kingdom|UK|GBP">United Kingdom</option>
+                    <option value="Uruguay|UY|USD">Uruguay</option>
+                    <option value="USA|US|USD">USA</option>
+                    <option value="Uzbekistan|UZ|USD">Uzbekistan</option>
+                    <option value="Venezuela|VE|USD">Venezuela</option>
+                    <option value="Vietnam|VN|VND">Vietnam</option>
+                    <option value="Yemen|YE|YER">Yemen</option>
+                    <option value="Zambia|ZM|ZMW">Zambia</option>
+                    <option value="Zimbabwe|ZW|USD">Zimbabwe</option>
+                  </select>
+                </div>
+                <div class="animatedForm__checkbox">
+                  <input id="checkboxId10" type="checkbox" name="tcagree" />
+                  <label for="checkboxId10" class="animatedForm__email">${accountactions.signupTCMessage @context='html'}</label>
+                </div>
+                <button type="submit" id="submit" class="animatedForm__button">Apply Now</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

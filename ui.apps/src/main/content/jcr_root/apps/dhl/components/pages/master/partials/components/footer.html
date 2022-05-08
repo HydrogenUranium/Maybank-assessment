@@ -1,0 +1,91 @@
+<template data-sly-template.data="${@accountactions}">
+<footer class="footer">
+	<a class="footer__backToTop d-lg-none" href="#top">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<p class="footer__backToTopLabel">${ 'Back to top' @ i18n, context='html' }</p>
+				</div>
+			</div>
+		</div>
+	</a>
+
+	<div class="footer__main">
+		<div class="container">
+			<div class="row" data-sly-use.footer="com.positive.dhl.core.models.Footer">
+				<div class="col-12 col-md-6 col-lg-4 hide-offline">
+					<h2 class="footer__title">${footer.titleColumnOne}</h2>
+					<ul class="footer__categoryList" data-sly-list.link="${footer.linksColumnOne}">
+						<li class="footer__categoryItem"><a class="footer__categoryLink" href="${link.link}">${link.name}</a></li>
+					</ul>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-5 offset-lg-3 hide-offline">
+					<h2 class="social__title">${footer.titleSocial}</h2>
+					<ul class="social__socialList" data-sly-list.link="${footer.linksSocial}">
+						<li class="social__socialItem"><a class="social__socialLink social__socialLink--${link.category}" href="${link.link}" title="${link.name}" target="_blank" rel="nofollow"><span class="sr-only">${link.name}</span></a></li>
+					</ul>
+					<div class="login-links" style="display: none;">
+						<div class="footer__ctas d-none d-lg-block">
+							<a class="footer__cta footer__cta--login" href="${accountactions.loginUrl @context = 'unsafe'}"><span>${ 'Login' @ i18n, context='html' }</span></a>
+							<a class="footer__cta footer__cta--register" href="${accountactions.registerUrl}"><span>${ 'Register' @ i18n, context='html' }</span></a>
+						</div>
+					</div>
+					<div class="logout-links" style="display: none;">
+						<div class="footer__ctas footer__ctas--loggedin d-none d-lg-block">
+							<a class="footer__cta footer__cta--login" href="${accountactions.editDetailsUrl @context = 'unsafe'}"><span>${ 'My Account' @ i18n, context='html' }</span></a>
+							<a class="footer__cta footer__cta--register logout-link" href="#"><span>${ 'Logout' @ i18n, context='html' }</span></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 hide-offline d-lg-none">
+					<hr class="footer__rule">
+				</div>
+				<div class="col-12 hide-offline d-lg-none">
+					<div class="login-links" style="display: none;">
+						<div class="footer__ctas">
+							<a class="footer__cta footer__cta--login" href="${accountactions.loginUrl @context = 'unsafe'}"><span>${ 'Login' @ i18n, context='html' }</span></a>
+							<a class="footer__cta footer__cta--register" href="${accountactions.registerUrl}"><span>${ 'Register' @ i18n, context='html' }</span></a>
+						</div>
+					</div>
+					<div class="logout-links" style="display: none;">
+						<div class="footer__ctas footer__ctas--loggedin">
+							<a class="footer__cta footer__cta--login" href="${accountactions.editDetailsUrl @context = 'unsafe'}"><span>${ 'My Account' @ i18n, context='html' }</span></a>
+							<a class="footer__cta footer__cta--register logout-link" href="#"><span>${ 'Logout' @ i18n, context='html' }</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row" data-sly-use.footerAbsolute="com.positive.dhl.core.models.FooterAbsolute">
+				<div class="col-12 hide-offline">
+					<hr class="footer__rule">
+				</div>
+				
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 order-xl-1">
+					<ul class="footer__linkList hide-offline" data-sly-list.link="${footerAbsolute.leftLinks}">
+						<li class="footer__linkItem"><a class="footer__link" href="${link.link}" target="_blank" rel="nofollow">${link.name}</a></li>
+					</ul>
+				</div>
+				
+				<div class="col-6 col-md-4 offset-md-4 offset-lg-0 col-lg-6 col-xl-4 order-xl-3">
+					<ul class="footer__linkList hide-offline">
+						<sly data-sly-list.link="${footerAbsolute.rightLinks}" data-sly-unwrap>
+						<li class="footer__linkItem"><a class="footer__link" href="${link.link}" title="${link.name}">${link.name}</a></li>
+						</sly>
+						<li class="footer__linkItem" data-sly-test="${accountactions.usethirdpartycookie}">
+							<!-- OneTrust Cookies Settings button start --> 
+							<button id="onetrust-pc-btn-handler" data-document-language="true" class="link ot-sdk-show-settings footer__link" data-di-id="#onetrust-pc-btn-handler">${ 'Cookies Settings' @ i18n, context='html' }</button>
+							<!-- OneTrust Cookies Settings button end -->
+						</li>
+					</ul>
+				</div>
+				
+				<div class="col-12 col-xl-4 order-xl-2">
+					<p class="footer__legalText">${footerAbsolute.copyrightNotice @ context='html'}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+</template>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:description="A DHL article category page"
+    jcr:primaryType="cq:Template"
+    jcr:title="DHL Article category page"
+    allowedPaths="[/content/dhl,/content/dhl/.+]"
+    ranking="{Long}100">
+    <jcr:content
+        jcr:primaryType="cq:PageContent"
+        sling:resourceType="dhl/components/pages/articlecategory">
+        <title
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="dhl/components/content/title"/>
+        <parcarousel
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/parsys">
+            <articlelistcarousel
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/content/articlelistcarousel"
+                title="">
+                <items jcr:primaryType="nt:unstructured">
+                    <item0
+                        jcr:primaryType="nt:unstructured"
+                        path="/content/dhl/business-matters/digital-home-delivery/article"/>
+                    <item1
+                        jcr:primaryType="nt:unstructured"
+                        path="/content/dhl/business-matters/digital-home-delivery/article"/>
+                </items>
+            </articlelistcarousel>
+        </parcarousel>
+        <par
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/parsys">
+            <articlelistcategory
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/content/articlelistcategoryexplore"
+                title="Explore">
+                <items jcr:primaryType="nt:unstructured">
+                    <item0
+                        jcr:primaryType="nt:unstructured"
+                        path="/content/dhl/business-matters/digital-home-delivery/article"/>
+                    <item1
+                        jcr:primaryType="nt:unstructured"
+                        path="/content/dhl/business-matters/digital-home-delivery/article"/>
+                </items>
+            </articlelistcategory>
+            <taglist
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/content/taglist"
+                tags="[experience-fragments:variation/web,experience-fragments:variation/facebook]"
+                title="What are you interested in?"/>
+            <articlelistcategoryexplore
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/content/articlelistcategoryexplore"
+                title="Latest Insights">
+                <items jcr:primaryType="nt:unstructured">
+                    <item0
+                        jcr:primaryType="nt:unstructured"
+                        path="/content/dhl/business-matters/digital-home-delivery/article"/>
+                    <item1
+                        jcr:primaryType="nt:unstructured"
+                        path="/content/dhl/business-matters/digital-home-delivery/article"/>
+                </items>
+            </articlelistcategoryexplore>
+            <ctapanelrow
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/content/ctapanelrow"
+                content="&lt;p>DHL&amp;#39;s Time Definite Express services provide international door-to-door delivery at a time that suits you, or by the end of the next business day.&lt;/p>&#xd;&#xa;&lt;p>Our global reach and local teams ensure fast Delivery on your terms, and there&amp;#39;s peace of mind courtesy of end-to-end tracking and customs clearance&lt;/p>&#xd;&#xa;&lt;p>Visit your country&amp;#39;s DHL Express website to check the services we offer.&lt;/p>&#xd;&#xa;"
+                ctalink="/content/dhl/legal-notice.html"
+                ctatitle="Read on"
+                imagedt="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/CTAPanelRow-desk.jpg"
+                imagetab="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/CTAPanelRow-tab.jpg"
+                textIsRich="true"
+                title="On Demand Delivery"/>
+            <articlelistcategorytrending
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/content/articlelistcategorytrending"/>
+            <quotectapanel
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/content/quotectapanel"
+                author="Sun Tzu"
+                ctalink="#"
+                ctatitle="Find out more"
+                imagedt="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/quoteCTAPanel-desk.jpg"
+                imagetab="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/quoteCTAPanel-tab.jpg"
+                quote="The line between disorder and order lies"
+                subtitle="From horses to drones, read more about the history of logistics using our handy interactive timeline"/>
+        </par>
+    </jcr:content>
+</jcr:root>

@@ -1,0 +1,105 @@
+package com.positive.dhl.core.servlets;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.servlet.Servlet;
+import javax.sql.DataSource;
+
+import com.day.commons.datasource.poolservice.DataSourceNotFoundException;
+import com.positive.dhl.core.exceptions.DiscoverUserNotFoundException;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.servlets.HttpConstants;
+import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+
+import com.day.commons.datasource.poolservice.DataSourcePool;
+import com.google.gson.JsonObject;
+
+import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.positive.dhl.core.helpers.DatabaseHelpers;
+import com.positive.dhl.core.models.UserAccount;
+
+/**
+ * 
+ */
+@Component(
+	service = Servlet.class,
+	property = {
+		Constants.SERVICE_DESCRIPTION + "=DHL Refresh Token Servlet",
+    	"sling.servlet.methods=" + HttpConstants.METHOD_POST,
+    	"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/refresh_token/index.json"
+	}
+)
+public class UpdateTokenServlet extends SlingAllMethodsServlet {
+	private static final Logger log = LoggerFactory.getLogger(UpdateTokenServlet.class);
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 *
+	 */
+    @Reference
+    private transient DataSourcePool source;
+
+    /**
+	 * 
+	 */
+	@Override
+	public void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+		String responseBody = "";
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+		
+		String username = request.getParameter("username");
+		String token = request.getParameter("refresh_token");
+		if ((username != null && username.length() > 0) && (token != null && token.length() > 0)) {
+			try {
+				if (this.source != null) {
+					DataSource dataSource = (DataSource)this.source.getDataSource(DatabaseHelpers.DATA_SOURCE_NAME);
+					if (dataSource != null) {
+						try (Connection connection = dataSource.getConnection()) {
+				        	UserAccount user = UserAccount.RefreshToken(connection, username, token);
+							
+							if (user != null && user.isAuthenticated()) {
+								JsonObject responseJson = new JsonObject();
+								responseJson.addProperty("status", "ok");
+								responseJson.addProperty("username", user.getUsername());
+								responseJson.addProperty("name", user.getName());
+								responseJson.addProperty("token", user.getToken());
+								responseJson.addProperty("refresh_token", user.getRefreshToken());
+								responseJson.addProperty("ttl", user.getTtl());
+								responseJson.addProperty("full", user.getFullAccount());
+								
+								responseBody = responseJson.toString();
+								
+							} else {
+								responseBody = "{ \"status\": \"ko\", \"error\": \"Username/token incorrect\" }";
+							}
+			        	}
+					}
+				}
+
+			} catch (SQLException | DiscoverUserNotFoundException | DataSourceNotFoundException ex) {
+				log.error("Error occurred while producing result JSON", ex);
+				responseBody = "{ \"status\": \"ko\", \"error\": \"Error occurred while producing result JSON: '" + ex.getMessage() + "'\" }";
+				response.getWriter().write(responseBody);
+				return;
+			}
+
+		} else {
+			responseBody = "{ \"status\": \"ko\", \"error\": \"Username/token not supplied\" }";
+		}
+
+		response.getWriter().write(responseBody);
+	}
+}

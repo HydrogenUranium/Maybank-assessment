@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/deutschepostagdiscover/clientlibs"/>
-    <filter root="/apps/deutschepostagdiscover/components"/>
-    <filter root="/apps/deutschepostagdiscover/i18n"/>
+    <filter root="/apps/dhl"/>
+    <filter root="/apps/sling" />
 </workspaceFilter>

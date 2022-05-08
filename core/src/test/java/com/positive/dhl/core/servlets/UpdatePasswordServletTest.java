@@ -1,0 +1,58 @@
+package com.positive.dhl.core.servlets;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+
+import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.testing.mock.sling.ResourceResolverType;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+
+@ExtendWith({AemContextExtension.class, MockitoExtension.class})
+class UpdatePasswordServletTest {
+    private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
+
+    @Mock
+    ResourceResolverFactory resourceResolverFactory;
+    
+	@BeforeEach
+	void setUp() throws Exception {
+		context.load().json("/com/positive/dhl/core/models/RegistrationsStore.json", "/content");
+	}
+
+	@Test
+	void test() throws ServletException, IOException, LoginException {
+		String path = "/apps/dhl/discoverdhlapi/reset_password/index.json";
+		
+		UpdatePasswordServlet servlet = new UpdatePasswordServlet();
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("username", "test@email.com");
+		params.put("token", "test1234");
+		params.put("password", "");
+		
+        MockSlingHttpServletRequest request = context.request();
+        request.setParameterMap(params);
+		
+		context.currentPage(context.pageManager().getPage(path));
+		context.requestPathInfo().setResourcePath(path);
+		servlet.doPost(request, context.response());
+		
+		String responseBody = context.response().getOutputAsString();
+		assertTrue(responseBody.length() > 0);
+	}
+}

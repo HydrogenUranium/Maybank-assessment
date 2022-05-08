@@ -1,0 +1,51 @@
+<!--/*
+    Copyright 2015 Adobe Systems Incorporated
+  
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+        http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/-->
+<template data-sly-template.data="${@accountactions}">
+<div class="page-body">
+  <div class="shipNowMulti wysiwyg" data-sly-use.shipNowForm="com.positive.dhl.core.models.ShipNowForm">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="shipNowMulti__formstep--thanks">
+          <div class="col-12 col-xl-10 offset-xl-1">
+            <div class="shipNowMulti__head shipNowMulti__head--thanks">
+              <h1>${ 'Thanks for registering' @ i18n, context='html' }</h1>
+              <p>${properties.thanksmessage}</p>
+
+              <div class="shipNowMulti__actions">
+                <a class="shipNowMulti__headcta shipNowMulti__headcta--red" href="${accountactions.homeUrl}.html" title="Continue browsing">${ 'Continue browsing' @ i18n, context='html' }</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipNowNowMulti wysiwyg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="shipNowNowMulti__panel">
+            <h3>${ 'Personal shipper? Send a package right now' @ i18n, context='html' }</h3>
+            ${properties.shipnowmessage @context='html' }
+            <a href="${properties.shipnowurl}" title="Ship now" target="_blank" rel="external"><span>${ 'Ship now' @ i18n, context='html' }</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</template>

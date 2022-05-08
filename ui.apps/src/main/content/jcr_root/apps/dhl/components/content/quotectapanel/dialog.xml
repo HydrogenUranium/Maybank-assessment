@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Dialog"
+    title="Properties"
+    xtype="panel">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <imagedt
+            jcr:primaryType="cq:Widget"
+            fieldLabel="Image (desktop size)"
+            name="./imagedt"
+            rootPath="/content/dam"
+            xtype="pathfield"/>
+        <imagetab
+            jcr:primaryType="cq:Widget"
+            fieldLabel="Image (desktop size)"
+            name="./imagetab"
+            rootPath="/content/dam"
+            xtype="pathfield"/>
+        <quote
+            jcr:primaryType="cq:Widget"
+            fieldLabel="Quote"
+            name="./quote"
+            xtype="textfield"/>
+        <author
+            jcr:primaryType="cq:Widget"
+            fieldLabel="Quote Person/Author"
+            name="./author"
+            xtype="textfield"/>
+        <subtitle
+            jcr:primaryType="cq:Widget"
+            fieldLabel="Subtitle"
+            name="./subtitle"
+            xtype="textfield"/>
+        <ctatitle
+            jcr:primaryType="cq:Widget"
+            fieldLabel="CTA Title"
+            name="./ctatitle"
+            xtype="textfield"/>
+        <ctalink
+            jcr:primaryType="cq:Widget"
+            fieldLabel="CTA Link"
+            name="./ctatitle"
+            linkPattern="\{0}.html"
+            rootPath="/content"
+            xtype="pathfield"/>
+    </items>
+</jcr:root>
