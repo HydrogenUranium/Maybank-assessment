@@ -1,0 +1,8 @@
+{
+    "resource.resolver.mapping": [
+        "/:/discover/",
+        "/content/dhl.html:/discover",
+        "/content/dhl/(.*)</discover/$1",
+        "/content/dhl:/discover"
+    ]
+}
