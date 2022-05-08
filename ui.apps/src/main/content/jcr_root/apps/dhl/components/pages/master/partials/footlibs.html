@@ -15,7 +15,9 @@
 */-->
 <sly data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants" data-sly-unwrap>
     <!--/* Include the site client libraries (loading only the JS in the footer, CSS was loaded in the header) */-->
-    <script type="text/javascript" src="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site.20220302.js"></script>
+    <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+        <sly data-sly-call="${clientlib.js @ categories='dhl.site'}"/>
+    </sly>
 
     <!--/* Include Adobe Dynamic Tag Management libraries for the footer */-->
     <sly data-sly-resource="${@ resourceType='cq/cloudserviceconfigs/components/servicecomponents'}" data-sly-unwrap/>
