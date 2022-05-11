@@ -16,7 +16,6 @@
     	</sly>
     	
     	<meta name="dhl-path-prefix" content="${dhlpage.pathprefix}" />
-		<meta name="dhl-path-prefix-2" content="${dhlpage.pathprefix}" />
     	
         <sly data-sly-include="partials/head.html" data-sly-unwrap/>
         <sly data-sly-include="partials/headlibs.html" data-sly-unwrap/>
@@ -157,9 +156,7 @@
 		</div>
 		
 		<!--/* Include the site client libraries (loading only the JS in the footer, CSS was loaded in the header) */-->
-		<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
-			<sly data-sly-call="${clientlib.js @ categories='dhl.site'}"/>
-		</sly>
+		<script type="text/javascript" src="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-site.20220302.js"></script>
 		
 		<script src="https://r1-t.trackedlink.net/_dmpt.js" type="text/javascript"></script>
     </body>

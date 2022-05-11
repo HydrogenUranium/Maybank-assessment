@@ -7,12 +7,17 @@ import com.positive.dhl.core.components.GeneralSiteComponentConfig;
 import com.positive.dhl.core.services.GeneralSiteConfigurationService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.settings.SlingSettingsService;
 
 import com.day.cq.wcm.api.Page;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -43,6 +48,7 @@ public class DhlPage {
 	private String assetprefix;
 
 	private Boolean noindex;
+	private List<Canonical> canonicals;
 	
     /**
 	 * 
@@ -135,11 +141,25 @@ public class DhlPage {
 		return noindex;
 	}
 
+    /**
+	 * 
+	 */
+	public List<Canonical> getCanonicals() {
+		return new ArrayList<Canonical>(canonicals);
+	}
+
 	/**
 	 *
 	 */
 	public void setNoindex(Boolean noindex) {
 		this.noindex = noindex;
+	}
+
+    /**
+	 * 
+	 */
+	public void setCanonicals(List<Canonical> canonicals) {
+		this.canonicals = new ArrayList<Canonical>(canonicals);
 	}
 
 	/**
@@ -195,6 +215,28 @@ public class DhlPage {
 				if (slingSettingsService.getRunModes().contains("publish")) {
 					response.setStatus(302);  
 					response.setHeader("Location", path); 
+				}
+			}
+
+			// if 'noindex' is set on the homepage, all pages have no-index set, otherwise the settings is on individual pages
+			if (!noindex) {
+				noindex = properties.get("noindex", false);
+			}
+
+			// get list of canonical URLs
+ 			canonicals = new ArrayList<Canonical>();
+			Resource canonicalItems = currentPage.getContentResource("canonicalitems");
+			if (canonicalItems != null) {
+				Iterator<Resource> canonicalItemsIterator = canonicalItems.listChildren();
+				while (canonicalItemsIterator.hasNext()) {
+					ValueMap props = canonicalItemsIterator.next().adaptTo(ValueMap.class);
+					if (props != null) {
+
+						String url = props.get("url", "");
+						if (!("").equals(url)) {
+							canonicals.add(new Canonical(url));
+						}
+					}
 				}
 			}
 		}

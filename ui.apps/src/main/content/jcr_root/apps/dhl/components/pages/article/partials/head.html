@@ -31,6 +31,10 @@
 
   <link rel="alternate" href="${dhlpage.fullUrl}" hreflang="${languageVariants.getCurrentLanguage}" />
   <link rel="canonical" href="${dhlpage.fullUrl}" />
+  
+  <sly data-sly-list.canonical="${dhlpage.canonicals}" data-sly-unwrap>
+    <link rel="canonical" href="${canonical.url}" />
+  </sly>
 
   <sly data-sly-unwrap data-sly-test="${ dhlpage.noindex == true }">
     <meta name="robots" content="noindex" />
