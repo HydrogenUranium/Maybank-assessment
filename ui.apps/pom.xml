@@ -118,14 +118,14 @@
             <!-- V A U L T   P A C K A G E   P L U G I N                                -->
             <!-- ====================================================================== -->
             <plugin>
-                <groupId>com.day.jcr.vault</groupId>
-                <artifactId>content-package-maven-plugin</artifactId>
+                <groupId>org.apache.jackrabbit</groupId>
+                <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
-                    <verbose>true</verbose>
-                    <failOnError>true</failOnError>
-                    <group>DHL Content Package</group>
+                    <group>com.positive</group>
+                    <packageType>container</packageType>
+                    <!-- skip sub package validation for now as some vendor packages like CIF apps will not pass -->
+                    <skipSubPackageValidation>true</skipSubPackageValidation>
                     <embeddeds>
                         <embedded>
                             <groupId>org.apache.servicemix.bundles</groupId>
@@ -144,6 +144,15 @@
                             <target>/apps/dhl/install</target>
                         </embedded>
                     </embeddeds>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <verbose>true</verbose>
+                    <failOnError>true</failOnError>
                 </configuration>
             </plugin>
 
