@@ -118,19 +118,18 @@
             <!-- V A U L T   P A C K A G E   P L U G I N                                -->
             <!-- ====================================================================== -->
             <plugin>
-                <groupId>org.apache.jackrabbit</groupId>
-                <artifactId>filevault-package-maven-plugin</artifactId>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <group>com.positive</group>
-                    <packageType>container</packageType>
-                    <!-- skip sub package validation for now as some vendor packages like CIF apps will not pass -->
-                    <skipSubPackageValidation>true</skipSubPackageValidation>
+                    <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
+                    <verbose>true</verbose>
+                    <failOnError>true</failOnError>
+                    <group>DHL Content Package</group>
                     <embeddeds>
                         <embedded>
-                            <groupId>org.apache.servicemix.bundles</groupId>
-                            <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
-                            <type>jar</type>
+                            <groupId>com.positive</groupId>
+                            <artifactId>dhl.core</artifactId>
                             <target>/apps/dhl/install</target>
                         </embedded>
                         <embedded>
@@ -139,20 +138,11 @@
                             <target>/apps/dhl/install</target>
                         </embedded>
                         <embedded>
-                            <groupId>com.positive</groupId>
-                            <artifactId>dhl.core</artifactId>
+                            <groupId>org.apache.servicemix.bundles</groupId>
+                            <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
                             <target>/apps/dhl/install</target>
                         </embedded>
                     </embeddeds>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.day.jcr.vault</groupId>
-                <artifactId>content-package-maven-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <verbose>true</verbose>
-                    <failOnError>true</failOnError>
                 </configuration>
             </plugin>
 
@@ -197,12 +187,11 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.17</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.servicemix.bundles</groupId>
             <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
-            <version>0.1.55_1</version>
         </dependency>
     </dependencies>
 </project>
