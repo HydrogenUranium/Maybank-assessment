@@ -55,6 +55,12 @@
                     <skipSubPackageValidation>true</skipSubPackageValidation>
                     <embeddeds>
                         <embedded>
+                            <groupId>org.apache.servicemix.bundles</groupId>
+                            <artifactId>jsch</artifactId>
+                            <type>jar</type>
+                            <target>/apps/dhl-packages/application/install</target>
+                        </embedded>
+                        <embedded>
                             <groupId>mysql</groupId>
                             <artifactId>mysql-connector-java</artifactId>
                             <target>/apps/dhl-packages/application/install</target>
@@ -193,6 +199,10 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.servicemix.bundles</groupId>
+            <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
         </dependency>
     </dependencies>
 </project>

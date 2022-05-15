@@ -31,7 +31,7 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// import com.jcraft.jsch.*;
+import com.jcraft.jsch.*;
 
 import com.positive.dhl.core.shipnow.servlets.ShipNowServlet;
 
@@ -378,7 +378,6 @@ public class EtlScheduledSync implements Runnable {
 			URL sshKeyUrl = writeFile(context, "id_rsa", sshkey);
 			URL dataFileUrl = writeFile(context, "data", datFileContents);
 
-			/*
             JSch jsch = new JSch();
             jsch.addIdentity(sshKeyUrl.getPath());
             
@@ -393,11 +392,11 @@ public class EtlScheduledSync implements Runnable {
             channel.connect();
             channel.put(dataFileUrl.getPath(), remotePath + remoteFile);
             channel.exit();
-			*/
 		    
 		    return true;
 		    
-		} catch (Exception ex) {
+		}
+		catch (Exception ex) {
 			log.error("Scheduler" + config.EtlSyncScheduleName() + " sync produced an error attempting to connect/sync to etl.", ex);
 		}
 		
