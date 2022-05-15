@@ -23,11 +23,12 @@
     <description>DHL</description>
 
     <modules>
+        <module>all</module>
         <module>core</module>
-        <module>ui.apps</module>
-        <module>it.tests</module>
-        <module>it.launcher</module>
         <module>dispatcher.cloud</module>
+        <module>it.launcher</module>
+        <module>it.tests</module>
+        <module>ui.apps</module>
     </modules>
 
     <properties>

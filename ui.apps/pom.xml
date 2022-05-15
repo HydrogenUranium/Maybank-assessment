@@ -132,11 +132,6 @@
                             <artifactId>dhl.core</artifactId>
                             <target>/apps/dhl/install</target>
                         </embedded>
-                        <embedded>
-                            <groupId>mysql</groupId>
-                            <artifactId>mysql-connector-java</artifactId>
-                            <target>/apps/dhl/install</target>
-                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
