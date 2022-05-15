@@ -132,6 +132,11 @@
                             <artifactId>dhl.core</artifactId>
                             <target>/apps/dhl/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <target>/apps/dhl/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -172,6 +177,12 @@
         <dependency>
             <groupId>com.day.cq.wcm</groupId>
             <artifactId>cq-wcm-taglib</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.17</version>
         </dependency>
     </dependencies>
 </project>
