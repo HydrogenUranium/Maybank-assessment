@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/dhl/clientlibs"/>
-    <filter root="/apps/dhl/components"/>
-    <filter root="/apps/dhl/i18n"/>
-    <filter root="/apps/dhl/templates"/>
+    <filter root="/apps/dhl"/>
+    <filter root="/apps/sling" />
 </workspaceFilter>
