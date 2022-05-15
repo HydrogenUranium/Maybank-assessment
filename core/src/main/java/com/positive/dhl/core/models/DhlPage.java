@@ -11,7 +11,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.settings.SlingSettingsService;
 
 import com.day.cq.wcm.api.Page;
 
@@ -24,9 +23,6 @@ import java.util.List;
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class DhlPage {
-	@Inject
-    private SlingSettingsService slingSettingsService;
-
 	@Inject
 	private SlingHttpServletRequest request;
 	
@@ -209,7 +205,8 @@ public class DhlPage {
 		if (properties != null) {
 			fullarticlepath = properties.get("fullarticlepath", "");
 			amparticlepath = properties.get("amparticlepath", "");
-			
+
+			/*
 			String path = properties.get("redirectTarget", "");
 			if (!path.equals(currentPagePath) && !path.isEmpty()) {
 				if (slingSettingsService.getRunModes().contains("publish")) {
@@ -217,6 +214,7 @@ public class DhlPage {
 					response.setHeader("Location", path); 
 				}
 			}
+			*/
 
 			// if 'noindex' is set on the homepage, all pages have no-index set, otherwise the settings is on individual pages
 			if (!noindex) {

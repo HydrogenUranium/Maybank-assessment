@@ -377,7 +377,7 @@ public class EtlScheduledSync implements Runnable {
 		try {
 			URL sshKeyUrl = writeFile(context, "id_rsa", sshkey);
 			URL dataFileUrl = writeFile(context, "data", datFileContents);
-			
+
             JSch jsch = new JSch();
             jsch.addIdentity(sshKeyUrl.getPath());
             
@@ -395,7 +395,8 @@ public class EtlScheduledSync implements Runnable {
 		    
 		    return true;
 		    
-		} catch (Exception ex) {
+		}
+		catch (Exception ex) {
 			log.error("Scheduler" + config.EtlSyncScheduleName() + " sync produced an error attempting to connect/sync to etl.", ex);
 		}
 		

@@ -55,14 +55,8 @@
                     <skipSubPackageValidation>true</skipSubPackageValidation>
                     <embeddeds>
                         <embedded>
-                            <groupId>com.jcraft</groupId>
+                            <groupId>org.apache.servicemix.bundles</groupId>
                             <artifactId>jsch</artifactId>
-                            <type>jar</type>
-                            <target>/apps/dhl-packages/application/install</target>
-                        </embedded>
-                        <embedded>
-                            <groupId>com.jcraft</groupId>
-                            <artifactId>jzlib</artifactId>
                             <type>jar</type>
                             <target>/apps/dhl-packages/application/install</target>
                         </embedded>
@@ -112,7 +106,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--
             <plugin>
                 <groupId>com.adobe.aem</groupId>
                 <artifactId>aemanalyser-maven-plugin</artifactId>
@@ -121,37 +114,6 @@
                         <id>aem-analyser</id>
                         <goals>
                             <goal>project-analyse</goal>                           
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            -->
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <!-- Import any version of javax.inject, to allow running on multiple versions of AEM -->
-                        <Embed-Dependency>*;groupId=com.jcraft;scope=compile|runtime</Embed-Dependency>
-                        <Embed-Directory>OSGI-INF/lib</Embed-Directory> <!-- not needed, but nice -->
-                        <Embed-Transitive>true</Embed-Transitive>
-                        <Import-Package>javax.inject;version=0.0.0,*</Import-Package>
-                        <Sling-Model-Packages>
-                            com.positive.dhl.core
-                        </Sling-Model-Packages>
-                    </instructions>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-scr-plugin</artifactId>
-                <version>1.7.4</version>
-                <executions>
-                    <execution>
-                        <id>generate-scr-scrdescriptor</id>
-                        <goals>
-                            <goal>scr</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -237,6 +199,10 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.servicemix.bundles</groupId>
+            <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
         </dependency>
     </dependencies>
 </project>
