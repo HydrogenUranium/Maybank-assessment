@@ -59,9 +59,7 @@ public class GetSuggestedSearches extends SlingAllMethodsServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put(ResourceResolverFactory.SUBSERVICE, SessionHelper.DATAWRITE_SERVICENAME);
-		try (ResourceResolver resolver = resourceResolverFactory.getServiceResourceResolver(param)) {
+		try (ResourceResolver resolver = request.getResourceResolver()) {
 			TagManager tagManager = resolver.adaptTo(TagManager.class);
 
 			List<String> tagList = new ArrayList<String>();
@@ -96,9 +94,6 @@ public class GetSuggestedSearches extends SlingAllMethodsServlet {
 	        } else {
 	        	responseBody = "{ \"results\": [], \"status\": \"ko\", \"error\": \"TagManager is null\" }";
 	        }
-
-		} catch (LoginException ex) {
-			responseBody = "{ \"status\": \"ko\" \"error\": \"" + ex.getMessage() + "\" }";
 		}
 
 		response.getWriter().write(responseBody);

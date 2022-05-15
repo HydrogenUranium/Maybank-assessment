@@ -70,10 +70,8 @@ public class GetTagsStartingWithServlet extends SlingAllMethodsServlet {
 			
 		} else {
 			startsWith = startsWith.trim().toLowerCase();
-			
-			Map<String, Object> param = new HashMap<String, Object>();
-			param.put(ResourceResolverFactory.SUBSERVICE, SessionHelper.DATAWRITE_SERVICENAME);
-			try (ResourceResolver resolver = resourceResolverFactory.getServiceResourceResolver(param)) {
+
+			try (ResourceResolver resolver = request.getResourceResolver()) {
 				TagManager tagManager = resolver.adaptTo(TagManager.class);
 
 		        if (tagManager != null) {
@@ -102,9 +100,6 @@ public class GetTagsStartingWithServlet extends SlingAllMethodsServlet {
 		        } else {
 		        	responseBody = "{ \"results\": [], \"status\": \"ko\", \"error\": \"TagManager is null\" }";
 		        }
-
-			} catch (LoginException ex) {
-				responseBody = "{ \"status\": \"ko\" \"error\": \"" + ex.getMessage() + "\" }";
 			}
 		}
 
