@@ -44,7 +44,6 @@
                         <configuration>
                             <bnd><![CDATA[
 Import-Package: javax.annotation;version=0.0.0,*
--includeresource: jsch-[0-9.]*.jar;lib:=true,jzlib-[0-9.]*.jar;lib:=true
                                 ]]></bnd>
                         </configuration>
                     </execution>
@@ -138,15 +137,6 @@ Import-Package: javax.annotation;version=0.0.0,*
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jcraft</groupId>
-            <artifactId>jsch</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jcraft</groupId>
-            <artifactId>jzlib</artifactId>
         </dependency>
     </dependencies>
 </project>
