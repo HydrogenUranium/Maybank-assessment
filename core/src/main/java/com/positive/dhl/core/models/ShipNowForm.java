@@ -7,7 +7,6 @@ import javax.inject.Inject;
 
 import com.positive.dhl.core.helpers.RequestHelpers;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 
