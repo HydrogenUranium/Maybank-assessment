@@ -1,6 +1,6 @@
 {
     "jdbc.driver.class": "com.mysql.jdbc.Driver",
-    "jdbc.connection.uri": "jdbc:mysql://$[env:AEM_PROXY_HOST;default=proxy.tunnel]:30006/$[env:MYSQL_CONNECTION_DATABASE]",
+    "jdbc.connection.uri": "jdbc:mysql://$[env:AEM_PROXY_HOST;default=proxy.tunnel]:30006/$[env:MYSQL_CONNECTION_DATABASE]?useLegacyDatetimeCode=false&serverTimezone=CET",
     "jdbc.username": "$[env:MYSQL_CONNECTION_USERNAME]",
     "jdbc.password": "$[secret:MYSQL_CONNECTION_PASSWORD]",
     "jdbc.validation.query": "",
