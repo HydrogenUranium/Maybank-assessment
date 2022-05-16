@@ -2,7 +2,6 @@ package com.positive.dhl.core.models;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.positive.dhl.core.components.GeneralSiteComponentConfig;
 import com.positive.dhl.core.services.GeneralSiteConfigurationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

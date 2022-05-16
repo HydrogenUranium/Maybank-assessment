@@ -3,7 +3,6 @@ package com.positive.dhl.core.models;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import com.positive.dhl.core.components.GeneralSiteComponentConfig;
 import com.positive.dhl.core.services.GeneralSiteConfigurationService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;

@@ -533,6 +533,13 @@ Bundle-DocURL:
                 <version>${core.wcm.components.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>org.apache.sling.models.api</artifactId>
+                <version>1.4.2</version>
+                <scope>provided</scope>
+            </dependency>
+
             <!-- Testing -->
             <dependency>
                 <groupId>org.junit</groupId>
@@ -606,6 +613,12 @@ Bundle-DocURL:
                 <groupId>org.apache.servicemix.bundles</groupId>
                 <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
                 <version>0.1.55_1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.3</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

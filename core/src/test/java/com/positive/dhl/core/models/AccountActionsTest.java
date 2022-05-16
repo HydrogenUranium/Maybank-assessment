@@ -1,15 +1,10 @@
 package com.positive.dhl.core.models;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.jcr.Session;
-
-import com.positive.dhl.core.components.GeneralSiteComponentConfig;
 import com.positive.dhl.core.services.GeneralSiteConfigurationService;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -18,9 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 
-import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 

@@ -13,7 +13,6 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.request.RequestPathInfo;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -150,8 +149,7 @@ public class ArticleGrid {
 		}
 		
 		if (request != null) {
-			RequestPathInfo pathInfo = request.getRequestPathInfo();
-			mode = pathInfo.getSelectorString();
+			mode = request.getRequestPathInfo().getSelectorString();
 		}
 
 		categories = null;

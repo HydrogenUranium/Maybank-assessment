@@ -5,7 +5,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 
-import com.positive.dhl.core.components.GeneralSiteComponentConfig;
 import com.positive.dhl.core.services.GeneralSiteConfigurationService;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.sling.api.SlingHttpServletRequest;
