@@ -82,11 +82,6 @@
                             <artifactId>mysql-connector-java</artifactId>
                             <target>/apps/dhl-vendor-packages/install</target>
                         </embedded>
-                        <dependency>
-                            <groupId>org.apache.sling</groupId>
-                            <artifactId>org.apache.sling.api.request</artifactId>
-                            <target>/apps/dhl-vendor-packages/install</target>
-                        </dependency>
                     </embeddeds>
                 </configuration>
             </plugin>
