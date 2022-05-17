@@ -15,7 +15,9 @@
 */-->
 <sly data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants" data-sly-unwrap>
     <!--/* Include the site client libraries (loading only the CSS in the header, JS will be loaded in the footer) */-->
-    <link rel="stylesheet" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages.20220302.css" type="text/css" />
+    <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+        <sly data-sly-call="${clientlib.css @ categories='dhl.animatedpages'}"/>
+    </sly>
 
     <!--/* Include Adobe Dynamic Tag Management libraries for the header */-->
     <sly data-sly-include="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp" data-sly-unwrap/>

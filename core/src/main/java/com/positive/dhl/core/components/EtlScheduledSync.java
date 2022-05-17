@@ -366,6 +366,7 @@ public class EtlScheduledSync implements Runnable {
 	 */
 	private boolean executeSync(BundleContext context, String countryCode, String datFileContents) throws Exception {
 		String address = this.config.EtlAddress();
+		int port = Integer.parseInt(this.config.EtlPort());
 		String username = this.config.EtlUsername();
 		String remotePath = this.config.EtlRemotePath();
 		String sshkey = this.config.EtlSshKey();
@@ -381,7 +382,7 @@ public class EtlScheduledSync implements Runnable {
             JSch jsch = new JSch();
             jsch.addIdentity(sshKeyUrl.getPath());
             
-            com.jcraft.jsch.Session session = jsch.getSession(username, address, 22);
+            com.jcraft.jsch.Session session = jsch.getSession(username, address, port);
             java.util.Properties config = new java.util.Properties(); 
             config.put("StrictHostKeyChecking", "no");
             session.setConfig(config);
