@@ -29,10 +29,16 @@ public @interface EtlScheduledSyncConfig {
 	String EtlSyncSchedule();
 
 	/*
-	 * 
+	 *
 	 */
 	@AttributeDefinition(name = "ETL Server IP Address", description = "ETL Server IP Address", defaultValue = "198.141.243.222")
 	String EtlAddress();
+
+	/*
+	 *
+	 */
+	@AttributeDefinition(name = "ETL Server Port", description = "ETL Server IP Address", defaultValue = "22")
+	String EtlPort();
 
 	/*
 	 * 
