@@ -5,11 +5,8 @@ import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
-import com.positive.dhl.core.shipnow.servlets.ShipNowServlet;
-import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.felix.scr.annotations.Property;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -20,15 +17,13 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.RepositoryException;
 import javax.sql.DataSource;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.Date;
+import java.util.*;
 
 @Designate(ocd=EtlSync.Config.class)
 @Component(service=Runnable.class)
@@ -122,12 +117,6 @@ public class EtlSync implements Runnable {
             return;
         }
 
-        BundleContext context = FrameworkUtil.getBundle(ShipNowServlet.class).getBundleContext();
-        if (context == null) {
-            log.error("ETL Sync Scheduler has no valid context. Cannot continue.");
-            return;
-        }
-
         List<Integer> ids = new ArrayList<>();
         HashMap<String, ArrayList<HashMap<String, String>>> allRecords = new HashMap<>();
         String sql = "SELECT `id`, `country`, `countrycode`, `currency`, `company`, `firstname`, `lastname`, `email`, `phone`, `address`, `postcode`, `city`, `lo` FROM `shipnow_registrations` WHERE (synced = 0)";
@@ -187,7 +176,7 @@ public class EtlSync implements Runnable {
             if (dat.length() > 0) {
                 log.info("DAT file has content, send to ETL (country code: '" + code + "')");
                 try {
-                    result = this.executeSync(context, code, dat);
+                    result = this.executeSync(code, dat);
                 } catch (Exception ex) {
                     log.error("An error occurred attempting executeSync for '" + code + "'", ex);
                 }
@@ -224,10 +213,9 @@ public class EtlSync implements Runnable {
 
     /**
      *
-     * @param countryCode
-     * @param searchResult
+     * @param code
+     * @param records
      * @return
-     * @throws RepositoryException
      */
     private String prepareDatFor(String code, ArrayList<HashMap<String, String>> records) {
         StringBuilder dat = new StringBuilder();
@@ -287,13 +275,12 @@ public class EtlSync implements Runnable {
 
     /**
      *
-     * @param context
      * @param countryCode
      * @param datFileContents
      * @return
      * @throws Exception
      */
-    private boolean executeSync(BundleContext context, String countryCode, String datFileContents) {
+    private boolean executeSync(String countryCode, String datFileContents) {
         String address = etlAddress;
         int port = Integer.parseInt(etlPort);
         String username = etlUsername;
@@ -305,11 +292,8 @@ public class EtlSync implements Runnable {
         String remoteFile = "discover_" + countryCode + "_" + sdf.format(now) + ".dat";
 
         try {
-            String sshKeyUrl = writeFile(context, "id_rsa", sshkey);
-            String dataFileUrl = writeFile(context, "data", datFileContents);
-
             JSch jsch = new JSch();
-            jsch.addIdentity(sshKeyUrl);
+            jsch.addIdentity("", sshkey.getBytes(StandardCharsets.UTF_8), null, null);
 
             com.jcraft.jsch.Session session = jsch.getSession(username, address, port);
             java.util.Properties config = new java.util.Properties();
@@ -320,7 +304,9 @@ public class EtlSync implements Runnable {
             ChannelSftp channel = (ChannelSftp)session.openChannel("sftp");
 
             channel.connect();
-            channel.put(dataFileUrl, remotePath + remoteFile);
+            try (InputStream stream = IOUtils.toInputStream(datFileContents, StandardCharsets.UTF_8)) {
+                channel.put(stream, remotePath + remoteFile);
+            }
             channel.exit();
 
             return true;
@@ -330,26 +316,5 @@ public class EtlSync implements Runnable {
         }
 
         return false;
-    }
-
-    /**
-     *
-     * @param context
-     * @param filename
-     * @param content
-     * @return
-     */
-    private String writeFile(BundleContext context, String filename, String content) throws IOException {
-        // check if file exists and delete if so
-        File check = context.getDataFile(FilenameUtils.getName(filename));
-        if (check.exists()) {
-            check.delete();
-        }
-
-        try (FileWriter writer = new FileWriter(check)) {
-            writer.write(content);
-        }
-
-        return check.getPath();
     }
 }
