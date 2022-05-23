@@ -346,7 +346,7 @@ public class EtlSync implements Runnable {
             check.delete();
         }
 
-        try (FileWriter writer = new FileWriter(check.getPath())) {
+        try (FileWriter writer = new FileWriter(FilenameUtils.getPath(check.getPath()))) {
             writer.write(content);
         }
 
