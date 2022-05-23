@@ -312,6 +312,7 @@ public class EtlSync implements Runnable {
             return true;
 
         } catch (Exception ex) {
+            log.debug(sshkey);
             log.error("ETL Sync Scheduler sync produced an error attempting to connect/sync to etl.", ex);
         }
 
