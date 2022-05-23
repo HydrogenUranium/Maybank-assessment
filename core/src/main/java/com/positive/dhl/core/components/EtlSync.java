@@ -6,6 +6,8 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.shipnow.servlets.ShipNowServlet;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.felix.scr.annotations.Property;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.annotations.Activate;
@@ -22,16 +24,15 @@ import javax.jcr.RepositoryException;
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileWriter;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.IOException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 
 @Designate(ocd=EtlSync.Config.class)
 @Component(service=Runnable.class)
+@Property(name="scheduler.runOn", value="LEADER")
 public class EtlSync implements Runnable {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -117,9 +118,6 @@ public class EtlSync implements Runnable {
     public void run() {
         log.debug("EtlSync is now running, etlAddress='{}'", etlAddress);
 
-        /**
-         * Check if the scheduler is enabled
-         */
         if (!etlSyncEnabled) {
             return;
         }
@@ -130,7 +128,7 @@ public class EtlSync implements Runnable {
             return;
         }
 
-        StringBuilder ids = new StringBuilder();
+        List<Integer> ids = new ArrayList<>();
         HashMap<String, ArrayList<HashMap<String, String>>> allRecords = new HashMap<>();
         String sql = "SELECT `id`, `country`, `countrycode`, `currency`, `company`, `firstname`, `lastname`, `email`, `phone`, `address`, `postcode`, `city`, `lo` FROM `shipnow_registrations` WHERE (synced = 0)";
 
@@ -142,10 +140,7 @@ public class EtlSync implements Runnable {
                     try (Statement statement = connection.createStatement()) {
                         try (ResultSet results = statement.executeQuery(sql)) {
                             while (results.next()) {
-                                if (ids.toString() != "") {
-                                    ids.append(",");
-                                }
-                                ids.append(results.getInt("id"));
+                                ids.add(results.getInt("id"));
 
                                 String countryCode = results.getString("countrycode");
                                 HashMap<String, String> record = new HashMap<>();
@@ -189,7 +184,7 @@ public class EtlSync implements Runnable {
         for (Map.Entry<String, ArrayList<HashMap<String, String>>> entry : allRecords.entrySet()) {
             String code = entry.getKey();
             String dat = this.prepareDatFor(code, entry.getValue());
-            if (dat != null && dat.length() > 0) {
+            if (dat.length() > 0) {
                 log.info("DAT file has content, send to ETL (country code: '" + code + "')");
                 try {
                     result = this.executeSync(context, code, dat);
@@ -199,14 +194,25 @@ public class EtlSync implements Runnable {
             }
         }
 
-        if (result && (dataSourcePool != null) && (ids.length() > 0)) {
+        if (result && (dataSourcePool != null) && (!ids.isEmpty())) {
             try {
                 DataSource dataSource = (DataSource) dataSourcePool.getDataSource(DatabaseHelpers.DATA_SOURCE_NAME);
 
                 // set 'synced' on the records
                 try (Connection connection = dataSource.getConnection()) {
-                    try (final Statement updateStatement = connection.createStatement()) {
-                        updateStatement.executeUpdate("UPDATE `shipnow_registrations` set `synced` = 1 where `id` in (" + ids + ")");
+                    StringBuilder builder = new StringBuilder();
+                    for (int i = 0; i < ids.size(); i++) {
+                        builder.append("?,");
+                    }
+                    String placeholders = builder.deleteCharAt( builder.length() -1 ).toString();
+                    String statement = "UPDATE `shipnow_registrations` set `synced` = 1 where `id` in (" + placeholders + ")";
+                    try (PreparedStatement updateStatement = connection.prepareStatement(statement)) {
+                        int i = 1;
+                        for (int id: ids) {
+                            updateStatement.setInt(i++, id);
+                        }
+
+                        updateStatement.executeUpdate();
                     }
                 }
 
@@ -287,7 +293,7 @@ public class EtlSync implements Runnable {
      * @return
      * @throws Exception
      */
-    private boolean executeSync(BundleContext context, String countryCode, String datFileContents) throws Exception {
+    private boolean executeSync(BundleContext context, String countryCode, String datFileContents) {
         String address = etlAddress;
         int port = Integer.parseInt(etlPort);
         String username = etlUsername;
@@ -299,11 +305,11 @@ public class EtlSync implements Runnable {
         String remoteFile = "discover_" + countryCode + "_" + sdf.format(now) + ".dat";
 
         try {
-            URL sshKeyUrl = writeFile(context, "id_rsa", sshkey);
-            URL dataFileUrl = writeFile(context, "data", datFileContents);
+            String sshKeyUrl = writeFile(context, "id_rsa", sshkey);
+            String dataFileUrl = writeFile(context, "data", datFileContents);
 
             JSch jsch = new JSch();
-            jsch.addIdentity(sshKeyUrl.getPath());
+            jsch.addIdentity(sshKeyUrl);
 
             com.jcraft.jsch.Session session = jsch.getSession(username, address, port);
             java.util.Properties config = new java.util.Properties();
@@ -314,7 +320,7 @@ public class EtlSync implements Runnable {
             ChannelSftp channel = (ChannelSftp)session.openChannel("sftp");
 
             channel.connect();
-            channel.put(dataFileUrl.getPath(), remotePath + remoteFile);
+            channel.put(dataFileUrl, remotePath + remoteFile);
             channel.exit();
 
             return true;
@@ -333,22 +339,17 @@ public class EtlSync implements Runnable {
      * @param content
      * @return
      */
-    private URL writeFile(BundleContext context, String filename, String content) throws Exception {
-        URL file = context.getDataFile(filename).toURL();
-        if (file != null) {
-            // check if file exists and delete if so
-            File check = new File(file.getPath());
-            if (check.exists()) {
-                check.delete();
-            }
-
-            FileWriter writer = new FileWriter(file.getPath());
-            writer.write(content);
-            writer.close();
-
-            return file;
+    private String writeFile(BundleContext context, String filename, String content) throws IOException {
+        // check if file exists and delete if so
+        File check = context.getDataFile(FilenameUtils.getName(filename));
+        if (check.exists()) {
+            check.delete();
         }
 
-        throw new Exception("File with name '" + filename + "' couldn't be set up");
+        try (FileWriter writer = new FileWriter(check.getPath())) {
+            writer.write(content);
+        }
+
+        return check.getPath();
     }
 }

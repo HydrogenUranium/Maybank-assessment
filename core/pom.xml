@@ -133,6 +133,12 @@ Import-Package: javax.annotation;version=0.0.0,*
             <artifactId>core.wcm.components.testing.aem-mock-plugin</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.scr.annotations</artifactId>
+        </dependency>
+
         <!-- Required to be able to support injection with @Self and @Via -->
         <dependency>
             <groupId>org.apache.sling</groupId>
