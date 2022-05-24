@@ -57,12 +57,6 @@ public class EtlSync implements Runnable {
         /*
          *
          */
-        @AttributeDefinition(name = "ETL Server Port", description = "ETL Server IP Address", defaultValue = "22")
-        String EtlPort();
-
-        /*
-         *
-         */
         @AttributeDefinition(name = "ETL Server Username", description = "ETL Server Username", defaultValue = "sftp_slpt")
         String EtlUsername();
 
@@ -87,7 +81,6 @@ public class EtlSync implements Runnable {
 
     private boolean etlSyncEnabled;
     private String etlAddress;
-    private String etlPort;
     private String etlUsername;
     private String etlRemotePath;
     private String etlSshKey;
@@ -100,7 +93,6 @@ public class EtlSync implements Runnable {
     protected void activate(final Config config) {
         etlSyncEnabled = config.EtlSyncEnabled();
         etlAddress = config.EtlAddress();
-        etlPort = config.EtlPort();
         etlUsername = config.EtlUsername();
         etlRemotePath = config.EtlRemotePath();
         etlSshKey = config.EtlSshKey();
@@ -281,21 +273,20 @@ public class EtlSync implements Runnable {
      * @throws Exception
      */
     private boolean executeSync(String countryCode, String datFileContents) {
-        String address = etlAddress;
-        int port = Integer.parseInt(etlPort);
-        String username = etlUsername;
-        String remotePath = etlRemotePath;
-        String sshkey = etlSshKey;
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-        Date now = new Date();
-        String remoteFile = "discover_" + countryCode + "_" + sdf.format(now) + ".dat";
-
         try {
-            JSch jsch = new JSch();
-            jsch.addIdentity("", sshkey.getBytes(StandardCharsets.UTF_8), null, null);
+            String address = etlAddress;
+            String username = etlUsername;
+            String remotePath = etlRemotePath;
+            String sshkey = etlSshKey;
 
-            com.jcraft.jsch.Session session = jsch.getSession(username, address, port);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+            Date now = new Date();
+            String remoteFile = "discover_" + countryCode + "_" + sdf.format(now) + ".dat";
+
+            JSch jsch = new JSch();
+            jsch.addIdentity("", sshkey.getBytes(), null, null);
+
+            com.jcraft.jsch.Session session = jsch.getSession(username, address, 22);
             java.util.Properties config = new java.util.Properties();
             config.put("StrictHostKeyChecking", "no");
             session.setConfig(config);
@@ -312,7 +303,6 @@ public class EtlSync implements Runnable {
             return true;
 
         } catch (Exception ex) {
-            log.debug(sshkey);
             log.error("ETL Sync Scheduler sync produced an error attempting to connect/sync to etl.", ex);
         }
 
