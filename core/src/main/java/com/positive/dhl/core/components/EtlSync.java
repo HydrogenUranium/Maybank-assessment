@@ -34,7 +34,6 @@ import java.util.*;
 
 @Designate(ocd=EtlSync.Config.class)
 @Component(service=Runnable.class)
-@Property(name="scheduler.runOn", value="LEADER")
 public class EtlSync implements Runnable {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -47,13 +46,13 @@ public class EtlSync implements Runnable {
          *
          */
         @AttributeDefinition(name = "Cron-job expression")
-        String scheduler_expression() default "0 * * * * ?";
+        String scheduler_expression() default "0 0/10 * 1/1 * ? *";
 
         /*
          *
          */
         @AttributeDefinition(name = "Cron-job run-mode")
-        String scheduler_runOn() default "LEADER";
+        String scheduler_runOn() default "Leader";
 
         /*
          *
@@ -99,6 +98,7 @@ public class EtlSync implements Runnable {
     private DataSourcePool dataSourcePool;
 
     private boolean etlSyncEnabled;
+    private String schedule;
     private String etlAddress;
     private String etlUsername;
     private String etlRemotePath;
@@ -110,6 +110,7 @@ public class EtlSync implements Runnable {
      */
     @Activate
     protected void activate(final Config config) {
+        schedule = config.scheduler_expression();
         etlSyncEnabled = config.EtlSyncEnabled();
         etlAddress = config.EtlAddress();
         etlUsername = config.EtlUsername();
@@ -122,11 +123,11 @@ public class EtlSync implements Runnable {
      */
     @Override
     public void run() {
-        log.debug("EtlSync is now running, etlAddress='{}'", etlAddress);
-
         if (!etlSyncEnabled) {
             return;
         }
+
+        log.debug("EtlSync is now running, cron='{}'", schedule);
 
         BundleContext context = FrameworkUtil.getBundle(ShipNowServlet.class).getBundleContext();
         if (context == null) {
