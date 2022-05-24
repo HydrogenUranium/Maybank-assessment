@@ -5,8 +5,12 @@ import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
+import com.positive.dhl.core.shipnow.servlets.ShipNowServlet;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.felix.scr.annotations.Property;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -18,6 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
@@ -109,6 +116,12 @@ public class EtlSync implements Runnable {
             return;
         }
 
+        BundleContext context = FrameworkUtil.getBundle(ShipNowServlet.class).getBundleContext();
+        if (context == null) {
+            log.error("ETL Sync Scheduler has no valid context. Cannot continue.");
+            return;
+        }
+
         List<Integer> ids = new ArrayList<>();
         HashMap<String, ArrayList<HashMap<String, String>>> allRecords = new HashMap<>();
         String sql = "SELECT `id`, `country`, `countrycode`, `currency`, `company`, `firstname`, `lastname`, `email`, `phone`, `address`, `postcode`, `city`, `lo` FROM `shipnow_registrations` WHERE (synced = 0)";
@@ -168,7 +181,7 @@ public class EtlSync implements Runnable {
             if (dat.length() > 0) {
                 log.info("DAT file has content, send to ETL (country code: '" + code + "')");
                 try {
-                    result = this.executeSync(code, dat);
+                    result = this.executeSync(context, code, dat);
                 } catch (Exception ex) {
                     log.error("An error occurred attempting executeSync for '" + code + "'", ex);
                 }
@@ -272,19 +285,21 @@ public class EtlSync implements Runnable {
      * @return
      * @throws Exception
      */
-    private boolean executeSync(String countryCode, String datFileContents) {
+    private boolean executeSync(BundleContext context, String countryCode, String datFileContents) {
         try {
             String address = etlAddress;
             String username = etlUsername;
             String remotePath = etlRemotePath;
             String sshkey = etlSshKey;
 
+            String sshKeyUrl = writeFile(context, "id_rsa", sshkey);
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
             Date now = new Date();
             String remoteFile = "discover_" + countryCode + "_" + sdf.format(now) + ".dat";
 
             JSch jsch = new JSch();
-            jsch.addIdentity("", sshkey.getBytes(), null, null);
+            jsch.addIdentity(sshKeyUrl);
 
             com.jcraft.jsch.Session session = jsch.getSession(username, address, 22);
             java.util.Properties config = new java.util.Properties();
@@ -303,9 +318,49 @@ public class EtlSync implements Runnable {
             return true;
 
         } catch (Exception ex) {
-            log.error("ETL Sync Scheduler sync produced an error attempting to connect/sync to etl.", ex);
+            log.error("ETL Sync Scheduler sync produced an error attempting to connect/sync to etl!", ex);
         }
 
         return false;
+    }
+
+    /**
+     *
+     * @param context
+     * @param filename
+     * @param content
+     * @return
+     */
+    private String writeFile(BundleContext context, String filename, String content) throws IOException {
+        // check if file exists and delete if so
+        File check = context.getDataFile(FilenameUtils.getName(filename));
+        if (check.exists()) {
+            check.delete();
+        }
+
+        // rebuild the key in the format expected by Jsch
+        StringBuilder key = new StringBuilder();
+        key.append("-----BEGIN RSA PRIVATE KEY-----\r\n");
+        String[] parts = this.splitAfterNChars(content.trim(), 64);
+        for (String part: parts) {
+            key.append(part).append("\r\n");
+        }
+        key.append("-----END RSA PRIVATE KEY-----\r\n");
+
+        try (FileWriter writer = new FileWriter(check)) {
+            writer.write(key.toString());
+        }
+
+        return check.getPath();
+    }
+
+    /**
+     *
+     * @param input
+     * @param splitLen
+     * @return
+     */
+    private String[] splitAfterNChars(String input, int splitLen) {
+        return input.split(String.format("(?<=\\G.{%1$d})", splitLen));
     }
 }
