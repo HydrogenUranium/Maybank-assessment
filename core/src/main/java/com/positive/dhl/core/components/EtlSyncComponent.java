@@ -50,12 +50,6 @@ public class EtlSyncComponent implements Runnable {
         /*
          *
          */
-        @AttributeDefinition(name = "Cron-job run-mode")
-        String scheduler_runOn() default "Leader";
-
-        /*
-         *
-         */
         @AttributeDefinition(name = "Concurrent task", description = "Whether or not to schedule this task concurrently")
         boolean scheduler_concurrent() default false;
 
