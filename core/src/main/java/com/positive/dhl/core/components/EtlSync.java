@@ -46,7 +46,7 @@ public class EtlSync implements Runnable {
          *
          */
         @AttributeDefinition(name = "Cron-job expression")
-        String scheduler_expression() default "0 0/10 * 1/1 * ? *";
+        String scheduler_expression() default "0 * * * * ?";
 
         /*
          *
@@ -98,7 +98,6 @@ public class EtlSync implements Runnable {
     private DataSourcePool dataSourcePool;
 
     private boolean etlSyncEnabled;
-    private String schedule;
     private String etlAddress;
     private String etlUsername;
     private String etlRemotePath;
@@ -110,7 +109,6 @@ public class EtlSync implements Runnable {
      */
     @Activate
     protected void activate(final Config config) {
-        schedule = config.scheduler_expression();
         etlSyncEnabled = config.EtlSyncEnabled();
         etlAddress = config.EtlAddress();
         etlUsername = config.EtlUsername();
@@ -127,7 +125,7 @@ public class EtlSync implements Runnable {
             return;
         }
 
-        log.debug("EtlSync is now running, cron='{}'", schedule);
+        log.debug("EtlSync is now running, cron='{}'", etlAddress);
 
         BundleContext context = FrameworkUtil.getBundle(ShipNowServlet.class).getBundleContext();
         if (context == null) {

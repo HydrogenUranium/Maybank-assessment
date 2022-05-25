@@ -1,5 +1,4 @@
 {
-    "scheduler.expression": "$[env:ETL_SCHEDULE]",
     "EtlSyncEnabled": "$[env:ETL_SYNCENABLED]",
     "EtlAddress": "$[env:ETL_ADDRESS]",
     "EtlUsername": "$[env:ETL_USERNAME]",
