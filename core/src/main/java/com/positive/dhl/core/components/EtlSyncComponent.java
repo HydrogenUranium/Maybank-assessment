@@ -8,7 +8,6 @@ import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.shipnow.servlets.ShipNowServlet;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.felix.scr.annotations.Property;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.annotations.Activate;
@@ -32,9 +31,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.*;
 
-@Designate(ocd=EtlSync.Config.class)
+@Designate(ocd= EtlSyncComponent.Config.class)
 @Component(service=Runnable.class)
-public class EtlSync implements Runnable {
+public class EtlSyncComponent implements Runnable {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     /**
@@ -121,11 +120,11 @@ public class EtlSync implements Runnable {
      */
     @Override
     public void run() {
+        log.debug("EtlSync is now running, cron='{}'", etlAddress);
+
         if (!etlSyncEnabled) {
             return;
         }
-
-        log.debug("EtlSync is now running, cron='{}'", etlAddress);
 
         BundleContext context = FrameworkUtil.getBundle(ShipNowServlet.class).getBundleContext();
         if (context == null) {
