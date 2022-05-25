@@ -4,6 +4,9 @@ import com.day.commons.datasource.poolservice.DataSourceNotFoundException;
 import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.SftpException;
+import com.positive.dhl.core.exceptions.UnableToDeleteFileException;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.shipnow.servlets.ShipNowServlet;
 import org.apache.commons.io.FilenameUtils;
@@ -190,11 +193,7 @@ public class EtlSyncComponent implements Runnable {
             String dat = this.prepareDatFor(code, entry.getValue());
             if (dat.length() > 0) {
                 log.info("DAT file has content, send to ETL (country code: '" + code + "')");
-                try {
-                    result = this.executeSync(context, code, dat);
-                } catch (Exception ex) {
-                    log.error("An error occurred attempting executeSync for '" + code + "'", ex);
-                }
+                result = this.executeSync(context, code, dat);
             }
         }
 
@@ -327,7 +326,7 @@ public class EtlSyncComponent implements Runnable {
 
             return true;
 
-        } catch (Exception ex) {
+        } catch (IOException | UnableToDeleteFileException | JSchException | SftpException ex) {
             log.error("ETL Sync Scheduler sync produced an error attempting to connect/sync to etl!", ex);
         }
 
@@ -341,11 +340,14 @@ public class EtlSyncComponent implements Runnable {
      * @param content
      * @return
      */
-    private String writeFile(BundleContext context, String filename, String content) throws IOException {
+    private String writeFile(BundleContext context, String filename, String content) throws IOException, UnableToDeleteFileException {
         // check if file exists and delete if so
         File check = context.getDataFile(FilenameUtils.getName(filename));
         if (check.exists()) {
-            check.delete();
+            boolean result = check.delete();
+            if (!result) {
+                throw new UnableToDeleteFileException("The '" + check.getAbsolutePath() + "' file could not be deleted");
+            }
         }
 
         // rebuild the key in the format expected by Jsch
