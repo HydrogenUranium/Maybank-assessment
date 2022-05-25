@@ -307,6 +307,7 @@ public class EtlSyncComponent implements Runnable {
             Date now = new Date();
             String remoteFile = "discover_" + countryCode + "_" + sdf.format(now) + ".dat";
 
+            JSch.setLogger(new JSCHLogger());
             JSch jsch = new JSch();
             jsch.addIdentity(sshKeyUrl);
 
@@ -374,5 +375,19 @@ public class EtlSyncComponent implements Runnable {
      */
     private String[] splitAfterNChars(String input, int splitLen) {
         return input.split(String.format("(?<=\\G.{%1$d})", splitLen));
+    }
+
+    private class JSCHLogger implements com.jcraft.jsch.Logger {
+        private final Logger log = LoggerFactory.getLogger(getClass());
+
+        @Override
+        public boolean isEnabled(int level) {
+            return true;
+        }
+
+        @Override
+        public void log(int level, String msg) {
+            log.error(msg);
+        }
     }
 }
