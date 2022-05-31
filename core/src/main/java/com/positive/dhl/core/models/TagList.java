@@ -66,6 +66,5 @@ public class TagList {
 				}
 			}
 		}
-		resourceResolver.close();
 	}
 }

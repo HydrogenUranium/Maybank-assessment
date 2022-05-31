@@ -128,6 +128,5 @@ public class ArticleCategory {
 	    			listimage = properties.get("jcr:content/listimage", "");
 	    		}
 		}
-		resourceResolver.close();
 	}
 }

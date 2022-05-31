@@ -312,8 +312,6 @@ public class ArticleGrid {
     	        }
     		}
 		}
-
-		resourceResolver.close();
 	}
     
     /**

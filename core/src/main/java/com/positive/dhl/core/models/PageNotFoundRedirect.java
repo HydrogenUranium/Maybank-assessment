@@ -57,7 +57,6 @@ public class PageNotFoundRedirect {
 		    }
         }
 
-		resourceResolver.close();
 		response.sendRedirect(page404);
 	}
 }

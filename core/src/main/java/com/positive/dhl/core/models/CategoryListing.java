@@ -167,7 +167,5 @@ public class CategoryListing {
 		if (path6 != null && path6.length() > 0) {
 			category6 = new CategoryListingItem(path6, builder, resourceResolver);
 		}
-
-		resourceResolver.close();
 	}
 }

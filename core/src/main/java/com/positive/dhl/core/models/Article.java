@@ -515,7 +515,6 @@ public class Article {
 				valid = true;
 			}
 		}
-		resourceResolver.close();
 	}
     
     /**

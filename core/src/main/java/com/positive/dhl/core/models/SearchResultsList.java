@@ -535,7 +535,6 @@ public class SearchResultsList {
 	    		}
 			}
 		}
-		resourceResolver.close();
 	}
 	
     /**

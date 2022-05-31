@@ -135,6 +135,5 @@ public class ArticlePage {
 			}
 		}
 		article = new Article(currentPage.getPath(), resourceResolver);
-		resourceResolver.close();
 	}
 }
