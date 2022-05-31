@@ -35,7 +35,7 @@ import java.util.Date;
 import java.util.*;
 
 @Designate(ocd= EtlSyncComponent.Config.class)
-@Component(service=Runnable.class, property = { "scheduler.runOn=LEADER" })
+@Component(service=Runnable.class)
 public class EtlSyncComponent implements Runnable {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
