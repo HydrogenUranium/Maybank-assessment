@@ -311,7 +311,7 @@ public class EtlSyncComponent implements Runnable {
             JSch jsch = new JSch();
             jsch.addIdentity(sshKeyUrl);
 
-            com.jcraft.jsch.Session session = jsch.getSession(username, address, 30001);
+            com.jcraft.jsch.Session session = jsch.getSession(username, address, 30002);
             java.util.Properties config = new java.util.Properties();
             config.put("StrictHostKeyChecking", "no");
             session.setConfig(config);
