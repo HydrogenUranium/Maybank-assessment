@@ -256,5 +256,6 @@ public class LanguageVariants {
 				languages.add(newItem);
 			}
 		}
+		resourceResolver.close();
 	}
 }

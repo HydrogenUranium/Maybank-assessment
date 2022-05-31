@@ -207,5 +207,6 @@ public class Meganav {
 				count++;
 			}
 		}
+		resourceResolver.close();
 	}
 }

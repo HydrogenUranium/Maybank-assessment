@@ -448,73 +448,74 @@ public class Article {
     	valid = false;
 		Resource resource = resourceResolver.getResource(path);
 		if (resource != null) {
-	    		ValueMap properties = resource.adaptTo(ValueMap.class);
-	    		if (properties != null) {
-	    			Date createdDate;
-	    			String customDate = properties.get("jcr:content/custompublishdate", "");
-    				if ((customDate.trim().length() > 0) && (customDate.contains("T"))) {
-						try {
-	    					String[] parts = customDate.split("T");
-							createdDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(parts[0]);
-							
-						} catch (ParseException e) {
-    						createdDate = properties.get("jcr:content/custompublishdate", new Date());
-						}
-    					
-    				} else {
-    					createdDate = properties.get("jcr:content/custompublishdate", new Date());
-    				}
-	    			
-	    			
-	    			created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
-	    			createdfriendly = (new SimpleDateFormat("dd MMMM yyyy")).format(createdDate);
-	    			icon = properties.get("jcr:content/mediatype", "");
-	    			
-	    			grouptitle = getGroupTitle(resource);
-	    			grouppath = getGroupPath(resource);
-	    			
-	    			fullTitle = properties.get("jcr:content/jcr:title", "");
-	    			title = properties.get("jcr:content/navTitle", "");
-	    			if ((title == null) || (title.trim().length() == 0)) {
-	    				title = fullTitle;
-	    			}
-	    			brief = properties.get("jcr:content/listbrief", "");
-	    			if (brief != null && brief.length() > 120) {
-	    				brief = brief.substring(0, 120).concat("...");
-	    			}
-	    			
-	    			listimage = properties.get("jcr:content/listimage", "");
+			ValueMap properties = resource.adaptTo(ValueMap.class);
+			if (properties != null) {
+				Date createdDate;
+				String customDate = properties.get("jcr:content/custompublishdate", "");
+				if ((customDate.trim().length() > 0) && (customDate.contains("T"))) {
+					try {
+						String[] parts = customDate.split("T");
+						createdDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(parts[0]);
 
-	    			heroimagemob = properties.get("jcr:content/heroimagemob", "");
-	    			heroimagetab = properties.get("jcr:content/heroimagetab", "");
-	    			heroimagedt = properties.get("jcr:content/heroimagedt", "");
-	    			youtubeid = properties.get("jcr:content/youtubeid", "");
-	    			readtime = properties.get("jcr:content/readtime", "");
+					} catch (ParseException e) {
+						createdDate = properties.get("jcr:content/custompublishdate", new Date());
+					}
 
-	    			author = properties.get("jcr:content/author", "");
-	    			authortitle = properties.get("jcr:content/authortitle", "");
-	    			authorimage = properties.get("jcr:content/authorimage", "");
+				} else {
+					createdDate = properties.get("jcr:content/custompublishdate", new Date());
+				}
 
-	    			showshipnow = properties.get("jcr:content/showshipnow", false);
-	    			
-	    			counter = properties.get("jcr:content/counter", 0);
 
-	    			tags = new ArrayList<TagWrapper>();
-	    			/*
-	    			TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-	    			String[] tagPaths = properties.get("jcr:content/cq:tags", new String[] { });
+				created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
+				createdfriendly = (new SimpleDateFormat("dd MMMM yyyy")).format(createdDate);
+				icon = properties.get("jcr:content/mediatype", "");
 
-	    			for (String tagPath: tagPaths) {
-	    				Tag tag = tagManager.resolve(tagPath);
-	    				if (tag != null) {
-	    					tags.add(new TagWrapper(tag));
-	    				}
-	    			}
-	    			*/
-	    			
-	    			valid = true;
-	    		}
+				grouptitle = getGroupTitle(resource);
+				grouppath = getGroupPath(resource);
+
+				fullTitle = properties.get("jcr:content/jcr:title", "");
+				title = properties.get("jcr:content/navTitle", "");
+				if ((title == null) || (title.trim().length() == 0)) {
+					title = fullTitle;
+				}
+				brief = properties.get("jcr:content/listbrief", "");
+				if (brief != null && brief.length() > 120) {
+					brief = brief.substring(0, 120).concat("...");
+				}
+
+				listimage = properties.get("jcr:content/listimage", "");
+
+				heroimagemob = properties.get("jcr:content/heroimagemob", "");
+				heroimagetab = properties.get("jcr:content/heroimagetab", "");
+				heroimagedt = properties.get("jcr:content/heroimagedt", "");
+				youtubeid = properties.get("jcr:content/youtubeid", "");
+				readtime = properties.get("jcr:content/readtime", "");
+
+				author = properties.get("jcr:content/author", "");
+				authortitle = properties.get("jcr:content/authortitle", "");
+				authorimage = properties.get("jcr:content/authorimage", "");
+
+				showshipnow = properties.get("jcr:content/showshipnow", false);
+
+				counter = properties.get("jcr:content/counter", 0);
+
+				tags = new ArrayList<TagWrapper>();
+				/*
+				TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
+				String[] tagPaths = properties.get("jcr:content/cq:tags", new String[] { });
+
+				for (String tagPath: tagPaths) {
+					Tag tag = tagManager.resolve(tagPath);
+					if (tag != null) {
+						tags.add(new TagWrapper(tag));
+					}
+				}
+				*/
+
+				valid = true;
+			}
 		}
+		resourceResolver.close();
 	}
     
     /**

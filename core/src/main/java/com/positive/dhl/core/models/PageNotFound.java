@@ -125,5 +125,6 @@ public class PageNotFound {
 				}
 	        }
 		}
+		resourceResolver.close();
 	}
 }

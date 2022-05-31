@@ -603,5 +603,7 @@ public class AccountActions {
 				}
 			}
 		}
+
+		resourceResolver.close();
 	}
 }

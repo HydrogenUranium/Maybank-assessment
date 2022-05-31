@@ -92,5 +92,6 @@ public class HomepageArticlesPanel {
 		if (thirdArticlePath != null && thirdArticlePath.length() > 0) {
 			thirdArticle = new Article(thirdArticlePath, resourceResolver);
 		}
+		resourceResolver.close();
 	}
 }

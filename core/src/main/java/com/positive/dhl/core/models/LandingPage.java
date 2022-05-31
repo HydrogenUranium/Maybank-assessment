@@ -150,5 +150,6 @@ public class LandingPage {
 				}
 			}
 		}
+		resourceResolver.close();
 	}
 }

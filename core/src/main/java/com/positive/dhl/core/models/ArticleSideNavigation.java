@@ -119,6 +119,8 @@ public class ArticleSideNavigation {
 		        }
 			}
 		}
+
+		resourceResolver.close();
 	}
 	
     /**

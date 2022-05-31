@@ -53,6 +53,12 @@ public class EtlSyncComponent implements Runnable {
         /*
          *
          */
+        @AttributeDefinition(name = "Cron-job run-mode")
+        String scheduler_runOn() default "LEADER";
+
+        /*
+         *
+         */
         @AttributeDefinition(name = "Concurrent task", description = "Whether or not to schedule this task concurrently")
         boolean scheduler_concurrent() default false;
 
@@ -305,7 +311,7 @@ public class EtlSyncComponent implements Runnable {
             JSch jsch = new JSch();
             jsch.addIdentity(sshKeyUrl);
 
-            com.jcraft.jsch.Session session = jsch.getSession(username, address, 30002);
+            com.jcraft.jsch.Session session = jsch.getSession(username, address, 30001);
             java.util.Properties config = new java.util.Properties();
             config.put("StrictHostKeyChecking", "no");
             session.setConfig(config);

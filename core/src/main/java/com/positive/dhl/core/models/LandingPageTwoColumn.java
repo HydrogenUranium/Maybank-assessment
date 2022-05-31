@@ -222,5 +222,6 @@ public class LandingPageTwoColumn {
 				}
 			}
 		}
+		resourceResolver.close();
 	}
 }

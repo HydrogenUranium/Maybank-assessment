@@ -123,6 +123,8 @@ public class Figure {
 				}
 			}
 		}
+
+		resourceResolver.close();
 	}
 }
 	
