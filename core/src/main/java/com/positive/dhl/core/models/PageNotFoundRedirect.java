@@ -56,7 +56,7 @@ public class PageNotFoundRedirect {
 				}
 		    }
         }
-		
+
 		response.sendRedirect(page404);
 	}
 }

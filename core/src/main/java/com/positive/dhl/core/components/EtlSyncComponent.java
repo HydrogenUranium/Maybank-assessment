@@ -4,10 +4,13 @@ import com.day.commons.datasource.poolservice.DataSourceNotFoundException;
 import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.SftpException;
+import com.positive.dhl.core.exceptions.UnableToDeleteFileException;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.shipnow.servlets.ShipNowServlet;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.felix.scr.annotations.Property;
+import org.apache.commons.io.IOUtils;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.annotations.Activate;
@@ -20,20 +23,20 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.RepositoryException;
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.Date;
+import java.util.*;
 
-@Designate(ocd=EtlSync.Config.class)
+@Designate(ocd= EtlSyncComponent.Config.class)
 @Component(service=Runnable.class)
-@Property(name="scheduler.runOn", value="LEADER")
-public class EtlSync implements Runnable {
+public class EtlSyncComponent implements Runnable {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     /**
@@ -41,9 +44,21 @@ public class EtlSync implements Runnable {
      */
     @ObjectClassDefinition(name="ETL Sync job", description = "ETL Sync job - test")
     public static @interface Config {
+        /*
+         *
+         */
         @AttributeDefinition(name = "Cron-job expression")
         String scheduler_expression() default "0 * * * * ?";
 
+        /*
+         *
+         */
+        @AttributeDefinition(name = "Cron-job run-mode")
+        String scheduler_runOn() default "LEADER";
+
+        /*
+         *
+         */
         @AttributeDefinition(name = "Concurrent task", description = "Whether or not to schedule this task concurrently")
         boolean scheduler_concurrent() default false;
 
@@ -58,12 +73,6 @@ public class EtlSync implements Runnable {
          */
         @AttributeDefinition(name = "ETL Server IP Address", description = "ETL Server IP Address", defaultValue = "198.141.243.222")
         String EtlAddress();
-
-        /*
-         *
-         */
-        @AttributeDefinition(name = "ETL Server Port", description = "ETL Server IP Address", defaultValue = "22")
-        String EtlPort();
 
         /*
          *
@@ -92,7 +101,6 @@ public class EtlSync implements Runnable {
 
     private boolean etlSyncEnabled;
     private String etlAddress;
-    private String etlPort;
     private String etlUsername;
     private String etlRemotePath;
     private String etlSshKey;
@@ -105,7 +113,6 @@ public class EtlSync implements Runnable {
     protected void activate(final Config config) {
         etlSyncEnabled = config.EtlSyncEnabled();
         etlAddress = config.EtlAddress();
-        etlPort = config.EtlPort();
         etlUsername = config.EtlUsername();
         etlRemotePath = config.EtlRemotePath();
         etlSshKey = config.EtlSshKey();
@@ -116,7 +123,7 @@ public class EtlSync implements Runnable {
      */
     @Override
     public void run() {
-        log.debug("EtlSync is now running, etlAddress='{}'", etlAddress);
+        log.debug("EtlSync is now running, cron='{}'", etlAddress);
 
         if (!etlSyncEnabled) {
             return;
@@ -186,11 +193,7 @@ public class EtlSync implements Runnable {
             String dat = this.prepareDatFor(code, entry.getValue());
             if (dat.length() > 0) {
                 log.info("DAT file has content, send to ETL (country code: '" + code + "')");
-                try {
-                    result = this.executeSync(context, code, dat);
-                } catch (Exception ex) {
-                    log.error("An error occurred attempting executeSync for '" + code + "'", ex);
-                }
+                result = this.executeSync(context, code, dat);
             }
         }
 
@@ -224,10 +227,9 @@ public class EtlSync implements Runnable {
 
     /**
      *
-     * @param countryCode
-     * @param searchResult
+     * @param code
+     * @param records
      * @return
-     * @throws RepositoryException
      */
     private String prepareDatFor(String code, ArrayList<HashMap<String, String>> records) {
         StringBuilder dat = new StringBuilder();
@@ -287,31 +289,29 @@ public class EtlSync implements Runnable {
 
     /**
      *
-     * @param context
      * @param countryCode
      * @param datFileContents
      * @return
      * @throws Exception
      */
     private boolean executeSync(BundleContext context, String countryCode, String datFileContents) {
-        String address = etlAddress;
-        int port = Integer.parseInt(etlPort);
-        String username = etlUsername;
-        String remotePath = etlRemotePath;
-        String sshkey = etlSshKey;
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-        Date now = new Date();
-        String remoteFile = "discover_" + countryCode + "_" + sdf.format(now) + ".dat";
-
         try {
-            String sshKeyUrl = writeFile(context, "id_rsa", sshkey);
-            String dataFileUrl = writeFile(context, "data", datFileContents);
+            String address = etlAddress;
+            String username = etlUsername;
+            String remotePath = etlRemotePath;
+            String sshkey = etlSshKey;
 
+            String sshKeyUrl = writeFile(context, "id_rsa", sshkey);
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+            Date now = new Date();
+            String remoteFile = "discover_" + countryCode + "_" + sdf.format(now) + ".dat";
+
+            JSch.setLogger(new JSCHLogger());
             JSch jsch = new JSch();
             jsch.addIdentity(sshKeyUrl);
 
-            com.jcraft.jsch.Session session = jsch.getSession(username, address, port);
+            com.jcraft.jsch.Session session = jsch.getSession(username, address, 30001);
             java.util.Properties config = new java.util.Properties();
             config.put("StrictHostKeyChecking", "no");
             session.setConfig(config);
@@ -320,13 +320,15 @@ public class EtlSync implements Runnable {
             ChannelSftp channel = (ChannelSftp)session.openChannel("sftp");
 
             channel.connect();
-            channel.put(dataFileUrl, remotePath + remoteFile);
+            try (InputStream stream = IOUtils.toInputStream(datFileContents, StandardCharsets.UTF_8)) {
+                channel.put(stream, remotePath + remoteFile);
+            }
             channel.exit();
 
             return true;
 
-        } catch (Exception ex) {
-            log.error("ETL Sync Scheduler sync produced an error attempting to connect/sync to etl.", ex);
+        } catch (IOException | UnableToDeleteFileException | JSchException | SftpException ex) {
+            log.error("ETL Sync Scheduler sync produced an error attempting to connect/sync to etl!", ex);
         }
 
         return false;
@@ -339,17 +341,53 @@ public class EtlSync implements Runnable {
      * @param content
      * @return
      */
-    private String writeFile(BundleContext context, String filename, String content) throws IOException {
+    private String writeFile(BundleContext context, String filename, String content) throws IOException, UnableToDeleteFileException {
         // check if file exists and delete if so
         File check = context.getDataFile(FilenameUtils.getName(filename));
         if (check.exists()) {
-            check.delete();
+            boolean result = check.delete();
+            if (!result) {
+                throw new UnableToDeleteFileException("The '" + check.getAbsolutePath() + "' file could not be deleted");
+            }
         }
 
+        // rebuild the key in the format expected by Jsch
+        StringBuilder key = new StringBuilder();
+        key.append("-----BEGIN RSA PRIVATE KEY-----\r\n");
+        String[] parts = this.splitAfterNChars(content.trim(), 64);
+        for (String part: parts) {
+            key.append(part).append("\r\n");
+        }
+        key.append("-----END RSA PRIVATE KEY-----\r\n");
+
         try (FileWriter writer = new FileWriter(check)) {
-            writer.write(content);
+            writer.write(key.toString());
         }
 
         return check.getPath();
+    }
+
+    /**
+     *
+     * @param input
+     * @param splitLen
+     * @return
+     */
+    private String[] splitAfterNChars(String input, int splitLen) {
+        return input.split(String.format("(?<=\\G.{%1$d})", splitLen));
+    }
+
+    private class JSCHLogger implements com.jcraft.jsch.Logger {
+        private final Logger log = LoggerFactory.getLogger(getClass());
+
+        @Override
+        public boolean isEnabled(int level) {
+            return true;
+        }
+
+        @Override
+        public void log(int level, String msg) {
+            log.error(msg);
+        }
     }
 }

@@ -545,6 +545,9 @@ RewriteRule ^(.*?)\.html$ https://%{HTTP_HOST}$1 [R=301,L]
 RewriteRule ^(.*?)\/$ https://%{HTTP_HOST}$1 [R=301,L]
 
 
+### REWRITE ANY REQUEST OF A FAVICON TO THE GLOBAL ONE ###
+RewriteRule ^(.*?)\.ico$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/favicon.ico [PT,L,NC]
+
 
 ### AEM STANDARD REWRITES ###
 RewriteCond %{REQUEST_URI} ^/content

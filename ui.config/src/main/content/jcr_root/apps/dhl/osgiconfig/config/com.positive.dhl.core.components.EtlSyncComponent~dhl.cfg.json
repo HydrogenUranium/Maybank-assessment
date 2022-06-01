@@ -1,9 +1,7 @@
 {
+    "scheduler.expression": "$[env:ETL_SCHEDULE]",
     "EtlSyncEnabled": "$[env:ETL_SYNCENABLED]",
-    "EtlSyncScheduleName": "ETL Sync Scheduled Task",
-    "EtlSyncSchedule": "$[env:ETL_SCHEDULE]",
     "EtlAddress": "$[env:ETL_ADDRESS]",
-    "EtlPort": "$[env:ETL_PORT]",
     "EtlUsername": "$[env:ETL_USERNAME]",
     "EtlRemotePath": "$[env:ETL_REMOTEPATH]",
     "EtlSshKey": "$[secret:ETL_SSHKEY]"
