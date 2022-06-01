@@ -34,7 +34,7 @@ import com.positive.dhl.core.models.UserAccount;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Reset Password Servlet",
     	"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-    	"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/reset_password/index.json"
+    	"sling.servlet.paths=" + "/apps/dhl/discoverdhlapi/reset_password/index.json"
 	}
 )
 public class UpdatePasswordServlet extends SlingAllMethodsServlet {

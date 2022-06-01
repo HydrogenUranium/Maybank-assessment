@@ -2,10 +2,7 @@ package com.positive.dhl.core.models;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -477,6 +474,11 @@ public class SearchResultsList {
 					for (int i = 1; i <= numPages; i++) {
 						pageNumbers.add(i);
 					}
+
+					Iterator<Resource> resources = searchResult.getResources();
+					if (resources.hasNext()) {
+						resources.next().getResourceResolver().close();
+					}
 					
 		        } else {
 		        	previousPageNumber = 0;
@@ -531,6 +533,11 @@ public class SearchResultsList {
 	    					count++;
 	    					if (count > 2) break;
 	    				}
+
+						Iterator<Resource> resources = searchResult.getResources();
+						if (resources.hasNext()) {
+							resources.next().getResourceResolver().close();
+						}
 	    	        }
 	    		}
 			}

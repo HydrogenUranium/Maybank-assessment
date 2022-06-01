@@ -34,8 +34,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.*;
 
-@Designate(ocd= EtlSyncComponent.Config.class)
-@Component(service=Runnable.class)
+@Designate(ocd = EtlSyncComponent.Config.class)
+@Component(
+	service = Runnable.class,
+	property = {
+	    "scheduler.runOn=LEADER"
+    }
+)
 public class EtlSyncComponent implements Runnable {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -49,12 +54,6 @@ public class EtlSyncComponent implements Runnable {
          */
         @AttributeDefinition(name = "Cron-job expression")
         String scheduler_expression() default "0 * * * * ?";
-
-        /*
-         *
-         */
-        @AttributeDefinition(name = "Cron-job run-mode")
-        String scheduler_runOn() default "LEADER";
 
         /*
          *

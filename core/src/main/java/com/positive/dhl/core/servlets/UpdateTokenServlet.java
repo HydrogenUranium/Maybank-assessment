@@ -34,7 +34,7 @@ import com.positive.dhl.core.models.UserAccount;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Refresh Token Servlet",
     	"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-    	"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/refresh_token/index.json"
+    	"sling.servlet.paths=" + "/apps/dhl/discoverdhlapi/refresh_token/index.json"
 	}
 )
 public class UpdateTokenServlet extends SlingAllMethodsServlet {

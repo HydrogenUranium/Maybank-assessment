@@ -34,11 +34,17 @@ public class CompetitionEntryServlet extends StandardFormInputServlet {
     @Reference
     private transient DataSourcePool dataSourcePool;
 
+	/**
+	 *
+	 */
 	@Override
 	protected ValidatedRequestEntry getValidatedRequestEntry(SlingHttpServletRequest request) {
 		return CompetitionService.PrepareFromRequest(request);
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	protected Boolean saveResponse(ValidatedRequestEntry entry) {
 		return CompetitionService.Register(dataSourcePool, entry);

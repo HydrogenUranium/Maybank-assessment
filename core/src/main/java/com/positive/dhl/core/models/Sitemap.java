@@ -136,6 +136,11 @@ public class Sitemap {
 						}
 					}
 				}
+
+				Iterator<Resource> resources = searchResult.getResources();
+				if (resources.hasNext()) {
+					resources.next().getResourceResolver().close();
+				}
 	        }
 		}
 		
@@ -220,6 +225,11 @@ public class Sitemap {
 								}
 							}
 						}
+					}
+
+					Iterator<Resource> resources = searchResult.getResources();
+					if (resources.hasNext()) {
+						resources.next().getResourceResolver().close();
 					}
 				}
 			}

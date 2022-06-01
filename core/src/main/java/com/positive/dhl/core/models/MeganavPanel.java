@@ -198,6 +198,11 @@ public class MeganavPanel {
 			    		}
 					}
 				}
+
+				Iterator<Resource> resources = searchResult.getResources();
+				if (resources.hasNext()) {
+					resources.next().getResourceResolver().close();
+				}
 	        }
 		}
 	}
