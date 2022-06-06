@@ -1,9 +1,6 @@
 package com.positive.dhl.core.models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -113,6 +110,11 @@ public class CategoryListingItem {
     						break;
     					}
     				}
+
+					Iterator<Resource> resources = searchResult.getResources();
+					if (resources.hasNext()) {
+						resources.next().getResourceResolver().close();
+					}
     	        }
     		}
 		}

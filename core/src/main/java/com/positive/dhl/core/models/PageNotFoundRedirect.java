@@ -2,6 +2,7 @@ package com.positive.dhl.core.models;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import javax.jcr.Session;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Model;
 
@@ -53,6 +55,11 @@ public class PageNotFoundRedirect {
 				for (Hit hit: searchResult.getHits()) {
 					page404 = hit.getPath().concat(".html");
 					break;
+				}
+
+				Iterator<Resource> resources = searchResult.getResources();
+				if (resources.hasNext()) {
+					resources.next().getResourceResolver().close();
 				}
 		    }
         }

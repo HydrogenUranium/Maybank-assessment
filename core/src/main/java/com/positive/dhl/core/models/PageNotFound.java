@@ -1,9 +1,6 @@
 package com.positive.dhl.core.models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -11,6 +8,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
@@ -82,6 +80,11 @@ public class PageNotFound {
 					searchResultsPage = hit.getPath().concat(".html");
 					break;
 				}
+
+				Iterator<Resource> resources = searchResult.getResources();
+				if (resources.hasNext()) {
+					resources.next().getResourceResolver().close();
+				}
 		    }
         }
         
@@ -122,6 +125,11 @@ public class PageNotFound {
 					count++;
 					
 					if (count > 3) break;
+				}
+
+				Iterator<Resource> resources = searchResult.getResources();
+				if (resources.hasNext()) {
+					resources.next().getResourceResolver().close();
 				}
 	        }
 		}

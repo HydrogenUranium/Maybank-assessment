@@ -40,16 +40,25 @@ public class NewsletterSignupServlet extends StandardFormInputServlet {
     @Reference
     private transient DataSourcePool dataSourcePool;
 
+	/**
+	 *
+	 */
 	@Override
 	protected ValidatedRequestEntry getValidatedRequestEntry(SlingHttpServletRequest request) {
 		return NewsletterSignupService.PrepareFromRequest(request);
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	protected Boolean saveResponse(ValidatedRequestEntry entry) {
 		return NewsletterSignupService.Register(dataSourcePool, entry);
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	protected void addAdditionalHeaders(SlingHttpServletRequest request, SlingHttpServletResponse response) {
 		// special AMP page parameter
