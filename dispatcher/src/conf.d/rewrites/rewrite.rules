@@ -528,12 +528,14 @@ RewriteCond %{REQUEST_URI} !^/discover/en-sg
 RewriteCond %{REQUEST_URI} !^/discover/ms-my
 RewriteCond %{REQUEST_URI} !^/discover/zh-sg
 RewriteCond %{REQUEST_URI} !^/discover/en-au
+RewriteCond %{REQUEST_URI} !^/discover/en-ph
 RewriteCond %{REQUEST_URI} !^/en-global
 RewriteCond %{REQUEST_URI} !^/en-my
 RewriteCond %{REQUEST_URI} !^/en-sg
 RewriteCond %{REQUEST_URI} !^/ms-my
 RewriteCond %{REQUEST_URI} !^/zh-sg
 RewriteCond %{REQUEST_URI} !^/en-au
+RewriteCond %{REQUEST_URI} !^/en-ph
 RewriteRule ^(.*?)$ https://${DHL_HOSTNAME}${DHL_PATHPREFIX}/en-global$1 [R=302,L]
 
 
