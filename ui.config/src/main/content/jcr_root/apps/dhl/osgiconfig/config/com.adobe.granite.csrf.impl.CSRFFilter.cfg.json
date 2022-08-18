@@ -1,5 +1,5 @@
 {
-    "filter.enable.safe.user.agents": false,
+    "filter.enable.safe.user.agents": true,
     "filter.excluded.paths": [
         "/apps/dhl/discoverdhlapi",
         "/libs/dam/gui/content/assets/assetlinkshare",
