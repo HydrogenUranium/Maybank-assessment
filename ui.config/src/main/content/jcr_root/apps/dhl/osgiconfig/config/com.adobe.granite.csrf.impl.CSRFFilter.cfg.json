@@ -1,7 +1,7 @@
 {
     "filter.enable.safe.user.agents": false,
     "filter.excluded.paths": [
-        "apps/dhl/discoverdhlapi",
+        "/apps/dhl/discoverdhlapi",
         "/libs/dam/gui/content/assets/assetlinkshare",
         "/content/communities/scorm/RecordResults",
         "/content/cq:graphql/global/endpoint",
