@@ -14,6 +14,7 @@ Include conf.d/variables/custom.vars
 <VirtualHost *:80>
 	ServerName	"publish-stage-akamai"
 	# Put names of which domains are used for your published site/content here
+	ServerAlias	 "publish-p58772-e528782.adobeaemcloud.com"
 	ServerAlias	 "uat2.dhl.dhl"
 
 	# Use a document root that matches the one in conf.dispatcher.d/default.farm
