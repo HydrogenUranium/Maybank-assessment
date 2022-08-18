@@ -506,6 +506,7 @@ RewriteRule ^/en-global/robots.txt$ /apps/dhl/discoverdhlapi/robotsenglobal.txt 
 
 
 ### Rewrite any urls that don't start with 'en-global', 'en-my', 'ms-my', 'en-sg', 'zh-sg', 'en-ph' - to 'en-global'
+RewriteCond %{REQUEST_URI} !^/content/test-site
 RewriteCond %{REQUEST_URI} !^/discover/content/dam
 RewriteCond %{REQUEST_URI} !^/discover/bin/dhl
 RewriteCond %{REQUEST_URI} !^/discover/apps
@@ -541,7 +542,10 @@ RewriteRule ^(.*?)$ https://${DHL_HOSTNAME}/discover/en-global$1 [R=302,L]
 
 
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
+RewriteCond %{REQUEST_URI} !^/content/test-site
 RewriteRule ^(.*?)\.html$ https://${DHL_HOSTNAME}/discover$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} !^/content/test-site
 RewriteRule ^(.*?)\/$ https://${DHL_HOSTNAME}/discover$1 [R=301,L]
 
 
@@ -553,6 +557,7 @@ RewriteRule ^(.*?)\.ico$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources
 RewriteCond %{REQUEST_URI} ^/content
 RewriteCond %{REQUEST_URI} !^/content/campaigns
 RewriteCond %{REQUEST_URI} !^/content/dam
+RewriteCond %{REQUEST_URI} !^/content/test-site
 RewriteRule !^content/dhl - [R=404,L,NC]
 
 RewriteCond %{REQUEST_URI} !^/bin/dhl
