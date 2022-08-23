@@ -54,7 +54,7 @@ class AccountActionsTest {
 		AccountActions accountActions = request.adaptTo(AccountActions.class);
         assertNotNull(accountActions);
 
-        assertEquals("/content/dhl/en.html", accountActions.getBackUrl());
+        assertEquals("/content/dhl/en-global.html", accountActions.getBackUrl());
         assertEquals("/content/dhl/en/culture/dhl-mo-salah.html", accountActions.getBackUrlSelf());
         assertEquals("/content/dhl/login.html", accountActions.getLoginUrl());
         assertEquals("/content/dhl/login.html", accountActions.getLoginUrlNoRedirect());
