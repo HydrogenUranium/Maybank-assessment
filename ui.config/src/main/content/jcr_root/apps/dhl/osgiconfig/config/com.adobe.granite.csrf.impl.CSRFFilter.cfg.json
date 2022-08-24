@@ -1,0 +1,26 @@
+{
+    "filter.enable.safe.user.agents": true,
+    "filter.excluded.paths": [
+        "/apps/dhl/discoverdhlapi",
+        "/libs/dam/gui/content/assets/assetlinkshare",
+        "/content/communities/scorm/RecordResults",
+        "/content/cq:graphql/global/endpoint",
+        "/graphql",
+        "/libs/dam/cfm/headless/endpoints/content/graphql",
+        "/bin/unifiedshell/discovery",
+        "/content/graphql/endpoint"
+    ],
+    "filter.methods": [ "PUT", "DELETE" ],
+    "filter.safe.user.agents": [
+        "Apache-HttpClient/*",
+        "Jakarta Commons-HttpClient/*",
+        "Jakarta-Commons-VFS",
+        "curl/*",
+        "Wget/*",
+        "WebDAVFS/*",
+        "Microsoft-WebDAV-MiniRedir/*",
+        "Ruby",
+        "Adobe-Campaign/*",
+        "Forms-Mobile *"
+    ]
+}

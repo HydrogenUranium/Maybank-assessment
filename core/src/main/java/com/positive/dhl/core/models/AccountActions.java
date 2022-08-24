@@ -599,7 +599,7 @@ public class AccountActions {
 				}
 
 				if (!hasBackUrl) {
-					backUrl = "/content/dhl/en.html";
+					backUrl = "/content/dhl/en-global.html";
 				}
 			}
 		}
