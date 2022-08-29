@@ -24,12 +24,16 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 
 import com.day.cq.wcm.api.NameConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class SearchResultsList {
+	private final Logger log = LoggerFactory.getLogger(getClass());
+
 	protected final Integer RESULTS_PER_PAGE = 8;
 	protected final Integer MAX_TERMS_ALLOWED = 5;
 	
@@ -277,7 +281,14 @@ public class SearchResultsList {
 	@PostConstruct
     protected void init() throws RepositoryException, UnsupportedEncodingException {
 		searchTerm = request.getParameter("searchfield");
-		searchTerm = java.net.URLDecoder.decode(searchTerm, String.valueOf(StandardCharsets.UTF_8));
+
+		try {
+			searchTerm = java.net.URLDecoder.decode(searchTerm, String.valueOf(StandardCharsets.UTF_8));
+			
+		} catch (UnsupportedEncodingException | IllegalArgumentException ex) {
+			log.error("Error occurred attempting to decode search term. Search term will be blank.", ex);
+			searchTerm = "";
+		}
 
 		searchResultsType = request.getParameter("searchResultsType");
 		
