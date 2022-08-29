@@ -493,7 +493,7 @@ RewriteRule ^/$ /content/dhl.html [NC,PT,L]
 
 
 ### STATIC SERVICE-WORKER JAVASCRIPT ###
-RewriteRule ^/sw\.js$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/sw.js [PT,NC]
+RewriteRule ^/serviceworker\.js$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/sw.js [PT,NC]
 RewriteRule ^/manifest\.json$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/manifest.json [PT,NC]
 
 

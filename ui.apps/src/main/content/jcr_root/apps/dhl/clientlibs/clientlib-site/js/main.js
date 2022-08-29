@@ -4437,7 +4437,7 @@ var ServiceWorker = function () {
   _createClass(ServiceWorker, [{
     key: 'register',
     value: function register() {
-      navigator.serviceWorker.register('/discover/sw.js').then(function () {
+      navigator.serviceWorker.register('/discover/serviceworker.js').then(function () {
         // console.log('ServiceWorker succesfully registered');
       }).catch(function () {
         // console.log('ServiceWorker registration failed: ', err);
