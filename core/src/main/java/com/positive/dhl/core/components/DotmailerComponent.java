@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
+import com.positive.dhl.core.exceptions.DotmailerFailureException;
 import org.apache.http.HttpHost;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -17,6 +18,8 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
 import org.scribe.services.Base64Encoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -24,6 +27,8 @@ import org.scribe.services.Base64Encoder;
 @Component(service = DotmailerComponent.class,configurationPolicy=ConfigurationPolicy.OPTIONAL)
 @Designate(ocd = DotmailerComponentConfig.class)
 public class DotmailerComponent {
+	private final Logger log = LoggerFactory.getLogger(getClass());
+
 	private DotmailerComponentConfig config;
 
     /**
@@ -87,7 +92,7 @@ public class DotmailerComponent {
     /**
 	 * 
 	 */
-	private boolean submit(StringEntity params) throws IOException {
+	private boolean submit(StringEntity params) {
         HttpHost target = new HttpHost("r1-api.dotmailer.com", 443, "https");
         HttpPost request = new HttpPost("/v2/email/triggered-campaign");
 
@@ -110,10 +115,15 @@ public class DotmailerComponent {
 			}
 
 			if ((responseText.toString().trim().length() > 0) || (response.getStatusLine().getStatusCode() != 200)) {
-				return false;
+				throw new DotmailerFailureException(responseText.toString());
 			}
+
+			return true;
+
+		} catch (IOException | DotmailerFailureException ex) {
+			log.error("An error occurred attempting dotmailer send", ex);
 		}
 		 
-		return true;
+		return false;
 	}
 }

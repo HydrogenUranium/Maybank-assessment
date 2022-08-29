@@ -29,6 +29,10 @@ Include conf.d/variables/custom.vars
 		Header add X-Vhost "publish-prod-akamai"
 	</IfModule>
 
+	<IfModule disp_apache2.c>
+		DispatcherPassError		403,404
+	</IfModule>
+
 	<Directory "${DOCROOT}">
 		<IfModule disp_apache2.c>
 			# Some items cache with the wrong mime type
