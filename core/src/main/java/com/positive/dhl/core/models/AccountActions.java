@@ -581,7 +581,7 @@ public class AccountActions {
 
 				assetprefix = "";
 				if (this.generalSiteConfigurationService != null) {
-					assetprefix = this.generalSiteConfigurationService.getAssetprefix();
+					assetprefix = properties.get("jcr:content/pathprefix", "");
 				}
 
 		        // url handling if we've bypassed dispatcher - checking QS params

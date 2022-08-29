@@ -44,7 +44,7 @@
 						<h1 class="hero__title">${articlePage.article.fullTitle}</h1>
 						<div class="clearfix">
 							<time class="hero__date" date="${articlePage.article.created}">${articlePage.article.createdfriendly}</time>
-	          				<button class="hero__saveForOffline hero__saveForOffline--desktop" title="${ 'Save Article' @ i18n, context='html' }" style="display: none;"><span>${ 'Save Article' @ i18n, context='html' }</span></button>
+	          				<button class="hero__saveForOffline hero__saveForOffline--desktop" title="${ 'Save Article' @ i18n, context='html' }"><span>${ 'Save Article' @ i18n, context='html' }</span></button>
           				</div>
 						<div style="width: 100%; clear: both; margin-top: 20px;">
 							<a data-sly-test="${(articlePage.article.youtubeid.length > 0)}" class="hero__cta hero__cta--video" href="https://youtu.be/${articlePage.article.youtubeid}">${ 'Play Video' @ i18n, context='html' }</a>
@@ -54,7 +54,7 @@
 				</div>
 			</div>
 		</div>
-  		<button class="hero__saveForOffline" title="Save Article" style="display: none;"><span>${ 'Save Article' @ i18n, context='html' }</span></button>
+  		<button class="hero__saveForOffline" title="Save Article"><span>${ 'Save Article' @ i18n, context='html' }</span></button>
 		<script id="articleData" type="application/ld+json">
 			{
 				"title": "${articlePage.article.title @ context='unsafe'}",

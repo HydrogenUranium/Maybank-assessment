@@ -187,14 +187,11 @@ public class DhlPage {
 			ValueMap homeProperties = home.adaptTo(ValueMap.class);
 			if (homeProperties != null) {
 				pathprefix = homeProperties.get("jcr:content/pathprefix", "");
+				assetprefix = homeProperties.get("jcr:content/pathprefix", "");
 				trackingid = homeProperties.get("jcr:content/trackingid", "");
 				gtmtrackingid = homeProperties.get("jcr:content/gtmtrackingid", "");
 				noindex = homeProperties.get("jcr:content/noindex", false);
 			}
-		}
-
-		if (this.generalSiteConfigurationService != null) {
-			assetprefix = this.generalSiteConfigurationService.getAssetprefix();
 		}
 
 		String currentPagePath = currentPage.getPath();
