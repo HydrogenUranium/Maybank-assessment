@@ -97,6 +97,9 @@ public class SearchResultsList {
 	 * 
 	 */
 	public List<Article> getTrendingArticles() {
+		if (null == trendingArticles) {
+			new ArrayList<Article>();
+		}
 		return new ArrayList<Article>(trendingArticles);
 	}
 
@@ -281,16 +284,24 @@ public class SearchResultsList {
 	@PostConstruct
     protected void init() throws RepositoryException, UnsupportedEncodingException {
 		searchTerm = request.getParameter("searchfield");
-
-		try {
-			searchTerm = java.net.URLDecoder.decode(searchTerm, String.valueOf(StandardCharsets.UTF_8));
-			
-		} catch (UnsupportedEncodingException | IllegalArgumentException ex) {
-			log.error("Error occurred attempting to decode search term. Search term will be blank.", ex);
-			searchTerm = "";
-		}
-
 		searchResultsType = request.getParameter("searchResultsType");
+
+		resultSummary = new HashMap<>();
+		results = new ArrayList<Article>();
+		trendingArticles = new ArrayList<Article>();
+
+
+		if (searchTerm == null) {
+			searchTerm = "";
+		} else {
+			try {
+				searchTerm = java.net.URLDecoder.decode(searchTerm, String.valueOf(StandardCharsets.UTF_8));
+
+			} catch (UnsupportedEncodingException | IllegalArgumentException ex) {
+				log.warn("Error occurred attempting to decode search term. Search term will be blank.");
+				searchTerm = "";
+			}
+		}
 		
 		String requestPageNumber = request.getParameter("page");
 		if ((requestPageNumber != null) && (requestPageNumber.matches("\\d+"))) {
@@ -311,8 +322,7 @@ public class SearchResultsList {
 		} else {
 			sortBy = "date";
 		}
-		
-		resultSummary = new HashMap<>();
+
 		resultSummary.put("article", 0);
 		resultSummary.put("video", 0);
 		resultSummary.put("competition", 0);
@@ -324,7 +334,6 @@ public class SearchResultsList {
 		totalResults = 0;
 
 		noSearchTerm = false;
-		results = new ArrayList<Article>();
 		if ((searchTerm == null) || (searchTerm.trim().length() == 0)) {
 			noSearchTerm = true;
 			
@@ -500,7 +509,6 @@ public class SearchResultsList {
 			}
 
 			List<Article> trendingArticleResults = new ArrayList<Article>();
-			trendingArticles = new ArrayList<Article>();
 			if (results.size() == 0) {
 	    		if (builder != null) {
 	    			Map<String, String> map = new HashMap<String, String>();
