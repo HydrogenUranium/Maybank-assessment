@@ -525,6 +525,13 @@ public class AccountActions {
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
 
+	public String getRealassetprefix() {
+		if (this.generalSiteConfigurationService != null) {
+			this.generalSiteConfigurationService.getAssetprefix();
+		}
+		return "";
+	}
+
     /**
 	 * 
 	 */
@@ -579,9 +586,10 @@ public class AccountActions {
 		        deleteAccountUrl = properties.get("jcr:content/deleteaccountpage", "/content/dhl/your-account/delete-account").concat(".html");
 		        deleteAccountCompleteUrl = properties.get("jcr:content/deleteaccountcompletepage", "/content/dhl/your-account/delete-account/complete").concat(".html");
 
+
 				assetprefix = "";
 				if (this.generalSiteConfigurationService != null) {
-					assetprefix = this.generalSiteConfigurationService.getAssetprefix();
+					assetprefix = properties.get("jcr:content/pathprefix", "");
 				}
 
 		        // url handling if we've bypassed dispatcher - checking QS params
