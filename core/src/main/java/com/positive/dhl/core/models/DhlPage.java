@@ -171,6 +171,13 @@ public class DhlPage {
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
 
+	public String getRealassetprefix() {
+		if (this.generalSiteConfigurationService != null) {
+			this.generalSiteConfigurationService.getAssetprefix();
+		}
+		return "";
+	}
+
     /**
 	 * 
 	 */
