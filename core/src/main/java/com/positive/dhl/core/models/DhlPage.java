@@ -23,9 +23,6 @@ import java.util.List;
 @Model(adaptables=SlingHttpServletRequest.class)
 public class DhlPage {
 	@Inject
-    private SlingSettingsService slingSettingsService;
-
-	@Inject
 	private SlingHttpServletRequest request;
 	
 	@Inject
@@ -178,13 +175,19 @@ public class DhlPage {
 		gtmtrackingid = "";
 		noindex = false;
 
+		Boolean publish = true;
+		WCMMode mode = WCMMode.fromRequest(request);
+		if (mode != WCMMode.DISABLED) {
+			publish = false;
+		}
+
 		Page home = currentPage.getAbsoluteParent(2);
 		if (home != null) {
 			ValueMap homeProperties = home.adaptTo(ValueMap.class);
 			if (homeProperties != null) {
-				assetprefix = "";
-				if (slingSettingsService.getRunModes().contains("publish")) {
-					assetprefix = homeProperties.get("jcr:content/pathprefix", "");
+				assetprefix = homeProperties.get("jcr:content/pathprefix", "");
+				if (!publish) {
+					assetprefix = "";
 				}
 
 				pathprefix = homeProperties.get("jcr:content/pathprefix", "");
@@ -208,7 +211,7 @@ public class DhlPage {
 			
 			String path = properties.get("redirectTarget", "");
 			if (!path.equals(currentPagePath) && !path.isEmpty()) {
-				if (slingSettingsService.getRunModes().contains("publish")) {
+				if (publish) {
 					response.setStatus(302);  
 					response.setHeader("Location", path); 
 				}
