@@ -14,7 +14,7 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  *
@@ -30,7 +30,7 @@ public class AccountActions {
 	@Inject
 	private Page currentPage;
 
-	@OSGiService
+	@Reference
 	GeneralSiteConfigurationService generalSiteConfigurationService;
 
 	private String homeUrl;
