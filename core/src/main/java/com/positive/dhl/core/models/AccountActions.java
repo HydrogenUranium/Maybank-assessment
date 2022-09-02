@@ -5,7 +5,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 
-import com.positive.dhl.core.services.GeneralSiteConfigurationService;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -14,13 +13,16 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
-import org.osgi.service.component.annotations.Reference;
+import org.apache.sling.settings.SlingSettingsService;
 
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class AccountActions {
+	@Inject
+	private SlingSettingsService slingSettingsService;
+
 	@Inject
 	private SlingHttpServletRequest request;
 
@@ -29,9 +31,6 @@ public class AccountActions {
     
 	@Inject
 	private Page currentPage;
-
-	@Reference
-	GeneralSiteConfigurationService generalSiteConfigurationService;
 
 	private String homeUrl;
 	private String backUrl;
@@ -525,13 +524,6 @@ public class AccountActions {
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
 
-	public String getRealassetprefix() {
-		if (this.generalSiteConfigurationService != null) {
-			this.generalSiteConfigurationService.getAssetprefix();
-		}
-		return "";
-	}
-
     /**
 	 * 
 	 */
@@ -544,6 +536,8 @@ public class AccountActions {
 			ValueMap properties = home.adaptTo(ValueMap.class);
 
 			if (properties != null) {
+				assetprefix = properties.get("jcr:content/pathprefix", "");
+
 				welcomeMessage = properties.get("jcr:content/welcomemessage", "");
 				loginMessage = properties.get("jcr:content/loginmessage", "");
 
@@ -585,12 +579,6 @@ public class AccountActions {
 		        passwordReminderUrl = properties.get("jcr:content/passwordreminderpage", "/content/dhl/forgotten-password").concat(".html");
 		        deleteAccountUrl = properties.get("jcr:content/deleteaccountpage", "/content/dhl/your-account/delete-account").concat(".html");
 		        deleteAccountCompleteUrl = properties.get("jcr:content/deleteaccountcompletepage", "/content/dhl/your-account/delete-account/complete").concat(".html");
-
-
-				assetprefix = "";
-				if (this.generalSiteConfigurationService != null) {
-					assetprefix = properties.get("jcr:content/pathprefix", "");
-				}
 
 		        // url handling if we've bypassed dispatcher - checking QS params
 				backUrlSelf = currentPage.getPath().concat(".html");

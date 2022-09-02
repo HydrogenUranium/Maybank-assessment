@@ -3,7 +3,7 @@ package com.positive.dhl.core.models;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import com.positive.dhl.core.services.GeneralSiteConfigurationService;
+import com.day.cq.wcm.api.WCMMode;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -12,7 +12,6 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.settings.SlingSettingsService;
 
 import com.day.cq.wcm.api.Page;
-import org.osgi.service.component.annotations.Reference;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,9 +30,6 @@ public class DhlPage {
 	
 	@Inject
 	private SlingHttpServletResponse response;
-
-	@Reference
-	GeneralSiteConfigurationService generalSiteConfigurationService;
 	
 	@Inject
 	private Page currentPage;
@@ -171,13 +167,6 @@ public class DhlPage {
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
 
-	public String getRealassetprefix() {
-		if (this.generalSiteConfigurationService != null) {
-			this.generalSiteConfigurationService.getAssetprefix();
-		}
-		return "";
-	}
-
     /**
 	 * 
 	 */
@@ -193,8 +182,12 @@ public class DhlPage {
 		if (home != null) {
 			ValueMap homeProperties = home.adaptTo(ValueMap.class);
 			if (homeProperties != null) {
+				assetprefix = "";
+				if (slingSettingsService.getRunModes().contains("publish")) {
+					assetprefix = homeProperties.get("jcr:content/pathprefix", "");
+				}
+
 				pathprefix = homeProperties.get("jcr:content/pathprefix", "");
-				assetprefix = homeProperties.get("jcr:content/pathprefix", "");
 				trackingid = homeProperties.get("jcr:content/trackingid", "");
 				gtmtrackingid = homeProperties.get("jcr:content/gtmtrackingid", "");
 				noindex = homeProperties.get("jcr:content/noindex", false);
