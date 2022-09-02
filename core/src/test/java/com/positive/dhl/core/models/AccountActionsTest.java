@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.positive.dhl.core.services.GeneralSiteConfigurationService;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,16 +27,12 @@ class AccountActionsTest {
     private QueryBuilder mockQueryBuilder;
 
     @Mock
-    private GeneralSiteConfigurationService mockGeneralSiteConfigurationService;
-
-    @Mock
     private Query page1MockQuery;
 
 	@BeforeEach
 	void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
-        ctx.registerService(GeneralSiteConfigurationService.class, mockGeneralSiteConfigurationService);
 	    ctx.addModelsForClasses(AccountActions.class);
 	}
 
