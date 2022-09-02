@@ -14,7 +14,7 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  *
@@ -30,7 +30,7 @@ public class AccountActions {
 	@Inject
 	private Page currentPage;
 
-	@OSGiService
+	@Reference
 	GeneralSiteConfigurationService generalSiteConfigurationService;
 
 	private String homeUrl;
@@ -525,6 +525,13 @@ public class AccountActions {
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
 
+	public String getRealassetprefix() {
+		if (this.generalSiteConfigurationService != null) {
+			this.generalSiteConfigurationService.getAssetprefix();
+		}
+		return "";
+	}
+
     /**
 	 * 
 	 */
@@ -578,6 +585,7 @@ public class AccountActions {
 		        passwordReminderUrl = properties.get("jcr:content/passwordreminderpage", "/content/dhl/forgotten-password").concat(".html");
 		        deleteAccountUrl = properties.get("jcr:content/deleteaccountpage", "/content/dhl/your-account/delete-account").concat(".html");
 		        deleteAccountCompleteUrl = properties.get("jcr:content/deleteaccountcompletepage", "/content/dhl/your-account/delete-account/complete").concat(".html");
+
 
 				assetprefix = "";
 				if (this.generalSiteConfigurationService != null) {

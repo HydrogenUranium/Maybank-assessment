@@ -9,10 +9,10 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.settings.SlingSettingsService;
 
 import com.day.cq.wcm.api.Page;
+import org.osgi.service.component.annotations.Reference;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,7 +32,7 @@ public class DhlPage {
 	@Inject
 	private SlingHttpServletResponse response;
 
-	@OSGiService
+	@Reference
 	GeneralSiteConfigurationService generalSiteConfigurationService;
 	
 	@Inject
@@ -170,6 +170,13 @@ public class DhlPage {
 	 *
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
+
+	public String getRealassetprefix() {
+		if (this.generalSiteConfigurationService != null) {
+			this.generalSiteConfigurationService.getAssetprefix();
+		}
+		return "";
+	}
 
     /**
 	 * 
