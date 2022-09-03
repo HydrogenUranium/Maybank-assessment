@@ -7,7 +7,6 @@ import javax.jcr.RepositoryException;
 
 import com.day.cq.wcm.api.WCMMode;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.jackrabbit.oak.commons.PropertiesUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -15,22 +14,12 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
-import org.apache.sling.settings.SlingSettingsService;
-import org.osgi.service.cm.Configuration;
-import org.osgi.service.cm.ConfigurationAdmin;
-import org.osgi.service.component.annotations.Reference;
-
-import java.io.IOException;
-import java.util.Dictionary;
 
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class AccountActions {
-	@Reference
-	private ConfigurationAdmin configurationAdmin;
-
 	@Inject
 	private SlingHttpServletRequest request;
 
@@ -532,10 +521,6 @@ public class AccountActions {
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
 
-	public String getRealassetprefix() {
-		return this.getEnvironmentAssetPath("dflt");
-	}
-
     /**
 	 * 
 	 */
@@ -620,23 +605,5 @@ public class AccountActions {
 				}
 			}
 		}
-	}
-
-	/**
-	 *
-	 */
-	private String getEnvironmentAssetPath(String defaultValue) {
-		try {
-			Configuration config = configurationAdmin.getConfiguration("com.positive.dhl.core.components.impl.EnvironmentConfigurationImpl");
-			if (config != null) {
-				Dictionary<String, Object> properties = config.getProperties();
-				return PropertiesUtil.toString(properties.get("AssetPrefix"), defaultValue);
-			}
-
-		} catch (IOException ignored) {
-
-		}
-
-		return defaultValue;
 	}
 }
