@@ -18,10 +18,14 @@ import com.day.cq.search.QueryBuilder;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.osgi.service.cm.ConfigurationAdmin;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class AccountActionsTest {
     private final AemContext ctx = new AemContext(ResourceResolverType.JCR_MOCK);
+
+    @Mock
+    private ConfigurationAdmin mockConfigurationAdmin;
 
     @Mock
     private QueryBuilder mockQueryBuilder;
@@ -33,6 +37,7 @@ class AccountActionsTest {
 	void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
+        ctx.registerService(ConfigurationAdmin.class, mockConfigurationAdmin);
 	    ctx.addModelsForClasses(AccountActions.class);
 	}
 
