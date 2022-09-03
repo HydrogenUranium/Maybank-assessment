@@ -5,9 +5,8 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 
-import com.day.cq.wcm.api.WCMMode;
+import com.positive.dhl.core.helpers.ConfigurationHelper;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.jackrabbit.oak.commons.PropertiesUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -15,20 +14,14 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
-import org.apache.sling.settings.SlingSettingsService;
-import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
-import org.osgi.service.component.annotations.Reference;
-
-import java.io.IOException;
-import java.util.Dictionary;
 
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class AccountActions {
-	@Reference
+	@Inject
 	private ConfigurationAdmin configurationAdmin;
 
 	@Inject
@@ -73,7 +66,6 @@ public class AccountActions {
 	private Boolean newslettermarketo;
 	private Boolean downloadmarketo;
 	private String assetprefix;
-	private String realassetprefix;
 
     /**
 	 * 
@@ -533,8 +525,6 @@ public class AccountActions {
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
 
-	public String getRealassetprefix() { return realassetprefix; }
-
     /**
 	 * 
 	 */
@@ -543,23 +533,12 @@ public class AccountActions {
 		Base64 base64 = new Base64(true);
 		Page home = currentPage.getAbsoluteParent(2);
 
-		Boolean publish = true;
-		WCMMode mode = WCMMode.fromRequest(request);
-		if (mode != WCMMode.DISABLED) {
-			publish = false;
-		}
-
-		realassetprefix = this.getEnvironmentAssetPath("dflt");
+		assetprefix = ConfigurationHelper.GetEnvironmentProperty(this.configurationAdmin, "AssetPrefix", "/discover");
 
 		if (home != null) {
 			ValueMap properties = home.adaptTo(ValueMap.class);
 
 			if (properties != null) {
-				assetprefix = properties.get("jcr:content/pathprefix", "");
-				if (!publish) {
-					assetprefix = "";
-				}
-
 				welcomeMessage = properties.get("jcr:content/welcomemessage", "");
 				loginMessage = properties.get("jcr:content/loginmessage", "");
 
@@ -621,23 +600,5 @@ public class AccountActions {
 				}
 			}
 		}
-	}
-
-	/**
-	 *
-	 */
-	private String getEnvironmentAssetPath(String defaultValue) {
-		try {
-			Configuration config = configurationAdmin.getConfiguration("com.positive.dhl.core.components.impl.EnvironmentConfigurationImpl");
-			if (config != null) {
-				Dictionary<String, Object> properties = config.getProperties();
-				return PropertiesUtil.toString(properties.get("AssetPrefix"), defaultValue);
-			}
-
-		} catch (IOException ignored) {
-
-		}
-
-		return defaultValue;
 	}
 }

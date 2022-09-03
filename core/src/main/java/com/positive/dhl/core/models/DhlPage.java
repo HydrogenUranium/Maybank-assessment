@@ -4,22 +4,17 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.day.cq.wcm.api.WCMMode;
-import org.apache.jackrabbit.oak.commons.PropertiesUtil;
+import com.positive.dhl.core.helpers.ConfigurationHelper;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.settings.SlingSettingsService;
 
 import com.day.cq.wcm.api.Page;
-import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
-import org.osgi.service.component.annotations.Reference;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,7 +23,7 @@ import java.util.List;
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class DhlPage {
-	@Reference
+	@Inject
 	private ConfigurationAdmin configurationAdmin;
 
 	@Inject
@@ -173,10 +168,6 @@ public class DhlPage {
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
 
-	public String getRealassetprefix() {
-		return this.getEnvironmentAssetPath("dflt");
-	}
-
     /**
 	 * 
 	 */
@@ -198,10 +189,7 @@ public class DhlPage {
 		if (home != null) {
 			ValueMap homeProperties = home.adaptTo(ValueMap.class);
 			if (homeProperties != null) {
-				assetprefix = homeProperties.get("jcr:content/pathprefix", "");
-				if (!publish) {
-					assetprefix = "";
-				}
+				assetprefix = ConfigurationHelper.GetEnvironmentProperty(this.configurationAdmin, "AssetPrefix", "/discover");
 
 				pathprefix = homeProperties.get("jcr:content/pathprefix", "");
 				trackingid = homeProperties.get("jcr:content/trackingid", "");
@@ -266,23 +254,5 @@ public class DhlPage {
 		}
 		
 		return serverName;
-	}
-
-	/**
-	 *
-	 */
-	private String getEnvironmentAssetPath(String defaultValue) {
-		try {
-			Configuration config = configurationAdmin.getConfiguration("com.positive.dhl.core.components.impl.EnvironmentConfigurationImpl");
-			if (config != null) {
-				Dictionary<String, Object> properties = config.getProperties();
-				return PropertiesUtil.toString(properties.get("AssetPrefix"), defaultValue);
-			}
-
-		} catch (IOException ignored) {
-
-		}
-
-		return defaultValue;
 	}
 }
