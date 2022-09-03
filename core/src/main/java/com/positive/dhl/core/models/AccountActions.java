@@ -5,8 +5,9 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 
-import com.positive.dhl.core.services.GeneralSiteConfigurationService;
+import com.day.cq.wcm.api.WCMMode;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.jackrabbit.oak.commons.PropertiesUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -14,13 +15,22 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.settings.SlingSettingsService;
+import org.osgi.service.cm.Configuration;
+import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.component.annotations.Reference;
+
+import java.io.IOException;
+import java.util.Dictionary;
 
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class AccountActions {
+	@Reference
+	private ConfigurationAdmin configurationAdmin;
+
 	@Inject
 	private SlingHttpServletRequest request;
 
@@ -29,9 +39,6 @@ public class AccountActions {
     
 	@Inject
 	private Page currentPage;
-
-	@OSGiService
-	GeneralSiteConfigurationService generalSiteConfigurationService;
 
 	private String homeUrl;
 	private String backUrl;
@@ -525,6 +532,10 @@ public class AccountActions {
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
 
+	public String getRealassetprefix() {
+		return this.getEnvironmentAssetPath("dflt");
+	}
+
     /**
 	 * 
 	 */
@@ -533,10 +544,21 @@ public class AccountActions {
 		Base64 base64 = new Base64(true);
 		Page home = currentPage.getAbsoluteParent(2);
 
+		Boolean publish = true;
+		WCMMode mode = WCMMode.fromRequest(request);
+		if (mode != WCMMode.DISABLED) {
+			publish = false;
+		}
+
 		if (home != null) {
 			ValueMap properties = home.adaptTo(ValueMap.class);
 
 			if (properties != null) {
+				assetprefix = properties.get("jcr:content/pathprefix", "");
+				if (!publish) {
+					assetprefix = "";
+				}
+
 				welcomeMessage = properties.get("jcr:content/welcomemessage", "");
 				loginMessage = properties.get("jcr:content/loginmessage", "");
 
@@ -579,11 +601,6 @@ public class AccountActions {
 		        deleteAccountUrl = properties.get("jcr:content/deleteaccountpage", "/content/dhl/your-account/delete-account").concat(".html");
 		        deleteAccountCompleteUrl = properties.get("jcr:content/deleteaccountcompletepage", "/content/dhl/your-account/delete-account/complete").concat(".html");
 
-				assetprefix = "";
-				if (this.generalSiteConfigurationService != null) {
-					assetprefix = properties.get("jcr:content/pathprefix", "");
-				}
-
 		        // url handling if we've bypassed dispatcher - checking QS params
 				backUrlSelf = currentPage.getPath().concat(".html");
 
@@ -603,5 +620,23 @@ public class AccountActions {
 				}
 			}
 		}
+	}
+
+	/**
+	 *
+	 */
+	private String getEnvironmentAssetPath(String defaultValue) {
+		try {
+			Configuration config = configurationAdmin.getConfiguration("com.positive.dhl.core.components.impl.EnvironmentConfigurationImpl");
+			if (config != null) {
+				Dictionary<String, Object> properties = config.getProperties();
+				return PropertiesUtil.toString(properties.get("AssetPrefix"), defaultValue);
+			}
+
+		} catch (IOException ignored) {
+
+		}
+
+		return defaultValue;
 	}
 }
