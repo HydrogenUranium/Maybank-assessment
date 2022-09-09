@@ -4,14 +4,15 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.day.cq.wcm.api.WCMMode;
+import com.positive.dhl.core.helpers.ConfigurationHelper;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.settings.SlingSettingsService;
 
 import com.day.cq.wcm.api.Page;
+import org.osgi.service.cm.ConfigurationAdmin;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,6 +23,9 @@ import java.util.List;
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class DhlPage {
+	@Inject
+	private ConfigurationAdmin configurationAdmin;
+
 	@Inject
 	private SlingHttpServletRequest request;
 	
@@ -185,10 +189,7 @@ public class DhlPage {
 		if (home != null) {
 			ValueMap homeProperties = home.adaptTo(ValueMap.class);
 			if (homeProperties != null) {
-				assetprefix = homeProperties.get("jcr:content/pathprefix", "");
-				if (!publish) {
-					assetprefix = "";
-				}
+				assetprefix = ConfigurationHelper.GetEnvironmentProperty(this.configurationAdmin, "AssetPrefix", "/discover");
 
 				pathprefix = homeProperties.get("jcr:content/pathprefix", "");
 				trackingid = homeProperties.get("jcr:content/trackingid", "");

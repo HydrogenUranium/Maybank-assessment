@@ -5,7 +5,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 
-import com.day.cq.wcm.api.WCMMode;
+import com.positive.dhl.core.helpers.ConfigurationHelper;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -14,13 +14,16 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
-import org.apache.sling.settings.SlingSettingsService;
+import org.osgi.service.cm.ConfigurationAdmin;
 
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class AccountActions {
+	@Inject
+	private ConfigurationAdmin configurationAdmin;
+
 	@Inject
 	private SlingHttpServletRequest request;
 
@@ -63,7 +66,7 @@ public class AccountActions {
 	private Boolean newslettermarketo;
 	private Boolean downloadmarketo;
 	private String assetprefix;
-	
+
     /**
 	 * 
 	 */
@@ -530,21 +533,12 @@ public class AccountActions {
 		Base64 base64 = new Base64(true);
 		Page home = currentPage.getAbsoluteParent(2);
 
-		Boolean publish = true;
-		WCMMode mode = WCMMode.fromRequest(request);
-		if (mode != WCMMode.DISABLED) {
-			publish = false;
-		}
+		assetprefix = ConfigurationHelper.GetEnvironmentProperty(this.configurationAdmin, "AssetPrefix", "/discover");
 
 		if (home != null) {
 			ValueMap properties = home.adaptTo(ValueMap.class);
 
 			if (properties != null) {
-				assetprefix = properties.get("jcr:content/pathprefix", "");
-				if (!publish) {
-					assetprefix = "";
-				}
-
 				welcomeMessage = properties.get("jcr:content/welcomemessage", "");
 				loginMessage = properties.get("jcr:content/loginmessage", "");
 
