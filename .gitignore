@@ -77,6 +77,8 @@ buildNumber.properties
 .idea/
 *.iml
 
+### VScode ###
+.vscode
 
 ### Node.js ###
 
