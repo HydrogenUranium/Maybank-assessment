@@ -22,7 +22,7 @@
     <groupId>com.positive</groupId>
     <artifactId>dhl</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>Deutsche Post AG Discover</name>
     <description>Deutsche Post AG Discover</description>
 
@@ -50,8 +50,8 @@
         <bnd.version>5.1.2</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aem.sdk.api>2022.4.7138.20220427T075748Z-220401</aem.sdk.api>
-        <aemanalyser.version>1.4.8</aemanalyser.version>
+        <aem.sdk.api>2022.9.8722.20220912T101352Z-220800</aem.sdk.api>
+        <aemanalyser.version>1.4.18</aemanalyser.version>
         <componentGroupName>Deutsche Post AG Discover</componentGroupName>
         <jackson.version>2.14.0-rc2</jackson.version>
 
