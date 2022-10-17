@@ -53,6 +53,8 @@
         <aem.sdk.api>2022.4.7138.20220427T075748Z-220401</aem.sdk.api>
         <aemanalyser.version>1.4.8</aemanalyser.version>
         <componentGroupName>Deutsche Post AG Discover</componentGroupName>
+        <jackson.version>2.14.0-rc2</jackson.version>
+
     </properties>
 
     <build>
@@ -107,7 +109,15 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.24</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
+
             </plugin>
         </plugins>
         <pluginManagement>
@@ -618,6 +628,24 @@ Bundle-DocURL:
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>[2.8.9,)</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.24</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
