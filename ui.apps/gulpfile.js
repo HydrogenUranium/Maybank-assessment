@@ -35,7 +35,7 @@ gulp.task('sass', () => {
       outputStyle: 'compressed',
       includePaths: ['./sass']
     }).on('error', sass.logError))
-    .pipe(autoprefixer({remove: false, browsers: ['last 100 versions']}))
+    .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/clientlib-site/css'));
 
@@ -46,7 +46,7 @@ gulp.task('sass', () => {
       outputStyle: 'compressed',
       includePaths: ['./sass']
     }).on('error', sass.logError))
-    .pipe(autoprefixer({remove: false, browsers: ['last 100 versions']}))
+    .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/clientlib-animatedpages/css'));
 
@@ -57,7 +57,7 @@ gulp.task('sass', () => {
       outputStyle: 'compressed',
       includePaths: ['./sass']
     }).on('error', sass.logError))
-    .pipe(autoprefixer({remove: false, browsers: ['last 100 versions']}))
+    .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./sass'));
 });
@@ -79,57 +79,57 @@ gulp.task('javascript', () => {
   let scriptDestAnimated = './src/main/content/jcr_root/apps/dhl/clientlibs/clientlib-animatedpages/js';
   // Create bundle
   if (bundler === null) {
-    bundler = browserify(path.join(scriptsPath, 'main.js'), {debug: isDev}).transform(babel);
-    animatedBundler = browserify(path.join(scriptsPath, 'animated.js'), {debug: isDev}).transform(babel);
+    bundler = browserify(path.join(scriptsPath, 'main.js'), { debug: isDev }).transform(babel);
+    animatedBundler = browserify(path.join(scriptsPath, 'animated.js'), { debug: isDev }).transform(babel);
   }
 
-	let vendor = gulp.src(path.join(scriptsPath, 'vendor', '/**/*.js'))
-              			.pipe(gulpIf(isDev, sourcemaps.init()))
-              			.pipe(concat('vendor.js'))
-              			.pipe(gulp.dest(scriptDest))
-              			.pipe(uglify())
-              			.pipe(rename('vendor.min.js'))
-              			.pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
-											sourceRoot: '/',
-											includeContent: false
-										})))
-              			.pipe(gulp.dest(scriptDest));
+  let vendor = gulp.src(path.join(scriptsPath, 'vendor', '/**/*.js'))
+    .pipe(gulpIf(isDev, sourcemaps.init()))
+    .pipe(concat('vendor.js'))
+    .pipe(gulp.dest(scriptDest))
+    .pipe(uglify())
+    .pipe(rename('vendor.min.js'))
+    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
+      sourceRoot: '/',
+      includeContent: false
+    })))
+    .pipe(gulp.dest(scriptDest));
 
-  	let app = bundler.bundle()
-                    .on('error', (err) => {
-                      console.error(err);
-                      this.emit('end');
-                    })
-                    .pipe(source('main.js'))
-                    .pipe(gulp.dest(scriptDest))
-                    .pipe(buffer())
-                    .pipe(gulpIf(isDev, sourcemaps.init({loadMaps: true})))
-                    .pipe(uglify())
-                    .pipe(rename('main.min.js'))
-                    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
-											sourceRoot: '/',
-											includeContent: false
-										})))
-                    .pipe(gulp.dest(scriptDest));
+  let app = bundler.bundle()
+    .on('error', (err) => {
+      console.error(err);
+      this.emit('end');
+    })
+    .pipe(source('main.js'))
+    .pipe(gulp.dest(scriptDest))
+    .pipe(buffer())
+    .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })))
+    .pipe(uglify())
+    .pipe(rename('main.min.js'))
+    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
+      sourceRoot: '/',
+      includeContent: false
+    })))
+    .pipe(gulp.dest(scriptDest));
 
-    let animatedApp = animatedBundler.bundle()
-                    .on('error', (err) => {
-                      console.error(err);
-                      this.emit('end');
-                    })
-                    .pipe(source('animated.js'))
-                    .pipe(gulp.dest(scriptDestAnimated))
-                    .pipe(buffer())
-                    .pipe(gulpIf(isDev, sourcemaps.init({loadMaps: true})))
-                    .pipe(uglify())
-                    .pipe(rename('animated.min.js'))
-                    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
-											sourceRoot: '/',
-											includeContent: false
-										})))
-                    .pipe(gulp.dest(scriptDestAnimated));
+  let animatedApp = animatedBundler.bundle()
+    .on('error', (err) => {
+      console.error(err);
+      this.emit('end');
+    })
+    .pipe(source('animated.js'))
+    .pipe(gulp.dest(scriptDestAnimated))
+    .pipe(buffer())
+    .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })))
+    .pipe(uglify())
+    .pipe(rename('animated.min.js'))
+    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
+      sourceRoot: '/',
+      includeContent: false
+    })))
+    .pipe(gulp.dest(scriptDestAnimated));
 
-	return merge(vendor, app, animatedApp);
+  return merge(vendor, app, animatedApp);
 });
 
 // reload task
