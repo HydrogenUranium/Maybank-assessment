@@ -1,0 +1,118 @@
+.wysiwyg {
+    padding: 30px 0 20px;
+    display: block;
+    @include respond(md) {
+      padding: 40px 0;
+    }
+
+    &--search {
+      @include respond(md) {
+        margin: 60px 0;
+      }
+    }
+
+    &--article {
+      padding-top: 29px;
+
+      @include respond(lg) {
+        padding-top: 40px;
+      }
+    }
+
+    h1 {
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    p {
+        @include font("%T4", map-get($palette, black));
+        margin-bottom: 20px;
+
+        @include respond(lg) {
+          margin-bottom: 30px;
+        }
+    }
+
+    ul,
+    ol {
+
+      li {
+        @include font("%T4", map-get($palette, black));
+      }
+
+    }
+
+    p a,
+    h1 a,
+    h2 a,
+    h3 a,
+    h4 a,
+    h5 a {
+      @include hoverText($text-decoration-normal: underline, $text-decoration-hover: underline);
+    }
+
+    img {
+        @include clearfix();
+        margin-bottom: 35px;
+        width: 100%;
+        max-width: 100%;
+
+        &.left {
+            float: left;
+            margin-right: 20px;
+        }
+
+        &.right {
+            float: right;
+            margin-left: 20px;
+        }
+    }
+
+    blockquote {
+
+      margin: 20px 0;
+
+      @include respond(md) {
+        margin: 30px 0;
+        padding: 0 30px;
+      }
+
+      @include respond(lg) {
+        padding: 0 70px;
+      }
+
+      p {
+        @include font("%H3");
+        font-size: 25px;
+        margin-bottom: 25px;
+        text-align: center;
+        margin-bottom: 16px;
+
+        @include respond(lg) {
+          margin-bottom: 25px;
+        }
+
+        &::before {
+          content: '\201C';
+          display: inline-block;
+        }
+
+        &::after {
+          content: '\201D';
+          display: inline-block;
+        }
+      }
+
+      small {
+        @include font("%T5");
+        display: block;
+        text-align: center;
+      }
+    }
+
+    .subscribePanel {
+      &__title {
+        color: map-get($palette, true-white);
+      }
+    }
+}

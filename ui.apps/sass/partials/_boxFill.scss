@@ -1,0 +1,253 @@
+.boxFill {
+  margin: 0;
+  width: 98px;
+  height: 179px;
+  position: relative;
+  float: left;
+
+  @include respond(lg) {
+    width: 150px;
+    height: 274px;
+  }
+
+  $block: &;
+
+  &:before,
+  &:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 14px;
+    left: 0;
+    width: 49px;
+    height: 122px;
+    border: 1px solid #fff;
+    transform: skew(0deg, -30deg);
+    z-index: 1;
+
+    @include respond(lg) {
+      top: 22px;
+      width: 75px;
+      height: 187px;
+    }
+
+  }
+
+  &:after {
+    left: auto;
+    right: 0;
+    width: 50px;
+    transform: skew(0deg, 30deg);
+
+    @include respond(lg) {
+      width: 76px;
+    }
+
+  }
+
+  &__shadow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 129px;
+    height: 56px;
+    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/boxFillShadow.png);
+    background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/boxFillShadow.svg);
+    background-size: 100% auto;
+    background-position: 0px 0px;
+
+    @include respond(lg) {
+      height: 89px;
+      width: 205px;
+    }
+
+  }
+
+  &__front {
+
+    &:before,
+    &:after {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 42px;
+      left: 0;
+      width: 49px;
+      height: 122px;
+      border: 1px solid #fff;
+      transform: skew(0deg, 30deg);
+      z-index: 3;
+
+      @include respond(lg) {
+        top: 65px;
+        width: 75px;
+        height: 187px;
+      }
+
+    }
+
+    &:after {
+      left: auto;
+      right: 0;
+      width: 50px;
+      transform: skew(0deg, -30deg);
+
+      @include respond(lg) {
+        width: 76px;
+      }
+
+    }
+
+  }
+
+  &__fill {
+    position: absolute;
+    bottom: 0px;
+    left: 1px;
+    width: 96px;
+    height: 32.4%;
+    z-index: 2;
+    transition: height 1200ms ease;
+
+    @include respond(lg) {
+      width: 148px;
+    }
+
+    &:before,
+    &:after {
+      content: ' ';
+      display: block;
+      position: absolute;
+      bottom: 15px;
+      top: 43px;
+      left: 0;
+      width: 49px;
+      height: auto;
+      transform: skew(0deg, 30deg);
+      z-index: 3;
+      background: #f4cc01;
+
+      @include respond(lg) {
+        width: 75px;
+        bottom: 22px;
+        top: 65px;
+      }
+
+    }
+
+    &:after {
+      left: auto;
+      right: 0;
+      width: 50px;
+      transform: skew(0deg, -30deg);
+      background: #e5bf02;
+
+      @include respond(lg) {
+        width: 76px;
+      }
+
+    }
+
+  }
+
+  &__fillTop {
+    display: block;
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    margin-left: -35px;
+    width: 70px;
+    height: 70px;
+    background: #ffd100;
+    z-index: -1;
+    transform-style: preserve-3d;
+    transform: rotateX(55deg) rotateZ(45deg);
+
+    @include respond(lg) {
+      top: -8px;
+      width: 104px;
+      height: 104px;
+      margin-left: -52px;
+    }
+
+  }
+
+  &--dark {
+
+    &:before,
+    &:after,
+    #{$block}__front:before,
+    #{$block}__front:after {
+      border-color: #9d9d9d;
+    }
+
+  }
+
+  &--show {
+
+    #{$block}__fill {
+      height: ((((100 - 32.4) / 100) * 95) + 32.4%);
+      transition: height 4300ms ease-out;
+    }
+
+     #{$block}__fillstat2 {
+      height: ((((100 - 32.4%) / 100) * 50) + 32.4%);
+      transition: height 3500ms ease-out;
+    }
+
+    #{$block}__fillstat3 {
+      height: ((((100 - 32.4%) / 100) * 35) + 32.4%);
+      transition: height 2700ms ease-out;
+    }
+
+    #{$block}__fillstat4 {
+      height: ((((100 - 32.4%) / 100) * 47) + 32.4%);
+      transition: height 4000ms ease-out;
+    }
+
+    #{$block}__fillstat5 {
+      height: ((((100 - 32.4%) / 100) * 35) + 32.4%);
+      transition: height 4200ms ease-out;
+    }
+
+    #{$block}__fillstat6 {
+      height: ((((100 - 32.4%) / 100) * 25) + 32.4%);
+      transition: height 2800ms ease-out;
+    }
+
+    #{$block}__fillstat7 {
+      height: ((((100 - 32.4%) / 100) * 66) + 32.4%);
+      transition: height 4000ms ease-out;
+    }
+
+    #{$block}__fillstat8 {
+      height: ((((100 - 32.4%) / 100) * 40) + 32.4%);
+      transition: height 2700ms ease-out;
+    }
+
+    #{$block}__fillstat9 {
+      height: ((((100 - 32.4%) / 100) * 30) + 32.4%);
+      transition: height 2700ms ease-out;
+    }
+
+    #{$block}__fillstat10 {
+      height: ((((100 - 32.4%) / 100) * 50) + 32.4%);
+      transition: height 4300ms ease-out;
+    }
+
+    #{$block}__fillstat11 {
+      height: ((((100 - 32.4%) / 100) * 75) + 32.4%);
+      transition: height 4300ms ease-out;
+    }
+
+    #{$block}__fillstat12 {
+      height: ((((100 - 32.4%) / 100) * 63) + 32.4%);
+      transition: height 3000ms ease-out;
+    }
+
+    #{$block}__fillstat13 {
+      height: ((((100 - 32.4%) / 100) * 47) + 32.4%);
+      transition: height 3500ms ease-out;
+    }
+  }
+}

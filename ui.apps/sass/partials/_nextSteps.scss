@@ -1,0 +1,63 @@
+.nextSteps {
+  margin: 20px 0 0 0;
+  padding-top: 20px;
+  border-top: 1px solid map-get($map: $palette, $key: border-grey);
+
+  @include respond(md) {
+    margin: 20px 0 40px 0;
+    flex-direction: row;
+    padding-top: 40px;
+  }
+
+  &__image {
+    background-size: cover;
+    background-position: center;
+    height: 281px;
+    margin: 20px 0 0;
+
+    @include respond(md) {
+      margin-top: 0;
+    }
+  }
+
+  &__text {
+    padding: 0;
+
+    @include respond(md) {
+      padding: 0 15px 0 30px;
+    }
+  }
+
+  &__title {
+    @include font("%T1");
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  &__articleTitle {
+    @include font("%H2Left");
+    font-size: 25px;
+    margin-top: 20px;
+
+    @include respond(lg) {
+      margin-top: 40px;
+    }
+  }
+
+  &__copy {
+    @include font("%T4");
+    margin-bottom: 30px;
+  }
+
+  &__cta {
+    margin-bottom: 40px;
+    width: 100%;
+    background-image: none;
+    padding: 10px;
+
+    @include respond(md) {
+      padding: 10px 70px;
+      width: auto;
+    }
+  }
+}

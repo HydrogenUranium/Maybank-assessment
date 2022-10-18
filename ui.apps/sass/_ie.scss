@@ -1,0 +1,39 @@
+.ie {
+  &-11,
+  &-10 {
+
+    // correct custom checkbox and checkmark positioning
+    .forms__checkbox--highlight input[type='checkbox'] {
+      + label:after {
+        margin-top: -16px;
+      }
+
+      + label:before {
+        margin-top: 3px;
+      }
+    }
+    .forms__checkbox--highlight input[type='radio'] {
+      + label:after {
+        margin-top: -16px;
+      }
+
+      + label:before {
+        margin-top: 3px;
+      }
+    }
+
+    // correct meganav positioning
+    .header__meganav {
+      width: 100%;
+    }
+
+    // remove navigation overlay when nav is closed
+    .header__overlay {
+      display: none;
+    }
+
+    &.modal-open .header__overlay {
+      display: block;
+    }
+  }
+}

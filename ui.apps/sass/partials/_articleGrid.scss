@@ -1,0 +1,389 @@
+.articleGrid {
+  padding: 0 0 34px;
+
+  @include respond(lg) {
+    padding: 0 0 50px;
+  }
+
+  &--saved {
+    padding: 20px 0 34px;
+  }
+
+  &__navWrap {
+    box-shadow: 0 1px 1px 0 rgba(102, 102, 102, 0.5), inset 0 1px 0 0 rgba(102, 102, 102, 0.5);
+    margin: 0 0 20px;
+    width: 100%;
+    position: relative;
+    .scrollleft,
+    .scrollright {
+      position: absolute;
+      top: 15px;
+      left: 5px;
+      right: auto;
+      color: map-get($palette, red);
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .scrollright {
+      left: auto;
+      right: 5px;
+    }
+  }
+
+  &__nav {
+    margin: 0 20px;
+    white-space: nowrap;
+    overflow: auto;
+    text-align: center;
+    @extend .clearfix;
+  }
+
+  &__navItem {
+    display: inline-block;
+    padding: 12px 0;
+
+    @include respond(md) {
+      margin-right: 22px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    @include respond(lg) {
+      margin-right: 48px;
+    }
+  }
+
+  &__navLink {
+    display: block;
+    padding: 5px 11px 2px;
+    @include font($style: "%T2");
+    letter-spacing: -0.3px;
+    text-transform: uppercase;
+    border-bottom: 4px solid map-get($palette, true-white);
+    transition: color 150ms ease;
+
+    @include respond(lg) {
+      padding: 5px 3px 2px;
+    }
+
+    &:hover {
+      color: map-get($palette, scarlet);
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: 1px solid map-get($palette, black);
+      outline-offset: 2px;
+    }
+
+    &--active {
+      border-bottom: 4px solid map-get($palette, scarlet);
+    }
+  }
+
+  &__title {
+    @include font($style: "%H2");
+    text-align: center;
+  }
+  &__noSearchResultsTitle {
+    @include font($style: "%H2");
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+  }
+
+  &__loadMoreWrap {
+    text-align: center;
+  }
+
+  &__loadMore {
+    position: relative;
+    display: inline-block;
+    @include font($style: "%T1");
+    text-transform: uppercase;
+    padding: 0 3px 2px;
+    margin-top: 10px;
+    border-bottom: 4px solid map-get($palette, scarlet);
+    transition: color 150ms ease;
+
+    @include respond(md) {
+      margin-top: 28px;
+    }
+
+    @include respond(lg) {
+      margin-top: 18px;
+    }
+
+    &:after {
+      content: ' ';
+      position: absolute;
+      top: 0px;
+      left: 50%;
+      margin-left: -11px;
+      box-sizing: border-box;
+      display: inline-block;
+      float: none;
+      background-color: map-get($palette, true-black);
+      border: 0 solid map-get($palette, true-black);
+      width: 20px;
+      height: 20px;
+      background: transparent;
+      border-width: 2px;
+      border-bottom-color: transparent;
+      border-radius: 100%;
+      animation: ball-clip-rotate .75s linear infinite;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 150ms ease;
+    }
+
+    &--loading {
+      color: map-get($palette, true-white);
+
+      &:after {
+        opacity: 1;
+      }
+    }
+
+    &:hover {
+      color: map-get($palette, scarlet);
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: 1px solid map-get($palette, black);
+      outline-offset: 2px;
+    }
+  }
+
+  &__rule {
+    display: block;
+    margin: 0 0 29px;
+    border: none;
+    width: 100%;
+    height: 1px;
+    background: map-get($palette, brownish-grey);
+    opacity: 0.3;
+  }
+
+  &--search {
+    padding-top: 50px;
+
+    @include respond(md) {
+      padding-top: 60px;
+    }
+
+    @include respond(lg) {
+      padding-top: 80px;
+    }
+
+    .articleGrid__searchSummary {
+      width: 100%;
+      font-size: 15px;
+      position: relative;
+      z-index: 2;
+
+      .summary-text {
+        float: left;
+        margin: 10px 0;
+
+        @include respond(lg) {
+          font-size: 18px;
+        }
+      }
+
+      .sort-by {
+        float: left;
+        clear: left;
+        margin: 0 0 20px;
+        line-height: 20px;
+        vertical-align: middle;
+
+        @include respond(md) {
+          float: right;
+          clear: none;
+          margin: 5px 0 35px;
+        }
+
+        @include respond(md) {
+          margin-top: 10px;
+        }
+
+        > span {
+          font-weight: 800;
+          font-stretch: condensed;
+        }
+
+        .action {
+          color: #000;
+          margin-left: 20px;
+          text-decoration: none;
+
+          &:hover {
+            color: map-get($palette, scarlet);
+          }
+
+          .icon {
+            position: relative;
+            top: 4px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 4px;
+            border-radius: 10px;
+            border: 1px solid #bbb;
+          }
+
+          &--active {
+            .icon {
+              &:before {
+                content: '';
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                border-radius: 3px;
+                background: #000;
+
+                top: 6px;
+                left: 6px;
+              }
+            }
+          }
+        }
+      }
+
+      &--noresults {
+        .summary-text {
+          font-size: 16px;
+        }
+
+        .sub-text {
+          width: 100%;
+          float: left;
+          border-top: 1px solid #ccc;
+          padding-top: 10px;
+        }
+      }
+    }
+
+    .articleGrid__paging {
+      text-align: right;
+
+      > span, > a {
+        display: inline-block;
+        color: #aaa;
+        text-decoration: none;
+        margin: 0 5px;
+
+        &.active {
+          font-weight: 800;
+          font-stretch: condensed;
+          color: #000;
+        }
+      }
+    }
+
+    .articleGrid__navWrap {
+      box-shadow: none;
+      border-bottom: 1px solid #ccc;
+
+      @include respond(lg) {
+        margin-bottom: 50px;
+      }
+
+      .scrollleft {
+        top: 2px;
+        left: 0px;
+      }
+      .scrollright {
+        top: 2px;
+        right: 0px;
+      }
+    }
+
+    .articleGrid__nav {
+      margin: 0;
+      text-align: left;
+    }
+
+    .articleGrid__navItem {
+      padding: 0;
+      margin-right: 20px;
+    }
+
+    .articleGrid__navLink {
+      padding: 5px 0 2px 0;
+      font-size: 13px;
+      color: #aaa;
+
+      .count {
+        color: #aaa;
+        font-weight: 400;
+      }
+
+      &--active, &--fb {
+        color: #000;
+      }
+    }
+
+    a.articleGrid__navLink {
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}
+
+
+
+.loading-spinner,
+.loading-spinner > div {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.loading-spinner {
+  display: block;
+  font-size: 0;
+  color: #fff;
+}
+
+.loading-spinner.la-dark {
+  color: #333;
+}
+
+.loading-spinner > div {
+  display: inline-block;
+  float: none;
+  background-color: currentColor;
+  border: 0 solid currentColor;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+}
+
+.loading-spinner > div {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border-width: 2px;
+  border-bottom-color: transparent;
+  border-radius: 100%;
+  animation: ball-clip-rotate .75s linear infinite;
+}
+
+@keyframes ball-clip-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

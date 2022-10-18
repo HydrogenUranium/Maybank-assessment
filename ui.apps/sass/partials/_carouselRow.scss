@@ -1,0 +1,280 @@
+.carouselRow {
+  background-image: linear-gradient(to top, #49bfe0, #55dde0);
+  padding: 19px 0 30px;
+
+  @include respond(md) {
+    padding: 41px 0 38px;
+  }
+
+  @include respond(xl) {
+    padding: 90px 0 150px;
+  }
+
+  $block: &;
+
+  &__title {
+    font-family: $font-family--animated;
+    font-size: 22px;
+    font-weight: 800;
+    font-stretch: condensed;
+    line-height: 1.18;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0 0 10px;
+
+    @include respond(md) {
+      font-size: 30px;
+    }
+
+    @include respond(xl) {
+      font-size: 40px;
+    }
+  }
+
+  &__copy {
+    font-family: $font-family--animated;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #ffffff;
+    margin: 0;
+
+    @include respond(xl) {
+      margin: 0 0 20px;
+    }
+
+  }
+
+  &__itemTile {
+    width: 190px;
+    height: 320px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    padding: 38px 15px 44px;
+    text-align: center;
+
+    @include respond(md) {
+      width: 226px;
+      height: 372px;
+    }
+
+    @include respond(xl) {
+      width: 264px;
+      height: 445px;
+      padding: 44px 30px;
+    }
+
+    &--medical {
+      height: 295px;
+
+      @include respond(md) {
+        height: 342px;
+      }
+
+      @include respond(xl) {
+        height: 410px;
+      }
+    }
+
+  }
+
+  &--medical {
+    background: #1d2c33;
+  }
+
+  &__itemImage {
+    display: block;
+    height: 211px;
+    margin: 0 0 7px 37px;
+
+    @include respond(md) {
+      height: 240px;
+      margin: 0 0 7px 48px;
+    }
+
+    @include respond(xl) {
+      height: 288px;
+      margin: 0 0 7px 41px;
+    }
+
+    &--watch,
+    &--pinkWatch {
+      height: 150px;
+      margin: 0 ;
+
+      @include respond(md) {
+        height: 188px;
+      }
+
+      @include respond(xl) {
+        height: 200px;
+      }
+    }
+
+    &--pinkWatch {
+      margin: 0 auto;
+    }
+
+    &--watchstrap {
+      height: 130px;
+      margin: 0 ;
+
+      @include respond(md) {
+        height: 155px;
+      }
+
+      @include respond(xl) {
+        height: 165px;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  &__itemTitle {
+    font-family: $font-family--animated;
+    font-size: 17px;
+    font-weight: 800;
+    font-stretch: condensed;
+    line-height: 1.18;
+    color: #000000;
+    margin: 0;
+
+    @include respond(md) {
+      font-size: 21px;
+    }
+
+    @include respond(xl) {
+      font-size: 24px;
+    }
+
+    &--medical {
+      bottom: 50px;
+      left: 0;
+      right: 0;
+      position: absolute;
+
+      @include respond(md) {
+        bottom: 65px;
+      }
+    }
+
+    &--medicalAlt {
+      left: 25px;
+      right: 25px;
+      bottom: 50px;
+      position: absolute;
+    }
+
+  }
+
+  &__carouselContainer {
+    width: 100%;
+    height: 320px;
+    box-sizing: content-box;
+    padding: 34px 0;
+    position: relative;
+
+    @include respond(md) {
+      height: 372px;
+    }
+
+    @include respond(xl) {
+      height: 445px;
+      padding: 0;
+    }
+  }
+
+  &__carousel {
+    width: 100%;
+    height: 320px;
+    position: relative;
+    clear: both;
+
+    @include respond(md) {
+      height: 372px;
+      margin: 0 auto;
+    }
+
+    @include respond(xl) {
+      height: 445px;
+    }
+
+    > div {
+      visibility:hidden;
+      cursor:pointer;
+    }
+  }
+
+  &__rightArrow,
+  &__leftArrow {
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #60e1e4;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -15px;
+    margin-left: 130px;
+    z-index: 4;
+
+    @include respond(md) {
+      border-top: 19px solid transparent;
+      border-bottom: 19px solid transparent;
+      border-left: 19px solid map-get($palette, true-white);
+      margin-left: 219px;
+      margin-top: -19px;
+    }
+
+    @include respond(lg) {
+      border-top: 22px solid transparent;
+      border-bottom: 22px solid transparent;
+      border-left: 22px solid map-get($palette, true-white);
+      margin-top: -22px;
+    }
+  }
+
+
+  &__rightArrow {
+    &--medical {
+      border-left: 15px solid #1d2c33;
+
+      @include respond(md) {
+        border-left: 19px solid map-get($palette, true-white);
+      }
+    }
+  }
+
+  &__leftArrow {
+    border-left: none;
+    border-right: 15px solid #60e1e4;
+    margin-left: -145px;
+
+    @include respond(md) {
+      border-left: none;
+      border-right: 19px solid map-get($palette, true-white);
+      margin-left: -241px;
+    }
+
+    @include respond(lg) {
+      border-left: none;
+      border-right: 22px solid map-get($palette, true-white);
+    }
+
+    &--medical {
+      border-right: 15px solid #1d2c33;
+
+      @include respond(md) {
+        border-right: 19px solid map-get($palette, true-white);
+      }
+    }
+  }
+}
+
+.carouselRow--medical {
+  .carouselRow__copy {
+    margin: 0 0 20px 0;
+  }
+}

@@ -1,0 +1,11 @@
+@import '../similarStories';
+
+.similarStories {
+    ul {
+        li {
+            &:before {
+                margin-top: 9px;
+            }
+        }
+    }
+}

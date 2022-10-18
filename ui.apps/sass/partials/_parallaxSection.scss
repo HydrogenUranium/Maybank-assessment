@@ -1,0 +1,1522 @@
+.parallaxSection {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  overflow: hidden;
+
+  @include respond(md) {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+
+  @include respond(xl) {
+    padding-top: 90px;
+    padding-bottom: 50px;
+  }
+
+  &__tileBlock {
+    position:absolute;
+    display: block;
+  }
+
+  &__office {
+    padding-bottom: 60px;
+  }
+
+  &--electronics {
+    transform: translateY(-5%);
+    padding-top: 0 !important;
+    z-index: 1;
+    padding-bottom: 0;
+    position: relative;
+
+    @include respond(md) {
+      padding-bottom: 90px;
+      transform: translateY(-7%);
+    }
+  }
+
+  &__intro {
+    z-index:8;
+  }
+
+  &--fashion,
+  &--luxury {
+
+    @include respond(md) {
+      padding-top: 40px;
+      padding-bottom: 190px;
+    }
+
+    @include respond(xl) {
+      padding-bottom: 260px;
+      padding-top: 90px;
+    }
+  }
+
+
+  &--cosmetic {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @include respond(md) {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    @include respond(lg) {
+      padding-bottom: 88px !important;
+    }
+
+    @include respond(xl) {
+      padding-bottom: 170px !important;
+    }
+
+    .container {
+
+      &:after {
+        display: none !important;
+      }
+
+      @include respond(md) {
+        &:after {
+          display: block !important;
+        }
+      }
+    }
+  }
+
+  &--textiles {
+
+    @include respond(md) {
+      padding-top: 40px;
+      padding-bottom: 88px;
+    }
+
+    @include respond(lg) {
+      padding-bottom: 120px;
+    }
+
+    @include respond(xl) {
+      padding-bottom: 90px;
+      padding-top: 90px;
+    }
+  }
+
+  &--luxury,
+  &--cosmetic {
+
+    @include respond(md) {
+      padding-top: 40px;
+      padding-bottom: 88px;
+    }
+
+    @include respond(lg) {
+      padding-bottom: 120px;
+    }
+
+    @include respond(xl) {
+      padding-bottom: 90px;
+      padding-top: 90px;
+    }
+
+    .container {
+      position: relative;
+
+      &:after {
+        content: ' ';
+        display: block;
+        height: 1px;
+        background: #e8e8e8;
+        position: absolute;
+        z-index: 4;
+        left: 15px;
+        right: 15px;
+        bottom: -30px;
+
+        @include respond(md) {
+          bottom: -48px;
+        }
+
+        @include respond(xl) {
+          bottom: -90px;
+        }
+      }
+    }
+  }
+
+  $block: &;
+
+  &__wrapper {
+    width: 100%;
+    position: relative;
+    padding: 294px 0 0;
+    max-width: 400px;
+    margin: 0 auto;
+
+    @include respond(md) {
+      max-width: 660px;
+      padding: 253px 0 0;
+    }
+
+    @include respond(xl) {
+      max-width: 100%;
+      padding: 522px 0 78px;
+    }
+
+    &--alt {
+      padding: 223px 0 0;
+
+      @include respond(xl) {
+        padding: 255px 0 0;
+      }
+    }
+
+    &--cosmetic {
+      padding: 500px 0 0;
+
+      @include respond(md) {
+        padding: 697px 0 0;
+      }
+
+      @include respond(xl) {
+        padding: 980px 0 0;
+      }
+    }
+
+    &--music {
+      padding: 570px 0 0;
+
+      @include respond(md) {
+        padding: 725px 0 0;
+      }
+
+      @include respond(xl) {
+        padding: 1050px 0 0;
+      }
+    }
+
+    &--music2 {
+      padding: 1010px 0 0;
+
+      @include respond(md) {
+        padding: 860px 0 0;
+      }
+
+      @include respond(lg) {
+        padding: 890px 0 0;
+      }
+
+      @include respond(xl) {
+        padding: 1045px 0 0;
+      }
+    }
+
+    &--electronics {
+      padding: 930px 0 0;
+
+      @include respond(md) {
+        padding: 850px 0 0;
+      }
+
+      @include respond(xl) {
+        padding: 980px 0 0;
+      }
+    }
+
+    &--medical {
+      padding: 820px 0 0;
+
+      @include respond(md) {
+        padding: 690px 0 0;
+      }
+
+      @include respond(xl) {
+        padding: 880px 0 0;
+      }
+    }
+
+    &--luxury {
+      padding: 996px 0 0;
+
+      @include respond(md) {
+        padding: 1145px 0 0;
+      }
+
+      @include respond(lg) {
+        padding: 1200px 0 0;
+      }
+
+      @include respond(xl) {
+        padding: 1460px 0 0;
+      }
+    }
+
+    &--textiles {
+      padding: 895px 0 0;
+
+      @include respond(md) {
+        padding: 1050px 0 0;
+      }
+
+      @include respond(lg) {
+        padding: 1030px 0 0;
+      }
+
+      @include respond(xl) {
+        padding: 1380px 0 0;
+      }
+    }
+  }
+
+  &__blueBox,
+  &__yellowBox {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 58.275862068965517241379310344828% 15px 15px 15px;
+    background-color: #33658a;
+    z-index: 0;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+
+    @include respond(md) {
+      width: 453px;
+      padding: 222px 20px 30px 20px;
+    }
+
+    @include respond(xl) {
+      width: 571px;
+      padding: 78px 30px 30px 30px;
+      margin: 15px;
+      position: relative;
+      z-index: 2;
+      left: 180px;
+    }
+  }
+
+  &__blueBox {
+    box-shadow: none;
+    @include respond(md) {
+      padding-top:245px;
+    }
+
+    @include respond(lg) {
+      padding-top:200px;
+    }
+
+    @include respond(xl) {
+      padding-top:75px;
+    }
+  }
+
+  &__yellowBox {
+    background-color: map-get($palette, sunflower-yellow);
+    margin: 15px;
+    padding: 14.275862% 15px 15px 50px;
+    position:relative;
+    margin:10vw 15px 15px;
+
+    @include respond(md) {
+      width: 384px;
+      padding: 110px 20px 30px 20px;
+      float: right;
+      margin:15px 80px 15px 15px;
+      position:relative;
+
+    }
+
+    @include respond(xl) {
+      width: 671px;
+      padding: 105px 30px 30px 30px;
+      margin: 15px;
+      position: relative;
+      z-index: 2;
+      left: 0;
+    }
+  }
+
+  &__tile {
+    position: absolute;
+    display: block;
+    background-color: map-get($palette, sunflower-yellow);
+    width: 46.89655172413793103448275862069%;
+    height: auto;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+
+    @for $i from 1 through 10 {
+
+      &:nth-child(#{$i}) {
+        z-index: #{$i};
+      }
+    }
+
+    &--alt {
+      width: 100%;
+      background-color: #ffffff;
+    }
+
+    &--coffee,
+    &--smartWatch,
+    &--shop,
+    &--glasses,
+    &--coat,
+    &--bullitt {
+      width: 70.689655172413793103448275862069%;
+      top: 0;
+      left: -15px;
+
+      #{$block}__tileImage {
+        padding-bottom: 69.75609756097560975609756097561%;
+      }
+
+      @include respond(md) {
+        width: 246px;
+      }
+
+      @include respond(xl) {
+        width: 371px;
+        left: 0;
+        top: 20px;
+      }
+    }
+
+    &--girl {
+      width: 33.989655%;
+      left: -15px;
+      top: 120px;
+      z-index: 2 !important;
+
+      #{$block}__tileImage {
+        padding-bottom: 91.756098%;
+      }
+
+      @include respond(md) {
+        top: 180px;
+        width: 39.989655%;
+
+        #{$block}__tileImage {
+          padding-bottom: 80.756098%;
+        }
+      }
+
+      @include respond(xl) {
+        top: 300px;
+      }
+    }
+
+    &--earing {
+      width: 28.689655%;
+      top: 175px;
+      left: 24px;
+      z-index: 7 !important;
+
+      #{$block}__tileImage {
+        padding-bottom: 75.756098%;
+      }
+
+      @include respond(md) {
+        width: 31.689655%;
+        left: 56px;
+        top: 300px;
+      }
+
+      @include respond(xl) {
+        top: 505px;
+      }
+    }
+
+    &--shop {
+      width: 45.689655%;
+      top: 250px;
+      z-index: 6 !important;
+
+      #{$block}__tileImage {
+        padding-bottom: 64.756098%;
+      }
+
+      @include respond(md) {
+        width: 37.689655%;
+        left: 30px;
+        top: 310px;
+      }
+
+      @include respond(xl) {
+        width: 31.789655%;
+        left: 185px;
+        top: 520px;
+
+      }
+    }
+
+    &--coat {
+      display: none;
+
+      @include respond(md) {
+        width: 37.325%;
+        top: 60px;
+        z-index: 6 !important;
+        display: block;
+
+        #{$block}__tileImage {
+            padding-bottom: 65.256098%;
+        }
+      }
+
+      @include respond(xl) {
+        width: 31.725%;
+        top:180px;
+      }
+    }
+
+    &--glasses {
+      display: none;
+
+      @include respond(md) {
+        display: block;
+        top: 474px;
+        width: 26.325%;
+        left: 30px;
+
+        #{$block}__tileImage {
+          padding-bottom: 74.756098%;
+        }
+      }
+
+      @include respond(xl) {
+        top: 532px;
+        width: 23.1%;
+        left: 110px;
+      }
+    }
+
+    &--smartWatch {
+      width: 31.689655%;
+      top: 400px;
+      left: -35px;
+      transform:translateY(30px);
+
+      #{$block}__tileImage {
+        padding-bottom: 88.756098%;
+      }
+
+      @include respond(md) {
+        top: 290px;
+        width: 26.689655%;
+        transform:none;
+
+        #{$block}__tileImage {
+          padding-bottom: 79.756098%;
+        }
+      }
+
+      @include respond(xl) {
+        width: 23.1%;
+      }
+    }
+
+    &--bullitt {
+      left: 0;
+      width: 76.689655%;
+      top:-10px;
+
+      @include respond(md) {
+        width: 313px;
+        top: 56px;
+      }
+
+      @include respond(xl) {
+        width: 471px;
+        left: 70px;
+        top: 22px;
+        z-index: 3 !important;
+      }
+    }
+
+    &--yellowBox {
+      top: 75px;
+      right: 0;
+
+      #{$block}__tileImage {
+        padding-bottom: 80.470588%;
+      }
+
+      @include respond(md) {
+        width: 246px;
+        top: 49px;
+        right: 69px;
+
+        #{$block}__tileImage {
+          padding-bottom: 132.11382113821138211382113821138%;
+        }
+      }
+
+      @include respond(xl) {
+        width: 471px;
+        top: 101px;
+        right: 200px;
+        z-index: 1;
+
+        #{$block}__tileImage {
+          padding-bottom: 108.28025477707006369426751592357%;
+        }
+      }
+    }
+
+    &--yellowBoxLuxury {
+      top: 28px;
+      left: 72px;
+      width: 39.26552%;
+
+      #{$block}__tileImage {
+        padding-bottom: 101.470588%;
+      }
+
+      @include respond(md) {
+        width: 43.26552%;
+        left: 157px;
+        top: 210px;
+      }
+
+      @include respond(xl) {
+        left: 279px;
+      }
+    }
+
+    &--yellowBoxCosmetic {
+      top: 28px;
+      left: 88px;
+      width: 49.56552%;
+      z-index: 1 !important;
+
+      #{$block}__tileImage {
+        padding-bottom: 78.170588%;
+      }
+
+      @include respond(md) {
+        width: 60.26552%;
+        left: 140px;
+        top: 70px;
+      }
+
+      @include respond(xl) {
+        left: 250px;
+        top: 140px;
+      }
+    }
+
+    &--yellowBoxAlt {
+      top: 387px;
+      right: -15px;
+      width: 36.896552%;
+      z-index: -1 !important;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+
+      #{$block}__tileImage {
+        padding-bottom: 218.470588%;
+      }
+
+      @include respond(md) {
+        width: 57.996552%;
+        top: 302px;
+        right: 55px;
+        z-index: -1 !important;
+
+        #{$block}__tileImage {
+          padding-bottom: 87.470588%;
+        }
+      }
+
+      @include respond(xl) {
+        width: 51.296552%;
+        top: 272px;
+        right: 150px;
+
+        #{$block}__tileImage {
+          padding-bottom: 92.98069%;
+        }
+      }
+    }
+
+    &--darkBlueBox,
+    &--musicBlueBox2,
+    &--fashionBlueBox,
+    &--luxuryBlueBox,
+    &--officeBlueBox {
+
+      top: 0;
+      left: 0;
+      width: 70.2%;
+      height: 950px;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      background-color: #1d2c33;
+      z-index: 0 !important;
+      padding: 30px 15px;
+
+      @include respond(md) {
+        width: 68.69625%;
+        height: 975px;
+        left: 30px;
+      }
+
+      @include respond(xl) {
+        width: 48.8625%;
+        height: 1090px;
+        top: -10px;
+        left: 60px;
+      }
+    }
+
+    &--musicBlueBox2 {
+      background-color: #33658a;
+      height: 1050px;
+
+      @include respond(md) {
+        height: 985px;
+      }
+
+      @include respond(xl) {
+        height: 1085px;
+      }
+    }
+
+    &--fashionBlueBox {
+      top: 190px;
+      padding-top: 225px;
+      height: 746px;
+      width: 290px;
+
+      @include respond(md) {
+        width: 389px;
+        height: 679px;
+        top: 290px;
+        padding-top: 255px;
+      }
+
+      @include respond(xl) {
+        width: 571px;
+        height: 700px;
+        left: 99px;
+        padding-top: 383px;
+        top: 450px;
+      }
+    }
+
+    &--medicalBlueBox {
+      background-color: #1d2c33;
+      top: 190px;
+      padding-top: 236px;
+      height: 620px;
+      width: 290px;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      @include respond(md) {
+        width: 389px;
+        height: 530px;
+        top: 290px;
+        padding-top: 250px;
+      }
+
+      @include respond(xl) {
+        width: 571px;
+        height: 600px;
+        left: 99px;
+        padding-top: 383px;
+        top: 450px;
+      }
+    }
+
+    &--cosmeticBlueBox,
+    &--musicBlueBox {
+      width: 290px;
+      height: 383px;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      background-color: #33658a;
+      top: 107px;
+      padding: 215px 15px 0 15px;
+      z-index: 0 !important;
+
+      @include respond(md) {
+        width: 453px;
+        height: 472px;
+        top: 224px;
+        padding: 330px 20px 0 20px;
+      }
+
+      @include respond(xl) {
+        width: 571px;
+        height: 828px;
+        padding: 720px 20px 0 20px;
+        left: 299px;
+        top: 150px;
+      }
+    }
+
+    &--musicBlueBox {
+      padding: 220px 15px 0 15px;
+      height: 460px;
+
+      @include respond(md) {
+        padding: 340px 20px 0 20px;
+        height: 500px;
+      }
+
+      @include respond(xl) {
+        padding: 720px 20px 0 20px;
+        height: 850px;
+      }
+    }
+
+    &--luxuryBlueBox {
+      top: 117px;
+      right: 15px;
+      left: auto;
+      width: 240px;
+      height: 878px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+      background-color: #1d2c33;
+      padding-top: 209px;
+
+      @include respond(md) {
+        width: 453px;
+        height: 1006px;
+        right: 69px;
+        padding-top: 608px;
+      }
+
+      @include respond(xl) {
+        width: 571px;
+        height: 1342px;
+        padding-top: 1002px;
+      }
+    }
+
+    &--textilesBlueBox {
+      top: 117px;
+      right: 15px;
+      left: auto;
+      width: 240px;
+      height: 730px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+      background-color: #1d2c33;
+      padding-top: 209px;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      @include respond(md) {
+        width: 453px;
+        height: 915px;
+        right: 69px;
+        padding-top: 605px;
+      }
+
+      @include respond(xl) {
+        width: 571px;
+        height: 1240px;
+        padding-top: 980px;
+      }
+    }
+
+    &--officeBlueBox {
+      height: 910px;
+      top: 117px;
+      right: 15px;
+      left: auto;
+      width: 240px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+      background-color: #33658a;
+      padding-top: 209px;
+
+      @include respond(md) {
+        width: 453px;
+        height: 1013px;
+        right: 69px;
+        padding-top: 608px;
+      }
+
+      @include respond(lg) {
+        height: 1033px;
+      }
+
+      @include respond(xl) {
+        width: 571px;
+        height: 1347px;
+        padding-top: 1002px;
+      }
+    }
+
+    &--blueBox {
+      top:0px;
+      right: 0;
+      height: 420px;
+      background-color: #55dde0;
+      width: 32.896552%;
+      z-index: 0 !important;
+
+      #{$block}__tileImage {
+        padding-bottom: 51.470588235294117647058823529412%;
+      }
+
+      @include respond(md) {
+        width: 177px;
+        height: 256px;
+        top: 10px;
+        right: 130px;
+
+        #{$block}__tileImage {
+          padding-bottom: 132.11382113821138211382113821138%;
+        }
+
+      }
+
+      @include respond(xl) {
+        width: 370px;
+        height: 474px;
+        top: -70px;
+        right: 140px;
+        z-index: 1;
+
+        #{$block}__tileImage {
+          padding-bottom: 108.28025477707006369426751592357%;
+        }
+      }
+    }
+
+    &--stationary,
+    &--watch,
+    &--zara,
+    &--tux,
+    &--yoghurt,
+    &--bullitt2 {
+      width: 110%;
+      top: 185px;
+      left: -15px;
+
+      #{$block}__tileImage {
+        padding-bottom: 52.172414%;
+      }
+
+      @include respond(md) {
+        width: 384px;
+        top: 229px;
+      }
+
+      @include respond(xl) {
+        width: 571px;
+        top: 285px;
+        left: 99px;
+      }
+    }
+
+    &--yoghurt {
+      left: auto;
+      right: -15px;
+      width: 31.296552%;
+      top: 15px;
+
+      #{$block}__tileImage {
+        padding-bottom: 74.172414%;
+      }
+
+      @include respond(md) {
+        width: 32.2552%;
+        right: 0;
+        top: 40px;
+      }
+
+      @include respond(xl) {
+        top: 0;
+        transform: translateY(-25%);
+      }
+    }
+
+    &--tux,
+    &--pencil {
+      width: 36.296552%;
+      top: 27px;
+
+      #{$block}__tileImage {
+        padding-bottom: 81.172414%;
+      }
+
+      @include respond(md) {
+        left: 0;
+        top: 47px;
+        width: 40.296552%;
+
+        #{$block}__tileImage {
+          padding-bottom: 80.172414%;
+        }
+      }
+
+      @include respond(xl) {
+        top: 105px;
+      }
+    }
+
+    &--pencil {
+      left: 0;
+    }
+
+    &--zara {
+      top:40px;
+      left: 15px;
+      width: 56.896552%;
+      z-index:3;
+
+      #{$block}__tileImage {
+        padding-bottom: 107.172414%;
+      }
+
+      @include respond(md) {
+        width: 55.896552%;
+        left: 115px;
+        top: 60px;
+      }
+
+      @include respond(xl) {
+        width: 48.896552%;
+        left: 270px;
+        top:60px;
+      }
+    }
+
+    &--watch {
+      width: 42.172414%;
+      left: 50px;
+      top: 390px;
+      transform:translateY(50px);
+
+      #{$block}__tileImage {
+        padding-bottom: 156.172414%;
+      }
+
+      @include respond(md) {
+        top: 250px;
+        left: 150px;
+        width: 38.172414%;
+        z-index: 1 !important;
+        transform:none;
+
+        #{$block}__tileImage {
+          padding-bottom: 149.172414%;
+        }
+      }
+
+      @include respond(lg) {
+        top: 270px;
+      }
+
+      @include respond(xl) {
+        width: 31.62414%;
+        top: 260px;
+        left: 350px;
+
+        #{$block}__tileImage {
+          padding-bottom: 150.172414%;
+        }
+      }
+    }
+
+    &--bullitt2 {
+      top: 0px;
+      position: inherit;
+      padding-bottom: 50%;
+      margin-bottom: 30px;
+      left:0;
+      right:0;
+
+      @include respond(md) {
+        width: 384px;
+        top: 0;
+        left:0;
+        right:0;
+      }
+
+      @include respond(xl) {
+        top: 0;
+        left: 0;
+        right:auto;
+        padding-bottom: 67%;
+      }
+    }
+
+    &--laptop,
+    &--tea {
+      display: none;
+
+      #{$block}__tileImage {
+        padding-bottom: 71.544715447154471544715447154472%;
+      }
+
+      @include respond(md) {
+        display: block;
+        top: 30px;
+        right: 0px;
+        width: 246px;
+      }
+
+      @include respond(lg) {
+        top: 0;
+      }
+
+      @include respond(xl) {
+        width: 372px;
+        right: 100px;
+      }
+    }
+
+    &--tea {
+      display: none;
+
+      @include respond(md) {
+        top: 320px;
+        width: 26.852%;
+        right: 30px;
+        display: block;
+      }
+
+      #{$block}__tileImage {
+        padding-bottom: 74.544715%;
+      }
+
+      @include respond(xl) {
+        width: 23.252%;
+        top: 159px;
+        right: 80px;
+
+        #{$block}__tileImage {
+          padding-bottom: 75.244715%;
+        }
+      }
+    }
+
+    &--brew,
+    &--woodWatch,
+    &--catwalk,
+    &--watchHand,
+    &--fashionBag,
+    &--hand,
+    &--spices
+    &--ring,
+    &--space {
+      width: 70.344827586206896551724137931034%;
+      top: 344px;
+      right: -15px;
+
+      #{$block}__tileImage {
+        padding-bottom: 49.019607843137254901960784313725%;
+      }
+
+      @include respond(md) {
+        width: 246px;
+        right: 0;
+        top: 322px;
+      }
+
+      @include respond(xl) {
+        width: 372px;
+        top: 316px;
+      }
+    }
+
+    &--spices {
+      width: 39.344828%;
+      top: 40px;
+      left: 100px;
+
+      #{$block}__tileImage {
+        padding-bottom: 148.519608%;
+      }
+
+      @include respond(md) {
+        width: 40.344828%;
+        left: 210px;
+        top: 60px;
+      }
+
+      @include respond(xl) {
+        left: 390px;
+      }
+    }
+
+    &--bowl {
+      right: -15px;
+      width: 38.544828%;
+      top: 180px;
+      z-index: 7 !important;
+
+      #{$block}__tileImage {
+        padding-bottom: 64.519608%;
+      }
+
+      @include respond(md) {
+        width: 40.544828%;
+        top: 270px;
+        right: 0;
+      }
+
+      @include respond(xl) {
+        top: 500px;
+      }
+    }
+
+    &--ring {
+      width: 33.544828%;
+      top: 130px;
+      right: 15px;
+      z-index: 7 !important;
+
+      #{$block}__tileImage {
+        padding-bottom: 71.219608%;
+      }
+
+      @include respond(md) {
+        width: 40.544828%;
+        top: 375px;
+
+        #{$block}__tileImage {
+          padding-bottom: 65.219608%;
+        }
+      }
+
+      @include respond(xl) {
+        top: 650px;
+      }
+    }
+
+    &--hand {
+      width: 36.344828%;
+      left: 105px;
+      top: 70px;
+
+      #{$block}__tileImage {
+        padding-bottom: 151.019608%;
+      }
+
+      @include respond(md) {
+        width: 40.344828%;
+        left: 225px;
+      }
+
+      @include respond(xl) {
+        left: 398px;
+        top: 132px;
+
+        #{$block}__tileImage {
+          padding-bottom: 150.019608%;
+        }
+      }
+    }
+
+    &--catwalk {
+      width: 47.344828%;
+      top: 180px;
+      z-index: 3;
+
+      #{$block}__tileImage {
+        padding-bottom: 68.019608%;
+      }
+
+      @include respond(md) {
+        width: 38.344828%;
+        top: 280px;
+      }
+
+      @include respond(xl) {
+        width: 31.744828%;
+        top: 290px;
+      }
+
+    }
+
+    &--fashionBag {
+      top: 10px;
+      z-index: 2 !important;
+      width: 50.344828%;
+
+      #{$block}__tileImage {
+        padding-bottom: 65.019608%;
+      }
+
+      @include respond(md) {
+        top: 30px;
+        width: 37.344828%;
+        z-index: 2 !important;
+      }
+
+      @include respond(xl) {
+        top: 30px;
+        width: 31.644828%;
+        transform: translateY(-50%);
+      }
+    }
+
+    &--watchHand {
+      width: 26.344828%;
+      top: 250px;
+      right: 0;
+
+      #{$block}__tileImage {
+        padding-bottom: 143.172414%;
+      }
+
+      @include respond(md) {
+        top: 380px;
+        width: 27.0123%;
+        right: 20px;
+
+        #{$block}__tileImage {
+          padding-bottom: 123.172414%;
+        }
+      }
+
+      @include respond(xl) {
+        width: 23.2123%;
+        top: 398px;
+        right: 0;
+
+        #{$block}__tileImage {
+          padding-bottom: 124.472414%;
+        }
+      }
+    }
+
+    &--woodWatch {
+      top: 460px;
+      width: 51.344828%;
+      right: 0;
+
+      #{$block}__tileImage {
+        padding-bottom: 58.019608%;
+      }
+
+      @include respond(sm) {
+        right:-50px;
+        top:510px;
+      }
+
+      @include respond(md) {
+        width: 26.944828%;
+        right: 110px;
+        z-index: 9 !important;
+
+        #{$block}__tileImage {
+          padding-bottom: 65.119608%;
+        }
+      }
+
+      @include respond(xl) {
+        width: 23.295%;
+        top: 606px;
+        right: 220px;
+
+        #{$block}__tileImage {
+          padding-bottom: 65.319608%;
+        }
+      }
+    }
+
+    &--space {
+      top: 203px;
+      width: 46.344828%;
+
+      #{$block}__tileImage {
+        padding-bottom: 66.019608%;
+      }
+
+      @include respond(md) {
+        top: 160px;
+        width: 37.344828%;
+      }
+
+      @include respond(xl) {
+        top: 160px;
+        width: 32.144828%;
+        right: -72px;
+      }
+    }
+
+    &--brew {
+      top: 320px;
+      @include respond(xs) {
+
+        &:nth-child(5) {
+          z-index: 1;
+        }
+      }
+
+      @include respond(sm) {
+       &:nth-child(5) {
+          z-index: 1;
+        }
+      }
+
+      @include respond(md) {
+        top: 265px;
+        &:nth-child(5) {
+          z-index: 5;
+        }
+      }
+
+      @include respond(xl) {
+        top: 316px;
+        &:nth-child(5) {
+          z-index: 5;
+        }
+      }
+    }
+  }
+
+  &__tileImage {
+    width: 100%;
+    height: 100%;
+    background-size: 100% auto;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  &__manPainting {
+    width: 170px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    padding: 30px 0 0;
+
+    @include respond(md) {
+      width: 177px;
+      padding: 0;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    @include respond(xl) {
+      width: 200px;
+      right: 100px;
+    }
+
+  }
+
+  &__copy,
+  &__title,
+  &__copyBottom {
+    font-family: $font-family--animated;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #ffffff;
+    padding: 0;
+    margin: 0 0 20px;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    &--alt {
+      color: map-get($palette, true-black);
+    }
+  }
+
+  &__copyBottom {
+    margin-bottom: 30px !important;
+    bottom: 0;
+    position: absolute;
+    right: 15px;
+    left: 15px;
+  }
+
+  &__title {
+    font-family: $font-family--animated;
+    color: map-get($palette, true-black);
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &--alt {
+      color: map-get($palette, true-white);
+      line-height: 1;
+      font-size: 22px;
+
+      @include respond(md) {
+        font-size: 30px;
+      }
+
+      @include respond(xl) {
+        font-size: 40px;
+      }
+    }
+
+    &--fashion,
+    &--fashionAlt {
+      font-size: 22px;
+      line-height: 1.18;
+      margin-bottom: 10px;
+
+      @include respond(md) {
+        font-size: 30px;
+      }
+
+      @include respond(lg) {
+        font-size: 40px;
+      }
+    }
+
+    &--fashionAlt {
+      color: map-get($palette, true-white);
+    }
+  }
+
+  &__textWrapper {
+    position: relative;
+    margin-bottom: 30px;
+    z-index:2;
+
+    @include respond(md) {
+      width: 70%;
+    }
+
+    @include respond(lg) {
+      width: 42%;
+      margin-left: 100px;
+    }
+  }
+
+   &__link {
+    color: map-get($palette, true-black);
+    text-decoration: underline;
+
+
+     &:hover {
+      color: map-get($palette, true-black);
+      text-decoration: underline;
+    }
+
+
+    &--alt {
+      color: map-get($palette, true-white);
+
+      &:hover {
+        color: map-get($palette, true-white);
+      }
+    }
+  }
+
+  &__tile {
+    &--Panel {
+      width:100%;
+      box-shadow:none;
+      background:none;
+    }
+
+    &--Beauty {
+      top:240px;
+    }
+
+    &--Pollution {
+      top:-200px;
+    }
+  }
+}
+
+.parallax-tile {
+  position:absolute;
+}

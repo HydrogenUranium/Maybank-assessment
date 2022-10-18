@@ -1,0 +1,37 @@
+.similarStories {
+    @include copyLists();
+    @include carousel-controls();
+
+    background: map-get($map: $palette, $key: white-two);
+    padding: 30px 0;
+    border-top: 1px solid map-get($map: $palette, $key: border-grey);
+
+    @include respond(lg) {
+      padding: 60px 0 35px;
+    }
+
+    &__list-item {
+        margin-bottom: 10px;
+    }
+
+    &__title {
+        @include font("%H4", map-get($palette, black));
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    &__link{
+        @include font("%T1", map-get($palette, black));
+        @include hoverText();
+        font-weight: 200;
+        font-stretch: condensed;
+    }
+
+    .carousel {
+        width: 100%;
+    }
+
+    .carousel-item.active {
+        display: flex;
+    }
+}

@@ -1,0 +1,792 @@
+.animatedShowcasePanel {
+  padding: 30px 0 30px;
+  position: relative;
+  z-index: 1;
+
+  $block: &;
+
+  @include respond(md) {
+    padding: 42px 0 48px;
+  }
+
+  @include respond(xl) {
+    padding: 150px 0 90px;
+  }
+
+  &--alt {
+    background-color: #33658a;
+    padding-bottom: 30px;
+    padding-top:30px;
+
+    @include respond(md) {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    @include respond(lg) {
+      padding-top: 90px;
+      padding-bottom: 90px;
+    }
+
+    @include respond(xl) {
+      padding-top: 90px;
+      padding-bottom: 90px;
+    }
+  }
+
+  &--electronics {
+    background-color: #49bfe0;
+    padding-bottom: 70px;
+
+    @include respond(md) {
+      padding: 40px 0 60px 0;
+    }
+
+    @include respond(lg) {
+      padding: 160px 0 80px;
+    }
+
+    @include respond(xl) {
+      padding: 90px 0;
+    }
+
+  }
+
+  &--music {
+    background-color: #1d2c33;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @include respond(md) {
+      padding: 50px 0 30px;
+    }
+
+    @include respond(lg) {
+      padding: 140px 0 80px;
+    }
+
+  }
+
+  &--fashion {
+    background-color: #33658a;
+    padding: 30px 0 30px;
+
+
+    @include respond(md) {
+      padding: 40px 0 40px;
+    }
+
+    @include respond(xl) {
+      padding: 90px 0 90px;
+    }
+  }
+
+  &--textiles {
+    background-color: #33658a;
+    padding: 30px 0 30px;
+
+
+    @include respond(md) {
+      padding: 40px 0 40px;
+    }
+
+    @include respond(xl) {
+      padding: 90px 0 90px;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &--office {
+    background-color: #1d2c33;
+    padding: 30px 0 30px;
+    z-index: 0;
+
+    @include respond(md) {
+      padding: 40px 0 60px;
+    }
+
+    @include respond(xl) {
+      padding: 90px 0 110px;
+    }
+  }
+
+  &--medical {
+    background-color: #33658a;
+    padding: 30px 0 30px;
+    z-index: 0;
+
+    @include respond(md) {
+      padding: 40px 0 60px;
+    }
+
+    @include respond(xl) {
+      padding: 90px 0 110px;
+    }
+  }
+
+  &--sport {
+    background-color: #1d2c33;
+    padding: 30px 0 30px;
+
+    @include respond(md) {
+      padding: 40px 0 30px;
+    }
+
+    @include respond(xl) {
+      padding: 90px 0 90px;
+    }
+  }
+
+  &--luxury {
+    background-color: transparent;
+
+    padding: 30px 0 0px;
+
+
+    @include respond(md) {
+      padding: 40px 0 40px;
+    }
+
+    @include respond(xl) {
+      padding: 90px 0 90px;
+    }
+  }
+
+  &--cosmetics101 {
+    padding-top:30px;
+    padding-bottom: 50px;
+
+    @include respond(md) {
+      padding-top: 40px;
+      padding-bottom: 70px;
+    }
+
+    @include respond(xl) {
+      padding-top: 90px;
+      padding-bottom: 90px;
+    }
+
+    .container {
+      &:after {
+        content: none !important;
+      }
+    }
+  }
+
+  .container {
+    position: relative;
+
+    &:after {
+      content: ' ';
+      display: block;
+      height: 1px;
+      background: #e8e8e8;
+      position: absolute;
+      z-index: 4;
+      left: 15px;
+      right: 15px;
+      bottom: -30px;
+
+      @include respond(md) {
+        bottom: -48px;
+      }
+
+      @include respond(xl) {
+        bottom: -90px;
+      }
+
+    }
+
+    &--alt {
+      &::after {
+        content: none;
+      }
+    }
+
+  }
+
+  &__title {
+    font-family: $font-family--animated;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #f3731e;
+    text-transform: uppercase;
+    margin: 0 0 24px;
+    position: relative;
+    background: #f0f1f1;
+    z-index: 1;
+
+    @include respond(md) {
+      margin-top: 87px;
+    }
+
+    @include respond(xl) {
+      font-size: 22px;
+      max-width: 360px;
+      margin: -38px 0 40px auto;
+    }
+
+    span {
+      position: relative;
+      z-index: 2;
+    }
+
+    &:before {
+      content: ' ';
+      display: block;
+      width: 100%;
+      height: 2000px;
+      background: #f0f1f1;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: skewX(-45deg);
+      transform-origin: top right;
+      z-index: 1;
+    }
+
+    &:after {
+      content: ' ';
+      display: block;
+      width: 100%;
+      height: 2000px;
+      background: #f0f1f1;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      transform: skewX(-45deg);
+      transform-origin: top right;
+      z-index: 1;
+    }
+
+    &--alt,
+    &--bottom,
+    &--bottomText,
+    &--dark,
+    &--left,
+    &--altMedical {
+      font-family: $font-family--animated;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: normal;
+      color: #ffffff;
+      background: transparent;
+      text-transform: none;
+      margin-top: auto;
+      margin-bottom: 0;
+
+      @include respond(xl) {
+        max-width: none;
+        margin-bottom: 0;
+        // margin: -38px 0 0 auto;
+      }
+
+      &::before {
+        content: none;
+      }
+
+      &::after {
+        content: none;
+      }
+    }
+
+    &--dark {
+      color: #000000;
+    }
+
+    &--alt,
+    &--dark {
+      float: right;
+    }
+
+    &--left {
+      float: left;
+    }
+
+    &--altMedical {
+      float: right;
+      margin-bottom: 20px;
+    }
+
+    &--bottomText {
+
+      @include respond(lg) {
+        margin-top: 50px;
+      }
+    }
+
+    &--bottom,
+    &--dark {
+      margin-bottom: 30px;
+
+      @include respond(md) {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  &__carousel {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 20px;
+    height: 460px;
+
+    &--ready {
+
+      #{$block}__carouselItem {
+        opacity: 1;
+      }
+
+    }
+
+    &--textiles {
+      height: 500px;
+
+      @include respond(md) {
+        height: 520px;
+      }
+    }
+
+    &--alt {
+      height: 255px;
+      padding-bottom: 0;
+    }
+
+    &--sport {
+      height: 360px;
+    }
+
+    &--music {
+      height: 320px;
+    }
+
+    &--light {
+      + #{$block}__carouselNavigation {
+        #{$block}__carouselNavigationItem {
+          background: #ffffff;
+        }
+      }
+    }
+
+  }
+
+  &__carouselItem {
+    min-height: 240px;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    margin-left: -120px;
+    z-index: 16;
+    opacity: 0;
+    transition: transform 250ms ease, opacity 150ms ease;
+
+    @include respond(md) {
+      margin-left: -122.5px;
+    }
+
+    &:nth-child(1) {
+      opacity: 1;
+    }
+
+    @for $i from 2 through 15 {
+
+      &:nth-child(#{$i}) {
+        z-index: (16 - $i);
+      }
+
+    }
+
+    &--hidden {
+      transform: rotate(-30deg) translateX(-150%) !important;
+      opacity: 0 !important;
+      transition: transform 250ms ease, opacity 150ms ease 100ms;
+    }
+
+  }
+
+  &__carouselNavigation {
+    display: block;
+    margin: 0;
+    padding-bottom: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__carouselNavigationItem {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #666666;
+    opacity: 0.3;
+    cursor: pointer;
+    margin: 0 4px;
+    transition: opacity 250ms ease;
+
+    &.active {
+      opacity: 1;
+      transition: opacity 250ms ease 250ms;
+    }
+
+    &--alt {
+      background: #ffffff;
+    }
+
+  }
+
+  &__item {
+    background: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    padding: 20px 15px 10px;
+    max-width: 240px;
+    min-height: 440px;
+
+    @include respond(md) {
+      max-width: 245px;
+      padding: 20px 15px 30px;
+    }
+
+    @include respond(xl) {
+      position: relative;
+      z-index: 2;
+      max-width: 370px;
+      min-width: 370px;
+      padding: 30px 20px 40px;
+
+      &--pullUp {
+        margin-top: -199px;
+      }
+
+      &--pushDown {
+        margin-bottom: 30px;
+      }
+
+    }
+
+    &--music,
+    &--music1,
+    &--music2 {
+      min-height: 305px;
+      max-height: 305px;
+
+      @include respond(xl) {
+        min-height: 380px;
+        max-height: 380px;
+      }
+    }
+
+    &--music1 {
+      @include respond(xl) {
+        margin-top: 100px;
+      }
+    }
+
+    &--music2 {
+      @include respond(xl) {
+        margin-top: 50px!important;
+      }
+    }
+
+    &--medical {
+      padding-bottom: 20px;
+    }
+
+    &--medicalAlt {
+      padding-bottom: 40px;
+
+      @include respond(md) {
+        padding-bottom: 28px;
+      }
+    }
+
+    &--medicalMedium {
+      padding-bottom: 20px;
+
+      @include respond(md) {
+        padding-bottom: 10px;
+      }
+    }
+
+    &--office {
+      min-height: 448px;
+    }
+
+    &--sport {
+      min-height: 340px;
+    }
+
+    &--bulb,
+    &--tv,
+    &--camera {
+      min-width: 240px;
+      min-height: 235px;
+
+      @include respond(xl) {
+        margin-top: 0;
+        min-height: 322px;
+      }
+    }
+
+    &--tv {
+      @include respond(xl) {
+        margin-top: 45px;
+      }
+    }
+
+    &--camera {
+      @include respond(xl) {
+        margin-top: 90px;
+      }
+    }
+
+    &--speakers,
+    &--headphones,
+    &--charger,
+    &--bag,
+    &--clothes,
+    &--watch,
+    &--bee,
+    &--testtube,
+    &--recycling {
+      min-height: 235px;
+      min-height: 507px;
+
+    }
+
+    &--bee {
+      margin-top: 60px;
+    }
+
+    &--testtube {
+      margin-top: 30px;
+    }
+
+    &--watch {
+      margin-top: 120px;
+    }
+
+    &--recycling,
+    &--gopro {
+      margin-top:20px;
+    }
+
+    &--bag,
+    &--rugby {
+      margin-top:80px;
+    }
+
+    &--clothes,
+    &--speed {
+      margin-top:140px;
+      margin-bottom:50px;
+    }
+
+    &--headphones{
+      @include respond(xl) {
+        margin-top: 55px;
+      }
+    }
+
+    &--speakers {
+      @include respond(xl) {
+        margin-top: 105px;
+      }
+    }
+
+  }
+
+  &__itemImage {
+    width: 102px;
+    height: auto;
+    margin: 0 0 15px;
+
+    @include respond(xl) {
+      width: 200px;
+      margin: 0 0 30px;
+    }
+
+    &--sport {
+      width: 130px;
+
+      @include respond(xl) {
+        width: 170px;
+      }
+    }
+
+    &--office {
+      @include respond(xl) {
+        width: 160px;
+      }
+    }
+
+    &--pen,
+    &--book2 {
+      width: 126px;
+    }
+
+    &--textiles {
+      margin: 0;
+      width: 130px;
+
+      @include respond(xl) {
+        width: 210px;
+        margin: 0;
+      }
+
+    }
+
+  }
+
+  &__itemTitle {
+    font-family: $font-family--animated;
+    font-size: 17px;
+    font-weight: 800;
+    font-stretch: condensed;
+    line-height: 1.18;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+
+    @include respond(xl) {
+      font-size: 25px;
+    }
+
+  }
+
+  &__itemCopy {
+    font-family: $font-family--animated;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.54;
+    margin: 0;
+
+    @include respond(xl) {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    &--alt {
+      font-size: 15px;
+
+      @include respond(lg) {
+        margin-top: 80px;
+      }
+    }
+  }
+
+  + * {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__link {
+    color: map-get($palette, true-black);
+    text-decoration: underline;
+
+    &:hover {
+      color: map-get($palette, true-black);
+      text-decoration: underline;
+    }
+
+    &--alt {
+      color: #ffffff;
+
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+
+  &__wrapper {
+    @include respond(xl) {
+      height: 500px;
+    }
+
+    &--electronics,
+    &--luxury {
+      @include respond(xl) {
+        height: auto;
+      }
+    }
+
+    &--luxury {
+      @include respond(xl) {
+        margin-bottom: 50px;
+      }
+    }
+  }
+
+  &__heading {
+    font-family: $font-family--animated;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 13px;
+
+    @include respond(md) {
+      font-size: 30px;
+    }
+
+    @include respond(lg) {
+      font-size: 40px;
+    }
+
+    &--dark {
+      color: #000000;
+    }
+
+    &--office {
+
+      @include respond(md) {
+        left: -15px;
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      @include respond(lg) {
+        left: 30px;
+      }
+
+      @include respond(xl) {
+        left: 0;
+        margin-bottom: 13px;
+      }
+    }
+  }
+
+  &--offset {
+    margin-top:17px;
+    height:auto;
+
+    @include respond(md) {
+      margin-top:20px;
+      height:auto
+    }
+
+    @include respond(xl) {
+      margin-top:237px;
+      height:800px;
+    }
+  }
+
+  &__padding {
+    margin-bottom: 20px;
+  }
+
+  .left-align {
+    @include respond(md) {
+      left: -35px;
+    }
+
+    @include respond(lg) {
+      left: -100px;
+    }
+  }
+}
+

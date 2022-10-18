@@ -1,0 +1,68 @@
+.accordion {
+	background-color: map-get($palette, white-two);
+	margin: 20px 0;
+
+	.container {
+		padding-left: 0;
+		padding-right: 0;
+
+		.card {
+			background-color: map-get($palette, white-two);
+			padding: 21px 15px 20px 15px;
+			border: none;
+			border-top: 1px solid map-get($palette, white);
+
+			@include respond(md) {
+	      padding: 20px 30px;
+	    }
+		}
+
+		.card:first-child {
+			border-top: none;
+		}
+
+		.card__header {
+			cursor: pointer;
+			background-color: map-get($palette, white-two);
+			border: none;
+			padding: 0;
+
+			h3 {
+				@include font($style: "%T4");
+				color: map-get($palette, red);
+				margin: 0;
+			}
+		}
+
+		.card__header:before {
+			content: ' ';
+			display: block;
+			width: 20px;
+			height: 8px;
+			background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/accordionarrow.png);
+			background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/accordionarrow.svg);
+      background-position: center center;
+      background-size: 18px 8px;
+      background-repeat: no-repeat;
+			line-height: 5rem;
+			position: absolute;
+			right: 14px;
+			top: 26px;
+			transition: transform 100ms ease;
+
+			@include respond(md) {
+				top: 27px;
+			}
+		}
+
+		.card__header[aria-expanded="true"]:before {
+			transform: rotate(-180deg)
+		}
+
+		.card__body {
+			@include font($style: "%T5");
+			padding: 0;
+			padding-top: 18px;
+		}
+	}
+}

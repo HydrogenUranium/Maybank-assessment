@@ -1,0 +1,98 @@
+/*
+  Unicode Range 0020-024F covers all western style glyphs which
+  should not be handled by the Chinese / Japanese / Korean fallback fonts
+
+  Unicode Range 0370-03FF covers greek and coptic
+
+  Cyrillic: 0400-04FF, 0500-052F, 2DE0-2DFF, A640-A69F, 1C80-1C8F
+*/
+
+/* Light */
+@font-face {
+  font-family: "Delivery";
+  font-style: normal;
+  font-weight: 200;
+  src:
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_Lt.woff2") format("woff2"),
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_Lt.woff") format("woff");
+  unicode-range: U+20-24F, U+370-52F, U+2DE0-2DFF, U+A640-A69F, U+1C80-1C8F;
+}
+
+/* Light Italic */
+@font-face {
+  font-family: "Delivery";
+  font-style: italic;
+  font-weight: 200;
+  src:
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_LtIt.woff2") format("woff2"),
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_LtIt.woff") format("woff");
+  unicode-range: U+20-24F, U+370-52F, U+2DE0-2DFF, U+A640-A69F, U+1C80-1C8F;
+}
+
+/* Regular */
+@font-face {
+  font-family: "Delivery";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_Rg.woff2") format("woff2"),
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_Rg.woff") format("woff");
+  unicode-range: U+20-24F, U+370-52F, U+2DE0-2DFF, U+A640-A69F, U+1C80-1C8F;
+}
+
+/* Italic */
+@font-face {
+  font-family: "Delivery";
+  font-style: italic;
+  font-weight: 400;
+  src:
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_It.woff2") format("woff2"),
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_It.woff") format("woff");
+  unicode-range: U+20-24F, U+370-52F, U+2DE0-2DFF, U+A640-A69F, U+1C80-1C8F;
+}
+
+/* Bold */
+@font-face {
+  font-family: "Delivery";
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_Bd.woff2") format("woff2"),
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_Bd.woff") format("woff");
+  unicode-range: U+20-24F, U+370-52F, U+2DE0-2DFF, U+A640-A69F, U+1C80-1C8F;
+}
+
+/* Bold Italic */
+@font-face {
+  font-family: "Delivery";
+  font-style: italic;
+  font-weight: 700;
+  src:
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_BdIt.woff2") format("woff2"),
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_BdIt.woff") format("woff");
+  unicode-range: U+20-24F, U+370-52F, U+2DE0-2DFF, U+A640-A69F, U+1C80-1C8F;
+}
+
+/* Condensed Light */
+@font-face {
+  font-family: "Delivery";
+  font-style: normal;
+  font-weight: 200;
+  font-stretch: condensed;
+  src:
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_CdLt.woff2") format("woff2"),
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_CdLt.woff") format("woff");
+  unicode-range: U+20-24F, U+370-52F, U+2DE0-2DFF, U+A640-A69F, U+1C80-1C8F;
+}
+
+/* Condensed Black */
+@font-face {
+  font-family: "Delivery";
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: condensed;
+  src:
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_CdBlk.woff2") format("woff2"),
+    url("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/fonts/delivery/Delivery_W_CdBlk.woff") format("woff");
+  unicode-range: U+20-24F, U+370-52F, U+2DE0-2DFF, U+A640-A69F, U+1C80-1C8F;
+}

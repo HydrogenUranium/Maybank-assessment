@@ -1,0 +1,496 @@
+.statsPanel {
+  background-color: #33658a;
+  padding-top: 0;
+  padding-bottom: 80px;
+
+  @include respond(md) {
+    padding-bottom: 90px;
+    padding-top: 30px;
+  }
+
+  @include respond(lg) {
+    padding-top: 80px;
+    padding-bottom: 140px;
+  }
+
+  &--spacing {
+    .container {
+      @include respond(md) {
+        padding-left:0 !important;
+        padding-right:0!important;
+      }
+    }
+
+  }
+
+  &--office {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 50px;
+
+    @include respond(md) {
+      padding-bottom: 40px !important;
+    }
+
+    @include respond(lg) {
+      padding-bottom: 0;
+    }
+  }
+
+  &--alt,
+  &--fashion,
+  &--office {
+    background-color: map-get($palette, true-white);
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    .container {
+      padding-left:0px;
+      padding-right:0px;
+
+      @include respond(md) {
+        padding-left:15px;
+        padding-right:0;
+      }
+    }
+
+    @include respond(md) {
+      margin-bottom: 40px !important;
+      padding-top: 40px !important;
+      padding-bottom: 0 !important;
+    }
+
+    @include respond(lg) {
+      height: 500px;
+      overflow: visible;
+    }
+  }
+
+  &--office {
+    @include respond(lg) {
+      height: 545px;
+    }
+
+    @include respond(xl) {
+      height: 415px;
+    }
+  }
+
+  &--electronics {
+    background: #ffffff;
+    padding: 30px 0 15px 0;
+    text-align: center;
+
+    @include respond(md) {
+      padding: 40px 0  25px 0!important;
+    }
+
+    @include respond(lg) {
+      padding: 70px 0 55px 0!important;
+    }
+
+    .statsPanel__copy--alt {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &--fashion {
+    background-color: #49bfe0;
+    padding: 30px 0;
+
+    @include respond(md) {
+      padding: 40px 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    @include respond(lg) {
+      padding-top: 140px !important;
+      padding-bottom: 90px !important;
+      height: auto;
+    }
+  }
+
+  &--textiles {
+    background-color: #33658a;
+    padding: 30px 0;
+
+    @include respond(md) {
+      padding: 40px 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    @include respond(lg) {
+      padding-top: 90px !important;
+      padding-bottom: 70px !important;
+      height: auto;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &--fashionAlt {
+    background-color: map-get($palette, true-white);
+    padding-top: 30px;
+    padding-bottom: 0;
+
+    @include respond(md) {
+      padding-top: 40px !important;
+      padding-bottom: 0 !important;
+    }
+
+    @include respond(lg) {
+      padding-top: 90px !important;
+      padding-bottom: 90px !important;
+      height: auto;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    margin: 0 auto;
+    display: table;
+    padding: 30px 0;
+
+    @include respond(md) {
+      margin: inherit;
+      margin-left: 0;
+      padding: 40px 0;
+    }
+
+    @include respond(lg) {
+      padding: 0;
+    }
+
+    &--alt {
+      @include respond(md) {
+        margin: auto;
+        margin-left: auto;
+      }
+      @include respond(lg) {
+        padding: 0;
+      }
+    }
+
+    &--music {
+
+      @include respond(md) {
+        margin: auto;
+        margin-left: auto;
+      }
+
+      @include respond(lg) {
+        padding: 0;
+      }
+
+      @include respond(xl) {
+        padding: 40px;
+      }
+    }
+
+    &--noPadding {
+      @include respond(md) {
+        padding: 0;
+      }
+    }
+
+    &--padding {
+
+      @include respond(md) {
+        margin-top: 40px;
+      }
+    }
+  }
+
+  &__title {
+    font-family: $font-family--animated;
+    font-size: 22px;
+    font-weight: 800;
+    font-stretch: condensed;
+    line-height: 1.18;
+    letter-spacing: normal;
+    color: #000000;
+    text-transform: uppercase;
+    margin-bottom:0.5em;
+
+    @include respond(md) {
+      font-size: 30px;
+      line-height: normal;
+    }
+
+    @include respond(lg) {
+      font-size: 40px;
+    }
+
+    &--light {
+      color: map-get($palette, true-white);
+    }
+  }
+
+  &__copy {
+    font-family: $font-family--animated;
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 400;
+    color: map-get($palette, true-white);
+    height: 100%;
+    display: -webkit-box;
+    align-items: center;
+    position: relative;
+
+    &--alt {
+      color: #000000;
+      display: block;
+      height: auto;
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    &--light {
+      height: auto;
+      margin-bottom: 0;
+    }
+  }
+
+  &__statsValue {
+    font-family: Arial;
+    font-size: 44px;
+    font-weight: 900;
+    height: 47px;
+    line-height:43px;
+    margin-bottom:0;
+    transform: translate3d( 0, 0, 0);
+    will-change: transform;
+    -webkit-transform-style: preserve-3d;
+    -webkit-font-smoothing: antialiased;
+    transform: perspective(1px) scale(1.1);
+    color: map-get($palette, sunflower-yellow);
+    margin-left: 6px;
+
+
+    @include respond(sm) {
+      font-size: 50px;
+      height: 50px;
+      line-height:50px;
+    }
+
+    @include respond(md) {
+      height: 54px;
+    }
+
+    @include respond(lg) {
+      height: 98px;
+      font-size: 80px;
+      line-height:92px;
+    }
+
+    &--alt {
+
+      @include respond(md) {
+        height: 55px;
+      }
+
+      @include respond(lg) {
+        font-size: 50px;
+        height: 75px;
+      }
+    }
+
+    &--light {
+      color: map-get($palette, true-white);
+
+      @include respond(md) {
+        font-size: 50px;
+        height: 56px;
+      }
+
+      @include respond(lg) {
+        height: 60px;
+      }
+    }
+  }
+
+  &__value {
+    font-size: 17px;
+    font-weight: 900;
+    font-family: $font-family--animated;
+    color: map-get($palette, sunflower-yellow);
+    text-transform: uppercase;
+    line-height:20px;
+
+
+    @include respond(lg) {
+      font-size: 27px;
+    }
+
+    &--alt {
+      width: 101%;
+
+      @include respond(lg) {
+        font-size: 17px;
+      }
+    }
+
+    &--light {
+      color: map-get($palette, true-white);
+      line-height:20px;
+
+      @include respond(md) {
+        font-size: 17px;
+
+      }
+
+      @include respond(lg) {
+        margin-top: 18px;
+      }
+    }
+
+    &--noPercentage {
+      font-size: 28px;
+      font-weight: 900;
+      margin: 20px 0;
+    }
+  }
+
+  &__statsWrapper {
+    float: right;
+    margin-top: 40px;
+    margin-left: 30px;
+
+    @include respond(lg) {
+      margin-left: 20px;
+    }
+
+    @include respond(xl) {
+      margin-left: 30px;
+    }
+
+    &--alt,
+    &--altDown {
+      float: none;
+      margin: 0;
+    }
+
+    &--altDown {
+      margin-top: 50px;
+    }
+
+    &--electronics {
+      margin-right: 0 !important;
+    }
+  }
+
+  &__link {
+    color: map-get($palette, white);
+    text-decoration: underline;
+
+    &:hover {
+      color: map-get($palette, white);
+      text-decoration: underline;
+    }
+
+    &--alt {
+      color: #000000;
+
+      &:hover {
+        color: #000000;
+      }
+    }
+
+    &--light {
+      color: map-get($palette, true-white);
+
+      &:hover {
+        color: map-get($palette, true-white);
+      }
+    }
+  }
+
+  &__parallaxBox {
+
+    display: contents;
+    position: relative;
+    width: 100%;
+    z-index: 2 !important;
+    will-change: transform;
+    box-shadow: none;
+
+    @include respond(sm) {
+      margin:0 auto;
+    }
+
+    @include respond(lg) {
+      display: flex;
+      //margin-top: 40px;
+      padding: 30px 20px 40px 20px;
+      // object-fit: contain;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    }
+
+    &--fashion {
+      box-shadow: none;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    &--office {
+      position: relative;
+      box-shadow: none;
+      display: contents;
+
+      @include respond(lg) {
+        padding: 40px 20px 50px 40px;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+        display: block;
+      }
+    }
+  }
+
+  &__boxWrapper {
+    display: flex;
+    margin-left:-15px;
+    margin-right:-15px;
+
+    @include respond(lg) {
+      width: 100%;
+    }
+  }
+}
+
+.product__fill {
+  position: relative;
+
+  polygon {
+    fill: transparent;
+    transition: fill 4s ease-in-out;
+  }
+
+  rect {
+    transform: translateY(100%);
+    fill: #ffcc00;
+    transition: transform 50ms ease-in-out;
+  }
+
+  &.product__fill--active {
+
+    rect {
+      transform: translateY(0);
+      fill: #ffcc00;
+      transition: transform 4s ease-in-out;
+    }
+  }
+}
+
+.o-pd-copy {
+  margin-bottom:30px;
+
+  @include respond(sm) {
+    margin-bottom:0;
+  }
+
+  @include respond(md) {
+    margin-bottom:0;
+  }
+}
+

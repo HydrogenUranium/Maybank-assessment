@@ -1,0 +1,194 @@
+html {
+ background: map-get($palette, white-two);
+}
+
+body {
+  max-width:1920px;
+  margin: 0 auto;
+  background: #ffffff;
+
+  &.modal-open {
+    overflow: hidden;
+  }
+}
+
+.page-body {
+  overflow: hidden;
+
+  &.fixed {
+    padding-top: 40.3px;
+
+    @include respond(lg) {
+      padding-top: 80px;
+    }
+  }
+}
+
+.page-body-wrapper {
+  width: 100%;
+  overflow: hidden;
+
+  &.awaiting {
+    min-height: 300px;
+    background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/spinner.svg') center no-repeat;
+    background-size: 120px 120px;
+  }
+
+  .page-body {
+    background: map-get($palette, true-white);
+  }
+}
+
+%table {
+  @extend .table;
+  text-align: inherit;
+  background-color: transparent !important;
+  font-family: $font-family;
+
+  &[border="0"] {
+    * {
+      border: none !important;
+    }
+  }
+
+  &[border="1"] {
+    @extend .table-bordered;
+
+    * {
+      border-color: map-get($palette, black) !important;
+    }
+  }
+
+  th {
+    font-size: 18px;
+    text-align: inherit;
+  }
+
+  td {
+    text-align: inherit;
+  }
+}
+
+.wysiwyg {
+
+  h1 {
+    @include font("%H2");
+    margin-bottom: 22px;
+  }
+
+  h2 {
+    @include font($style: "%H3");
+    margin: 0px 0px 26px;
+  }
+
+  h3 {
+    @include font($style: "%H4");
+    margin: 0px 0px 20px;
+  }
+
+  h4 {
+    @include font($style: "%T2Left");
+    margin: 0px 0px 15px;
+  }
+
+  p {
+    @include font($style: "%T3");
+    margin: 0px 0px 15px;
+
+    b {
+      font-weight: 800;
+      font-stretch: condensed;
+    }
+
+    i {
+      font-style: italic;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+
+
+  ul,
+  ol {
+    margin: 0px 0px 15px;
+
+    li {
+        margin: 0px 0px 5px;
+
+        p {
+            margin: 10px 0;
+        }
+    }
+}
+
+  @include copyLists();
+
+  table {
+    @extend %table;
+  }
+
+}
+
+.container--lg {
+  @extend .container;
+  padding: 0;
+
+  @include respond(md) {
+    max-width: 100%;
+  }
+
+  @include respond(lg) {
+    @include make-container();
+    max-width: 962px;
+    padding: 0 15px;
+  }
+
+  @include respond(xl) {
+    max-width: 1200px;
+  }
+}
+
+.row--lg {
+  @include respond(lg) {
+    @include make-row();
+  }
+}
+
+
+.toast {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: -40px;
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  transition: bottom 200ms ease, opacity 200ms ease;
+  z-index: 100;
+
+  &.show {
+    bottom: 20px;
+    opacity: 1;
+  }
+
+  .inner {
+    box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.2);
+    display: inline-block;
+    padding: 5px 25px;
+    border-radius: 30px;
+    @include font($style: "%T5", $colour: map-get($palette, true-white));
+    background: map-get($palette, brownish-grey);
+    text-align: center !important;
+  }
+}
+
+.pwa .toast {
+
+  &.show {
+    bottom: 65px;
+  }
+
+}

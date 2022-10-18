@@ -1,0 +1,356 @@
+.articlePanel {
+  @extend .clearfix;
+  padding-bottom: 20px;
+  transition: transform 150ms ease, opacity 150ms ease;
+
+  > * {
+    transition: opacity 150ms ease;
+  }
+
+  @include respond(lg) {
+    padding-bottom: 20px !important;
+  }
+
+  $block: &;
+
+  &__image {
+    display: block;
+    width: 90px;
+    height: 69px;
+    @include backgroundImage(cover);
+    float: left;
+    margin: 0 10px 0 0;
+
+    @include respond(md) {
+      width: 114px;
+      height: 74px;
+    }
+
+    @include respond(lg) {
+      width: 100%;
+      height: 0px;
+      padding-bottom: 56.36%;
+      margin: 0 0 13px !important;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:focus {
+      outline: 1px solid map-get($palette, true-black);
+      outline-offset: 2px;
+    }
+  }
+
+  &__content {
+    float: left;
+    width: 100%;
+    width: calc(100% - 100px);
+
+    @include respond(md) {
+      width: calc(100% - 124px);
+    }
+
+    @include respond(lg) {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    > a {
+      display: block;
+
+      @include respond(lg) {
+        order: 2;
+      }
+    }
+  }
+
+  &__title {
+    @include font($style: "%T2Left");
+    font-weight: 800;
+    font-stretch: condensed;
+    margin: 0 0 8px;
+    transition: color 150ms ease;
+
+    &:hover {
+      color: map-get($palette, scarlet);
+    }
+
+    @include respond(lg) {
+      font-size: 25px !important;
+      margin-bottom: 13px;
+    }
+  }
+
+  &__subTitle {
+    @include font($style: "%T5", $colour: map-get($palette, brownish-grey));
+    font-weight: 200;
+    font-stretch: condensed;
+    text-transform: uppercase;
+    margin: 0;
+
+    a {
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.noUnderline:hover {
+        text-decoration: none;
+      }
+
+    }
+
+    @include respond(lg) {
+      order: 1;
+      margin-bottom: 9px !important;
+    }
+  }
+
+  &__description {
+    display: none;
+    @include font($style: "%T4");
+
+    @include respond(lg) {
+      display: block;
+    }
+  }
+
+  &--video {
+
+    #{$block}__image {
+      position: relative;
+
+      &:before {
+        content: ' ';
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        background: map-get($palette, scarlet);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -15px;
+        margin-left: -15px;
+
+        @include respond(lg) {
+          width: 52px;
+          height: 52px;
+          border-radius: 52px;
+          margin-top: -26px;
+          margin-left: -26px;
+        }
+      }
+
+      &:after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -7px;
+        margin-left: -5px;
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-left: 14px solid map-get($palette, true-white);
+
+        @include respond(lg) {
+          border-top: 12px solid transparent;
+          border-bottom: 12px solid transparent;
+          border-left: 22px solid map-get($palette, true-white);
+          margin-top: -12px;
+          margin-left: -8px;
+        }
+      }
+
+    }
+
+  }
+
+  &--large {
+
+    @include respond(md) {
+      padding-bottom: 26px;
+
+      #{$block}__image {
+        width: 100%;
+        height: 0px;
+        padding-bottom: 56.36%;
+        margin: 0 0 11px;
+
+        &:before {
+          width: 52px;
+          height: 52px;
+          border-radius: 52px;
+          margin-top: -26px;
+          margin-left: -26px;
+        }
+
+        &:after {
+          border-top: 12px solid transparent;
+          border-bottom: 12px solid transparent;
+          border-left: 22px solid map-get($palette, true-white);
+          margin-top: -12px;
+          margin-left: -8px;
+        }
+      }
+
+      #{$block}__content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        > a {
+          order: 2;
+        }
+      }
+
+      #{$block}__title {
+        font-size: 22px;
+        margin-bottom: 13px;
+      }
+
+      #{$block}__subTitle {
+        order: 1;
+        margin-bottom: 7px;
+      }
+
+      #{$block}__description {
+        display: block;
+      }
+
+    }
+
+  }
+
+  &--deletable {
+    transform: translateX(-50px);
+    cursor: pointer;
+    @include clearfix();
+
+    @include respond(lg) {
+      transform: translateX(0);
+    }
+
+    > * {
+      opacity: 0.6;
+
+      @include respond(lg) {
+        opacity: 0.3;
+      }
+    }
+
+    &:before {
+      content: ' ';
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/redcloseicon.png);
+      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/redcloseicon.svg);
+      background-size: 20px 20px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 50%;
+      right: -50px;
+      margin-top: -30px;
+
+      @include respond(lg) {
+        top: 0px;
+        right: 0px;
+        margin-top: 56.36%;
+        margin-top: calc(56.36% + 11px);
+        padding-bottom: 25px;
+        border-bottom: 3px solid transparent;
+        transition: border 150ms ease;
+      }
+    }
+
+    &:hover {
+
+      @include respond(lg) {
+
+        &:before {
+          border-bottom: 3px solid map-get($palette, scarlet);
+        }
+
+      }
+
+    }
+
+  }
+
+  &--search {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+
+    @include respond(md) {
+      padding-bottom: 0;
+    }
+
+    @include respond(lg) {
+      border-bottom: 0;
+      padding-bottom: 5px !important;
+    }
+
+    .articlePanel__title {
+      line-height: 1.05em;
+
+      @include respond(md) {
+        margin: 10px 0 5px;
+      }
+
+      @include respond(lg) {
+        margin: 0 0 5px !important;
+        font-size: 22px !important;
+      }
+    }
+
+    .articlePanel__subTitle {
+      font-size: 12px;
+
+      @include respond(lg) {
+        font-size: 15px !important;
+      }
+
+      a {
+        &.group {
+          color: map-get($palette, scarlet);
+        }
+      }
+    }
+
+    .articlePanel__description {
+      @include respond(md) {
+        display: block;
+        margin-top: 8px;
+        line-height: 1.5em;
+      }
+    }
+
+    .articlePanel__image {
+      @include respond(lg) {
+        width: 174px;
+        height: 98px;
+        padding-bottom: 0;
+        margin: 0 30px 0 0 !important;
+      }
+    }
+
+    .articlePanel__content {
+      @include respond(lg) {
+        display: block;
+        width: calc(100% - 204px);
+        min-height: 98px;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+}

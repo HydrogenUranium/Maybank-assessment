@@ -1,0 +1,790 @@
+.shipNowMulti {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: linear-gradient(to bottom, #fff, #f5f5f5);
+
+    @include respond(md) {
+        padding-bottom: 40px !important;
+    }
+
+    form.forms {
+        margin: 0;
+        padding: 0;
+    }
+
+    .col-12 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    &__head {
+        background: #f9f9f9;
+        padding: 10px 20px 20px;
+
+        h1, h2 {
+            text-align: center;
+            font-size: 23px;
+            line-height: 26px;
+            
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        @include respond(md) {
+            background: none;
+            padding-top: 30px;
+
+            h1, h2 {
+                font-size: 30px;
+                line-height: 35px;
+            }
+        }
+
+        @include respond(xl) {
+            h1, h2 {
+                font-size: 40px;
+                line-height: 42px;
+            }
+        }
+
+        &--thanks {
+            padding: 30px 20px 30px;
+
+            h1, h2 {
+                margin-bottom: 15px;
+            }
+
+            p {
+                font-size: 13px;
+                font-weight: 200;
+                color: #666;
+                text-align: center;
+                margin-bottom: 0;
+            }
+
+            @include respond(md) {
+                padding-bottom: 0;
+
+                p {
+                    font-size: 14px;
+                    margin: 30px 0 10px;
+                }
+            }
+
+            @include respond(lg) {
+                padding: 60px 0 10px;
+
+                p {
+                    font-size: 15px;
+                    font-weight: 400;
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+
+    &__headitems {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    &__headitem {
+        width: 50%;
+        padding: 10px 0 15px;
+        float: left;
+        border-right: 1px solid rgba(map-get($palette, brownish-grey), 0.1);
+        border-bottom: 1px solid rgba(map-get($palette, brownish-grey), 0.1);
+
+        &:before {
+            content: '';
+            display: block;
+            position: relative;
+            z-index: 1;
+            width: 70px;
+            height: 65px;
+            margin: 0 auto 5px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-image: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-icon-1.svg');
+        }
+
+        &--first {
+            padding-top: 0;
+            &:before {
+                left: -10px;
+            }
+        }
+
+        &--second {
+            padding-top: 0;
+            border-right-color: transparent;
+            &:before {
+                background-image: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-icon-2.svg');
+            }
+        }
+
+        &--third {
+            padding-bottom: 0;
+            border-bottom-color: transparent;
+            &:before {
+                background-image: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-icon-3.svg');
+            }
+        }
+
+        &--fourth {
+            padding-bottom: 0;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            &:before {
+                background-image: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-icon-4.svg');
+            }
+        }
+
+        h3 {
+            font-size: 17px;
+            letter-spacing: -0.02em;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+
+            @include respond(md) {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+        }
+
+        p {
+            display: none;
+
+            @include respond(md) {
+                display: block;
+                padding: 0 15px;
+                text-align: center;
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: 200;
+                color: #666;
+            }
+        }
+
+        @include respond(md) {
+            width: 25%;
+            border: none;
+            padding-top: 0;
+            padding-bottom: 20px;
+        }
+
+        @include respond(xl) {
+            margin: 20px 0 40px;
+            padding: 0;
+            border-right: 1px solid #e1e1e1;
+            border-left: 1px solid #ffffff;
+
+            &:before {
+                width: 120px;
+                height: 90px;
+            }
+
+            &--first {
+                border-left: none;
+            }
+
+            &--fourth {
+                border-right: none;
+            }
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+
+        &--step2 {
+            width: 100%;
+            float: left;
+            padding: 10px 0;
+            margin: 0;
+            border-bottom: 1px solid rgba(map-get($palette, brownish-grey), 0.1);
+
+            &.shipNowMulti__headitem--fourth {
+                border-bottom: none;
+            }
+
+            h3 {
+                margin-bottom: 0;
+            }
+
+            p {
+                font-size: 10px !important;
+                margin-top: -2px !important;
+            }
+
+            @include respond(xl) {
+                width: 50%;
+                padding: 40px 0 30px;
+                border-right: 1px solid rgba(map-get($palette, brownish-grey), 0.1);
+
+                &.shipNowMulti__headitem--first {
+                    padding-top: 0;
+                }
+
+                &.shipNowMulti__headitem--second {
+                    padding-top: 0;
+                    border-right-color: transparent;
+                }
+
+                &.shipNowMulti__headitem--third {
+                    padding-bottom: 0;
+                    border-bottom-color: transparent;
+                }
+
+                &.shipNowMulti__headitem--fourth {
+                    padding-bottom: 0;
+                    border-right-color: transparent;
+                    border-bottom-color: transparent;
+                }
+
+                p {
+                    min-height: 45px;
+                    line-height: 16px !important;
+                    font-size: 13px !important;
+                    margin-top: 2px !important;
+                }
+            }
+        }
+    }
+
+    &__headcta {
+        @include button($background: map-get($palette, scarlet), $colour: map-get($palette, true-white), $hover: 1);
+        margin-top: 20px;
+        width: 100%;
+
+        @include respond(md) {
+            display: block;
+            width: 350px;
+            margin: 30px auto 0;
+        }
+    }
+
+    &__form {
+        @include respond(md) {
+            width: 100%;
+            float: left;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+
+        &--step2 {
+            margin-top: -15px;
+        }
+    }
+
+    &__intro {
+        background: map-get($palette, true-white);
+        margin-top: 0;
+        padding: 20px;
+
+        .forms__group {
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 10px 0 0;
+        }
+        .col-4 {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        h2 {
+            font-size: 19px;
+            line-height: 30px;
+            font-weight: 800;
+            font-stretch: condensed;
+            margin: 0 0 10px;
+        }
+
+        p {
+            margin: 0 0 10px;
+            font-size: 13px;
+            line-height: 19px;
+            color: #666;
+        }
+
+        .forms__cta--social {
+            position: relative;
+            padding: 12px 12px;
+
+            &:before {
+                display: none;
+                content: '';
+                position: absolute;
+                left: 42px;
+                width: 1px;
+                top: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.15);
+
+                @include respond(md) {
+                    display: block;
+                }
+            }
+
+            .forms__button-text {
+                display: inline-block;
+            }
+
+            .forms__icon {
+                display: none;
+                @include respond(md) {
+                    display: inline-block;
+                }
+            }
+        }
+
+        @include respond(md) {
+            width: 50%;
+            float: left;
+            min-height: 505px;
+            padding-bottom: 0;
+
+            h2 {
+                font-size: 25px;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 22px;
+                margin-bottom: 0;
+            }
+        }
+
+        @include respond(xl) {
+            padding: 30px 60px 20px;
+            min-height: 360px;
+
+            p {
+                font-size: 14px;
+                line-height: 22px;
+            }
+        }
+
+        &--step2 {
+            display: none;
+            padding: 15px 80px;
+            min-height: 555px;
+
+            @include respond(md) {
+                display: block;
+            }
+
+            @include respond(xl) {
+                min-height: 510px;
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+        }
+    }
+
+    &__steps {
+        position: relative;
+        width: 100%;
+        float: left;
+        height: 3px;
+        margin: 10px 0 30px;
+        background: map-get($palette, true-white);
+
+        .step {
+            position: absolute;
+
+            &.zeroth {
+                width: 9px;
+                height: 9px;
+                top: -3px;
+                left: -2px;
+                border-radius: 5px;
+                background: map-get($palette, scarlet);
+            }
+
+            &.first {
+                top: -8px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                width: 20px;
+                height: 20px;
+                background: #ffcc00;
+                border: 2px solid map-get($palette, scarlet);
+                border-radius: 10px;
+
+                span {
+                    display: block;
+                    position: relative;
+                    top: 2px;
+                    left: 2px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 6px;
+                    text-align: center;
+                    font-size: 8px;
+                    line-height: 12px;
+
+                    color: map-get($palette, true-white);
+                    background: map-get($palette, scarlet);
+                }
+            }
+
+            &.second {
+                top: -4px;
+                right: -2px;
+                width: 12px;
+                height: 12px;
+                border-radius: 6px;
+                text-align: center;
+                font-size: 8px;
+                line-height: 12px;
+
+                color: #ffcc00;
+                background: map-get($palette, true-white);
+            }
+        }
+
+        &--step2 {
+            .step {
+                &.first {
+                    background: transparent;
+                    border: 2px solid transparent;
+                }
+
+                &.second {
+                    top: -8px;
+                    right: -8px;
+                    width: 20px;
+                    height: 20px;
+                    background: #ffcc00;
+                    border: 2px solid map-get($palette, scarlet);
+                    border-radius: 10px;
+
+                    span {
+                        display: block;
+                        position: relative;
+                        top: 2px;
+                        left: 2px;
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 6px;
+                        text-align: center;
+                        font-size: 8px;
+                        line-height: 12px;
+
+                        color: map-get($palette, true-white);
+                        background: map-get($palette, scarlet);
+                    }
+                }
+            }
+        }
+
+        .sep {
+            width: 50%;
+            float: left;
+            height: 3px;
+            background: map-get($palette, true-white);
+
+            &.on {
+                background: map-get($palette, scarlet);
+            }
+        }
+    }
+
+    &__form1 {
+        background: #ffcc00;
+        background: linear-gradient(to bottom, #ffcc00 0%,#ffcc00 80%,#ffefb2 100%);
+        position: relative;
+        margin-top: 0;
+        padding: 25px 20px 30px;
+
+        @include respond(md) {
+            width: 50%;
+            float: left;
+            min-height: 505px;
+        }
+
+        @include respond(xl) {
+            padding: 30px 60px 20px;
+            min-height: 360px;
+        }
+
+        &:before {
+            content: 'or';
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            top: -15px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+
+            font-size: 12px;
+            font-weight: 800;
+            font-stretch: condensed;
+            line-height: 30px;
+            text-align: center;
+
+            background: map-get($palette, true-white);
+            border-radius: 15px;
+            box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.3);
+
+            @include respond(md) {
+                margin: 0;
+                left: -15px;
+            }
+
+            @include respond(xl) {
+                top: 0;
+                bottom: 0;
+                margin: auto 0;
+            }
+        }
+
+        &--step2 {
+            min-height: none;
+
+            &:before {
+                display: none;
+            }
+
+            @include respond(md) {
+                min-height: 555px;
+            }
+
+            @include respond(xl) {
+                min-height: 518px;
+            }
+        }
+
+        .forms__group {
+            clear: both;
+        }
+
+        @include respond(md) {
+            .forms__row {
+                margin-bottom: 0;
+            }
+        }
+
+        .forms__row {
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+
+        .col-12, .col-6 {
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+        }
+
+        h2 {
+            font-size: 20px;
+            line-height: 25px;
+            font-weight: 800;
+            font-stretch: condensed;
+            margin: 0 0 10px;
+        }
+
+        .forms__group {
+            border: none;
+            padding: 0;
+
+            input,
+            select,
+            button,
+            textarea,
+            .input-group-text,
+            .forms__checkbox--highlight,
+            .forms__checkbox,
+            .forms__password {
+                margin-bottom: 10px;
+
+                &.error {
+                    border: 1px solid map-get($palette, scarlet);
+
+                    &::placeholder {
+                        color: map-get($palette, scarlet);
+                    }
+                }
+
+                @include respond(md) {
+                    margin-bottom: 15px;
+
+                    &.error {
+                        margin-bottom: 25px;
+                    }
+                }
+            }
+
+            input[type=text],
+            input[type=email],
+            input[type=password],
+            input[type=tel],
+            input[type=number],
+            input[type=search],
+            textarea, {
+                padding: 10px;
+
+                &.valid {
+                    background: #fff url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-greentick.png') center right no-repeat;
+                    background: #fff url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-greentick.svg') 98% center no-repeat;
+                    background-size: 28px 14px;
+                }
+
+            }
+        }
+
+        .forms__copy {
+            &--small {
+                font-size: 11px;
+                color: map-get($palette, black);
+                margin-top: 5px;
+
+                p {
+                    font-size: 11px;
+                    color: map-get($palette, black);
+                    margin-top: 5px;
+
+                    @include respond(xl) {
+                        margin-bottom: 15px !important;
+                    }
+                }
+
+                @include respond(xl) {
+                    margin-bottom: 15px !important;
+                }
+            }
+        }
+
+        label.error {
+            margin-top: -8px;
+            font-size: 11px;
+
+            @include respond(md) {
+                position: absolute;
+                margin-top: -20px;
+            }
+        }
+
+        select {
+            background-color: map-get($palette, true-white);
+            box-shadow: inset 1px 1px 0 0 rgba(102,102,102,0.3);
+            border: solid 1px rgba(102,102,102,0.3);
+            padding: 10px;
+
+            &.error {
+                border: 1px solid map-get($palette, scarlet);
+
+                &::placeholder {
+                    color: map-get($palette, scarlet);
+                }
+            }
+        }
+    }
+}
+
+.shipNowNowMulti {
+    padding: 20px 5px;
+
+    @include respond(md) {
+        .col-12 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &__panel {
+        position: relative;
+        z-index: 1;
+        color: map-get($palette, dhl-black);
+        background: map-get($palette, white-two);
+        background: linear-gradient(to bottom, #ffffff 0%,#f5f5f5 50%,#f5f5f5 100%);
+        border: 1px solid #ddd;
+        padding: 15px 25px 20px 25px;
+        margin: 0;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            right: 25px;
+            width: 85px;
+            height: 65px;
+            background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-shipnow-icon.png') center no-repeat;
+            background-size: contain;
+
+            @include respond(md) {
+                width: 105px;
+                height: 83px;
+                top: 20px;
+            }
+
+            @include respond(xl) {
+                top: 40px;
+            }
+        }
+
+        h3 {
+            @include font("%T1");
+
+            @include respond(md) {
+                font-size: 25px;
+                line-height: 30px;
+                margin-bottom: 10px;
+            }
+        }
+
+        p {
+            font-size: 13px;
+            line-height: 19px;
+            margin-right: 90px;
+            min-height: 80px;
+            color: #6f6f6f;
+
+            @include respond(md) {
+                font-size: 15px;
+                line-height: 24px;
+                margin-right: 215px;
+            }
+        }
+
+        a {
+            position: relative;
+            @include button($background: map-get($palette, scarlet), $colour: map-get($palette, true-white), $hover: 1);
+            border: 1px solid map-get($palette, scarlet);
+            width: 100%;
+        }
+
+        @include respond(md) {
+            p {
+                font-size: 14px;
+            }
+        }
+
+        @include respond(xl) {
+            padding: 20px 25px 25px;
+
+            h3 {
+                text-align: center;
+                font-size: 25px;
+                line-height: 30px;
+            }
+
+            p {
+                text-align: center;
+                min-height: 0;
+                margin-left: 120px;
+                margin-right: 120px;
+            }
+
+            a {
+                display: block;
+                width: 350px;
+                margin: 0 auto;
+            }
+        }
+    }
+}

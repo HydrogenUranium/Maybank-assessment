@@ -1,0 +1,218 @@
+.footer {
+  background: map-get($palette, white-two);
+  color: map-get($palette, true-black);
+  position: relative;
+  z-index: 2;
+
+  $block: &;
+
+  &__backToTop {
+    background: map-get($palette, dhl-black);
+    color: map-get($palette, true-white);
+    display: block;
+    cursor: pointer;
+
+    &:hover,
+    &:hover * {
+      color: map-get($palette, true-white);
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: none;
+
+      #{$block}__backToTopLabel {
+        outline: 1px solid map-get($palette, true-white);
+        outline-offset: -3px;
+      }
+
+    }
+
+  }
+
+  &__backToTopLabel {
+    font: 200 15px/1.5 $font-family;
+    font-stretch: condensed;
+    text-align: right;
+    margin: 0;
+    padding: 9px 53px 9px 0;
+    position: relative;
+
+    &:after {
+      content: ' ';
+      display: block;
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      position: absolute;
+      right: 0px;
+      top: -12px;
+      background: map-get($palette, scarlet) url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/backtotoparrow.png) center/26px 11px no-repeat;
+      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/backtotoparrow.svg);
+    }
+
+  }
+
+  &__main {
+    padding: 70px 0 40px;
+  }
+
+  &__title,
+  .social__title {
+    font: 800 19px $font-family;
+    font-stretch: condensed;
+    text-transform: uppercase;
+    margin: 0 0 15px;
+  }
+
+  &__categoryList {
+    margin: 23px 0 74px;
+  }
+
+  &__categoryItem {
+    display: block;
+    margin: 0;
+
+    &:last-child {
+
+      #{$block}__categoryLink {
+        border-bottom: none;
+      }
+
+    }
+
+  }
+
+  &__categoryLink {
+    display: block;
+    font: 200 17px $font-family;
+    font-stretch: condensed;
+    color: inherit;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(map-get($palette, brownish-grey), 0.3);
+    position: relative;
+    transition: color 150ms ease;
+    @include arrowLink('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrow.png');
+
+    &:hover {
+      color: map-get($palette, scarlet);
+    }
+
+    &:focus {
+      outline: 1px solid map-get($palette, true-black);
+      outline-offset: 0px;
+    }
+
+  }
+
+  &__rule {
+    height: 1px;
+    border: none;
+    background-color: rgba(map-get($palette, brownish-grey), 0.3);
+    margin: 25px 0 30px;
+  }
+
+  &__linkList {
+    margin: 0;
+  }
+
+  &__linkItem {
+    display: block;
+    margin: 0 0 3px;
+  }
+
+  &__link {
+    display: inline-block;
+    font: 200 13px/1.54 $font-family;
+    font-stretch: condensed;
+    color: inherit;
+    letter-spacing: -0.3px;
+    vertical-align: top;
+    transition: color 150ms ease;
+
+    &[target="_blank"] {
+
+      &:after {
+        content: ' ';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background: map-get($palette, white-two) url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/externallinkicon.png) center/12px no-repeat;
+        background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/externallinkicon.svg);
+        transition: background-color 150ms ease;
+        margin-left: 6px;
+      }
+
+    }
+
+    &:hover {
+      color: map-get($palette, scarlet);
+      text-decoration: none;
+
+      &[target="_blank"] {
+
+        &:after {
+          background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/externallinkiconred.png);
+          background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/externallinkiconred.svg);
+        }
+
+      }
+    }
+
+    &:focus {
+      outline: 1px solid map-get($palette, true-black);
+      outline-offset: 2px;
+    }
+
+  }
+
+  &__legalText {
+    font: 200 13px/1.54 $font-family;
+    font-stretch: condensed;
+    color: inherit;
+    margin: 50px 0 0;
+  }
+
+  &__ctas {
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+  }
+
+  &__cta {
+    @include button(map-get($palette, scarlet), map-get($palette, true-white), map-get($palette, scarlet), -1);
+    border: 1px solid map-get($palette, scarlet);
+    width: 49%;
+    float: left;
+    font-size: 16px;
+    outline: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    &--register {
+      float: right;
+    }
+
+  }
+
+  .footer__ctas--loggedin {
+
+    .footer__cta {
+      color: map-get($palette, scarlet);
+      background: map-get($palette, true-white);
+      border: 1px solid rgba(map-get($palette, brownish-grey), 0.3);
+    }
+
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+}

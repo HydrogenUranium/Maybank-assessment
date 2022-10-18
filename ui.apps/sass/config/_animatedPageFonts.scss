@@ -1,0 +1,169 @@
+// @font-face {
+//     font-family: 'Frutiger LT Std';
+//     src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-ExtraBlackCn.eot');
+//     src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-ExtraBlackCn.eot?#iefix') format('embedded-opentype'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-ExtraBlackCn.woff2') format('woff2'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-ExtraBlackCn.woff') format('woff'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-ExtraBlackCn.ttf') format('truetype'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-ExtraBlackCn.svg#FrutigerLTStd-ExtraBlackCn') format('svg');
+//     font-weight: 900;
+//     font-style: normal;
+// }
+
+/*@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightCn.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightCn.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightCn.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightCn.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightCn.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightCn.svg#FrutigerLTStd-LightCn') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}*/
+
+// @font-face {
+//     font-family: 'Frutiger LT Std';
+//     src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Roman.eot');
+//     src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Roman.eot?#iefix') format('embedded-opentype'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Roman.woff2') format('woff2'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Roman.woff') format('woff'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Roman.ttf') format('truetype'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Roman.svg#FrutigerLTStd-Roman') format('svg');
+//     font-weight: 400;
+//     font-style: 400;
+// }
+
+/*@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackItalic.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackItalic.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackItalic.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackItalic.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackItalic.svg#FrutigerLTStd-BlackItalic') format('svg');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Light.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Light.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Light.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Light.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Light.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Light.svg#FrutigerLTStd-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightItalic.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightItalic.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightItalic.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightItalic.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-LightItalic.svg#FrutigerLTStd-LightItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldItalic.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldItalic.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldItalic.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldItalic.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldItalic.svg#FrutigerLTStd-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Black.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Black.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Black.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Black.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Black.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Black.svg#FrutigerLTStd-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Cn.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Cn.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Cn.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Cn.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Cn.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Cn.svg#FrutigerLTStd-Cn') format('svg');
+    font-weight: 700;
+    font-style: 700;
+}*/
+
+// @font-face {
+//     font-family: 'Frutiger LT Std';
+//     src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldCn.eot');
+//     src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldCn.eot?#iefix') format('embedded-opentype'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldCn.woff2') format('woff2'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldCn.woff') format('woff'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldCn.ttf') format('truetype'),
+//         url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BoldCn.svg#FrutigerLTStd-BoldCn') format('svg');
+//     font-weight: 700;
+//     font-style: normal;
+// }
+
+/*@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-UltraBlack.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-UltraBlack.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-UltraBlack.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-UltraBlack.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-UltraBlack.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-UltraBlack.svg#FrutigerLTStd-UltraBlack') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Italic.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Italic.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Italic.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Italic.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Italic.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Italic.svg#FrutigerLTStd-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackCn.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackCn.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackCn.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackCn.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackCn.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-BlackCn.svg#FrutigerLTStd-BlackCn') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Frutiger LT Std';
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Bold.eot');
+    src: url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Bold.woff2') format('woff2'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Bold.woff') format('woff'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Bold.ttf') format('truetype'),
+        url('/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/fonts/FrutigerLTStd-Bold.svg#FrutigerLTStd-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}*/
+
+$font-family--animated: 'Delivery', sans-serif;

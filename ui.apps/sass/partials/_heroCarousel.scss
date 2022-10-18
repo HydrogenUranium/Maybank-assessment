@@ -1,0 +1,112 @@
+.heroCarousel {
+  position: relative;
+  z-index: 1;
+
+  .hero {
+    padding-bottom: 20px;
+
+    @include respond(lg) {
+      padding-bottom: 0px;
+    }
+  }
+
+  .carousel-inner {
+    .carousel-item {
+      &:first-child:last-child {
+        position: relative;
+        z-index: 16;
+      }
+    }
+  }
+
+  .carousel {
+    &.static {
+      .carousel-indicators,
+      .carousel-control-prev,
+      .carousel-control-next {
+        display: none !important;
+      }
+    }
+  }
+
+  .carousel-indicators {
+    margin-bottom: 0px;
+    top: 180px;
+    bottom: initial;
+
+    @include respond(md) {
+      top: 350px;
+    }
+
+    @include respond(lg) {
+      top: initial;
+      bottom: 15px;
+    }
+
+    li {
+      width: 7px;
+      height: 7px;
+      border-radius: 7px;
+      background: #d2d2d2;
+      border: none;
+      margin: 0 5px;
+      cursor: pointer;
+
+      &.active {
+        background: map-get($palette, true-white);
+      }
+
+      @include respond(lg) {
+        height: 9px;
+        width: 9px;
+      }
+    }
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    background: none;
+    width: 50px;
+    opacity: 0.7;
+    z-index: 2;
+
+    @include respond(1400px) {
+      width: 100px;
+    }
+    @include respond(1344px) {
+      width: 70px;
+    }
+
+    &:before {
+      content: ' ';
+      display: block;
+      width: 24px;
+      height: 72px;
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      margin-top: -36px;
+      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/carouselicons.png);
+      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/carouselicons.svg);
+      background-size: 48px 72px;
+      background-position: 0px 0px;
+      background-repeat: no-repeat;
+
+      @include respond(1344px) {
+        left: 24px;
+      }
+    }
+  }
+
+  .carousel-control-next {
+    &:before {
+      background-position: -24px 0px;
+      left: auto;
+      right: 12px;
+
+      @include respond(1344px) {
+        right: 24px;
+      }
+    }
+  }
+}
