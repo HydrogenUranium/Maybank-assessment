@@ -1,0 +1,24 @@
+scripts=[
+    "
+    create service user discover-writer with path /home/users/system/discover
+    create service user discover-reader with path /home/users/system/discover
+
+    create path (nt:unstructured) /apps/dhl/appdata/countries/test
+
+    set properties on /apps/dhl/appdata/countries/test
+        set countryName{String} to "test country name"
+    end
+
+    set ACL for discover-reader
+        allow jcr:read on /content/dhl
+    end
+
+    set ACL for discover-reader
+        allow jcr:read on /apps/dhl
+    end
+
+    set ACL for discover-writer
+        allow jcr:all on /content/dhl
+    end
+    "
+]

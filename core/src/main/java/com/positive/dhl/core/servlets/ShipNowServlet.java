@@ -23,7 +23,7 @@ import java.io.IOException;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Ship Now Servlet",
     	"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-    	"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/shipnow/index.json"
+    	"sling.servlet.resourceTypes="+ "discover-servlet-handler"
 	}
 )
 public class ShipNowServlet extends StandardFormInputServlet {
