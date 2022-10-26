@@ -24,7 +24,7 @@ class ShipNowFormTest {
 
 	@Test
 	void test() {
-		Map<String, Object> params = new HashMap<String, Object>();
+		Map<String, Object> params = new HashMap<>();
 		params.put("source", "source");
 		params.put("lead_originator", "lo");
 		
@@ -34,20 +34,20 @@ class ShipNowFormTest {
 		ShipNowForm shipNowForm = request.adaptTo(ShipNowForm.class);
 
 		assert shipNowForm != null;
-		assertEquals(shipNowForm.getSource(), "source");
-		assertEquals(shipNowForm.getLead_originator(), "lo");
+		assertEquals("source", shipNowForm.getSource());
+		assertEquals("lo", shipNowForm.getLeadOriginator());
 
 		shipNowForm.setSource("src");
-		shipNowForm.setLead_originator("lo2");
+		shipNowForm.setLeadOriginator("lo2");
 		shipNowForm.setShipnowmessage("snm");
 		shipNowForm.setShipnowurl("snu");
 		shipNowForm.setPreselectedcountry("pc");
 
-		assertEquals(shipNowForm.getSource(), "src");
-		assertEquals(shipNowForm.getLead_originator(), "lo2");
-		assertEquals(shipNowForm.getShipnowmessage(), "snm");
-		assertEquals(shipNowForm.getShipnowurl(), "snu");
-		assertEquals(shipNowForm.getPreselectedcountry(), "pc");
+		assertEquals("src", shipNowForm.getSource());
+		assertEquals("lo2", shipNowForm.getLeadOriginator());
+		assertEquals("snm", shipNowForm.getShipnowmessage());
+		assertEquals("snu", shipNowForm.getShipnowurl());
+		assertEquals("pc", shipNowForm.getPreselectedcountry());
 	}
 
 }

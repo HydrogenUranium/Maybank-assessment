@@ -1,8 +1,8 @@
 /* 9fbef606107a605d69c0edbcd8029e5d */
-package com.positive.dhl.core.services;
+package com.positive.dhl.core.models;
 
 import com.positive.dhl.core.constants.DiscoverConstants;
-import com.positive.dhl.core.models.Country;
+import com.positive.dhl.core.services.ResourceResolverHelper;
 import lombok.Cleanup;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -13,9 +13,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Model(
 		adaptables = {
@@ -52,6 +53,25 @@ public class Countries {
 		return countryMap;
 	}
 
+	public Map<String,String> getCountryNames(){
+		Map<String,String> unorderedMap = countryMap.entrySet().stream()
+				.filter(e -> e.getValue().getCountryName() != null)
+				.collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().getCountryName()));
+		return new TreeMap<>(unorderedMap);
+	}
+
+	public Map<String,String> getDialingCodes(){
+		Map<String,String> dialingCodesMap = new TreeMap<>();
+		countryMap.forEach((key,value) -> dialingCodesMap.put(key,key.toUpperCase(Locale.ROOT) + " (+" + value.getCallingCode() + ")"));
+		return dialingCodesMap;
+	}
+
+	public Map<String,String> getCountrySelectOptionValues(){
+		Map<String,String> optionValuesMap = new TreeMap<>();
+		countryMap.forEach((key,value) -> optionValuesMap.put(value.getCountryName() + "|" + key.toUpperCase(Locale.ROOT) + "|" + value.getCurrency(), value.getCountryName() ));
+		return optionValuesMap;
+	}
+
 	/**
 	 * Returns specific country identified by its 'country code'
 	 * @param countryCode is a String that represents the country-code
@@ -67,6 +87,35 @@ public class Countries {
 		}
 		LOGGER.error("Unable to get the country related to country code {}. Returning null...", countryCode);
 		return null;
+	}
+
+	/**
+	 * Returns country name based on the country code
+	 * @param country is a JCR Node representing the country code we want to find
+	 * @return String representing the country name (as exists in the repository) or {@code null} in case it doesn't exist
+	 */
+	public String getCountryName(Node country) throws RepositoryException {
+			Resource resource = resourceResolverHelper.getReadResourceResolver().getResource(country.getName());
+			if(null != resource){
+				Country ctry = resource.adaptTo(Country.class);
+				if(null != ctry){
+					return ctry.getCountryName();
+				}
+			}
+			return null;
+	}
+
+	/**
+	 * Returns the international calling code based on the country code
+	 *
+	 * @param countryCode is a String representing the country code we want to find
+	 * @return String representing the international calling code (as exists in the repository) or number 0 (zero) in case it doesn't exist
+	 */
+	public String getDialingCode(String countryCode){
+		if(countryMap.containsKey(countryCode)){
+			return "+" + countryMap.get(countryCode).getCallingCode();
+		}
+		return "0";
 	}
 
 	private void populateCountryMap(){

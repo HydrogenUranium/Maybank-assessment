@@ -40,6 +40,7 @@
         <aem.port>4502</aem.port>
         <aem.publish.host>localhost</aem.publish.host>
         <aem.publish.port>4503</aem.publish.port>
+        <url.scheme>http</url.scheme>
         <sling.user>admin</sling.user>
         <sling.password>admin</sling.password>
         <vault.user>admin</vault.user>
@@ -50,10 +51,9 @@
         <bnd.version>5.1.2</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aem.sdk.api>2022.9.8722.20220912T101352Z-220800</aem.sdk.api>
-        <aemanalyser.version>1.4.18</aemanalyser.version>
+        <aem.sdk.api>2022.10.9145.20221006T013555Z-220800</aem.sdk.api>
+        <aemanalyser.version>1.4.20</aemanalyser.version>
         <componentGroupName>Deutsche Post AG Discover</componentGroupName>
-        <jackson.version>2.14.0-rc2</jackson.version>
 
     </properties>
 
@@ -637,16 +637,6 @@ Bundle-DocURL:
                 <scope>provided</scope>
             </dependency>
 
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jsr310</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 

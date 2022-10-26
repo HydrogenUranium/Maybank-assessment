@@ -13,21 +13,27 @@ import javax.sql.DataSource;
 import java.sql.*;
 
 public class CompetitionService {
+
+    private CompetitionService(){
+        throw new IllegalStateException("Not meant to be instantiated");
+    }
+
+
     private static final Logger log = LoggerFactory.getLogger(CompetitionService.class);
 
     /**
      *
      */
-    public static ValidatedRequestEntry PrepareFromRequest(SlingHttpServletRequest request) {
+    public static ValidatedRequestEntry prepareFromRequest(SlingHttpServletRequest request) {
         ValidatedRequestEntry entry = new ValidatedRequestEntry();
-        entry.AddRequiredField("email", request, ValidationType.Email);
-        entry.AddRequiredField("firstname", request, ValidationType.NotEmpty);
-        entry.AddRequiredField("lastname", request, ValidationType.NotEmpty);
-        entry.AddRequiredField("path", request, ValidationType.NotEmpty);
+        entry.addRequiredField("email", request, ValidationType.EMAIL);
+        entry.addRequiredField("firstname", request, ValidationType.NOT_EMPTY);
+        entry.addRequiredField("lastname", request, ValidationType.NOT_EMPTY);
+        entry.addRequiredField("path", request, ValidationType.NOT_EMPTY);
 
         String[] optionalFields = new String[] { "position", "contact", "size", "sector", "answer", "answer2", "answer3", "answer4", "answer5" };
         for (String optionalField : optionalFields) {
-            entry.AddOptionalField(optionalField, request);
+            entry.addOptionalField(optionalField, request);
         }
 
         return entry;
@@ -35,7 +41,7 @@ public class CompetitionService {
     /**
      *
      */
-    public static Boolean Register(DataSourcePool dataSourcePool, ValidatedRequestEntry entry) {
+    public static Boolean register(DataSourcePool dataSourcePool, ValidatedRequestEntry entry) {
         boolean output = false;
 
         try {
@@ -54,7 +60,7 @@ public class CompetitionService {
             output = true;
 
         } catch (DataSourceNotFoundException | SQLException ex) {
-            log.error("An error occurred attempting Register", ex);
+            log.error("An error occurred attempting register", ex);
         }
 
         return output;

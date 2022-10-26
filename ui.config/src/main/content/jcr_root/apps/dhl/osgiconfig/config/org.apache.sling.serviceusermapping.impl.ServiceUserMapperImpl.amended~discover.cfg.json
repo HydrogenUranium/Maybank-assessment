@@ -1,0 +1,5 @@
+{
+  "user.mapping": [
+    "dhl.core:discoverReader=[discover-reader]"
+  ]
+}

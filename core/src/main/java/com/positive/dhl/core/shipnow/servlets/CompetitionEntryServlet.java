@@ -39,7 +39,7 @@ public class CompetitionEntryServlet extends StandardFormInputServlet {
 	 */
 	@Override
 	protected ValidatedRequestEntry getValidatedRequestEntry(SlingHttpServletRequest request) {
-		return CompetitionService.PrepareFromRequest(request);
+		return CompetitionService.prepareFromRequest(request);
 	}
 
 	/**
@@ -47,6 +47,6 @@ public class CompetitionEntryServlet extends StandardFormInputServlet {
 	 */
 	@Override
 	protected Boolean saveResponse(ValidatedRequestEntry entry) {
-		return CompetitionService.Register(dataSourcePool, entry);
+		return CompetitionService.register(dataSourcePool, entry);
 	}
 }

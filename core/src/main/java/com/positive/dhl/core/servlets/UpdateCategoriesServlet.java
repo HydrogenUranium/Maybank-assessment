@@ -78,7 +78,7 @@ public class UpdateCategoriesServlet extends SlingAllMethodsServlet {
 
 						} else {
 							try {
-								user = UserAccount.TokenValidate(connection, username, token);
+								user = UserAccount.tokenValidate(connection, username, token);
 
 							} catch (SQLException ex) {
 								log.error("Error occurred while processing auth token", ex);
@@ -94,7 +94,7 @@ public class UpdateCategoriesServlet extends SlingAllMethodsServlet {
 						}
 
 						if (valid) {
-							boolean result = UserAccount.UpdateCategories(connection, username, categories);
+							boolean result = UserAccount.updateCategories(connection, username, categories);
 							connection.close();
 
 							if (result) {
@@ -104,7 +104,7 @@ public class UpdateCategoriesServlet extends SlingAllMethodsServlet {
 								responseJson.addProperty("name", user.getName());
 								responseJson.addProperty("token", user.getToken());
 								responseJson.addProperty("refresh_token", user.getRefreshToken());
-								responseJson.addProperty("ttl", user.getTtl());
+								responseJson.addProperty("ttl", user.getTimeToLive());
 								responseBody = responseJson.toString();
 
 							} else {

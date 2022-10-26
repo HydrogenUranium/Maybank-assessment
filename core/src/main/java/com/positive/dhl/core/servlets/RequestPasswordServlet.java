@@ -72,7 +72,7 @@ public class RequestPasswordServlet extends SlingAllMethodsServlet {
 					if (dataSource != null) {
 						boolean result = false;
 			        	try (Connection connection = dataSource.getConnection()) {
-							result = UserAccount.RequestPassword(connection, dotmailerComponent, page, username);
+							result = UserAccount.requestPassword(connection, dotmailerComponent, page, username);
 						}
 						
 						if (result) {

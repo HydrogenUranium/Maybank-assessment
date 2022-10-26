@@ -4,4 +4,5 @@
     <filter root="/apps/dhl/components"/>
     <filter root="/apps/dhl/i18n"/>
     <filter root="/apps/dhl/templates"/>
+    <filter root="/apps/dhl/servlet-handler"/>
 </workspaceFilter>
