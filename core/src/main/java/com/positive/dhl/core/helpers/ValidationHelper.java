@@ -9,10 +9,10 @@ public class ValidationHelper {
 		throw new IllegalStateException("Not meant to be instantiated");
 	}
 	public static final Pattern VALID_PHONE_REGEX = Pattern.compile("^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$"
-			+ "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$"
-			+ "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$");
+			+ "|^(\\+\\d{1,3}( )?)?(\\d{3} ?){2}\\d{3}$"
+			+ "|^(\\+\\d{1,3}( )?)?(\\d{3} ?)(\\d{2} ?){2}\\d{2}$");
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-		    Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		    Pattern.compile("^[A-Z\\d._%+-]+@[A-Z\\d.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 	
 	/**
 	 *
