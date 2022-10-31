@@ -460,7 +460,6 @@ RewriteRule ^/tech-futures/future-of-logistics/innovative-companies$ https://%{H
 RewriteRule ^/tech-futures/future-of-logistics/robots-in-small-business.html$ https://%{HTTP_HOST}/business/productivity/robots-in-small-business [R=301,L]
 RewriteRule ^/tech-futures/future-transport$ https://%{HTTP_HOST}/business/business-ethics/future-transport [R=301,L]
 RewriteRule ^/tech-futures/parcelcopter$ https://%{HTTP_HOST}/business/business-ethics/parcelcopter-drone-technology [R=301,L]
-RewriteRule ^/tech-futures/dummy$ https://%{HTTP_HOST}/business/business-ethics/parcelcopter-drone-technology [R=302,L]
 
 RewriteRule ^/business/market-intelligence/5-coolest-things-in-business$ https://%{HTTP_HOST}/business/market-intelligence/aob-business-news-this-week [R=301,L]
 RewriteRule ^/business/market-intelligence/5-coolest-things-in-business(.*?)$ https://%{HTTP_HOST}/business/market-intelligence/aob-business-news-this-week [R=301,L]
