@@ -63,7 +63,7 @@ class ValidatedRequestEntryTest {
 		underTest.addRequiredField("phone",ctx.request(),ValidationType.PHONE);
 
 		boolean validationResult = underTest.validate();
-		assertFalse(validationResult);
+		assertTrue(validationResult);
 	}
 
 	@Test

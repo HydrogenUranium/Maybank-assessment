@@ -125,9 +125,7 @@ public class ValidatedRequestEntry extends HashMap<String, Object> {
 
 	private boolean validatePhone(String key){
 		String phoneNumberRaw = (String) this.get(key);
-		String phoneNoOpeningBrackets = phoneNumberRaw.replace("(","");
-		String phoneNoClosingBrackets = phoneNoOpeningBrackets.replace(")","");
-		boolean phoneValidated = ValidationHelper.isPhoneNumberValid(phoneNoClosingBrackets);
+		boolean phoneValidated = ValidationHelper.isPhoneNumberValid(phoneNumberRaw);
 		LOGGER.info("Phone number {} appears to be valid",phoneNumberRaw);
 		return phoneValidated;
 	}

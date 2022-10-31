@@ -61,7 +61,8 @@ class ValidationHelperTest {
 			"+49 1234567891234567891234567891234",
 			"+49 abced12345",
 			"+49 12345ABCDE",
-			"+49 123+45"
+			"+49 123+45",
+			"42012312(3123)"
 	})
 	void isPhoneInvalid(String phone) {
 		boolean isPhoneValid = ValidationHelper.isPhoneNumberValid(phone);
