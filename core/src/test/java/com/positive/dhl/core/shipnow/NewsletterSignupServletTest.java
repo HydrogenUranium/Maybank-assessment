@@ -28,11 +28,11 @@ import org.mockito.MockitoAnnotations;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
 
-import com.positive.dhl.core.shipnow.servlets.NewsletterSignupServlet;
+import com.positive.dhl.core.servlets.NewsletterSignupServlet;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 
-public class NewsletterSignupServletTest {
+class NewsletterSignupServletTest {
     private final AemContext ctx = new AemContext(ResourceResolverType.JCR_MOCK);
 
     @Mock
@@ -66,7 +66,7 @@ public class NewsletterSignupServletTest {
 	
 	@Test
 	void testFailure() throws IOException {
-		Map<String, Object> params = new HashMap<String, Object>();
+		Map<String, Object> params = new HashMap<>();
         MockSlingHttpServletRequest request = ctx.request();
         request.setParameterMap(params);
 
@@ -83,7 +83,7 @@ public class NewsletterSignupServletTest {
 	
 	@Test
 	void test() throws IOException {
-		Map<String, Object> params = new HashMap<String, Object>();
+		Map<String, Object> params = new HashMap<>();
         params.put("home", "/content/dhl/en-global");
         params.put("email", "test@email.com");
 

@@ -1,8 +1,9 @@
-package com.positive.dhl.core.shipnow.models;
+package com.positive.dhl.core.helpers;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import com.positive.dhl.core.constants.ValidationType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,6 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import com.positive.dhl.core.helpers.ValidationHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package com.positive.dhl.core.shipnow.services;
+package com.positive.dhl.core.services;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,16 +13,21 @@ import org.slf4j.LoggerFactory;
 import com.day.commons.datasource.poolservice.DataSourceNotFoundException;
 import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
-import com.positive.dhl.core.shipnow.models.ValidatedRequestEntry;
-import com.positive.dhl.core.shipnow.models.ValidationType;
+import com.positive.dhl.core.helpers.ValidatedRequestEntry;
+import com.positive.dhl.core.constants.ValidationType;
 
 public class NewsletterSignupService {
+
+	private NewsletterSignupService() {
+		throw new IllegalStateException("Not meant to be instantiated");
+	}
+
 	private static final Logger log = LoggerFactory.getLogger(NewsletterSignupService.class);
 
 	/**
 	 *
 	 */
-	public static ValidatedRequestEntry PrepareFromRequest(SlingHttpServletRequest request) {
+	public static ValidatedRequestEntry prepareFromRequest(SlingHttpServletRequest request) {
 		ValidatedRequestEntry entry = new ValidatedRequestEntry();
 		entry.addRequiredField("home", request, ValidationType.NOT_EMPTY);
 		entry.addRequiredField("email", request, ValidationType.EMAIL);
@@ -33,7 +38,7 @@ public class NewsletterSignupService {
 	/**
 	 *
 	 */
-	public static Boolean Register(DataSourcePool dataSourcePool, ValidatedRequestEntry entry) {
+	public static Boolean register(DataSourcePool dataSourcePool, ValidatedRequestEntry entry) {
 		boolean output = false;
 
 		try {

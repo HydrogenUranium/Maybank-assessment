@@ -2,9 +2,8 @@ package com.positive.dhl.core.servlets;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.positive.dhl.core.components.DotmailerComponent;
-import com.positive.dhl.core.shipnow.models.ValidatedRequestEntry;
+import com.positive.dhl.core.helpers.ValidatedRequestEntry;
 import com.positive.dhl.core.services.ShipNowService;
-import com.positive.dhl.core.shipnow.servlets.StandardFormInputServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.osgi.framework.Constants;

@@ -1,4 +1,4 @@
-package com.positive.dhl.core.shipnow.models;
+package com.positive.dhl.core.constants;
 
 public enum ValidationType {
 	NOT_EMPTY,

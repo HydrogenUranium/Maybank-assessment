@@ -1,10 +1,10 @@
-package com.positive.dhl.core.shipnow.services;
+package com.positive.dhl.core.services;
 
 import com.day.commons.datasource.poolservice.DataSourceNotFoundException;
 import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
-import com.positive.dhl.core.shipnow.models.ValidatedRequestEntry;
-import com.positive.dhl.core.shipnow.models.ValidationType;
+import com.positive.dhl.core.helpers.ValidatedRequestEntry;
+import com.positive.dhl.core.constants.ValidationType;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

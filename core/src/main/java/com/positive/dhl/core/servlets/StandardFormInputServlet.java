@@ -1,7 +1,7 @@
-package com.positive.dhl.core.shipnow.servlets;
+package com.positive.dhl.core.servlets;
 
 import com.google.gson.JsonObject;
-import com.positive.dhl.core.shipnow.models.ValidatedRequestEntry;
+import com.positive.dhl.core.helpers.ValidatedRequestEntry;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;

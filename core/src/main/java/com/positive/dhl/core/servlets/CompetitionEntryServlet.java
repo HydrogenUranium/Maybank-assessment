@@ -1,8 +1,8 @@
-package com.positive.dhl.core.shipnow.servlets;
+package com.positive.dhl.core.servlets;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
-import com.positive.dhl.core.shipnow.models.ValidatedRequestEntry;
-import com.positive.dhl.core.shipnow.services.CompetitionService;
+import com.positive.dhl.core.helpers.ValidatedRequestEntry;
+import com.positive.dhl.core.services.CompetitionService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.osgi.framework.Constants;
