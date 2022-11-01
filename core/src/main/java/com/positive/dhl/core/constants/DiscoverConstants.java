@@ -6,8 +6,6 @@ package com.positive.dhl.core.constants;
  */
 public class DiscoverConstants {
 
-	public static final String DISCOVER_READ_SYSTEM_USER = "discover-reader";
-	public static final String DISCOVER_WRITE_SYSTEM_USER = "discover-writer";
 	public static final String DISCOVER_READ_SERVICE="discoverReader";
 	public static final String DISCOVER_WRITE_SERVICE="discoverWriter";
 	public static final String DISCOVER_COUNTRIES_LOCATION = "/apps/dhl/appdata/countries";

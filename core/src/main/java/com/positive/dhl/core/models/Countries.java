@@ -1,7 +1,7 @@
 /* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.constants.DiscoverConstants;
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import lombok.Cleanup;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -15,7 +15,10 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import java.util.*;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 @Model(
@@ -31,6 +34,9 @@ public class Countries {
 
 	@OSGiService
 	private ResourceResolverHelper resourceResolverHelper;
+
+	@OSGiService
+	private EnvironmentConfiguration environmentConfiguration;
 
 	@PostConstruct
 	public void start(){
@@ -120,7 +126,7 @@ public class Countries {
 
 	private void populateCountryMap(){
 		@Cleanup ResourceResolver resourceResolver = getResourceResolver();
-		Resource resource = resourceResolver.getResource(DiscoverConstants.DISCOVER_COUNTRIES_LOCATION);
+		Resource resource = resourceResolver.getResource(environmentConfiguration.getCountryInfoLocation());
 		if(null != resource){
 			Iterable<Resource> resourceIterator = resource.getChildren();
 			for (Resource item : resourceIterator) {

@@ -45,16 +45,16 @@ public class CategoryListingItem {
 	 */
 	public List<Article> getArticles() {
 		if (articles == null) {
-			articles = new ArrayList<Article>();
+			articles = new ArrayList<>();
 		}
-		return new ArrayList<Article>(articles);
+		return new ArrayList<>(articles);
 	}
 
     /**
 	 * 
 	 */
 	public void setArticles(List<Article> articles) {
-		this.articles = new ArrayList<Article>(articles);
+		this.articles = new ArrayList<>(articles);
 	}
 
     /**
@@ -71,10 +71,10 @@ public class CategoryListingItem {
     			}
     		}
 
-    		articles = new ArrayList<Article>();
+    		articles = new ArrayList<>();
     		if (builder != null) {
-    			Map<String, String> map = new HashMap<String, String>();
-    			map.put("type", NameConstants.NT_PAGE);
+    			Map<String, String> map = new HashMap<>();
+    			map.put("type", "cq:Page");
     			map.put("path", resource.getPath());
     			
     			map.put("1_group.property", "jcr:content/hideInNav");
@@ -99,7 +99,7 @@ public class CategoryListingItem {
     	        if (searchResult != null) {
     				for (Hit hit: searchResult.getHits()) {
     					ValueMap hitProperties = hit.getProperties();
-    					Boolean hideInNav = hitProperties.get("hideInNav", false);
+    					boolean hideInNav = hitProperties.get("hideInNav", false);
     					if (hideInNav) {
     						continue;
     					}

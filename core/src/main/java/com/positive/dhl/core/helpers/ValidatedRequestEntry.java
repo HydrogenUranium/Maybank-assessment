@@ -15,7 +15,9 @@ import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * Extension of {@link HashMap} adding functionality to validate entries (stored in this map) related to Discover app
+ */
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter

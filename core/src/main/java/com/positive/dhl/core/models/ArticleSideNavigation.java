@@ -23,7 +23,6 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.NameConstants;
 
 /**
  *
@@ -45,14 +44,14 @@ public class ArticleSideNavigation {
 	 * 
 	 */
 	public List<Article> getArticles() {
-		return new ArrayList<Article>(articles);
+		return new ArrayList<>(articles);
 	}
 
     /**
 	 * 
 	 */
 	public void setArticles(List<Article> articles) {
-		this.articles = new ArrayList<Article>(articles);
+		this.articles = new ArrayList<>(articles);
 	}
 
     /**
@@ -60,7 +59,7 @@ public class ArticleSideNavigation {
 	 */
 	@PostConstruct
     protected void init() throws RepositoryException {
-		articles = new ArrayList<Article>();
+		articles = new ArrayList<>();
 		
 		Resource relatedArticlePaths = currentPage.getContentResource("items");
 		if (relatedArticlePaths != null) {
@@ -71,20 +70,20 @@ public class ArticleSideNavigation {
 					String url = props.get("url", "");
 					
 					Article article = new Article(url, resourceResolver);
-					if (article.getValid()) {
+					if (Boolean.TRUE.equals(article.getValid())) {
 						articles.add(article);
 					}
 				}
 			}
 		}
 
-		if (articles.size() == 0) {
+		if (articles.isEmpty()) {
 			final QueryBuilder builder = request.getResourceResolver().adaptTo(QueryBuilder.class);
 			if (builder != null) {
 				Page categoryPage = getGroupPage(currentPage.getParent());
 				
-				Map<String, String> map = new HashMap<String, String>();
-				map.put("type", NameConstants.NT_PAGE);
+				Map<String, String> map = new HashMap<>();
+				map.put("type", "cq:Page");
 				map.put("path", categoryPage.getPath());
 				map.put("group.p.or", "true");
     			
@@ -101,12 +100,12 @@ public class ArticleSideNavigation {
 					int count = 0;
 					for (Hit hit: searchResult.getHits()) {
 						ValueMap properties = hit.getProperties();
-						Boolean hideInNav = properties.get("hideInNav", false);
+						boolean hideInNav = properties.get("hideInNav", false);
 						if (!hideInNav) {
 							if (!currentPage.getPath().equals(hit.getPath())) {
 								Article article = new Article(hit.getPath(), resourceResolver);
 								
-								if (article.getValid()) {
+								if (Boolean.TRUE.equals(article.getValid())) {
 									article.setIndex(count);
 									article.setThird(article.getIndex() % 3 == 0);
 									articles.add(article);

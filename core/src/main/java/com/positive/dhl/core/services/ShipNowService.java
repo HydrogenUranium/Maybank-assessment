@@ -3,15 +3,17 @@ package com.positive.dhl.core.services;
 import com.day.commons.datasource.poolservice.DataSourceNotFoundException;
 import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.day.commons.datasource.poolservice.TypeNotAvailableException;
-import com.positive.dhl.core.helpers.DatabaseHelpers;
-import com.positive.dhl.core.models.Countries;
-import com.positive.dhl.core.helpers.ValidatedRequestEntry;
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.constants.ValidationType;
+import com.positive.dhl.core.helpers.DatabaseHelpers;
+import com.positive.dhl.core.helpers.ValidatedRequestEntry;
+import com.positive.dhl.core.models.Countries;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,8 +22,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import static com.positive.dhl.core.constants.DiscoverConstants.DISCOVER_COUNTRIES_LOCATION;
 
 @Component(
 		service = ShipNowService.class
@@ -41,6 +41,8 @@ public class ShipNowService {
 	private static final String DIALING_CODE = "dialing_code";
 	private static final String HOME = "home";
 
+	@Reference
+	private EnvironmentConfiguration environmentConfiguration;
 
 	private static final String UPDATE_EXISTING_RECORD_QUERY = "UPDATE `shipnow_registrations` set `path` = ?, " +
 			"`firstname` = ?, `lastname` = ?, `email` = ?, `company` = ?, `phone` = ?, `address` = ?, " +
@@ -52,7 +54,9 @@ public class ShipNowService {
 			" `countrycode`, `currency`, `source`, `lo`, `datecreated`, `synced`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), 0)";
 
 	/**
-	 *
+	 * Provides  the {@link ValidatedRequestEntry} object populated with information which fields are mandatory and optional including their validation rules
+	 * @param request is an instance of {@link SlingHttpServletRequest} that contains all the input params and their values
+	 * @return a fully formed instance of {@code ValidatedRequestEntry}
 	 */
 	public ValidatedRequestEntry prepareFromRequest(SlingHttpServletRequest request) {
 
@@ -77,7 +81,7 @@ public class ShipNowService {
 		String countryCode = getParameterValue(DIALING_CODE,request);
 		String phone = getParameterValue(PHONE,request);
 		ResourceResolver resourceResolver = request.getResourceResolver();
-		Resource countriesResource = resourceResolver.getResource(DISCOVER_COUNTRIES_LOCATION + "/" + countryCode);
+		Resource countriesResource = resourceResolver.getResource(environmentConfiguration.getCountryInfoLocation() + "/" + countryCode);
 		if(null != countriesResource){
 			Countries countries = countriesResource.adaptTo(Countries.class);
 			if(null != countries && null != countryCode && null != phone){
