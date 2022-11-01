@@ -1,25 +1,21 @@
 package com.positive.dhl.core.models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.jcr.RepositoryException;
-
+import com.day.cq.wcm.api.Page;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.commons.json.JSONArray;
-import org.apache.sling.commons.json.JSONObject;
 import org.apache.sling.models.annotations.Model;
 
-import com.day.cq.wcm.api.Page;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
 
 /**
  *
@@ -43,7 +39,7 @@ public class LanguageVariants {
 	/**
 	 *
 	 */
-	public Boolean hasMultipleLanguageVariants() {
+	public boolean hasMultipleLanguageVariants() {
 		int count = 0;
 		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 			count += entry.getValue().size();
@@ -107,21 +103,21 @@ public class LanguageVariants {
 	/**
 	 *
 	 */
-	public ArrayList<LanguageVariant> getLanguageVariants() {
+	public List<LanguageVariant> getLanguageVariants() {
 		if (languageVariants == null) {
-			languageVariants = new ArrayList<LanguageVariant>();
+			languageVariants = new ArrayList<>();
 			
 			for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 				for (LanguageVariant variant: entry.getValue()) {
 					if (variant.getCurrent()) {
 						languageVariants = entry.getValue();
 						languageVariants.sort(new LanguageVariantSorter());
-						return new ArrayList<LanguageVariant>(languageVariants);
+						return new ArrayList<>(languageVariants);
 					}
 				}
 			}
 		}
-		return new ArrayList<LanguageVariant>(languageVariants);
+		return new ArrayList<>(languageVariants);
 	}
 	
 	/**
@@ -149,7 +145,7 @@ public class LanguageVariants {
 	 */
 	public ArrayList<LinkVariant> getAllLanguageVariants() {
 		if (allLanguageVariants == null) {
-			allLanguageVariants = new ArrayList<LinkVariant>();
+			allLanguageVariants = new ArrayList<>();
 	
 			for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 				boolean found = false;
@@ -173,41 +169,41 @@ public class LanguageVariants {
 		}
 		
 		allLanguageVariants.sort(new LanguageVariantNameSorter());
-		return new ArrayList<LinkVariant>(allLanguageVariants);
+		return new ArrayList<>(allLanguageVariants);
 	}
 	
 	/**
 	 *
 	 */
-	public ArrayList<ArrayList<LinkVariant>> getAllLanguageVariantsGrouped() {
+	public List<ArrayList<LinkVariant>> getAllLanguageVariantsGrouped() {
 		if (allLanguageVariantsGrouped == null) {
-			allLanguageVariantsGrouped = new ArrayList<ArrayList<LinkVariant>>();
+			allLanguageVariantsGrouped = new ArrayList<>();
 
-			ArrayList<LinkVariant> group = new ArrayList<LinkVariant>();
+			ArrayList<LinkVariant> group = new ArrayList<>();
 			ArrayList<LinkVariant> all = this.getAllLanguageVariants();
 			for (LinkVariant item: all) {
 				group.add(item);
 
 				if (group.size() >= 3) {
 					allLanguageVariantsGrouped.add(group);
-					group = new ArrayList<LinkVariant>();
+					group = new ArrayList<>();
 				}
 			}
 
-			if (group.size() > 0) {
+			if (!group.isEmpty()) {
 				allLanguageVariantsGrouped.add(group);
 			}
 		}
 		
-		return new ArrayList<ArrayList<LinkVariant>>(allLanguageVariantsGrouped);
+		return new ArrayList<>(allLanguageVariantsGrouped);
 	}
 
     /**
 	 * 
 	 */
 	@PostConstruct
-    protected void init() throws RepositoryException {
-		variants = new HashMap<String, ArrayList<LanguageVariant>>();
+    protected void init() {
+		variants = new HashMap<>();
 
 		Page root = currentPage.getAbsoluteParent(1);
 		Page currentHome = currentPage.getAbsoluteParent(2);
@@ -218,7 +214,7 @@ public class LanguageVariants {
 			Page homepage = pageIterator.next();
 			ValueMap homepageProperties = homepage.adaptTo(ValueMap.class);
 			if ((homepageProperties != null) && ("dhl/components/pages/home").equals(homepageProperties.get("jcr:content/sling:resourceType", ""))) {
-				Boolean hideInNav = homepageProperties.get("jcr:content/hideInNav", false);
+				boolean hideInNav = homepageProperties.get("jcr:content/hideInNav", false);
 				if (hideInNav) {
 					continue;
 				}
@@ -248,7 +244,7 @@ public class LanguageVariants {
 				
 				LanguageVariant newItem = new LanguageVariant(language, newHomepage, newExactPath, acceptlanguages, deflt, path.contains(homepage.getPath()), exactPathExists);
 				if (!variants.containsKey(region)) {
-					ArrayList<LanguageVariant> languages = new ArrayList<LanguageVariant>();
+					ArrayList<LanguageVariant> languages = new ArrayList<>();
 					variants.put(region, languages);
 				}
 				

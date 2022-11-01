@@ -23,13 +23,13 @@ public class LanguageVariant {
     public String acceptlanguages;
     
     @Inject
-    public Boolean deflt;
+    public boolean deflt;
     
     @Inject
-    public Boolean current;
+    public boolean current;
 
 	@Inject
-	public Boolean exact;
+	public boolean exact;
 	
     /**
 	 * 
@@ -90,42 +90,42 @@ public class LanguageVariant {
     /**
 	 * 
 	 */
-	public Boolean getDeflt() {
+	public boolean getDeflt() {
 		return deflt;
 	}
 
     /**
 	 * 
 	 */
-	public void setDeflt(Boolean deflt) {
+	public void setDeflt(boolean deflt) {
 		this.deflt = deflt;
 	}
 
 	/**
 	 *
 	 */
-	public Boolean getCurrent() {
+	public boolean getCurrent() {
 		return current;
 	}
 
 	/**
 	 *
 	 */
-	public void setCurrent(Boolean current) {
+	public void setCurrent(boolean current) {
 		this.current = current;
 	}
 
 	/**
 	 *
 	 */
-	public Boolean getExact() {
+	public boolean getExact() {
 		return exact;
 	}
 
 	/**
 	 *
 	 */
-	public void setExact(Boolean exact) {
+	public void setExact(boolean exact) {
 		this.exact = exact;
 	}
     

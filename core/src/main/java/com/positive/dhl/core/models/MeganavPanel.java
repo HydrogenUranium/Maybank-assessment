@@ -1,26 +1,19 @@
 package com.positive.dhl.core.models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.annotations.Model;
-
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
-import com.day.cq.wcm.api.NameConstants;
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.Model;
+
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import java.util.*;
 
 /**
  *
@@ -37,28 +30,28 @@ public class MeganavPanel {
 	 * 
 	 */
 	public List<MeganavPanel> getPanels() {
-		return new ArrayList<MeganavPanel>(panels);
+		return new ArrayList<>(panels);
 	}
 
     /**
 	 * 
 	 */
 	public void setPanels(List<MeganavPanel> panels) {
-		this.panels = new ArrayList<MeganavPanel>(panels);
+		this.panels = new ArrayList<>(panels);
 	}
 
     /**
 	 * 
 	 */
 	public List<ArticleCategory> getArticleCategories() {
-		return new ArrayList<ArticleCategory>(articleCategories);
+		return new ArrayList<>(articleCategories);
 	}
 
     /**
 	 * 
 	 */
 	public void setArticleCategories(List<ArticleCategory> articleCategories) {
-		this.articleCategories = new ArrayList<ArticleCategory>(articleCategories);
+		this.articleCategories = new ArrayList<>(articleCategories);
 	}
 
     /**
@@ -117,7 +110,7 @@ public class MeganavPanel {
 		ValueMap properties = page.adaptTo(ValueMap.class);
 		if (properties != null) {
 			String gtitle = properties.get("jcr:content/navTitle", "");
-			if ((gtitle == null) || (gtitle.trim().length() == 0)) {
+			if (gtitle.trim().length() == 0) {
 				gtitle = properties.get("jcr:content/jcr:title", "");
 			}
 			return gtitle;
@@ -137,7 +130,7 @@ public class MeganavPanel {
 		}
 
 		int count = 0;
-		panels = new ArrayList<MeganavPanel>();
+		panels = new ArrayList<>();
 		Iterator<Page> children = page.listChildren();
 		while (children.hasNext()) {
 			Page child = children.next();
@@ -148,10 +141,10 @@ public class MeganavPanel {
 			}
 		}
 
-		articleCategories = new ArrayList<ArticleCategory>();
+		articleCategories = new ArrayList<>();
 		if (builder != null) {
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("type", NameConstants.NT_PAGE);
+			Map<String, String> map = new HashMap<>();
+			map.put("type", "cq:Page");
 			map.put("path", page.getPath());
 			map.put("group.p.or", "true");
 			map.put("group.1_property", "jcr:content/sling:resourceType");
@@ -164,7 +157,7 @@ public class MeganavPanel {
 	        if (searchResult != null) {
 				for (Hit hit: searchResult.getHits()) {
 					ValueMap hitProperties = hit.getProperties();
-					Boolean hideInNav = hitProperties.get("hideInNav", false);
+					boolean hideInNav = hitProperties.get("hideInNav", false);
 					if (hideInNav) {
 						continue;
 					}
@@ -172,7 +165,7 @@ public class MeganavPanel {
 					if (resource != null) {
 			    		ValueMap properties = resource.adaptTo(ValueMap.class);
 			    		if (properties != null) {
-			    			Boolean showInMeganav = properties.get("jcr:content/showinmeganav", false);
+			    			boolean showInMeganav = properties.get("jcr:content/showinmeganav", false);
 			    			if (showInMeganav) {
 			    				ArticleCategory articleCategory = new ArticleCategory();
 

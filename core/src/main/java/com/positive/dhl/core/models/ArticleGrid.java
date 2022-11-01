@@ -1,17 +1,12 @@
 package com.positive.dhl.core.models;
- 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-
+import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
+import com.day.cq.search.result.SearchResult;
+import com.day.cq.wcm.api.Page;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -20,14 +15,13 @@ import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
-import com.day.cq.search.result.SearchResult;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.NameConstants;
-import com.day.cq.commons.jcr.JcrConstants;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import java.util.*;
+
 
 /**
  *
@@ -92,28 +86,28 @@ public class ArticleGrid {
 	 * 
 	 */
 	public List<CategoryLink> getCategories() {
-		return new ArrayList<CategoryLink>(categories);
+		return new ArrayList<>(categories);
 	}
 
     /**
 	 * 
 	 */
 	public void setCategories(List<CategoryLink> categories) {
-		this.categories = new ArrayList<CategoryLink>(categories);
+		this.categories = new ArrayList<>(categories);
 	}
 
     /**
 	 * 
 	 */
 	public List<Article> getArticles() {
-		return new ArrayList<Article>(articles);
+		return new ArrayList<>(articles);
 	}
 
     /**
 	 * 
 	 */
 	public void setArticles(List<Article> articles) {
-		this.articles = new ArrayList<Article>(articles);
+		this.articles = new ArrayList<>(articles);
 	}
 
     /**
@@ -155,7 +149,7 @@ public class ArticleGrid {
 		categories = null;
 		
 		String[] propNames = new String[] { "category0", "category1", "category2", "category3" };
-		List<String> categoryPaths = new ArrayList<String>();
+		List<String> categoryPaths = new ArrayList<>();
 		for (String propName : propNames) {
 			String path = resourceProperties.get(propName, "");
 			if (path.trim().length() > 0) {
@@ -164,7 +158,7 @@ public class ArticleGrid {
 		}
 		
 		//pre-fill if we're on the 404 page...
-		if (categoryPaths.size() == 0) {
+		if (categoryPaths.isEmpty()) {
 			String currentPagePath = currentPage.getPath();
 			if (currentPagePath.contains("page-not-found")) {
 				hidetrending = true;
@@ -174,8 +168,8 @@ public class ArticleGrid {
 			}
 		}
 		
-		if (categoryPaths.size() > 0) {
-			categories = new ArrayList<CategoryLink>();
+		if (!categoryPaths.isEmpty()) {
+			categories = new ArrayList<>();
 
 			for (String categoryPath: categoryPaths) {
 				Page category = resourceResolver.getResource(categoryPath).adaptTo(Page.class);
@@ -198,7 +192,7 @@ public class ArticleGrid {
 		}
 		
 		if (categories == null) {
-			categories = new ArrayList<CategoryLink>();
+			categories = new ArrayList<>();
 			
 			int count = 0;
 			Iterator<Page> children = currentPage.listChildren();
@@ -271,8 +265,8 @@ public class ArticleGrid {
 			}
 			
     		if (builder != null) {
-    			Map<String, String> map = new HashMap<String, String>();
-    			map.put("type", NameConstants.NT_PAGE);
+    			Map<String, String> map = new HashMap<>();
+    			map.put("type", "cq:Page");
     			map.put("path", path);
     			map.put("group.p.or", "true");
     			
