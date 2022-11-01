@@ -3,6 +3,8 @@
         "create service user discover-writer with path /home/users/system/discover",
         "create service user discover-reader with path /home/users/system/discover",
 
+        "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)",
+
         "create path (sling:Folder) /apps/dhl/appdata",
         "create path (sling:Folder) /apps/dhl/appdata/countries",
 
