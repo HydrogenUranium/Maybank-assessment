@@ -14,7 +14,7 @@ public @interface EnvironmentConfigurationData {
         name = "Country information repository path",
         description = "Repository location of country info (such as international calling code, currency etc..). Caution: when changing this value, make sure to also update the repo init scripts in" +
             " the configuration",
-        defaultValue = "/apps/dhl/appdata/countries"
+        defaultValue = "/conf/dhl/appdata/countries"
     )
     String countryInfoLocation();
 }
