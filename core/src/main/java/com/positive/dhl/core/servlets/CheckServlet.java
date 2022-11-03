@@ -68,7 +68,7 @@ public class CheckServlet extends SlingAllMethodsServlet {
 					if (dataSource != null) {
 						UserAccount user;
 			        	try (Connection connection = dataSource.getConnection()) {
-							user = UserAccount.TokenValidate(connection, username, token);
+							user = UserAccount.tokenValidate(connection, username, token);
 						}
 
 						if (user != null && user.isAuthenticated()) {
@@ -78,7 +78,7 @@ public class CheckServlet extends SlingAllMethodsServlet {
 							responseJson.addProperty("name", user.getName());
 							responseJson.addProperty("token", user.getToken());
 							responseJson.addProperty("refresh_token", user.getRefreshToken());
-							responseJson.addProperty("ttl", user.getTtl());
+							responseJson.addProperty("ttl", user.getTimeToLive());
 							responseJson.addProperty("full", user.getFullAccount());
 							responseBody = responseJson.toString();
 

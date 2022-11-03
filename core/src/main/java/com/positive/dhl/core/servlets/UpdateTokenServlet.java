@@ -68,7 +68,7 @@ public class UpdateTokenServlet extends SlingAllMethodsServlet {
 					DataSource dataSource = (DataSource)this.source.getDataSource(DatabaseHelpers.DATA_SOURCE_NAME);
 					if (dataSource != null) {
 						try (Connection connection = dataSource.getConnection()) {
-				        	UserAccount user = UserAccount.RefreshToken(connection, username, token);
+				        	UserAccount user = UserAccount.refreshToken(connection, username, token);
 							
 							if (user != null && user.isAuthenticated()) {
 								JsonObject responseJson = new JsonObject();
@@ -77,7 +77,7 @@ public class UpdateTokenServlet extends SlingAllMethodsServlet {
 								responseJson.addProperty("name", user.getName());
 								responseJson.addProperty("token", user.getToken());
 								responseJson.addProperty("refresh_token", user.getRefreshToken());
-								responseJson.addProperty("ttl", user.getTtl());
+								responseJson.addProperty("ttl", user.getTimeToLive());
 								responseJson.addProperty("full", user.getFullAccount());
 								
 								responseBody = responseJson.toString();

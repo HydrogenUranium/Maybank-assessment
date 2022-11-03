@@ -1,21 +1,17 @@
-package com.positive.dhl.core.shipnow.servlets;
-
-import java.io.IOException;
+package com.positive.dhl.core.servlets;
 
 import javax.servlet.Servlet;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
-import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
-import com.google.gson.JsonObject;
-import com.positive.dhl.core.shipnow.models.ValidatedRequestEntry;
-import com.positive.dhl.core.shipnow.services.NewsletterSignupService;
+import com.positive.dhl.core.helpers.ValidatedRequestEntry;
+import com.positive.dhl.core.services.NewsletterSignupService;
 
 /**
  * 
@@ -45,7 +41,7 @@ public class NewsletterSignupServlet extends StandardFormInputServlet {
 	 */
 	@Override
 	protected ValidatedRequestEntry getValidatedRequestEntry(SlingHttpServletRequest request) {
-		return NewsletterSignupService.PrepareFromRequest(request);
+		return NewsletterSignupService.prepareFromRequest(request);
 	}
 
 	/**
@@ -53,7 +49,7 @@ public class NewsletterSignupServlet extends StandardFormInputServlet {
 	 */
 	@Override
 	protected Boolean saveResponse(ValidatedRequestEntry entry) {
-		return NewsletterSignupService.Register(dataSourcePool, entry);
+		return NewsletterSignupService.register(dataSourcePool, entry);
 	}
 
 	/**

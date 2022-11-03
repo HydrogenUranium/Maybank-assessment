@@ -74,7 +74,7 @@ public class UpdateDetailsServlet extends SlingAllMethodsServlet {
 					String newusername = request.getParameter("newusername");
 					if (newusername != null && (newusername.trim().length() > 0) && (!username.equals(newusername))) {
 						try (Connection connection = dataSource.getConnection()) {
-							boolean userExists = UserAccount.AccountExists(connection, newusername);
+							boolean userExists = UserAccount.accountExists(connection, newusername);
 							if (userExists) {
 								responseBody = "{ \"status\": \"ko\", \"error\": \"A user already exists with the specified new email address.\" }";
 								response.getWriter().write(responseBody);
@@ -103,11 +103,11 @@ public class UpdateDetailsServlet extends SlingAllMethodsServlet {
 					String password = request.getParameter("password");
 					String newpassword = request.getParameter("newpassword");
 					try (Connection connection = dataSource.getConnection()) {
-						Registration allDetails = UserAccount.GetAllDetails(connection, username);
+						Registration allDetails = UserAccount.getAllDetails(connection, username);
 
 						if (newpassword != null && newpassword.trim().length() > 0) {
 							if (password != null && password.trim().length() > 0) {
-								if (!UserAccount.CheckPassword(allDetails.getPassword(), allDetails.getSalt(), password.trim())) {
+								if (!UserAccount.checkPassword(allDetails.getPassword(), allDetails.getSalt(), password.trim())) {
 									responseBody = "{ \"status\": \"ko\", \"error\": \"Password incorrect\" }";
 									response.getWriter().write(responseBody);
 									return;
@@ -143,7 +143,7 @@ public class UpdateDetailsServlet extends SlingAllMethodsServlet {
 						
 					} else {
 						try (Connection connection = dataSource.getConnection()) {
-							user = UserAccount.TokenValidate(connection, username, token);
+							user = UserAccount.tokenValidate(connection, username, token);
 						}
 						
 						if (user == null || !user.isAuthenticated()) {
@@ -174,7 +174,7 @@ public class UpdateDetailsServlet extends SlingAllMethodsServlet {
 						
 						boolean result = false;
 						try (Connection connection = dataSource.getConnection()) {
-							result = UserAccount.UpdateDetails(connection, registration);
+							result = UserAccount.updateDetails(connection, registration);
 						}
 
 						if (result) {
@@ -184,7 +184,7 @@ public class UpdateDetailsServlet extends SlingAllMethodsServlet {
 							responseJson.addProperty("name", user.getName());
 							responseJson.addProperty("token", user.getToken());
 							responseJson.addProperty("refresh_token", user.getRefreshToken());
-							responseJson.addProperty("ttl", user.getTtl());
+							responseJson.addProperty("ttl", user.getTimeToLive());
 							responseBody = responseJson.toString();
 
 						} else {

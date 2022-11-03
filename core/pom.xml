@@ -104,6 +104,11 @@ Import-Package: javax.annotation;version=0.0.0,*
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
@@ -172,5 +177,45 @@ Import-Package: javax.annotation;version=0.0.0,*
             <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
             <version>0.1.55_1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>autoInstallBundle</id>
+            <activation></activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.sling</groupId>
+                        <artifactId>sling-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>deploy-to-cq</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>install</goal>
+                                </goals>
+                                <configuration>
+                                    <!-- Note that this requires /apps/dhl/install to exist!! -->
+                                    <!-- This is typically the case when ui.apps is deployed first -->
+                                    <!-- Otherwise, create /apps/dhl/install manually (CRXDE|Lite) -->
+                                    <slingUrl>${url.scheme}://${aem.host}:${aem.port}/system/console/bundles/</slingUrl>
+                                    <user>${sling.user}</user>
+                                    <password>${sling.password}</password>
+                                    <failOnError>true</failOnError>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

@@ -67,7 +67,7 @@ public class SetPasswordServlet extends SlingAllMethodsServlet {
 					if (dataSource != null) {
 						UserAccount user;
 			        	try (Connection connection = dataSource.getConnection()) {
-							user = UserAccount.TokenValidate(connection, username, token);
+							user = UserAccount.tokenValidate(connection, username, token);
 						}
 
 						if (user != null) {
@@ -76,7 +76,7 @@ public class SetPasswordServlet extends SlingAllMethodsServlet {
 							} else {
 								boolean result = false;
 								try (Connection connection = dataSource.getConnection()) {
-									result = UserAccount.SetPassword(connection, username, password);
+									result = UserAccount.setPassword(connection, username, password);
 								}
 
 								if (result) {
@@ -86,7 +86,7 @@ public class SetPasswordServlet extends SlingAllMethodsServlet {
 									responseJson.addProperty("name", user.getName());
 									responseJson.addProperty("token", user.getToken());
 									responseJson.addProperty("refresh_token", user.getRefreshToken());
-									responseJson.addProperty("ttl", user.getTtl());
+									responseJson.addProperty("ttl", user.getTimeToLive());
 									responseBody = responseJson.toString();
 
 								} else {

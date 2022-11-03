@@ -1,9 +1,9 @@
-package com.positive.dhl.core.shipnow.servlets;
+package com.positive.dhl.core.servlets;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.positive.dhl.core.components.DotmailerComponent;
-import com.positive.dhl.core.shipnow.models.ValidatedRequestEntry;
-import com.positive.dhl.core.shipnow.services.ShipNowService;
+import com.positive.dhl.core.helpers.ValidatedRequestEntry;
+import com.positive.dhl.core.services.ShipNowService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.osgi.framework.Constants;
@@ -23,48 +23,29 @@ import java.io.IOException;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Ship Now Servlet",
     	"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-    	"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/shipnow/index.json"
+    	"sling.servlet.resourceTypes="+ "discover-servlet-handler"
 	}
 )
 public class ShipNowServlet extends StandardFormInputServlet {
 	private static final Logger log = LoggerFactory.getLogger(ShipNowServlet.class);
 	
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 *
-	 */
-    @Reference
-    private transient DataSourcePool dataSourcePool;
-
-    /**
-	 * 
-	 */
+  @Reference
+  private transient DataSourcePool dataSourcePool;
 	@Reference
 	private transient DotmailerComponent dotmailerComponent;
-
-	/**
-	 *
-	 */
+	@Reference
+	private transient ShipNowService shipNowService;
 	@Override
 	protected ValidatedRequestEntry getValidatedRequestEntry(SlingHttpServletRequest request) {
-		return ShipNowService.PrepareFromRequest(request);
+		return shipNowService.prepareFromRequest(request);
 	}
 
-	/**
-	 *
-	 */
 	@Override
 	protected Boolean saveResponse(ValidatedRequestEntry entry) {
-		return ShipNowService.Register(dataSourcePool, entry);
+		return shipNowService.register(dataSourcePool, entry);
 	}
 
-	/**
-	 *
-	 */
 	@Override
 	protected void performActionAfterSave(ValidatedRequestEntry entry) {
 		try {

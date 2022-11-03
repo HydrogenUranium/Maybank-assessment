@@ -38,7 +38,7 @@ import com.positive.dhl.core.helpers.ValidationHelper;
 @Component(
 	service = Servlet.class,
 	property = {
-		Constants.SERVICE_DESCRIPTION + "=DHL Register Servlet",
+		Constants.SERVICE_DESCRIPTION + "=DHL register Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
 		"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/register/index.json"
 	}
@@ -77,13 +77,13 @@ public class RegisterServlet extends SlingAllMethodsServlet {
 				if (dataSource != null) {
 					boolean valid = true;
 					String username = request.getParameter("username");
-					if (username == null || username.trim().length() == 0 || (!ValidationHelper.EmailAddressValid(username))) {
+					if (username == null || username.trim().length() == 0 || (!ValidationHelper.isEmailAddressValid(username))) {
 						valid = false;
 						responseBody = "{ \"status\": \"ko\", \"error\": \"Email address not supplied\" }";
 					} else {
 						//check valid email
 						try (Connection connection = dataSource.getConnection()) {
-							if (UserAccount.AccountExists(connection, username)) {
+							if (UserAccount.accountExists(connection, username)) {
 								valid = false;
 								responseBody = "{ \"status\": \"ko\", \"error\": \"Email address already exists\" }";
 							}
@@ -144,7 +144,7 @@ public class RegisterServlet extends SlingAllMethodsServlet {
 							responseJson.addProperty("name", user.getName());
 							responseJson.addProperty("token", user.getToken());
 							responseJson.addProperty("refresh_token", user.getRefreshToken());
-							responseJson.addProperty("ttl", user.getTtl());
+							responseJson.addProperty("ttl", user.getTimeToLive());
 							responseBody = responseJson.toString();
 
 							dotmailerComponent.ExecuteWelcome(firstname, username);

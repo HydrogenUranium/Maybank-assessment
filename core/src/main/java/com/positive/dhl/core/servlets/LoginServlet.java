@@ -69,7 +69,7 @@ public class LoginServlet extends SlingAllMethodsServlet {
 					if (dataSource != null) {
 						UserAccount user;
 			        	try (Connection connection = dataSource.getConnection()) {
-							user = UserAccount.Authenticate(connection, username, password);
+							user = UserAccount.authenticate(connection, username, password);
 						}
 						
 						if (user != null && user.isAuthenticated()) {
@@ -79,7 +79,7 @@ public class LoginServlet extends SlingAllMethodsServlet {
 							responseJson.addProperty("name", user.getName());
 							responseJson.addProperty("token", user.getToken());
 							responseJson.addProperty("refresh_token", user.getRefreshToken());
-							responseJson.addProperty("ttl", user.getTtl());
+							responseJson.addProperty("ttl", user.getTimeToLive());
 							responseBody = responseJson.toString();
 
 						} else {
