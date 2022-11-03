@@ -1,4 +1,3 @@
-/* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.models;
 
 import com.positive.dhl.core.components.EnvironmentConfiguration;
@@ -21,6 +20,12 @@ import java.util.Objects;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+
+/**
+ * Countries is a <a href="https://sling.apache.org/documentation/bundles/models.html">Sling Model</a> class (adaptable from {@link Resource} & {@link SlingHttpServletRequest}) that provides access
+ * to
+ * country information
+ */
 @Model(
 		adaptables = {
 				Resource.class,
@@ -31,6 +36,8 @@ public class Countries {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Countries.class);
 
 	private final Map<String,Country> countryMap = new TreeMap<>();
+	private final Map<String,String> dialingCodesMap = new TreeMap<>();
+	private final Map<String,String> optionValuesMap = new TreeMap<>();
 
 	@OSGiService
 	private ResourceResolverHelper resourceResolverHelper;
@@ -66,15 +73,30 @@ public class Countries {
 		return new TreeMap<>(unorderedMap);
 	}
 
+	/**
+	 * Method that returns the international dialing codes as a {@link Map} of country code as {@code key} and concatenated string of uppercase country code with the actual international dialing code
+	 * as {@code value}
+	 * @return a Map of dialing codes
+	 */
 	public Map<String,String> getDialingCodes(){
-		Map<String,String> dialingCodesMap = new TreeMap<>();
-		countryMap.forEach((key,value) -> dialingCodesMap.put(key,key.toUpperCase(Locale.ROOT) + " (+" + value.getCallingCode() + ")"));
+		if(dialingCodesMap.isEmpty()){
+			if(LOGGER.isDebugEnabled()){
+			    LOGGER.debug("Populating a map of dialing codes as it's empty");
+			}
+			countryMap.forEach((key,value) -> dialingCodesMap.put(key,key.toUpperCase(Locale.ROOT) + " (+" + value.getCallingCode() + ")"));
+		}
+
 		return dialingCodesMap;
 	}
 
+	/**
+	 * Provides the ordered {@link Map} of country code as {@code key} and country name as {@code value}
+	 * @return a Map representing the country codes & their names
+	 */
 	public Map<String,String> getCountrySelectOptionValues(){
-		Map<String,String> optionValuesMap = new TreeMap<>();
-		countryMap.forEach((key,value) -> optionValuesMap.put(value.getCountryName() + "|" + key.toUpperCase(Locale.ROOT) + "|" + value.getCurrency(), value.getCountryName() ));
+		if(optionValuesMap.isEmpty()){
+			countryMap.forEach((key,value) -> optionValuesMap.put(value.getCountryName() + "|" + key.toUpperCase(Locale.ROOT) + "|" + value.getCurrency(), value.getCountryName() ));
+		}
 		return optionValuesMap;
 	}
 

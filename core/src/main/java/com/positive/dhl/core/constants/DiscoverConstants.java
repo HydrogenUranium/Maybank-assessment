@@ -8,7 +8,7 @@ public class DiscoverConstants {
 
 	public static final String DISCOVER_READ_SERVICE="discoverReader";
 	public static final String DISCOVER_WRITE_SERVICE="discoverWriter";
-	public static final String DISCOVER_COUNTRIES_LOCATION = "/apps/dhl/appdata/countries";
+	public static final String DISCOVER_COUNTRIES_LOCATION = "/conf/dhl/appdata/countries";
 
 	private DiscoverConstants() {
 		throw new IllegalStateException("Not meant to be instantiated");

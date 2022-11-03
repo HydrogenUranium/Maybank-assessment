@@ -2,12 +2,12 @@ package com.positive.dhl.core.components.impl;
 
 import com.positive.dhl.core.components.EnvironmentConfigurationData;
 import com.positive.dhl.core.components.EnvironmentConfiguration;
+import org.apache.jackrabbit.oak.commons.PropertiesUtil;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.propertytypes.ServiceDescription;
 import org.osgi.service.metatype.annotations.Designate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Component(
         service = EnvironmentConfiguration.class,
@@ -17,10 +17,12 @@ import org.slf4j.LoggerFactory;
                 Constants.SERVICE_DESCRIPTION + "=This service reads values from Environment Configuration"
         })
 @Designate(ocd = EnvironmentConfigurationData.class)
+@ServiceDescription("Discover environment configuration")
 public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
 
-
     private EnvironmentConfigurationData environmentConfigurationData;
+    private String countryInfoLocation;
+
 
     /**
      *
@@ -28,6 +30,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
      */
     @Activate
     protected void activate(EnvironmentConfigurationData environmentConfigurationData) {
+        countryInfoLocation = PropertiesUtil.toString(environmentConfigurationData.countryInfoLocation(),"/conf/dhl/appdata/countries");
         this.environmentConfigurationData = environmentConfigurationData;
     }
 
@@ -38,6 +41,6 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
 
     @Override
     public String getCountryInfoLocation() {
-        return environmentConfigurationData.countryInfoLocation();
+        return countryInfoLocation;
     }
 }
