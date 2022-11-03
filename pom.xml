@@ -52,7 +52,7 @@
         <bnd.version>5.1.2</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aem.sdk.api>2022.10.9145.20221006T013555Z-220800</aem.sdk.api>
+        <aem.sdk.api>2022.10.9398.20221020T071514Z-220800</aem.sdk.api>
         <aemanalyser.version>1.4.20</aemanalyser.version>
         <componentGroupName>Deutsche Post AG Discover</componentGroupName>
 
