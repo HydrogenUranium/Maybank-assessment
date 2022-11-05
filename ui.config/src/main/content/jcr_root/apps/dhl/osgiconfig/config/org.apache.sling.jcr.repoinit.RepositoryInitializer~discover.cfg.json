@@ -6,474 +6,474 @@
         "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/jcr:content(nt:unstructured)",
         "set properties on /content/dhl/jcr:content \n set cq:allowedTemplates{String[]} to /apps/dhl/templates/dhl-article-group-page,/apps/dhl/templates/dhl-amp-article-page,/apps/dhl/templates/dhl-animated-201901-page,/apps/dhl/templates/dhl-animated-20190225-page,/apps/dhl/templates/dhl-animated-20190523-page,/apps/dhl/templates/dhl-animated-20190624-page,/apps/dhl/templates/dhl-animated-20190724-page,/apps/dhl/templates/dhl-animated-20190805-page,/apps/dhl/templates/dhl-animated-20191021-page,/apps/dhl/templates/dhl-animated-20191025-page,/apps/dhl/templates/dhl-animated-20191101-page,/apps/dhl/templates/dhl-animated-20191122,/apps/dhl/templates/dhl-article-group-page,/apps/dhl/templates/dhl-article-page,/apps/dhl/templates/dhl-blank-page,/apps/dhl/templates/dhl-gated-article-page,/apps/dhl/templates/dhl-general-page,/apps/dhl/templates/dhl-landing-oct18-page,/apps/dhl/templates/dhl-landing-page-twocol,/apps/dhl/templates/dhl-register-page,/apps/dhl/templates/dhl-shipnow-page,/apps/dhl/templates/dhl-shipnowmarketo-page,/apps/dhl/templates/dhl-shipnowthanks-page \n set sling:resourceType to dhl/components/pages/root\nend",
 
-        "create path (sling:Folder) /apps/dhl/appdata",
-        "create path (sling:Folder) /apps/dhl/appdata/countries",
+        "create path (sling:Folder) /conf/dhl/appdata",
+        "create path (sling:Folder) /conf/dhl/appdata/countries",
 
-        "create path (sling:Folder) /apps/dhl/servlet-handler",
-        "create path (nt:unstructured) /apps/dhl/servlet-handler/shipnow",
-        "set properties on /apps/dhl/servlet-handler/shipnow\n set sling:resourceType{String} to \"discover-servlet-handler\"\n end",
+        "create path (sling:Folder) /conf/dhl/servlet-handler",
+        "create path (nt:unstructured) /conf/dhl/servlet-handler/shipnow",
+        "set properties on /conf/dhl/servlet-handler/shipnow\n set sling:resourceType{String} to \"discover-servlet-handler\"\n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/af",
-        "set properties on /apps/dhl/appdata/countries/af\n set countryName{String} to Afghanistan\n set currency{String} to USD\n set callingCode{Long} to 93 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/af",
+        "set properties on /conf/dhl/appdata/countries/af\n set countryName{String} to Afghanistan\n set currency{String} to USD\n set callingCode{Long} to 93 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/al",
-        "set properties on /apps/dhl/appdata/countries/al\n set countryName{String} to Albania\n set currency{String} to EUR\n set callingCode{Long} to 355 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/al",
+        "set properties on /conf/dhl/appdata/countries/al\n set countryName{String} to Albania\n set currency{String} to EUR\n set callingCode{Long} to 355 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/dz",
-        "set properties on /apps/dhl/appdata/countries/dz\n set countryName{String} to Algeria\n set currency{String} to EUR\n set callingCode{Long} to 213 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/dz",
+        "set properties on /conf/dhl/appdata/countries/dz\n set countryName{String} to Algeria\n set currency{String} to EUR\n set callingCode{Long} to 213 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ao",
-        "set properties on /apps/dhl/appdata/countries/ao\n set countryName{String} to Angola\n set currency{String} to AOA\n set callingCode{Long} to 244 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ao",
+        "set properties on /conf/dhl/appdata/countries/ao\n set countryName{String} to Angola\n set currency{String} to AOA\n set callingCode{Long} to 244 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ar",
-        "set properties on /apps/dhl/appdata/countries/ar\n set countryName{String} to Argentina\n set currency{String} to AOA\n set callingCode{Long} to 54 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ar",
+        "set properties on /conf/dhl/appdata/countries/ar\n set countryName{String} to Argentina\n set currency{String} to AOA\n set callingCode{Long} to 54 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/am",
-        "set properties on /apps/dhl/appdata/countries/am\n set countryName{String} to Armenia\n set currency{String} to USD\n set callingCode{Long} to 374 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/am",
+        "set properties on /conf/dhl/appdata/countries/am\n set countryName{String} to Armenia\n set currency{String} to USD\n set callingCode{Long} to 374 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/au",
-        "set properties on /apps/dhl/appdata/countries/au\n set countryName{String} to Australia\n set currency{String} to AUD\n set callingCode{Long} to 61 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/au",
+        "set properties on /conf/dhl/appdata/countries/au\n set countryName{String} to Australia\n set currency{String} to AUD\n set callingCode{Long} to 61 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/at",
-        "set properties on /apps/dhl/appdata/countries/at\n set countryName{String} to Austria\n set currency{String} to EUR\n set callingCode{Long} to 43 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/at",
+        "set properties on /conf/dhl/appdata/countries/at\n set countryName{String} to Austria\n set currency{String} to EUR\n set callingCode{Long} to 43 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/az",
-        "set properties on /apps/dhl/appdata/countries/az\n set countryName{String} to Azerbaijan\n set currency{String} to USD\n set callingCode{Long} to 994 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/az",
+        "set properties on /conf/dhl/appdata/countries/az\n set countryName{String} to Azerbaijan\n set currency{String} to USD\n set callingCode{Long} to 994 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/bh",
-        "set properties on /apps/dhl/appdata/countries/bh\n set countryName{String} to Bahrain\n set currency{String} to BHD\n set callingCode{Long} to 973 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/bh",
+        "set properties on /conf/dhl/appdata/countries/bh\n set countryName{String} to Bahrain\n set currency{String} to BHD\n set callingCode{Long} to 973 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/bd",
-        "set properties on /apps/dhl/appdata/countries/bd\n set countryName{String} to Bangladesh\n set currency{String} to USD\n set callingCode{Long} to 880 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/bd",
+        "set properties on /conf/dhl/appdata/countries/bd\n set countryName{String} to Bangladesh\n set currency{String} to USD\n set callingCode{Long} to 880 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/by",
-        "set properties on /apps/dhl/appdata/countries/by\n set countryName{String} to Belarus\n set currency{String} to USD\n set callingCode{Long} to 375 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/by",
+        "set properties on /conf/dhl/appdata/countries/by\n set countryName{String} to Belarus\n set currency{String} to USD\n set callingCode{Long} to 375 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/be",
-        "set properties on /apps/dhl/appdata/countries/be\n set countryName{String} to Belgium\n set currency{String} to EUR\n set callingCode{Long} to 32 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/be",
+        "set properties on /conf/dhl/appdata/countries/be\n set countryName{String} to Belgium\n set currency{String} to EUR\n set callingCode{Long} to 32 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/bj",
-        "set properties on /apps/dhl/appdata/countries/bj\n set countryName{String} to Benin\n set currency{String} to XOF\n set callingCode{Long} to 229 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/bj",
+        "set properties on /conf/dhl/appdata/countries/bj\n set countryName{String} to Benin\n set currency{String} to XOF\n set callingCode{Long} to 229 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/bo",
-        "set properties on /apps/dhl/appdata/countries/bo\n set countryName{String} to Bolivia\n set currency{String} to USD\n set callingCode{Long} to 591 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/bo",
+        "set properties on /conf/dhl/appdata/countries/bo\n set countryName{String} to Bolivia\n set currency{String} to USD\n set callingCode{Long} to 591 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/bw",
-        "set properties on /apps/dhl/appdata/countries/bw\n set countryName{String} to Botswana\n set currency{String} to BWP\n set callingCode{Long} to 267 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/bw",
+        "set properties on /conf/dhl/appdata/countries/bw\n set countryName{String} to Botswana\n set currency{String} to BWP\n set callingCode{Long} to 267 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ba",
-        "set properties on /apps/dhl/appdata/countries/ba\n set countryName{String} to Bosnia\n set currency{String} to BAM\n set callingCode{Long} to 387 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ba",
+        "set properties on /conf/dhl/appdata/countries/ba\n set countryName{String} to Bosnia\n set currency{String} to BAM\n set callingCode{Long} to 387 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/br",
-        "set properties on /apps/dhl/appdata/countries/br\n set countryName{String} to Brazil\n set currency{String} to USD\n set callingCode{Long} to 55 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/br",
+        "set properties on /conf/dhl/appdata/countries/br\n set countryName{String} to Brazil\n set currency{String} to USD\n set callingCode{Long} to 55 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/bn",
-        "set properties on /apps/dhl/appdata/countries/bn\n set countryName{String} to Brunei\n set currency{String} to BND\n set callingCode{Long} to 673 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/bn",
+        "set properties on /conf/dhl/appdata/countries/bn\n set countryName{String} to Brunei\n set currency{String} to BND\n set callingCode{Long} to 673 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/bg",
-        "set properties on /apps/dhl/appdata/countries/bg\n set countryName{String} to Bulgaria\n set currency{String} to BGN\n set callingCode{Long} to 359 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/bg",
+        "set properties on /conf/dhl/appdata/countries/bg\n set countryName{String} to Bulgaria\n set currency{String} to BGN\n set callingCode{Long} to 359 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/bf",
-        "set properties on /apps/dhl/appdata/countries/bf\n set countryName{String} to \"Burkina Faso\"\n set currency{String} to XOF\n set callingCode{Long} to 226 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/bf",
+        "set properties on /conf/dhl/appdata/countries/bf\n set countryName{String} to \"Burkina Faso\"\n set currency{String} to XOF\n set callingCode{Long} to 226 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/bi",
-        "set properties on /apps/dhl/appdata/countries/bi\n set countryName{String} to \"Burundi\"\n set currency{String} to BIF\n set callingCode{Long} to 257 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/bi",
+        "set properties on /conf/dhl/appdata/countries/bi\n set countryName{String} to \"Burundi\"\n set currency{String} to BIF\n set callingCode{Long} to 257 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/kh",
-        "set properties on /apps/dhl/appdata/countries/kh\n set countryName{String} to \"Cambodia\"\n set currency{String} to USD\n set callingCode{Long} to 855 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/kh",
+        "set properties on /conf/dhl/appdata/countries/kh\n set countryName{String} to \"Cambodia\"\n set currency{String} to USD\n set callingCode{Long} to 855 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/cm",
-        "set properties on /apps/dhl/appdata/countries/cm\n set countryName{String} to \"Cameroon\"\n set currency{String} to XAF\n set callingCode{Long} to 237 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/cm",
+        "set properties on /conf/dhl/appdata/countries/cm\n set countryName{String} to \"Cameroon\"\n set currency{String} to XAF\n set callingCode{Long} to 237 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ca",
-        "set properties on /apps/dhl/appdata/countries/ca\n set countryName{String} to \"Canada\"\n set currency{String} to CAD\n set callingCode{Long} to 1 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ca",
+        "set properties on /conf/dhl/appdata/countries/ca\n set countryName{String} to \"Canada\"\n set currency{String} to CAD\n set callingCode{Long} to 1 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/td",
-        "set properties on /apps/dhl/appdata/countries/td\n set countryName{String} to \"Chad\"\n set currency{String} to XAF\n set callingCode{Long} to 235 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/td",
+        "set properties on /conf/dhl/appdata/countries/td\n set countryName{String} to \"Chad\"\n set currency{String} to XAF\n set callingCode{Long} to 235 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/cl",
-        "set properties on /apps/dhl/appdata/countries/cl\n set countryName{String} to \"Chile\"\n set currency{String} to USD\n set callingCode{Long} to 56 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/cl",
+        "set properties on /conf/dhl/appdata/countries/cl\n set countryName{String} to \"Chile\"\n set currency{String} to USD\n set callingCode{Long} to 56 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/cn",
-        "set properties on /apps/dhl/appdata/countries/cn\n set countryName{String} to \"China\"\n set currency{String} to CNY\n set callingCode{Long} to 86 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/cn",
+        "set properties on /conf/dhl/appdata/countries/cn\n set countryName{String} to \"China\"\n set currency{String} to CNY\n set callingCode{Long} to 86 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/co",
-        "set properties on /apps/dhl/appdata/countries/co\n set countryName{String} to \"Colombia\"\n set currency{String} to USD\n set callingCode{Long} to 57 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/co",
+        "set properties on /conf/dhl/appdata/countries/co\n set countryName{String} to \"Colombia\"\n set currency{String} to USD\n set callingCode{Long} to 57 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/cg",
-        "set properties on /apps/dhl/appdata/countries/cg\n set countryName{String} to \"Congo\"\n set currency{String} to XAF\n set callingCode{Long} to 242 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/cg",
+        "set properties on /conf/dhl/appdata/countries/cg\n set countryName{String} to \"Congo\"\n set currency{String} to XAF\n set callingCode{Long} to 242 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/cr",
-        "set properties on /apps/dhl/appdata/countries/cr\n set countryName{String} to \"Costa Rica\"\n set currency{String} to USD\n set callingCode{Long} to 506 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/cr",
+        "set properties on /conf/dhl/appdata/countries/cr\n set countryName{String} to \"Costa Rica\"\n set currency{String} to USD\n set callingCode{Long} to 506 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ci",
-        "set properties on /apps/dhl/appdata/countries/ci\n set countryName{String} to \"Côte d'Ivoire\"\n set currency{String} to XOF\n set callingCode{Long} to 225 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ci",
+        "set properties on /conf/dhl/appdata/countries/ci\n set countryName{String} to \"Côte d'Ivoire\"\n set currency{String} to XOF\n set callingCode{Long} to 225 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/hr",
-        "set properties on /apps/dhl/appdata/countries/hr\n set countryName{String} to \"Croatia\"\n set currency{String} to EUR\n set callingCode{Long} to 385 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/hr",
+        "set properties on /conf/dhl/appdata/countries/hr\n set countryName{String} to \"Croatia\"\n set currency{String} to EUR\n set callingCode{Long} to 385 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/cy",
-        "set properties on /apps/dhl/appdata/countries/cy\n set countryName{String} to \"Cyprus\"\n set currency{String} to EUR\n set callingCode{Long} to 357 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/cy",
+        "set properties on /conf/dhl/appdata/countries/cy\n set countryName{String} to \"Cyprus\"\n set currency{String} to EUR\n set callingCode{Long} to 357 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/cz",
-        "set properties on /apps/dhl/appdata/countries/cz\n set countryName{String} to \"Czech Republic\"\n set currency{String} to CZK\n set callingCode{Long} to 420 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/cz",
+        "set properties on /conf/dhl/appdata/countries/cz\n set countryName{String} to \"Czech Republic\"\n set currency{String} to CZK\n set callingCode{Long} to 420 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/cd",
-        "set properties on /apps/dhl/appdata/countries/cd\n set countryName{String} to \"Democratic Republic of Congo\"\n set currency{String} to USD\n set callingCode{Long} to 243 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/cd",
+        "set properties on /conf/dhl/appdata/countries/cd\n set countryName{String} to \"Democratic Republic of Congo\"\n set currency{String} to USD\n set callingCode{Long} to 243 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/dk",
-        "set properties on /apps/dhl/appdata/countries/dk\n set countryName{String} to \"Denmark\"\n set currency{String} to DKK\n set callingCode{Long} to 45 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/dk",
+        "set properties on /conf/dhl/appdata/countries/dk\n set countryName{String} to \"Denmark\"\n set currency{String} to DKK\n set callingCode{Long} to 45 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/do",
-        "set properties on /apps/dhl/appdata/countries/do\n set countryName{String} to \"Dominican Republic\"\n set currency{String} to USD\n set callingCode{Long} to 1809 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/do",
+        "set properties on /conf/dhl/appdata/countries/do\n set countryName{String} to \"Dominican Republic\"\n set currency{String} to USD\n set callingCode{Long} to 1809 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ec",
-        "set properties on /apps/dhl/appdata/countries/ec\n set countryName{String} to \"Ecuador\"\n set currency{String} to USD\n set callingCode{Long} to 593 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ec",
+        "set properties on /conf/dhl/appdata/countries/ec\n set countryName{String} to \"Ecuador\"\n set currency{String} to USD\n set callingCode{Long} to 593 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/eg",
-        "set properties on /apps/dhl/appdata/countries/eg\n set countryName{String} to \"Egypt\"\n set currency{String} to EGP\n set callingCode{Long} to 20 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/eg",
+        "set properties on /conf/dhl/appdata/countries/eg\n set countryName{String} to \"Egypt\"\n set currency{String} to EGP\n set callingCode{Long} to 20 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/sv",
-        "set properties on /apps/dhl/appdata/countries/sv\n set countryName{String} to \"El Salvador\"\n set currency{String} to EGP\n set callingCode{Long} to 503 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/sv",
+        "set properties on /conf/dhl/appdata/countries/sv\n set countryName{String} to \"El Salvador\"\n set currency{String} to EGP\n set callingCode{Long} to 503 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/gq",
-        "set properties on /apps/dhl/appdata/countries/gq\n set countryName{String} to \"Equatorial Guinea\"\n set currency{String} to XAF\n set callingCode{Long} to 240 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/gq",
+        "set properties on /conf/dhl/appdata/countries/gq\n set countryName{String} to \"Equatorial Guinea\"\n set currency{String} to XAF\n set callingCode{Long} to 240 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ee",
-        "set properties on /apps/dhl/appdata/countries/ee\n set countryName{String} to \"Estonia\"\n set currency{String} to EUR\n set callingCode{Long} to 372 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ee",
+        "set properties on /conf/dhl/appdata/countries/ee\n set countryName{String} to \"Estonia\"\n set currency{String} to EUR\n set callingCode{Long} to 372 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/et",
-        "set properties on /apps/dhl/appdata/countries/et\n set countryName{String} to \"Ethiopia\"\n set currency{String} to ETB\n set callingCode{Long} to 251 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/et",
+        "set properties on /conf/dhl/appdata/countries/et\n set countryName{String} to \"Ethiopia\"\n set currency{String} to ETB\n set callingCode{Long} to 251 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/fj",
-        "set properties on /apps/dhl/appdata/countries/fj\n set countryName{String} to \"Fiji\"\n set currency{String} to FJD\n set callingCode{Long} to 679 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/fj",
+        "set properties on /conf/dhl/appdata/countries/fj\n set countryName{String} to \"Fiji\"\n set currency{String} to FJD\n set callingCode{Long} to 679 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/fi",
-        "set properties on /apps/dhl/appdata/countries/fi\n set countryName{String} to \"Finland\"\n set currency{String} to EUR\n set callingCode{Long} to 358 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/fi",
+        "set properties on /conf/dhl/appdata/countries/fi\n set countryName{String} to \"Finland\"\n set currency{String} to EUR\n set callingCode{Long} to 358 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/fr",
-        "set properties on /apps/dhl/appdata/countries/fr\n set countryName{String} to \"France\"\n set currency{String} to EUR\n set callingCode{Long} to 33 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/fr",
+        "set properties on /conf/dhl/appdata/countries/fr\n set countryName{String} to \"France\"\n set currency{String} to EUR\n set callingCode{Long} to 33 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ga",
-        "set properties on /apps/dhl/appdata/countries/ga\n set countryName{String} to \"Gabon\"\n set currency{String} to XAF\n set callingCode{Long} to 241 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ga",
+        "set properties on /conf/dhl/appdata/countries/ga\n set countryName{String} to \"Gabon\"\n set currency{String} to XAF\n set callingCode{Long} to 241 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/gm",
-        "set properties on /apps/dhl/appdata/countries/gm\n set countryName{String} to \"Gambia\"\n set currency{String} to GMD\n set callingCode{Long} to 220 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/gm",
+        "set properties on /conf/dhl/appdata/countries/gm\n set countryName{String} to \"Gambia\"\n set currency{String} to GMD\n set callingCode{Long} to 220 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ge",
-        "set properties on /apps/dhl/appdata/countries/ge\n set countryName{String} to \"Georgia\"\n set currency{String} to USD\n set callingCode{Long} to 995 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ge",
+        "set properties on /conf/dhl/appdata/countries/ge\n set countryName{String} to \"Georgia\"\n set currency{String} to USD\n set callingCode{Long} to 995 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/de",
-        "set properties on /apps/dhl/appdata/countries/de\n set countryName{String} to \"Germany\"\n set currency{String} to EUR\n set callingCode{Long} to 49 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/de",
+        "set properties on /conf/dhl/appdata/countries/de\n set countryName{String} to \"Germany\"\n set currency{String} to EUR\n set callingCode{Long} to 49 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/gh",
-        "set properties on /apps/dhl/appdata/countries/gh\n set countryName{String} to \"Ghana\"\n set currency{String} to GHS\n set callingCode{Long} to 233 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/gh",
+        "set properties on /conf/dhl/appdata/countries/gh\n set countryName{String} to \"Ghana\"\n set currency{String} to GHS\n set callingCode{Long} to 233 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/gr",
-        "set properties on /apps/dhl/appdata/countries/gr\n set countryName{String} to \"Greece\"\n set currency{String} to EUR\n set callingCode{Long} to 30 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/gr",
+        "set properties on /conf/dhl/appdata/countries/gr\n set countryName{String} to \"Greece\"\n set currency{String} to EUR\n set callingCode{Long} to 30 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/gt",
-        "set properties on /apps/dhl/appdata/countries/gt\n set countryName{String} to \"Guatemala\"\n set currency{String} to USD\n set callingCode{Long} to 502 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/gt",
+        "set properties on /conf/dhl/appdata/countries/gt\n set countryName{String} to \"Guatemala\"\n set currency{String} to USD\n set callingCode{Long} to 502 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/gn",
-        "set properties on /apps/dhl/appdata/countries/gn\n set countryName{String} to \"Guinea\"\n set currency{String} to GNF\n set callingCode{Long} to 224 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/gn",
+        "set properties on /conf/dhl/appdata/countries/gn\n set countryName{String} to \"Guinea\"\n set currency{String} to GNF\n set callingCode{Long} to 224 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/hn",
-        "set properties on /apps/dhl/appdata/countries/hn\n set countryName{String} to \"Honduras\"\n set currency{String} to USD\n set callingCode{Long} to 504 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/hn",
+        "set properties on /conf/dhl/appdata/countries/hn\n set countryName{String} to \"Honduras\"\n set currency{String} to USD\n set callingCode{Long} to 504 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/hk",
-        "set properties on /apps/dhl/appdata/countries/hk\n set countryName{String} to \"Hong Kong\"\n set currency{String} to HKD\n set callingCode{Long} to 852 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/hk",
+        "set properties on /conf/dhl/appdata/countries/hk\n set countryName{String} to \"Hong Kong\"\n set currency{String} to HKD\n set callingCode{Long} to 852 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/hu",
-        "set properties on /apps/dhl/appdata/countries/hu\n set countryName{String} to \"Hungary\"\n set currency{String} to HUF\n set callingCode{Long} to 36 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/hu",
+        "set properties on /conf/dhl/appdata/countries/hu\n set countryName{String} to \"Hungary\"\n set currency{String} to HUF\n set callingCode{Long} to 36 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/is",
-        "set properties on /apps/dhl/appdata/countries/is\n set countryName{String} to \"Iceland\"\n set currency{String} to ISK\n set callingCode{Long} to 353 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/is",
+        "set properties on /conf/dhl/appdata/countries/is\n set countryName{String} to \"Iceland\"\n set currency{String} to ISK\n set callingCode{Long} to 353 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/in",
-        "set properties on /apps/dhl/appdata/countries/in\n set countryName{String} to \"India\"\n set currency{String} to INR\n set callingCode{Long} to 91 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/in",
+        "set properties on /conf/dhl/appdata/countries/in\n set countryName{String} to \"India\"\n set currency{String} to INR\n set callingCode{Long} to 91 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/id",
-        "set properties on /apps/dhl/appdata/countries/id\n set countryName{String} to \"Indonesia\"\n set currency{String} to USD\n set callingCode{Long} to 62 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/id",
+        "set properties on /conf/dhl/appdata/countries/id\n set countryName{String} to \"Indonesia\"\n set currency{String} to USD\n set callingCode{Long} to 62 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ir",
-        "set properties on /apps/dhl/appdata/countries/ir\n set countryName{String} to \"Iran\"\n set currency{String} to IRR\n set callingCode{Long} to 98 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ir",
+        "set properties on /conf/dhl/appdata/countries/ir\n set countryName{String} to \"Iran\"\n set currency{String} to IRR\n set callingCode{Long} to 98 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/iq",
-        "set properties on /apps/dhl/appdata/countries/iq\n set countryName{String} to \"Iraq\"\n set currency{String} to USD\n set callingCode{Long} to 964 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/iq",
+        "set properties on /conf/dhl/appdata/countries/iq\n set countryName{String} to \"Iraq\"\n set currency{String} to USD\n set callingCode{Long} to 964 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ie",
-        "set properties on /apps/dhl/appdata/countries/ie\n set countryName{String} to \"Ireland\"\n set currency{String} to EUR\n set callingCode{Long} to 353 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ie",
+        "set properties on /conf/dhl/appdata/countries/ie\n set countryName{String} to \"Ireland\"\n set currency{String} to EUR\n set callingCode{Long} to 353 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/il",
-        "set properties on /apps/dhl/appdata/countries/il\n set countryName{String} to \"Israel\"\n set currency{String} to USD\n set callingCode{Long} to 972 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/il",
+        "set properties on /conf/dhl/appdata/countries/il\n set countryName{String} to \"Israel\"\n set currency{String} to USD\n set callingCode{Long} to 972 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/it",
-        "set properties on /apps/dhl/appdata/countries/it\n set countryName{String} to \"Italy\"\n set currency{String} to EUR\n set callingCode{Long} to 39 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/it",
+        "set properties on /conf/dhl/appdata/countries/it\n set countryName{String} to \"Italy\"\n set currency{String} to EUR\n set callingCode{Long} to 39 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/jp",
-        "set properties on /apps/dhl/appdata/countries/jp\n set countryName{String} to \"Japan\"\n set currency{String} to JPY\n set callingCode{Long} to 81 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/jp",
+        "set properties on /conf/dhl/appdata/countries/jp\n set countryName{String} to \"Japan\"\n set currency{String} to JPY\n set callingCode{Long} to 81 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/jo",
-        "set properties on /apps/dhl/appdata/countries/jo\n set countryName{String} to \"Jordan\"\n set currency{String} to JOD\n set callingCode{Long} to 962 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/jo",
+        "set properties on /conf/dhl/appdata/countries/jo\n set countryName{String} to \"Jordan\"\n set currency{String} to JOD\n set callingCode{Long} to 962 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/kz",
-        "set properties on /apps/dhl/appdata/countries/kz\n set countryName{String} to \"Kazakhstan\"\n set currency{String} to USD\n set callingCode{Long} to 997 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/kz",
+        "set properties on /conf/dhl/appdata/countries/kz\n set countryName{String} to \"Kazakhstan\"\n set currency{String} to USD\n set callingCode{Long} to 997 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ke",
-        "set properties on /apps/dhl/appdata/countries/ke\n set countryName{String} to \"Kenya\"\n set currency{String} to KES\n set callingCode{Long} to 254 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ke",
+        "set properties on /conf/dhl/appdata/countries/ke\n set countryName{String} to \"Kenya\"\n set currency{String} to KES\n set callingCode{Long} to 254 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/kr",
-        "set properties on /apps/dhl/appdata/countries/kr\n set countryName{String} to \"Korea\"\n set currency{String} to KRW\n set callingCode{Long} to 82 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/kr",
+        "set properties on /conf/dhl/appdata/countries/kr\n set countryName{String} to \"Korea\"\n set currency{String} to KRW\n set callingCode{Long} to 82 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/kw",
-        "set properties on /apps/dhl/appdata/countries/kw\n set countryName{String} to \"Kuwait\"\n set currency{String} to KWD\n set callingCode{Long} to 965 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/kw",
+        "set properties on /conf/dhl/appdata/countries/kw\n set countryName{String} to \"Kuwait\"\n set currency{String} to KWD\n set callingCode{Long} to 965 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/kg",
-        "set properties on /apps/dhl/appdata/countries/kg\n set countryName{String} to \"Kyrgyzstan\"\n set currency{String} to USD\n set callingCode{Long} to 996 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/kg",
+        "set properties on /conf/dhl/appdata/countries/kg\n set countryName{String} to \"Kyrgyzstan\"\n set currency{String} to USD\n set callingCode{Long} to 996 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/la",
-        "set properties on /apps/dhl/appdata/countries/la\n set countryName{String} to \"Laos\"\n set currency{String} to USD\n set callingCode{Long} to 856 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/la",
+        "set properties on /conf/dhl/appdata/countries/la\n set countryName{String} to \"Laos\"\n set currency{String} to USD\n set callingCode{Long} to 856 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/lv",
-        "set properties on /apps/dhl/appdata/countries/lv\n set countryName{String} to \"Latvia\"\n set currency{String} to EUR\n set callingCode{Long} to 371 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/lv",
+        "set properties on /conf/dhl/appdata/countries/lv\n set countryName{String} to \"Latvia\"\n set currency{String} to EUR\n set callingCode{Long} to 371 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/lb",
-        "set properties on /apps/dhl/appdata/countries/lb\n set countryName{String} to \"Lebanon\"\n set currency{String} to USD\n set callingCode{Long} to 961 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/lb",
+        "set properties on /conf/dhl/appdata/countries/lb\n set countryName{String} to \"Lebanon\"\n set currency{String} to USD\n set callingCode{Long} to 961 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ls",
-        "set properties on /apps/dhl/appdata/countries/ls\n set countryName{String} to \"Lesotho\"\n set currency{String} to LSL\n set callingCode{Long} to 266 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ls",
+        "set properties on /conf/dhl/appdata/countries/ls\n set countryName{String} to \"Lesotho\"\n set currency{String} to LSL\n set callingCode{Long} to 266 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/lr",
-        "set properties on /apps/dhl/appdata/countries/lr\n set countryName{String} to \"Liberia\"\n set currency{String} to LRD\n set callingCode{Long} to 231 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/lr",
+        "set properties on /conf/dhl/appdata/countries/lr\n set countryName{String} to \"Liberia\"\n set currency{String} to LRD\n set callingCode{Long} to 231 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ly",
-        "set properties on /apps/dhl/appdata/countries/ly\n set countryName{String} to \"Libya\"\n set currency{String} to LYD\n set callingCode{Long} to 218 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ly",
+        "set properties on /conf/dhl/appdata/countries/ly\n set countryName{String} to \"Libya\"\n set currency{String} to LYD\n set callingCode{Long} to 218 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/lt",
-        "set properties on /apps/dhl/appdata/countries/lt\n set countryName{String} to \"Lithuania\"\n set currency{String} to EUR\n set callingCode{Long} to 370 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/lt",
+        "set properties on /conf/dhl/appdata/countries/lt\n set countryName{String} to \"Lithuania\"\n set currency{String} to EUR\n set callingCode{Long} to 370 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/lu",
-        "set properties on /apps/dhl/appdata/countries/lu\n set countryName{String} to \"Luxembourg\"\n set currency{String} to EUR\n set callingCode{Long} to 352 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/lu",
+        "set properties on /conf/dhl/appdata/countries/lu\n set countryName{String} to \"Luxembourg\"\n set currency{String} to EUR\n set callingCode{Long} to 352 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mo",
-        "set properties on /apps/dhl/appdata/countries/mo\n set countryName{String} to \"Macau\"\n set currency{String} to HKD\n set callingCode{Long} to 853 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mo",
+        "set properties on /conf/dhl/appdata/countries/mo\n set countryName{String} to \"Macau\"\n set currency{String} to HKD\n set callingCode{Long} to 853 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mk",
-        "set properties on /apps/dhl/appdata/countries/mk\n set countryName{String} to \"North Macedonia\"\n set currency{String} to EUR\n set callingCode{Long} to 389 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mk",
+        "set properties on /conf/dhl/appdata/countries/mk\n set countryName{String} to \"North Macedonia\"\n set currency{String} to EUR\n set callingCode{Long} to 389 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mg",
-        "set properties on /apps/dhl/appdata/countries/mg\n set countryName{String} to \"Madagascar\"\n set currency{String} to MGA\n set callingCode{Long} to 261 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mg",
+        "set properties on /conf/dhl/appdata/countries/mg\n set countryName{String} to \"Madagascar\"\n set currency{String} to MGA\n set callingCode{Long} to 261 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mw",
-        "set properties on /apps/dhl/appdata/countries/mw\n set countryName{String} to \"Malawi\"\n set currency{String} to MWK\n set callingCode{Long} to 265 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mw",
+        "set properties on /conf/dhl/appdata/countries/mw\n set countryName{String} to \"Malawi\"\n set currency{String} to MWK\n set callingCode{Long} to 265 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/my",
-        "set properties on /apps/dhl/appdata/countries/my\n set countryName{String} to \"Malaysia\"\n set currency{String} to MYR\n set callingCode{Long} to 60 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/my",
+        "set properties on /conf/dhl/appdata/countries/my\n set countryName{String} to \"Malaysia\"\n set currency{String} to MYR\n set callingCode{Long} to 60 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ml",
-        "set properties on /apps/dhl/appdata/countries/ml\n set countryName{String} to \"Mali\"\n set currency{String} to XOF\n set callingCode{Long} to 223 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ml",
+        "set properties on /conf/dhl/appdata/countries/ml\n set countryName{String} to \"Mali\"\n set currency{String} to XOF\n set callingCode{Long} to 223 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mt",
-        "set properties on /apps/dhl/appdata/countries/mt\n set countryName{String} to \"Malta\"\n set currency{String} to EUR\n set callingCode{Long} to 356 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mt",
+        "set properties on /conf/dhl/appdata/countries/mt\n set countryName{String} to \"Malta\"\n set currency{String} to EUR\n set callingCode{Long} to 356 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mr",
-        "set properties on /apps/dhl/appdata/countries/mr\n set countryName{String} to \"Mauritania\"\n set currency{String} to MRO\n set callingCode{Long} to 222 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mr",
+        "set properties on /conf/dhl/appdata/countries/mr\n set countryName{String} to \"Mauritania\"\n set currency{String} to MRO\n set callingCode{Long} to 222 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mu",
-        "set properties on /apps/dhl/appdata/countries/mu\n set countryName{String} to \"Mauritius\"\n set currency{String} to MUR\n set callingCode{Long} to 230 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mu",
+        "set properties on /conf/dhl/appdata/countries/mu\n set countryName{String} to \"Mauritius\"\n set currency{String} to MUR\n set callingCode{Long} to 230 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mx",
-        "set properties on /apps/dhl/appdata/countries/mx\n set countryName{String} to \"Mexico\"\n set currency{String} to MXP\n set callingCode{Long} to 52 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mx",
+        "set properties on /conf/dhl/appdata/countries/mx\n set countryName{String} to \"Mexico\"\n set currency{String} to MXP\n set callingCode{Long} to 52 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mu",
-        "set properties on /apps/dhl/appdata/countries/mu\n set countryName{String} to \"Mauritius\"\n set currency{String} to MUR\n set callingCode{Long} to 230 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mu",
+        "set properties on /conf/dhl/appdata/countries/mu\n set countryName{String} to \"Mauritius\"\n set currency{String} to MUR\n set callingCode{Long} to 230 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/md",
-        "set properties on /apps/dhl/appdata/countries/md\n set countryName{String} to \"Moldova\"\n set currency{String} to USD\n set callingCode{Long} to 373 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/md",
+        "set properties on /conf/dhl/appdata/countries/md\n set countryName{String} to \"Moldova\"\n set currency{String} to USD\n set callingCode{Long} to 373 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ma",
-        "set properties on /apps/dhl/appdata/countries/ma\n set countryName{String} to \"Morocco\"\n set currency{String} to MAD\n set callingCode{Long} to 212 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ma",
+        "set properties on /conf/dhl/appdata/countries/ma\n set countryName{String} to \"Morocco\"\n set currency{String} to MAD\n set callingCode{Long} to 212 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mz",
-        "set properties on /apps/dhl/appdata/countries/mz\n set countryName{String} to \"Mozambique\"\n set currency{String} to MZN\n set callingCode{Long} to 258 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mz",
+        "set properties on /conf/dhl/appdata/countries/mz\n set countryName{String} to \"Mozambique\"\n set currency{String} to MZN\n set callingCode{Long} to 258 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/mm",
-        "set properties on /apps/dhl/appdata/countries/mm\n set countryName{String} to \"Myanmar\"\n set currency{String} to USD\n set callingCode{Long} to 95 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/mm",
+        "set properties on /conf/dhl/appdata/countries/mm\n set countryName{String} to \"Myanmar\"\n set currency{String} to USD\n set callingCode{Long} to 95 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/na",
-        "set properties on /apps/dhl/appdata/countries/na\n set countryName{String} to \"Namibia\"\n set currency{String} to NAD\n set callingCode{Long} to 264 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/na",
+        "set properties on /conf/dhl/appdata/countries/na\n set countryName{String} to \"Namibia\"\n set currency{String} to NAD\n set callingCode{Long} to 264 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/np",
-        "set properties on /apps/dhl/appdata/countries/np\n set countryName{String} to \"Nepal\"\n set currency{String} to USD\n set callingCode{Long} to 977 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/np",
+        "set properties on /conf/dhl/appdata/countries/np\n set countryName{String} to \"Nepal\"\n set currency{String} to USD\n set callingCode{Long} to 977 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/nl",
-        "set properties on /apps/dhl/appdata/countries/nl\n set countryName{String} to \"Netherlands\"\n set currency{String} to EUR\n set callingCode{Long} to 31 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/nl",
+        "set properties on /conf/dhl/appdata/countries/nl\n set countryName{String} to \"Netherlands\"\n set currency{String} to EUR\n set callingCode{Long} to 31 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/nz",
-        "set properties on /apps/dhl/appdata/countries/nz\n set countryName{String} to \"New Zealand\"\n set currency{String} to NZD\n set callingCode{Long} to 64 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/nz",
+        "set properties on /conf/dhl/appdata/countries/nz\n set countryName{String} to \"New Zealand\"\n set currency{String} to NZD\n set callingCode{Long} to 64 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ni",
-        "set properties on /apps/dhl/appdata/countries/ni\n set countryName{String} to \"Nicaragua\"\n set currency{String} to USD\n set callingCode{Long} to 505 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ni",
+        "set properties on /conf/dhl/appdata/countries/ni\n set countryName{String} to \"Nicaragua\"\n set currency{String} to USD\n set callingCode{Long} to 505 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ne",
-        "set properties on /apps/dhl/appdata/countries/ne\n set countryName{String} to \"Niger\"\n set currency{String} to XOF\n set callingCode{Long} to 227 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ne",
+        "set properties on /conf/dhl/appdata/countries/ne\n set countryName{String} to \"Niger\"\n set currency{String} to XOF\n set callingCode{Long} to 227 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ng",
-        "set properties on /apps/dhl/appdata/countries/ng\n set countryName{String} to \"Nigeria\"\n set currency{String} to NGN\n set callingCode{Long} to 234 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ng",
+        "set properties on /conf/dhl/appdata/countries/ng\n set countryName{String} to \"Nigeria\"\n set currency{String} to NGN\n set callingCode{Long} to 234 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/no",
-        "set properties on /apps/dhl/appdata/countries/no\n set countryName{String} to \"Norway\"\n set currency{String} to NOK\n set callingCode{Long} to 47 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/no",
+        "set properties on /conf/dhl/appdata/countries/no\n set countryName{String} to \"Norway\"\n set currency{String} to NOK\n set callingCode{Long} to 47 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/om",
-        "set properties on /apps/dhl/appdata/countries/om\n set countryName{String} to \"Oman\"\n set currency{String} to OMR\n set callingCode{Long} to 968 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/om",
+        "set properties on /conf/dhl/appdata/countries/om\n set countryName{String} to \"Oman\"\n set currency{String} to OMR\n set callingCode{Long} to 968 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/pk",
-        "set properties on /apps/dhl/appdata/countries/pk\n set countryName{String} to \"Pakistan\"\n set currency{String} to USD\n set callingCode{Long} to 92 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/pk",
+        "set properties on /conf/dhl/appdata/countries/pk\n set countryName{String} to \"Pakistan\"\n set currency{String} to USD\n set callingCode{Long} to 92 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/pa",
-        "set properties on /apps/dhl/appdata/countries/pa\n set countryName{String} to \"Panama\"\n set currency{String} to USD\n set callingCode{Long} to 507 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/pa",
+        "set properties on /conf/dhl/appdata/countries/pa\n set countryName{String} to \"Panama\"\n set currency{String} to USD\n set callingCode{Long} to 507 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/pg",
-        "set properties on /apps/dhl/appdata/countries/pg\n set countryName{String} to \"Papua New Guinea\"\n set currency{String} to PGK\n set callingCode{Long} to 675 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/pg",
+        "set properties on /conf/dhl/appdata/countries/pg\n set countryName{String} to \"Papua New Guinea\"\n set currency{String} to PGK\n set callingCode{Long} to 675 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/py",
-        "set properties on /apps/dhl/appdata/countries/py\n set countryName{String} to \"Paraguay\"\n set currency{String} to USD\n set callingCode{Long} to 595 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/py",
+        "set properties on /conf/dhl/appdata/countries/py\n set countryName{String} to \"Paraguay\"\n set currency{String} to USD\n set callingCode{Long} to 595 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/pe",
-        "set properties on /apps/dhl/appdata/countries/pe\n set countryName{String} to \"Peru\"\n set currency{String} to USD\n set callingCode{Long} to 51 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/pe",
+        "set properties on /conf/dhl/appdata/countries/pe\n set countryName{String} to \"Peru\"\n set currency{String} to USD\n set callingCode{Long} to 51 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ph",
-        "set properties on /apps/dhl/appdata/countries/ph\n set countryName{String} to \"Philippines\"\n set currency{String} to PHP\n set callingCode{Long} to 63 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ph",
+        "set properties on /conf/dhl/appdata/countries/ph\n set countryName{String} to \"Philippines\"\n set currency{String} to PHP\n set callingCode{Long} to 63 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/pl",
-        "set properties on /apps/dhl/appdata/countries/pl\n set countryName{String} to \"Poland\"\n set currency{String} to PLN\n set callingCode{Long} to 48 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/pl",
+        "set properties on /conf/dhl/appdata/countries/pl\n set countryName{String} to \"Poland\"\n set currency{String} to PLN\n set callingCode{Long} to 48 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/pt",
-        "set properties on /apps/dhl/appdata/countries/pt\n set countryName{String} to \"Portugal\"\n set currency{String} to EUR\n set callingCode{Long} to 351 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/pt",
+        "set properties on /conf/dhl/appdata/countries/pt\n set countryName{String} to \"Portugal\"\n set currency{String} to EUR\n set callingCode{Long} to 351 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/qa",
-        "set properties on /apps/dhl/appdata/countries/qa\n set countryName{String} to \"Qatar\"\n set currency{String} to QAR\n set callingCode{Long} to 974 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/qa",
+        "set properties on /conf/dhl/appdata/countries/qa\n set countryName{String} to \"Qatar\"\n set currency{String} to QAR\n set callingCode{Long} to 974 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/re",
-        "set properties on /apps/dhl/appdata/countries/re\n set countryName{String} to \"Réunion\"\n set currency{String} to EUR\n set callingCode{Long} to 262 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/re",
+        "set properties on /conf/dhl/appdata/countries/re\n set countryName{String} to \"Réunion\"\n set currency{String} to EUR\n set callingCode{Long} to 262 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ro",
-        "set properties on /apps/dhl/appdata/countries/ro\n set countryName{String} to \"Romania\"\n set currency{String} to EUR\n set callingCode{Long} to 40 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ro",
+        "set properties on /conf/dhl/appdata/countries/ro\n set countryName{String} to \"Romania\"\n set currency{String} to EUR\n set callingCode{Long} to 40 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ru",
-        "set properties on /apps/dhl/appdata/countries/ru\n set countryName{String} to \"Russian Federation\"\n set currency{String} to USD\n set callingCode{Long} to 7 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ru",
+        "set properties on /conf/dhl/appdata/countries/ru\n set countryName{String} to \"Russian Federation\"\n set currency{String} to USD\n set callingCode{Long} to 7 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/rw",
-        "set properties on /apps/dhl/appdata/countries/rw\n set countryName{String} to \"Rwanda\"\n set currency{String} to RWF\n set callingCode{Long} to 250 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/rw",
+        "set properties on /conf/dhl/appdata/countries/rw\n set countryName{String} to \"Rwanda\"\n set currency{String} to RWF\n set callingCode{Long} to 250 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/sa",
-        "set properties on /apps/dhl/appdata/countries/sa\n set countryName{String} to \"Saudi Arabia\"\n set currency{String} to SAR\n set callingCode{Long} to 966 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/sa",
+        "set properties on /conf/dhl/appdata/countries/sa\n set countryName{String} to \"Saudi Arabia\"\n set currency{String} to SAR\n set callingCode{Long} to 966 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/sn",
-        "set properties on /apps/dhl/appdata/countries/sn\n set countryName{String} to \"Senegal\"\n set currency{String} to XOF\n set callingCode{Long} to 221 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/sn",
+        "set properties on /conf/dhl/appdata/countries/sn\n set countryName{String} to \"Senegal\"\n set currency{String} to XOF\n set callingCode{Long} to 221 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/rs",
-        "set properties on /apps/dhl/appdata/countries/rs\n set countryName{String} to \"Serbia\"\n set currency{String} to EUR\n set callingCode{Long} to 381 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/rs",
+        "set properties on /conf/dhl/appdata/countries/rs\n set countryName{String} to \"Serbia\"\n set currency{String} to EUR\n set callingCode{Long} to 381 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/sl",
-        "set properties on /apps/dhl/appdata/countries/sl\n set countryName{String} to \"Sierra Leone\"\n set currency{String} to SLL\n set callingCode{Long} to 232 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/sl",
+        "set properties on /conf/dhl/appdata/countries/sl\n set countryName{String} to \"Sierra Leone\"\n set currency{String} to SLL\n set callingCode{Long} to 232 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/sg",
-        "set properties on /apps/dhl/appdata/countries/sg\n set countryName{String} to \"Singapore\"\n set currency{String} to SGD\n set callingCode{Long} to 65 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/sg",
+        "set properties on /conf/dhl/appdata/countries/sg\n set countryName{String} to \"Singapore\"\n set currency{String} to SGD\n set callingCode{Long} to 65 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/sk",
-        "set properties on /apps/dhl/appdata/countries/sk\n set countryName{String} to \"Slovakia\"\n set currency{String} to EUR\n set callingCode{Long} to 421 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/sk",
+        "set properties on /conf/dhl/appdata/countries/sk\n set countryName{String} to \"Slovakia\"\n set currency{String} to EUR\n set callingCode{Long} to 421 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/si",
-        "set properties on /apps/dhl/appdata/countries/si\n set countryName{String} to \"Slovenia\"\n set currency{String} to EUR\n set callingCode{Long} to 386 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/si",
+        "set properties on /conf/dhl/appdata/countries/si\n set countryName{String} to \"Slovenia\"\n set currency{String} to EUR\n set callingCode{Long} to 386 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/za",
-        "set properties on /apps/dhl/appdata/countries/za\n set countryName{String} to \"South Africa\"\n set currency{String} to ZAR\n set callingCode{Long} to 27 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/za",
+        "set properties on /conf/dhl/appdata/countries/za\n set countryName{String} to \"South Africa\"\n set currency{String} to ZAR\n set callingCode{Long} to 27 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ss",
-        "set properties on /apps/dhl/appdata/countries/ss\n set countryName{String} to \"South Sudan\"\n set currency{String} to SSP\n set callingCode{Long} to 211 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ss",
+        "set properties on /conf/dhl/appdata/countries/ss\n set countryName{String} to \"South Sudan\"\n set currency{String} to SSP\n set callingCode{Long} to 211 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/es",
-        "set properties on /apps/dhl/appdata/countries/es\n set countryName{String} to \"Spain\"\n set currency{String} to EUR\n set callingCode{Long} to 34 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/es",
+        "set properties on /conf/dhl/appdata/countries/es\n set countryName{String} to \"Spain\"\n set currency{String} to EUR\n set callingCode{Long} to 34 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/lk",
-        "set properties on /apps/dhl/appdata/countries/lk\n set countryName{String} to \"Sri Lanka\"\n set currency{String} to USD\n set callingCode{Long} to 94 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/lk",
+        "set properties on /conf/dhl/appdata/countries/lk\n set countryName{String} to \"Sri Lanka\"\n set currency{String} to USD\n set callingCode{Long} to 94 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/sd",
-        "set properties on /apps/dhl/appdata/countries/sd\n set countryName{String} to \"Sudan\"\n set currency{String} to SDG\n set callingCode{Long} to 249 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/sd",
+        "set properties on /conf/dhl/appdata/countries/sd\n set countryName{String} to \"Sudan\"\n set currency{String} to SDG\n set callingCode{Long} to 249 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/sz",
-        "set properties on /apps/dhl/appdata/countries/sz\n set countryName{String} to \"Eswatini\"\n set currency{String} to SZL\n set callingCode{Long} to 268 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/sz",
+        "set properties on /conf/dhl/appdata/countries/sz\n set countryName{String} to \"Eswatini\"\n set currency{String} to SZL\n set callingCode{Long} to 268 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/se",
-        "set properties on /apps/dhl/appdata/countries/se\n set countryName{String} to \"Sweden\"\n set currency{String} to SEK\n set callingCode{Long} to 46 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/se",
+        "set properties on /conf/dhl/appdata/countries/se\n set countryName{String} to \"Sweden\"\n set currency{String} to SEK\n set callingCode{Long} to 46 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ch",
-        "set properties on /apps/dhl/appdata/countries/ch\n set countryName{String} to \"Switzerland\"\n set currency{String} to CHF\n set callingCode{Long} to 41 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ch",
+        "set properties on /conf/dhl/appdata/countries/ch\n set countryName{String} to \"Switzerland\"\n set currency{String} to CHF\n set callingCode{Long} to 41 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/sy",
-        "set properties on /apps/dhl/appdata/countries/sy\n set countryName{String} to \"Syria\"\n set currency{String} to SYP\n set callingCode{Long} to 963 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/sy",
+        "set properties on /conf/dhl/appdata/countries/sy\n set countryName{String} to \"Syria\"\n set currency{String} to SYP\n set callingCode{Long} to 963 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/tw",
-        "set properties on /apps/dhl/appdata/countries/tw\n set countryName{String} to \"Taiwan\"\n set currency{String} to TWD\n set callingCode{Long} to 886 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/tw",
+        "set properties on /conf/dhl/appdata/countries/tw\n set countryName{String} to \"Taiwan\"\n set currency{String} to TWD\n set callingCode{Long} to 886 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/tj",
-        "set properties on /apps/dhl/appdata/countries/tj\n set countryName{String} to \"Tajikistan\"\n set currency{String} to USD\n set callingCode{Long} to 992 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/tj",
+        "set properties on /conf/dhl/appdata/countries/tj\n set countryName{String} to \"Tajikistan\"\n set currency{String} to USD\n set callingCode{Long} to 992 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/tz",
-        "set properties on /apps/dhl/appdata/countries/tz\n set countryName{String} to \"Tanzania\"\n set currency{String} to TZS\n set callingCode{Long} to 255 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/tz",
+        "set properties on /conf/dhl/appdata/countries/tz\n set countryName{String} to \"Tanzania\"\n set currency{String} to TZS\n set callingCode{Long} to 255 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/th",
-        "set properties on /apps/dhl/appdata/countries/th\n set countryName{String} to \"Thailand\"\n set currency{String} to THB\n set callingCode{Long} to 66 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/th",
+        "set properties on /conf/dhl/appdata/countries/th\n set countryName{String} to \"Thailand\"\n set currency{String} to THB\n set callingCode{Long} to 66 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/tg",
-        "set properties on /apps/dhl/appdata/countries/tg\n set countryName{String} to \"Togo\"\n set currency{String} to XOF\n set callingCode{Long} to 228 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/tg",
+        "set properties on /conf/dhl/appdata/countries/tg\n set countryName{String} to \"Togo\"\n set currency{String} to XOF\n set callingCode{Long} to 228 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/tr",
-        "set properties on /apps/dhl/appdata/countries/tr\n set countryName{String} to \"Turkey\"\n set currency{String} to EUR\n set callingCode{Long} to 90 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/tr",
+        "set properties on /conf/dhl/appdata/countries/tr\n set countryName{String} to \"Turkey\"\n set currency{String} to EUR\n set callingCode{Long} to 90 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ae",
-        "set properties on /apps/dhl/appdata/countries/ae\n set countryName{String} to \"United Arab Emirates\"\n set currency{String} to AED\n set callingCode{Long} to 971 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ae",
+        "set properties on /conf/dhl/appdata/countries/ae\n set countryName{String} to \"United Arab Emirates\"\n set currency{String} to AED\n set callingCode{Long} to 971 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ug",
-        "set properties on /apps/dhl/appdata/countries/ug\n set countryName{String} to \"Uganda\"\n set currency{String} to UGX\n set callingCode{Long} to 256 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ug",
+        "set properties on /conf/dhl/appdata/countries/ug\n set countryName{String} to \"Uganda\"\n set currency{String} to UGX\n set callingCode{Long} to 256 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ua",
-        "set properties on /apps/dhl/appdata/countries/ua\n set countryName{String} to \"Ukraine\"\n set currency{String} to USD\n set callingCode{Long} to 380 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ua",
+        "set properties on /conf/dhl/appdata/countries/ua\n set countryName{String} to \"Ukraine\"\n set currency{String} to USD\n set callingCode{Long} to 380 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/uk",
-        "set properties on /apps/dhl/appdata/countries/uk\n set countryName{String} to \"United Kingdom\"\n set currency{String} to GBP\n set callingCode{Long} to 44 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/uk",
+        "set properties on /conf/dhl/appdata/countries/uk\n set countryName{String} to \"United Kingdom\"\n set currency{String} to GBP\n set callingCode{Long} to 44 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/uy",
-        "set properties on /apps/dhl/appdata/countries/uy\n set countryName{String} to \"Uruguay\"\n set currency{String} to SGD\n set callingCode{Long} to 598 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/uy",
+        "set properties on /conf/dhl/appdata/countries/uy\n set countryName{String} to \"Uruguay\"\n set currency{String} to SGD\n set callingCode{Long} to 598 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/us",
-        "set properties on /apps/dhl/appdata/countries/us\n set countryName{String} to \"United States of America\"\n set currency{String} to USD\n set callingCode{Long} to 1 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/us",
+        "set properties on /conf/dhl/appdata/countries/us\n set countryName{String} to \"United States of America\"\n set currency{String} to USD\n set callingCode{Long} to 1 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/uz",
-        "set properties on /apps/dhl/appdata/countries/uz\n set countryName{String} to \"Uzbekistan\"\n set currency{String} to USD\n set callingCode{Long} to 998 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/uz",
+        "set properties on /conf/dhl/appdata/countries/uz\n set countryName{String} to \"Uzbekistan\"\n set currency{String} to USD\n set callingCode{Long} to 998 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ve",
-        "set properties on /apps/dhl/appdata/countries/ve\n set countryName{String} to \"Venezuela\"\n set currency{String} to USD\n set callingCode{Long} to 58 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ve",
+        "set properties on /conf/dhl/appdata/countries/ve\n set countryName{String} to \"Venezuela\"\n set currency{String} to USD\n set callingCode{Long} to 58 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/vn",
-        "set properties on /apps/dhl/appdata/countries/vn\n set countryName{String} to \"Vietnam\"\n set currency{String} to VND\n set callingCode{Long} to 84 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/vn",
+        "set properties on /conf/dhl/appdata/countries/vn\n set countryName{String} to \"Vietnam\"\n set currency{String} to VND\n set callingCode{Long} to 84 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/ye",
-        "set properties on /apps/dhl/appdata/countries/ye\n set countryName{String} to \"Yemen\"\n set currency{String} to YER\n set callingCode{Long} to 967 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/ye",
+        "set properties on /conf/dhl/appdata/countries/ye\n set countryName{String} to \"Yemen\"\n set currency{String} to YER\n set callingCode{Long} to 967 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/zm",
-        "set properties on /apps/dhl/appdata/countries/zm\n set countryName{String} to \"Zambia\"\n set currency{String} to ZMW\n set callingCode{Long} to 260 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/zm",
+        "set properties on /conf/dhl/appdata/countries/zm\n set countryName{String} to \"Zambia\"\n set currency{String} to ZMW\n set callingCode{Long} to 260 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/zw",
-        "set properties on /apps/dhl/appdata/countries/zw\n set countryName{String} to \"Zimbabwe\"\n set currency{String} to USD\n set callingCode{Long} to 263 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/zw",
+        "set properties on /conf/dhl/appdata/countries/zw\n set countryName{String} to \"Zimbabwe\"\n set currency{String} to USD\n set callingCode{Long} to 263 \n end",
 
-        "create path (nt:unstructured) /apps/dhl/appdata/countries/cu",
-        "set properties on /apps/dhl/appdata/countries/cu\n set countryName{String} to \"Cuba\"\n set currency{String} to CUP\n set callingCode{Long} to 53 \n end",
+        "create path (nt:unstructured) /conf/dhl/appdata/countries/cu",
+        "set properties on /conf/dhl/appdata/countries/cu\n set countryName{String} to \"Cuba\"\n set currency{String} to CUP\n set callingCode{Long} to 53 \n end",
 
         "set ACL for discover-reader\nallow jcr:read on /content/dhl\nend",
-        "set ACL for discover-reader\nallow jcr:read on /apps/dhl\nend",
+        "set ACL for discover-reader\nallow jcr:read on /conf/dhl\nend",
         "set ACL for discover-writer\nallow jcr:all on /content/dhl\nend"
     ]
 }

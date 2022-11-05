@@ -17,6 +17,11 @@ Include conf.d/variables/custom.vars
 	ServerAlias	 "publish-p58772-e528781.adobeaemcloud.com"
 	ServerAlias	 "dhl.com"
 	ServerAlias	 "www.dhl.com"
+    Server Alias "127.0.0.1"
+    ServerAlias "localhost"
+    ServerAlias "*.local"
+    ServerAlias "*.adobeaemcloud.com"
+    ServerAlias "*.adobeaemcloud.net"
 
 	# Use a document root that matches the one in conf.dispatcher.d/default.farm
 	DocumentRoot "${DOCROOT}"
