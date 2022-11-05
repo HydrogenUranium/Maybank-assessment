@@ -53,7 +53,7 @@
                                 <!-- rules being inserted by archetype-pre-package.groovy -->
                                         <requireTextFileChecksum>
                                             <file>src/conf.d/available_vhosts/default.vhost</file>
-                                            <checksum>fbe1225838269b6481db31868868da91</checksum>
+                                            <checksum>f5fb30c41dc4b96f89ffb29c52737507</checksum>
                                             <type>md5</type>
                                             <message>There have been changes detected in a file which is supposed to be immutable according to https://docs.adobe.com/content/help/en/experience-manager-cloud-service/implementing/content-delivery/disp-overview.html#file-structure: src/conf.d/available_vhosts/default.vhost</message>
                                         </requireTextFileChecksum>
