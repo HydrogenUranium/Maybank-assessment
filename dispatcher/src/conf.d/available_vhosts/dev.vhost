@@ -15,7 +15,7 @@ Include conf.d/variables/custom.vars
 	ServerName	"publish-dev"
 	# Put names of which domains are used for your published site/content here
 	ServerAlias	 "publish-p58772-e528780.adobeaemcloud.com"
-	Server Alias "127.0.0.1"
+	ServerAlias "127.0.0.1"
     ServerAlias "localhost"
     ServerAlias "*.local"
     ServerAlias "*.adobeaemcloud.com"
