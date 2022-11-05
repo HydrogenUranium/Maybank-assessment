@@ -15,7 +15,6 @@ Include conf.d/variables/custom.vars
 	ServerName	"publish"
 	# Put names of which domains are used for your published site/content here
 	ServerAlias	 "*"
-
 	# Use a document root that matches the one in conf.dispatcher.d/default.farm
 	DocumentRoot "${DOCROOT}"
 	# URI dereferencing algorithm is applied at Sling's level, do not decode parameters here
