@@ -517,6 +517,7 @@ RewriteCond %{REQUEST_URI} !^/discover/tmp
 RewriteCond %{REQUEST_URI} !^/discover/var
 RewriteCond %{REQUEST_URI} !^/content/dam
 RewriteCond %{REQUEST_URI} !^/bin/dhl
+RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
 RewriteCond %{REQUEST_URI} !^/apps
 RewriteCond %{REQUEST_URI} !^/etc
 RewriteCond %{REQUEST_URI} !^/home
@@ -557,6 +558,7 @@ RewriteCond %{REQUEST_URI} !^/content/dam
 RewriteRule !^content/dhl - [R=404,L,NC]
 
 RewriteCond %{REQUEST_URI} !^/bin/dhl
+RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
 RewriteCond %{REQUEST_URI} !^/apps
 RewriteCond %{REQUEST_URI} !^/content
 RewriteCond %{REQUEST_URI} !^/etc
