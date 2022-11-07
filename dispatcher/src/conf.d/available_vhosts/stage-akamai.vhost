@@ -16,6 +16,11 @@ Include conf.d/variables/custom.vars
 	# Put names of which domains are used for your published site/content here
 	ServerAlias	 "publish-p58772-e528782.adobeaemcloud.com"
 	ServerAlias	 "uat2.dhl.dhl"
+	ServerAlias "127.0.0.1"
+    ServerAlias "localhost"
+    ServerAlias "*.local"
+    ServerAlias "*.adobeaemcloud.com"
+    ServerAlias "*.adobeaemcloud.net"
 
 	# Use a document root that matches the one in conf.dispatcher.d/default.farm
 	DocumentRoot "${DOCROOT}"

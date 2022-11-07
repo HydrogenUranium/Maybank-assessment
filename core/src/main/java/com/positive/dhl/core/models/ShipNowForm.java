@@ -1,7 +1,5 @@
 package com.positive.dhl.core.models;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -19,7 +17,7 @@ public class ShipNowForm {
 	private SlingHttpServletRequest request;
 	
 	private String source;
-	private String lead_originator;
+	private String leadOriginator;
 	private String shipnowmessage;
 	private String shipnowurl;
 	private String preselectedcountry;
@@ -41,15 +39,15 @@ public class ShipNowForm {
     /**
 	 * 
 	 */
-	public String getLead_originator() {
-		return lead_originator;
+	public String getLeadOriginator() {
+		return leadOriginator;
 	}
 
     /**
 	 * 
 	 */
-	public void setLead_originator(String lead_originator) {
-		this.lead_originator = lead_originator;
+	public void setLeadOriginator(String leadOriginator) {
+		this.leadOriginator = leadOriginator;
 	}
 
     /**
@@ -100,7 +98,7 @@ public class ShipNowForm {
 	@PostConstruct
 	protected void init() {
 		source = RequestHelpers.GetRequestValue(request, "source");
-		lead_originator = RequestHelpers.GetRequestValue(request, "lead_originator");
+		leadOriginator = RequestHelpers.GetRequestValue(request, "lead_originator");
 		
 		shipnowmessage = "";
 		shipnowurl = "";

@@ -74,11 +74,11 @@ public class DeleteAccountServlet extends SlingAllMethodsServlet {
 					if (dataSource != null) {
 						UserAccount user;
 			        	try (Connection connection = dataSource.getConnection()) {
-							user = UserAccount.Authenticate(connection, username, password);
+							user = UserAccount.authenticate(connection, username, password);
 						}
 						if (user != null && user.isAuthenticated()) {
 							try (Connection connection = dataSource.getConnection()) {
-								if (UserAccount.DeleteAccount(connection, dotmailerComponent, username)) {
+								if (UserAccount.deleteAccount(connection, dotmailerComponent, username)) {
 									responseBody = "{ \"status\": \"ok\", \"error\": \"\" }";
 
 								} else {

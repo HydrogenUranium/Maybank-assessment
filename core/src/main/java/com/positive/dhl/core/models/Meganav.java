@@ -167,13 +167,10 @@ public class Meganav {
 			searchResultsPage = properties.get("jcr:content/searchresultspage", "");
 		}
 		
-		// homeUrl = home.getVanityUrl();
-		// if (homeUrl == null || homeUrl.length() == 0) {
 		homeUrl = home.getPath() + ".html";
-		// }
 		logoUrl = "/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/logo.png";
 		
-		linksSocial = new ArrayList<SocialLink>();
+		linksSocial = new ArrayList<>();
 		Resource socialItems = home.getContentResource("items");
 		if (socialItems != null) {
 			Iterator<Resource> socialsIterator = socialItems.listChildren();
@@ -192,13 +189,13 @@ public class Meganav {
 		siteTitle = home.getPageTitle();
 
 		int count = 0;
-		panels = new ArrayList<MeganavPanel>();
+		panels = new ArrayList<>();
 		Iterator<Page> children = home.listChildren();
 		while (children.hasNext()) {
 			Page child = children.next();
 			ValueMap childProperties = child.adaptTo(ValueMap.class);
 			if ((childProperties != null) && ("dhl/components/pages/articlecategory").equals(childProperties.get("jcr:content/sling:resourceType", ""))) {
-				Boolean hideInNav = childProperties.get("jcr:content/hideInNav", false);
+				boolean hideInNav = childProperties.get("jcr:content/hideInNav", false);
 				if (hideInNav) {
 					continue;
 				}

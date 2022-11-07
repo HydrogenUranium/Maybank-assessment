@@ -1,77 +1,88 @@
 package com.positive.dhl.core.shipnow;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.positive.dhl.core.shipnow.models.ValidatedRequestEntry;
-import com.positive.dhl.core.shipnow.models.ValidationType;
+import com.positive.dhl.core.helpers.ValidatedRequestEntry;
+import com.positive.dhl.core.constants.ValidationType;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ValidatedRequestEntryTest {
-    private final AemContext ctx = new AemContext(ResourceResolverType.JCR_MOCK);
+  private final AemContext ctx = new AemContext(ResourceResolverType.JCR_MOCK);
+
+	ValidatedRequestEntry underTest;
+
+	@BeforeEach
+	public void init(){
+		underTest = new ValidatedRequestEntry();
+	}
 
 	@Test
-	void test() {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("email", "test@email.com");
-		params.put("firstname", "user-firstname");
-		params.put("lastname", "user-lastname");
+	void testEmailValidation(){
+		ctx.request().addRequestParameter("email", "test.email@dhl.com");
 
-		params.put("company", "user-company");
-		params.put("phone", "user-phone");
-		params.put("address", "user-address");
-		params.put("postcode", "user-postcode");
-		params.put("city", "user-city");
-		params.put("country", "user-country");
+		underTest.addRequiredField("email", ctx.request(), ValidationType.EMAIL);
 
-		params.put("source", "user-source");
-		params.put("lo", "user-lo");
+		boolean validationResult = underTest.validate();
+		assertTrue(validationResult);
+	}
 
-        MockSlingHttpServletRequest request = ctx.request();
-        request.setParameterMap(params);
-        
-		ValidatedRequestEntry entry = new ValidatedRequestEntry();
-		entry.AddRequiredField("email", request, ValidationType.Email);
-		entry.AddRequiredField("firstname", request);
-		entry.AddRequiredField("lastname", request);
+	@Test
+	void testEmailValidationBad(){
+		ctx.request().addRequestParameter("email", "test.email#dhl.com");
 
-		entry.AddRequiredField("company", request);
-		entry.AddRequiredField("phone", request);
-		entry.AddRequiredField("address", request);
-		entry.AddRequiredField("postcode", request);
-		entry.AddRequiredField("city", request);
-		entry.AddRequiredField("country", request);
+		underTest.addRequiredField("email", ctx.request(), ValidationType.EMAIL);
 
-		entry.AddOptionalField("source", request);
-		entry.AddOptionalField("lo", request);
-		
-		assertTrue(entry.Validate());
-		assertEquals(0, entry.getErrors().size());
-		assertEquals(entry.get("email"), "test@email.com");
-		assertEquals(entry.get("firstname"), "user-firstname");
-		assertEquals(entry.get("lastname"), "user-lastname");
+		boolean validationResult = underTest.validate();
+		assertFalse(validationResult);
+	}
 
-		assertEquals(entry.get("company"), "user-company");
-		assertEquals(entry.get("phone"), "user-phone");
-		assertEquals(entry.get("address"), "user-address");
-		assertEquals(entry.get("postcode"), "user-postcode");
-		assertEquals(entry.get("city"), "user-city");
-		assertEquals(entry.get("country"), "user-country");
+	@Test
+	void testNonEmptyValidation(){
+		ctx.request().addRequestParameter("firstName", "Dummy First Name");
 
-		assertEquals(entry.get("source"), "user-source");
-		assertEquals(entry.get("lo"), "user-lo");
+		underTest.addRequiredField("firstName",ctx.request(),ValidationType.NOT_EMPTY);
+
+		boolean validationResult = underTest.validate();
+		assertTrue(validationResult);
+	}
+
+	@Test
+	void testPhoneValidationNoCountryCode(){
+		ctx.request().addRequestParameter("phone", "420123123123");
+
+		underTest.addRequiredField("phone",ctx.request(),ValidationType.PHONE);
+
+		boolean validationResult = underTest.validate();
+		assertTrue(validationResult);
+	}
+
+	@Test
+	void testPhoneValidationBracketsBad(){
+		ctx.request().addRequestParameter("phone", "42012312(3123)");
+
+		underTest.addRequiredField("phone",ctx.request(),ValidationType.PHONE);
+
+		boolean validationResult = underTest.validate();
+		assertFalse(validationResult);
+	}
+
+	@Test
+	void testPhoneValidationBrackets(){
+		ctx.request().addRequestParameter("phone", "+420(123)123123");
+
+		underTest.addRequiredField("phone",ctx.request(),ValidationType.PHONE);
+
+		boolean validationResult = underTest.validate();
+		assertTrue(validationResult);
 	}
 }

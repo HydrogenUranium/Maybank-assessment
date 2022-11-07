@@ -1,8 +1,7 @@
 package com.positive.dhl.core.shipnow;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
-import com.positive.dhl.core.shipnow.servlets.CompetitionEntryServlet;
-import com.positive.dhl.core.shipnow.servlets.NewsletterSignupServlet;
+import com.positive.dhl.core.servlets.CompetitionEntryServlet;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -30,7 +29,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class CompetitionEntryServletTest {
+class CompetitionEntryServletTest {
     private final AemContext ctx = new AemContext(ResourceResolverType.JCR_MOCK);
 
     @Mock
@@ -64,7 +63,7 @@ public class CompetitionEntryServletTest {
 	
 	@Test
 	void testFailure() throws IOException {
-		Map<String, Object> params = new HashMap<String, Object>();
+		Map<String, Object> params = new HashMap<>();
         MockSlingHttpServletRequest request = ctx.request();
         request.setParameterMap(params);
 
@@ -81,7 +80,7 @@ public class CompetitionEntryServletTest {
 	
 	@Test
 	void test() throws IOException {
-		Map<String, Object> params = new HashMap<String, Object>();
+		Map<String, Object> params = new HashMap<>();
         params.put("email", "test@email.com");
         params.put("firstname", "the-firstname");
         params.put("lastname", "the-lastname");

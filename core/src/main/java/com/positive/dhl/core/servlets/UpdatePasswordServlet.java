@@ -9,7 +9,6 @@ import javax.servlet.Servlet;
 import javax.sql.DataSource;
 
 import com.day.commons.datasource.poolservice.DataSourceNotFoundException;
-import com.positive.dhl.core.exceptions.DiscoverUserNotFoundException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -74,7 +73,7 @@ public class UpdatePasswordServlet extends SlingAllMethodsServlet {
 					DataSource dataSource = (DataSource)this.source.getDataSource(DatabaseHelpers.DATA_SOURCE_NAME);
 					if (dataSource != null) {
 			        	try (Connection connection = dataSource.getConnection()) {
-							boolean result = UserAccount.ResetPassword(connection, dotmailerComponent, username, token, password);
+							boolean result = UserAccount.resetPassword(connection, dotmailerComponent, username, token, password);
 							
 							if (result) {
 								responseBody = "{ \"status\": \"ok\" }";
