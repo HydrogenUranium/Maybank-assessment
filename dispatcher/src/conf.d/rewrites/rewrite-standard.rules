@@ -539,6 +539,8 @@ RewriteCond %{REQUEST_URI} !^/ms-my
 RewriteCond %{REQUEST_URI} !^/zh-sg
 RewriteCond %{REQUEST_URI} !^/en-au
 RewriteCond %{REQUEST_URI} !^/en-ph
+RewriteCond %{REQUEST_URI} !^/crx
+RewriteCond %{REQUEST_URI} !^/system
 RewriteRule ^(.*?)$ https://%{HTTP_HOST}/en-global$1 [R=302,L]
 
 
