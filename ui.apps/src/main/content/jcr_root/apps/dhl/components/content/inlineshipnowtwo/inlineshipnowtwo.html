@@ -17,7 +17,7 @@
 	<div data-sly-test="${(accountactions.shipnowmarketo != true)}">
 		<form data-sly-use.shipNowForm="com.positive.dhl.core.models.ShipNowForm"
 			  data-sly-use.landingPage="com.positive.dhl.core.models.LandingPageTwoColumn"
-			  action="/conf/dhl/servlet-handler/shipnow" id="glb-shipnow-form"
+			  action="/apps/dhl/servlet-handler/shipnow" id="glb-shipnow-form"
 			  class="forms ship-now" data-thanks="${properties.thanksurl}.html"
 			  data-source="${shipNowForm.source}"
 			  data-lo="${shipNowForm.leadOriginator}" data-preselectcountry="${landingPage.preselectedCountry}"
