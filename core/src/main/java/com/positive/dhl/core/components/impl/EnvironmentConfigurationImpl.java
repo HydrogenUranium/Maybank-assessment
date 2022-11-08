@@ -9,6 +9,9 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 import org.osgi.service.metatype.annotations.Designate;
 
+/**
+ * Reads various configuration entries of the Discover application from the OSGi
+ */
 @Component(
         service = EnvironmentConfiguration.class,
         immediate = true,
@@ -35,7 +38,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     }
 
     @Override
-    public String getAssetprefix() {
+    public String getAssetPrefix() {
         return this.environmentConfigurationData.assetPrefix();
     }
 
