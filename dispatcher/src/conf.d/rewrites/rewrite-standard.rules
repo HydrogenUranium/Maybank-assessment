@@ -23,7 +23,7 @@ RewriteRule ^(.*)$ http://%1$1 [R=301,L]
 ### Send all requests to '/discover/' to the path without that prefix
 RewriteRule ^/discover/etc.clientlibs/dhl/(.*?)$ /etc.clientlibs/dhl/$1 [NC,PT,L]
 RewriteRule ^/discover/apps/dhl/discoverdhlapi/(.*?)$ /apps/dhl/discoverdhlapi/$1 [NC,PT,L]
-RewriteRule ^/discover/conf/dhl/servlet-handler/(.*?)$ /conf/dhl/servlet-handler/$1 [NC,PT,L]
+RewriteRule ^/discover/apps/dhl/servlet-handler/(.*?)$ /apps/dhl/servlet-handler/$1 [NC,PT,L]
 RewriteRule ^/discover/(.*?)$ /$1 [R=302,L]
 RewriteRule ^/discover$ / [R=302,L]
 
