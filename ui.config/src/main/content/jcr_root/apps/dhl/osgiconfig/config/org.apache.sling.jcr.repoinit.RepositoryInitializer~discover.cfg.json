@@ -9,10 +9,6 @@
         "create path (sling:Folder) /conf/dhl/appdata",
         "create path (sling:Folder) /conf/dhl/appdata/countries",
 
-        "create path (sling:Folder) /conf/dhl/servlet-handler",
-        "create path (nt:unstructured) /conf/dhl/servlet-handler/shipnow",
-        "set properties on /conf/dhl/servlet-handler/shipnow\n set sling:resourceType{String} to \"discover-servlet-handler\"\n end",
-
         "create path (nt:unstructured) /conf/dhl/appdata/countries/af",
         "set properties on /conf/dhl/appdata/countries/af\n set countryName{String} to Afghanistan\n set currency{String} to USD\n set callingCode{Long} to 93 \n end",
 
