@@ -193,8 +193,8 @@ public class DhlPage {
 		if (home != null) {
 			ValueMap homeProperties = home.adaptTo(ValueMap.class);
 			if (homeProperties != null) {
-				assetprefix = environmentConfiguration.getAssetPrefix();
 
+				assetprefix = environmentConfiguration.getAssetPrefix();
 				pathprefix = homeProperties.get("jcr:content/pathprefix", "");
 				trackingid = homeProperties.get("jcr:content/trackingid", "");
 				gtmtrackingid = homeProperties.get("jcr:content/gtmtrackingid", "");

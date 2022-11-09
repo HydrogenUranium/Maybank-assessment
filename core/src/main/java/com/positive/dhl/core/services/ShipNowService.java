@@ -13,16 +13,17 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 /**
  * OSGi service that contains methods to help with the data validation of form input
  */
+
 @Component(
 		service = ShipNowService.class
 )
@@ -81,12 +82,14 @@ public class ShipNowService {
 		String countryCode = getParameterValue(DIALING_CODE,request);
 		String phone = getParameterValue(PHONE,request);
 
+
 		if(countryCode == null && null != phone){
 			LOGGER.warn("International country dialing code is missing...defaulting to 'phone' without country code");
 			return phone;
 		}
 
 		return "+" + countryCode + phone;
+
 	}
 
 
@@ -94,8 +97,10 @@ public class ShipNowService {
 	 * Returns the value associated with servlet's request parameter identified by name.
 	 * @param parameterName is a String representing the parameter name
 	 * @param request is an instance of {@link SlingHttpServletRequest} that contains all in the provided input parameters
+
 	 * @return a String representation of the value, if the parameter does not exist in the {@code SlingHttpServletRequest},
 	 * it returns {@code null}. If you need other
+
 	 * object than String, you need to transform the value yourself
 	 */
 	private String getParameterValue(String parameterName, SlingHttpServletRequest request){
@@ -107,6 +112,7 @@ public class ShipNowService {
 	}
 
 
+
 	/**
 	 * Saves the 'entry' into the database
 	 * @param dataSourcePool is an instance of {@link DataSourcePool} provided as OSGi service
@@ -115,6 +121,7 @@ public class ShipNowService {
 	 */
 	public boolean register(DataSourcePool dataSourcePool, ValidatedRequestEntry entry) {
 		boolean output = false;
+
 
 		try {
 			DataSource dataSource = dataSourcePool.getDataSource(DatabaseHelpers.DATA_SOURCE_NAME,DataSource.class);

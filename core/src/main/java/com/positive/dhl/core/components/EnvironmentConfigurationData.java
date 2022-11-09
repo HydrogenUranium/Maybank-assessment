@@ -10,6 +10,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 @ObjectClassDefinition(name = "DHL General Site Component Configuration", description = "DHL General site implementation configuration")
 public @interface EnvironmentConfigurationData {
 
+
     /**
      * Method that fetches the 'asset prefix'
      * @return String representing the 'prefix' added to assets etc..
@@ -29,6 +30,7 @@ public @interface EnvironmentConfigurationData {
         name = "Country information repository path",
         description = "Repository location of country info (such as international calling code, currency etc..). " +
             "Caution: when changing this value, make sure to also update the repo init scripts in" +
+
             " the configuration",
         defaultValue = "/conf/dhl/appdata/countries"
     )

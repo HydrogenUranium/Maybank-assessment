@@ -23,8 +23,10 @@ import org.osgi.service.metatype.annotations.Designate;
 @ServiceDescription("Discover environment configuration")
 public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
 
+
     private String countryInfoLocation;
     private String assetPrefix;
+
 
 
     /**
@@ -34,6 +36,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     @Activate
     protected void activate(EnvironmentConfigurationData environmentConfigurationData) {
         countryInfoLocation = PropertiesUtil.toString(environmentConfigurationData.countryInfoLocation(),"/conf/dhl/appdata/countries");
+
         assetPrefix = PropertiesUtil.toString(environmentConfigurationData.assetPrefix(),"/discover");
     }
 
@@ -43,6 +46,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     }
 
     @Override
+
     public String getCountryInfoLocation() {
         return countryInfoLocation;
     }

@@ -12,7 +12,9 @@ import java.util.regex.Pattern;
  */
 public class ValidationHelper {
 
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ValidationHelper.class);
+
 
 	private ValidationHelper(){
 		throw new IllegalStateException("Not meant to be instantiated");
@@ -49,6 +51,7 @@ public class ValidationHelper {
 	 * @return boolean {@code true} if we 'validated' the phone number or {@code false} if not.
 	 */
 	public static boolean isPhoneNumberValid(String phoneNumber){
+
 		if(null != phoneNumber){
 			Matcher matcher = VALID_PHONE_REGEX.matcher(phoneNumber.trim());
 			return matcher.find();
@@ -57,5 +60,6 @@ public class ValidationHelper {
 				"'false' indicating provided number is not valid, however strictly speaking that may not be " +
 				"true");
 		return false;
+
 	}
 }

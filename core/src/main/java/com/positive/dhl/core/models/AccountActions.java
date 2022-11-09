@@ -537,7 +537,9 @@ public class AccountActions {
 		Base64 base64 = new Base64(true);
 		Page home = currentPage.getAbsoluteParent(2);
 
+
 		assetprefix = environmentConfiguration.getAssetPrefix();
+
 
 		if (home != null) {
 			ValueMap properties = home.adaptTo(ValueMap.class);

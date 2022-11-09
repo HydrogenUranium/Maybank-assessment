@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 
 import com.google.gson.JsonArray;
@@ -22,7 +23,10 @@ import org.slf4j.LoggerFactory;
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
+
 @ToString
+=======
+
 public class ValidatedRequestEntry extends HashMap<String, Object> {
 	private final Map<String, ValidationType> requiredFields;
 	private transient JsonArray errors;
@@ -34,9 +38,11 @@ public class ValidatedRequestEntry extends HashMap<String, Object> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ValidatedRequestEntry.class);
 	private static final long serialVersionUID = 1L;
 
+
 	/**
 	 * Default (and only) constructor, serves to initialize the object and setting a couple of internal properties.
 	 */
+
 	public ValidatedRequestEntry() {
 		this.validated = false;
 		this.requiredFields = new HashMap<>();
@@ -57,8 +63,10 @@ public class ValidatedRequestEntry extends HashMap<String, Object> {
 	}
 
 	/**
+
 	 * Adds a new required field (aka condition) to {@link ValidatedRequestEntry#requiredFields} property
 	 * (which is a map of String as key and {@link ValidationType#NOT_EMPTY} as value). Simply said,
+
 	 * this merely adds a new 'non empty' condition
 	 * @param key is the name of the field
 	 * @param request is an instance of {@link SlingHttpServletRequest}
@@ -141,7 +149,9 @@ public class ValidatedRequestEntry extends HashMap<String, Object> {
 
 	/**
 	 * Goes through all the required {@link ValidatedRequestEntry#requiredFields} map and validates each entry against specific set of validation rules
+
 	 * @return boolean {@code true} in case validation is successful or {@code false} in case it's not
+
 	 */
 	public boolean validate() {
 		errors = new JsonArray();

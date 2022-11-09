@@ -4,7 +4,9 @@ package com.positive.dhl.core.components;
  * Reads the Discover OSGi configuration
  */
 public interface EnvironmentConfiguration {
+
     String getAssetPrefix();
+
 
     /**
      * Fetches the repository location of country information
