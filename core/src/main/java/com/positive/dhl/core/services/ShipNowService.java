@@ -7,11 +7,8 @@ import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.constants.ValidationType;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.helpers.ValidatedRequestEntry;
-import com.positive.dhl.core.models.Countries;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.request.RequestParameter;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -83,26 +80,13 @@ public class ShipNowService {
 	private String getPhoneWithExtension(SlingHttpServletRequest request){
 		String countryCode = getParameterValue(DIALING_CODE,request);
 		String phone = getParameterValue(PHONE,request);
-		LOGGER.info("Found the following parameters: Country code: {}, Phone: {}", countryCode, phone);
-		ResourceResolver resourceResolver = request.getResourceResolver();
-		String countriesResourcePath = environmentConfiguration.getCountryInfoLocation() + "/" + countryCode;
-		LOGGER.info("Resource path where we try to get the 'countries' resource from: {}", countriesResourcePath);
-		Resource countriesResource = resourceResolver.getResource(countriesResourcePath);
-		if(null != countriesResource){
-			Countries countries = countriesResource.adaptTo(Countries.class);
-			if(null != countries && null != countryCode && null != phone){
-				String fullPhoneNumber = countries.getDialingCode(countryCode) + phone;
-				if(LOGGER.isDebugEnabled()){
-				    LOGGER.debug("Dialing code found, returning {}", fullPhoneNumber);
-				}
-				return fullPhoneNumber;
-			} else {
-				LOGGER.error("One of the required values is null - country code, phone number of countries resource");
-			}
-		} else {
-			LOGGER.error("Unable to get the 'Countries' resource from path {}", countriesResourcePath);
+
+		if(countryCode == null && null != phone){
+			LOGGER.warn("International country dialing code is missing...defaulting to 'phone' without country code");
+			return phone;
 		}
-		return null;
+
+		return "+" + countryCode + phone;
 	}
 
 
@@ -131,7 +115,7 @@ public class ShipNowService {
 	 */
 	public boolean register(DataSourcePool dataSourcePool, ValidatedRequestEntry entry) {
 		boolean output = false;
-		
+
 		try {
 			DataSource dataSource = dataSourcePool.getDataSource(DatabaseHelpers.DATA_SOURCE_NAME,DataSource.class);
 			

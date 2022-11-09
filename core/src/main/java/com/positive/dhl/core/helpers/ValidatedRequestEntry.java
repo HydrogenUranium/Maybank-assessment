@@ -7,6 +7,7 @@ import com.positive.dhl.core.constants.ValidationType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.apache.sling.api.SlingHttpServletRequest;
 
 import com.google.gson.JsonArray;
@@ -21,6 +22,7 @@ import org.slf4j.LoggerFactory;
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
+@ToString
 public class ValidatedRequestEntry extends HashMap<String, Object> {
 	private final Map<String, ValidationType> requiredFields;
 	private transient JsonArray errors;
