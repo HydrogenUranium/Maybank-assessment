@@ -88,7 +88,8 @@ public class Countries {
 			if(LOGGER.isDebugEnabled()){
 			    LOGGER.debug("Populating a map of dialing codes as it's empty");
 			}
-			countryMap.forEach((key,value) -> dialingCodesMap.put(key,key.toUpperCase(Locale.ROOT) + " (+" + value.getCallingCode() + ")"));
+			countryMap.forEach((key,value) -> dialingCodesMap.put(key.toUpperCase(Locale.ROOT) +
+					" (+" + value.getCallingCode() + ")", String.valueOf(value.getCallingCode())));
 		}
 
 		return dialingCodesMap;
