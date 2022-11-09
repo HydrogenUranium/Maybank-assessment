@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,6 +28,9 @@ class AccountActionsTest {
     @Mock
     private ConfigurationAdmin mockConfigurationAdmin;
 
+		@Mock
+		private EnvironmentConfiguration environmentConfiguration;
+
     @Mock
     private QueryBuilder mockQueryBuilder;
 
@@ -36,6 +40,7 @@ class AccountActionsTest {
 	@BeforeEach
 	void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
+				ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
         ctx.registerService(ConfigurationAdmin.class, mockConfigurationAdmin);
 	    ctx.addModelsForClasses(AccountActions.class);
@@ -45,7 +50,7 @@ class AccountActionsTest {
 	void test() {
 		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
 
-		Map<String, Object> params = new HashMap<String, Object>();
+		Map<String, Object> params = new HashMap<>();
 		params.put("r", "test");
 		
         MockSlingHttpServletRequest request = ctx.request();
