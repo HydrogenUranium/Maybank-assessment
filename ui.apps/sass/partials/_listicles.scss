@@ -1,0 +1,113 @@
+.listicles {
+  margin-bottom: 20px;
+
+  &__row {
+    margin-bottom: 20px;
+
+    @include respond(md) {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+%listicle-block {
+  @include respond(md) {
+    margin-right: 30px;
+
+    &:nth-child(2) {
+      margin-right: 0;
+    }
+  }
+}
+
+%listicle-text-block {
+  @extend %listicle-block;
+
+  padding: 20px;
+  margin: 20px 0;
+
+  @include respond(md) {
+    margin: 0 30px 0 0;
+    // max-height: 316px;
+    overflow: hidden;
+  }
+
+  @include respond(lg) {
+    // max-height: 277px;
+  }
+}
+
+.listicle {
+
+  &__title {
+    /* @include font("%H2Left", map-get($palette, scarlet)); */
+    color: map-get($palette, scarlet) !important;
+    font-size: 25px !important;
+    font-weight: bold !important;
+    margin-bottom: .5rem !important;
+  }
+
+  &__copy {
+    @include font("%T4");
+    margin: 10px 0;
+  }
+
+  &--image {
+    @extend %listicle-block;
+
+    height: 277px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+
+    @include respond(md) {
+      height: 316px;
+    }
+
+    @include respond(lg) {
+      height: 277px;
+    }
+  }
+
+  &--yellow {
+    @extend %listicle-text-block;
+    background-color: map-get($map: $palette, $key: sunflower-yellow);
+  }
+
+  &--white {
+    @extend %listicle-text-block;
+    background-color: map-get($map: $palette, $key: true-white);
+    border: 1px solid map-get($map: $palette, $key: border-grey);
+  }
+
+  &--grey {
+    @extend %listicle-text-block;
+    background-color: map-get($map: $palette, $key: white-two);
+  }
+
+  &--one-third {
+    width: 100%;
+
+    @include respond(md) {
+      width: calc(40% - 15px);
+    }
+  }
+
+  &--two-thirds {
+    width: 100%;
+
+    @include respond(md) {
+      width: calc(60% - 15px);
+    }
+  }
+
+  &--half {
+    width: 100%;
+
+    @include respond(md) {
+      width: calc(50% - 15px);
+    }
+  }
+}

@@ -1,0 +1,83 @@
+.gated {
+    position: relative;
+    display: none;
+
+    &__registerform {
+        display: none;
+
+        position: absolute;
+        z-index: 3;
+        left: 15px;
+        right: 15px;
+        bottom: 0;
+        background: map-get($palette, true-white);
+        background: linear-gradient(transparent 0%, map-get($palette, true-white) 5%);
+
+        .forms {
+            margin-top: 0;
+        }
+    }
+
+    &__intro {
+        .forms__title {
+            position: relative;
+            padding-left: 90px;
+            min-height: 60px;
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+
+                width: 60px;
+                height: 60px;
+                left: 10px;
+                top: -10px;
+                background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lock.svg') top center no-repeat;
+                background-size: contain;
+            }
+        }
+    }
+
+    &.locked {
+        display: block;
+        height: 1400px;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+
+            background: map-get($palette, true-white);
+            background: linear-gradient(transparent 15%, map-get($palette, true-white) 20%);
+        }
+
+        .gated__registerform {
+            display: block;
+        }
+
+        .figure-carousel {
+            opacity: 0;
+        }
+    }
+
+    &.unlocked, &.editor {
+        display: block;
+        height: auto;
+
+        &::before {
+            display: none;
+        }
+
+        .gated__registerform {
+            display: none;
+        }
+
+        .figure-carousel {
+            opacity: 1;
+        }
+    }
+}

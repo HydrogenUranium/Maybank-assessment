@@ -1,0 +1,22 @@
+.animatedPages {
+
+  &__copy {
+    font-family: $font-family--animated;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
+    color: map-get($palette, true-white);
+    padding: 10px 0;
+  }
+
+  &__title {
+    font-family: $font-family--animated;
+    font-size: 22px;
+    font-weight: 800;
+    font-stretch: condensed;
+    line-height: 1.18;
+    color: map-get($palette, true-white);
+    padding: 10px 0;
+  }
+
+}

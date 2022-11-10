@@ -1,0 +1,54 @@
+.inPageNavigation {
+  display: none;
+  align-items: center;
+  position: fixed;
+  top: 0px !important;
+  bottom: 0px;
+  left: 50px;
+  z-index: 8;
+
+  @include respond(xl) {
+    display: flex;
+  }
+
+  $block: &;
+
+  &__list {
+    margin: 0;
+  }
+
+  &__item {
+    display: block;
+  }
+
+  &__link {
+    display: block;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    border: 1px solid map-get($palette, true-white);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.7);
+    background: map-get($palette, true-white);
+    margin: 0 0 15px;
+    padding: 0 0 0 6px;
+    @include clearfix();
+    transition: background 300ms ease;
+
+    &--active {
+      background: map-get($palette, brownish-grey);
+    }
+
+  }
+
+  &--affix {
+    position: static;
+
+    #{$block}__list {
+      position: absolute;
+      left: 50px;
+      z-index: 7;
+    }
+
+  }
+
+}

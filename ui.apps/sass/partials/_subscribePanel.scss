@@ -1,0 +1,281 @@
+.subscribePanel {
+  position: relative;
+  color: map-get($palette, dhl-black);
+  background: #ffcc00;
+  background: linear-gradient(to bottom, #ffcc00 0%,#ffcc00 80%,#ffefb2 100%);
+  border: 1px solid #ffcc00;
+  padding: 10px 20px 20px;
+  margin-bottom: 20px;
+
+  @include respond(md) {
+    padding: 10px 50px;
+
+    .form-group {
+      margin-bottom: 5px;
+    }
+
+    .col-12 {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+
+  $block: &;
+
+  h3.subscribePanel__responseTitle {
+    text-align: center;
+  }
+
+  &__title {
+    @include font($style: "%H2Left");
+    font-size: 25px;
+    margin: 0 0 10px !important;
+  }
+
+  $intro: #{$block}__intro;
+
+   p#{$intro} {
+    @include font($style: "%T4");
+    margin: 0 0 22px;
+    color: #fff;
+
+    @include respond(md) {
+      line-height: 1.47;
+      margin: 0;
+    }
+
+    @include respond(lg) {
+      margin: 0 0 36px;
+    }
+  }
+
+  &__form {
+
+    input[type="email"] {
+      appearance: none;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      @include font($style: "%T2Left", $colour: map-get($palette, brownish-grey));
+      font-weight: 200;
+      font-stretch: condensed;
+      padding: 9px 12px;
+      border: 1px solid #979797;
+      margin: 0 !important;
+
+      &:focus {
+        outline: 1px solid map-get($palette, true-white);
+        outline-offset: 2px;
+      }
+    }
+
+    label.error {
+      @extend %form-error-msg;
+      margin: 3px 0 10px;
+    }
+
+    .form-check {
+      margin: 0 0 10px;
+      padding-left: 0;
+
+      .form-check-input {
+        position: fixed;
+        top: -100px;
+        right: -100px;
+        width: 0px;
+        height: 0px;
+
+        + label {
+          @include font($style: "%T5");
+          font-weight: 200;
+          font-stretch: condensed;
+          font-size: 13px;
+          margin: 0;
+          padding: 0 0 0 21px;
+          position: relative;
+          cursor: pointer;
+
+          &:before {
+            content: ' ';
+            display: block;
+            position: absolute;
+            top: 3px;
+            left: 0px;
+            width: 13px;
+            height: 13px;
+            background: map-get($palette, true-white);
+            border: 1px solid #979797;
+          }
+
+          &:after {
+            content: ' ';
+            display: block;
+            position: absolute;
+            top: 4px;
+            left: 1px;
+            width: 11px;
+            height: 11px;
+            background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/checkboxcheck.png);
+            background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/checkboxcheck.svg);
+            @include backgroundImage(contain);
+            opacity: 0;
+            transition: opacity 150ms ease;
+          }
+
+          p {
+            @include font($style: "%T5");
+            font-weight: 200;
+            font-stretch: condensed;
+            font-size: 13px;
+            margin: 0;
+            display: inline;
+          }
+
+          a {
+            color: inherit;
+            text-decoration: underline;
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+
+        &:checked {
+
+          + label {
+
+            &:after {
+              opacity: 1;
+            }
+
+          }
+
+        }
+
+        &:focus {
+
+          + label {
+            outline: none;
+          }
+
+        }
+
+      }
+
+      label.error {
+        margin-top: 0px;
+      }
+
+    }
+
+    #{$block}__submit {
+      appearance: none;
+      border: none;
+      @include button($background: map-get($palette, scarlet), $colour: map-get($palette, true-white), $hover: 1);
+      padding-left: 20px;
+      padding-right: 20px;
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+
+  }
+
+  &__responseOverlay {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    background: #ffcc00;
+    background: linear-gradient(to bottom, #ffcc00 0%,#ffcc00 80%,#ffefb2 100%);
+    text-align: center;
+    padding: 20px;
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 250ms ease, opacity 150ms ease;
+
+    &--show {
+      opacity: 1;
+      pointer-events: all;
+      transform: scale(1);
+    }
+  }
+
+  &__responseContent {
+    width: 100%;
+  }
+
+  &__responseIcon {
+    display: block;
+    width: 80px;
+    height: 80px;
+    box-sizing: border-box;
+    border: 3px solid map-get($palette, black);
+    border-radius: 80px;
+    margin: auto;
+    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/formsuccessicon.png);
+    background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/formsuccessiconblack.svg);
+    background-size: 44px 32px;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    &--error {
+      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/formerroricon.png);
+      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/formerroricon.svg);
+      background-size: 34px 34px;
+    }
+
+    @include respond(md) {
+      width: 60px;
+      height: 60px;
+      background-size: 33px auto;
+      border: 3px solid map-get($palette, black);
+      margin: auto;
+
+      &--error {
+        background-size: 26px 26px;
+      }
+    }
+
+    @include respond(lg) {
+      width: 70px;
+      height: 70px;
+      background-size: 44px auto;
+      border: 3px solid map-get($palette, black);
+      margin: auto;
+
+      &--error {
+        background-size: 43px 43px;
+      }
+    }
+  }
+
+  &__responseTitle {
+    @include font($style: "%H3");
+    text-align: center;
+    margin: 0 0 12px;
+
+    @include respond(md) {
+      font-size: 25px;
+      margin: 0 0 9px;
+    }
+
+    @include respond(lg) {
+      font-size: 25px;
+      margin: 0 0 14px;
+    }
+  }
+
+  &__responseContent {
+    @include font($style: "%T4");
+    font-weight: 200;
+    font-stretch: condensed;
+    line-height: 1.47;
+    text-align: center;
+    margin: 0;
+  }
+
+}

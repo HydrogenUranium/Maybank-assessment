@@ -1,0 +1,596 @@
+.hero {
+  text-align: center;
+  padding-bottom: 20px;
+
+  @include respond(md) {
+    padding-bottom: 39px;
+  }
+
+  @include respond(lg) {
+    text-align: left;
+    position: relative;
+    padding-bottom: 0;
+    max-height: calc(100vh - 80px);
+    min-height: 670px;
+    overflow: hidden;
+
+    .row {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+    }
+
+    .container {
+      position: absolute;
+      top: 200px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+
+      .row {
+        width: calc(100% + 30px);
+      }
+    }
+  }
+
+  $block: &;
+
+  &__image {
+    margin: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+    @include backgroundImage(cover);
+
+    @include respond(lg) {
+      padding-bottom: 0;
+      height: 670px;
+    }
+  }
+
+  &__playButton {
+    display: block;
+    width: 46px;
+    height: 46px;
+    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/playiconlarge.png);
+    background-image: none,url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/playiconlarge.svg);
+    background-size: 46px 46px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -23px;
+    margin-left: -23px;
+
+    @include respond(lg) {
+      display: none;
+    }
+  }
+
+  &__subTitle {
+    @include font($style: "%T4", $colour: map-get($palette, brownish-grey));
+    font-weight: 200;
+    font-stretch: condensed;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 12px 0 5px;
+
+    @include respond(md) {
+      margin: 15px 0 15px;
+    }
+
+    @include respond(lg) {
+      margin: 0 0 2px;
+      text-align: left;
+    }
+  }
+
+  &__title {
+    @include font($style: "%H1");
+    text-transform: uppercase;
+    margin: 0 0 21px;
+
+    a {
+      display: inline-block;
+      font: inherit;
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        color: inherit;
+      }
+
+      &:focus {
+        outline: 1px solid map-get($palette, brownish-grey);
+        outline-offset: -1px;
+      }
+    }
+
+    @include respond(md) {
+      margin: 0 0 34px;
+    }
+
+    @include respond(lg) {
+      margin: 0 0 16px;
+    }
+  }
+
+  &__date {
+    display: block;
+    @include font($style: "%T4", $colour: map-get($palette, black));
+    font-weight: 200;
+    font-stretch: condensed;
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+
+    @include respond(lg) {
+      text-align: left;
+      display: inline-block;
+      float: left;
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    + #{$block}__cta {
+      margin-top: 20px;
+    }
+  }
+
+  &__saveForOffline {
+    display: block;
+    width: 100%;
+    background: map-get($palette, true-white);
+    border: none;
+    cursor: pointer;
+    margin: -1px 0 0;
+    padding: 20px 0px;
+    @include font($style: "%T2");
+    text-align: center;
+    box-shadow: 0 1px 0 0 rgba(102, 102, 102, 0.3), inset 0 1px 0 0 rgba(102, 102, 102, 0.3);
+
+    &--desktop {
+      display: none;
+    }
+
+    @include respond(lg) {
+      display: none;
+      background: none;
+      box-shadow: none;
+      float: left;
+      width: auto;
+      line-height: 1;
+      padding: 0px;
+      padding-left: 32px;
+      margin-left: 32px;
+      border-left: 1px solid map-get($palette, black);
+
+      &--desktop {
+        display: block;
+      }
+    }
+
+    span {
+      position: relative;
+      padding-right: 21px;
+      transition: padding 150ms ease;
+
+      &:before,
+      &:after {
+        content: ' ';
+        display: block;
+        width: 12px;
+        height: 2px;
+        background: map-get($palette, black);
+        position: absolute;
+        top: 50%;
+        right: 0px;
+        margin-top: -1px;
+      }
+
+      &:after {
+        transform: rotate(90deg);
+      }
+
+    }
+
+    &:focus {
+      outline: none;
+
+      span {
+        outline: 1px solid map-get($palette, dhl-black);
+        outline-offset: 2px;
+      }
+    }
+
+    &--home {
+      box-shadow: none;
+      border-left: none;
+      float: none;
+      display: inline-block;
+      width: auto;
+      margin-left: 20px;
+      color: #999;
+
+      @include respond(lg) {
+        margin-left: 0;
+        padding-left: 20px;
+      }
+
+      span {
+        &:before, &:after {
+          background: #999;
+        }
+      }
+    }
+
+    &--saved {
+
+      span {
+        padding-right: 31px;
+
+        &:before {
+          width: 17px;
+          transform: rotate(-45deg);
+        }
+
+        &:after {
+          width: 9px;
+          transform: rotate(45deg);
+          margin-top: 2px;
+          margin-right: 12px;
+        }
+
+      }
+
+    }
+
+  }
+
+  &__cta {
+    @include button($background: map-get($palette, dhl-black), $colour: map-get($palette, true-white), $hover: 1);
+
+    @include respond(lg) {
+      margin-top: 20px;
+    }
+
+    &--red {
+      @include button($background: map-get($palette, scarlet), $colour: map-get($palette, true-white), $hover: 1);
+      padding: 10px 70px 10px 43px;
+      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrowwhite.png);
+      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrowwhite.svg);
+      background-position: center right 19px;
+      background-size: 8px 20px;
+      background-repeat: no-repeat;
+    }
+
+    &--video {
+      @include button($background: map-get($palette, scarlet), $colour: map-get($palette, true-white), $hover: 1);
+      padding: 10px 70px 10px 43px;
+      position: relative;
+      display: none;
+
+      @include respond(lg) {
+        display: inline-block;
+      }
+
+      &:after {
+        content: ' ';
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 9px solid transparent;
+        border-bottom: 9px solid transparent;
+        border-left: 15px solid map-get($palette, white);
+        position: absolute;
+        top: 50%;
+        right: 41px;
+        margin-top: -9px;
+      }
+    }
+  }
+
+  &__itemContent {
+    @include clearfix();
+
+    @include respond(lg) {
+      background: rgba(map-get($palette, true-white), 0.85);
+      padding: 22px 20px 30px 0;
+      position: relative;
+
+      @include respond(lg) {
+        margin-bottom: 70px;
+      }
+    }
+
+    &:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 0px;
+      right: 100%;
+      bottom: 0px;
+      background: rgba(map-get($palette, true-white), 0.85);
+      width: calc((100vw - 0px) / 2);
+      opacity: 0;
+
+      @include respond(lg) {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--noMasthead {
+      @include respond(lg) {
+        padding-top: 60px;
+
+        .container:after {
+          background: none !important;
+        }
+
+        #{$block}__itemContent,
+        #{$block}__itemContent:before {
+            background: map-get($map: $palette, $key: white-two);
+        }
+    }
+  }
+
+  &--divider {
+    padding-bottom: 0;
+
+    .container {
+
+      &:after {
+        content: ' ';
+        display: block;
+        width: 100%;
+        height: 1px;
+        background: rgba(map-get($palette, brownish-grey), 0.3);
+        margin: 16px 0 0;
+      }
+
+    }
+
+  }
+
+  &__video {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 0px;
+    opacity: 0;
+    background: map-get($palette, dhl-black);
+    z-index: 3;
+    transition: opacity 150ms ease;
+
+    &--open {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+  &__intro {
+    @include font($style: "%T1");
+    line-height: 1.37;
+    letter-spacing: -0.1px;
+    font-weight: 200;
+    font-stretch: condensed;
+    margin: 0;
+
+    @include respond(lg) {
+      font-size: 25px;
+    }
+  }
+
+  &--saved {
+    padding: 28px 0;
+
+    @include respond(lg) {
+      max-height: none;
+      min-height: 0px;
+    }
+
+    #{$block}__title {
+      text-align: left;
+      @include font($style: "%H2");
+    }
+
+    #{$block}__editSavedArticles {
+      display: inline-block;
+      text-align: center;
+      background: map-get($palette, black);
+      @include font($style: "%T3", $colour: map-get($palette, true-white));
+      font-weight: 800;
+      font-stretch: condensed;
+      margin: 28px auto 12px;
+      padding: 10px 56px 11px 80px;
+      position: relative;
+
+      @include respond(lg) {
+        margin: 0 0 0 auto;
+        background: map-get($palette, brownish-grey);
+        padding: 10px 15px 11px 58px;
+      }
+
+      @include respond(xl) {
+        padding: 10px 21px 11px 58px;
+      }
+
+      &:hover {
+        text-decoration: none;
+        background: lighten(map-get($palette, black), 15%);
+
+        @include respond(lg) {
+          background: lighten(map-get($palette, brownish-grey), 7%);
+        }
+      }
+
+      &:focus {
+        outline: 1px solid map-get($palette, black);
+        outline-offset: 2px;
+      }
+
+      span {
+        display: block;
+        width: 20px;
+        height: 3px;
+        position: absolute;
+        top: 50%;
+        left: 34px;
+        margin-top: -2px;
+
+        @include respond(lg) {
+          left: 21px;
+        }
+
+        &:first-child {
+          margin-top: -7px;
+        }
+
+        &:last-child {
+          margin-top: 3px;
+        }
+
+        &:before {
+          content: ' ';
+          display: block;
+          width: 3px;
+          height: 3px;
+          border-radius: 3px;
+          background: map-get($palette, true-white);
+          float: left;
+          vertical-align: top;
+        }
+
+        &:after {
+          content: ' ';
+          display: block;
+          width: 15px;
+          height: 3px;
+          border-radius: 3px;
+          background: map-get($palette, true-white);
+          margin-left: 2px;
+          float: left;
+          vertical-align: top;
+        }
+      }
+
+      &--editing {
+
+        &:after {
+          content: 'Done';
+          display: block;
+          background: map-get($palette, scarlet);
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          bottom: 0px;
+          left: 0px;
+          padding: 10px 15px 11px;
+        }
+
+        span {
+          display: none;
+        }
+      }
+
+    }
+
+    #{$block}__itemContent {
+      margin-bottom: 0px;
+
+      @include respond(lg) {
+        padding-bottom: 0px;
+      }
+    }
+
+    .row,
+    .container {
+      @include respond(lg) {
+        position: static;
+
+        &:after {
+          content: none;
+          display: none;
+        }
+      }
+    }
+
+  }
+
+  &--home {
+    @include respond(lg) {
+      min-height: 420px;
+    }
+
+    .row {
+      position: relative;
+    }
+
+    #{$block}__image {
+      padding-bottom: 200px;
+      border-bottom: 8px solid map-get($palette, sunflower-yellow);
+
+      @include respond(md) {
+        padding-bottom: 370px;
+      }
+
+      @include respond(lg) {
+        height: 420px;
+        padding-bottom: 0;
+        border-bottom: 4px solid map-get($palette, sunflower-yellow);
+      }
+    }
+
+    #{$block}__itemContent {
+      text-align: left;
+
+      @include respond(lg) {
+        margin-bottom: 90px;
+        background: map-get($palette, true-white);
+        padding: 15px 20px 20px;
+
+        &:before {
+          display: none;
+        }
+      }
+    }
+    #{$block}__title {
+      text-align: left;
+      margin-bottom: 10px;
+
+      @include respond(lg) {
+        font-size: 38px;
+        margin-bottom: 20px;
+      }
+    }
+    #{$block}__subTitle {
+      text-align: left;
+      margin-bottom: 0;
+    }
+
+    #{$block}__cta {
+      background-image: none;
+      padding: 10px 20px;
+    }
+  }
+}
+
+
+body.offline {
+
+  .hero__saveForOffline:not(.hero__saveForOffline--saved) {
+    box-shadow: 0 1px 0 0 rgba(102, 102, 102, 0.09), inset 0 1px 0 0 rgba(102, 102, 102, 0.09);
+    pointer-events: none;
+
+    span {
+      opacity: 0.3;
+    }
+
+  }
+
+}

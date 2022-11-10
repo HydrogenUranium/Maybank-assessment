@@ -1,0 +1,61 @@
+.root {
+    &__countrySelectPanel {
+      .mask {
+        position: fixed;
+        z-index: 100000;
+        background: #fff;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .welcomes {
+        padding: 50px 0;
+        text-align: center;
+
+        h3 {
+          display: block;
+          @include font($style: "%T1");
+          color: map-get($palette, scarlet);
+          text-transform: uppercase;
+          text-align: center;
+
+          font-size: 32px;
+          line-height: 25px;
+    
+          margin: 0 0 10px;
+          padding: 0;
+        }
+
+        p {
+          @include font($style: "%T2", $colour: map-get($palette, black));
+          font-weight: 300;
+          font-size: 20px;
+        }
+      }
+
+      .countries {
+        padding: 50px 15px 200px;
+
+        a {
+          display: block;
+          line-height: 80px;
+          color: #323232;
+          text-align: center;
+          font-weight: 500;
+        }
+
+        .row {
+          .row {
+            &:nth-child(2n+1) {
+              background: #ececec;
+            }
+          }
+        }
+      }
+    }
+}

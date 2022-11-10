@@ -1,0 +1,169 @@
+/*
+ FONT WEIGHTS
+
+ Both condensed and standard Frutiger are the same font family in fonts.net.
+ Therefore see the table to use weight to render the correct font:
+
+ FONT                   WEIGHT
+ Condensed, normal      400
+ Condensed, bold        700
+ Standard, normal       500
+ Standard, bold         600
+*/
+
+%H1 {
+  font-family: $font-family;
+  font-size: 32px;
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: condensed;
+  line-height: 1;
+  letter-spacing: normal;
+  text-align: center;
+
+  @include respond(md) {
+    font-size: 42px;
+  }
+
+  @include respond(lg) {
+    font-size: 60px;
+    text-align: left;
+  }
+}
+
+%H2 {
+  font-family: $font-family;
+  font-size: 26px;
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: condensed;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+
+  @include respond(md) {
+    font-size: 30px;
+  }
+
+  @include respond(lg) {
+    font-size: 40px;
+    text-align: left;
+  }
+}
+
+%H2Left {
+  @extend %H2;
+  text-align: left;
+}
+
+%H3 {
+  font-family: $font-family;
+  font-size: 26px;
+  font-weight: 200;
+  font-style: normal;
+  font-stretch: condensed;
+  line-height: 1.23;
+  letter-spacing: normal;
+  text-align: left;
+
+  @include respond(md) {
+    font-size: 28px;
+    line-height: 1.21;
+  }
+
+  @include respond(lg) {
+    font-size: 34px;
+    line-height: 1.18;
+  }
+}
+
+%H4 {
+  font-family: $font-family;
+  font-size: 22px;
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: condensed;
+  line-height: 1.18;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+%T1 {
+  font-family: $font-family;
+  font-size: 19px;
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: condensed;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+%T2 {
+  font-family: $font-family;
+  font-size: 17px;
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: condensed;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+
+  @include respond(lg) {
+    line-height: 1.18;
+  }
+}
+
+%T2Left {
+  @extend %T2;
+  text-align: left;
+}
+
+%T3 {
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+%T4 {
+  font-family: $font-family;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.6;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+%T5 {
+  font-family: $font-family;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.54;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+%readTime {
+    @include font($style: "%T5", $colour: map-get($palette, brownish-grey));
+    transition: color 150ms ease;
+    font-weight: 200;
+    font-stretch: condensed;
+
+    &:before {
+        content: "•";
+        font-size: 6px;
+        display: inline-block;
+        margin: 0 5px;
+        position: relative;
+        top: -2px;
+    }
+}

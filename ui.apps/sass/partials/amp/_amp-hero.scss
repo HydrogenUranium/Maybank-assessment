@@ -1,0 +1,123 @@
+.hero {
+  text-align: center;
+  padding-bottom: 20px;
+
+  $block: &;
+
+  &__playButton {
+    display: block;
+    width: 46px;
+    height: 46px;
+    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/playiconlarge.png);
+    background-image: none,url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/playiconlarge.svg);
+    background-size: 46px 46px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -23px;
+    margin-left: -23px;
+
+  }
+
+  &__subTitle {
+    @include font($style: "%T4", $colour: map-get($palette, brownish-grey));
+    font-weight: 200;
+    font-stretch: condensed;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 12px 0 5px;
+  }
+
+  &__title {
+    @include font($style: "%H1");
+    text-transform: uppercase;
+    margin: 0 0 21px;
+    text-align: center;
+
+    a {
+      display: inline-block;
+      font: inherit;
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        color: inherit;
+      }
+
+      &:focus {
+        outline: 1px solid map-get($palette, brownish-grey);
+        outline-offset: -1px;
+      }
+    }
+  }
+
+  &__date {
+    display: block;
+    @include font($style: "%T4", $colour: map-get($palette, black));
+    font-weight: 200;
+    font-stretch: condensed;
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+
+    + #{$block}__cta {
+      margin-top: 20px;
+    }
+  }
+
+
+
+  &__itemContent {
+    @include clearfix();
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 15px;
+
+    &:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 0px;
+      right: 100%;
+      bottom: 0px;
+      background: rgba(map-get($palette, true-white), 0.85);
+      width: calc((100vw - 0px) / 2);
+      opacity: 0;
+    }
+  }
+
+
+  &--divider {
+    padding-bottom: 0;
+  }
+
+  &__video {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 0px;
+    opacity: 0;
+    background: map-get($palette, dhl-black);
+    z-index: 3;
+    transition: opacity 150ms ease;
+
+    &--open {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+  &__intro {
+    @include font($style: "%T1");
+    line-height: 1.37;
+    letter-spacing: -0.1px;
+    font-weight: 200;
+    font-stretch: condensed;
+    margin: 0;
+  }
+}

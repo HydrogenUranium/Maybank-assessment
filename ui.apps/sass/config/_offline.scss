@@ -1,0 +1,47 @@
+.show-offline {
+  display: none !important;
+}
+.disable-offline {
+  transition: opacity 150ms ease;
+}
+
+body:after {
+  content: 'Connection Lost';
+  display: block;
+  width: 150px;
+  padding: 5px 25px;
+  border-radius: 30px;
+  background: map-get($palette, brownish-grey);
+  @include font($style: "%T5", $colour: map-get($palette, true-white));
+  position: fixed;
+  left: 50%;
+  bottom: -40px;
+  margin-left: -75px;
+  box-shadow: 1px 1px 8px 1px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: bottom 200ms ease, opacity 200ms ease;
+  z-index: 99;
+}
+
+body.offline {
+
+  &:after {
+    bottom: 20px;
+    opacity: 1;
+  }
+
+  .hide-offline {
+    display: none !important;
+  }
+
+  .show-offline {
+    display: block !important;
+  }
+
+  .disable-offline {
+    pointer-events: none !important;
+    opacity: 0.3 !important;
+  }
+
+}

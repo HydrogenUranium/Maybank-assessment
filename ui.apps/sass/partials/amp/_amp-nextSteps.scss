@@ -1,0 +1,11 @@
+@import '../nextSteps.scss';
+
+.nextSteps__title.d-none {
+  display: none;
+}
+
+.nextSteps__cta {
+  @include button($background: map-get($palette, scarlet), $colour: map-get($palette, white), $hover: map-get($palette, red), $border:-1);
+  text-decoration: none;
+  box-sizing: border-box;
+}

@@ -1,0 +1,58 @@
+.competition {
+	padding: 20px 0;
+	@include respond(md) {
+      padding: 40px 0;
+    }
+    h3 {
+    	font-size: 22px;
+    	border-bottom: 1px solid map-get($palette, border-grey);
+    	padding-bottom: 20px;
+    	@include respond(md) {
+	      font-size: 25px;
+	    }
+    }
+    .forms {
+    	margin-top: 20px;
+    	margin-bottom: 0;
+    	padding-bottom: 0;
+    	@include respond(lg) {
+	      margin-top: 50px;
+	    }
+    	&__checkbox--highlight {
+    		margin-bottom: 15px;
+    		@include respond(md) {
+		      margin-bottom: 20px;
+		    }
+		    label {
+		    	padding: 15px 24px;
+		    	width: 100%;
+		    	@include respond(md) {
+			    	width: 50%;
+			    }
+		    	span {
+		    		font-size: 17px;
+		    		color: map-get($palette, black);
+		    	}
+		    }
+    	}
+    	&__textarea {
+    		margin-top: 40px;
+		}
+
+		#register__yourEmailHelp p {
+			font-size: 13px;
+      font-weight: 200;
+      font-stretch: condensed;
+			color: #666;
+
+			a {
+				color: #d40511;
+				text-decoration: underline;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+    }
+}

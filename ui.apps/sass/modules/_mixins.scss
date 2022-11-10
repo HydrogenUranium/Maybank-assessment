@@ -1,0 +1,160 @@
+@mixin clearfix() {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+@mixin copyLists() {
+    ul, ol {
+        list-style: none;
+        padding-left: 20px;
+
+        li {
+            p {
+                vertical-align: top;
+            }
+        }
+    }
+
+    ul {
+        li {
+        position: relative;
+
+        &:before {
+            content: '•';
+            vertical-align: top;
+            position: absolute;
+            top: -5px;
+            left: -15px;
+            font-size: 20px;
+        }
+        }
+    }
+
+    ol {
+        list-style: decimal;
+
+        li {
+            position: relative;
+        }
+    }
+
+    ol li ol,
+    ol li ul,
+    ul li ul,
+    ul li ol {
+        //second level lists
+        list-style: none;
+        margin-top: 5px;
+        li {
+            &:before {
+                content: '-';
+                font-size: 10px;
+                top: 3px;
+                left: -10px;
+                display: inline;
+                position: absolute;
+            }
+        }
+    }
+}
+
+
+// put this mixin in the parent selector (ie .component)
+@mixin carousel-controls() {
+  .carousel-control-next,
+  .carousel-control-prev {
+      display: none;
+      width: 50px;
+
+      @include respond(xl) {
+          display: flex;
+      }
+  }
+
+  .carousel-control-next {
+      right: -70px;
+  }
+
+  .carousel-control-prev {
+      left: -70px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+      background: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/carouseliconsgrey.png');
+      height: 72px;
+      width: 25px;
+  }
+
+  .carousel-control-next-icon {
+      background-position: -25px;
+  }
+}
+
+@mixin form-inputs-indented() {
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 0 0 map-get($map: $palette, $key: border-grey);
+  border: solid 1px map-get($map: $palette, $key: border-grey);
+}
+
+@mixin form-inputs-outdented() {
+  box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.2), inset 0px 1px 1px 0 map-get($map: $palette, $key: border-grey);
+  border: solid 1px map-get($map: $palette, $key: border-grey);
+  border-radius: 5px;
+}
+
+%form-error-msg {
+  @include font($style: "%T5", $colour: map-get($palette, scarlet));
+  display: block;
+  margin-top: -17px;
+}
+
+@mixin bounce($bounceSeconds:'2s') {
+  animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+
+@mixin arrowLink($arrowImageUrl: '/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrow.png') {
+  &:before {
+    content: ' ';
+    display: block;
+    width: 8px;
+    height: 20px;
+    background-image: url($arrowImageUrl);
+    background-image: none, url($arrowImageUrl);
+    @include backgroundImage(contain);
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    margin-top: -10px;
+    transition: right 150ms ease;
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    &:before {
+      right: 9px;
+    }
+  }
+}

@@ -1,0 +1,520 @@
+.infoRow {
+  background-color: #33658a;
+  padding-top: 20px;
+  padding-bottom: 120px;
+
+  @include respond(md) {
+    padding-top: 40px;
+    padding-bottom: 90px;
+  }
+
+  @include respond(lg) {
+    padding-top: 90px;
+    padding-bottom: 140px;
+  }
+
+  &--country {
+    margin: 0 0 20px;
+
+    @include respond(md) {
+      margin: 0 0 30px;
+    }
+
+    @include respond(lg) {
+      margin: 0 0 80px;
+    }
+  }
+
+  &--music,
+  &--music2 {
+    background-color: #213139;
+  }
+
+  &--music2 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @include respond(md) {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    @include respond(xl) {
+      padding-top: 90px;
+      padding-bottom: 90px;
+    }
+  }
+
+  &--countryIndia {
+    margin: 30px 0;
+
+    @include respond(md) {
+      margin: 40px 0;
+    }
+
+    @include respond(lg) {
+      margin: 90px 0;
+    }
+  }
+
+  &--countryAsia {
+    margin: 30px 0;
+
+    @include respond(md) {
+      margin: 40px 0;
+    }
+
+    @include respond(lg) {
+      margin: 90px 0 30px;
+    }
+
+    .container {
+      position: relative;
+
+      &:after {
+        content: ' ';
+        display: block;
+        height: 2px;
+        background: #e8e8e8;
+        position: absolute;
+        z-index: 4;
+        left: 15px;
+        right: 15px;
+        bottom: -10px;
+      }
+    }
+  }
+
+  &--countryUK {
+    margin: 30px 0;
+
+    @include respond(md) {
+      margin: 65px 0 60px;
+    }
+
+    @include respond(lg) {
+      margin: 90px 0;
+    }
+  }
+
+
+  &--cosmetics101 {
+    background:#21314a;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    padding: 30px 0 20px;
+
+    @include respond(md) {
+      padding: 40px 0 30px;
+    }
+
+    @include respond(lg) {
+      padding: 90px 0;
+    }
+  }
+
+  &--medical {
+    background: #33658a;
+    padding: 30px 0 0;
+
+    @include respond(md) {
+      padding: 50px 0 50px;
+    }
+
+    @include respond(md) {
+      padding: 90px 0 50px;
+    }
+
+  }
+
+  &--office {
+    background: #203239;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    padding: 30px 0 20px;
+
+    @include respond(md) {
+      padding: 40px 0;
+    }
+
+    @include respond(lg) {
+      padding: 110px 0 50px 0;
+    }
+  }
+
+  &--fashion {
+    background-color: #49bfe0;
+    padding-top: 30px;
+    padding-bottom: 80px;
+    z-index: 0 !important;
+
+    @include respond(md) {
+      padding-top: 40px;
+      padding-bottom: 90px;
+    }
+
+    @include respond(lg) {
+      padding-top: 90px;
+      padding-bottom: 140px;
+    }
+  }
+
+  &--textiles {
+    background-color: #ffffff;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @include respond(md) {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    @include respond(lg) {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+  }
+
+  &--fashionAlt {
+    background-color: map-get($palette, true-white);
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @include respond(md) {
+      padding-bottom: 40px;
+      padding-top: 30px;
+    }
+
+    @include respond(lg) {
+      height: 467px;
+      overflow: visible;
+    }
+
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &--electronics {
+    background-color: #33658a;
+    padding: 30px 0;
+
+    @include respond(md) {
+      padding: 40px 0;
+    }
+
+    @include respond(lg) {
+      padding-top: 140px;
+      padding-bottom: 90px;
+    }
+  }
+
+  &--sport {
+    background: #49bfe0;
+    padding: 20px 0 5px 0;
+
+    @include respond(md) {
+      padding: 40px 0 25px;
+    }
+
+    @include respond(lg) {
+      padding: 180px 0 100px;
+    }
+
+    @include respond(xl) {
+      padding-top: 120px;
+    }
+
+  }
+
+  &--sportAlt {
+    background: white;
+    padding: 20px 0 20px 0;
+  }
+
+  &--textRow {
+    background-color: #49bfe0;
+    padding: 30px 0 60px;
+
+    @include respond(md) {
+      padding: 40px 0 60px;
+    }
+
+    @include respond(lg) {
+      padding: 70px 0 90px;
+    }
+  }
+
+  &__title {
+    font-family: $font-family--animated;
+    font-size: 22px;
+    font-weight: 800;
+    font-stretch: condensed;
+    line-height: 1.18;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+
+    @include respond(md) {
+      font-size: 40px;
+      line-height:normal;
+    }
+
+    &--fashion,
+    &--alt {
+
+      @include respond(md) {
+        font-size: 30px;
+      }
+
+      @include respond(lg) {
+        font-size: 40px;
+      }
+    }
+
+    &--alt {
+      color: #000000;
+    }
+
+    &--center {
+      @include respond(md) {
+        text-align: center;
+      }
+    }
+ }
+
+  &__copy {
+    font-family: $font-family--animated;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #ffffff;
+
+    &--alt {
+      color: #000000;
+    }
+
+    &--center {
+      @include respond(md) {
+        text-align: center;
+      }
+    }
+  }
+
+  &__link {
+    color: #000000;
+    text-decoration: underline;
+
+    &:hover {
+      color: #000000;
+      text-decoration: underline;
+    }
+
+    &--alt {
+      color: #ffffff;
+      text-decoration: underline;
+
+      &:hover {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__boxWrapper {
+    width: 100%;
+    display: flex;
+  }
+
+  &__image {
+    width: 275px;
+    height: 275px;
+    margin: 0 auto;
+    display: block;
+
+    @include respond(md) {
+      width: 340px;
+      height: 340px;
+      position: relative;
+      left: -37px;
+      top: -25px;
+    }
+
+    @include respond(lg) {
+      width: 400px;
+      height: 400px;
+      left: 0;
+      top: -33px;
+    }
+
+    &--letter {
+      width: 190px;
+      height: auto;
+
+      @include respond(md) {
+        width: 373px;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    &--medical {
+      margin-top: 40px;
+    }
+
+    &--music {
+      margin-top: 30px;
+
+      @include respond(md) {
+        margin-top: 80px;
+        width: 300px;
+        height: auto;
+      }
+
+      @include respond(lg) {
+        margin-top: 50px;
+        width: 400px;
+      }
+    }
+
+    &--music2 {
+      height: auto;
+      width: 260px;
+
+      @include respond(md) {
+        width: 255px;
+        margin-top: 40px;
+      }
+
+      @include respond(lg) {
+        width: 350px;
+      }
+    }
+
+    &--ring {
+      width: 246px;
+      height: auto;
+      margin-bottom:25px;
+
+      @include respond(md) {
+        width: 246px;
+        margin-bottom:0;
+      }
+
+      @include respond(lg) {
+        width: 373px;
+      }
+    }
+
+    &--vr,
+    &--book {
+      width: 100%;
+      height: auto;
+      margin:0 auto 20px;
+
+      @include respond(md) {
+        width: 400px;
+        margin:40px auto;
+        top:auto;
+        left:auto;
+      }
+
+      @include respond(lg) {
+        width: 374px;
+        top:-14px;
+      }
+    }
+
+    &--book {
+
+      width: 80%;
+      margin: 0 auto 0;
+
+      @include respond(md) {
+        width: 250px;
+      }
+
+      @include respond(lg) {
+        width: 374px;
+      }
+    }
+
+    &--sport {
+      @include respond(md) {
+        width: 400px;
+        margin:40px auto;
+        top:auto;
+        left:auto;
+      }
+    }
+  }
+
+  &__sewing {
+    width: 290px;
+    height: 215px;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+    margin: 0 auto;
+    display: block;
+
+    @include respond(md) {
+      width: 384px;
+      height: 285px;
+      margin: 40px auto;
+      position: initial;
+    }
+
+    @include respond(lg){
+      width: 372px;
+      height: 296px;
+    }
+  }
+}
+
+.country-gif {
+  background-image:none;
+  margin:40px auto;
+
+  width:320px;
+  height:344px;
+  background-size:320px 344px;
+
+  @include respond(sm){
+    background-image:none;
+    width:389px;
+    height:421px;
+    background-size:389px 421px;
+  }
+
+  @include respond(lg){
+    background-image:none;
+    width:389px;
+    height:421px;
+    background-size:389px 421px;
+    margin:0 auto;
+  }
+
+}
+
+#country_us {
+  &.visible {
+    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/animated5/cosmetic-map-us.gif);
+  }
+}
+
+#country_india {
+  &.visible {
+    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/animated9/map-india.gif);
+  }
+}
+
+#country_uk {
+  &.visible {
+    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/animated9/map-uk.gif);
+  }
+}
+
+#country_asia {
+  &.visible {
+    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/animated8/map-asia.gif);
+  }
+}

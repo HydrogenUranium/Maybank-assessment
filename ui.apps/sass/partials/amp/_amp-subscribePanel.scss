@@ -1,0 +1,116 @@
+body .wysiwyg .subscribePanel__title {
+  font-weight: 800;
+  font-stretch: condensed;
+}
+
+.subscribePanel {
+  position: relative;
+  padding: 10px 20px 20px;
+  color: map-get($palette, dhl-black);
+  background: linear-gradient(to bottom, map-get($palette, sunflower-yellow) 0%, map-get($palette, sunflower-yellow) 80%, #ffefb2 100%);
+
+  &__title {
+    margin: 0 0 10px;
+  }
+
+  &__intro {
+    display: none;
+  }
+
+  input[type="email"] {
+    appearance: none;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    color: map-get($palette, brownish-grey);
+    padding: 9px 12px;
+    border: 1px solid map-get($palette, checkbox-border-grey);
+    margin: 0;
+    font: 17px $font-family;
+  }
+
+  input[type="checkbox"] {
+    position: fixed;
+    top: -1px;
+    right: -1px;
+    width: 0;
+    height: 0;
+
+    + label {
+      display: block;
+      font: 13px $font-family;
+      margin: 0 0 10px;
+      padding: 0 0 0 21px;
+      position: relative;
+
+      &:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        top: 3px;
+        left: 0;
+        width: 13px;
+        height: 13px;
+        background: map-get($palette, true-white) none center/11px auto no-repeat;
+        border: 1px solid map-get($palette, checkbox-border-grey);
+      }
+
+    }
+
+    &:checked {
+
+      + label {
+
+        &:before {
+          background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/checkboxcheck.png);
+          background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/checkboxcheck.svg);
+        }
+
+      }
+
+    }
+
+  }
+
+  &__submit {
+    width: 100%;
+    appearance: none;
+    border: none;
+    @include button($background: map-get($palette, scarlet), $colour: map-get($palette, true-white), $hover: 1);
+  }
+
+  &__responseOverlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, map-get($palette, sunflower-yellow) 0%, map-get($palette, sunflower-yellow) 80%, #ffefb2 100%);
+  }
+
+  &__responseContent {
+    padding: 10px 20px;
+    text-align: center;
+
+    h3,
+    p {
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h3 {
+      font-weight: 800;
+      font-stretch: condensed;
+      margin: 0 0 10px
+    }
+
+  }
+
+  &__icon {
+    border: 3px solid map-get($palette, black);
+    border-radius: 80px;
+    margin: auto;
+  }
+
+}

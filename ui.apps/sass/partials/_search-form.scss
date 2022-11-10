@@ -1,0 +1,94 @@
+.search-form {
+
+  label.error {
+    margin-top: 0;
+  }
+
+  &__search {
+    position: relative;
+    input[type=search] {
+      width: 1%;
+    }
+
+    input[type=submit] {
+      font-size: 0;
+    }
+
+    .input-group {
+      margin-bottom: 0 !important;
+    }
+
+    .input-group-append {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__clear-icon {
+    background: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/closeiconblack.svg') no-repeat center;
+    background-size: contain;
+    display: block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    right: 60px;
+    top: 18px;
+    z-index: 3;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__search-icon {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-progress-appearance: none;
+    appearance: none;
+    border: none;
+    background: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/searchicon.png') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__topics {
+    margin: 30px 0;
+
+    @include respond(lg) {
+      margin-top: 40px;
+    }
+  }
+
+  &__topic {
+    margin-bottom: 20px;
+
+    a {
+      @include font("%T4");
+      @include hoverText($colour-hover: map-get($palette, black));
+      font-weight: 200;
+      font-stretch: condensed;
+      padding: 6px 10px;
+      display: block;
+      text-align: center;
+      background-color: map-get($palette, sunflower-yellow);
+      border-radius: 15px;
+    }
+  }
+
+  &__results-text {
+    @include font("%H4");
+    margin: 20px 0;
+    text-transform: uppercase;
+
+    @include respond(md) {
+      margin: 40px 0;
+    }
+  }
+}
