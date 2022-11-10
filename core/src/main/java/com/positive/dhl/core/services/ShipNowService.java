@@ -7,11 +7,8 @@ import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.constants.ValidationType;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.helpers.ValidatedRequestEntry;
-import com.positive.dhl.core.models.Countries;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.request.RequestParameter;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -23,6 +20,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * OSGi service that contains methods to help with the data validation of form input
+ */
 @Component(
 		service = ShipNowService.class
 )
@@ -80,15 +80,13 @@ public class ShipNowService {
 	private String getPhoneWithExtension(SlingHttpServletRequest request){
 		String countryCode = getParameterValue(DIALING_CODE,request);
 		String phone = getParameterValue(PHONE,request);
-		ResourceResolver resourceResolver = request.getResourceResolver();
-		Resource countriesResource = resourceResolver.getResource(environmentConfiguration.getCountryInfoLocation() + "/" + countryCode);
-		if(null != countriesResource){
-			Countries countries = countriesResource.adaptTo(Countries.class);
-			if(null != countries && null != countryCode && null != phone){
-				return countries.getDialingCode(countryCode) + phone;
-			}
+
+		if(countryCode == null && null != phone){
+			LOGGER.warn("International country dialing code is missing...defaulting to 'phone' without country code");
+			return phone;
 		}
-		return null;
+
+		return "+" + countryCode + phone;
 	}
 
 
@@ -96,7 +94,8 @@ public class ShipNowService {
 	 * Returns the value associated with servlet's request parameter identified by name.
 	 * @param parameterName is a String representing the parameter name
 	 * @param request is an instance of {@link SlingHttpServletRequest} that contains all in the provided input parameters
-	 * @return a String representation of the value, if the parameter does not exist in the {@code SlingHttpServletRequest}, it returns {@code null}. If you need other
+	 * @return a String representation of the value, if the parameter does not exist in the {@code SlingHttpServletRequest},
+	 * it returns {@code null}. If you need other
 	 * object than String, you need to transform the value yourself
 	 */
 	private String getParameterValue(String parameterName, SlingHttpServletRequest request){
@@ -108,13 +107,15 @@ public class ShipNowService {
 	}
 
 
-	
 	/**
-	 *
+	 * Saves the 'entry' into the database
+	 * @param dataSourcePool is an instance of {@link DataSourcePool} provided as OSGi service
+	 * @param entry is an instance of {@link ValidatedRequestEntry}
+	 * @return boolean {@code true} if save was successful or {@code false} if not
 	 */
 	public boolean register(DataSourcePool dataSourcePool, ValidatedRequestEntry entry) {
 		boolean output = false;
-		
+
 		try {
 			DataSource dataSource = dataSourcePool.getDataSource(DatabaseHelpers.DATA_SOURCE_NAME,DataSource.class);
 			

@@ -16,14 +16,14 @@ import javax.servlet.Servlet;
 import java.io.IOException;
 
 /**
- * 
+ * Servlet to serve the ShipNow forms
  */
 @Component(
 	service = Servlet.class,
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Ship Now Servlet",
     	"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-    	"sling.servlet.resourceTypes="+ "discover-servlet-handler"
+			"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/shipnow/index.json"
 	}
 )
 public class ShipNowServlet extends StandardFormInputServlet {

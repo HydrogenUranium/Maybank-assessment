@@ -3,14 +3,11 @@
         "create service user discover-writer with path /home/users/system/discover",
         "create service user discover-reader with path /home/users/system/discover",
 
-        "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)",
+        "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/jcr:content(nt:unstructured)",
+        "set properties on /content/dhl/jcr:content \n set cq:allowedTemplates{String[]} to /apps/dhl/templates/dhl-article-group-page,/apps/dhl/templates/dhl-amp-article-page,/apps/dhl/templates/dhl-animated-201901-page,/apps/dhl/templates/dhl-animated-20190225-page,/apps/dhl/templates/dhl-animated-20190523-page,/apps/dhl/templates/dhl-animated-20190624-page,/apps/dhl/templates/dhl-animated-20190724-page,/apps/dhl/templates/dhl-animated-20190805-page,/apps/dhl/templates/dhl-animated-20191021-page,/apps/dhl/templates/dhl-animated-20191025-page,/apps/dhl/templates/dhl-animated-20191101-page,/apps/dhl/templates/dhl-animated-20191122,/apps/dhl/templates/dhl-article-group-page,/apps/dhl/templates/dhl-article-page,/apps/dhl/templates/dhl-blank-page,/apps/dhl/templates/dhl-gated-article-page,/apps/dhl/templates/dhl-general-page,/apps/dhl/templates/dhl-landing-oct18-page,/apps/dhl/templates/dhl-landing-page-twocol,/apps/dhl/templates/dhl-register-page,/apps/dhl/templates/dhl-shipnow-page,/apps/dhl/templates/dhl-shipnowmarketo-page,/apps/dhl/templates/dhl-shipnowthanks-page \n set sling:resourceType to dhl/components/pages/root\nend",
 
         "create path (sling:Folder) /conf/dhl/appdata",
         "create path (sling:Folder) /conf/dhl/appdata/countries",
-
-        "create path (sling:Folder) /conf/dhl/servlet-handler",
-        "create path (nt:unstructured) /conf/dhl/servlet-handler/shipnow",
-        "set properties on /conf/dhl/servlet-handler/shipnow\n set sling:resourceType{String} to \"discover-servlet-handler\"\n end",
 
         "create path (nt:unstructured) /conf/dhl/appdata/countries/af",
         "set properties on /conf/dhl/appdata/countries/af\n set countryName{String} to Afghanistan\n set currency{String} to USD\n set callingCode{Long} to 93 \n end",

@@ -1,9 +1,18 @@
 package com.positive.dhl.core.helpers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Class that contains various 'helper' methods that can be leveraged to validate certain aspects of data, such as emails and / or
+ * phone numbers.
+ */
 public class ValidationHelper {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ValidationHelper.class);
 
 	private ValidationHelper(){
 		throw new IllegalStateException("Not meant to be instantiated");
@@ -40,7 +49,13 @@ public class ValidationHelper {
 	 * @return boolean {@code true} if we 'validated' the phone number or {@code false} if not.
 	 */
 	public static boolean isPhoneNumberValid(String phoneNumber){
-		Matcher matcher = VALID_PHONE_REGEX.matcher(phoneNumber.trim());
-		return matcher.find();
+		if(null != phoneNumber){
+			Matcher matcher = VALID_PHONE_REGEX.matcher(phoneNumber.trim());
+			return matcher.find();
+		}
+		LOGGER.error("Phone number appears to be 'null'. Unable to validate if that is correct, returning " +
+				"'false' indicating provided number is not valid, however strictly speaking that may not be " +
+				"true");
+		return false;
 	}
 }

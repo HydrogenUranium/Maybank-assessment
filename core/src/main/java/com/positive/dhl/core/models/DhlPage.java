@@ -4,7 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.day.cq.wcm.api.WCMMode;
-import com.positive.dhl.core.helpers.ConfigurationHelper;
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -12,6 +12,7 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.osgi.service.cm.ConfigurationAdmin;
 
 import java.util.ArrayList;
@@ -34,6 +35,9 @@ public class DhlPage {
 	
 	@Inject
 	private Page currentPage;
+
+	@OSGiService
+	private EnvironmentConfiguration environmentConfiguration;
 	
 	private String fullUrl;
 	private String fullarticlepath;
@@ -189,7 +193,7 @@ public class DhlPage {
 		if (home != null) {
 			ValueMap homeProperties = home.adaptTo(ValueMap.class);
 			if (homeProperties != null) {
-				assetprefix = ConfigurationHelper.GetEnvironmentProperty(this.configurationAdmin, "assetPrefix", "/discover");
+				assetprefix = environmentConfiguration.getAssetPrefix();
 
 				pathprefix = homeProperties.get("jcr:content/pathprefix", "");
 				trackingid = homeProperties.get("jcr:content/trackingid", "");

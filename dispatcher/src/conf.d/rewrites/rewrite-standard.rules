@@ -23,6 +23,7 @@ RewriteRule ^(.*)$ http://%1$1 [R=301,L]
 ### Send all requests to '/discover/' to the path without that prefix
 RewriteRule ^/discover/etc.clientlibs/dhl/(.*?)$ /etc.clientlibs/dhl/$1 [NC,PT,L]
 RewriteRule ^/discover/apps/dhl/discoverdhlapi/(.*?)$ /apps/dhl/discoverdhlapi/$1 [NC,PT,L]
+RewriteRule ^/discover/apps/dhl/servlet-handler/(.*?)$ /apps/dhl/servlet-handler/$1 [NC,PT,L]
 RewriteRule ^/discover/(.*?)$ /$1 [R=302,L]
 RewriteRule ^/discover$ / [R=302,L]
 
@@ -517,6 +518,7 @@ RewriteCond %{REQUEST_URI} !^/discover/tmp
 RewriteCond %{REQUEST_URI} !^/discover/var
 RewriteCond %{REQUEST_URI} !^/content/dam
 RewriteCond %{REQUEST_URI} !^/bin/dhl
+RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
 RewriteCond %{REQUEST_URI} !^/apps
 RewriteCond %{REQUEST_URI} !^/etc
 RewriteCond %{REQUEST_URI} !^/home
@@ -537,6 +539,8 @@ RewriteCond %{REQUEST_URI} !^/ms-my
 RewriteCond %{REQUEST_URI} !^/zh-sg
 RewriteCond %{REQUEST_URI} !^/en-au
 RewriteCond %{REQUEST_URI} !^/en-ph
+RewriteCond %{REQUEST_URI} !^/crx
+RewriteCond %{REQUEST_URI} !^/system
 RewriteRule ^(.*?)$ https://%{HTTP_HOST}/en-global$1 [R=302,L]
 
 
@@ -557,6 +561,7 @@ RewriteCond %{REQUEST_URI} !^/content/dam
 RewriteRule !^content/dhl - [R=404,L,NC]
 
 RewriteCond %{REQUEST_URI} !^/bin/dhl
+RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
 RewriteCond %{REQUEST_URI} !^/apps
 RewriteCond %{REQUEST_URI} !^/content
 RewriteCond %{REQUEST_URI} !^/etc

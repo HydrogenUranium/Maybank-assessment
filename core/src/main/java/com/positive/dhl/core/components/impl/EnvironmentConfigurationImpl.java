@@ -9,6 +9,9 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 import org.osgi.service.metatype.annotations.Designate;
 
+/**
+ * Reads various configuration entries of the Discover application from the OSGi
+ */
 @Component(
         service = EnvironmentConfiguration.class,
         immediate = true,
@@ -20,8 +23,8 @@ import org.osgi.service.metatype.annotations.Designate;
 @ServiceDescription("Discover environment configuration")
 public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
 
-    private EnvironmentConfigurationData environmentConfigurationData;
     private String countryInfoLocation;
+    private String assetPrefix;
 
 
     /**
@@ -31,12 +34,12 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     @Activate
     protected void activate(EnvironmentConfigurationData environmentConfigurationData) {
         countryInfoLocation = PropertiesUtil.toString(environmentConfigurationData.countryInfoLocation(),"/conf/dhl/appdata/countries");
-        this.environmentConfigurationData = environmentConfigurationData;
+        assetPrefix = PropertiesUtil.toString(environmentConfigurationData.assetPrefix(),"/discover");
     }
 
     @Override
-    public String getAssetprefix() {
-        return this.environmentConfigurationData.assetPrefix();
+    public String getAssetPrefix() {
+        return assetPrefix;
     }
 
     @Override

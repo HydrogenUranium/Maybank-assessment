@@ -22,7 +22,8 @@ import java.util.stream.Collectors;
 
 
 /**
- * Countries is a <a href="https://sling.apache.org/documentation/bundles/models.html">Sling Model</a> class (adaptable from {@link Resource} & {@link SlingHttpServletRequest}) that provides access
+ * Countries is a <a href="https://sling.apache.org/documentation/bundles/models.html">Sling Model</a>
+ * class (adaptable from {@link Resource} & {@link SlingHttpServletRequest}) that provides access
  * to
  * country information
  */
@@ -45,6 +46,9 @@ public class Countries {
 	@OSGiService
 	private EnvironmentConfiguration environmentConfiguration;
 
+	/**
+	 * Init method, populates the map of countries on model's load
+	 */
 	@PostConstruct
 	public void start(){
 		populateCountryMap();
@@ -74,7 +78,8 @@ public class Countries {
 	}
 
 	/**
-	 * Method that returns the international dialing codes as a {@link Map} of country code as {@code key} and concatenated string of uppercase country code with the actual international dialing code
+	 * Method that returns the international dialing codes as a {@link Map} of country code as {@code key} and concatenated
+	 * string of uppercase country code with the actual international dialing code
 	 * as {@code value}
 	 * @return a Map of dialing codes
 	 */
@@ -83,7 +88,8 @@ public class Countries {
 			if(LOGGER.isDebugEnabled()){
 			    LOGGER.debug("Populating a map of dialing codes as it's empty");
 			}
-			countryMap.forEach((key,value) -> dialingCodesMap.put(key,key.toUpperCase(Locale.ROOT) + " (+" + value.getCallingCode() + ")"));
+			countryMap.forEach((key,value) -> dialingCodesMap.put(key.toUpperCase(Locale.ROOT) +
+					" (+" + value.getCallingCode() + ")", String.valueOf(value.getCallingCode())));
 		}
 
 		return dialingCodesMap;
@@ -95,7 +101,8 @@ public class Countries {
 	 */
 	public Map<String,String> getCountrySelectOptionValues(){
 		if(optionValuesMap.isEmpty()){
-			countryMap.forEach((key,value) -> optionValuesMap.put(value.getCountryName() + "|" + key.toUpperCase(Locale.ROOT) + "|" + value.getCurrency(), value.getCountryName() ));
+			countryMap.forEach((key,value) -> optionValuesMap.put(value.getCountryName() +
+					"|" + key.toUpperCase(Locale.ROOT) + "|" + value.getCurrency(), value.getCountryName() ));
 		}
 		return optionValuesMap;
 	}
@@ -120,7 +127,8 @@ public class Countries {
 	/**
 	 * Returns country name based on the country code
 	 * @param country is a JCR Node representing the country code we want to find
-	 * @return String representing the country name (as exists in the repository) or {@code null} in case it doesn't exist
+	 * @return String representing the country name (as exists in the repository) or {@code null} in case it doesn't exist.
+	 * @throws RepositoryException is thrown in case a problem occurred when accessing the repository's properties
 	 */
 	public String getCountryName(Node country) throws RepositoryException {
 			Resource resource = resourceResolverHelper.getReadResourceResolver().getResource(country.getName());
