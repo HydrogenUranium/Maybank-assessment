@@ -23,10 +23,7 @@ import org.slf4j.LoggerFactory;
 @EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
-
 @ToString
-=======
-
 public class ValidatedRequestEntry extends HashMap<String, Object> {
 	private final Map<String, ValidationType> requiredFields;
 	private transient JsonArray errors;

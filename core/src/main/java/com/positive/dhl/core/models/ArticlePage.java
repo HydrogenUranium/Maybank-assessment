@@ -88,9 +88,9 @@ public class ArticlePage {
 		if (properties != null) {
 			// spec says just hard-code these things; which isn't too nice...
 			String customOgTagImage = properties.get("jcr:content/ogtagimage", "");
-			ogtagimage = "https://discover.dhl.com/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/192.png";
+			ogtagimage = "https://www.dhl.com/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/192.png";
 			if (customOgTagImage.trim().length() > 0) {
-				ogtagimage = ("https://discover.dhl.com").concat(customOgTagImage.trim());
+				ogtagimage = ("https://www.dhl.com/discover").concat(customOgTagImage.trim());
 			}
 			
 			customStyles = properties.get("jcr:content/customstyles", "");

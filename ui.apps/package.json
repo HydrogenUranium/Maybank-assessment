@@ -1,7 +1,7 @@
 {
   "name": "discover-dhl",
   "version": "2.0.0",
-  "description": "Website for discover.dhl.com",
+  "description": "Website for Discover",
   "main": "gulpfile.js",
   "scripts": {
     "create-template": "node tools/create-template.js",
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/positivetechnology/DHL-Discover/issues"
   },
-  "homepage": "https://discover.dhl.com",
+  "homepage": "https://www.dhl.com/discover",
   "devDependencies": {},
   "dependencies": {
     "babel-core": "^6.26.0",

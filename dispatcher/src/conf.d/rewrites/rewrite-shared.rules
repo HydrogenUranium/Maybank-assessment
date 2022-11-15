@@ -1,0 +1,35 @@
+#
+# This file contains the rewrite rules, and can be customized.
+#
+# By default, it includes just the rewrite rules. You can
+# add rewrite rules to this file but you should still include
+# the default rewrite rules.
+Include conf.d/rewrites/default_rewrite.rules
+
+## rewrite rule(s)
+RewriteEngine On
+
+#Include conf.d/rewrites/business.rules
+
+
+### STATIC PASSTHROUGHS ###
+RewriteRule ^(/discover)?/serviceworker\.js$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/sw.js [NC,PT,L]
+RewriteRule ^(/discover)?/manifest\.json$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/manifest.json [NC,PT,L]
+RewriteRule ^(/discover)?/google441cb6f8a8a3ae5b.html$ /apps/dhl/discoverdhlapi/google/index.html [NC,PT,L]
+RewriteRule ^(/discover)?/akamai/sureroute-test-object.html$ /apps/dhl/discoverdhlapi/akamai/index.html [NC,PT,L]
+RewriteRule ^(/discover)?/sitemap.xml$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/sitemaps/20220203-englobal-sitemap.xml [NC,PT,L]
+RewriteRule ^(/discover)?/robots.txt$ /apps/dhl/discoverdhlapi/robots.txt [NC,PT,L]
+
+### 301 Rewrite all URLs ending in '.html' to remove the extension
+RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
+
+### Default redirects
+RewriteRule ^/discover$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/discover/content/dhl$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
+
+### PASS THROUGH TO AEM ###
+RewriteRule ^/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/favicon.ico [PT,L,NC]
+RewriteRule ^/discover/etc\.clientlibs/(.+)$ /etc.clientlibs/$1 [PT,L,NC]
+RewriteRule ^/discover/(.+)$ /content/dhl/$1.html [PT,L,NC]
+
