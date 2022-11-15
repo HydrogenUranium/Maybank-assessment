@@ -30,6 +30,5 @@ RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 
 ### PASS THROUGH TO AEM ###
 RewriteRule ^/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/favicon.ico [PT,L,NC]
-RewriteRule ^/discover/etc\.clientlibs/(.+)$ /etc.clientlibs/$1 [PT,L,NC]
+RewriteRule ^/discover/(etc\.clientlibs|content/dam)/(.+)$ /$1/$2 [PT,L,NC]
 RewriteRule ^/discover/(.+)$ /content/dhl/$1.html [PT,L,NC]
-
