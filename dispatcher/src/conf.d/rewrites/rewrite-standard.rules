@@ -508,6 +508,7 @@ RewriteRule ^/en-global/robots.txt$ /apps/dhl/discoverdhlapi/robotsenglobal.txt 
 
 
 ### Rewrite any urls that don't start with 'en-global', 'en-my', 'ms-my', 'en-sg', 'zh-sg', 'en-ph' - to 'en-global'
+RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
 RewriteCond %{REQUEST_URI} !^/discover/content/dam
 RewriteCond %{REQUEST_URI} !^/discover/bin/dhl
 RewriteCond %{REQUEST_URI} !^/discover/apps
@@ -560,6 +561,7 @@ RewriteCond %{REQUEST_URI} !^/content/campaigns
 RewriteCond %{REQUEST_URI} !^/content/dam
 RewriteRule !^content/dhl - [R=404,L,NC]
 
+RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
 RewriteCond %{REQUEST_URI} !^/bin/dhl
 RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
 RewriteCond %{REQUEST_URI} !^/apps
