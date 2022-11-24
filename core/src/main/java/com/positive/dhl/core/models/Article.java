@@ -9,12 +9,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.constants.DiscoverConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
-
-import com.day.cq.wcm.api.NameConstants;
 
 /**
  *
@@ -406,24 +405,8 @@ public class Article {
     /**
 	 * 
 	 */
-	public static List<String> GetArticlePageTypes() {
-		List<String> output = new ArrayList<String>();
-
-		output.add("article");
-		output.add("articlegated");
-		output.add("articlewithtrending");
-		output.add("animatedpage201901");
-		output.add("animatedpage20190225");
-		output.add("animatedpage20190523");
-		output.add("animatedpage20190624");
-		output.add("animatedpage20190724");
-		output.add("animatedpage20190805");
-		output.add("animatedpage20191021");
-		output.add("animatedpage20191025");
-		output.add("animatedpage20191101");
-		output.add("animatedpage20191122");
-		
-		return output;
+	public static List<String> getArticlePageTypes() {
+		return DiscoverConstants.getCategoryTypes();
 	}
 	
     /**

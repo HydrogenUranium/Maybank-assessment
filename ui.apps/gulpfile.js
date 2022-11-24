@@ -87,7 +87,7 @@ gulp.task('javascript', () => {
     .pipe(gulpIf(isDev, sourcemaps.init()))
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest(scriptDest))
-    .pipe(uglify())
+    .pipe(gulpIf(!isDev, uglify()))
     .pipe(rename('vendor.min.js'))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
       sourceRoot: '/',
@@ -97,14 +97,14 @@ gulp.task('javascript', () => {
 
   let app = bundler.bundle()
     .on('error', (err) => {
-      console.error(err);
+      console.error(err)
       this.emit('end');
     })
     .pipe(source('main.js'))
     .pipe(gulp.dest(scriptDest))
     .pipe(buffer())
     .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })))
-    .pipe(uglify())
+    .pipe(gulpIf(!isDev, uglify()))
     .pipe(rename('main.min.js'))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
       sourceRoot: '/',
@@ -114,14 +114,14 @@ gulp.task('javascript', () => {
 
   let animatedApp = animatedBundler.bundle()
     .on('error', (err) => {
-      console.error(err);
+      console.error(err)
       this.emit('end');
     })
     .pipe(source('animated.js'))
     .pipe(gulp.dest(scriptDestAnimated))
     .pipe(buffer())
     .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })))
-    .pipe(uglify())
+    .pipe(gulpIf(!isDev, uglify()))
     .pipe(rename('animated.min.js'))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
       sourceRoot: '/',
@@ -144,29 +144,14 @@ gulp.task('watch', () => {
   gulp.watch(['./sass/**/*.css', './etc/**/*.css', './js/mini/**/*.js', './etc/**/*.js', './templates/**/*.php', './includes/**/*.php'], ['reload']);
 });
 
-// browsersync task
-gulp.task('browser-sync', () => {
-  browserSync({
-    port: 2441,
-    proxy: {
-      target: 'dhl.cubeddigital.com'
-    },
-    notify: false,
-    open: false,
-
-    ui: {
-      port: 2442
-    }
-  });
-});
-
 // build task
 gulp.task('build', ['sass', 'javascript'], () => {
   gulp.src(['./sass/*.css', '!./node_modules/**/*']).pipe(gulp.dest('./build/sass'));
   gulp.src(['./js/mini/*.min.js', '!./node_modules/**/*']).pipe(gulp.dest('./build/js/mini'));
   gulp.src(['./**/*.php', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
   gulp.src(['./fonts/**/*', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build/fonts'));
-  gulp.src(['./**/*.gif', './**/*.jpg', './**/*.jpeg', './**/*.png', './**/*.ico', './**/*.svg', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
+  gulp.src(['./**/*.gif', './**/*.jpg', './**/*.jpeg', './**/*.png', './**/*.ico', './**/*.svg',
+    '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
 });
 
 // default task

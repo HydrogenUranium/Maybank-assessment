@@ -1,12 +1,12 @@
 <!--/*
     Copyright 2015 Adobe Systems Incorporated
-  
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-  
+
         http://www.apache.org/licenses/LICENSE-2.0
-  
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,37 +21,70 @@
 			  class="forms ship-now" data-thanks="${properties.thanksurl}.html"
 			  data-source="${shipNowForm.source}"
 			  data-lo="${shipNowForm.leadOriginator}" data-preselectcountry="${landingPage.preselectedCountry}"
-			  method="post" novalidate>
+			  method="post"
+			  novalidate>
 			<input type="hidden" name="home" value="${accountactions.getHomeUrl}" />
 			<h3 class="forms__title">${properties.formtitle}</h3>
-	
+
 			<div class="error" style="display: none;">
 				<p class="forms__copy">${ 'An error occurred while attempting to submit your details.' @ i18n, context='html' } '<strong><span></span></strong>'</p>
 			</div>
-				
+
 			<div class="forms__group">
 				<div class="forms__row">
 					<div class="col-12 col-xl-6">
-						<input id="shipnow_firstname" name="firstname" type="text" placeholder="${ 'First name' @ i18n, context='html' }*" required data-msg="${ 'Enter first name' @ i18n, context='html' }" />
+						<input id="shipnow_firstname"
+							   name="firstname"
+							   type="text"
+							   placeholder="${ 'First name' @ i18n, context='html' }*"
+							   required
+							   data-msg="${ 'Enter first name' @ i18n, context='html' }"
+							   aria-label="${ 'Enter first name' @ i18n, context='html' }"
+						/>
 					</div>
 					<div class="col-12 col-xl-6">
-						<input id="shipnow_lastname" name="lastname" type="text" placeholder="${ 'Last name' @ i18n, context='html' }*" required data-msg="${ 'Enter last name' @ i18n, context='html' }" />
+						<input id="shipnow_lastname"
+							   name="lastname"
+							   type="text"
+							   placeholder="${ 'Last name' @ i18n, context='html' }*"
+							   required
+							   data-msg="${ 'Enter last name' @ i18n, context='html' }"
+							   aria-label="${ 'Enter last name' @ i18n, context='html' }"
+						/>
+
 					</div>
 					<div class="col-12">
-						<input type="email" placeholder="${ 'Business email address' @ i18n, context='html' }*" id="shipnow_email" name="email" required data-msg="${ 'Enter a valid email address' @ i18n, context='html' }" />
+						<input type="email"
+							   placeholder="${ 'Business email address' @ i18n, context='html' }*"
+							   id="shipnow_email"
+							   name="email"
+							   required
+							   data-msg="${ 'Enter a valid email address' @ i18n, context='html' }"
+							   aria-label="${ 'Enter a valid email address' @ i18n, context='html' }"
+						/>
 						<div class="forms__copy--small">${accountactions.signupEmailPrivacyMessage @context='html'}</div>
 					</div>
 				</div>
 
 				<div class="forms__row">
 					<div class="col-12">
-						<input type="text" id="shipnow_companyname" placeholder="${ 'Company name' @ i18n, context='html' }*" name="company" required data-msg="${ 'Enter a valid company name' @ i18n, context='html' }" />
+						<input type="text"
+							   id="shipnow_companyname"
+							   placeholder="${ 'Company name' @ i18n, context='html' }*"
+							   name="company"
+							   required
+							   data-msg="${ 'Enter a valid company name' @ i18n, context='html' }"
+							   aria-label="${ 'Enter a valid company name' @ i18n, context='html' }"
+						/>
 					</div>
 				</div>
 
 				<div class="forms__row">
 					<div class="col-12 col-xl-6">
-						<select data-sly-use.countries="com.positive.dhl.core.models.Countries" name="dialing_code">
+						<select data-sly-use.countries="com.positive.dhl.core.models.Countries"
+								name="dialing_code"
+								aria-label="International dialing code"
+						>
 							<option selected="selected" value="">Country code*</option>
 
 							<option
@@ -62,34 +95,65 @@
 						</select>
 					</div>
 					<div class="col-12 col-xl-6">
-						<input id="shipnow_phone" type="tel"
+						<input id="shipnow_phone"
+							   type="tel"
 							   placeholder="${ 'Phone number' @ i18n, context='html' }*"
-							   name="phone" required data-msg="${ 'Enter a valid phone number' @ i18n, context='html' }" />
+							   name="phone"
+							   required
+							   data-msg="${ 'Enter a valid phone number' @ i18n, context='html' }"
+							   aria-label="${ 'Phone number' @ i18n, context='html' }"
+						/>
 					</div>
 				</div>
 
 				<div class="forms__row">
 					<div class="col-12">
-						<input type="text" id="shipnow_address" value="" placeholder="${ 'Address' @ i18n, context='html' }*" name="address" required data-msg="${ 'Enter a valid address' @ i18n, context='html' }" />
+						<input type="text"
+							   id="shipnow_address"
+							   placeholder="${ 'Address' @ i18n, context='html' }*"
+							   name="address"
+							   required
+							   data-msg="${ 'Enter a valid address' @ i18n, context='html' }"
+							   aria-label="${ 'Address' @ i18n, context='html' }"
+						/>
 					</div>
 				</div>
 
 				<div class="forms__row">
 					<div class="col-6">
-						<input id="shipnow_zip" type="text" placeholder="${ 'ZIP or Postcode' @ i18n, context='html' }*" name="postcode" required data-msg="${ 'Enter ZIP/postcode' @ i18n, context='html' }" />
+						<input id="shipnow_zip"
+							   type="text"
+							   placeholder="${ 'ZIP or Postcode' @ i18n, context='html' }*"
+							   name="postcode"
+							   required
+							   data-msg="${ 'Enter ZIP/postcode' @ i18n, context='html' }"
+							   aria-label="${ 'ZIP or Postcode' @ i18n, context='html' }"
+						/>
 					</div>
 					<div class="col-6">
-						<input id="shipnow_city" type="text" placeholder="${ 'City' @ i18n, context='html' }*" name="city" required data-msg="${ 'Enter city' @ i18n, context='html' }" />
+						<input id="shipnow_city"
+							   type="text"
+							   placeholder="${ 'City' @ i18n, context='html' }*"
+							   name="city"
+							   required
+							   data-msg="${ 'Enter city' @ i18n, context='html' }"
+							   aria-label="${ 'City' @ i18n, context='html' }"
+						/>
 					</div>
 					<div class="col-12" >
-						<select data-sly-use.countries="com.positive.dhl.core.models.Countries" name="country" required data-msg="${ 'Select country' @ i18n, context='html' }">
+						<select data-sly-use.countries="com.positive.dhl.core.models.Countries"
+								name="country"
+								required
+								data-msg="${ 'Select country' @ i18n, context='html' }"
+								aria-label="${ 'Select country' @ i18n, context='html' }"
+						>
 							<option selected="selected" value="">Country*</option>
 							<option data-sly-repeat="${countries.getCountrySelectOptionValues}" value="${item}">${countries
 								.getCountrySelectOptionValues[item]}</option>
 						</select>
 
 
-						</div>
+					</div>
 					</div>
 				</div>
 				<div class="forms__row">
@@ -110,7 +174,7 @@
 			</div>
 		</form>
 	</div>
-	
+
 	<div class="mb-5" data-sly-test="${(accountactions.shipnowmarketo == true)}">
 		<div class="forms marketoForm marketoForm--yellow" data-marketo-form>
 			<div class="marketoForm__container">
@@ -126,13 +190,13 @@
 					<script>MktoForms2.loadForm("//express-resource.dhl.com", "903-EZK-832", 1795);</script>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
-	
+
 	<div class="sep">
 		<p>${ 'or' @ i18n, context='html' }</p>
 	</div>
-	
+
 	<div class="ship-now-now">
 		<h3>${properties.shipnowtitle}</h3>
 		${properties.shipnowcontent @context='html'}

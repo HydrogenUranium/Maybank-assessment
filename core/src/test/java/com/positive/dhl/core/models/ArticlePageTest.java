@@ -118,7 +118,7 @@ class ArticlePageTest {
 		assertEquals(true, newArticle.getShowshipnow());
 		assertEquals(0, newArticle.getTags().size());
 		
-		List<String> items = Article.GetArticlePageTypes();
+		List<String> items = Article.getArticlePageTypes();
 		assertTrue(items.size() > 0);
 	}
 

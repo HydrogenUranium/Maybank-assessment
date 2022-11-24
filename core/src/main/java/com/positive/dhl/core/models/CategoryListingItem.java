@@ -16,8 +16,6 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 
-import com.day.cq.wcm.api.NameConstants;
-
 /**
  *
  */
@@ -83,7 +81,7 @@ public class CategoryListingItem {
     			
     			map.put("2_group.p.or", "true");
     			
-    			List<String> articleTypes = Article.GetArticlePageTypes();
+    			List<String> articleTypes = Article.getArticlePageTypes();
     			for (int x = 0; x < articleTypes.size(); x++) {
     				map.put(String.format("2_group.%1$s_property", (x + 1)), "jcr:content/sling:resourceType");
     				map.put(String.format("2_group.%1$s_property.value", (x + 1)), String.format("dhl/components/pages/%1$s", articleTypes.get(x)));

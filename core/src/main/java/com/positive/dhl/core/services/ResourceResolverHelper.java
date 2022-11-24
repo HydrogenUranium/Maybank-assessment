@@ -27,7 +27,8 @@ public class ResourceResolverHelper {
 	ResourceResolverFactory resourceResolverFactory;
 
 	/**
-	 * Provides 'read' ResourceResolver (that has no permissions to modify anything, just read). Calling code should take care to close this resolver when no longer needed (either in 'finally' block
+	 * Provides 'read' ResourceResolver (that has no permissions to modify anything, just read).
+	 * Calling code should take care to close this resolver when no longer needed (either in 'finally' block
 	 * or via @clean annotation in Lombok)
 	 * @return a new instance of {@link ResourceResolver} that has permissions to read or {@code null} in case an error occurred
 	 */
@@ -36,7 +37,8 @@ public class ResourceResolverHelper {
 	}
 
 	/**
-	 * Provides 'write' ResourceResolver (that has permissions to write to /content/dhl)..Calling code should take care to close this resolver when no longer needed (either in 'finally' block
+	 * Provides 'write' ResourceResolver (that has permissions to write to /content/dhl)..Calling code
+	 * should take care to close this resolver when no longer needed (either in 'finally' block
 	 * or via @clean annotation in Lombok)
 	 * @return a new instance of {@link ResourceResolver} that has write permissions or {@code null} in case an error occurred
 	 */
@@ -51,7 +53,7 @@ public class ResourceResolverHelper {
 
 			return resourceResolverFactory.getServiceResourceResolver(authInfo);
 		} catch (LoginException e) {
-			LOGGER.error("Error has occurred when trying to get a ResourceResolver for user {}", systemUser);
+			LOGGER.error("Error has occurred when trying to get a ResourceResolver for user {}. More details (if available): {}", systemUser, e.getMessage());
 			return null;
 		}
 	}

@@ -7,36 +7,48 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.constants.DiscoverConstants;
+import com.positive.dhl.core.services.ResourceResolverHelper;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.api.scripting.SlingScriptHelper;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 
 /**
- *
+ * {@code ArticleGrid} is a SlingModel class that can be leveraged to transform a resource into an ArticleGrid page - a page which contains a grid
+ * of articles of certain categories.
  */
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class })
 public class ArticleGrid {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleGrid.class);
+
 	@Inject
 	private SlingHttpServletRequest request;
 
-    @Inject
-    private QueryBuilder builder;
+  @Inject
+  private QueryBuilder builder;
 
 	@Inject
-	private ResourceResolver resourceResolver;
-	
+	private SlingScriptHelper slingScriptHelper;
+
 	@Inject
 	private Resource resource;
     
@@ -47,12 +59,18 @@ public class ArticleGrid {
 	@Named("items")
 	@Optional
 	private Resource linksResource;
-	
+
+	/**
+	 * {@code true} or {@code false} flag indicating if we should hide 'latest' articles
+	 */
 	@Inject
 	@Named("hidelatest")
 	@Optional
 	public Boolean hidelatest;
-	
+
+	/**
+	 * {@code true} or {@code false} flag indicating if we should hide the 'trending' articles
+	 */
 	@Inject
 	@Named("hidetrending")
 	@Optional
@@ -124,39 +142,35 @@ public class ArticleGrid {
 		this.mode = mode;
 	}
 
-
-    /**
-	 * 
-	 */
-	@PostConstruct
-	protected void init() {
-		mode = "";
-		
-		ValueMap resourceProperties = resource.getValueMap();
-		if (resourceProperties.get("hidelatest", false)) {
+	private String processMode(ValueMap properties, SlingHttpServletRequest request){
+		if (properties.get("hidelatest", false)) {
 			hidelatest = true;
-			mode = "trending";
-		}
-		if (resourceProperties.get("hidetrending", false)) {
-			hidetrending = true;
-			mode = "category0";
-		}
-		
-		if (request != null) {
-			mode = request.getRequestPathInfo().getSelectorString();
+			return "trending";
 		}
 
-		categories = null;
-		
-		String[] propNames = new String[] { "category0", "category1", "category2", "category3" };
+		if (properties.get("hidetrending", false)) {
+			hidetrending = true;
+			return  "category0";
+		}
+
+		if (request != null) {
+			String selectorString = request.getRequestPathInfo().getSelectorString();
+			if(null != selectorString){
+				return selectorString;
+			}
+		}
+		return "";
+	}
+
+	private List<String> getCategoryPaths(ValueMap resourceProperties){
 		List<String> categoryPaths = new ArrayList<>();
-		for (String propName : propNames) {
+		for (String propName : DiscoverConstants.getCategoriesPropertyNames()) {
 			String path = resourceProperties.get(propName, "");
 			if (path.trim().length() > 0) {
 				categoryPaths.add(path);
 			}
 		}
-		
+
 		//pre-fill if we're on the 404 page...
 		if (categoryPaths.isEmpty()) {
 			String currentPagePath = currentPage.getPath();
@@ -167,150 +181,227 @@ public class ArticleGrid {
 				categoryPaths.add("/content/dhl/e-commerce");
 			}
 		}
-		
-		if (!categoryPaths.isEmpty()) {
-			categories = new ArrayList<>();
+		return categoryPaths;
+	}
 
-			for (String categoryPath: categoryPaths) {
-				Page category = resourceResolver.getResource(categoryPath).adaptTo(Page.class);
+	/**
+	 * Helper method that constructs the {@link CategoryLink} object from {@link Page} object and page template
+	 *
+	 * @param page is an instance of {@code Page}
+	 * @return new instance of {@code CategoryLink} or {@code null} if the page is not of the particular resource type.
+	 */
+	private CategoryLink getCategoryLinkFromPage(Page page){
+		ValueMap categoryProperties = page.getProperties();
+
+		if (categoryProperties.get(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, "").
+				equals(com.positive.dhl.core.constants.DiscoverConstants.CATEGORY_PAGE_TEMPLATE)) {
+			String title = categoryProperties.get("navTitle", "");
+			if (title.trim().length() == 0) {
+				title = categoryProperties.get(JcrConstants.JCR_TITLE, "");
+			}
+
+			String categoryName = title.replaceAll("[^A-Za-z\\d]|\\s", "-").toLowerCase();
+			return new CategoryLink(categoryName, title, page.getPath());
+		}
+		if(LOGGER.isDebugEnabled()){
+		    LOGGER.debug("Page {} does not have a resource type {}, therefore NOT adapting it to CategoryLink object",
+				    page.getPath(),
+				    com.positive.dhl.core.constants.DiscoverConstants.CATEGORY_PAGE_TEMPLATE);
+		}
+		return null;
+	}
+
+	private List<CategoryLink> getCategoriesLinks(ResourceResolver resourceResolver, List<String> categoryPaths){
+		List<CategoryLink> categoryLinks = new ArrayList<>();
+		for (String categoryPath: categoryPaths) {
+			Resource categoryResource = resourceResolver.getResource(categoryPath);
+			if(null != categoryResource){
+				Page category = categoryResource.adaptTo(Page.class);
 				if (category != null) {
-					ValueMap categoryProperties = category.getProperties();
-
-					if (categoryProperties.get(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, "").equals("dhl/components/pages/articlecategory")) {
-						String title = "";
-						title = categoryProperties.get("navTitle", "");
-						if ((title == null) || (title.trim().length() == 0)) {
-							title = categoryProperties.get(JcrConstants.JCR_TITLE, "");
-						}
-
-						String categoryName = title.replaceAll("[^A-Za-z0-9]|\\s", "-").toLowerCase();
-						CategoryLink categoryLink = new CategoryLink(categoryName, title, categoryPath);
-						categories.add(categoryLink);
+					CategoryLink categoryLink = getCategoryLinkFromPage(category);
+					if(null != categoryLink){
+						categoryLinks.add(categoryLink);
 					}
+				} else {
+					LOGGER.error("Unable to adapt resource ({}) to a Page object. ", categoryPath);
 				}
+			} else {
+				LOGGER.error("Unable to get resource from 'categoryPath' {}", categoryPath);
 			}
 		}
-		
-		if (categories == null) {
-			categories = new ArrayList<>();
-			
+		return categoryLinks;
+	}
+
+	/**
+	 * Helper method that fetches a {@code List} of {@link CategoryLink}s that are children of provided AEM page
+	 * @param page is an instance of {@link Page} object that we use as a base to search for its children
+	 * @return a {@code List} of the {@code CategoryLink} objects (that may be empty)
+	 */
+	private List<CategoryLink> getCategoriesFromPage(Page page){
+		List<CategoryLink> categoryLinks = new ArrayList<>();
+		int count = 0;
+		Iterator<Page> children = page.listChildren();
+		while (children.hasNext()) {
+			Page child = children.next();
+			CategoryLink categoryLink = getCategoryLinkFromPage(child);
+			if(null != categoryLink){
+				categoryLinks.add(categoryLink);
+			}
+			count++;
+			if (count > 2){
+				break;
+			}
+		}
+		return categoryLinks;
+	}
+
+	/**
+	 * Helper method that provides a {@code List} of {@link Article} objects that are children of
+	 * {@link ArticleGrid#linksResource} and can be adapted to {@code Article} object
+	 * @return a list of {@link Article}s
+	 */
+	private List<Article> processTrendingMode(){
+		List<Article> articlesList = new ArrayList<>();
+		if (linksResource == null) {
+			linksResource = resource.getChild("items");
+		}
+
+		if (null != linksResource) {
 			int count = 0;
-			Iterator<Page> children = currentPage.listChildren();
-			while (children.hasNext()) {
-				Page child = children.next();
-				ValueMap properties = child.getProperties();
-				if (properties.get(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY).equals("dhl/components/pages/articlecategory")) {
-					Boolean hideInNav = properties.get("hideInNav", false);
-					if (hideInNav) {
-						continue;
-					}
-					
-					String title = "";
-	    			title = properties.get("navTitle", "");
-	    			if ((title == null) || (title.trim().length() == 0)) {
-	    				title = properties.get(JcrConstants.JCR_TITLE, "");
-	    			}
-
-	    			String categoryName = title.replaceAll("[^A-Za-z0-9]|\\s", "-").toLowerCase();
-					CategoryLink categoryLink = new CategoryLink(categoryName, title, child.getPath());
-					categories.add(categoryLink);
-	
+			Iterator<Resource> linkResources = linksResource.listChildren();
+			while (linkResources.hasNext()) {
+				Resource resource = linkResources.next();
+				Article link = resource.adaptTo(Article.class);
+				if (link != null && link.getValid()) {
+					link.setIndex(count);
+					articlesList.add(link);
 					count++;
-					if (count > 2) break;
 				}
 			}
 		}
-		
-		articles = new ArrayList<Article>();
-		
-		if (("trending").equals(mode)) {
-			//trending
-			if (linksResource == null) {
-				linksResource = resource.getChild("items");
-			}
-			
-			if (linksResource != null) {
-				int count = 0;
-				Iterator<Resource> linkResources = linksResource.listChildren();
-				while (linkResources.hasNext()) {
-					Resource resource = linkResources.next();
-					Article link = resource.adaptTo(Article.class);
-					if (link != null && link.getValid()) {
-						link.setIndex(count);
-						articles.add(link);
-						count++;
-					}
-				}
-			}
-			
-		} else {
-			boolean found = false;
-			String path = currentPage.getPath();
-			for (CategoryLink item: categories) {
-				if (item.category.equals(mode)) {
-					found = true;
-					path = item.link;
-					break;
-				}
-			}
-			
-			//default 'latest'
-			if (!found) {
-				mode = "latest";
-				
-				Page groupPage = getGroupPage(currentPage);
-				if (groupPage != null) {
-					path = groupPage.getPath();
-				}
-			}
-			
-    		if (builder != null) {
-    			Map<String, String> map = new HashMap<>();
-    			map.put("type", "cq:Page");
-    			map.put("path", path);
-    			map.put("group.p.or", "true");
-    			
-    			List<String> articleTypes = Article.GetArticlePageTypes();
-    			for (int x = 0; x < articleTypes.size(); x++) {
-    				map.put(String.format("group.%1$s_property", (x + 1)), "jcr:content/sling:resourceType");
-    				map.put(String.format("group.%1$s_property.value", (x + 1)), String.format("dhl/components/pages/%1$s", articleTypes.get(x)));
-    				map.put(String.format("group.%1$s_property.operation", (x + 1)), "like");
-    			}
-    			
-    			map.put("orderby", "@jcr:content/custompublishdate");
-    			map.put("orderby.sort", "desc");
-    			
-    			map.put("p.limit", "50");
-    			
-    			Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
-    	        SearchResult searchResult = query.getResult();
-    	        if (searchResult != null) {
-    				int count = 0;
-    				for (Hit hit: searchResult.getHits()) {
-    					
-    					try {
-	    					ValueMap hitProperties = hit.getProperties();
-	    					Boolean hideInNav = hitProperties.get("hideInNav", false);
-	    					if (hideInNav) {
-	    						continue;
-	    					}
-	    					
-	    					Article article = new Article(hit.getPath(), resourceResolver);
-	    					article.setIndex(count);
-	    					articles.add(article);
-	    					
-    					} catch (RepositoryException ignored) { }
-    					
-    					count++;
-    				}
+		return articlesList;
+	}
 
-					Iterator<Resource> resources = searchResult.getResources();
-					if (resources.hasNext()) {
-						resources.next().getResourceResolver().close();
-					}
-    	        }
-    		}
+	/**
+	 * Simple method that goes through the provided {@link List} of {@link CategoryLink}s and tries to match each item against
+	 * the (also) provided String representing the 'mode'
+	 * @param categoryLinks is a {@code List} of {@code CategoryLink}s representing the values we want to match
+	 * @param mode is a String representing the mode we try to match against the category links
+	 * @return String representing the link of the {@code CategoryLink} object or path to {@code current} page
+	 */
+	private String verifyMode(List<CategoryLink> categoryLinks, String mode){
+		String path = null;
+		for (CategoryLink item: categoryLinks) {
+			if (item.category.equals(mode)) {
+				path = item.link;
+				break;
+			}
 		}
+
+		if(null == path){
+			Page groupPage = getGroupPage(currentPage);
+			if (groupPage != null) {
+				path = groupPage.getPath();
+			}
+		}
+
+		if(null != path){
+			return path;
+		}
+		return currentPage.getPath();
+	}
+
+	/**
+	 * Executes the query defined by the {@link Map} with String as both key & value, this {@code Map} represents the predicates that are to be passed to the query.
+	 * @param predicatesMap is the predicates map, this constitutes the 'query'
+	 * @param queryPath is a {@link String} representing the 'path', base of the query
+	 * @param resourceResolver is an instance of {@link ResourceResolver} we use to access the repository
+	 * @return a {@link SearchResult} object or {@code null} in case we were unable to get an instance os {@code Session} object (and were therefore
+	 * unable to execute the query).
+	 */
+	private SearchResult runQuery(Map<String,String> predicatesMap, String queryPath, ResourceResolver resourceResolver){
+		predicatesMap.putIfAbsent("path", queryPath);
+		Session session = resourceResolver.adaptTo(Session.class);
+		if(null != session){
+			PredicateGroup predicates = PredicateGroup.create(predicatesMap);
+			String queryString = predicates.toString();
+			LOGGER.info("Query to find the articles: {}", queryString);
+			Query query = builder.createQuery(predicates, session);
+			return query.getResult();
+		}
+		return null;
+	}
+
+	private List<Article> processSearchResults(SearchResult searchResult, ResourceResolver resourceResolver){
+		List<Article> articlesList = new ArrayList<>();
+		int count = 0;
+		for (Hit hit: searchResult.getHits()) {
+
+			try {
+				ValueMap hitProperties = hit.getProperties();
+				Boolean hideInNav = hitProperties.get("hideInNav", false);
+				if (hideInNav) {
+					continue;
+				}
+
+				Article article = new Article(hit.getPath(), resourceResolver);
+				article.setIndex(count);
+				articlesList.add(article);
+
+			} catch (RepositoryException repositoryException) {
+				LOGGER.error("Error has occurred when trying to read the properties of a " +
+						"search result. Some details (if available): {}", repositoryException.getMessage());
+			}
+
+			count++;
+		}
+		return articlesList;
+	}
+
+	/**
+	 * Method that sets us up and gets executed whenever this {@code Sling Model} is actually used (such as when the page gets opened)
+	 */
+	@PostConstruct
+	protected void init() {
+		ResourceResolver resourceResolver = getResourceResolver();
+		if(null != resourceResolver){
+			ValueMap resourceProperties = resource.getValueMap();
+			mode = processMode(resourceProperties,request);
+			categories = new ArrayList<>();
+
+			//populate category paths, if not empty, add category links to 'categories' list
+			List<String> categoryPaths = getCategoryPaths(resourceProperties);
+			if (!categoryPaths.isEmpty()) {
+				categories.addAll(getCategoriesLinks(resourceResolver,categoryPaths));
+			}
+
+			// if categories list is still empty, try to add two child pages from current
+			// page (this may still end up being empty list as there is no guarantee there are actually any child pages)
+			if (categories.isEmpty()) {
+				categories.addAll(getCategoriesFromPage(currentPage));
+			}
+
+			articles = new ArrayList<>();
+
+			if (mode.equalsIgnoreCase("trending")) {
+				articles.addAll(processTrendingMode());
+			} else {
+				String path = verifyMode(categories,mode);
+
+				if (builder != null) {
+					LOGGER.info("Going to execute the query to fetch articles based on their categories");
+					SearchResult searchResult = runQuery(DiscoverConstants.getArticlesQueryMap(),path,resourceResolver);
+					if (searchResult != null) {
+						LOGGER.info("Query to find articles returned {} results.", searchResult.getTotalMatches());
+						articles.addAll(processSearchResults(searchResult, resourceResolver));
+					}
+				}
+			}
+		} else {
+			LOGGER.error("Unable to obtain ResourceResolver from the model. This may have unpleasant " +
+					"consequences on pages. Details why this happened can be found in this log file");
+		}
+
 	}
     
     /**
@@ -331,4 +422,13 @@ public class ArticleGrid {
 		}
 		return null;
     }
+
+	private ResourceResolver getResourceResolver() {
+		final ResourceResolverHelper resourceResolverHelper = slingScriptHelper.getService(ResourceResolverHelper.class);
+		if (null == resourceResolverHelper) {
+			LOGGER.error("Unable to retrieve an instance of read ResourceResolver, ResourceResolverHelper service is not available");
+			return null;
+		}
+		return resourceResolverHelper.getReadResourceResolver();
+	}
 }
