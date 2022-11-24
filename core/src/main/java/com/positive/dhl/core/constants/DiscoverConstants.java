@@ -5,7 +5,6 @@ import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 
 import java.text.MessageFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Class holding immutable 'configuration' (and other) values
@@ -25,25 +24,28 @@ public class DiscoverConstants {
 	}
 
 	public static List<String> getCategoriesPropertyNames(){
-		return Arrays.stream(CATEGORIES_PROPERTY_NAMES).collect(Collectors.toUnmodifiableList());
+		List<String> categoryPropertyNamesList = Arrays.asList(CATEGORIES_PROPERTY_NAMES);
+		return Collections.unmodifiableList(categoryPropertyNamesList);
 	}
 
 	public static List<String> getCategoryTypes(){
+		List<String> output = new ArrayList<>();
 
-		return List.of(
-				"article",
-				"articlegated",
-				"articlewithtrending",
-				"animatedpage201901",
-				"animatedpage20190225",
-				"animatedpage20190523",
-				"animatedpage20190624",
-				"animatedpage20190724",
-				"animatedpage20190805",
-				"animatedpage20191021",
-				"animatedpage20191025",
-				"animatedpage20191101",
-				"animatedpage20191122");
+		output.add("article");
+		output.add("articlegated");
+		output.add("articlewithtrending");
+		output.add("animatedpage201901");
+		output.add("animatedpage20190225");
+		output.add("animatedpage20190523");
+		output.add("animatedpage20190624");
+		output.add("animatedpage20190724");
+		output.add("animatedpage20190805");
+		output.add("animatedpage20191021");
+		output.add("animatedpage20191025");
+		output.add("animatedpage20191101");
+		output.add("animatedpage20191122");
+
+		return Collections.unmodifiableList(output);
 	}
 	public static Map<String,String> getArticlesQueryMap(){
 		return articlesQueryMap;
