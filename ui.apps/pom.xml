@@ -137,6 +137,25 @@
     </build>
     <profiles>
         <profile>
+            <id>analyzeAemPackage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.adobe.aem</groupId>
+                        <artifactId>aemanalyser-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>aem-analyser</id>
+                                <goals>
+                                    <goal>project-analyse</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>buildFrontendDev</id>
             <build>
                 <plugins>
