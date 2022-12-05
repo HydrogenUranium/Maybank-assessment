@@ -100,8 +100,6 @@ public class ArticleGrid {
 	private List<Article> articles;
 	private String mode;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleGrid.class);
-
 	/**
 	 * 
 	 */
