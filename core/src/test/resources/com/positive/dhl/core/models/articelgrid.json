@@ -1,0 +1,68 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "jcr:createdBy": "idanisman",
+  "jcr:lastModifiedBy": "tlenham",
+  "jcr:created": "Tue Jun 12 2018 16:27:32 GMT+0200",
+  "jcr:lastModified": "Mon Nov 08 2021 15:10:42 GMT+0000",
+  "hidelatest": "true",
+  "sling:resourceType": "dhl/components/content/articlegrid",
+  "category0": "/content/dhl/en-global/business/entrepreneurship",
+  "category1": "/content/dhl/en-global/e-commerce/e-commerce-advice",
+  "category2": "/content/dhl/en-global/e-commerce/international-guides",
+  "category3": "/content/dhl/en-global/business/managing-your-business",
+  "items": {
+    "jcr:primaryType": "nt:unstructured",
+    "item0": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/business/entrepreneurship/effective-entrepreneurs"
+    },
+    "item1": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/business/entrepreneurship/business-plan-advice"
+    },
+    "item2": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/business/market-intelligence/e-commerce-trends-2020"
+    },
+    "item3": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/business/entrepreneurship/startup-logistics"
+    },
+    "item4": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/business/getting-to-market/dhl-tips-for-packaging"
+    },
+    "item5": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/e-commerce/e-commerce-advice/building-your-team-for-e-commerce-success"
+    },
+    "item6": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/e-commerce/customer-service/its-good-to-talk"
+    },
+    "item7": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/e-commerce/e-commerce-advice/curate-your-way-to-the-top"
+    },
+    "item8": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/e-commerce/international-guides/country-guides-home"
+    },
+    "item9": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/e-commerce/e-commerce-advice/find-your-e-commerce-market"
+    },
+    "item10": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/business/market-intelligence/bric-and-the-next-eleven"
+    },
+    "item11": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/e-commerce/e-commerce-advice/dnvb-101"
+    },
+    "item12": {
+      "jcr:primaryType": "nt:unstructured",
+      "path": "/content/dhl/en-global/business/entrepreneurship/the-ten-minute-startup-guide"
+    }
+  }
+}

@@ -469,7 +469,9 @@
         "set properties on /conf/dhl/appdata/countries/cu\n set countryName{String} to \"Cuba\"\n set currency{String} to CUP\n set callingCode{Long} to 53 \n end",
 
         "set ACL for discover-reader\nallow jcr:read on /content/dhl\nend",
+        "set ACL for discover-reader\nallow jcr:read on /content/dam\nend",
         "set ACL for discover-reader\nallow jcr:read on /conf/dhl\nend",
-        "set ACL for discover-writer\nallow jcr:all on /content/dhl\nend"
+        "set ACL for discover-writer\nallow jcr:all on /content/dhl\nend",
+        "set ACL for discover-writer\nallow jcr:all on /content/dam\nend"
     ]
 }

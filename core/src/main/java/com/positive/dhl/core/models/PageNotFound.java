@@ -95,7 +95,7 @@ public class PageNotFound {
 
 			map.put("group.p.or", "true");
 			
-			List<String> articleTypes = Article.GetArticlePageTypes();
+			List<String> articleTypes = Article.getArticlePageTypes();
 			for (int x = 0; x < articleTypes.size(); x++) {
 				map.put(String.format("group.%1$s_property", (x + 1)), "jcr:content/sling:resourceType");
 				map.put(String.format("group.%1$s_property.value", (x + 1)), String.format("dhl/components/pages/%1$s", articleTypes.get(x)));
