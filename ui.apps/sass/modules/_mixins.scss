@@ -88,7 +88,7 @@
 
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
-      background: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/carouseliconsgrey.png');
+      background: url('__prefix__/resources/img/carouseliconsgrey.png');
       height: 72px;
       width: 25px;
   }
@@ -134,7 +134,7 @@
 }
 
 
-@mixin arrowLink($arrowImageUrl: '/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrow.png') {
+@mixin arrowLink($arrowImageUrl: '__prefix__/resources/img/linkarrow.png') {
   &:before {
     content: ' ';
     display: block;

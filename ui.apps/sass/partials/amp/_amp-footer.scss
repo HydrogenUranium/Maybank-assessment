@@ -47,8 +47,8 @@
       position: absolute;
       right: 0px;
       top: -12px;
-      background: map-get($palette, scarlet) url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/backtotoparrow.png) center/26px 11px no-repeat;
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/backtotoparrow.svg);
+      background: map-get($palette, scarlet) url('__prefix__/resources/img/backtotoparrow.png') center/26px 11px no-repeat;
+      background-image: none, url('__prefix__/resources/img/backtotoparrow.svg');
     }
 
   }
@@ -92,7 +92,7 @@
     border-bottom: 1px solid rgba(map-get($palette, brownish-grey), 0.3);
     position: relative;
     transition: color 150ms ease;
-    @include arrowLink('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrow.png');
+    @include arrowLink('__prefix__/resources/img/linkarrow.png');
 
     &:hover {
       color: map-get($palette, scarlet);
@@ -137,8 +137,8 @@
         display: inline-block;
         width: 12px;
         height: 12px;
-        background: map-get($palette, white-two) url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/externallinkicon.png) center/12px no-repeat;
-        background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/externallinkicon.svg);
+        background: map-get($palette, white-two) url('__prefix__/resources/img/externallinkicon.png') center/12px no-repeat;
+        background-image: none, url('__prefix__/resources/img/externallinkicon.svg');
         transition: background-color 150ms ease;
         margin-left: 6px;
       }
@@ -152,8 +152,8 @@
       &[target="_blank"] {
 
         &:after {
-          background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/externallinkiconred.png);
-          background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/externallinkiconred.svg);
+          background-image: url('__prefix__/resources/img/externallinkiconred.png');
+          background-image: none, url('__prefix__/resources/img/externallinkiconred.svg');
         }
 
       }

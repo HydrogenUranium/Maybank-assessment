@@ -190,8 +190,8 @@
 
   select {
     appearance: none;
-    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/selecttriangle.png);
-    background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/selecttriangle.svg);
+    background-image: url('__prefix__/resources/img/selecttriangle.png');
+    background-image: none, url('__prefix__/resources/img/selecttriangle.svg');
     background-size: 8px 8px;
     background-position: center right 17px;
     background-repeat: no-repeat;

@@ -115,8 +115,8 @@
             left: 1px;
             width: 11px;
             height: 11px;
-            background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/checkboxcheck.png);
-            background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/checkboxcheck.svg);
+            background-image: url('__prefix__/resources/img/checkboxcheck.png');
+            background-image: none, url('__prefix__/resources/img/checkboxcheck.svg');
             @include backgroundImage(contain);
             opacity: 0;
             transition: opacity 150ms ease;
@@ -216,15 +216,15 @@
     border: 3px solid map-get($palette, black);
     border-radius: 80px;
     margin: auto;
-    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/formsuccessicon.png);
-    background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/formsuccessiconblack.svg);
+    background-image: url('__prefix__/resources/img/formsuccessicon.png');
+    background-image: none, url('__prefix__/resources/img/formsuccessiconblack.svg');
     background-size: 44px 32px;
     background-position: center center;
     background-repeat: no-repeat;
 
     &--error {
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/formerroricon.png);
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/formerroricon.svg);
+      background-image: url('__prefix__/resources/img/formerroricon.png');
+      background-image: none, url('__prefix__/resources/img/formerroricon.svg');
       background-size: 34px 34px;
     }
 

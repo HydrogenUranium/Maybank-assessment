@@ -40,7 +40,7 @@
     width: 100%;
     height: 0px;
     padding-bottom: 37.32%;
-    background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/new-logo.svg);
+    background-image: none, url('__prefix__/resources/img/new-logo.svg');
     @include backgroundImage(contain);
   }
 
@@ -261,7 +261,7 @@
         display: none;
         margin: 0;
         padding: 30px 0;
-        
+
         ul {
           li {
             line-height: 40px;
@@ -316,7 +316,7 @@
 
           font-size: 32px;
           line-height: 25px;
-    
+
           margin: 0 0 10px;
           padding: 0;
         }
@@ -423,8 +423,8 @@
           right: 8px;
 
           background-color: #fff;
-          background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/searchcloseicon.png);
-          background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/searchcloseicon.svg);
+          background-image: url('__prefix__/resources/img/searchcloseicon.png');
+          background-image: none, url('__prefix__/resources/img/searchcloseicon.svg');
           @include backgroundImage(contain);
 
           cursor: pointer;
@@ -760,8 +760,8 @@
     .icon {
       display: inline-block;
       vertical-align: top;
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/globe.png);
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/globe.svg);
+      background-image: url('__prefix__/resources/img/globe.png');
+      background-image: none, url('__prefix__/resources/img/globe.svg');
       @include backgroundImage(contain);
       position: relative;
 
@@ -838,8 +838,8 @@
 
     .icon {
       display: inline-block;
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/searchicon.png);
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/searchicon.svg);
+      background-image: url('__prefix__/resources/img/searchicon.png');
+      background-image: none, url('__prefix__/resources/img/searchicon.svg');
       @include backgroundImage(contain);
       top: 6px;
       position: relative;
@@ -878,8 +878,8 @@
 
     &--close {
       .icon {
-        background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/searchcloseicon.png);
-        background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/searchcloseicon.svg);
+        background-image: url('__prefix__/resources/img/searchcloseicon.png');
+        background-image: none, url('__prefix__/resources/img/searchcloseicon.svg');
 
         width: 15px;
         height: 15px;
@@ -993,7 +993,7 @@
             height: 24px;
             left: 0;
             top: 0;
-            background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/black-tick.svg') center no-repeat;
+            background: transparent url('__prefix__/resources/img/black-tick.svg') center no-repeat;
             background-size: contain;
         }
       }
@@ -1045,37 +1045,37 @@
     }
 
     .social__socialLink {
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsfacebook-white.png);
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsfacebook-white.svg);
+      background-image: url('__prefix__/resources/img/socialiconsfacebook-white.png');
+      background-image: none, url('__prefix__/resources/img/socialiconsfacebook-white.svg');
 
       &--youtube,
       &.at-svc-youtube {
-        background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsyoutube-white.png);
-        background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsyoutube-white.svg);
+        background-image: url('__prefix__/resources/img/socialiconsyoutube-white.png');
+        background-image: none, url('__prefix__/resources/img/socialiconsyoutube-white.svg');
       }
 
       &--instagram,
       &.at-svc-instagram {
-        background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsinstagram-white.png);
-        background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsinstagram-white.svg);
+        background-image: url('__prefix__/resources/img/socialiconsinstagram-white.png');
+        background-image: none, url('__prefix__/resources/img/socialiconsinstagram-white.svg');
       }
 
       &--linkedin,
       &.at-svc-linkedin {
-        background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconslinkedin-white.png);
-        background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconslinkedin-white.svg);
+        background-image: url('__prefix__/resources/img/socialiconslinkedin-white.png');
+        background-image: none, url('__prefix__/resources/img/socialiconslinkedin-white.svg');
       }
 
       &--twitter,
       &.at-svc-twitter {
-        background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconstwitter-white.png);
-        background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconstwitter-white.svg);
+        background-image: url('__prefix__/resources/img/socialiconstwitter-white.png');
+        background-image: none, url('__prefix__/resources/img/socialiconstwitter-white.svg');
       }
 
       &--email,
       &.at-svc-email {
-        background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsemail-white.png);
-        background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsemail-white.svg);
+        background-image: url('__prefix__/resources/img/socialiconsemail-white.png');
+        background-image: none, url('__prefix__/resources/img/socialiconsemail-white.svg');
       }
     }
   }
@@ -1122,8 +1122,8 @@
         display: block;
         width: 14px;
         height: 20px;
-        background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/savedarticlesicon.png);
-        background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/savedarticlesicon.svg);
+        background-image: url('__prefix__/resources/img/savedarticlesicon.png');
+        background-image: none, url('__prefix__/resources/img/savedarticlesicon.svg');
         background-size: 14px 20px;
         background-repeat: no-repeat;
         background-position: center center;
@@ -1166,8 +1166,8 @@
 
     padding: 10px 34px 10px 15px;
 
-    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrowwhite.png);
-    background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrowwhite.svg);
+    background-image: url('__prefix__/resources/img/linkarrowwhite.png');
+    background-image: none, url('__prefix__/resources/img/linkarrowwhite.svg');
     background-position: center right 14px;
     background-size: 6px 16px;
     background-repeat: no-repeat;

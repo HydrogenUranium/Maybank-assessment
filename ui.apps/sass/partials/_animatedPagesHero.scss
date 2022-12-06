@@ -140,10 +140,6 @@
   &__consumerGif {
     height: 100%;
     width: auto;
-    // background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/consumerAnimationShadow.png);
-    // background-size: auto 100%;
-    // background-position: left bottom -3px;
-    // background-repeat: no-repeat;
 
     @include respond(md) {
       background-position: left bottom -5px;

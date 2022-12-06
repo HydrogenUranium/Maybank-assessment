@@ -58,7 +58,7 @@
   }
 
   &__link {
-    @include arrowLink('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrowyellow.svg');
+    @include arrowLink('__prefix__/resources/img/linkarrowyellow.svg');
     @include hoverText($colour-normal: map-get($palette, sunflower-yellow), $colour-hover: map-get($palette, sunflower-yellow));
     text-align: center;
     height: 40px;

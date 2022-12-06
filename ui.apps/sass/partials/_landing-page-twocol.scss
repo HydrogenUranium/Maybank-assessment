@@ -58,8 +58,8 @@
                             top: 9px;
                             right: 0;
 
-                            background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrow.png') center no-repeat;
-                            background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrow.svg') center no-repeat;
+                            background: transparent url('__prefix__/resources/img/linkarrow.png') center no-repeat;
+                            background: transparent url('__prefix__/resources/img/linkarrow.svg') center no-repeat;
                             background-size: cover;
 
                         }
@@ -256,8 +256,8 @@
                         top: 5px;
 
                         color: map-get($palette, true-white);
-                        background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-circletick.png') center no-repeat;
-                        background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-circletick.svg') center no-repeat;
+                        background: transparent url('__prefix__/resources/img/lp-circletick.png') center no-repeat;
+                        background: transparent url('__prefix__/resources/img/lp-circletick.svg') center no-repeat;
                         background-size: cover;
                     }
 
@@ -271,8 +271,8 @@
                         right: 15px;
                         top: 9px;
 
-                        background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-plus.png') center no-repeat;
-                        background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-plus2.svg') center no-repeat;
+                        background: transparent url('__prefix__/resources/img/lp-plus.png') center no-repeat;
+                        background: transparent url('__prefix__/resources/img/lp-plus2.svg') center no-repeat;
                         background-size: contain;
                     }
 
@@ -310,8 +310,8 @@
                 &.open {
                     .landingpoint__title {
                         &:after {
-                            background-image: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-minus.png');
-                            background-image: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-minus2.svg');
+                            background-image: url('__prefix__/resources/img/lp-minus.png');
+                            background-image: url('__prefix__/resources/img/lp-minus2.svg');
                         }
                     }
 
@@ -464,8 +464,8 @@
                         padding: 10px;
 
                         &.valid {
-                            background: #fff url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-greentick.png') center right no-repeat;
-                            background: #fff url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-greentick.svg') 98% center no-repeat;
+                            background: #fff url('__prefix__/resources/img/lp-greentick.png') center right no-repeat;
+                            background: #fff url('__prefix__/resources/img/lp-greentick.svg') 98% center no-repeat;
                             background-size: 28px 14px;
                         }
 
@@ -551,7 +551,7 @@
                     right: 25px;
                     width: 85px;
                     height: 65px;
-                    background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/lp-shipnow-icon.png') center no-repeat;
+                    background: transparent url('__prefix__/resources/img/lp-shipnow-icon.png') center no-repeat;
                     background-size: contain;
 
                     @include respond(lg) {

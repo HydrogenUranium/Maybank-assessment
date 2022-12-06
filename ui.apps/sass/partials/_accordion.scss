@@ -39,8 +39,8 @@
 			display: block;
 			width: 20px;
 			height: 8px;
-			background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/accordionarrow.png);
-			background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/accordionarrow.svg);
+			background-image: url('__prefix__/resources/img/accordionarrow.png');
+			background-image: none, url('__prefix__/resources/img/accordionarrow.svg');
       background-position: center center;
       background-size: 18px 8px;
       background-repeat: no-repeat;
