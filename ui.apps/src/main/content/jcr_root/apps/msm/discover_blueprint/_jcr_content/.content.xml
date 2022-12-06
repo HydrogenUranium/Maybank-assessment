@@ -3,7 +3,7 @@
     xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     cq:template="/libs/wcm/msm/templates/blueprint"
     jcr:primaryType="nt:unstructured"
-    jcr:title="We.Train Blueprint"
+    jcr:title="Discover Blueprint"
     jcr:description="Creates blueprint config for We.Train"
     sling:resourceType="wcm/msm/components/blueprint"
     sitePath="/content/dhl/en-master">
