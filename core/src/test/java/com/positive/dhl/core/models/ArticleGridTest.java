@@ -10,6 +10,7 @@ import javax.jcr.Session;
 
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -46,6 +47,9 @@ class ArticleGridTest {
     private Query pageQuery;
 
 		@Mock
+		private RepositoryChecks repositoryChecks;
+
+		@Mock
 		private Hit hit;
 
 		@Mock
@@ -59,6 +63,7 @@ class ArticleGridTest {
     ctx.load().json("/com/positive/dhl/core/models/en-global-content.json", "/content/dhl/en-global");
 		ctx.load().json("/com/positive/dhl/core/models/business-entrepreneurship.json","/content/dhl/en-global/business/entrepreneurship");
     ctx.registerService(QueryBuilder.class, mockQueryBuilder);
+		ctx.registerService(RepositoryChecks.class, repositoryChecks);
 		ctx.registerService(ResourceResolverHelper.class,resourceResolverHelper);
 
     ctx.addModelsForClasses(ArticleGrid.class);

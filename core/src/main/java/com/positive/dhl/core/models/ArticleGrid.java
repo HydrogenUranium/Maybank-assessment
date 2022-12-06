@@ -8,6 +8,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.constants.DiscoverConstants;
+import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -48,6 +49,9 @@ public class ArticleGrid {
 
 	@Inject
 	private SlingScriptHelper slingScriptHelper;
+
+	@Inject
+	private RepositoryChecks repositoryChecks;
 
 	@Inject
 	private Resource resource;
@@ -162,11 +166,11 @@ public class ArticleGrid {
 		return "";
 	}
 
-	private List<String> getCategoryPaths(ValueMap resourceProperties){
+	private List<String> getCategoryPaths(ValueMap resourceProperties, ResourceResolver resourceResolver){
 		List<String> categoryPaths = new ArrayList<>();
 		for (String propName : DiscoverConstants.getCategoriesPropertyNames()) {
 			String path = resourceProperties.get(propName, "");
-			if (path.trim().length() > 0) {
+			if (path.trim().length() > 0 && repositoryChecks.doesRepositoryPathExist(path,resourceResolver)) {
 				categoryPaths.add(path);
 			}
 		}
@@ -370,7 +374,7 @@ public class ArticleGrid {
 			categories = new ArrayList<>();
 
 			//populate category paths, if not empty, add category links to 'categories' list
-			List<String> categoryPaths = getCategoryPaths(resourceProperties);
+			List<String> categoryPaths = getCategoryPaths(resourceProperties, resourceResolver);
 			if (!categoryPaths.isEmpty()) {
 				categories.addAll(getCategoriesLinks(resourceResolver,categoryPaths));
 			}
