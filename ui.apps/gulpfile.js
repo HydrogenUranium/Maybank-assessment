@@ -23,7 +23,7 @@ const browserify = require('browserify');
 // Environment
 const isDev = !util.env.prod;
 const isLocal = util.env.local;
-let prefix = '/etc.clientlibs/dhl/clientlibs/clientlib-site';
+let prefix = '/etc.clientlibs/dhl/clientlibs';
 if (!isLocal) {
   prefix = '/discover' + prefix;
 }

@@ -193,7 +193,7 @@
     display: block;
     width: 158px;
     height: 111px;
-    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/newVan.svg);
+    background-image: url('__prefix__/clientlib-animatedpages/resources/img/newVan.svg');
     background-size: 158px 111px;
     background-position: center top;
     background-repeat: no-repeat;
@@ -320,7 +320,7 @@
     position:relative;
 
     &--left {
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/animated3/shoe-belt-2.svg);
+      background-image: url('__prefix__/clientlib-animatedpages/resources/img/animated3/shoe-belt-2.svg');
       width:230px;
       height:300px;
       background-size:230px 191px;
@@ -333,7 +333,7 @@
     }
 
     &--right {
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/animated3/shoe-belt-1.svg);
+      background-image: url('__prefix__/clientlib-animatedpages/resources/img/animated3/shoe-belt-1.svg');
       width:186px;
       height:194px;
       background-size:186px 193px;
@@ -348,7 +348,7 @@
 
 
     &--machine {
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/animated3/shoe-belt-3.svg);
+      background-image: url('__prefix__/clientlib-animatedpages/resources/img/animated3/shoe-belt-3.svg');
       width:120px;
       height:194px;
       background-size:186px 193px;
@@ -364,7 +364,7 @@
 
 
 .shoeItem {
-  background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/animated3/header-shoes.svg);
+  background-image: url('__prefix__/clientlib-animatedpages/resources/img/animated3/header-shoes.svg');
   background-size:85px 66px;
   background-repeat:no-repeat;
   animation:shoedrop 5s linear infinite;
@@ -408,7 +408,7 @@
 }
 
 .boxItem {
-  background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/animated3/shoes-box.svg);
+  background-image: url('__prefix__/clientlib-animatedpages/resources/img/animated3/shoes-box.svg');
   background-size:33px;
   background-repeat:no-repeat;
   transform-origin:295px 130px;

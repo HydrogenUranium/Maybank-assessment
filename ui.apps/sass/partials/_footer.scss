@@ -47,8 +47,8 @@
       position: absolute;
       right: 0px;
       top: -12px;
-      background-image: url('__prefix__/resources/img/backtotoparrow.png');
-      background-image: none, url('__prefix__/resources/img/backtotoparrow.svg');
+      background-image: url('__prefix__/clientlib-site/resources/img/backtotoparrow.png');
+      background-image: none, url('__prefix__/clientlib-site/resources/img/backtotoparrow.svg');
       background-size: 26px 11px;
       background-position: center center;
       background-repeat: no-repeat;
@@ -106,7 +106,7 @@
     border-bottom: 1px solid rgba(map-get($palette, brownish-grey), 0.3);
     position: relative;
     transition: color 150ms ease;
-    @include arrowLink('__prefix__/resources/img/linkarrow.png');
+    @include arrowLink('__prefix__/clientlib-site/resources/img/linkarrow.png');
 
     &:hover {
       color: map-get($palette, scarlet);
@@ -181,8 +181,8 @@
         width: 12px;
         height: 12px;
         background-color: map-get($palette, white-two);
-        background-image: url('__prefix__/resources/img/externallinkicon.png');
-        background-image: none, url('__prefix__/resources/img/externallinkicon.svg');
+        background-image: url('__prefix__/clientlib-site/resources/img/externallinkicon.png');
+        background-image: none, url('__prefix__/clientlib-site/resources/img/externallinkicon.svg');
         background-size: 12px 12px;
         background-position: center center;
         background-repeat: no-repeat;
@@ -200,8 +200,8 @@
 
         &:after {
           background-color: map-get($palette, white-two);
-          background-image: url('__prefix__/resources/img/externallinkiconred.png');
-          background-image: none, url('__prefix__/resources/img/externallinkiconred.svg');
+          background-image: url('__prefix__/clientlib-site/resources/img/externallinkiconred.png');
+          background-image: none, url('__prefix__/clientlib-site/resources/img/externallinkiconred.svg');
         }
 
       }

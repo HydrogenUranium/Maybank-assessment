@@ -190,8 +190,8 @@
 
   select {
     appearance: none;
-    background-image: url('__prefix__/resources/img/selecttriangle.png');
-    background-image: none, url('__prefix__/resources/img/selecttriangle.svg');
+    background-image: url('__prefix__/clientlib-site/resources/img/selecttriangle.png');
+    background-image: none, url('__prefix__/clientlib-site/resources/img/selecttriangle.svg');
     background-size: 8px 8px;
     background-position: center right 17px;
     background-repeat: no-repeat;
@@ -238,7 +238,7 @@
     margin-left: 10px;
     width: 12px;
     height: 12px;
-    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/externalIcon.svg);
+    background-image: url('__prefix__/clientlib-animatedpages/resources/img/externalIcon.svg');
     background-repeat: no-repeat;
     display: inline-flex;
   }
@@ -333,23 +333,23 @@
     height: 37px;
     margin-bottom: 20px;
     margin-top: 5px;
-    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/bar01.png);
+    background-image: url('__prefix__/clientlib-animatedpages/resources/img/bar01.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
 
     @include respond(xl) {
       height: 28px;
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/bar1.png);
+      background-image: url('__prefix__/clientlib-animatedpages/resources/img/bar1.png');
     }
   }
 
   &__barImage2 {
-    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/bar02.png);
+    background-image: url('__prefix__/clientlib-animatedpages/resources/img/bar02.png');
 
     @include respond(xl) {
       height: 28px;
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/bar2.png);
+      background-image: url('__prefix__/clientlib-animatedpages/resources/img/bar2.png');
     }
   }
 

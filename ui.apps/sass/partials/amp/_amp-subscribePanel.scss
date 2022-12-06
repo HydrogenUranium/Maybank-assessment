@@ -62,8 +62,8 @@ body .wysiwyg .subscribePanel__title {
       + label {
 
         &:before {
-          background-image: url('__prefix__/resources/img/checkboxcheck.png');
-          background-image: none, url('__prefix__/resources/img/checkboxcheck.svg');
+          background-image: url('__prefix__/clientlib-site/resources/img/checkboxcheck.png');
+          background-image: none, url('__prefix__/clientlib-site/resources/img/checkboxcheck.svg');
         }
 
       }

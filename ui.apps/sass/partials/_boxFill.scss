@@ -51,8 +51,8 @@
     left: 0;
     width: 129px;
     height: 56px;
-    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/boxFillShadow.png);
-    background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-animatedpages/resources/img/boxFillShadow.svg);
+    background-image: url('__prefix__/clientlib-animatedpages/resources/img/boxFillShadow.png');
+    background-image: none, url('__prefix__/clientlib-animatedpages/resources/img/boxFillShadow.svg');
     background-size: 100% auto;
     background-position: 0px 0px;
 
