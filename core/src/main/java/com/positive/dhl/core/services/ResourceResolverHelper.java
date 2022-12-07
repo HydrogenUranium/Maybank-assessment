@@ -40,7 +40,7 @@ public class ResourceResolverHelper {
 	 * Provides 'write' ResourceResolver (that has permissions to write to /content/dhl)..Calling code
 	 * should take care to close this resolver when no longer needed (either in 'finally' block
 	 * or via @clean annotation in Lombok)
-	 * @return a new instance of {@link ResourceResolver} that has write permissions or {@code null} in case an error occurred
+	 * @return a new instance of {@link ResourceResolver} that has permissions to 'write' or {@code null} in case an error occurred
 	 */
 	public ResourceResolver getWriteResourceResolver(){
 		return getResourceResolver(DiscoverConstants.DISCOVER_WRITE_SERVICE);
