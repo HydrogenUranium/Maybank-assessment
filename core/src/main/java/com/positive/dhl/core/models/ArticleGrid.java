@@ -53,7 +53,7 @@ public class ArticleGrid {
 
 	@Inject
 	private Resource resource;
-
+    
 	@Inject
 	private Page currentPage;
 
@@ -80,67 +80,67 @@ public class ArticleGrid {
 	@Named("hidetrending")
 	@Optional
 	public Boolean hidetrending;
-
+	
 	@Inject
 	@Named("category0")
 	@Optional
 	private String category0;
-
+	
 	@Inject
 	@Named("category1")
 	@Optional
 	private String category1;
-
+	
 	@Inject
 	@Named("category2")
 	@Optional
 	private String category2;
-
+	
 	@Inject
 	@Named("category3")
 	@Optional
 	private String category3;
-
+	
 	private List<CategoryLink> categories;
 	private List<Article> articles;
 	private String mode;
-
-	/**
+	
+    /**
 	 * 
 	 */
 	public List<CategoryLink> getCategories() {
 		return new ArrayList<>(categories);
 	}
 
-	/**
+    /**
 	 * 
 	 */
 	public void setCategories(List<CategoryLink> categories) {
 		this.categories = new ArrayList<>(categories);
 	}
 
-	/**
+    /**
 	 * 
 	 */
 	public List<Article> getArticles() {
 		return new ArrayList<>(articles);
 	}
 
-	/**
+    /**
 	 * 
 	 */
 	public void setArticles(List<Article> articles) {
 		this.articles = new ArrayList<>(articles);
 	}
 
-	/**
+    /**
 	 * 
 	 */
 	public String getMode() {
 		return mode;
 	}
 
-	/**
+    /**
 	 * 
 	 */
 	public void setMode(String mode) {
