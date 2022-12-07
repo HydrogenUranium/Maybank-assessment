@@ -42,6 +42,13 @@
         <aem.port>4502</aem.port>
         <author.username>admin</author.username>
         <author.password>admin</author.password>
+        <!--
+            controls the frontend build process
+            possible values: build / dev / local
+                - build: this is the default build for most scenarios
+                - dev: this will produce frontend code including sourcemaps
+                - local: this will produce frontend code without the /discover prefix in the paths to resources
+        -->
         <frontend.environment>build</frontend.environment>
     </properties>
 
