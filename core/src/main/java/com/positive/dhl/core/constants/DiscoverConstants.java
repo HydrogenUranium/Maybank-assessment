@@ -28,6 +28,10 @@ public class DiscoverConstants {
 		return Collections.unmodifiableList(categoryPropertyNamesList);
 	}
 
+	/**
+	 * Returns the category types available in the app
+	 * @return a {@link List} of {@code String}s, each element in the list represents one category type
+	 */
 	public static List<String> getCategoryTypes(){
 		List<String> output = new ArrayList<>();
 

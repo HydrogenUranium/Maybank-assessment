@@ -10,25 +10,29 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.positive.dhl.core.constants.DiscoverConstants;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 /**
- *
+ * It's a sling model of the 'article' piece of content
  */
+@Getter
+@Setter
 @Model(adaptables=Resource.class)
 public class Article {
 	@Inject
 	private ResourceResolver resourceResolver;
 	
-    @Inject
-    public String path;
+  @Inject
+  public String path;
 	
-    private Boolean valid;
-    private Boolean current;
-    private int index;
+  private Boolean valid;
+  private Boolean current;
+  private int index;
 	private Boolean third;
 	private Boolean fourth;
 	private String createdfriendly;
@@ -52,358 +56,11 @@ public class Article {
 	private List<TagWrapper> tags;
 	private Integer counter;
 	
-    /**
-	 * 
-	 */
-	public Boolean getValid() {
-		return valid;
-	}
 
-    /**
-	 * 
-	 */
-	public void setValid(Boolean valid) {
-		this.valid = valid;
-	}
 
-    /**
-	 * 
-	 */
-	public Boolean getCurrent() {
-		return current;
-	}
-
-    /**
-	 * 
-	 */
-	public void setCurrent(Boolean current) {
-		this.current = current;
-	}
-
-    /**
-	 * 
-	 */
-	public int getIndex() {
-		return index;
-	}
-
-    /**
-	 * 
-	 */
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
-    /**
-	 * 
-	 */
-	public Boolean getThird() {
-		return third;
-	}
-
-    /**
-	 * 
-	 */
-	public void setThird(Boolean third) {
-		this.third = third;
-	}
-
-    /**
-	 * 
-	 */
-	public Boolean getFourth() {
-		return fourth;
-	}
-
-    /**
-	 * 
-	 */
-	public void setFourth(Boolean fourth) {
-		this.fourth = fourth;
-	}
-
-    /**
-	 * 
-	 */
-	public String getCreatedfriendly() {
-		return createdfriendly;
-	}
-
-    /**
-	 * 
-	 */
-	public void setCreatedfriendly(String createdfriendly) {
-		this.createdfriendly = createdfriendly;
-	}
-
-    /**
-	 * 
-	 */
-	public String getCreated() {
-		return created;
-	}
-
-    /**
-	 * 
-	 */
-	public void setCreated(String created) {
-		this.created = created;
-	}
-
-    /**
-	 * 
-	 */
-	public String getIcon() {
-		return icon;
-	}
-
-    /**
-	 * 
-	 */
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
-
-    /**
-	 * 
-	 */
-	public String getGrouptitle() {
-		return grouptitle;
-	}
-
-    /**
-	 * 
-	 */
-	public void setGrouptitle(String grouptitle) {
-		this.grouptitle = grouptitle;
-	}
-
-    /**
-	 * 
-	 */
-	public String getGrouppath() {
-		return grouppath;
-	}
-
-    /**
-	 * 
-	 */
-	public void setGrouppath(String grouppath) {
-		this.grouppath = grouppath;
-	}
-
-    /**
-	 * 
-	 */
-	public String getFullTitle() {
-		return fullTitle;
-	}
-
-    /**
-	 * 
-	 */
-	public void setFullTitle(String fullTitle) {
-		this.fullTitle = fullTitle;
-	}
-
-    /**
-	 * 
-	 */
-	public String getTitle() {
-		return title;
-	}
-
-    /**
-	 * 
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-    /**
-	 * 
-	 */
-	public String getBrief() {
-		return brief;
-	}
-
-    /**
-	 * 
-	 */
-	public void setBrief(String brief) {
-		this.brief = brief;
-	}
-
-    /**
-	 * 
-	 */
-	public String getAuthor() {
-		return author;
-	}
-
-    /**
-	 * 
-	 */
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-    /**
-	 * 
-	 */
-	public String getAuthortitle() {
-		return authortitle;
-	}
-
-    /**
-	 * 
-	 */
-	public void setAuthortitle(String authortitle) {
-		this.authortitle = authortitle;
-	}
-
-    /**
-	 * 
-	 */
-	public String getAuthorimage() {
-		return authorimage;
-	}
-
-    /**
-	 * 
-	 */
-	public void setAuthorimage(String authorimage) {
-		this.authorimage = authorimage;
-	}
-
-    /**
-	 * 
-	 */
-	public String getReadtime() {
-		return readtime;
-	}
-
-    /**
-	 * 
-	 */
-	public void setReadtime(String readtime) {
-		this.readtime = readtime;
-	}
-
-    /**
-	 * 
-	 */
-	public String getListimage() {
-		return listimage;
-	}
-
-    /**
-	 * 
-	 */
-	public void setListimage(String listimage) {
-		this.listimage = listimage;
-	}
-
-    /**
-	 * 
-	 */
-	public String getHeroimagemob() {
-		return heroimagemob;
-	}
-
-    /**
-	 * 
-	 */
-	public void setHeroimagemob(String heroimagemob) {
-		this.heroimagemob = heroimagemob;
-	}
-
-    /**
-	 * 
-	 */
-	public String getHeroimagetab() {
-		return heroimagetab;
-	}
-
-    /**
-	 * 
-	 */
-	public void setHeroimagetab(String heroimagetab) {
-		this.heroimagetab = heroimagetab;
-	}
-
-    /**
-	 * 
-	 */
-	public String getHeroimagedt() {
-		return heroimagedt;
-	}
-
-    /**
-	 * 
-	 */
-	public void setHeroimagedt(String heroimagedt) {
-		this.heroimagedt = heroimagedt;
-	}
-
-    /**
-	 * 
-	 */
-	public String getYoutubeid() {
-		return youtubeid;
-	}
-
-    /**
-	 * 
-	 */
-	public void setYoutubeid(String youtubeid) {
-		this.youtubeid = youtubeid;
-	}
-
-    /**
-	 * 
-	 */
-	public Boolean getShowshipnow() {
-		return showshipnow;
-	}
-
-    /**
-	 * 
-	 */
-	public void setShowshipnow(Boolean showshipnow) {
-		this.showshipnow = showshipnow;
-	}
-
-    /**
-	 * 
-	 */
-	public List<TagWrapper> getTags() {
-		return new ArrayList<TagWrapper>(tags);
-	}
-
-    /**
-	 * 
-	 */
-	public void setTags(List<TagWrapper> tags) {
-		this.tags = new ArrayList<TagWrapper>(tags);
-	}
-
-    /**
-	 * 
-	 */
-	public Integer getCounter() {
-		return counter;
-	}
-
-    /**
-	 * 
-	 */
-	public void setCounter(Integer counter) {
-		this.counter = counter;
-	}
-
-    /**
-	 * 
+	/**
+	 * Returns the article category types
+	 * @return a {@link List} of {@code String}s where each element represents one category type
 	 */
 	public static List<String> getArticlePageTypes() {
 		return DiscoverConstants.getCategoryTypes();
@@ -414,75 +71,78 @@ public class Article {
 	 */
 	public Article() { }
 	
-    /**
-	 * 
+	/**
+	 * Constructor setting up only the most basic properties
+	 * @param path is a String representing the repository path of the resource we're adapting to model
+	 * @param resourceResolver is an instance of {@link ResourceResolver}
 	 */
 	public Article(String path, ResourceResolver resourceResolver) {
 		this.resourceResolver = resourceResolver;
 		this.path = path;
 		this.init();
 	}
+
+
     
     /**
 	 * 
 	 */
     @PostConstruct
 	protected void init() {
-    	valid = false;
+    valid = false;
 		Resource resource = resourceResolver.getResource(path);
 		if (resource != null) {
-			ValueMap properties = resource.adaptTo(ValueMap.class);
-			if (properties != null) {
-				Date createdDate;
-				String customDate = properties.get("jcr:content/custompublishdate", "");
-				if ((customDate.trim().length() > 0) && (customDate.contains("T"))) {
-					try {
-						String[] parts = customDate.split("T");
-						createdDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(parts[0]);
+			ValueMap properties = resource.getValueMap();
+			Date createdDate;
+			String customDate = properties.get("jcr:content/custompublishdate", "");
+			if ((customDate.trim().length() > 0) && (customDate.contains("T"))) {
+				try {
+					String[] parts = customDate.split("T");
+					createdDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(parts[0]);
 
-					} catch (ParseException e) {
-						createdDate = properties.get("jcr:content/custompublishdate", new Date());
-					}
-
-				} else {
+				} catch (ParseException e) {
 					createdDate = properties.get("jcr:content/custompublishdate", new Date());
 				}
 
+			} else {
+				createdDate = properties.get("jcr:content/custompublishdate", new Date());
+			}
 
-				created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
-				createdfriendly = (new SimpleDateFormat("dd MMMM yyyy")).format(createdDate);
-				icon = properties.get("jcr:content/mediatype", "");
 
-				grouptitle = getGroupTitle(resource);
-				grouppath = getGroupPath(resource);
+			created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
+			createdfriendly = (new SimpleDateFormat("dd MMMM yyyy")).format(createdDate);
+			icon = properties.get("jcr:content/mediatype", "");
 
-				fullTitle = properties.get("jcr:content/jcr:title", "");
-				title = properties.get("jcr:content/navTitle", "");
-				if ((title == null) || (title.trim().length() == 0)) {
-					title = fullTitle;
-				}
-				brief = properties.get("jcr:content/listbrief", "");
-				if (brief != null && brief.length() > 120) {
-					brief = brief.substring(0, 120).concat("...");
-				}
+			grouptitle = getGroupTitle(resource);
+			grouppath = getGroupPath(resource);
 
-				listimage = properties.get("jcr:content/listimage", "");
+			fullTitle = properties.get("jcr:content/jcr:title", "");
+			title = properties.get("jcr:content/navTitle", "");
+			if ((title == null) || (title.trim().length() == 0)) {
+				title = fullTitle;
+			}
+			brief = properties.get("jcr:content/listbrief", "");
+			if (brief != null && brief.length() > 120) {
+				brief = brief.substring(0, 120).concat("...");
+			}
 
-				heroimagemob = properties.get("jcr:content/heroimagemob", "");
-				heroimagetab = properties.get("jcr:content/heroimagetab", "");
-				heroimagedt = properties.get("jcr:content/heroimagedt", "");
-				youtubeid = properties.get("jcr:content/youtubeid", "");
-				readtime = properties.get("jcr:content/readtime", "");
+			listimage = properties.get("jcr:content/listimage", "");
 
-				author = properties.get("jcr:content/author", "");
-				authortitle = properties.get("jcr:content/authortitle", "");
-				authorimage = properties.get("jcr:content/authorimage", "");
+			heroimagemob = properties.get("jcr:content/heroimagemob", "");
+			heroimagetab = properties.get("jcr:content/heroimagetab", "");
+			heroimagedt = properties.get("jcr:content/heroimagedt", "");
+			youtubeid = properties.get("jcr:content/youtubeid", "");
+			readtime = properties.get("jcr:content/readtime", "");
 
-				showshipnow = properties.get("jcr:content/showshipnow", false);
+			author = properties.get("jcr:content/author", "");
+			authortitle = properties.get("jcr:content/authortitle", "");
+			authorimage = properties.get("jcr:content/authorimage", "");
 
-				counter = properties.get("jcr:content/counter", 0);
+			showshipnow = properties.get("jcr:content/showshipnow", false);
 
-				tags = new ArrayList<TagWrapper>();
+			counter = properties.get("jcr:content/counter", 0);
+
+			tags = new ArrayList<TagWrapper>();
 				/*
 				TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
 				String[] tagPaths = properties.get("jcr:content/cq:tags", new String[] { });
@@ -495,8 +155,7 @@ public class Article {
 				}
 				*/
 
-				valid = true;
-			}
+			valid = true;
 		}
 	}
     

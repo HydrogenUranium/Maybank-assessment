@@ -10,6 +10,7 @@ import javax.jcr.Session;
 
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import com.positive.dhl.core.services.CategoryFinder;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -50,6 +51,9 @@ class ArticleGridTest {
 		private RepositoryChecks repositoryChecks;
 
 		@Mock
+		private CategoryFinder categoryFinder;
+
+		@Mock
 		private Hit hit;
 
 		@Mock
@@ -65,6 +69,7 @@ class ArticleGridTest {
     ctx.registerService(QueryBuilder.class, mockQueryBuilder);
 		ctx.registerService(RepositoryChecks.class, repositoryChecks);
 		ctx.registerService(ResourceResolverHelper.class,resourceResolverHelper);
+		ctx.registerService(CategoryFinder.class, categoryFinder);
 
     ctx.addModelsForClasses(ArticleGrid.class);
 		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resourceResolver);
@@ -74,8 +79,7 @@ class ArticleGridTest {
 	void verifyFallbackWithQuery() throws RepositoryException {
 		List<Hit> hitList = new ArrayList<>();
 		hitList.add(hit);
-    Mockito.when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(pageQuery);
-		when(pageQuery.getResult()).thenReturn(searchResult);
+    when(categoryFinder.executeQuery(anyMap(),any(ResourceResolver.class))).thenReturn(searchResult);
 		when(searchResult.getHits()).thenReturn(hitList);
 		when(hit.getProperties()).thenReturn(hitProperties);
 		when(hitProperties.get(eq("hideInNav"),anyBoolean())).thenReturn(false);

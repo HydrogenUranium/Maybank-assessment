@@ -1,0 +1,295 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Wed Oct 19 2022 15:46:57 GMT+0200",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:title": "How to start an e-commerce business in 10 minutes a day",
+    "custompublishdate": "Thu Oct 17 2019 00:00:00 GMT+0100",
+    "cq:lastReplicationAction": "Activate",
+    "viewcount": 164,
+    "jcr:versionHistory": "f05d1a0e-461c-4466-91bb-3bd7cc8a468f",
+    "amparticlepath": "/content/dhl/en-global/business/entrepreneurship/the-ten-minute-startup-guide/the-ten-minute-startup-guide-amp",
+    "cq:template": "/apps/dhl/templates/dhl-article-page",
+    "cq:lastReplicatedBy": "rosemary",
+    "listbrief": "Hacks and shortcuts to setting up a viable small business.",
+    "listimage": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+    "heroimagemob": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+    "heroimagetab": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+    "readtime": "10 min read",
+    "jcr:predecessors": [
+      "85f0c069-54aa-4963-97fe-217d06375af6"
+    ],
+    "cq:contextHubSegmentsPath": "/etc/segmentation/contexthub",
+    "jcr:created": "Wed Oct 19 2022 15:46:57 GMT+0200",
+    "cq:lastReplicated": "Wed May 18 2022 13:06:31 GMT+0000",
+    "cq:lastModified": "Wed May 18 2022 13:06:13 GMT+0000",
+    "mediatype@Delete": "download",
+    "contentbanner": "1",
+    "topbanner": "1",
+    "jcr:description": "We live in the age of the multi-faceted workforce, but is it possible to launch an e-commerce startup by just dedicating 10 minutes a day? Find out here.",
+    "jcr:baseVersion": "85f0c069-54aa-4963-97fe-217d06375af6",
+    "jcr:isCheckedOut": true,
+    "pageTitle": "How To Start An E-commerce In 10 Minutes | Discover DHL",
+    "cq:tags": [],
+    "jcr:uuid": "4b6e5d9d-5a4b-428b-8b5e-6ad7716d62da",
+    "sling:resourceType": "dhl/components/pages/article",
+    "cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
+    "heroimagedt": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Desktop_1920x918.jpg",
+    "ogtagimage": "/content/dam/dhl/business-matters/10-minute-startup/adventure2_tablet.jpg",
+    "cq:lastModifiedBy": "rosemary",
+    "navTitle": "How to start an e-commerce business in 10 minutes a day",
+    "mediatype": "download",
+    "title": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "dhl/components/content/title"
+    },
+    "par": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/parsys",
+      "text": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:lastModifiedBy": "rosemary",
+        "text": "<p><b>EVERY YEAR, AROUND THE PLANET, OVER 100 MILLION NEW BUSINESSES LAUNCH AND BEGIN TRADING FOR THE VERY FIRST TIME. THAT’S AROUND 11,000 EVERY HOUR.</b></p>\n",
+        "jcr:lastModified": "Wed May 18 2022 13:06:13 GMT+0000",
+        "sling:resourceType": "dhl/components/content/text",
+        "textIsRich": "true"
+      },
+      "text_216489897": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "hmuhammad",
+        "jcr:created": "Wed Sep 06 2017 00:32:25 GMT+0200",
+        "text": "<p>It’s been said we live in the era of the &#39;Millennipreneurs&#39;<sup>1</sup>. As financial services company BNP Paribas puts it, &quot;Under 35s are creating more companies, with higher headcount and greater profit ambitions than any previous generation…&quot;</p>\n<p>Today’s&nbsp;successful startups&nbsp;aren’t necessarily like the ‘Student Start-ups’ of Mark Zuckerberg or Bill Gates that we’ve seen before. In fact, in the US today,&nbsp;<a href=\"https://www.linkedin.com/pulse/millenipreneurs-courting-next-gens-1-april-rudin\" target=\"_blank\">startup entrepreneurs are more likely to be in their mid 30s</a>, juggling career, family&nbsp;and&nbsp;a creative outlet as well as providing an emotional support structure<sup>2</sup>.&nbsp;</p>\n",
+        "jcr:lastModified": "Thu Mar 12 2020 16:30:04 GMT+0100",
+        "sling:resourceType": "dhl/components/content/text",
+        "textIsRich": "true"
+      },
+      "text_1789173262": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "hmuhammad",
+        "jcr:created": "Thu Oct 17 2019 12:55:24 GMT+0200",
+        "text": "<p>We are entering a <a href=\"https://discover.dhl.com/business/entrepreneurship/hope-horror-and-the-future-of-business\" target=\"_blank\">new phase</a> of the ‘Solopreneur’ with more individuals launching their own enterprises which they remain solely responsible for. With access to multiple<b>&nbsp;</b>e-commerce platforms, it&#39;s become increasingly easier for budding&nbsp;<a href=\"https://discover.dhl.com/business/entrepreneurship/effective-entrepreneurs\" target=\"_blank\">entrepreneurs&nbsp;to start businesses from their homes</a>, which is ideal for new parents.&nbsp;With this new multi-faceted generation advancing to the forefront of the business world, their most precious commodity is time. The demand for fast, effective business support and information<sup>3</sup> that gets their next new venture going and <a href=\"https://discover.dhl.com/business/entrepreneurship/secrets-of-the-spare-time-startups\" target=\"_blank\">growing in the spare time</a> is at an all-time high.&nbsp;</p>\n<p>In Latin America, Chile, Columbia and Peru are providing a winning combination of a stable economy and governmental <a href=\"https://discover.dhl.com/business/entrepreneurship/what-is-an-incubator\" target=\"_blank\">financial support</a> to entrepreneurs to deliver greater national growth. Across the Pacific, China’s new generation of business starters born in the 90s are shunning the constraints of their parents and learning to embrace the entrepreneurial spirit of trial and error&nbsp;<sup>4</sup>.</p>\n",
+        "jcr:lastModified": "Thu Mar 12 2020 16:32:31 GMT+0100",
+        "sling:resourceType": "dhl/components/content/text",
+        "textIsRich": "true"
+      },
+      "ctapanelrow": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "idanisman",
+        "jcr:lastModifiedBy": "idanisman",
+        "imagetab": "/content/dam/dhl/business-matters/roger-bowie/Nav_800x450_A.jpg",
+        "ctatitle": "Read now",
+        "jcr:created": "Wed Apr 11 2018 15:36:43 GMT+0200",
+        "title": "Next Steps",
+        "content": "<p>Read our interview with Roger Bowie, Former DHL Worldwide Services Director on his experience building a global company. </p>\r\n",
+        "jcr:lastModified": "Wed Apr 11 2018 15:48:25 GMT+0200",
+        "ctalink": "https://discover.dhl.com/business-matters/sme-insights/hope-horror-and-the-future-of-business.html",
+        "sling:resourceType": "dhl/components/content/ctapanelrow",
+        "textIsRich": "true",
+        "imagedt": "/content/dam/dhl/business-matters/roger-bowie/Nav_800x450_A.jpg"
+      },
+      "social": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "idanisman",
+        "jcr:lastModifiedBy": "idanisman",
+        "jcr:created": "Mon Feb 05 2018 17:37:15 GMT+0100",
+        "jcr:lastModified": "Mon Feb 05 2018 17:37:15 GMT+0100",
+        "sling:resourceType": "dhl/components/content/social"
+      },
+      "text_864090745": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "rosemary",
+        "jcr:created": "Mon Jun 04 2018 18:35:18 GMT+0200",
+        "text": "<p>In fact, the desire to become an entrepreneur is now so widespread that it’s being taught in US colleges&nbsp;<sup>5</sup>. The&nbsp;traditional bastion of the maverick business mind is now being homogenized, sanitized and professionalized.&nbsp;<span>The question they pose is whether it’s possible to launch a successful&nbsp;</span>e-commerce startup<span>&nbsp;in just 10 minutes a day, using the tools, apps and support <a href=\"https://discover.dhl.com/business/entrepreneurship/bootstrapping-your-business\" target=\"_blank\">available freely</a> online.</span></p>\n<p>Looking for advice on&nbsp;how to start an <a href=\"ttps://www.dhl.com/discover/e-commerce/e-commerce-advice/8-e-commerce-dos-for-your-business\">e-commerce business</a>? Below, we explore the possibilities of developing a small or medium-sized enterprise in your spare time. Whether it’s&nbsp;<a href=\"https://discover.dhl.com/business/entrepreneurship/business-plan-advice\" target=\"_blank\">building a business plan</a>&nbsp;on the bus, connecting with a creative in your coffee break, or&nbsp;<a href=\"https://discover.dhl.com/e-commerce/e-commerce-advice/nine-ways-to-sell-on-social\" target=\"_blank\">strategizing your social media</a>&nbsp;output on a Sunday morning, 'How to start your business in just 10 minutes a day' is your essential guide&nbsp;– download your FREE copy below.</p>\n",
+        "jcr:lastModified": "Mon May 24 2021 17:54:25 GMT+0000",
+        "sling:resourceType": "dhl/components/content/text",
+        "textIsRich": "true"
+      },
+      "text_2069609029": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "hmuhammad",
+        "jcr:lastModifiedBy": "hmuhammad",
+        "jcr:created": "Thu Nov 07 2019 11:49:33 GMT+0100",
+        "text": "<p>It is also important to keep up to date and informed on issues such as business insurance, which SimplyBusiness have given an insight into <a href=\"https://www.simplybusiness.co.uk/knowledge/articles/2019/02/types-of-insurance-available-for-business-in-the-uk/\">here</a>.</p>\n<p>&nbsp;</p>\n",
+        "jcr:lastModified": "Thu Mar 12 2020 16:36:24 GMT+0100",
+        "sling:resourceType": "dhl/components/content/text",
+        "textIsRich": "true"
+      },
+      "text_542853720": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "hmuhammad",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Thu Mar 12 2020 16:32:36 GMT+0100",
+        "text": "<p>1.&nbsp;<a href=\"https://www.score.org/blog/what-millennipreneur\">https://www.score.org/blog/what-millennipreneur</a><br>\n</p>\n<p><a href=\"https://www.score.org/blog/what-millennipreneur\">2</a>.&nbsp;<a href=\"https://cdn-actus.bnpparibas.com/files/upload/2015/11/04/docs/ataglance.pdf\">https://cdn-actus.bnpparibas.com/files/upload/2015/11/04/docs/ataglance.pdf</a><br>\n</p>\n<p><a href=\"https://cdn-actus.bnpparibas.com/files/upload/2015/11/04/docs/ataglance.pdf\">3</a>.&nbsp;<a href=\"https://www.fundera.com/blog/free-e-commerce-store\" target=\"_blank\">https://www.fundera.com/blog/free-e-commerce-store</a></p>\n<p><a href=\"https://www.fundera.com/blog/free-e-commerce-store\" style=\"background-color: rgb(255, 255, 255); font-size: 0.8125rem;\">4</a>.&nbsp;<a href=\"https://www.theguardian.com/business/2019/oct/21/china-overtakes-us-in-rankings-of-worlds-richest-people\" style=\"background-color: rgb(255, 255, 255); font-size: 0.8125rem;\">https://www.theguardian.com/business/2019/oct/21/china-overtakes-us-in-rankings-of-worlds-richest-people</a><br>\n</p>\n<p><a href=\"https://www.theguardian.com/business/2019/oct/21/china-overtakes-us-in-rankings-of-worlds-richest-people\">5</a>.&nbsp;<a href=\"https://www.businessinsider.com/the-best-colleges-for-future-entrepreneurs-2015-8?r=US&amp;IR=T\">https://www.businessinsider.com/the-best-colleges-for-future-entrepreneurs-2015-8?r=US&amp;IR=T</a><br>\n</p>\n",
+        "jcr:lastModified": "Fri Jul 24 2020 13:09:19 GMT+0200",
+        "sling:resourceType": "dhl/components/content/text",
+        "textIsRich": "true"
+      }
+    },
+    "partwo": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/parsys",
+      "html5embed": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "dhl/components/content/html5embed"
+      },
+      "download": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "assetpathsample": "/content/dam/dhl/downloads/10-mins/final/sample_DHL_How to Launch a successful business_sample_pages.pdf",
+        "ctatitlesample": "Preview",
+        "jcr:lastModifiedBy": "admin",
+        "ctatitle": "Download your FREE copy now",
+        "jcr:created": "Mon Nov 13 2017 13:12:38 GMT+0100",
+        "brief": "From downloading a template for your ‘Business plan before breakfast’ to locking down your logistics in your local coffee shop, ‘How to launch a successful business in just 10 minutes a day’ is a FREE and great way to get your business idea off the ground.",
+        "title": "How to launch a successful business in just 10 minutes a day",
+        "jcr:lastModified": "Tue Mar 24 2020 23:23:57 GMT+0100",
+        "sling:resourceType": "dhl/components/content/download",
+        "assetpath": "/content/dam/dhl/downloads/10-mins/final/DHL_How to Launch a successful business_FINAL.pdf",
+        "assetimage": "/content/dam/malaysia/business/entrepreneurship/how-to-start-an-e-commerce-business-in-10-minutes-a-day/the_ten_min_start_up_guide.jpg"
+      }
+    },
+    "parthree": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/parsys",
+      "taglist": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:lastModifiedBy": "admin",
+        "tags": [
+          "business-matters:",
+          "business-matters:startups",
+          "ecommerce:internationaltrading",
+          "ecommerce:onlinemarketing",
+          "business-matters:businessplanning",
+          "ecommerce:",
+          "business-matters:SMEs"
+        ],
+        "title": "Related Content",
+        "jcr:lastModified": "Mon Sep 25 2017 01:16:29 GMT+0200",
+        "sling:resourceType": "dhl/components/content/taglist"
+      },
+      "quotectapanel": {
+        "jcr:primaryType": "nt:unstructured",
+        "author": "Albert Camus",
+        "jcr:lastModifiedBy": "admin",
+        "imagetab": "/content/dam/dhl/site-image/quote/1920/trees-by-nelly-volkich.jpg",
+        "quote": "In the depth of winter, I finally learned that within me there lay an invincible summer.",
+        "jcr:lastModified": "Tue Sep 12 2017 00:07:46 GMT+0200",
+        "sling:resourceType": "dhl/components/content/quotectapanel",
+        "imagedt": "/content/dam/dhl/site-image/quote/1920/trees-by-nelly-volkich.jpg"
+      },
+      "articlelistcategory": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:lastModifiedBy": "admin",
+        "title": "Explore",
+        "jcr:lastModified": "Wed Sep 06 2017 00:41:56 GMT+0200",
+        "sling:resourceType": "dhl/components/content/articlelistcategoryexplore"
+      },
+      "articlegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Mon Jun 04 2018 18:37:18 GMT+0200",
+        "jcr:lastModified": "Thu Oct 17 2019 12:59:33 GMT+0200",
+        "hidelatest": "true",
+        "sling:resourceType": "dhl/components/content/articlegrid"
+      }
+    },
+    "image": {
+      "jcr:primaryType": "nt:unstructured",
+      "file.sftmp": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Wed Oct 19 2022 15:46:57 GMT+0200"
+      }
+    },
+    "items": {
+      "jcr:primaryType": "nt:unstructured",
+      "item0": {
+        "jcr:primaryType": "nt:unstructured",
+        "url": "/content/dhl/en-global/business/entrepreneurship/effective-entrepreneurs"
+      },
+      "item1": {
+        "jcr:primaryType": "nt:unstructured",
+        "url": "/content/dhl/en-global/business/entrepreneurship/forever-spin-company-profile"
+      },
+      "item2": {
+        "jcr:primaryType": "nt:unstructured",
+        "url": "/content/dhl/en-global/business/entrepreneurship/bootstrapping-your-business"
+      }
+    }
+  },
+  "the-ten-minute-startup-guide-amp": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Oct 19 2022 15:46:57 GMT+0200",
+    "jcr:content": {
+      "jcr:primaryType": "cq:PageContent",
+      "jcr:mixinTypes": [
+        "mix:versionable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:title": "Launching a successful business in just 10 minutes a day",
+      "custompublishdate": "Thu Oct 17 2019 00:00:00 GMT+0100",
+      "cq:lastReplicationAction": "Activate",
+      "viewcount": 38,
+      "jcr:versionHistory": "22b7ea3a-faf9-4411-8708-5c0143014185",
+      "author": "James Rose",
+      "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
+      "cq:lastReplicatedBy": "Lauren",
+      "listbrief": "Hacks and shortcuts to setting up a viable small business.",
+      "listimage": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+      "heroimagemob": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+      "heroimagetab": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+      "readtime": "10 min read",
+      "jcr:predecessors": [
+        "e79c14d1-c3bd-47eb-aa71-6cd11200dff3"
+      ],
+      "cq:contextHubSegmentsPath": "/etc/segmentation/contexthub",
+      "jcr:created": "Wed Oct 19 2022 15:46:57 GMT+0200",
+      "cq:lastReplicated": "Wed Feb 23 2022 16:11:00 GMT+0000",
+      "cq:lastModified": "Fri Mar 25 2022 11:38:20 GMT+0000",
+      "mediatype@Delete": "download",
+      "fullarticlepath": "/content/dhl/en-global/business/entrepreneurship/the-ten-minute-startup-guide",
+      "jcr:description": "Using the online tools, apps and support, our guide answers the question whether a successful business can be launched in just 10 minutes a day.",
+      "jcr:baseVersion": "e79c14d1-c3bd-47eb-aa71-6cd11200dff3",
+      "jcr:isCheckedOut": true,
+      "authorimage": "/content/dam/dhl/site-image/roundels/laptop.png",
+      "authortitle": "Discover Content Lead",
+      "pageTitle": "A guide for launching a business in just 10 minutes | Discover DHL",
+      "jcr:uuid": "047e760d-0c51-4c05-ba1c-bc1dcd7c5e39",
+      "sling:resourceType": "dhl/components/pages/amparticle",
+      "cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
+      "heroimagedt": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Desktop_1920x918.jpg",
+      "cq:lastModifiedBy": "reference-adjustment-service",
+      "navTitle": "Launching a successful business in just 10 minutes a day",
+      "mediatype": "download",
+      "title": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "dhl/components/content/title"
+      },
+      "par": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/parsys"
+      },
+      "partwo": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/parsys"
+      },
+      "parthree": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/parsys"
+      },
+      "items": {
+        "jcr:primaryType": "nt:unstructured"
+      }
+    }
+  }
+}

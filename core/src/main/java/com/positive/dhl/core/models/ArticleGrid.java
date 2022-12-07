@@ -1,13 +1,12 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.commons.jcr.JcrConstants;
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.constants.DiscoverConstants;
+import com.positive.dhl.core.services.CategoryFinder;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -25,7 +24,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -51,7 +49,7 @@ public class ArticleGrid {
 	private SlingScriptHelper slingScriptHelper;
 
 	@Inject
-	private RepositoryChecks repositoryChecks;
+	private CategoryFinder categoryFinder;
 
 	@Inject
 	private Resource resource;
@@ -59,6 +57,9 @@ public class ArticleGrid {
 	@Inject
 	private Page currentPage;
 
+	@Inject
+	private RepositoryChecks repositoryChecks;
+	
 	@Inject
 	@Named("items")
 	@Optional
@@ -325,15 +326,7 @@ public class ArticleGrid {
 	 */
 	private SearchResult runQuery(Map<String,String> predicatesMap, String queryPath, ResourceResolver resourceResolver){
 		predicatesMap.putIfAbsent("path", queryPath);
-		Session session = resourceResolver.adaptTo(Session.class);
-		if(null != session){
-			PredicateGroup predicates = PredicateGroup.create(predicatesMap);
-			String queryString = predicates.toString();
-			LOGGER.info("Query to find the articles: {}", queryString);
-			Query query = builder.createQuery(predicates, session);
-			return query.getResult();
-		}
-		return null;
+		return categoryFinder.executeQuery(predicatesMap,resourceResolver);
 	}
 
 	private List<Article> processSearchResults(SearchResult searchResult, ResourceResolver resourceResolver){
@@ -409,21 +402,17 @@ public class ArticleGrid {
 	}
 
 	/**
-	 * 
+	 * Helper method that returns the 'group page' (page that can be used as path for searches of its children)
+	 * @param self is an instance of AEM {@link Page}, we test this page's resource type against specific values
+	 *             <ul>
+	 *             <li>dhl/components/pages/home</li>
+	 *             <li>dhl/components/pages/articlecategory</li>
+	 *             </ul>
+	 * @return a {@code Page} that matches the resource type or {@code null} if nothing was found
 	 */
 	private Page getGroupPage(Page self) {
-		ValueMap parentProperties = self.adaptTo(ValueMap.class);
-		if (parentProperties != null) {
-			if (("dhl/components/pages/home").equals(parentProperties.get("jcr:content/sling:resourceType", "")) ||
-					("dhl/components/pages/articlecategory")
-							.equals(parentProperties.get("jcr:content/sling:resourceType", ""))) {
-				return self;
-			}
-			if (self.getParent() != null) {
-				return getGroupPage(self.getParent());
-			}
-		}
-		return null;
+			String[] resourceTypes = {"dhl/components/pages/home","dhl/components/pages/articlecategory"};
+			return categoryFinder.getGroupPage(resourceTypes,self);
     }
 
 	private ResourceResolver getResourceResolver() {
