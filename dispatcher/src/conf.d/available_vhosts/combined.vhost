@@ -17,6 +17,9 @@ Include conf.d/variables/custom.vars
 	# Add header breadcrumbs for help in troubleshooting
 	<IfModule mod_headers.c>
 		Header add X-Vhost "publish-combined"
+		SetEnvIfNoCase X-Forwarded-Host ^(.+)$ CUSTOM_HOST=$1
+		RequestHeader set Host %{CUSTOM_HOST}e env=CUSTOM_HOST
+		Header add X-Vhost-CDN "forwarded-value" env=CUSTOM_HOST
 	</IfModule>
 
 	<IfModule disp_apache2.c>
@@ -55,12 +58,6 @@ Include conf.d/variables/custom.vars
 
 	<IfModule mod_rewrite.c>
 		RewriteEngine	on
-
-		# Rewrite URLs with origin Host header in case X-Forwarded-Host is set
-		RewriteCond %{HTTP:X-Forwarded-Host} (.+)
-		RewriteCond expr "! %{HTTP_HOST} -strmatch %{HTTP:X-Forwarded-Host}"
-		RewriteRule ^/(.*)$ https://%{HTTP:X-Forwarded-Host}/$1 [N]
-
 		Include conf.d/rewrites/rewrite-shared.rules
 
 		# Rewrite index page internally, pass through (PT)
