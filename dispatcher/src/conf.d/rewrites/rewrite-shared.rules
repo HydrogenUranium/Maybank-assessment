@@ -22,20 +22,12 @@ RewriteRule ^(/discover)?/robots\.txt$ /apps/dhl/discoverdhlapi/robots.txt [NC,P
 RewriteRule ^(/discover)?/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/favicon.ico [PT,L,NC]
 
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
-RewriteCond %{HTTP:X-Forwarded-Host} ^(.+)$
-RewriteRule ^/discover/(.+)\.html$ https://%{HTTP:X-Forwarded-Host}/discover/$1 [R=301,L]
-RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
+RewriteRule ^/discover/(.+)\.html$ https://%{CUSTOM_HOST}/discover/$1 [R=301,L]
 
 ### Default redirects to en-global homepage
-RewriteCond %{HTTP:X-Forwarded-Host} ^(.+)$
-RewriteRule ^/discover/?$ https://%{HTTP:X-Forwarded-Host}/discover/en-global [R=301,L]
-RewriteRule ^/discover/?$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
-RewriteCond %{HTTP:X-Forwarded-Host} ^(.+)$
-RewriteRule ^/discover/content/dhl/?$ https://%{HTTP:X-Forwarded-Host}/discover/en-global [R=301,L]
-RewriteRule ^/discover/content/dhl/?$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
-RewriteCond %{HTTP:X-Forwarded-Host} ^(.+)$
-RewriteRule ^/$ https://%{HTTP:X-Forwarded-Host}/discover/en-global [R=301,L]
-RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/discover/?$ https://%{CUSTOM_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/discover/content/dhl/?$ https://%{CUSTOM_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/$ https://%{CUSTOM_HOST}/discover/en-global [R=301,L]
 
 ### DYNAMIC PASS-THROUGH TO AEM ###
 # all assets in clientlibs or content/dam

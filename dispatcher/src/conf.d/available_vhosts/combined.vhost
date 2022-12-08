@@ -17,7 +17,12 @@ Include conf.d/variables/custom.vars
 	# Add header breadcrumbs for help in troubleshooting
 	<IfModule mod_headers.c>
 		Header add X-Vhost "publish-combined"
-		SetEnvIfNoCase X-Forwarded-Host ^(.+)$ CUSTOM_HOST=$1
+		#SetEnvIfNoCase X-Forwarded-Host ^(.+)$ CUSTOM_HOST=$1
+		SetEnvIfNoCase Host ^(.+)$ CUSTOM_HOST=$1
+		SetEnvIfNoCase Host ^publish-p58772-e854286.* CUSTOM_HOST=uat1.dhl.dhl
+		SetEnvIfNoCase Host ^publish-p58772-e528780.* CUSTOM_HOST=uat1.dhl.dhl
+		SetEnvIfNoCase Host ^publish-p58772-e528782.* CUSTOM_HOST=uat2.dhl.dhl
+		SetEnvIfNoCase Host ^publish-p58772-e528781.* CUSTOM_HOST=www.dhl.com
 		RequestHeader set Host %{CUSTOM_HOST}e env=CUSTOM_HOST
 		Header add X-Vhost-CDN "forwarded-value" env=CUSTOM_HOST
 	</IfModule>
