@@ -55,6 +55,12 @@ Include conf.d/variables/custom.vars
 
 	<IfModule mod_rewrite.c>
 		RewriteEngine	on
+
+		# Rewrite URLs with origin Host header in case X-Forwarded-Host is set
+		RewriteCond %{HTTP:X-Forwarded-Host} (.+)
+		RewriteCond expr "! %{HTTP_HOST} -strmatch %{HTTP:X-Forwarded-Host}"
+		RewriteRule ^/(.*)$ https://%{HTTP:X-Forwarded-Host}/$1 [N]
+
 		Include conf.d/rewrites/rewrite-shared.rules
 
 		# Rewrite index page internally, pass through (PT)
