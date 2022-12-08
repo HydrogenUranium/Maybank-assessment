@@ -23,7 +23,7 @@ RewriteRule ^/discover/(.+)\.html$ https://%{ENV:CUSTOM_HOST}/discover/$1 [R=301
 
 ### Default redirects to en-global homepage
 RewriteRule ^/discover/?$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
-RewriteRule ^/discover/content/dhl/?$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/discover/content/dhl.*$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
 RewriteRule ^/$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
 
 ### DYNAMIC PASS-THROUGH TO AEM ###

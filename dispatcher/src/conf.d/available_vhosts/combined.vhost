@@ -14,10 +14,17 @@ Include conf.d/variables/custom.vars
 
 	ErrorDocument 404 /discover/en-global/page-not-found
 
-	# Add header breadcrumbs for help in troubleshooting
 	<IfModule mod_headers.c>
+		# we have to populate the CUSTOM_HOST variable in order to have correct hostnames in the rewrite ruless 
 		SetEnvIfNoCase Host ^(.+)$ CUSTOM_HOST=$1
-		SetEnvIfNoCase X-Forwarded-Host ^(.+)$ CUSTOM_HOST=$1
+		SetEnvIfNoCase Host ^publish-p58772-e854286.* CUSTOM_HOST=uat1.dhl.dhl
+		SetEnvIfNoCase Host ^publish-p58772-e528780.* CUSTOM_HOST=uat1.dhl.dhl
+		SetEnvIfNoCase Host ^publish-p58772-e528782.* CUSTOM_HOST=uat2.dhl.dhl
+		SetEnvIfNoCase Host ^publish-p58772-e528781.* CUSTOM_HOST=www.dhl.com
+		# the below would be more elegant, but sadly the X-Forwarded-Host header doesn't seem to be available on dispatcher
+		# SetEnvIfNoCase X-Forwarded-Host ^(.+)$ CUSTOM_HOST=$1
+
+		# Add X-Vhost header to help in troubleshooting
 		Header always add X-Vhost "publish-combined-%{CUSTOM_HOST}e"
 	</IfModule>
 
