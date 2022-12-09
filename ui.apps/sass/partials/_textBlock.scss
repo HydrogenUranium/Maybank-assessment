@@ -53,7 +53,7 @@
     a {
       @include hoverText($colour-normal: map-get($palette, scarlet), $text-decoration-normal: none, $text-decoration-hover: none);
       span {
-        background-image: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/externallinkicon.svg');
+        background-image: url('__prefix__/clientlib-site/resources/img/externallinkicon.svg');
         background-size: contain;
         width: 15px;
         height: 15px;

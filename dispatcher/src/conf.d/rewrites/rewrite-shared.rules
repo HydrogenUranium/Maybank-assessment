@@ -1,0 +1,42 @@
+#
+# This file contains the rewrite rules, and can be customized.
+#
+# By default, it includes just the rewrite rules. You can
+# add rewrite rules to this file but you should still include
+# the default rewrite rules.
+Include conf.d/rewrites/default_rewrite.rules
+
+## bunch of business-related redirects
+Include conf.d/rewrites/business.rules
+
+### STATIC PASS-THROUGH ###
+RewriteRule ^(/discover)?/serviceworker\.js$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/sw.js [PT,L,NC]
+RewriteRule ^(/discover)?/manifest\.json$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/manifest.json [PT,L,NC]
+#RewriteRule ^(/discover)?/google441cb6f8a8a3ae5b\.html$ /apps/dhl/discoverdhlapi/google/index.html [PT,L,NC]
+RewriteRule ^(/discover)?/sureroute-test-object\.txt$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/akamai/sureroute-test-object.txt [PT,L,NC]
+RewriteRule ^(/discover)?/sitemap\.xml$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/sitemaps/20220203-englobal-sitemap.xml [PT,L,NC]
+RewriteRule ^(/discover)?/robots\.txt$ /apps/dhl/discoverdhlapi/robots.txt [PT,L,NC]
+RewriteRule ^(/discover)?/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/favicon.ico [PT,L,NC]
+RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/token.json [PT,L,NC]
+
+### 301 Rewrite all URLs ending in '.html' to remove the extension
+RewriteRule ^/discover/(.+)\.html$ https://%{ENV:CUSTOM_HOST}/discover/$1 [R=301,L]
+
+### Default redirects to en-global homepage
+RewriteRule ^/discover/?$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/discover/content/dhl.*$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
+
+### Redirect requests towards /discover/* that do not contain recognizable locale to en-global
+RewriteCond %{REQUEST_URI} ^/discover/
+RewriteCond %{REQUEST_URI} !^/discover/([a-z]{2}-[a-z]{2}|en-global)
+RewriteCond %{REQUEST_URI} !^/discover/(etc\.clientlibs|content/dam|apps/dhl)/
+RewriteRule ^/discover/(.+)$ https://%{ENV:CUSTOM_HOST}/discover/en-global/$1 [R=301,L]
+
+### DYNAMIC PASS-THROUGH TO AEM ###
+# all custom endpoints in /apps
+RewriteRule ^/discover/apps/dhl/(servlet-handler|discoverdhlapi)/(.+)$ /apps/dhl/$1/$2 [PT,L,NC]
+# all assets in clientlibs or content/dam
+RewriteRule ^/discover/(etc\.clientlibs|content/dam)/(.+)$ /$1/$2 [PT,L,NC]
+# all html pages
+RewriteRule ^/discover/(.+)$ /content/dhl/$1.html [PT,L,NC]

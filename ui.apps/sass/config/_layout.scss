@@ -30,7 +30,7 @@ body {
 
   &.awaiting {
     min-height: 300px;
-    background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/spinner.svg') center no-repeat;
+    background: transparent url('__prefix__/clientlib-site/resources/img/spinner.svg') center no-repeat;
     background-size: 120px 120px;
   }
 

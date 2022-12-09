@@ -8,10 +8,10 @@ class ServiceWorker {
   }
 
   register() {
-    navigator.serviceWorker.register('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/sw.js').then(() => {
+    navigator.serviceWorker.register('/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/sw.js?v=discoverDhl-20221115-1').then(() => {
       // console.log('ServiceWorker succesfully registered');
     }).catch(() => {
-      // console.log('ServiceWorker registration failed: ', err);
+      console.log('ServiceWorker registration failed: ', err);
     });
   }
 

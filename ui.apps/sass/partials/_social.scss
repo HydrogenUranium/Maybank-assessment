@@ -38,8 +38,8 @@
     border-radius: 39px !important;
     border: 2px solid map-get($palette, black) !important;
     background-color: map-get($palette, black) !important;
-    background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsfacebook.png);
-    background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsfacebook.svg);
+    background-image: url('__prefix__/clientlib-site/resources/img/socialiconsfacebook.png');
+    background-image: none, url('__prefix__/clientlib-site/resources/img/socialiconsfacebook.svg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 39px 39px;
@@ -47,32 +47,32 @@
 
     &--youtube,
     &.at-svc-youtube {
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsyoutube.png);
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsyoutube.svg);
+      background-image: url('__prefix__/clientlib-site/resources/img/socialiconsyoutube.png');
+      background-image: none, url('__prefix__/clientlib-site/resources/img/socialiconsyoutube.svg');
     }
 
     &--instagram,
     &.at-svc-instagram {
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsinstagram.png);
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsinstagram.svg);
+      background-image: url('__prefix__/clientlib-site/resources/img/socialiconsinstagram.png');
+      background-image: none, url('__prefix__/clientlib-site/resources/img/socialiconsinstagram.svg');
     }
 
     &--linkedin,
     &.at-svc-linkedin {
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconslinkedin.png);
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconslinkedin.svg);
+      background-image: url('__prefix__/clientlib-site/resources/img/socialiconslinkedin.png');
+      background-image: none, url('__prefix__/clientlib-site/resources/img/socialiconslinkedin.svg');
     }
 
     &--twitter,
     &.at-svc-twitter {
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconstwitter.png);
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconstwitter.svg);
+      background-image: url('__prefix__/clientlib-site/resources/img/socialiconstwitter.png');
+      background-image: none, url('__prefix__/clientlib-site/resources/img/socialiconstwitter.svg');
     }
 
     &--email,
     &.at-svc-email {
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsemail.png);
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/socialiconsemail.svg);
+      background-image: url('__prefix__/clientlib-site/resources/img/socialiconsemail.png');
+      background-image: none, url('__prefix__/clientlib-site/resources/img/socialiconsemail.svg');
     }
 
     &:hover {

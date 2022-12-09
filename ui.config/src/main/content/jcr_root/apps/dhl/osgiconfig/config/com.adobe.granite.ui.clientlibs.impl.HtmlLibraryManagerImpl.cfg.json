@@ -1,0 +1,26 @@
+{
+    "htmllibmanager.processor.js":[
+      "min:gcc"
+    ],
+    "htmllibmanager.longcache.patterns":[
+      "/.*;hash"
+    ],
+    "htmllibmanager.strict.versioning":true,
+    "htmllibmanager.minify":true,
+    "htmllibmanager.debug":false,
+    "htmllibmanager.gzip":true,
+    "htmllibmanager.longcache.format":"discover-%s-longcache",
+    "htmllibmanager.timing":false,
+    "htmllibmanager.excluded.path.list":[
+      "/etc/commerce/classifications",
+      "/etc/commerce/collections",
+      "/etc/commerce/payment-methods",
+      "/etc/commerce/products",
+      "/etc/commerce/shipping-methods",
+      "/etc/reports/auditreport",
+      "/etc/reports/compreport",
+      "/etc/segmentation",
+      "/etc/taskmanagement",
+      "/etc/workflow/instances"
+    ]
+  }

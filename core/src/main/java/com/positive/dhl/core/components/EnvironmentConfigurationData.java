@@ -7,7 +7,10 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 /**
  * Environment Configuration definition - blueprint for OSGi configuration dialog
  */
-@ObjectClassDefinition(name = "DHL General Site Component Configuration", description = "DHL General site implementation configuration")
+@ObjectClassDefinition(
+    name = "DHL General Site Component Configuration",
+    description = "DHL General site implementation configuration"
+)
 public @interface EnvironmentConfigurationData {
 
 

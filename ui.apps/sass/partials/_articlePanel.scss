@@ -251,8 +251,8 @@
       display: block;
       width: 20px;
       height: 20px;
-      background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/redcloseicon.png);
-      background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/redcloseicon.svg);
+      background-image: url('__prefix__/clientlib-site/resources/img/redcloseicon.png');
+      background-image: none, url('__prefix__/clientlib-site/resources/img/redcloseicon.svg');
       background-size: 20px 20px;
       background-position: center center;
       background-repeat: no-repeat;

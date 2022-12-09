@@ -27,7 +27,7 @@ class ArticlePageTest {
 		ctx.currentResource("/content/dhl/standardpage");
 		
 		ArticlePage articlePage = ctx.request().adaptTo(ArticlePage.class);
-		assertEquals("https://discover.dhl.com/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg", articlePage.getOgtagimage());
+		assertEquals("https://www.dhl.com/discover/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg", articlePage.getOgtagimage());
 		assertEquals("", articlePage.getCustomStyles());
 		
 		articlePage.setOgtagimage("");

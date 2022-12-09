@@ -112,8 +112,8 @@
       margin-left: -9px;
       width: 18px;
       height: 18px;
-      background-image: url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/searchicon.png');
-      background-image: none, url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/searchicon.svg');
+      background-image: url('__prefix__/clientlib-site/resources/img/searchicon.png');
+      background-image: none, url('__prefix__/clientlib-site/resources/img/searchicon.svg');
       @include backgroundImage(contain);
     }
   }

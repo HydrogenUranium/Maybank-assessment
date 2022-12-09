@@ -69,7 +69,7 @@
                 height: 24px;
                 left: 0;
                 top: 0;
-                background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/yellow-tick.svg') center no-repeat;
+                background: transparent url('__prefix__/clientlib-site/resources/img/yellow-tick.svg') center no-repeat;
                 background-size: contain;
             }
         }
@@ -82,8 +82,8 @@
 
         padding: 10px 34px 10px 15px;
 
-        background-image: url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrowwhite.png);
-        background-image: none, url(/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/linkarrowwhite.svg);
+        background-image: url('__prefix__/clientlib-site/resources/img/linkarrowwhite.png');
+        background-image: none, url('__prefix__/clientlib-site/resources/img/linkarrowwhite.svg');
         background-position: center right 14px;
         background-size: 6px 16px;
         background-repeat: no-repeat;

@@ -1,13 +1,11 @@
-const cacheName = 'discoverDhl-20220830-1';
+const cacheName = 'discoverDhl-20221115-1';
 
 //Assets to cache
 const assetsToCache = [
 	'/discover/etc.clientlibs/dhl/clientlibs/clientlib-site.css',
 	'/discover/etc.clientlibs/dhl/clientlibs/clientlib-site.js',
-
-	'/discover/offline',
-	'/discover/saved-articles',
-
+	'/discover/en-global/offline',
+	'/discover/en-global/saved-articles',
 	'/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/checkboxcheck.svg',
 	'/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/externallinkicon.svg',
 	'/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/formerroricon.svg',
@@ -84,7 +82,7 @@ self.addEventListener('fetch', (event) => {
         // If no internet connection, try to match request
         // to some of our cached resources
         return caches.match(event.request).then((response) => {
-          return response || caches.match('/discover/offline');
+          return response || caches.match('/discover/en-global/offline');
         });
       })
     );

@@ -42,6 +42,14 @@
         <aem.port>4502</aem.port>
         <author.username>admin</author.username>
         <author.password>admin</author.password>
+        <!--
+            controls the frontend build process
+            possible values: build / dev / local
+                - build: this is the default build for most scenarios
+                - dev: this will produce frontend code including sourcemaps
+                - local: this will produce frontend code without the /discover prefix in the paths to resources
+        -->
+        <frontend.environment>build</frontend.environment>
     </properties>
 
     <!-- ====================================================================== -->
@@ -122,13 +130,13 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>npm run build</id>
+                        <id>npm run ${frontend.environment}</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <arguments>run build</arguments>
+                            <arguments>run ${frontend.environment}</arguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -149,72 +157,6 @@
                                 <goals>
                                     <goal>project-analyse</goal>
                                 </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>buildFrontendDev</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>npm ci</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>generate-resources</phase>
-                                <configuration>
-                                    <arguments>ci</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm run dev</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>generate-resources</phase>
-                                <configuration>
-                                    <arguments>run dev</arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>buildFrontendProd</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>npm ci</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>generate-resources</phase>
-                                <configuration>
-                                    <arguments>ci</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm run build</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>generate-resources</phase>
-                                <configuration>
-                                    <arguments>run build</arguments>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

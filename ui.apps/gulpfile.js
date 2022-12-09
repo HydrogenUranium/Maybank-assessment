@@ -2,6 +2,7 @@
 const gulp = require('gulp');
 const gulpIf = require('gulp-if');
 const util = require('gulp-util');
+const replace = require('gulp-replace');
 const path = require('path');
 
 // include plug-ins
@@ -20,7 +21,12 @@ const buffer = require('vinyl-buffer');
 const browserify = require('browserify');
 
 // Environment
-const isDev = !util.env.build;
+const isDev = !util.env.prod;
+const isLocal = util.env.local;
+let prefix = '/etc.clientlibs/dhl/clientlibs';
+if (!isLocal) {
+  prefix = '/discover' + prefix;
+}
 
 // Bundler for ES6
 let bundler = null;
@@ -35,6 +41,7 @@ gulp.task('sass', () => {
       outputStyle: 'compressed',
       includePaths: ['./sass']
     }).on('error', sass.logError))
+    .pipe(replace('__prefix__', prefix))
     .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/clientlib-site/css'));
@@ -46,6 +53,7 @@ gulp.task('sass', () => {
       outputStyle: 'compressed',
       includePaths: ['./sass']
     }).on('error', sass.logError))
+    .pipe(replace('__prefix__', prefix))
     .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/clientlib-animatedpages/css'));
@@ -57,6 +65,7 @@ gulp.task('sass', () => {
       outputStyle: 'compressed',
       includePaths: ['./sass']
     }).on('error', sass.logError))
+    .pipe(replace('__prefix__', prefix))
     .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./sass'));

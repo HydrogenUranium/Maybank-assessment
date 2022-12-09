@@ -4437,10 +4437,10 @@ var ServiceWorker = function () {
   _createClass(ServiceWorker, [{
     key: 'register',
     value: function register() {
-      navigator.serviceWorker.register('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/sw.js').then(function () {
+      navigator.serviceWorker.register('/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/sw.js?v=discoverDhl-20221115-1').then(function () {
         // console.log('ServiceWorker succesfully registered');
       }).catch(function () {
-        // console.log('ServiceWorker registration failed: ', err);
+        console.log('ServiceWorker registration failed: ', err);
       });
     }
   }, {
