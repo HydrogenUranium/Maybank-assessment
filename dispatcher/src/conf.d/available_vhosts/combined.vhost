@@ -17,7 +17,6 @@ Include conf.d/variables/custom.vars
 	<IfModule mod_headers.c>
 		# we have to populate the CUSTOM_HOST variable in order to have correct hostnames in the rewrite ruless 
 		SetEnvIfNoCase Host ^(.+)$ CUSTOM_HOST=$1
-		SetEnvIfNoCase Host ^publish-p58772-e854286.* CUSTOM_HOST=uat1.dhl.dhl
 		SetEnvIfNoCase Host ^publish-p58772-e528780.* CUSTOM_HOST=uat1.dhl.dhl
 		SetEnvIfNoCase Host ^publish-p58772-e528782.* CUSTOM_HOST=uat2.dhl.dhl
 		SetEnvIfNoCase Host ^publish-p58772-e528781.* CUSTOM_HOST=www.dhl.com
