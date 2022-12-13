@@ -21,6 +21,8 @@ RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/toke
 
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
 RewriteRule ^/discover/(.+)\.html$ https://%{ENV:CUSTOM_HOST}/discover/$1 [R=301,L]
+### Test suggestion from the Adobe Support
+RewriteRule ^/discover/(.+)\.xhtml$ /discover/$1 [R=301,L]
 
 ### Default redirects to en-global homepage
 RewriteRule ^/discover/?$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
