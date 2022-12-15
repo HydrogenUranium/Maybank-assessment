@@ -1,8 +1,8 @@
 {
     "allow.hosts":[
       "www.dhl.com",
-      "dhl.com",
-      "uat2.dhl.dhl"
+      "uat2.dhl.dhl",
+      "uat1.dhl.dhl"
     ],
     "allow.hosts.regexp": [
         "https://.*\\.adobe\\.net:443",
