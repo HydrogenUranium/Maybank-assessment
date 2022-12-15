@@ -20,18 +20,18 @@ RewriteRule ^(/discover)?/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/clientlib
 RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/token.json [PT,L,NC]
 
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
-RewriteRule ^/discover/(.+)\.html$ https://%{ENV:CUSTOM_HOST}/discover/$1 [R=301,L]
+RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
 
 ### Default redirects to en-global homepage
-RewriteRule ^/discover/?$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
-RewriteRule ^/discover/content/dhl.*$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
-RewriteRule ^/$ https://%{ENV:CUSTOM_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/discover/?$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/discover/content/dhl.*$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
+RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 
 ### Redirect requests towards /discover/* that do not contain recognizable locale to en-global
 RewriteCond %{REQUEST_URI} ^/discover/
 RewriteCond %{REQUEST_URI} !^/discover/([a-z]{2}-[a-z]{2}|en-global)
 RewriteCond %{REQUEST_URI} !^/discover/(etc\.clientlibs|content/dam|apps/dhl)/
-RewriteRule ^/discover/(.+)$ https://%{ENV:CUSTOM_HOST}/discover/en-global/$1 [R=301,L]
+RewriteRule ^/discover/(.+)$ https://%{HTTP_HOST}/discover/en-global/$1 [R=301,L]
 
 ### DYNAMIC PASS-THROUGH TO AEM ###
 # all custom endpoints in /apps
