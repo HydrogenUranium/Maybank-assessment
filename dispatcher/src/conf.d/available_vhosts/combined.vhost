@@ -16,7 +16,8 @@ Include conf.d/variables/custom.vars
 
 	<IfModule mod_headers.c>
 		# Add X-Vhost header to help in troubleshooting
-		Header always add X-Vhost "publish-combined-%{HTTP_HOST}e"
+		SetEnvIfNoCase Host ^(.+)$ CUSTOM_HOST=$1
+		Header always add X-Vhost "publish-combined-%{CUSTOM_HOST}e"
 	</IfModule>
 
 	<IfModule disp_apache2.c>
