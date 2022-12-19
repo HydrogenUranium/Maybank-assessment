@@ -266,7 +266,7 @@ class LoginForm {
 
               var backUrl = $(this.sel.component).data('back');
               if ($.trim(backUrl).length === 0) {
-                backUrl = this.getPathHome() + '.html';
+                backUrl = this.getPathPrefix() + this.getPathHome();
               }
               window.location = backUrl;
             } else {
@@ -282,7 +282,7 @@ class LoginForm {
   }
 
   loggedIn() {
-    window.location = '/content/dhl/your-account.html';
+    window.location = this.getPathPrefix() + this.getPathHome() + 'your-account';
   }
 }
 

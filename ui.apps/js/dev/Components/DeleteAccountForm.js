@@ -238,7 +238,7 @@ class DeleteAccountForm {
     if ($(this.sel.component).hasClass('no-redirect')) {
       $(this.sel.component).show();
     } else {
-      window.location = this.getPathHome() + '.html';
+      window.location = this.getPathPrefix() + this.getPathHome();
     }
   }
 }

@@ -577,7 +577,7 @@ public class AccountActions {
 					"Trusted Network"
 				};
 
-				homeUrl = home.getPath();
+				homeUrl = home.getPath().replace("/content/dhl", "");
 				loginUrlNoRedirect = properties.get("jcr:content/loginpage", "/content/dhl/login").concat(".html");
 		        loginUrl = properties.get("jcr:content/loginpage", "/content/dhl/login").concat(".html");
 		        registerUrl = properties.get("jcr:content/registerpage", "/content/dhl/register").concat(".html");
@@ -602,7 +602,7 @@ public class AccountActions {
 				}
 
 				if (!hasBackUrl) {
-					backUrl = "/content/dhl/en-global.html";
+					backUrl = homeUrl;
 				}
 			}
 		}

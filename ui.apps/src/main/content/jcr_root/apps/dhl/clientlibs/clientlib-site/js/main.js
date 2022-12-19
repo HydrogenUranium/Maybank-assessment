@@ -541,10 +541,10 @@ var AuthenticationEvents = function () {
       }
 
       if ($('.reset-password-container').length > 0) {
-        window.location = this.getPathHome() + '.html';
+        window.location = this.getPathPrefix() + this.getPathHome();
       }
       if ($('.page-body.register').length > 0) {
-        window.location = this.getPathHome() + '/your-account.html';
+        window.location = this.getPathPrefix() + this.getPathHome();
       }
 
       if ($('.gatingArticle__actions.logged-in').length > 0) {
@@ -1625,7 +1625,7 @@ var DeleteAccountForm = function () {
       if ($(this.sel.component).hasClass('no-redirect')) {
         $(this.sel.component).show();
       } else {
-        window.location = this.getPathHome() + '.html';
+        window.location = this.getPathPrefix() + this.getPathHome();
       }
     }
   }]);
@@ -2814,7 +2814,7 @@ var LoginForm = function () {
 
                 var backUrl = $(_this5.sel.component).data('back');
                 if ($.trim(backUrl).length === 0) {
-                  backUrl = _this5.getPathHome() + '.html';
+                  backUrl = _this5.getPathPrefix() + _this5.getPathHome();
                 }
                 window.location = backUrl;
               } else {
@@ -2831,7 +2831,7 @@ var LoginForm = function () {
   }, {
     key: 'loggedIn',
     value: function loggedIn() {
-      window.location = '/content/dhl/your-account.html';
+      window.location = this.getPathPrefix() + this.getPathHome() + 'your-account';
     }
   }]);
 
@@ -3697,7 +3697,7 @@ var PasswordReminderForm = function () {
 
                           var backUrl = $(form).data('back');
                           if ($.trim(backUrl).length === 0) {
-                            backUrl = _this3.getPathHome() + '.html';
+                            backUrl = _this3.getPathPrefix() + _this3.getPathHome();
                           }
                           window.location = backUrl;
                         } else {
@@ -4293,7 +4293,7 @@ var RegisterForm = function () {
                   if (updateCategoriesResponse) {
                     if (updateCategoriesResponse.status === 'ok') {
                       $(window).trigger('checkauthtokens.DHL', [updateCategoriesResponse, true]);
-                      window.location = _this6.getPathHome() + '.html';
+                      window.location = _this6.getPathPrefix() + _this6.getPathHome();
                     } else {
                       alert('An unknown error occurred while attempting to update your details (1). Please try again later');
                     }
@@ -6089,7 +6089,7 @@ var LoginForm = function () {
       if ($(this.sel.component).hasClass('no-redirect')) {
         $(this.sel.component).show();
       } else {
-        window.location = this.getPathHome() + '.html';
+        window.location = this.getPathPrefix() + this.getPathHome();
       }
     }
   }]);
