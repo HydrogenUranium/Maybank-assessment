@@ -191,7 +191,7 @@ class PasswordReminderForm {
 
                         var backUrl = $(form).data('back');
                         if ($.trim(backUrl).length === 0) {
-                          backUrl = this.getPathHome() + '.html';
+                          backUrl = this.getPathPrefix() + this.getPathHome();
                         }
                         window.location = backUrl;
                       } else {

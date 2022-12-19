@@ -263,12 +263,11 @@ class LoginForm {
           if (response) {
             if (response.status === 'ok') {
               $(window).trigger('checkauthtokens.DHL', [ response, true ]);
-
               var backUrl = $(this.sel.component).data('back');
               if ($.trim(backUrl).length === 0) {
-                backUrl = this.getPathHome() + '.html';
+                backUrl = this.getPathPrefix() + this.getPathHome();
               }
-              window.location = backUrl;
+              window.location = this.getPathPrefix() + backUrl;
             } else {
               alert('An error occurred while attempting to register.\n' + response.error);
             }
@@ -282,7 +281,7 @@ class LoginForm {
   }
 
   loggedIn() {
-    window.location = '/content/dhl/your-account.html';
+    window.location = this.getPathPrefix() + this.getPathHome() + 'your-account';
   }
 }
 

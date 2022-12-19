@@ -380,7 +380,7 @@ class RegisterForm {
                 if (updateCategoriesResponse) {
                   if (updateCategoriesResponse.status === 'ok') {
                     $(window).trigger('checkauthtokens.DHL', [ updateCategoriesResponse, true ]);
-                    window.location = this.getPathHome() + '.html';
+                    window.location = this.getPathPrefix() + this.getPathHome();
                   } else {
                     alert('An unknown error occurred while attempting to update your details (1). Please try again later');
                   }

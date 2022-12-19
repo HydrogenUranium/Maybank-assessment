@@ -180,10 +180,10 @@ class AuthenticationEvents {
     }
 
     if ($('.reset-password-container').length > 0) {
-      window.location = this.getPathHome() + '.html';
+      window.location = this.getPathPrefix() + this.getPathHome();
     }
     if ($('.page-body.register').length > 0) {
-      window.location = this.getPathHome() + '/your-account.html';
+      window.location = this.getPathPrefix() + this.getPathHome();
     }
 
     if ($('.gatingArticle__actions.logged-in').length > 0) {
