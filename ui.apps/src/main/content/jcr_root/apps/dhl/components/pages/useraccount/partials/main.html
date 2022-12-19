@@ -1,12 +1,12 @@
 <!--/*
     Copyright 2015 Adobe Systems Incorporated
-  
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-  
+
         http://www.apache.org/licenses/LICENSE-2.0
-  
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,11 +14,6 @@
     limitations under the License.
 */-->
 <template data-sly-template.data="${@accountactions}">
-<style type="text/css">
-	.page-body-wrapper { width: 100%; overflow: hidden; }
-	.page-body-wrapper.awaiting { min-height: 300px; background: transparent url('/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/spinner.svg') center no-repeat; background-size: 120px 120px; }
-	.page-body-wrapper .page-body { background: #fff; }
-</style>
 <div class="page-body-wrapper awaiting">
 <div class="page-body user-account ${((currentSession.userID == null || currentSession.userID == 'anonymous') ? '': 'no-redirect')}" style="display: none;">
 	<div class="container-fluid">
@@ -27,7 +22,7 @@
 				<form class='forms' method="post" autocomplete="off" novalidate>
 					<h1 class="forms__title">${ 'Hey' @ i18n, context='html' } <span class="loggedin-username"></span></h1>
 					<div class="forms__copy" data-sly-resource="par"></div>
-				
+
 					<div class="forms__group">
 						<small class="myAccount__message" style="width: 100%; float: left; margin: 0 0 30px; color: #d40511; font-weight: 700; font-size: 14px; text-align: center; display: none;">${ 'Your updates have been saved' @ i18n, context='html' }</small>
 						<h2 class="forms__subtitle">${ 'Your account settings' @ i18n, context='html' }</h2>
@@ -103,7 +98,7 @@
 					</div>
 					<div class="forms__group">
 						<div class="p forms__copy forms__copy--spaced" data-sly-resource="par_two"></div>
-							
+
 						<div class="useraccount-currentpassword" style="display: none;">
 							<h2 class="forms__subtitle">${ 'Your password' @ i18n, context='html' }</h2>
 							<div class="forms__row">
@@ -120,7 +115,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<h2 class="forms__subtitle">${ 'New password' @ i18n, context='html' }</h2>
 						<div class="forms__row">
 							<div class="col-12">
@@ -182,7 +177,7 @@
 					<div class="forms__group">
 						<h2 class="forms__subtitle">${ 'Want to delete your account permanently?' @ i18n, context='html' }</h2>
 						<div class="forms__copy" data-sly-resource="par_three"></div>
-						
+
 						<div class="forms__row">
 							<div class="col-12 col-md-6">
 								<a class="forms__cta--grey" title="Delete account" href="${accountactions.deleteAccountUrl}">${ 'Delete Account' @ i18n, context='html' }</a>
