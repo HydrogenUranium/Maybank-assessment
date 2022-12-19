@@ -2489,10 +2489,10 @@ var LanguageDetect = function () {
         for (var i = 0; i < languagesData.variants.length; i++) {
           var variant = languagesData.variants[i];
           if (variant.languages === '*') {
-            catchAll = this.getPathPrefix() + variant.path + '.html';
+            catchAll = this.getPathPrefix() + variant.path;
           }
           if (variant.languages.indexOf(language) >= 0) {
-            url = this.getPathPrefix() + variant.path + '.html';
+            url = this.getPathPrefix() + variant.path;
           }
         }
         if (url !== '') {
@@ -2811,12 +2811,11 @@ var LoginForm = function () {
             if (response) {
               if (response.status === 'ok') {
                 $(window).trigger('checkauthtokens.DHL', [response, true]);
-
                 var backUrl = $(_this5.sel.component).data('back');
                 if ($.trim(backUrl).length === 0) {
                   backUrl = _this5.getPathPrefix() + _this5.getPathHome();
                 }
-                window.location = backUrl;
+                window.location = _this5.getPathPrefix() + backUrl;
               } else {
                 alert('An error occurred while attempting to register.\n' + response.error);
               }

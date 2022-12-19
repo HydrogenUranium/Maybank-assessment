@@ -33,10 +33,10 @@ class LanguageDetect {
       for (let i = 0; i < languagesData.variants.length; i++) {
         let variant = languagesData.variants[i];
         if (variant.languages === '*') {
-          catchAll = this.getPathPrefix() + variant.path + '.html';
+          catchAll = this.getPathPrefix() + variant.path;
         }
         if (variant.languages.indexOf(language) >= 0) {
-          url = this.getPathPrefix() + variant.path + '.html';
+          url = this.getPathPrefix() + variant.path;
         }
       }
       if (url !== '') {
