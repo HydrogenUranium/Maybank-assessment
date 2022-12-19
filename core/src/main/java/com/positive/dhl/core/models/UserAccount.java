@@ -157,7 +157,7 @@ public class UserAccount {
 			throw new DiscoverUserNotFoundException("User not found by " + user.username);
 		}
 		
-		try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE shipnow_registrations SET `token` = ?, `refresh_token` = ?, `ttl` = ? where (`id` = ?)")) {
+		try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE `registrations` SET `token` = ?, `refresh_token` = ?, `ttl` = ? where (`id` = ?)")) {
 			updateStatement.setString(1, token);
 			updateStatement.setString(2, refreshToken);
 			updateStatement.setTimestamp(3, new Timestamp(expiry.getTimeInMillis()));
@@ -166,7 +166,7 @@ public class UserAccount {
 		}
 
 		boolean fullAccount = false;
-		try (final PreparedStatement selectStatement = connection.prepareStatement("SELECT `full` from shipnow_registrations where (`id` = ?)")) {
+		try (final PreparedStatement selectStatement = connection.prepareStatement("SELECT `full` from `registrations` where (`id` = ?)")) {
 			selectStatement.setInt(1, id);
 			
 			try (final ResultSet results = selectStatement.executeQuery()) {
@@ -190,7 +190,7 @@ public class UserAccount {
 	private static int findByUsername(Connection connection, String username) throws SQLException {
 		int id = 0;
 		
-		try (final PreparedStatement statement = connection.prepareStatement("SELECT `id` from shipnow_registrations where `username` = ?")) {
+		try (final PreparedStatement statement = connection.prepareStatement("SELECT `id` from `registrations` where `username` = ?")) {
 			statement.setString(1, username);
 	
 			try (final ResultSet results = statement.executeQuery()) {
@@ -220,7 +220,7 @@ public class UserAccount {
 			String salt = "";
 			String firstname = "";
 			
-			try (final PreparedStatement statement = connection.prepareStatement("SELECT `password`, `salt`, `firstname` FROM shipnow_registrations WHERE (`id` = ?)")) {
+			try (final PreparedStatement statement = connection.prepareStatement("SELECT `password`, `salt`, `firstname` FROM `registrations` WHERE (`id` = ?)")) {
 				statement.setInt(1, id);
 				
 				try (final ResultSet results = statement.executeQuery()) {
@@ -259,7 +259,7 @@ public class UserAccount {
 			String firstname = "";
 			String lastname = "";
 			
-			try (final PreparedStatement statement = connection.prepareStatement("SELECT `token`, `ttl`, `firstname`, `lastname` FROM shipnow_registrations WHERE (`id` = ?)")) {
+			try (final PreparedStatement statement = connection.prepareStatement("SELECT `token`, `ttl`, `firstname`, `lastname` FROM `registrations` WHERE (`id` = ?)")) {
 				statement.setInt(1, id);
 	
 				try (final ResultSet results = statement.executeQuery()) {
@@ -300,7 +300,7 @@ public class UserAccount {
 			String firstname = "";
 			String lastname = "";
 			
-			try (final PreparedStatement statement = connection.prepareStatement("SELECT `refresh_token`, `firstname`, `lastname` FROM shipnow_registrations WHERE (`id` = ?)")) {
+			try (final PreparedStatement statement = connection.prepareStatement("SELECT `refresh_token`, `firstname`, `lastname` FROM `registrations` WHERE (`id` = ?)")) {
 				statement.setInt(1, id);
 	
 				try (final ResultSet results = statement.executeQuery()) {
@@ -335,7 +335,7 @@ public class UserAccount {
 		if (id != 0) {
 			int full = 0;
 			
-			try (final PreparedStatement statement = connection.prepareStatement("SELECT `full` FROM shipnow_registrations WHERE (`id` = ?)")) {
+			try (final PreparedStatement statement = connection.prepareStatement("SELECT `full` FROM `registrations` WHERE (`id` = ?)")) {
 				statement.setInt(1, id);
 				
 				try (final ResultSet results = statement.executeQuery()) {
@@ -349,7 +349,7 @@ public class UserAccount {
 				}
 			}
 			
-			try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE shipnow_registrations SET `username` = ?, `firstname` = ?, `lastname` = ?, `password` = ?, `salt` = ?, `islinkedin` = ?, `position` = ?, `contact` = ?, `size` = ?, `sector` = ?, `full` = ?, `tcagree` = ? WHERE (`id` = ?)")) {
+			try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE `registrations` SET `username` = ?, `firstname` = ?, `lastname` = ?, `password` = ?, `salt` = ?, `islinkedin` = ?, `position` = ?, `contact` = ?, `size` = ?, `sector` = ?, `full` = ?, `tcagree` = ? WHERE (`id` = ?)")) {
 				updateStatement.setString(1, registration.getEmail());
 				updateStatement.setString(2, registration.getFirstname());
 				updateStatement.setString(3, registration.getLastname());
@@ -366,7 +366,7 @@ public class UserAccount {
 			return authenticate(connection, registration.getEmail(), registration.getPassword());
 		}
 		
-		try (final PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO shipnow_registrations (`firstname`, `lastname`, `username`, `password`, `salt`, `sector`, `size`, `position`, `contact`, `islinkedin`, `full`, `tcagree`, `interest_categories`, `datecreated`, `token`, `refresh_token`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?)")) {
+		try (final PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO `registrations` (`firstname`, `lastname`, `username`, `password`, `salt`, `sector`, `size`, `position`, `contact`, `islinkedin`, `full`, `tcagree`, `interest_categories`, `datecreated`, `token`, `refresh_token`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?)")) {
 			insertStatement.setString(1, registration.getFirstname());
 			insertStatement.setString(2, registration.getLastname());
 			insertStatement.setString(3, registration.getEmail());
@@ -401,7 +401,7 @@ public class UserAccount {
 
 		int id = findByUsername(connection, username);
 		if (id != 0) {
-			try (final PreparedStatement statement = connection.prepareStatement("SELECT `firstname`, `lastname`, `username`, `password`, `salt`, `sector`, `size`, `position`, `contact`, `interest_categories`, `islinkedin`, `full`, `tcagree` FROM shipnow_registrations WHERE (`id` = ?)")) {
+			try (final PreparedStatement statement = connection.prepareStatement("SELECT `firstname`, `lastname`, `username`, `password`, `salt`, `sector`, `size`, `position`, `contact`, `interest_categories`, `islinkedin`, `full`, `tcagree` FROM `registrations` WHERE (`id` = ?)")) {
 				statement.setInt(1, id);
 				
 				try (final ResultSet results = statement.executeQuery()) {
@@ -442,7 +442,7 @@ public class UserAccount {
 		if (registration.getNewpassword() != null && registration.getNewpassword().length() > 0) {
 			byte[] salt = getSalt();
 
-			try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE shipnow_registrations SET `username` = ?, `firstname` = ?, `lastname` = ?, `password` = ?, `salt` = ?, `islinkedin` = ?, `position` = ?, `contact` = ?, `size` = ?, `sector` = ?, `tcagree` = ?, `interest_categories` = ? WHERE (`id` = ?)")) {
+			try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE `registrations` SET `username` = ?, `firstname` = ?, `lastname` = ?, `password` = ?, `salt` = ?, `islinkedin` = ?, `position` = ?, `contact` = ?, `size` = ?, `sector` = ?, `tcagree` = ?, `interest_categories` = ? WHERE (`id` = ?)")) {
 				updateStatement.setString(1, registration.getNewemail());
 				updateStatement.setString(2, registration.getFirstname());
 				updateStatement.setString(3, registration.getLastname());
@@ -460,7 +460,7 @@ public class UserAccount {
 			}
 			
 		} else {
-			try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE shipnow_registrations SET `username` = ?, `firstname` = ?, `lastname` = ?, `position` = ?, `contact` = ?, `size` = ?, `sector` = ?, `tcagree` = ?, `interest_categories` = ? WHERE (`id` = ?)")) {
+			try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE `registrations` SET `username` = ?, `firstname` = ?, `lastname` = ?, `position` = ?, `contact` = ?, `size` = ?, `sector` = ?, `tcagree` = ?, `interest_categories` = ? WHERE (`id` = ?)")) {
 				updateStatement.setString(1, registration.getNewemail());
 				updateStatement.setString(2, registration.getFirstname());
 				updateStatement.setString(3, registration.getLastname());
@@ -487,7 +487,7 @@ public class UserAccount {
 			throw new DiscoverUserNotFoundException("The user with username '" + username + COULD_NOT_BE_FOUND);
 		}
 
-		try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE shipnow_registrations SET `interest_categories` = ? WHERE (`id` = ?)")) {
+		try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE `registrations` SET `interest_categories` = ? WHERE (`id` = ?)")) {
 			updateStatement.setString(1, categories);
 			updateStatement.setInt(2, id);
 			updateStatement.executeUpdate();
@@ -503,7 +503,7 @@ public class UserAccount {
 		int id = findByUsername(connection, username);
 		if (id != 0) {
 			int full = 0;
-			try (final PreparedStatement statement = connection.prepareStatement("SELECT `full` FROM shipnow_registrations WHERE (`id` = ?)")) {
+			try (final PreparedStatement statement = connection.prepareStatement("SELECT `full` FROM `registrations` WHERE (`id` = ?)")) {
 				statement.setInt(1, id);
 				
 				try (final ResultSet results = statement.executeQuery()) {
@@ -529,7 +529,7 @@ public class UserAccount {
 		}
 
 		byte[] salt = getSalt();
-		try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE shipnow_registrations SET `password` = ?, `salt` = ?, `islinkedin` = ?, `full` = ?, `password_reset_token` = ? WHERE (`id` = ?)")) {
+		try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE `registrations` SET `password` = ?, `salt` = ?, `islinkedin` = ?, `full` = ?, `password_reset_token` = ? WHERE (`id` = ?)")) {
 			updateStatement.setString(1, hashPassword(password, salt));
 			updateStatement.setString(2, DatatypeConverter.printBase64Binary(salt));
 			updateStatement.setInt(3, 0);
@@ -552,7 +552,7 @@ public class UserAccount {
 		}
 
 		String firstname = "";
-		try (final PreparedStatement statement = connection.prepareStatement("SELECT `firstname` FROM shipnow_registrations WHERE (`id` = ?)")) {
+		try (final PreparedStatement statement = connection.prepareStatement("SELECT `firstname` FROM `registrations` WHERE (`id` = ?)")) {
 			statement.setInt(1, id);
 			
 			try (final ResultSet results = statement.executeQuery()) {
@@ -563,7 +563,7 @@ public class UserAccount {
 		}
 		
 		String passwordResetToken = generateToken();
-		try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE shipnow_registrations SET `password_reset_token` = ? WHERE (`id` = ?)")) {
+		try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE `registrations` SET `password_reset_token` = ? WHERE (`id` = ?)")) {
 			updateStatement.setString(1, passwordResetToken);
 			updateStatement.setInt(2, id);
 			updateStatement.executeUpdate();
@@ -584,7 +584,7 @@ public class UserAccount {
 		String firstname = "";
 		String returnedToken = "";
 		
-		try (final PreparedStatement statement = connection.prepareStatement("SELECT `firstname`, `password_reset_token` FROM shipnow_registrations WHERE (`id` = ?)")) {
+		try (final PreparedStatement statement = connection.prepareStatement("SELECT `firstname`, `password_reset_token` FROM `registrations` WHERE (`id` = ?)")) {
 			statement.setInt(1, id);
 			
 			try (final ResultSet results = statement.executeQuery()) {
@@ -600,7 +600,7 @@ public class UserAccount {
 		}
 
 		byte[] salt = getSalt();
-		try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE shipnow_registrations SET `password` = ?, `salt` = ?, `islinkedin` = ?, `full` = ?, `password_reset_token` = ? WHERE (`id` = ?)")) {
+		try (final PreparedStatement updateStatement = connection.prepareStatement("UPDATE `registrations` SET `password` = ?, `salt` = ?, `islinkedin` = ?, `full` = ?, `password_reset_token` = ? WHERE (`id` = ?)")) {
 			updateStatement.setString(1, hashPassword(password, salt));
 			updateStatement.setString(2, DatatypeConverter.printBase64Binary(salt));
 			updateStatement.setInt(3, 0);
@@ -624,7 +624,7 @@ public class UserAccount {
 		
 		String firstname = "";
 		
-		try (final PreparedStatement statement = connection.prepareStatement("SELECT `firstname` FROM shipnow_registrations WHERE (`id` = ?)")) {
+		try (final PreparedStatement statement = connection.prepareStatement("SELECT `firstname` FROM `registrations` WHERE (`id` = ?)")) {
 			statement.setInt(1, id);
 			
 			try (final ResultSet results = statement.executeQuery()) {			
@@ -634,7 +634,7 @@ public class UserAccount {
 			}
 		}
 
-		try (final PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM shipnow_registrations WHERE (`id` = ?)")) {
+		try (final PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM `registrations` WHERE (`id` = ?)")) {
 			deleteStatement.setInt(1, id);
 			deleteStatement.executeUpdate();
 		}
