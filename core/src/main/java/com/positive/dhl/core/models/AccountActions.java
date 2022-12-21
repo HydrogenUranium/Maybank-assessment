@@ -15,15 +15,12 @@ import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.osgi.service.cm.ConfigurationAdmin;
 
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class AccountActions {
-	@Inject
-	private ConfigurationAdmin configurationAdmin;
 
 	@Inject
 	private SlingHttpServletRequest request;

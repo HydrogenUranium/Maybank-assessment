@@ -5,7 +5,7 @@
             <div class="col-12">
                 <h2 class="similarStories__title">Similar stories</h2>
                 <ul class="similarStories__list" data-sly-list="${articleSideNavigation.articles}">
-                    <li class="similarStories__list-item"><a href="//${dhlpage.getHostDetail @ context='unsafe'}${item.path}.html" class="similarStories__link">${item.title}</a></li>
+                    <li class="similarStories__list-item"><a href="//${dhlpage.getAkamaiHostname}${item.path}.html" class="similarStories__link">${item.title}</a></li>
                 </ul>
             </div>
         </div>

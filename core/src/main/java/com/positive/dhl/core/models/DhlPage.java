@@ -13,8 +13,6 @@ import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.osgi.service.cm.ConfigurationAdmin;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -24,8 +22,6 @@ import java.util.List;
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class DhlPage {
-	@Inject
-	private ConfigurationAdmin configurationAdmin;
 
 	@Inject
 	private SlingHttpServletRequest request;
@@ -46,6 +42,8 @@ public class DhlPage {
 	private String gtmtrackingid;
 	private String pathprefix;
 	private String assetprefix;
+	private String akamaiHostname;
+	private String protocol;
 
 	private Boolean noindex;
 	private List<Canonical> canonicals;
@@ -172,6 +170,16 @@ public class DhlPage {
 	 */
 	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
 
+		/**
+	 *
+	 */
+	public String getAkamaiHostname() { return akamaiHostname; }
+
+	/**
+	 *
+	 */
+	public void setAkamaiHostname(String akamaiHostname) { this.akamaiHostname = akamaiHostname; }
+
     /**
 	 * 
 	 */
@@ -182,18 +190,20 @@ public class DhlPage {
 		trackingid = "";
 		gtmtrackingid = "";
 		noindex = false;
+		protocol = "https://";
+		akamaiHostname = environmentConfiguration.getAkamaiHostname();
 
-		Boolean publish = true;
+		Boolean isPublishRunmode = true;
 		WCMMode mode = WCMMode.fromRequest(request);
 		if (mode != WCMMode.DISABLED) {
-			publish = false;
+			isPublishRunmode = false;
 		}
 
 		Page home = currentPage.getAbsoluteParent(2);
 		if (home != null) {
 			ValueMap homeProperties = home.adaptTo(ValueMap.class);
 			if (homeProperties != null) {
-
+				
 				assetprefix = environmentConfiguration.getAssetPrefix();
 				pathprefix = homeProperties.get("jcr:content/pathprefix", "");
 				trackingid = homeProperties.get("jcr:content/trackingid", "");
@@ -203,10 +213,11 @@ public class DhlPage {
 		}
 
 		String currentPagePath = currentPage.getPath();
+		String shortPath = currentPagePath.replace("/content/dhl", "");
 
-		fullUrl = ("https://www.dhl.com" + pathprefix).concat(currentPage.getPath().replace("/content/dhl", ""));
-		if (("https://www.dhl.com" + pathprefix).equals(fullUrl)) {
-			fullUrl = ("https://www.dhl.com" + pathprefix).concat("/");
+		fullUrl = (protocol + akamaiHostname + pathprefix).concat(shortPath);
+		if (shortPath.length() == 0) {
+			fullUrl = fullUrl + '/';
 		}
 		
 		ValueMap properties = currentPage.getProperties();
@@ -215,11 +226,9 @@ public class DhlPage {
 			amparticlepath = properties.get("amparticlepath", "");
 			
 			String path = properties.get("redirectTarget", "");
-			if (!path.equals(currentPagePath) && !path.isEmpty()) {
-				if (publish) {
-					response.setStatus(302);  
-					response.setHeader("Location", path); 
-				}
+			if (!path.equals(currentPagePath) && !path.isEmpty() && isPublishRunmode) {
+				response.setStatus(302);  
+				response.setHeader("Location", path);
 			}
 
 			// if 'noindex' is set on the homepage, all pages have no-index set, otherwise the settings is on individual pages
@@ -244,19 +253,5 @@ public class DhlPage {
 				}
 			}
 		}
-	}
-	
-    /**
-	 * 
-	 */
-	public String getHostDetail() {
-		String serverName = request.getServerName();
-		int port = request.getServerPort();
-		
-		if (!((port == 80) || (port == 443))) {
-			return String.format("%s:%d", serverName, port);
-		}
-		
-		return serverName;
 	}
 }

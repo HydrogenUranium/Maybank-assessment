@@ -35,7 +35,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="header__meganav">
 		<nav class="header__meganavNavigation">
 			<div class="container">
@@ -55,14 +55,14 @@
 						<div class="header__meganavPromo" data-sly-use.meganavBanner="com.positive.dhl.core.models.MeganavBanner">
 							<p>${meganavBanner.Subtitle}</p>
 							<h3>${meganavBanner.Title}</h3>
-							
+
 							<ul class="points">
 								<li>${meganavBanner.Point1}</li>
 								<li>${meganavBanner.Point2}</li>
 								<li>${meganavBanner.Point3}</li>
 								<li>${meganavBanner.Point4}</li>
 							</ul>
-							
+
 							<a class="btn btn-primary" href="${meganavBanner.Url}.html" title="${meganavBanner.Urltitle}"><span>${meganavBanner.Urltitle}</span></a>
 						</div>
 					</div>
@@ -70,7 +70,7 @@
 		        <div class="row header__viewSavedArticlesBackground">
           			<div class="col-12 col-md-10 offset-md-1 col-lg-12 offset-lg-0">
 						<a class="header__viewSavedArticles header__viewSavedArticles--desktop" style="display: none;" href="${accountactions.homeUrl}/saved-articles.html"><span>View Your Saved Articles</span></a>
-						
+
 						<div class="header__socials" data-sly-use.footer="com.positive.dhl.core.models.Footer">
 							<h2 class="social__title">Follow us</h2>
 							<ul class="social__socialList" data-sly-list.link="${footer.linksSocial}">
@@ -148,7 +148,7 @@
 
 <div class="addToHomeScreen">
 	<div class="addToHomeScreen__content">
-		<img class="addToHomeScreen__image" src="${accountactions.assetprefix}/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png" alt="Logo">
+		<img class="addToHomeScreen__image" src="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png" alt="Logo">
 		<h2 class="addToHomeScreen__title">Add Discover to your home screen</h2>
 		<p class="addToHomeScreen__text">For the latest insights from Global business</p>
 		<a class="addToHomeScreen__cta" href="#">Add now</a><br>

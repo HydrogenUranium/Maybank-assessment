@@ -4,18 +4,18 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
-		
+
 		<meta name="theme-color" content="#d40511">
-		<link rel="manifest" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/discover/resources/manifest.json">
-		<link rel="icon" sizes="192x192" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png">
-		<link rel="icon" sizes="128x128" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
-		<link rel="apple-touch-icon" sizes="128x128" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
-		<link rel="apple-touch-icon-precomposed" sizes="128x128" href="${dhlpage.assetprefix}/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
+		<link rel="manifest" href="/etc.clientlibs/dhl/clientlibs/discover/resources/manifest.json">
+		<link rel="icon" sizes="192x192" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png">
+		<link rel="icon" sizes="128x128" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
+		<link rel="apple-touch-icon" sizes="128x128" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
+		<link rel="apple-touch-icon-precomposed" sizes="128x128" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
 
         <sly data-sly-unwrap data-sly-test="${(dhlpage.fullarticlepath.length > 0)}">
-        <link rel="canonical" href="//${dhlpage.getHostDetail @ context='unsafe'}${dhlpage.fullarticlepath}.html">
+        <link rel="canonical" href="//${dhlpage.getAkamaiHostname}${dhlpage.fullarticlepath}.html">
 		</sly>
-		
+
         <title>${currentPage.pageTitle || currentPage.name}</title>
 
         <script async src="https://cdn.ampproject.org/v0.js"></script>
@@ -44,21 +44,21 @@
         </script>
 
         <sly data-sly-include="partials/assets/amp-article.html" data-sly-unwrap />
-        
+
 		<!--/* Include Adobe Dynamic Tag Management libraries for the header */-->
 		<sly data-sly-include="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp" data-sly-unwrap/>
-		
+
 		<!--/* Initializes the Experience Manager authoring UI */-->
 		<sly data-sly-include="/libs/wcm/core/components/init/init.jsp" data-sly-unwrap/>
     </head>
 
     <body>
         <sly data-sly-include="partials/components/header.html" data-sly-unwrap/>
-        
+
         <div class="amp-page">
         	<sly data-sly-include="partials/main.html" data-sly-unwrap/>
         	<sly data-sly-include="partials/components/footer.html" data-sly-unwrap/>
         </div>
-        
+
     </body>
 </html>
