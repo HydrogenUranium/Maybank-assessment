@@ -37,7 +37,7 @@ class RegisterForm {
   }
 
   getPathHome() {
-    const home = $('head meta[name=\'dhl-path-home\']').attr('content');
+    const home = $('head meta[name=\'dhl-path-home\']').attr('content').replace('/content/dhl', '');
     return (home ? home : '');
   }
 
