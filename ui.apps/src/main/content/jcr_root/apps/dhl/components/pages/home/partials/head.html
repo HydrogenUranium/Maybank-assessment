@@ -45,8 +45,8 @@
 		"@context": "https://schema.org",
 		"@type": "Organization",
 		"name": "DHL Discover",
-		"url": "${dhlpage.fullUrl @context='unsafe'}",
-		"logo": "https://www.dhl.com/discover/etc.clientlibs/dhl/clientlibs/discover/resources/img/new-logo.svg",
+		"url": "${dhlpage.fullUrl @ context='unsafe'}",
+		"logo": "https://${dhlpage.akamaiHostname @ context='unsafe'}/etc.clientlibs/dhl/clientlibs/discover/resources/img/new-logo.svg",
 		"sameAs": [
 			"https://www.linkedin.com/showcase/discover-dhl-for-business/",
 			"https://www.facebook.com/discoverbydhl/",
@@ -82,16 +82,16 @@
   </script>
 
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://www.dhl.com/discover${currentPage.path}" />
+  <meta property="og:url" content="${dhlpage.fullUrl}" />
   <meta property="og:title" content="${currentPage.pageTitle || currentPage.name}" />
   <meta property="og:description" content="${properties.jcr:description}" />
-  <meta property="og:image" content="https://www.dhl.com/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png" />
+  <meta property="og:image" content="https://${dhlpage.akamaiHostname}/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:url" content="https://www.dhl.com/discover${currentPage.path}" />
+  <meta name="twitter:url" content="${dhlpage.fullUrl}" />
   <meta name="twitter:title" content="${currentPage.pageTitle || currentPage.name}" />
   <meta name="twitter:description" content="${properties.jcr:description}" />
-  <meta name="twitter:image" content="https://www.dhl.com/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png" />
+  <meta name="twitter:image" content="https://${dhlpage.akamaiHostname}/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png" />
 
   <meta name="google-signin-client_id" content="530300053917-ee8p43bdbd6lee4i81nu5l526k44ni6v.apps.googleusercontent.com">
 

@@ -68,13 +68,13 @@
 
   <sly data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage" data-sly-unwrap>
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://www.dhl.com/discover${currentPage.path}" />
+  <meta property="og:url" content="${dhlpage.fullUrl}" />
   <meta property="og:title" content="${currentPage.pageTitle || currentPage.name}" />
   <meta property="og:description" content="${properties.jcr:description}" />
   <meta property="og:image" content="${articlePage.ogtagimage}" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:url" content="https://www.dhl.com/discover${currentPage.path}" />
+  <meta name="twitter:url" content="${dhlpage.fullUrl}" />
   <meta name="twitter:title" content="${currentPage.pageTitle || currentPage.name}" />
   <meta name="twitter:description" content="${properties.jcr:description}" />
   <meta name="twitter:image" content="${articlePage.ogtagimage}" />
