@@ -23,11 +23,9 @@ import org.osgi.service.metatype.annotations.Designate;
 @ServiceDescription("Discover environment configuration")
 public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
 
-
     private String countryInfoLocation;
     private String assetPrefix;
-
-
+    private String akamaiHostname;
 
     /**
      *
@@ -35,9 +33,9 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
      */
     @Activate
     protected void activate(EnvironmentConfigurationData environmentConfigurationData) {
-        countryInfoLocation = PropertiesUtil.toString(environmentConfigurationData.countryInfoLocation(),"/conf/dhl/appdata/countries");
-
-        assetPrefix = PropertiesUtil.toString(environmentConfigurationData.assetPrefix(),"/discover");
+        countryInfoLocation = PropertiesUtil.toString(environmentConfigurationData.countryInfoLocation(), "/conf/dhl/appdata/countries");
+        assetPrefix = PropertiesUtil.toString(environmentConfigurationData.assetPrefix(), "/discover");
+        akamaiHostname = PropertiesUtil.toString(environmentConfigurationData.akamaiHostname(), "www.dhl.com");
     }
 
     @Override
@@ -46,7 +44,11 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     }
 
     @Override
+    public String getAkamaiHostname() {
+        return akamaiHostname;
+    }
 
+    @Override
     public String getCountryInfoLocation() {
         return countryInfoLocation;
     }

@@ -434,7 +434,7 @@ class RegisterForm {
 
   loggedIn() {
     if ($('.page-body.register').length > 0) {
-      window.location = '/content/dhl/your-account.html';
+      window.location = this.getPathPrefix() + this.getPathHome() + '/your-account'
     }
   }
 }

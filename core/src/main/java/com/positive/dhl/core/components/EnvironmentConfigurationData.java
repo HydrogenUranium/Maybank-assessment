@@ -13,17 +13,27 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 )
 public @interface EnvironmentConfigurationData {
 
-
     /**
      * Method that fetches the 'asset prefix'
      * @return String representing the 'prefix' added to assets etc..
      */
     @AttributeDefinition(
         name = "Asset prefix",
-        description = "Asset prefix (for CSS/image URLs in metadata",
-        defaultValue = "",
+        description = "Asset prefix (for DAM assets)",
+        defaultValue = "/discover",
         type = AttributeType.STRING)
     String assetPrefix();
+
+    /**
+     * Method that fetches the Akamai hostname
+     * @return String representing the hostname that can be used to construct canonical URLs
+     */
+    @AttributeDefinition(
+        name = "Akamai hostname",
+        description = "Environment-specific Akamai hostname",
+        defaultValue = "www.dhl.com",
+        type = AttributeType.STRING)
+    String akamaiHostname();
 
     /**
      * Method that fetches the 'countryInfoLocation' from the OSGi config
@@ -32,9 +42,7 @@ public @interface EnvironmentConfigurationData {
     @AttributeDefinition(
         name = "Country information repository path",
         description = "Repository location of country info (such as international calling code, currency etc..). " +
-            "Caution: when changing this value, make sure to also update the repo init scripts in" +
-
-            " the configuration",
+            "Caution: when changing this value, make sure to also update the repo init scripts",
         defaultValue = "/conf/dhl/appdata/countries"
     )
     String countryInfoLocation();

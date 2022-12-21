@@ -8,11 +8,11 @@
     <jcr:content
         jcr:primaryType="cq:PageContent"
         sling:resourceType="dhl/components/pages/articlegated"
-        heroimagedt="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/articleHeroHomepage-desk.jpg"
-        heroimagemob="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/articleHeroHomepage.jpg"
-        heroimagetab="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/articleHeroHomepage-tab.jpg"
+        heroimagedt="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"
+        heroimagemob="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage.jpg"
+        heroimagetab="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-tab.jpg"
         listbrief="Lorem ipsum dolor sit amet consectetur adipiscing elit diam nonummy"
-        listimage="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/categoryCarouselImage-desk.jpg"
+        listimage="/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg"
         mediatype="infographic"
         
         gatetitle="Sign up to unlock DHL Discover"

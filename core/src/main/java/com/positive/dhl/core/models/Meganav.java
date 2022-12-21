@@ -32,7 +32,6 @@ public class Meganav {
 	private Page currentPage;
 	
 	private String siteTitle;
-	private String logoUrl;
 	private String homeUrl;
 	private String searchResultsPage;
 	private List<MeganavPanel> panels;
@@ -52,20 +51,6 @@ public class Meganav {
 	 */
 	public void setSiteTitle(String siteTitle) {
 		this.siteTitle = siteTitle;
-	}
-
-    /**
-	 * 
-	 */
-	public String getLogoUrl() {
-		return logoUrl;
-	}
-
-    /**
-	 * 
-	 */
-	public void setLogoUrl(String logoUrl) {
-		this.logoUrl = logoUrl;
 	}
 
     /**
@@ -168,7 +153,6 @@ public class Meganav {
 		}
 		
 		homeUrl = home.getPath() + ".html";
-		logoUrl = "/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/logo.png";
 		
 		linksSocial = new ArrayList<>();
 		Resource socialItems = home.getContentResource("items");

@@ -47,7 +47,6 @@
             possible values: build / dev / local
                 - build: this is the default build for most scenarios
                 - dev: this will produce frontend code including sourcemaps
-                - local: this will produce frontend code without the /discover prefix in the paths to resources
         -->
         <frontend.environment>build</frontend.environment>
     </properties>

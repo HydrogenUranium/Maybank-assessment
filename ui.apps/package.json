@@ -7,8 +7,7 @@
     "create-template": "node tools/create-template.js",
     "create-component": "node tools/create-component.js",
     "dev": "gulp build --dev",
-    "build": "gulp build --prod",
-    "local": "gulp build --local"
+    "build": "gulp build --prod"
   },
   "repository": {
     "type": "git",

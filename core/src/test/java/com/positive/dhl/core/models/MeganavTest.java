@@ -47,7 +47,6 @@ class MeganavTest {
 		Meganav meganav = ctx.request().adaptTo(Meganav.class);
 		assertNotNull(meganav);
 		assertEquals("E-commerce business & global logistics advice | Discover DHL", meganav.getSiteTitle());
-		assertEquals("/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/logo.png", meganav.getLogoUrl());
 		assertEquals("/content/dhl/en.html", meganav.getHomeUrl());
 		assertEquals("/content/dhl/search-results.html", meganav.getSearchResultsPage());
 		assertEquals("/apps/dhl/discoverdhlapi/tags/index.json", meganav.getAutocompleteUrl());
@@ -107,7 +106,6 @@ class MeganavTest {
 		}
 
 		meganav.setSiteTitle("");
-		meganav.setLogoUrl("");
 		meganav.setHomeUrl("");
 		meganav.setSearchResultsPage("");
 		meganav.setAutocompleteUrl("");
@@ -116,7 +114,6 @@ class MeganavTest {
 		meganav.setLinksSocial(new ArrayList<SocialLink>());
 
 		assertEquals("", meganav.getSiteTitle());
-		assertEquals("", meganav.getLogoUrl());
 		assertEquals("", meganav.getHomeUrl());
 		assertEquals("", meganav.getSearchResultsPage());
 		assertEquals("", meganav.getAutocompleteUrl());
