@@ -1,19 +1,19 @@
 <!--/*
     Copyright 2015 Adobe Systems Incorporated
-  
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-  
+
         http://www.apache.org/licenses/LICENSE-2.0
-  
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-
+<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <template data-sly-template.data="${@accountactions}">
 <div class="page-body" data-sly-use.notfound="com.positive.dhl.core.models.PageNotFound">
 	<div class="articleGrid articleGrid--search" style="padding: 20px 0 0;">
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="articleGrid">
 		<div class="container">
 			<div class="row">
@@ -61,7 +61,7 @@
 			<div class="row articleGrid__grid" data-sly-list="${notfound.trendingArticles}">
 				<div class="articleGrid__item col-12 col-md-6 col-lg-4">
 					<article class="articlePanel articlePanel--large${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}">
-						<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="${'background-image: url(\'{0}\');' @context='unsafe',format=[item.listimage]}">
+						<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}{item.listimage @ context='unsafe'}');">
 							<span class="sr-only">${item.title}</span>
 						</a>
 						<div class="articlePanel__content">

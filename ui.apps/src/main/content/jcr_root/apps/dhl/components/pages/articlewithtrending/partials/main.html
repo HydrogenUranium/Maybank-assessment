@@ -1,12 +1,12 @@
 <!--/*
     Copyright 2015 Adobe Systems Incorporated
-  
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-  
+
         http://www.apache.org/licenses/LICENSE-2.0
-  
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,10 +26,10 @@
 	</style>
 	<div class="hero hero--divider" id="heroItemIdOne">
 		<style type="text/css">
-			@media screen and (min-width: 768px) { #heroItemIdOne .hero__image { background-image: url('${accountactions.assetprefix @ context='unsafe'}${articlePage.article.heroimagetab @ context='unsafe'}') !important; } }
-			@media screen and (min-width: 992px) { #heroItemIdOne .hero__image { background-image: url('${accountactions.assetprefix @ context='unsafe'}${articlePage.article.heroimagedt @ context='unsafe'}') !important; } }
+			@media screen and (min-width: 768px) { #heroItemIdOne .hero__image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagetab @ context='unsafe'}') !important; } }
+			@media screen and (min-width: 992px) { #heroItemIdOne .hero__image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagedt @ context='unsafe'}') !important; } }
 		</style>
-		<div class="hero__image" style="background-image: url('${accountactions.assetprefix @ context='unsafe'}${articlePage.article.heroimagemob @ context='unsafe'}');">
+		<div class="hero__image" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagemob @ context='unsafe'}');">
 			<span class="sr-only">${articlePage.article.title}</span>
 			<sly data-sly-unwrap data-sly-test="${(articlePage.article.youtubeid.length > 0)}">
 		    <a class="hero__playButton" href="https://youtu.be/${articlePage.article.youtubeid}"><span class="sr-only">${ 'Play Video' @ i18n, context='html' }</span></a>
@@ -76,27 +76,27 @@
 				<div class="wysiwyg wysiwyg--article">
 					<div class="page__par" data-sly-resource="par"></div>
 				</div>
-				
+
 				<div class="mb-3" data-sly-test="${(articlePage.article.author.length > 0)}">
 					<figure class="authorPanel">
 						<img data-sly-test="${(articlePage.article.authorimage.length > 0)}" src="${accountactions.assetprefix}${articlePage.article.authorimage}" alt="${articlePage.article.author}" class="authorPanel__image">
 						<figcaption class="authorPanel__caption">
-							<span class="authorPanel__name">${articlePage.article.author}</span> 
+							<span class="authorPanel__name">${articlePage.article.author}</span>
 							<span class="authorPanel__title" data-sly-test="${(articlePage.article.authortitle.length > 0)}">${articlePage.article.authortitle}</span>
 						</figcaption>
 					</figure>
 				</div>
-				
+
 				<sly data-sly-include="partials/components/page/register.html" data-sly-unwrap />
-				
+
 				<div class="page__partwo clearfix" data-sly-resource="partwo"></div>
-				
+
 				<sly data-sly-include="partials/components/page/socialStatic.html" data-sly-unwrap />
 			</div>
 		</div>
 	</div>
 	<sly data-sly-include="partials/components/page/related.html" data-sly-unwrap />
-	
+
 	<!-- articleGrid -->
 	<div class="page__parthree" data-sly-resource="parthree"></div>
 </div>
