@@ -1,26 +1,27 @@
 <!--/*
     Copyright 2015 Adobe Systems Incorporated
-  
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-  
+
         http://www.apache.org/licenses/LICENSE-2.0
-  
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<div class="figure-carousel" data-sly-use.gallery="com.positive.dhl.core.models.Gallery">
+<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
+<div class="figure-carousel" data-sly-use.gallery="com.positive.dhl.core.models.Gallery" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
 	<div id="carouselId" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner" data-sly-list="${gallery.slides}">
 			<div class="carousel-item ${((itemList.index == 0) ? 'active' : '')}" id="uniqueIdImageGallerySlide${itemList.index}">
-				<style type="text/css">@media screen and (min-width: 768px) { #uniqueIdImageGallerySlide${itemList.index @context='unsafe'} .image { background-image: url('${item.imagetab @context='unsafe'}') !important; } }</style>
-				<style type="text/css">@media screen and (min-width: 991px) { #uniqueIdImageGallerySlide${itemList.index @context='unsafe'} .image { background-image: url('${item.imagedt @context='unsafe'}') !important; } }</style>
+				<style type="text/css">@media screen and (min-width: 768px) { #uniqueIdImageGallerySlide${itemList.index @context='unsafe'} .image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.imagetab @context='unsafe'}') !important; } }</style>
+				<style type="text/css">@media screen and (min-width: 991px) { #uniqueIdImageGallerySlide${itemList.index @context='unsafe'} .image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.imagedt @context='unsafe'}') !important; } }</style>
 				<figure class="figure">
-					<div style="background-image: url('${item.imagemob @context='unsafe'}');" class="figure__image"></div>
+					<div style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.imagemob @context='unsafe'}');" class="figure__image"></div>
 					<figcaption class="figure__caption">
 						<span class="figure__caption-title">${item.title}</span>
 						<p class="figure__caption-text">${item.brief}</p>
@@ -28,7 +29,7 @@
 				</figure>
 			</div>
 		</div>
-		<a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">${ 'Previous' @ i18n, context='html' }</span></a> 
+		<a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">${ 'Previous' @ i18n, context='html' }</span></a>
 		<a class="carousel-control-next" href="#carouselId" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">${ 'Next' @ i18n, context='html' }</span></a>
 	</div>
 </div>
