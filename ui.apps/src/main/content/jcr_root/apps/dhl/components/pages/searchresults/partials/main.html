@@ -13,8 +13,8 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <template data-sly-template.data="${@accountactions}">
+<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <div class="page-body" data-sly-use.searchResults="com.positive.dhl.core.models.SearchResultsList">
 	<div class="articleGrid articleGrid--search">
 	    <div class="articleGrid__searchSummary${((searchResults.results.size == 0) ? ' articleGrid__searchSummary--noresults' : '')}">
@@ -95,7 +95,7 @@
 			<div class="row articleGrid__grid articleGrid__grid--search" data-sly-list="${searchResults.pagedResults}">
 				<div class="col-12">
 					<article class="articlePanel articlePanel--search${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}">
-						<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}{item.listimage @ context='unsafe'}');">
+						<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.listimage @ context='unsafe'}');">
 							<span class="sr-only">${item.title}</span>
 						</a>
 						<div class="articlePanel__content">
@@ -138,7 +138,7 @@
 			<div class="row articleGrid__grid" data-sly-list="${searchResults.trendingArticles}">
 				<div class="articleGrid__item col-12 col-md-6 col-lg-4">
 					<article class="articlePanel articlePanel--large${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}">
-						<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}{item.listimage @ context='unsafe'}');">
+						<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.listimage @ context='unsafe'}');">
 							<span class="sr-only">${item.title}</span>
 						</a>
 						<div class="articlePanel__content">

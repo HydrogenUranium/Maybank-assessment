@@ -17,8 +17,8 @@
 <div class="page__par" data-sly-resource="par"></div>
 
 */-->
-<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <template data-sly-template.data="${@accountactions}">
+<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <div class="page-body article-counter" data-path="${currentPage.path}" data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage">
 	<div class="hero hero--divider" id="heroItemIdOne">
 		<style type="text/css">
