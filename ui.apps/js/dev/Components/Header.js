@@ -40,6 +40,12 @@ class Header {
     this.bodyScrolling = this.bodyScrolling.bind(this);
 
     this.checkScroll = this.checkScroll.bind(this);
+    this.getPathPrefix = this.getPathPrefix.bind(this);
+  }
+
+  getPathPrefix() {
+    const prefix = $('head meta[name=\'dhl-path-prefix\']').attr('content');
+    return (prefix ? prefix : '');
   }
 
   init() {
@@ -221,13 +227,13 @@ class Header {
         url = $(this.sel.searchFormForm).attr('data-topsearches');
       }
       if (url.length > 0) {
-        $.get(url, (result) => {
+        $.get(this.getPathPrefix() + url, (result) => {
           var container = $('.top-searches .items', this.sel.component);
           var paramName = $(this.sel.searchFormInput).attr('name');
           var hasTerms = false;
-          for (var i = 0; i < result.results.length; i++) {
+          for (const element of result.results) {
             hasTerms = true;
-            var term = result.results[i].trim();
+            var term = element.trim();
             var searchUrl = $(this.sel.searchFormForm).attr('action') + '?' + paramName + '=' + encodeURIComponent(term);
             container.append(`<a href='${searchUrl}' title='${term}'><span>${term}</span></a>`);
           }
@@ -281,13 +287,13 @@ class Header {
         url = $(this.sel.searchFormForm).attr('data-suggestions');
       }
 
-      $.get(url, { s: s }, (result) => {
+      $.get(this.getPathPrefix() + url, { s: s }, (result) => {
         if (result.results.length === 0) {
           this.clearSuggestions();
         } else {
           this.allSuggestions = [];
-          for (var i = 0; i < result.results.length; i++) {
-            this.allSuggestions.push(result.results[i]);
+          for (const element of result.results) {
+            this.allSuggestions.push(element);
           }
           this.showSuggestions();
         }

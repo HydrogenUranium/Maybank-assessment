@@ -15,15 +15,12 @@ import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.osgi.service.cm.ConfigurationAdmin;
 
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class AccountActions {
-	@Inject
-	private ConfigurationAdmin configurationAdmin;
 
 	@Inject
 	private SlingHttpServletRequest request;
@@ -577,7 +574,7 @@ public class AccountActions {
 					"Trusted Network"
 				};
 
-				homeUrl = home.getPath().replace("/content/dhl", "");
+				homeUrl = home.getPath();
 				loginUrlNoRedirect = properties.get("jcr:content/loginpage", "/content/dhl/login").concat(".html");
 		        loginUrl = properties.get("jcr:content/loginpage", "/content/dhl/login").concat(".html");
 		        registerUrl = properties.get("jcr:content/registerpage", "/content/dhl/register").concat(".html");

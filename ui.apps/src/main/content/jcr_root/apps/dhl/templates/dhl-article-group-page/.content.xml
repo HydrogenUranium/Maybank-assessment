@@ -68,8 +68,8 @@
                 content="&lt;p>DHL&amp;#39;s Time Definite Express services provide international door-to-door delivery at a time that suits you, or by the end of the next business day.&lt;/p>&#xd;&#xa;&lt;p>Our global reach and local teams ensure fast Delivery on your terms, and there&amp;#39;s peace of mind courtesy of end-to-end tracking and customs clearance&lt;/p>&#xd;&#xa;&lt;p>Visit your country&amp;#39;s DHL Express website to check the services we offer.&lt;/p>&#xd;&#xa;"
                 ctalink="/content/dhl/legal-notice.html"
                 ctatitle="Read on"
-                imagedt="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/CTAPanelRow-desk.jpg"
-                imagetab="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/CTAPanelRow-tab.jpg"
+                imagedt="/etc.clientlibs/dhl/clientlibs/discover/resources/img/CTAPanelRow-desk.jpg"
+                imagetab="/etc.clientlibs/dhl/clientlibs/discover/resources/img/CTAPanelRow-tab.jpg"
                 textIsRich="true"
                 title="On Demand Delivery"/>
             <articlelistcategorytrending
@@ -81,8 +81,8 @@
                 author="Sun Tzu"
                 ctalink="#"
                 ctatitle="Find out more"
-                imagedt="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/quoteCTAPanel-desk.jpg"
-                imagetab="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/quoteCTAPanel-tab.jpg"
+                imagedt="/etc.clientlibs/dhl/clientlibs/discover/resources/img/quoteCTAPanel-desk.jpg"
+                imagetab="/etc.clientlibs/dhl/clientlibs/discover/resources/img/quoteCTAPanel-tab.jpg"
                 quote="The line between disorder and order lies"
                 subtitle="From horses to drones, read more about the history of logistics using our handy interactive timeline"/>
         </par>

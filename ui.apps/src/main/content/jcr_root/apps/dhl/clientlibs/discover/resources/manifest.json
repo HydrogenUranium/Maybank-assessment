@@ -3,22 +3,22 @@
   "name": "Discover DHL",
   "icons": [
     {
-    "src": "/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/48.png",
+    "src": "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/48.png",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/96.png",
+      "src": "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/96.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/192.png",
+      "src": "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/512.png",
+      "src": "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

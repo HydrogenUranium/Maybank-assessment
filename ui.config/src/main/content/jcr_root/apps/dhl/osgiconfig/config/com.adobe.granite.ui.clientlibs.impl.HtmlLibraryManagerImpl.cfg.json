@@ -9,7 +9,7 @@
     "htmllibmanager.minify":true,
     "htmllibmanager.debug":false,
     "htmllibmanager.gzip":true,
-    "htmllibmanager.longcache.format":"discover-%s-longcache",
+    "htmllibmanager.longcache.format":"main-%s-lc",
     "htmllibmanager.timing":false,
     "htmllibmanager.excluded.path.list":[
       "/etc/commerce/classifications",

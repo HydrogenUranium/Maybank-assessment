@@ -1,6 +1,10 @@
 package com.positive.dhl.core.models;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,18 +12,29 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 
-@ExtendWith(AemContextExtension.class)
+@ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticlePageTest {
     private final AemContext ctx = new AemContext();
 
+	@Mock
+	private EnvironmentConfiguration environmentConfiguration;
+
 	@BeforeEach
 	void setUp() throws Exception {
+		ctx.load().json("/com/positive/dhl/core/models/StandardAemPage.json", "/content/dhl");
+		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
 	    ctx.addModelsForClasses(ArticlePage.class);
-	    ctx.load().json("/com/positive/dhl/core/models/StandardAemPage.json", "/content/dhl");
+
+		when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
+		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
 	}
 
 	@Test

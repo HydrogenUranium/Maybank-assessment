@@ -22,11 +22,7 @@ const browserify = require('browserify');
 
 // Environment
 const isDev = !util.env.prod;
-const isLocal = util.env.local;
 let prefix = '/etc.clientlibs/dhl/clientlibs';
-if (!isLocal) {
-  prefix = '/discover' + prefix;
-}
 
 // Bundler for ES6
 let bundler = null;
@@ -44,7 +40,7 @@ gulp.task('sass', () => {
     .pipe(replace('__prefix__', prefix))
     .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
-    .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/clientlib-site/css'));
+    .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover/css'));
 
   /* This is for a 'standalone' stylesheet meant to be delivered via a separate clientlib AEM package */
   gulp.src('./sass/animated-pages.scss')
@@ -56,7 +52,7 @@ gulp.task('sass', () => {
     .pipe(replace('__prefix__', prefix))
     .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
-    .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/clientlib-animatedpages/css'));
+    .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages/css'));
 
   /* This is for a 'standalone' stylesheet meant to be delivered via a separate clientlib AEM package */
   gulp.src('./sass/amp-*.scss')
@@ -84,8 +80,8 @@ gulp.task('lint', () => {
 // gulp.task('javascript', ['lint'], () => {
 gulp.task('javascript', () => {
   let scriptsPath = './js/dev';
-  let scriptDest = './src/main/content/jcr_root/apps/dhl/clientlibs/clientlib-site/js';
-  let scriptDestAnimated = './src/main/content/jcr_root/apps/dhl/clientlibs/clientlib-animatedpages/js';
+  let scriptDest = './src/main/content/jcr_root/apps/dhl/clientlibs/discover/js';
+  let scriptDestAnimated = './src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages/js';
   // Create bundle
   if (bundler === null) {
     bundler = browserify(path.join(scriptsPath, 'main.js'), { debug: isDev }).transform(babel);

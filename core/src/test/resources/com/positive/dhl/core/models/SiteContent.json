@@ -29,7 +29,7 @@
 				"contentbanner1point3": "Exclusive Tools",
 				"contentbanner1point4": "Trusted Network",
 				"meganavbannersubtitle": "Serious about taking your brand global?",
-				"contentbanner1img": "/etc/designs/dhl/clientlib-site/img/applyForAccountPanel--article.png",
+				"contentbanner1img": "/etc/designs/dhl/discover/img/applyForAccountPanel--article.png",
 				"contentbanner1url": "/content/dhl/ship-now.html",
 				"contentbanner2img": "/content/dam/dhl/site-image/banner-images/courier_MPU.jpg",
 				"contentbanner2url": "/content/dhl/register",
@@ -85,7 +85,7 @@
 				"sling:resourceType": "dhl/components/pages/home",
 				"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 				"registerthanksmessage": "<p>Now you have access to a world of new information, research and insight. For the very latest updates, come back and visit every week.<br />\r\n</p>\r\n",
-				"topbanner1img": "/etc/designs/dhl/clientlib-site/img/applyForAccount.png",
+				"topbanner1img": "/etc/designs/dhl/discover/img/applyForAccount.png",
 				"topbanner1url": "/content/dhl/ship-now.html",
 				"topbanner2img": "/content/dam/dhl/site-image/banner-images/reception2.jpg",
 				"topbanner2url": "/content/dhl/register",
@@ -108,7 +108,7 @@
 				"shipnowmessage": "<p>For global reach, business rates and state-of-the-art tracking, an account with DHL Express is your next step.</p>\r\n",
 				"cq:lastModifiedBy": "reference-adjustment-service",
 				"navTitle": "home",
-				"contentbanner1imgmob": "/etc/designs/dhl/clientlib-site/img/applyForAccountPanel--article--mobile.png",
+				"contentbanner1imgmob": "/etc/designs/dhl/discover/img/applyForAccountPanel--article--mobile.png",
 				"title": {
 					"jcr:primaryType": "nt:unstructured",
 					"sling:resourceType": "dhl/components/content/title"
@@ -192,7 +192,7 @@
 						"jcr:createdBy": "admin",
 						"author": "Jack Welch",
 						"jcr:lastModifiedBy": "admin",
-						"imagetab": "/etc/designs/dhl/clientlib-site/img/quoteCTAPanel-desk.jpg",
+						"imagetab": "/etc/designs/dhl/discover/img/quoteCTAPanel-desk.jpg",
 						"ctatitle": "Find out more",
 						"jcr:created": "Thu Jun 07 2018 02:54:48 GMT+0200",
 						"quote": "GOOD BUSINESS LEADERS CREATE A VISION, ARTICULATE THE VISION, PASSIONATELY OWN THE VISION, AND RELENTLESSLY DRIVE IT TO COMPLETION.",
@@ -200,7 +200,7 @@
 						"jcr:lastModified": "Thu Jun 07 2018 02:57:33 GMT+0200",
 						"ctalink": "/culture-hype/future-of-exports/those-that-did-it-first.html",
 						"sling:resourceType": "dhl/components/content/quotectapanel",
-						"imagedt": "/etc/designs/dhl/clientlib-site/img/quoteCTAPanel-desk.jpg"
+						"imagedt": "/etc/designs/dhl/discover/img/quoteCTAPanel-desk.jpg"
 					}
 				},
 				"parother": {

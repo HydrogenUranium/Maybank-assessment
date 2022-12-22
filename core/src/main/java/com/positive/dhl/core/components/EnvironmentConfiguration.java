@@ -7,6 +7,7 @@ public interface EnvironmentConfiguration {
 
     String getAssetPrefix();
 
+    String getAkamaiHostname();
 
     /**
      * Fetches the repository location of country information

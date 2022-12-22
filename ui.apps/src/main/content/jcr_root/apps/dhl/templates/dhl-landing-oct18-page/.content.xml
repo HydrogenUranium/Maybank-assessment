@@ -8,9 +8,9 @@
     <jcr:content
         jcr:primaryType="cq:PageContent"
         sling:resourceType="dhl/components/pages/landing"
-        heroimagedt="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/articleHeroHomepage-desk.jpg"
-        heroimagemob="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/articleHeroHomepage.jpg"
-        heroimagetab="/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/articleHeroHomepage-tab.jpg">
+        heroimagedt="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"
+        heroimagemob="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage.jpg"
+        heroimagetab="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-tab.jpg">
         
         <title
             jcr:primaryType="nt:unstructured"

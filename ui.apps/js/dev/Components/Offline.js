@@ -87,7 +87,7 @@ class SaveForOffline {
     let toast = new Toast('Article is now available offline', 3000);
 
     if ($('#articleData').length <= 0) {
-      console.log('SW ERROR: Offline.js:90');
+      console.log('#articleData parsing error: Offline.js:90');
       toast.setText('Article could not be saved for offline');
       toast.show();
       return false;

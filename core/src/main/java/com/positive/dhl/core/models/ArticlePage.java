@@ -15,8 +15,10 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 
 /**
  *
@@ -31,10 +33,16 @@ public class ArticlePage {
 	
 	@Inject
 	private Page currentPage;
+
+	@OSGiService
+	private EnvironmentConfiguration environmentConfiguration;
 	
 	private Article article;
 	private String ogtagimage;
 	private String customStyles;
+	private String assetprefix;
+	private String akamaiHostname;
+	private String protocol;
 	
     /**
 	 * 
@@ -83,14 +91,18 @@ public class ArticlePage {
 	 */
 	@PostConstruct
     protected void init() {
+		protocol = "https://";
+		assetprefix = environmentConfiguration.getAssetPrefix();
+		akamaiHostname = environmentConfiguration.getAkamaiHostname();
+
 		ValueMap properties = currentPage.adaptTo(ValueMap.class);
 		
 		if (properties != null) {
 			// spec says just hard-code these things; which isn't too nice...
 			String customOgTagImage = properties.get("jcr:content/ogtagimage", "");
-			ogtagimage = "https://www.dhl.com/discover/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/icons/192.png";
+			ogtagimage = protocol + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png";
 			if (customOgTagImage.trim().length() > 0) {
-				ogtagimage = ("https://www.dhl.com/discover").concat(customOgTagImage.trim());
+				ogtagimage = (protocol + akamaiHostname + assetprefix).concat(customOgTagImage.trim());
 			}
 			
 			customStyles = properties.get("jcr:content/customstyles", "");

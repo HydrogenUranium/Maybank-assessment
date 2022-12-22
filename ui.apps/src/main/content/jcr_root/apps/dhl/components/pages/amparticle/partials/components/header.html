@@ -1,10 +1,10 @@
 <div class="amp-page" data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage">
 	<header class="header">
 		<div class="header__logoWrap">
-			<amp-img alt="Discover DHL" src="//${dhlpage.getHostDetail @ context='unsafe'}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/logo.svg" width="76" height="29" layout="fixed"> </amp-img>
+			<amp-img alt="Discover DHL" src="/etc.clientlibs/dhl/clientlibs/discover/resources/img/logo.svg" width="76" height="29" layout="fixed"> </amp-img>
 		</div>
 		<div class="header__hamburger" on="tap:sidebar.open" role="button" tabindex="1">
-			<amp-img src="//${dhlpage.getHostDetail @ context='unsafe'}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/baseline-menu-24px.svg" width="20" height="20" layout="responsive"></amp-img>
+			<amp-img src="/etc.clientlibs/dhl/clientlibs/discover/resources/img/baseline-menu-24px.svg" width="20" height="20" layout="responsive"></amp-img>
 		</div>
 	</header>
 </div>
@@ -12,17 +12,17 @@
 <amp-sidebar id="sidebar" layout="nodisplay" side="right" class="header__ampNav" data-sly-use.meganav="com.positive.dhl.core.models.Meganav" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions" data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage">
 	<div class="header">
 		<div class="header__logoWrap">
-			<amp-img alt="A view of the sea" src="//${dhlpage.getHostDetail @ context='unsafe'}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/logo.svg" width="76" height="29" layout="fixed"> </amp-img>
+			<amp-img alt="A view of the sea" src="/etc.clientlibs/dhl/clientlibs/discover/resources/img/logo.svg" width="76" height="29" layout="fixed"> </amp-img>
 		</div>
 		<div class="header__hamburger">
-			<amp-img class="" src="//${dhlpage.getHostDetail @ context='unsafe'}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/baseline-close-24px.svg" width="20" height="20" alt="close sidebar" on="tap:sidebar.close" layout="responsive" role="button" tabindex="0"></amp-img>
+			<amp-img class="" src="/etc.clientlibs/dhl/clientlibs/discover/resources/img/baseline-close-24px.svg" width="20" height="20" alt="close sidebar" on="tap:sidebar.close" layout="responsive" role="button" tabindex="0"></amp-img>
 		</div>
 	</div>
-	
+
 	<div class="header__meganav">
 		<div class="row">
 			<div class="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
-				<form action="//${dhlpage.getHostDetail @ context='unsafe'}${meganav.searchResultsPage}" method="GET" target="_blank"
+				<form action="//${dhlpage.getAkamaiHostname}${meganav.searchResultsPage}" method="GET" target="_blank"
 					class="header__search">
 					<input class="header__searchInput" type="text" name="searchfield" placeholder="Search" required>
 					<button class="header__searchButton" type="submit">
@@ -32,8 +32,8 @@
 			</div>
 		</div>
 		<ul class="header__primaryLinks">
-			<li class="header__primaryLinkItem"><a class="header__primaryLink" href="//${dhlpage.getHostDetail @ context='unsafe'}${accountactions.loginUrl @context = 'unsafe'}">Login</a></li>
-			<li class="header__primaryLinkItem"><a class="header__primaryLink" href="//${dhlpage.getHostDetail @ context='unsafe'}${accountactions.registerUrl}">Register</a></li>
+			<li class="header__primaryLinkItem"><a class="header__primaryLink" href="//${dhlpage.getAkamaiHostname}${accountactions.loginUrl @context = 'unsafe'}">Login</a></li>
+			<li class="header__primaryLinkItem"><a class="header__primaryLink" href="//${dhlpage.getAkamaiHostname}${accountactions.registerUrl}">Register</a></li>
 		</ul>
 		<div class="header__meganavContent">
 			<h2 class="header__meganavTitle">Welcome</h2>
@@ -46,7 +46,7 @@
 				<li>
 					<a href="${item.url}"><span>${item.navigationTitle}</span></a>
 					<ul data-sly-list="${item.articleCategories}">
-						<li><a href="//${dhlpage.getHostDetail @ context='unsafe'}${item.path}.html"><span>${item.title}</span></a></li>
+						<li><a href="//${dhlpage.getAkamaiHostname}${item.path}.html"><span>${item.title}</span></a></li>
 					</ul>
 				<li>
 			</ul>

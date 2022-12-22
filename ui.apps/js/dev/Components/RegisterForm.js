@@ -37,7 +37,7 @@ class RegisterForm {
   }
 
   getPathHome() {
-    const home = $('head meta[name=\'dhl-path-home\']').attr('content');
+    const home = $('head meta[name=\'dhl-path-home\']').attr('content').replace('/content/dhl', '');
     return (home ? home : '');
   }
 
@@ -434,7 +434,7 @@ class RegisterForm {
 
   loggedIn() {
     if ($('.page-body.register').length > 0) {
-      window.location = '/content/dhl/your-account.html';
+      window.location = this.getPathPrefix() + this.getPathHome() + '/your-account'
     }
   }
 }
