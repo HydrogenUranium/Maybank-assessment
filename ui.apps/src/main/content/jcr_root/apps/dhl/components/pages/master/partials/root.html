@@ -21,7 +21,7 @@
         <sly data-sly-include="partials/headlibs.html" data-sly-unwrap/>
 
         <sly data-sly-unwrap data-sly-test="${(dhlpage.amparticlepath.length > 0)}">
-        <link rel="amphtml" href="//${dhlpage.getAkamaiHostname}${dhlpage.amparticlepath}.html">
+        <link rel="amphtml" href="${dhlpage.amparticlepath}.html">
 		</sly>
     </head>
     <body>

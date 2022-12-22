@@ -15,7 +15,7 @@
 				<div class="col-12 col-md-6 col-lg-4 hide-offline">
 					<h2 class="footer__title">${footer.titleColumnOne}</h2>
 					<ul class="footer__categoryList" data-sly-list.link="${footer.linksColumnOne}">
-						<li class="footer__categoryItem"><a class="footer__categoryLink" href="//${dhlpage.getAkamaiHostname}${link.link}">${link.name}</a></li>
+						<li class="footer__categoryItem"><a class="footer__categoryLink" href="${link.link}">${link.name}</a></li>
 					</ul>
 				</div>
 
@@ -34,13 +34,13 @@
 
 				<div class="col-6 col-md-4 col-lg-6 col-xl-4 order-xl-1">
 					<ul class="footer__linkList hide-offline" data-sly-list.link="${footerAbsolute.leftLinks}">
-						<li class="footer__linkItem"><a class="footer__link" href="//${dhlpage.getAkamaiHostname}${link.link}" target="_blank" rel="nofollow">${link.name}</a></li>
+						<li class="footer__linkItem"><a class="footer__link" href="${link.link}" target="_blank" rel="nofollow">${link.name}</a></li>
 					</ul>
 				</div>
 
 				<div class="col-6 col-md-4 offset-md-4 offset-lg-0 col-lg-6 col-xl-4 order-xl-3">
 					<ul class="footer__linkList hide-offline" data-sly-list.link="${footerAbsolute.rightLinks}">
-						<li class="footer__linkItem"><a class="footer__link" href="//${dhlpage.getAkamaiHostname}${link.link}" title="${link.name}">${link.name}</a></li>
+						<li class="footer__linkItem"><a class="footer__link" href="${link.link}" title="${link.name}">${link.name}</a></li>
 					</ul>
 				</div>
 
