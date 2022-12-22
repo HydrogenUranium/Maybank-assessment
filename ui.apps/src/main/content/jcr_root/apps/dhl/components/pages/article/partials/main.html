@@ -55,10 +55,10 @@
 			{
 				"title": "${articlePage.article.title @ context='unsafe'}",
 				"description": "${articlePage.article.brief @ context='unsafe'}",
-				"imageMobile": "${articlePage.article.heroimagemob @ context='unsafe'}",
-				"imageDesktop": "${articlePage.article.heroimagedt @ context='unsafe'}",
+				"imageMobile": "${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagemob @ context='unsafe'}",
+				"imageDesktop": "${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagedt @ context='unsafe'}",
 				"categoryName": "${articlePage.article.grouptitle @ context='unsafe'}",
-				"categoryLink": "${articlePage.article.grouppath @ context='unsafe'}.html",
+				"categoryLink": "${articlePage.article.grouppath @ context='unsafe'}",
 				"timeToRead": "${articlePage.article.readtime @ context='unsafe'}",
 				"isLarge": false,
 				"isVideo": false

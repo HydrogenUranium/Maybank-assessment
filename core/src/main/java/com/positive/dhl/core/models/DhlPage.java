@@ -1,21 +1,22 @@
 package com.positive.dhl.core.models;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import com.day.cq.wcm.api.WCMMode;
-import com.positive.dhl.core.components.EnvironmentConfiguration;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import com.day.cq.wcm.api.Page;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import com.day.cq.wcm.api.WCMMode;
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 
 /**
  *

@@ -18,12 +18,8 @@
 
 */-->
 <template data-sly-template.data="${@accountactions}">
+<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <div class="page-body article-counter" data-path="${currentPage.path}" data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage">
-	<style type="text/css">
-		<!--
-		${articlePage.customStyles @ context='unsafe'}
-		-->
-	</style>
 	<div class="hero hero--divider" id="heroItemIdOne">
 		<style type="text/css">
 			@media screen and (min-width: 768px) { #heroItemIdOne .hero__image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagetab @ context='unsafe'}') !important; } }
@@ -59,10 +55,10 @@
 			{
 				"title": "${articlePage.article.title @ context='unsafe'}",
 				"description": "${articlePage.article.brief @ context='unsafe'}",
-				"imageMobile": "${articlePage.article.heroimagemob @ context='unsafe'}",
-				"imageDesktop": "${articlePage.article.heroimagedt @ context='unsafe'}",
+				"imageMobile": "${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagemob @ context='unsafe'}",
+				"imageDesktop": "${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagedt @ context='unsafe'}",
 				"categoryName": "${articlePage.article.grouptitle @ context='unsafe'}",
-				"categoryLink": "${articlePage.article.grouppath @ context='unsafe'}.html",
+				"categoryLink": "${articlePage.article.grouppath @ context='unsafe'}",
 				"timeToRead": "${articlePage.article.readtime @ context='unsafe'}",
 				"isLarge": false,
 				"isVideo": false
