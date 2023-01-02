@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" amp data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage">
+<html lang="en" amp data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
     <head>
 		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
 		<meta charset="UTF-8">
@@ -13,7 +13,7 @@
 		<link rel="apple-touch-icon-precomposed" sizes="128x128" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
 
         <sly data-sly-unwrap data-sly-test="${(dhlpage.fullarticlepath.length > 0)}">
-        <link rel="canonical" href="//${dhlpage.getAkamaiHostname}${dhlpage.fullarticlepath}.html">
+        <link rel="canonical" href="${dhlpage.fullarticlepath}.html">
 		</sly>
 
         <title>${currentPage.pageTitle || currentPage.name}</title>

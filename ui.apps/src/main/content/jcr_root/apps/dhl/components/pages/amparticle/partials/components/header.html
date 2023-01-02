@@ -22,7 +22,7 @@
 	<div class="header__meganav">
 		<div class="row">
 			<div class="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
-				<form action="//${dhlpage.getAkamaiHostname}${meganav.searchResultsPage}" method="GET" target="_blank"
+				<form action="${meganav.searchResultsPage}" method="GET" target="_blank"
 					class="header__search">
 					<input class="header__searchInput" type="text" name="searchfield" placeholder="Search" required>
 					<button class="header__searchButton" type="submit">
@@ -32,8 +32,8 @@
 			</div>
 		</div>
 		<ul class="header__primaryLinks">
-			<li class="header__primaryLinkItem"><a class="header__primaryLink" href="//${dhlpage.getAkamaiHostname}${accountactions.loginUrl @context = 'unsafe'}">Login</a></li>
-			<li class="header__primaryLinkItem"><a class="header__primaryLink" href="//${dhlpage.getAkamaiHostname}${accountactions.registerUrl}">Register</a></li>
+			<li class="header__primaryLinkItem"><a class="header__primaryLink" href="${accountactions.loginUrl @context = 'unsafe'}">Login</a></li>
+			<li class="header__primaryLinkItem"><a class="header__primaryLink" href="${accountactions.registerUrl}">Register</a></li>
 		</ul>
 		<div class="header__meganavContent">
 			<h2 class="header__meganavTitle">Welcome</h2>
@@ -46,7 +46,7 @@
 				<li>
 					<a href="${item.url}"><span>${item.navigationTitle}</span></a>
 					<ul data-sly-list="${item.articleCategories}">
-						<li><a href="//${dhlpage.getAkamaiHostname}${item.path}.html"><span>${item.title}</span></a></li>
+						<li><a href="${item.path}.html"><span>${item.title}</span></a></li>
 					</ul>
 				<li>
 			</ul>

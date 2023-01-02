@@ -13,8 +13,9 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<figure class="figure ${figure.alignment}" data-sly-use.figure="com.positive.dhl.core.models.Figure">
-    <img src="${figure.imagernd}" alt="${figure.alt}">
+<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
+<figure class="figure ${figure.alignment}" data-sly-use.figure="com.positive.dhl.core.models.Figure" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
+    <img src="${!editmode ? accountactions.assetprefix : ''}${figure.imagernd}" alt="${figure.alt}">
     <figcaption class="figure__caption">
 		<span class="figure__caption-title">${figure.caption1}</span>
 		<p class="figure__caption-text">${figure.caption2}</p>
