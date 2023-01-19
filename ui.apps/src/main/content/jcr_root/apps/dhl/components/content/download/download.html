@@ -1,18 +1,19 @@
 <!--/*
     Copyright 2015 Adobe Systems Incorporated
-  
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-  
+
         http://www.apache.org/licenses/LICENSE-2.0
-  
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
+<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <div data-sly-use.downloadasset="com.positive.dhl.core.models.DownloadAsset" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
 	<div id="download" class="DHLdownload" data-sly-test="${(accountactions.downloadmarketo != true)}">
 		<div class="container">
@@ -23,12 +24,12 @@
 							<div class="DHLdownload__text">
 								<h2 class="DHLdownload__title">${properties.title}</h2>
 								<p class="DHLdownload__copy">${properties.brief}</p>
-								
-								<img class="DHLdownload__image d-block d-md-none" src="${properties.assetimage}" alt="${properties.title}" />
-								
+
+								<img class="DHLdownload__image d-block d-md-none" src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${properties.assetimage}" alt="${properties.title}" />
+
 								<div class="DHLdownload__ctas no-logged-in" style="display: none;">
 									<button class="DHLdownload__cta--red" data-show-hide-target="download-form">${ 'Register to download' @ i18n, context='html' }</button>
-									
+
 									<p class="DHLdownload__copy DHLdownload__copy--small">
 										Already a Discover Member? <a href="${accountactions.loginUrl @context = 'unsafe'}">${ 'Login to download' @ i18n, context='html' }</a>
 									</p>
@@ -37,7 +38,7 @@
 									<a href="#" target="_blank" class="DHLdownload__cta--red">${properties.ctatitle}</a>
 								</div>
 							</div>
-							<img class="DHLdownload__image d-none d-md-block" src="${properties.assetimage}" alt="${properties.title}" />
+							<img class="DHLdownload__image d-none d-md-block" src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${properties.assetimage}" alt="${properties.title}" />
 						</div>
 					</div>
 					<div id="glb-register-start" class="DHLdownload__hidden-form" data-show-hide-id="download-form">
@@ -47,19 +48,19 @@
 								<div class="forms__row">
 									<div class="col-4" style="display: none;">
 										<button class="forms__cta--social li linkedin">
-											<span class="forms__icon--linkedin"></span> 
+											<span class="forms__icon--linkedin"></span>
 											<span class="forms__button-text">${ 'LinkedIn' @ i18n, context='html' }</span>
 										</button>
 									</div>
 									<div class="col-4" style="display: none;">
 										<button class="forms__cta--social go google">
-											<span class="forms__icon--google"></span> 
+											<span class="forms__icon--google"></span>
 											<span class="forms__button-text">${ 'Google' @ i18n, context='html' }</span>
 										</button>
 									</div>
 									<div class="col-4">
 										<button class="forms__cta--social fb facebook" style="margin-bottom: 25px;">
-											<span class="forms__icon--facebook"></span> 
+											<span class="forms__icon--facebook"></span>
 											<span class="forms__button-text">${ 'Facebook' @ i18n, context='html' }</span>
 										</button>
 									</div>
@@ -86,7 +87,7 @@
 									</div>
 								</div>
 								<p class="forms__copy"><strong>${ 'Setting a password gives you free unrestricted access to the whole site.' @ i18n, context='html' }</strong></p>
-	
+
 								<div class="forms__row">
 									<div class="col-12">
 										<div
@@ -114,7 +115,7 @@
 										</ul>
 									</div>
 								</div>
-								
+
 								<div class="forms__row">
 									<div class="col-12">
 										<div class="forms__checkbox">
@@ -136,7 +137,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div data-sly-test="${(accountactions.downloadmarketo == true)}" id="download" class="DHLdownload">
  		<div class="container">
 			<div class="row justify-content-center">
@@ -146,14 +147,14 @@
 							<div class="DHLdownload__text">
 								<h2 class="DHLdownload__title">${properties.title}</h2>
 								<p class="DHLdownload__copy">${properties.brief}</p>
-								
-								<img class="DHLdownload__image d-block d-md-none" src="${properties.assetimage}" alt="${properties.title}" />
+
+								<img class="DHLdownload__image d-block d-md-none" src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${properties.assetimage}" alt="${properties.title}" />
 
 								<div class="forms marketoForm" data-marketo-form='{
 									"hiddenMunchkinId": "078-ERT-522",
 									"hiddenFormId": 1758
 								  }'>
-				
+
 								  <div data-marketo-visible-form>
 									<div class="wysiwyg">
 									  <script src="//express-resources.dhl.com/js/forms2/js/forms2.min.js"></script>
@@ -163,7 +164,7 @@
 								  </div>
 								</div>
     						</div>
-							<img class="DHLdownload__image d-none d-md-block" src="${properties.assetimage}" alt="${properties.title}" />
+							<img class="DHLdownload__image d-none d-md-block" src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${properties.assetimage}" alt="${properties.title}" />
 						</div>
 					</div>
 				</div>
