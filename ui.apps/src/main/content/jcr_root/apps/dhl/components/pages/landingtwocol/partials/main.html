@@ -96,7 +96,7 @@
 	                    </sly>
 	                        <div class="col-4" style="align-self: flex-start;">
 								<article class="articlePanel${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}" id="articlePanelUniqueId">
-									<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="${'background-image: url(\'{0}\');' @context='unsafe',format=[item.listimage]}">
+									<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.listimage @ context='unsafe'}');">
 										<span class="sr-only">${item.title}</span>
 									</a>
 									<div class="articlePanel__content">
