@@ -49,6 +49,7 @@ pipeline {
                             useWrapper: false,
                             pom: 'pom.xml',
                             goals: 'clean install',
+                            opts: '--no-transfer-progress',
                             resolverId: 'artifactory-resolver',
                             deployerId: 'artifactory-deployer',
                     )
