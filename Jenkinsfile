@@ -48,8 +48,7 @@ pipeline {
                             tool: 'Maven 3.6.3',
                             useWrapper: false,
                             pom: 'pom.xml',
-                            goals: 'clean install',
-                            opts: '--no-transfer-progress',
+                            goals: '-ntp clean install',
                             resolverId: 'artifactory-resolver',
                             deployerId: 'artifactory-deployer',
                     )
