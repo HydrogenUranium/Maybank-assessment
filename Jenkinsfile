@@ -4,6 +4,12 @@ pipeline {
             label 'openshift4-prg-heavy'
         }
     }
+
+    tools {
+        maven 'Maven 3.6.3'
+        jdk 'JDK11'
+    }
+
     options {
         disableConcurrentBuilds()
         timestamps()
@@ -17,7 +23,18 @@ pipeline {
 
         }
 
-        stage('build Maven') {
+        stage('Sonarqube Analysis') {
+           steps {
+               script {
+                   withSonarQubeEnv(installationName: 'Central Sonar') {
+                       sh 'mvn install org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar -Pcoverage'
+                   }
+               }
+            }
+        }
+
+        stage('Build & Deploy artifacts to Artifactory') {
+
             steps {
                 withCredentials([usernamePassword(credentialsId: 'srv_jenkins_creds', passwordVariable:
                         'artifactory_pwd', usernameVariable: 'artifactory_user')]){
@@ -49,6 +66,7 @@ pipeline {
                             useWrapper: false,
                             pom: 'pom.xml',
                             goals: '-ntp clean install',
+
                             resolverId: 'artifactory-resolver',
                             deployerId: 'artifactory-deployer',
                     )

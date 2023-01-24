@@ -56,6 +56,10 @@
         <aemanalyser.version>1.5.8</aemanalyser.version>
         <componentGroupName>Deutsche Post AG Discover</componentGroupName>
 
+        <sonar.coverage.jacoco.xmlReportPaths>
+            ../target/jacoco-aggregate/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
+
     </properties>
 
     <build>
@@ -153,6 +157,11 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.8</version>
                 </plugin>
                 <!-- Maven Jar Plugin -->
                 <plugin>
