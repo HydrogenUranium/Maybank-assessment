@@ -47,9 +47,9 @@
 				    </div>
 				</div>
 			</div>
-			<div class="articleGrid__item col-12 col-md-6 col-lg-4" data-index="${item.index}" style="${(item.index > 4 ? ' display: none;' : '') @context='unsafe'}">
+			<div class="articleGrid__item col-12 col-md-6 col-lg-4" data-index="${item.index}" style="${(item.index > 4 ? ' display: none;' : '') @ context='styleString'}">
 				<article class="articlePanel${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}${((item.index < 2) ? ' articlePanel--large' : '')}" id="articlePanelUniqueId">
-					<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.listimage @ context='unsafe'}');">
+					<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='styleString'}${item.listimage @ context='styleString'}');">
 						<span class="sr-only">${item.title}</span>
 					</a>
 					<div class="articlePanel__content">
