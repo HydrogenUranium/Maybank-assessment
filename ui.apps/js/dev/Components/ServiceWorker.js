@@ -9,9 +9,9 @@ class ServiceWorker {
 
   register() {
     navigator.serviceWorker.register('/discover/serviceworker.js').then(() => {
-      // console.log('ServiceWorker succesfully registered');
+      // ServiceWorker successfully registered
     }).catch(() => {
-      //console.log('ServiceWorker registration failed: ', err);
+      // ServiceWorker registration failed
     });
   }
 

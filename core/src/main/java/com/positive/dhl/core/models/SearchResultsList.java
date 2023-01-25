@@ -23,7 +23,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 
-import com.day.cq.wcm.api.NameConstants;
+import com.day.cq.wcm.api.constants.NameConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
