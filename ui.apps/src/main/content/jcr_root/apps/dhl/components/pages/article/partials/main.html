@@ -22,11 +22,11 @@
 <div class="page-body article-counter" data-path="${currentPage.path}" data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage">
 	<div class="hero hero--divider" id="heroItemIdOne">
 		<style type="text/css">
-			@media screen and (min-width: 768px) { #heroItemIdOne .hero__image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='styleString'}${articlePage.article.heroimagetab @ context='styleString'}') !important; } }
-			@media screen and (min-width: 992px) { #heroItemIdOne .hero__image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='styleString'}${articlePage.article.heroimagedt @ context='styleString'}') !important; } }
+			@media screen and (min-width: 768px) { #heroItemIdOne .hero__image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='styleToken'}${articlePage.article.heroimagetab @ context='styleToken'}') !important; } }
+			@media screen and (min-width: 992px) { #heroItemIdOne .hero__image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='styleToken'}${articlePage.article.heroimagedt @ context='styleToken'}') !important; } }
 		</style>
-		<div class="hero__image" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='styleString'}${articlePage.article.heroimagemob @ context='styleString'}');">
-			<span class="sr-only">${articlePage.article.title} - styleString context</span>
+		<div class="hero__image" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='styleToken'}${articlePage.article.heroimagemob @ context='styleToken'}');">
+			<span class="sr-only">${articlePage.article.title} - styleToken context</span>
 			<sly data-sly-unwrap data-sly-test="${(articlePage.article.youtubeid.length > 0)}">
 		    <a class="hero__playButton" href="https://youtu.be/${articlePage.article.youtubeid}"><span class="sr-only">${ 'Play Video' @ i18n, context='html' }</span></a>
 		    <iframe class="hero__video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
