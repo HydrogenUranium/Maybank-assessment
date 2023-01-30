@@ -87,7 +87,7 @@ public class ArticleSideNavigation {
 
 	private SearchResult runQuery(Page page, ResourceResolver resourceResolver){
 		Map<String,String> predicatesMap = DiscoverConstants.getArticlesQueryMap();
-		predicatesMap.putIfAbsent("path",page.getPath());
+		predicatesMap.put("path", page.getPath());
 		return categoryFinder.executeQuery(predicatesMap,resourceResolver);
 	}
 
