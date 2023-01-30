@@ -325,7 +325,7 @@ public class ArticleGrid {
 	 * unable to execute the query).
 	 */
 	private SearchResult runQuery(Map<String,String> predicatesMap, String queryPath, ResourceResolver resourceResolver){
-		predicatesMap.putIfAbsent("path", queryPath);
+		predicatesMap.put("path", queryPath);
 		return categoryFinder.executeQuery(predicatesMap,resourceResolver);
 	}
 
