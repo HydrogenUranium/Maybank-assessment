@@ -75,7 +75,7 @@
 
 				<div class="mb-3" data-sly-test="${(articlePage.article.author.length > 0)}">
 					<figure class="authorPanel">
-						<img data-sly-test="${(articlePage.article.authorimage.length > 0)}" src="${accountactions.assetprefix}${articlePage.article.authorimage}" alt="${articlePage.article.author}" class="authorPanel__image">
+						<img data-sly-test="${(articlePage.article.authorimage.length > 0)}" src="${!editmode ? accountactions.assetprefix : ''}${articlePage.article.authorimage}" alt="${articlePage.article.author}" class="authorPanel__image">
 						<figcaption class="authorPanel__caption">
 							<span class="authorPanel__name">${articlePage.article.author}</span>
 							<span class="authorPanel__title" data-sly-test="${(articlePage.article.authortitle.length > 0)}">${articlePage.article.authortitle}</span>
