@@ -197,7 +197,7 @@
 		<p>${ 'or' @ i18n, context='html' }</p>
 	</div>
 
-	<div class="ship-now-now">
+	<div class="ship-now-now" data-sly-use.landingPage="com.positive.dhl.core.models.LandingPageTwoColumn">
 		<h3>${properties.shipnowtitle}</h3>
 		${properties.shipnowcontent @context='html'}
 		<a href="${landingPage.shipNowUrl}" rel="external" target="_blank" title="${ 'Ship now' @ i18n, context='html' }"><span>${ 'Ship now' @ i18n, context='html' }</span></a>
