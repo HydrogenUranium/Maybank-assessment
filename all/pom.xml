@@ -36,6 +36,11 @@
     <name>Deutsche Post AG Discover - All</name>
     <description>All content package for Deutsche Post AG Discover</description>
 
+    <properties>
+        <!-- excluding this maven module from sonar scan -->
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
     <!-- ====================================================================== -->
     <!-- B U I L D   D E F I N I T I O N                                        -->
     <!-- ====================================================================== -->
@@ -113,7 +118,7 @@
                     <execution>
                         <id>aem-analyser</id>
                         <goals>
-                            <goal>project-analyse</goal>                           
+                            <goal>project-analyse</goal>
                         </goals>
                     </execution>
                 </executions>

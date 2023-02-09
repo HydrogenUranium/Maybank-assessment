@@ -18,6 +18,11 @@
     <name>Deutsche Post AG Discover - Dispatcher</name>
     <description>HTTP &amp; Dispatcher configurations for Deutsche Post AG Discover</description>
 
+    <properties>
+        <!-- excluding this maven module from sonar scan -->
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
