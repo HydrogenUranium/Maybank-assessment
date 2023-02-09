@@ -23,6 +23,11 @@
         Any roots in the Code packages of this project should have their parent enumerated in the Filters list below.
     </description>
 
+    <properties>
+        <!-- excluding this maven module from sonar scan -->
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
