@@ -8,7 +8,6 @@ const path = require('path');
 // include plug-ins
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
-const browserSync = require('browser-sync');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
@@ -137,18 +136,6 @@ gulp.task('javascript', () => {
   return merge(vendor, app, animatedApp);
 });
 
-// reload task
-gulp.task('reload', () => {
-  browserSync.reload();
-});
-
-// watch task
-gulp.task('watch', () => {
-  gulp.watch('./sass/**/*.scss', ['sass']);
-  gulp.watch('./js/dev/**/*.js', ['javascript']);
-  gulp.watch(['./sass/**/*.css', './etc/**/*.css', './js/mini/**/*.js', './etc/**/*.js', './templates/**/*.php', './includes/**/*.php'], ['reload']);
-});
-
 // build task
 gulp.task('build', ['sass', 'javascript'], () => {
   gulp.src(['./sass/*.css', '!./node_modules/**/*']).pipe(gulp.dest('./build/sass'));
@@ -160,4 +147,4 @@ gulp.task('build', ['sass', 'javascript'], () => {
 });
 
 // default task
-gulp.task('default', ['sass', 'javascript', 'watch', 'browser-sync']);
+gulp.task('default', ['sass', 'javascript']);
