@@ -415,7 +415,7 @@ public class SearchResultsList {
                 map.put("orderby", "@jcr:content/jcr:score");
                 map.put("orderby.sort", "desc");
                 map.put("p.limit", "50");
-                map.put("p.guessTotal", "50");
+                map.put("p.guessTotal", "true");
                 String mapStr = "";
                 for (Map.Entry<String, String> predicate : map.entrySet()) {
                     mapStr += predicate.getKey() + "=" + predicate.getValue() + "|";
@@ -531,7 +531,7 @@ public class SearchResultsList {
                     map.put("orderby", "@jcr:content/custompublishdate");
                     map.put("orderby.sort", "desc");
                     map.put("p.limit", "10");
-                    map.put("p.guessTotal", "10");
+                    map.put("p.guessTotal", "true");
 
                     Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
                     SearchResult searchResult = query.getResult();
