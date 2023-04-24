@@ -2,5 +2,5 @@
     "org.apache.sling.commons.log.names": [
         "com.positive.dhl"
     ],
-    "org.apache.sling.commons.log.level": "debug"
+    "org.apache.sling.commons.log.level": "warn"
 }

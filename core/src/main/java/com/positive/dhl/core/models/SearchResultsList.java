@@ -415,6 +415,12 @@ public class SearchResultsList {
 				map.put("orderby", "@jcr:content/jcr:score");
     			map.put("orderby.sort", "desc");
     			map.put("p.limit", "50");
+				map.put("p.guessTotal", "50");
+				String mapStr = "";
+				for (Map.Entry<String, String> predicate : map.entrySet()) {
+					mapStr += predicate.getKey() + "=" + predicate.getValue() + "|";
+				}
+				log.debug("QueryBuilder map: {}", mapStr);
 	
     			// execute
 				List<String> articleTypes = Article.getArticlePageTypes();
@@ -513,7 +519,6 @@ public class SearchResultsList {
 	    		if (builder != null) {
 	    			Map<String, String> map = new HashMap<String, String>();
 	    			map.put("type", NameConstants.NT_PAGE);
-
 	    			map.put("group.p.or", "true");
 	    			
 	    			List<String> articleTypes = Article.getArticlePageTypes();
@@ -525,8 +530,8 @@ public class SearchResultsList {
 	    			
 	    			map.put("orderby", "@jcr:content/custompublishdate");
 	    			map.put("orderby.sort", "desc");
-	    			
 	    			map.put("p.limit", "10");
+					map.put("p.guessTotal", "10");
 
 	    			Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
 	    	        SearchResult searchResult = query.getResult();

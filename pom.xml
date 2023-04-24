@@ -55,10 +55,10 @@
         <aem.sdk.api>2023.3.11382.20230315T073850Z-230200</aem.sdk.api>
         <aemanalyser.version>1.5.8</aemanalyser.version>
         <componentGroupName>Deutsche Post AG Discover</componentGroupName>
-
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <jacoco.version>0.8.7</jacoco.version>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-
     </properties>
 
     <build>
@@ -130,8 +130,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -140,7 +140,6 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
-
             </plugin>
         </plugins>
         <pluginManagement>
