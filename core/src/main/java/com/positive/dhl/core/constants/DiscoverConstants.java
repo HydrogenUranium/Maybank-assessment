@@ -1,6 +1,7 @@
 package com.positive.dhl.core.constants;
 
 import com.day.cq.commons.jcr.JcrConstants;
+import com.day.cq.wcm.api.constants.NameConstants;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 
 import java.text.MessageFormat;
@@ -57,7 +58,7 @@ public class DiscoverConstants {
 
 	static {
 		Map<String,String> map = new HashMap<>();
-		map.put("type", "cq:Page");
+		map.put("type", NameConstants.NT_PAGE);
 		map.put("property", JcrConstants.JCR_CONTENT + "/" + JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY);
 		map.put("property.and","false");
 
