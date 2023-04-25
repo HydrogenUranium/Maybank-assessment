@@ -23,20 +23,20 @@ pipeline {
 
         }
 
-        stage('Fortify scan - ASG'){
-            agent {
-                label 'fortify'
-            }
-            when { changeRequest() }
-            steps {
-                sh 'mvn -ntp -DskipTests com.fortify.sca.plugins.maven:sca-maven-plugin:clean com.fortify.sca.' +
-                        'plugins.maven:sca-maven-plugin:translate com.fortify.sca.plugins.maven:sca-maven-plugin:scan'
-            }
+        // stage('Fortify scan - ASG'){
+        //     agent {
+        //         label 'fortify_agent'
+        //     }
+        //     when { changeRequest() }
+        //     steps {
+        //         sh 'mvn -ntp -DskipTests com.fortify.sca.plugins.maven:sca-maven-plugin:clean com.fortify.sca.' +
+        //                 'plugins.maven:sca-maven-plugin:translate com.fortify.sca.plugins.maven:sca-maven-plugin:scan'
+        //     }
 
-            {
-                sh '/home/ci/FortifyASG.sh 334026729'
-            }
-        }
+        //     {
+        //         sh '/home/ci/FortifyASG.sh 334026729'
+        //     }
+        // }
 
         stage('Sonarqube Analysis') {
            steps {
@@ -49,7 +49,13 @@ pipeline {
         }
 
         stage('Build & Deploy artifacts to Artifactory') {
-
+            when {
+                anyOf {
+                    branch 'main'
+                    branch 'develop'
+                    branch pattern: "release/\\d+", comparator: "REGEXP"
+                    }
+                }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'srv_jenkins_creds', passwordVariable:
                         'artifactory_pwd', usernameVariable: 'artifactory_user')]){
