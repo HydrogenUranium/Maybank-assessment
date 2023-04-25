@@ -49,7 +49,13 @@ pipeline {
         }
 
         stage('Build & Deploy artifacts to Artifactory') {
-
+            when {
+                anyOf {
+                    branch 'main'
+                    branch 'develop'
+                    branch pattern: "release/\\d+", comparator: "REGEXP"
+                    }
+                }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'srv_jenkins_creds', passwordVariable:
                         'artifactory_pwd', usernameVariable: 'artifactory_user')]){
