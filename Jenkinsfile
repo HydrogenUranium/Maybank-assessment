@@ -25,7 +25,7 @@ pipeline {
 
         stage('Fortify scan - ASG'){
             agent {
-                label 'fortify'
+                label 'fortify_agent'
             }
             when { changeRequest() }
             steps {
