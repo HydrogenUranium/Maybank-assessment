@@ -1,0 +1,6 @@
+{
+  "access_token": "c53c51ec-b77c-46c1-8979-dd99be1d30cf:nld1",
+  "token_type": "bearer",
+  "expires_in": 3599,
+  "scope": "api.forms@dhl.com"
+}

@@ -24,4 +24,5 @@ $include "./default_filters.any"
 
 #/3009 { /type "allow" /method "POST" /url "/conf/dhl/servlet-handler/shipnow" }
 /3010 { /type "allow" /method "POST" /url "/apps/dhl/servlet-handler/*" }
+/3011 { /type "allow" /method "POST" /url "/conf/dhl/api/*" }
 

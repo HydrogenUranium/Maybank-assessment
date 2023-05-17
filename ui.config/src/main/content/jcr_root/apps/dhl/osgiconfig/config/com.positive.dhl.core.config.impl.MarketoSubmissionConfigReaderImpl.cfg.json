@@ -1,0 +1,7 @@
+{
+  "getMarketoHostname": "$[env:MARKETO_HOSTNAME]",
+  "getClientId": "$[secret:MARKETO_CLIENT_ID]",
+  "getSecret": "$[secret:MARKETO_SECRET]",
+  "formSubmissionAPIEndpoint": "$[env:MARKETO_FORM_SUBMISSION_API_PATH]",
+  "marketoAuthenticationAPIEndpoint": "$[env:MARKETO_AUTH_API_PATH]"
+}

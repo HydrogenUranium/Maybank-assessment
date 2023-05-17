@@ -1,0 +1,97 @@
+package com.positive.dhl.core.servlets;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.positive.dhl.core.dto.marketo.FormInputBase;
+import com.positive.dhl.core.dto.marketo.FormSubmissionResponse;
+import com.positive.dhl.core.services.HttpCommunication;
+import com.positive.dhl.core.services.InitUtil;
+import com.positive.dhl.core.services.InputParamHelper;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.testing.mock.sling.ResourceResolverType;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import javax.servlet.ServletException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
+@ExtendWith({AemContextExtension.class, MockitoExtension.class})
+class MarketoSubmissionServletTest {
+
+	AemContext context = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
+	MockSlingHttpServletRequest request;
+	MockSlingHttpServletResponse response;
+	@Mock
+	InputParamHelper inputParamHelper;
+	@Mock
+	HttpCommunication httpCommunication;
+	@Mock
+	InitUtil initUtil;
+	@Mock
+	ObjectMapper objectMapper;
+	@Mock
+	FormInputBase formInputBase;
+	@InjectMocks
+	MarketoSubmissionServlet underTest;
+
+	@BeforeEach
+	void setUp() {
+		request = context.request();
+		response = context.response();
+		Map<String,Object> injectedServices = new HashMap<>();
+		injectedServices.putIfAbsent("inputParamHelper", inputParamHelper);
+		injectedServices.putIfAbsent("httpCommunication", httpCommunication);
+		injectedServices.putIfAbsent("initUtil", initUtil);
+
+		context.registerService(InputParamHelper.class, inputParamHelper);
+		context.registerService(HttpCommunication.class, httpCommunication);
+		context.registerService(InitUtil.class, initUtil);
+
+		underTest = new MarketoSubmissionServlet();
+		context.registerInjectActivateService(underTest, injectedServices);
+	}
+
+	@Test
+	void happyScenario() throws ServletException, IOException {
+		request.setHeader("User-agent", "whatever");
+		FormSubmissionResponse formSubmissionResponse = FormSubmissionResponse.builder()
+				.success(true)
+				.requestId("dummy-request-id")
+				.build();
+
+		when(inputParamHelper.buildForm(any(SlingHttpServletRequest.class), anyList(), anyList())).thenReturn(formInputBase);
+		when(formInputBase.isOk()).thenReturn(true);
+		when(httpCommunication.requestNewToken()).thenReturn("dummy-token");
+		when(httpCommunication.submitForm(any(FormInputBase.class), anyString())).thenReturn(formSubmissionResponse);
+
+		underTest.doPost(request,response);
+		String responseBody = context.response().getOutputAsString();
+		assertEquals("ok".toLowerCase(), responseBody.toLowerCase());
+	}
+
+	@Test
+	void tokenNotReceived() throws ServletException, IOException {
+		request.setHeader("User-agent", "whatever");
+		FormSubmissionResponse formSubmissionResponse = FormSubmissionResponse.builder()
+				.success(true)
+				.requestId("dummy-request-id")
+				.build();
+
+		when(inputParamHelper.buildForm(any(SlingHttpServletRequest.class), anyList(), anyList())).thenReturn(mock(FormInputBase.class));
+
+		underTest.doPost(request,response);
+		verify(httpCommunication, times(0)).submitForm(any(FormInputBase.class),anyString());
+	}
+}

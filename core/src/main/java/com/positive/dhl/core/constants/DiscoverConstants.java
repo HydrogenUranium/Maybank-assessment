@@ -17,6 +17,13 @@ public class DiscoverConstants {
 	private static final String[] CATEGORIES_PROPERTY_NAMES = new String[] { "category0", "category1", "category2", "category3" };
 	public static final String CATEGORY_PAGE_TEMPLATE = "dhl/components/pages/articlecategory";
 	public static final String DHL_COMPONENT_PATH = "dhl/components/pages/";
+	public static final String APPLICATION_JSON = "application/json";
+	public static final String COOKIE_PARAM_NAME = "user_info_cookie";
+	public static final String FORMID_PARAM_NAME = "formId";
+	public static final String MARKETO_COOKIE_NAME = "_mkto_trk";
+	public static final String USER_AGENT_HEADER = "user-agent";
+	public static final String CONTENT_TYPE = "Content-type";
+	public static final String DESTINATION_CONCATENATION = "{0}{1}";
 
 	private static final Map<String,String> articlesQueryMap;
 
@@ -63,7 +70,7 @@ public class DiscoverConstants {
 		map.put("property.and","false");
 
 		List<String> articleTypes = DiscoverConstants.getCategoryTypes();
-		int counter = 1;
+		var counter = 1;
 		for (String articleType : articleTypes){
 			String predicate = MessageFormat.format("property.{0}_value",counter);
 			map.put(predicate,DHL_COMPONENT_PATH + articleType);

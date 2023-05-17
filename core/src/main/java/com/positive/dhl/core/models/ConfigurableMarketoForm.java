@@ -23,14 +23,14 @@ public class ConfigurableMarketoForm {
 	public String marketoformid;
 
 	@Inject
-	@Named("marketohiddenid")
-	@Optional
-	public String marketohiddenid;
-
-	@Inject
 	@Named("marketohiddenformid")
 	@Optional
 	public String marketohiddenformid;
+
+	@Inject
+	@Named("marketohost")
+	@Optional
+	public String marketohost;
 
 	@Inject
 	@Named("thanksurl")
@@ -51,16 +51,11 @@ public class ConfigurableMarketoForm {
 	@Named("shipnowcontent")
 	@Optional
 	public String shipnowcontent;
-	
-	/**
-	 *
-	 */
-	public String getJson() {
-		String param1 = ((marketohiddenid != null) ? marketohiddenid : "");
-		String param2 = ((marketohiddenformid != null) ? marketohiddenformid : "");
-		return "{\r\n"
-				+ "		  \"hiddenMunchkinId\": \"" + param1 + "\",\r\n"
-				+ "		  \"hiddenFormId\": " + param2 + "\r\n"
-				+ "}";
+
+	public String getVisibleFormHost(){
+		if(null != marketohost){
+			return marketohost;
+		}
+		return "https://express-resource.dhl.com";
 	}
 }
