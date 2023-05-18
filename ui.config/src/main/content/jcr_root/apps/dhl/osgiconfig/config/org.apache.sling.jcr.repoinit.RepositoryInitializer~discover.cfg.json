@@ -1,5 +1,6 @@
 {
     "scripts": [
+        "create path /(rep:root)",
         "create service user discover-writer with path /home/users/system/discover",
         "create service user discover-reader with path /home/users/system/discover",
 
@@ -8,6 +9,8 @@
 
         "create path (sling:Folder) /conf/dhl/appdata",
         "create path (sling:Folder) /conf/dhl/appdata/countries",
+        "create path (sling:Folder) /conf/dhl/api/submit(nt:unstructured)",
+        "set properties on /conf/dhl/api/submit\n set sling:resourceType{String} to dhl-submit \n end",
 
         "create path (nt:unstructured) /conf/dhl/appdata/countries/af",
         "set properties on /conf/dhl/appdata/countries/af\n set countryName{String} to Afghanistan\n set currency{String} to USD\n set callingCode{Long} to 93 \n end",

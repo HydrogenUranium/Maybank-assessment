@@ -145,6 +145,12 @@
     </build>
     <profiles>
         <profile>
+            <id>local-frontend-dev </id>
+            <properties>
+                <frontend.environment>dev</frontend.environment>
+            </properties>
+        </profile>
+        <profile>
             <id>analyzeAemPackage</id>
             <build>
                 <plugins>

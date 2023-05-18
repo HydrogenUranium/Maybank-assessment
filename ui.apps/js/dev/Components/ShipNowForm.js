@@ -36,20 +36,19 @@ class ShipNowForm {
    * @return {boolean} true if all elements have been validated successfully or false if not
    */
   validate() {
-    let form = document.getElementById("glb-shipnow-form");
-    if(form){
+    let form = document.getElementById('glb-shipnow-form');
+    if (form) {
       let formElements = form.elements;
 
       const validationResult = new Map();
-      for (const formElement of formElements ){
-        let name = formElement.getAttribute("name");
-        validationResult.set(name,this.validateField(formElement));
+      for (const formElement of formElements ) {
+        let name = formElement.getAttribute('name');
+        validationResult.set(name, this.validateField(formElement));
       }
       const validationResultValues = [...validationResult.values()];
       return validationResultValues.includes(false);
     }
     return false;
-
   }
 
   /**
@@ -57,33 +56,34 @@ class ShipNowForm {
    * <i>email</i> & <i>tel</i>; every other field type is treated as <i>text</i>. If the element's value is considered
    * 'invalid',
    * <b>error</b> class is added, otherwise <b>valid</b> is added
+   // eslint-disable-next-line valid-jsdoc
    * @param elementToValidate DOM element we want to validate
    * @return boolean true or false depending on the validation result of one specific field
+   * @param {Element|{pattern: *, flags: *, raw: *, type: string, value: *}} elementToValidate
    */
-  validateField(elementToValidate){
+  validateField(elementToValidate) {
     let fieldType = elementToValidate.type;
     let fieldValue = elementToValidate.value.trim();
 
     let validationResult;
-    switch (fieldType){
-      case "email":
-        validationResult = this.validateEmailField(fieldValue);
-        break;
-      case "tel":
-        validationResult = this.validatePhoneNumber(fieldValue);
-        break;
-      default:
-        validationResult = this.validateTextField(fieldValue);
+    switch (fieldType) {
+    case 'email':
+      validationResult = this.validateEmailField(fieldValue);
+      break;
+    case 'tel':
+      validationResult = this.validatePhoneNumber(fieldValue);
+      break;
+    default:
+      validationResult = this.validateTextField(fieldValue);
     }
 
 
-    if(!validationResult){
+    if (!validationResult) {
       this.failValidation(elementToValidate);
       return false;
-    } else {
-      this.completeValidation(elementToValidate);
-      return true;
     }
+    this.completeValidation(elementToValidate);
+    return true;
   }
 
   /**
@@ -93,57 +93,57 @@ class ShipNowForm {
    * we simply add 'error'
    * @param element is the element we're assessing
    */
-  failValidation(element){
-    this.modifyCssClass(element,"error","valid");
+  failValidation(element) {
+    this.modifyCssClass(element, 'error', 'valid');
     let labelElement = this.getLabel(element);
-    if(labelElement === null){
+    if (labelElement === null) {
       element.after(this.createErrorLabel(element));
       labelElement = this.getLabel(element);
     }
-    this.updateLabelMessage(element,labelElement);
+    this.updateLabelMessage(element, labelElement);
   }
 
-  updateLabelMessage(sourceElement,labelElement){
-    let sourceElementMessage = sourceElement.getAttribute("data-msg");
-    if(sourceElementMessage === null){
-      sourceElementMessage = "Field is mandatory";
+  updateLabelMessage(sourceElement, labelElement) {
+    let sourceElementMessage = sourceElement.getAttribute('data-msg');
+    if (sourceElementMessage === null) {
+      sourceElementMessage = 'Field is mandatory';
     }
-    if(labelElement !== null || typeof labelElement !== 'undefined'){
+    if (labelElement !== null || typeof labelElement !== 'undefined') {
       labelElement.textContent = sourceElementMessage;
     }
   }
 
-  createErrorLabel(inputElement){
+  createErrorLabel(inputElement) {
     let elementId = inputElement.id;
-    let errorMessage = inputElement.getAttribute("data-msg");
-    if(!errorMessage){
-      errorMessage = "This field is mandatory!";
+    let errorMessage = inputElement.getAttribute('data-msg');
+    if (!errorMessage) {
+      errorMessage = 'This field is mandatory!';
     }
 
-    let labelElement = document.createElement("label");
+    let labelElement = document.createElement('label');
     let labelTextNode = document.createTextNode(errorMessage);
-    labelElement.classList.add("error");
-    labelElement.setAttribute("for",elementId);
+    labelElement.classList.add('error');
+    labelElement.setAttribute('for', elementId);
 
     labelElement.appendChild(labelTextNode);
     return labelElement;
   }
 
-  modifyCssClass(element, classToAdd, classToRemove){
-    if(element.classList.contains(classToRemove)){
+  modifyCssClass(element, classToAdd, classToRemove) {
+    if (element.classList.contains(classToRemove)) {
       element.classList.replace(classToRemove, classToAdd);
     }
     element.classList.add(classToAdd);
   }
 
-  removeCssClass(element, classToRemove){
-    if(element){
+  removeCssClass(element, classToRemove) {
+    if (element) {
       element.classList.remove(classToRemove);
     }
   }
 
-  addCssClass(element,classToAdd){
-    if(element){
+  addCssClass(element, classToAdd) {
+    if (element) {
       element.classList.add(classToAdd);
     }
   }
@@ -155,19 +155,19 @@ class ShipNowForm {
    * we simply add 'valid'
    * @param element is the element we're assessing
    */
-  completeValidation(element){
-    this.modifyCssClass(element,"valid","error");
+  completeValidation(element) {
+    this.modifyCssClass(element, 'valid', 'error');
     let labelElement = this.getLabel(element);
-    if(labelElement !== null){
+    if (labelElement !== null) {
       labelElement.remove();
     }
   }
 
-  getLabel(formInputElement){
+  getLabel(formInputElement) {
     let labelElement = formInputElement.nextElementSibling;
-    if(labelElement){
+    if (labelElement) {
       let tag = labelElement.tagName;
-      if(tag.toLocaleLowerCase() === "label"){
+      if (tag.toLocaleLowerCase() === 'label') {
         return labelElement;
       }
     }
@@ -180,9 +180,8 @@ class ShipNowForm {
    * @param stringToValidate is a {@code String} value we wish to validate
    * @returns {boolean} true if we think the provided string is a valid one
    */
-  validateTextField(stringToValidate){
+  validateTextField(stringToValidate) {
     return stringToValidate !== null && stringToValidate.length !== 0;
-
   }
 
   /**
@@ -190,7 +189,7 @@ class ShipNowForm {
    * @param emailToValidate is the string we want to validate
    * @returns {boolean} true if the provided value matches the email regular expression or false if not
    */
-  validateEmailField(emailToValidate){
+  validateEmailField(emailToValidate) {
     let emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     return !!emailToValidate.match(emailRegex);
   }
@@ -200,9 +199,9 @@ class ShipNowForm {
    * @param phoneToValidate is a String to validate (phone number can contain other characters than just digits
    * @returns {boolean} true if validate is successful, else it returns false
    */
-  validatePhoneNumber(phoneToValidate){
-    let phoneRegex = new RegExp("((\\(\\d{3,4}\\)( )?)|\\d{3,4}( )?)?[- ./]?( )?\\d{3,4}?( )?[- ./]?( )?\\d{3,4}?( )?$");
-    return phoneRegex.test(phoneToValidate)
+  validatePhoneNumber(phoneToValidate) {
+    let phoneRegex = new RegExp('((\\(\\d{3,4}\\)( )?)|\\d{3,4}( )?)?[- ./]?( )?\\d{3,4}?( )?[- ./]?( )?\\d{3,4}?( )?$');
+    return phoneRegex.test(phoneToValidate);
   }
 
   toggleAddress(_e) {
@@ -247,7 +246,7 @@ class ShipNowForm {
   submitForm(e) {
     e.preventDefault();
     let canSubmit = this.validate();
-    if(canSubmit){
+    if (canSubmit) {
       let $form = $(e.target);
       let formData = this.getFormData($form);
       $.post(this.getPathPrefix() + $form.attr('action'), formData, (data) => {
@@ -282,24 +281,24 @@ class ShipNowForm {
    * @param errors
    */
   showError(errors) {
-    if(Array.isArray(errors)){
-      for (let error of errors){
+    if (Array.isArray(errors)) {
+      for (let error of errors) {
         let validationErrorString = error.field;
-        let elementId = "shipnow_" + this.getFirstWord(validationErrorString);
+        let elementId = 'shipnow_' + this.getFirstWord(validationErrorString);
         let element = document.getElementById(elementId);
-        if(element){
+        if (element) {
           this.failValidation(element);
         }
       }
     }
   }
 
-  getFirstWord(strintToSplit){
-    return strintToSplit.split(" ")[0];
+  getFirstWord(strintToSplit) {
+    return strintToSplit.split(' ')[0];
   }
 
   init() {
-    if ($(this.sel.form).length <= 0){
+    if ($(this.sel.form).length <= 0) {
       return false;
     }
     this.registerEventListeners();
@@ -307,24 +306,24 @@ class ShipNowForm {
     return true;
   }
 
-  registerEventListeners(){
+  registerEventListeners() {
     const elementsToValidate = [
-      "shipnow_firstname",
-      "shipnow_lastname",
-      "shipnow_companyname",
-      "shipnow_phone",
-      "shipnow_address",
-      "shipnow_zip",
-      "shipnow_city",
-      "shipnow_email"
+      'shipnow_firstname',
+      'shipnow_lastname',
+      'shipnow_companyname',
+      'shipnow_phone',
+      'shipnow_address',
+      'shipnow_zip',
+      'shipnow_city',
+      'shipnow_email'
     ];
 
-    for (const elementToValidate of elementsToValidate){
+    for (const elementToValidate of elementsToValidate) {
       let element = document.getElementById(elementToValidate);
-      if(element){
-        element.addEventListener("blur", () => {
+      if (element) {
+        element.addEventListener('blur', () => {
           this.validateField(element);
-        })
+        });
       }
     }
   }

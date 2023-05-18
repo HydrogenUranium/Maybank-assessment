@@ -10,7 +10,7 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
-const uglify = require('gulp-uglify');
+// const uglify = require('gulp-uglify'); to be removed if 'gulp-terser' works (see below)
 const merge = require('merge-stream');
 const autoprefixer = require('gulp-autoprefixer');
 const eslint = require('gulp-eslint');
@@ -18,6 +18,7 @@ const babel = require('babelify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const browserify = require('browserify');
+const terser = require('gulp-terser');
 
 // Environment
 const isDev = !util.env.prod;
@@ -91,7 +92,8 @@ gulp.task('javascript', () => {
     .pipe(gulpIf(isDev, sourcemaps.init()))
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest(scriptDest))
-    .pipe(gulpIf(!isDev, uglify()))
+    // .pipe(gulpIf(!isDev, uglify())) to be removed if 'gulp-terser' works
+    .pipe(gulpIf(!isDev, terser()))
     .pipe(rename('vendor.min.js'))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
       sourceRoot: '/',
@@ -101,14 +103,15 @@ gulp.task('javascript', () => {
 
   let app = bundler.bundle()
     .on('error', (err) => {
-      console.error(err)
+      console.error(err);
       this.emit('end');
     })
     .pipe(source('main.js'))
     .pipe(gulp.dest(scriptDest))
     .pipe(buffer())
     .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })))
-    .pipe(gulpIf(!isDev, uglify()))
+    // .pipe(gulpIf(!isDev, uglify())) to be removed if 'gulp-terser' works
+    .pipe(gulpIf(!isDev, terser()))
     .pipe(rename('main.min.js'))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
       sourceRoot: '/',
@@ -118,14 +121,15 @@ gulp.task('javascript', () => {
 
   let animatedApp = animatedBundler.bundle()
     .on('error', (err) => {
-      console.error(err)
+      console.error(err);
       this.emit('end');
     })
     .pipe(source('animated.js'))
     .pipe(gulp.dest(scriptDestAnimated))
     .pipe(buffer())
     .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })))
-    .pipe(gulpIf(!isDev, uglify()))
+    // .pipe(gulpIf(!isDev, uglify())) to be removed if 'gulp-terser' works
+    .pipe(gulpIf(!isDev, terser()))
     .pipe(rename('animated.min.js'))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
       sourceRoot: '/',

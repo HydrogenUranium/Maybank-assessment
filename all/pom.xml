@@ -131,6 +131,15 @@
     <!-- ====================================================================== -->
     <profiles>
         <profile>
+            <id>local-frontend-dev</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <frontend.environment>dev</frontend.environment>
+            </properties>
+        </profile>
+        <profile>
             <id>autoInstallSinglePackage</id>
             <activation>
                 <activeByDefault>false</activeByDefault>

@@ -1,0 +1,9 @@
+{
+  "getMarketoHostname": "$[env:MARKETO_HOSTNAME]",
+  "getClientId": "$[secret:MARKETO_CLIENT_ID]",
+  "getSecret": "$[secret:MARKETO_SECRET]",
+  "formSubmissionAPIEndpoint": "/rest/v1/leads/submitForm.json",
+  "marketoAuthenticationAPIEndpoint": "/identity/oauth/token",
+  "marketoFormDescriptionAPIEndpoint": "/rest/v1/leads/describe2.json",
+  "marketoFormFieldsAPIEndpoint": "/rest/asset/v1/form/{0}/fields.json"
+}

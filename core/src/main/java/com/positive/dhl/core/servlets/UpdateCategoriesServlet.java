@@ -1,33 +1,29 @@
 package com.positive.dhl.core.servlets;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import javax.servlet.Servlet;
-import javax.sql.DataSource;
-
 import com.day.commons.datasource.poolservice.DataSourceNotFoundException;
+import com.day.commons.datasource.poolservice.DataSourcePool;
+import com.google.gson.JsonObject;
 import com.positive.dhl.core.exceptions.DiscoverUserNotFoundException;
+import com.positive.dhl.core.helpers.DatabaseHelpers;
+import com.positive.dhl.core.models.UserAccount;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
-
-import com.day.commons.datasource.poolservice.DataSourcePool;
-import com.google.gson.JsonObject;
-
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.positive.dhl.core.helpers.DatabaseHelpers;
-import com.positive.dhl.core.models.UserAccount;
+import javax.servlet.Servlet;
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
- * 
+ *
  */
 @Component(
 	service = Servlet.class,
@@ -39,9 +35,9 @@ import com.positive.dhl.core.models.UserAccount;
 )
 public class UpdateCategoriesServlet extends SlingAllMethodsServlet {
 	private static final Logger log = LoggerFactory.getLogger(UpdateCategoriesServlet.class);
-	
+
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -52,13 +48,13 @@ public class UpdateCategoriesServlet extends SlingAllMethodsServlet {
     private transient DataSourcePool source;
 
     /**
-	 * 
+	 *
 	 */
 	public void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
 		String responseBody = "";
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
-		
+
 		boolean valid = true;
 		UserAccount user = null;
 		String username = request.getParameter("username");
