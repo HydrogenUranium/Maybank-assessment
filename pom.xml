@@ -35,6 +35,11 @@
         <module>dispatcher</module>
     </modules>
 
+    <scm>
+        <developerConnection>scm:git:git@git.dhl.com:NDCW-10025/discover.git</developerConnection>
+        <tag>@{project.version}</tag>
+    </scm>
+
     <properties>
         <aem.host>localhost</aem.host>
         <aem.port>4502</aem.port>
@@ -94,6 +99,8 @@
                     <preparationGoals>clean install</preparationGoals>
                     <goals>install</goals>
                     <releaseProfiles>release</releaseProfiles>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>
             <!-- Maven Source Plugin -->
