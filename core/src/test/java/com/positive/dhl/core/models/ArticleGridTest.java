@@ -97,7 +97,7 @@ class ArticleGridTest {
 
 		ArticleGrid articleGrid = request.adaptTo(ArticleGrid.class);
 		List<Article> articleList = Objects.requireNonNull(articleGrid).getArticles();
-		assertEquals(articleList.get(0).path,"dummy-hit-path");
+		assertEquals("dummy-hit-path", articleList.get(0).path);
 	}
 
 	@Test

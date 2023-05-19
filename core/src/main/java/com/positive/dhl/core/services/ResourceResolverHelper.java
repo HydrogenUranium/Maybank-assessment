@@ -2,6 +2,7 @@
 package com.positive.dhl.core.services;
 
 import com.positive.dhl.core.constants.DiscoverConstants;
+import lombok.Cleanup;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -51,7 +52,9 @@ public class ResourceResolverHelper {
 			final Map<String, Object> authInfo = new HashMap<>();
 			authInfo.put(ResourceResolverFactory.SUBSERVICE,systemUser);
 
-			return resourceResolverFactory.getServiceResourceResolver(authInfo);
+			@Cleanup var resourceResolver = resourceResolverFactory.getServiceResourceResolver(authInfo);
+			return resourceResolver;
+
 		} catch (LoginException e) {
 			LOGGER.error("Error has occurred when trying to get a ResourceResolver for user {}. More details (if available): {}", systemUser, e.getMessage());
 			return null;

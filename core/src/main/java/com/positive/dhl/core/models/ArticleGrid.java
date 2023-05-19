@@ -159,7 +159,7 @@ public class ArticleGrid {
 		}
 
 		if (request != null) {
-			String selectorString = request.getRequestPathInfo().getSelectorString();
+			var selectorString = request.getRequestPathInfo().getSelectorString();
 			if(null != selectorString){
 				return selectorString;
 			}
@@ -205,7 +205,7 @@ public class ArticleGrid {
 				title = categoryProperties.get(JcrConstants.JCR_TITLE, "");
 			}
 
-			String categoryName = title.replaceAll("[^A-Za-z\\d]|\\s", "-").toLowerCase();
+			String categoryName = title.replaceAll("[^A-Za-z\\d]", "-").toLowerCase();
 			return new CategoryLink(categoryName, title, page.getPath());
 		}
 		if(LOGGER.isDebugEnabled()){
@@ -219,11 +219,11 @@ public class ArticleGrid {
 	private List<CategoryLink> getCategoriesLinks(ResourceResolver resourceResolver, List<String> categoryPaths){
 		List<CategoryLink> categoryLinks = new ArrayList<>();
 		for (String categoryPath: categoryPaths) {
-			Resource categoryResource = resourceResolver.getResource(categoryPath);
+			var categoryResource = resourceResolver.getResource(categoryPath);
 			if(null != categoryResource){
 				Page category = categoryResource.adaptTo(Page.class);
 				if (category != null) {
-					CategoryLink categoryLink = getCategoryLinkFromPage(category);
+					var categoryLink = getCategoryLinkFromPage(category);
 					if(null != categoryLink){
 						categoryLinks.add(categoryLink);
 					}
@@ -244,11 +244,11 @@ public class ArticleGrid {
 	 */
 	private List<CategoryLink> getCategoriesFromPage(Page page){
 		List<CategoryLink> categoryLinks = new ArrayList<>();
-		int count = 0;
+		var count = 0;
 		Iterator<Page> children = page.listChildren();
 		while (children.hasNext()) {
 			Page child = children.next();
-			CategoryLink categoryLink = getCategoryLinkFromPage(child);
+			var categoryLink = getCategoryLinkFromPage(child);
 			if(null != categoryLink){
 				categoryLinks.add(categoryLink);
 			}
@@ -272,11 +272,11 @@ public class ArticleGrid {
 		}
 
 		if (null != linksResource) {
-			int count = 0;
+			var count = 0;
 			Iterator<Resource> linkResources = linksResource.listChildren();
 			while (linkResources.hasNext()) {
-				Resource resource = linkResources.next();
-				Article link = resource.adaptTo(Article.class);
+				var linkResource = linkResources.next();
+				Article link = linkResource.adaptTo(Article.class);
 				if (link != null && link.getValid()) {
 					link.setIndex(count);
 					articlesList.add(link);
@@ -304,7 +304,7 @@ public class ArticleGrid {
 		}
 
 		if(null == path){
-			Page groupPage = getGroupPage(currentPage);
+			var groupPage = getGroupPage(currentPage);
 			if (groupPage != null) {
 				path = groupPage.getPath();
 			}
@@ -331,17 +331,17 @@ public class ArticleGrid {
 
 	private List<Article> processSearchResults(SearchResult searchResult, ResourceResolver resourceResolver){
 		List<Article> articlesList = new ArrayList<>();
-		int count = 0;
+		var count = 0;
 		for (Hit hit: searchResult.getHits()) {
 
 			try {
 				ValueMap hitProperties = hit.getProperties();
 				Boolean hideInNav = hitProperties.get("hideInNav", false);
-				if (hideInNav) {
+				if (Boolean.TRUE.equals(hideInNav)) {
 					continue;
 				}
 
-				Article article = new Article(hit.getPath(), resourceResolver);
+				var article = new Article(hit.getPath(), resourceResolver);
 				article.setIndex(count);
 				articlesList.add(article);
 
@@ -360,9 +360,9 @@ public class ArticleGrid {
 	 */
 	@PostConstruct
 	protected void init() {
-		ResourceResolver resourceResolver = getResourceResolver();
+		var resourceResolver = getResourceResolver();
 		if(null != resourceResolver){
-			ValueMap resourceProperties = resource.getValueMap();
+			var resourceProperties = resource.getValueMap();
 			mode = processMode(resourceProperties,request);
 			categories = new ArrayList<>();
 
@@ -384,21 +384,17 @@ public class ArticleGrid {
 				articles.addAll(processTrendingMode());
 			} else {
 				String path = verifyMode(categories,mode);
-
-				if (builder != null) {
-					LOGGER.info("Going to execute the query to fetch articles based on their categories");
-					SearchResult searchResult = runQuery(DiscoverConstants.getArticlesQueryMap(),path,resourceResolver);
-					if (searchResult != null) {
-						LOGGER.info("Query to find articles returned {} results.", searchResult.getTotalMatches());
-						articles.addAll(processSearchResults(searchResult, resourceResolver));
-					}
+				LOGGER.info("Going to execute the query to fetch articles based on their categories");
+				var searchResult = runQuery(DiscoverConstants.getArticlesQueryMap(),path,resourceResolver);
+				if (searchResult != null) {
+					LOGGER.info("Query to find articles returned {} results.", searchResult.getTotalMatches());
+					articles.addAll(processSearchResults(searchResult, resourceResolver));
 				}
 			}
 		} else {
 			LOGGER.error("Unable to obtain ResourceResolver from the model. This may have unpleasant " +
 					"consequences on pages. Details why this happened can be found in this log file");
 		}
-
 	}
 
 	/**
