@@ -9,6 +9,7 @@ import com.positive.dhl.core.constants.DiscoverConstants;
 import com.positive.dhl.core.services.CategoryFinder;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
+import lombok.Cleanup;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -17,6 +18,7 @@ import org.apache.sling.api.scripting.SlingScriptHelper;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,6 +40,9 @@ import java.util.Map;
 public class ArticleGrid {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleGrid.class);
+
+	@OSGiService
+	private ResourceResolverHelper resourceResolverHelper;
 
 	@Inject
 	private SlingHttpServletRequest request;
@@ -360,7 +365,9 @@ public class ArticleGrid {
 	 */
 	@PostConstruct
 	protected void init() {
-		var resourceResolver = getResourceResolver();
+
+		@Cleanup var resourceResolver = resourceResolverHelper.getReadResourceResolver();
+
 		if(null != resourceResolver){
 			var resourceProperties = resource.getValueMap();
 			mode = processMode(resourceProperties,request);
@@ -410,13 +417,4 @@ public class ArticleGrid {
 			String[] resourceTypes = {"dhl/components/pages/home","dhl/components/pages/articlecategory"};
 			return categoryFinder.getGroupPage(resourceTypes,self);
     }
-
-	private ResourceResolver getResourceResolver() {
-		final ResourceResolverHelper resourceResolverHelper = slingScriptHelper.getService(ResourceResolverHelper.class);
-		if (null == resourceResolverHelper) {
-			LOGGER.error("Unable to retrieve an instance of read ResourceResolver, ResourceResolverHelper service is not available");
-			return null;
-		}
-		return resourceResolverHelper.getReadResourceResolver();
-	}
 }

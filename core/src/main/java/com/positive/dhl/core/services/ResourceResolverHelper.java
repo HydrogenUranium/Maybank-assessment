@@ -52,8 +52,8 @@ public class ResourceResolverHelper {
 			final Map<String, Object> authInfo = new HashMap<>();
 			authInfo.put(ResourceResolverFactory.SUBSERVICE,systemUser);
 
-			@Cleanup var resourceResolver = resourceResolverFactory.getServiceResourceResolver(authInfo);
-			return resourceResolver;
+			return resourceResolverFactory.getServiceResourceResolver(authInfo);
+
 
 		} catch (LoginException e) {
 			LOGGER.error("Error has occurred when trying to get a ResourceResolver for user {}. More details (if available): {}", systemUser, e.getMessage());

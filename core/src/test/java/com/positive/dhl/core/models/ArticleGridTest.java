@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleGridTest {
-    private final AemContext ctx = new AemContext(ResourceResolverType.JCR_MOCK);
+    private final AemContext ctx = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
 
     @Mock
     private QueryBuilder mockQueryBuilder;
