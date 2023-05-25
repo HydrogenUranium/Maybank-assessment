@@ -6,6 +6,7 @@ import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
+import org.apache.sling.xss.XSSAPI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,13 +30,21 @@ class InputParamHelperImplTest {
 	@Mock
 	List<String> formFields;
 
+	@Mock
+	XSSAPI xssapi;
+
 	MockSlingHttpServletRequest request;
 	InputParamHelperImpl underTest;
 
 	@BeforeEach
 	void setUp(){
+		Map<String,Object> injectedServices = new HashMap<>();
+		injectedServices.put("xssapi", xssapi);
+		context.registerService(XSSAPI.class,xssapi);
+
 		request = context.request();
 		underTest = new InputParamHelperImpl();
+		context.registerInjectActivateService(underTest, injectedServices);
 	}
 
 	@Test

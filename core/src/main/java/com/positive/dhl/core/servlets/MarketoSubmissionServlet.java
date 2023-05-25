@@ -1,4 +1,3 @@
-/* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.servlets;
 
 import com.positive.dhl.core.dto.marketo.FormInputBase;
@@ -11,6 +10,8 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.servlets.annotations.SlingServletPrefix;
+import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -23,15 +24,15 @@ import java.io.PrintWriter;
 import java.util.List;
 
 @Component(
-		service = Servlet.class,
-		property ={
-				"sling.servlet.resourceTypes=" + "dhl-submit",
-				"sling.servlet.selectors=" + "marketo",
-				"sling.servlet.extensions=" + "html",
-				"sling.servlet.methods=" + HttpConstants.METHOD_POST
-		}
+		service = {Servlet.class})
+@SlingServletPrefix("/apps/")
+@SlingServletResourceTypes(
+		resourceTypes = "dhl/components/content/inlineshipnowmarketoconfigurable",
+		methods = HttpConstants.METHOD_POST,
+		extensions = "html",
+		selectors = "form"
 )
-public class MarketoSubmissionServlet extends SlingAllMethodsServlet {
+public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MarketoSubmissionServlet.class);
 
@@ -83,4 +84,5 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet {
 			printWriter.write("KO");
 		}
 	}
+
 }
