@@ -30,7 +30,8 @@
 				<div data-marketo-visible-form>
 				  <form id="mktoForm_${ cmf.marketoformid @ context = 'unsafe' }"></form>
 					<script src="${cmf.getVisibleFormHost}/js/forms2/js/forms2.min.js"></script>
-					<script>MktoForms2.loadForm("//express-resource.dhl.com", "${ configurableMarketoForm.marketoid @ context = 'unsafe' }", ${ configurableMarketoForm.marketoformid @ context = 'unsafe' });</script>
+					<script>MktoForms2.loadForm("${cmf.getVisibleFormHost @ context = 'unsafe'}",
+							"${ configurableMarketoForm.marketoid @ context = 'unsafe' }", ${ configurableMarketoForm.marketoformid @ context = 'unsafe' });</script>
 				</div>
 			  </sly>
 		  </div>
