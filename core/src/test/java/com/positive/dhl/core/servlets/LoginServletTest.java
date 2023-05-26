@@ -18,19 +18,21 @@ import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.sql.DataSource;
+
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
-class RequestPasswordServletTest {
+class LoginServletTest {
     private static final String USERNAME = "username";
-    private static final String PAGE = "page";
+    private static final String PASSWORD = "password";
 
     private final AemContext aemContext = new AemContext();
 
@@ -46,14 +48,17 @@ class RequestPasswordServletTest {
     @Mock
     private Connection connection;
 
+    @Mock
+    private UserAccount userAccount;
+
     @InjectMocks
-    private RequestPasswordServlet servlet;
+    private LoginServlet servlet;
 
     @BeforeEach
     public void initRequestParams() {
         request.setParameterMap(Map.of(
                 USERNAME, "user",
-                PAGE, "page"
+                PASSWORD, "password"
         ));
     }
 
@@ -76,11 +81,12 @@ class RequestPasswordServletTest {
         JsonNode json = getJsonResponse();
         assertEquals(2, json.size());
         assertEquals("ko", json.get("status").asText());
-        assertEquals("Username not supplied", json.get("error").asText());
+        assertEquals("Username/password not supplied", json.get("error").asText());
     }
 
+
     @Test
-    void doPost_ShouldReturnError_WhenUsernameIsEmpty() throws IOException {
+    void doPost_ShouldReturnError_WhenUserNameIsEmpty() throws IOException {
         setRequestParameter(USERNAME, "");
 
         servlet.doPost(request, response);
@@ -88,33 +94,44 @@ class RequestPasswordServletTest {
         JsonNode json = getJsonResponse();
         assertEquals(2, json.size());
         assertEquals("ko", json.get("status").asText());
-        assertEquals("Username not supplied", json.get("error").asText());
+        assertEquals("Username/password not supplied", json.get("error").asText());
     }
 
     @Test
-    void doPost_ShouldReturnEmpty_WhenDataSourceIsNull() throws Exception {
-        servlet.doPost(request, response);
-
-        assertEquals("", response.getOutputAsString());
-    }
-
-    @Test
-    void doPost_ShouldReturnError_WhenConnectionThrowError() throws Exception {
-        when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
-        when(dataSource.getConnection()).thenThrow(new SQLException("error"));
+    void doPost_ShouldReturnErrorWhen_PasswordIsNull() throws IOException {
+        setRequestParameter(PASSWORD, null);
 
         servlet.doPost(request, response);
 
         JsonNode json = getJsonResponse();
         assertEquals(2, json.size());
         assertEquals("ko", json.get("status").asText());
-        assertEquals("Error occurred while producing result JSON: 'error'", json.get("error").asText());
+        assertEquals("Username/password not supplied", json.get("error").asText());
     }
 
     @Test
-    void doPost_ShouldReturnError_WhenRequestPasswordReturnFalse() throws Exception {
+    void doPost_ShouldReturnErrorResponse_WhenPasswordIsEmpty() throws IOException {
+        setRequestParameter(PASSWORD, "");
+
+        servlet.doPost(request, response);
+
+        JsonNode json = getJsonResponse();
+        assertEquals(2, json.size());
+        assertEquals("ko", json.get("status").asText());
+        assertEquals("Username/password not supplied", json.get("error").asText());
+    }
+
+    @Test
+    void doPost_ShouldReturnEmpty_WhenDataSourceNull() throws IOException {
+        servlet.doPost(request, response);
+
+        assertEquals("", response.getOutputAsString());
+    }
+
+    @Test
+    void doPost_ShouldReturnError_WhenUserIsNull() throws Exception {
         try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
-            mockedStatic.when(() -> UserAccount.requestPassword(any(), any(), any(), any())).thenReturn(false);
+            mockedStatic.when(() -> UserAccount.authenticate(any(), any(), any())).thenReturn(null);
             when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
             when(dataSource.getConnection()).thenReturn(connection);
 
@@ -123,22 +140,50 @@ class RequestPasswordServletTest {
             JsonNode json = getJsonResponse();
             assertEquals(2, json.size());
             assertEquals("ko", json.get("status").asText());
-            assertEquals("Username not found", json.get("error").asText());
+            assertEquals("Username/password incorrect", json.get("error").asText());
         }
     }
 
     @Test
-    void doPost_ShouldReturnSuccess_WhenConditionsAreCorrect() throws Exception {
+    void doPost_ShouldReturnError_WhenUserIsNotAuthenticated() throws Exception {
         try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
-            mockedStatic.when(() -> UserAccount.requestPassword(any(), any(), any(), any())).thenReturn(true);
+            mockedStatic.when(() -> UserAccount.authenticate(any(), any(), any())).thenReturn(userAccount);
             when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
             when(dataSource.getConnection()).thenReturn(connection);
+            when(userAccount.isAuthenticated()).thenReturn(false);
 
             servlet.doPost(request, response);
 
             JsonNode json = getJsonResponse();
-            assertEquals(1, json.size());
+            assertEquals(2, json.size());
+            assertEquals("ko", json.get("status").asText());
+            assertEquals("Username/password incorrect", json.get("error").asText());
+        }
+    }
+
+    @Test
+    void doPost_ShouldReturnData_WhenUserConditionsAreTrue() throws Exception {
+        try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
+            mockedStatic.when(() -> UserAccount.authenticate(any(), any(), any())).thenReturn(userAccount);
+            when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(userAccount.isAuthenticated()).thenReturn(true);
+            when(userAccount.getUsername()).thenReturn("test@dhl.com");
+            when(userAccount.getName()).thenReturn("Dmytro");
+            when(userAccount.getToken()).thenReturn("token");
+            when(userAccount.getRefreshToken()).thenReturn("refresh-token");
+            when(userAccount.getTimeToLive()).thenReturn(60_000);
+
+            servlet.doPost(request, response);
+
+            JsonNode json = new ObjectMapper().readTree(response.getOutputAsString());
+            assertEquals(6, json.size());
             assertEquals("ok", json.get("status").asText());
+            assertEquals("test@dhl.com", json.get("username").asText());
+            assertEquals("Dmytro", json.get("name").asText());
+            assertEquals("token", json.get("token").asText());
+            assertEquals("refresh-token", json.get("refresh_token").asText());
+            assertEquals(60_000, json.get("ttl").asInt());
         }
     }
 }

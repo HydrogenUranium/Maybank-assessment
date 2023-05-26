@@ -4,6 +4,7 @@ import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.positive.dhl.core.models.Registration;
 import com.positive.dhl.core.models.UserAccount;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -25,12 +26,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
-class RequestPasswordServletTest {
+class CheckServletTest {
     private static final String USERNAME = "username";
-    private static final String PAGE = "page";
+    private static final String TOKEN = "token";
 
     private final AemContext aemContext = new AemContext();
 
@@ -46,14 +49,20 @@ class RequestPasswordServletTest {
     @Mock
     private Connection connection;
 
+    @Mock
+    private UserAccount userAccount;
+
+    @Mock
+    private Registration registration;
+
     @InjectMocks
-    private RequestPasswordServlet servlet;
+    private CheckServlet servlet;
 
     @BeforeEach
     public void initRequestParams() {
         request.setParameterMap(Map.of(
                 USERNAME, "user",
-                PAGE, "page"
+                TOKEN, "token"
         ));
     }
 
@@ -74,9 +83,8 @@ class RequestPasswordServletTest {
         servlet.doPost(request, response);
 
         JsonNode json = getJsonResponse();
-        assertEquals(2, json.size());
+        assertEquals(1, json.size());
         assertEquals("ko", json.get("status").asText());
-        assertEquals("Username not supplied", json.get("error").asText());
     }
 
     @Test
@@ -86,9 +94,30 @@ class RequestPasswordServletTest {
         servlet.doPost(request, response);
 
         JsonNode json = getJsonResponse();
-        assertEquals(2, json.size());
+        assertEquals(1, json.size());
         assertEquals("ko", json.get("status").asText());
-        assertEquals("Username not supplied", json.get("error").asText());
+    }
+
+    @Test
+    void doPost_ShouldReturnError_WhenTokenIsNull() throws IOException {
+        setRequestParameter(TOKEN, null);
+
+        servlet.doPost(request, response);
+
+        JsonNode json = getJsonResponse();
+        assertEquals(1, json.size());
+        assertEquals("ko", json.get("status").asText());
+    }
+
+    @Test
+    void doPost_ShouldReturnErrorResponse_WhenTokenIsEmpty() throws IOException {
+        setRequestParameter(TOKEN, "");
+
+        servlet.doPost(request, response);
+
+        JsonNode json = getJsonResponse();
+        assertEquals(1, json.size());
+        assertEquals("ko", json.get("status").asText());
     }
 
     @Test
@@ -112,25 +141,9 @@ class RequestPasswordServletTest {
     }
 
     @Test
-    void doPost_ShouldReturnError_WhenRequestPasswordReturnFalse() throws Exception {
+    void doPost_ShouldReturnError_WhenUserIsNull() throws Exception {
         try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
-            mockedStatic.when(() -> UserAccount.requestPassword(any(), any(), any(), any())).thenReturn(false);
-            when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
-            when(dataSource.getConnection()).thenReturn(connection);
-
-            servlet.doPost(request, response);
-
-            JsonNode json = getJsonResponse();
-            assertEquals(2, json.size());
-            assertEquals("ko", json.get("status").asText());
-            assertEquals("Username not found", json.get("error").asText());
-        }
-    }
-
-    @Test
-    void doPost_ShouldReturnSuccess_WhenConditionsAreCorrect() throws Exception {
-        try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
-            mockedStatic.when(() -> UserAccount.requestPassword(any(), any(), any(), any())).thenReturn(true);
+            mockedStatic.when(() -> UserAccount.tokenValidate(any(), any(), any())).thenReturn(null);
             when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
             when(dataSource.getConnection()).thenReturn(connection);
 
@@ -138,7 +151,52 @@ class RequestPasswordServletTest {
 
             JsonNode json = getJsonResponse();
             assertEquals(1, json.size());
+            assertEquals("ko", json.get("status").asText());
+        }
+    }
+
+    @Test
+    void doPost_ShouldReturnError_WhenUserIsNotAuthenticated() throws Exception {
+        try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
+            mockedStatic.when(() -> UserAccount.tokenValidate(any(), any(), any())).thenReturn(userAccount);
+            when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(userAccount.isAuthenticated()).thenReturn(false);
+
+            servlet.doPost(request, response);
+
+            JsonNode json = getJsonResponse();
+            assertEquals(1, json.size());
+            assertEquals("ko", json.get("status").asText());
+        }
+    }
+
+    @Test
+    void doPost_ShouldReturnDetails_WhenUserIsAuthenticated() throws Exception {
+        try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
+            mockedStatic.when(() -> UserAccount.tokenValidate(any(), any(), any())).thenReturn(userAccount);
+            mockedStatic.when(() -> UserAccount.getAllDetails(any(), any())).thenReturn(registration);
+            when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(userAccount.isAuthenticated()).thenReturn(true);
+            when(userAccount.getUsername()).thenReturn("test@dhl.com");
+            when(userAccount.getName()).thenReturn("Dmytro");
+            when(userAccount.getToken()).thenReturn("token");
+            when(userAccount.getRefreshToken()).thenReturn("refresh-token");
+            when(userAccount.getTimeToLive()).thenReturn(60_000);
+            when(userAccount.getFullAccount()).thenReturn(true);
+
+            servlet.doPost(request, response);
+
+            JsonNode json = new ObjectMapper().readTree(response.getOutputAsString());
+            assertEquals(7, json.size());
             assertEquals("ok", json.get("status").asText());
+            assertEquals("test@dhl.com", json.get("username").asText());
+            assertEquals("Dmytro", json.get("name").asText());
+            assertEquals("token", json.get("token").asText());
+            assertEquals("refresh-token", json.get("refresh_token").asText());
+            assertEquals(60_000, json.get("ttl").asInt());
+            assertEquals("true", json.get("full").asText());
         }
     }
 }

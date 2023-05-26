@@ -6,7 +6,9 @@ import com.positive.dhl.core.dto.marketo.FormInputData;
 import com.positive.dhl.core.services.InputParamHelper;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.request.RequestParameter;
+import org.apache.sling.xss.XSSAPI;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +21,9 @@ import java.util.*;
 public class InputParamHelperImpl implements InputParamHelper {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(InputParamHelperImpl.class);
+
+	@Reference
+	XSSAPI xssapi;
 
 	@Override
 	public FormInputBase buildForm(SlingHttpServletRequest request, List<String> permittedFieldNames, List<String> permittedFields) {
@@ -59,7 +64,8 @@ public class InputParamHelperImpl implements InputParamHelper {
 	public int getFormId(SlingHttpServletRequest request) {
 		var parameter = request.getRequestParameter(DiscoverConstants.FORMID_PARAM_NAME);
 		if(null != parameter){
-			return Integer.parseInt(parameter.getString());
+			String paramValue = xssapi.filterHTML(parameter.getString());
+			return Integer.parseInt(paramValue);
 		}
 		LOGGER.error("Form ID parameter was not present in the form submission. We return 0 but that is most likely wrong");
 		return 0;
@@ -74,13 +80,13 @@ public class InputParamHelperImpl implements InputParamHelper {
 	private String getCookie(SlingHttpServletRequest request){
 		String cookie = request.getParameter(DiscoverConstants.COOKIE_PARAM_NAME);
 		if(null != cookie) {
-			return cookie;
+			return xssapi.filterHTML(cookie);
 		}
 		Cookie[] cookies = request.getCookies();
 		if(null != cookies){
 			for (Cookie marketoCookie : cookies){
 				if (marketoCookie.getName().toLowerCase().contains(DiscoverConstants.MARKETO_COOKIE_NAME)){
-					return marketoCookie.getValue();
+					return xssapi.filterHTML(marketoCookie.getValue());
 				}
 			}
 		}
@@ -130,6 +136,6 @@ public class InputParamHelperImpl implements InputParamHelper {
 		Optional<String> optional = permittedFieldNames.stream()
 				.filter(entry -> entry.toLowerCase().equalsIgnoreCase(nameUnderTest))
 				.findFirst();
-		return optional.orElse(nameUnderTest);
+		return optional.orElse(xssapi.filterHTML(nameUnderTest));
 	}
 }

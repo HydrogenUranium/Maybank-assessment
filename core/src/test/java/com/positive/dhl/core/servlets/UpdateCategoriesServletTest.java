@@ -1,5 +1,6 @@
 package com.positive.dhl.core.servlets;
 
+import com.day.commons.datasource.poolservice.DataSourceNotFoundException;
 import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,19 +19,20 @@ import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
-class DeleteAccountServletTest {
+class UpdateCategoriesServletTest {
     private static final String USERNAME = "username";
-    private static final String PASSWORD = "password";
+    private static final String TOKEN = "token";
+    private static final String CATEGORIES = "cats";
 
     private final AemContext aemContext = new AemContext();
 
@@ -50,13 +52,14 @@ class DeleteAccountServletTest {
     private UserAccount userAccount;
 
     @InjectMocks
-    private DeleteAccountServlet servlet;
+    private UpdateCategoriesServlet servlet;
 
     @BeforeEach
     public void initRequestParams() {
         request.setParameterMap(Map.of(
                 USERNAME, "user",
-                PASSWORD, "password"
+                TOKEN, "token",
+                CATEGORIES, "cats"
         ));
     }
 
@@ -71,54 +74,6 @@ class DeleteAccountServletTest {
     }
 
     @Test
-    void doPost_ShouldReturnError_WhenUsernameIsNull() throws IOException {
-        setRequestParameter(USERNAME, null);
-
-        servlet.doPost(request, response);
-
-        JsonNode json = getJsonResponse();
-        assertEquals(2, json.size());
-        assertEquals("ko", json.get("status").asText());
-        assertEquals("Username/password not supplied", json.get("error").asText());
-    }
-
-    @Test
-    void doPost_ShouldReturnError_WhenUsernameIsEmpty() throws IOException {
-        setRequestParameter(USERNAME, "");
-
-        servlet.doPost(request, response);
-
-        JsonNode json = getJsonResponse();
-        assertEquals(2, json.size());
-        assertEquals("ko", json.get("status").asText());
-        assertEquals("Username/password not supplied", json.get("error").asText());
-    }
-
-    @Test
-    void doPost_ShouldReturnError_WhenPasswordIsNull() throws IOException {
-        setRequestParameter(PASSWORD, null);
-
-        servlet.doPost(request, response);
-
-        JsonNode json = getJsonResponse();
-        assertEquals(2, json.size());
-        assertEquals("ko", json.get("status").asText());
-        assertEquals("Username/password not supplied", json.get("error").asText());
-    }
-
-    @Test
-    void doPost_ShouldReturnError_WhenPasswordIsEmpty() throws IOException {
-        setRequestParameter(PASSWORD, "");
-
-        servlet.doPost(request, response);
-
-        JsonNode json = getJsonResponse();
-        assertEquals(2, json.size());
-        assertEquals("ko", json.get("status").asText());
-        assertEquals("Username/password not supplied", json.get("error").asText());
-    }
-
-    @Test
     void doPost_ShouldReturnEmpty_WhenDataSourceIsNull() throws Exception {
         servlet.doPost(request, response);
 
@@ -126,23 +81,47 @@ class DeleteAccountServletTest {
     }
 
     @Test
-    void doPost_ShouldReturnError_WhenConnectionThrowError() throws Exception {
-        when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
-        when(dataSource.getConnection()).thenThrow(new SQLException("error"));
+    void doPost_ShouldReturnError_WhenDataSourceThrowException() throws Exception {
+        when(dataSourcePool.getDataSource(any())).thenThrow(new DataSourceNotFoundException("dhl", 1));
 
         servlet.doPost(request, response);
 
         JsonNode json = getJsonResponse();
         assertEquals(2, json.size());
         assertEquals("ko", json.get("status").asText());
-        assertEquals("Error occurred while producing result JSON: 'error'", json.get("error").asText());
+        assertEquals("Error occurred while attempting to register", json.get("error").asText());
     }
 
     @Test
-    void doPost_ShouldReturnError_WhenUserAccountIsNull() throws Exception {
+    void doPost_ShouldReturnError_WhenUsernameIsNull() throws Exception {
+        setRequestParameter(USERNAME, null);
+        when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
+
+        servlet.doPost(request, response);
+
+        JsonNode json = getJsonResponse();
+        assertEquals(2, json.size());
+        assertEquals("ko", json.get("status").asText());
+        assertEquals("Username not supplied", json.get("error").asText());
+    }
+
+    @Test
+    void doPost_ShouldReturnError_WhenUsernameIsEmpty() throws Exception {
+        when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
+        setRequestParameter(USERNAME, "");
+
+        servlet.doPost(request, response);
+
+        JsonNode json = getJsonResponse();
+        assertEquals(2, json.size());
+        assertEquals("ko", json.get("status").asText());
+        assertEquals("Username not supplied", json.get("error").asText());
+    }
+
+    @Test
+    void doPost_ShouldReturnError_WhenValidationThrowException() throws Exception {
         try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
-            mockedStatic.when(() -> UserAccount.deleteAccount(any(), any(), any())).thenReturn(false);
-            mockedStatic.when(() -> UserAccount.authenticate(any(), any(), any())).thenReturn(null);
+            mockedStatic.when(() -> UserAccount.tokenValidate(any(), any(), any())).thenThrow(new SQLException("error"));
             when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
             when(dataSource.getConnection()).thenReturn(connection);
 
@@ -151,15 +130,14 @@ class DeleteAccountServletTest {
             JsonNode json = getJsonResponse();
             assertEquals(2, json.size());
             assertEquals("ko", json.get("status").asText());
-            assertEquals("Username/password incorrect", json.get("error").asText());
+            assertEquals("Error occurred while processing auth token: 'error'", json.get("error").asText());
         }
     }
 
     @Test
     void doPost_ShouldReturnError_WhenUserIsNotAuthenticated() throws Exception {
         try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
-            mockedStatic.when(() -> UserAccount.deleteAccount(any(), any(), any())).thenReturn(false);
-            mockedStatic.when(() -> UserAccount.authenticate(any(), any(), any())).thenReturn(userAccount);
+            mockedStatic.when(() -> UserAccount.tokenValidate(any(), any(), any())).thenReturn(userAccount);
             when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
             when(dataSource.getConnection()).thenReturn(connection);
             when(userAccount.isAuthenticated()).thenReturn(false);
@@ -169,43 +147,66 @@ class DeleteAccountServletTest {
             JsonNode json = getJsonResponse();
             assertEquals(2, json.size());
             assertEquals("ko", json.get("status").asText());
-            assertEquals("Username/password incorrect", json.get("error").asText());
+            assertEquals("Not allowed", json.get("error").asText());
         }
     }
 
     @Test
-    void doPost_ShouldReturnError_WhenDeleteAccountReturnFalse() throws Exception {
+    void doPost_ShouldUpdateCategoriesAndReturnData_WhenUserIsAuthenticated() throws Exception {
         try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
-            mockedStatic.when(() -> UserAccount.deleteAccount(any(), any(), any())).thenReturn(false);
-            mockedStatic.when(() -> UserAccount.authenticate(any(), any(), any())).thenReturn(userAccount);
+            mockedStatic.when(() -> UserAccount.tokenValidate(any(), any(), any())).thenReturn(userAccount);
+            mockedStatic.when(() -> UserAccount.updateCategories(any(), any(), any())).thenReturn(true);
+            when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
+            when(dataSource.getConnection()).thenReturn(connection);
+            when(userAccount.isAuthenticated()).thenReturn(true);
+            when(userAccount.getUsername()).thenReturn("test@dhl.com");
+            when(userAccount.getName()).thenReturn("Dmytro");
+            when(userAccount.getToken()).thenReturn("token");
+            when(userAccount.getRefreshToken()).thenReturn("refresh-token");
+            when(userAccount.getTimeToLive()).thenReturn(60_000);
+
+            servlet.doPost(request, response);
+
+            mockedStatic.verify(() -> {
+                try {
+                    UserAccount.updateCategories(any(), any(), "cats");
+                } catch (Exception ignored) {
+                }
+            }, times(1));
+
+            JsonNode json = getJsonResponse();
+            assertEquals(6, json.size());
+            assertEquals("ok", json.get("status").asText());
+            assertEquals("test@dhl.com", json.get("username").asText());
+            assertEquals("Dmytro", json.get("name").asText());
+            assertEquals("token", json.get("token").asText());
+            assertEquals("refresh-token", json.get("refresh_token").asText());
+            assertEquals(60_000, json.get("ttl").asInt());
+        }
+    }
+
+    @Test
+    void doPost_ShouldReturnError_WhenUpdateFailed() throws Exception {
+        try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
+            mockedStatic.when(() -> UserAccount.tokenValidate(any(), any(), any())).thenReturn(userAccount);
+            mockedStatic.when(() -> UserAccount.updateCategories(any(), any(), any())).thenReturn(false);
             when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
             when(dataSource.getConnection()).thenReturn(connection);
             when(userAccount.isAuthenticated()).thenReturn(true);
 
             servlet.doPost(request, response);
+
+            mockedStatic.verify(() -> {
+                try {
+                    UserAccount.updateCategories(any(), any(), "cats");
+                } catch (Exception ignored) {
+                }
+            }, times(1));
 
             JsonNode json = getJsonResponse();
             assertEquals(2, json.size());
             assertEquals("ko", json.get("status").asText());
-            assertEquals("Unable to delete account. Please try again later.", json.get("error").asText());
-        }
-    }
-
-    @Test
-    void doPost_ShouldReturnSuccess_WhenConditionsAreCorrect() throws Exception {
-        try (MockedStatic<UserAccount> mockedStatic = mockStatic(UserAccount.class)) {
-            mockedStatic.when(() -> UserAccount.deleteAccount(any(), any(), any())).thenReturn(true);
-            mockedStatic.when(() -> UserAccount.authenticate(any(), any(), any())).thenReturn(userAccount);
-            when(dataSourcePool.getDataSource(any())).thenReturn(dataSource);
-            when(dataSource.getConnection()).thenReturn(connection);
-            when(userAccount.isAuthenticated()).thenReturn(true);
-
-            servlet.doPost(request, response);
-
-            JsonNode json = getJsonResponse();
-            assertEquals(2, json.size());
-            assertEquals("ok", json.get("status").asText());
-            assertEquals("", json.get("error").asText());
+            assertEquals("Error occurred while attempting to update details", json.get("error").asText());
         }
     }
 }

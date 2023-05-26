@@ -101,10 +101,12 @@ class MarketForm {
       $('#mktoForms2ThemeStyle').remove();
       originalForm.onSuccess((e) => {
         const hiddenFormId = baseElement.getAttribute('hiddenFormId');
+        const formSubmissionPath = baseElement.getAttribute('action');
+        const fullSubmissionPath = formSubmissionPath + '.form' + '.html';
         let needHiddenFormSubmission = this.isHiddenForm(baseElement);
-        if (needHiddenFormSubmission &&  hiddenFormId !== null ) {
+        if (needHiddenFormSubmission &&  hiddenFormId !== null && formSubmissionPath !== null && formSubmissionPath !== ' ' ) {
           let formData = this.buildFormData(e, hiddenFormId);
-          this.submitForm('/conf/dhl/api/submit.marketo.html', formData).then(r => console.log(r));
+          this.submitForm(fullSubmissionPath, formData).then(r => console.log(r));
         }
       });
     });
