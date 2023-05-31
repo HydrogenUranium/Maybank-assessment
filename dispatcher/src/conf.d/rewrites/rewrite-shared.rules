@@ -20,6 +20,7 @@ RewriteRule ^(/discover)?/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/discover/
 RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/token.json [PT,L,NC]
 
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
+RewriteCond %{REQUEST_METHOD} !POST
 RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
 
 ### Default redirects to en-global homepage
