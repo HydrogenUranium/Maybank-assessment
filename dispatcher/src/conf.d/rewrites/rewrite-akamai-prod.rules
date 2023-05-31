@@ -540,6 +540,7 @@ RewriteCond %{REQUEST_URI} !^/ms-my
 RewriteCond %{REQUEST_URI} !^/zh-sg
 RewriteCond %{REQUEST_URI} !^/en-au
 RewriteCond %{REQUEST_URI} !^/en-ph
+RewriteCond %{REQUEST_URI} !^/(.*?)\/partwo\/inlineshipnowmarketo
 RewriteRule ^(.*?)$ https://www.dhl.com/discover/en-global$1 [R=302,L]
 
 
@@ -559,6 +560,7 @@ RewriteRule ^(.*?)\.ico$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources
 RewriteCond %{REQUEST_URI} ^/content
 RewriteCond %{REQUEST_URI} !^/content/campaigns
 RewriteCond %{REQUEST_URI} !^/content/dam
+RewriteCond %{REQUEST_URI} !^/content/dhl
 RewriteRule !^content/dhl - [R=404,L,NC]
 
 RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
