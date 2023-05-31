@@ -1,14 +1,12 @@
 class AuthenticationEvents {
   constructor() {
     this.config = {
-      urlToken: '/libs/granite/csrf/token.json',
-      urlCheck: '/apps/dhl/discoverdhlapi/check/index.json',
-      urlRefreshCheck: '/apps/dhl/discoverdhlapi/refresh_token/index.json',
-      urlDownloadAsset: '/apps/dhl/discoverdhlapi/download_asset/index.json'
+      urlToken: '/libs/granite/csrf/token.json'
     };
 
     this.getPathPrefix = this.getPathPrefix.bind(this);
     this.getPathHome = this.getPathHome.bind(this);
+    this.getRealPathHome = this.getRealPathHome.bind(this);
     this.init = this.init.bind(this);
 
     this.readCookie = this.readCookie.bind(this);
@@ -30,6 +28,10 @@ class AuthenticationEvents {
   getPathHome() {
     const home = $('head meta[name=\'dhl-path-home\']').attr('content').replace('/content/dhl', '');
     return (home ? home : '');
+  }
+
+  getRealPathHome() {
+    return $('head meta[name=\'dhl-path-home\']').attr('content');
   }
 
   init() {
@@ -89,7 +91,7 @@ class AuthenticationEvents {
     if (cookie !== null) {
       var authSplit = cookie.split('|');
       if (authSplit.length >= 2) {
-        this.callTokenCheck(this.getPathPrefix() + this.config.urlCheck, {
+        this.callTokenCheck(this.getRealPathHome() + '.checklogin.json', {
           username: authSplit[0],
           token: authSplit[1]
         });
@@ -101,7 +103,7 @@ class AuthenticationEvents {
       if (refreshCookie !== null) {
         var refreshCookieSplit = refreshCookie.split('|');
         if (refreshCookieSplit.length >= 2) {
-          this.callTokenCheck(this.getPathPrefix() + this.config.urlRefreshCheck, {
+          this.callTokenCheck(this.getRealPathHome() + '.updatetoken.json', {
             username: refreshCookieSplit[0],
             refresh_token: refreshCookieSplit[1]
           });
@@ -192,7 +194,7 @@ class AuthenticationEvents {
       $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
         var csrftoken = tokenresponse.token;
         $.ajax({
-          url: this.getPathPrefix() + this.config.urlDownloadAsset,
+          url: this.getRealPathHome() + '.downloadasset.json',
           data: { assetinfo: gatingArticleElm1.data('assetinfo') },
           type: 'post',
           headers: { 'CSRF-Token': csrftoken },
@@ -213,7 +215,7 @@ class AuthenticationEvents {
       $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
         var csrftoken = tokenresponse.token;
         $.ajax({
-          url: this.getPathPrefix() + this.config.urlDownloadAsset,
+          url: this.getRealPathHome() + '.downloadasset.json',
           data: { assetinfo: gatingArticleElm2.data('assetinfo') },
           type: 'post',
           headers: { 'CSRF-Token': csrftoken },

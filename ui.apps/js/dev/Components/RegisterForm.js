@@ -4,10 +4,7 @@ class RegisterForm {
       fbAppId: '1080031328801211',
       goClientId: '313469837420-l882h39ge8n8n9pb97ldvjk3fm8ppqgs.apps.googleusercontent.com',
 
-      urlToken: '/libs/granite/csrf/token.json',
-      urlRefreshCheck: '/apps/dhl/discoverdhlapi/refresh_token/index.json',
-      urlRegister: '/apps/dhl/discoverdhlapi/register/index.json',
-      urlUpdateCategories: '/apps/dhl/discoverdhlapi/update_categories/index.json'
+      urlToken: '/libs/granite/csrf/token.json'
     };
 
     this.sel = {
@@ -19,6 +16,7 @@ class RegisterForm {
 
     this.getPathPrefix = this.getPathPrefix.bind(this);
     this.getPathHome = this.getPathHome.bind(this);
+    this.getRealPathHome = this.getRealPathHome.bind(this);
     this.init = this.init.bind(this);
     this.bindEvents = this.bindEvents.bind(this);
     this.loggedIn = this.loggedIn.bind(this);
@@ -39,6 +37,10 @@ class RegisterForm {
   getPathHome() {
     const home = $('head meta[name=\'dhl-path-home\']').attr('content').replace('/content/dhl', '');
     return (home ? home : '');
+  }
+
+  getRealPathHome() {
+    return $('head meta[name=\'dhl-path-home\']').attr('content');
   }
 
   init() {
@@ -297,7 +299,7 @@ class RegisterForm {
       var csrftoken = tokenresponse.token;
 
       $.ajax({
-        url: this.getPathPrefix() + this.config.urlRegister,
+        url: this.getRealPathHome() + '.register.json',
         data: data,
         type: 'post',
         headers: { 'CSRF-Token': csrftoken },
@@ -371,7 +373,7 @@ class RegisterForm {
           $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
             var csrftoken = tokenresponse.token;
             $.ajax({
-              url: this.getPathPrefix() + this.config.urlUpdateCategories,
+              url: this.getRealPathHome() + '.updatecategories.json',
               data: { username: split[0], token: split[1], cats: categories },
               type: 'post',
               headers: { 'CSRF-Token': csrftoken },
@@ -401,7 +403,7 @@ class RegisterForm {
             $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
               var csrftoken = tokenresponse.token;
               $.ajax({
-                url: this.getPathPrefix() + this.config.urlRefreshCheck,
+                url: this.getRealPathHome() + '.updatetoken.json',
                 data: { username: refreshSplit[0], refresh_token: refreshSplit[1] },
                 type: 'post',
                 headers: { 'CSRF-Token': csrftoken },

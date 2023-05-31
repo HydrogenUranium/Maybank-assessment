@@ -27,6 +27,8 @@ import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.models.Registration;
 import com.positive.dhl.core.models.UserAccount;
 
+import static org.apache.sling.api.servlets.ServletResolverConstants.*;
+
 /**
  * 
  */
@@ -35,7 +37,9 @@ import com.positive.dhl.core.models.UserAccount;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Get Details Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-		"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/getdetails/index.json"
+		SLING_SERVLET_RESOURCE_TYPES + "=cq:Page",
+		SLING_SERVLET_EXTENSIONS + "=json",
+		SLING_SERVLET_SELECTORS + "=details"
 	}
 )
 public class GetDetailsServlet extends SlingAllMethodsServlet {

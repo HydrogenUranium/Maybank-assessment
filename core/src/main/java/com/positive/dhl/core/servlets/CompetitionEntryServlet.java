@@ -11,6 +11,8 @@ import org.osgi.service.component.annotations.Reference;
 
 import javax.servlet.Servlet;
 
+import static org.apache.sling.api.servlets.ServletResolverConstants.*;
+
 /**
  * 
  */
@@ -19,7 +21,9 @@ import javax.servlet.Servlet;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Competition Entry Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-		"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/competition/index.json"
+			SLING_SERVLET_RESOURCE_TYPES + "=cq:Page",
+			SLING_SERVLET_EXTENSIONS + "=json",
+			SLING_SERVLET_SELECTORS + "=competition"
 	}
 )
 public class CompetitionEntryServlet extends StandardFormInputServlet {

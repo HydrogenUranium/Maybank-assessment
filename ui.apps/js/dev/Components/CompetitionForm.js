@@ -1,10 +1,7 @@
 class CompetitionForm {
   constructor() {
     this.config = {
-      urlToken: '/libs/granite/csrf/token.json',
-      urlRefreshCheck: '/apps/dhl/discoverdhlapi/refresh_token/index.json',
-      urlGetAllDetails: '/apps/dhl/discoverdhlapi/getdetails/index.json',
-      urlCompetition: '/apps/dhl/discoverdhlapi/competition/index.json'
+      urlToken: '/libs/granite/csrf/token.json'
     };
 
     this.sel = {
@@ -12,6 +9,7 @@ class CompetitionForm {
     };
 
     this.getPathPrefix = this.getPathPrefix.bind(this);
+    this.getRealPathHome = this.getRealPathHome.bind(this);
     this.init = this.init.bind(this);
     this.bindEvents = this.bindEvents.bind(this);
     this.readCookie = this.readCookie.bind(this);
@@ -28,6 +26,10 @@ class CompetitionForm {
   getPathPrefix() {
     const prefix = $('head meta[name=\'dhl-path-prefix\']').attr('content');
     return (prefix ? prefix : '');
+  }
+
+  getRealPathHome() {
+    return $('head meta[name=\'dhl-path-home\']').attr('content');
   }
 
   readCookie(name) {
@@ -158,7 +160,7 @@ class CompetitionForm {
         var csrftoken = tokenresponse.token;
 
         $.ajax({
-          url: this.getPathPrefix() + this.config.urlCompetition,
+          url: this.getRealPathHome() + '.competition.json',
           data: data,
           type: 'post',
           headers: { 'CSRF-Token': csrftoken },
@@ -198,7 +200,7 @@ class CompetitionForm {
         $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
           var csrftoken = tokenresponse.token;
           $.ajax({
-            url: this.getPathPrefix() + this.config.urlGetAllDetails,
+            url: this.getRealPathHome() + '.details.json',
             data: { username: split[0], token: split[1] },
             type: 'post',
             headers: { 'CSRF-Token': csrftoken },
@@ -227,7 +229,7 @@ class CompetitionForm {
           $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
             var csrftoken = tokenresponse.token;
             $.ajax({
-              url: this.getPathPrefix() + this.config.urlRefreshCheck,
+              url: this.getRealPathHome() + '.updatetoken.json',
               data: { username: refreshSplit[0], refresh_token: refreshSplit[1] },
               type: 'post',
               headers: { 'CSRF-Token': csrftoken },
@@ -294,7 +296,7 @@ class CompetitionForm {
       $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
         var csrftoken = tokenresponse.token;
         $.ajax({
-          url: this.getPathPrefix() + this.config.urlCompetition,
+          url: this.getRealPathHome() + '.competition.json',
           data: data,
           type: 'post',
           headers: { 'CSRF-Token': csrftoken },

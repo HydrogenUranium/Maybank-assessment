@@ -32,15 +32,19 @@ import com.positive.dhl.core.models.UserAccount;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.helpers.ValidationHelper;
 
+import static org.apache.sling.api.servlets.ServletResolverConstants.*;
+
 /**
- * 
+ *
  */
 @Component(
 	service = Servlet.class,
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL register Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-		"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/register/index.json"
+		SLING_SERVLET_RESOURCE_TYPES + "=cq:Page",
+		SLING_SERVLET_SELECTORS + "=register",
+		SLING_SERVLET_EXTENSIONS + "=json"
 	}
 )
 public class RegisterServlet extends SlingAllMethodsServlet {

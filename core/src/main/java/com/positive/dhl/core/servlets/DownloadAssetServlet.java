@@ -14,6 +14,8 @@ import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 
+import static org.apache.sling.api.servlets.ServletResolverConstants.*;
+
 /**
  *
  */
@@ -22,7 +24,9 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Download Asset Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-		"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/download_asset/index.json"
+		SLING_SERVLET_RESOURCE_TYPES + "=cq:Page",
+		SLING_SERVLET_EXTENSIONS + "=json",
+		SLING_SERVLET_SELECTORS + "=downloadasset"
 	}
 )
 public class DownloadAssetServlet extends SlingAllMethodsServlet {

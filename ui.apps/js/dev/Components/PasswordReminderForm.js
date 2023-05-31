@@ -1,10 +1,7 @@
 class PasswordReminderForm {
   constructor() {
     this.config = {
-      urlToken: '/libs/granite/csrf/token.json',
-      urlLogin: '/apps/dhl/discoverdhlapi/login/index.json',
-      urlRequest: '/apps/dhl/discoverdhlapi/request_password/index.json',
-      urlReset: '/apps/dhl/discoverdhlapi/reset_password/index.json'
+      urlToken: '/libs/granite/csrf/token.json'
     };
 
     this.sel = {
@@ -13,6 +10,7 @@ class PasswordReminderForm {
 
     this.getPathPrefix = this.getPathPrefix.bind(this);
     this.getPathHome = this.getPathHome.bind(this);
+    this.getRealPathHome = this.getRealPathHome.bind(this);
     this.init = this.init.bind(this);
     this.bindEvents = this.bindEvents.bind(this);
     this.createCookie = this.createCookie.bind(this);
@@ -29,6 +27,10 @@ class PasswordReminderForm {
   getPathHome() {
     const home = $('head meta[name=\'dhl-path-home\']').attr('content').replace('/content/dhl', '');
     return (home ? home : '');
+  }
+
+  getRealPathHome() {
+    return $('head meta[name=\'dhl-path-home\']').attr('content');
   }
 
   init() {
@@ -129,7 +131,7 @@ class PasswordReminderForm {
     $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
       var csrftoken = tokenresponse.token;
       $.ajax({
-        url: this.getPathPrefix() + this.config.urlRequest,
+        url: this.getRealPathHome() + '.requestpassword.json',
         data: data,
         type: 'post',
         headers: { 'CSRF-Token': csrftoken },
@@ -167,7 +169,7 @@ class PasswordReminderForm {
     $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
       var csrftoken = tokenresponse.token;
       $.ajax({
-        url: this.getPathPrefix() + this.config.urlReset,
+        url: this.getRealPathHome() + '.updatepassword.json',
         data: data,
         type: 'post',
         headers: { 'CSRF-Token': csrftoken },
@@ -179,7 +181,7 @@ class PasswordReminderForm {
                 var nextcsrftoken = nextTokenResponse.token;
 
                 $.ajax({
-                  url: this.getPathPrefix() + this.config.urlLogin,
+                  url: this.getRealPathHome() + '.login.json',
                   data: { username: username, password: password },
                   type: 'post',
                   headers: { 'CSRF-Token': nextcsrftoken },

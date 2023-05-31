@@ -4,8 +4,7 @@ class LoginForm {
       fbAppId: '1080031328801211',
       goClientId: '313469837420-l882h39ge8n8n9pb97ldvjk3fm8ppqgs.apps.googleusercontent.com',
 
-      urlToken: '/libs/granite/csrf/token.json',
-      urlLogin: '/apps/dhl/discoverdhlapi/login/index.json'
+      urlToken: '/libs/granite/csrf/token.json'
     };
 
     this.sel = {
@@ -17,6 +16,7 @@ class LoginForm {
 
     this.getPathPrefix = this.getPathPrefix.bind(this);
     this.getPathHome = this.getPathHome.bind(this);
+    this.getRealPathHome = this.getRealPathHome.bind(this);
     this.init = this.init.bind(this);
     this.bindEvents = this.bindEvents.bind(this);
 
@@ -38,6 +38,10 @@ class LoginForm {
   getPathHome() {
     const home = $('head meta[name=\'dhl-path-home\']').attr('content').replace('/content/dhl', '');
     return (home ? home : '');
+  }
+
+  getRealPathHome() {
+    return $('head meta[name=\'dhl-path-home\']').attr('content');
   }
 
   init() {
@@ -254,7 +258,7 @@ class LoginForm {
       var csrftoken = tokenresponse.token;
 
       $.ajax({
-        url: this.getPathPrefix() + this.config.urlLogin,
+        url: this.getRealPathHome() + '.login.json',
         data: data,
         type: 'post',
         headers: { 'CSRF-Token': csrftoken },
