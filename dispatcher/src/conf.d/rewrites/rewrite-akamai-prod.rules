@@ -545,6 +545,7 @@ RewriteRule ^(.*?)$ https://www.dhl.com/discover/en-global$1 [R=302,L]
 
 
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
+### not valid for POST requests
 RewriteCond %{REQUEST_METHOD} !POST
 RewriteRule ^(.*?)\.html$ https://www.dhl.com/discover$1 [R=301,L]
 RewriteRule ^(.*?)\/$ https://www.dhl.com/discover$1 [R=301,L]
