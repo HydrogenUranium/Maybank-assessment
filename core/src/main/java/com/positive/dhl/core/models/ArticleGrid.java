@@ -9,7 +9,6 @@ import com.positive.dhl.core.constants.DiscoverConstants;
 import com.positive.dhl.core.services.CategoryFinder;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
-import lombok.Cleanup;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -366,42 +365,44 @@ public class ArticleGrid {
 	@PostConstruct
 	protected void init() {
 
-		@Cleanup var resourceResolver = resourceResolverHelper.getReadResourceResolver();
+		try(var resourceResolver = resourceResolverHelper.getReadResourceResolver()){
+			if(null != resourceResolver){
+				var resourceProperties = resource.getValueMap();
+				mode = processMode(resourceProperties,request);
+				categories = new ArrayList<>();
 
-		if(null != resourceResolver){
-			var resourceProperties = resource.getValueMap();
-			mode = processMode(resourceProperties,request);
-			categories = new ArrayList<>();
-
-			//populate category paths, if not empty, add category links to 'categories' list
-			List<String> categoryPaths = getCategoryPaths(resourceProperties, resourceResolver);
-			if (!categoryPaths.isEmpty()) {
-				categories.addAll(getCategoriesLinks(resourceResolver,categoryPaths));
-			}
-
-			// if categories list is still empty, try to add two child pages from current
-			// page (this may still end up being empty list as there is no guarantee there are actually any child pages)
-			if (categories.isEmpty()) {
-				categories.addAll(getCategoriesFromPage(currentPage));
-			}
-
-			articles = new ArrayList<>();
-
-			if (mode.equalsIgnoreCase("trending")) {
-				articles.addAll(processTrendingMode());
-			} else {
-				String path = verifyMode(categories,mode);
-				LOGGER.info("Going to execute the query to fetch articles based on their categories");
-				var searchResult = runQuery(DiscoverConstants.getArticlesQueryMap(),path,resourceResolver);
-				if (searchResult != null) {
-					LOGGER.info("Query to find articles returned {} results.", searchResult.getTotalMatches());
-					articles.addAll(processSearchResults(searchResult, resourceResolver));
+				//populate category paths, if not empty, add category links to 'categories' list
+				List<String> categoryPaths = getCategoryPaths(resourceProperties, resourceResolver);
+				if (!categoryPaths.isEmpty()) {
+					categories.addAll(getCategoriesLinks(resourceResolver,categoryPaths));
 				}
+
+				// if categories list is still empty, try to add two child pages from current
+				// page (this may still end up being empty list as there is no guarantee there are actually any child pages)
+				if (categories.isEmpty()) {
+					categories.addAll(getCategoriesFromPage(currentPage));
+				}
+
+				articles = new ArrayList<>();
+
+				if (mode.equalsIgnoreCase("trending")) {
+					articles.addAll(processTrendingMode());
+				} else {
+					String path = verifyMode(categories,mode);
+					LOGGER.info("Going to execute the query to fetch articles based on their categories");
+					var searchResult = runQuery(DiscoverConstants.getArticlesQueryMap(),path,resourceResolver);
+					if (searchResult != null) {
+						LOGGER.info("Query to find articles returned {} results.", searchResult.getTotalMatches());
+						articles.addAll(processSearchResults(searchResult, resourceResolver));
+					}
+				}
+			} else {
+				LOGGER.error("Unable to obtain ResourceResolver from the model. This may have unpleasant " +
+						"consequences on pages. Details why this happened can be found in this log file");
 			}
-		} else {
-			LOGGER.error("Unable to obtain ResourceResolver from the model. This may have unpleasant " +
-					"consequences on pages. Details why this happened can be found in this log file");
 		}
+
+
 	}
 
 	/**
