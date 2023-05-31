@@ -1,7 +1,8 @@
 class CompetitionForm {
   constructor() {
     this.config = {
-      urlToken: '/libs/granite/csrf/token.json'
+      urlToken: '/libs/granite/csrf/token.json',
+      urlCompetition: '/apps/dhl/discoverdhlapi/competition/index.json'
     };
 
     this.sel = {
@@ -160,7 +161,7 @@ class CompetitionForm {
         var csrftoken = tokenresponse.token;
 
         $.ajax({
-          url: this.getRealPathHome() + '.competition.json',
+          url: this.getPathPrefix() + this.config.urlCompetition,
           data: data,
           type: 'post',
           headers: { 'CSRF-Token': csrftoken },
@@ -296,7 +297,7 @@ class CompetitionForm {
       $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
         var csrftoken = tokenresponse.token;
         $.ajax({
-          url: this.getRealPathHome() + '.competition.json',
+          url: this.getPathPrefix() + this.config.urlCompetition,
           data: data,
           type: 'post',
           headers: { 'CSRF-Token': csrftoken },

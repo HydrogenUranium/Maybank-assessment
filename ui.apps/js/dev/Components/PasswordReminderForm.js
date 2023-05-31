@@ -1,7 +1,8 @@
 class PasswordReminderForm {
   constructor() {
     this.config = {
-      urlToken: '/libs/granite/csrf/token.json'
+      urlToken: '/libs/granite/csrf/token.json',
+      urlReset: '/apps/dhl/discoverdhlapi/reset_password/index.json'
     };
 
     this.sel = {
@@ -169,7 +170,7 @@ class PasswordReminderForm {
     $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
       var csrftoken = tokenresponse.token;
       $.ajax({
-        url: this.getRealPathHome() + '.updatepassword.json',
+        url: this.getPathPrefix() + this.config.urlReset,
         data: data,
         type: 'post',
         headers: { 'CSRF-Token': csrftoken },

@@ -1,7 +1,8 @@
 class AuthenticationEvents {
   constructor() {
     this.config = {
-      urlToken: '/libs/granite/csrf/token.json'
+      urlToken: '/libs/granite/csrf/token.json',
+      urlDownloadAsset: '/apps/dhl/discoverdhlapi/download_asset/index.json'
     };
 
     this.getPathPrefix = this.getPathPrefix.bind(this);
@@ -194,7 +195,7 @@ class AuthenticationEvents {
       $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
         var csrftoken = tokenresponse.token;
         $.ajax({
-          url: this.getRealPathHome() + '.downloadasset.json',
+          url: this.getPathPrefix() + this.config.urlDownloadAsset,
           data: { assetinfo: gatingArticleElm1.data('assetinfo') },
           type: 'post',
           headers: { 'CSRF-Token': csrftoken },
@@ -215,7 +216,7 @@ class AuthenticationEvents {
       $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
         var csrftoken = tokenresponse.token;
         $.ajax({
-          url: this.getRealPathHome() + '.downloadasset.json',
+          url: this.getPathPrefix() + this.config.urlDownloadAsset,
           data: { assetinfo: gatingArticleElm2.data('assetinfo') },
           type: 'post',
           headers: { 'CSRF-Token': csrftoken },
