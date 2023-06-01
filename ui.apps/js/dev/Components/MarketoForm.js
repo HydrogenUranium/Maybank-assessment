@@ -44,9 +44,11 @@ class MarketForm {
    * @param {Object} visibleFormFields is an object that contains the Marketo form fields out of which we
    * want to build the FormData object
    * @param {string} formId is the hidden formID to be sent to hidden marketo instance
+   * @param {string} formStart is the 'real' destination - AEM should use this value to forward the request to this
+   * destination (although that is, of course, out of scope of this javascript code)
    * @return {FormData} new instance of FormData object, ready to be sent to external URL
    */
-  buildFormData(visibleFormFields, formId) {
+  buildFormData(visibleFormFields, formId, formStart) {
     let formData = new FormData();
     for (const [key, value] of Object.entries(visibleFormFields)) {
       if (key.toLowerCase() === 'formId'.toLowerCase() || key.toLowerCase() === 'formvid'.toLowerCase()) {
@@ -59,6 +61,7 @@ class MarketForm {
       formData.set('user_info_cookie', cookie);
     }
     formData.set('formId', formId);
+    formData.set('formStart', formStart);
     return formData;
   }
 
@@ -102,10 +105,11 @@ class MarketForm {
       originalForm.onSuccess((e) => {
         const hiddenFormId = baseElement.getAttribute('hiddenFormId');
         const formSubmissionPath = baseElement.getAttribute('action');
+        const formStart = baseElement.getAttribute('formstart');
         const fullSubmissionPath = formSubmissionPath + '.form' + '.html';
         let needHiddenFormSubmission = this.isHiddenForm(baseElement);
-        if (needHiddenFormSubmission &&  hiddenFormId !== null && formSubmissionPath !== null && formSubmissionPath !== ' ' ) {
-          let formData = this.buildFormData(e, hiddenFormId);
+        if (needHiddenFormSubmission &&  formStart !== null && hiddenFormId !== null && formSubmissionPath !== null && formSubmissionPath !== ' ' ) {
+          let formData = this.buildFormData(e, hiddenFormId, formStart);
           this.submitForm(fullSubmissionPath, formData).then(r => console.log(r));
         }
       });
