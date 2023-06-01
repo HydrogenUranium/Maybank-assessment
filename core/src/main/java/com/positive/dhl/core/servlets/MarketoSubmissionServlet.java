@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @Component(
@@ -51,18 +50,22 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 		response.setContentType("text/html");
 		FormInputBase form = inputParamHelper.buildForm(request, availableFormFieldNames,formFields );
 
-		PrintWriter pw = response.getWriter();
+		if(response.isCommitted()){
+			LOGGER.info("Servlet response is committed");
+		} else {
+			LOGGER.info("Servlet response is not (YET) committed");
+		}
 
 		if(null != token && form.isOk()){
 			LOGGER.info("Got authentication token, proceeding to form submission");
 			var formSubmissionResponse = httpCommunication.submitForm(form,token );
-			provideResponse(formSubmissionResponse, pw);
+			provideResponse(formSubmissionResponse);
 		} else {
-			pw.write("KO");
+			LOGGER.error("Unable to get the authentication token from Marketo or there was a problem with the provided data");
 		}
 	}
 
-	private void provideResponse(FormSubmissionResponse formSubmissionResponse, PrintWriter printWriter){
+	private void provideResponse(FormSubmissionResponse formSubmissionResponse){
 		LOGGER.info("Processing Marketo response");
 		if(formSubmissionResponse.getFormSubmissionErrors() == null){
 			if(LOGGER.isDebugEnabled()){
@@ -75,13 +78,12 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 					LOGGER.info("Marketo form submission status code: {}, text: {}", statusCode,status);
 				}
 			}
-			printWriter.write("OK");
+			LOGGER.info("Marketo form submission: OK");
 		} else {
 			List<FormSubmissionErrors> errors = formSubmissionResponse.getFormSubmissionErrors();
 			for (FormSubmissionErrors formSubmissionErrors : errors){
 				LOGGER.error("Error has occurred when submitting Marketo form. Status code: {}, Message: {}", formSubmissionErrors.getCode(), formSubmissionErrors.getMessage());
 			}
-			printWriter.write("KO");
 		}
 	}
 

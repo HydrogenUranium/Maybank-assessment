@@ -22,7 +22,8 @@
 			 munchkinId="${cmf.marketoid}"
 			 formHost="${cmf.marketohost}"
 			 hiddenFormId='${cmf.marketohiddenformid}'
-			 action="${currentNode.path}"
+			 action="${wcmmode.disabled ? '/discover' : ''}${currentPage.path}"
+			 formstart="${wcmmode.disabled ? '/discover' : ''}${currentNode.path}"
 			 data-marketo-form>
 		  <div class="marketoForm__container">
 			<h3 class="marketoForm__title">${ 'Apply for a business account today' @ i18n, context='html' }</h3>

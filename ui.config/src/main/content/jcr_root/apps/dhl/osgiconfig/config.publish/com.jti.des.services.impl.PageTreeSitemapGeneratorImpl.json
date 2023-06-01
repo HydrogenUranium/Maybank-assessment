@@ -1,7 +1,0 @@
-{
-  "enableLastModified": "{Boolean}true",
-  "lastModifiedSource": "cq:lastModified",
-  "enableChangefreq": "{Boolean}true",
-  "enablePriority": "{Boolean}true",
-  "enableLanguageAlternates": "{Boolean}true"
-}

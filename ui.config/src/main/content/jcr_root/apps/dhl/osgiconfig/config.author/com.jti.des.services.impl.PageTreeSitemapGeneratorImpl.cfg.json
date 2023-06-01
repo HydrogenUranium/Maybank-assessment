@@ -1,0 +1,7 @@
+{
+  "enableLastModified": true,
+  "lastModifiedSource": "cq:lastReplicated",
+  "enableChangefreq": true,
+  "enablePriority": true,
+  "enableLanguageAlternates": true
+}
