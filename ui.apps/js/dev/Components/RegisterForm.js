@@ -4,7 +4,10 @@ class RegisterForm {
       fbAppId: '1080031328801211',
       goClientId: '313469837420-l882h39ge8n8n9pb97ldvjk3fm8ppqgs.apps.googleusercontent.com',
 
-      urlToken: '/libs/granite/csrf/token.json'
+      urlToken: '/libs/granite/csrf/token.json',
+      urlRefreshCheck: '/apps/dhl/discoverdhlapi/refresh_token/index.form.html',
+      urlRegister: '/apps/dhl/discoverdhlapi/register/index.form.html',
+      urlUpdateCategories: '/apps/dhl/discoverdhlapi/update_categories/index.form.html'
     };
 
     this.sel = {
@@ -297,9 +300,10 @@ class RegisterForm {
   executeRegister(data, unwaitCallback) {
     $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
       var csrftoken = tokenresponse.token;
+      data.formStart = this.getRealPathHome() + '.register.json';
 
       $.ajax({
-        url: this.getRealPathHome() + '.register.json',
+        url: this.getPathPrefix() + this.config.urlRegister,
         data: data,
         type: 'post',
         headers: { 'CSRF-Token': csrftoken },
@@ -373,8 +377,8 @@ class RegisterForm {
           $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
             var csrftoken = tokenresponse.token;
             $.ajax({
-              url: this.getRealPathHome() + '.updatecategories.json',
-              data: { username: split[0], token: split[1], cats: categories },
+              url: this.getPathPrefix() + this.config.urlUpdateCategories,
+              data: { username: split[0], token: split[1], cats: categories, formStart: this.getRealPathHome() + '.updatecategories.json' },
               type: 'post',
               headers: { 'CSRF-Token': csrftoken },
               dataType: 'json',
@@ -403,8 +407,8 @@ class RegisterForm {
             $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
               var csrftoken = tokenresponse.token;
               $.ajax({
-                url: this.getRealPathHome() + '.updatetoken.json',
-                data: { username: refreshSplit[0], refresh_token: refreshSplit[1] },
+                url: this.getPathPrefix() + this.config.urlRefreshCheck,
+                data: { username: refreshSplit[0], refresh_token: refreshSplit[1], formStart: this.getRealPathHome() + '.updatetoken.json' },
                 type: 'post',
                 headers: { 'CSRF-Token': csrftoken },
                 dataType: 'json',

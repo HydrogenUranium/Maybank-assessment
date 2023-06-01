@@ -4,7 +4,8 @@ class LoginForm {
       fbAppId: '1080031328801211',
       goClientId: '313469837420-l882h39ge8n8n9pb97ldvjk3fm8ppqgs.apps.googleusercontent.com',
 
-      urlToken: '/libs/granite/csrf/token.json'
+      urlToken: '/libs/granite/csrf/token.json',
+      urlLogin: '/apps/dhl/discoverdhlapi/login/index.form.html'
     };
 
     this.sel = {
@@ -256,9 +257,10 @@ class LoginForm {
   executeLogin(data, unwaitCallback) {
     $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
       var csrftoken = tokenresponse.token;
+      data.formStart = this.getRealPathHome() + '.login.json';
 
       $.ajax({
-        url: this.getRealPathHome() + '.login.json',
+        url: this.getPathPrefix() + this.config.urlLogin,
         data: data,
         type: 'post',
         headers: { 'CSRF-Token': csrftoken },

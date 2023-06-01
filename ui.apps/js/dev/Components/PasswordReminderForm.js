@@ -2,6 +2,8 @@ class PasswordReminderForm {
   constructor() {
     this.config = {
       urlToken: '/libs/granite/csrf/token.json',
+      urlLogin: '/apps/dhl/discoverdhlapi/login/index.form.html',
+      urlRequest: '/apps/dhl/discoverdhlapi/request_password/index.form.html',
       urlReset: '/apps/dhl/discoverdhlapi/reset_password/index.json'
     };
 
@@ -131,8 +133,9 @@ class PasswordReminderForm {
     $(form).find('input.forms__cta--red').val('please wait...');
     $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
       var csrftoken = tokenresponse.token;
+      data.formStart = this.getRealPathHome() + '.requestpassword.json';
       $.ajax({
-        url: this.getRealPathHome() + '.requestpassword.json',
+        url: this.getPathPrefix() + this.config.urlRequest,
         data: data,
         type: 'post',
         headers: { 'CSRF-Token': csrftoken },
@@ -182,8 +185,8 @@ class PasswordReminderForm {
                 var nextcsrftoken = nextTokenResponse.token;
 
                 $.ajax({
-                  url: this.getRealPathHome() + '.login.json',
-                  data: { username: username, password: password },
+                  url: this.getPathPrefix() + this.config.urlLogin,
+                  data: { username: username, password: password, formStart: this.getRealPathHome() + '.login.json' },
                   type: 'post',
                   headers: { 'CSRF-Token': nextcsrftoken },
                   dataType: 'json',

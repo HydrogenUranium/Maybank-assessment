@@ -2,6 +2,8 @@ class AuthenticationEvents {
   constructor() {
     this.config = {
       urlToken: '/libs/granite/csrf/token.json',
+      urlCheck: '/apps/dhl/discoverdhlapi/check/index.form.html',
+      urlRefreshCheck: '/apps/dhl/discoverdhlapi/refresh_token/index.form.html',
       urlDownloadAsset: '/apps/dhl/discoverdhlapi/download_asset/index.json'
     };
 
@@ -92,9 +94,10 @@ class AuthenticationEvents {
     if (cookie !== null) {
       var authSplit = cookie.split('|');
       if (authSplit.length >= 2) {
-        this.callTokenCheck(this.getRealPathHome() + '.checklogin.json', {
+        this.callTokenCheck(this.getPathPrefix() + this.config.urlCheck, {
           username: authSplit[0],
-          token: authSplit[1]
+          token: authSplit[1],
+          formStart: this.getRealPathHome() + '.checklogin.json',
         });
       } else {
         $(window).trigger('usernotloggedin.DHL');
@@ -104,9 +107,10 @@ class AuthenticationEvents {
       if (refreshCookie !== null) {
         var refreshCookieSplit = refreshCookie.split('|');
         if (refreshCookieSplit.length >= 2) {
-          this.callTokenCheck(this.getRealPathHome() + '.updatetoken.json', {
+          this.callTokenCheck(this.getPathPrefix() + this.config.urlRefreshCheck, {
             username: refreshCookieSplit[0],
-            refresh_token: refreshCookieSplit[1]
+            refresh_token: refreshCookieSplit[1],
+            formStart: this.getRealPathHome() + '.updatetoken.json',
           });
         } else {
           $(window).trigger('usernotloggedin.DHL');

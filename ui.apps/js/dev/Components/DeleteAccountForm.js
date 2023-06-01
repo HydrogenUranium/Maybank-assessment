@@ -1,7 +1,10 @@
 class DeleteAccountForm {
   constructor() {
     this.config = {
-      urlToken: '/libs/granite/csrf/token.json'
+      urlToken: '/libs/granite/csrf/token.json',
+      urlRefreshCheck: '/apps/dhl/discoverdhlapi/refresh_token/index.form.html',
+      urlGetAllDetails: '/apps/dhl/discoverdhlapi/getdetails/index.form.html',
+      urlDeleteAccount: '/apps/dhl/discoverdhlapi/deleteaccount/index.form.html'
     };
 
     this.sel = {
@@ -122,8 +125,8 @@ class DeleteAccountForm {
         $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
           var csrftoken = tokenresponse.token;
           $.ajax({
-            url: this.getRealPathHome() + '.details.json',
-            data: { username: split[0], token: split[1] },
+            url: this.getPathPrefix() + this.config.urlGetAllDetails,
+            data: { username: split[0], token: split[1], formStart: this.getRealPathHome() + '.details.json' },
             type: 'post',
             headers: { 'CSRF-Token': csrftoken },
             dataType: 'json',
@@ -152,8 +155,8 @@ class DeleteAccountForm {
           $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
             var csrftoken = tokenresponse.token;
             $.ajax({
-              url: this.getRealPathHome() + '.updatetoken.json',
-              data: { username: refreshSplit[0], refresh_token: refreshSplit[1] },
+              url: this.getPathPrefix() + this.config.urlRefreshCheck,
+              data: { username: refreshSplit[0], refresh_token: refreshSplit[1], formStart: this.getRealPathHome() + '.updatetoken.json' },
               type: 'post',
               headers: { 'CSRF-Token': csrftoken },
               dataType: 'json',
@@ -198,8 +201,9 @@ class DeleteAccountForm {
 
       $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
         var csrftoken = tokenresponse.token;
+        data.formStart = this.getRealPathHome() + '.deleteaccount.json';
         $.ajax({
-          url: this.getRealPathHome() + '.deleteaccount.json',
+          url: this.getPathPrefix() + this.config.urlDeleteAccount,
           data: data,
           type: 'post',
           headers: { 'CSRF-Token': csrftoken },

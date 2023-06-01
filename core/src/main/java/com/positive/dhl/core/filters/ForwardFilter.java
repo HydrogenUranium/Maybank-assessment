@@ -33,29 +33,16 @@ public class ForwardFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 		final SlingHttpServletRequest request = (SlingHttpServletRequest) servletRequest;
-		var requestResource = getResource(request);
-		if(requestResource != null){
-			var requestDispatcher = request.getRequestDispatcher(requestResource);
-			if(null != requestDispatcher){
+		var target = request.getRequestParameter("formStart");
+		if (null != target) {
+			var requestDispatcher = request.getRequestDispatcher(target.getString());
+			if (null != requestDispatcher) {
 				requestDispatcher.forward(servletRequest, servletResponse);
 			}
 		}
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
-
-	/**
-	 * Tries to obtain the {@link Resource} associated to the value of request parameter 'formStart'. If not present, {@code null} is returned.
-	 * @param request is an instance of {@link SlingHttpServletRequest} that contains the request parameters
-	 * @return a {@code Resource} related to the value of request parameter 'formStart' or {@code null} if the resource could not be found
-	 */
-	private Resource getResource(SlingHttpServletRequest request){
-			var target = request.getRequestParameter("formStart");
-			if(null != target){
-				return request.getResourceResolver().getResource(target.getString());
-			}
-		return null;
-	}
-
+	
 	@Override
 	public void destroy() {
 		// not implemented
