@@ -34,7 +34,6 @@ RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 RewriteCond %{REQUEST_URI} ^/discover/
 RewriteCond %{REQUEST_URI} !^/discover/([a-z]{2}-[a-z]{2}|en-global)
 RewriteCond %{REQUEST_URI} !^/discover/(content/dam|apps/dhl)/
-RewriteCond %{REQUEST_URI} !^/discover/content/dhl(.*?)/partwo/inlineshipnowmarketo
 RewriteRule ^/discover/(.+)$ https://%{HTTP_HOST}/discover/en-global/$1 [R=301,L]
 
 ### DYNAMIC PASS-THROUGH TO AEM ###
