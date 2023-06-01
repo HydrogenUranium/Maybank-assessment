@@ -40,8 +40,7 @@ public class ForwardFilter implements Filter {
 				requestDispatcher.forward(servletRequest, servletResponse);
 			}
 		}
-
-	filterChain.doFilter(servletRequest, servletResponse);
+		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
 	/**
