@@ -16,7 +16,7 @@ $include "./default_filters.any"
 /3002 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/login/index.json" }
 /3003 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/tags*" }
 
-/3004 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/sitemap*" }
+# /3004 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/sitemap*" }
 /3005 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/robots*" }
 /3006 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/google*" }
 /3007 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/searchsuggest*" }
@@ -26,3 +26,5 @@ $include "./default_filters.any"
 /3010 { /type "allow" /method "POST" /url "/apps/dhl/servlet-handler/*" }
 /3011 { /type "allow" /method "POST" /url "/conf/dhl/api/*" }
 
+# Allow AEM WCM Core Components sitemap
+/3020 { /type "allow" /path "/content/*" /selectors '(sitemap-index|sitemap)' /extension "xml" }
