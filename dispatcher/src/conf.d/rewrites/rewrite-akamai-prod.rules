@@ -501,9 +501,9 @@ RewriteRule ^/manifest\.json$ /etc.clientlibs/dhl/clientlibs/clientlib-site/reso
 ### STATIC URLS TO SERVLETS ###
 RewriteRule ^/google441cb6f8a8a3ae5b.html$ /apps/dhl/discoverdhlapi/google/index.html [NC,PT,L]
 RewriteRule ^/akamai/sureroute-test-object.html$ /apps/dhl/discoverdhlapi/akamai/index.html [NC,PT,L]
-RewriteRule ^/sitemap.xml$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/sitemaps/20210420-sitemap.xml [NC,PT,L]
+# RewriteRule ^/sitemap.xml$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/sitemaps/20210420-sitemap.xml [NC,PT,L]
 RewriteRule ^/robots.txt$ /apps/dhl/discoverdhlapi/robots.txt [NC,PT,L]
-RewriteRule ^/en-global/sitemap.xml$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/sitemaps/20220203-englobal-sitemap.xml [NC,PT,L]
+# RewriteRule ^/en-global/sitemap.xml$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/sitemaps/20220203-englobal-sitemap.xml [NC,PT,L]
 RewriteRule ^/en-global/robots.txt$ /apps/dhl/discoverdhlapi/robotsenglobal.txt [NC,PT,L]
 
 
