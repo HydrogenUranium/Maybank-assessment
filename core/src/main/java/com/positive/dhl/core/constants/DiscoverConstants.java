@@ -24,6 +24,10 @@ public class DiscoverConstants {
 	public static final String USER_AGENT_HEADER = "user-agent";
 	public static final String CONTENT_TYPE = "Content-type";
 	public static final String DESTINATION_CONCATENATION = "{0}{1}";
+	public static final String LEAD_CLIENT_IP_ADDRESS = "leadClientIpAddress";
+	public static final String QUERY_STRING = "queryString";
+	public static final String USER_AGENT_STRING = "userAgentString";
+	public static final String PAGE_URL = "pageURL";
 
 	private static final Map<String,String> articlesQueryMap;
 

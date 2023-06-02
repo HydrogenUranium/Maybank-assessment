@@ -20,10 +20,13 @@ RewriteRule ^(/discover)?/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/discover/
 RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/token.json [PT,L,NC]
 
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
+### not valid for POST requests
+RewriteCond %{REQUEST_METHOD} !POST
 RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
 
 ### Default redirects to en-global homepage
 RewriteRule ^/discover/?$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
+
 RewriteRule ^/discover/content/dhl.*$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 
@@ -31,6 +34,7 @@ RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 RewriteCond %{REQUEST_URI} ^/discover/
 RewriteCond %{REQUEST_URI} !^/discover/([a-z]{2}-[a-z]{2}|en-global)
 RewriteCond %{REQUEST_URI} !^/discover/(content/dam|apps/dhl)/
+RewriteCond %{REQUEST_URI} !^(/discover)?/content/(dam|dhl).*\.form\.html$
 RewriteRule ^/discover/(.+)$ https://%{HTTP_HOST}/discover/en-global/$1 [R=301,L]
 
 ### DYNAMIC PASS-THROUGH TO AEM ###
