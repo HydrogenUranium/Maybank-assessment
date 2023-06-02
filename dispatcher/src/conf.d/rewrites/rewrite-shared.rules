@@ -14,7 +14,7 @@ RewriteRule ^(/discover)?/serviceworker\.js$ /etc.clientlibs/dhl/clientlibs/disc
 RewriteRule ^(/discover)?/manifest\.json$ /etc.clientlibs/dhl/clientlibs/discover/resources/manifest.json [PT,L,NC]
 #RewriteRule ^(/discover)?/google441cb6f8a8a3ae5b\.html$ /apps/dhl/discoverdhlapi/google/index.html [PT,L,NC]
 RewriteRule ^(/discover)?/sureroute-test-object\.txt$ /etc.clientlibs/dhl/clientlibs/discover/resources/data/akamai/sureroute-test-object.txt [PT,L,NC]
-RewriteRule ^(/discover)?/sitemap\.xml$ /etc.clientlibs/dhl/clientlibs/discover/resources/data/sitemaps/20220203-englobal-sitemap.xml [PT,L,NC]
+RewriteRule ^/discover/sitemap\.xml$ /content/dhl.sitemap.xml [PT,L,NC]
 RewriteRule ^(/discover)?/robots\.txt$ /apps/dhl/discoverdhlapi/robots.txt [PT,L,NC]
 RewriteRule ^(/discover)?/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/discover/resources/favicon.ico [PT,L,NC]
 RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/token.json [PT,L,NC]
