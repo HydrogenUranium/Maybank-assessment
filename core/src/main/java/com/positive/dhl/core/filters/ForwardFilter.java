@@ -35,7 +35,8 @@ public class ForwardFilter implements Filter {
 		final SlingHttpServletRequest request = (SlingHttpServletRequest) servletRequest;
 		var requestResource = getResource(request);
 		if(requestResource != null){
-			var requestDispatcher = request.getRequestDispatcher(requestResource);
+			var target = request.getRequestParameter("formStart");
+			var requestDispatcher = request.getRequestDispatcher(target.getString());
 			if(null != requestDispatcher){
 				requestDispatcher.forward(servletRequest, servletResponse);
 			}
@@ -51,7 +52,7 @@ public class ForwardFilter implements Filter {
 	private Resource getResource(SlingHttpServletRequest request){
 			var target = request.getRequestParameter("formStart");
 			if(null != target){
-				return request.getResourceResolver().getResource(target.getString());
+				return request.getResourceResolver().getResource(target.getString().split("\\.")[0]);
 			}
 		return null;
 	}

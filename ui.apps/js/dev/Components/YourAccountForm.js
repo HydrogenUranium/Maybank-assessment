@@ -2,9 +2,9 @@ class LoginForm {
   constructor() {
     this.config = {
       urlToken: '/libs/granite/csrf/token.json',
-      urlRefreshCheck: '/apps/dhl/discoverdhlapi/refresh_token/index.json',
-      urlGetAllDetails: '/apps/dhl/discoverdhlapi/getdetails/index.json',
-      urlUpdateDetails: '/apps/dhl/discoverdhlapi/update_details/index.json'
+      urlRefreshCheck: '/apps/dhl/discoverdhlapi/refresh_token/index.form.html',
+      urlGetAllDetails: '/apps/dhl/discoverdhlapi/getdetails/index.form.html',
+      urlUpdateDetails: '/apps/dhl/discoverdhlapi/update_details/index.form.html'
     };
 
     this.sel = {
@@ -13,6 +13,7 @@ class LoginForm {
 
     this.getPathPrefix = this.getPathPrefix.bind(this);
     this.getPathHome = this.getPathHome.bind(this);
+    this.getRealPathHome = this.getRealPathHome.bind(this);
     this.init = this.init.bind(this);
     this.bindEvents = this.bindEvents.bind(this);
     this.readCookie = this.readCookie.bind(this);
@@ -32,6 +33,10 @@ class LoginForm {
   getPathHome() {
     const home = $('head meta[name=\'dhl-path-home\']').attr('content').replace('/content/dhl', '');
     return (home ? home : '');
+  }
+
+  getRealPathHome() {
+    return $('head meta[name=\'dhl-path-home\']').attr('content');
   }
 
   init() {
@@ -119,7 +124,7 @@ class LoginForm {
           var csrftoken = tokenresponse.token;
           $.ajax({
             url: this.getPathPrefix() + this.config.urlGetAllDetails,
-            data: { username: split[0], token: split[1] },
+            data: { username: split[0], token: split[1], formStart: this.getRealPathHome() + '.details.json' },
             type: 'post',
             headers: { 'CSRF-Token': csrftoken },
             dataType: 'json',
@@ -149,7 +154,7 @@ class LoginForm {
             var csrftoken = tokenresponse.token;
             $.ajax({
               url: this.getPathPrefix() + this.config.urlRefreshCheck,
-              data: { username: refreshSplit[0], refresh_token: refreshSplit[1] },
+              data: { username: refreshSplit[0], refresh_token: refreshSplit[1], formStart: this.getRealPathHome() + '.updatetoken.json' },
               type: 'post',
               headers: { 'CSRF-Token': csrftoken },
               dataType: 'json',
@@ -221,6 +226,7 @@ class LoginForm {
 
       $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
         var csrftoken = tokenresponse.token;
+        data.formStart = this.getRealPathHome() + '.updatedetails.json';
         $.ajax({
           url: this.getPathPrefix() + this.config.urlUpdateDetails,
           data: data,
@@ -269,7 +275,7 @@ class LoginForm {
 
         $.ajax({
           url: this.getPathPrefix() + this.config.urlGetAllDetails,
-          data: { username: tokenData.username, token: tokenData.token },
+          data: { username: tokenData.username, token: tokenData.token, formStart: this.getRealPathHome() + '.details.json' },
           type: 'post',
           headers: { 'CSRF-Token': csrftoken },
           dataType: 'json',

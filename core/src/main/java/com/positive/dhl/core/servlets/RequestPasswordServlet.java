@@ -24,6 +24,8 @@ import com.positive.dhl.core.components.DotmailerComponent;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.models.UserAccount;
 
+import static org.apache.sling.api.servlets.ServletResolverConstants.*;
+
 /**
  * 
  */
@@ -32,7 +34,9 @@ import com.positive.dhl.core.models.UserAccount;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Request Password Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-		"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/request_password/index.json"
+		SLING_SERVLET_RESOURCE_TYPES + "=cq:Page",
+		SLING_SERVLET_SELECTORS + "=requestpassword",
+		SLING_SERVLET_EXTENSIONS + "=json"
 	}
 )
 public class RequestPasswordServlet extends SlingAllMethodsServlet {

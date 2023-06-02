@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import static org.apache.sling.api.servlets.ServletResolverConstants.*;
+
 /**
  *
  */
@@ -30,7 +32,9 @@ import java.sql.SQLException;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Update Categories Servlet",
     	"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-    	"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/update_categories/index.json"
+		SLING_SERVLET_RESOURCE_TYPES + "=cq:Page",
+		SLING_SERVLET_SELECTORS + "=updatecategories",
+		SLING_SERVLET_EXTENSIONS + "=json"
 	}
 )
 public class UpdateCategoriesServlet extends SlingAllMethodsServlet {

@@ -26,6 +26,8 @@ import com.positive.dhl.core.components.DotmailerComponent;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.models.UserAccount;
 
+import static org.apache.sling.api.servlets.ServletResolverConstants.*;
+
 /**
  *
  */
@@ -34,7 +36,9 @@ import com.positive.dhl.core.models.UserAccount;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Delete Account Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-		"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/deleteaccount/index.json"
+		SLING_SERVLET_RESOURCE_TYPES + "=cq:Page",
+		SLING_SERVLET_EXTENSIONS + "=json",
+		SLING_SERVLET_SELECTORS + "=deleteaccount"
 	}
 )
 public class DeleteAccountServlet extends SlingAllMethodsServlet {
