@@ -52,7 +52,7 @@ public class ForwardFilter implements Filter {
 	private Resource getResource(SlingHttpServletRequest request){
 			var target = request.getRequestParameter("formStart");
 			if(null != target){
-				return request.getResourceResolver().getResource(target.getString());
+				return request.getResourceResolver().getResource(target.getString().split("\\.")[0]);
 			}
 		return null;
 	}
