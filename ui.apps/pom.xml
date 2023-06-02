@@ -70,7 +70,7 @@
                     </properties>
                     <group>com.positive</group>
                     <name>dhl.ui.apps</name>
-                    <packageType>application</packageType>
+                    <packageType>mixed</packageType>
                     <repositoryStructurePackages>
                         <repositoryStructurePackage>
                             <groupId>com.positive</groupId>
