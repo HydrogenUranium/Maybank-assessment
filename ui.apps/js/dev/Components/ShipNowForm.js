@@ -1,3 +1,4 @@
+import shared from './Shared';
 class ShipNowForm {
   constructor() {
     this.sel = {
@@ -33,10 +34,10 @@ class ShipNowForm {
 
   /**
    * Method that validates all the form elements
+   * @param {Object} form HTML form element
    * @return {boolean} true if all elements have been validated successfully or false if not
    */
-  validate() {
-    let form = document.getElementById('glb-shipnow-form');
+  validate(form) {
     if (form) {
       let formElements = form.elements;
 
@@ -202,11 +203,7 @@ class ShipNowForm {
    */
   validatePhoneNumber(phoneToValidate) {
     let regex = /^(\(?(\d{3,4})\)?[\-.\s]?)?(\d{3,4})[\-.\s]?(\d{3,4})$/;
-    if (regex.test(phoneToValidate)) {
-      return true;
-    }
-    // return phoneRegex.test(phoneToValidate);
-    return false;
+    return !!(regex.test(phoneToValidate));
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -249,32 +246,40 @@ class ShipNowForm {
     }
   }
 
-  submitForm(e) {
+  async submitForm(e) {
     e.preventDefault();
-    let canSubmit = this.validate();
+    let form = document.getElementById('glb-shipnow-form');
+    const thankYouPage = form.getAttribute('data-thanks');
+    let canSubmit = this.validate(form);
     if (canSubmit) {
-      let $form = $(e.target);
-      let formData = this.getFormData($form);
-      $.post(this.getPathPrefix() + $form.attr('action'), formData, (data) => {
-        if (data.status === 'OK') {
-          this.showSuccess();
-        } else {
-          this.showError(data.fields);
-        }
-      });
+      let formData = this.getFormData(form);
+      shared.submitForm(form.action, formData).then(
+        () => {
+          if (thankYouPage !== null && thankYouPage !== '') {
+            this.redirectToThanksPage(thankYouPage);
+          }
+        },
+        (response) => {
+          let json = response.json();
+          this.showError(json.fields);
+        })
+        .catch((err) => console.error(err))
+        .finally(() => console.log('Submission finished'));
     }
     return false;
   }
 
-  getFormData($form) {
-    let unindexedArray = $form.serializeArray();
-    let indexedArray = {};
-    $.map(unindexedArray, (n) => (indexedArray[n.name] = n.value));
+  /**
+   * Helper function that handles the redirect to 'thank you page' configured in the component
+   * @param {String} url is the URL where we send the browser in case of a successful response
+   * @return {void} returns nothing, just redirects the client to provided URL
+   */
+  redirectToThanksPage(url) {
+    window.location.replace(url);
+  }
 
-    indexedArray.source = $.trim($form.data('source'));
-    indexedArray.lo = $.trim($form.data('lo'));
-
-    return indexedArray;
+  getFormData(formFields) {
+    return new FormData(formFields);
   }
 
   showSuccess() {
@@ -300,8 +305,8 @@ class ShipNowForm {
     }
   }
 
-  getFirstWord(strintToSplit) {
-    return strintToSplit.split(' ')[0];
+  getFirstWord(stringToSplit) {
+    return stringToSplit.split(' ')[0];
   }
 
   init() {

@@ -1,3 +1,5 @@
+import shared from './Shared';
+
 class MarketForm {
   constructor() {
     this.sel = {
@@ -68,9 +70,9 @@ class MarketForm {
   findMarketoCookie() {
     const allCookies = document.cookie.split('; ');
     let marketoCookieValue = null;
-    for (let i = 0; i < allCookies.length; i++) {
-      if (allCookies[i].toLowerCase().includes('_mkto_trk')) {
-        marketoCookieValue = allCookies[i];
+    for (let value of allCookies) {
+      if (value.toLowerCase().includes('_mkto_trk')) {
+        marketoCookieValue = value;
       }
     }
     return marketoCookieValue;
@@ -106,11 +108,10 @@ class MarketForm {
         const hiddenFormId = baseElement.getAttribute('hiddenFormId');
         const formSubmissionPath = baseElement.getAttribute('action');
         const formStart = baseElement.getAttribute('formstart');
-        const fullSubmissionPath = formSubmissionPath + '.form' + '.html';
         let needHiddenFormSubmission = this.isHiddenForm(baseElement);
         if (needHiddenFormSubmission &&  formStart !== null && hiddenFormId !== null && formSubmissionPath !== null && formSubmissionPath !== ' ' ) {
           let formData = this.buildFormData(e, hiddenFormId, formStart);
-          this.submitForm(fullSubmissionPath, formData).then(r => console.log(r));
+          shared.submitForm(formSubmissionPath, formData).then(() => console.log('Submitted'));
         }
       });
     });
@@ -127,78 +128,6 @@ class MarketForm {
         this.processVisibleForm(visibleForm, baseElement);
       }
     }
-
-
-    // this.getForms(visibleFormBase, hiddenFormBase, formAttributes);
-
-
-    /*
-    const $form = baseElement.find('[data-marketo-visible-form]');
-
-    // visible form
-    const $marketoForm = $form.find('form');
-    const marketoFormAttr = $marketoForm ? $marketoForm.attr('id') : '';
-    const marketoFormId = marketoFormAttr ? marketoFormAttr.replace('mktoForm_', '') : '';
-
-    let loadedForms = [];
-
-    const hiddenFormId = baseElement.getAttribute('hiddenFormId');
-    const hiddenMunchkinId = baseElement.getAttribute('hiddenMunchkinId');
-    let showHiddenForm = this.shouldShowHiddenForm(baseElement);
-    if (marketoFormId.length !== 0) {
-      MktoForms2.whenReady(mktoForm => {
-        $('#mktoForms2BaseStyle').remove();
-        $('#mktoForms2ThemeStyle').remove();
-
-        const formId = mktoForm.getId();
-
-        if (loadedForms.indexOf(formId.toString()) !== -1) {
-          return;
-        }
-
-        if (formId.toString() === marketoFormId.toString()) {
-          loadedForms.push(formId.toString());
-        }
-
-        const isform = mktoForm.getId().toString() === marketoFormId.toString();
-
-        if (isform) {
-          mktoForm.onSuccess((e) => {
-            if (!showHiddenForm) {
-              return;
-            }
-
-            MktoForms2.loadForm('https://express-resources.dhl.com', hiddenMunchkinId, hiddenFormId, function (hiddenForm) {
-              console.log('formLoaded', hiddenForm, e);
-
-              const mktoFieldsObj = $.extend(e, hiddenForm.getValues());
-
-              hiddenForm.addHiddenFields(mktoFieldsObj);
-              hiddenForm.submit();
-
-              hiddenForm.onSubmit((e) => {
-                console.log('second form submit...', e.getValues());
-                return false;
-              });
-
-              hiddenForm.onSuccess((e) => {
-                console.log('second form success...');
-                return true;
-              });
-            });
-
-            return false;
-          });
-        }
-      });
-    } else {
-      MktoForms2.whenReady(function (mktoForm) {
-        $('#mktoForms2BaseStyle').remove();
-        $('#mktoForms2ThemeStyle').remove();
-      });
-    }
-    return true;
-    */
   }
 }
 

@@ -12,6 +12,11 @@ import java.util.*;
  */
 public class DiscoverConstants {
 
+	/**
+	 * FORM START parameter (this parameter is used in {@link com.positive.dhl.core.filters.ForwardFilter} to determine whether
+	 * the request is to be forwarded to the location present in the value (if it exists in the repository)
+	 */
+	public static final String FORM_START_PARAM = "formStart";
 	public static final String DISCOVER_READ_SERVICE="discoverReader";
 	public static final String DISCOVER_WRITE_SERVICE="discoverWriter";
 	private static final String[] CATEGORIES_PROPERTY_NAMES = new String[] { "category0", "category1", "category2", "category3" };
@@ -45,23 +50,8 @@ public class DiscoverConstants {
 	 * @return a {@link List} of {@code String}s, each element in the list represents one category type
 	 */
 	public static List<String> getCategoryTypes(){
-		List<String> output = new ArrayList<>();
 
-		output.add("article");
-		output.add("articlegated");
-		output.add("articlewithtrending");
-		output.add("animatedpage201901");
-		output.add("animatedpage20190225");
-		output.add("animatedpage20190523");
-		output.add("animatedpage20190624");
-		output.add("animatedpage20190724");
-		output.add("animatedpage20190805");
-		output.add("animatedpage20191021");
-		output.add("animatedpage20191025");
-		output.add("animatedpage20191101");
-		output.add("animatedpage20191122");
-
-		return Collections.unmodifiableList(output);
+		return List.of("article", "articlegated", "articlewithtrending", "animatedpage201901", "animatedpage20190225", "animatedpage20190523", "animatedpage20190624", "animatedpage20190724", "animatedpage20190805", "animatedpage20191021", "animatedpage20191025", "animatedpage20191101", "animatedpage20191122");
 	}
 	public static Map<String,String> getArticlesQueryMap(){
 		return articlesQueryMap;
