@@ -4,5 +4,5 @@ package com.positive.dhl.core.exceptions;
 import lombok.experimental.StandardException;
 
 @StandardException
-public class MarketoRequestException extends Throwable{
+public class MarketoRequestException extends Exception{
 }
