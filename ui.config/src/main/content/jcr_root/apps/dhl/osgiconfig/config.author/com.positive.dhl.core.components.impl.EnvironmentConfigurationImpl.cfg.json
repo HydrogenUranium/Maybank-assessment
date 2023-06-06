@@ -1,0 +1,5 @@
+{
+  "assetPrefix": "",
+  "akamaiHostname": "$[env:AKAMAI_HOSTNAME]",
+  "countryInfoLocation": "/conf/dhl/appdata/countries"
+}
