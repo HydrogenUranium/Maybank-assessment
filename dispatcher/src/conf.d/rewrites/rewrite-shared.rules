@@ -26,7 +26,7 @@ RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
 
 ### Default redirects to en-global homepage
 RewriteRule ^/discover/?$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
-
+RewriteCond %{REQUEST_METHOD} (GET|HEAD)
 RewriteRule ^/discover/content/dhl.*$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 
