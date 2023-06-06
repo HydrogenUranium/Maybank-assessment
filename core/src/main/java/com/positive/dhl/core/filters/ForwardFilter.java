@@ -30,7 +30,6 @@ import java.io.IOException;
 )
 public class ForwardFilter implements Filter {
 
-
 	/**
 	 * Main method of this filter. Its job is relatively simple: check if the incoming request contains the parameter {@link DiscoverConstants#FORM_START_PARAM}
 	 * and if yes, and the value stored in this parameter does exist in the repository, then forward the request to this resource.
@@ -48,7 +47,7 @@ public class ForwardFilter implements Filter {
 		var requestResource = getResource(request);
 		var target = request.getRequestParameter(DiscoverConstants.FORM_START_PARAM);
 		if(null != requestResource && null != target){
-			var requestDispatcher = request.getRequestDispatcher(target.getString());
+			var requestDispatcher = request.getRequestDispatcher(removeDiscoverContext(target.getString()));
 			if(null != requestDispatcher){
 				log.info("About to forward the request to {}", target);
 				requestDispatcher.forward(servletRequest, servletResponse);
@@ -67,9 +66,24 @@ public class ForwardFilter implements Filter {
 	private Resource getResource(SlingHttpServletRequest request){
 			var target = request.getRequestParameter("formStart");
 			if(null != target){
-				return request.getResourceResolver().getResource(target.getString().split("\\.")[0]);
+				var targetString = target.getString();
+				targetString = removeDiscoverContext(targetString);
+				targetString = targetString.replace(".form.html","");
+				return request.getResourceResolver().getResource(targetString);
 			}
 		return null;
+	}
+
+	/**
+	 * Helper method that removes the value of {@link DiscoverConstants#DISCOVER_CONTEXT} from the incoming string (if it starts with it) and returns a new string
+	 * @param originalString is the original {@link String} we want to modify
+	 * @return new string with {@link DiscoverConstants#DISCOVER_CONTEXT} removed or original String if it was not present in the first place
+	 */
+	private String removeDiscoverContext(String originalString){
+		if(originalString.startsWith(DiscoverConstants.DISCOVER_CONTEXT)){
+			return originalString.replaceFirst(DiscoverConstants.DISCOVER_CONTEXT, "");
+		}
+		return originalString;
 	}
 
 	@Override
