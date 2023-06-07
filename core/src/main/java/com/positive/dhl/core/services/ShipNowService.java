@@ -176,12 +176,8 @@ public class ShipNowService {
 
 			String source = entry.containsKey(SOURCE) ? entry.get(SOURCE).toString() : "Discover";
 			statement.setString(13, source);
-
-			if (entry.containsKey("lo")){
-				statement.setString(14, entry.get("lo").toString());
-			} else {
-				statement.setString(14, "Discover");
-			}
+			String lo = entry.containsKey("lo") ? entry.get("lo").toString() : "Discover";
+			statement.setString(14,lo);
 
 			return statement;
 	}
