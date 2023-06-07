@@ -68,7 +68,7 @@ public class ForwardFilter implements Filter {
 			if(null != target){
 				var targetString = target.getString();
 				targetString = removeDiscoverContext(targetString);
-				targetString = targetString.replace(".form.html","");
+				targetString = targetString.split("\\.")[0];
 				return request.getResourceResolver().getResource(targetString);
 			}
 		return null;
