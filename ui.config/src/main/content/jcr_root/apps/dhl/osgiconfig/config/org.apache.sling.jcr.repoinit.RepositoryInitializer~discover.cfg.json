@@ -3,6 +3,7 @@
         "create path /(rep:root)",
         "create service user discover-writer with path /home/users/system/discover",
         "create service user discover-reader with path /home/users/system/discover",
+        "create service user sling-distribution-importer",
 
         "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/jcr:content(nt:unstructured)",
         "set properties on /content/dhl/jcr:content \n set cq:allowedTemplates{String[]} to /apps/dhl/templates/dhl-article-group-page,/apps/dhl/templates/dhl-amp-article-page,/apps/dhl/templates/dhl-animated-201901-page,/apps/dhl/templates/dhl-animated-20190225-page,/apps/dhl/templates/dhl-animated-20190523-page,/apps/dhl/templates/dhl-animated-20190624-page,/apps/dhl/templates/dhl-animated-20190724-page,/apps/dhl/templates/dhl-animated-20190805-page,/apps/dhl/templates/dhl-animated-20191021-page,/apps/dhl/templates/dhl-animated-20191025-page,/apps/dhl/templates/dhl-animated-20191101-page,/apps/dhl/templates/dhl-animated-20191122,/apps/dhl/templates/dhl-article-group-page,/apps/dhl/templates/dhl-article-page,/apps/dhl/templates/dhl-blank-page,/apps/dhl/templates/dhl-gated-article-page,/apps/dhl/templates/dhl-general-page,/apps/dhl/templates/dhl-landing-oct18-page,/apps/dhl/templates/dhl-landing-page-twocol,/apps/dhl/templates/dhl-register-page,/apps/dhl/templates/dhl-shipnow-page,/apps/dhl/templates/dhl-shipnowmarketo-page,/apps/dhl/templates/dhl-shipnowthanks-page \n set sling:resourceType to dhl/components/pages/root\nend",
@@ -470,7 +471,8 @@
         "set ACL for discover-reader\nallow jcr:read on /content/dam\nend",
         "set ACL for discover-reader\nallow jcr:read on /conf/dhl\nend",
         "set ACL for discover-writer\nallow jcr:all on /content/dhl\nend",
-        "set ACL for discover-writer\nallow jcr:all on /content/dam\nend"
+        "set ACL for discover-writer\nallow jcr:all on /content/dam\nend",
 
+        "set ACL for sling-distribution-importer\nallow jcr:read,rep:write,jcr:versionManagement,jcr:modifyAccessControl ,jcr:readAccessControl, jcr:lockManagement on /var,/conf\n end"
     ]
 }

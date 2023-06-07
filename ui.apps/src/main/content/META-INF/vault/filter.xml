@@ -5,5 +5,4 @@
     <filter root="/apps/dhl/i18n"/>
     <filter root="/apps/dhl/templates"/>
     <filter root="/apps/msm" />
-    <filter root="/var/workflow/models/request-for-page-publication" />
 </workspaceFilter>
