@@ -174,11 +174,8 @@ public class ShipNowService {
 			statement.setString(11, ((countryData.length >= 2) ? countryData[1] : ""));
 			statement.setString(12, ((countryData.length >= 3) ? countryData[2] : ""));
 
-			if(entry.containsKey(SOURCE)){
-				statement.setString(13, entry.get(SOURCE).toString());
-			} else {
-				statement.setString(13, "Discover");
-			}
+			String source = entry.containsKey(SOURCE) ? entry.get(SOURCE).toString() : "Discover";
+			statement.setString(13, source);
 
 			if (entry.containsKey("lo")){
 				statement.setString(14, entry.get("lo").toString());
