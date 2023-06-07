@@ -257,7 +257,7 @@ class LoginForm {
   executeLogin(data, unwaitCallback) {
     $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
       var csrftoken = tokenresponse.token;
-      data.formStart = this.getRealPathHome() + '.form.html';
+      data.formStart = this.getRealPathHome() + '.login.json';
 
       $.ajax({
         url: this.getPathPrefix() + this.config.urlLogin,
