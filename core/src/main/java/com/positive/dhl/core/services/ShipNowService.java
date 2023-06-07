@@ -8,13 +8,11 @@ import com.positive.dhl.core.constants.ValidationType;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.helpers.ValidatedRequestEntry;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.request.RequestParameter;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -61,7 +59,7 @@ public class ShipNowService {
 	 */
 	public ValidatedRequestEntry prepareFromRequest(SlingHttpServletRequest request) {
 
-		ValidatedRequestEntry entry = new ValidatedRequestEntry();
+		var entry = new ValidatedRequestEntry();
 		entry.addRequiredField(HOME, getParameterValue(HOME,request), ValidationType.NOT_EMPTY);
 		entry.addRequiredField(EMAIL, getParameterValue(EMAIL,request), ValidationType.EMAIL);
 		entry.addRequiredField(FIRSTNAME, getParameterValue(FIRSTNAME,request),ValidationType.NOT_EMPTY);
@@ -74,7 +72,7 @@ public class ShipNowService {
 		entry.addRequiredField(COUNTRY, getParameterValue(COUNTRY,request),ValidationType.NOT_EMPTY);
 		entry.addOptionalField(SOURCE, getParameterValue(SOURCE,request));
 		entry.addOptionalField("lo", request);
-		
+
 		return entry;
 	}
 
@@ -104,7 +102,7 @@ public class ShipNowService {
 	 * object than String, you need to transform the value yourself
 	 */
 	private String getParameterValue(String parameterName, SlingHttpServletRequest request){
-		RequestParameter requestParameter = request.getRequestParameter(parameterName);
+		var requestParameter = request.getRequestParameter(parameterName);
 		if(null != requestParameter){
 			return requestParameter.getString();
 		}
@@ -120,14 +118,14 @@ public class ShipNowService {
 	 * @return boolean {@code true} if save was successful or {@code false} if not
 	 */
 	public boolean register(DataSourcePool dataSourcePool, ValidatedRequestEntry entry) {
-		boolean output = false;
+		var output = false;
 
 
 		try {
 			DataSource dataSource = dataSourcePool.getDataSource(DatabaseHelpers.DATA_SOURCE_NAME,DataSource.class);
-			
+
 			int existingRecordId = findByEmail(dataSource, entry.get(EMAIL).toString());
-			try (Connection connection = dataSource.getConnection()) {
+			try (var connection = dataSource.getConnection()) {
 				if (existingRecordId != 0) {
 					try (PreparedStatement statement = connection.prepareStatement(UPDATE_EXISTING_RECORD_QUERY);
 					     PreparedStatement updatedStatement = prepareStatement(entry, statement)) {
@@ -176,19 +174,29 @@ public class ShipNowService {
 			statement.setString(11, ((countryData.length >= 2) ? countryData[1] : ""));
 			statement.setString(12, ((countryData.length >= 3) ? countryData[2] : ""));
 
-			statement.setString(13, entry.get(SOURCE).toString());
-			statement.setString(14, entry.get("lo").toString());
+			if(entry.containsKey(SOURCE)){
+				statement.setString(13, entry.get(SOURCE).toString());
+			} else {
+				statement.setString(13, "Discover");
+			}
+
+			if (entry.containsKey("lo")){
+				statement.setString(14, entry.get("lo").toString());
+			} else {
+				statement.setString(14, "Discover");
+			}
+
 			return statement;
 	}
-	
+
 	/**
 	 *
 	 */
 	private int findByEmail(DataSource dataSource, String email) {
-		int output = 0;
+		var output = 0;
 
 		try {
-			try (Connection connection = dataSource.getConnection()) {
+			try (var connection = dataSource.getConnection()) {
 				try (PreparedStatement statement = connection.prepareStatement("SELECT `id` from `shipnow_registrations` where `email` = ?")) {
 					statement.setString(1, email);
 
