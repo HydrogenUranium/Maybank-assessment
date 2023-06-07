@@ -4,5 +4,6 @@
         "/content/dhl.html:/discover",
         "/content/dhl/(.*)</discover/$1",
         "/content/dhl:/discover"
-    ]
+    ],
+    "resource.resolver.map.location": "/etc/map.publish"
 }

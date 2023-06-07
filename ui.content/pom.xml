@@ -56,7 +56,7 @@
                     <validatorsSettings>
                         <jackrabbit-filter>
                             <options>
-                                <validRoots>/conf/global/settings/workflow,/var/workflow</validRoots>
+                                <validRoots>/conf/global/settings/workflow,/var/workflow,/etc/map.publish</validRoots>
                             </options>
                         </jackrabbit-filter>
                     </validatorsSettings>
