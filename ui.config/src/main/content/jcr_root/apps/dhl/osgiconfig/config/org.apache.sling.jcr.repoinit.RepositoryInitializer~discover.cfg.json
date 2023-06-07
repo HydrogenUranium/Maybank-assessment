@@ -473,6 +473,6 @@
         "set ACL for discover-writer\nallow jcr:all on /content/dhl\nend",
         "set ACL for discover-writer\nallow jcr:all on /content/dam\nend",
 
-        "set ACL for sling-distribution-importer\nallow jcr:read,rep:write,jcr:versionManagement,jcr:modifyAccessControl ,jcr:readAccessControl, jcr:lockManagement on /var,/conf\n end"
+        "set ACL for sling-distribution-importer\nallow jcr:read,rep:write,jcr:versionManagement,jcr:modifyAccessControl ,jcr:readAccessControl, jcr:lockManagement on /var,/conf,/etc\n end"
     ]
 }

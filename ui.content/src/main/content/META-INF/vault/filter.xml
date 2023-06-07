@@ -2,4 +2,5 @@
 <workspaceFilter version="1.0">
     <filter root="/conf/global/settings/workflow/models" mode="update"/>
     <filter root="/var/workflow/models" mode="update"/>
+    <filter root="/etc/map.publish" />
 </workspaceFilter>
