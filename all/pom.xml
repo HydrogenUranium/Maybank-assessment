@@ -77,6 +77,12 @@
                             <target>/apps/dhl-packages/application/install</target>
                         </embedded>
                         <embedded>
+                            <groupId>com.positive</groupId>
+                            <artifactId>dhl.ui.content</artifactId>
+                            <type>zip</type>
+                            <target>/apps/dhl-packages/content/install</target>
+                        </embedded>
+                        <embedded>
                             <groupId>org.apache.servicemix.bundles</groupId>
                             <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
                             <type>jar</type>
@@ -207,6 +213,13 @@
         <dependency>
             <groupId>com.positive</groupId>
             <artifactId>dhl.ui.config</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.positive</groupId>
+            <artifactId>dhl.ui.content</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
