@@ -21,7 +21,7 @@ RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/toke
 
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
 ### not valid for POST requests
-RewriteCond %{REQUEST_METHOD} !POST
+RewriteCond %{REQUEST_METHOD} (GET|HEAD)
 RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
 
 ### Default redirects to en-global homepage
