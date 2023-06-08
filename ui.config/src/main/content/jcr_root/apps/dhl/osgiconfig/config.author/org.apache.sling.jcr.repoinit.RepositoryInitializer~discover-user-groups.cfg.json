@@ -2,6 +2,7 @@
     "scripts": [
         "create path /(rep:root)",
         "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/jcr:content(nt:unstructured)",
+        "create path /etc(sling:Folder)/designs(nt:folder)",
 
         "create group discover-base-user",
         "set properties on authorizable(discover-base-user)/profile\n set givenName to \"Discover Base User\"\n set aboutMe to \"Common user group with basic access rights\"\n end",
