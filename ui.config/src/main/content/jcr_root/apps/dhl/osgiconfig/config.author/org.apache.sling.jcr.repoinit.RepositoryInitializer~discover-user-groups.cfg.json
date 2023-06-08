@@ -16,6 +16,7 @@
         "set ACL for discover-base-user\nallow rep:write on /etc/segmentation\nend",
         "set ACL for discover-base-user\nallow jcr:read on /etc/cloudservices/dmscene7,/etc/cloudservices/dynamicmediaservices,/etc/cloudservices/scene7,/etc/importers/bulkeditor\nend",
         "set ACL for discover-base-user\nallow jcr:read,rep:write on /etc/importers/offline,/etc/reports/compreport\nend",
+        "set ACL for discover-base-user\nallow jcr:read on /etc/designs\nend",
         "set ACL for discover-base-user\nallow jcr:read on home(discover-base-user)\nend",
 
         "create group author-global",
