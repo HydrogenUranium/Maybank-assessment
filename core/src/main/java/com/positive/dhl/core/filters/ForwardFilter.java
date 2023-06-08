@@ -69,6 +69,7 @@ public class ForwardFilter implements Filter {
 				var targetString = target.getString();
 				targetString = removeDiscoverContext(targetString);
 				targetString = targetString.split("\\.")[0];
+				log.debug("Acquired request destination : {} - request will be forwarded there, if this resource exists in the repository", targetString);
 				return request.getResourceResolver().getResource(targetString);
 			}
 		return null;

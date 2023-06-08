@@ -37,6 +37,7 @@ public class ShipNowService {
 	private static final String POSTCODE = "postcode";
 	private static final String COUNTRY = "country";
 	private static final String SOURCE = "source";
+	private static final String LEAD_ORIGINATOR = "lo";
 	private static final String DIALING_CODE = "dialing_code";
 	private static final String HOME = "home";
 
@@ -71,7 +72,7 @@ public class ShipNowService {
 		entry.addRequiredField("city", getParameterValue("city",request),ValidationType.NOT_EMPTY);
 		entry.addRequiredField(COUNTRY, getParameterValue(COUNTRY,request),ValidationType.NOT_EMPTY);
 		entry.addOptionalField(SOURCE, getParameterValue(SOURCE,request));
-		entry.addOptionalField("lo", request);
+		entry.addOptionalField(LEAD_ORIGINATOR, request);
 
 		return entry;
 	}
@@ -174,9 +175,9 @@ public class ShipNowService {
 			statement.setString(11, ((countryData.length >= 2) ? countryData[1] : ""));
 			statement.setString(12, ((countryData.length >= 3) ? countryData[2] : ""));
 
-			String source = entry.containsKey(SOURCE) ? entry.get(SOURCE).toString() : "Discover";
+			String source = entry.containsKey(SOURCE) && entry.get(SOURCE) != null? entry.get(SOURCE).toString() : "Discover";
 			statement.setString(13, source);
-			String lo = entry.containsKey("lo") ? entry.get("lo").toString() : "Discover";
+			String lo = entry.containsKey(LEAD_ORIGINATOR) && entry.get(LEAD_ORIGINATOR) != null ? entry.get(LEAD_ORIGINATOR).toString() : "Discover";
 			statement.setString(14,lo);
 
 			return statement;
