@@ -37,7 +37,7 @@
     </modules>
 
     <scm>
-        <developerConnection>scm:git:https://git.dhl.com/NDCW-10025/discover.git</developerConnection>
+        <developerConnection>scm:git:git.dhl.com:NDCW-10025/discover.git</developerConnection>
         <tag>@{project.version}</tag>
     </scm>
 
