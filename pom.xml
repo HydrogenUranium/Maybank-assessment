@@ -20,7 +20,7 @@
     <groupId>com.positive</groupId>
     <artifactId>dhl</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>2.0.0-SNAPSHOT</version>
     <name>Deutsche Post AG Discover</name>
     <description>Deutsche Post AG Discover</description>
 
@@ -36,7 +36,7 @@
 
     <scm>
         <developerConnection>scm:git:git@git.dhl.com:NDCW-10025/discover.git</developerConnection>
-        <tag>v1.0.0</tag>
+        <tag>@{project.version}</tag>
     </scm>
 
     <properties>
