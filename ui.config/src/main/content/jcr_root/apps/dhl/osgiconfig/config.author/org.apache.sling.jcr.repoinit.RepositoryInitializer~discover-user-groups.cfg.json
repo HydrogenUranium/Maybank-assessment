@@ -3,6 +3,7 @@
         "create path /(rep:root)",
         "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/jcr:content(nt:unstructured)",
         "create path /etc(sling:Folder)/designs(nt:folder)",
+        "create path /etc(sling:Folder)/tags(sling:Folder)",
 
         "create group discover-base-user",
         "set properties on authorizable(discover-base-user)/profile\n set givenName to \"Discover Base User\"\n set aboutMe to \"Common user group with basic access rights\"\n end",
@@ -18,6 +19,7 @@
         "set ACL for discover-base-user\nallow jcr:read on /etc/cloudservices/dmscene7,/etc/cloudservices/dynamicmediaservices,/etc/cloudservices/scene7,/etc/importers/bulkeditor\nend",
         "set ACL for discover-base-user\nallow jcr:read,rep:write on /etc/importers/offline,/etc/reports/compreport\nend",
         "set ACL for discover-base-user\nallow jcr:read on /etc/designs\nend",
+        "set ACL for discover-base-user\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement,jcr:lifecycleManagement on /etc/tags\nend",
         "set ACL for discover-base-user\nallow jcr:read on home(discover-base-user)\nend",
 
         "create group author-global",
