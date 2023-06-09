@@ -9,7 +9,6 @@ import com.positive.dhl.core.constants.DiscoverConstants;
 import com.positive.dhl.core.services.CategoryFinder;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
-import lombok.Cleanup;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -40,6 +39,8 @@ import java.util.Map;
 public class ArticleGrid {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleGrid.class);
+	private static final String CTACOPY_DEFAULT_TEXT = "Speak to a Specialist Today";
+	private static final String CTALINK_DEFAULT_TEXT = "/content/dhl/en-global/ship-now.html";
 
 	@OSGiService
 	private ResourceResolverHelper resourceResolverHelper;
@@ -106,6 +107,16 @@ public class ArticleGrid {
 	@Optional
 	private String category3;
 
+	@Inject
+	@Named("applyForAccountCta")
+	@Optional
+	private String ctaCopy;
+
+	@Inject
+	@Named("applyForAccountUrl")
+	@Optional
+	private String ctaLink;
+
 	private List<CategoryLink> categories;
 	private List<Article> articles;
 	private String mode;
@@ -150,6 +161,41 @@ public class ArticleGrid {
 	 */
 	public void setMode(String mode) {
 		this.mode = mode;
+	}
+
+	/**
+	 * Returns the value associated with property ctaCopy, coming from ArticleGrid component's dialog.
+	 *
+	 * @return value stored in ArticleGrid node in repository or a default text in case this property is not set
+	 */
+	public String getCtaCopy(){
+		if(null != ctaCopy && !ctaCopy.isEmpty()){
+			if(LOGGER.isDebugEnabled()){
+				LOGGER.debug("Getting the value from 'ctaCopy': {}", ctaCopy);
+			}
+			return ctaCopy;
+		}
+		LOGGER.info("'ctaCopy' property not set, falling back to default value '{}'", CTACOPY_DEFAULT_TEXT);
+		return CTACOPY_DEFAULT_TEXT;
+	}
+
+	/**
+	 * Returns the value associated with property catLink, coming from ArticleGrid component's dialog
+	 *
+	 * @return value stored in ArticleGrid node in repository or default value (default = 3rd element from conntent root + ship-now.html or if not
+	 * available, then "/content/dhl/en-global/ship-now.html"
+	 */
+	public String getCtaLink(){
+		if(null != ctaLink && !ctaLink.isEmpty()){
+			return ctaLink;
+		}
+		LOGGER.info("'ctaLink' property not set, trying to fall back to 3rd level from content root + ship-now.html");
+		var home = currentPage.getAbsoluteParent(2);
+		if(null != home){
+			return home.getPath() + "/ship-now.html";
+		}
+		LOGGER.warn("Unable to find the backup value, falling back to '{}' ",CTALINK_DEFAULT_TEXT);
+		return CTALINK_DEFAULT_TEXT;
 	}
 
 	private String processMode(ValueMap properties, SlingHttpServletRequest request){
@@ -366,42 +412,44 @@ public class ArticleGrid {
 	@PostConstruct
 	protected void init() {
 
-		@Cleanup var resourceResolver = resourceResolverHelper.getReadResourceResolver();
+		try(var resourceResolver = resourceResolverHelper.getReadResourceResolver()){
+			if(null != resourceResolver){
+				var resourceProperties = resource.getValueMap();
+				mode = processMode(resourceProperties,request);
+				categories = new ArrayList<>();
 
-		if(null != resourceResolver){
-			var resourceProperties = resource.getValueMap();
-			mode = processMode(resourceProperties,request);
-			categories = new ArrayList<>();
-
-			//populate category paths, if not empty, add category links to 'categories' list
-			List<String> categoryPaths = getCategoryPaths(resourceProperties, resourceResolver);
-			if (!categoryPaths.isEmpty()) {
-				categories.addAll(getCategoriesLinks(resourceResolver,categoryPaths));
-			}
-
-			// if categories list is still empty, try to add two child pages from current
-			// page (this may still end up being empty list as there is no guarantee there are actually any child pages)
-			if (categories.isEmpty()) {
-				categories.addAll(getCategoriesFromPage(currentPage));
-			}
-
-			articles = new ArrayList<>();
-
-			if (mode.equalsIgnoreCase("trending")) {
-				articles.addAll(processTrendingMode());
-			} else {
-				String path = verifyMode(categories,mode);
-				LOGGER.info("Going to execute the query to fetch articles based on their categories");
-				var searchResult = runQuery(DiscoverConstants.getArticlesQueryMap(),path,resourceResolver);
-				if (searchResult != null) {
-					LOGGER.info("Query to find articles returned {} results.", searchResult.getTotalMatches());
-					articles.addAll(processSearchResults(searchResult, resourceResolver));
+				//populate category paths, if not empty, add category links to 'categories' list
+				List<String> categoryPaths = getCategoryPaths(resourceProperties, resourceResolver);
+				if (!categoryPaths.isEmpty()) {
+					categories.addAll(getCategoriesLinks(resourceResolver,categoryPaths));
 				}
+
+				// if categories list is still empty, try to add two child pages from current
+				// page (this may still end up being empty list as there is no guarantee there are actually any child pages)
+				if (categories.isEmpty()) {
+					categories.addAll(getCategoriesFromPage(currentPage));
+				}
+
+				articles = new ArrayList<>();
+
+				if (mode.equalsIgnoreCase("trending")) {
+					articles.addAll(processTrendingMode());
+				} else {
+					String path = verifyMode(categories,mode);
+					LOGGER.info("Going to execute the query to fetch articles based on their categories");
+					var searchResult = runQuery(DiscoverConstants.getArticlesQueryMap(),path,resourceResolver);
+					if (searchResult != null) {
+						LOGGER.info("Query to find articles returned {} results.", searchResult.getTotalMatches());
+						articles.addAll(processSearchResults(searchResult, resourceResolver));
+					}
+				}
+			} else {
+				LOGGER.error("Unable to obtain ResourceResolver from the model. This may have unpleasant " +
+						"consequences on pages. Details why this happened can be found in this log file");
 			}
-		} else {
-			LOGGER.error("Unable to obtain ResourceResolver from the model. This may have unpleasant " +
-					"consequences on pages. Details why this happened can be found in this log file");
 		}
+
+
 	}
 
 	/**

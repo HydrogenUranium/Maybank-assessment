@@ -4,6 +4,7 @@ package com.positive.dhl.core.services;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.osgi.services.HttpClientBuilderFactory;
 import org.osgi.service.component.annotations.Component;
@@ -50,8 +51,15 @@ public class InitUtil {
 			return this.client;
 		}
 
+		// HTTP Requests should always have Socket and Connect timeouts
+		// https://experienceleague.adobe.com/docs/experience-manager-cloud-manager/content/using/custom-code-quality-rules.html?lang=en#http-requests-should-always-have-socket-and-connect-timeouts
+		RequestConfig requestConfig = RequestConfig.custom()
+				.setConnectTimeout(30000)
+				.setSocketTimeout(30000)
+				.build();
 		this.client = httpClientBuilderFactory.newBuilder()
 				.disableAuthCaching()
+				.setDefaultRequestConfig(requestConfig)
 				.build();
 		return this.client;
 	}

@@ -17,15 +17,17 @@
 	<div data-sly-test="${(accountactions.shipnowmarketo != true)}">
 		<form data-sly-use.shipNowForm="com.positive.dhl.core.models.ShipNowForm"
 			  data-sly-use.landingPage="com.positive.dhl.core.models.LandingPageTwoColumn"
-			  action="/apps/dhl/discoverdhlapi/shipnow/index.json" id="glb-shipnow-form"
+			  action="${accountactions.getAssetprefix}${currentPage.path}.form.html"
+			  id="glb-shipnow-form"
 			  class="forms ship-now" data-thanks="${properties.thanksurl}.html"
 			  data-source="${shipNowForm.source}"
-			  data-lo="${shipNowForm.leadOriginator}" data-preselectcountry="${landingPage.preselectedCountry}"
+			  data-lo="${shipNowForm.leadOriginator}"
+			  data-preselectcountry="${landingPage.preselectedCountry}"
 			  method="post"
 			  novalidate>
 			<input type="hidden" name="home" value="${accountactions.getHomeUrl}" />
+			<input type="hidden" name="formStart" value="${accountactions.getAssetprefix}${currentNode.getPath}.form.html" />
 			<h3 class="forms__title">${properties.formtitle}</h3>
-
 			<div class="error" style="display: none;">
 				<p class="forms__copy">${ 'An error occurred while attempting to submit your details.' @ i18n, context='html' } '<strong><span></span></strong>'</p>
 			</div>

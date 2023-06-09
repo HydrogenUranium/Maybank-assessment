@@ -29,6 +29,21 @@
                         text="Hide 'Trending' article group"
                         value="true"/>
 
+                    <ctacopy
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            name="./applyForAccountCta"
+                            fieldDescription="Text of the CTA link that appears in ArticleGrid"
+                            fieldLabel="CTA link copy (text)"
+                            required="false"  />
+
+                    <ctatarget
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                            fieldLabel="CTA link target"
+                            name="./applyForAccountUrl"
+                            rootPath="/content/dhl" />
+
                     <category0
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"

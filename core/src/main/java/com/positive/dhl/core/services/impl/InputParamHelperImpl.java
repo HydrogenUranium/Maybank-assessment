@@ -104,17 +104,17 @@ public class InputParamHelperImpl implements InputParamHelper {
 			referrer = request.getParameter("_mktoReferrer");
 		}
 
-		visitorData.put("leadClientIpAddress ", ip);
+		visitorData.put(DiscoverConstants.LEAD_CLIENT_IP_ADDRESS, ip);
 		if(null != queryString){
-			visitorData.put("queryString", queryString);
+			visitorData.put(DiscoverConstants.QUERY_STRING, queryString);
 		}
 
 		if(null != userAgent){
-			visitorData.put("userAgentString", userAgent);
+			visitorData.put(DiscoverConstants.USER_AGENT_STRING, userAgent);
 		}
 
 		if(null != referrer){
-			visitorData.put("pageUrl", referrer);
+			visitorData.put(DiscoverConstants.PAGE_URL, referrer);
 		}
 		return visitorData;
 	}

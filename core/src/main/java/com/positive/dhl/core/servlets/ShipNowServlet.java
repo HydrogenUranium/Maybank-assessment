@@ -6,7 +6,8 @@ import com.positive.dhl.core.helpers.ValidatedRequestEntry;
 import com.positive.dhl.core.services.ShipNowService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.servlets.HttpConstants;
-import org.osgi.framework.Constants;
+import org.apache.sling.servlets.annotations.SlingServletPrefix;
+import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
@@ -19,17 +20,17 @@ import java.io.IOException;
  * Servlet to serve the ShipNow forms
  */
 @Component(
-	service = Servlet.class,
-	property = {
-		Constants.SERVICE_DESCRIPTION + "=DHL Ship Now Servlet",
-    	"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-			"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/shipnow/index.json"
-
-	}
+		service = {Servlet.class})
+@SlingServletPrefix("/apps/")
+@SlingServletResourceTypes(
+		resourceTypes = "dhl/components/content/inlineshipnowtwo",
+		methods = HttpConstants.METHOD_POST,
+		extensions = "html",
+		selectors = "form"
 )
 public class ShipNowServlet extends StandardFormInputServlet {
 	private static final Logger log = LoggerFactory.getLogger(ShipNowServlet.class);
-	
+
 	private static final long serialVersionUID = 1L;
   @Reference
   private transient DataSourcePool dataSourcePool;

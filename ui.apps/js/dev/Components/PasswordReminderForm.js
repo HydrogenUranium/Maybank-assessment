@@ -2,8 +2,8 @@ class PasswordReminderForm {
   constructor() {
     this.config = {
       urlToken: '/libs/granite/csrf/token.json',
-      urlLogin: '/apps/dhl/discoverdhlapi/login/index.json',
-      urlRequest: '/apps/dhl/discoverdhlapi/request_password/index.json',
+      urlLogin: '/apps/dhl/discoverdhlapi/login/index.form.html',
+      urlRequest: '/apps/dhl/discoverdhlapi/request_password/index.form.html',
       urlReset: '/apps/dhl/discoverdhlapi/reset_password/index.json'
     };
 
@@ -13,6 +13,7 @@ class PasswordReminderForm {
 
     this.getPathPrefix = this.getPathPrefix.bind(this);
     this.getPathHome = this.getPathHome.bind(this);
+    this.getRealPathHome = this.getRealPathHome.bind(this);
     this.init = this.init.bind(this);
     this.bindEvents = this.bindEvents.bind(this);
     this.createCookie = this.createCookie.bind(this);
@@ -29,6 +30,10 @@ class PasswordReminderForm {
   getPathHome() {
     const home = $('head meta[name=\'dhl-path-home\']').attr('content').replace('/content/dhl', '');
     return (home ? home : '');
+  }
+
+  getRealPathHome() {
+    return $('head meta[name=\'dhl-path-home\']').attr('content');
   }
 
   init() {
@@ -128,6 +133,7 @@ class PasswordReminderForm {
     $(form).find('input.forms__cta--red').val('please wait...');
     $.get(this.getPathPrefix() + this.config.urlToken, (tokenresponse) => {
       var csrftoken = tokenresponse.token;
+      data.formStart = this.getRealPathHome() + '.requestpassword.json';
       $.ajax({
         url: this.getPathPrefix() + this.config.urlRequest,
         data: data,
@@ -180,7 +186,7 @@ class PasswordReminderForm {
 
                 $.ajax({
                   url: this.getPathPrefix() + this.config.urlLogin,
-                  data: { username: username, password: password },
+                  data: { username: username, password: password, formStart: this.getRealPathHome() + '.login.json' },
                   type: 'post',
                   headers: { 'CSRF-Token': nextcsrftoken },
                   dataType: 'json',

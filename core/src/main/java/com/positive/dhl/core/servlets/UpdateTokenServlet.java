@@ -26,6 +26,8 @@ import org.slf4j.LoggerFactory;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.models.UserAccount;
 
+import static org.apache.sling.api.servlets.ServletResolverConstants.*;
+
 /**
  * 
  */
@@ -34,7 +36,9 @@ import com.positive.dhl.core.models.UserAccount;
 	property = {
 		Constants.SERVICE_DESCRIPTION + "=DHL Refresh Token Servlet",
     	"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-    	"sling.servlet.paths=" + "/apps/dhl/discoverdhlapi/refresh_token/index.json"
+		SLING_SERVLET_RESOURCE_TYPES + "=cq:Page",
+		SLING_SERVLET_EXTENSIONS + "=json",
+		SLING_SERVLET_SELECTORS + "=updatetoken"
 	}
 )
 public class UpdateTokenServlet extends SlingAllMethodsServlet {

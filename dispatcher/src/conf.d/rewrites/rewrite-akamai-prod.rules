@@ -501,9 +501,9 @@ RewriteRule ^/manifest\.json$ /etc.clientlibs/dhl/clientlibs/clientlib-site/reso
 ### STATIC URLS TO SERVLETS ###
 RewriteRule ^/google441cb6f8a8a3ae5b.html$ /apps/dhl/discoverdhlapi/google/index.html [NC,PT,L]
 RewriteRule ^/akamai/sureroute-test-object.html$ /apps/dhl/discoverdhlapi/akamai/index.html [NC,PT,L]
-RewriteRule ^/sitemap.xml$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/sitemaps/20210420-sitemap.xml [NC,PT,L]
+# RewriteRule ^/sitemap.xml$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/sitemaps/20210420-sitemap.xml [NC,PT,L]
 RewriteRule ^/robots.txt$ /apps/dhl/discoverdhlapi/robots.txt [NC,PT,L]
-RewriteRule ^/en-global/sitemap.xml$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/sitemaps/20220203-englobal-sitemap.xml [NC,PT,L]
+# RewriteRule ^/en-global/sitemap.xml$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources/data/sitemaps/20220203-englobal-sitemap.xml [NC,PT,L]
 RewriteRule ^/en-global/robots.txt$ /apps/dhl/discoverdhlapi/robotsenglobal.txt [NC,PT,L]
 
 
@@ -545,6 +545,8 @@ RewriteRule ^(.*?)$ https://www.dhl.com/discover/en-global$1 [R=302,L]
 
 
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
+### not valid for POST requests
+RewriteCond %{REQUEST_METHOD} !POST
 RewriteRule ^(.*?)\.html$ https://www.dhl.com/discover$1 [R=301,L]
 RewriteRule ^(.*?)\/$ https://www.dhl.com/discover$1 [R=301,L]
 
@@ -557,6 +559,7 @@ RewriteRule ^(.*?)\.ico$ /etc.clientlibs/dhl/clientlibs/clientlib-site/resources
 RewriteCond %{REQUEST_URI} ^/content
 RewriteCond %{REQUEST_URI} !^/content/campaigns
 RewriteCond %{REQUEST_URI} !^/content/dam
+RewriteCond %{REQUEST_URI} !^/content/dhl
 RewriteRule !^content/dhl - [R=404,L,NC]
 
 RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache

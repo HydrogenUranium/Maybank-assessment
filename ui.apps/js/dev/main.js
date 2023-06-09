@@ -5,7 +5,7 @@ import ArticleGrid from './Components/ArticleGrid';
 import SubscribePanel from './Components/SubscribePanel';
 import Password from './Components/Password';
 import PasswordValidity from './Components/PasswordValidity';
-import FormValidation from './Components/FormValidation';
+// import FormValidation from './Components/FormValidation'; commented out as it's reported unused
 import ShowHide from './Components/ShowHide';
 import CookieBanner from './Components/CookieBanner';
 import SearchForm from './Components/SearchForm';
@@ -27,9 +27,10 @@ import ServiceWorker from './Components/ServiceWorker';
 import Offline from './Components/Offline';
 import LandingPoints from './Components/LandingPoints';
 import BackButton from './Components/BackButton';
-import ArticleCounter from './Components/ArticleCounter';
+// import ArticleCounter from './Components/ArticleCounter'; commented out because it's reported unused
 import MarketoForm from './Components/MarketoForm';
 import LanguageDetect from './Components/LanguageDetect';
+import Shared from './Components/Shared';
 
 $(document).ready(() => {
   try {
@@ -71,4 +72,5 @@ $(document).ready(() => {
   LandingPoints.init();
   BackButton.init();
   MarketoForm.init();
+  Shared.init();
 });

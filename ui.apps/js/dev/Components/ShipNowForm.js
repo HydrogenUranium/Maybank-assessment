@@ -1,3 +1,4 @@
+import shared from './Shared';
 class ShipNowForm {
   constructor() {
     this.sel = {
@@ -33,10 +34,10 @@ class ShipNowForm {
 
   /**
    * Method that validates all the form elements
+   * @param {Object} form HTML form element
    * @return {boolean} true if all elements have been validated successfully or false if not
    */
-  validate() {
-    let form = document.getElementById('glb-shipnow-form');
+  validate(form) {
     if (form) {
       let formElements = form.elements;
 
@@ -46,7 +47,7 @@ class ShipNowForm {
         validationResult.set(name, this.validateField(formElement));
       }
       const validationResultValues = [...validationResult.values()];
-      return validationResultValues.includes(false);
+      return !validationResultValues.includes(false);
     }
     return false;
   }
@@ -57,9 +58,8 @@ class ShipNowForm {
    * 'invalid',
    * <b>error</b> class is added, otherwise <b>valid</b> is added
    // eslint-disable-next-line valid-jsdoc
-   * @param elementToValidate DOM element we want to validate
-   * @return boolean true or false depending on the validation result of one specific field
-   * @param {Element|{pattern: *, flags: *, raw: *, type: string, value: *}} elementToValidate
+   * @param {object} elementToValidate DOM element we want to validate
+   * @return {boolean} true or false depending on the validation result of one specific field
    */
   validateField(elementToValidate) {
     let fieldType = elementToValidate.type;
@@ -91,7 +91,8 @@ class ShipNowForm {
    * element
    * already contains css class 'valid', we replace it with error.<br /> If the element does not contain any class,
    * we simply add 'error'
-   * @param element is the element we're assessing
+   * @param {object} element is the element we're assessing
+   * @return {void}
    */
   failValidation(element) {
     this.modifyCssClass(element, 'error', 'valid');
@@ -153,7 +154,8 @@ class ShipNowForm {
    * element
    * already contains css class 'error', we replace it with valid.<br /> If the element does not contain any class,
    * we simply add 'valid'
-   * @param element is the element we're assessing
+   * @param {object} element is the element we're assessing
+   * @return {void}
    */
   completeValidation(element) {
     this.modifyCssClass(element, 'valid', 'error');
@@ -177,7 +179,7 @@ class ShipNowForm {
   /**
    * Provides the validation of input type 'text' - in reality it 'just' checks if the provided string has
    * any value...
-   * @param stringToValidate is a {@code String} value we wish to validate
+   * @param {string} stringToValidate is a {@code String} value we wish to validate
    * @returns {boolean} true if we think the provided string is a valid one
    */
   validateTextField(stringToValidate) {
@@ -186,7 +188,7 @@ class ShipNowForm {
 
   /**
    * Attempts to verify if the provided string matches the regular expression for email
-   * @param emailToValidate is the string we want to validate
+   * @param {string} emailToValidate is the string we want to validate
    * @returns {boolean} true if the provided value matches the email regular expression or false if not
    */
   validateEmailField(emailToValidate) {
@@ -196,14 +198,15 @@ class ShipNowForm {
 
   /**
    * Validates the provided string as phone number
-   * @param phoneToValidate is a String to validate (phone number can contain other characters than just digits
+   * @param {string} phoneToValidate is a String to validate (phone number can contain other characters than just digits
    * @returns {boolean} true if validate is successful, else it returns false
    */
   validatePhoneNumber(phoneToValidate) {
-    let phoneRegex = new RegExp('((\\(\\d{3,4}\\)( )?)|\\d{3,4}( )?)?[- ./]?( )?\\d{3,4}?( )?[- ./]?( )?\\d{3,4}?( )?$');
-    return phoneRegex.test(phoneToValidate);
+    let regex = /^(\(?(\d{3,4})\)?[\-.\s]?)?(\d{3,4})[\-.\s]?(\d{3,4})$/;
+    return !!(regex.test(phoneToValidate));
   }
 
+  // eslint-disable-next-line no-unused-vars
   toggleAddress(_e) {
     let val = $(this.sel.countryselect).val();
 
@@ -243,32 +246,40 @@ class ShipNowForm {
     }
   }
 
-  submitForm(e) {
+  async submitForm(e) {
     e.preventDefault();
-    let canSubmit = this.validate();
+    let form = document.getElementById('glb-shipnow-form');
+    const thankYouPage = form.getAttribute('data-thanks');
+    let canSubmit = this.validate(form);
     if (canSubmit) {
-      let $form = $(e.target);
-      let formData = this.getFormData($form);
-      $.post(this.getPathPrefix() + $form.attr('action'), formData, (data) => {
-        if (data.status === 'OK') {
-          this.showSuccess();
-        } else {
-          this.showError(data.fields);
-        }
-      });
+      let formData = this.getFormData(form);
+      shared.submitForm(form.action, formData).then(
+        () => {
+          if (thankYouPage !== null && thankYouPage !== '') {
+            this.redirectToThanksPage(thankYouPage);
+          }
+        },
+        (response) => {
+          let json = response.json();
+          this.showError(json.fields);
+        })
+        .catch((err) => console.error(err))
+        .finally(() => console.log('Submission finished'));
     }
     return false;
   }
 
-  getFormData($form) {
-    let unindexedArray = $form.serializeArray();
-    let indexedArray = {};
-    $.map(unindexedArray, (n) => (indexedArray[n.name] = n.value));
+  /**
+   * Helper function that handles the redirect to 'thank you page' configured in the component
+   * @param {String} url is the URL where we send the browser in case of a successful response
+   * @return {void} returns nothing, just redirects the client to provided URL
+   */
+  redirectToThanksPage(url) {
+    window.location.replace(url);
+  }
 
-    indexedArray.source = $.trim($form.data('source'));
-    indexedArray.lo = $.trim($form.data('lo'));
-
-    return indexedArray;
+  getFormData(formFields) {
+    return new FormData(formFields);
   }
 
   showSuccess() {
@@ -278,7 +289,8 @@ class ShipNowForm {
   /**
    * Helper function that should go through the json response and detect if there is any error (errors should come
    * as array)
-   * @param errors
+   * @param {array} errors is an array of errors we're checking
+   * @return {void} nothing
    */
   showError(errors) {
     if (Array.isArray(errors)) {
@@ -293,8 +305,8 @@ class ShipNowForm {
     }
   }
 
-  getFirstWord(strintToSplit) {
-    return strintToSplit.split(' ')[0];
+  getFirstWord(stringToSplit) {
+    return stringToSplit.split(' ')[0];
   }
 
   init() {
