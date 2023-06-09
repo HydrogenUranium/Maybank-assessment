@@ -1,0 +1,80 @@
+pipeline {
+    agent {
+        node {
+            label 'openshift4-prg-heavy'
+        }
+    }
+
+    tools {
+        maven 'Maven 3.6.3'
+        jdk 'JDK11'
+    }
+
+    options {
+        disableConcurrentBuilds()
+        timestamps()
+        ansiColor('xterm')
+    }
+
+    parameters {
+        string(description: 'The Project Release Version which will be set in the pom.xml', name: 'RELEASE_VERSION', trim: true)
+        string(description: 'The Project Version for the next development iteration which will be set in the pom.xml', name: 'DEVELOPMENT_VERSION', trim: true)
+        booleanParam(defaultValue: false, description: 'Run the maven release plugin with dryRun set to true', name: 'DRY_RUN')
+    }
+
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                checkout scmGit(
+                    branches: [[name: 'feature/DIS-28-maven-release-automation']],
+                    extensions: [
+                        cloneOption(honorRefspec: true, noTags: false, reference: '', shallow: false),
+                        localBranch('**')
+                    ],
+                    userRemoteConfigs: [
+                        [credentialsId: 'ssh-key-omoravek', url: 'git@git.dhl.com:NDCW-10025/discover.git']
+                    ]
+                )
+            }
+        }
+
+        stage('Maven Release Prepare & Perform') {
+            when {
+                allOf {
+                    expression { return params.RELEASE_VERSION != null }
+                    expression { return params.DEVELOPMENT_VERSION != null }
+                    expression { return params.DRY_RUN != null }
+                }
+            }
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key-omoravek', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                    withEnv(["RELEASE_VERSION=${params.RELEASE_VERSION}", "DEVELOPMENT_VERSION=${params.DEVELOPMENT_VERSION}", "DRY_RUN=${params.DRY_RUN}"]) {
+                        script{
+                            sh '''
+                                export GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i $SSH_PRIVATE_KEY -F /dev/null'
+                                echo "Release version: $RELEASE_VERSION"
+                                echo "Next development version: $DEVELOPMENT_VERSION"
+                                echo "Dry run: $DRY_RUN"
+                                # env
+                                # ls -la
+                                # git remote -v
+                                # git config --list
+                                # git fetch --all
+                                mvn \
+                                    -ntp \
+                                    -DdryRun=$DRY_RUN \
+                                    -Pdhl-artifactory \
+                                    -Dresume=false \
+                                    -Dtag=v$RELEASE_VERSION \
+                                    -DreleaseVersion=$RELEASE_VERSION \
+                                    -DdevelopmentVersion=$DEVELOPMENT_VERSION \
+                                    release:prepare \
+                                    release:perform
+                            '''
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
