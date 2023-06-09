@@ -145,7 +145,7 @@
     </build>
     <profiles>
         <profile>
-            <id>local-frontend-dev </id>
+            <id>local-frontend-dev</id>
             <properties>
                 <frontend.environment>dev</frontend.environment>
             </properties>

@@ -170,6 +170,8 @@
                     <configuration>
                         <nodeVersion>v10.24.1</nodeVersion>
                         <npmVersion>6.14.6</npmVersion>
+                        <nodeDownloadRoot>https://artifactory.dhl.com/nodejs/</nodeDownloadRoot>
+                        <npmDownloadRoot>https://artifactory.dhl.com/api/npm/npm/</npmDownloadRoot>
                     </configuration>
                     <executions>
                         <execution>
@@ -491,6 +493,22 @@ Bundle-DocURL:
                     <url>https://artifactory.dhl.com/artifactory/maven-release</url>
                 </repository>
             </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>maven-release</name>
+                    <url>https://artifactory.dhl.com/maven-release</url>
+                </pluginRepository>
+                <pluginRepository>
+                    <snapshots />
+                    <id>snapshots</id>
+                    <name>maven-snapshot</name>
+                    <url>https://artifactory.dhl.com/maven-snapshot</url>
+                </pluginRepository>
+            </pluginRepositories>
         </profile>
 
         <profile>
