@@ -25,25 +25,15 @@ pipeline {
     stages {
         stage('SCM Checkout') {
             steps {
-                checkout scmGit(
-                    branches: [[name: 'feature/DIS-28-maven-release-automation']],
-                    extensions: [
-                        cloneOption(honorRefspec: true, noTags: false, reference: '', shallow: false),
-                        localBranch('**')
-                    ],
-                    userRemoteConfigs: [
-                        [credentialsId: 'ssh-key-omoravek', url: 'git@git.dhl.com:NDCW-10025/discover.git']
-                    ]
-                )
+                checkout scm
             }
         }
 
         stage('Maven Release Prepare & Perform') {
             when {
                 allOf {
-                    expression { return params.RELEASE_VERSION != null }
-                    expression { return params.DEVELOPMENT_VERSION != null }
-                    expression { return params.DRY_RUN != null }
+                    expression { return params.RELEASE_VERSION != "" }
+                    expression { return params.DEVELOPMENT_VERSION != "" }
                 }
             }
             steps {
