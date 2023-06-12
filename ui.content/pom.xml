@@ -58,7 +58,7 @@
                     <validatorsSettings>
                         <jackrabbit-filter>
                             <options>
-                                <validRoots>/conf/global/settings/workflow,/conf/groovyconsole/scripts,/var/workflow,/etc</validRoots>
+                                <validRoots>/conf/global/settings/workflow,/conf/groovyconsole,/var/workflow,/etc</validRoots>
                             </options>
                         </jackrabbit-filter>
                     </validatorsSettings>
