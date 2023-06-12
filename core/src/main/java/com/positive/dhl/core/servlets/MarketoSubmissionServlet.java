@@ -1,5 +1,6 @@
 package com.positive.dhl.core.servlets;
 
+import com.positive.dhl.core.config.MarketoSubmissionConfigReader;
 import com.positive.dhl.core.dto.marketo.FormInputBase;
 import com.positive.dhl.core.dto.marketo.FormSubmissionErrors;
 import com.positive.dhl.core.dto.marketo.FormSubmissionResponse;
@@ -42,24 +43,34 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 	@Reference
 	private transient HttpCommunication httpCommunication;
 
+	@Reference
+	private transient MarketoSubmissionConfigReader configReader;
+
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-		int formId = inputParamHelper.getFormId(request);
-		String token = httpCommunication.requestNewToken();
-		List<String> availableFormFieldNames = httpCommunication.getAvailableFormFieldNames(token);
-		List<String> formFields = httpCommunication.getFormFields(token, formId);
-		response.setContentType("text/html");
-		FormInputBase form = inputParamHelper.buildForm(request, availableFormFieldNames,formFields );
+		boolean canProceed = canProceed();
+		if(canProceed){
+			LOGGER.info("OSGi configuration sets Marketo Hidden form submission to 'enabled'. Proceeding ...");
+			int formId = inputParamHelper.getFormId(request);
+			String token = httpCommunication.requestNewToken();
+			List<String> availableFormFieldNames = httpCommunication.getAvailableFormFieldNames(token);
+			List<String> formFields = httpCommunication.getFormFields(token, formId);
+			response.setContentType("text/html");
+			FormInputBase form = inputParamHelper.buildForm(request, availableFormFieldNames,formFields );
 
-		PrintWriter pw = response.getWriter();
+			PrintWriter pw = response.getWriter();
 
-		if(null != token && form.isOk()){
-			LOGGER.info("Got authentication token, proceeding to form submission");
-			var formSubmissionResponse = httpCommunication.submitForm(form,token );
-			provideResponse(formSubmissionResponse, pw);
+			if(null != token && form.isOk()){
+				LOGGER.info("Got authentication token, proceeding to form submission");
+				var formSubmissionResponse = httpCommunication.submitForm(form,token );
+				provideResponse(formSubmissionResponse, pw);
+			} else {
+				pw.write("KO");
+			}
 		} else {
-			pw.write("KO");
+			LOGGER.warn("OSGi configuration sets the Marketo hidden form submission to 'disabled'. Not doing anything...");
 		}
+		response.setStatus(202);
 	}
 
 	private void provideResponse(FormSubmissionResponse formSubmissionResponse, PrintWriter printWriter){
@@ -83,6 +94,24 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 			}
 			printWriter.write("KO");
 		}
+	}
+
+	/**
+	 * Simple check to verify if the functionality is enabled in OSGi configuration of the form submissions.
+	 * @return boolean {@code true} if functionality is enabled (and hostname, clientId & secretId values are present in OSGi configuration)
+	 * or {@code false} if the functionality is disabled or any of the critical values is missing
+	 */
+	private boolean canProceed(){
+		boolean functionalityEnabled = configReader.getMarketoHiddenFormSubmissionEnabled();
+		String hostname = configReader.getMarketoHost();
+		String clientId = configReader.getMarketoClientId();
+		String secretId = configReader.getMarketoClientSecret();
+
+		boolean host = hostname != null && !hostname.isEmpty();
+		boolean client = clientId != null && !clientId.isEmpty();
+		boolean secret = secretId != null && !secretId.isEmpty();
+
+		return functionalityEnabled && host && client && secret;
 	}
 
 }

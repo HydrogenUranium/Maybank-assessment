@@ -3,6 +3,13 @@ package com.positive.dhl.core.config;
 public interface MarketoSubmissionConfigReader {
 
 	/**
+	 * Provides a boolean {@code true} if the hidden Marketo form functionality is enabled (turned on) or {@code false} if not
+	 *
+	 * @return boolean {@code true} or {@code false}
+	 */
+	boolean getMarketoHiddenFormSubmissionEnabled();
+
+	/**
 	 * Provides the Marketo hostname available in the OSGi config
 	 * @return String representing the hostname
 	 */
