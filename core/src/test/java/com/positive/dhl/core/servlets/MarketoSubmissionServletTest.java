@@ -1,6 +1,6 @@
 package com.positive.dhl.core.servlets;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.positive.dhl.core.config.MarketoSubmissionConfigReader;
 import com.positive.dhl.core.dto.marketo.FormInputBase;
 import com.positive.dhl.core.dto.marketo.FormSubmissionResponse;
 import com.positive.dhl.core.services.HttpCommunication;
@@ -40,9 +40,9 @@ class MarketoSubmissionServletTest {
 	@Mock
 	InitUtil initUtil;
 	@Mock
-	ObjectMapper objectMapper;
-	@Mock
 	FormInputBase formInputBase;
+	@Mock
+	MarketoSubmissionConfigReader configReader;
 	@InjectMocks
 	MarketoSubmissionServlet underTest;
 
@@ -53,14 +53,45 @@ class MarketoSubmissionServletTest {
 		Map<String,Object> injectedServices = new HashMap<>();
 		injectedServices.putIfAbsent("inputParamHelper", inputParamHelper);
 		injectedServices.putIfAbsent("httpCommunication", httpCommunication);
+		injectedServices.putIfAbsent("configReader", configReader);
 		injectedServices.putIfAbsent("initUtil", initUtil);
 
 		context.registerService(InputParamHelper.class, inputParamHelper);
 		context.registerService(HttpCommunication.class, httpCommunication);
 		context.registerService(InitUtil.class, initUtil);
+		context.registerService(MarketoSubmissionConfigReader.class, configReader);
 
 		underTest = new MarketoSubmissionServlet();
 		context.registerInjectActivateService(underTest, injectedServices);
+	}
+
+	/**
+	 * Tests the scenario where configuration disables the hidden form submissions
+	 * @throws ServletException is thrown by servlet's doPost method
+	 * @throws IOException is thrown by servlet's doPost method
+	 */
+	@Test
+	void functionalityDisabled() throws ServletException, IOException {
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(false);
+		underTest.doPost(request, response);
+
+		int status = response.getStatus();
+		assertEquals(202, status);
+	}
+
+	/**
+	 * Tests the scenario where configuration enables the functionality but one or more important config values are disabled
+	 * @throws ServletException is thrown by servlet's doPost method
+	 * @throws IOException is thrown by servlet's doPost method
+	 */
+	@Test
+	void configNotOK() throws ServletException, IOException {
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
+		when(configReader.getMarketoClientId()).thenReturn("");
+		underTest.doPost(request, response);
+
+		int status = response.getStatus();
+		assertEquals(202, status);
 	}
 
 	@Test
@@ -71,6 +102,10 @@ class MarketoSubmissionServletTest {
 				.requestId("dummy-request-id")
 				.build();
 
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
+		when(configReader.getMarketoHost()).thenReturn("dummy-host");
+		when(configReader.getMarketoClientId()).thenReturn("dummy-client-id");
+		when(configReader.getMarketoClientSecret()).thenReturn("dummy-secret-id");
 		when(inputParamHelper.buildForm(any(SlingHttpServletRequest.class), anyList(), anyList())).thenReturn(formInputBase);
 		when(formInputBase.isOk()).thenReturn(true);
 		when(httpCommunication.requestNewToken()).thenReturn("dummy-token");
@@ -84,11 +119,10 @@ class MarketoSubmissionServletTest {
 	@Test
 	void tokenNotReceived() throws ServletException, IOException {
 		request.setHeader("User-agent", "whatever");
-		FormSubmissionResponse formSubmissionResponse = FormSubmissionResponse.builder()
-				.success(true)
-				.requestId("dummy-request-id")
-				.build();
-
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
+		when(configReader.getMarketoHost()).thenReturn("dummy-host");
+		when(configReader.getMarketoClientId()).thenReturn("dummy-client-id");
+		when(configReader.getMarketoClientSecret()).thenReturn("dummy-secret-id");
 		when(inputParamHelper.buildForm(any(SlingHttpServletRequest.class), anyList(), anyList())).thenReturn(mock(FormInputBase.class));
 
 		underTest.doPost(request,response);
