@@ -26,6 +26,7 @@ public class MarketoSubmissionConfigReaderImpl implements MarketoSubmissionConfi
 	private String marketoFormSubmissionEndpoint;
 	private String marketoFormDescriptionEndpoint;
 	private String marketoFormFieldsEndpoint;
+	private boolean marketoHiddenFormSubmissionsEnabled;
 
 	@Activate
 	@Modified
@@ -37,6 +38,12 @@ public class MarketoSubmissionConfigReaderImpl implements MarketoSubmissionConfi
 		marketoFormSubmissionEndpoint = PropertiesUtil.toString(marketoSubmissionConfig.formSubmissionAPIEndpoint(),"/rest/v1/leads/submitForm.json");
 		marketoFormDescriptionEndpoint = PropertiesUtil.toString(marketoSubmissionConfig.marketoFormDescriptionAPIEndpoint(),"/rest/v1/leads/describe2.json");
 		marketoFormFieldsEndpoint = PropertiesUtil.toString(marketoSubmissionConfig.marketoFormFieldsAPIEndpoint(), "/rest/asset/v1/form/{0}/fields.json");
+		marketoHiddenFormSubmissionsEnabled = PropertiesUtil.toBoolean(marketoSubmissionConfig.marketoHiddenFormSubmissionEnabled(),false);
+	}
+
+	@Override
+	public boolean getMarketoHiddenFormSubmissionEnabled() {
+		return marketoHiddenFormSubmissionsEnabled;
 	}
 
 	@Override

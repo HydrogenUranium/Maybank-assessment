@@ -1,4 +1,5 @@
 {
+  "marketoHiddenFormSubmissionEnabled": "$[env:MARKETO_HIDDEN_SUBMISSIONS_ENABLED]",
   "getMarketoHostname": "$[env:MARKETO_HOSTNAME]",
   "getClientId": "$[secret:MARKETO_CLIENT_ID]",
   "getSecret": "$[secret:MARKETO_SECRET]",

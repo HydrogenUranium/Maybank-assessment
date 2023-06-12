@@ -11,6 +11,13 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface MarketoSubmissionConfig {
 
 	@AttributeDefinition(
+			name = "Marketo hidden form submissions enabled",
+			description = "If checked, marketo hidden form submissions will be sent to Marketo via API (if other criteria are met)",
+			type = AttributeType.BOOLEAN
+	)
+	boolean marketoHiddenFormSubmissionEnabled() default false;
+
+	@AttributeDefinition(
 			name = "Marketo Host",
 			description = "Hostname where we should send the data from 'hidden form'",
 			defaultValue = "https://084-XPW-627.mktorest.com",
