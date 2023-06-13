@@ -14,17 +14,17 @@
 		<div class="row articleGrid__grid" data-sly-list="${grid.articles}">
 			<div class="articleGrid__item col-12 col-md-6 col-lg-4">
 				<article class="articlePanel${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}${((item.index < 2) ? ' articlePanel--large' : '')}" id="articlePanelUniqueId">
-					<a class="articlePanel__image" href="${item.path}${editmode ? '.html' : ''}" title="${item.title}">
+					<a class="articlePanel__image" href="${item.path}.html" title="${item.title}">
 						<amp-img src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.listimage}" height="69" width="90" layout="fixed"></amp-img>
 						<span class="sr-only">${item.title}</span>
 					</a>
 					<div class="articlePanel__content">
-						<a href="${item.path}${editmode ? '.html' : ''}" title="${item.title}">
+						<a href="${item.path}.html" title="${item.title}">
 							<h1 class="articlePanel__title">${item.title}</h1>
 							<p class="articlePanel__description">${item.brief}</p>
 						</a>
 						<h2 class="articlePanel__subTitle">
-							<a href="${item.path}${editmode ? '.html' : ''}" title="Business">${item.grouptitle}</a> <sly data-sly-unwrap data-sly-test="${(item.readtime.length > 0)}">&middot; <a class="noUnderline" href="${item.path}.html" title="${item.title}">${item.readtime}</sly></a>
+							<a href="${item.path}.html" title="Business">${item.grouptitle}</a> <sly data-sly-unwrap data-sly-test="${(item.readtime.length > 0)}">&middot; <a class="noUnderline" href="${item.path}.html" title="${item.title}">${item.readtime}</sly></a>
 						</h2>
 					</div>
 				</article>
