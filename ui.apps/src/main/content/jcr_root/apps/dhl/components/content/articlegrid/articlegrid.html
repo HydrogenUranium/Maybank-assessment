@@ -13,6 +13,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
+<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <div id="articles" class="articleGrid hide-offline" data-endpoint="/includes/api/articleGrid.json" data-sly-use.grid="com.positive.dhl.core.models.ArticleGrid" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
 	<div class="articleGrid__navWrap">
 		<ul class="articleGrid__nav">
@@ -29,9 +30,9 @@
 		<div class="row articleGrid__grid" data-sly-list="${grid.articles}">
 	      	<div class="col-12 col-lg-4" data-sly-test="${item.index == 5}">
 				<style type="text/css">
-					@media screen and (min-width: 768px) and (max-width: 991px) { #applyForAccountPanel--articleGrid { background-image: url('${accountactions.assetprefix @ context = 'unsafe'}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/applyForAccountPanel--article.png') !important; background-size: contain; } }
+					@media screen and (min-width: 768px) and (max-width: 991px) { #applyForAccountPanel--articleGrid { background-image: url('/etc.clientlibs/dhl/clientlibs${accountactions.assetprefix @ context = 'unsafe'}/resources/img/applyForAccountPanel--article.png') !important; background-size: contain; } }
 				</style>
-				<div id="applyForAccountPanel--articleGrid" class="applyForAccountPanel" style="background-image: url('${accountactions.assetprefix @ context = 'unsafe'}/etc.clientlibs/dhl/clientlibs/clientlib-site/resources/img/applyForAccountPanel.png');">
+				<div id="applyForAccountPanel--articleGrid" class="applyForAccountPanel" style="background-image: url('/etc.clientlibs/dhl/clientlibs${accountactions.assetprefix @ context = 'unsafe'}/resources/img/applyForAccountPanel.png');">
 				    <div class="row">
 				        <div class="col-12">
 				            <h4 class="applyForAccountPanel__subtitle">${accountactions.applyForAccountSubtitle}</h4>
@@ -47,17 +48,17 @@
 				</div>
 			</div>
 			<div class="articleGrid__item col-12 col-md-6 col-lg-4" data-index="${item.index}" style="${(item.index > 4 ? ' display: none;' : '') @context='unsafe'}">
-				<article class="articlePanel${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}${((item.index < 2) ? ' articlePanel--large' : '')}" id="articlePanelUniqueId">
-					<a class="articlePanel__image" href="${item.path}.html" title="${item.title}" style="${'background-image: url(\'{0}{1}\');' @context='unsafe',format=[ accountactions.assetprefix, item.listimage ]}">
+				<article class="articlePanel${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}${((item.index < 2) ? ' articlePanel--large' : '')}">
+					<a class="articlePanel__image " href="${item.path}${editmode ? '.html' : ''}" title="${item.title}" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.listimage @ context='unsafe'}');">
 						<span class="sr-only">${item.title}</span>
 					</a>
 					<div class="articlePanel__content">
-						<a href="${item.path}.html" title="${item.title}">
+						<a href="${item.path}${editmode ? '.html' : ''}" title="${item.title}">
 							<h2 class="articlePanel__title">${item.title}</h2>
 							<p class="articlePanel__description">${item.brief}</p>
 						</a>
 						<h3 class="articlePanel__subTitle">
-							<a href="${item.path}.html" title="Business">${item.grouptitle}</a> <sly data-sly-unwrap data-sly-test="${(item.readtime.length > 0)}">&middot; <a class="noUnderline" href="${item.path}.html" title="${item.title}">${item.readtime}</sly></a>
+							<a href="${item.path}${editmode ? '.html' : ''}" title="Business">${item.grouptitle}</a> <sly data-sly-unwrap data-sly-test="${(item.readtime.length > 0)}">&middot; <a class="noUnderline" href="${item.path}${editmode ? '.html' : ''}" title="${item.title}">${item.readtime}</sly></a>
 						</h3>
 					</div>
 				</article>

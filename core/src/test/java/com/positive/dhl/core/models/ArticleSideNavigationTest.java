@@ -107,7 +107,6 @@ class ArticleSideNavigationTest {
 		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resourceResolver);
 		// following when-then gymnastics is related to Article model class,that's called from ArticleSideNavigation
 		when(resourceResolver.getResource(ARTICLE_PATH)).thenReturn(ctx.currentResource(ARTICLE_PATH));
-		when(resourceResolver.map(ARTICLE_PATH)).thenReturn(ARTICLE_PATH);
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("mode", "latest");
