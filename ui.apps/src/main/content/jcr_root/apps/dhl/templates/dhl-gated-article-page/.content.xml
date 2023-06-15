@@ -14,12 +14,12 @@
         listbrief="Lorem ipsum dolor sit amet consectetur adipiscing elit diam nonummy"
         listimage="/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg"
         mediatype="infographic"
-
+        
         gatetitle="Sign up to unlock DHL Discover"
         gatesubtitle="Want to read more?"
         gatecontent="Sign up for your Discover DHL account and get a regular downloadable hit of insider articles, white papers, industry expertise and more from all around the world."
         >
-
+        
         <title
             jcr:primaryType="nt:unstructured"
             sling:resourceType="dhl/components/content/title"/>
@@ -41,13 +41,16 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="dhl/components/content/html5embed"/>
         </partwo>
-
+        
         <parthree
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/parsys">
             <taglist
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="dhl/components/content/taglist"/>
+            <quotectapanel
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/content/quotectapanel"/>
             <articlelistcategory
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="dhl/components/content/articlelistcategoryexplore"/>
