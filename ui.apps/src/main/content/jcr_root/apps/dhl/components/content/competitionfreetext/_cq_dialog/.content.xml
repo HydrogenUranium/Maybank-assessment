@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Properties"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <question
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        fieldLabel="Question"
+                        name="./question"/>
+                    <description
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textarea"
+                        fieldLabel="Description"
+                        name="./description"/>
+                    <description2
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textarea"
+                        fieldLabel="Description (question 2)"
+                        name="./description2"/>
+                    <showq2
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                        fieldLabel="Show text field 2"
+                        text="Show text field 2"
+                        uncheckedValue="{Boolean}false"
+                        defaultChecked="{Boolean}true"
+                        value="{Boolean}true"
+                        name="./showq2"/>
+                    <description3
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textarea"
+                        fieldLabel="Description (question 3)"
+                        name="./description3"/>
+                    <showq3
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                        fieldLabel="Show text field 3"
+                        text="Show text field 3"
+                        uncheckedValue="{Boolean}false"
+                        defaultChecked="{Boolean}true"
+                        value="{Boolean}true"
+                        name="./showq3"/>
+                    <description4
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textarea"
+                        fieldLabel="Description (question 4)"
+                        name="./description4"/>
+                    <showq4
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                        fieldLabel="Show text field 4"
+                        text="Show text field 4"
+                        uncheckedValue="{Boolean}false"
+                        defaultChecked="{Boolean}true"
+                        value="{Boolean}true"
+                        name="./showq4"/>
+                    <description5
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textarea"
+                        fieldLabel="Description (question 5)"
+                        name="./description5"/>
+                    <showq5
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                        fieldLabel="Show text field 5"
+                        text="Show text field 5"
+                        uncheckedValue="{Boolean}false"
+                        defaultChecked="{Boolean}true"
+                        value="{Boolean}true"
+                        name="./showq5"/>
+                    <whatnow
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textarea"
+                        fieldLabel="'What now' content after competition entry"
+                        name="./whatnow"/>
+                    <tc
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                        useFixedInlineToolbar="{Boolean}true"
+                        fieldLabel="Terms and Conditions label content"
+                        name="./tc"/>
+                    <enddate
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                        fieldLabel="Competition Close Date"
+                        name="./enddate"/>
+                    <closed
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        fieldLabel="Competition closed text"
+                        name="./closed"/>
+
+                    <ukonly
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                        fieldLabel="UK Only"
+                        text="UK Only"
+                        uncheckedValue="{Boolean}false"
+                        defaultChecked="{Boolean}false"
+                        value="{Boolean}true"
+                        name="./ukonly"/>
+                    <ukonlytc
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                        useFixedInlineToolbar="{Boolean}true"
+                        fieldLabel="UK Only Checkbox label content"
+                        name="./ukonlytc"/>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
