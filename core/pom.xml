@@ -94,6 +94,19 @@ Import-Package: javax.annotation;version=0.0.0,*
             <artifactId>slf4j-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--
+         |  Library which implements a resource resolver type for Jackrabbit Oak
+         |  Used for testing SQL2 queries and so on.
+         |
+         |  !!! SHOULD BE PLACED ABOVE THE aem-sdk-api TO AVOID:
+         |  java.lang.RuntimeException: Unable to initialize JCR_OAK resource resolver factory: Unable to invoke method 'activate'
+        -->
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.testing.sling-mock-oak</artifactId>
+            <version>3.1.10-1.44.0</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>com.adobe.aem</groupId>
             <artifactId>aem-sdk-api</artifactId>
