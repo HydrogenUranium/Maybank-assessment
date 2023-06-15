@@ -93,6 +93,12 @@
                             <artifactId>mysql-connector-java</artifactId>
                             <target>/apps/dhl-vendor-packages/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>de.valtech.aecu</groupId>
+                            <artifactId>aecu.complete.cloud</artifactId>
+                            <type>zip</type>
+                            <target>/apps/dhl-vendor-packages/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -232,6 +238,11 @@
         <dependency>
             <groupId>org.apache.servicemix.bundles</groupId>
             <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.valtech.aecu</groupId>
+            <artifactId>aecu.complete.cloud</artifactId>
+            <type>zip</type>
         </dependency>
     </dependencies>
 </project>

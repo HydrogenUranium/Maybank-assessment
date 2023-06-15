@@ -56,7 +56,7 @@
                     <validatorsSettings>
                         <jackrabbit-filter>
                             <options>
-                                <validRoots>/etc</validRoots>
+                                <validRoots>/conf/groovyconsole,/etc</validRoots>
                             </options>
                         </jackrabbit-filter>
                     </validatorsSettings>
