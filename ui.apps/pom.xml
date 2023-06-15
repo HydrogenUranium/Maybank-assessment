@@ -145,6 +145,21 @@
     </build>
     <profiles>
         <profile>
+            <id>dhl-jenkins</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <configuration>
+                            <nodeDownloadRoot>https://artifactory.dhl.com/nodejs/</nodeDownloadRoot>
+                            <npmDownloadRoot>https://artifactory.dhl.com/api/npm/npm/</npmDownloadRoot>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>local-frontend-dev</id>
             <properties>
                 <frontend.environment>dev</frontend.environment>
