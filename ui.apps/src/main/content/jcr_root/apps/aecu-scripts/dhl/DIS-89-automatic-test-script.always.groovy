@@ -1,5 +1,0 @@
-aecu.contentUpgradeBuilder()
-        .forChildResourcesOf("/content/dhl")
-        .printPath()
-        .printJson()
-        .run()
