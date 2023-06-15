@@ -1,12 +1,3 @@
 {
-    "linkcheckertransformer.rewriteElements":[
-        "a:href",
-        "area:href",
-        "form:action",
-        "img:src",
-        "link:href",
-        "script:src",
-        "span:href"
-    ],
     "linkcheckertransformer.stripHtmltExtension":true
 }

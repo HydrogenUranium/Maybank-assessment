@@ -156,6 +156,7 @@ public class Article {
 				*/
 
 			valid = true;
+			path = resourceResolver.map(path);
 		}
 	}
     
