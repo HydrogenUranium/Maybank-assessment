@@ -19,7 +19,6 @@
         "set ACL for discover-base-user\nallow jcr:read,rep:write on /etc/importers/offline,/etc/reports/compreport\nend",
         "set ACL for discover-base-user\nallow jcr:read on /etc/designs\nend",
         "set ACL for discover-base-user\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement,jcr:lifecycleManagement on /etc/tags\nend",
-        "set ACL for discover-base-user\nallow jcr:read on /libs/workflow/scripts\nend",
         "set ACL for discover-base-user\nallow jcr:read on home(discover-base-user)\nend",
 
         "create group author-global",
