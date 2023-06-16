@@ -12,11 +12,8 @@ resourceResolver.findResources(pagesByTemplateQuery, Query.JCR_SQL2).each { page
         println ">> ATTENTION: Node '${node.path}' contains link to removed page '${page.path}'"
     }
 
-    if (!DRY_RUN) {
-        resourceResolver.delete(page)
-        resourceResolver.commit()
-        println ">> SUCCESS: Page '${page.path}' was removed"
-    } else {
-        println ">> SUCCESS: Page '${page.path}' will be removed"
-    }
+    aecu.contentUpgradeBuilder()
+            .forChildResourcesOf(page.path)
+            .doDeleteContainingPage()
+            .run(DRY_RUN)
 }
