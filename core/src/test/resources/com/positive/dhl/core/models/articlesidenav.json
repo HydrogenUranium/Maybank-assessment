@@ -94,14 +94,6 @@
         "textIsRich": "true",
         "imagedt": "/content/dam/dhl/business-matters/roger-bowie/Nav_800x450_A.jpg"
       },
-      "social": {
-        "jcr:primaryType": "nt:unstructured",
-        "jcr:createdBy": "idanisman",
-        "jcr:lastModifiedBy": "idanisman",
-        "jcr:created": "Mon Feb 05 2018 17:37:15 GMT+0100",
-        "jcr:lastModified": "Mon Feb 05 2018 17:37:15 GMT+0100",
-        "sling:resourceType": "dhl/components/content/social"
-      },
       "text_864090745": {
         "jcr:primaryType": "nt:unstructured",
         "jcr:createdBy": "admin",
