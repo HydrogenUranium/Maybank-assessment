@@ -48,9 +48,6 @@
             <taglist
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="dhl/components/content/taglist"/>
-            <quotectapanel
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/quotectapanel"/>
             <articlelistcategory
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="dhl/components/content/articlelistcategoryexplore"/>

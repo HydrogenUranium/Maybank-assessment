@@ -75,16 +75,6 @@
             <articlelistcategorytrending
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="dhl/components/content/articlelistcategorytrending"/>
-            <quotectapanel
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/quotectapanel"
-                author="Sun Tzu"
-                ctalink="#"
-                ctatitle="Find out more"
-                imagedt="/etc.clientlibs/dhl/clientlibs/discover/resources/img/quoteCTAPanel-desk.jpg"
-                imagetab="/etc.clientlibs/dhl/clientlibs/discover/resources/img/quoteCTAPanel-tab.jpg"
-                quote="The line between disorder and order lies"
-                subtitle="From horses to drones, read more about the history of logistics using our handy interactive timeline"/>
         </par>
     </jcr:content>
 </jcr:root>
