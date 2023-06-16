@@ -5,7 +5,6 @@ create table registrations
         primary key,
     firstname            varchar(255) not null,
     lastname             varchar(255) not null,
-    email                varchar(255) not null,
     position             varchar(255) not null,
     contact              varchar(255) not null,
     sector               varchar(255) not null,
