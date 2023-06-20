@@ -1,5 +1,11 @@
 import shared from './Shared';
 
+/**
+ * Class that powers up the two 'marketo' components - inlineshipnowmarketo & inlineshipnowmarketoconfigurable.
+ * Contains logic to submit both kinds of form - there are subtle, but important differences in their
+ * implementation. Logic in this class is tightly coupled with the HTL templates for both AEM components. You have
+ * been warned.
+ */
 class MarketForm {
   constructor() {
     this.sel = {
@@ -36,6 +42,15 @@ class MarketForm {
     return false;
   }
 
+  /**
+   * Helper function that tries to get an instance of Marketo form identified by several fields.
+   * @param {string} formUrl is the hostname where we try to download the form from
+   * @param {string} munchkinId identifies the marketo 'project'
+   * @param {string} formId identifies the formID at marketo
+   * @param {function} callbackFunction is a function that is to be executed upon successful calling of the Marketo
+   * form (this field is optional)
+   * @return {Object} new instance of Marketo form (if request was successful)
+   */
   loadMarketoForm(formUrl, munchkinId, formId, callbackFunction) {
     return window.MktoForms2.loadForm(formUrl, munchkinId, formId, callbackFunction);
   }
@@ -100,7 +115,7 @@ class MarketForm {
    * information we need to figure out the potential munchkin & form id of the 'hidden' instance.
    * @return {undefined} does not return anything
    */
-  processVisibleForm(visibleForm, baseElement) {
+  processMarketoConfigurableForm(visibleForm, baseElement) {
     visibleForm.whenReady(originalForm => {
       $('#mktoForms2BaseStyle').remove();
       $('#mktoForms2ThemeStyle').remove();
@@ -117,15 +132,51 @@ class MarketForm {
     });
   }
 
+  /**
+   * Implementation of non-configurable marketo form submission of both visible & hidden forms. Logic is slightly
+   * different from 'processMarketoConfigurableForm' in the way that hidden form submission happens to the *same*
+   * marketo instance.
+   * @param {object} visibleForm is the visible form element (MktoForms2)
+   * @param {element} baseElement is the HTML element that contains the attributes we use to gather the data about
+   * the Marketo instance(s)
+   * @param {string} visibleFormHost is the URL where we can 'find' the visible form
+   * @return {void} does not return
+   */
+  processMarketoNonConfigurableForm(visibleForm, baseElement, visibleFormHost) {
+    visibleForm.whenReady(originalForm => {
+      $('#mktoForms2BaseStyle').remove();
+      $('#mktoForms2ThemeStyle').remove();
+      originalForm.onSuccess((e) => {
+        const hiddenFormId = baseElement.getAttribute('hiddenFormId');
+        const hiddenMunchkinId = baseElement.getAttribute('hiddenMunchkinId');
+        if (hiddenFormId !== null && hiddenMunchkinId !== null) {
+          let hiddenForm = this.loadMarketoForm(visibleFormHost, hiddenMunchkinId, hiddenFormId);
+          let formValues = new Map();
+          for (const [key, value] of Object.entries(e)) {
+            if (key.toLowerCase() === 'formId'.toLowerCase() || key.toLowerCase() === 'formvid'.toLowerCase()) {
+              continue;
+            }
+            formValues.set(key, value);
+          }
+          hiddenForm.addHiddenFields(formValues);
+          hiddenForm.submit();
+        }
+      });
+    });
+  }
   async bindEvents() {
     const baseElement = document.querySelector('div[data-marketo-form]');
     const visibleFormBase = document.querySelector('div[data-marketo-visible-form]');
     if (baseElement) {
       const munchkinId = baseElement.getAttribute('munchkinid');
       const formId = baseElement.getAttribute('formid');
-      if (munchkinId !== null && formId !== null && visibleFormBase !== null) {
-        let visibleForm = this.loadMarketoForm('https://express-resource.dhl.com', munchkinId, formId);
-        this.processVisibleForm(visibleForm, baseElement);
+      const source = baseElement.getAttribute('source');
+      const visibleFormHost = baseElement.getAttribute('formHost') !== null ? baseElement.getAttribute('formHost') : 'https://express-resource.dhl.com';
+      let visibleForm = this.loadMarketoForm(visibleFormHost, munchkinId, formId);
+      if (source !== null && source === 'noconf') {
+        this.processMarketoNonConfigurableForm(visibleForm, baseElement, visibleFormHost);
+      } else if (munchkinId !== null && formId !== null && visibleFormBase !== null) {
+        this.processMarketoConfigurableForm(visibleForm, baseElement);
       }
     }
   }
