@@ -53,7 +53,7 @@ public class ConfigurableMarketoForm {
 	public String shipnowcontent;
 
 	public String getVisibleFormHost(){
-		if(null != marketohost){
+		if(null != marketohost && !marketoformid.isBlank()){
 			return marketohost;
 		}
 		return "https://express-resource.dhl.com";

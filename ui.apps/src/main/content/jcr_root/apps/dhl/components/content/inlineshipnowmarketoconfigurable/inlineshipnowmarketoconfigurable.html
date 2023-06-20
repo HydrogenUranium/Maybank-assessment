@@ -20,10 +20,11 @@
 		<div class="forms marketoForm marketoForm--yellow"
 			 formId="${cmf.marketoformid}"
 			 munchkinId="${cmf.marketoid}"
-			 formHost="${cmf.marketohost}"
+			 formHost="${cmf.getVisibleFormHost}"
 			 hiddenFormId='${cmf.marketohiddenformid}'
 			 action="${accountactions.getAssetprefix}${currentPage.path}.form.html"
 			 formstart="${accountactions.getAssetprefix}${currentNode.path}.form.html"
+			 source="conf"
 			 data-marketo-form>
 		  <div class="marketoForm__container">
 			<h3 class="marketoForm__title">${ 'Apply for a business account today' @ i18n, context='html' }</h3>
@@ -31,13 +32,10 @@
 				<div data-marketo-visible-form>
 				  <form id="mktoForm_${ cmf.marketoformid @ context = 'unsafe' }"></form>
 					<script src="${cmf.getVisibleFormHost}/js/forms2/js/forms2.min.js"></script>
-					<script>MktoForms2.loadForm("${cmf.getVisibleFormHost @ context = 'unsafe'}",
-							"${ configurableMarketoForm.marketoid @ context = 'unsafe' }", ${ configurableMarketoForm.marketoformid @ context = 'unsafe' });</script>
 				</div>
 			  </sly>
 		  </div>
 		</div>
-
 	</div>
 
 	<div class="sep">
@@ -45,8 +43,8 @@
 	</div>
 
 	<div class="ship-now-now" data-sly-use.landingPage="com.positive.dhl.core.models.LandingPageTwoColumn">
-		<h3>${configurableMarketoForm.shipnowtitle}</h3>
-		${configurableMarketoForm.shipnowcontent @context='html'}
+		<h3>${cmf.shipnowtitle}</h3>
+		${cmf.shipnowcontent @context='html'}
 		<a href="${landingPage.shipNowUrl}" rel="external" target="_blank" title="Ship now"><span>${ 'Ship now' @ i18n, context='html' }</span></a>
 	</div>
 </div>
