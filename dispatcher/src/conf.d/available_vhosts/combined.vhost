@@ -12,7 +12,9 @@ Include conf.d/variables/custom.vars
 	# URI dereferencing algorithm is applied at Sling's level, do not decode parameters here
 	AllowEncodedSlashes NoDecode
 
-	ErrorDocument 404 /discover/en-global/page-not-found
+    SetEnvIf Request_URI "^/discover/(\w{2}-\w{2,6})/.*" NOTFOUNDPAGE=discover/$1/page-not-found
+    SetEnvIfExpr "%{ENV:NOTFOUNDPAGE} =~ /^$/" NOTFOUNDPAGE=discover/en-global/page-not-found
+    ErrorDocument 404 /%{ENV:NOTFOUNDPAGE}
 
 	<IfModule mod_headers.c>
 		# Add X-Vhost header to help in troubleshooting

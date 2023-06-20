@@ -14,7 +14,9 @@ Include conf.d/rewrites/default_rewrite.rules
 RewriteCond %{HTTP_USER_AGENT} ^.*ltx71.*$
 RewriteRule . - [R=403,L,NC]
 
-ErrorDocument 404 https://www.dhl.com/discover/en-global/page-not-found
+SetEnvIf Request_URI "^/discover/(w{2}-w{2,6})/.*" NOTFOUNDPAGE=discover/$1/page-not-found
+SetEnvIfExpr "%{ENV:NOTFOUNDPAGE} =~ /^$/" NOTFOUNDPAGE=discover/en-global/page-not-found
+ErrorDocument 404 /%{ENV:NOTFOUNDPAGE}
 
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1$1 [R=301,L]
