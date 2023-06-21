@@ -49,10 +49,14 @@ class MarketForm {
    * @param {string} formId identifies the formID at marketo
    * @param {function} callbackFunction is a function that is to be executed upon successful calling of the Marketo
    * form (this field is optional)
-   * @return {Object} new instance of Marketo form (if request was successful)
+   * @return {Object} new instance of Marketo form (if request was successful) or null in case either munchkinId or
+   * formId were provided as nulls
    */
   loadMarketoForm(formUrl, munchkinId, formId, callbackFunction) {
-    return window.MktoForms2.loadForm(formUrl, munchkinId, formId, callbackFunction);
+    if (munchkinId !== null && formId !== null) {
+      return window.MktoForms2.loadForm(formUrl, munchkinId, formId, callbackFunction);
+    }
+    return null;
   }
 
   /**
@@ -116,21 +120,24 @@ class MarketForm {
    * @return {undefined} does not return anything
    */
   processMarketoConfigurableForm(visibleForm, baseElement) {
-    visibleForm.whenReady(originalForm => {
-      $('#mktoForms2BaseStyle').remove();
-      $('#mktoForms2ThemeStyle').remove();
-      originalForm.onSuccess((e) => {
-        const hiddenFormId = baseElement.getAttribute('hiddenFormId');
-        const formSubmissionPath = baseElement.getAttribute('action');
-        const formStart = baseElement.getAttribute('formstart');
-        let needHiddenFormSubmission = this.isHiddenForm(baseElement);
-        if (needHiddenFormSubmission &&  formStart !== null && hiddenFormId !== null && formSubmissionPath !== null && formSubmissionPath !== ' ' ) {
-          let formData = this.buildFormData(e, hiddenFormId, formStart);
-          shared.submitForm(formSubmissionPath, formData).then(() => console.log('Submitted'));
-        }
+    if (visibleForm !== null) {
+      visibleForm.whenReady(originalForm => {
+        $('#mktoForms2BaseStyle').remove();
+        $('#mktoForms2ThemeStyle').remove();
+        originalForm.onSuccess((e) => {
+          const hiddenFormId = baseElement.getAttribute('hiddenFormId');
+          const formSubmissionPath = baseElement.getAttribute('action');
+          const formStart = baseElement.getAttribute('formstart');
+          let needHiddenFormSubmission = this.isHiddenForm(baseElement);
+          if (needHiddenFormSubmission &&  formStart !== null && hiddenFormId !== null && formSubmissionPath !== null && formSubmissionPath !== ' ' ) {
+            let formData = this.buildFormData(e, hiddenFormId, formStart);
+            shared.submitForm(formSubmissionPath, formData).then(() => console.log('Submitted'));
+          }
+        });
       });
-    });
+    }
   }
+
 
   /**
    * Implementation of non-configurable marketo form submission of both visible & hidden forms. Logic is slightly
@@ -143,27 +150,38 @@ class MarketForm {
    * @return {void} does not return
    */
   processMarketoNonConfigurableForm(visibleForm, baseElement, visibleFormHost) {
-    visibleForm.whenReady(originalForm => {
+    if (visibleForm !== null) {
+      visibleForm.whenReady(originalForm => {
+        $('#mktoForms2BaseStyle').remove();
+        $('#mktoForms2ThemeStyle').remove();
+        originalForm.onSuccess((e) => {
+          const hiddenFormId = baseElement.getAttribute('hiddenFormId');
+          const hiddenMunchkinId = baseElement.getAttribute('hiddenMunchkinId');
+          if (hiddenFormId !== null && hiddenMunchkinId !== null) {
+            let hiddenForm = this.loadMarketoForm(visibleFormHost, hiddenMunchkinId, hiddenFormId);
+            let formValues = new Map();
+            for (const [key, value] of Object.entries(e)) {
+              if (key.toLowerCase() === 'formId'.toLowerCase() || key.toLowerCase() === 'formvid'.toLowerCase()) {
+                continue;
+              }
+              formValues.set(key, value);
+            }
+            hiddenForm.addHiddenFields(formValues);
+            hiddenForm.submit();
+          }
+        });
+      });
+    }
+  }
+
+  processMarketoSignUpForm(form) {
+    form.whenReady(() => {
       $('#mktoForms2BaseStyle').remove();
       $('#mktoForms2ThemeStyle').remove();
-      originalForm.onSuccess((e) => {
-        const hiddenFormId = baseElement.getAttribute('hiddenFormId');
-        const hiddenMunchkinId = baseElement.getAttribute('hiddenMunchkinId');
-        if (hiddenFormId !== null && hiddenMunchkinId !== null) {
-          let hiddenForm = this.loadMarketoForm(visibleFormHost, hiddenMunchkinId, hiddenFormId);
-          let formValues = new Map();
-          for (const [key, value] of Object.entries(e)) {
-            if (key.toLowerCase() === 'formId'.toLowerCase() || key.toLowerCase() === 'formvid'.toLowerCase()) {
-              continue;
-            }
-            formValues.set(key, value);
-          }
-          hiddenForm.addHiddenFields(formValues);
-          hiddenForm.submit();
-        }
-      });
     });
   }
+
+
   async bindEvents() {
     const baseElement = document.querySelector('div[data-marketo-form]');
     const visibleFormBase = document.querySelector('div[data-marketo-visible-form]');
@@ -173,10 +191,19 @@ class MarketForm {
       const source = baseElement.getAttribute('source');
       const visibleFormHost = baseElement.getAttribute('formHost') !== null ? baseElement.getAttribute('formHost') : 'https://express-resource.dhl.com';
       let visibleForm = this.loadMarketoForm(visibleFormHost, munchkinId, formId);
-      if (source !== null && source === 'noconf') {
+
+      if (visibleForm !== null && source !== null && source === 'noconf') {
         this.processMarketoNonConfigurableForm(visibleForm, baseElement, visibleFormHost);
-      } else if (munchkinId !== null && formId !== null && visibleFormBase !== null) {
+      } else if (visibleForm !== null && munchkinId !== null && formId !== null && visibleFormBase !== null) {
         this.processMarketoConfigurableForm(visibleForm, baseElement);
+      } else if (source !== null && source === 'signup') {
+        const hiddenFormId = baseElement.getAttribute('hiddenformid');
+        const hiddenMunchkinId = baseElement.getAttribute('hiddenmunchkinid');
+        const formHost = baseElement.getAttribute('formHost');
+        let signupForm = this.loadMarketoForm(formHost, hiddenMunchkinId, hiddenFormId);
+        if (signupForm !== null) {
+          this.processMarketoSignUpForm(signupForm);
+        }
       }
     }
   }
