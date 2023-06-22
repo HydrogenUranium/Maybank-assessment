@@ -1,0 +1,22 @@
+{
+  "cq.wcm.msm.action.excludednodetypes":[
+    "cq:LiveSyncConfig",
+    "cq:BlueprintSyncConfig",
+    "cq:LiveSyncAction",
+    "cq:CatalogSyncConfig",
+    "cq:CatalogSyncAction",
+    "cq:meta"
+  ],
+  "cq.wcm.msm.action.excludedparagraphitems":[
+    "cq:propertyInheritanceCancelled",
+    "dc:title",
+    "cq:targetMetadata",
+    "cq:targetMetadataJson"
+  ],
+  "cq.wcm.msm.action.excludedprops":[
+    "jcr:(?!(language)$).*",
+    "sling:(?!(resourceType|resourceSuperType)$).*",
+    "cq:(?!(designPath|template|lastTranslationUpdate|targetEngine|robotsTags|isLanguageRoot)$).*",
+    "publishCampaignId"
+  ]
+}
