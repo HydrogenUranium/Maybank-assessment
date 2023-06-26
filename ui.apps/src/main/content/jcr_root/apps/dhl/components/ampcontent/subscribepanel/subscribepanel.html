@@ -20,6 +20,7 @@
 		</div>
 		<div class="col-12 col-md-6 col-lg-12">
 			<form class="subscribePanel__form" action-xhr="${dhlpage.pathprefix}/apps/dhl/discoverdhlapi/newsletter/index.json" method="POST">
+				<input type="hidden" name="formStart" value="${currentNode.getPath}.json" />
 				<div class="subscribePanel__formFields">
 					<div class="form-group">
 						<label class="sr-only" for="email">Your Email Address</label>
