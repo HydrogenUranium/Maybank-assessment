@@ -17,6 +17,7 @@
 	<div class="subscribePanel disable-offline" data-sly-test="${(accountactions.newslettermarketo != true)}">
 		<form class="subscribePanel__form" action="/apps/dhl/discoverdhlapi/newsletter/index.json" method="post">
 			<input type="hidden" name="home" value="${accountactions.getHomeUrl}" />
+			<input type="hidden" name="formStart" value="${currentNode.getPath}.json" />
 			<div class="row">
 				<div class="col-12">
 					<h3 class="subscribePanel__title">${properties.title}</h3>

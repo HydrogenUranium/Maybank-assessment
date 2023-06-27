@@ -5,6 +5,8 @@ import javax.servlet.Servlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
+import org.apache.sling.servlets.annotations.SlingServletPrefix;
+import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -19,10 +21,14 @@ import com.positive.dhl.core.services.NewsletterSignupService;
 @Component(
 	service = Servlet.class,
 	property = {
-		Constants.SERVICE_DESCRIPTION + "=DHL Newsletter Signup Servlet",
-		"sling.servlet.methods=" + HttpConstants.METHOD_POST,
-		"sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/newsletter/index.json"
+		Constants.SERVICE_DESCRIPTION + "=DHL Newsletter Signup Servlet"
 	}
+)
+@SlingServletPrefix("/apps/")
+@SlingServletResourceTypes(
+		resourceTypes = "dhl/components/content/subscribepanel",
+		methods = HttpConstants.METHOD_POST,
+		extensions = "json"
 )
 public class NewsletterSignupServlet extends StandardFormInputServlet {
     /**
