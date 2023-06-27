@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.positive.dhl.core.utils.AssertXml.assertXmlEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -44,29 +44,6 @@ class DiscoverRssFeedTest {
     }
 
     @Test
-    void printHeader_ShouldAddDataToResponse_WhenResourceExist() throws IOException {
-        String path = "/content/dhl/en-global";
-        request.setResource(context.resourceResolver().getResource(path));
-
-        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
-        rssFeed.printHeader();
-
-        String responseBody = context.response().getOutputAsString()
-                .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
-        assertEquals(
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
-                        "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\r\n" +
-                        "<channel>\r\n" +
-                        "<link>http://localhost/content/dhl/en-global.html</link>\r\n" +
-                        "<title>E-commerce business &amp; global logistics advice | Discover DHL</title>\r\n" +
-                        "<description/>\r\n" +
-                        "<language>EN</language>\r\n" +
-                        "<region>Global</region>\r\n" +
-                        "<pubDate/>"
-                , responseBody);
-    }
-
-    @Test
     void printHeaderAndFooter_ShouldAddDataToResponse_WhenResourceExist() throws IOException {
         String path = "/content/dhl/en-global/business/productivity/the-future-of-cyber-sales";
         request.setResource(context.resourceResolver().getResource(path));
@@ -77,19 +54,19 @@ class DiscoverRssFeedTest {
 
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
-        assertEquals(
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
-                        "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\r\n" +
-                        "<channel>\r\n" +
-                        "<link>http://localhost/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\r\n" +
-                        "<title>The future of cyber sales</title>\r\n" +
-                        "<description>description</description>\r\n" +
-                        "<language>EN</language>\r\n" +
-                        "<region>Global</region>\r\n" +
-                        "<pubDate/>\r\n" +
-                        "</channel>\r\n" +
-                        "</rss>\r\n"
-                , responseBody);
+        String expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n" +
+                "<channel>\n" +
+                "<link>http://localhost/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<title>The future of cyber sales</title>\n" +
+                "<description>description</description>\n" +
+                "<language>EN</language>\n" +
+                "<region>Global</region>\n" +
+                "<pubDate/>\n" +
+                "</channel>\n" +
+                "</rss>\n";
+
+        assertXmlEquals(expected, responseBody);
     }
 
     @Test
@@ -102,19 +79,19 @@ class DiscoverRssFeedTest {
 
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
-        assertEquals(
-                "<item>\r\n" +
-                        "<link>http://localhost/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\r\n" +
-                        "<title>The future of cyber sales</title>\r\n" +
-                        "<description>description</description>\r\n" +
-                        "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\r\n" +
-                        "<region>Global</region>\r\n" +
-                        "<language>EN</language>\r\n" +
-                        "<pubDate/>\r\n" +
-                        "<tags>tech-futures,culture-hype</tags>\r\n" +
-                        "<thumbnail>http://localhost/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\r\n" +
-                        "</item>"
-                , responseBody);
+        String expected = "<item>\n" +
+                "<link>http://localhost/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<title>The future of cyber sales</title>\n" +
+                "<description>description</description>\n" +
+                "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
+                "<region>Global</region>\n" +
+                "<language>EN</language>\n" +
+                "<pubDate/>\n" +
+                "<tags>tech-futures,culture-hype</tags>\n" +
+                "<thumbnail>http://localhost/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
+                "</item>\n";
+
+        assertXmlEquals(expected, responseBody);
     }
 
     @Test
@@ -128,19 +105,19 @@ class DiscoverRssFeedTest {
 
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
-        assertEquals(
-                "<item>\r\n" +
-                        "<link>http://localhost:4503/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\r\n" +
-                        "<title>The future of cyber sales</title>\r\n" +
-                        "<description>description</description>\r\n" +
-                        "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\r\n" +
-                        "<region>Global</region>\r\n" +
-                        "<language>EN</language>\r\n" +
-                        "<pubDate/>\r\n" +
-                        "<tags>tech-futures,culture-hype</tags>\r\n" +
-                        "<thumbnail>http://localhost:4503/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\r\n" +
-                        "</item>"
-                , responseBody);
+        String expected = "<item>" +
+                "<link>http://localhost:4503/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<title>The future of cyber sales</title>\n" +
+                "<description>description</description>\n" +
+                "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
+                "<region>Global</region>\n" +
+                "<language>EN</language>\n" +
+                "<pubDate/>\n" +
+                "<tags>tech-futures,culture-hype</tags>\n" +
+                "<thumbnail>http://localhost:4503/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
+                "</item>\n";
+
+        assertXmlEquals(expected, responseBody);
     }
 
     @Test
@@ -174,7 +151,7 @@ class DiscoverRssFeedTest {
         DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
 
         assertThrows(IOException.class, () ->
-            rssFeed.printEntry(resourceResolver.getResource(articlePath))
+                rssFeed.printEntry(resourceResolver.getResource(articlePath))
         );
     }
 

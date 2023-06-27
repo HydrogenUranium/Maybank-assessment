@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.positive.dhl.core.utils.AssertXml.assertXmlEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
@@ -78,38 +78,39 @@ class RssFeedRenderServletTest {
 
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
-        assertEquals(
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
-                        "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\r\n" +
-                        "<channel>\r\n" +
-                        "<link>http://localhost/dhl/en-global.html</link>\r\n" +
-                        "<title>E-commerce business &amp; global logistics advice | Discover DHL</title>\r\n" +
-                        "<description/>\r\n" +
-                        "<language>EN</language>\r\n" +
-                        "<region>Global</region>\r\n" +
-                        "<pubDate/><item>\r\n" +
-                        "<link>http://localhost/dhl/en-global/business/productivity/ai-science-fiction-it-is-not.html</link>\r\n" +
-                        "<title>AI science fiction it is not</title>\r\n" +
-                        "<description>description</description>\r\n" +
-                        "<articleBody><![CDATA[<h2>Article Body ai-science-fiction-it-is-not</h2>]]></articleBody>\r\n" +
-                        "<region>Global</region>\r\n" +
-                        "<language>EN</language>\r\n" +
-                        "<pubDate/>\r\n" +
-                        "<tags/>\r\n" +
-                        "<thumbnail/>\r\n" +
-                        "</item><item>\r\n" +
-                        "<link>http://localhost/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\r\n" +
-                        "<title>The future of cyber sales</title>\r\n" +
-                        "<description>description</description>\r\n" +
-                        "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\r\n" +
-                        "<region>Global</region>\r\n" +
-                        "<language>EN</language>\r\n" +
-                        "<pubDate/>\r\n" +
-                        "<tags>tech-futures,culture-hype</tags>\r\n" +
-                        "<thumbnail>http://localhost/dhl/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\r\n" +
-                        "</item>\r\n" +
-                        "</channel>\r\n" +
-                        "</rss>\r\n"
-                , responseBody);
+
+        String expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n" +
+                "<channel>\n" +
+                "<link>http://localhost/dhl/en-global.html</link>\n" +
+                "<title>E-commerce business &amp; global logistics advice | Discover DHL</title>\n" +
+                "<description/>\n" +
+                "<language>EN</language>\n" +
+                "<region>Global</region>\n" +
+                "<pubDate/><item>\n" +
+                "<link>http://localhost/dhl/en-global/business/productivity/ai-science-fiction-it-is-not.html</link>\n" +
+                "<title>AI science fiction it is not</title>\n" +
+                "<description>description</description>\n" +
+                "<articleBody><![CDATA[<h2>Article Body ai-science-fiction-it-is-not</h2>]]></articleBody>\n" +
+                "<region>Global</region>\n" +
+                "<language>EN</language>\n" +
+                "<pubDate/>\n" +
+                "<tags/>\n" +
+                "<thumbnail/>\n" +
+                "</item><item>\n" +
+                "<link>http://localhost/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<title>The future of cyber sales</title>\n" +
+                "<description>description</description>\n" +
+                "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
+                "<region>Global</region>\n" +
+                "<language>EN</language>\n" +
+                "<pubDate/>\n" +
+                "<tags>tech-futures,culture-hype</tags>\n" +
+                "<thumbnail>http://localhost/dhl/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
+                "</item>\n" +
+                "</channel>\n" +
+                "</rss>\n";
+
+        assertXmlEquals(expected, responseBody);
     }
 }
