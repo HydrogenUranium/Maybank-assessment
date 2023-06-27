@@ -42,5 +42,7 @@ RewriteRule ^/discover/(.+)$ https://%{HTTP_HOST}/discover/en-global/$1 [R=301,L
 RewriteRule ^/discover/apps/dhl/(servlet-handler|discoverdhlapi)/(.+)$ /apps/dhl/$1/$2 [PT,L,NC]
 # all assets in content/dam
 RewriteRule ^/discover/(content/dam)/(.+)$ /$1/$2 [PT,L,NC]
+# rss generator pages
+RewriteRule ^/discover/(.+)(\.thumb\.319\.319\.png|\.rss\.all\.xml|\.rss\.xml)$ /content/dhl/$1$2 [PT,L,NC]
 # all html pages
 RewriteRule ^/discover/(.+)$ /content/dhl/$1.html [PT,L,NC]
