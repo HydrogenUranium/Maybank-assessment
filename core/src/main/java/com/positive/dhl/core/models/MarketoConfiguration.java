@@ -7,6 +7,8 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import java.text.MessageFormat;
+
 /**
  * Sling model that makes the Marketo configuration values available to HTL templates
  */
@@ -47,4 +49,28 @@ public class MarketoConfiguration {
 	 */
 	@ValueMapValue
 	private @Getter String marketoHostname;
+
+	/**
+	 * Provides the Marketo 'form' element ID value ({@code <form id="xxxx"></form>})
+	 * @return a {@link String} that represents the HTML id value of the Marketo form element
+	 */
+	public String getFormIdAsDivId(){
+		var marketoFormIdDiv = "mktoForm_1795";
+		if(null != marketoFormId && !marketoFormId.isBlank()){
+			marketoFormIdDiv = MessageFormat.format("mktoForm_{0}", marketoFormId);
+		}
+		return marketoFormIdDiv;
+	}
+
+	/**
+	 * Provides the Marketo 'form' element ID value ({@code <form id="xxxx"></form>})
+	 * @return a {@link String} that represents the HTML id value of the Marketo form element
+	 */
+	public String getHiddenFormIdAsDivId(){
+		var marketoFormIdDiv = "mktoForm_1756";
+		if(null != hiddenMarketoId && !hiddenMarketoId.isBlank()){
+			marketoFormIdDiv = MessageFormat.format("mktoForm_{0}", hiddenMarketoId);
+		}
+		return marketoFormIdDiv;
+	}
 }

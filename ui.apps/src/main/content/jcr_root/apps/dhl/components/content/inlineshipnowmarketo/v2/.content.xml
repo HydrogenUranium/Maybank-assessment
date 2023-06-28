@@ -4,4 +4,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Inline Ship Now Form (marketo) v2"
     componentGroup="DHL Components"
-    sling:resourceSuperType="/apps/dhl/components/content/inlineshipnowmarketo"/>
+    sling:resourceSuperType="/apps/dhl/components/content/inlineshipnowmarketo/v1"/>
