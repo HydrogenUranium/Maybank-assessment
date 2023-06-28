@@ -38,6 +38,11 @@ import java.util.Map;
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class })
 public class ArticleGrid {
 
+	public void adaptSomething(){
+		Resource resourceTest = currentPage.adaptTo(Resource.class);
+		
+	}
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleGrid.class);
 	private static final String CTACOPY_DEFAULT_TEXT = "Speak to a Specialist Today";
 	private static final String CTALINK_DEFAULT_TEXT = "/content/dhl/en-global/ship-now.html";
