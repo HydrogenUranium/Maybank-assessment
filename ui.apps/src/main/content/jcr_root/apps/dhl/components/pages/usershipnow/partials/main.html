@@ -171,6 +171,7 @@
 
                 <form class="forms form2 ship-now-twostep" action="/apps/dhl/discoverdhlapi/shipnow/index.json" data-source="${shipNowForm.source}" data-lo="${shipNowForm.lead_originator}" data-preselectcountry="${properties.preselectedcountry}" method="post" novalidate autocomplete="off">
                   <input type="hidden" name="home" value="${accountactions.getHomeUrl}" />
+                  <input type="hidden" name="formStart" value="${currentNode.getPath}.form.html" />
                   <div class="forms__group">
                     <div class="forms__row">
                       <div class="col-12 col-xl-6">
