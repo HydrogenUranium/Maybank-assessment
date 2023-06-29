@@ -186,8 +186,8 @@ class MarketForm {
   }
 
   processMarketoSignUpForm(baseElement) {
-    const hiddenFormId = baseElement.getAttribute('hiddenformid');
-    const hiddenMunchkinId = baseElement.getAttribute('hiddenmunchkinid');
+    const hiddenFormId = baseElement.getAttribute('formId');
+    const hiddenMunchkinId = baseElement.getAttribute('munchkinId');
     const formHost = baseElement.getAttribute('formHost');
     this.loadMarketoForm(formHost, hiddenMunchkinId, hiddenFormId);
     window.MktoForms2.whenReady(() => {
