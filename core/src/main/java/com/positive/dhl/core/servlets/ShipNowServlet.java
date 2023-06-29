@@ -23,7 +23,7 @@ import java.io.IOException;
 		service = {Servlet.class})
 @SlingServletPrefix("/apps/")
 @SlingServletResourceTypes(
-		resourceTypes = "dhl/components/content/inlineshipnowtwo",
+		resourceTypes = {"dhl/components/content/inlineshipnowtwo","dhl/components/pages/usershipnow"},
 		methods = HttpConstants.METHOD_POST,
 		extensions = "html",
 		selectors = "form"

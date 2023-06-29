@@ -28,6 +28,7 @@
 			 formHost="${marketoConfig.marketoHostname @ context='html' || 'https://express-resource.dhl.com'}"
 			 source="noconf"
 		>
+
 			<div class="marketoForm__container">
 				<h3 class="marketoForm__title">${ 'Apply for a business account today' @ i18n, context='html' }</h3>
 				<div data-marketo-visible-form>
@@ -39,6 +40,7 @@
 							"${marketoConfig.marketoFormId @ context='unsafe' || '1795'}");</script>
 					<form id="${marketoConfig.hiddenFormIdAsDivId @ context='html'}"></form>
 				</div>
+
 			</div>
 		</div>
 	</div>
