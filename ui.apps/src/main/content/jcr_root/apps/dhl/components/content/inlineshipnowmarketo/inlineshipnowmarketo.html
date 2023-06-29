@@ -13,33 +13,33 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<div data-sly-test="${!properties.title && wcmmode.edit}" class="cq-placeholder" data-emptytext="Marketo form
-(v2)"></div>
+<div data-sly-test="${!properties.title && wcmmode.edit}" class="cq-placeholder" data-emptytext="Marketo form"></div>
 <div class="ship-now-group"
-	data-sly-use.marketoConfig="com.positive.dhl.core.models.MarketoConfiguration">
+	 data-sly-use.marketoConfig="com.positive.dhl.core.models.MarketoConfiguration">
 	<div class="mb-5">
 		<div class="forms marketoForm marketoForm--yellow" data-marketo-form='{
 		  "hiddenMunchkinId": "078-ERT-522",
 		  "hiddenFormId": 1756
 		}'
-	 	hiddenMunchkinId = "${marketoConfig.hiddenMarketoMunchkinId @ context='html'}"
-	 	hiddenFormId = "${marketoConfig.hiddenMarketoId @ context='html'}"
-		munchkinid="${marketoConfig.marketoMunchkinId @ context='html'}"
-		formid="${marketoConfig.marketoFormId @ context='html'}"
-		formHost="${marketoConfig.marketoHostname @ context='html'}"
-		source="noconf"
+			 hiddenMunchkinId = "${marketoConfig.hiddenMarketoMunchkinId @ context='html'}"
+			 hiddenFormId = "${marketoConfig.hiddenMarketoId @ context='html'}"
+			 munchkinid="${marketoConfig.marketoMunchkinId @ context='html'}"
+			 formid="${marketoConfig.marketoFormId @ context='html'}"
+			 formHost="${marketoConfig.marketoHostname @ context='html'}"
+			 source="noconf"
 		>
-		  <div class="marketoForm__container">
-			<h3 class="marketoForm__title">${ 'Apply for a business account today' @ i18n, context='html' }</h3>
-			<div data-marketo-visible-form>
-				<script src="${marketoConfig.marketoHostname @ context='scriptString'}/js/forms2/js/forms2.min.js"></script>
-				<form id="${marketoConfig.formIdAsDivId @ context='html'}"></form>
-				<script>MktoForms2.loadForm("${marketoConfig.marketoHostname @ context='scriptString'}",
-						"${marketoConfig.marketoMunchkinId @ context='scriptString'}",
-						"${marketoConfig.marketoFormId @ context='scriptString'}");</script>
-				<form id="${marketoConfig.hiddenFormIdAsDivId @ context='html'}"></form>
+			<div class="marketoForm__container">
+				<h3 class="marketoForm__title">${ 'Apply for a business account today' @ i18n, context='html' }</h3>
+				<div data-marketo-visible-form>
+					<script src="${marketoConfig.marketoHostname @ context='unsafe'}/js/forms2/js/forms2.min
+					.js"></script>
+					<form id="${marketoConfig.formIdAsDivId @ context='html'}"></form>
+					<script>MktoForms2.loadForm("${marketoConfig.marketoHostname @ context='unsafe'}",
+							"${marketoConfig.marketoMunchkinId @ context='unsafe'}",
+							"${marketoConfig.marketoFormId @ context='unsafe'}");</script>
+					<form id="${marketoConfig.hiddenFormIdAsDivId @ context='html'}"></form>
+				</div>
 			</div>
-		  </div>
 		</div>
 	</div>
 
