@@ -48,7 +48,7 @@ public class MarketoConfiguration {
 	 * This is a hostname where we try to get the form objects from
 	 */
 	@ValueMapValue
-	private @Getter String marketoHostname;
+	private String marketoHostname;
 
 	/**
 	 * Provides the Marketo 'form' element ID value ({@code <form id="xxxx"></form>})
@@ -72,5 +72,12 @@ public class MarketoConfiguration {
 			marketoFormIdDiv = MessageFormat.format("mktoForm_{0}", hiddenMarketoId);
 		}
 		return marketoFormIdDiv;
+	}
+
+	public String getMarketoHostname(){
+		if(null != marketoHostname){
+			return marketoHostname;
+		}
+		return "https://express-resource.dhl.com";
 	}
 }
