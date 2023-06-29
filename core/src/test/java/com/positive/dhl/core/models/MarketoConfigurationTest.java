@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.text.MessageFormat;
@@ -15,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class MarketoConfigurationTest {
@@ -22,8 +25,12 @@ class MarketoConfigurationTest {
 	private final AemContext aemContext = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
 	MarketoConfiguration underTest;
 
+	@Mock
+	private EnvironmentConfiguration environmentConfiguration;
+
 	@BeforeEach
 	void setup(){
+		aemContext.registerService(EnvironmentConfiguration.class,environmentConfiguration);
 		aemContext.addModelsForClasses(MarketoConfiguration.class);
 	}
 
@@ -35,6 +42,7 @@ class MarketoConfigurationTest {
 		pageProperties.put("sling:resourceType", "dhl/components/content/inlineshipnowmarketo/v2");
 		aemContext.create().resource("/content/dhl/page/jcr:content/marketocomponent", pageProperties);
 		aemContext.currentResource("/content/dhl/page/jcr:content/marketocomponent");
+		when(environmentConfiguration.getDefaultMarketoHiddenFormId()).thenReturn("1756");
 
 		MockSlingHttpServletRequest request = aemContext.request();
 		underTest = request.adaptTo(MarketoConfiguration.class);
@@ -59,6 +67,7 @@ class MarketoConfigurationTest {
 		pageProperties.put("sling:resourceType", "dhl/components/content/inlineshipnowmarketo/v2");
 		aemContext.create().resource("/content/dhl/page/jcr:content/marketocomponent", pageProperties);
 		aemContext.currentResource("/content/dhl/page/jcr:content/marketocomponent");
+		when(environmentConfiguration.getDefaultMarketoFormId()).thenReturn("1795");
 
 		MockSlingHttpServletRequest request = aemContext.request();
 		underTest = request.adaptTo(MarketoConfiguration.class);

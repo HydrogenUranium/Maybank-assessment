@@ -26,6 +26,8 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     private String countryInfoLocation;
     private String assetPrefix;
     private String akamaiHostname;
+    private String defaultMarketoFormId;
+    private String defaultMarketoHiddenFormId;
 
     /**
      *
@@ -36,6 +38,8 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
         countryInfoLocation = PropertiesUtil.toString(environmentConfigurationData.countryInfoLocation(), "/conf/dhl/appdata/countries");
         assetPrefix = PropertiesUtil.toString(environmentConfigurationData.assetPrefix(), "/discover");
         akamaiHostname = PropertiesUtil.toString(environmentConfigurationData.akamaiHostname(), "www.dhl.com");
+        defaultMarketoFormId = PropertiesUtil.toString(environmentConfigurationData.marketoDefaultFormId(),"1795");
+        defaultMarketoHiddenFormId = PropertiesUtil.toString(environmentConfigurationData.marketoDefaultHiddenFormId(),"1756");
     }
 
     @Override
@@ -51,5 +55,15 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     @Override
     public String getCountryInfoLocation() {
         return countryInfoLocation;
+    }
+
+    @Override
+    public String getDefaultMarketoFormId() {
+        return defaultMarketoFormId;
+    }
+
+    @Override
+    public String getDefaultMarketoHiddenFormId() {
+        return defaultMarketoHiddenFormId;
     }
 }
