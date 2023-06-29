@@ -20,7 +20,7 @@ import java.text.MessageFormat;
 
 public class MarketoConfiguration {
 
-	static final String RESOURCE_TYPE = "apps/dhl/components/content/inlineshipnowmarketo/v2";
+	static final String RESOURCE_TYPE = "apps/dhl/components/content/inlineshipnowmarketo";
 
 	/**
 	 * Marketo form id - that's how we identify specific form within Marketo project
