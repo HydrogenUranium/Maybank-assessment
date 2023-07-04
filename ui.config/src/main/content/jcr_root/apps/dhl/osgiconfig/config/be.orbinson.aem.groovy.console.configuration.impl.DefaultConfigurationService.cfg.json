@@ -1,0 +1,8 @@
+{
+  "allowedGroups":[
+    "aecu_execute"
+  ],
+  "allowedScheduledJobsGroups":[
+    "aecu_execute"
+  ]
+}
