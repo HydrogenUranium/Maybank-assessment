@@ -46,4 +46,22 @@ public @interface EnvironmentConfigurationData {
         defaultValue = "/conf/dhl/appdata/countries"
     )
     String countryInfoLocation();
+
+    @AttributeDefinition(
+        name = "Marketo default formID",
+        description = "There are only several formIDs we use in Marketo. This provides the option to set the default one to be used in case individual" +
+            "Marketo-using components do not define this value in the configuration",
+        defaultValue = "1795",
+        type = AttributeType.STRING
+    )
+    String marketoDefaultFormId();
+
+    @AttributeDefinition(
+        name = "Marketo default hiddenFormID",
+        description = "There are only several hidden formIDs we use in Marketo. This provides the option to set the default one to be used in case individual" +
+            "Marketo-using components do not define this value in the configuration",
+        defaultValue = "1756",
+        type = AttributeType.STRING
+    )
+    String marketoDefaultHiddenFormId();
 }
