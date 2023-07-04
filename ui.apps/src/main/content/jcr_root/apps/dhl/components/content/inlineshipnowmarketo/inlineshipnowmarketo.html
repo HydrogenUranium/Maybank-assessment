@@ -13,28 +13,35 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<div class="ship-now-group" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
+<div data-sly-test="${!properties.title && wcmmode.edit}" class="cq-placeholder" data-emptytext="Marketo form"></div>
+<div class="ship-now-group"
+	 data-sly-use.marketoConfig="com.positive.dhl.core.models.MarketoConfiguration">
 	<div class="mb-5">
 		<div class="forms marketoForm marketoForm--yellow" data-marketo-form='{
 		  "hiddenMunchkinId": "078-ERT-522",
 		  "hiddenFormId": 1756
 		}'
-	 	hiddenMunchkinId = "903-EZK-832"
-	 	hiddenFormId = "1799"
-		munchkinid="903-EZK-832"
-		formid="1795"
-		formHost="https://express-resource.dhl.com"
-		source="noconf"
+			 hiddenMunchkinId = "${marketoConfig.hiddenMarketoMunchkinId @ context='html' || '078-ERT-522'}"
+			 hiddenFormId = "${marketoConfig.hiddenMarketoId @ context='html' || '1756'}"
+			 munchkinid="${marketoConfig.marketoMunchkinId @ context='html' || '903-EZK-832'}"
+			 formid="${marketoConfig.marketoFormId @ context='html' || '1795'}"
+			 formHost="${marketoConfig.marketoHostname @ context='html' || 'https://express-resource.dhl.com'}"
+			 source="noconf"
 		>
-		  <div class="marketoForm__container">
-			<h3 class="marketoForm__title">${ 'Apply for a business account today' @ i18n, context='html' }</h3>
-			<div data-marketo-visible-form>
-				<script src="https://express-resource.dhl.com/js/forms2/js/forms2.min.js"></script>
-				<form id="mktoForm_1795"></form>
-				<script>MktoForms2.loadForm("//express-resource.dhl.com", "903-EZK-832", 1795);</script>
-				<form id="mktoForm_1756"></form>
+
+			<div class="marketoForm__container">
+				<h3 class="marketoForm__title">${ 'Apply for a business account today' @ i18n, context='html' }</h3>
+				<div data-marketo-visible-form>
+					<script src="${marketoConfig.marketoHostname @ context='unsafe'}/js/forms2/js/forms2.min
+					.js"></script>
+					<form id="${marketoConfig.formIdAsDivId @ context='html'}"></form>
+					<script>MktoForms2.loadForm("${marketoConfig.marketoHostname @ context='unsafe'}",
+							"${marketoConfig.marketoMunchkinId @ context='unsafe' || '903-EZK-832'}",
+							"${marketoConfig.marketoFormId @ context='unsafe' || '1795'}");</script>
+					<form id="${marketoConfig.hiddenFormIdAsDivId @ context='html'}"></form>
+				</div>
+
 			</div>
-		  </div>
 		</div>
 	</div>
 

@@ -19,6 +19,10 @@ RewriteRule ^(/discover)?/robots\.txt$ /apps/dhl/discoverdhlapi/robots.txt [PT,L
 RewriteRule ^(/discover)?/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/discover/resources/favicon.ico [PT,L,NC]
 RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/token.json [PT,L,NC]
 
+### Remove trailing slash (if present) for head & get requests (https://jira.dhl.com/browse/DIS-168)
+RewriteCond %{REQUEST_METHOD} (GET|HEAD)
+RewriteRule ^(.+)/$ /$1 [L,R=301]
+
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
 ### not valid for POST requests
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)

@@ -1,0 +1,8 @@
+{
+  "readers":[
+    "aecu_read"
+  ],
+  "executers":[
+    "aecu_execute"
+  ]
+}
