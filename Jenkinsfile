@@ -86,7 +86,7 @@ pipeline {
                             tool: 'Maven 3.6.3',
                             useWrapper: false,
                             pom: 'pom.xml',
-                            goals: '-ntp clean install -Pdhl-artifactory',
+                            goals: '-ntp clean install -P dhl-artifactory',
                             resolverId: 'artifactory-resolver',
                             deployerId: 'artifactory-deployer',
                     )
