@@ -34,8 +34,8 @@ import java.util.Optional;
 
 import static com.adobe.aem.wcm.seo.SeoTags.PN_CANONICAL_URL;
 import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
-import static com.positive.dhl.core.constants.AemConstants.CQ_LAST_MODIFIED;
-import static com.positive.dhl.core.constants.AemConstants.CQ_LAST_REPLICATED;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_MOD;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_REPLICATED;
 
 @Slf4j
 @Component(
@@ -201,7 +201,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     private Calendar getLastmodDate(Page page) {
-        if (lastmodSource.equals(CQ_LAST_REPLICATED)) {
+        if (lastmodSource.equals(PN_PAGE_LAST_REPLICATED)) {
             Optional<Calendar> lastReplicatedAt =
                     Optional.ofNullable(page.getContentResource())
                             .map(contentResource -> contentResource.adaptTo(ReplicationStatus.class))
@@ -283,8 +283,8 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
                 description = "The source from which to obtain the last modified date. " +
                         "If running on author it makes sense to use cq:lastReplicated in order to prevent unpublished changes to impact the last modified date. " +
                         "For cq:lastModified the most recent of jcr:created and cq:lastModified is used. Defaults to cq:lastModified",
-                options = { @Option(label = CQ_LAST_MODIFIED, value = CQ_LAST_MODIFIED), @Option(label = CQ_LAST_REPLICATED, value = CQ_LAST_REPLICATED) })
-        String lastModifiedSource() default CQ_LAST_REPLICATED;
+                options = { @Option(label = PN_PAGE_LAST_MOD, value = PN_PAGE_LAST_MOD), @Option(label = PN_PAGE_LAST_REPLICATED, value = PN_PAGE_LAST_REPLICATED) })
+        String lastModifiedSource() default PN_PAGE_LAST_REPLICATED;
 
         @AttributeDefinition(
                 name = "Add Changefreq Attribute",
