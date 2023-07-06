@@ -307,7 +307,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
                         @Option(label = "yearly", value = "yearly"),
                         @Option(label = "never", value = "never"),
                 })
-        String changefreqDefaultValue() default "always";
+        String changefreqDefaultValue() default "hourly";
 
         @AttributeDefinition(
                 name = "Add Priority Attribute",
@@ -323,7 +323,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
                         @Option(label = "0.9", value = "0.9"),
                         @Option(label = "0.8", value = "0.8"),
                 })
-        String priorityDefaultValue() default "pageDepth";
+        String priorityDefaultValue() default "0.9";
 
         @AttributeDefinition(name = "Add Language Alternates", description = "If enabled, a Page's language copies " +
                 "will be added as language alternates to the an url entry")

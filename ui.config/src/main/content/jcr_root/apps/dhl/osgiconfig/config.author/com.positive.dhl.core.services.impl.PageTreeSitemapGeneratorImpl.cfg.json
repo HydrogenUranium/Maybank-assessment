@@ -2,8 +2,8 @@
   "enableLastModified": true,
   "lastModifiedSource": "cq:lastReplicated",
   "enableChangefreq": true,
-  "changefreqDefaultValue": "always",
+  "changefreqDefaultValue": "hourly",
   "enablePriority": true,
-  "priorityDefaultValue": "pageDepth",
+  "priorityDefaultValue": "0.9",
   "enableLanguageAlternates": true
 }
