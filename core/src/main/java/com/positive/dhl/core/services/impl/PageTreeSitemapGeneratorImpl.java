@@ -34,8 +34,11 @@ import java.util.Optional;
 
 import static com.adobe.aem.wcm.seo.SeoTags.PN_CANONICAL_URL;
 import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
+import static com.day.cq.wcm.api.constants.NameConstants.NN_CONTENT;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_CREATED;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_MOD;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_REPLICATED;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_REDIRECT_TARGET;
 
 @Slf4j
 @Component(
@@ -185,7 +188,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     public boolean isRedirect(Page page) {
-        return page.getProperties().get("cq:redirectTarget", String.class) != null;
+        return page.getProperties().get(PN_REDIRECT_TARGET, String.class) != null;
     }
 
     public boolean isProtected(Page page) {
@@ -214,7 +217,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
             Optional<Calendar> createdAt =
                     Optional.ofNullable(page.getContentResource())
                             .map(Resource::getValueMap)
-                            .map(properties -> properties.get("jcr:created", Calendar.class));
+                            .map(properties -> properties.get(PN_CREATED, Calendar.class));
             Optional<Calendar> lastModifiedAt = Optional.ofNullable(page.getLastModified());
             if (lastModifiedAt.isPresent() && (!createdAt.isPresent() || (lastModifiedAt.get()).after(createdAt.get()))) {
                 return lastModifiedAt.get();
@@ -243,7 +246,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     private Url.ChangeFrequency getChangeFrequency(Resource resource) {
-        Optional<String> specificPageValueOptional = Optional.ofNullable(resource.getChild("jcr:content"))
+        Optional<String> specificPageValueOptional = Optional.ofNullable(resource.getChild(NN_CONTENT))
                 .map(Resource::getValueMap)
                 .map(props -> props.get("sitemapChangefreq", String.class));
         return specificPageValueOptional
@@ -252,7 +255,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     private double getPriority(Resource resource) {
-        Optional<Double> specificPageValueOptional = Optional.ofNullable(resource.getChild("jcr:content"))
+        Optional<Double> specificPageValueOptional = Optional.ofNullable(resource.getChild(NN_CONTENT))
                 .map(Resource::getValueMap)
                 .map(props -> props.get("sitemapPriority", Double.class));
         if (specificPageValueOptional.isPresent()) {

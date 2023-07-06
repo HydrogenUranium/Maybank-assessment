@@ -219,6 +219,11 @@ Import-Package: javax.annotation;version=0.0.0,*
             <artifactId>org.apache.sling.servlets.annotations</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.sitemap</artifactId>
+            <version>1.0.6</version>
+        </dependency>
     </dependencies>
 
     <profiles>

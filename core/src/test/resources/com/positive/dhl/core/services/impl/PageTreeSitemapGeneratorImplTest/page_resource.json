@@ -1,0 +1,13 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:title": "Title",
+    "cq:template": "/conf/dhl/settings/wcm/templates/dhl-page-template",
+    "sling:resourceType": "dhl/components/structure/page",
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicated": "Wed Oct 26 2022 23:07:55 GMT+0200",
+    "cq:lastModified": "Mon Oct 18 2021 13:21:08 GMT+0200",
+    "cq:lastModifiedBy": "admin"
+  }
+}
