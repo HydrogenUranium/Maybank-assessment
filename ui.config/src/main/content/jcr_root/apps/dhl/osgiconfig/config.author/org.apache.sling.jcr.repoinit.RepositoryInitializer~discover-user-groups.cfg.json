@@ -6,14 +6,15 @@
         "create path /etc(sling:Folder)/tags(sling:Folder)",
 
         "create group discover-base-user",
-        "delete ACL for discover-base-user",
+
+        "remove ACE for discover-base-user\nallow jcr:read on /content\nallow jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/campaigns,/content/cq:graphql,/content/launches,/content/usergenerated,/content/outbound-marketing,/content/cq:tags,/content/dam\nend",
+
         "set properties on authorizable(discover-base-user)/profile\n set givenName to \"Discover Base User\"\n set aboutMe to \"Common user group with basic access rights\"\n end",
         "add discover-base-user to group contributor",
         "add discover-base-user to group workflow-users",
         "add discover-base-user to group analytics-administrators",
         "set ACL for discover-base-user\nallow crx:replicate on /conf restriction(rep:subtrees,/cloudconfigs)\nend",
         "set ACL for discover-base-user\nallow crx:replicate on /libs/wcm/core/site-templates/aem-site-template-stub-2.0.0/sling:configs\nend",
-        "set ACL for discover-base-user\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content\nend",
         "set ACL for discover-base-user\nallow rep:write on /etc/segmentation\nend",
         "set ACL for discover-base-user\nallow jcr:read on /etc/cloudservices/dmscene7,/etc/cloudservices/dynamicmediaservices,/etc/cloudservices/scene7,/etc/importers/bulkeditor\nend",
         "set ACL for discover-base-user\nallow jcr:read,rep:write on /etc/importers/offline,/etc/reports/compreport\nend",
@@ -21,6 +22,9 @@
         "set ACL for discover-base-user\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement,jcr:lifecycleManagement on /etc/tags\nend",
         "set ACL for discover-base-user\nallow jcr:read on /libs/workflow/scripts\nend",
         "set ACL for discover-base-user\nallow jcr:read on home(discover-base-user)\nend",
+
+        "remove ACE for discover-base-user\ndeny jcr:all on /content restriction(rep:glob,/dhl/*)\ndeny rep:write on /content restriction(rep:ntNames,cq:meta)\nallow jcr:read on /content restriction(rep:ntNames,cq:meta)\nend",
+        "set ACL for discover-base-user\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content\nend",
         "set ACL for discover-base-user\ndeny jcr:all on /content restriction(rep:glob,/dhl/*)\nend",
         "set ACL for discover-base-user\ndeny rep:write on /content restriction(rep:ntNames,cq:meta)\nend",
         "set ACL for discover-base-user\nallow jcr:read on /content restriction(rep:ntNames,cq:meta)\nend",
