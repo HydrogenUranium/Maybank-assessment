@@ -3,11 +3,13 @@ package com.positive.dhl.core.models;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  * 
@@ -23,6 +25,9 @@ public class TopBanner {
     private String img;
     private String url;
     private String urltitle;
+
+	@OSGiService
+	private EnvironmentConfiguration environmentConfiguration;
     
     /**
 	 * 
@@ -129,9 +134,13 @@ public class TopBanner {
 				hasbanner = true;
 			}
 
+			String assetPrefix = environmentConfiguration.getAssetPrefix();
 			title = properties.get("jcr:content/topbanner" + prefix + "title", "");
 			subtitle = properties.get("jcr:content/topbanner" + prefix + "subtitle", "");
 			img = properties.get("jcr:content/topbanner" + prefix + "img", "");
+			if (!img.isBlank()) {
+				img = assetPrefix + img;
+			}
 			
 			url = properties.get("jcr:content/topbanner" + prefix + "url", "");
 			urltitle = properties.get("jcr:content/topbanner" + prefix + "urltitle", "");

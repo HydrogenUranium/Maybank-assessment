@@ -1,17 +1,19 @@
 package com.positive.dhl.core.models;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(AemContextExtension.class)
+@ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class TopBannerTest {
     private final AemContext ctx = new AemContext();
 
@@ -21,8 +23,13 @@ class TopBannerTest {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
 	}
 
+	@Mock
+	private EnvironmentConfiguration environmentConfiguration;
+
 	@Test
 	void test() {
+		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
+		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
 		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
 		
 		TopBanner topBanner = ctx.request().adaptTo(TopBanner.class);
@@ -30,7 +37,7 @@ class TopBannerTest {
 		assertTrue(topBanner.getHasbanner());
 		assertEquals("Sign up to the Discover newsletter", topBanner.getTitle());
 		assertEquals("Receive the latest insights and advice from global business", topBanner.getSubtitle());
-		assertEquals("/content/dam/dhl/site-image/banner-images/reception2.jpg", topBanner.getImg());
+		assertEquals("/discover/content/dam/dhl/site-image/banner-images/reception2.jpg", topBanner.getImg());
 		assertEquals("/content/dhl/register", topBanner.getUrl());
 		assertEquals("Subscribe now", topBanner.getUrltitle());
 
