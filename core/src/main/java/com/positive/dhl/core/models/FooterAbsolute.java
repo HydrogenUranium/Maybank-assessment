@@ -80,6 +80,11 @@ public class FooterAbsolute {
 
 		Page home = currentPage.getAbsoluteParent(2);
 		leftLinks = new ArrayList<Link>();
+		rightLinks = new ArrayList<Link>();
+
+		if (home == null) {
+			return;
+		}
 		Resource leftLinkItems = home.getContentResource("absolutefooterleftitems");
 		if (leftLinkItems != null) {
 			Iterator<Resource> socialsIterator = leftLinkItems.listChildren();
@@ -92,8 +97,7 @@ public class FooterAbsolute {
 				}
 			}
 		}
-		
-		rightLinks = new ArrayList<Link>();
+
 		Resource rightLinkItems = home.getContentResource("absolutefooterrightitems");
 		if (rightLinkItems != null) {
 			Iterator<Resource> socialsIterator = rightLinkItems.listChildren();

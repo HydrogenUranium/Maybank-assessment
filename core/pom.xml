@@ -230,6 +230,13 @@ Import-Package: javax.annotation;version=0.0.0,*
             <version>16.0.2</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.adobe.aem</groupId>
+            <artifactId>aem-modernize-tools.core</artifactId>
+            <version>2.1.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <profiles>

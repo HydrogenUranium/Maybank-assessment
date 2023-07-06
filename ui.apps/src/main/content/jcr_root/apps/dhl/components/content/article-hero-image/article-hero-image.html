@@ -1,0 +1,49 @@
+<sly data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
+     data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage"
+     data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}"></sly>
+
+<div class="hero hero--divider" id="heroItemIdOne">
+    <style type="text/css">
+				@media screen and (min-width: 768px) { #heroItemIdOne .hero__image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagetab @ context='unsafe'}') !important; } }
+				@media screen and (min-width: 992px) { #heroItemIdOne .hero__image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagedt @ context='unsafe'}') !important; } }
+			</style>
+    <div class="hero__image" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagemob @ context='unsafe'}');">
+        <span class="sr-only">${articlePage.article.title}</span>
+        <sly data-sly-unwrap data-sly-test="${(articlePage.article.youtubeid.length > 0)}">
+            <a class="hero__playButton" href="https://youtu.be/${articlePage.article.youtubeid}"><span class="sr-only">${ 'Play Video' @ i18n, context='html' }</span></a>
+            <iframe class="hero__video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </sly>
+    </div>
+    <div class="container d-lg-flex align-items-end">
+        <div class="row justify-content-start">
+            <div class="col-12 col-lg-10 col-xl-8 offset-lg-2">
+                <div class="hero__itemContent">
+                    <h2 class="hero__subTitle">${articlePage.article.grouptitle} <sly data-sly-unwrap data-sly-test="${articlePage.article.readtime}">&middot; ${articlePage.article.readtime}</sly></h2>
+                    <h1 class="hero__title">${articlePage.article.fullTitle}</h1>
+                    <div class="clearfix">
+                        <time class="hero__date" date="${articlePage.article.created}">${articlePage.article.createdfriendly}</time>
+                        <button class="hero__saveForOffline hero__saveForOffline--desktop" title="${ 'Save Article' @ i18n, context='html' }"><span>${ 'Save Article' @ i18n, context='html' }</span></button>
+                    </div>
+                    <div style="width: 100%; clear: both; margin-top: 20px;">
+                        <a data-sly-test="${(articlePage.article.youtubeid.length > 0)}" class="hero__cta hero__cta--video" href="https://youtu.be/${articlePage.article.youtubeid}">${ 'Play Video' @ i18n, context='html' }</a>
+                        <a data-sly-test="${(articlePage.article.icon == 'download')}" class="hero__cta hero__cta--grey" href="#download">${ 'Skip to download' @ i18n, context='html' }</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="hero__saveForOffline" title="Save Article"><span>${ 'Save Article' @ i18n, context='html' }</span></button>
+    <script id="articleData" type="application/ld+json">
+			{
+				"title": "${articlePage.article.title @ context='unsafe'}",
+				"description": "${articlePage.article.brief @ context='unsafe'}",
+				"imageMobile": "${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagemob @ context='unsafe'}",
+				"imageDesktop": "${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagedt @ context='unsafe'}",
+				"categoryName": "${articlePage.article.grouptitle @ context='unsafe'}",
+				"categoryLink": "${articlePage.article.grouppath @ context='unsafe'}",
+				"timeToRead": "${articlePage.article.readtime @ context='unsafe'}",
+				"isLarge": false,
+				"isVideo": false
+    		}
+		</script>
+</div>

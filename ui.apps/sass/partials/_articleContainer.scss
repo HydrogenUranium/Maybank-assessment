@@ -1,0 +1,14 @@
+.article-container-component {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr minmax(auto, 1080px) minmax(280px, 1fr);
+  grid-template-areas:"empty body sidebar";
+
+  &__body {
+    grid-area: body;
+  }
+
+  &__sidebar {
+    grid-area: sidebar;
+  }
+}
