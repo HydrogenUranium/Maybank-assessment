@@ -3,6 +3,7 @@ package com.positive.dhl.core.services.impl;
 import com.adobe.aem.wcm.seo.localization.LanguageAlternativesService;
 import com.day.cq.replication.ReplicationStatus;
 import com.day.cq.wcm.api.Page;
+import org.jetbrains.annotations.NotNull;
 import com.positive.dhl.core.constants.ChangeFrequencyEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -30,10 +31,12 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 import static com.adobe.aem.wcm.seo.SeoTags.PN_CANONICAL_URL;
 import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
+import static com.day.cq.commons.jcr.JcrConstants.JCR_MIXINTYPES;
 import static com.day.cq.wcm.api.constants.NameConstants.NN_CONTENT;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_CREATED;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_MOD;
@@ -79,7 +82,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     @Override
-    protected void addResource(String name, Sitemap sitemap, Resource resource) throws SitemapException {
+    protected void addResource(@NotNull String name, @NotNull Sitemap sitemap, Resource resource) throws SitemapException {
         Page page = resource.adaptTo(Page.class);
         if (page == null) {
             log.debug("Skipping resource at {}: not a page", resource.getPath());
@@ -118,7 +121,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     @Override
-    public boolean shouldInclude(Resource resource) {
+    public boolean shouldInclude(@NotNull Resource resource) {
         return super.shouldInclude(resource) && Optional.ofNullable(resource.adaptTo(Page.class)).map(this::shouldInclude).orElse(Boolean.FALSE);
     }
 
@@ -127,8 +130,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     public boolean isCanonical(Page page) {
-        String canonicalUrl = page.getProperties().get(PN_CANONICAL_URL, String.class);
-        return isCanonicalUrl(page, canonicalUrl);
+        return isCanonicalUrl(page, getCustomCanonicalUrl(page));
     }
 
     private boolean isCanonicalUrl(Page page, String customCanonicalUrl) {
@@ -142,15 +144,18 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     public String getCanonicalUrl(Page page) {
-        String canonicalUrl = page.getProperties().get(PN_CANONICAL_URL, String.class);
+        String canonicalUrl = getCustomCanonicalUrl(page);
         if (isCanonicalUrl(page, canonicalUrl)) {
             return externalize(page.adaptTo(Resource.class), HTML_EXTENSION);
         }
         if (canonicalUrl.charAt(0) != '/') {
             return canonicalUrl;
         }
-        ResourceResolver resourceResolver = page.getContentResource().getResourceResolver();
-        Resource canonicalResource = resourceResolver.resolve(canonicalUrl);
+        Optional<ResourceResolver> resourceResolver = getResourceResolver(page);
+        if (resourceResolver.isEmpty()) {
+            return StringUtils.EMPTY;
+        }
+        Resource canonicalResource = resourceResolver.get().resolve(canonicalUrl);
         if (ResourceUtil.isNonExistingResource(canonicalResource)) {
             boolean hasExtension = canonicalUrl.matches(".+\\.\\w{2,5}$");
             return externalize(canonicalResource, hasExtension ? HTML_EXTENSION : StringUtils.EMPTY);
@@ -160,6 +165,12 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
             resolutionPathInfo = HTML_EXTENSION;
         }
         return externalize(canonicalResource, resolutionPathInfo);
+    }
+
+    private String getCustomCanonicalUrl(Page page) {
+        return Optional.ofNullable(page.adaptTo(Resource.class))
+                .map(r -> r.getValueMap().get(PN_CANONICAL_URL, String.class))
+                .stream().findAny().orElse(StringUtils.EMPTY);
     }
 
     public Map<Locale, String> getAlternateLanguageLinks(Page page) {
@@ -184,23 +195,29 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     public boolean isNoIndex(Page page) {
-        return Arrays.asList(page.getProperties().get(PN_ROBOTS_TAGS, new String[0])).contains("noindex");
+        return hasPageThisMultiProperty(Objects.requireNonNull(page.getContentResource()), PN_ROBOTS_TAGS, "noindex");
     }
 
     public boolean isRedirect(Page page) {
-        return page.getProperties().get(PN_REDIRECT_TARGET, String.class) != null;
+        return hasPageThisSingleProperty(Objects.requireNonNull(page.getContentResource()), PN_REDIRECT_TARGET);
     }
 
     public boolean isProtected(Page page) {
-        return Optional.ofNullable(page.adaptTo(Resource.class)).map(this::isProtected).orElse(Boolean.FALSE);
+        return hasPageThisMultiProperty(Objects.requireNonNull(page.adaptTo(Resource.class)), JCR_MIXINTYPES, "granite:AuthenticationRequired");
     }
 
-    private boolean isProtected(Resource resource) {
-        return Optional.of(resource)
-                .map(r -> r.getValueMap().get("jcr:mixinTypes", String[].class))
+    private boolean hasPageThisMultiProperty(Resource resource, String propertyName, String propertyValue) {
+        return Optional.of(resource.getValueMap())
+                .map(p -> p.get(propertyName, String[].class))
                 .map(Arrays::asList)
-                .map(mixins -> mixins.contains("granite:AuthenticationRequired"))
+                .map(mp -> mp.contains(propertyValue))
                 .orElse(Boolean.FALSE);
+    }
+
+    private boolean hasPageThisSingleProperty(Resource resource, String propertyName) {
+        return Optional.of(resource.getValueMap())
+                .map(p -> p.get(propertyName, String.class))
+                .isPresent();
     }
 
     private Calendar getLastmodDate(Page page) {
@@ -219,7 +236,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
                             .map(Resource::getValueMap)
                             .map(properties -> properties.get(PN_CREATED, Calendar.class));
             Optional<Calendar> lastModifiedAt = Optional.ofNullable(page.getLastModified());
-            if (lastModifiedAt.isPresent() && (!createdAt.isPresent() || (lastModifiedAt.get()).after(createdAt.get()))) {
+            if (lastModifiedAt.isPresent() && (createdAt.isEmpty() || (lastModifiedAt.get()).after(createdAt.get()))) {
                 return lastModifiedAt.get();
             }
             if (createdAt.isPresent()) {
@@ -230,8 +247,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     private String externalize(Resource resource, String selectorExtensionSuffix) {
-        ResourceResolver resourceResolver = resource.getResourceResolver();
-        return externalize(resourceResolver, resource.getPath(), selectorExtensionSuffix);
+        return resource != null ? externalize(resource.getResourceResolver(), resource.getPath(), selectorExtensionSuffix) : StringUtils.EMPTY;
     }
 
     private String externalize(ResourceResolver resourceResolver, String url, String selectorExtensionSuffix) {

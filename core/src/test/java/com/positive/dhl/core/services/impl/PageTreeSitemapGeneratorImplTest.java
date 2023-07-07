@@ -20,7 +20,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.Writer;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.time.Instant;
 import java.util.LinkedHashMap;
@@ -47,7 +46,7 @@ public class PageTreeSitemapGeneratorImplTest {
     private SitemapImpl sitemap;
 
     @InjectMocks
-    private PageTreeSitemapGeneratorImpl pageTreeSitemapGenerator = new PageTreeSitemapGeneratorImpl();
+    private PageTreeSitemapGeneratorImpl pageTreeSitemapGenerator;
 
     @Mock
     private ReplicationStatusCheck replicationStatusCheck;
@@ -66,6 +65,9 @@ public class PageTreeSitemapGeneratorImplTest {
     @BeforeEach
     public void init() throws Exception {
         resourceResolver = context.resourceResolver();
+        context.registerService(LanguageAlternativesService.class, languageAlternativesService);
+        context.registerService(ReplicationStatusCheck.class, replicationStatusCheck);
+
         sitemap = spy(new SitemapImpl(writer, extensionProviderManager));
         resource = getResource(TEST_RESOURCE_PATH);
 
@@ -80,13 +82,19 @@ public class PageTreeSitemapGeneratorImplTest {
     @Test
     void testAlternative() throws SitemapException, NoSuchFieldException, IllegalAccessException {
         Page page = resource.adaptTo(Page.class);
-        Map<Locale, Page> languageAlternatives = new LinkedHashMap();
+        Map<Locale, Page> languageAlternatives = new LinkedHashMap<>();
         languageAlternatives.put(new Locale("fr"), page);
         languageAlternatives.put(new Locale("de"), page);
 
         when(languageAlternativesService.getLanguageAlternatives(any(Page.class))).thenReturn(languageAlternatives);
-
-        pageTreeSitemapGenerator.activate(new ConfigForTest(true, PN_PAGE_LAST_MOD, true, "always", true, "pageDepth", true));
+        pageTreeSitemapGenerator = context.registerInjectActivateService(new PageTreeSitemapGeneratorImpl(),
+                "enableLastModified", true,
+                "lastModifiedSource", PN_PAGE_LAST_MOD,
+                "enableChangefreq", true,
+                "changefreqDefaultValue", "always",
+                "enablePriority", true,
+                "priorityDefaultValue", "pageDepth",
+                "enableLanguageAlternates", true);
         pageTreeSitemapGenerator.addResource(StringUtils.EMPTY, sitemap, resource);
 
         verication(sitemap, EXPECTED_LOCATION, EXPECTED_LAST_MODIFIED);
@@ -94,7 +102,14 @@ public class PageTreeSitemapGeneratorImplTest {
 
     @Test
     void testLastModified() throws SitemapException, NoSuchFieldException, IllegalAccessException {
-        pageTreeSitemapGenerator.activate(new ConfigForTest(true, PN_PAGE_LAST_MOD, true, "always", true, "pageDepth",true));
+        pageTreeSitemapGenerator = context.registerInjectActivateService(new PageTreeSitemapGeneratorImpl(),
+                "enableLastModified", true,
+                "lastModifiedSource", PN_PAGE_LAST_MOD,
+                "enableChangefreq", true,
+                "changefreqDefaultValue", "always",
+                "enablePriority", true,
+                "priorityDefaultValue", "pageDepth",
+                "enableLanguageAlternates", true);
         pageTreeSitemapGenerator.addResource(StringUtils.EMPTY, sitemap, resource);
 
         verication(sitemap, EXPECTED_LOCATION, EXPECTED_LAST_MODIFIED);
@@ -102,7 +117,14 @@ public class PageTreeSitemapGeneratorImplTest {
 
     @Test
     void testLastReplicated() throws SitemapException, NoSuchFieldException, IllegalAccessException {
-        pageTreeSitemapGenerator.activate(new ConfigForTest(true, PN_PAGE_LAST_REPLICATED, true, "always",true, "pageDepth",true));
+        pageTreeSitemapGenerator = context.registerInjectActivateService(new PageTreeSitemapGeneratorImpl(),
+                "enableLastModified", true,
+                "lastModifiedSource", PN_PAGE_LAST_REPLICATED,
+                "enableChangefreq", true,
+                "changefreqDefaultValue", "always",
+                "enablePriority", true,
+                "priorityDefaultValue", "pageDepth",
+                "enableLanguageAlternates", true);
         pageTreeSitemapGenerator.addResource(StringUtils.EMPTY, sitemap, resource);
 
         verication(sitemap, EXPECTED_LOCATION, null);
@@ -127,7 +149,7 @@ public class PageTreeSitemapGeneratorImplTest {
         Url sitemapUrl = getSitemapPendingUrl(sitemap);
         Field field = sitemapUrl.getClass().getDeclaredField(fieldName);
         field.setAccessible(true);
-        return (T) field.get(sitemapUrl);
+        return fieldType.cast(field.get(sitemapUrl));
     }
 
     private Url getSitemapPendingUrl(SitemapImpl sitemap) throws NoSuchFieldException, IllegalAccessException {
@@ -135,68 +157,4 @@ public class PageTreeSitemapGeneratorImplTest {
         pendingUrl.setAccessible(true);
         return (Url) pendingUrl.get(sitemap);
     }
-
-    private class ConfigForTest implements PageTreeSitemapGeneratorImpl.Configuration {
-        private boolean lastmodEnabled;
-        private String lastModifiedSource;
-        private boolean changefreqEnabled;
-        private String changefreqDefaultValue;
-        private boolean priorityEnabled;
-        private String priorityDefaultValue;
-        private boolean languageAlternatesEnabled;
-
-        public ConfigForTest(boolean lastmodEnabled, String lastModifiedSource,
-                             boolean changefreqEnabled, String changefreqDefaultValue,
-                             boolean priorityEnabled, String priorityDefaultValue,
-                             boolean languageAlternatesEnabled) {
-            this.lastmodEnabled = lastmodEnabled;
-            this.lastModifiedSource = lastModifiedSource;
-            this.changefreqEnabled = changefreqEnabled;
-            this.changefreqDefaultValue = changefreqDefaultValue;
-            this.priorityEnabled = priorityEnabled;
-            this.priorityDefaultValue = priorityDefaultValue;
-            this.languageAlternatesEnabled = languageAlternatesEnabled;
-        }
-
-        @Override
-        public boolean enableLastModified() {
-            return lastmodEnabled;
-        }
-
-        @Override
-        public String lastModifiedSource() {
-            return lastModifiedSource;
-        }
-
-        @Override
-        public boolean enableChangefreq() {
-            return changefreqEnabled;
-        }
-
-        @Override
-        public String changefreqDefaultValue() {
-            return changefreqDefaultValue;
-        }
-
-        @Override
-        public boolean enablePriority() {
-            return priorityEnabled;
-        }
-
-        @Override
-        public String priorityDefaultValue() {
-            return priorityDefaultValue;
-        }
-
-        @Override
-        public boolean enableLanguageAlternates() {
-            return languageAlternatesEnabled;
-        }
-
-        @Override
-        public Class<? extends Annotation> annotationType() {
-            return null;
-        }
-    }
-
 }
