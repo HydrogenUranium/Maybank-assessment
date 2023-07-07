@@ -51,6 +51,11 @@
 
 		<!--/* Initializes the Experience Manager authoring UI */-->
 		<sly data-sly-include="/libs/wcm/core/components/init/init.jsp" data-sly-unwrap/>
+
+		<!--/* Initializes the Social Network Link UI */-->
+		<sly data-sly-use.socialNetworkLinksModel="com.positive.dhl.core.models.SocialNetworkLinksModel" data-sly-test="${socialNetworkLinksModel.headCodeInclusion}">
+			${socialNetworkLinksModel.headCodeInclusion @ context="unsafe"}
+		</sly>
     </head>
 
     <body>
