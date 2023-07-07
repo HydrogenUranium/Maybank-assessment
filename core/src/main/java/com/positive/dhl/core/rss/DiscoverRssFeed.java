@@ -41,20 +41,20 @@ public class DiscoverRssFeed {
         request = req;
         response = resp;
 
-        Resource resource = request.getResource();
+        var resource = request.getResource();
         if (ResourceUtil.isNonExistingResource(resource)) {
             throw new ResourceNotFoundException("No data to render.");
         }
 
-        Resource jcrContent = resource.getChild(JCR_CONTENT);
+        var jcrContent = resource.getChild(JCR_CONTENT);
 
         if (jcrContent == null) {
             throw new ResourceNotFoundException("No jcr:content.");
         }
 
-        ValueMap props = jcrContent.getValueMap();
+        var props = jcrContent.getValueMap();
 
-        ResourceResolver resourceResolver = request.getResourceResolver();
+        var resourceResolver = request.getResourceResolver();
         resourcePath = resource.getPath();
         mappedResourcePath =  resourceResolver.map(resource.getPath());
         title = props.get(JCR_TITLE, resource.getName());
@@ -89,7 +89,7 @@ public class DiscoverRssFeed {
     }
 
     private String getThumbnailImageUrl() {
-        Resource image = getChildResource("/jcr:content/image");
+        var image = getChildResource("/jcr:content/image");
         if (image == null) {
             return "";
         }
@@ -101,7 +101,7 @@ public class DiscoverRssFeed {
     }
 
     private String getUrlPrefix() {
-        StringBuilder url = new StringBuilder(request.getScheme());
+        var url = new StringBuilder(request.getScheme());
         url.append("://");
         url.append(request.getServerName());
 
@@ -115,7 +115,7 @@ public class DiscoverRssFeed {
     }
 
     private String getArticleIntroduction() {
-        Resource par = getChildResource("/jcr:content/par");
+        var par = getChildResource("/jcr:content/par");
         if (par == null) {
             return "";
         }
@@ -136,7 +136,7 @@ public class DiscoverRssFeed {
     public void printEntry(Resource resource) throws IOException {
         try {
             request.setAttribute("com.day.cq.wcm.api.components.ComponentContext/bypass", "true");
-            StringResponseWrapper wrapper = new StringResponseWrapper(response);
+            var wrapper = new StringResponseWrapper(response);
             request.getRequestDispatcher(getFeedEntryPath(resource)).include(request, wrapper);
             xml.getWriter().print(wrapper.getString());
         } catch (ServletException exception) {
@@ -145,11 +145,11 @@ public class DiscoverRssFeed {
     }
 
     public void printEntries(Iterator<Resource> resources) throws IOException {
-        printEntries(resources, 0);
+        printEntries(resources, 1450);
     }
 
     public void printEntries(Iterator<Resource> resources, int max) throws IOException {
-        int i = 0;
+        var i = 0;
         while (resources.hasNext() && (max == 0 || i++ < max)) {
             printEntry(resources.next());
         }
