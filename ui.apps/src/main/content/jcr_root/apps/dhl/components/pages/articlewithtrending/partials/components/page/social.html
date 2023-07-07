@@ -1,5 +1,6 @@
 <aside class='social social--vertical d-none d-lg-block disable-offline'>
     <h2 class="social__title">${ 'SHARE' @ i18n, context='html' }</h2>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59538ab4cc278723"></script>
-    <div class="addthis_inline_share_toolbox"></div>
+    <sly data-sly-use.socialNetworkLinksModel="com.positive.dhl.core.models.SocialNetworkLinksModel" data-sly-test="${socialNetworkLinksModel.socialNetworkLinksInclusion}">
+        ${socialNetworkLinksModel.socialNetworkLinksInclusion @ context="html"}
+    </sly>
 </aside>
