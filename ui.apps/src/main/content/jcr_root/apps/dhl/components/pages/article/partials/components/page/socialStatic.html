@@ -1,7 +1,8 @@
 <aside class="socialStatic disable-offline">
     <h2 class="socialStatic__title">${ 'SHARE' @ i18n, context='html' }</h2>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59538ab4cc278723"></script>
-    <div class="addthis_inline_share_toolbox"></div>
+    <sly data-sly-use.socialNetworkLinksModel="com.positive.dhl.core.models.SocialNetworkLinksModel" data-sly-test="${socialNetworkLinksModel.socialNetworkLinksInclusion}">
+        ${socialNetworkLinksModel.socialNetworkLinksInclusion @ context="html"}
+    </sly>
 </aside>
 
 <sly data-sly-use.contentBanner="com.positive.dhl.core.models.ContentBanner" data-sly-test="${contentBanner.Hasbanner}" data-sly-unwrap>

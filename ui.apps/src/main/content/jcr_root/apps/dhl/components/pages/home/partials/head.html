@@ -95,4 +95,8 @@
 
   <meta name="google-signin-client_id" content="530300053917-ee8p43bdbd6lee4i81nu5l526k44ni6v.apps.googleusercontent.com">
 
+  <!--/* Initializes the Social Network Link UI */-->
+  <sly data-sly-use.socialNetworkLinksModel="com.positive.dhl.core.models.SocialNetworkLinksModel" data-sly-test="${socialNetworkLinksModel.headCodeInclusion}">
+    ${socialNetworkLinksModel.headCodeInclusion @ context="unsafe"}
+  </sly>
 </sly>
