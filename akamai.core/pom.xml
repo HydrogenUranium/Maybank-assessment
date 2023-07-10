@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.positive</groupId>
+        <artifactId>dhl</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <groupId>com.dhl.aem</groupId>
+    <artifactId>akamai.core</artifactId>
+    <name>Akamai Flush core</name>
+    <description>Code to handle the akamai cache invalidation</description>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- ====================================================================== -->
+    <!--       MODULE   L E V E L      D E P E N D E N C I E S        -->
+    <!-- ====================================================================== -->
+
+    <dependencies>
+        <dependency>
+            <groupId>com.akamai.edgegrid</groupId>
+            <artifactId>edgegrid-signer-apache-http-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.akamai.edgegrid</groupId>
+            <artifactId>edgegrid-signer-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.aem</groupId>
+            <artifactId>aem-sdk-api</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>
