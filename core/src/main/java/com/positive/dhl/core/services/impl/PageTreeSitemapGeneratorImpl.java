@@ -48,8 +48,8 @@ import static com.day.cq.wcm.api.constants.NameConstants.PN_REDIRECT_TARGET;
                 "service.description=DHL Discovery SitemapGenerator implementation that extend Apache Sling Sitemap Generator " +
                         "and overthrow OOTB com.adobe.aem.wcm.seo.impl.sitemap.PageTreeSitemapGeneratorImpl" +
                         "to include optional attributes ('priority' and 'frequency') into sitemap",
-                "service.ranking:Integer=20" },
-        service = { SitemapGenerator.class })
+                "service.ranking:Integer=20"},
+        service = {SitemapGenerator.class})
 @Designate(ocd = PageTreeSitemapGeneratorImpl.Configuration.class)
 public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
 
@@ -232,8 +232,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
             if (lastReplicatedAt.isPresent()) {
                 return lastReplicatedAt.get();
             }
-        }
-        else {
+        } else {
             Optional<Calendar> createdAt =
                     Optional.ofNullable(page.getContentResource())
                             .map(Resource::getValueMap)
@@ -305,7 +304,6 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
                 resource = resource.getParent();
                 priority -= 0.1;
             }
-
             return Math.round(priority * 10) / 10.0;
         } else {
             return Double.parseDouble(priorityDefaultValue);
@@ -339,7 +337,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
                 description = "The source from which to obtain the last modified date. " +
                         "If running on author it makes sense to use cq:lastReplicated in order to prevent unpublished changes to impact the last modified date. " +
                         "For cq:lastModified the most recent of jcr:created and cq:lastModified is used. Defaults to cq:lastModified",
-                options = { @Option(label = PN_PAGE_LAST_MOD, value = PN_PAGE_LAST_MOD), @Option(label = PN_PAGE_LAST_REPLICATED, value = PN_PAGE_LAST_REPLICATED) })
+                options = {@Option(label = PN_PAGE_LAST_MOD, value = PN_PAGE_LAST_MOD), @Option(label = PN_PAGE_LAST_REPLICATED, value = PN_PAGE_LAST_REPLICATED)})
         String lastModifiedSource() default PN_PAGE_LAST_REPLICATED;
 
         @AttributeDefinition(
