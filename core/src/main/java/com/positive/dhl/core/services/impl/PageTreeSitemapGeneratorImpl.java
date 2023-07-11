@@ -37,7 +37,6 @@ import java.util.Optional;
 import static com.adobe.aem.wcm.seo.SeoTags.PN_CANONICAL_URL;
 import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_MIXINTYPES;
-import static com.day.cq.wcm.api.constants.NameConstants.NN_CONTENT;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_CREATED;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_MOD;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_REPLICATED;
@@ -101,10 +100,10 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
             }
         }
         if (changefreqEnabled) {
-            url.setChangeFrequency(getChangeFrequency(resource));
+            url.setChangeFrequency(getChangeFrequency(page));
         }
         if (priorityEnabled) {
-            url.setPriority(getPriority(resource));
+            url.setPriority(getPriority(page));
         }
         if (languageAlternatesEnabled) {
             for (Map.Entry<Locale, String> alternative : getAlternateLanguageLinks(page).entrySet()) {
@@ -195,29 +194,33 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     public boolean isNoIndex(Page page) {
-        return hasPageThisMultiProperty(Objects.requireNonNull(page.getContentResource()), PN_ROBOTS_TAGS, "noindex");
+        return hasPageNoIndex(page) || hasPageNoIndex(getInheritanceEnabledPage(page, "noIndexRobotsTagsInherit"));
     }
 
-    public boolean isRedirect(Page page) {
-        return hasPageThisSingleProperty(Objects.requireNonNull(page.getContentResource()), PN_REDIRECT_TARGET);
-    }
-
-    public boolean isProtected(Page page) {
-        return hasPageThisMultiProperty(Objects.requireNonNull(page.adaptTo(Resource.class)), JCR_MIXINTYPES, "granite:AuthenticationRequired");
-    }
-
-    private boolean hasPageThisMultiProperty(Resource resource, String propertyName, String propertyValue) {
-        return Optional.of(resource.getValueMap())
-                .map(p -> p.get(propertyName, String[].class))
+    private boolean hasPageNoIndex(Page page) {
+        return Optional.ofNullable(page)
+                .map(Page::getContentResource)
+                .map(Resource::getValueMap)
+                .map(p -> p.get(PN_ROBOTS_TAGS, String[].class))
                 .map(Arrays::asList)
-                .map(mp -> mp.contains(propertyValue))
+                .map(mp -> mp.contains("noindex"))
                 .orElse(Boolean.FALSE);
     }
 
-    private boolean hasPageThisSingleProperty(Resource resource, String propertyName) {
-        return Optional.of(resource.getValueMap())
-                .map(p -> p.get(propertyName, String.class))
+    public boolean isRedirect(Page page) {
+        return Optional.of(Objects.requireNonNull(page.getContentResource()))
+                .map(Resource::getValueMap)
+                .map(p -> p.get(PN_REDIRECT_TARGET, String.class))
                 .isPresent();
+    }
+
+    public boolean isProtected(Page page) {
+        return Optional.of(Objects.requireNonNull(page.adaptTo(Resource.class)))
+                .map(Resource::getValueMap)
+                .map(p -> p.get(JCR_MIXINTYPES, String[].class))
+                .map(Arrays::asList)
+                .map(mp -> mp.contains("granite:AuthenticationRequired"))
+                .orElse(Boolean.FALSE);
     }
 
     private Calendar getLastmodDate(Page page) {
@@ -261,23 +264,41 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
                 .map(Resource::getResourceResolver);
     }
 
-    private Url.ChangeFrequency getChangeFrequency(Resource resource) {
-        Optional<String> specificPageValueOptional = Optional.ofNullable(resource.getChild(NN_CONTENT))
-                .map(Resource::getValueMap)
-                .map(props -> props.get("sitemapChangefreq", String.class));
-        return specificPageValueOptional
-                .map(ChangeFrequencyEnum::getChangeFrequencyByLabel)
-                .orElseGet(() -> ChangeFrequencyEnum.getChangeFrequencyByLabel(changefreqDefaultValue));
+    private Url.ChangeFrequency getChangeFrequency(Page page) {
+        Url.ChangeFrequency changeFrequency = getPageChangeFrequency(page);
+        if (changeFrequency == null) {
+            changeFrequency = getPageChangeFrequency(getInheritanceEnabledPage(page, "sitemapChangefreqInherit"));
+        }
+        return changeFrequency != null ? changeFrequency : ChangeFrequencyEnum.getChangeFrequencyByLabel(changefreqDefaultValue);
     }
 
-    private double getPriority(Resource resource) {
-        Optional<Double> specificPageValueOptional = Optional.ofNullable(resource.getChild(NN_CONTENT))
+    private Url.ChangeFrequency getPageChangeFrequency(Page page) {
+        return Optional.ofNullable(page)
+                .map(Page::getContentResource)
                 .map(Resource::getValueMap)
-                .map(props -> props.get("sitemapPriority", Double.class));
-        if (specificPageValueOptional.isPresent()) {
-            return specificPageValueOptional.get();
-        }
+                .map(props -> props.get("sitemapChangefreq", String.class))
+                .map(ChangeFrequencyEnum::getChangeFrequencyByLabel)
+                .orElse(null);
+    }
 
+    private double getPriority(Page page) {
+        double priority = getPagePriority(page);
+        if (priority == 0.0) {
+            priority = getPagePriority(getInheritanceEnabledPage(page, "sitemapPriorityInherit"));
+        }
+        return priority != 0.0 ? priority : getDefaultPriority(page);
+    }
+
+    private double getPagePriority(Page page) {
+        return Optional.ofNullable(page)
+                .map(Page::getContentResource)
+                .map(Resource::getValueMap)
+                .map(props -> props.get("sitemapPriority", Double.class))
+                .orElse(0.0);
+    }
+
+    private double getDefaultPriority(Page page) {
+        Resource resource = page.adaptTo(Resource.class);
         if (StringUtils.equals(priorityDefaultValue, "pageDepth")) {
             double priority = 1.0;
             while (resource != null && !SitemapUtil.isSitemapRoot(resource)) {
@@ -286,8 +307,24 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
             }
 
             return Math.round(priority * 10) / 10.0;
+        } else {
+            return Double.parseDouble(priorityDefaultValue);
         }
-        return Double.parseDouble(priorityDefaultValue);
+    }
+
+    private Page getInheritanceEnabledPage(Page inheritanceEnabledPage, String inheritedProperty) {
+        boolean isInheritanceEnabled = false;
+        while (inheritanceEnabledPage != null && !isInheritanceEnabled) {
+            inheritanceEnabledPage = inheritanceEnabledPage.getParent();
+            if (inheritanceEnabledPage != null) {
+                isInheritanceEnabled = Optional.ofNullable(inheritanceEnabledPage.getContentResource())
+                        .map(Resource::getValueMap)
+                        .map(props -> props.get(inheritedProperty, Boolean.class))
+                        .filter(p -> p)
+                        .orElse(Boolean.FALSE);
+            }
+        }
+        return isInheritanceEnabled ? inheritanceEnabledPage : null;
     }
 
     @ObjectClassDefinition(name = "DHL Discovery - Page Tree Sitemap Generator")
