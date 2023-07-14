@@ -31,7 +31,6 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 import static com.adobe.aem.wcm.seo.SeoTags.PN_CANONICAL_URL;
@@ -199,6 +198,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
 
     private boolean hasPageNoIndex(Page page) {
         return Optional.ofNullable(page)
+                .filter(Page::hasContent)
                 .map(Page::getContentResource)
                 .map(Resource::getValueMap)
                 .map(p -> p.get(PN_ROBOTS_TAGS, String[].class))
@@ -208,14 +208,17 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     public boolean isRedirect(Page page) {
-        return Optional.of(Objects.requireNonNull(page.getContentResource()))
+        return Optional.ofNullable(page)
+                .filter(Page::hasContent)
+                .map(Page::getContentResource)
                 .map(Resource::getValueMap)
                 .map(p -> p.get(PN_REDIRECT_TARGET, String.class))
                 .isPresent();
     }
 
     public boolean isProtected(Page page) {
-        return Optional.of(Objects.requireNonNull(page.adaptTo(Resource.class)))
+        return Optional.ofNullable(page)
+                .map(p -> p.adaptTo(Resource.class))
                 .map(Resource::getValueMap)
                 .map(p -> p.get(JCR_MIXINTYPES, String[].class))
                 .map(Arrays::asList)
@@ -226,7 +229,9 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     private Calendar getLastmodDate(Page page) {
         if (lastmodSource.equals(PN_PAGE_LAST_REPLICATED)) {
             Optional<Calendar> lastReplicatedAt =
-                    Optional.ofNullable(page.getContentResource())
+                    Optional.ofNullable(page)
+                            .filter(Page::hasContent)
+                            .map(Page::getContentResource)
                             .map(contentResource -> contentResource.adaptTo(ReplicationStatus.class))
                             .map(ReplicationStatus::getLastPublished);
             if (lastReplicatedAt.isPresent()) {
@@ -234,10 +239,12 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
             }
         } else {
             Optional<Calendar> createdAt =
-                    Optional.ofNullable(page.getContentResource())
+                    Optional.ofNullable(page)
+                            .filter(Page::hasContent)
+                            .map(Page::getContentResource)
                             .map(Resource::getValueMap)
                             .map(properties -> properties.get(PN_CREATED, Calendar.class));
-            Optional<Calendar> lastModifiedAt = Optional.ofNullable(page.getLastModified());
+            Optional<Calendar> lastModifiedAt = Optional.ofNullable(page).map(Page::getLastModified);
             if (lastModifiedAt.isPresent() && (createdAt.isEmpty() || (lastModifiedAt.get()).after(createdAt.get()))) {
                 return lastModifiedAt.get();
             }
@@ -259,6 +266,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
 
     private Optional<ResourceResolver> getResourceResolver(Page page) {
         return Optional.ofNullable(page)
+                .filter(Page::hasContent)
                 .map(Page::getContentResource)
                 .map(Resource::getResourceResolver);
     }
@@ -273,6 +281,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
 
     private Url.ChangeFrequency getPageChangeFrequency(Page page) {
         return Optional.ofNullable(page)
+                .filter(Page::hasContent)
                 .map(Page::getContentResource)
                 .map(Resource::getValueMap)
                 .map(props -> props.get("sitemapChangefreq", String.class))
@@ -290,6 +299,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
 
     private double getPagePriority(Page page) {
         return Optional.ofNullable(page)
+                .filter(Page::hasContent)
                 .map(Page::getContentResource)
                 .map(Resource::getValueMap)
                 .map(props -> props.get("sitemapPriority", Double.class))
@@ -314,13 +324,13 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
         boolean isInheritanceEnabled = false;
         while (inheritanceEnabledPage != null && !isInheritanceEnabled) {
             inheritanceEnabledPage = inheritanceEnabledPage.getParent();
-            if (inheritanceEnabledPage != null) {
-                isInheritanceEnabled = Optional.ofNullable(inheritanceEnabledPage.getContentResource())
-                        .map(Resource::getValueMap)
-                        .map(props -> props.get(inheritedProperty, Boolean.class))
-                        .filter(p -> p)
-                        .orElse(Boolean.FALSE);
-            }
+            isInheritanceEnabled = Optional.ofNullable(inheritanceEnabledPage)
+                    .filter(Page::hasContent)
+                    .map(Page::getContentResource)
+                    .map(Resource::getValueMap)
+                    .map(props -> props.get(inheritedProperty, Boolean.class))
+                    .filter(p -> p)
+                    .orElse(Boolean.FALSE);
         }
         return isInheritanceEnabled ? inheritanceEnabledPage : null;
     }
