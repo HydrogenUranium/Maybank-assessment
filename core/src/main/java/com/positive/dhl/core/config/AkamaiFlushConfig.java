@@ -10,7 +10,7 @@ import static com.day.cq.dam.api.DamConstants.NT_DAM_ASSET;
 import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 
 @ObjectClassDefinition(
-        name = "[Akamai Flush agent configuration]",
+        name = "[DHL] | Akamai Flush configuration",
         description = "This configuration controls the behaviour of the Akamai Flush agent - this agent is used to invalidate urls in Akamai's cache."
 )
 public @interface AkamaiFlushConfig {
@@ -40,7 +40,7 @@ public @interface AkamaiFlushConfig {
     @AttributeDefinition(
             name = "Client Token",
             description = "Client Token is one of the 4 values required by the Akamai HTTP client to sign the request",
-            type = AttributeType.STRING
+            type = AttributeType.PASSWORD
     )
     String clientToken();
 
