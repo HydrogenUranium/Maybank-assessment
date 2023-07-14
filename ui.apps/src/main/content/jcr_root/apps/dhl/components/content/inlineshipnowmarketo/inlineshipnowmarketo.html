@@ -21,11 +21,11 @@
 		  "hiddenMunchkinId": "078-ERT-522",
 		  "hiddenFormId": 1756
 		}'
-			 hiddenMunchkinId = "${marketoConfig.hiddenMarketoMunchkinId @ context='html' || '078-ERT-522'}"
-			 hiddenFormId = "${marketoConfig.hiddenMarketoId @ context='html' || '1756'}"
-			 munchkinid="${marketoConfig.marketoMunchkinId @ context='html' || '903-EZK-832'}"
-			 formid="${marketoConfig.marketoFormId @ context='html' || '1795'}"
-			 formHost="${marketoConfig.marketoHostname @ context='html' || 'https://express-resource.dhl.com'}"
+			 hiddenMunchkinId = "${marketoConfig.getHiddenMarketoMunchkinId @ context='html'}"
+			 hiddenFormId = "${marketoConfig.getHiddenMarketoId @ context='html'}"
+			 munchkinid="${marketoConfig.getMarketoMunchkinId @ context='html'}"
+			 formid="${marketoConfig.getMarketoFormId @ context='html'}"
+			 formHost="${marketoConfig.getMarketoHostname @ context='html'}"
 			 source="noconf"
 		>
 
@@ -36,8 +36,8 @@
 					.js"></script>
 					<form id="${marketoConfig.formIdAsDivId @ context='html'}"></form>
 					<script>MktoForms2.loadForm("${marketoConfig.marketoHostname @ context='unsafe'}",
-							"${marketoConfig.marketoMunchkinId @ context='unsafe' || '903-EZK-832'}",
-							"${marketoConfig.marketoFormId @ context='unsafe' || '1795'}");</script>
+							"${marketoConfig.marketoMunchkinId @ context='unsafe'}",
+							"${marketoConfig.marketoFormId @ context='unsafe'}");</script>
 					<form id="${marketoConfig.hiddenFormIdAsDivId @ context='html'}"></form>
 				</div>
 

@@ -8,6 +8,7 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -82,5 +83,77 @@ class MarketoConfigurationTest {
 		}
 
 		assertEquals(assertedValue, getFormIdAsFormId);
+	}
+
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {"  ", "\t", "\n"})
+	void testNullEmptyMunchkinId(String munchkinId){
+		MockSlingHttpServletRequest request = aemContext.request();
+		Map<String,Object> pageProperties = new HashMap<>();
+		pageProperties.put("munchkinId", munchkinId);
+		pageProperties.put("sling:resourceType", "dhl/components/content/inlineshipnowmarketo/v2");
+		aemContext.create().resource("/content/dhl/page/jcr:content/marketocomponent", pageProperties);
+		aemContext.currentResource("/content/dhl/page/jcr:content/marketocomponent");
+
+		underTest = request.adaptTo(MarketoConfiguration.class);
+		assert underTest != null;
+		String result = underTest.getMarketoMunchkinId();
+
+		assertEquals("903-EZK-832", result);
+	}
+
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {"  ", "\t", "\n", ""})
+	void testNullEmptyFormId(String formId){
+		MockSlingHttpServletRequest request = aemContext.request();
+		Map<String,Object> pageProperties = new HashMap<>();
+		pageProperties.put("marketoFormId", formId);
+		pageProperties.put("sling:resourceType", "dhl/components/content/inlineshipnowmarketo/v2");
+		aemContext.create().resource("/content/dhl/page/jcr:content/marketocomponent", pageProperties);
+		aemContext.currentResource("/content/dhl/page/jcr:content/marketocomponent");
+
+		underTest = request.adaptTo(MarketoConfiguration.class);
+		assert underTest != null;
+		String result = underTest.getMarketoFormId();
+
+		assertEquals("1795", result);
+	}
+
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {"  ", "\t", "\n"})
+	void testNullEmptyHiddenMunchkinId(String munchkinId){
+		MockSlingHttpServletRequest request = aemContext.request();
+		Map<String,Object> pageProperties = new HashMap<>();
+		pageProperties.put("hiddenMarketoMunchkinId", munchkinId);
+		pageProperties.put("sling:resourceType", "dhl/components/content/inlineshipnowmarketo/v2");
+		aemContext.create().resource("/content/dhl/page/jcr:content/marketocomponent", pageProperties);
+		aemContext.currentResource("/content/dhl/page/jcr:content/marketocomponent");
+
+		underTest = request.adaptTo(MarketoConfiguration.class);
+		assert underTest != null;
+		String result = underTest.getHiddenMarketoMunchkinId();
+
+		assertEquals("078-ERT-522", result);
+	}
+
+	@ParameterizedTest
+	@NullAndEmptySource
+	@ValueSource(strings = {"  ", "\t", "\n", ""})
+	void testNullEmptyHiddenFormId(String formId){
+		MockSlingHttpServletRequest request = aemContext.request();
+		Map<String,Object> pageProperties = new HashMap<>();
+		pageProperties.put("hiddenMarketoId", formId);
+		pageProperties.put("sling:resourceType", "dhl/components/content/inlineshipnowmarketo/v2");
+		aemContext.create().resource("/content/dhl/page/jcr:content/marketocomponent", pageProperties);
+		aemContext.currentResource("/content/dhl/page/jcr:content/marketocomponent");
+
+		underTest = request.adaptTo(MarketoConfiguration.class);
+		assert underTest != null;
+		String result = underTest.getHiddenMarketoId();
+
+		assertEquals("1756", result);
 	}
 }
