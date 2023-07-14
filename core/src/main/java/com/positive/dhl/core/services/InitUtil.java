@@ -1,6 +1,8 @@
 /* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.services;
 
+import com.akamai.edgegrid.signer.ClientCredential;
+import com.akamai.edgegrid.signer.apachehttpclient.ApacheHttpClientEdgeGridInterceptor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -23,7 +25,9 @@ public class InitUtil {
 	private HttpClientBuilderFactory httpClientBuilderFactory;
 
 	ObjectMapper objectMapper;
-	CloseableHttpClient client;
+	CloseableHttpClient generalClient;
+
+	CloseableHttpClient akamaiClient;
 
 	/**
 	 * Provides an instance of Jackson's object mapper (
@@ -42,33 +46,59 @@ public class InitUtil {
 	}
 
 	/**
-	 * Method that provides an instance of {@code CloseableHttpClient}
-	 * @return CloseableHttpClient with Akamai credentials built in (either an existing one or a new one if no client exists yet)
+	 * Method that provides an instance of {@code CloseableHttpClient}. Goal here is to not waste resources on frequent
+	 * re-initializations of the client.
+	 * @return CloseableHttpClient (either an existing one or a new one if no client exists yet)
 	 */
 	public CloseableHttpClient getHttpClient(){
 
-		if(this.client != null){
-			return this.client;
+		if(this.generalClient != null){
+			return this.generalClient;
 		}
 
-		// HTTP Requests should always have Socket and Connect timeouts
-		// https://experienceleague.adobe.com/docs/experience-manager-cloud-manager/content/using/custom-code-quality-rules.html?lang=en#http-requests-should-always-have-socket-and-connect-timeouts
-		RequestConfig requestConfig = RequestConfig.custom()
+		this.generalClient = httpClientBuilderFactory.newBuilder()
+				.disableAuthCaching()
+				.setDefaultRequestConfig(getRequestConfig())
+				.build();
+		return this.generalClient;
+	}
+
+	/**
+	 * Builds the RequestConfig using recommended Adobe (<a href="https://experienceleague.adobe.com/docs/experience-manager-cloud-manager/content/using/custom-code-quality-rules.html?lang=en#http-requests-should-always-have-socket-and-connect-timeouts">values</a>
+	 * HTTP Requests should always have Socket and Connect timeouts
+	 *
+	 * @return new instance of {@link RequestConfig} that we can leverage when initializing the http client
+	 */
+	private RequestConfig getRequestConfig(){
+		return RequestConfig.custom()
 				.setConnectTimeout(30000)
 				.setSocketTimeout(30000)
 				.build();
-		this.client = httpClientBuilderFactory.newBuilder()
-				.disableAuthCaching()
-				.setDefaultRequestConfig(requestConfig)
-				.build();
-		return this.client;
 	}
 
 	/**
 	 * Helper method responsible for nullifying the http client instance and re-initializing it again
 	 */
 	public void resetClient(){
-		this.client = null;
+		this.generalClient = null;
 		getHttpClient();
+	}
+
+
+	/**
+	 * Provides the 'akamai' Http client - http client enhanced with akamai credentials. Not to be confused with {@link InitUtil#getHttpClient()}
+	 * @return instance of {@link CloseableHttpClient} ready to be used with Akamai APIs
+	 */
+	public CloseableHttpClient getAkamaiClient(ClientCredential clientCredential){
+		if(null != akamaiClient){
+			return akamaiClient;
+		}
+
+		akamaiClient = httpClientBuilderFactory.newBuilder()
+				.addInterceptorFirst(new ApacheHttpClientEdgeGridInterceptor(clientCredential))
+				.setDefaultRequestConfig(getRequestConfig())
+				.build();
+
+		return this.akamaiClient;
 	}
 }

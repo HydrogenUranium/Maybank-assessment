@@ -10,12 +10,12 @@ import com.positive.dhl.core.dto.marketo.MarketoConnectionData;
 import com.positive.dhl.core.dto.marketo.formdescription.FormDescriptionResponse;
 import com.positive.dhl.core.dto.marketo.formdescription.Result;
 import com.positive.dhl.core.dto.marketo.formfields.FormFieldsResponse;
-import com.positive.dhl.core.exceptions.MarketoRequestException;
+import com.positive.dhl.core.exceptions.HttpRequestException;
+import com.positive.dhl.core.services.HttpCommunication;
 import com.positive.dhl.core.services.InitUtil;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.entity.EntityBuilder;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -39,7 +39,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
-class MarketoHttpCommunicationTest {
+class MarketoCommunicationImplTest {
 
 	AemContext context = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
 
@@ -68,6 +68,9 @@ class MarketoHttpCommunicationTest {
 	List<Result> resultList;
 
 	@Mock
+	HttpCommunication httpCommunication;
+
+	@Mock
 	Result result;
 
 	@Mock
@@ -76,48 +79,40 @@ class MarketoHttpCommunicationTest {
 	@Mock
 	ObjectMapper objectMapper;
 
-	MarketoHttpCommunication underTest;
+	MarketoCommunicationImpl underTest;
 
 	@BeforeEach
 	void setUp() {
 		Map<String,Object> injectedServices = new HashMap<>();
 		injectedServices.putIfAbsent("marketoSubmissionConfigReader", marketoSubmissionConfigReader);
 		injectedServices.putIfAbsent("initUtil", initUtil);
+		injectedServices.putIfAbsent("httpCommunication", httpCommunication);
 
 		context.registerService(MarketoSubmissionConfigReader.class,marketoSubmissionConfigReader);
 		context.registerService(InitUtil.class, initUtil);
-		underTest = new MarketoHttpCommunication();
+		context.registerService(HttpCommunication.class, httpCommunication);
+		underTest = new MarketoCommunicationImpl();
 
 		context.registerInjectActivateService(underTest,injectedServices);
 	}
 
 	@Test
-	void requestNewToken() throws IOException {
-		this.commonStubbing();
-		HttpEntity httpEntity = EntityBuilder.create().setText("mocked response").build();
-		when(client.execute(any(HttpPost.class))).thenReturn(response);
-		when(response.getEntity()).thenReturn(httpEntity);
-		when(response.getStatusLine()).thenReturn(statusLine);
-		when(statusLine.getStatusCode()).thenReturn(200);
-		when(statusLine.getReasonPhrase()).thenReturn("dummy reason phrase");
+	void requestNewToken() throws IOException, HttpRequestException {
+		this.commonStubbing(true);
 
 		AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
 				.accessToken("dummy-access-token-123").build();
+		when(httpCommunication.sendPostMessage(anyString(),anyString(),any(),anyList(),any(CloseableHttpClient.class))).thenReturn("sss");
 		when(objectMapper.readValue(anyString(), any(Class.class))).thenReturn(authenticationResponse);
 		String testToken = underTest.requestNewToken();
 		assertEquals("dummy-access-token-123", testToken);
 	}
 
 	@Test
-	void requestNewTokenInvalidToken() throws IOException {
-		this.commonStubbing();
-		HttpEntity httpEntity = EntityBuilder.create().setText("mocked response").build();
-		when(client.execute(any(HttpPost.class))).thenReturn(response);
-		when(response.getEntity()).thenReturn(httpEntity);
-		when(response.getStatusLine()).thenReturn(statusLine);
-		when(statusLine.getStatusCode()).thenReturn(200);
-		when(statusLine.getReasonPhrase()).thenReturn("dummy reason phrase");
+	void requestNewTokenInvalidToken() throws IOException, HttpRequestException {
+		this.commonStubbing(true);
 
+		when(httpCommunication.sendPostMessage(anyString(),anyString(),any(),anyList(), any(CloseableHttpClient.class))).thenReturn("dummy-response-text");
 		when(objectMapper.readValue(anyString(), any(Class.class))).thenThrow(JsonProcessingException.class);
 		String testToken = underTest.requestNewToken();
 		assertNull( testToken);
@@ -126,27 +121,14 @@ class MarketoHttpCommunicationTest {
 	@Test
 	void requestNewTokenFailedHttpRequest() {
 		MarketoConnectionData marketoConnectionData = mock(MarketoConnectionData.class);
-		assertThrows(MarketoRequestException.class, () -> underTest.requestNewToken(marketoConnectionData));
+		assertThrows(HttpRequestException.class, () -> underTest.requestNewToken(marketoConnectionData));
 	}
 
 	@Test
-	void requestNewTokenMissingConnectionDetails() {
-		when(marketoSubmissionConfigReader.getMarketoHost()).thenReturn("https://marketo-host.com");
-		when(marketoSubmissionConfigReader.getMarketoClientId()).thenReturn(null);
-		when(marketoSubmissionConfigReader.getMarketoClientSecret()).thenReturn("marketo-client-secret");
-		when(marketoSubmissionConfigReader.getMarketoAuthenticationAPIEndpoint()).thenReturn("marketo-authentication-endpoint");
-		when(marketoSubmissionConfigReader.getMarketoFormSubmissionAPIEndpoint()).thenReturn("marketo-form-submission-endpoint");
+	void submitForm() throws IOException, HttpRequestException {
+		this.commonStubbing(true);
 
-		String testToken = underTest.requestNewToken();
-		assertNull(testToken);
-	}
-
-	@Test
-	void submitForm() throws IOException {
-		HttpEntity httpEntity = EntityBuilder.create().setText("mocked response").build();
-		this.commonStubbing();
-		this.commonHttpStubbing(httpEntity,false,true);
-		when(objectMapper.writeValueAsString(any(FormInputBase.class))).thenReturn("{'serialized json string'}");
+		when(httpCommunication.sendPostMessage(anyString(), anyString(), any(), eq(null), any(CloseableHttpClient.class))).thenReturn("mocked response");
 		FormSubmissionResponse formSubmissionResponse = FormSubmissionResponse.builder().success(true).build();
 		when(objectMapper.readValue(anyString(), any(Class.class))).thenReturn(formSubmissionResponse);
 		FormSubmissionResponse response = underTest.submitForm(FormInputBase.builder().build(),"dummy");
@@ -154,24 +136,24 @@ class MarketoHttpCommunicationTest {
 	}
 
 	@Test
-	void submitFormBadResponse() throws IOException {
-		HttpEntity httpEntity = EntityBuilder.create().setText("mocked response").build();
-		this.commonStubbing();
-		this.commonHttpStubbing(httpEntity,false ,true );
-		when(objectMapper.writeValueAsString(any(FormInputBase.class))).thenReturn("{'serialized json string'}");
+	void submitFormBadResponse() throws IOException, HttpRequestException {
+		this.commonStubbing(true);
+		when(httpCommunication.sendPostMessage(anyString(), anyString(), any(), eq(null), any(CloseableHttpClient.class))).thenReturn("mocked response");
 		when(objectMapper.readValue(anyString(), any(Class.class))).thenThrow(JsonProcessingException.class);
 		FormSubmissionResponse response = underTest.submitForm(FormInputBase.builder().build(),"dummy");
 		assertNotNull(response.getDhlErrorMessage());
 	}
 
+
+	/*
 	@Test
 	void sendPostMessageInvalidUrlNoBody() {
 		String url = "dummy-wrong-url";
-		assertThrows(MarketoRequestException.class, () -> underTest.sendPostMessage(url,"111", null, new ArrayList<>()));
+		assertThrows(HttpRequestException.class, () -> underTest.sendPostMessage(url,"111", null, new ArrayList<>()));
 	}
 
 	@Test
-	void testSendPostMessage() throws MarketoRequestException, IOException {
+	void testSendPostMessage() throws HttpRequestException, IOException {
 		String url = "https://market-host.com/dummy-endpoint";
 		String authToken = "dummy-auth-token";
 		FormInputBase postBody = mock(FormInputBase.class);
@@ -189,8 +171,11 @@ class MarketoHttpCommunicationTest {
 		assertEquals("mocked response", response);
 	}
 
-	public void commonStubbing(){
-		when(initUtil.getHttpClient()).thenReturn(client);
+*/
+	public void commonStubbing(boolean needHttpClient){
+		if(needHttpClient){
+			when(initUtil.getHttpClient()).thenReturn(client);
+		}
 		when(initUtil.getObjectMapper()).thenReturn(objectMapper);
 		when(marketoSubmissionConfigReader.getMarketoHost()).thenReturn("https://marketo-host.com");
 		when(marketoSubmissionConfigReader.getMarketoClientId()).thenReturn("marketo-client-id");
@@ -217,15 +202,13 @@ class MarketoHttpCommunicationTest {
 	}
 
 	@Test
-	void getAvailableFormFieldNames() throws IOException {
-		HttpEntity httpEntity = EntityBuilder.create().setText("mocked response").build();
-		this.commonStubbing();
-		this.commonHttpStubbing(httpEntity,true ,false );
-		String authToken = "dummy-auth-token";
-
+	void getAvailableFormFieldNames() throws IOException, HttpRequestException {
+		this.commonStubbing(false);
 		List<String> availableFormFieldNames = new ArrayList<>();
 		availableFormFieldNames.add("dummy-field");
+		String authToken = "dummy-auth-token";
 
+		when(httpCommunication.sendGetMessage(anyString(),anyString())).thenReturn("any response");
 		when(objectMapper.readValue(anyString(), any(Class.class))).thenReturn(formDescriptionResponse);
 		when(formDescriptionResponse.getResult()).thenReturn(resultList);
 		when(resultList.get(anyInt())).thenReturn(result);
@@ -236,12 +219,11 @@ class MarketoHttpCommunicationTest {
 	}
 
 	@Test
-	void getFormFields() throws IOException {
-		HttpEntity httpEntity = EntityBuilder.create().setText("mocked response").build();
-		this.commonStubbing();
-		this.commonHttpStubbing(httpEntity,true ,false );
+	void getFormFields() throws IOException, HttpRequestException {
+		this.commonStubbing(false);
 		String authToken = "dummy-auth-token";
 
+		when(httpCommunication.sendGetMessage(anyString(),anyString())).thenReturn("any response");
 		when(objectMapper.readValue(anyString(), any(Class.class))).thenReturn(formFieldsResponse);
 		when(formFieldsResponse.getFormFields()).thenReturn(formFieldsList);
 

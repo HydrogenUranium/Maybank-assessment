@@ -1,27 +1,17 @@
-/* 9fbef606107a605d69c0edbcd8029e5d */
 
 package com.positive.dhl.core.config.impl;
 
 import com.positive.dhl.core.config.AkamaiFlushConfig;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
-import org.osgi.framework.InvalidSyntaxException;
-import org.osgi.service.cm.Configuration;
-import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
-import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
-@Component(service = AkamaiFlushConfigReader.class, immediate = true)
+@Component(service = AkamaiFlushConfigReaderImpl.class, immediate = true)
 @Designate(ocd = AkamaiFlushConfig.class)
-public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader{
+public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AkamaiFlushConfigReaderImpl.class);
     private String clientSecret;
     private String accessToken;
     private String akamaiHost;
@@ -31,8 +21,7 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader{
     private int chunkSize;
     private String[] allowedContentTypes;
     private String[] allowedContentPaths;
-    @Reference
-    private ConfigurationAdmin configurationAdmin;
+    private boolean enabled;
 
     @Activate
     @Modified
@@ -46,6 +35,7 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader{
         this.chunkSize = configReader.chunkSize();
         this.allowedContentTypes = configReader.allowedContentTypes();
         this.allowedContentPaths = configReader.allowedContentPaths();
+        this.enabled =  configReader.flushEnabled();
     }
 
     /**
@@ -133,19 +123,8 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader{
     }
 
     @Override
-    public Configuration[] getGNFOsgiConfigs(String persistenceId){
-        try {
-
-            String filter = "(" + ConfigurationAdmin.SERVICE_FACTORYPID + "=" + persistenceId + ")";
-            Configuration[] foundConfigs = configurationAdmin.listConfigurations(filter);
-            if(foundConfigs.length > 0){
-                return configurationAdmin.listConfigurations(filter);
-            }
-
-        } catch (InvalidSyntaxException | IOException e) {
-            LOGGER.error(e.getMessage());
-        }
-
-        return new Configuration[0];
+    public boolean getEnabled() {
+        return enabled;
     }
+
 }

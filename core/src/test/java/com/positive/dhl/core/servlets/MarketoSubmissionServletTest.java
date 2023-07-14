@@ -3,7 +3,7 @@ package com.positive.dhl.core.servlets;
 import com.positive.dhl.core.config.MarketoSubmissionConfigReader;
 import com.positive.dhl.core.dto.marketo.FormInputBase;
 import com.positive.dhl.core.dto.marketo.FormSubmissionResponse;
-import com.positive.dhl.core.services.HttpCommunication;
+import com.positive.dhl.core.services.MarketoCommunication;
 import com.positive.dhl.core.services.InitUtil;
 import com.positive.dhl.core.services.InputParamHelper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -36,7 +36,7 @@ class MarketoSubmissionServletTest {
 	@Mock
 	InputParamHelper inputParamHelper;
 	@Mock
-	HttpCommunication httpCommunication;
+	MarketoCommunication marketoCommunication;
 	@Mock
 	InitUtil initUtil;
 	@Mock
@@ -52,12 +52,12 @@ class MarketoSubmissionServletTest {
 		response = context.response();
 		Map<String,Object> injectedServices = new HashMap<>();
 		injectedServices.putIfAbsent("inputParamHelper", inputParamHelper);
-		injectedServices.putIfAbsent("httpCommunication", httpCommunication);
+		injectedServices.putIfAbsent("marketoCommunication", marketoCommunication);
 		injectedServices.putIfAbsent("configReader", configReader);
 		injectedServices.putIfAbsent("initUtil", initUtil);
 
 		context.registerService(InputParamHelper.class, inputParamHelper);
-		context.registerService(HttpCommunication.class, httpCommunication);
+		context.registerService(MarketoCommunication.class, marketoCommunication);
 		context.registerService(InitUtil.class, initUtil);
 		context.registerService(MarketoSubmissionConfigReader.class, configReader);
 
@@ -108,8 +108,8 @@ class MarketoSubmissionServletTest {
 		when(configReader.getMarketoClientSecret()).thenReturn("dummy-secret-id");
 		when(inputParamHelper.buildForm(any(SlingHttpServletRequest.class), anyList(), anyList())).thenReturn(formInputBase);
 		when(formInputBase.isOk()).thenReturn(true);
-		when(httpCommunication.requestNewToken()).thenReturn("dummy-token");
-		when(httpCommunication.submitForm(any(FormInputBase.class), anyString())).thenReturn(formSubmissionResponse);
+		when(marketoCommunication.requestNewToken()).thenReturn("dummy-token");
+		when(marketoCommunication.submitForm(any(FormInputBase.class), anyString())).thenReturn(formSubmissionResponse);
 
 		underTest.doPost(request,response);
 		String responseBody = context.response().getOutputAsString();
@@ -126,6 +126,6 @@ class MarketoSubmissionServletTest {
 		when(inputParamHelper.buildForm(any(SlingHttpServletRequest.class), anyList(), anyList())).thenReturn(mock(FormInputBase.class));
 
 		underTest.doPost(request,response);
-		verify(httpCommunication, times(0)).submitForm(any(FormInputBase.class),anyString());
+		verify(marketoCommunication, times(0)).submitForm(any(FormInputBase.class),anyString());
 	}
 }

@@ -1,7 +1,6 @@
 /* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.config;
 
-import org.osgi.service.cm.Configuration;
 
 public interface AkamaiFlushConfigReader {
 
@@ -69,10 +68,9 @@ public interface AkamaiFlushConfigReader {
     String[] getAllowedContentPaths();
 
     /**
-     * Method to provide array of {@code Configuration} that can be found under the provided PID
-     * @return an array of {@link Configuration}s, each item in the array matches the OSGi configuration
-     * entry with this persistence id. If nothing was found, empty array is returned
-     * @param persistenceId is the name of persistenceId (that can be found in OSGi console)
+     * Retrieves the value of on/off switch whether to send the flush request or not
+     * @return boolean {@code true} if functionality is enabled, or {@code false} if not
      */
-    Configuration[] getGNFOsgiConfigs(String persistenceId);
+    boolean getEnabled();
+
 }

@@ -1,0 +1,19 @@
+{
+  "enabled": "$[env:AKAMAI_FLUSH_ENABLED]",
+  "accessToken": "$[env:AKAMAI_ACCESS_TOKEN]",
+  "akamaiHost": "$[env:AKAMAI_HOST]",
+  "clientSecret": "$[env:AKAMAI_CLIENT_SECRET]",
+  "clientToken": "$[env:AKAMAI_CLIENT_TOKEN]",
+  "delay": "3",
+  "chunkSize": "20",
+  "apiBase": "/ccu/v3/",
+  "allowedContentTypes":[
+    "cq:Page",
+    "dam:Asset",
+    "nt:file"
+  ],
+  "allowedContentPaths": [
+    "/content",
+    "/etc.clientlibs"
+  ]
+}

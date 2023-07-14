@@ -1,10 +1,13 @@
-/* 9fbef606107a605d69c0edbcd8029e5d */
-
 package com.positive.dhl.core.config;
 
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
+
+import static com.day.cq.commons.jcr.JcrConstants.NT_FILE;
+
+import static com.day.cq.dam.api.DamConstants.NT_DAM_ASSET;
+import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 
 @ObjectClassDefinition(
         name = "[Akamai Flush agent configuration]",
@@ -13,16 +16,24 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface AkamaiFlushConfig {
 
     @AttributeDefinition(
+        name = "Akamai Flush enabled",
+        description = "On / Off switch that either sets the configuration enabled or disabled. " +
+            "If disabled, replication events would still be listened to, but not acted on.",
+        type = AttributeType.BOOLEAN
+    )
+    boolean flushEnabled() default false;
+
+    @AttributeDefinition(
             name = "Client Secret",
             description = "Client Secret is one of the 4 values required by the Akamai HTTP client to sign the request",
-            type = AttributeType.STRING
+            type = AttributeType.PASSWORD
     )
     String clientSecret();
 
     @AttributeDefinition(
             name = "Access Token",
             description = "Access Token is one of the 4 values required by the Akamai HTTP client to sign the request",
-            type = AttributeType.STRING
+            type = AttributeType.PASSWORD
     )
     String accessToken();
 
@@ -46,34 +57,33 @@ public @interface AkamaiFlushConfig {
             description = "API Base is the starting point of the API endpoint (after host), all other URLs are derived from this value",
             type = AttributeType.STRING
     )
-    String apiBase();
+    String apiBase() default "/ccu/v3/";
 
     @AttributeDefinition(
             name = "Max number of requests",
             description = "Max number of requests that can be included in one message to Akamai.",
             type = AttributeType.INTEGER
     )
-    int chunkSize();
+    int chunkSize() default 20;
 
     @AttributeDefinition(
             name = "Delay",
             description = "How long (in seconds) is the Agent going to wait before actually sending the request to Akamai",
             type = AttributeType.LONG
     )
-    long delay();
+    long delay() default 1;
 
     @AttributeDefinition(
             name = "Allowed content types",
             description = "List of content types which we allow to be flushed on Akamai",
             type = AttributeType.STRING
     )
-    String[] allowedContentTypes();
+    String[] allowedContentTypes() default {NT_PAGE, NT_DAM_ASSET, NT_FILE};
 
     @AttributeDefinition(
             name = "Allowed content paths",
             description = "List of content paths which we allow to be flushed on Akamai",
             type = AttributeType.STRING
     )
-    String[] allowedContentPaths();
-
+    String[] allowedContentPaths() default {"/content", "/etc.clientlibs"};
 }
