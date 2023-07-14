@@ -101,6 +101,28 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     @Test
+    void testNoAlternative() throws SitemapException, NoSuchFieldException, IllegalAccessException {
+        Page page = resource.adaptTo(Page.class);
+        Page mockPage = mock(Page.class);
+        Map<Locale, Page> languageAlternatives = new LinkedHashMap<>();
+        languageAlternatives.put(new Locale("fr"), mockPage);
+
+        when(languageAlternativesService.getLanguageAlternatives(any(Page.class))).thenReturn(languageAlternatives);
+        lenient().when(mockPage.getContentResource()).thenReturn(null);
+        pageTreeSitemapGenerator = context.registerInjectActivateService(new PageTreeSitemapGeneratorImpl(),
+                "enableLastModified", true,
+                "lastModifiedSource", PN_PAGE_LAST_MOD,
+                "enableChangefreq", true,
+                "changefreqDefaultValue", "always",
+                "enablePriority", true,
+                "priorityDefaultValue", "pageDepth",
+                "enableLanguageAlternates", true);
+        pageTreeSitemapGenerator.addResource(StringUtils.EMPTY, sitemap, resource);
+
+        verication(sitemap, EXPECTED_LOCATION, EXPECTED_LAST_MODIFIED);
+    }
+
+    @Test
     void testLastModified() throws SitemapException, NoSuchFieldException, IllegalAccessException {
         pageTreeSitemapGenerator = context.registerInjectActivateService(new PageTreeSitemapGeneratorImpl(),
                 "enableLastModified", true,
