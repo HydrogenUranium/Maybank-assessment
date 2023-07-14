@@ -4,6 +4,8 @@ package com.positive.dhl.core.listeners;
 import com.day.cq.replication.ReplicationAction;
 import com.day.cq.replication.ReplicationActionType;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
+import com.positive.dhl.core.constants.AkamaiInvalidationResult;
+import com.positive.dhl.core.services.impl.AkamaiFlush;
 import lombok.extern.slf4j.Slf4j;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -23,15 +25,23 @@ public class ReplicationListener implements EventHandler {
 	@Reference
 	private AkamaiFlushConfigReader akamaiFlushConfigReader;
 
+	@Reference
+	private AkamaiFlush akamaiFlush;
+
 	@Override
 	public void handleEvent(Event event) {
 		if(akamaiFlushConfigReader.getEnabled()){
 			var replicationAction = ReplicationAction.fromEvent(event);
 			if(null != replicationAction && isInScope(replicationAction)){
 				log.info("Path: {}", replicationAction.getPath());
+				AkamaiInvalidationResult result = akamaiFlush.invalidateAkamaiCache(replicationAction.getPath());
+				log.info(String.valueOf(result));
 			}
 		}
-		log.info("Akamai flush is disabled. To enable, verify the environment settings in Adobe Cloud Manager.");
+		else {
+			log.info("Akamai flush is disabled. To enable, verify the environment settings in Adobe Cloud Manager.");
+		}
+
 	}
 
 	private boolean isInScope(ReplicationAction replicationAction){

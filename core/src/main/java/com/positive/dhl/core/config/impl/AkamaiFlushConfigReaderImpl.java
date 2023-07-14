@@ -8,7 +8,10 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.metatype.annotations.Designate;
 
-@Component(service = AkamaiFlushConfigReaderImpl.class, immediate = true)
+import java.util.Arrays;
+import java.util.List;
+
+@Component(service = AkamaiFlushConfigReader.class, immediate = true)
 @Designate(ocd = AkamaiFlushConfig.class)
 public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
 
@@ -109,17 +112,17 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
      *
      * @return allowedContentTypes - {@link String[]}
      */
-    public String[] getAllowedContentTypes() {
-        return allowedContentTypes;
+    public List<String> getAllowedContentTypes() {
+        return Arrays.asList(allowedContentTypes);
     }
 
     /**
      * Method to provide the allowedContentPaths (array of allowed content paths that can be flushed)
      *
-     * @return allowedContentPaths - {@link String[]}
+     * @return allowedContentPaths - {@link List} of {@link String}s
      */
-    public String[] getAllowedContentPaths() {
-        return allowedContentPaths;
+    public List<String> getAllowedContentPaths() {
+        return Arrays.asList(allowedContentPaths);
     }
 
     @Override

@@ -2,6 +2,8 @@
 package com.positive.dhl.core.config;
 
 
+import java.util.List;
+
 public interface AkamaiFlushConfigReader {
 
     /**
@@ -58,14 +60,14 @@ public interface AkamaiFlushConfigReader {
      *
      * @return allowedContentTypes - {@link String[]}
      */
-    String[] getAllowedContentTypes();
+    List<String> getAllowedContentTypes();
 
     /**
      * Method to provide the allowedContentPaths (array of allowed content paths that can be flushed)
      *
      * @return allowedContentPaths - {@link String[]}
      */
-    String[] getAllowedContentPaths();
+    List<String> getAllowedContentPaths();
 
     /**
      * Retrieves the value of on/off switch whether to send the flush request or not
