@@ -75,10 +75,9 @@
 									"hiddenFormId": 1759
 									}'
 									source="signup"
-									munchkinId = "${marketoConfig.marketoMunchkinId @ context='html'|| '078-ERT-522' }"
-									formId = "${marketoConfig.marketoFormId @ context='html' || '1759'}"
-								 	formHost = "${marketoConfig.marketoHostname @ context='html' ||
-								 	'https://express-resource.dhl.com'}"
+									munchkinId = "${marketoConfig.getMarketoMunchkinId @ context='attribute' }"
+									formId = "${marketoConfig.getMarketoFormId @ context='attribute'}"
+								 	formHost = "${marketoConfig.getMarketoHostname @ context='attribute'}"
 								>
 									<div class="wysiwyg">
 										<div data-marketo-visible-form>
