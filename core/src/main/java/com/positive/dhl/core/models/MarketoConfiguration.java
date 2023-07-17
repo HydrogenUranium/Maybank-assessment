@@ -25,6 +25,8 @@ public class MarketoConfiguration {
 	EnvironmentConfiguration environmentConfiguration;
 
 	static final String RESOURCE_TYPE = "apps/dhl/components/content/inlineshipnowmarketo";
+	static final String RESOURCE_TYPE2 = "apps/dhl/components/content/inlineshipnowmarketo";
+	static final String RESOURCE_TYPE3 = "apps/dhl/components/content/inlineshipnowmarketo";
 
 	/**
 	 * Marketo form id - that's how we identify specific form within Marketo project
@@ -101,6 +103,8 @@ public class MarketoConfiguration {
 	public String getMarketoFormId() {
 		if(marketoFormId != null && !marketoFormId.isBlank()){
 			return marketoFormId;
+		} else {
+			return "1795";
 		}
 		return "1795";
 	}
