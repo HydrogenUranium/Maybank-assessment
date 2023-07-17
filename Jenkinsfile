@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv(installationName: 'Central Sonar') {
-                        sh 'mvn install org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pcoverage'
+                        sh 'mvn install org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pdhl-artifactory'
                     }
                 }
             }
@@ -86,7 +86,7 @@ pipeline {
                             tool: 'Maven 3.6.3',
                             useWrapper: false,
                             pom: 'pom.xml',
-                            goals: '-ntp clean install -P dhl-artifactory',
+                            goals: '-ntp clean install -Pdhl-artifactory',
                             resolverId: 'artifactory-resolver',
                             deployerId: 'artifactory-deployer',
                     )
