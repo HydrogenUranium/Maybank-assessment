@@ -16,7 +16,7 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
-        stage('SCM Checkout'){
+        stage('SCM Checkout') {
             steps{
                 checkout scm
             }
