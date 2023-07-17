@@ -7,6 +7,10 @@ public interface EnvironmentConfiguration {
 
     String getAssetPrefix();
 
+    /**
+     * Returns the configured 'akamai' hostname. This is a hostname that when accessed is served by Akamai CDN.
+     * @return a {@link String} representation of 'Akamai' hostname, defaults to 'www.dhl.com'
+     */
     String getAkamaiHostname();
 
     /**

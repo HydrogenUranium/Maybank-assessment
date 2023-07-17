@@ -4,6 +4,9 @@ package com.positive.dhl.core.config;
 
 import java.util.List;
 
+/**
+ * Configuration class providing access AEM configuration of Akamai flush functionality.
+ */
 public interface AkamaiFlushConfigReader {
 
     /**
@@ -42,20 +45,6 @@ public interface AkamaiFlushConfigReader {
     Long getDelay();
 
     /**
-     * Method to provide the baseURL (this is the API endpoint used to derive the final URL)
-     *
-     * @return API endpoint - {@link String}
-     */
-    String getBaseUrl();
-
-    /**
-     * Method to provide the 'chunk size' - max number of URLs to fit into the Akamai request
-     *
-     * @return chunk size - int
-     */
-    int getChunkSize();
-
-    /**
      * Method to provide the allowedContentTypes (array of allowed content types that can be flushed)
      *
      * @return allowedContentTypes - {@link String[]}
@@ -74,5 +63,11 @@ public interface AkamaiFlushConfigReader {
      * @return boolean {@code true} if functionality is enabled, or {@code false} if not
      */
     boolean getEnabled();
+
+    /**
+     * Provides the Akamai invalidate request API path
+     * @return String representation of the path where invalidation requests are to be sent
+     */
+    String getApiPath();
 
 }

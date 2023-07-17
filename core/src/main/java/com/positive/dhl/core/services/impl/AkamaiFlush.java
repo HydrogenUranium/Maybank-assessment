@@ -1,16 +1,25 @@
 /* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.services.impl;
 
+import com.akamai.edgegrid.signer.ClientCredential;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
 import com.positive.dhl.core.constants.AkamaiInvalidationResult;
+import com.positive.dhl.core.dto.akamai.FlushRequest;
+import com.positive.dhl.core.dto.akamai.FlushResponse;
+import com.positive.dhl.core.exceptions.HttpRequestException;
+import com.positive.dhl.core.services.HttpCommunication;
+import com.positive.dhl.core.services.InitUtil;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 /**
@@ -34,14 +43,54 @@ public class AkamaiFlush {
 	@Reference
 	private RepositoryChecks repositoryChecks;
 
+	@Reference
+	private HttpCommunication httpCommunication;
+
+	@Reference
+	private InitUtil initUtil;
+
 	public AkamaiInvalidationResult invalidateAkamaiCache(String path){
 		if(canWeFlush(path)){
-			return AkamaiInvalidationResult.OK;
+			log.info("About to flush the following URL from Akamai: {}", getHostname(path));
+			FlushRequest request = FlushRequest.builder().build();
+			request.addItemToFlush(getHostname(path));
+			try {
+				var postBody = initUtil.getObjectMapper().writeValueAsString(request);
+
+				FlushResponse response = invalidateItemFromAkamai(postBody, getAkamaiCredentials());
+				if(response != null){
+					return AkamaiInvalidationResult.OK;
+				}
+			} catch (JsonProcessingException e) {
+				log.error("Unable to transform the 'FlushRequest' object to json string: {}", e.getMessage());
+			}
+
+			return AkamaiInvalidationResult.REJECTED;
 		}
 		log.info("Skipping akamai flush for page '{}'", path);
 		return AkamaiInvalidationResult.SKIPPED;
 	}
 
+	private FlushResponse invalidateItemFromAkamai(String postBody, ClientCredential credential){
+		var client = initUtil.getAkamaiClient(credential);
+		String apiPath = MessageFormat.format(akamaiFlushConfigReader.getApiPath(),"production");
+		String finalUrl = MessageFormat.format("https://{0}/{1}",akamaiFlushConfigReader.getAkamaiHost(),apiPath);
+		try {
+			var response = httpCommunication.sendPostMessage(finalUrl,postBody,client);
+			return initUtil.getObjectMapper().readValue(response,FlushResponse.class);
+		} catch (HttpRequestException e) {
+			log.error("Http request to Akamai failed with error message: {}", e.getMessage());
+		} catch (JsonProcessingException e) {
+			log.error("Failed to parse the json response from Akamai. Error message was: {}", e.getMessage());
+		}
+		return null;
+	}
+
+	/**
+	 * Contains logic to determine whether provided path can be flushed from Akamai cache or not.
+	 * @param path is the path (that was captured by replication listener or by other means)
+	 * @return boolean {@code true} if we think the path can (and perhaps should) be flushed, {@code false} otherwise
+	 */
 	private boolean canWeFlush(String path){
 		try(var resourceResolver = getResourceResolver()){
 			List<String> allowedContentPaths = akamaiFlushConfigReader.getAllowedContentPaths();
@@ -63,7 +112,38 @@ public class AkamaiFlush {
 		return false;
 	}
 
+	private String getHostname(String path){
+		var hostname = environmentConfiguration.getAkamaiHostname();
+		if(StringUtils.isBlank(hostname)){
+			hostname = "www.dhl.com";
+		}
+		return MessageFormat.format("{0}{1}{2}", hostname,environmentConfiguration.getAssetPrefix(),updatePath(path));
+	}
+
+	/**
+	 * Updates the path based on a simple rule - if the path leads to 'dam' (/content/dam...), we return the original value. Otherwise,
+	 * we return original value without '/content/dhl'
+	 * @param path is the path as passed to the method (possibly captured by the job listening on replication requests)
+	 * @return updated {@link String} that can be used to form Akamaized URL
+	 */
+	private String updatePath(String path){
+		if(path.contains("/content/dhl")){
+			return path.replace("/content/dhl","");
+		}
+
+		return path;
+	}
+
 	private ResourceResolver getResourceResolver(){
 		return resourceResolverHelper.getReadResourceResolver();
+	}
+
+	private ClientCredential getAkamaiCredentials(){
+		return ClientCredential.builder()
+				.clientSecret(akamaiFlushConfigReader.getClientSecret())
+				.clientToken(akamaiFlushConfigReader.getClientToken())
+				.accessToken(akamaiFlushConfigReader.getAccessToken())
+				.host(akamaiFlushConfigReader.getAkamaiHost())
+				.build();
 	}
 }

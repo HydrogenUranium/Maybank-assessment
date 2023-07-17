@@ -30,6 +30,18 @@ public interface HttpCommunication {
 	<T> String sendPostMessage(String url, String authToken, T postBody, List<NameValuePair> queryParams, CloseableHttpClient client) throws HttpRequestException;
 
 	/**
+	 * Very basic implementation of HTTP POST request that offers neither token-based-authentication, nor query parameters. If you need to use
+	 * any of those parameters, then {@link HttpCommunication#sendPostMessage(String, String, Object, List, CloseableHttpClient)} can be better used
+	 * @param url         is a String representing the server where we want to send the post message
+	 * @param postBody    is the POST request body we're going to send
+	 * @param client      is an instance of {@link CloseableHttpClient} that is leveraged to send the actual http request
+	 * @return            a String representing the response provided by the server
+	 * @throws HttpRequestException is thrown in case we detect any issue with either sending the request or if the status
+	 * 	 *                              returned by the server does not match success (200) or created (201)
+	 */
+	<T> String sendPostMessage(String url, T postBody, CloseableHttpClient client) throws HttpRequestException;
+
+	/**
 	 * Sends a GET message and returns the @{code String} representing the response provided by the 'url'
 	 *
 	 * @param url       is a String representing the server where we want to send the message

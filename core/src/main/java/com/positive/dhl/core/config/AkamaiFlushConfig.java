@@ -53,20 +53,6 @@ public @interface AkamaiFlushConfig {
     String akamaiHost();
 
     @AttributeDefinition(
-            name = "API base",
-            description = "API Base is the starting point of the API endpoint (after host), all other URLs are derived from this value",
-            type = AttributeType.STRING
-    )
-    String apiBase() default "/ccu/v3/";
-
-    @AttributeDefinition(
-            name = "Max number of requests",
-            description = "Max number of requests that can be included in one message to Akamai.",
-            type = AttributeType.INTEGER
-    )
-    int chunkSize() default 20;
-
-    @AttributeDefinition(
             name = "Delay",
             description = "How long (in seconds) is the Agent going to wait before actually sending the request to Akamai",
             type = AttributeType.LONG
@@ -86,4 +72,12 @@ public @interface AkamaiFlushConfig {
             type = AttributeType.STRING
     )
     String[] allowedContentPaths() default {"/content", "/etc.clientlibs"};
+
+    @AttributeDefinition(
+        name = "Akamai purge api path",
+        description = "API path where the invalidation requests are to be sent (https://techdocs.akamai.com/purge-cache/reference/invalidate-url)",
+        type = AttributeType.STRING,
+        defaultValue = "/ccu/v3/invalidate/url/{0}"
+    )
+    String flushApiPath() default "/ccu/v3/invalidate/url/{0}";
 }

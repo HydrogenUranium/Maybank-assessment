@@ -20,11 +20,10 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
     private String akamaiHost;
     private String clientToken;
     private Long delay;
-    private String apiBase;
-    private int chunkSize;
     private String[] allowedContentTypes;
     private String[] allowedContentPaths;
     private boolean enabled;
+    private String apiPath;
 
     @Activate
     @Modified
@@ -34,11 +33,10 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
         this.akamaiHost = configReader.akamaiHost();
         this.clientToken = configReader.clientToken();
         this.delay = configReader.delay();
-        this.apiBase = configReader.apiBase();
-        this.chunkSize = configReader.chunkSize();
         this.allowedContentTypes = configReader.allowedContentTypes();
         this.allowedContentPaths = configReader.allowedContentPaths();
         this.enabled =  configReader.flushEnabled();
+        this.apiPath = configReader.flushApiPath();
     }
 
     /**
@@ -90,24 +88,6 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
     }
 
     /**
-     * Method to provide the baseURL (this is the API endpoint used to derive the final URL)
-     *
-     * @return API endpoint - {@link String}
-     */
-    public String getBaseUrl() {
-        return apiBase;
-    }
-
-    /**
-     * Method to provide the 'chunk size' - max number of URLs to fit into the Akamai request
-     *
-     * @return chunk size - int
-     */
-    public int getChunkSize() {
-        return chunkSize;
-    }
-
-    /**
      * Method to provide the allowedContentTypes (array of allowed content types that can be flushed)
      *
      * @return allowedContentTypes - {@link String[]}
@@ -128,6 +108,11 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
     @Override
     public boolean getEnabled() {
         return enabled;
+    }
+
+    @Override
+    public String getApiPath() {
+        return apiPath;
     }
 
 }

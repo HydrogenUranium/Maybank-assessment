@@ -1,4 +1,3 @@
-/* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.services.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -74,6 +73,32 @@ public class HttpCommunicationImpl implements HttpCommunication {
 	}
 
 	@Override
+	public <T> String sendPostMessage(String url, T postBody, CloseableHttpClient client) throws HttpRequestException {
+		if(isValidUrl(url)){
+			try {
+				var httpPost = new HttpPost(url);
+				var uri = new URIBuilder(httpPost.getURI());
+
+				// add post body (if not null)
+				addPostBody(httpPost,postBody);
+
+				httpPost.setURI(uri.build());
+
+				// send request and return processed response
+				try (CloseableHttpResponse response = client.execute(httpPost)) {
+					return getRequestResponse(response);
+				}
+
+			} catch (IOException | URISyntaxException ioException) {
+				String errorMessage = MessageFormat.format("Problem has occurred when trying to send POST request to {0}, details: {1}", url, ioException.getMessage());
+				throw new HttpRequestException(errorMessage, ioException.getCause());
+			}
+		}
+		String errorMessage = MessageFormat.format("Provided string {0} does not appear to represent a valid URL.", url);
+		throw new HttpRequestException(errorMessage);
+	}
+
+	@Override
 	public String sendGetMessage(String url, String authToken) throws HttpRequestException {
 		try {
 			var httpGet = new HttpGet(url);
@@ -113,7 +138,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 		EntityUtils.consumeQuietly(httpEntity);
 
-		String errorMessage = MessageFormat.format("Marketo returned status code {0} with error message {1}", statusMessage, statusCode);
+		String errorMessage = MessageFormat.format("Backend returned status code {0} with error message {1}", statusMessage, statusCode);
 		throw new HttpRequestException(errorMessage);
 	}
 
