@@ -12,9 +12,9 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
+
+import static com.positive.dhl.core.helpers.OSGiConfigHelper.arrayToMapWithDelimiter;
 
 @Slf4j
 @Component(service = ParticipantStepChooser.class, property = { "chooser.label=" + "Dynamic Participant Chooser for language copy review" })
@@ -28,22 +28,13 @@ public class ParticipantStepChooserForPublishReview implements ParticipantStepCh
     @Modified
     public void activate(Configuration config) {
         defaultParticipant = config.defaultParticipant();
-        mappings = new HashMap<>();
-
-        Arrays.stream(config.mappings()).forEach(mapping -> {
-            String[] keyValue = mapping.trim().split(":");
-            if(keyValue.length != 2) {
-                log.warn("Configuration mapping:'{}' is not valid.", mapping);
-                return;
-            }
-            mappings.put(keyValue[0], keyValue[1]);
-        });
+        mappings = arrayToMapWithDelimiter(config.mappings());
         log.info("Initialized service with mappings:{}", mappings);
     }
 
     @Override
     public String getParticipant(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap metaDataMap) {
-        String payloadPath = workItem.getWorkflowData().getPayload().toString();
+        var payloadPath = workItem.getWorkflowData().getPayload().toString();
 
         return mappings.keySet().stream()
                 .filter(payloadPath::startsWith)

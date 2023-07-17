@@ -1,0 +1,6 @@
+<aside class="socialStatic disable-offline">
+    <h2 class="socialStatic__title">${ 'SHARE' @ i18n, context='html' }</h2>
+    <sly data-sly-use.socialNetworkLinksModel="com.positive.dhl.core.models.SocialNetworkLinksModel" data-sly-test="${socialNetworkLinksModel.socialNetworkLinksInclusion}">
+        ${socialNetworkLinksModel.socialNetworkLinksInclusion @ context="html"}
+    </sly>
+</aside>

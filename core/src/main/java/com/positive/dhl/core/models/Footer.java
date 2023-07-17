@@ -148,10 +148,23 @@ public class Footer {
 	 */
 	@PostConstruct
     protected void init() {
-		Page home = currentPage.getAbsoluteParent(2);
-
 		titleColumnOne = "Categories:";
 		linksColumnOne = new ArrayList<Link>();
+
+		// legacy
+		titleColumnTwo = "Most Read:";
+		titleColumnTags = "Popular Topics:";
+		linksColumnTwo = new ArrayList<CategoryLink>();
+		linksColumnTags = new ArrayList<TagWrapper>();
+
+		titleSocial = "Follow Us:";
+		linksSocial = new ArrayList<SocialLink>();
+
+		Page home = currentPage.getAbsoluteParent(2);
+		if (home == null) {
+			return;
+		}
+
 		Iterator<Page> children = home.listChildren();
 		while (children.hasNext()) {
 			Page child = children.next();
@@ -168,7 +181,7 @@ public class Footer {
 				}
 				
     			String gtitle = properties.get("jcr:content/navTitle", "");
-    			if ((gtitle == null) || (gtitle.trim().length() == 0)) {
+    			if (gtitle.isBlank()) {
     				gtitle = properties.get("jcr:content/jcr:title", "");
     			}
     			
@@ -176,25 +189,19 @@ public class Footer {
 			}
 		}
 
-		// legacy
-		titleColumnTwo = "Most Read:";
-		titleColumnTags = "Popular Topics:";
-		linksColumnTwo = new ArrayList<CategoryLink>();
-		linksColumnTags = new ArrayList<TagWrapper>();
-
-		titleSocial = "Follow Us:";
- 		linksSocial = new ArrayList<SocialLink>();
 		Resource socialItems = home.getContentResource("items");
-		if (socialItems != null) {
-			Iterator<Resource> socialsIterator = socialItems.listChildren();
-			while (socialsIterator.hasNext()) {
-				ValueMap props = socialsIterator.next().adaptTo(ValueMap.class);
-				if (props != null) {
-					String title = props.get("title", "");
-					String url = props.get("url", "");
-					String category = props.get("category", "linkedin");
-			 		linksSocial.add(new SocialLink(category, title, url));
-				}
+		if (socialItems == null) {
+			return;
+		}
+
+		Iterator<Resource> socialsIterator = socialItems.listChildren();
+		while (socialsIterator.hasNext()) {
+			ValueMap props = socialsIterator.next().adaptTo(ValueMap.class);
+			if (props != null) {
+				String title = props.get("title", "");
+				String url = props.get("url", "");
+				String category = props.get("category", "linkedin");
+				linksSocial.add(new SocialLink(category, title, url));
 			}
 		}
 	}

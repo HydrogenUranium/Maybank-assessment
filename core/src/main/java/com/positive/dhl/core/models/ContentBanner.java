@@ -152,35 +152,41 @@ public class ContentBanner {
 	@PostConstruct
 	protected void init() {
     	hasbanner = false;
-    	points = new ArrayList<String>();
-
+    	points = new ArrayList<>();
+    	
 		Page home = currentPage.getAbsoluteParent(2);
-		ValueMap properties = home.adaptTo(ValueMap.class);
-		if (properties != null) {
-			String prefix = "0";
-
-			ValueMap currentPageProperties = currentPage.adaptTo(ValueMap.class);
-			if (currentPageProperties != null) {
-				prefix = currentPageProperties.get("jcr:content/contentbanner", "0");
-			}
-
-			if (("1").equals(prefix) || ("2").equals(prefix)) {
-				hasbanner = true;
-			}
-
-			String assetPrefix = environmentConfiguration.getAssetPrefix();
-			title = properties.get("jcr:content/contentbanner" + prefix + "title", "");
-			subtitle = properties.get("jcr:content/contentbanner" + prefix + "subtitle", "");
-			img = assetPrefix + properties.get("jcr:content/contentbanner" + prefix + "img", "");
-			imgmob = assetPrefix + properties.get("jcr:content/contentbanner" + prefix + "imgmob", "");
-
-			points.add(properties.get("jcr:content/contentbanner" + prefix + "point1", ""));
-			points.add(properties.get("jcr:content/contentbanner" + prefix + "point2", ""));
-			points.add(properties.get("jcr:content/contentbanner" + prefix + "point3", ""));
-			points.add(properties.get("jcr:content/contentbanner" + prefix + "point4", ""));
-
-			url = properties.get("jcr:content/contentbanner" + prefix + "url", "");
-			urltitle = properties.get("jcr:content/contentbanner" + prefix + "urltitle", "");
+		if (home == null) {
+			return;
 		}
+
+		ValueMap properties = home.adaptTo(ValueMap.class);
+		if (properties == null) {
+			return;
+		}
+
+		String prefix = "0";
+
+		ValueMap currentPageProperties = currentPage.adaptTo(ValueMap.class);
+		if (currentPageProperties != null) {
+			prefix = currentPageProperties.get("jcr:content/contentbanner", "0");
+		}
+
+		if (("1").equals(prefix) || ("2").equals(prefix)) {
+			hasbanner = true;
+		}
+
+		String assetPrefix = environmentConfiguration.getAssetPrefix();
+		title = properties.get("jcr:content/contentbanner" + prefix + "title", "");
+		subtitle = properties.get("jcr:content/contentbanner" + prefix + "subtitle", "");
+		img = assetPrefix + properties.get("jcr:content/contentbanner" + prefix + "img", "");
+		imgmob = assetPrefix + properties.get("jcr:content/contentbanner" + prefix + "imgmob", "");
+
+		points.add(properties.get("jcr:content/contentbanner" + prefix + "point1", ""));
+		points.add(properties.get("jcr:content/contentbanner" + prefix + "point2", ""));
+		points.add(properties.get("jcr:content/contentbanner" + prefix + "point3", ""));
+		points.add(properties.get("jcr:content/contentbanner" + prefix + "point4", ""));
+
+		url = properties.get("jcr:content/contentbanner" + prefix + "url", "");
+		urltitle = properties.get("jcr:content/contentbanner" + prefix + "urltitle", "");
     }
 }

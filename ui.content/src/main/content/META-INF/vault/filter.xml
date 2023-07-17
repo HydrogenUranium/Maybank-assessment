@@ -4,4 +4,8 @@
     <filter root="/var/workflow/models" mode="update"/>
     <filter root="/etc/map.publish" />
     <filter root="/conf/groovyconsole/scripts"/>
+
+    <filter root="/conf/dhl/settings/wcm/template-types"/>
+    <filter root="/conf/dhl/settings/wcm/policies" mode="merge"/>
+    <filter root="/conf/dhl/settings/wcm/templates" mode="merge"/>
 </workspaceFilter>
