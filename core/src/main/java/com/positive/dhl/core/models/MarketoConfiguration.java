@@ -1,11 +1,9 @@
 /* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.components.EnvironmentConfiguration;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import java.text.MessageFormat;
@@ -20,9 +18,6 @@ import java.text.MessageFormat;
 )
 
 public class MarketoConfiguration {
-
-	@OSGiService
-	EnvironmentConfiguration environmentConfiguration;
 
 	static final String RESOURCE_TYPE = "apps/dhl/components/content/inlineshipnowmarketo";
 
@@ -62,8 +57,7 @@ public class MarketoConfiguration {
 	 * @return a {@link String} that represents the HTML id value of the Marketo form element
 	 */
 	public String getFormIdAsDivId(){
-		String defaultFormId = environmentConfiguration.getDefaultMarketoFormId();
-		var marketoFormIdDiv = MessageFormat.format(MKTO_FORM_PLACEHOLDER, defaultFormId);
+		var marketoFormIdDiv = MessageFormat.format(MKTO_FORM_PLACEHOLDER, getMarketoFormId());
 		if(null != marketoFormId && !marketoFormId.isBlank()){
 			marketoFormIdDiv = MessageFormat.format(MKTO_FORM_PLACEHOLDER, marketoFormId);
 		}
@@ -75,8 +69,7 @@ public class MarketoConfiguration {
 	 * @return a {@link String} that represents the HTML id value of the Marketo form element
 	 */
 	public String getHiddenFormIdAsDivId(){
-		String defaultHiddenFormId = environmentConfiguration.getDefaultMarketoHiddenFormId();
-		var marketoFormIdDiv = MessageFormat.format(MKTO_FORM_PLACEHOLDER,defaultHiddenFormId);
+		var marketoFormIdDiv = MessageFormat.format(MKTO_FORM_PLACEHOLDER,getHiddenMarketoId());
 		if(null != hiddenMarketoId && !hiddenMarketoId.isBlank()){
 			marketoFormIdDiv = MessageFormat.format(MKTO_FORM_PLACEHOLDER, hiddenMarketoId);
 		}
