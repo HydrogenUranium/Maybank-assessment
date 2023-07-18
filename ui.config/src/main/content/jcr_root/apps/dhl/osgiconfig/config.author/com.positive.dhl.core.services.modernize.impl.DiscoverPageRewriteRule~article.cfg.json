@@ -1,0 +1,10 @@
+{
+  "editableTemplate":"/conf/dhl/settings/wcm/templates/article",
+  "staticTemplate":"/apps/dhl/templates/dhl-article-page",
+  "containerMappings":[
+    "par:root/article_container/body/responsivegrid",
+    "partwo:root/article_container_two/body/responsivegrid",
+    "parthree:root/responsivegrid"
+  ],
+  "slingResourceType":"dhl/components/pages/article"
+}

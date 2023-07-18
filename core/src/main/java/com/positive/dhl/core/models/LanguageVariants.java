@@ -208,7 +208,11 @@ public class LanguageVariants {
 		Page root = currentPage.getAbsoluteParent(1);
 		Page currentHome = currentPage.getAbsoluteParent(2);
 		String path = currentPage.getPath();
-		
+
+		if (root == null) {
+			return;
+		}
+
 		Iterator<Page> pageIterator = root.listChildren();
 		while (pageIterator.hasNext()) {
 			Page homepage = pageIterator.next();

@@ -796,6 +796,13 @@ Bundle-DocURL:
                 <type>zip</type>
             </dependency>
 
+            <dependency>
+                <groupId>com.adobe.cq</groupId>
+                <artifactId>aem-modernize-tools</artifactId>
+                <scope>provided</scope>
+                <version>2.1.0</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -144,8 +144,14 @@ public class Meganav {
     protected void init() throws RepositoryException {
 		autocompleteUrl = "/apps/dhl/discoverdhlapi/tags/index.json";
 		topsearchesUrl = "/apps/dhl/discoverdhlapi/searchsuggest/index.json";
+
+		panels = new ArrayList<>();
+		linksSocial = new ArrayList<>();
 		
 		Page home = currentPage.getAbsoluteParent(2);
+		if (home == null) {
+			return;
+		}
 		ValueMap properties = home.adaptTo(ValueMap.class);
 		
 		if (properties != null) {
@@ -153,8 +159,7 @@ public class Meganav {
 		}
 		
 		homeUrl = home.getPath() + ".html";
-		
-		linksSocial = new ArrayList<>();
+
 		Resource socialItems = home.getContentResource("items");
 		if (socialItems != null) {
 			Iterator<Resource> socialsIterator = socialItems.listChildren();
@@ -173,7 +178,6 @@ public class Meganav {
 		siteTitle = home.getPageTitle();
 
 		int count = 0;
-		panels = new ArrayList<>();
 		Iterator<Page> children = home.listChildren();
 		while (children.hasNext()) {
 			Page child = children.next();
