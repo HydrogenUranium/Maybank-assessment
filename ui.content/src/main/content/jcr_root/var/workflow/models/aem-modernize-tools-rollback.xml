@@ -8,10 +8,10 @@
           title="AEM Modernize Tools - Rollback Workflow">
     <metaData
             cq:generatingPage="/conf/global/settings/workflow/models/aem-modernize-tools-rollback/jcr:content"
-            cq:lastModified="{Long}1689677884510"
+            cq:lastModified="{Long}1689845744644"
             cq:lastModifiedBy="admin"
             jcr:primaryType="nt:unstructured"
-            lastSynced="{Date}2023-07-18T13:58:04.507+03:00"/>
+            lastSynced="{Date}2023-07-20T12:35:44.639+03:00"/>
     <nodes jcr:primaryType="nt:unstructured">
         <node0
                 jcr:primaryType="cq:WorkflowNode"
@@ -26,7 +26,7 @@
                 type="PARTICIPANT">
             <metaData
                     jcr:primaryType="nt:unstructured"
-                    DIALOG_PATH="/apps/dhl/workflow/dialogs/modernize/rollback/cq:dialog"
+                    DIALOG_PATH="/apps/dhl/workflow/dialogs/modernizeRollback_dialog"
                     PARTICIPANT="modernize-tools-user"/>
         </node1>
         <node2
