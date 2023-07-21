@@ -1,12 +1,10 @@
 {
-  "enabled": "$[env:AKAMAI_FLUSH_ENABLED]",
-  "accessToken": "$[env:AKAMAI_ACCESS_TOKEN]",
+  "flushEnabled": "$[env:AKAMAI_FLUSH_ENABLED]",
+  "accessToken": "$[secret:AKAMAI_ACCESS_TOKEN]",
   "akamaiHost": "$[env:AKAMAI_HOST]",
-  "clientSecret": "$[env:AKAMAI_CLIENT_SECRET]",
-  "clientToken": "$[env:AKAMAI_CLIENT_TOKEN]",
+  "clientSecret": "$[secret:AKAMAI_CLIENT_SECRET]",
+  "clientToken": "$[secret:AKAMAI_CLIENT_TOKEN]",
   "delay": "3",
-  "chunkSize": "20",
-  "apiBase": "/ccu/v3/",
   "allowedContentTypes":[
     "cq:Page",
     "dam:Asset",
@@ -15,5 +13,6 @@
   "allowedContentPaths": [
     "/content",
     "/etc.clientlibs"
-  ]
+  ],
+  "flushApiPath": "/ccu/v3/invalidate/url/{0}"
 }

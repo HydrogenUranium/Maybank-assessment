@@ -71,8 +71,8 @@ public class InitUtil {
 	 */
 	private RequestConfig getRequestConfig(){
 		return RequestConfig.custom()
-				.setConnectTimeout(30000)
-				.setSocketTimeout(30000)
+				.setConnectTimeout(10000)
+				.setSocketTimeout(10000)
 				.build();
 	}
 

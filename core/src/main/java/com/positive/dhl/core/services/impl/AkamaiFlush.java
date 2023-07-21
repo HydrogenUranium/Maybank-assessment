@@ -6,6 +6,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
 import com.positive.dhl.core.constants.AkamaiInvalidationResult;
+import com.positive.dhl.core.constants.DiscoverConstants;
+import com.positive.dhl.core.dto.akamai.ErrorResponse;
 import com.positive.dhl.core.dto.akamai.FlushRequest;
 import com.positive.dhl.core.dto.akamai.FlushResponse;
 import com.positive.dhl.core.exceptions.HttpRequestException;
@@ -20,7 +22,9 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import java.text.MessageFormat;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Orchestrates the whole process of removing items from Akamai cache upon activation (or on any other request)
@@ -51,18 +55,16 @@ public class AkamaiFlush {
 
 	public AkamaiInvalidationResult invalidateAkamaiCache(String path){
 		if(canWeFlush(path)){
-			log.info("About to flush the following URL from Akamai: {}", getHostname(path));
-			FlushRequest request = FlushRequest.builder().build();
-			request.addItemToFlush(getHostname(path));
-			try {
-				var postBody = initUtil.getObjectMapper().writeValueAsString(request);
+			var finalUrlToFlush = getHostname(path);
+			log.info("About to flush the following URL from Akamai: {}", finalUrlToFlush);
 
-				FlushResponse response = invalidateItemFromAkamai(postBody, getAkamaiCredentials());
-				if(response != null){
-					return AkamaiInvalidationResult.OK;
-				}
-			} catch (JsonProcessingException e) {
-				log.error("Unable to transform the 'FlushRequest' object to json string: {}", e.getMessage());
+			FlushRequest request = FlushRequest.builder()
+					.itemsToFlush(getUrlsToFlush(finalUrlToFlush))
+					.build();
+
+			FlushResponse response = invalidateItemFromAkamai(request, getAkamaiCredentials());
+			if(response != null){
+				return AkamaiInvalidationResult.OK;
 			}
 
 			return AkamaiInvalidationResult.REJECTED;
@@ -71,13 +73,26 @@ public class AkamaiFlush {
 		return AkamaiInvalidationResult.SKIPPED;
 	}
 
-	private FlushResponse invalidateItemFromAkamai(String postBody, ClientCredential credential){
+	private Set<String> getUrlsToFlush(String path) {
+		Set<String> urlsToFlush = new HashSet<>();
+		urlsToFlush.add(path);
+		return urlsToFlush;
+	}
+
+	private FlushResponse invalidateItemFromAkamai(FlushRequest flushRequest, ClientCredential credential){
 		var client = initUtil.getAkamaiClient(credential);
 		String apiPath = MessageFormat.format(akamaiFlushConfigReader.getApiPath(),"production");
-		String finalUrl = MessageFormat.format("https://{0}/{1}",akamaiFlushConfigReader.getAkamaiHost(),apiPath);
+		String finalUrl = MessageFormat.format("https://{0}{1}",akamaiFlushConfigReader.getAkamaiHost(),apiPath);
+
 		try {
-			var response = httpCommunication.sendPostMessage(finalUrl,postBody,client);
-			return initUtil.getObjectMapper().readValue(response,FlushResponse.class);
+			var response = httpCommunication.sendPostMessage(finalUrl, flushRequest,client);
+			if(response.getHttpStatus() == 400){
+				ErrorResponse errorResponse = initUtil.getObjectMapper().readValue(response.getJsonResponse(), ErrorResponse.class);
+				log.error("Error response from Akamai: {}", errorResponse);
+			} else {
+				return initUtil.getObjectMapper().readValue(response.getJsonResponse(),FlushResponse.class);
+			}
+
 		} catch (HttpRequestException e) {
 			log.error("Http request to Akamai failed with error message: {}", e.getMessage());
 		} catch (JsonProcessingException e) {
@@ -113,9 +128,9 @@ public class AkamaiFlush {
 	}
 
 	private String getHostname(String path){
-		var hostname = environmentConfiguration.getAkamaiHostname();
+		var hostname = DiscoverConstants.HTTPS_PREFIX + environmentConfiguration.getAkamaiHostname();
 		if(StringUtils.isBlank(hostname)){
-			hostname = "www.dhl.com";
+			hostname = DiscoverConstants.DEFAULT_HOSTNAME;
 		}
 		return MessageFormat.format("{0}{1}{2}", hostname,environmentConfiguration.getAssetPrefix(),updatePath(path));
 	}

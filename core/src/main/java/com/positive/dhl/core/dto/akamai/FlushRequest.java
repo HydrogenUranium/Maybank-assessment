@@ -5,30 +5,22 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.ToString;
 import lombok.extern.jackson.Jacksonized;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Encapsulation of Akamai flush request
  */
 @Builder
 @Getter
-@Setter
 @Jacksonized
+@ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FlushRequest {
 
 	@JsonProperty("objects")
-	List<String> itemsToFlush;
-
-	public void addItemToFlush(String item){
-		if(itemsToFlush == null){
-			itemsToFlush = new ArrayList<>();
-		}
-		itemsToFlush.add(item);
-	}
+	Set<String> itemsToFlush;
 
 }

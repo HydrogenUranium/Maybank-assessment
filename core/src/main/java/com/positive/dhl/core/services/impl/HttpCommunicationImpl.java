@@ -2,16 +2,19 @@ package com.positive.dhl.core.services.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.positive.dhl.core.constants.DiscoverConstants;
+import com.positive.dhl.core.dto.general.HttpApiResponse;
 import com.positive.dhl.core.exceptions.HttpRequestException;
 import com.positive.dhl.core.services.HttpCommunication;
 import com.positive.dhl.core.services.InitUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -73,9 +76,11 @@ public class HttpCommunicationImpl implements HttpCommunication {
 	}
 
 	@Override
-	public <T> String sendPostMessage(String url, T postBody, CloseableHttpClient client) throws HttpRequestException {
+	public <T> HttpApiResponse sendPostMessage(String url, T postBody, CloseableHttpClient client) throws HttpRequestException {
 		if(isValidUrl(url)){
+
 			try {
+				log.info("Post body: {}", postBody);
 				var httpPost = new HttpPost(url);
 				var uri = new URIBuilder(httpPost.getURI());
 
@@ -84,9 +89,20 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 				httpPost.setURI(uri.build());
 
+				addContentTypeHeaders(httpPost);
+
 				// send request and return processed response
 				try (CloseableHttpResponse response = client.execute(httpPost)) {
-					return getRequestResponse(response);
+					if(null != response){
+						int statusCode = response.getStatusLine().getStatusCode();
+						return HttpApiResponse.builder()
+								.httpStatus(statusCode)
+								.jsonResponse(getRequestResponse(response))
+								.build();
+					}
+					initUtil.resetClient();
+					throw new IOException("Backend response can't be extracted. Something went wrong.");
+
 				}
 
 			} catch (IOException | URISyntaxException ioException) {
@@ -96,6 +112,10 @@ public class HttpCommunicationImpl implements HttpCommunication {
 		}
 		String errorMessage = MessageFormat.format("Provided string {0} does not appear to represent a valid URL.", url);
 		throw new HttpRequestException(errorMessage);
+	}
+
+	private void addContentTypeHeaders(HttpPost httpPost){
+		httpPost.setHeader(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.getMimeType());
 	}
 
 	@Override
@@ -123,7 +143,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 	public String getRequestResponse(CloseableHttpResponse response) throws IOException, HttpRequestException {
 		if(null == response){
 			initUtil.resetClient();
-			throw new IOException("Marketo response can't be extracted. Something went wrong.");
+			throw new IOException("Backend response can't be extracted. Something went wrong.");
 		}
 
 		var httpEntity = response.getEntity();
@@ -136,9 +156,15 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			return responseString;
 		}
 
+		if (statusCode == HttpStatus.SC_BAD_REQUEST){
+			var responseString = EntityUtils.toString(httpEntity);
+			EntityUtils.consumeQuietly(httpEntity);
+			return responseString;
+		}
+
 		EntityUtils.consumeQuietly(httpEntity);
 
-		String errorMessage = MessageFormat.format("Backend returned status code {0} with error message {1}", statusMessage, statusCode);
+		String errorMessage = MessageFormat.format("Backend returned status code ''{0}'' with error message ''{1}''", statusCode,statusMessage);
 		throw new HttpRequestException(errorMessage);
 	}
 
@@ -168,13 +194,14 @@ public class HttpCommunicationImpl implements HttpCommunication {
 	@Override
 	public <T> void addPostBody(HttpPost httpPost, T postBody) throws JsonProcessingException, UnsupportedEncodingException {
 		if(null != postBody){
-			var bodyString = initUtil.getObjectMapper().writeValueAsString(postBody);
-			var body = new StringEntity(bodyString);
-			httpPost.setEntity(body);
-			if(log.isDebugEnabled()){
-				log.debug("Form submission json object: {}", bodyString);
-			}
+			var requestPostEntity = getStringEntity(postBody);
+			httpPost.setEntity(requestPostEntity);
 		}
+	}
+
+	private <T> StringEntity getStringEntity(T postBody) throws JsonProcessingException {
+		var bodyString = initUtil.getObjectMapper().writeValueAsString(postBody);
+		return new StringEntity(bodyString, ContentType.APPLICATION_JSON);
 	}
 
 	@Override
