@@ -6,7 +6,6 @@ String pagesWithExistingPageProperty = "SELECT child.* FROM [nt:base] AS child I
 
 aecu.contentUpgradeBuilder()
         .forResourcesBySql2Query(pagesWithExistingPageProperty)
-        .filterByHasProperty(propertyName)
         .printProperty(propertyName)
         .doDeleteProperty(propertyName)
         .doActivateResource()
