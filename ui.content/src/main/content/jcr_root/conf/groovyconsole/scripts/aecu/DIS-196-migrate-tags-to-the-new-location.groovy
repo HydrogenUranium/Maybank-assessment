@@ -31,6 +31,14 @@ aecu
 
 aecu
         .contentUpgradeBuilder()
+        .forDescendantResourcesOf(targetDirectory)
+        .filterByNotPathRegex(".*/rep:policy.*")
+        .doActivateResource()
+        .run(DRY_RUN)
+
+aecu
+        .contentUpgradeBuilder()
         .forResources((String[]) ["/etc/tags"])
+        .doDeactivateResource()
         .doDeleteResource()
         .run(DRY_RUN)
