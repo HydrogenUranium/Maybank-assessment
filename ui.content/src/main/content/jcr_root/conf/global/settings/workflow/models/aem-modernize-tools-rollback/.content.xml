@@ -23,7 +23,7 @@
                 <metaData
                         jcr:primaryType="nt:unstructured"
                         DIALOG_PATH="/apps/dhl/workflow/dialogs/modernizeRollback_dialog"
-                        PARTICIPANT="modernize-tools-user"/>
+                        PARTICIPANT="administrators"/>
             </dialog>
             <or
                     jcr:lastModified="{Date}2023-07-18T13:57:24.142+03:00"
