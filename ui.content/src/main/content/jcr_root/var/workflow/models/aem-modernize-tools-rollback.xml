@@ -27,7 +27,7 @@
             <metaData
                     jcr:primaryType="nt:unstructured"
                     DIALOG_PATH="/apps/dhl/workflow/dialogs/modernizeRollback_dialog"
-                    PARTICIPANT="modernize-tools-user"/>
+                    PARTICIPANT="administrators"/>
         </node1>
         <node2
                 jcr:primaryType="cq:WorkflowNode"
