@@ -1,5 +1,16 @@
 {
   "mappings":[
+    "/content/dhl/en-global:publisher-global",
+    "/content/dhl/au:publisher-australia",
+    "/content/dhl/hk:publisher-hong-kong",
+    "/content/dhl/in:publisher-india",
+    "/content/dhl/id:publisher-indonesia",
+    "/content/dhl/my:publisher-malaysia",
+    "/content/dhl/nz:publisher-new-zealand",
+    "/content/dhl/ph:publisher-philippines",
+    "/content/dhl/sg:publisher-singapore",
+    "/content/dhl/us:publisher-united-states",
+    "/content/dhl/global:publisher-global",
     "/content/dhl/en-au:publisher-australia",
     "/content/dhl/en-hk:publisher-hong-kong",
     "/content/dhl/en-in:publisher-india",
