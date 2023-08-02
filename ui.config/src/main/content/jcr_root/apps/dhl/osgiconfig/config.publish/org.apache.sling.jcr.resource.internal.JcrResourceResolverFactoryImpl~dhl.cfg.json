@@ -2,7 +2,7 @@
     "resource.resolver.mapping": [
         "/:/discover/",
         "/content/dhl.html:/discover",
-        "/content/dhl/(.*)</discover/$1",
+        "/content/dhl/(\\w{2}|global)/(.*)</discover/$2",
         "/content/dhl:/discover"
     ],
     "resource.resolver.map.location": "/etc/map.publish"
