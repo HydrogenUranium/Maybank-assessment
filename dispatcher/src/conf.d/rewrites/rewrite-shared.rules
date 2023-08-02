@@ -47,6 +47,6 @@ RewriteRule ^/discover/apps/dhl/(servlet-handler|discoverdhlapi)/(.+)$ /apps/dhl
 # all assets in content/dam
 RewriteRule ^/discover/(content/dam)/(.+)$ /$1/$2 [PT,L,NC]
 # rss generator pages
-RewriteRule ^/discover(.*)(\.thumb\.319\.319\.png|\.rss\.all\.xml|\.rss\.xml)$ /content/dhl$1$2 [PT,L,NC]
+RewriteRule ^/discover((/)(\w{2}-)(global|\w{2}))?(.+)?(\.thumb\.319\.319\.png|\.rss\.all\.xml|\.rss\.xml)$ /content/dhl$2$4$1$5$6 [PT,L,NC]
 # all html pages
-RewriteRule ^/discover/(.+)$ /content/dhl/$1.html [PT,L,NC]
+RewriteRule ^/discover/(\w{2})-(\w{2}|global)/(.+)$ /content/dhl/$2/$1-$2.html [PT,L,NC]
