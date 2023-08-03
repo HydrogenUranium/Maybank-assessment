@@ -84,6 +84,11 @@ public class CookiePolicy {
 	@PostConstruct
     protected void init() {
 		Page home = currentPage.getAbsoluteParent(2);
+
+		if (home == null) {
+			return;
+		}
+
 		ValueMap properties = home.adaptTo(ValueMap.class);
 		
 		if (properties != null) {

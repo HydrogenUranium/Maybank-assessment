@@ -62,7 +62,7 @@
         <bnd.version>5.1.2</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aem.sdk.api>2023.4.11873.20230421T153841Z-230200</aem.sdk.api>
+        <aem.sdk.api>2023.7.12549.20230704T084019Z-230601</aem.sdk.api>
         <aemanalyser.version>1.5.8</aemanalyser.version>
         <componentGroupName>Deutsche Post AG Discover</componentGroupName>
         <maven.compiler.source>11</maven.compiler.source>
@@ -785,6 +785,7 @@ Bundle-DocURL:
                 <type>zip</type>
             </dependency>
 
+
             <!-- Akamai libraries -->
             <dependency>
                 <groupId>com.akamai.edgegrid</groupId>
@@ -802,6 +803,12 @@ Bundle-DocURL:
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.sitemap</artifactId>
                 <version>1.0.6</version>
+
+            <dependency>
+                <groupId>com.adobe.cq</groupId>
+                <artifactId>aem-modernize-tools</artifactId>
+                <scope>provided</scope>
+                <version>2.1.0</version>
             </dependency>
 
         </dependencies>

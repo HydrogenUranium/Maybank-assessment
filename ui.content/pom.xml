@@ -53,10 +53,11 @@
                     <group>com.positive</group>
                     <name>dhl.ui.content</name>
                     <packageType>content</packageType>
+                    <accessControlHandling>merge</accessControlHandling>
                     <validatorsSettings>
                         <jackrabbit-filter>
                             <options>
-                                <validRoots>/conf/groovyconsole,/conf/global/settings/workflow,/var/workflow,/etc</validRoots>
+                                <validRoots>/conf/groovyconsole,/conf/global/settings/workflow/models,/conf/dhl/settings,/var/workflow/models,/etc</validRoots>
                             </options>
                         </jackrabbit-filter>
                     </validatorsSettings>

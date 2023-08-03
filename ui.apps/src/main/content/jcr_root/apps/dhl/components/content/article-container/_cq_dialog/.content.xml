@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Article Container"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <note
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                            text="The Classic design will be replaced with the New design in the near future."
+                            granite:class="key-feature-content-type-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="classic"/>
+                    </note>
+                    <designMode
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Design mode"
+                            fieldDescription="This selector allows you to choose between two design modes:
+                                Classic Design - This option represents the design used in static templates.
+                                New Design - This option offers a wider layout and includes an optional sidebar."
+                            granite:class="cq-dialog-dropdown-showhide"
+                            name="./designMode">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-dropdown-showhide-target=".key-feature-content-type-showhide"/>
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <classic
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Classic"
+                                    value="classic"/>
+                            <newDesign
+                                    jcr:primaryType="nt:unstructured"
+                                    text="New Design"
+                                    value="new"/>
+                        </items>
+                    </designMode>
+                    <useArticleStyles
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                            text="Use Article Styles"
+                            fieldDescription="In the static template, there were two sections. The first
+                                     section utilized a special article wrapper that modified the appearance of links
+                                     (changing them from blue to black, for example) and applied other styles.
+                                     The second section was used less frequently and did not have these specific styles."
+                            value="true"
+                            name="./useArticleStyles">
+                    </useArticleStyles>
+                    <newDesignOptions
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="key-feature-content-type-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="new"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <showSidebar
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                    text="Show sidebar"
+                                    fieldDescription="Enable sidebar display. When this option is turned off,
+                                        the space on the right will remain empty. However, on smaller screens,
+                                        the layout will adjust to save space and maintain alignment with containers
+                                        that have a sidebar."
+                                    value="true"
+                                    name="./showSidebar">
+                            </showSidebar>
+                        </items>
+                    </newDesignOptions>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

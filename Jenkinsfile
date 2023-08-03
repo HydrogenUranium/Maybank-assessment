@@ -16,7 +16,7 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
-        stage('SCM Checkout'){
+        stage('SCM Checkout') {
             steps{
                 checkout scm
             }
@@ -39,12 +39,20 @@ pipeline {
         // }
 
         stage('Sonarqube Analysis') {
-           steps {
-               script {
-                   withSonarQubeEnv(installationName: 'Central Sonar') {
-                       sh 'mvn install org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar -ntp -Pcoverage'
-                   }
-               }
+            steps {
+                script {
+                    withSonarQubeEnv(installationName: 'Central Sonar') {
+                        sh 'mvn install org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pdhl-artifactory'
+                    }
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
 
@@ -86,7 +94,7 @@ pipeline {
                             tool: 'Maven 3.6.3',
                             useWrapper: false,
                             pom: 'pom.xml',
-                            goals: '-ntp clean install -P dhl-artifactory',
+                            goals: '-ntp clean install -Pdhl-artifactory',
                             resolverId: 'artifactory-resolver',
                             deployerId: 'artifactory-deployer',
                     )
