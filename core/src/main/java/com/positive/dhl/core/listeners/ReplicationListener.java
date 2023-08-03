@@ -35,7 +35,9 @@ public class ReplicationListener implements EventHandler {
 			if(null != replicationAction && isInScope(replicationAction)){
 				log.info("Path: {}", replicationAction.getPath());
 				AkamaiInvalidationResult result = akamaiFlush.invalidateAkamaiCache(replicationAction.getPath());
-				log.info(String.valueOf(result));
+				log.info("Result of flush request to Akamai: {}", result);
+			} else {
+				log.info("It appears the replication TYPE was different than '{}' or '{}'. Therefore, not sending anything to Akamai...", ReplicationActionType.ACTIVATE, ReplicationActionType.DEACTIVATE);
 			}
 		}
 		else {
