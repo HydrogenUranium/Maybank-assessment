@@ -57,6 +57,7 @@
         <junit.version>5.9.1</junit.version>
         <mockito.version>5.3.1</mockito.version>
         <aecu.version>6.4.0</aecu.version>
+        <akamai.version>5.0.0</akamai.version>
 
         <bnd.version>5.1.2</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -244,14 +245,11 @@
                             <configuration>
                                 <bnd><![CDATA[
 Bundle-Category: ${componentGroupName}
-
 # export all versioned packages except for conditional ones (https://github.com/bndtools/bnd/issues/3721#issuecomment-579026778)
 -exportcontents: ${removeall;${packages;VERSIONED};${packages;CONDITIONAL}}
-
 # reproducible builds (https://github.com/bndtools/bnd/issues/3521)
 -noextraheaders: true
 -snapshot: SNAPSHOT
-
 Bundle-DocURL:
 -plugin org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin
 -plugin org.apache.sling.bnd.models.ModelsScannerPlugin
@@ -481,7 +479,6 @@ Bundle-DocURL:
             <!--
                 To enable this feature for a bundle, the sling-maven-plugin
                 (without configuration) needs to be included:
-
                 <plugin>
                     <groupId>org.apache.sling</groupId>
                     <artifactId>sling-maven-plugin</artifactId>
@@ -534,18 +531,6 @@ Bundle-DocURL:
                     <url>https://artifactory.dhl.com/maven-snapshot</url>
                 </pluginRepository>
             </pluginRepositories>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <configuration>
-                            <nodeDownloadRoot>https://artifactory.dhl.com/nodejs/</nodeDownloadRoot>
-                            <npmDownloadRoot>https://artifactory.dhl.com/api/npm/npm/</npmDownloadRoot>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
 
         <profile>
@@ -788,6 +773,15 @@ Bundle-DocURL:
                 <version>1.2.6</version>
             </dependency>
 
+            <!-- AEM Easy Content Upgrade (Groovy Console) -->
+            <dependency>
+                <groupId>de.valtech.aecu</groupId>
+                <artifactId>aecu.complete.cloud</artifactId>
+                <version>${aecu.version}</version>
+                <type>zip</type>
+            </dependency>
+
+
             <!-- Akamai libraries -->
             <dependency>
                 <groupId>com.akamai.edgegrid</groupId>
@@ -801,22 +795,14 @@ Bundle-DocURL:
                 <version>${akamai.version}</version>
             </dependency>
 
-            <!-- AEM Easy Content Upgrade (Groovy Console) -->
-            <dependency>
-                <groupId>de.valtech.aecu</groupId>
-                <artifactId>aecu.complete.cloud</artifactId>
-                <version>${aecu.version}</version>
-                <type>zip</type>
-            </dependency>
-
-            <!-- An Apache Sling extension to generate xml sitemaps -->
+<!--            Sling sitemap implementation-->
             <dependency>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.sitemap</artifactId>
                 <version>1.0.6</version>
             </dependency>
 
-            <!-- Adobe AEM Modernize Tools-->
+<!--            AEM modernizer tool-->
             <dependency>
                 <groupId>com.adobe.cq</groupId>
                 <artifactId>aem-modernize-tools</artifactId>
