@@ -54,7 +54,7 @@ public class DiscoverConstants {
 	 */
 	public static List<String> getCategoryTypes(){
 
-		return List.of("article", "articlegated", "articlewithtrending", "animatedpage201901", "animatedpage20190225", "animatedpage20190523", "animatedpage20190624", "animatedpage20190724", "animatedpage20190805", "animatedpage20191021", "animatedpage20191025", "animatedpage20191101", "animatedpage20191122");
+		return List.of("editable-article","article", "articlegated", "articlewithtrending", "animatedpage201901", "animatedpage20190225", "animatedpage20190523", "animatedpage20190624", "animatedpage20190724", "animatedpage20190805", "animatedpage20191021", "animatedpage20191025", "animatedpage20191101", "animatedpage20191122");
 	}
 	public static Map<String,String> getArticlesQueryMap(){
 		return articlesQueryMap;

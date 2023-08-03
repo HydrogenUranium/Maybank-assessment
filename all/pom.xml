@@ -105,6 +105,12 @@
                             <type>zip</type>
                             <target>/apps/dhl-vendor-packages/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>com.adobe.aem</groupId>
+                            <artifactId>aem-modernize-tools.all</artifactId>
+                            <type>zip</type>
+                            <target>/apps/dhl-packages/application/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -248,6 +254,13 @@
         <dependency>
             <groupId>de.valtech.aecu</groupId>
             <artifactId>aecu.complete.cloud</artifactId>
+            <type>zip</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.aem</groupId>
+            <artifactId>aem-modernize-tools.all</artifactId>
+            <version>2.1.0</version>
             <type>zip</type>
         </dependency>
     </dependencies>

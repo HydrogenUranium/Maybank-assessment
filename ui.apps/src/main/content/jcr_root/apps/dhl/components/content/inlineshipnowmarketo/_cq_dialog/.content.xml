@@ -81,7 +81,7 @@
                             <hiddenmarketoformid
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                    fieldLabel="Marketo FormID"
+                                    fieldLabel="HIDDEN Marketo FormID"
                                     name="./hiddenMarketoId"
                                     value="1799"
                                     emptyText="Marketo form ID of the 'hidden' form, such as 1799"
@@ -89,7 +89,7 @@
                             <hiddenmarketomunchkinid
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                    fieldLabel="Marketo Munchkin ID"
+                                    fieldLabel="HIDDEN Marketo Munchkin ID"
                                     name="./hiddenMarketoMunchkinId"
                                     value="903-EZK-832"
                                     emptyText="Marketo project ID of the 'hidden' form, such as 903-EZK-832"
