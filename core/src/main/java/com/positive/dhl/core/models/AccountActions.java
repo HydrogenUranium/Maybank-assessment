@@ -16,6 +16,8 @@ import org.apache.sling.models.annotations.Model;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
+import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
+
 /**
  *
  */
@@ -532,7 +534,7 @@ public class AccountActions {
 	@PostConstruct
     protected void init() throws RepositoryException {
 		Base64 base64 = new Base64(true);
-		Page home = currentPage.getAbsoluteParent(2);
+		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
 
 
 		assetprefix = environmentConfiguration.getAssetPrefix();

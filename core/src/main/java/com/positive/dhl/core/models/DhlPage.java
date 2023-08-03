@@ -18,6 +18,8 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
 import com.positive.dhl.core.components.EnvironmentConfiguration;
 
+import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
+
 /**
  *
  */
@@ -200,7 +202,7 @@ public class DhlPage {
 			isPublishRunmode = false;
 		}
 
-		Page home = currentPage.getAbsoluteParent(2);
+		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
 		if (home != null) {
 			ValueMap homeProperties = home.adaptTo(ValueMap.class);
 			if (homeProperties != null) {

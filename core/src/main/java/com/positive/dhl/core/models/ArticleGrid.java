@@ -30,6 +30,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
+
 
 /**
  * {@code ArticleGrid} is a SlingModel class that can be leveraged to transform a resource into an ArticleGrid page - a page which contains a grid
@@ -190,7 +192,7 @@ public class ArticleGrid {
 			return ctaLink;
 		}
 		LOGGER.info("'ctaLink' property not set, trying to fall back to 3rd level from content root + ship-now.html");
-		var home = currentPage.getAbsoluteParent(2);
+		var home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
 		if(null != home){
 			return home.getPath() + "/ship-now.html";
 		}

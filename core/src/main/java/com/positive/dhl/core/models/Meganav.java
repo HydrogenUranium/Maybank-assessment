@@ -17,6 +17,8 @@ import org.apache.sling.models.annotations.Model;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.wcm.api.Page;
 
+import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
+
 /**
  *
  */
@@ -148,7 +150,7 @@ public class Meganav {
 		panels = new ArrayList<>();
 		linksSocial = new ArrayList<>();
 		
-		Page home = currentPage.getAbsoluteParent(2);
+		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
 		if (home == null) {
 			return;
 		}
@@ -174,7 +176,7 @@ public class Meganav {
 			}
 		}
 		
-		Page topLevelCategory = currentPage.getAbsoluteParent(3);
+		Page topLevelCategory = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL + 1);
 		siteTitle = home.getPageTitle();
 
 		int count = 0;

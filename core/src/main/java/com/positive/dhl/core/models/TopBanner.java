@@ -11,6 +11,8 @@ import org.apache.sling.models.annotations.Model;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
+import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
+
 /**
  * 
  */
@@ -120,7 +122,7 @@ public class TopBanner {
 	protected void init() {
     	hasbanner = false;
     	
-		Page home = currentPage.getAbsoluteParent(2);
+		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
 		if (home == null) {
 			return;
 		}

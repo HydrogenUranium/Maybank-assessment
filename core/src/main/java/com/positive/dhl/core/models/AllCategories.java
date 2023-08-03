@@ -14,6 +14,8 @@ import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
 
+import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
+
 /**
  *
  */
@@ -45,7 +47,7 @@ public class AllCategories {
     protected void init() {
 		categoryLinks = new ArrayList<SitemapLinkGroup>();
 		
-		Page home = currentPage.getAbsoluteParent(2);
+		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
 		Resource interestItems = home.getContentResource("interestitems");
 		if (interestItems != null) {
 			Iterator<Resource> interestItemsIterator = interestItems.listChildren();

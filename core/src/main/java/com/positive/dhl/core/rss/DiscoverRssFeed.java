@@ -18,6 +18,7 @@ import java.util.stream.StreamSupport;
 
 import static com.day.cq.commons.jcr.JcrConstants.*;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_TAGS;
+import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
 
 public class DiscoverRssFeed {
     private final SlingHttpServletRequest request;
@@ -81,7 +82,7 @@ public class DiscoverRssFeed {
 
     private Page getLanguageRoot(Resource resource) {
         Page page = resource.adaptTo(Page.class);
-        return page == null ? null : page.getAbsoluteParent(2);
+        return page == null ? null : page.getAbsoluteParent(HOME_PAGE_LEVEL);
     }
 
     private Resource getChildResource(String relativePath) {

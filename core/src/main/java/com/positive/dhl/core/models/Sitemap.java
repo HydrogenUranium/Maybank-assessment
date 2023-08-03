@@ -25,6 +25,8 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.NameConstants;
 import com.day.cq.wcm.api.Page;
 
+import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
+
 /**
  *
  */
@@ -91,7 +93,7 @@ public class Sitemap {
 	@PostConstruct
     protected void init() throws RepositoryException {
 		articleLinks = new ArrayList<SitemapLinkGroup>();
-		Page home = currentPage.getAbsoluteParent(2);
+		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
 		if (builder != null && home != null) {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("type", NameConstants.NT_PAGE);

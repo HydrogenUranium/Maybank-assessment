@@ -27,6 +27,8 @@ import com.day.cq.wcm.api.NameConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
+
 /**
  *
  */
@@ -338,7 +340,7 @@ public class SearchResultsList {
             noSearchTerm = true;
             
         } else {
-            Page home = currentPage.getAbsoluteParent(2);
+            Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
             if (builder != null && home != null) {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("path", home.getPath());
