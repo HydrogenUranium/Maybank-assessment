@@ -15,12 +15,6 @@ import com.positive.dhl.core.services.HttpCommunication;
 import com.positive.dhl.core.services.InitUtil;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import org.apache.http.HttpEntity;
-import org.apache.http.StatusLine;
-import org.apache.http.client.entity.EntityBuilder;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,9 +47,6 @@ class MarketoCommunicationImplTest {
 	CloseableHttpClient client;
 
 	@Mock
-	CloseableHttpResponse response;
-
-	@Mock
 	FormDescriptionResponse formDescriptionResponse;
 
 	@Mock
@@ -72,9 +63,6 @@ class MarketoCommunicationImplTest {
 
 	@Mock
 	Result result;
-
-	@Mock
-	StatusLine statusLine;
 
 	@Mock
 	ObjectMapper objectMapper;
@@ -145,33 +133,6 @@ class MarketoCommunicationImplTest {
 	}
 
 
-	/*
-	@Test
-	void sendPostMessageInvalidUrlNoBody() {
-		String url = "dummy-wrong-url";
-		assertThrows(HttpRequestException.class, () -> underTest.sendPostMessage(url,"111", null, new ArrayList<>()));
-	}
-
-	@Test
-	void testSendPostMessage() throws HttpRequestException, IOException {
-		String url = "https://market-host.com/dummy-endpoint";
-		String authToken = "dummy-auth-token";
-		FormInputBase postBody = mock(FormInputBase.class);
-
-		when(initUtil.getHttpClient()).thenReturn(client);
-		when(initUtil.getObjectMapper()).thenReturn(objectMapper);
-		when(client.execute(any(HttpPost.class))).thenReturn(response);
-		when(objectMapper.writeValueAsString(any())).thenReturn("request body");
-		when(response.getEntity()).thenReturn(EntityBuilder.create().setText("mocked response").build());
-		when(response.getStatusLine()).thenReturn(statusLine);
-		when(statusLine.getStatusCode()).thenReturn(201);
-		when(statusLine.getReasonPhrase()).thenReturn("dummy reason phrase");
-
-		String response = underTest.sendPostMessage(url, authToken, postBody, null);
-		assertEquals("mocked response", response);
-	}
-
-*/
 	public void commonStubbing(boolean needHttpClient){
 		if(needHttpClient){
 			when(initUtil.getHttpClient()).thenReturn(client);
@@ -184,21 +145,6 @@ class MarketoCommunicationImplTest {
 		when(marketoSubmissionConfigReader.getMarketoFormSubmissionAPIEndpoint()).thenReturn("marketo-form-submission-endpoint");
 		when(marketoSubmissionConfigReader.getMarketoFormDescriptionAPIEndpoint()).thenReturn("marketo-form-description-endpoint");
 		when(marketoSubmissionConfigReader.getMarketoFormFieldsAPIEndpoint()).thenReturn("marketo-form-fields-endpoint");
-	}
-
-	public void commonHttpStubbing(HttpEntity httpEntity, boolean mockGet, boolean mockPost) throws IOException {
-		if(mockGet){
-			when(client.execute(any(HttpGet.class))).thenReturn(response);
-		}
-
-		if(mockPost){
-			when(client.execute(any(HttpPost.class))).thenReturn(response);
-		}
-
-		when(response.getEntity()).thenReturn(httpEntity);
-		when(response.getStatusLine()).thenReturn(statusLine);
-		when(statusLine.getStatusCode()).thenReturn(200);
-		when(statusLine.getReasonPhrase()).thenReturn("dummy reason phrase");
 	}
 
 	@Test
