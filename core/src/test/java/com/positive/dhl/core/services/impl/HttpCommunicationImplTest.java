@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
@@ -156,6 +157,7 @@ class HttpCommunicationImplTest {
 	}
 
 	@ParameterizedTest
+	@NullAndEmptySource
 	@ValueSource(strings = {"authorization-token", ""})
 	void getRequest(String authTokenInput) throws HttpRequestException, IOException {
 		ArgumentCaptor<HttpGet> httpGetArgumentCaptor = ArgumentCaptor.forClass(HttpGet.class);
@@ -175,7 +177,9 @@ class HttpCommunicationImplTest {
 		HttpGet actual = httpGetArgumentCaptor.getValue();
 
 		// http headers validation
-		if(authTokenInput.isBlank()){
+		if(null == authTokenInput){
+			assertFalse(checkHeaderValue(actual.getAllHeaders(), HttpHeaders.AUTHORIZATION, "Bearer authorization-token" ));
+		} else if(authTokenInput.isBlank()){
 			assertFalse(checkHeaderValue(actual.getAllHeaders(), HttpHeaders.AUTHORIZATION, "Bearer authorization-token"));
 		} else {
 			assertTrue(checkHeaderValue(actual.getAllHeaders(), HttpHeaders.AUTHORIZATION, "Bearer authorization-token"));

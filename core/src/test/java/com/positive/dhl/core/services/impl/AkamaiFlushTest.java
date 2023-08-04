@@ -111,6 +111,34 @@ class AkamaiFlushTest {
 		verify(httpCommunication, times(1)).sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class));
 		assertEquals(AkamaiInvalidationResult.OK, akamaiInvalidationResult);
 	}
+
+	@Test
+	void invalidateAkamaiCacheCommsError() throws HttpRequestException {
+
+
+
+		List<String> allowedContentPaths = new ArrayList<>();
+		allowedContentPaths.add("/content/dhl");
+		List<String> allowedContentTypes = new ArrayList<>();
+		allowedContentTypes.add("cq:Page");
+
+		this.akamaiStubbing();
+
+		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(context.resourceResolver());
+		when(akamaiFlushConfigReader.getAllowedContentPaths()).thenReturn(allowedContentPaths);
+		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
+		when(environmentConfiguration.getAkamaiHostname()).thenReturn("uat1.dhl.dhl");
+		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
+		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
+		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
+		when(httpCommunication.sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class)))
+				.thenReturn(null);
+
+		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path");
+		verify(httpCommunication, times(1)).sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class));
+		assertEquals(AkamaiInvalidationResult.REJECTED, akamaiInvalidationResult);
+	}
+
 	@Test
 	void invalidateAkamaiCacheNegative() throws HttpRequestException {
 		List<String> allowedContentPaths = new ArrayList<>();
