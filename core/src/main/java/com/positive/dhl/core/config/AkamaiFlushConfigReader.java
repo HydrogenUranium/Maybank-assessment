@@ -62,7 +62,7 @@ public interface AkamaiFlushConfigReader {
      * Retrieves the value of on/off switch whether to send the flush request or not
      * @return boolean {@code true} if functionality is enabled, or {@code false} if not
      */
-    boolean getEnabled();
+    boolean isEnabled();
 
     /**
      * Provides the Akamai invalidate request API path

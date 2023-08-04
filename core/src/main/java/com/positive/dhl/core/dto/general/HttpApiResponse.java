@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Simple abstraction wrapping the http status & payload into a single object
+ */
 @Builder
 @Getter
 @Setter

@@ -63,7 +63,7 @@ public class AkamaiFlush {
 					.build();
 
 			FlushResponse response = invalidateItemFromAkamai(request, getAkamaiCredentials());
-			if(response != null){
+			if(response != null && response.getDetail().equalsIgnoreCase("request accepted")){
 				return AkamaiInvalidationResult.OK;
 			}
 
@@ -86,10 +86,10 @@ public class AkamaiFlush {
 
 		try {
 			var response = httpCommunication.sendPostMessage(finalUrl, flushRequest,client);
-			if(response.getHttpStatus() == 400){
+			if(null != response && response.getHttpStatus() == 400){
 				ErrorResponse errorResponse = initUtil.getObjectMapper().readValue(response.getJsonResponse(), ErrorResponse.class);
 				log.error("Error response from Akamai: {}", errorResponse);
-			} else {
+			} else if (null != response){
 				return initUtil.getObjectMapper().readValue(response.getJsonResponse(),FlushResponse.class);
 			}
 
@@ -111,6 +111,12 @@ public class AkamaiFlush {
 			List<String> allowedContentPaths = akamaiFlushConfigReader.getAllowedContentPaths();
 			List<String> allowedContentTypes = akamaiFlushConfigReader.getAllowedContentTypes();
 			String resourceType = repositoryChecks.getResourceType(path,resourceResolver);
+
+			if(allowedContentTypes.isEmpty() || allowedContentPaths.isEmpty()){
+				log.error("There appears to be a problem in the tool's configuration - there are no allowed content paths or not allowed content types." +
+						" This will disallow any flush requests from being sent to Akamai");
+				return false;
+			}
 
 			return allowedContentTypes.contains(resourceType) && isContentPathValid(path, allowedContentPaths);
 		}
@@ -145,7 +151,6 @@ public class AkamaiFlush {
 		if(path.contains("/content/dhl")){
 			return path.replace("/content/dhl","");
 		}
-
 		return path;
 	}
 

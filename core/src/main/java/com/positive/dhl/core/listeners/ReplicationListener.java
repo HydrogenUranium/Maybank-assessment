@@ -30,7 +30,7 @@ public class ReplicationListener implements EventHandler {
 
 	@Override
 	public void handleEvent(Event event) {
-		if(akamaiFlushConfigReader.getEnabled()){
+		if(akamaiFlushConfigReader.isEnabled()){
 			var replicationAction = ReplicationAction.fromEvent(event);
 			if(null != replicationAction && isInScope(replicationAction)){
 				log.info("Path: {}", replicationAction.getPath());

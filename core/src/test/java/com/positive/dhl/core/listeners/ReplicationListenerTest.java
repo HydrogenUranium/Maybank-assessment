@@ -51,14 +51,14 @@ class ReplicationListenerTest {
 
 	@Test
 	void configurationDisabled() {
-		when(akamaiFlushConfigReader.getEnabled()).thenReturn(false);
+		when(akamaiFlushConfigReader.isEnabled()).thenReturn(false);
 		underTest.handleEvent(this.initializeEvent());
 		verifyNoMoreInteractions(akamaiFlush);
 	}
 
 	@Test
 	void invalidReplicationAction(){
-		when(akamaiFlushConfigReader.getEnabled()).thenReturn(true);
+		when(akamaiFlushConfigReader.isEnabled()).thenReturn(true);
 		try (MockedStatic<ReplicationAction> replicationActionMockedStatic = mockStatic(ReplicationAction.class)){
 			replicationActionMockedStatic.when(() -> ReplicationAction.fromEvent(any(Event.class)))
 					.thenReturn(new ReplicationAction(ReplicationActionType.TEST,DUMMY_PATH));
@@ -70,7 +70,7 @@ class ReplicationListenerTest {
 
 	@Test
 	void happyPathScenario(){
-		when(akamaiFlushConfigReader.getEnabled()).thenReturn(true);
+		when(akamaiFlushConfigReader.isEnabled()).thenReturn(true);
 		try (MockedStatic<ReplicationAction> replicationActionMockedStatic = mockStatic(ReplicationAction.class)){
 			replicationActionMockedStatic.when(() -> ReplicationAction.fromEvent(any(Event.class)))
 					.thenReturn(new ReplicationAction(ReplicationActionType.ACTIVATE,DUMMY_PATH));

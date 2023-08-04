@@ -3,14 +3,17 @@ package com.positive.dhl.core.config.impl;
 
 import com.positive.dhl.core.config.AkamaiFlushConfig;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
+import lombok.Getter;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.metatype.annotations.Designate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
 @Component(service = AkamaiFlushConfigReader.class, immediate = true)
 @Designate(ocd = AkamaiFlushConfig.class)
 public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
@@ -40,42 +43,6 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
     }
 
     /**
-     * Method to provide the Akamai Client Secret
-     *
-     * @return clientSecret - {@link String}
-     */
-    public String getClientSecret() {
-        return clientSecret;
-    }
-
-    /**
-     * Method to provide Akamai Host (this would be different for each API user)
-     *
-     * @return akamai API hostname - {@link String}
-     */
-    public String getAkamaiHost() {
-        return akamaiHost;
-    }
-
-    /**
-     * Method to provide Akamai access token
-     *
-     * @return Akamai access token - {@link String}
-     */
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    /**
-     * Method to provide Akamai client token
-     *
-     * @return Client Token - {@link String}
-     */
-    public String getClientToken() {
-        return clientToken;
-    }
-
-    /**
      * Method to provide the delay (in seconds)
      *
      * @return delay - {@link Long}
@@ -93,7 +60,10 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
      * @return allowedContentTypes - {@link String[]}
      */
     public List<String> getAllowedContentTypes() {
-        return Arrays.asList(allowedContentTypes);
+        if(null != allowedContentTypes){
+            return Arrays.asList(allowedContentTypes);
+        }
+        return new ArrayList<>();
     }
 
     /**
@@ -102,17 +72,10 @@ public class AkamaiFlushConfigReaderImpl implements AkamaiFlushConfigReader {
      * @return allowedContentPaths - {@link List} of {@link String}s
      */
     public List<String> getAllowedContentPaths() {
-        return Arrays.asList(allowedContentPaths);
-    }
-
-    @Override
-    public boolean getEnabled() {
-        return enabled;
-    }
-
-    @Override
-    public String getApiPath() {
-        return apiPath;
+        if(null != allowedContentPaths){
+            return Arrays.asList(allowedContentPaths);
+        }
+        return new ArrayList<>();
     }
 
 }
