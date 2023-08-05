@@ -57,7 +57,7 @@ public class MarketoCommunicationImpl implements MarketoCommunication {
 	@Override
 	public List<String> getAvailableFormFieldNames(String authToken) {
 			var marketoConnectionData = getMarketoConnectionData();
-			if(null != marketoConnectionData && null != authToken){
+			if(null != marketoConnectionData && null != authToken && !authToken.isBlank()){
 				try {
 					String hostname = marketoConnectionData.getUrl();
 					String destination = MessageFormat.format(DiscoverConstants.DESTINATION_CONCATENATION, hostname, marketoConnectionData.getFormDescriptionAPIPath());
@@ -115,7 +115,7 @@ public class MarketoCommunicationImpl implements MarketoCommunication {
 				LOGGER.error("Unable to parse the message received from authentication backend ({}). Underlying error was: {}",hostname, e.getMessage());
 			}
 		}
-		throw new HttpRequestException("Unsuccessful request to get the Marketo token - unable to get Marketo communication information (such as hostname / clientId / secretId");
+		throw new HttpRequestException("Unsuccessful request to get the Marketo token - unable to get Marketo communication information (such as hostname / clientId / secretId)");
 	}
 
 	@Override

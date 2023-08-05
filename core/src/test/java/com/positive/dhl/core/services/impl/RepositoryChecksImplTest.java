@@ -59,8 +59,8 @@ class RepositoryChecksImplTest {
 	@Test
 	void doRepositoryPathsExist() {
 		String[] pathsToCheck = {"/content/dhl/dummy1", "/content/dhl/dummy2"};
-		when(resourceResolver.getResource(eq("/content/dhl/dummy1"))).thenReturn(mock(Resource.class));
-		when(resourceResolver.getResource(eq("/content/dhl/dummy2"))).thenReturn(mock(Resource.class));
+		when(resourceResolver.getResource("/content/dhl/dummy1")).thenReturn(mock(Resource.class));
+		when(resourceResolver.getResource("/content/dhl/dummy2")).thenReturn(mock(Resource.class));
 		boolean pathsExist = underTest.doRepositoryPathsExist(pathsToCheck,resourceResolver);
 		assertTrue(pathsExist);
 	}
@@ -70,8 +70,8 @@ class RepositoryChecksImplTest {
 		List<String> pathsList = new ArrayList<>();
 		pathsList.add("/content/dhl/dummy1");
 		pathsList.add("/content/dhl/dummy2");
-		when(resourceResolver.getResource(eq("/content/dhl/dummy1"))).thenReturn(mock(Resource.class));
-		when(resourceResolver.getResource(eq("/content/dhl/dummy2"))).thenReturn(null);
+		when(resourceResolver.getResource("/content/dhl/dummy1")).thenReturn(mock(Resource.class));
+		when(resourceResolver.getResource("/content/dhl/dummy2")).thenReturn(null);
 		boolean pathsExist = underTest.doRepositoryPathsExist(pathsList,resourceResolver);
 		assertFalse(pathsExist);
 	}
@@ -100,6 +100,13 @@ class RepositoryChecksImplTest {
 
 		String resourceType = underTest.getResourceType(DUMMY_PATH,resourceResolver);
 		assertEquals(com.day.cq.wcm.api.constants.NameConstants.NT_PAGE, resourceType);
+	}
+
+	@Test
+	void testGettingResourceTypeFailedResourceLookup(){
+		when(resourceResolver.getResource(anyString())).thenReturn(null);
+		String resourceType = underTest.getResourceType(DUMMY_PATH, resourceResolver);
+		assertNull(resourceType);
 	}
 
 	@Test

@@ -20,6 +20,9 @@ import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -97,6 +100,12 @@ class MarketoCommunicationImplTest {
 	}
 
 	@Test
+	void requestNewTokenNoConnData() {
+		String testToken = underTest.requestNewToken();
+		assertNull(testToken);
+	}
+
+	@Test
 	void requestNewTokenInvalidToken() throws IOException, HttpRequestException {
 		this.commonStubbing(true);
 
@@ -104,6 +113,18 @@ class MarketoCommunicationImplTest {
 		when(objectMapper.readValue(anyString(), any(Class.class))).thenThrow(JsonProcessingException.class);
 		String testToken = underTest.requestNewToken();
 		assertNull( testToken);
+	}
+
+	@Test
+	void requestNewTokenBadConnData() {
+		Exception exception = assertThrows(HttpRequestException.class, () -> {
+
+			underTest.requestNewToken(mock(MarketoConnectionData.class));
+		});
+
+		String expectedMessage = "Unsuccessful request to get the Marketo token - unable to get Marketo communication information (such as hostname / clientId / secretId)";
+		String actualMessage = exception.getMessage();
+		assertEquals(actualMessage, expectedMessage);
 	}
 
 	@Test
@@ -162,6 +183,14 @@ class MarketoCommunicationImplTest {
 
 		List<String> testResult = underTest.getAvailableFormFieldNames(authToken);
 		assertEquals(1,testResult.size());
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"dummy-token"})
+	@NullAndEmptySource
+	void getAvailableFormFieldNamesNoConnData(String tokenValue){
+		List<String> fieldNames = underTest.getAvailableFormFieldNames(tokenValue);
+		assertTrue(fieldNames.isEmpty());
 	}
 
 	@Test
