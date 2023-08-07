@@ -1,0 +1,18 @@
+{
+  "flushEnabled": "$[env:AKAMAI_FLUSH_ENABLED]",
+  "accessToken": "$[secret:AKAMAI_ACCESS_TOKEN]",
+  "akamaiHost": "$[env:AKAMAI_HOST]",
+  "clientSecret": "$[secret:AKAMAI_CLIENT_SECRET]",
+  "clientToken": "$[secret:AKAMAI_CLIENT_TOKEN]",
+  "delay": "3",
+  "allowedContentTypes":[
+    "cq:Page",
+    "dam:Asset",
+    "nt:file"
+  ],
+  "allowedContentPaths": [
+    "/content",
+    "/etc.clientlibs"
+  ],
+  "flushApiPath": "/ccu/v3/invalidate/url/{0}"
+}
