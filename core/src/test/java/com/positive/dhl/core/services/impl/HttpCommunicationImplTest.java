@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
@@ -86,6 +87,7 @@ class HttpCommunicationImplTest {
 	}
 
 	@ParameterizedTest
+	@NullSource
 	@ValueSource(strings = {"authorization-token", ""})
 	void postWithAuthToken(String authTokenInput) throws HttpRequestException, IOException {
 		ArgumentCaptor<HttpPost> postArgumentCaptor = ArgumentCaptor.forClass(HttpPost.class);
@@ -119,12 +121,29 @@ class HttpCommunicationImplTest {
 		assertEquals("client_id=dummyValue", requestQueryParameters);
 
 		// http headers validation
-		if(authTokenInput.isBlank()){
+		if(null == authTokenInput){
+			assertFalse(checkHeaderValue(actual.getAllHeaders(), HttpHeaders.AUTHORIZATION, "Bearer authorization-token"));
+		} else if(authTokenInput.isBlank()){
 			assertFalse(checkHeaderValue(actual.getAllHeaders(), HttpHeaders.AUTHORIZATION, "Bearer authorization-token"));
 		} else {
 			assertTrue(checkHeaderValue(actual.getAllHeaders(), HttpHeaders.AUTHORIZATION, "Bearer authorization-token"));
 		}
 		assertTrue(checkContentType(actual.getAllHeaders(), ContentType.APPLICATION_JSON.getMimeType()));
+	}
+
+	@Test
+	void postException() throws IOException {
+		String postRequestBody = "aka json";
+
+		String url = "https://valid-backend-url.dhl.com";
+		List<NameValuePair> queryParams = new ArrayList<>();
+		queryParams.add(new BasicNameValuePair("client_id", "dummyValue"));
+
+		when(initUtil.getObjectMapper()).thenReturn(objectMapper);
+		when(initUtil.getHttpClient()).thenReturn(client);
+		when(objectMapper.writeValueAsString(any())).thenReturn(postRequestBody);
+		when(client.execute(any(HttpPost.class))).thenThrow(new IOException("dummy io exception"));
+		assertThrows(HttpRequestException.class, () -> underTest.sendPostMessage(url,"authTokenInput",formInputData,queryParams,client));
 	}
 
 	@Test
@@ -154,6 +173,12 @@ class HttpCommunicationImplTest {
 
 		// request headers validation
 		assertTrue(checkContentType(actual.getAllHeaders(), ContentType.APPLICATION_JSON.getMimeType()));
+	}
+
+	@Test
+	void testGetRequestResponseException() {
+		assertThrows(IOException.class, () -> underTest.getRequestResponse(null));
+		verify(initUtil,times(1)).resetClient();
 	}
 
 	@ParameterizedTest
@@ -186,6 +211,8 @@ class HttpCommunicationImplTest {
 		}
 		assertTrue(checkContentType(actual.getAllHeaders(), ContentType.APPLICATION_JSON.getMimeType()));
 	}
+
+
 
 	/**
 	 * Validates HTTP Header value provided as array of {@link Header} objects. Validation is case-insensitive
