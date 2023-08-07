@@ -10,6 +10,9 @@ import lombok.extern.jackson.Jacksonized;
 
 import java.util.Map;
 
+/**
+ * Object that represents the complete Marketo form submission. It can (and should) be used as json template.
+ */
 @Getter
 @Setter
 @Builder

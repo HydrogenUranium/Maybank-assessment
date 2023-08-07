@@ -1,59 +1,20 @@
 /* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.services;
 
-import com.positive.dhl.core.dto.marketo.FormInputBase;
-import com.positive.dhl.core.dto.marketo.FormSubmissionResponse;
-import com.positive.dhl.core.dto.marketo.MarketoConnectionData;
-import com.positive.dhl.core.exceptions.MarketoRequestException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.positive.dhl.core.dto.general.HttpApiResponse;
+import com.positive.dhl.core.exceptions.HttpRequestException;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-/**
- * This interface contains methods that deal with http message exchange between AEM and, in theory, any backend.
- */
 public interface HttpCommunication {
-
-	/**
-	 * Requests new token from authentication backend. Authentication backend is expected to be provided either via OSGi configuration or
-	 * by some *other* means
-	 * @return new token string or {@code null} in case anything went wrong
-	 */
-	String requestNewToken();
-
-	/**
-	 * Returns a {@link List} of {@link String}s of all the form fields available in the REST API. This may be required
-	 * to map the fields between the javascript & rest API fields (which <strong>may</strong> be different)
-	 * @return a {@code List} of {@code String}s, where each item represents the field name. If any {@code problem} occurred
-	 * during retrieval of the available field names, this list will be {@code empty}(!)
-	 */
-	List<String> getAvailableFormFieldNames(String authToken);
-
-	/**
-	 * Returns a {@link List} of {@link String}s of all fields available in the form (purpose of this request is to find out which fields
-	 * are to be sent to Marketo based on this form ID)
-	 * @param authToken is the authentication token
-	 * @param formId is a formID where we want to find out the fields
-	 * @return list of fields that the form (on Marketo) contains
-	 */
-	List<String> getFormFields(String authToken, int formId);
-
-	/**
-	 * Requests new token from authentication backend using the provided information.
-	 *
-	 * @param marketoConnectionData@return new token string or {@code null} in case anything went wrong
-	 */
-	String requestNewToken(MarketoConnectionData marketoConnectionData) throws MarketoRequestException;
-
-	/**
-	 * Attempts to submit the form body to backend (it is assumed to be Marketo backend, but in reality this method might be re-purposed for
-	 * other means as well
-	 *
-	 * @param form                is an instance of {@link FormInputBase} object, that we want to submit
-	 * @param authenticationToken is the token we need to authenticate with to be able to submit the form
-	 * @return http response text (it could indicate success or failure)
-	 */
-	FormSubmissionResponse submitForm(FormInputBase form, String authenticationToken);
 
 	/**
 	 * Sends a http POST message to URL and returns a {@code String} representing the response provided by the URL
@@ -62,11 +23,25 @@ public interface HttpCommunication {
 	 * @param authToken   is a String representing the authorization token (if provided as {@code null}, it is omitted from the request)
 	 * @param postBody    is the PUT request body we're going to send
 	 * @param queryParams is a {@code List} of {@link NameValuePair}s that contains the query param name & value
+	 * @param client      is an instance of {@link CloseableHttpClient} that is leveraged to send teh actual http request
 	 * @return a String representing the response provided by the server
-	 * @throws MarketoRequestException is thrown in case we detect any issue with either sending the request or if the status
-	 *                                 returned by the server does not match success (200) or created (201)
+	 * @throws HttpRequestException is thrown in case we detect any issue with either sending the request or if the status
+	 *                              returned by the server does not match success (200) or created (201)
 	 */
-	<T> String sendPostMessage(String url, String authToken, T postBody, List<NameValuePair> queryParams) throws MarketoRequestException;
+	<T> String sendPostMessage(String url, String authToken, T postBody, List<NameValuePair> queryParams, CloseableHttpClient client) throws HttpRequestException;
+
+	/**
+	 * Very basic implementation of HTTP POST request that offers neither token-based-authentication, nor query parameters. If you need to use
+	 * any of those parameters, then {@link HttpCommunication#sendPostMessage(String, String, Object, List, CloseableHttpClient)} can be better used
+	 *
+	 * @param url      is a String representing the server where we want to send the post message
+	 * @param postBody is the POST request body we're going to send
+	 * @param client   is an instance of {@link CloseableHttpClient} that is leveraged to send the actual http request
+	 * @return a new instance of {@link HttpApiResponse} object that contains both returned data and status code
+	 * @throws HttpRequestException is thrown in case we detect any issue with either sending the request or if the status
+	 *                              *                              returned by the server does not match success (200) or created (201)
+	 */
+	<T> HttpApiResponse sendPostMessage(String url, T postBody, CloseableHttpClient client) throws HttpRequestException;
 
 	/**
 	 * Sends a GET message and returns the @{code String} representing the response provided by the 'url'
@@ -74,8 +49,51 @@ public interface HttpCommunication {
 	 * @param url       is a String representing the server where we want to send the message
 	 * @param authToken is a String representing teh authorization token
 	 * @return String representing the response provided by the server
-	 * @throws MarketoRequestException is thrown in case we detect issue with either request transmission or if status is different
+	 * @throws HttpRequestException is thrown in case we detect issue with either request transmission or if status is different
 	 *                                 than 200
 	 */
-	String sendGetMessage(String url, String authToken) throws MarketoRequestException;
+	String sendGetMessage(String url, String authToken) throws HttpRequestException;
+
+	/**
+	 * Extracts the response text from the provided {@link CloseableHttpResponse}, if successful. If not, returns
+	 * an exception
+	 * @param response is an instance of {@code CloseableHttpResponse} that represents what the backend has returned
+	 * @return a String representing the text provided by the backend
+	 * @throws IOException is thrown in case there was a communication error with the backend
+	 * @throws HttpRequestException is thrown in case response code from backend did not indicate success
+	 */
+	String getRequestResponse(CloseableHttpResponse response) throws IOException, HttpRequestException;
+
+	/**
+	 * Provides indication if provided string can be used as http backend (but it does not check whether such backend exists or works)
+	 * @param url is a String representing the url we want to check
+	 * @return boolean {@code true} if provided String is indeed valid URL or {@code false} if not
+	 */
+	boolean isValidUrl(String url);
+
+	/**
+	 * Builds a list of query parameters whose members are to be added to the request
+	 * @param clientId is a clientId, one of the values Marketo needs to authenticate the request
+	 * @param secret is a secret, one of the values Marketo needs to authenticate the request
+	 * @return a {@link List} of {@link NameValuePair}s, each item in the list represents one pair
+	 * of query parameter & its value
+	 */
+	List<NameValuePair> getQueryParams(String clientId, String secret);
+
+	/**
+	 * Adds a post body to HTTP POST message (identified by {@link HttpPost} object).
+	 * @param httpPost is an instance of {@code HttpPost} that we add the body to
+	 * @param postBody is a generic object representing the post request body
+	 * @throws JsonProcessingException is thrown in case we're unable to transform the 'post body' object to json string
+	 * @throws UnsupportedEncodingException is thrown in case encoding is incorrect
+	 */
+	<T> void addPostBody(HttpPost httpPost, T postBody) throws JsonProcessingException, UnsupportedEncodingException;
+
+	/**
+	 * Adds query parameters to provide {@link URIBuilder} instance
+	 * @param uriBuilder is an instance of {@link URIBuilder} we want to enhance
+	 * @param queryParams is a {@link List} of {@link NameValuePair} we use to build the query params
+	 * @return enhanced instance of {@code URIBuilder}
+	 */
+	URIBuilder addQueryParams(URIBuilder uriBuilder, List<NameValuePair> queryParams);
 }

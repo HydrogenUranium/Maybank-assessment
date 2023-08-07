@@ -44,6 +44,7 @@
                         <configuration>
                             <bnd><![CDATA[
 Import-Package: javax.annotation;version=0.0.0,*
+-includeresource: @edgegrid-signer-*.jar;lib:=true
                                 ]]></bnd>
                         </configuration>
                     </execution>
@@ -222,8 +223,18 @@ Import-Package: javax.annotation;version=0.0.0,*
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.sitemap</artifactId>
-            <version>1.0.6</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.akamai.edgegrid</groupId>
+            <artifactId>edgegrid-signer-apache-http-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.akamai.edgegrid</groupId>
+            <artifactId>edgegrid-signer-core</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
