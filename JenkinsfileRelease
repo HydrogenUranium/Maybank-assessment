@@ -37,11 +37,11 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-key-omoravek', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'github-deploy-key', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
                     withEnv(["RELEASE_VERSION=${params.RELEASE_VERSION}", "DEVELOPMENT_VERSION=${params.DEVELOPMENT_VERSION}", "DRY_RUN=${params.DRY_RUN}"]) {
                         script{
                             sh '''
-                                export GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i $SSH_PRIVATE_KEY -F /dev/null'
+                                export GIT_SSH_COMMAND='ssh -o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes -i $SSH_PRIVATE_KEY -F /dev/null'
                                 echo "Release version: $RELEASE_VERSION"
                                 echo "Next development version: $DEVELOPMENT_VERSION"
                                 echo "Dry run: $DRY_RUN"
