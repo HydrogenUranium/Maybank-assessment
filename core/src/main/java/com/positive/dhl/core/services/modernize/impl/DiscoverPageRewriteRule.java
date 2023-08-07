@@ -3,17 +3,18 @@ package com.positive.dhl.core.services.modernize.impl;
 import com.adobe.aem.modernize.RewriteException;
 import com.adobe.aem.modernize.structure.StructureRewriteRule;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.day.cq.wcm.api.WCMException;
 import com.drew.lang.annotations.NotNull;
 import com.drew.lang.annotations.Nullable;
+import com.positive.dhl.core.services.ResourceResolverHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.oak.commons.PathUtils;
+import org.apache.sling.api.resource.ModifiableValueMap;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
-import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
@@ -22,11 +23,10 @@ import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+import static com.adobe.aem.modernize.model.ConversionJob.PN_PRE_MODERNIZE_VERSION;
 import static com.day.cq.commons.jcr.JcrConstants.NT_UNSTRUCTURED;
 import static com.day.cq.wcm.api.constants.NameConstants.*;
 import static com.positive.dhl.core.helpers.OSGiConfigHelper.arrayToMapWithDelimiter;
@@ -43,10 +43,13 @@ import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOU
 @Slf4j
 public class DiscoverPageRewriteRule implements StructureRewriteRule {
 
-    private Map<String, String> containerMappings;
-    private String editableTemplate;
-    private String staticTemplate;
-    private String slingResourceType;
+    protected Map<String, String> containerMappings;
+    protected String editableTemplate;
+    protected String staticTemplate;
+    protected String slingResourceType;
+
+    @Reference
+    protected ResourceResolverHelper resourceResolverHelper;
 
     @Override
     public @NotNull Set<String> findMatches(@NotNull Resource resource) {
@@ -78,7 +81,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
 
     @Override
     public String getId() {
-        return DiscoverPageRewriteRule.class.getName();
+        return this.toString();
     }
 
     @Override
@@ -87,10 +90,14 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
             node = node.getNode(NN_CONTENT);
         }
 
-        if (!node.hasProperty(PN_TEMPLATE) || !node.hasProperty(SLING_RESOURCE_TYPE_PROPERTY)) {
+        if (!node.hasProperty(SLING_RESOURCE_TYPE_PROPERTY)) {
             return false;
         }
-        var template = node.getProperty(PN_TEMPLATE).getString();
+        var template = "";
+        if (node.hasProperty(PN_TEMPLATE)) {
+            template = node.getProperty(PN_TEMPLATE).getString();
+        }
+
         if (!StringUtils.equals(staticTemplate, template)) {
             return false;
         }
@@ -100,18 +107,26 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
         return StringUtils.equals(slingResourceType, resourceType);
     }
 
-    @Override
-    public @Nullable Node applyTo(@NotNull Node pageContent, @NotNull Set<String> set) throws RewriteException, RepositoryException {
-        var session = pageContent.getSession();
-        var structureContentNode = session.getNode(editableTemplate + "/structure/jcr:content");
-
-        if (pageContent.getPrimaryNodeType().isNodeType(NT_PAGE)) {
-            pageContent = pageContent.getNode(NN_CONTENT);
+    protected Node getPageContent(Node node) throws RepositoryException {
+        if (node.getPrimaryNodeType().isNodeType(NT_PAGE)) {
+            return node.getNode(NN_CONTENT);
         }
+        return node;
+    }
 
+    protected void removeDesignPath(Node pageContent) throws RepositoryException {
         if (pageContent.hasProperty(PN_DESIGN_PATH)) {
             pageContent.getProperty(PN_DESIGN_PATH).remove();
         }
+    }
+
+    @Override
+    public @Nullable Node applyTo(@NotNull Node node, @NotNull Set<String> set) throws RewriteException, RepositoryException {
+        var session = node.getSession();
+        var structureContentNode = session.getNode(editableTemplate + "/structure/jcr:content");
+
+        Node pageContent = getPageContent(node);
+        removeDesignPath(pageContent);
 
         try {
             for (Map.Entry<String, String> entry : containerMappings.entrySet()) {
@@ -121,7 +136,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
                 if (!structureContentNode.hasNode(dynamicContainerPath)) {
                     throw new RepositoryException("Node: " + structureContentNode.getPath() + " doesn't contain " + dynamicContainerPath);
                 }
-
+                createVersion(session, pageContent.getParent());
                 initContainer(pageContent, structureContentNode, dynamicContainerPath);
 
                 var containerNode = pageContent.getNode(staticContainerPath);
@@ -134,12 +149,35 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
             session.save();
         } catch (Exception exception) {
             session.refresh(false);
-            throw exception;
+            throw new RewriteException("Failed to process page migration ", exception);
         }
         return pageContent;
     }
 
-    private void initContainer(Node pageRoot, Node structureRoot, String containerPath) throws RepositoryException {
+    protected void createVersion(Session session, Node pageNode) throws WCMException, RepositoryException {
+        var resourceResolver = resourceResolverHelper.getResourceResolver(session);
+        if (resourceResolver == null) {
+            throw new WCMException("Resource Resolver is null");
+        }
+
+        PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
+        if (pageManager == null) {
+            throw new WCMException("Page Manager is null");
+        }
+
+        var page = pageManager.getPage(pageNode.getPath());
+        String date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
+        var label = String.format("%s - %s", "Pre-Modernization", date);
+        var revision = pageManager.createRevision(page, label, "Version of content before the modernization process was performed.");
+        ModifiableValueMap mvm = page.getContentResource().adaptTo(ModifiableValueMap.class);
+        if (mvm == null) {
+            throw new WCMException("Page content is null");
+        }
+        mvm.put(PN_PAGE_LAST_MOD, Calendar.getInstance());
+        mvm.put(PN_PRE_MODERNIZE_VERSION, revision.getId());
+    }
+
+    protected void initContainer(Node pageRoot, Node structureRoot, String containerPath) throws RepositoryException {
         for (String nodeName : containerPath.split("/")) {
             structureRoot = structureRoot.getNode(nodeName);
             if (pageRoot.hasNode(nodeName)) {
@@ -151,7 +189,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
         }
     }
 
-    private void moveNodes(Session session, NodeIterator nodes, String target) throws RepositoryException {
+    protected void moveNodes(Session session, NodeIterator nodes, String target) throws RepositoryException {
         while (nodes.hasNext()) {
             var child = nodes.nextNode();
             String oldPath = child.getPath();
@@ -160,13 +198,13 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
         }
     }
 
-    private void changeTemplate(Node node) throws RepositoryException, RewriteException {
+    protected void changeTemplate(Node node) throws RepositoryException, RewriteException {
         node.setProperty(NN_TEMPLATE, editableTemplate);
         String newResourceType = getResourceType(node.getSession());
         node.setProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, newResourceType);
     }
 
-    private String getResourceType(Session session) throws RewriteException, RepositoryException {
+    protected String getResourceType(Session session) throws RewriteException, RepositoryException {
 
         String path = PathUtils.concat(editableTemplate, "structure", NN_CONTENT);
         if (!session.nodeExists(path)) {

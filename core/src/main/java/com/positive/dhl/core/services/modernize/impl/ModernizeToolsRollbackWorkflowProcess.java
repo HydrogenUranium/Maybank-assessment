@@ -18,6 +18,7 @@ import javax.jcr.query.Query;
 import java.util.Iterator;
 
 import static com.adobe.aem.modernize.model.ConversionJob.PN_PRE_MODERNIZE_VERSION;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_TEMPLATE;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.osgi.framework.Constants.SERVICE_DESCRIPTION;
 import static org.osgi.framework.Constants.SERVICE_VENDOR;
@@ -57,7 +58,7 @@ public class ModernizeToolsRollbackWorkflowProcess implements WorkflowProcess {
         }
 
         try {
-            String rootTemplate = rootPage.getProperties().get("cq:template", String.class);
+            String rootTemplate = rootPage.getProperties().get(PN_TEMPLATE, String.class);
             if (StringUtils.equals(templateForRollback, rootTemplate)) {
                 rollbackPage(pageManager, rootPage);
             }
@@ -81,7 +82,7 @@ public class ModernizeToolsRollbackWorkflowProcess implements WorkflowProcess {
 
     private void rollbackPage(PageManager pageManager, Page page) throws WCMException {
         String version = page.getProperties().get(PN_PRE_MODERNIZE_VERSION, String.class);
-        String template = page.getProperties().get("cq:template", String.class);
+        String template = page.getProperties().get(PN_TEMPLATE, String.class);
         if (isEmpty(version) || isEmpty(template)) {
             return;
         }

@@ -217,47 +217,45 @@ public class LanguageVariants {
 			return;
 		}
 
-		List<Page> homePages = pageUtilService.getAllHomePages(root);
-		for (Page homepage : homePages) {
-			ValueMap homepageProperties = homepage.adaptTo(ValueMap.class);
-			if ((homepageProperties != null) && ("dhl/components/pages/home").equals(homepageProperties.get("jcr:content/sling:resourceType", ""))) {
-				boolean hideInNav = homepageProperties.get("jcr:content/hideInNav", false);
-				if (hideInNav) {
-					continue;
-				}
+        List<Page> homePages = pageUtilService.getAllHomePages(root);
+        for (Page homepage : homePages) {
+            ValueMap homepageProperties = homepage.getProperties();
+            boolean hideInNav = homepageProperties.get("hideInNav", false);
+            if (hideInNav) {
+                continue;
+            }
 
-				String region = homepageProperties.get("jcr:content/siteregion", "").trim();
-				String language = homepageProperties.get("jcr:content/sitelanguage", "").trim();
-				String acceptlanguages = homepageProperties.get("jcr:content/acceptlanguages", "").trim();
-				Boolean enabled = homepageProperties.get("jcr:content/siteenabled", false);
-				Boolean deflt = homepageProperties.get("jcr:content/sitedefault", false);
-				if ((!enabled) || (region.equals(""))) {
-					continue;
-				}
+            String region = homepageProperties.get("siteregion", "").trim();
+            String language = homepageProperties.get("sitelanguage", "").trim();
+            String acceptlanguages = homepageProperties.get("acceptlanguages", "").trim();
+            Boolean enabled = homepageProperties.get("siteenabled", false);
+            Boolean deflt = homepageProperties.get("sitedefault", false);
+            if ((!enabled) || (region.equals(""))) {
+                continue;
+            }
 
-				String newHomepage = homepage.getPath();
-				String newExactPath = homepage.getPath();
-				boolean exactPathExists = true;
+            String newHomepage = homepage.getPath();
+            String newExactPath = homepage.getPath();
+            boolean exactPathExists = true;
 
-				if (currentHome != null) {
-					newExactPath = path.replace(currentHome.getPath(), newHomepage);
-					Resource resource = resourceResolver.getResource(newExactPath);
-					exactPathExists = (resource != null);
+            if (currentHome != null) {
+                newExactPath = path.replace(currentHome.getPath(), newHomepage);
+                Resource resource = resourceResolver.getResource(newExactPath);
+                exactPathExists = (resource != null);
 
-					if (!exactPathExists) {
-						newExactPath = newHomepage;
-					}
-				}
-				
-				LanguageVariant newItem = new LanguageVariant(language, newHomepage, newExactPath, acceptlanguages, deflt, path.contains(homepage.getPath()), exactPathExists);
-				if (!variants.containsKey(region)) {
-					ArrayList<LanguageVariant> languages = new ArrayList<>();
-					variants.put(region, languages);
-				}
-				
-				ArrayList<LanguageVariant> languages = variants.get(region);
-				languages.add(newItem);
-			}
-		}
-	}
+                if (!exactPathExists) {
+                    newExactPath = newHomepage;
+                }
+            }
+
+            LanguageVariant newItem = new LanguageVariant(language, newHomepage, newExactPath, acceptlanguages, deflt, path.contains(homepage.getPath()), exactPathExists);
+            if (!variants.containsKey(region)) {
+                ArrayList<LanguageVariant> languages = new ArrayList<>();
+                variants.put(region, languages);
+            }
+
+            ArrayList<LanguageVariant> languages = variants.get(region);
+            languages.add(newItem);
+        }
+    }
 }

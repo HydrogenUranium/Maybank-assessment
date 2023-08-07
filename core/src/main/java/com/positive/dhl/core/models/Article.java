@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.day.cq.wcm.api.Page;
 import com.day.cq.tagging.TagManager;
 import com.positive.dhl.core.constants.DiscoverConstants;
 import lombok.Getter;
@@ -16,6 +17,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_LEVEL;
 
 /**
  * It's a sling model of the 'article' piece of content
@@ -180,26 +183,12 @@ public class Article {
 	 *
 	 */
     private String getGroupTitle(Resource self) {
-		if (self.getParent() != null) {
-			Resource parent = self.getParent();
-			if (parent != null) {
-				ValueMap parentProperties = parent.adaptTo(ValueMap.class);
-	    		if ((parentProperties != null) && ("dhl/components/pages/home").equals(parentProperties.get("jcr:content/sling:resourceType", ""))) {
-	    			ValueMap selfProperties = self.adaptTo(ValueMap.class);
-
-	    			if (selfProperties != null) {
-		    			String gtitle = selfProperties.get("jcr:content/navTitle", "");
-		    			if ((gtitle == null) || (gtitle.trim().length() == 0)) {
-		    				gtitle = selfProperties.get("jcr:content/jcr:title", "");
-		    			}
-
-		    			return gtitle;
-	    			}
-	    		}
-				return getGroupTitle(parent);
-			}
-		}
-		return "";
+		return Optional.ofNullable(self)
+				.map(r -> r.adaptTo(Page.class))
+				.map(p -> p.getAbsoluteParent(CATEGORY_PAGE_LEVEL))
+				.map(Page::getProperties)
+				.map(properties -> properties.get("navTitle", properties.get("jcr:title", "")))
+				.orElse("");
     }
 
 	private String transformToTag(String name) {
@@ -218,16 +207,10 @@ public class Article {
 	 *
 	 */
     private String getGroupPath(Resource self) {
-		if (self.getParent() != null) {
-			Resource parent = self.getParent();
-			if (parent != null) {
-				ValueMap parentProperties = parent.adaptTo(ValueMap.class);
-	    		if ((parentProperties != null) && ("dhl/components/pages/home").equals(parentProperties.get("jcr:content/sling:resourceType", ""))) {
-	    			return self.getPath();
-	    		}
-				return getGroupPath(parent);
-			}
-		}
-		return "";
+		return Optional.ofNullable(self)
+				.map(r -> r.adaptTo(Page.class))
+				.map(p -> p.getAbsoluteParent(CATEGORY_PAGE_LEVEL))
+				.map(Page::getPath)
+				.orElse("");
     }
 }

@@ -13,7 +13,7 @@
                 layout="responsiveGrid">
             <header
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-header"/>
+                    sling:resourceType="dhl/components/content/legacy-header"/>
             <hero_image
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/article-hero-image"/>
@@ -97,7 +97,7 @@
                     editable="true"/>
             <footer
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-footer"/>
+                    sling:resourceType="dhl/components/content/legacy-footer"/>
         </root>
         <cq:responsive jcr:primaryType="nt:unstructured">
             <breakpoints jcr:primaryType="nt:unstructured">
@@ -108,7 +108,7 @@
                 <tablet
                         jcr:primaryType="nt:unstructured"
                         title="Tablet"
-                        width="{Long}1200"/>
+                        width="{Long}992"/>
             </breakpoints>
         </cq:responsive>
     </jcr:content>

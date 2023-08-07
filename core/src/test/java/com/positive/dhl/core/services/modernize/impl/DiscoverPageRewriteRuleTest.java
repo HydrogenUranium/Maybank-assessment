@@ -1,5 +1,8 @@
 package com.positive.dhl.core.services.modernize.impl;
 
+import com.day.cq.wcm.api.PageManager;
+import com.day.cq.wcm.api.Revision;
+import com.positive.dhl.core.services.ResourceResolverHelper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -8,21 +11,33 @@ import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Node;
+import javax.jcr.Session;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import static com.positive.dhl.core.utils.AssertNode.assertNodeStructureEquals;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
-@ExtendWith(AemContextExtension.class)
+@ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class DiscoverPageRewriteRuleTest {
 
-    private final AemContext context = new AemContext(ResourceResolverType.JCR_OAK);
-    private final ResourceResolver resourceResolver = context.resourceResolver();
-    private final DiscoverPageRewriteRule rule = new DiscoverPageRewriteRule();
+    AemContext context = new AemContext(ResourceResolverType.JCR_OAK);
+    ResourceResolver resourceResolver = context.resourceResolver();
+
+    @Mock
+    Revision revision;
+
+    @Mock
+    ResourceResolverHelper resourceResolverHelper;
+
+    DiscoverPageRewriteRule rule = new DiscoverPageRewriteRule();
 
     @BeforeEach
     public void beforeEach() {
@@ -37,6 +52,7 @@ class DiscoverPageRewriteRuleTest {
                         "partwo:root/article_container_two/body/responsivegrid",
                         "parthree:root/responsivegrid"},
                 "slingResourceType", "dhl/components/pages/article");
+        context.registerService(ResourceResolverHelper.class, resourceResolverHelper);
         context.registerInjectActivateService(rule, props);
     }
 
@@ -111,14 +127,22 @@ class DiscoverPageRewriteRuleTest {
 
     @Test
     void getId() {
-        assertEquals("com.positive.dhl.core.services.modernize.impl.DiscoverPageRewriteRule", rule.getId());
+        assertEquals(rule.getId(), rule.toString());
     }
 
     @Test
     void applyTo_ShouldMigratePage_WhenConditionsIsTrue() throws Exception {
+        ResourceResolver spyResourceResolver = spy(resourceResolver);
+        PageManager spyPageManager = spy(context.pageManager());
+        when(resourceResolverHelper.getResourceResolver(any(Session.class))).thenReturn(spyResourceResolver);
+        doReturn(spyPageManager).when(spyResourceResolver).adaptTo(PageManager.class);
+        doReturn(revision).when(spyPageManager).createRevision(any(), any(), any());
+        when(revision.getId()).thenReturn("1");
+
         Node node = getNode("/content/test/matches");
-        Node expected = getNode("/content/test/migrated/jcr:content");
         Node rewrittenNode = rule.applyTo(node, new HashSet<>());
+
+        Node expected = getNode("/content/test/migrated/jcr:content");
         assertNodeStructureEquals(expected, rewrittenNode);
     }
 }

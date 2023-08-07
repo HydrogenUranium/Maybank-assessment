@@ -12,5 +12,6 @@
 
     <filter root="/conf/dhl/settings/wcm/template-types"/>
     <filter root="/conf/dhl/settings/wcm/policies" mode="update"/>
-    <filter root="/conf/dhl/settings/wcm/templates" mode="update"/>
+    <filter root="/conf/dhl/settings/wcm/templates/article"/>
+    <filter root="/conf/dhl/settings/wcm/templates/home-page"/>
 </workspaceFilter>
