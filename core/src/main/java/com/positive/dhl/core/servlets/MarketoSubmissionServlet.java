@@ -5,7 +5,7 @@ import com.positive.dhl.core.dto.marketo.FormInputBase;
 import com.positive.dhl.core.dto.marketo.FormSubmissionErrors;
 import com.positive.dhl.core.dto.marketo.FormSubmissionResponse;
 import com.positive.dhl.core.dto.marketo.MarketoSubmissionResult;
-import com.positive.dhl.core.services.HttpCommunication;
+import com.positive.dhl.core.services.MarketoCommunication;
 import com.positive.dhl.core.services.InputParamHelper;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -41,7 +41,7 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 	private transient InputParamHelper inputParamHelper;
 
 	@Reference
-	private transient HttpCommunication httpCommunication;
+	private transient MarketoCommunication marketoCommunication;
 
 	@Reference
 	private transient MarketoSubmissionConfigReader configReader;
@@ -52,9 +52,9 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 		if(canProceed){
 			LOGGER.info("OSGi configuration sets Marketo Hidden form submission to 'enabled'. Proceeding ...");
 			int formId = inputParamHelper.getFormId(request);
-			String token = httpCommunication.requestNewToken();
-			List<String> availableFormFieldNames = httpCommunication.getAvailableFormFieldNames(token);
-			List<String> formFields = httpCommunication.getFormFields(token, formId);
+			String token = marketoCommunication.requestNewToken();
+			List<String> availableFormFieldNames = marketoCommunication.getAvailableFormFieldNames(token);
+			List<String> formFields = marketoCommunication.getFormFields(token, formId);
 			response.setContentType("text/html");
 			FormInputBase form = inputParamHelper.buildForm(request, availableFormFieldNames,formFields );
 
@@ -62,7 +62,7 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 
 			if(null != token && form.isOk()){
 				LOGGER.info("Got authentication token, proceeding to form submission");
-				var formSubmissionResponse = httpCommunication.submitForm(form,token );
+				var formSubmissionResponse = marketoCommunication.submitForm(form,token );
 				provideResponse(formSubmissionResponse, pw);
 			} else {
 				pw.write("KO");

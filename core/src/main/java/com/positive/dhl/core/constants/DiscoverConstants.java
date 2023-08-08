@@ -34,7 +34,8 @@ public class DiscoverConstants {
 	public static final String USER_AGENT_STRING = "userAgentString";
 	public static final String PAGE_URL = "pageURL";
 	public static final String DISCOVER_CONTEXT = "/discover";
-	public static final int HOME_PAGE_LEVEL = 3;
+	public static final String HTTPS_PREFIX = "https://";
+	public static final String DEFAULT_HOSTNAME = HTTPS_PREFIX + "www.dhl.com";
 
 	private static final Map<String,String> articlesQueryMap;
 

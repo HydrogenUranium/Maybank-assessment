@@ -80,7 +80,6 @@ public class ArticleGrid {
 	@Named("hidelatest")
 	@Optional
 	public Boolean hidelatest;
-
 	/**
 	 * {@code true} or {@code false} flag indicating if we should hide the 'trending' articles
 	 */
