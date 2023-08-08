@@ -9,6 +9,8 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
+import java.util.Optional;
+
 @Component(
         property = {
                 "service.description=DHL Discovery ReplicationStatusCheck implementation that extend Apache Sling Sitemap functionality " +
@@ -25,11 +27,12 @@ public class ReplicationStatusCheck
     }
 
     public boolean isPublished(final Page page) {
-        if (enabled) {
-            ReplicationStatus replicationStatus = page.getContentResource().adaptTo(ReplicationStatus.class);
-            return replicationStatus != null && replicationStatus.getLastReplicationAction() == ReplicationActionType.ACTIVATE;
-        }
-        return true;
+        return !enabled || Optional.ofNullable(page)
+                .filter(Page::hasContent)
+                .map(Page::getContentResource)
+                .map(r -> r.adaptTo(ReplicationStatus.class))
+                .map(replicationStatus -> replicationStatus.getLastReplicationAction() == ReplicationActionType.ACTIVATE)
+                .orElse(Boolean.FALSE);
     }
 
     @ObjectClassDefinition(name = "DHL Discovery - Page Tree Sitemap Generator Replication Status Check")

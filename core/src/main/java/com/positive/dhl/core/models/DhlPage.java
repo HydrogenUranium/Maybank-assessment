@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -35,7 +36,10 @@ public class DhlPage {
 
 	@OSGiService
 	private EnvironmentConfiguration environmentConfiguration;
-	
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	private String fullUrl;
 	private String fullarticlepath;
 	private String amparticlepath;
@@ -144,7 +148,7 @@ public class DhlPage {
 	 * 
 	 */
 	public List<Canonical> getCanonicals() {
-		return new ArrayList<Canonical>(canonicals);
+		return new ArrayList<>(canonicals);
 	}
 
 	/**
@@ -158,7 +162,7 @@ public class DhlPage {
 	 * 
 	 */
 	public void setCanonicals(List<Canonical> canonicals) {
-		this.canonicals = new ArrayList<Canonical>(canonicals);
+		this.canonicals = new ArrayList<>(canonicals);
 	}
 
 	/**
@@ -200,17 +204,14 @@ public class DhlPage {
 			isPublishRunmode = false;
 		}
 
-		Page home = currentPage.getAbsoluteParent(2);
-		if (home != null) {
-			ValueMap homeProperties = home.adaptTo(ValueMap.class);
-			if (homeProperties != null) {
-				
-				assetprefix = environmentConfiguration.getAssetPrefix();
-				pathprefix = homeProperties.get("jcr:content/pathprefix", "");
-				trackingid = homeProperties.get("jcr:content/trackingid", "");
-				gtmtrackingid = homeProperties.get("jcr:content/gtmtrackingid", "");
-				noindex = homeProperties.get("jcr:content/noindex", false);
-			}
+		ValueMap homeProperties = pageUtilService.getHomePageProperties(currentPage);
+		if (!homeProperties.isEmpty()) {
+
+			assetprefix = environmentConfiguration.getAssetPrefix();
+			pathprefix = homeProperties.get("jcr:content/pathprefix", "");
+			trackingid = homeProperties.get("jcr:content/trackingid", "");
+			gtmtrackingid = homeProperties.get("jcr:content/gtmtrackingid", "");
+			noindex = homeProperties.get("jcr:content/noindex", false);
 		}
 
 		String currentPagePath = currentPage.getPath();

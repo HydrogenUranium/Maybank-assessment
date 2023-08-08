@@ -7,6 +7,7 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.constants.DiscoverConstants;
 import com.positive.dhl.core.services.CategoryFinder;
+import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -45,6 +46,9 @@ public class ArticleGrid {
 	@OSGiService
 	private ResourceResolverHelper resourceResolverHelper;
 
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	@Inject
 	private SlingHttpServletRequest request;
 
@@ -78,7 +82,6 @@ public class ArticleGrid {
 	@Named("hidelatest")
 	@Optional
 	public Boolean hidelatest;
-
 	/**
 	 * {@code true} or {@code false} flag indicating if we should hide the 'trending' articles
 	 */
@@ -190,7 +193,7 @@ public class ArticleGrid {
 			return ctaLink;
 		}
 		LOGGER.info("'ctaLink' property not set, trying to fall back to 3rd level from content root + ship-now.html");
-		var home = currentPage.getAbsoluteParent(2);
+		var home = pageUtilService.getHomePage(currentPage);
 		if(null != home){
 			return home.getPath() + "/ship-now.html";
 		}

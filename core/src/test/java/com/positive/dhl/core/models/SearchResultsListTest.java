@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.jcr.Session;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -46,13 +47,14 @@ class SearchResultsListTest {
 	void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, queryBuilder);
+		ctx.registerService(PageUtilService.class, new PageUtilService());
 	    ctx.addModelsForClasses(SearchResultsList.class);
 	}
 
 	@Test
 	void testSortByTitle() {
 		Mockito.when(queryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
-		ctx.currentResource("/content/dhl/en/search-results");
+		ctx.currentResource("/content/dhl/country/en/search-results");
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("searchfield", "subscription");
@@ -106,7 +108,7 @@ class SearchResultsListTest {
 	@Test
 	void testSortByDate() {
 		Mockito.when(queryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
-		ctx.currentResource("/content/dhl/en/search-results");
+		ctx.currentResource("/content/dhl/country/en/search-results");
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("searchfield", "subscription");

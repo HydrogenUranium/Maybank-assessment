@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -24,6 +25,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.NameConstants;
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  *
@@ -38,7 +40,10 @@ public class Sitemap {
     
 	@Inject
 	private Page currentPage;
-	
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	private List<SitemapLinkGroup> articleLinks;
 	private List<SitemapLinkGroup> categoryLinks;
 	private List<SitemapLinkGroup> otherPageLinks;
@@ -91,7 +96,7 @@ public class Sitemap {
 	@PostConstruct
     protected void init() throws RepositoryException {
 		articleLinks = new ArrayList<SitemapLinkGroup>();
-		Page home = currentPage.getAbsoluteParent(2);
+		Page home = pageUtilService.getHomePage(currentPage);
 		if (builder != null && home != null) {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("type", NameConstants.NT_PAGE);

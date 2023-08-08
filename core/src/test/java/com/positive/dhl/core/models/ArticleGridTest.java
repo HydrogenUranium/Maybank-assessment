@@ -5,6 +5,7 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.positive.dhl.core.services.CategoryFinder;
+import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -32,40 +33,41 @@ class ArticleGridTest {
     @Mock
     private QueryBuilder mockQueryBuilder;
 
-		@Mock
-		private ResourceResolverHelper resourceResolverHelper;
+	@Mock
+	private ResourceResolverHelper resourceResolverHelper;
 
-		@Mock
-		private SearchResult searchResult;
+	@Mock
+	private SearchResult searchResult;
 
     @Mock
     private Query pageQuery;
 
-		@Mock
-		private RepositoryChecks repositoryChecks;
+	@Mock
+	private RepositoryChecks repositoryChecks;
 
-		@Mock
-		private CategoryFinder categoryFinder;
+	@Mock
+	private CategoryFinder categoryFinder;
 
-		@Mock
-		private Hit hit;
+	@Mock
+	private Hit hit;
 
-		@Mock
-		private ValueMap hitProperties;
+	@Mock
+	private ValueMap hitProperties;
 
 	ResourceResolver resourceResolver;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		resourceResolver = ctx.resourceResolver();
-    ctx.load().json("/com/positive/dhl/core/models/en-global-content.json", "/content/dhl/en-global");
+    	ctx.load().json("/com/positive/dhl/core/models/en-global-content.json", "/content/dhl/en-global");
 		ctx.load().json("/com/positive/dhl/core/models/business-entrepreneurship.json","/content/dhl/en-global/business/entrepreneurship");
-    ctx.registerService(QueryBuilder.class, mockQueryBuilder);
+    	ctx.registerService(QueryBuilder.class, mockQueryBuilder);
 		ctx.registerService(RepositoryChecks.class, repositoryChecks);
 		ctx.registerService(ResourceResolverHelper.class,resourceResolverHelper);
 		ctx.registerService(CategoryFinder.class, categoryFinder);
+		ctx.registerService(PageUtilService.class, new PageUtilService());
 
-    ctx.addModelsForClasses(ArticleGrid.class);
+    	ctx.addModelsForClasses(ArticleGrid.class);
 		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resourceResolver);
 	}
 
@@ -73,7 +75,7 @@ class ArticleGridTest {
 	void verifyFallbackWithQuery() throws RepositoryException {
 		List<Hit> hitList = new ArrayList<>();
 		hitList.add(hit);
-    when(categoryFinder.executeQuery(anyMap(),any(ResourceResolver.class))).thenReturn(searchResult);
+    	when(categoryFinder.executeQuery(anyMap(),any(ResourceResolver.class))).thenReturn(searchResult);
 		when(searchResult.getHits()).thenReturn(hitList);
 		when(hit.getProperties()).thenReturn(hitProperties);
 		when(hitProperties.get(eq("hideInNav"),anyBoolean())).thenReturn(false);
@@ -92,8 +94,8 @@ class ArticleGridTest {
 		Map<String, Object> params = new HashMap<>();
 		params.put("mode", "latest");
 
-    MockSlingHttpServletRequest request = ctx.request();
-    request.setParameterMap(params);
+    	MockSlingHttpServletRequest request = ctx.request();
+    	request.setParameterMap(params);
 
 		ArticleGrid articleGrid = request.adaptTo(ArticleGrid.class);
 		List<Article> articleList = Objects.requireNonNull(articleGrid).getArticles();

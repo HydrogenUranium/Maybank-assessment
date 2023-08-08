@@ -1,0 +1,114 @@
+package com.positive.dhl.core.services;
+
+import com.day.cq.wcm.api.Page;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.testing.mock.sling.ResourceResolverType;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.lang.reflect.Field;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+@ExtendWith({AemContextExtension.class, MockitoExtension.class})
+class PageUtilServiceTest {
+    public static final String PAGE_PATH = "/content";
+    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/services/newContentStructure.json";
+
+    AemContext context = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
+
+    private ResourceResolver resourceResolver;
+    private Resource resource;
+
+    @InjectMocks
+    private PageUtilService pageUtilService;
+
+    @BeforeEach
+    void setUp() {
+        resourceResolver = context.resourceResolver();
+        context.load().json(TEST_RESOURCE_PATH, PAGE_PATH);
+        resource = resourceResolver.getResource(PAGE_PATH);
+    }
+
+    @Test
+    void test_getHomePageLevel() throws NoSuchFieldException, IllegalAccessException {
+        Field privateHomePageLevel = pageUtilService.getClass().getDeclaredField("HOME_PAGE_LEVEL");
+        privateHomePageLevel.setAccessible(true);
+        int expectedHomePageLevel = (int) privateHomePageLevel.get(pageUtilService);
+
+        assertEquals(expectedHomePageLevel, pageUtilService.getHomePageLevel());
+    }
+
+    @Test
+    void test_forNull()  {
+        assertNull(pageUtilService.getHomePage(null));
+        assertNull(pageUtilService.getAllHomePages(null));
+        assertEquals(ValueMap.EMPTY, pageUtilService.getPageProperties(null));
+        assertEquals(ValueMap.EMPTY, pageUtilService.getHomePageProperties(null));
+    }
+
+    @Test
+    void test_getHomePageWithIncorrectDepth()  {
+        Page page = resource.adaptTo(Page.class);
+        for (int i = 0; i < pageUtilService.getHomePageLevel(); i++) {
+            assertNull(pageUtilService.getHomePage(page));
+            assertEquals(ValueMap.EMPTY, pageUtilService.getHomePageProperties(page));
+
+            page = page.listChildren().next();
+        }
+    }
+
+    @Test
+    void test_getAllHomePagesWithIncorrectDepth()  {
+        Page page = getPageUpperHomePage();
+        while (page != null) {
+            assertNull(pageUtilService.getAllHomePages(page));
+            page = page.listChildren().hasNext() ? page.listChildren().next() : null;
+        }
+    }
+
+    @Test
+    void test_getHomePageWithCorrectDepth()  {
+        Page page = getPageUpperHomePage();
+        Page expectedHomePage = page.getAbsoluteParent(pageUtilService.getHomePageLevel());
+
+        while (page != null) {
+            assertEquals(expectedHomePage, pageUtilService.getHomePage(page));
+            page = page.listChildren().hasNext() ? page.listChildren().next() : null;
+        }
+    }
+
+    @Test
+    void test_getAllHomePagesWithCorrectDepth()  {
+        Page page = resource.adaptTo(Page.class);
+        int homePageLevel = pageUtilService.getHomePageLevel();
+        for (int i = 0; i < homePageLevel; i++) {
+            Page actualResult = pageUtilService.getAllHomePages(page).get(0);
+            assertEquals(actualResult.getAbsoluteParent(homePageLevel), actualResult);
+            page = page.listChildren().next();
+        }
+    }
+
+    @Test
+    void test_getPageProperties()  {
+        Page page = resource.adaptTo(Page.class);
+        assertEquals("Root", pageUtilService.getPageProperties(page).get("jcr:content/jcr:title"));
+    }
+
+    private Page getPageUpperHomePage() {
+        Page page = resource.adaptTo(Page.class);
+        int homePageLevel = pageUtilService.getHomePageLevel();
+        for (int i = 0; i < homePageLevel + 1; i++) {
+            page = page.listChildren().next();
+        }
+        return page;
+    }
+}

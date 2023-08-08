@@ -1,4 +1,4 @@
-boolean DRY_RUN = false
+boolean DRY_RUN = true
 
 boolean ENABLE_NEW_CONTENT_AND_DISABLE_OLD_ONE = true
 boolean ENABLE_OLD_CONTENT_AND_DISABLE_NEW_ONE = !ENABLE_NEW_CONTENT_AND_DISABLE_OLD_ONE
@@ -17,6 +17,13 @@ def NEW_CONTENT_BRANCHES = [
         "/content/dhl/tw",
         "/content/dhl/my",
         "/content/dhl/id",
+        "/content/dhl/be",
+        "/content/dhl/fr",
+        "/content/dhl/ie",
+        "/content/dhl/il",
+        "/content/dhl/kr",
+        "/content/dhl/gb",
+        "/content/dhl/ph",
 ]
 
 def disablePage = {
