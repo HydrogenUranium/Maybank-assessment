@@ -1,22 +1,15 @@
 package com.positive.dhl.core.models;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 
-import java.util.ArrayList;
-
-import javax.jcr.Session;
-
-import org.apache.sling.api.resource.Resource;
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 
-import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 
@@ -37,6 +30,7 @@ class ArticleCategoryTest {
 	void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
+        ctx.registerService(PageUtilService.class, new PageUtilService());
 	    ctx.addModelsForClasses(ArticleCategory.class);
 	}
 
@@ -44,8 +38,8 @@ class ArticleCategoryTest {
 	void test() {
 		ArticleCategory blankArticleCategory = new ArticleCategory();
 		
-        ArticleCategory articleCategory = new ArticleCategory("/content/dhl/en/business", ctx.resourceResolver());
-        assertEquals("/content/dhl/en/business", articleCategory.path);
+        ArticleCategory articleCategory = new ArticleCategory("/content/dhl/country/en/business", ctx.resourceResolver());
+        assertEquals("/content/dhl/country/en/business", articleCategory.path);
         assertEquals(false, articleCategory.getExternal());
         assertNull(articleCategory.getCurrent());
         assertEquals(0, articleCategory.getIndex());
