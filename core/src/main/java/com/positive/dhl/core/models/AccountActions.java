@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 
 import com.positive.dhl.core.components.EnvironmentConfiguration;
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -16,13 +17,12 @@ import org.apache.sling.models.annotations.Model;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
-import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
-
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class AccountActions {
+	protected static final String HTML_EXTENSION = ".html";
 
 	@Inject
 	private SlingHttpServletRequest request;
@@ -32,6 +32,9 @@ public class AccountActions {
     
 	@Inject
 	private Page currentPage;
+
+	@OSGiService
+	private PageUtilService pageUtilServiceImpl;
 
 	@OSGiService
 	private EnvironmentConfiguration environmentConfiguration;
@@ -532,18 +535,18 @@ public class AccountActions {
 	 * 
 	 */
 	@PostConstruct
-    protected void init() throws RepositoryException {
+    protected void init() {
 		Base64 base64 = new Base64(true);
-		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
+		Page home = pageUtilServiceImpl.getHomePage(currentPage);
 
 
 		assetprefix = environmentConfiguration.getAssetPrefix();
 
 
 		if (home != null) {
-			ValueMap properties = home.adaptTo(ValueMap.class);
+			ValueMap properties = pageUtilServiceImpl.getPageProperties(home);
 
-			if (properties != null) {
+			if (!properties.isEmpty()) {
 				welcomeMessage = properties.get("jcr:content/welcomemessage", "");
 				loginMessage = properties.get("jcr:content/loginmessage", "");
 
@@ -577,17 +580,17 @@ public class AccountActions {
 				};
 
 				homeUrl = home.getPath();
-				loginUrlNoRedirect = properties.get("jcr:content/loginpage", "/content/dhl/login").concat(".html");
-		        loginUrl = properties.get("jcr:content/loginpage", "/content/dhl/login").concat(".html");
-		        registerUrl = properties.get("jcr:content/registerpage", "/content/dhl/register").concat(".html");
-		        shipNowUrl = properties.get("jcr:content/shipnowpage", "/content/dhl/ship-now").concat(".html");
-		        editDetailsUrl = properties.get("jcr:content/editdetailspage", "/content/dhl/your-account").concat(".html");
-		        passwordReminderUrl = properties.get("jcr:content/passwordreminderpage", "/content/dhl/forgotten-password").concat(".html");
-		        deleteAccountUrl = properties.get("jcr:content/deleteaccountpage", "/content/dhl/your-account/delete-account").concat(".html");
-		        deleteAccountCompleteUrl = properties.get("jcr:content/deleteaccountcompletepage", "/content/dhl/your-account/delete-account/complete").concat(".html");
+				loginUrlNoRedirect = properties.get("jcr:content/loginpage", "/content/dhl/login").concat(HTML_EXTENSION);
+		        loginUrl = properties.get("jcr:content/loginpage", "/content/dhl/login").concat(HTML_EXTENSION);
+		        registerUrl = properties.get("jcr:content/registerpage", "/content/dhl/register").concat(HTML_EXTENSION);
+		        shipNowUrl = properties.get("jcr:content/shipnowpage", "/content/dhl/ship-now").concat(HTML_EXTENSION);
+		        editDetailsUrl = properties.get("jcr:content/editdetailspage", "/content/dhl/your-account").concat(HTML_EXTENSION);
+		        passwordReminderUrl = properties.get("jcr:content/passwordreminderpage", "/content/dhl/forgotten-password").concat(HTML_EXTENSION);
+		        deleteAccountUrl = properties.get("jcr:content/deleteaccountpage", "/content/dhl/your-account/delete-account").concat(HTML_EXTENSION);
+		        deleteAccountCompleteUrl = properties.get("jcr:content/deleteaccountcompletepage", "/content/dhl/your-account/delete-account/complete").concat(HTML_EXTENSION);
 
 		        // url handling if we've bypassed dispatcher - checking QS params
-				backUrlSelf = currentPage.getPath().concat(".html");
+				backUrlSelf = currentPage.getPath().concat(HTML_EXTENSION);
 
 				boolean hasBackUrl = false;
 				backUrl = request.getParameter("r");
@@ -596,7 +599,7 @@ public class AccountActions {
 					Resource page = resourceResolver.getResource(new String(decoded));
 					if (page != null) {
 						hasBackUrl = true;
-						backUrl = page.getPath().concat(".html");
+						backUrl = page.getPath().concat(HTML_EXTENSION);
 					}
 				}
 

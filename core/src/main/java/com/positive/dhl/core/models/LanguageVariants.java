@@ -1,25 +1,22 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageFilter;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
-
-import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
 
 /**
  *
@@ -31,6 +28,9 @@ public class LanguageVariants {
 
 	@Inject
 	private ResourceResolver resourceResolver;
+
+	@OSGiService
+	private PageUtilService pageUtilService;
 
 	private HashMap<String, ArrayList<LanguageVariant>> variants;
 
@@ -147,7 +147,7 @@ public class LanguageVariants {
 	/**
 	 *
 	 */
-	public ArrayList<LinkVariant> getAllLanguageVariants() {
+	public List<LinkVariant> getAllLanguageVariants() {
 		if (allLanguageVariants == null) {
 			allLanguageVariants = new ArrayList<>();
 	
@@ -210,15 +210,14 @@ public class LanguageVariants {
 		variants = new HashMap<>();
 
 		Page root = currentPage.getAbsoluteParent(1);
-		Page currentHome = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
+		Page currentHome = pageUtilService.getHomePage(currentPage);
 		String path = currentPage.getPath();
 
 		if (root == null) {
 			return;
 		}
 
-		List<Page> homePages = new LinkedList<>();
-		getAllHomePages(root, homePages);
+		List<Page> homePages = pageUtilService.getAllHomePages(root);
 		for (Page homepage : homePages) {
 			ValueMap homepageProperties = homepage.adaptTo(ValueMap.class);
 			if ((homepageProperties != null) && ("dhl/components/pages/home").equals(homepageProperties.get("jcr:content/sling:resourceType", ""))) {
@@ -260,20 +259,5 @@ public class LanguageVariants {
 				languages.add(newItem);
 			}
 		}
-	}
-
-	private List getAllHomePages(Page page, List list) {
-		Iterator<Page> pageIterator = page.listChildren(new PageFilter(false, false));
-		while (pageIterator.hasNext()) {
-			Page childPage = pageIterator.next();
-			int childPageDepth = childPage.getDepth();
-			if (childPageDepth == HOME_PAGE_LEVEL + 1) {
-				list.add(childPage);
-			}
-			if (childPageDepth < HOME_PAGE_LEVEL + 1) {
-				getAllHomePages(childPage, list);
-			}
-		}
-		return list;
 	}
 }

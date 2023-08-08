@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 
 import com.positive.dhl.core.components.EnvironmentConfiguration;
+import com.positive.dhl.core.services.PageUtilService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,6 +22,7 @@ class ContentBannerTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		ctx.registerService(PageUtilService.class, new PageUtilService());
 	    ctx.addModelsForClasses(ContentBanner.class);
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
 	}
@@ -32,7 +34,7 @@ class ContentBannerTest {
 	void test() {
 		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
 		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
-		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
+		ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
 		
 		ContentBanner contentBanner = ctx.request().adaptTo(ContentBanner.class);
 		assert contentBanner != null;

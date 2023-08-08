@@ -10,6 +10,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -24,10 +25,9 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 
 import com.day.cq.wcm.api.NameConstants;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
 
 /**
  *
@@ -50,7 +50,10 @@ public class SearchResultsList {
 
     @Inject
     private Page currentPage;
-    
+
+    @OSGiService
+    private PageUtilService pageUtilService;
+
     private List<Article> results;
     private HashMap<String, Integer> resultSummary;
     private List<Article> trendingArticles;
@@ -71,27 +74,27 @@ public class SearchResultsList {
      * 
      */
     public List<Article> getResults() {
-        return new ArrayList<Article>(results);
+        return new ArrayList<>(results);
     }
 
     /**
      * 
      */
     public void setResults(List<Article> results) {
-        this.results = new ArrayList<Article>(results);
+        this.results = new ArrayList<>(results);
     }
 
     /**
      * 
      */
-    public HashMap<String, Integer> getResultSummary() {
+    public Map<String, Integer> getResultSummary() {
         return resultSummary;
     }
 
     /**
      * 
      */
-    public void setResultSummary(HashMap<String, Integer> resultSummary) {
+    public void setResultSummary(Map<String, Integer> resultSummary) {
         this.resultSummary = resultSummary;
     }
 
@@ -102,14 +105,14 @@ public class SearchResultsList {
         if (null == trendingArticles) {
             new ArrayList<Article>();
         }
-        return new ArrayList<Article>(trendingArticles);
+        return new ArrayList<>(trendingArticles);
     }
 
     /**
      * 
      */
     public void setTrendingArticles(List<Article> trendingArticles) {
-        this.trendingArticles = new ArrayList<Article>(trendingArticles);
+        this.trendingArticles = new ArrayList<>(trendingArticles);
     }
 
     /**
@@ -158,14 +161,14 @@ public class SearchResultsList {
      * 
      */
     public List<Article> getPagedResults() {
-        return new ArrayList<Article>(pagedResults);
+        return new ArrayList<>(pagedResults);
     }
 
     /**
      * 
      */
     public void setPagedResults(List<Article> pagedResults) {
-        this.pagedResults = new ArrayList<Article>(pagedResults);
+        this.pagedResults = new ArrayList<>(pagedResults);
     }
 
     /**
@@ -214,14 +217,14 @@ public class SearchResultsList {
      * 
      */
     public List<Integer> getPageNumbers() {
-        return new ArrayList<Integer>(pageNumbers);
+        return new ArrayList<>(pageNumbers);
     }
 
     /**
      * 
      */
     public void setPageNumbers(List<Integer> pageNumbers) {
-        this.pageNumbers = new ArrayList<Integer>(pageNumbers);
+        this.pageNumbers = new ArrayList<>(pageNumbers);
     }
 
     /**
@@ -289,8 +292,8 @@ public class SearchResultsList {
         searchResultsType = request.getParameter("searchResultsType");
 
         resultSummary = new HashMap<>();
-        results = new ArrayList<Article>();
-        trendingArticles = new ArrayList<Article>();
+        results = new ArrayList<>();
+        trendingArticles = new ArrayList<>();
 
 
         if (searchTerm == null) {
@@ -340,9 +343,9 @@ public class SearchResultsList {
             noSearchTerm = true;
             
         } else {
-            Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
+            Page home = pageUtilService.getHomePage(currentPage);
             if (builder != null && home != null) {
-                Map<String, String> map = new HashMap<String, String>();
+                Map<String, String> map = new HashMap<>();
                 map.put("path", home.getPath());
                 map.put("type", NameConstants.NT_PAGE);
                 
@@ -498,7 +501,7 @@ public class SearchResultsList {
                     previousPageNumber = ((pageNumber <= 1) ? 1 : (pageNumber - 1));
                     nextPageNumber = ((pageNumber >= numPages) ? numPages : (pageNumber + 1));
                     
-                    pageNumbers = new ArrayList<Integer>();
+                    pageNumbers = new ArrayList<>();
                     for (int i = 1; i <= numPages; i++) {
                         pageNumbers.add(i);
                     }
@@ -516,10 +519,10 @@ public class SearchResultsList {
                 }
             }
 
-            List<Article> trendingArticleResults = new ArrayList<Article>();
+            List<Article> trendingArticleResults = new ArrayList<>();
             if (results.size() == 0) {
                 if (builder != null) {
-                    Map<String, String> map = new HashMap<String, String>();
+                    Map<String, String> map = new HashMap<>();
                     map.put("type", NameConstants.NT_PAGE);
                     map.put("group.p.or", "true");
                     
@@ -541,7 +544,7 @@ public class SearchResultsList {
                         int count = 0;
                         for (Hit hit: searchResult.getHits()) {
                             ValueMap hitProperties = hit.getProperties();
-                            Boolean hideInNav = hitProperties.get("hideInNav", false);
+                            boolean hideInNav = hitProperties.get("hideInNav", false);
                             if (hideInNav) {
                                 continue;
                             }

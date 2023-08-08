@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -17,8 +18,6 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
 import com.positive.dhl.core.components.EnvironmentConfiguration;
-
-import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
 
 /**
  *
@@ -37,7 +36,10 @@ public class DhlPage {
 
 	@OSGiService
 	private EnvironmentConfiguration environmentConfiguration;
-	
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	private String fullUrl;
 	private String fullarticlepath;
 	private String amparticlepath;
@@ -146,7 +148,7 @@ public class DhlPage {
 	 * 
 	 */
 	public List<Canonical> getCanonicals() {
-		return new ArrayList<Canonical>(canonicals);
+		return new ArrayList<>(canonicals);
 	}
 
 	/**
@@ -160,7 +162,7 @@ public class DhlPage {
 	 * 
 	 */
 	public void setCanonicals(List<Canonical> canonicals) {
-		this.canonicals = new ArrayList<Canonical>(canonicals);
+		this.canonicals = new ArrayList<>(canonicals);
 	}
 
 	/**
@@ -202,17 +204,14 @@ public class DhlPage {
 			isPublishRunmode = false;
 		}
 
-		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
-		if (home != null) {
-			ValueMap homeProperties = home.adaptTo(ValueMap.class);
-			if (homeProperties != null) {
-				
-				assetprefix = environmentConfiguration.getAssetPrefix();
-				pathprefix = homeProperties.get("jcr:content/pathprefix", "");
-				trackingid = homeProperties.get("jcr:content/trackingid", "");
-				gtmtrackingid = homeProperties.get("jcr:content/gtmtrackingid", "");
-				noindex = homeProperties.get("jcr:content/noindex", false);
-			}
+		ValueMap homeProperties = pageUtilService.getHomePageProperties(currentPage);
+		if (!homeProperties.isEmpty()) {
+
+			assetprefix = environmentConfiguration.getAssetPrefix();
+			pathprefix = homeProperties.get("jcr:content/pathprefix", "");
+			trackingid = homeProperties.get("jcr:content/trackingid", "");
+			gtmtrackingid = homeProperties.get("jcr:content/gtmtrackingid", "");
+			noindex = homeProperties.get("jcr:content/noindex", false);
 		}
 
 		String currentPagePath = currentPage.getPath();

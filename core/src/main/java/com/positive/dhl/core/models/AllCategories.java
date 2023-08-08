@@ -7,14 +7,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
-
-import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  *
@@ -23,21 +23,24 @@ import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
 public class AllCategories {
 	@Inject
 	private Page currentPage;
-	
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	private List<SitemapLinkGroup> categoryLinks;
 	
     /**
 	 * 
 	 */
 	public List<SitemapLinkGroup> getCategoryLinks() {
-		return new ArrayList<SitemapLinkGroup>(categoryLinks);
+		return new ArrayList<>(categoryLinks);
 	}
 
     /**
 	 * 
 	 */
 	public void setCategoryLinks(List<SitemapLinkGroup> categoryLinks) {
-		this.categoryLinks = new ArrayList<SitemapLinkGroup>(categoryLinks);
+		this.categoryLinks = new ArrayList<>(categoryLinks);
 	}
 
     /**
@@ -45,9 +48,9 @@ public class AllCategories {
 	 */
 	@PostConstruct
     protected void init() {
-		categoryLinks = new ArrayList<SitemapLinkGroup>();
+		categoryLinks = new ArrayList<>();
 		
-		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
+		Page home = pageUtilService.getHomePage(currentPage);
 		Resource interestItems = home.getContentResource("interestitems");
 		if (interestItems != null) {
 			Iterator<Resource> interestItemsIterator = interestItems.listChildren();

@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.positive.dhl.core.components.EnvironmentConfiguration;
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
@@ -14,13 +15,12 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import com.day.cq.wcm.api.Page;
 
-import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
-
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class ContentBanner {
+	public static final String JCR_CONTENT_CONTENTBANNER = "jcr:content/contentbanner";
 	@Inject
 	private Page currentPage;
 
@@ -36,7 +36,10 @@ public class ContentBanner {
 	@OSGiService
 	private EnvironmentConfiguration environmentConfiguration;
 
-    /**
+	@OSGiService
+	private PageUtilService pageUtilService;
+
+	/**
 	 *
 	 */
     public Boolean getHasbanner() {
@@ -82,14 +85,14 @@ public class ContentBanner {
 	 *
 	 */
 	public List<String> getPoints() {
-		return new ArrayList<String>(points);
+		return new ArrayList<>(points);
 	}
 
     /**
 	 *
 	 */
 	public void setPoints(List<String> points) {
-		this.points = new ArrayList<String>(points);
+		this.points = new ArrayList<>(points);
 	}
 
     /**
@@ -156,13 +159,8 @@ public class ContentBanner {
     	hasbanner = false;
     	points = new ArrayList<>();
     	
-		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
-		if (home == null) {
-			return;
-		}
-
-		ValueMap properties = home.adaptTo(ValueMap.class);
-		if (properties == null) {
+		ValueMap properties = pageUtilService.getHomePageProperties(currentPage);
+		if (properties.isEmpty()) {
 			return;
 		}
 
@@ -170,7 +168,7 @@ public class ContentBanner {
 
 		ValueMap currentPageProperties = currentPage.adaptTo(ValueMap.class);
 		if (currentPageProperties != null) {
-			prefix = currentPageProperties.get("jcr:content/contentbanner", "0");
+			prefix = currentPageProperties.get(JCR_CONTENT_CONTENTBANNER, "0");
 		}
 
 		if (("1").equals(prefix) || ("2").equals(prefix)) {
@@ -178,17 +176,17 @@ public class ContentBanner {
 		}
 
 		String assetPrefix = environmentConfiguration.getAssetPrefix();
-		title = properties.get("jcr:content/contentbanner" + prefix + "title", "");
-		subtitle = properties.get("jcr:content/contentbanner" + prefix + "subtitle", "");
-		img = assetPrefix + properties.get("jcr:content/contentbanner" + prefix + "img", "");
-		imgmob = assetPrefix + properties.get("jcr:content/contentbanner" + prefix + "imgmob", "");
+		title = properties.get(JCR_CONTENT_CONTENTBANNER + prefix + "title", "");
+		subtitle = properties.get(JCR_CONTENT_CONTENTBANNER + prefix + "subtitle", "");
+		img = assetPrefix + properties.get(JCR_CONTENT_CONTENTBANNER + prefix + "img", "");
+		imgmob = assetPrefix + properties.get(JCR_CONTENT_CONTENTBANNER + prefix + "imgmob", "");
 
-		points.add(properties.get("jcr:content/contentbanner" + prefix + "point1", ""));
-		points.add(properties.get("jcr:content/contentbanner" + prefix + "point2", ""));
-		points.add(properties.get("jcr:content/contentbanner" + prefix + "point3", ""));
-		points.add(properties.get("jcr:content/contentbanner" + prefix + "point4", ""));
+		points.add(properties.get(JCR_CONTENT_CONTENTBANNER + prefix + "point1", ""));
+		points.add(properties.get(JCR_CONTENT_CONTENTBANNER + prefix + "point2", ""));
+		points.add(properties.get(JCR_CONTENT_CONTENTBANNER + prefix + "point3", ""));
+		points.add(properties.get(JCR_CONTENT_CONTENTBANNER + prefix + "point4", ""));
 
-		url = properties.get("jcr:content/contentbanner" + prefix + "url", "");
-		urltitle = properties.get("jcr:content/contentbanner" + prefix + "urltitle", "");
+		url = properties.get(JCR_CONTENT_CONTENTBANNER + prefix + "url", "");
+		urltitle = properties.get(JCR_CONTENT_CONTENTBANNER + prefix + "urltitle", "");
     }
 }

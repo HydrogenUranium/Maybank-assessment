@@ -7,14 +7,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
-
-import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  *
@@ -23,7 +23,10 @@ import static com.positive.dhl.core.constants.DiscoverConstants.HOME_PAGE_LEVEL;
 public class Footer {
 	@Inject
 	private Page currentPage;
-	
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	private String titleColumnOne;
 	private List<Link> linksColumnOne;
 	private String titleColumnTwo;
@@ -51,14 +54,14 @@ public class Footer {
 	 * 
 	 */
 	public List<Link> getLinksColumnOne() {
-		return new ArrayList<Link>(linksColumnOne);
+		return new ArrayList<>(linksColumnOne);
 	}
 
     /**
 	 * 
 	 */
 	public void setLinksColumnOne(List<Link> linksColumnOne) {
-		this.linksColumnOne = new ArrayList<Link>(linksColumnOne);
+		this.linksColumnOne = new ArrayList<>(linksColumnOne);
 	}
 
     /**
@@ -79,14 +82,14 @@ public class Footer {
 	 * 
 	 */
 	public List<CategoryLink> getLinksColumnTwo() {
-		return new ArrayList<CategoryLink>(linksColumnTwo);
+		return new ArrayList<>(linksColumnTwo);
 	}
 
     /**
 	 * 
 	 */
 	public void setLinksColumnTwo(List<CategoryLink> linksColumnTwo) {
-		this.linksColumnTwo = new ArrayList<CategoryLink>(linksColumnTwo);
+		this.linksColumnTwo = new ArrayList<>(linksColumnTwo);
 	}
 
     /**
@@ -107,14 +110,14 @@ public class Footer {
 	 * 
 	 */
 	public List<TagWrapper> getLinksColumnTags() {
-		return new ArrayList<TagWrapper>(linksColumnTags);
+		return new ArrayList<>(linksColumnTags);
 	}
 
     /**
 	 * 
 	 */
 	public void setLinksColumnTags(List<TagWrapper> linksColumnTags) {
-		this.linksColumnTags = new ArrayList<TagWrapper>(linksColumnTags);
+		this.linksColumnTags = new ArrayList<>(linksColumnTags);
 	}
 
     /**
@@ -135,14 +138,14 @@ public class Footer {
 	 * 
 	 */
 	public List<SocialLink> getLinksSocial() {
-		return new ArrayList<SocialLink>(linksSocial);
+		return new ArrayList<>(linksSocial);
 	}
 
     /**
 	 * 
 	 */
 	public void setLinksSocial(List<SocialLink> linksSocial) {
-		this.linksSocial = new ArrayList<SocialLink>(linksSocial);
+		this.linksSocial = new ArrayList<>(linksSocial);
 	}
 
     /**
@@ -151,18 +154,18 @@ public class Footer {
 	@PostConstruct
     protected void init() {
 		titleColumnOne = "Categories:";
-		linksColumnOne = new ArrayList<Link>();
+		linksColumnOne = new ArrayList<>();
 
 		// legacy
 		titleColumnTwo = "Most Read:";
 		titleColumnTags = "Popular Topics:";
-		linksColumnTwo = new ArrayList<CategoryLink>();
-		linksColumnTags = new ArrayList<TagWrapper>();
+		linksColumnTwo = new ArrayList<>();
+		linksColumnTags = new ArrayList<>();
 
 		titleSocial = "Follow Us:";
-		linksSocial = new ArrayList<SocialLink>();
+		linksSocial = new ArrayList<>();
 
-		Page home = currentPage.getAbsoluteParent(HOME_PAGE_LEVEL);
+		Page home = pageUtilService.getHomePage(currentPage);
 		if (home == null) {
 			return;
 		}
@@ -172,12 +175,9 @@ public class Footer {
 			Page child = children.next();
 			ValueMap properties = child.adaptTo(ValueMap.class);
 			if ((properties != null) && ("dhl/components/pages/articlecategory").equals(properties.get("jcr:content/sling:resourceType", ""))) {
-				// String url = child.getVanityUrl();
-				// if (url == null || url.length() == 0) {
 				String url = child.getPath() + ".html";
-				// }
-				
-				Boolean hideInNav = properties.get("jcr:content/hideInNav", false);
+
+				boolean hideInNav = properties.get("jcr:content/hideInNav", false);
 				if (hideInNav) {
 					continue;
 				}
