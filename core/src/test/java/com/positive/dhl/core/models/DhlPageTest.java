@@ -1,8 +1,10 @@
 package com.positive.dhl.core.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,10 +27,11 @@ class DhlPageTest {
 	void setUp() throws Exception {
 		ctx.load().json("/com/positive/dhl/core/models/StandardAemPage.json", "/content/dhl");
 		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
+		ctx.registerService(PageUtilService.class, new PageUtilService());
 	    ctx.addModelsForClasses(DhlPage.class);
 
 		when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
-		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
+		lenient().when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
 	}
 
 	@Test

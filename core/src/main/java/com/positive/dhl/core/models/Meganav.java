@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -16,6 +17,7 @@ import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  *
@@ -30,7 +32,10 @@ public class Meganav {
     
 	@Inject
 	private Page currentPage;
-	
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	private String siteTitle;
 	private String homeUrl;
 	private String searchResultsPage;
@@ -85,28 +90,28 @@ public class Meganav {
 	 * 
 	 */
 	public List<MeganavPanel> getPanels() {
-		return new ArrayList<MeganavPanel>(panels);
+		return new ArrayList<>(panels);
 	}
 
     /**
 	 * 
 	 */
 	public void setPanels(List<MeganavPanel> panels) {
-		this.panels = new ArrayList<MeganavPanel>(panels);
+		this.panels = new ArrayList<>(panels);
 	}
 
     /**
 	 * 
 	 */
 	public List<SocialLink> getLinksSocial() {
-		return new ArrayList<SocialLink>(linksSocial);
+		return new ArrayList<>(linksSocial);
 	}
 
     /**
 	 * 
 	 */
 	public void setLinksSocial(List<SocialLink> linksSocial) {
-		this.linksSocial = new ArrayList<SocialLink>(linksSocial);
+		this.linksSocial = new ArrayList<>(linksSocial);
 	}
 
     /**
@@ -148,13 +153,13 @@ public class Meganav {
 		panels = new ArrayList<>();
 		linksSocial = new ArrayList<>();
 		
-		Page home = currentPage.getAbsoluteParent(2);
+		Page home = pageUtilService.getHomePage(currentPage);
 		if (home == null) {
 			return;
 		}
-		ValueMap properties = home.adaptTo(ValueMap.class);
+		ValueMap properties = pageUtilService.getPageProperties(home);
 		
-		if (properties != null) {
+		if (!properties.isEmpty()) {
 			searchResultsPage = properties.get("jcr:content/searchresultspage", "");
 		}
 		
@@ -174,7 +179,7 @@ public class Meganav {
 			}
 		}
 		
-		Page topLevelCategory = currentPage.getAbsoluteParent(3);
+		Page topLevelCategory = currentPage.getAbsoluteParent(pageUtilService.getHomePageLevel() + 1);
 		siteTitle = home.getPageTitle();
 
 		int count = 0;

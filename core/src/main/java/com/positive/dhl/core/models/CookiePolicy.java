@@ -3,11 +3,13 @@ package com.positive.dhl.core.models;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  *
@@ -16,6 +18,9 @@ import com.day.cq.wcm.api.Page;
 public class CookiePolicy {
 	@Inject
 	private Page currentPage;
+
+	@OSGiService
+	private PageUtilService pageUtilService;
 
 	private String message;
 	private String ok;
@@ -83,15 +88,9 @@ public class CookiePolicy {
 	 */
 	@PostConstruct
     protected void init() {
-		Page home = currentPage.getAbsoluteParent(2);
+		ValueMap properties = pageUtilService.getHomePageProperties(currentPage);
 
-		if (home == null) {
-			return;
-		}
-
-		ValueMap properties = home.adaptTo(ValueMap.class);
-		
-		if (properties != null) {
+		if (!properties.isEmpty()) {
 			message = properties.get("jcr:content/cookiemessage", "");
 			ok = "Accept";
 			learnMore = "Learn more";

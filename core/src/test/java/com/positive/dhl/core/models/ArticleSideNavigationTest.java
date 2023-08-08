@@ -5,6 +5,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.CategoryFinder;
+import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -66,6 +67,7 @@ class ArticleSideNavigationTest {
 		ctx.registerService(QueryBuilder.class, mockQueryBuilder);
 		ctx.registerService(CategoryFinder.class, categoryFinder);
 		ctx.registerService(ResourceResolverHelper.class,resourceResolverHelper);
+		ctx.registerService(PageUtilService.class, new PageUtilService());
 		ctx.addModelsForClasses(ArticleSideNavigation.class);
 	}
 
@@ -85,7 +87,7 @@ class ArticleSideNavigationTest {
 		// following when-then gymnastics is related to Article model class,that's called from ArticleSideNavigation
 		Page articlePage = setUpArticlePage();
 		when(resourceResolver.getResource(eq("dummy-path"))).thenReturn(articlePage.getContentResource());
-		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
+		ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("mode", "latest");

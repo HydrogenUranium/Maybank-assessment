@@ -2,8 +2,7 @@ package com.positive.dhl.core.models;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-
+import com.positive.dhl.core.services.PageUtilService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,13 +16,14 @@ class MeganavBannerTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		ctx.registerService(PageUtilService.class, new PageUtilService());
 	    ctx.addModelsForClasses(MeganavBanner.class);
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
 	}
 
 	@Test
 	void test() {
-		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
+		ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
 		
 		MeganavBanner meganavBanner = ctx.request().adaptTo(MeganavBanner.class);
 		assert meganavBanner != null;

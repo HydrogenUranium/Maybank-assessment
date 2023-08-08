@@ -102,7 +102,6 @@ public class PageTreeSitemapGeneratorImplTest {
 
     @Test
     void testNoAlternative() throws SitemapException, NoSuchFieldException, IllegalAccessException {
-        Page page = resource.adaptTo(Page.class);
         Page mockPage = mock(Page.class);
         Map<Locale, Page> languageAlternatives = new LinkedHashMap<>();
         languageAlternatives.put(new Locale("fr"), mockPage);

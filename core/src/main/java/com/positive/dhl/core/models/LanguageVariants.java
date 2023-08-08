@@ -3,17 +3,18 @@ package com.positive.dhl.core.models;
 import com.day.cq.wcm.api.Page;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -28,13 +29,16 @@ public class LanguageVariants {
 	@Inject
 	private ResourceResolver resourceResolver;
 
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	private HashMap<String, ArrayList<LanguageVariant>> variants;
 
 	private String currentRegion;
 	private String currentLanguage;
-	private ArrayList<LanguageVariant> languageVariants;
-	private ArrayList<LinkVariant> allLanguageVariants;
-	private ArrayList<ArrayList<LinkVariant>> allLanguageVariantsGrouped;
+	private List<LanguageVariant> languageVariants;
+	private List<LinkVariant> allLanguageVariants;
+	private List<List<LinkVariant>> allLanguageVariantsGrouped;
 	
 	/**
 	 *
@@ -143,7 +147,7 @@ public class LanguageVariants {
 	/**
 	 *
 	 */
-	public ArrayList<LinkVariant> getAllLanguageVariants() {
+	public List<LinkVariant> getAllLanguageVariants() {
 		if (allLanguageVariants == null) {
 			allLanguageVariants = new ArrayList<>();
 	
@@ -175,12 +179,12 @@ public class LanguageVariants {
 	/**
 	 *
 	 */
-	public List<ArrayList<LinkVariant>> getAllLanguageVariantsGrouped() {
+	public List<List<LinkVariant>> getAllLanguageVariantsGrouped() {
 		if (allLanguageVariantsGrouped == null) {
 			allLanguageVariantsGrouped = new ArrayList<>();
 
-			ArrayList<LinkVariant> group = new ArrayList<>();
-			ArrayList<LinkVariant> all = this.getAllLanguageVariants();
+			List<LinkVariant> group = new ArrayList<>();
+			List<LinkVariant> all = this.getAllLanguageVariants();
 			for (LinkVariant item: all) {
 				group.add(item);
 
@@ -206,16 +210,15 @@ public class LanguageVariants {
 		variants = new HashMap<>();
 
 		Page root = currentPage.getAbsoluteParent(1);
-		Page currentHome = currentPage.getAbsoluteParent(2);
+		Page currentHome = pageUtilService.getHomePage(currentPage);
 		String path = currentPage.getPath();
 
 		if (root == null) {
 			return;
 		}
 
-		Iterator<Page> pageIterator = root.listChildren();
-		while (pageIterator.hasNext()) {
-			Page homepage = pageIterator.next();
+		List<Page> homePages = pageUtilService.getAllHomePages(root);
+		for (Page homepage : homePages) {
 			ValueMap homepageProperties = homepage.adaptTo(ValueMap.class);
 			if ((homepageProperties != null) && ("dhl/components/pages/home").equals(homepageProperties.get("jcr:content/sling:resourceType", ""))) {
 				boolean hideInNav = homepageProperties.get("jcr:content/hideInNav", false);

@@ -3,6 +3,7 @@ package com.positive.dhl.core.rss;
 import com.day.cq.commons.SimpleXml;
 import com.day.cq.commons.feed.StringResponseWrapper;
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.*;
@@ -18,11 +19,13 @@ import java.util.stream.StreamSupport;
 
 import static com.day.cq.commons.jcr.JcrConstants.*;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_TAGS;
+import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
 public class DiscoverRssFeed {
     private final SlingHttpServletRequest request;
     private final SlingHttpServletResponse response;
     private final SimpleXml xml;
+    private PageUtilService pageUtilService;
 
     private final String title;
     private final String description;
@@ -65,6 +68,7 @@ public class DiscoverRssFeed {
         thumbnailImageUrl = getThumbnailImageUrl();
         link = getHtmlLink();
         articleBody = getArticleIntroduction();
+        pageUtilService = new PageUtilService();
 
         Page languageCopyRoot = getLanguageRoot(resource);
         if (languageCopyRoot == null) {
@@ -81,7 +85,7 @@ public class DiscoverRssFeed {
 
     private Page getLanguageRoot(Resource resource) {
         Page page = resource.adaptTo(Page.class);
-        return page == null ? null : page.getAbsoluteParent(2);
+        return page == null ? null : pageUtilService.getHomePage(page);
     }
 
     private Resource getChildResource(String relativePath) {
@@ -122,7 +126,7 @@ public class DiscoverRssFeed {
 
         return StreamSupport.stream(par.getChildren().spliterator(), false)
                 .map(Resource::getValueMap)
-                .filter(props -> props.get("sling:resourceType", "").equals("dhl/components/content/text"))
+                .filter(props -> props.get(SLING_RESOURCE_TYPE_PROPERTY, "").equals("dhl/components/content/text"))
                 .findFirst().map(props -> props.get("text", "")).orElse("");
     }
 

@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.search.QueryBuilder;
+import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -31,12 +32,13 @@ class FooterAbsoluteTest {
 	void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
+        ctx.registerService(PageUtilService.class, new PageUtilService());
 	    ctx.addModelsForClasses(FooterAbsolute.class);
 	}
 
 	@Test
 	void test() {
-		ctx.currentResource("/content/dhl/en/register");
+		ctx.currentResource("/content/dhl/country/en/register");
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("mode", "latest");
