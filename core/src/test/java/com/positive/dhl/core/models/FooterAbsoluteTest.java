@@ -38,7 +38,7 @@ class FooterAbsoluteTest {
 
 	@Test
 	void test() {
-		ctx.currentResource("/content/dhl/country/en/register");
+		ctx.currentResource("/content/dhl/en/register");
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("mode", "latest");

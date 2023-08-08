@@ -54,7 +54,7 @@ class SearchResultsListTest {
 	@Test
 	void testSortByTitle() {
 		Mockito.when(queryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
-		ctx.currentResource("/content/dhl/country/en/search-results");
+		ctx.currentResource("/content/dhl/en/search-results");
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("searchfield", "subscription");
@@ -108,7 +108,7 @@ class SearchResultsListTest {
 	@Test
 	void testSortByDate() {
 		Mockito.when(queryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
-		ctx.currentResource("/content/dhl/country/en/search-results");
+		ctx.currentResource("/content/dhl/en/search-results");
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("searchfield", "subscription");

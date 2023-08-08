@@ -38,7 +38,7 @@ class LandingPageTwoColumnTest {
 
 	@Test
 	void test() {
-		ctx.currentResource("/content/dhl/country/en/open-an-account-offer");
+		ctx.currentResource("/content/dhl/en/open-an-account-offer");
 
 		LandingPageTwoColumn landingPageTwoColumn = ctx.request().adaptTo(LandingPageTwoColumn.class);
         assertNotNull(landingPageTwoColumn);

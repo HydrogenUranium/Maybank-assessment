@@ -32,7 +32,7 @@ class TopBannerTest {
 		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
 		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
 		ctx.registerService(PageUtilService.class, new PageUtilService());
-		ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
+		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
 		
 		TopBanner topBanner = ctx.request().adaptTo(TopBanner.class);
 		assert topBanner != null;

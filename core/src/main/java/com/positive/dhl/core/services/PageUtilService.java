@@ -13,7 +13,7 @@ import java.util.Optional;
 @Component(service = PageUtilService.class)
 public class PageUtilService {
 
-    private static final int HOME_PAGE_LEVEL = 3;
+    private static final int HOME_PAGE_LEVEL = 2;
 
     public int getHomePageLevel() {
         return HOME_PAGE_LEVEL;

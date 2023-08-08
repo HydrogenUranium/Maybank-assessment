@@ -44,7 +44,7 @@ class CategoryListingTest {
 
 	@Test
 	void test() {
-        Resource resource = ctx.resourceResolver().getResource("/content/dhl/country/en/jcr:content/parother/categorylist");
+        Resource resource = ctx.resourceResolver().getResource("/content/dhl/en/jcr:content/parother/categorylist");
         assertNotNull(resource);
         
         CategoryListing categoryListing = resource.adaptTo(CategoryListing.class);
