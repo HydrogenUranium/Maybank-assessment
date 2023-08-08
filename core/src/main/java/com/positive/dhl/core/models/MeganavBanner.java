@@ -3,11 +3,13 @@ package com.positive.dhl.core.models;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  *
@@ -16,7 +18,10 @@ import com.day.cq.wcm.api.Page;
 public class MeganavBanner {
 	@Inject
 	private Page currentPage;
-    
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	private String title;
     private String subtitle;
     private String point1;
@@ -143,13 +148,8 @@ public class MeganavBanner {
 	 */
 	@PostConstruct
 	protected void init() {
-		Page home = currentPage.getAbsoluteParent(2);
-		if (home == null) {
-			return;
-		}
-
-		ValueMap properties = home.adaptTo(ValueMap.class);
-		if (properties != null) {
+		ValueMap properties = pageUtilService.getHomePageProperties(currentPage);
+		if (!properties.isEmpty()) {
 			title = properties.get("jcr:content/meganavbannertitle", "");
 			subtitle = properties.get("jcr:content/meganavbannersubtitle", "");
 

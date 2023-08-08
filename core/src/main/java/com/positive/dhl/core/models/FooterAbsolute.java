@@ -8,12 +8,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  *
@@ -22,7 +24,10 @@ import com.day.cq.wcm.api.Page;
 public class FooterAbsolute {
 	@Inject
 	private Page currentPage;
-	
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	private String copyrightNotice;
 	private List<Link> leftLinks;
 	private List<Link> rightLinks;
@@ -45,28 +50,28 @@ public class FooterAbsolute {
 	 * 
 	 */
 	public List<Link> getLeftLinks() {
-		return new ArrayList<Link>(leftLinks);
+		return new ArrayList<>(leftLinks);
 	}
 
     /**
 	 * 
 	 */
 	public void setLeftLinks(List<Link> leftLinks) {
-		this.leftLinks = new ArrayList<Link>(leftLinks);
+		this.leftLinks = new ArrayList<>(leftLinks);
 	}
 
     /**
 	 * 
 	 */
 	public List<Link> getRightLinks() {
-		return new ArrayList<Link>(rightLinks);
+		return new ArrayList<>(rightLinks);
 	}
 
     /**
 	 * 
 	 */
 	public void setRightLinks(List<Link> rightLinks) {
-		this.rightLinks = new ArrayList<Link>(rightLinks);
+		this.rightLinks = new ArrayList<>(rightLinks);
 	}
 
     /**
@@ -78,9 +83,9 @@ public class FooterAbsolute {
 		int year = date.get(Calendar.YEAR);
 		copyrightNotice = String.valueOf(year).concat(" &copy; DHL. All rights reserved.");
 
-		Page home = currentPage.getAbsoluteParent(2);
-		leftLinks = new ArrayList<Link>();
-		rightLinks = new ArrayList<Link>();
+		Page home = pageUtilService.getHomePage(currentPage);
+		leftLinks = new ArrayList<>();
+		rightLinks = new ArrayList<>();
 
 		if (home == null) {
 			return;

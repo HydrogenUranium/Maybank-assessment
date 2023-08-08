@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.jcr.Session;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,18 +37,19 @@ class MeganavTest {
 	void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
+		ctx.registerService(PageUtilService.class, new PageUtilService());
 	    ctx.addModelsForClasses(Meganav.class, MeganavPanel.class);
 	}
 
 	@Test
 	void test() {
         Mockito.when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
-		ctx.currentResource("/content/dhl/en/ship-now");
+		ctx.currentResource("/content/dhl/country/en/ship-now");
 		
 		Meganav meganav = ctx.request().adaptTo(Meganav.class);
 		assertNotNull(meganav);
 		assertEquals("E-commerce business & global logistics advice | Discover DHL", meganav.getSiteTitle());
-		assertEquals("/content/dhl/en.html", meganav.getHomeUrl());
+		assertEquals("/content/dhl/country/en.html", meganav.getHomeUrl());
 		assertEquals("/content/dhl/search-results.html", meganav.getSearchResultsPage());
 		assertEquals("/apps/dhl/discoverdhlapi/tags/index.json", meganav.getAutocompleteUrl());
 		assertEquals("/apps/dhl/discoverdhlapi/searchsuggest/index.json", meganav.getTopsearchesUrl());
@@ -61,7 +63,7 @@ class MeganavTest {
 		assertEquals(false, meganavPanel.getCurrent());
 		assertNotNull(meganavPanel.getPage());
 
-		assertEquals("/content/dhl/en/business.html", meganavPanel.url());
+		assertEquals("/content/dhl/country/en/business.html", meganavPanel.url());
 		assertEquals("Business", meganavPanel.navigationTitle());
 
 		meganavPanel.setPanels(new ArrayList<MeganavPanel>());

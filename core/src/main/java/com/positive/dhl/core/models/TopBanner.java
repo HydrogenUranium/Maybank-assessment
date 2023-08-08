@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.positive.dhl.core.components.EnvironmentConfiguration;
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
@@ -28,8 +29,10 @@ public class TopBanner {
 
 	@OSGiService
 	private EnvironmentConfiguration environmentConfiguration;
-    
-    /**
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+	/**
 	 * 
 	 */
     public Boolean getHasbanner() {
@@ -120,11 +123,7 @@ public class TopBanner {
 	protected void init() {
     	hasbanner = false;
     	
-		Page home = currentPage.getAbsoluteParent(2);
-		if (home == null) {
-			return;
-		}
-		ValueMap properties = home.adaptTo(ValueMap.class);
+		ValueMap properties = pageUtilService.getHomePageProperties(currentPage);
 		if (properties != null) {
 			String prefix = "0";
 			

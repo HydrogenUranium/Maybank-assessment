@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.jcr.Session;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,12 +38,13 @@ class CategoryListingTest {
 	void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
+        ctx.registerService(PageUtilService.class, new PageUtilService());
 	    ctx.addModelsForClasses(CategoryListing.class);
 	}
 
 	@Test
 	void test() {
-        Resource resource = ctx.resourceResolver().getResource("/content/dhl/en/jcr:content/parother/categorylist");
+        Resource resource = ctx.resourceResolver().getResource("/content/dhl/country/en/jcr:content/parother/categorylist");
         assertNotNull(resource);
         
         CategoryListing categoryListing = resource.adaptTo(CategoryListing.class);
