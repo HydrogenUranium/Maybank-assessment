@@ -9,7 +9,7 @@ def query = """
         INNER JOIN [nt:unstructured] AS component ON ISDESCENDANTNODE(component, articleContent)
         WHERE articleContent.[sling:resourceType] = '$TEMPLATE_RESOURCE_TYPE' 
         AND isDescendantNode(articleContent, '$SCOPE')
-"""
+""" as Object
 
 def executeQuery(query) {
     session.workspace.queryManager.createQuery(query, Query.JCR_SQL2).execute()
