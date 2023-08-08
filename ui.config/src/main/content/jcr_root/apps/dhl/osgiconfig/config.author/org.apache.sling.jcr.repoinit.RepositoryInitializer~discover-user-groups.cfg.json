@@ -41,9 +41,10 @@
         "set ACL for discover-base-user\nallow jcr:read on home(discover-base-user)\nend",
 
         "# *** Remove ACL is used to guarantee order of access rights (prevent potential problems of manual access changes)***",
-        "remove ACE for discover-base-user\ndeny jcr:all on /content restriction(rep:glob,/dhl/*)\ndeny rep:write on /content restriction(rep:ntNames,cq:meta)\nallow jcr:read on /content restriction(rep:ntNames,cq:meta)\nend",
+        "remove ACE for discover-base-user\ndeny jcr:all on /content restriction(rep:glob,/dhl/*)\ndeny rep:write on /content restriction(rep:ntNames,cq:meta)\nallow jcr:read on /content restriction(rep:ntNames,cq:meta)\nallow jcr:read on /content restriction(rep:glob,/dhl/jcr:content)\nend",
         "set ACL for discover-base-user\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content\nend",
         "set ACL for discover-base-user\ndeny jcr:all on /content restriction(rep:glob,/dhl/*)\nend",
+        "set ACL for discover-base-user\nallow jcr:read on /content restriction(rep:glob,/dhl/jcr:content)\nend",
         "set ACL for discover-base-user\ndeny rep:write on /content restriction(rep:ntNames,cq:meta)\nend",
         "set ACL for discover-base-user\nallow jcr:read on /content restriction(rep:ntNames,cq:meta)\nend",
 
