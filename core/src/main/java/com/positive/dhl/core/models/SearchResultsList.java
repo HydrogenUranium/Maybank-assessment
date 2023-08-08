@@ -55,7 +55,7 @@ public class SearchResultsList {
     private PageUtilService pageUtilService;
 
     private List<Article> results;
-    private HashMap<String, Integer> resultSummary;
+    private Map<String, Integer> resultSummary;
     private List<Article> trendingArticles;
     private String searchTerm;
     private String searchResultsType;

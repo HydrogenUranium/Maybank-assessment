@@ -36,9 +36,9 @@ public class LanguageVariants {
 
 	private String currentRegion;
 	private String currentLanguage;
-	private ArrayList<LanguageVariant> languageVariants;
-	private ArrayList<LinkVariant> allLanguageVariants;
-	private ArrayList<ArrayList<LinkVariant>> allLanguageVariantsGrouped;
+	private List<LanguageVariant> languageVariants;
+	private List<LinkVariant> allLanguageVariants;
+	private List<List<LinkVariant>> allLanguageVariantsGrouped;
 	
 	/**
 	 *
@@ -179,12 +179,12 @@ public class LanguageVariants {
 	/**
 	 *
 	 */
-	public List<ArrayList<LinkVariant>> getAllLanguageVariantsGrouped() {
+	public List<List<LinkVariant>> getAllLanguageVariantsGrouped() {
 		if (allLanguageVariantsGrouped == null) {
 			allLanguageVariantsGrouped = new ArrayList<>();
 
-			ArrayList<LinkVariant> group = new ArrayList<>();
-			ArrayList<LinkVariant> all = this.getAllLanguageVariants();
+			List<LinkVariant> group = new ArrayList<>();
+			List<LinkVariant> all = this.getAllLanguageVariants();
 			for (LinkVariant item: all) {
 				group.add(item);
 
