@@ -25,6 +25,7 @@ componentSet.remove(null)
 
 componentSet.stream()
         .map(path -> getResource(path))
+        .filter(resource -> resource != null)
         .sorted((first, second) -> first.valueMap.get("componentGroup").compareTo(second.valueMap.get("componentGroup")))
         .forEach(resource -> {
             def valueMap = resource.valueMap
@@ -33,3 +34,8 @@ componentSet.stream()
             println("Group: $group, Name: $name, path: $resource.path")
         })
 
+componentSet.stream()
+        .filter(path -> getResource(path) == null)
+        .forEach(path -> {
+            println("Used deleted component: $path")
+        })
