@@ -18,7 +18,7 @@
 use(function () {
     var items = [];
     var root = currentPage.getAbsoluteParent(1);
-    var currentNavPath = currentPage.getAbsoluteParent(2).getPath();
+    var currentNavPath = currentPage.getAbsoluteParent(3).getPath();
     var it = root.listChildren(new Packages.com.day.cq.wcm.api.PageFilter());
 
     while (it.hasNext()) {

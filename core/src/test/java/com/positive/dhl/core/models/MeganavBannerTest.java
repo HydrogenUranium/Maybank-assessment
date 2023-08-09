@@ -23,7 +23,7 @@ class MeganavBannerTest {
 
 	@Test
 	void test() {
-		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
+		ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
 		
 		MeganavBanner meganavBanner = ctx.request().adaptTo(MeganavBanner.class);
 		assert meganavBanner != null;

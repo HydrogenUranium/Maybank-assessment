@@ -41,7 +41,7 @@ class AllCategoriesTest {
 
 	@Test
 	void test() {
-		ctx.currentResource("/content/dhl/en/register");
+		ctx.currentResource("/content/dhl/country/en/register");
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("mode", "latest");
