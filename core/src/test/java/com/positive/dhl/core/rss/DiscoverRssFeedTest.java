@@ -45,7 +45,7 @@ class DiscoverRssFeedTest {
 
     @Test
     void printHeaderAndFooter_ShouldAddDataToResponse_WhenResourceExist() throws IOException {
-        String path = "/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales";
+        String path = "/content/dhl/en-global/business/productivity/the-future-of-cyber-sales";
         request.setResource(context.resourceResolver().getResource(path));
 
         DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
@@ -57,7 +57,7 @@ class DiscoverRssFeedTest {
         String expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n" +
                 "<channel>\n" +
-                "<link>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<link>http://localhost/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
                 "<title>The future of cyber sales</title>\n" +
                 "<description>description</description>\n" +
                 "<language>EN</language>\n" +
@@ -71,7 +71,7 @@ class DiscoverRssFeedTest {
 
     @Test
     void printEntry_ShouldAddDataToResponse_WhenResourceExist() throws IOException {
-        String path = "/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales";
+        String path = "/content/dhl/en-global/business/productivity/the-future-of-cyber-sales";
         request.setResource(context.resourceResolver().getResource(path));
 
         DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
@@ -80,7 +80,7 @@ class DiscoverRssFeedTest {
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
         String expected = "<item>\n" +
-                "<link>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<link>http://localhost/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
                 "<title>The future of cyber sales</title>\n" +
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
@@ -88,7 +88,7 @@ class DiscoverRssFeedTest {
                 "<language>EN</language>\n" +
                 "<pubDate/>\n" +
                 "<tags>tech-futures,culture-hype</tags>\n" +
-                "<thumbnail>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
+                "<thumbnail>http://localhost/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
                 "</item>\n";
 
         assertXmlEquals(expected, responseBody);
@@ -96,7 +96,7 @@ class DiscoverRssFeedTest {
 
     @Test
     void printEntry_ShouldAddDataToResponseWithPort_WhenPortIsNotHttp() throws IOException {
-        String path = "/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales";
+        String path = "/content/dhl/en-global/business/productivity/the-future-of-cyber-sales";
         request.setResource(context.resourceResolver().getResource(path));
         request.setServerPort(4503);
 
@@ -106,7 +106,7 @@ class DiscoverRssFeedTest {
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
         String expected = "<item>" +
-                "<link>http://localhost:4503/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<link>http://localhost:4503/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
                 "<title>The future of cyber sales</title>\n" +
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
@@ -114,7 +114,7 @@ class DiscoverRssFeedTest {
                 "<language>EN</language>\n" +
                 "<pubDate/>\n" +
                 "<tags>tech-futures,culture-hype</tags>\n" +
-                "<thumbnail>http://localhost:4503/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
+                "<thumbnail>http://localhost:4503/content/dhl/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
                 "</item>\n";
 
         assertXmlEquals(expected, responseBody);
@@ -122,7 +122,7 @@ class DiscoverRssFeedTest {
 
     @Test
     void printChildEntry_ShouldAddDataToResponse_WhenResourceExist() throws IOException, ServletException {
-        String path = "/content/dhl/country/en-global/business/productivity";
+        String path = "/content/dhl/en-global/business/productivity";
         String articlePath = path + "/the-future-of-cyber-sales";
         ResourceResolver resourceResolver = context.resourceResolver();
         when(dispatcherFactory.getRequestDispatcher(any(String.class), any())).thenReturn(dispatcher);
@@ -140,7 +140,7 @@ class DiscoverRssFeedTest {
 
     @Test
     void printChildEntry_ShouldThrowException_WhenResourceExist() throws IOException, ServletException {
-        String path = "/content/dhl/country/en-global/business/productivity";
+        String path = "/content/dhl/en-global/business/productivity";
         String articlePath = path + "/the-future-of-cyber-sales";
         ResourceResolver resourceResolver = context.resourceResolver();
         when(dispatcherFactory.getRequestDispatcher(any(String.class), any())).thenReturn(dispatcher);
@@ -157,7 +157,7 @@ class DiscoverRssFeedTest {
 
     @Test
     void printEntries_ShouldAddFixedEntries_WhenMaxArgumentProvided() throws IOException, ServletException {
-        String path = "/content/dhl/country/en-global/business/productivity";
+        String path = "/content/dhl/en-global/business/productivity";
         String[] articles = new String[]{
                 path + "/the-future-of-cyber-sales",
                 path + "/ai-science-fiction-it-is-not"
@@ -184,7 +184,7 @@ class DiscoverRssFeedTest {
 
     @Test
     void printEntries_ShouldAddFixedEntries_WhenMaxArgumentIsNotProvided() throws IOException, ServletException {
-        String path = "/content/dhl/country/en-global/business/productivity";
+        String path = "/content/dhl/en-global/business/productivity";
         String[] articles = new String[]{
                 path + "/the-future-of-cyber-sales",
                 path + "/ai-science-fiction-it-is-not"

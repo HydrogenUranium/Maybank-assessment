@@ -38,7 +38,7 @@ class FooterTest {
 
 	@Test
 	void test() {
-		ctx.currentResource("/content/dhl/country/en");
+		ctx.currentResource("/content/dhl/en");
 
 		Footer footer = ctx.request().adaptTo(Footer.class);
 		assert footer != null;

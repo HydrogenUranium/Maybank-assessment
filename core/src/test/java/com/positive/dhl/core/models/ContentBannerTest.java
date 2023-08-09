@@ -34,7 +34,7 @@ class ContentBannerTest {
 	void test() {
 		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
 		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
-		ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
+		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
 		
 		ContentBanner contentBanner = ctx.request().adaptTo(ContentBanner.class);
 		assert contentBanner != null;

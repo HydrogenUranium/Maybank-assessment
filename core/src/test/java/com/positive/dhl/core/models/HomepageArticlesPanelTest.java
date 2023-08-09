@@ -37,7 +37,7 @@ class HomepageArticlesPanelTest {
 
 	@Test
 	void test() {
-        Resource resource = ctx.resourceResolver().getResource("/content/dhl/country/en/jcr:content/par/articlelisthomepage");
+        Resource resource = ctx.resourceResolver().getResource("/content/dhl/en/jcr:content/par/articlelisthomepage");
         assertNotNull(resource);
 
         HomepageArticlesPanel homepageArticle = resource.adaptTo(HomepageArticlesPanel.class);

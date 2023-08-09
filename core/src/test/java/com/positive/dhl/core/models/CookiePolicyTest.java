@@ -41,7 +41,7 @@ class CookiePolicyTest {
 	@Test
 	void test() {
         // Mockito.when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
-		ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
+		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("mode", "latest");
