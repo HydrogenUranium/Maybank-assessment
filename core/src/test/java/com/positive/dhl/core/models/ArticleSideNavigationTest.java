@@ -87,7 +87,7 @@ class ArticleSideNavigationTest {
 		// following when-then gymnastics is related to Article model class,that's called from ArticleSideNavigation
 		Page articlePage = setUpArticlePage();
 		when(resourceResolver.getResource(eq("dummy-path"))).thenReturn(articlePage.getContentResource());
-		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
+		ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("mode", "latest");

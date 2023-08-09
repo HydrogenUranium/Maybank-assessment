@@ -1,70 +1,77 @@
 {
-  "en-global": {
+  "country": {
     "jcr:primaryType": "cq:Page",
     "jcr:content": {
-      "jcr:created": "{Date}2023-02-14T07:41:12.362Z",
-      "jcr:title": "E-commerce business & global logistics advice | Discover DHL",
-      "sitelanguage": "EN",
-      "siteregion": "Global",
-      "cq:tags": [
-        "dhl:tech-futures",
-        "dhl:culture-hype"
-      ],
-      "jcr:description": "",
-      "sling:resourceType": "dhl/components/pages/home",
-      "jcr:primaryType": "cq:PageContent"
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:title": "Country page"
     },
-    "business": {
+    "en-global": {
       "jcr:primaryType": "cq:Page",
       "jcr:content": {
         "jcr:created": "{Date}2023-02-14T07:41:12.362Z",
-        "jcr:title": "business",
-        "jcr:description": "business description",
-        "jcr:primaryType": "cq:PageContent",
-        "sling:resourceType": "dhl/components/pages/articlecategory"
+        "jcr:title": "E-commerce business & global logistics advice | Discover DHL",
+        "sitelanguage": "EN",
+        "siteregion": "Global",
+        "cq:tags": [
+          "dhl:tech-futures",
+          "dhl:culture-hype"
+        ],
+        "jcr:description": "",
+        "sling:resourceType": "dhl/components/pages/home",
+        "jcr:primaryType": "cq:PageContent"
       },
-      "productivity": {
+      "business": {
         "jcr:primaryType": "cq:Page",
         "jcr:content": {
           "jcr:created": "{Date}2023-02-14T07:41:12.362Z",
-          "jcr:title": "productivity",
-          "jcr:description": "productivity description",
-          "sling:resourceType": "dhl/components/pages/articlecategory",
-          "jcr:primaryType": "cq:PageContent"
+          "jcr:title": "business",
+          "jcr:description": "business description",
+          "jcr:primaryType": "cq:PageContent",
+          "sling:resourceType": "dhl/components/pages/articlecategory"
         },
-        "the-future-of-cyber-sales": {
+        "productivity": {
           "jcr:primaryType": "cq:Page",
           "jcr:content": {
-            "jcr:title": "The future of cyber sales",
-            "jcr:description": "description",
-            "sling:resourceType": "dhl/components/pages/article",
-            "jcr:primaryType": "cq:PageContent",
             "jcr:created": "{Date}2023-02-14T07:41:12.362Z",
-            "image": {},
-            "cq:tags": [
-              "dhl:tech-futures",
-              "dhl:culture-hype"
-            ],
-            "par": {
-              "text": {
-                "sling:resourceType": "dhl/components/content/text",
-                "text": "<h2>Article Body the-future-of-cyber-sales</h2>"
+            "jcr:title": "productivity",
+            "jcr:description": "productivity description",
+            "sling:resourceType": "dhl/components/pages/articlecategory",
+            "jcr:primaryType": "cq:PageContent"
+          },
+          "the-future-of-cyber-sales": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:content": {
+              "jcr:title": "The future of cyber sales",
+              "jcr:description": "description",
+              "sling:resourceType": "dhl/components/pages/article",
+              "jcr:primaryType": "cq:PageContent",
+              "jcr:created": "{Date}2023-02-14T07:41:12.362Z",
+              "image": {},
+              "cq:tags": [
+                "dhl:tech-futures",
+                "dhl:culture-hype"
+              ],
+              "par": {
+                "text": {
+                  "sling:resourceType": "dhl/components/content/text",
+                  "text": "<h2>Article Body the-future-of-cyber-sales</h2>"
+                }
               }
             }
-          }
-        },
-        "ai-science-fiction-it-is-not": {
-          "jcr:primaryType": "cq:Page",
-          "jcr:content": {
-            "jcr:created": "{Date}2023-02-14T07:41:12.362Z",
-            "jcr:title": "AI science fiction it is not",
-            "jcr:description": "description",
-            "sling:resourceType": "dhl/components/pages/article",
-            "jcr:primaryType": "cq:PageContent",
-            "par": {
-              "text": {
-                "sling:resourceType": "dhl/components/content/text",
-                "text": "<h2>Article Body ai-science-fiction-it-is-not</h2>"
+          },
+          "ai-science-fiction-it-is-not": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:content": {
+              "jcr:created": "{Date}2023-02-14T07:41:12.362Z",
+              "jcr:title": "AI science fiction it is not",
+              "jcr:description": "description",
+              "sling:resourceType": "dhl/components/pages/article",
+              "jcr:primaryType": "cq:PageContent",
+              "par": {
+                "text": {
+                  "sling:resourceType": "dhl/components/content/text",
+                  "text": "<h2>Article Body ai-science-fiction-it-is-not</h2>"
+                }
               }
             }
           }

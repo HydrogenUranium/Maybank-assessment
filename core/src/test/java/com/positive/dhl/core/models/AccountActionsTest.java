@@ -50,7 +50,7 @@ class AccountActionsTest {
 
 	@Test
 	void test() {
-		ctx.currentResource("/content/dhl/en/culture/dhl-mo-salah");
+		ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("r", "test");
@@ -61,8 +61,8 @@ class AccountActionsTest {
 		AccountActions accountActions = request.adaptTo(AccountActions.class);
         assertNotNull(accountActions);
 
-        assertEquals("/content/dhl/en", accountActions.getBackUrl());
-        assertEquals("/content/dhl/en/culture/dhl-mo-salah.html", accountActions.getBackUrlSelf());
+        assertEquals("/content/dhl/country/en", accountActions.getBackUrl());
+        assertEquals("/content/dhl/country/en/culture/dhl-mo-salah.html", accountActions.getBackUrlSelf());
         assertEquals("/content/dhl/login.html", accountActions.getLoginUrl());
         assertEquals("/content/dhl/login.html", accountActions.getLoginUrlNoRedirect());
         assertEquals("/content/dhl/register.html", accountActions.getRegisterUrl());
@@ -102,7 +102,7 @@ class AccountActionsTest {
         assertEquals("Reach 220 territories across the world", accountActions.getApplyForAccountTitle());
         assertEquals("Serious about taking your brand global?", accountActions.getApplyForAccountSubtitle());
         assertEquals("Speak to a Specialist Today", accountActions.getApplyForAccountCta());
-        assertEquals("/content/dhl/en/ship-now.html", accountActions.getApplyForAccountUrl());
+        assertEquals("/content/dhl/country/en/ship-now.html", accountActions.getApplyForAccountUrl());
         
         accountActions.setApplyForAccountPoints(new String[] { });
 		accountActions.setBackUrl("");
