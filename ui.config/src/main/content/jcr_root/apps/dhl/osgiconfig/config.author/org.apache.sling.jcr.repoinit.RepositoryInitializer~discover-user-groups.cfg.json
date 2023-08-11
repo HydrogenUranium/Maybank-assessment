@@ -4,6 +4,9 @@
         "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/jcr:content(nt:unstructured)",
         "create path /etc(sling:Folder)/designs(nt:folder)",
 
+        "# *** deny access for gmt-tracking should be placed below all user groups and then allow access for gmt-tracking-id-editor ***",
+        "create group gmt-tracking-id-editor",
+
         "create group author-language-copies",
         "set properties on authorizable(author-language-copies)/profile\n set givenName to \"Author - Language Copies\"\n end",
         "# *** Delete ACL is used to make sure that deny access overrides allow access (prevent potential problems of manual access changes) ***",
@@ -51,6 +54,7 @@
         "create group author-all-countries",
         "add author-all-countries to group discover-base-user",
         "add author-all-countries to group author-language-master",
+        "add author-all-countries to group gmt-tracking-id-editor",
         "set properties on authorizable(author-all-countries)/profile\n set givenName to \"Author - All Countries\"\n end",
         "set ACL for author-all-countries\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl\nend",
         "set ACL for author-all-countries\nallow jcr:read on home(author-all-countries)\nend",
@@ -58,6 +62,7 @@
         "create group publisher-all-countries",
         "add publisher-all-countries to group discover-base-user",
         "add publisher-all-countries to group author-language-master",
+        "add publisher-all-countries to group gmt-tracking-id-editor",
         "set properties on authorizable(publisher-all-countries)/profile\n set givenName to \"Publisher - All Countries\"\n end",
         "set ACL for publisher-all-countries\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl\nend",
         "set ACL for publisher-all-countries\nallow jcr:read on home(publisher-all-countries)\nend",
@@ -67,6 +72,7 @@
         "delete ACL for author-global",
         "add author-global to group discover-base-user",
         "add author-global to group author-language-master",
+        "add author-global to group gmt-tracking-id-editor",
         "set properties on authorizable(author-global)/profile\n set givenName to \"Author - Global\"\n end",
         "set ACL for author-global\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/global)\nend",
         "set ACL for author-global\nallow jcr:read on home(author-global)\nend",
@@ -76,6 +82,7 @@
         "delete ACL for publisher-global",
         "add publisher-global to group discover-base-user",
         "add publisher-global to group author-language-master",
+        "add publisher-global to group gmt-tracking-id-editor",
         "set properties on authorizable(publisher-global)/profile\n set givenName to \"Publisher - Global\"\n end",
         "set ACL for publisher-global\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/global)\nend",
         "set ACL for publisher-global\nallow jcr:read on home(publisher-global)\nend",
@@ -222,6 +229,14 @@
         "add publisher-united-states to group discover-base-user",
         "set properties on authorizable(publisher-united-states)/profile\n set givenName to \"Publisher - United States\"\n end",
         "set ACL for publisher-united-states\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/us)\nend",
-        "set ACL for publisher-united-states\nallow jcr:read on home(publisher-united-states)\nend"
+        "set ACL for publisher-united-states\nallow jcr:read on home(publisher-united-states)\nend",
+
+        "# !!!  SHOULD BE AT THE BOTTOM OF THIS SCRIPT !!!",
+        "# *** GMP TRACKING ID ACCESS ***",
+        "# *** remove access used to guarantee order of access ***",
+        "remove ACE for discover-base-user\ndeny rep:write on /content/dhl restriction(rep:itemNames,gtmtrackingid)\nend",
+        "remove ACE for gmt-tracking-id-editor\nallow rep:write on /content/dhl restriction(rep:itemNames,gtmtrackingid)\nend",
+        "set ACL for discover-base-user\ndeny rep:write on /content/dhl restriction(rep:itemNames,gtmtrackingid)\nend",
+        "set ACL for gmt-tracking-id-editor\nallow rep:write on /content/dhl restriction(rep:itemNames,gtmtrackingid)\nend"
     ]
 }
