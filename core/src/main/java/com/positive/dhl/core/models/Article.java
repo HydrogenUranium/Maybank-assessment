@@ -2,9 +2,8 @@ package com.positive.dhl.core.models;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -12,6 +11,7 @@ import javax.inject.Inject;
 import com.positive.dhl.core.constants.DiscoverConstants;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -27,18 +27,19 @@ public class Article {
 	@Inject
 	private ResourceResolver resourceResolver;
 	
-  @Inject
-  public String path;
-	
-  private Boolean valid;
-  private Boolean current;
-  private int index;
+	@Inject
+	public String path;
+
+	private Boolean valid;
+	private Boolean current;
+	private int index;
 	private Boolean third;
 	private Boolean fourth;
 	private String createdfriendly;
 	private String created;
 	private String icon;
 	private String grouptitle;
+	private String groupTag;
 	private String grouppath;
 	private String fullTitle;
 	private String title;
@@ -115,6 +116,7 @@ public class Article {
 
 			grouptitle = getGroupTitle(resource);
 			grouppath = getGroupPath(resource);
+			groupTag = transformToTag(grouptitle);
 
 			fullTitle = properties.get("jcr:content/jcr:title", "");
 			title = properties.get("jcr:content/navTitle", "");
@@ -185,6 +187,18 @@ public class Article {
 		}
 		return "";
     }
+
+	private String transformToTag(String name) {
+		Map<String, String> customTransformation = Map.of(
+				"e-commerce", "eCommerce",
+				"b2b", "b2b"
+		);
+
+		return "#" + Arrays.stream(StringUtils.lowerCase(name)
+				.split(" "))
+				.map(s -> customTransformation.getOrDefault(s, StringUtils.capitalize(s)))
+				.collect(Collectors.joining());
+	}
     
     /**
 	 * 
