@@ -1,0 +1,19 @@
+<sly data-sly-use.model="com.positive.dhl.core.models.TopTiles"
+     data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
+     data-sly-test.isEmpty=${model.articles.empty}></sly>
+
+<sly data-sly-test.authormode="${wcmmode.edit || wcmmode.preview}"/>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+<div class="top-tiles-component">
+    <a href="${item.path}.html" class="tile" data-sly-repeat="${model.articles}" title="${item.title}">
+        <div class="article">
+            <div class="article__background" style="background-image: url('${!authormode ? accountactions.assetprefix : '' @ context='unsafe'}${item.heroimagemob @ context='uri'}');">
+            </div>
+            <div class="article__info">
+                <div class="article__info__title">${item.title}</div>
+                <div class="article__info__group-tag">${item.groupTag}</div>
+            </div>
+        </div>
+    </a>
+</div>
