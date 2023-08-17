@@ -8,18 +8,18 @@
         "create group gmt-tracking-id-editor",
 
         "create group author-language-copies",
+        "create group author-language-master",
+
+        "# *** Remove ACL is used to guarantee acess order (prevent potential problems of manual access changes) ***",
+        "remove ACE for author-language-copies,author-language-master\ndeny jcr:all on /content/dhl restriction(rep:glob,/language-masters/en-master)\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
+
         "set properties on authorizable(author-language-copies)/profile\n set givenName to \"Author - Language Copies\"\n end",
-        "# *** Delete ACL is used to make sure that deny access overrides allow access (prevent potential problems of manual access changes) ***",
-        "delete ACL for author-language-copies",
         "set ACL for author-language-copies\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
         "set ACL for author-language-copies\ndeny jcr:all on /content/dhl restriction(rep:glob,/language-masters/en-master)\nend",
         "set ACL for author-language-copies\nallow jcr:read on home(author-language-copies)\nend",
 
-        "create group author-language-master",
         "set properties on authorizable(author-language-master)/profile\n set givenName to \"Author - Language Master\"\n end",
         "add author-language-master to group projects-administrators",
-        "# *** Delete ACL is used to make sure that allow access in author-language-master overrides deny access in author-language-copies (prevent potential problems of manual access changes) ***",
-        "delete ACL for author-language-master",
         "set ACL for author-language-master\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
         "set ACL for author-language-master\nallow jcr:all on /conf/global\nend",
         "set ACL for author-language-master\nallow jcr:read on home(author-language-master)\nend",
