@@ -1,0 +1,59 @@
+.title-component {
+  position: relative;
+  max-width: 1640px;
+  margin: 20px auto 20px auto;
+  .svg {
+    opacity: 0.29;
+    position: absolute;
+    &_top-left {
+      transform-origin: left;
+      top: 0;
+      left: 0;
+      transform: translate(-142px, 0px);
+      @include respond(md) {
+        transform: translate(-48px, 0px);
+      }
+      @include respond(xl) {
+        transform: none;
+      }
+    }
+    &_bottom-right {
+      transform-origin: right;
+      bottom: 0;
+      right: 0;
+      transform: translate(+142px, 0px);
+      @include respond(md) {
+        transform: translate(+48px, 0px);
+      }
+      @include respond(xl) {
+        transform: none;
+      }
+    }
+  }
+
+  .title {
+    font: normal normal bold 28px/32px Delivery, sans-serif;
+    color: #323232;
+    text-align: center;
+    margin-left: 54px;
+    margin-right:54px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    @include respond(md) {
+      margin-left: 210px;
+      margin-right:210px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    @include respond(xl) {
+      line-height: 42px;
+      font-size: 36px;
+      text-align: left;
+      margin-left: 310px;
+      margin-right:310px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+}
+
