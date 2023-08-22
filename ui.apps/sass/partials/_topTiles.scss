@@ -88,11 +88,11 @@
   height: 209px;
   @include respond(md) {
     height: auto;
+    border-radius: 2px;
   }
 
   .article {
     height: 100%;
-    border-radius: 2px;
     mix-blend-mode: multiply;
     cursor: pointer;
     position: relative;
@@ -105,9 +105,6 @@
     }
 
     &__background {
-      @include respond(md) {
-        border-radius: 2px;
-      }
       transition: all .3s ease;
       height: 100%;
       mix-blend-mode: multiply;
