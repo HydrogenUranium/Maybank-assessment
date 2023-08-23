@@ -96,6 +96,12 @@ actions/common/
 
 # Frontend Maven Plugin
 node/
+ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover/css
+ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover/js
+ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages/css
+ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages/js
+ui.apps/sass/*.css
+ui.apps/sass/sourcemaps/*.map
 
 # Tests
 coverage/
