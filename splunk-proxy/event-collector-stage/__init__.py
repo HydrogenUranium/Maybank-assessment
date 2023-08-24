@@ -3,7 +3,7 @@
 import logging
 import azure.functions as func
 import os
-from lib.processing import process_request
+from libs.processing import process_request
 
 
 VALID_TOKENS = [os.environ['TOKEN_STAGE']]
