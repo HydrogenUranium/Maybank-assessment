@@ -1,0 +1,26 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "type": "eventHub",
+      "name": "msg",
+      "eventHubName": "%EVENTHUB_NAME_STAGE%",
+      "connection": "EVENTHUB_CONNECTION_STRING",
+      "direction": "out"
+    },
+    {
+      "name": "$return",
+      "direction": "out",
+      "type": "http"
+    }
+  ]
+}
