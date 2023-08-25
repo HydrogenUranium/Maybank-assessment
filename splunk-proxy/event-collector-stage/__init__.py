@@ -5,10 +5,14 @@ import azure.functions as func
 import os
 from libs.processing import process_request
 
-
-VALID_TOKENS = [os.environ['TOKEN_STAGE']]
+TOKEN_NAME = "TOKEN_STAGE"
 
 def main(req: func.HttpRequest, msg: func.Out[str]) -> func.HttpResponse:
+
+    try:
+        VALID_TOKENS = [os.environ[TOKEN_NAME]]
+    except KeyError:
+        return func.HttpResponse("%s environment variable is not set" % TOKEN_NAME, status_code=500)
 
     logging.info('Message received by Azure Functions')
     http_response = process_request(req, VALID_TOKENS)
