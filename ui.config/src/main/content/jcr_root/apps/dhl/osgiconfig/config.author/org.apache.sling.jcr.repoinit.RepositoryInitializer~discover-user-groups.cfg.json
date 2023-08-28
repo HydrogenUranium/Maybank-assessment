@@ -22,6 +22,7 @@
         "add author-language-master to group projects-administrators",
         "set ACL for author-language-master\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
         "set ACL for author-language-master\nallow jcr:all on /conf/global\nend",
+        "set ACL for author-language-master\nallow jcr:read,rep:write on /content/dhl restriction(rep:glob,/*/*)\nend",
         "set ACL for author-language-master\nallow jcr:read on home(author-language-master)\nend",
 
         "create group discover-base-user",
