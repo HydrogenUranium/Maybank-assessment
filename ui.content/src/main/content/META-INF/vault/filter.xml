@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
+    <filter root="/conf/global/settings/cloudconfigs"/>
+    <filter root="/conf/global/settings/translation/rules"/>
     <filter root="/conf/global/settings/workflow/models/aem-modernize-tools-rollback"/>
     <filter root="/conf/global/settings/workflow/models/request-for-page-publication"/>
     <filter root="/var/workflow/models/aem-modernize-tools-rollback"/>
