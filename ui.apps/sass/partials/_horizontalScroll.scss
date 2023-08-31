@@ -1,0 +1,10 @@
+.horizontal-scroll_scrollable {
+  cursor: grab;
+}
+
+.horizontal-scroll_active {
+  cursor: grabbing;
+  a {
+    cursor: grabbing;
+  }
+}

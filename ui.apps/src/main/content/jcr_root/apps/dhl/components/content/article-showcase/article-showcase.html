@@ -1,0 +1,18 @@
+
+<sly data-sly-use.articleCardTemplate="/apps/dhl/htl/templates/article-card.html"
+     data-sly-use.model="com.positive.dhl.core.models.ArticleShowcase"
+        data-sly-test.isEmpty="${model.articles.size == 0}"/>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+
+<div class="article-showcase-component">
+    <div class="title" data-sly-test="${model.title}">
+        ${model.title}
+    </div>
+    <div class="article-cards horizontal-scroll">
+        <sly data-sly-repeat="${model.articles}" data-sly-call="${articleCardTemplate.card @ article=item}"></sly>
+    </div>
+    <div class="link" data-sly-test="${model.designMode == 'vertical'}">
+        <a href="${model.linkPath}">${model.linkName}</a>
+    </div>
+</div>
