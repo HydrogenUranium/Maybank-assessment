@@ -1,0 +1,14 @@
+.article-showcase-component {
+  .title{
+    font: normal normal bold 20px/40px Delivery, sans-serif;
+    padding-left: 10px;
+    margin-bottom: 16px;
+    border-left: 2px solid #DD3741;
+  }
+  .article-cards {
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    gap: 36px;
+  }
+}
