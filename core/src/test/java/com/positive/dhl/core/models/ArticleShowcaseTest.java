@@ -15,7 +15,7 @@ class ArticleShowcaseTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        context.addModelsForClasses(TopTiles.class);
+        context.addModelsForClasses(ArticleShowcase.class);
         context.load().json("/com/positive/dhl/core/models/ArticleShowcase/content.json", "/content");
     }
 
