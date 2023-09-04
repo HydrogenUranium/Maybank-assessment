@@ -20,6 +20,25 @@
     "/content/dhl/en-ph:publisher-philippines",
     "/content/dhl/en-sg:publisher-singapore",
     "/content/dhl/en-us:publisher-united-states",
-    "/content/dhl/en-global:publisher-global"
+    "/content/dhl/en-global:publisher-global",
+
+    "/content/dhl/gb:publisher-united-kingdom",
+    "/content/dhl/ca:publisher-canada",
+    "/content/dhl/it:publisher-italy",
+    "/content/dhl/fr:publisher-france",
+    "/content/dhl/kr:publisher-korea",
+    "/content/dhl/th:publisher-thailand",
+    "/content/dhl/be:publisher-belgium",
+    "/content/dhl/ie:publisher-ireland",
+    "/content/dhl/es:publisher-spain",
+    "/content/dhl/pk:publisher-pakistan",
+    "/content/dhl/tw:publisher-taiwan",
+    "/content/dhl/ch:publisher-switzerland",
+    "/content/dhl/cz:publisher-czech-republic",
+    "/content/dhl/vn:publisher-vietnam",
+    "/content/dhl/cn:publisher-china",
+    "/content/dhl/pl:publisher-poland",
+    "/content/dhl/bd:publisher-bangladesh",
+    "/content/dhl/dk:publisher-denmark"
   ]
 }
