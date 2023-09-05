@@ -31,6 +31,9 @@
       }
     }
     &__info {
+      height: calc(100% - 191px);
+      display: flex;
+      flex-direction: column;
       padding: 15px;
       &__author {
         font: normal normal normal 12px/17px Delivery,sans-serif;
@@ -38,17 +41,23 @@
         color: #323232;
       }
       &__title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
         margin-top: 10px;
         font: normal normal bold 18px/22px Delivery,sans-serif;
         letter-spacing: 0px;
         color: #323232;
         &:hover {
            color: #D40511;
-           text-decoration: none;
+           display: block;
          }
       }
       &__description {
-        margin-top: 19px;
+        margin-top: 10px;
+        margin-bottom: 10px;
         font: normal normal normal 12px/14px Delivery,sans-serif;
         letter-spacing: 0px;
         color: #323232;
@@ -59,7 +68,7 @@
         -webkit-box-orient: vertical;
       }
       &__tags {
-        margin-top: 10px;
+        margin-top: auto;
         height: 24px;
         overflow: hidden;
         font: normal normal normal 12px/24px Delivery,sans-serif;
