@@ -6,6 +6,11 @@
     border-left: 2px solid #DD3741;
   }
   .article-cards {
+    @include respond(xl) {
+      .article-card:nth-child(n + 5) {
+         display: none;
+      }
+    }
     display: flex;
     gap: 36px;
   }
