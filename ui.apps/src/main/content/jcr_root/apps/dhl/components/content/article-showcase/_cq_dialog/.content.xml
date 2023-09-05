@@ -99,7 +99,7 @@
                                     fieldLabel="Articles"
                                     fieldDescription="Click + to add new item"
                                     composite="{Boolean}true"
-                                    validation="multifield-quantity max-4"
+                                    validation="multifield-quantity"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                        jcr:primaryType="nt:unstructured"
