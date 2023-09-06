@@ -1,5 +1,5 @@
 .home-page-container-component {
-  max-width: 1200px;
+  max-width: 1270px;
   margin: 0px 35px;
   .horizontal-scroll {
     margin-left: -35px;
@@ -7,14 +7,13 @@
     margin-right: -35px;
     padding-right: 35px;
   }
+  &__body {
+    @include respond(xl) {
+      margin: 0px 35px;
+    }
+  }
   @include respond(xl) {
     margin: auto;
-    .horizontal-scroll {
-      margin-left: 0px;
-      padding-left: 0px;
-      margin-right: 0px;
-      padding-right: 0px;
-    }
   }
   &_with-side-bar {
     @include respond(md) {
@@ -24,12 +23,17 @@
       grid-template-areas:"body sidebar";
     }
      @include respond(xl) {
+      grid-template-columns: minmax(434px, 830px) minmax(268px, auto);
       grid-gap: 10px;
      }
     .home-page-container-component {
       &__body {
         @include respond(md) {
           grid-area: body;
+        }
+        @include respond(xl) {
+          margin-left: 35px;
+          margin-right: 0px;
         }
       }
 
@@ -42,6 +46,7 @@
         }
         @include respond(xl) {
           padding:0px 15px;
+          margin-right: 35px;
         }
       }
     }
