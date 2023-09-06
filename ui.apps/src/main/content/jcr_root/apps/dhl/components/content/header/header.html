@@ -1,0 +1,97 @@
+<div class="accountapply" data-sly-use.topBanner="com.positive.dhl.core.models.TopBanner" data-sly-test="${topBanner.Hasbanner}">
+    <div class="container" style="background-image: url('${topBanner.Img @context='unsafe'}');">
+        <div class="row justify-content-left">
+            <div class="col-12 col-lg-12">
+                <h3>
+                    <span class="accountapply__subtitle">${topBanner.Subtitle}</span>
+                    <span class="accountapply__title">${topBanner.Title}</span>
+                </h3>
+                <a class="accountapply__cta" href="${topBanner.Url}" title="${topBanner.Urltitle}"><span>${topBanner.Urltitle}</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header class="headerV2" data-sly-use.meganav="com.positive.dhl.core.models.Meganav">
+    <div class="header-container">
+        <div class="main-row">
+            <div class="left-side">
+                <div class="headerV2__logoWrap">
+                    <a class="headerV2__logo" href="${meganav.homeUrl}" title="${meganav.siteTitle}"><span class="sr-only">${meganav.siteTitle}</span></a>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="headerV2__desktopLinkItem">
+                    <a class="headerV2__navigation" href="#">
+                        <i class="headerV2__hamburger"></i>
+                    </a>
+                </div>
+                <div class="headerV2__desktopLinkItem">
+                    <a class="headerV2__user" href="#">
+                        <i class="headerV2__user"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="navigation-row" data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model">
+            <div class="left-side">
+                <a class="navigation-item" href="${headerV2.homePageLink}"><span>${'Home' @i18n}</span></a>
+                <sly data-sly-list="${meganav.panels}">
+                    <a data-sly-set.currentPagePath="${currentPage.path}.html" class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }" href="${item.url}"><span>${item.navigationTitle}</span></a>
+                </sly>
+            </div>
+            <div class="right-side">
+                <a class="button" href="${headerV2.buttonPathOpenBusinessAccount}" title="${headerV2.buttonNameOpenBusinessAccount}">
+                    <span>${headerV2.buttonNameOpenBusinessAccount}</span>
+                </a>
+                <a class="navigation-item" data-sly-repeat="${headerV2.companyLinks}" href="${item.linkPath}"><span>${item.linkName}</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="headerV2__meganav">
+        <nav class="headerV2__meganavNavigation">
+            <ul class="headerV2__meganavNav">
+                <li>
+                    <div class="menuNav-title">${'Sign In' @i18n}</div>
+                </li>
+                <li>
+                    <div class="menuNav-title">${'Categories' @i18n}</div>
+                    <ul>
+                        <li>
+                            <a data-sly-repeat="${meganav.panels}" class="navigation-item"  href="${item.url}"><span>${item.navigationTitle}</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="menuNav-title">${'Company' @i18n}</div>
+                    <ul>
+                        <li>
+                            <a data-sly-repeat="${headerV2.companyLinks}" class="navigation-item" href="${item.linkPath}"><span>${item.linkName}</span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="cta-banner-with-points-component" data-sly-use.model="com.positive.dhl.core.models.CtaBanner">
+                <div class="banner banner--adaptive">
+                    <div class="banner__image" id="${model.id}">
+                        <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
+                             data-sly-call="${template.background @ id=model.id,
+                                       mobile=model.mobileBackgroundImageOpenBusinessAccount,
+                                       tablet=model.tabletBackgroundImageOpenBusinessAccount,
+                                       desktop=model.desktopBackgroundImageOpenBusinessAccount}"></sly>
+                    </div>
+                    <div class="banner__body">
+                        <div class="banner__body__title">${model.titleOpenBusinessAccount}</div>
+                        <ul class="banner__body__list ${model.pointsMultifieldOpenBusinessAccount.size > 2 ? 'banner__body__list--columns' : ''}">
+                            <li class="banner__body__list__item" data-sly-repeat="${model.pointsMultifieldOpenBusinessAccount}">${item}</li>
+                        </ul>
+                        <a class="banner__body__button" href="${model.buttonLinkOpenBusinessAccount}" title="${model.buttonNameOpenBusinessAccount}">
+                            <span>${model.buttonNameOpenBusinessAccount}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

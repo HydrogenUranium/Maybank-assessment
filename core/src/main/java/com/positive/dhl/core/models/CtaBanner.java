@@ -61,6 +61,7 @@ public class CtaBanner {
     private String titleSubscribe;
 
     @InjectHomeProperty
+    @Getter
     @Named("ctaBannerOpenBusinessAccount-title")
     @Optional
     private String titleOpenBusinessAccount;
@@ -122,6 +123,7 @@ public class CtaBanner {
     private String buttonNameSubscribe;
 
     @InjectHomeProperty
+    @Getter
     @Named("ctaBannerOpenBusinessAccount-buttonName")
     @Optional
     private String buttonNameOpenBusinessAccount;
@@ -137,6 +139,7 @@ public class CtaBanner {
     private String buttonLinkSubscribe;
 
     @InjectHomeProperty
+    @Getter
     @Named("ctaBannerOpenBusinessAccount-buttonLink")
     @Optional
     private String buttonLinkOpenBusinessAccount;
@@ -177,12 +180,28 @@ public class CtaBanner {
 
     private void initOpenBusinessAccount() {
         title = titleOpenBusinessAccount;
-        points = extractPoints(pointsMultifieldOpenBusinessAccount);
-        mobileBackgroundImage = assetUtils.resolvePath(mobileBackgroundImageOpenBusinessAccount);
-        tabletBackgroundImage = assetUtils.resolvePath(tabletBackgroundImageOpenBusinessAccount);
-        desktopBackgroundImage = assetUtils.resolvePath(desktopBackgroundImageOpenBusinessAccount);
+        points = getPointsMultifieldOpenBusinessAccount();
+        mobileBackgroundImage = getMobileBackgroundImageOpenBusinessAccount();
+        tabletBackgroundImage = getTabletBackgroundImageOpenBusinessAccount();
+        desktopBackgroundImage = getDesktopBackgroundImageOpenBusinessAccount();
         buttonName = buttonNameOpenBusinessAccount;
         buttonLink = buttonLinkOpenBusinessAccount;
+    }
+
+    public List<String> getPointsMultifieldOpenBusinessAccount() {
+        return extractPoints(pointsMultifieldOpenBusinessAccount);
+    }
+
+    public String getMobileBackgroundImageOpenBusinessAccount() {
+        return assetUtils.resolvePath(mobileBackgroundImageOpenBusinessAccount);
+    }
+
+    public String getTabletBackgroundImageOpenBusinessAccount() {
+        return assetUtils.resolvePath(tabletBackgroundImageOpenBusinessAccount);
+    }
+
+    public String getDesktopBackgroundImageOpenBusinessAccount() {
+        return assetUtils.resolvePath(desktopBackgroundImageOpenBusinessAccount);
     }
 
     private List<String> extractPoints(Resource pointsMultifield) {
