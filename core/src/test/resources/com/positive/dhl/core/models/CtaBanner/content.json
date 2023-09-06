@@ -1,0 +1,104 @@
+{
+  "home": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:content": {
+      "ctaBannerOpenBusinessAccount-desktopBackgroundImage": "/content/dam/images/desktop.jpg",
+      "ctaBannerOpenBusinessAccount-buttonName": "Join Us",
+      "ctaBannerOpenBusinessAccount-tabletBackgroundImage": "/content/dam/images/tablet.jpg",
+      "ctaBannerOpenBusinessAccount-title": "Open a Business Account",
+      "ctaBannerOpenBusinessAccount-mobileBackgroundImage": "/content/dam/images/mobile.jpg",
+      "ctaBannerOpenBusinessAccount-buttonLink": "/content/dhl/openBusinessAccount",
+      "ctaBannerOpenBusinessAccount-points": {
+        "jcr:primaryType": "nt:unstructured",
+        "item0": {
+          "jcr:primaryType": "nt:unstructured",
+          "point": "Fortnightly insights, tips and free assets"
+        },
+        "item1": {
+          "jcr:primaryType": "nt:unstructured",
+          "point": "Shape a global audience for your business"
+        }
+      },
+      "ctaBannerSubscribeToOurNewsletter-desktopBackgroundImage": "/content/dam/images/subscribe-desktop.png",
+      "ctaBannerSubscribeToOurNewsletter-title": "SUBSCRIBE TO OUR NEWSLETTER",
+      "ctaBannerSubscribeToOurNewsletter-tabletBackgroundImage": "/content/dam/images/subscribe-tablet.png",
+      "ctaBannerSubscribeToOurNewsletter-mobileBackgroundImage": "/content/dam/images/subscribe-mobile.png",
+      "ctaBannerSubscribeToOurNewsletter-buttonLink": "/content/dhl/subscribe",
+      "ctaBannerSubscribeToOurNewsletter-buttonName": "Subscribe",
+      "ctaBannerSubscribeToOurNewsletter-points": {
+        "jcr:primaryType": "nt:unstructured",
+        "item0": {
+          "jcr:primaryType": "nt:unstructured",
+          "point": "Fortnightly insights, tips and free assets"
+        },
+        "item1": {
+          "jcr:primaryType": "nt:unstructured",
+          "point": "Shape a global audience for your business"
+        }
+      },
+      "jcr:primaryType": "cq:PageContent",
+      "sling:resourceType": "dhl/components/pages/home"
+    },
+    "small-business-advice": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "pageTitle": "Small Business Advice | Small Business Resources | Discover DHL",
+        "sling:resourceType": "dhl/components/pages/articlecategory",
+        "navTitle": "Small Business advice"
+      },
+      "article": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "cq:template": "/conf/dhl/settings/wcm/templates/article",
+          "root": {
+            "jcr:primaryType": "nt:unstructured",
+            "layout": "responsiveGrid",
+            "sling:resourceType": "wcm/foundation/components/responsivegrid",
+            "article_container": {
+              "jcr:primaryType": "nt:unstructured",
+              "sling:resourceType": "dhl/components/content/article-container",
+              "body": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                  "cta_banner_custom": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Wed Sep 06 2023 14:38:21 GMT+0300",
+                    "type": "custom",
+                    "style": "adaptive",
+                    "title": "CTA BANNER",
+                    "buttonName": "Buy",
+                    "buttonLink": "/content/test",
+                    "jcr:lastModified": "Wed Sep 06 2023 15:07:43 GMT+0300",
+                    "tabletBackgroundImage": "/content/dam/images/tablet.jpg",
+                    "mobileBackgroundImage": "/content/dam/images/mobile.jpg",
+                    "sling:resourceType": "dhl/components/content/cta-banner-with-points",
+                    "desktopBackgroundImage": "/content/dam/images/desktop.jpg"
+                  },
+                  "cta_banner_businessAccount": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "type": "businessAccount",
+                    "style": "adaptive",
+                    "sling:resourceType": "dhl/components/content/cta-banner-with-points"
+                  },
+                  "cta_banner_subscribeNewsletter": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "type": "subscribeNewsletter",
+                    "style": "adaptive",
+                    "sling:resourceType": "dhl/components/content/cta-banner-with-points"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
