@@ -29,7 +29,7 @@ public class AssetUtilService {
 
     @Activate
     @Modified
-    protected void activate(AssetUtilService.Config config) {
+    public void activate(AssetUtilService.Config config) {
         assetPrefix = Optional.ofNullable(config.assetPrefix()).orElse(environmentConfiguration.getAssetPrefix());
     }
 

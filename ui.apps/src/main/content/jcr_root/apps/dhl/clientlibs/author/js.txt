@@ -1,3 +1,0 @@
-#base=js
-checkbox-features.js
-validators.js

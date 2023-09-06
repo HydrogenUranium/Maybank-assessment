@@ -43,7 +43,8 @@
                     <designMode
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                            fieldLabel="Design mode"
+                            fieldLabel="Design mode (Horizontal or Vertical)"
+                            fieldDescription="The component supports two display modes: horizontal and vertical view."
                             granite:class="cq-dialog-dropdown-showhide"
                             name="./designMode">
                         <granite:data
@@ -53,11 +54,11 @@
                                 jcr:primaryType="nt:unstructured">
                             <horizontal
                                     jcr:primaryType="nt:unstructured"
-                                    text="Horizontal"
+                                    text="Horizontal (Article cards with horizontal scrolling)"
                                     value="horizontal"/>
                             <vertical
                                     jcr:primaryType="nt:unstructured"
-                                    text="Vertical"
+                                    text="Vertical (Blocks of articles with a link at the bottom)"
                                     value="vertical"/>
                         </items>
                     </designMode>
@@ -65,7 +66,8 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             granite:class="cq-dialog-dropdown-showhide"
-                            fieldLabel="Source"
+                            fieldDescription="Choose the source of articles manual selection or automatic algorithm"
+                            fieldLabel="Article Source (Custom Pick or Automatic Algorithm)"
                             name="./source">
                         <granite:data
                                 jcr:primaryType="nt:unstructured"
@@ -78,11 +80,13 @@
                                     value="customPick"/>
                             <trending
                                     jcr:primaryType="nt:unstructured"
-                                    text="Trending"
+                                    text="Trending (Automatic Algorithm) Not yet supported"
+                                    disabled="true"
                                     value="trending"/>
                             <latest
                                     jcr:primaryType="nt:unstructured"
-                                    text="Latest"
+                                    text="Latest (Automatic Algorithm) Not yet supported"
+                                    disabled="true"
                                     value="latest"/>
                         </items>
                     </source>
@@ -96,10 +100,10 @@
                         <items jcr:primaryType="nt:unstructured">
                             <articles
                                     jcr:primaryType="nt:unstructured"
-                                    fieldLabel="Articles"
-                                    fieldDescription="Click + to add new item"
+                                    fieldLabel="Articles (Only 4 will be displayed on desktop view)"
+                                    fieldDescription="Add articles to display. Only 4 articles will be displayed on desktop."
                                     composite="{Boolean}true"
-                                    validation="multifield-quantity max-4"
+                                    validation="multifield-quantity"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                        jcr:primaryType="nt:unstructured"

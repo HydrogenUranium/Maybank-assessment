@@ -5,10 +5,10 @@ import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.AssetUtilService;
 import lombok.Getter;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -23,9 +23,6 @@ public class CtaBanner {
 
     @OSGiService
     private AssetUtilService assetUtils;
-
-    @Self
-    private Resource resource;
 
     @Inject
     @Named("points")
@@ -50,6 +47,7 @@ public class CtaBanner {
 
     @Inject
     @Optional
+    @Default(values = "custom")
     private String type;
 
     @Inject

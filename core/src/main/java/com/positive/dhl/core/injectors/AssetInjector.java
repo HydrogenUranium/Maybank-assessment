@@ -34,7 +34,7 @@ public class AssetInjector extends AbstractInjector {
         if(!annotatedElement.isAnnotationPresent(InjectAsset.class)) {
             return null;
         }
-        return  Optional.of(getResource(object))
+        return  Optional.ofNullable(getResource(object))
                 .map(Resource::getValueMap)
                 .map(valueMap -> valueMap.get(name, ""))
                 .map(path -> assetUtils.resolvePath(path))
