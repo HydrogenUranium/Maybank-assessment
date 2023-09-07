@@ -72,26 +72,7 @@
                     </ul>
                 </li>
             </ul>
-            <div class="cta-banner-with-points-component" data-sly-use.model="com.positive.dhl.core.models.CtaBanner">
-                <div class="banner banner--adaptive">
-                    <div class="banner__image" id="${model.id}">
-                        <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
-                             data-sly-call="${template.background @ id=model.id,
-                                       mobile=model.mobileBackgroundImageOpenBusinessAccount,
-                                       tablet=model.tabletBackgroundImageOpenBusinessAccount,
-                                       desktop=model.desktopBackgroundImageOpenBusinessAccount}"></sly>
-                    </div>
-                    <div class="banner__body">
-                        <div class="banner__body__title">${model.titleOpenBusinessAccount}</div>
-                        <ul class="banner__body__list ${model.pointsMultifieldOpenBusinessAccount.size > 2 ? 'banner__body__list--columns' : ''}">
-                            <li class="banner__body__list__item" data-sly-repeat="${model.pointsMultifieldOpenBusinessAccount}">${item}</li>
-                        </ul>
-                        <a class="banner__body__button" href="${model.buttonLinkOpenBusinessAccount}" title="${model.buttonNameOpenBusinessAccount}">
-                            <span>${model.buttonNameOpenBusinessAccount}</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <sly data-sly-resource="${'cta_banner_with_poin' @ resourceType='dhl/components/content/cta-banner-with-points'}"/>
         </nav>
     </div>
 </header>
