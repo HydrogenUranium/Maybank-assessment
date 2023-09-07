@@ -3,4 +3,4 @@
     jcr:primaryType="cq:Component"
     cq:noDecoration="true"
     jcr:title="Header"
-    componentGroup="DHL Article structure"/>
+    componentGroup="DHL Components"/>
