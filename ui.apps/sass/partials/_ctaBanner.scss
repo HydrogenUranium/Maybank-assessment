@@ -1,4 +1,8 @@
 .cta-banner-with-points-component {
+  margin-top: 30px;
+  @include respond(xl) {
+    margin-top: 50px;
+  }
   .banner {
     position:relative;
     mix-blend-mode: multiply;

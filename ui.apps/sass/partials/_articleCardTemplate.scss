@@ -1,7 +1,5 @@
 .article-card {
     white-space: normal;
-    border: 1px solid #E2E2E2;
-    border-radius: 8px;
     width:273px;
     min-width: 273px;
     &__image {
@@ -14,7 +12,7 @@
       }
       &:after {
         content: "";
-        border-radius: 7px 7px 0px 0px;
+        border-radius: 2px;
         position: absolute;
         background: transparent linear-gradient(180deg, #DCDCDC 0%, #3A3A3A 25%, #0D0D0D 100%) 0% 0% no-repeat padding-box;
         mix-blend-mode: multiply;
@@ -32,6 +30,9 @@
       }
     }
     &__info {
+      border: 1px solid #E2E2E2;
+      border-top: none;
+      border-radius: 0px 0px 8px 8px;
       height: calc(100% - 191px);
       display: flex;
       flex-direction: column;
