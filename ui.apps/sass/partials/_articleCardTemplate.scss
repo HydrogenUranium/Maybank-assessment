@@ -1,0 +1,86 @@
+.article-card {
+    white-space: normal;
+    border: 1px solid #E2E2E2;
+    border-radius: 8px;
+    width:273px;
+    min-width: 273px;
+    &__image {
+      display: block;
+      position: relative;
+      border-radius: 2px;
+      height: 191px;
+      background: {
+        size: cover;
+      }
+      &:after {
+        content: "";
+        border-radius: 7px 7px 0px 0px;
+        position: absolute;
+        background: transparent linear-gradient(180deg, #DCDCDC 0%, #3A3A3A 25%, #0D0D0D 100%) 0% 0% no-repeat padding-box;
+        mix-blend-mode: multiply;
+        width: 100%;
+        height: 100%;
+        opacity: 0.6;
+      }
+      &__group-tag {
+        z-index: 1;
+        font: normal normal normal 12px/17px Delivery,sans-serif;
+        color: #FFFFFF;
+        position: absolute;
+        bottom: 13px;
+        left: 15px;
+      }
+    }
+    &__info {
+      height: calc(100% - 191px);
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      &__author {
+        font: normal normal normal 12px/17px Delivery,sans-serif;
+        letter-spacing: 0px;
+        color: #323232;
+      }
+      &__title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        margin-top: 10px;
+        font: normal normal bold 18px/22px Delivery,sans-serif;
+        letter-spacing: 0px;
+        color: #323232;
+        &:hover {
+           color: #D40511;
+           display: block;
+         }
+      }
+      &__description {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font: normal normal normal 12px/14px Delivery,sans-serif;
+        letter-spacing: 0px;
+        color: #323232;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+      }
+      &__tags {
+        margin-top: auto;
+        height: 24px;
+        overflow: hidden;
+        font: normal normal normal 12px/24px Delivery,sans-serif;
+        &__tag {
+          background-color: #FFCC00;
+          border-radius: 4px;
+          margin-right: 10px;
+          display: inline-block;
+          color: #323232;
+          padding: 0px 9px 0px 15px;
+        }
+      }
+    }
+  }

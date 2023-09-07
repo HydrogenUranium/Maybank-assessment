@@ -1,0 +1,17 @@
+.horizontal-scroll{
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &_scrollable {
+    cursor: grab;
+  }
+
+  &_active {
+    cursor: grabbing;
+    a {
+      cursor: grabbing;
+    }
+  }
+}

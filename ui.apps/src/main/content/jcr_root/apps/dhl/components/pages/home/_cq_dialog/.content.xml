@@ -36,7 +36,7 @@
                                                     </items>
                                                 </field>
                                             </canonicals>
-                                            
+
                                             <noindex
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/foundation/form/checkbox"
@@ -140,7 +140,7 @@
                                                 name="./cookielearnmore"
                                                 rootPath="/content/dhl"
                                                 required="{Boolean}true"/>
-                                                
+
                                             <welcomemessage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
@@ -148,7 +148,7 @@
                                                 features="*"
                                                 fieldLabel="Welcome message on meganav"
                                                 name="./welcomemessage">
-                        
+
                                                 <rtePlugins jcr:primaryType="nt:unstructured">
                                                     <paraformat jcr:primaryType="nt:unstructured" features="*">
                                                         <formats jcr:primaryType="cq:WidgetCollection">
@@ -172,56 +172,56 @@
                                                     </cui>
                                                 </uiSettings>
                                             </welcomemessage>
-                                                
+
                                             <loginmessage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                 useFixedInlineToolbar="{Boolean}true"
                                                 fieldLabel="Login overlay message"
                                                 name="./loginmessage"/>
-                                                
+
                                             <signupmessage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                 useFixedInlineToolbar="{Boolean}true"
                                                 fieldLabel="Sign-up message"
                                                 name="./signupmessage"/>
-                                                
+
                                             <signupprivacymessage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                 useFixedInlineToolbar="{Boolean}true"
                                                 fieldLabel="Sign-up 'privacy' message"
                                                 name="./signupprivacymessage"/>
-                                                
+
                                             <signupemailprivacymessage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                 useFixedInlineToolbar="{Boolean}true"
                                                 fieldLabel="Sign-up email-address 'privacy/usage' message"
                                                 name="./signupemailprivacymessage"/>
-                                                
+
                                             <signuptcmessage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                 useFixedInlineToolbar="{Boolean}true"
                                                 fieldLabel="Sign-up 'terms and conditions' message"
                                                 name="./signuptcmessage"/>
-                                                
+
                                             <registerthanksmessage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                 useFixedInlineToolbar="{Boolean}true"
                                                 fieldLabel="Sign-up 'thanks' message"
                                                 name="./registerthanksmessage"/>
-                                                
+
                                             <createpasswordmessage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                 useFixedInlineToolbar="{Boolean}true"
                                                 fieldLabel="Create password message"
                                                 name="./createpasswordmessage"/>
-                                                
+
                                             <createpasswordprivacymessage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="cq/gui/components/authoring/dialog/richtext"
@@ -294,7 +294,7 @@
                                                     </items>
                                                 </field>
                                             </absolutefooterright>
-                                            
+
                                             <interestchannels
                                                 jcr:primaryType="nt:unstructured"
                                                 name="./interestchannels"
@@ -427,14 +427,14 @@
                                                 sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                 fieldLabel="Site Language (i.e. the Language code to appear in the menu)"
                                                 name="./sitelanguage" />
-                                                
+
                                             <sitedefault
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/foundation/form/checkbox"
                                                 text="Default language"
                                                 value="true"
                                                 name="./sitedefault" />
-                                                
+
                                             <siteenabled
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/foundation/form/checkbox"
@@ -515,7 +515,7 @@
                                                 fieldLabel="Sub-title"
                                                 name="./meganavbannersubtitle"
                                                 required="{Boolean}true"/>
-                                                
+
                                             <point1
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -590,7 +590,7 @@
                                                 name="./topbanner1img"
                                                 rootPath="/content/dam/dhl"
                                                 required="{Boolean}true"/>
-                                    
+
 
                                             <top1urltitle
                                                 jcr:primaryType="nt:unstructured"
@@ -637,7 +637,7 @@
                                                 name="./topbanner2img"
                                                 rootPath="/content/dam/dhl"
                                                 required="{Boolean}true"/>
-                                    
+
 
                                             <top2urltitle
                                                 jcr:primaryType="nt:unstructured"
@@ -692,7 +692,7 @@
                                                 name="./contentbanner1imgmob"
                                                 rootPath="/content/dam/dhl"
                                                 required="{Boolean}true"/>
-                                    
+
                                             <content1point1
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -775,7 +775,7 @@
                                                 name="./contentbanner2imgmob"
                                                 rootPath="/content/dam/dhl"
                                                 required="{Boolean}true"/>
-                                    
+
                                             <content2point1
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -826,6 +826,149 @@
                             </column>
                         </items>
                     </banners>
+                    <components jcr:primaryType="nt:unstructured" jcr:title="Common Components Configuration"
+                                sling:resourceType="granite/ui/components/foundation/section">
+                        <layout jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
+                                margin="{Boolean}false"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <accordion
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/accordion"
+                                            multiple="{Boolean}true" variant="quiet" margin="{Boolean}true">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <ctaBannerSubscribeToOurNewsletter
+                                                    jcr:title="CTA Banner 'Subscribe to our Newsletter'"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <mobileBackgroundImage
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            name="./ctaBannerSubscribeToOurNewsletter-mobileBackgroundImage"
+                                                            rootPath="/content/dam"
+                                                            fieldLabel="Mobile Background Image"/>
+                                                    <tabletBackgroundImage
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            name="./ctaBannerSubscribeToOurNewsletter-tabletBackgroundImage"
+                                                            rootPath="/content/dam"
+                                                            fieldLabel="Tablet Background Image"/>
+                                                    <desktopBackgroundImage
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            name="./ctaBannerSubscribeToOurNewsletter-desktopBackgroundImage"
+                                                            rootPath="/content/dam"
+                                                            fieldLabel="Desktop Background Image"/>
+                                                    <title
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Title"
+                                                            name="./ctaBannerSubscribeToOurNewsletter-title"/>
+                                                    <points
+                                                            jcr:primaryType="nt:unstructured"
+                                                            fieldLabel="Points"
+                                                            composite="{Boolean}true"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                                        <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                               jcr:primaryType="nt:unstructured"
+                                                               name="./ctaBannerSubscribeToOurNewsletter-points">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <point
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                        fieldLabel="Point"
+                                                                        required="true"
+                                                                        name="./point"/>
+                                                            </items>
+                                                        </field>
+                                                    </points>
+                                                    <buttonName
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Button Name"
+                                                            name="./ctaBannerSubscribeToOurNewsletter-buttonName"/>
+                                                    <buttonLink
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldLabel="CTA Path"
+                                                            rootPath="/content/dhl"
+                                                            name="./ctaBannerSubscribeToOurNewsletter-buttonLink"/>
+                                                </items>
+                                                <parentConfig jcr:primaryType="nt:unstructured"
+                                                              active="{Boolean}false"/>
+                                            </ctaBannerSubscribeToOurNewsletter>
+                                            <ctaBannerOpenBusinessAccount
+                                                    jcr:title="CTA Banner 'Open A Business Account'"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <mobileBackgroundImage
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            name="./ctaBannerOpenBusinessAccount-mobileBackgroundImage"
+                                                            rootPath="/content/dam"
+                                                            fieldLabel="Mobile Background Image"/>
+                                                    <tabletBackgroundImage
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            name="./ctaBannerOpenBusinessAccount-tabletBackgroundImage"
+                                                            rootPath="/content/dam"
+                                                            fieldLabel="Tablet Background Image"/>
+                                                    <desktopBackgroundImage
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            name="./ctaBannerOpenBusinessAccount-desktopBackgroundImage"
+                                                            rootPath="/content/dam"
+                                                            fieldLabel="Desktop Background Image"/>
+                                                    <title
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Title"
+                                                            name="./ctaBannerOpenBusinessAccount-title"/>
+                                                    <points
+                                                            jcr:primaryType="nt:unstructured"
+                                                            fieldLabel="Points"
+                                                            composite="{Boolean}true"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                                        <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                               jcr:primaryType="nt:unstructured"
+                                                               name="./ctaBannerOpenBusinessAccount-points">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <point
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                        fieldLabel="Point"
+                                                                        required="true"
+                                                                        name="./point"/>
+                                                            </items>
+                                                        </field>
+                                                    </points>
+                                                    <buttonName
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Button Name"
+                                                            name="./ctaBannerOpenBusinessAccount-buttonName"/>
+                                                    <buttonLink
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldLabel="CTA Path"
+                                                            rootPath="/content/dhl"
+                                                            name="./ctaBannerOpenBusinessAccount-buttonLink"/>
+                                                </items>
+                                                <parentConfig jcr:primaryType="nt:unstructured"
+                                                              active="{Boolean}false"/>
+                                            </ctaBannerOpenBusinessAccount>
+                                        </items>
+                                    </accordion>
+                                </items>
+                            </column>
+                        </items>
+                    </components>
                 </items>
             </tabs>
         </items>

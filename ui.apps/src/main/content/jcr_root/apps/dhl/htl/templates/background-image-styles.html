@@ -1,0 +1,17 @@
+<template data-sly-template.background="${@ id, mobile, tablet, desktop}">
+    <style type="text/css">
+        #${id @ context='unsafe'} {
+            background-image: url('${mobile @ context='uri'}');
+        }
+        @media screen and (min-width: 768px) {
+            #${id @ context='unsafe'} {
+                background-image: url('${tablet @ context='uri'}');
+            }
+        }
+        @media screen and (min-width: 1200px) {
+            #${id @ context='unsafe'} {
+                background-image: url('${desktop @ context='uri'}');
+            }
+        }
+    </style>
+</template>

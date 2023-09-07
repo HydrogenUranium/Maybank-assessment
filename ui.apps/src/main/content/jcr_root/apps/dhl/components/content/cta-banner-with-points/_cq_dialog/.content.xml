@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="CTA Banner - Properties"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <type
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Type (Custom configuration or configuration from home page properties)"
+                            fieldDescription="In this selector you can choose the source of configuration.
+                                    Select 'Custom Configuration' for a unique, personalized setup.
+                                     Or you can choose one of pre-made settings (configured in home page properties)"
+                            granite:class="cq-dialog-dropdown-showhide cq-dialog-dropdown-reset-linked-checkbox"
+                            name="./type">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-dropdown-showhide-target=".cta-banner-type-checkbox-showhide"/>
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <custom
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Custom Configuration"
+                                    value="custom"/>
+                            <businessAccount
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Open A Business Account (Home Page Configuration)"
+                                    value="businessAccount"/>
+                            <subscribeNewsletter
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Subscribe To Our Newsletter (Home Page Configuration)"
+                                    value="subscribeNewsletter"/>
+                        </items>
+                    </type>
+                    <style
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Style"
+                            fieldDescription="In this option, you can choose from two design styles. Responsive is used for a single banner. The sidebar used for components in the sidebar."
+                            name="./style">
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <adaptive
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Adaptive (have a different design for desktop view)"
+                                    value="adaptive"/>
+                            <sidebar
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Sidebar (have similar design for all views and usually used for sidebar)"
+                                    value="sidebar"/>
+                        </items>
+                    </style>
+                    <configuration
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/container"
+                            granite:class="cta-banner-type-checkbox-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="custom"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <mobileBackgroundImage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./mobileBackgroundImage"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Mobile Background Image"/>
+                            <tabletBackgroundImage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./tabletBackgroundImage"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Tablet Background Image"/>
+                            <desktopBackgroundImage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./desktopBackgroundImage"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Desktop Background Image"/>
+                            <title
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Title"
+                                    name="./title"/>
+                            <points
+                                    jcr:primaryType="nt:unstructured"
+                                    fieldLabel="Points"
+                                    composite="{Boolean}true"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                       jcr:primaryType="nt:unstructured"
+                                       name="./points">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <point
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Point"
+                                                required="true"
+                                                name="./point"/>
+                                    </items>
+                                </field>
+                            </points>
+                            <buttonName
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Button Name"
+                                    name="./buttonName"/>
+                            <buttonLink
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Button Link"
+                                    rootPath="/content/dhl"
+                                    name="./buttonLink"/>
+                        </items>
+                    </configuration>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
