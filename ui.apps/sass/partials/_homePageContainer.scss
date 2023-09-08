@@ -1,52 +1,49 @@
 .home-page-container-component {
-  max-width: 1270px;
   margin: 0px 35px;
-  .horizontal-scroll {
-    margin-left: -35px;
-    padding-left: 35px;
-    margin-right: -35px;
-    padding-right: 35px;
-  }
-  &__body {
-    @include respond(xl) {
-      margin: 0px 35px;
+  .container {
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 0px;
+
+    .horizontal-scroll {
+      margin-left: -35px;
+      padding-left: 35px;
+      margin-right: -35px;
+      padding-right: 35px;
     }
-  }
-  @include respond(xl) {
-    margin: auto;
-  }
-  &_with-side-bar {
-    @include respond(md) {
-      display: grid;
-      grid-gap: 0px;
-      grid-template-columns: minmax(434px, 830px) minmax(268px, 360px);
-      grid-template-areas:"body sidebar";
-    }
-     @include respond(xl) {
-      grid-template-columns: minmax(434px, 830px) minmax(268px, auto);
-      grid-gap: 10px;
-     }
-    .home-page-container-component {
-      &__body {
-        @include respond(md) {
-          grid-area: body;
-        }
-        @include respond(xl) {
-          margin-left: 35px;
-          margin-right: 0px;
-        }
+
+    &_with-side-bar {
+      @include respond(md) {
+        display: grid;
+        grid-gap: 0px;
+        grid-template-columns: minmax(434px, 830px) minmax(268px, 360px);
+        grid-template-areas: "body sidebar";
       }
 
-      &__sidebar {
-        display: none;
-        @include respond(md) {
-          display: block;
-          padding:0px 8px;
-          grid-area: sidebar;
+      @include respond(xl) {
+        grid-template-columns: minmax(434px, 830px) minmax(268px, auto);
+        grid-gap: 10px;
+      }
+
+      .container {
+        &__body {
+          @include respond(md) {
+            grid-area: body;
+          }
         }
-        @include respond(xl) {
-          padding:0px 15px;
-          margin-right: 35px;
+
+        &__sidebar {
+          display: none;
+
+          @include respond(md) {
+            display: block;
+            padding: 0px 8px;
+            grid-area: sidebar;
+          }
+
+          @include respond(xl) {
+            padding: 0px 15px;
+          }
         }
       }
     }
