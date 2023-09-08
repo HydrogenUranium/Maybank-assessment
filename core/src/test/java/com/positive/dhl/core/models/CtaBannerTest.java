@@ -8,6 +8,7 @@ import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.spi.DisposalCallbackRegistry;
 import org.apache.sling.models.spi.Injector;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -33,7 +34,9 @@ class CtaBannerTest {
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
-    MockSlingHttpServletRequest request = context.request();
+    private final MockSlingHttpServletRequest request = context.request();
+
+    private final ResourceResolver resourceResolver = context.resourceResolver();
 
     @Mock
     private AssetUtilService assetUtils;
@@ -63,23 +66,19 @@ class CtaBannerTest {
         context.addModelsForClasses(CtaBanner.class);
     }
 
-    private void mockType(String type) {
-        when(injector.getValue(any(), anyString(), any(), any(), any())).thenReturn(null);
-        when(injector.getName()).thenReturn("adaptable");
-        when(injector.getValue(any(), eq("type"), any(), any(), any())).thenReturn(type);
-        context.registerService(Injector.class, injector);
-    }
-
     private void mockHomePage() {
         when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
     }
 
+    private void initRequest(String path) {
+        request.setPathInfo(path);
+        request.setResource(resourceResolver.getResource(path));
+    }
+
     @Test
     void init_ShouldInitPropertiesFromHomePage_WhenTypeIsSubscribe() {
-        request.setPathInfo(COMPONENT_LOCATION + "/cta_banner_subscribeNewsletter");
-        mockType("subscribeNewsletter");
+        initRequest(COMPONENT_LOCATION + "/cta_banner_subscribeNewsletter");
         mockHomePage();
-        context.registerService(Injector.class, injector);
 
         CtaBanner ctaBanner = request.adaptTo(CtaBanner.class);
 
@@ -97,10 +96,8 @@ class CtaBannerTest {
 
     @Test
     void init_ShouldInitPropertiesFromHomePage_WhenTypeIsOpenBusinessAccount() {
-        request.setPathInfo(COMPONENT_LOCATION + "/cta_banner_businessAccount");
-        mockType("businessAccount");
+        initRequest(COMPONENT_LOCATION + "/cta_banner_businessAccount");
         mockHomePage();
-        context.registerService(Injector.class, injector);
 
         CtaBanner ctaBanner = request.adaptTo(CtaBanner.class);
 
