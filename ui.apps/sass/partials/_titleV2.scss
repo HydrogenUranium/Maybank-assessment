@@ -4,7 +4,11 @@
   margin: 0px auto 0px auto;
   background-color: #040404;
   @include respond(md) {
-    background-color: white;
+    background-color: initial;
+    margin-top: 30px;
+  }
+  @include respond(xl) {
+     margin-top: 45px;
   }
   .svg {
     opacity: 0.29;
@@ -15,6 +19,7 @@
       left: 0;
       transform: translate(-148px, 0px);
       @include respond(md) {
+        top: 0px;
         transform: translate(-48px, 0px);
       }
       @include respond(xl) {
@@ -27,6 +32,7 @@
       right: 0;
       transform: translate(+148px, 0px);
       @include respond(md) {
+        bottom: 0px;
         transform: translate(+48px, 0px);
       }
       @include respond(xl) {
@@ -47,8 +53,8 @@
       color: #323232;
       margin-left: 210px;
       margin-right:210px;
-      padding-top: 50px;
-      padding-bottom: 50px;
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
     @include respond(xl) {
       line-height: 42px;
@@ -56,8 +62,8 @@
       text-align: left;
       margin-left: 310px;
       margin-right:310px;
-      padding-top: 30px;
-      padding-bottom: 30px;
+      padding-top: 0px;
+      padding-bottom: 0px;
     }
   }
 }

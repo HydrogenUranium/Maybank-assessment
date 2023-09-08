@@ -1,4 +1,8 @@
 .article-showcase-component {
+  margin-top: 30px;
+  @include respond(xl) {
+    margin-top: 50px;
+  }
   .title{
     font: normal normal bold 20px/40px Delivery, sans-serif;
     padding-left: 10px;

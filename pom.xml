@@ -60,7 +60,7 @@
         <bnd.version>5.1.2</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aem.sdk.api>2023.7.12549.20230704T084019Z-230601</aem.sdk.api>
+        <aem.sdk.api>2023.8.13323.20230831T134651Z-230800</aem.sdk.api>
         <aemanalyser.version>1.5.8</aemanalyser.version>
         <componentGroupName>Deutsche Post AG Discover</componentGroupName>
         <maven.compiler.source>11</maven.compiler.source>
@@ -513,6 +513,18 @@ Bundle-DocURL:
                     <url>https://artifactory.dhl.com/artifactory/maven-release</url>
                 </repository>
             </repositories>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <configuration>
+                            <nodeDownloadRoot>https://artifactory.dhl.com/nodejs/</nodeDownloadRoot>
+                            <npmDownloadRoot>https://artifactory.dhl.com/api/npm/npm/</npmDownloadRoot>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
             <pluginRepositories>
                 <pluginRepository>
                     <snapshots>
