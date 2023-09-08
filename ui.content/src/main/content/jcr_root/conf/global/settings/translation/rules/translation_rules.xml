@@ -413,6 +413,10 @@
       <property inherit="true" name="topbanner2title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="topbanner2urltitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="welcomemessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="buttonName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="buttonLink" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="linkName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="linkPath" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/pages/landing">
       <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
