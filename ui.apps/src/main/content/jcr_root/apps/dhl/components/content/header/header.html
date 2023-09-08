@@ -41,8 +41,8 @@
                 </sly>
             </div>
             <div class="right-side">
-                <a class="button" href="${headerV2.openBusinessAccountButtonLink}" title="${headerV2.openBusinessAccountButtonName}">
-                    <span>${headerV2.openBusinessAccountButtonName}</span>
+                <a data-sly-test="${headerV2.buttonName}" class="button" href="${headerV2.buttonLink}" title="${headerV2.buttonName}">
+                    <span>${headerV2.buttonName}</span>
                 </a>
                 <a class="navigation-item" data-sly-repeat="${headerV2.companyLinks}" href="${item.linkPath}"><span>${item.linkName}</span></a>
             </div>
