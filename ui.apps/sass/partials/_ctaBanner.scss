@@ -191,16 +191,10 @@
               width: 180px;
             }
 
-//             @include respond(xl) {
-//               width: auto;
-//               margin: 20px 0px 20px 20px;
-//             }
-
             .banner__body__list__item,
             li {
               @include respond(xl) {
                 margin-bottom: 20px;
-//                 line-height: 24px;
               }
             }
           }
@@ -208,14 +202,7 @@
           .banner__body__list--columns {
             @include respond(md) {
               columns: 1;
-//               column-gap: 35px;
             }
-
-//             .banner__body__list__item {
-//               @include respond(md) {
-//                 break-inside: avoid-column;
-//               }
-//             }
           }
 
           &__title {
@@ -228,7 +215,6 @@
           &__button {
             @include respond(xl) {
               display: block;
-//               min-width: 210px;
               line-height: 24px;
               font-size: 14px;
             }
