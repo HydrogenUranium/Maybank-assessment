@@ -11,6 +11,6 @@
     <filter root="/conf/groovyconsole/scripts"/>
 
     <filter root="/conf/dhl/settings/wcm/template-types"/>
-    <filter root="/conf/dhl/settings/wcm/policies"/>
-    <filter root="/conf/dhl/settings/wcm/templates"/>
+    <filter root="/conf/dhl/settings/wcm/policies" mode="update"/>
+    <filter root="/conf/dhl/settings/wcm/templates" mode="update"/>
 </workspaceFilter>
