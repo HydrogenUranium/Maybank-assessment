@@ -3,7 +3,7 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 <div class="cta-banner-with-points-component">
-    <div class="banner ${properties.style == 'adaptive' ? 'banner--adaptive' : ''}">
+    <div class="banner">
         <div class="banner__image" id="${model.id}">
             <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
                  data-sly-call="${template.background @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>

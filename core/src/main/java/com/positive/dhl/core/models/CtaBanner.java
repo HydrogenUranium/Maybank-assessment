@@ -41,12 +41,6 @@ public class CtaBanner {
 
     @Inject
     @Optional
-    @Getter
-    private String style;
-
-
-    @Inject
-    @Optional
     @Default(values = "custom")
     private String type;
 
