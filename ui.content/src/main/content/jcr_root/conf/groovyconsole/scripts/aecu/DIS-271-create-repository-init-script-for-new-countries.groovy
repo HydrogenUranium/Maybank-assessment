@@ -18,6 +18,7 @@ def NEW_COUNTRIES_DATA = [
         ["country": "Bangladesh",	    "code": "bd"],
         ["country": "Denmark",	        "code": "dk"]
 ]
+println("REPOSITORY INIT")
 
 NEW_COUNTRIES_DATA.each {
     def id = it.country.toLowerCase().replaceAll(" ", "-")
@@ -36,4 +37,12 @@ NEW_COUNTRIES_DATA.each {
         "set ACL for publisher-$id\\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/$code)\\nend",
         "set ACL for publisher-$id\\nallow jcr:read on home(publisher-$id)\\nend",
     """)
+}
+
+println("PUBLICATION REVIEW")
+
+NEW_COUNTRIES_DATA.each {
+    def id = it.country.toLowerCase().replaceAll(" ", "-")
+    def code = it.code
+    println("\"/content/dhl/$code:publisher-$id\",")
 }
