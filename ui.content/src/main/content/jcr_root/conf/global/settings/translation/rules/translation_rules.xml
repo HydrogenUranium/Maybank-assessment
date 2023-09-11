@@ -223,6 +223,14 @@
     <node resourceType="dhl/components/content/title">
       <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
     </node>
+    <node resourceType="dhl/components/content/article-showcase">
+      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="linkName" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="dhl/components/content/cta-banner-with-points">
+      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="buttonName" translate="true" updateDestinationLanguage="false"/>
+    </node>
     <node resourceType="dhl/components/pages/amparticle">
       <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
@@ -413,6 +421,10 @@
       <property inherit="true" name="topbanner2title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="topbanner2urltitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="welcomemessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBannerOpenBusinessAccount-buttonName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBannerOpenBusinessAccount-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBannerSubscribeToOurNewsletter-buttonName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBannerSubscribeToOurNewsletter-title" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/pages/landing">
       <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>

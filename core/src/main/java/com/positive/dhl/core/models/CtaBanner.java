@@ -188,7 +188,7 @@ public class CtaBanner {
         Iterator<Resource> multifieldItems = pointsMultifield.listChildren();
         while (multifieldItems.hasNext()) {
             var properties = multifieldItems.next().getValueMap();
-            list.add(properties.get("point", ""));
+            list.add(properties.get("text", ""));
         }
         return list;
     }
