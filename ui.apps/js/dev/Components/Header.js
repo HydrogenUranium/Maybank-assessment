@@ -7,7 +7,7 @@ class Header {
     this.lastVal = '';
 
     this.sel = {
-      component: '.header, .headerV2',
+      component: '.header, .headerV2-wrapper',
       toggle: '.header__navigation, .headerV2__navigation',
       menu: '.header__meganav, .headerV2__meganav',
       overlay: '.header__overlay',
