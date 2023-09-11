@@ -1,0 +1,7 @@
+{
+  "component": {
+    "heroimagemob": "/content/dam/mobile.jpg",
+    "heroimagetab": "/content/dam/tablet.jpg",
+    "heroimagedt": "/content/dam/desktop.jpg"
+  }
+}

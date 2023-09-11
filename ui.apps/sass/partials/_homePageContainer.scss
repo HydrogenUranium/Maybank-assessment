@@ -1,0 +1,51 @@
+.home-page-container-component {
+  margin: 0px 35px;
+  .container {
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 0px;
+
+    .horizontal-scroll {
+      margin-left: -35px;
+      padding-left: 35px;
+      margin-right: -35px;
+      padding-right: 35px;
+    }
+
+    &_with-side-bar {
+      @include respond(md) {
+        display: grid;
+        grid-gap: 0px;
+        grid-template-columns: minmax(434px, 830px) minmax(268px, 360px);
+        grid-template-areas: "body sidebar";
+      }
+
+      @include respond(xl) {
+        grid-template-columns: minmax(auto, 830px) 360px;
+        grid-gap: 10px;
+      }
+
+      .container {
+        &__body {
+          @include respond(md) {
+            grid-area: body;
+          }
+        }
+
+        &__sidebar {
+          display: none;
+
+          @include respond(md) {
+            display: block;
+            padding: 0px 8px;
+            grid-area: sidebar;
+          }
+
+          @include respond(xl) {
+            padding: 0px 15px;
+          }
+        }
+      }
+    }
+  }
+}

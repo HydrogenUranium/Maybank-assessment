@@ -1,0 +1,21 @@
+.article-showcase-component {
+  margin-top: 30px;
+  @include respond(xl) {
+    margin-top: 50px;
+  }
+  .title{
+    font: normal normal bold 20px/40px Delivery, sans-serif;
+    padding-left: 10px;
+    margin-bottom: 16px;
+    border-left: 2px solid #DD3741;
+  }
+  .article-cards {
+    @include respond(xl) {
+      .article-card:nth-child(n + 5) {
+         display: none;
+      }
+    }
+    display: flex;
+    gap: 36px;
+  }
+}

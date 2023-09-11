@@ -31,6 +31,7 @@ import BackButton from './Components/BackButton';
 import MarketoForm from './Components/MarketoForm';
 import LanguageDetect from './Components/LanguageDetect';
 import Shared from './Components/Shared';
+import HorizontalScroll from './Components/HorizontalScroll';
 
 $(document).ready(() => {
   try {
@@ -73,4 +74,5 @@ $(document).ready(() => {
   BackButton.init();
   MarketoForm.init();
   Shared.init();
+  HorizontalScroll.init();
 });

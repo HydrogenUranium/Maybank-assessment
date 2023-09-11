@@ -1,0 +1,12 @@
+<div class="home-page-container-component">
+    <div class="container ${properties.designMode == 'withSidebar' ? 'container_with-side-bar': ''}">
+        <div class="container__body">
+            <div class="body-container"
+                 data-sly-resource="${'body' @ resourceType='wcm/foundation/components/responsivegrid'}"></div>
+        </div>
+        <div class="container__sidebar" data-sly-test="${properties.designMode == 'withSidebar'}">
+            <div class="sidebar-container"
+                 data-sly-resource="${'sidebar' @ resourceType='wcm/foundation/components/responsivegrid'}"></div>
+        </div>
+    </div>
+</div>

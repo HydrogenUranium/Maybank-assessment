@@ -1,0 +1,21 @@
+<sly data-sly-use.model="com.positive.dhl.core.models.CtaBanner"
+     data-sly-test.isEmpty=${model.points.empty}></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+<div class="cta-banner-with-points-component">
+    <div class="banner">
+        <div class="banner__image" id="${model.id}">
+            <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
+                 data-sly-call="${template.background @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>
+        </div>
+        <div class="banner__body">
+            <div class="banner__body__title">${model.title}</div>
+            <ul class="banner__body__list ${model.points.size > 2 ? 'banner__body__list--columns' : ''}">
+                <li class="banner__body__list__item" data-sly-repeat="${model.points}">${item}</li>
+            </ul>
+            <a class="banner__body__button" href="${model.buttonLink}" title="${model.buttonName}">
+                <span>${model.buttonName}</span>
+            </a>
+        </div>
+    </div>
+</div>
