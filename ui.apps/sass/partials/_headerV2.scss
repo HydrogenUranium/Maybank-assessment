@@ -124,11 +124,12 @@
       &.active {
         text-decoration: underline;
         font-weight: bold;
-        color: #D40511;
+        color: map-get($palette, scarlet);
       }
 
       &:hover {
         text-decoration: none;
+        color:
       }
     }
   }
