@@ -19,7 +19,7 @@
                     <type
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                            fieldLabel="Type (Custom configuration or configuration from home page properties)"
+                            fieldLabel="Type (Source of configuration)"
                             fieldDescription="In this selector you can choose the source of configuration.
                                     Select 'Custom Configuration' for a unique, personalized setup.
                                      Or you can choose one of pre-made settings (configured in home page properties)"
@@ -44,24 +44,6 @@
                                     value="subscribeNewsletter"/>
                         </items>
                     </type>
-                    <style
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                            fieldLabel="Style"
-                            fieldDescription="In this option, you can choose from two design styles. Responsive is used for a single banner. The sidebar used for components in the sidebar."
-                            name="./style">
-                        <items
-                                jcr:primaryType="nt:unstructured">
-                            <adaptive
-                                    jcr:primaryType="nt:unstructured"
-                                    text="Adaptive (have a different design for desktop view)"
-                                    value="adaptive"/>
-                            <sidebar
-                                    jcr:primaryType="nt:unstructured"
-                                    text="Sidebar (have similar design for all views and usually used for sidebar)"
-                                    value="sidebar"/>
-                        </items>
-                    </style>
                     <configuration
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/foundation/container"
@@ -102,12 +84,12 @@
                                        jcr:primaryType="nt:unstructured"
                                        name="./points">
                                     <items jcr:primaryType="nt:unstructured">
-                                        <point
+                                        <text
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Point"
                                                 required="true"
-                                                name="./point"/>
+                                                name="./text"/>
                                     </items>
                                 </field>
                             </points>

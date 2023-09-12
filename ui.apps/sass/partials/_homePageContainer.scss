@@ -21,7 +21,7 @@
       }
 
       @include respond(xl) {
-        grid-template-columns: minmax(434px, 830px) minmax(268px, auto);
+        grid-template-columns: minmax(auto, 830px) 360px;
         grid-gap: 10px;
       }
 

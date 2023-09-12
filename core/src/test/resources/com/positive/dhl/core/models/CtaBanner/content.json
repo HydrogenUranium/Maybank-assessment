@@ -12,11 +12,11 @@
         "jcr:primaryType": "nt:unstructured",
         "item0": {
           "jcr:primaryType": "nt:unstructured",
-          "point": "Fortnightly insights, tips and free assets"
+          "text": "Fortnightly insights, tips and free assets"
         },
         "item1": {
           "jcr:primaryType": "nt:unstructured",
-          "point": "Shape a global audience for your business"
+          "text": "Shape a global audience for your business"
         }
       },
       "ctaBannerSubscribeToOurNewsletter-desktopBackgroundImage": "/content/dam/images/subscribe-desktop.png",
@@ -29,11 +29,11 @@
         "jcr:primaryType": "nt:unstructured",
         "item0": {
           "jcr:primaryType": "nt:unstructured",
-          "point": "Fortnightly insights, tips and free assets"
+          "text": "Fortnightly insights, tips and free assets"
         },
         "item1": {
           "jcr:primaryType": "nt:unstructured",
-          "point": "Shape a global audience for your business"
+          "text": "Shape a global audience for your business"
         }
       },
       "jcr:primaryType": "cq:PageContent",

@@ -878,12 +878,12 @@
                                                                jcr:primaryType="nt:unstructured"
                                                                name="./ctaBannerSubscribeToOurNewsletter-points">
                                                             <items jcr:primaryType="nt:unstructured">
-                                                                <point
+                                                                <text
                                                                         jcr:primaryType="nt:unstructured"
                                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                         fieldLabel="Point"
                                                                         required="true"
-                                                                        name="./point"/>
+                                                                        name="./text"/>
                                                             </items>
                                                         </field>
                                                     </points>
@@ -939,12 +939,12 @@
                                                                jcr:primaryType="nt:unstructured"
                                                                name="./ctaBannerOpenBusinessAccount-points">
                                                             <items jcr:primaryType="nt:unstructured">
-                                                                <point
+                                                                <text
                                                                         jcr:primaryType="nt:unstructured"
                                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                         fieldLabel="Point"
                                                                         required="true"
-                                                                        name="./point"/>
+                                                                        name="./text"/>
                                                             </items>
                                                         </field>
                                                     </points>
