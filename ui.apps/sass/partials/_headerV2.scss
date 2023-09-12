@@ -9,6 +9,7 @@
   height: 64px;
   width: 100%;
   transition: width 0.3s ease;
+  font-family: "Delivery", sans-serif;
 
   &.headerV2__navigation--open {
     @include respond(md) {
@@ -20,7 +21,7 @@
     align-items: flex-start;
     padding: 25px 15px 0 42px;
     height: 128px;
-    width: 1640px;
+    max-width: 1640px;
     margin: auto;
   }
 
@@ -100,7 +101,7 @@
   .navigation-item {
     display: block;
     border-bottom: 1px solid map-get($palette, white);
-    padding: 16px 0 8px;
+    padding: 20px 0 8px;
     font-size: 16px;
     color: #000000E6;
 
@@ -240,6 +241,11 @@
     > li {
       display: block;
       padding-bottom: 27px;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
 
       a {
         display: block;

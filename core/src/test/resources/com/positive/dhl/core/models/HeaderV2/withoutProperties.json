@@ -21,7 +21,7 @@
             "sling:resourceType": "wcm/foundation/components/responsivegrid",
             "header": {
               "jcr:primaryType": "nt:unstructured",
-              "sling:resourceType": "dhl/components/content/header",
+              "sling:resourceType": "dhl/components/content/headerV2",
               "cta_banner_with_poin": {
                 "jcr:primaryType": "nt:unstructured",
                 "type": "businessAccount",
