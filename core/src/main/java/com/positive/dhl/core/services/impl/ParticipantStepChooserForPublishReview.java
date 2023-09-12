@@ -49,7 +49,7 @@ public class ParticipantStepChooserForPublishReview implements ParticipantStepCh
                 name = "Default Reviewer",
                 description = "If there is no suitable publisher, this one will be used for review"
         )
-        String defaultParticipant() default "publisher-global";
+        String defaultParticipant() default "publisher-all-countries";
 
         @AttributeDefinition(
                 name = "Service Mappings",
