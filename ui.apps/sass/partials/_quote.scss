@@ -1,0 +1,18 @@
+.quote-component {
+  margin: auto;
+  max-width: 710px;
+  padding: 30px 0px;
+  margin-top: 50px;
+  @include respond(xl) {
+     padding: 30px 0px;
+     margin-top: 50px;
+  }
+  &__text {
+    font: normal normal bold 16px/37px Delivery, sans-serif;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    @include respond(xl) {
+       font: normal normal bold 30px/37px Delivery, sans-serif;
+    }
+  }
+}
