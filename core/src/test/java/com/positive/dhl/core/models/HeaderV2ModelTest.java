@@ -40,25 +40,15 @@ class HeaderV2ModelTest {
     @InjectMocks
     private AssetInjector assetInjector;
 
-    @Mock
-    private Injector injector;
-
     @BeforeEach
     void setUp() {
         context.registerService(Injector.class, assetInjector);
         context.registerService(Injector.class, homePropertyInjector);
         context.registerService(PageUtilService.class, pageUtils);
         context.addModelsForClasses(CtaBanner.class);
-        mockType("businessAccount");
-        context.registerService(Injector.class, injector);
+        context.addModelsForClasses(HeaderV2Model.class);
+        context.addModelsForClasses(CompanyLink.class);
         request.setPathInfo(COMPONENT_LOCATION);
-    }
-
-    private void mockType(String type) {
-        when(injector.getValue(any(), anyString(), any(), any(), any())).thenReturn(null);
-        when(injector.getName()).thenReturn("adaptable");
-        lenient().when(injector.getValue(any(), eq("type"), any(), any(), any())).thenReturn(type);
-        context.registerService(Injector.class, injector);
     }
 
     @Test

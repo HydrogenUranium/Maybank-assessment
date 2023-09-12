@@ -105,7 +105,6 @@ public class CtaBanner {
     @Optional
     private String desktopBackgroundImageOpenBusinessAccount;
 
-
     @Inject
     @Getter
     @Optional
