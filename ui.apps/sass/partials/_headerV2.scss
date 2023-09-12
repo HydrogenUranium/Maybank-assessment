@@ -129,7 +129,7 @@
 
       &:hover {
         text-decoration: none;
-        color:
+        color: map-get($palette, scarlet);
       }
     }
   }
