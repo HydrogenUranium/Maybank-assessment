@@ -2,6 +2,7 @@ package com.positive.dhl.core.injectors;
 
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageUtilService;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.spi.DisposalCallbackRegistry;
 import org.apache.sling.models.spi.Injector;
@@ -28,6 +29,17 @@ public class HomePropertyInjector extends AbstractInjector {
     @Override
     public @NotNull String getName() {
         return "discover-home-property";
+    }
+
+    @Override
+    protected Resource getResource(Object object) {
+        if (object instanceof SlingHttpServletRequest) {
+            SlingHttpServletRequest request = ((SlingHttpServletRequest) object);
+            var resourceResolver = request.getResourceResolver();
+            return resourceResolver.resolve(request.getPathInfo());
+        }
+
+        return null;
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.positive.dhl.core.injectors.InjectAsset;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.AssetUtilService;
 import lombok.Getter;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
@@ -18,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-@Model(adaptables = Resource.class)
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class})
 public class CtaBanner {
 
     @OSGiService

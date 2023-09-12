@@ -30,7 +30,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Article Root Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[group:DHL Components,group:DHL Article structure,/libs/wcm/foundation/components/responsivegrid,">
+                            components="[group:DHL Components,group:DHL Article structure,/libs/wcm/foundation/components/responsivegrid]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1574694950110>
                 </responsivegrid>

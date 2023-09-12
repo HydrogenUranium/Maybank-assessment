@@ -10,8 +10,8 @@ public abstract class AbstractInjector implements Injector {
             return (Resource) adaptable;
         } else if (adaptable instanceof SlingHttpServletRequest) {
             return ((SlingHttpServletRequest) adaptable).getResource();
-        } else {
-            return null;
         }
+
+        return null;
     }
 }
