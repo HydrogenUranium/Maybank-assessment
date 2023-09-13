@@ -24,6 +24,7 @@ import javax.inject.Named;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.util.*;
+import java.util.stream.Stream;
 
 @Getter
 @Slf4j
@@ -102,18 +103,25 @@ public class ArticleShowcase {
                 "2_property.operation", "exists",
                 "orderby", "@jcr:content/custompublishdate",
                 "orderby.sort", "ask",
-                "p.limit", "5"
+                "p.limit", "4"
         );
 
-        Map<String, String> originalPublish = new HashMap<>(customPublishProp);
-        originalPublish.put("orderby", "@jcr:content/jcr:created");
-        originalPublish.put("2_property.operation", "not");
+        Map<String, String> createdProp = new HashMap<>(customPublishProp);
+        createdProp.put("orderby", "@jcr:content/jcr:created");
+        createdProp.put("2_property.operation", "not");
 
-        articles.addAll(searchArticles(customPublishProp));
-        articles.addAll(searchArticles(originalPublish));
+        Map<String, String> lastModifiedProp = new HashMap<>(createdProp);
+        createdProp.put("orderby", "@jcr:content/cq:lastModified");
+
+        Map<String, Article> articleMap = new HashMap<>();
+
+        searchArticles(customPublishProp).forEach(article -> articleMap.put(article.getPath(), article));
+        searchArticles(createdProp).forEach(article -> articleMap.put(article.getPath(), article));
+        searchArticles(lastModifiedProp).forEach(article -> articleMap.put(article.getPath(), article));
+
+        articles.addAll(articleMap.values());
         articles.sort((o1, o2) -> o2.getCreatedDate().compareTo(o1.getCreatedDate()));
-
-        articles = articles.subList(0, Math.min(5, articles.size()));
+        articles = articles.subList(0, Math.min(4, articles.size()));
     }
 
     private List<Article> searchArticles(Map<String, String> props) {

@@ -88,10 +88,8 @@ class ArticleShowcaseTest {
         ArticleShowcase showcase = request.adaptTo(ArticleShowcase.class);
 
         List<Article> articles = showcase.getArticles();
-        assertEquals(4, articles.size());
+        assertEquals(2, articles.size());
         assertEquals("/article_2", articles.get(0).getPath());
-        assertEquals("/article_2", articles.get(1).getPath());
-        assertEquals("/article_1", articles.get(2).getPath());
-        assertEquals("/article_1", articles.get(3).getPath());
+        assertEquals("/article_1", articles.get(1).getPath());
     }
 }
