@@ -34,7 +34,7 @@ class ArticleTest {
         assertEquals("/content/dam/global-master/8-site-images/roundels/anna_thompson.jpg", article.getAuthorimage());
         assertEquals("Discover content team", article.getAuthortitle());
         assertEquals("2023-08-04", article.getCreated());
-        assertEquals("03 August 2023", article.getCreatedfriendly());
+        assertEquals("04 August 2023", article.getCreatedfriendly());
         assertEquals("What paperwork do I need for international shipping?", article.getFullTitle());
         assertEquals("#SmallBusinessAdvice", article.getGroupTag());
         assertEquals("/content/home/small-business-advice", article.getGrouppath());
