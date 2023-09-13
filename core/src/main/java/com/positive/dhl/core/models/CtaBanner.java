@@ -9,6 +9,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +26,7 @@ public class CtaBanner {
     @OSGiService
     private AssetUtilService assetUtils;
 
-    @Inject
+    @ChildResource
     @Named("points")
     @Optional
     private Resource pointsMultifield;
