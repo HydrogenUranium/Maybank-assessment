@@ -99,18 +99,22 @@ public class Article {
 			return;
 		}
 		ValueMap properties = resource.getValueMap();
-		String customDate = properties.get("jcr:content/custompublishdate", properties.get("jcr:content/jcr:created", ""));
-		if ((customDate.trim().length() > 0) && (customDate.contains("T"))) {
+		Date jcrCreated = properties.get("jcr:content/jcr:created", new Date());
+		Date cqLastModified = properties.get("jcr:content/cq:lastModified", jcrCreated);
+		Date defaultLastPublication = jcrCreated.after(cqLastModified) ? jcrCreated : cqLastModified;
+
+		String customDate = properties.get("jcr:content/custompublishdate", "");
+		if ((customDate.isBlank()) && (customDate.contains("T"))) {
 			try {
 				String[] parts = customDate.split("T");
 				createdDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(parts[0]);
 
 			} catch (ParseException e) {
-				createdDate = properties.get("jcr:content/custompublishdate", new Date());
+				createdDate = properties.get("jcr:content/custompublishdate", defaultLastPublication);
 			}
 
 		} else {
-			createdDate = properties.get("jcr:content/custompublishdate", new Date());
+			createdDate = properties.get("jcr:content/custompublishdate", defaultLastPublication);
 		}
 
 
