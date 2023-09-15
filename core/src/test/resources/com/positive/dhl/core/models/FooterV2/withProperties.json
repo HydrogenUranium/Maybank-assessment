@@ -1,0 +1,73 @@
+{
+  "home": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:content": {
+      "jcr:title": "Home",
+      "jcr:primaryType": "cq:PageContent",
+      "sling:resourceType": "dhl/components/pages/home",
+      "footer": {
+        "jcr:primaryType": "nt:unstructured",
+        "invitation-text": "Join over 5000+ SMEs already growing with Discover",
+        "invitation-title": "Ready to grow your business?",
+        "logoAltText": "Alt Text",
+        "logoTitle": "DHL Group",
+        "promo-text": "Get tips and advice",
+        "logoIcon": "/content/dam/dhl-discover/common/icons/glo-footer-logo.svg",
+        "logoLink": "https://www.dhl.com/",
+        "companyLinks": {
+          "jcr:primaryType": "nt:unstructured",
+          "item0": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "About us",
+            "linkPath": "/content/dhl/about-us"
+          },
+          "item1": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "Press",
+            "linkPath": "#"
+          },
+          "item2": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "Contact",
+            "linkPath": "#"
+          }
+        },
+        "socialLinks": {
+          "jcr:primaryType": "nt:unstructured",
+          "item0": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-facebook.svg",
+            "linkName": "Facebook",
+            "linkPath": "https://www.facebook.com/"
+          },
+          "item1": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-twitter.svg",
+            "linkName": "Twitter",
+            "linkPath": "#"
+          },
+          "item2": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-linkedIn.svg",
+            "linkName": "LinkedIn",
+            "linkPath": "#"
+          }
+        }
+      }
+    },
+    "small-business-advice": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "sling:resourceType": "dhl/components/pages/articlecategory"
+      },
+      "article": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "cq:template": "/conf/dhl/settings/wcm/templates/article"
+        }
+      }
+    }
+  }
+}

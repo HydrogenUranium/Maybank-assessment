@@ -20,7 +20,6 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -45,9 +44,8 @@ class HeaderV2ModelTest {
         context.registerService(Injector.class, assetInjector);
         context.registerService(Injector.class, homePropertyInjector);
         context.registerService(PageUtilService.class, pageUtils);
-        context.addModelsForClasses(CtaBanner.class);
         context.addModelsForClasses(HeaderV2Model.class);
-        context.addModelsForClasses(CompanyLink.class);
+        context.addModelsForClasses(LinkModel.class);
         request.setPathInfo(COMPONENT_LOCATION);
     }
 

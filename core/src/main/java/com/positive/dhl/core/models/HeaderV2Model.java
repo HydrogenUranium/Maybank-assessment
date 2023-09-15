@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class HeaderV2Model {
     @OSGiService
     private PageUtilService pageUtilService;
@@ -38,10 +38,10 @@ public class HeaderV2Model {
     @Named("header/companyLinks")
     private Resource companyLinks;
 
-    public List<CompanyLink> getCompanyLinks() {
-        List<CompanyLink> links = new LinkedList<>();
+    public List<LinkModel> getCompanyLinks() {
+        List<LinkModel> links = new LinkedList<>();
         if (companyLinks != null) {
-            companyLinks.listChildren().forEachRemaining(r -> links.add(r.adaptTo(CompanyLink.class)));
+            companyLinks.listChildren().forEachRemaining(r -> links.add(r.adaptTo(LinkModel.class)));
         }
         return links;
     }
