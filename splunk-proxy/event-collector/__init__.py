@@ -9,6 +9,7 @@ import typing
 TOKEN_NAME_PROD = "TOKEN_PROD"
 TOKEN_NAME_STAGE = "TOKEN_STAGE"
 MIMETYPE_JSON: str = "application/json"
+MESSAGE_SIZE_LIMIT = 256 * 1024
 
 
 def store_to_eventhub(msgprod: func.Out[typing.List[str]], msgstage: func.Out[typing.List[str]], body: str):
@@ -17,11 +18,17 @@ def store_to_eventhub(msgprod: func.Out[typing.List[str]], msgstage: func.Out[ty
     req_body_list = body.replace('}{', '}|||{').split('|||')
     for event in req_body_list:
         message_len: int = len(event)
+        logging.info(f'Message: {event}')
         logging.info('Message payload size: %d', message_len)
-        if message_len > 262144:
-            logging.warn('Payload is too large: %d > 262144', message_len)
+        if message_len > MESSAGE_SIZE_LIMIT:
+            logging.error(
+                f'Payload is too large: {message_len} > {MESSAGE_SIZE_LIMIT}')
             continue
-        data_dict = json.loads(event)
+        try:
+            data_dict = json.loads(event)
+        except ValueError as e:
+            logging.error(f"Message '{event}' can't be parsed as JSON: {e}")
+            continue
         if data_dict['index'] == "discover_prod":
             output_prod.append(event)
         if data_dict['index'] == "discover_staging":
@@ -79,7 +86,7 @@ def main(req: func.HttpRequest, msgprod: func.Out[typing.List[str]], msgstage: f
             status_code=403, mimetype=MIMETYPE_JSON)
 
     req_body_string = req.get_body().decode("utf-8")
-    logging.info(f"Message: {req_body_string}")
+    # logging.info(f"Message: {req_body_string}")
     store_to_eventhub(msgprod, msgstage, req_body_string)
 
     logging.info('Message is submitted to eventHub')
