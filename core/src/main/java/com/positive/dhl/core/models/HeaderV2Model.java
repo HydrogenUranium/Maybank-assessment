@@ -35,6 +35,26 @@ public class HeaderV2Model {
     private String buttonLink;
 
     @InjectHomeProperty
+    @Getter
+    @Named("header/signInLabel")
+    private String signInLabel;
+
+    @InjectHomeProperty
+    @Getter
+    @Named("header/categoryLinksLabel")
+    private String categoryLinksLabel;
+
+    @InjectHomeProperty
+    @Getter
+    @Named("header/homePageLabel")
+    private String homePageLabel;
+
+    @InjectHomeProperty
+    @Getter
+    @Named("header/companyLinksLabel")
+    private String companyLinksLabel;
+
+    @InjectHomeProperty
     @Named("header/companyLinks")
     private Resource companyLinks;
 

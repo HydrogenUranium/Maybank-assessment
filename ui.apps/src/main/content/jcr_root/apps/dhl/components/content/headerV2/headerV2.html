@@ -16,7 +16,7 @@
         </div>
         <div class="navigation-row" data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model">
             <div class="left-side">
-                <a class="navigation-item" href="${headerV2.homePageLink}"><span>${'Home' @i18n}</span></a>
+                <a class="navigation-item" href="${headerV2.homePageLink}"><span>${headerV2.homePageLabel}</span></a>
                 <sly data-sly-list="${meganav.panels}">
                     <a data-sly-set.currentPagePath="${currentPage.path}.html" class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }" href="${item.url}"><span>${item.navigationTitle}</span></a>
                 </sly>
@@ -33,10 +33,10 @@
         <nav class="headerV2__meganavNavigation">
             <ul class="headerV2__meganavNav">
                 <li>
-                    <div class="menuNav-title">${'Sign In' @i18n}</div>
+                    <div class="menuNav-title">${headerV2.signInLabel}</div>
                 </li>
                 <li>
-                    <div class="menuNav-title">${'Categories' @i18n}</div>
+                    <div class="menuNav-title">${headerV2.categoryLinksLabel}</div>
                     <ul>
                         <li>
                             <a data-sly-repeat="${meganav.panels}" class="navigation-item"  href="${item.url}"><span>${item.navigationTitle}</span></a>
@@ -44,7 +44,7 @@
                     </ul>
                 </li>
                 <li>
-                    <div class="menuNav-title">${'Company' @i18n}</div>
+                    <div class="menuNav-title">${headerV2.companyLinksLabel}</div>
                     <ul>
                         <li>
                             <a data-sly-repeat="${headerV2.companyLinks}" class="navigation-item" href="${item.linkPath}"><span>${item.linkName}</span></a>

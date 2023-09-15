@@ -50,8 +50,23 @@ public class FooterV2Model {
     private String promoText;
 
     @InjectHomeProperty
+    @Getter
+    @Named("footer/categoryLinksLabel")
+    private String categoryLinksLabel;
+
+    @InjectHomeProperty
+    @Getter
+    @Named("footer/companyLinksLabel")
+    private String companyLinksLabel;
+
+    @InjectHomeProperty
     @Named("footer/companyLinks")
     private Resource companyLinks;
+
+    @InjectHomeProperty
+    @Getter
+    @Named("footer/socialLinksLabel")
+    private String socialLinksLabel;
 
     @InjectHomeProperty
     @Named("footer/socialLinks")

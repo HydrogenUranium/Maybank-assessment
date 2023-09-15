@@ -20,17 +20,17 @@
         </div>
         <div class="links">
             <div class="links-group" data-sly-use.meganav="com.positive.dhl.core.models.Meganav">
-                <div class="links-group__title">${'Categories' @i18n}</div>
+                <div class="links-group__title">${footerV2.categoryLinksLabel}</div>
                 <sly data-sly-list="${meganav.panels}">
                     <a class="links-group__item" href="${item.url}"><span>${item.navigationTitle}</span></a>
                 </sly>
             </div>
             <div class="links-group">
-                <div class="links-group__title">${'Company' @i18n}</div>
+                <div class="links-group__title">${footerV2.companyLinksLabel}</div>
                 <a class="links-group__item" data-sly-repeat="${footerV2.companyLinks}" href="${item.linkPath}"><span>${item.linkName}</span></a>
             </div>
             <div class="links-group">
-                <div class="links-group__title">${'Social' @i18n}</div>
+                <div class="links-group__title">${footerV2.socialLinksLabel}</div>
                 <div class="links-group__items">
                     <a class="links-group__item" data-sly-repeat="${footerV2.socialLinks}" href="${item.linkPath}">
                         <span class="not-mobile-only">${item.linkName}</span>

@@ -48,17 +48,12 @@ class FooterV2ModelTest {
     private AssetInjector assetInjector;
 
     @Mock
-    private Injector injector;
-
-    @Mock
     private DisposalCallbackRegistry disposalCallbackRegistry;
-
     @BeforeEach
     void setUp() throws Exception {
         context.registerService(Injector.class, assetInjector);
         context.registerService(AssetUtilService.class, assetUtils);
         context.registerService(Injector.class, homePropertyInjector);
-        context.addModelsForClasses(CtaBanner.class);
         context.addModelsForClasses(FooterV2Model.class);
     }
 
@@ -86,6 +81,9 @@ class FooterV2ModelTest {
         assertEquals("Ready to grow your business?", footerV2Model.getInvitationTitle());
         assertEquals("Join over 5000+ SMEs already growing with Discover", footerV2Model.getInvitationText());
         assertEquals("Get tips and advice", footerV2Model.getPromoText());
+        assertEquals("Categories", footerV2Model.getCategoryLinksLabel());
+        assertEquals("Company", footerV2Model.getCompanyLinksLabel());
+        assertEquals("Social", footerV2Model.getSocialLinksLabel());
         assertEquals("About us", footerV2Model.getCompanyLinks().get(0).getLinkName());
         assertEquals("/content/dhl/about-us", footerV2Model.getCompanyLinks().get(0).getLinkPath());
         assertEquals("Facebook", footerV2Model.getSocialLinks().get(0).getLinkName());
@@ -107,6 +105,9 @@ class FooterV2ModelTest {
         assertNull(footerV2Model.getInvitationTitle());
         assertNull(footerV2Model.getInvitationText());
         assertNull(footerV2Model.getPromoText());
+        assertNull(footerV2Model.getCategoryLinksLabel());
+        assertNull(footerV2Model.getCompanyLinksLabel());
+        assertNull(footerV2Model.getSocialLinksLabel());
         assertEquals(Collections.emptyList(), footerV2Model.getCompanyLinks());
         assertEquals(Collections.emptyList(), footerV2Model.getSocialLinks());
     }

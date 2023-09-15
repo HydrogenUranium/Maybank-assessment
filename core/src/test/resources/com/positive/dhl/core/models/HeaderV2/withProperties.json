@@ -9,6 +9,10 @@
         "jcr:primaryType": "nt:unstructured",
         "buttonLink": "/content/dhl/button",
         "buttonName": "Button Name",
+        "signInLabel": "Sign In",
+        "categoryLinksLabel": "Categories",
+        "homePageLabel": "Home",
+        "companyLinksLabel": "Company",
         "companyLinks": {
           "jcr:primaryType": "nt:unstructured",
           "item0": {

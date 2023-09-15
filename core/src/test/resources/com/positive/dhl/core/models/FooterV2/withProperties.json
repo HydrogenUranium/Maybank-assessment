@@ -14,6 +14,9 @@
         "promo-text": "Get tips and advice",
         "logoIcon": "/content/dam/dhl-discover/common/icons/glo-footer-logo.svg",
         "logoLink": "https://www.dhl.com/",
+        "categoryLinksLabel": "Categories",
+        "companyLinksLabel": "Company",
+        "socialLinksLabel": "Social",
         "companyLinks": {
           "jcr:primaryType": "nt:unstructured",
           "item0": {
