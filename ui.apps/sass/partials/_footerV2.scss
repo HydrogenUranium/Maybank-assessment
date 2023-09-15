@@ -1,0 +1,225 @@
+.footerV2-wrapper {
+  background: #CCCCCC 0% 0% no-repeat padding-box;
+
+  @include respond(xl) {
+    max-width: 1640px;
+    margin: auto;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    padding: 13px 34px 34px;
+    font-family: "Delivery",sans-serif;
+
+    @include respond(md) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 32px 37px 115px;
+    }
+
+    @include respond(xl) {
+      padding: 56px 137px 87px;
+    }
+
+    .promo {
+      order: 2;
+
+      @include respond(md) {
+        width: 50%;
+        padding-top: 29px;
+        padding-right: 10px;
+      }
+
+      @include respond(xl) {
+        width: 25%;
+        padding-top: 64px;
+        padding-right: 5%;
+      }
+
+      &-logo .logo__image {
+        height: 52px;
+      }
+
+      &-text {
+        padding-top: 24px;
+        font-size: 14px;
+        line-height: 20px;
+
+        @include respond(md) {
+          padding-top: 29px;
+        }
+
+        @include respond(xl) {
+          font-size: 16px;
+          line-height: 23px;
+        }
+      }
+    }
+
+    .invitation {
+      order: 3;
+
+      @include respond(md) {
+        order: 1;
+        width: 100%;
+      }
+
+      &__title {
+        padding-top: 25px;
+        font-size: 16px;
+        line-height: 23px;
+        font-weight: bold;
+
+        @include respond(md) {
+          padding-top: 0;
+        }
+
+        @include respond(xl) {
+          font-size: 24px;
+          line-height: 35px;
+        }
+      }
+
+      &__text {
+        padding-top: 19px;
+        font-size: 14px;
+        line-height: 20px;
+
+        @include respond(xl) {
+          padding-top: 10px;
+          font-size: 24px;
+          line-height: 35px;
+        }
+      }
+    }
+
+    .subscribeForm {
+      order: 4;
+      padding-top: 17px;
+
+      @include respond(md) {
+        width: 50%;
+        padding-top: 29px;
+      }
+
+      @include respond(xl) {
+        width: 25%;
+        padding-top: 64px;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .links {
+      order: 4;
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 31px;
+      font-size: 16px;
+      line-height: 23px;
+
+      @include respond(md) {
+        width: 100%;
+        padding-top: 75px;
+      }
+
+      @include respond(xl) {
+        order: 3;
+        width: 50%;
+        padding-top: 64px;
+      }
+
+      &-group {
+        width: 50%;
+
+        &:first-of-type {
+          padding-right: 10px;
+        }
+
+        &:last-child {
+          width: 100%;
+          padding-top: 25px;
+        }
+
+        @include respond(md) {
+          width: 20%;
+          padding-right: 10px;
+
+          &:first-of-type {
+            width: 30%;
+          }
+
+          &:last-child {
+            width: 50%;
+            padding-top: 0;
+          }
+        }
+
+        @include respond(xl) {
+          width: 33%;
+
+          &:first-of-type {
+            width: 33%;
+          }
+
+          &:last-child {
+            width: 33%;
+          }
+        }
+
+        &__title {
+          font-weight: bold;
+          padding-bottom: 15px;
+
+          @include respond(xl) {
+            padding-bottom: 25px;
+          }
+        }
+
+        &__items {
+          display: flex;
+          flex-wrap: wrap;
+
+          @include respond(md) {
+            flex-direction: column;
+          }
+        }
+
+        &__item {
+          display: block;
+          padding-right: 10px;
+          color: #000000E6;
+
+          &:hover {
+            text-decoration: none;
+            color: map-get($palette, scarlet);
+          }
+
+          .logo__image {
+            height: 27px;
+            width: 27px;
+          }
+        }
+      }
+    }
+
+    .not-mobile-only {
+      display: none;
+
+      @include respond(md) {
+        display: block;
+      }
+    }
+
+    .mobile-only {
+      display: block;
+
+      @include respond(md) {
+        display: none;
+      }
+    }
+  }
+}
