@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Article Showcase"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <title
+                            jcr:primaryType="nt:unstructured"
+                            emptyText="Inherited from home page properties"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Title (If the value is empty, it will be taken from the home page properties)"
+                            name="./title"/>
+                    <source
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            granite:class="cq-dialog-dropdown-showhide"
+                            fieldDescription="Choose the source of articles manual selection or automatic algorithm"
+                            fieldLabel="Article Source (Custom Pick or Automatic Algorithm)"
+                            name="./source">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-dropdown-showhide-target=".custom-pick-content-type-showhide"/>
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <customPick
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Custom Pick"
+                                    value="customPick"/>
+                            <aiAlgorithm
+                                    jcr:primaryType="nt:unstructured"
+                                    text="(AI Algorithm) Not yet supported"
+                                    disabled="true"
+                                    value="aiAlgorithm"/>
+                        </items>
+                    </source>
+                    <customPickOptions
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="custom-pick-content-type-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="customPick"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <articles
+                                    jcr:primaryType="nt:unstructured"
+                                    fieldLabel="Articles (Only 3 will be displayed on desktop view)"
+                                    fieldDescription="Add articles to display. Only 3 articles will be displayed on desktop."
+                                    composite="{Boolean}true"
+                                    validation="multifield-quantity max-5"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                       jcr:primaryType="nt:unstructured"
+                                       name="./articles">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <articlePath
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldLabel="Article Path"
+                                                required="true"
+                                                rootPath="/content/dhl"
+                                                name="./articlePath"/>
+                                    </items>
+                                </field>
+                            </articles>
+                        </items>
+                    </customPickOptions>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

@@ -15,6 +15,13 @@ public class InjectorMock {
     public static String INJECT_ASSET = "discover-asset";
     public static String INJECT_HOME_PAGE_PROPERTY = "discover-home-property";
 
+    public static void mockInjectHomeProperty(AemContext context, String name, Object value) {
+        mockInject(context, INJECT_HOME_PAGE_PROPERTY, name, value);
+    }
+
+    public static void mockInjectHomeProperty(AemContext context, Map<String, Object> map) {
+        mockInject(context, INJECT_HOME_PAGE_PROPERTY, map);
+    }
 
     public static void mockInject(AemContext context, String name, Object value) {
         mockInject(context, INJECT_ADAPTABLE, name, value);

@@ -1,0 +1,79 @@
+{
+  "home": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:content": {
+      "jcr:primaryType": "cq:PageContent",
+      "sling:resourceType": "dhl/components/pages/home",
+      "relatedPosts": {
+        "title": "Related Posts"
+      },
+      "par": {
+        "related_posts_without_title": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "jcr:lastModifiedBy": "admin",
+          "source": "customPick",
+          "jcr:created": "Fri Sep 15 2023 15:52:41 GMT+0300",
+          "jcr:lastModified": "Fri Sep 15 2023 17:02:01 GMT+0300",
+          "sling:resourceType": "dhl/components/content/related-posts",
+          "articles": {
+            "jcr:primaryType": "nt:unstructured",
+            "item0": {
+              "jcr:primaryType": "nt:unstructured",
+              "articlePath": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality"
+            },
+            "item1": {
+              "jcr:primaryType": "nt:unstructured",
+              "articlePath": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality"
+            },
+            "item2": {
+              "jcr:primaryType": "nt:unstructured",
+              "articlePath": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality"
+            },
+            "item3": {
+              "jcr:primaryType": "nt:unstructured",
+              "articlePath": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality"
+            },
+            "item4": {
+              "jcr:primaryType": "nt:unstructured",
+              "articlePath": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality"
+            }
+          }
+        },
+        "related_posts_with_title": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "jcr:lastModifiedBy": "admin",
+          "source": "customPick",
+          "jcr:created": "Fri Sep 15 2023 15:52:41 GMT+0300",
+          "jcr:lastModified": "Fri Sep 15 2023 17:02:01 GMT+0300",
+          "sling:resourceType": "dhl/components/content/related-posts",
+          "title": "Custom Title",
+          "articles": {
+            "jcr:primaryType": "nt:unstructured",
+            "item0": {
+              "jcr:primaryType": "nt:unstructured",
+              "articlePath": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality"
+            },
+            "item1": {
+              "jcr:primaryType": "nt:unstructured",
+              "articlePath": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality"
+            },
+            "item2": {
+              "jcr:primaryType": "nt:unstructured",
+              "articlePath": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality"
+            },
+            "item3": {
+              "jcr:primaryType": "nt:unstructured",
+              "articlePath": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality"
+            },
+            "item4": {
+              "jcr:primaryType": "nt:unstructured",
+              "articlePath": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality"
+            }
+          }
+        }
+      }
+    }
+  }
+}
