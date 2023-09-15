@@ -8,12 +8,20 @@
       "name": "req",
       "methods": [
         "post"
-      ]
+      ],
+      "route": "services/collector/{type:alpha?}"
     },
     {
       "type": "eventHub",
-      "name": "msg",
+      "name": "msgprod",
       "eventHubName": "%EVENTHUB_NAME_PROD%",
+      "connection": "EVENTHUB_CONNECTION_STRING",
+      "direction": "out"
+    },
+    {
+      "type": "eventHub",
+      "name": "msgstage",
+      "eventHubName": "%EVENTHUB_NAME_STAGE%",
       "connection": "EVENTHUB_CONNECTION_STRING",
       "direction": "out"
     },
