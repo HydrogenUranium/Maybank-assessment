@@ -20,7 +20,6 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -45,9 +44,8 @@ class HeaderV2ModelTest {
         context.registerService(Injector.class, assetInjector);
         context.registerService(Injector.class, homePropertyInjector);
         context.registerService(PageUtilService.class, pageUtils);
-        context.addModelsForClasses(CtaBanner.class);
         context.addModelsForClasses(HeaderV2Model.class);
-        context.addModelsForClasses(CompanyLink.class);
+        context.addModelsForClasses(LinkModel.class);
         request.setPathInfo(COMPONENT_LOCATION);
     }
 
@@ -59,6 +57,10 @@ class HeaderV2ModelTest {
         HeaderV2Model headerV2Model = request.adaptTo(HeaderV2Model.class);
         assertEquals("Button Name", headerV2Model.getButtonName());
         assertEquals("/content/dhl/button", headerV2Model.getButtonLink());
+        assertEquals("Sign In", headerV2Model.getSignInLabel());
+        assertEquals("Categories", headerV2Model.getCategoryLinksLabel());
+        assertEquals("Home", headerV2Model.getHomePageLabel());
+        assertEquals("Company", headerV2Model.getCompanyLinksLabel());
         assertEquals("/content/home.html", headerV2Model.getHomePageLink());
         assertEquals("Link Name 1", headerV2Model.getCompanyLinks().get(0).getLinkName());
         assertEquals("/content/dhl/link/1", headerV2Model.getCompanyLinks().get(0).getLinkPath());
@@ -72,6 +74,10 @@ class HeaderV2ModelTest {
         HeaderV2Model headerV2Model = request.adaptTo(HeaderV2Model.class);
         assertNull(headerV2Model.getButtonName());
         assertNull(headerV2Model.getButtonLink());
+        assertNull(headerV2Model.getSignInLabel());
+        assertNull(headerV2Model.getCategoryLinksLabel());
+        assertNull(headerV2Model.getHomePageLabel());
+        assertNull(headerV2Model.getCompanyLinksLabel());
         assertEquals("/content/home.html", headerV2Model.getHomePageLink());
         assertEquals(Collections.emptyList(), headerV2Model.getCompanyLinks());
     }
