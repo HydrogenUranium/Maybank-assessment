@@ -8,6 +8,7 @@ import typing
 
 TOKEN_NAME_PROD = "TOKEN_PROD"
 TOKEN_NAME_STAGE = "TOKEN_STAGE"
+MIMETYPE_JSON: str = "application/json"
 
 
 def store_to_eventhub(msgprod: func.Out[typing.List[str]], msgstage: func.Out[typing.List[str]], body: str):
@@ -15,6 +16,11 @@ def store_to_eventhub(msgprod: func.Out[typing.List[str]], msgstage: func.Out[ty
     output_stage = []
     req_body_list = body.replace('}{', '}|||{').split('|||')
     for event in req_body_list:
+        message_len: int = len(event)
+        logging.info('Message payload size: %d', message_len)
+        if message_len > 262144:
+            logging.warn('Payload is too large: %d > 262144', message_len)
+            continue
         data_dict = json.loads(event)
         if data_dict['index'] == "discover_prod":
             output_prod.append(event)
@@ -36,7 +42,6 @@ def main(req: func.HttpRequest, msgprod: func.Out[typing.List[str]], msgstage: f
 
     logging.info('Message received by Azure Functions')
 
-    json_mimetype: str = "application/json"
     req_body_bytes: bytes
     try:
         req_body_bytes = req.get_body()
@@ -44,18 +49,18 @@ def main(req: func.HttpRequest, msgprod: func.Out[typing.List[str]], msgstage: f
         logging.error('Request body could not be read')
         return func.HttpResponse(
             json.dumps({'text': 'Internal server error', 'code': 8}),
-            status_code=500, mimetype=json_mimetype)
+            status_code=500, mimetype=MIMETYPE_JSON)
 
     if req_body_bytes is None or len(req_body_bytes) == 0:
         logging.warn('No data in the payload to process')
-        return func.HttpResponse(json.dumps({'text': 'No data', 'code': 5}), status_code=400, mimetype=json_mimetype)
+        return func.HttpResponse(json.dumps({'text': 'No data', 'code': 5}), status_code=400, mimetype=MIMETYPE_JSON)
 
     req_auth_value = req.headers.get('Authorization')
     if req_auth_value is None or len(req_auth_value) == 0:
         logging.warn('Authorization header is missing')
         return func.HttpResponse(
             json.dumps({'text': 'Authorization is required', 'code': 2}),
-            status_code=401, mimetype=json_mimetype)
+            status_code=401, mimetype=MIMETYPE_JSON)
 
     try:
         (auth_type, auth_token) = req_auth_value.split(" ")
@@ -65,24 +70,17 @@ def main(req: func.HttpRequest, msgprod: func.Out[typing.List[str]], msgstage: f
     except ValueError:
         return func.HttpResponse(
             json.dumps({'text': 'Invalid authorization', 'code': 3}),
-            status_code=401, mimetype=json_mimetype)
+            status_code=401, mimetype=MIMETYPE_JSON)
 
     if auth_token is None or auth_token not in VALID_TOKENS:
         logging.warn('Invalid token')
         return func.HttpResponse(
             json.dumps({'text': 'Invalid token', 'code': 4}),
-            status_code=403, mimetype=json_mimetype)
-
-    message_len: int = len(req_body_bytes)
-    logging.info('Message payload size: %d', message_len)
-    if message_len > 262144:
-        logging.warn('Payload is too large: %d > 262144', message_len)
-        return func.HttpResponse(
-            json.dumps({'text': 'Payload is too large', 'code': 99}), status_code=400, mimetype=json_mimetype)
+            status_code=403, mimetype=MIMETYPE_JSON)
 
     req_body_string = req.get_body().decode("utf-8")
     logging.info(f"Message: {req_body_string}")
     store_to_eventhub(msgprod, msgstage, req_body_string)
 
     logging.info('Message is submitted to eventHub')
-    return func.HttpResponse(json.dumps({'text': 'Success', 'code': 0}), status_code=200, mimetype=json_mimetype)
+    return func.HttpResponse(json.dumps({'text': 'Success', 'code': 0}), status_code=200, mimetype=MIMETYPE_JSON)
