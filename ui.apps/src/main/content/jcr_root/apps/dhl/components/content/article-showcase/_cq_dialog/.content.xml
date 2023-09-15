@@ -78,16 +78,15 @@
                                     jcr:primaryType="nt:unstructured"
                                     text="Custom Pick"
                                     value="customPick"/>
+                            <latest
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Latest (Automatic Algorithm)"
+                                    value="latest"/>
                             <trending
                                     jcr:primaryType="nt:unstructured"
                                     text="Trending (Automatic Algorithm) Not yet supported"
                                     disabled="true"
                                     value="trending"/>
-                            <latest
-                                    jcr:primaryType="nt:unstructured"
-                                    text="Latest (Automatic Algorithm) Not yet supported"
-                                    disabled="true"
-                                    value="latest"/>
                         </items>
                     </source>
                     <customPickOptions

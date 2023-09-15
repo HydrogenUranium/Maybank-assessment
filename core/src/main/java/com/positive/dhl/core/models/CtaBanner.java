@@ -4,10 +4,12 @@ import com.positive.dhl.core.injectors.InjectAsset;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.AssetUtilService;
 import lombok.Getter;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.annotation.PostConstruct;
@@ -18,13 +20,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-@Model(adaptables = Resource.class)
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class})
 public class CtaBanner {
 
     @OSGiService
     private AssetUtilService assetUtils;
 
-    @Inject
+    @ChildResource
     @Named("points")
     @Optional
     private Resource pointsMultifield;
@@ -103,7 +105,6 @@ public class CtaBanner {
     @Named("ctaBannerOpenBusinessAccount-desktopBackgroundImage")
     @Optional
     private String desktopBackgroundImageOpenBusinessAccount;
-
 
     @Inject
     @Getter

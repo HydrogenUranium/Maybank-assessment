@@ -1,0 +1,57 @@
+{
+  "home": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:content": {
+      "jcr:title": "Home",
+      "jcr:primaryType": "cq:PageContent",
+      "sling:resourceType": "dhl/components/pages/home",
+      "header": {
+        "jcr:primaryType": "nt:unstructured",
+        "buttonLink": "/content/dhl/button",
+        "buttonName": "Button Name",
+        "signInLabel": "Sign In",
+        "categoryLinksLabel": "Categories",
+        "homePageLabel": "Home",
+        "companyLinksLabel": "Company",
+        "companyLinks": {
+          "jcr:primaryType": "nt:unstructured",
+          "item0": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "Link Name 1",
+            "linkPath": "/content/dhl/link/1"
+          },
+          "item1": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "Link Name 2",
+            "linkPath": "/content/dhl/link/2"
+          }
+        }
+      }
+    },
+    "small-business-advice": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "sling:resourceType": "dhl/components/pages/articlecategory"
+      },
+      "article": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "jcr:title": "Article",
+          "cq:template": "/conf/dhl/settings/wcm/templates/article",
+          "sling:resourceType": "dhl/components/pages/editable-article",
+          "root": {
+            "jcr:primaryType": "nt:unstructured",
+            "layout": "responsiveGrid",
+            "sling:resourceType": "wcm/foundation/components/responsivegrid",
+            "header": {
+              "jcr:primaryType": "nt:unstructured",
+              "sling:resourceType": "dhl/components/content/headerV2"
+            }
+          }
+        }
+      }
+    }
+  }
+}

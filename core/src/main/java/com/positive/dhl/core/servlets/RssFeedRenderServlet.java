@@ -56,7 +56,7 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
         try {
             resp.setContentType("application/rss+xml");
             resp.setCharacterEncoding("utf-8");
-            DiscoverRssFeed feed = new DiscoverRssFeed(req, resp);
+            var feed = new DiscoverRssFeed(req, resp);
 
             if(isEntry) {
                 feed.printEntry();
@@ -80,7 +80,7 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
     }
 
     private String buildQueryFormat(List<String> resourceTypes) {
-        StringBuilder stringBuilder = new StringBuilder()
+        var stringBuilder = new StringBuilder()
                 .append("SELECT page.* FROM [cq:Page] AS page ")
                 .append("INNER JOIN [cq:PageContent] AS jcrcontent ON ISCHILDNODE(jcrcontent, page) ")
                 .append("WHERE ISDESCENDANTNODE(page, '%s') ");
@@ -88,7 +88,7 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
             String resourceTypeFilter = resourceTypes.stream()
                     .map(resourceType -> "jcrcontent.[sling:resourceType] = '" + resourceType + "' ")
                     .collect(Collectors.joining("OR "));
-            stringBuilder.append("AND ").append(resourceTypeFilter);
+            stringBuilder.append("AND (").append(resourceTypeFilter).append(")");
         }
         stringBuilder.append("ORDER BY jcrcontent.[jcr:created] DESC");
 
