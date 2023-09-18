@@ -1,10 +1,13 @@
+<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <footer class="footerV2-wrapper">
-    <div class="footer-container" data-sly-use.footerV2="com.positive.dhl.core.models.FooterV2Model">
+    <div class="footer-container"
+         data-sly-use.footerV2="com.positive.dhl.core.models.FooterV2Model"
+         data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
         <div class="promo">
             <div class="promo-logo">
                 <a class="logo__link" href="${footerV2.logoLink}">
                     <img class="logo__image"
-                         src="${footerV2.logoIcon}"
+                         src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${footerV2.logoIcon}"
                          title="${footerV2.logoTitle}"
                          alt="${footerV2.logoAltText}" />
                 </a>
@@ -16,7 +19,7 @@
             <div class="invitation__text">${footerV2.invitationText}</div>
         </div>
         <div class="subscribeForm">
-            <img src="/apps/dhl/components/content/footerV2/temporary-resources/footer-subscribe-form.jpg" alt="Temporary Footer Subscribe form Placeholder" />
+            <div class="subscribeForm-temporary-placeholder"></div>
         </div>
         <div class="links">
             <div class="links-group" data-sly-use.meganav="com.positive.dhl.core.models.Meganav">
@@ -35,7 +38,7 @@
                     <a class="links-group__item" data-sly-repeat="${footerV2.socialLinks}" href="${item.linkPath}">
                         <span class="not-mobile-only">${item.linkName}</span>
                         <img class="logo__image mobile-only"
-                             src="${item.linkIcon}"
+                             src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.linkIcon}"
                              title="${item.linkName}"
                              alt="${item.linkName}" />
                     </a>
