@@ -421,10 +421,6 @@
       <property inherit="true" name="topbanner2title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="topbanner2urltitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="welcomemessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctaBannerOpenBusinessAccount-buttonName" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctaBannerOpenBusinessAccount-title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctaBannerSubscribeToOurNewsletter-buttonName" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctaBannerSubscribeToOurNewsletter-title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="buttonName" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="buttonLink" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signInLabel" translate="true" updateDestinationLanguage="false"/>

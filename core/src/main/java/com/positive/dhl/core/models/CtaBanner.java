@@ -32,12 +32,12 @@ public class CtaBanner {
     private Resource pointsMultifield;
 
     @InjectHomeProperty
-    @Named("ctaBannerSubscribeToOurNewsletter-points")
+    @Named("ctaBanner/subscribeToOurNewsletter/points")
     @Optional
     private Resource pointsMultifieldSubscribe;
 
     @InjectHomeProperty
-    @Named("ctaBannerOpenBusinessAccount-points")
+    @Named("ctaBanner/openBusinessAccount/points")
     @Optional
     private Resource pointsMultifieldOpenBusinessAccount;
 
@@ -52,12 +52,12 @@ public class CtaBanner {
     private String title;
 
     @InjectHomeProperty
-    @Named("ctaBannerSubscribeToOurNewsletter-title")
+    @Named("ctaBanner/subscribeToOurNewsletter/title")
     @Optional
     private String titleSubscribe;
 
     @InjectHomeProperty
-    @Named("ctaBannerOpenBusinessAccount-title")
+    @Named("ctaBanner/openBusinessAccount/title")
     @Optional
     private String titleOpenBusinessAccount;
 
@@ -67,12 +67,12 @@ public class CtaBanner {
     private String mobileBackgroundImage;
 
     @InjectHomeProperty
-    @Named("ctaBannerSubscribeToOurNewsletter-mobileBackgroundImage")
+    @Named("ctaBanner/subscribeToOurNewsletter/mobileBackgroundImage")
     @Optional
     private String mobileBackgroundImageSubscribe;
 
     @InjectHomeProperty
-    @Named("ctaBannerOpenBusinessAccount-mobileBackgroundImage")
+    @Named("ctaBanner/openBusinessAccount/mobileBackgroundImage")
     @Optional
     private String mobileBackgroundImageOpenBusinessAccount;
 
@@ -82,12 +82,12 @@ public class CtaBanner {
     private String tabletBackgroundImage;
 
     @InjectHomeProperty
-    @Named("ctaBannerSubscribeToOurNewsletter-tabletBackgroundImage")
+    @Named("ctaBanner/subscribeToOurNewsletter/tabletBackgroundImage")
     @Optional
     private String tabletBackgroundImageSubscribe;
 
     @InjectHomeProperty
-    @Named("ctaBannerOpenBusinessAccount-tabletBackgroundImage")
+    @Named("ctaBanner/openBusinessAccount/tabletBackgroundImage")
     @Optional
     private String tabletBackgroundImageOpenBusinessAccount;
 
@@ -97,12 +97,12 @@ public class CtaBanner {
     private String desktopBackgroundImage;
 
     @InjectHomeProperty
-    @Named("ctaBannerSubscribeToOurNewsletter-desktopBackgroundImage")
+    @Named("ctaBanner/subscribeToOurNewsletter/desktopBackgroundImage")
     @Optional
     private String desktopBackgroundImageSubscribe;
 
     @InjectHomeProperty
-    @Named("ctaBannerOpenBusinessAccount-desktopBackgroundImage")
+    @Named("ctaBanner/openBusinessAccount/desktopBackgroundImage")
     @Optional
     private String desktopBackgroundImageOpenBusinessAccount;
 
@@ -112,12 +112,12 @@ public class CtaBanner {
     private String buttonName;
 
     @InjectHomeProperty
-    @Named("ctaBannerSubscribeToOurNewsletter-buttonName")
+    @Named("ctaBanner/subscribeToOurNewsletter/buttonName")
     @Optional
     private String buttonNameSubscribe;
 
     @InjectHomeProperty
-    @Named("ctaBannerOpenBusinessAccount-buttonName")
+    @Named("ctaBanner/openBusinessAccount/buttonName")
     @Optional
     private String buttonNameOpenBusinessAccount;
 
@@ -127,12 +127,12 @@ public class CtaBanner {
     private String buttonLink;
 
     @InjectHomeProperty
-    @Named("ctaBannerSubscribeToOurNewsletter-buttonLink")
+    @Named("ctaBanner/subscribeToOurNewsletter/buttonLink")
     @Optional
     private String buttonLinkSubscribe;
 
     @InjectHomeProperty
-    @Named("ctaBannerOpenBusinessAccount-buttonLink")
+    @Named("ctaBanner/openBusinessAccount/buttonLink")
     @Optional
     private String buttonLinkOpenBusinessAccount;
 
