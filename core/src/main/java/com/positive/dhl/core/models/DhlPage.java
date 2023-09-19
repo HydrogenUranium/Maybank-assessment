@@ -19,6 +19,8 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
 import com.positive.dhl.core.components.EnvironmentConfiguration;
 
+import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
+
 /**
  *
  */
@@ -214,7 +216,7 @@ public class DhlPage {
 
 		String currentPagePath = currentPage.getPath();
 
-		fullUrl = request.getResourceResolver().map(currentPagePath);
+		fullUrl = (HTTPS_PREFIX + akamaiHostname).concat(request.getResourceResolver().map(currentPagePath));
 		
 		ValueMap properties = currentPage.getProperties();
 		if (properties != null) {
