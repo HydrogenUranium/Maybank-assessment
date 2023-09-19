@@ -1334,7 +1334,7 @@
                                                                         This default title will be used when the component doesn't have a custom title configured.
                                                                         If you don't set a default title and there's no custom title configuration,
                                                                         no title will be displayed for the related posts."
-                                                                    name="./relatedPost/title"/>
+                                                                    name="./relatedPosts/title"/>
                                                         </items>
                                                     </relatedPosts>
                                                 </items>
