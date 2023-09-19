@@ -53,7 +53,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <articles
                                     jcr:primaryType="nt:unstructured"
-                                    fieldLabel="Articles (Only 3 will be displayed on desktop view)"
+                                    fieldLabel="Articles (Only 3 will be displayed on desktop view) If no articles are configured, the legacy approach will be used."
                                     fieldDescription="Add articles to display. Only 3 articles will be displayed on desktop."
                                     composite="{Boolean}true"
                                     validation="multifield-quantity max-5"
