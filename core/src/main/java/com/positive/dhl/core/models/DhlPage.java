@@ -48,9 +48,8 @@ public class DhlPage {
 	private String pathprefix;
 	private String assetprefix;
 	private String akamaiHostname;
-	private String protocol;
 
-	private Boolean noindex;
+	private boolean noindex;
 	private List<Canonical> canonicals;
 	
     /**
@@ -140,7 +139,7 @@ public class DhlPage {
 	/**
 	 *
 	 */
-	public Boolean getNoindex() {
+	public boolean getNoindex() {
 		return noindex;
 	}
 
@@ -154,7 +153,7 @@ public class DhlPage {
 	/**
 	 *
 	 */
-	public void setNoindex(Boolean noindex) {
+	public void setNoindex(boolean noindex) {
 		this.noindex = noindex;
 	}
 
@@ -195,10 +194,9 @@ public class DhlPage {
 		trackingid = "";
 		gtmtrackingid = "";
 		noindex = false;
-		protocol = "https://";
 		akamaiHostname = environmentConfiguration.getAkamaiHostname();
 
-		Boolean isPublishRunmode = true;
+		boolean isPublishRunmode = true;
 		WCMMode mode = WCMMode.fromRequest(request);
 		if (mode != WCMMode.DISABLED) {
 			isPublishRunmode = false;
@@ -215,12 +213,8 @@ public class DhlPage {
 		}
 
 		String currentPagePath = currentPage.getPath();
-		String shortPath = currentPagePath.replace("/content/dhl", "");
 
-		fullUrl = (protocol + akamaiHostname + pathprefix).concat(shortPath);
-		if (shortPath.length() == 0) {
-			fullUrl = fullUrl + '/';
-		}
+		fullUrl = request.getResourceResolver().map(currentPagePath);
 		
 		ValueMap properties = currentPage.getProperties();
 		if (properties != null) {
@@ -239,7 +233,7 @@ public class DhlPage {
 			}
 
 			// get list of canonical URLs
- 			canonicals = new ArrayList<Canonical>();
+ 			canonicals = new ArrayList<>();
 			Resource canonicalItems = currentPage.getContentResource("canonicalitems");
 			if (canonicalItems != null) {
 				Iterator<Resource> canonicalItemsIterator = canonicalItems.listChildren();
