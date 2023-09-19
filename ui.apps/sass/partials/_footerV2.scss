@@ -108,8 +108,15 @@
         padding-top: 64px;
       }
 
-      img {
+      &-temporary-placeholder {
         width: 100%;
+        height: 185px;
+        content: ' ';
+        background-image: url('__prefix__/discover/resources/img/footer-subscribe-form.jpg');
+        background-image: none, url('__prefix__/discover/resources/img/footer-subscribe-form.jpg');
+        background-position: left top;
+        background-repeat: no-repeat;
+        background-size: contain;
       }
     }
 
@@ -201,6 +208,7 @@
           .logo__image {
             height: 27px;
             width: 27px;
+            object-fit: contain;
           }
         }
       }

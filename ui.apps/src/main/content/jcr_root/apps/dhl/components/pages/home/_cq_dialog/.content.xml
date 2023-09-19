@@ -853,18 +853,21 @@
                                                         <items jcr:primaryType="nt:unstructured">
                                                             <button
                                                                     jcr:primaryType="nt:unstructured"
-                                                                    jcr:title="Button"
+                                                                    jcr:title="Button (for Desktop only)"
                                                                     sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                                                 <items jcr:primaryType="nt:unstructured">
                                                                     <buttonName
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Button Name"
+                                                                            fieldDescription="This 'Open a business account' button will be displayed on the right side of the Header Navigation bar in the Desktop layout"
+                                                                            emptyText="Open a business account"
                                                                             name="./header/buttonName"/>
                                                                     <buttonLink
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                             fieldLabel="Button Link"
+                                                                            fieldDescription="The 'Open a business account' button should lead to a page with a form to create a new business account"
                                                                             rootPath="/content/dhl"
                                                                             name="./header/buttonLink"/>
                                                                 </items>
@@ -877,7 +880,9 @@
                                                                     <signInLabel
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                            fieldLabel="Sign In Label"
+                                                                            fieldLabel="Sign In Label (for Tablet/Mobile only)"
+                                                                            fieldDescription="This 'Sign In' label will be displayed in the Hamburger Navigation Menu of the header in the Tablet and Mobile layout"
+                                                                            emptyText="Sign In"
                                                                             name="./header/signInLabel"/>
                                                                 </items>
                                                             </signIn>
@@ -889,12 +894,16 @@
                                                                     <categoryLinksLabel
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                            fieldLabel="Category Links Label"
+                                                                            fieldLabel="Category Links Label (for Tablet/Mobile only)"
+                                                                            fieldDescription="This 'Categories' label will be displayed in the Hamburger Navigation Menu of the header in the Tablet and Mobile layout"
+                                                                            emptyText="Categories"
                                                                             name="./header/categoryLinksLabel"/>
                                                                     <homePageLabel
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                            fieldLabel="Home page Label"
+                                                                            fieldLabel="Home page Label (for Desktop only)"
+                                                                            fieldDescription="This 'Home' label will be displayed on the first place on the left side of the of the Header Navigation bar in the Desktop layout"
+                                                                            emptyText="Home"
                                                                             name="./header/homePageLabel"/>
                                                                 </items>
                                                             </categoryLinks>
@@ -906,28 +915,30 @@
                                                                     <companyLinksLabel
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                            fieldLabel="Company Links Label"
+                                                                            fieldLabel="Company Links Label (for Tablet/Mobile only)"
+                                                                            fieldDescription="This 'Company' label will be displayed in the Hamburger Navigation Menu of the header in the Tablet and Mobile layout"
+                                                                            emptyText="Company"
                                                                             name="./header/companyLinksLabel"/>
                                                                     <companyLinksMultifield
                                                                             jcr:primaryType="nt:unstructured"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                                               jcr:primaryType="nt:unstructured"
-                                                                               name="./header/companyLinks">
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                name="./header/companyLinks">
                                                                             <items jcr:primaryType="nt:unstructured">
                                                                                 <linkName
                                                                                         jcr:primaryType="nt:unstructured"
                                                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                                         fieldLabel="Link Name"
-                                                                                        required="true"
+                                                                                        fieldDescription="'About us', 'Contact us' link labels"
                                                                                         name="./linkName"/>
                                                                                 <linkPath
                                                                                         jcr:primaryType="nt:unstructured"
                                                                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                                         fieldLabel="Link Path"
+                                                                                        fieldDescription="'About us', 'Contact us' link paths"
                                                                                         rootPath="/content/dhl"
-                                                                                        required="true"
                                                                                         name="./linkPath"/>
                                                                             </items>
                                                                         </field>
@@ -1082,23 +1093,26 @@
                                                                             name="./footer/logoIcon"
                                                                             rootPath="/content/dam"
                                                                             fieldLabel="Logo Icon"
-                                                                            required="{Boolean}true"/>
+                                                                            fieldDescription="Path to the 'DHL Group' logo in the AEM DAM"/>
                                                                     <logoTitle
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Logo Title"
                                                                             name="./footer/logoTitle"
-                                                                            required="{Boolean}true"/>
+                                                                            fieldDescription="Set logo image title for SEO"
+                                                                            emptyText="DHL Group"/>
                                                                     <logoAltText
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Logo Alt Text"
                                                                             name="./footer/logoAltText"
-                                                                            required="{Boolean}true"/>
+                                                                            fieldDescription="Set logo image alt text for SEO"
+                                                                            emptyText="DHL Group"/>
                                                                     <logoLink
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                             fieldLabel="Logo link"
+                                                                            fieldDescription="The logo should lead to the main page of DHL Group"
                                                                             multiple="false"
                                                                             name="./footer/logoLink"
                                                                             rootPath="/content"/>
@@ -1113,16 +1127,22 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Invitation Title"
+                                                                            fieldDescription="The Title of the Invitation"
+                                                                            emptyText="Ready to grow your business?"
                                                                             name="./footer/invitation-title"/>
                                                                     <invitation-text
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Invitation Text"
+                                                                            fieldDescription="The Text of the Invitation"
+                                                                            emptyText="Join over 5000+ SMEs already growing with Discover?"
                                                                             name="./footer/invitation-text"/>
                                                                     <promo-text
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                                                                             fieldLabel="Promo Text"
+                                                                            fieldDescription="Text under the Logo"
+                                                                            emptyText="Get tips and advice on delivering exceptional logistics service and expanding your business to global audience."
                                                                             name="./footer/promo-text"/>
                                                                 </items>
                                                             </text>
@@ -1135,6 +1155,8 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Category Links Label"
+                                                                            fieldDescription="This 'Categories' label will be displayed above the list of all categories"
+                                                                            emptyText="Categories"
                                                                             name="./footer/categoryLinksLabel"/>
                                                                 </items>
                                                             </categoryLinks>
@@ -1147,27 +1169,29 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Company Links Label"
+                                                                            fieldDescription="This 'Company' label will be displayed above the list of all links connected to the company"
+                                                                            emptyText="Company"
                                                                             name="./footer/companyLinksLabel"/>
                                                                     <companyLinksMultifield
                                                                             jcr:primaryType="nt:unstructured"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                                               jcr:primaryType="nt:unstructured"
-                                                                               name="./footer/companyLinks">
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                name="./footer/companyLinks">
                                                                             <items jcr:primaryType="nt:unstructured">
                                                                                 <label
                                                                                         jcr:primaryType="nt:unstructured"
                                                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                                         fieldLabel="Label"
-                                                                                        required="true"
+                                                                                        fieldDescription="'About us', 'Press', 'Contact' link labels"
                                                                                         name="./linkName"/>
                                                                                 <path
                                                                                         jcr:primaryType="nt:unstructured"
                                                                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                                         fieldLabel="Path"
+                                                                                        fieldDescription="'About us', 'Press', 'Contact' link paths"
                                                                                         rootPath="/content/dhl"
-                                                                                        required="true"
                                                                                         name="./linkPath"/>
                                                                             </items>
                                                                         </field>
@@ -1183,34 +1207,36 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Social Links Label"
+                                                                            fieldDescription="This 'Social' label will be displayed above the list of all links connected to the social messengers"
+                                                                            emptyText="Social"
                                                                             name="./footer/socialLinksLabel"/>
                                                                     <socialLinksMultifield
                                                                             jcr:primaryType="nt:unstructured"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                                               jcr:primaryType="nt:unstructured"
-                                                                               name="./footer/socialLinks">
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                name="./footer/socialLinks">
                                                                             <items jcr:primaryType="nt:unstructured">
                                                                                 <linkName
                                                                                         jcr:primaryType="nt:unstructured"
                                                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                                         fieldLabel="Label"
-                                                                                        required="true"
+                                                                                        fieldDescription="'LinkedIn', 'Instagram', 'Twitter', 'Facebook' link labels"
                                                                                         name="./linkName"/>
                                                                                 <linkPath
                                                                                         jcr:primaryType="nt:unstructured"
                                                                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                                         fieldLabel="Path"
+                                                                                        fieldDescription="'LinkedIn', 'Instagram', 'Twitter', 'Facebook' link paths"
                                                                                         rootPath="/content/dhl"
-                                                                                        required="true"
                                                                                         name="./linkPath"/>
                                                                                 <icon
                                                                                         jcr:primaryType="nt:unstructured"
                                                                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                                        fieldLabel="Icon (for mobile layout) "
+                                                                                        fieldLabel="Icon (for Mobile only) "
+                                                                                        fieldDescription="'LinkedIn', 'Instagram', 'Twitter', 'Facebook' link icons"
                                                                                         rootPath="/content/dam"
-                                                                                        required="true"
                                                                                         name="./linkIcon"/>
                                                                             </items>
                                                                         </field>
@@ -1308,7 +1334,7 @@
                                                                         This default title will be used when the component doesn't have a custom title configured.
                                                                         If you don't set a default title and there's no custom title configuration,
                                                                         no title will be displayed for the related posts."
-                                                                    name="./relatedPost/title"/>
+                                                                    name="./relatedPosts/title"/>
                                                         </items>
                                                     </relatedPosts>
                                                 </items>
