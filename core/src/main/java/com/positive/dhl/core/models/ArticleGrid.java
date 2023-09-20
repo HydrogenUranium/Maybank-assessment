@@ -465,7 +465,11 @@ public class ArticleGrid {
 	 * @return a {@code Page} that matches the resource type or {@code null} if nothing was found
 	 */
 	private Page getGroupPage(Page self) {
-			String[] resourceTypes = {"dhl/components/pages/home","dhl/components/pages/articlecategory"};
+			String[] resourceTypes = {
+					"dhl/components/pages/home",
+					"dhl/components/pages/editable-home-page",
+					"dhl/components/pages/articlecategory"
+			};
 			return categoryFinder.getGroupPage(resourceTypes,self);
     }
 }

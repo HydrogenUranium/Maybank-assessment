@@ -18,7 +18,105 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1169514762602900>
                 </editable-article>
+                <editable-home-page jcr:primaryType="nt:unstructured">
+                    <policy_1169514762602901
+                            jcr:lastModified="{Date}2023-07-05T11:03:27.158+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Home Page Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="wcm.foundation.components.page.responsive">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1169514762602901>
+                </editable-home-page>
             </pages>
+            <content jcr:primaryType="nt:unstructured">
+                <text jcr:primaryType="nt:unstructured">
+                    <policy_1692606883425
+                            jcr:lastModified="{Date}2023-08-21T11:37:52.635+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Text - policy"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <rtePlugins jcr:primaryType="nt:unstructured">
+                            <paraformat
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*">
+                                <formats
+                                        jcr:primaryType="nt:unstructured"
+                                        override="true">
+                                    <item0
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Paragraph"
+                                            tag="p"/>
+                                    <item1
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 1"
+                                            tag="h1"/>
+                                    <item2
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 2"
+                                            tag="h2"/>
+                                    <item3
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 3"
+                                            tag="h3"/>
+                                </formats>
+                            </paraformat>
+                            <misctools
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-">
+                                <specialCharsConfig jcr:primaryType="nt:unstructured">
+                                    <chars
+                                            jcr:primaryType="nt:unstructured"
+                                            override="true">
+                                        <item0
+                                                jcr:primaryType="nt:unstructured"
+                                                entity="&amp;copy;"
+                                                name="copyright"/>
+                                        <item1
+                                                jcr:primaryType="nt:unstructured"
+                                                entity="&amp;reg;"
+                                                name="registered"/>
+                                        <item2
+                                                jcr:primaryType="nt:unstructured"
+                                                entity="&amp;trade;"
+                                                name="trademark"/>
+                                    </chars>
+                                </specialCharsConfig>
+                            </misctools>
+                            <edit
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <findreplace
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <spellcheck
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <lists
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <justify
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <format
+                                    jcr:primaryType="nt:unstructured"
+                                    features="bold,italic,underline"/>
+                            <links
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <table
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <subsuperscript
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                        </rtePlugins>
+                    </policy_1692606883425>
+                </text>
+            </content>
         </components>
     </dhl>
     <wcm jcr:primaryType="nt:unstructured">
@@ -30,9 +128,35 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Article Root Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[group:DHL Components,group:DHL Article structure,/libs/wcm/foundation/components/responsivegrid]">
+                            components="[group:DHL Components,group:DHL Template structure,group:DHL Article structure,/libs/wcm/foundation/components/responsivegrid]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1574694950110>
+                    <policy_1574694950111
+                            jcr:description=""
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Home Root Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components,group:DHL Template structure,group:DHL Home Page structure,/libs/wcm/foundation/components/responsivegrid,">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1574694950111>
+                    <policy_355443549935000
+                            jcr:lastModified="{Date}2023-08-21T11:18:08.464+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Editable Article  - policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/apps/dhl/components/content/accordion,/apps/dhl/components/content/articlegrid,/apps/dhl/components/content/articlelistcarousel,/apps/dhl/components/content/articlelistcategoryexplore,/apps/dhl/components/content/articlepanel,/apps/dhl/components/content/download,/apps/dhl/components/content/figure,/apps/dhl/components/content/gallery,/apps/dhl/components/content/listicleitem,/apps/dhl/components/content/simpledownload,/apps/dhl/components/content/statpanel,/apps/dhl/components/content/subscribepanel,/apps/dhl/components/content/taglist,/apps/dhl/components/content/text,/apps/dhl/components/content/title]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_355443549935000>
+                    <policy_457152354813000
+                            jcr:lastModified="{Date}2023-09-20T15:11:55.953+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Home page responsivegrid policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/apps/dhl/components/content/article-showcase,/apps/dhl/components/content/cta-banner-with-points,/apps/dhl/components/content/title-v2,/apps/dhl/components/content/top-tiles]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_457152354813000>
                 </responsivegrid>
             </components>
         </foundation>

@@ -13,7 +13,12 @@ import java.util.Optional;
 @Component(service = PageUtilService.class)
 public class PageUtilService {
 
-    private static final int HOME_PAGE_LEVEL = 3;
+    public static final int HOME_PAGE_LEVEL = 3;
+    public static final int CATEGORY_PAGE_LEVEL = HOME_PAGE_LEVEL + 1;
+    public static final int HOME_PAGE_DEPTH = HOME_PAGE_LEVEL + 1;
+
+    private static final String HOME_PAGE_STATIC_RESOURCE_TYPE = "dhl/components/pages/home";
+    private static final String HOME_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-home-page";
 
     public int getHomePageLevel() {
         return HOME_PAGE_LEVEL;
@@ -35,20 +40,30 @@ public class PageUtilService {
         return getPageProperties(getHomePage(page));
     }
 
-    public List<Page> getAllHomePages(Page page) {
-        List<Page> homePages = new LinkedList<>();
-        return page == null || page.getDepth() > HOME_PAGE_LEVEL + 1 ? null : getAllHomePages(page, homePages);
+    public List<Page> getAllHomePages(Page rootPage) {
+        return rootPage == null || rootPage.getDepth() > HOME_PAGE_DEPTH
+                ? null
+                : getAllHomePages(rootPage, new LinkedList<>());
+    }
+
+    public boolean isHomePage(Page page) {
+        if(page == null) {
+            return false;
+        }
+        ValueMap pageProperties = page.getProperties();
+        String resourceType = pageProperties.get("sling:resourceType", "");
+        boolean isHomePageResourceType = resourceType.equals(HOME_PAGE_DYNAMIC_RESOURCE_TYPE) || resourceType.equals(HOME_PAGE_STATIC_RESOURCE_TYPE);
+        return page.getDepth() == HOME_PAGE_DEPTH && isHomePageResourceType;
     }
 
     private List<Page> getAllHomePages(Page page, List<Page> list) {
         Iterator<Page> pageIterator = page.listChildren(new PageFilter(false, false));
         while (pageIterator.hasNext()) {
-            Page childPage = pageIterator.next();
-            int childPageDepth = childPage.getDepth();
-            if (childPageDepth == HOME_PAGE_LEVEL + 1) {
+            var childPage = pageIterator.next();
+            if (isHomePage(childPage)) {
                 list.add(childPage);
             }
-            if (childPageDepth < HOME_PAGE_LEVEL + 1) {
+            if (childPage.getDepth() < HOME_PAGE_DEPTH) {
                 getAllHomePages(childPage, list);
             }
         }

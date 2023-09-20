@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="cq:Page">
+    <jcr:content
+            jcr:primaryType="cq:PageContent"
+            sling:resourceType="dhl/components/pages/editable-home-page"
+            cq:template="/conf/dhl/settings/wcm/templates/home-page">
+        <root
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid"
+                layout="responsiveGrid">
+            <responsivegrid
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/foundation/components/responsivegrid">
+                <top_tiles
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/content/top-tiles">
+                    <articles jcr:primaryType="nt:unstructured"/>
+                </top_tiles>
+                <title_v2
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/content/title-v2"/>
+                <home_page_container
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/content/home-page-container">
+                    <body
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <article_showcase
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/article-showcase"
+                                designMode="horizontal"
+                                source="customPick">
+                            <articles jcr:primaryType="nt:unstructured"/>
+                        </article_showcase>
+                    </body>
+                    <sidebar
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid"/>
+                </home_page_container>
+                <home_page_container_with_sidebar
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/content/home-page-container"
+                        designMode="withSidebar">
+                    <body
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <article_showcase
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/article-showcase"
+                                designMode="vertical"
+                                source="latest"/>
+                    </body>
+                    <sidebar
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <cta_banner_with_poin
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/cta-banner-with-points"/>
+                    </sidebar>
+                </home_page_container_with_sidebar>
+                <home_page_container_cta_banner
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/content/home-page-container">
+                    <body
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <cta_banner_with_poin
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/cta-banner-with-points">
+                            <points jcr:primaryType="nt:unstructured"/>
+                        </cta_banner_with_poin>
+                    </body>
+                    <sidebar
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid"/>
+                </home_page_container_cta_banner>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

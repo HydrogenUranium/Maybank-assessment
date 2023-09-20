@@ -2,7 +2,6 @@
 package com.positive.dhl.core.services;
 
 import com.positive.dhl.core.constants.DiscoverConstants;
-import lombok.Cleanup;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -11,6 +10,8 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Session;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,4 +62,12 @@ public class ResourceResolverHelper {
 		}
 	}
 
+	public ResourceResolver getResourceResolver(Session session) {
+		try {
+			return resourceResolverFactory.getResourceResolver(Collections.singletonMap("user.jcr.session", session));
+		} catch (LoginException e) {
+			LOGGER.error("Error has occurred when trying to get a ResourceResolver from session");
+			return null;
+		}
+	}
 }

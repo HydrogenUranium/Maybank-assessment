@@ -15,7 +15,7 @@ class ArticleTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        context.load().json("/com/positive/dhl/core/models/Article/content.json", "/content");
+        context.load().json("/com/positive/dhl/core/models/Article/content.json", "/content/dhl/global");
 
         TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
         tagManager.createTag("dhl:default/dhl_internationalshipping", "International Shipping", "International Shipping");
@@ -25,7 +25,7 @@ class ArticleTest {
 
     @Test
     void init_ShouldInitArticle() {
-        Article article = new Article("/content/home/small-business-advice/article", context.resourceResolver());
+        Article article = new Article("/content/dhl/global/home/small-business-advice/article", context.resourceResolver());
 
         assertArrayEquals(new String[]{"#eCommerceAdvice", "#InternationalShipping", "#BusinessAdvice"}, article.getTagsToShow().toArray());
         assertEquals("From Waybills to Export Licenses, this guide breaks down the jargon to help you navigate customs seamlessly. ", article.getBrief());
@@ -37,7 +37,7 @@ class ArticleTest {
         assertEquals("04 August 2023", article.getCreatedfriendly());
         assertEquals("What paperwork do I need for international shipping?", article.getFullTitle());
         assertEquals("#SmallBusinessAdvice", article.getGroupTag());
-        assertEquals("/content/home/small-business-advice", article.getGrouppath());
+        assertEquals("/content/dhl/global/home/small-business-advice", article.getGrouppath());
         assertEquals("Small Business advice", article.getGrouptitle());
         assertEquals(true, article.getValid());
         assertNull(article.getThird());
