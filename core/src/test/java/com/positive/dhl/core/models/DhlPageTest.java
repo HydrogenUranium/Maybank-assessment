@@ -42,7 +42,7 @@ class DhlPageTest {
 		
 		// assertTrue(tagList.getTags().size() == 0);
 		assert dhlPage != null;
-		assertEquals("/content/dhl/standardpage", dhlPage.getFullUrl());
+		assertEquals("https://www.dhl.com/content/dhl/standardpage", dhlPage.getFullUrl());
 		assertEquals("/content/dhl/business/finding-new-customers/The-subscription-economy/The-Subscription-Economy", dhlPage.getAmparticlepath());
 		assertEquals("", dhlPage.getFullarticlepath());
 		
