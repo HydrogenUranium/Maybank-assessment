@@ -30,7 +30,7 @@ $include "./default_filters.any"
 /3012 {
     /type "allow"
     /method "POST"
-    /path "/content/dhl/*"
+    /path "*/content/dhl/*"
     /selectors 'form'
     /extension 'html' }  # allow POSTs to form selectors under content
 
