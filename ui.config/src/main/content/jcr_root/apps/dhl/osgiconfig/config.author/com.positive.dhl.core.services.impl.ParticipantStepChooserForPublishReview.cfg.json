@@ -1,6 +1,5 @@
 {
   "mappings":[
-    "/content/dhl/en-global:publisher-global",
     "/content/dhl/au:publisher-australia",
     "/content/dhl/hk:publisher-hong-kong",
     "/content/dhl/in:publisher-india",
@@ -11,17 +10,6 @@
     "/content/dhl/sg:publisher-singapore",
     "/content/dhl/us:publisher-united-states",
     "/content/dhl/global:publisher-global",
-    "/content/dhl/en-au:publisher-australia",
-    "/content/dhl/en-hk:publisher-hong-kong",
-    "/content/dhl/en-in:publisher-india",
-    "/content/dhl/en-id:publisher-indonesia",
-    "/content/dhl/en-my:publisher-malaysia",
-    "/content/dhl/en-nz:publisher-new-zealand",
-    "/content/dhl/en-ph:publisher-philippines",
-    "/content/dhl/en-sg:publisher-singapore",
-    "/content/dhl/en-us:publisher-united-states",
-    "/content/dhl/en-global:publisher-global",
-
     "/content/dhl/gb:publisher-united-kingdom",
     "/content/dhl/ca:publisher-canada",
     "/content/dhl/it:publisher-italy",
@@ -39,6 +27,14 @@
     "/content/dhl/cn:publisher-china",
     "/content/dhl/pl:publisher-poland",
     "/content/dhl/bd:publisher-bangladesh",
-    "/content/dhl/dk:publisher-denmark"
+    "/content/dhl/dk:publisher-denmark",
+    "/content/dhl/il:publisher-israel",
+    "/content/dhl/at:publisher-austria",
+    "/content/dhl/pt:publisher-portugal",
+    "/content/dhl/lk:publisher-sri-lanka",
+    "/content/dhl/hu:publisher-hungary",
+    "/content/dhl/kh:publisher-cambodia",
+    "/content/dhl/mm:publisher-myanmar",
+    "/content/dhl/sk:publisher-slovakia"
   ]
 }
