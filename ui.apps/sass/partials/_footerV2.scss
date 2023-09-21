@@ -1,9 +1,14 @@
 .footerV2-wrapper {
   background: #CCCCCC 0% 0% no-repeat padding-box;
+  margin: 135px auto 0;
+
+  @include respond(md) {
+    margin: 35px auto 0;
+  }
 
   @include respond(xl) {
     max-width: 1640px;
-    margin: auto;
+    margin: 29px auto 0;
   }
 
   .footer-container {

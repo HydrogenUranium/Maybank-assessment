@@ -7,9 +7,9 @@ class Header {
     this.lastVal = '';
 
     this.sel = {
-      component: '.header, .headerV2-wrapper',
-      toggle: '.header__navigation, .headerV2__navigation',
-      menu: '.header__meganav, .headerV2__meganav',
+      component: '.header',
+      toggle: '.header__navigation',
+      menu: '.header__meganav',
       overlay: '.header__overlay',
       search: '.header__desktopSearch',
       searchForm: '.header__searchform',
@@ -173,11 +173,9 @@ class Header {
     if (!$(this.sel.menu).is(':visible')) {
       this.bodyScrolling(false);
       $(this.sel.toggle).addClass('header__navigation--open');
-      $(this.sel.component).addClass('headerV2__navigation--open');
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
-      $(this.sel.component).removeClass('headerV2__navigation--open');
     }
     $(this.sel.menu).slideToggle(150);
 

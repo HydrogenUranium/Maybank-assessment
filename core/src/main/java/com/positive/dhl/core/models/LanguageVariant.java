@@ -2,6 +2,8 @@ package com.positive.dhl.core.models;
 
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 
@@ -10,6 +12,10 @@ import org.apache.sling.models.annotations.Model;
  */
 @Model(adaptables=Resource.class)
 public class LanguageVariant {
+	@Getter
+	@Setter
+	public String region;
+
     @Inject
     public String name;
 

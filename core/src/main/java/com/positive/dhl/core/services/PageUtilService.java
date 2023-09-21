@@ -2,6 +2,7 @@ package com.positive.dhl.core.services;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageFilter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ValueMap;
 import org.osgi.service.component.annotations.Component;
 
@@ -9,6 +10,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
 @Component(service = PageUtilService.class)
 public class PageUtilService {
@@ -51,7 +56,7 @@ public class PageUtilService {
             return false;
         }
         ValueMap pageProperties = page.getProperties();
-        String resourceType = pageProperties.get("sling:resourceType", "");
+        String resourceType = pageProperties.get(SLING_RESOURCE_TYPE_PROPERTY, "");
         boolean isHomePageResourceType = resourceType.equals(HOME_PAGE_DYNAMIC_RESOURCE_TYPE) || resourceType.equals(HOME_PAGE_STATIC_RESOURCE_TYPE);
         return page.getDepth() == HOME_PAGE_DEPTH && isHomePageResourceType;
     }
@@ -68,5 +73,14 @@ public class PageUtilService {
             }
         }
         return list;
+    }
+
+    public String getCountryCodeByPagePath(Page page) {
+        return Optional.ofNullable(page)
+                .map(Page::getPath)
+                .map(pagePath -> Pattern.compile("/content/dhl/(global|\\w{2})/.*").matcher(pagePath))
+                .filter(Matcher::find)
+                .map(m -> m.group(1))
+                .orElse(StringUtils.EMPTY);
     }
 }
