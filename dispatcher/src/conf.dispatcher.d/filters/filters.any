@@ -26,6 +26,14 @@ $include "./default_filters.any"
 /3010 { /type "allow" /method "POST" /url "/apps/dhl/servlet-handler/*" }
 /3011 { /type "allow" /method "POST" /url "/conf/dhl/api/*" }
 
+# Allow forms submissions to AEM
+/3012 {
+    /type "allow"
+    /method "POST"
+    /path "/content/dhl/*"
+    /selectors 'form'
+    /extension 'html' }  # allow POSTs to form selectors under content
+
 # Allow AEM WCM Core Components sitemap
 /3020 { /type "allow" /path "/content/*" /selectors '(sitemap-index|sitemap)' /extension "xml" }
 
