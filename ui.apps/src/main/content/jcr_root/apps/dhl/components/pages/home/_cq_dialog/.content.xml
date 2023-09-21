@@ -1467,6 +1467,60 @@
                                                             </title>
                                                         </items>
                                                     </relatedPosts>
+                                                    <ctaBannerSubscribeToOurNewsletter
+                                                            jcr:title="CTA Banner 'Subscribe to our Newsletter'"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <mobileBackgroundImage
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/mobileBackgroundImage"
+                                                                    rootPath="/content/dam"
+                                                                    fieldLabel="Mobile Background Image"/>
+                                                            <tabletBackgroundImage
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/tabletBackgroundImage"
+                                                                    rootPath="/content/dam"
+                                                                    fieldLabel="Tablet Background Image"/>
+                                                            <desktopBackgroundImage
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/desktopBackgroundImage"
+                                                                    rootPath="/content/dam"
+                                                                    fieldLabel="Desktop Background Image"/>
+                                                            <topTitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Title"
+                                                                    emptyText="Subscribe To Our Newsletter"
+                                                                    value="Subscribe To Our Newsletter"
+                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/topTitle"/>
+                                                            <title
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Title"
+                                                                    emptyText="Subscribe To Our Newsletter"
+                                                                    value="Subscribe To Our Newsletter"
+                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/title"/>
+                                                            <buttonName
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Button Name"
+                                                                    emptyText="Subscribe"
+                                                                    value="Subscribe"
+                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/buttonName"/>
+                                                            <buttonLink
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldLabel="CTA Path"
+                                                                    rootPath="/content/dhl"
+                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/buttonLink"/>
+                                                        </items>
+                                                        <parentConfig jcr:primaryType="nt:unstructured"
+                                                                      active="{Boolean}false"/>
+                                                    </ctaBannerSubscribeToOurNewsletter>
                                                 </items>
                                             </accordion>
                                         </items>

@@ -2,6 +2,7 @@ package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.injectors.AssetInjector;
+import com.positive.dhl.core.injectors.HomeAssetPropertyInjector;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
 import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
@@ -9,7 +10,6 @@ import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.models.spi.DisposalCallbackRegistry;
 import org.apache.sling.models.spi.Injector;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -20,13 +20,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import static org.mockito.ArgumentMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class CtaBannerTest {
@@ -35,7 +32,6 @@ class CtaBannerTest {
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
     private final MockSlingHttpServletRequest request = context.request();
-
     private final ResourceResolver resourceResolver = context.resourceResolver();
 
     @Mock
@@ -48,13 +44,10 @@ class CtaBannerTest {
     private HomePropertyInjector homePropertyInjector;
 
     @InjectMocks
+    private HomeAssetPropertyInjector homeAssetPropertyInjector;
+
+    @InjectMocks
     private AssetInjector assetInjector;
-
-    @Mock
-    private Injector injector;
-
-    @Mock
-    private DisposalCallbackRegistry disposalCallbackRegistry;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -63,11 +56,12 @@ class CtaBannerTest {
         context.registerService(Injector.class, assetInjector);
         context.registerService(AssetUtilService.class, assetUtils);
         context.registerService(Injector.class, homePropertyInjector);
-        context.addModelsForClasses(CtaBanner.class);
+        context.registerService(Injector.class, homeAssetPropertyInjector);
+        context.addModelsForClasses(CtaBannerWithPoints.class);
     }
 
     private void mockHomePage() {
-        when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
+        when(pageUtils.getHomePage(any())).thenReturn(resourceResolver.getResource("/content/home").adaptTo(Page.class));
     }
 
     private void initRequest(String path) {
@@ -82,35 +76,13 @@ class CtaBannerTest {
 
         CtaBanner ctaBanner = request.adaptTo(CtaBanner.class);
 
-        assertEquals("SUBSCRIBE TO OUR NEWSLETTER", ctaBanner.getTitle());
-        assertEquals("/content/dhl/subscribe", ctaBanner.getButtonLink());
-        assertEquals("Subscribe", ctaBanner.getButtonName());
-        assertEquals("/prefix/content/dam/images/subscribe-desktop.png", ctaBanner.getDesktopBackgroundImage());
-        assertEquals("/prefix/content/dam/images/subscribe-tablet.png", ctaBanner.getTabletBackgroundImage());
-        assertEquals("/prefix/content/dam/images/subscribe-mobile.png", ctaBanner.getMobileBackgroundImage());
-        assertEquals(Arrays.asList(
-                "Fortnightly insights, tips and free assets",
-                "Shape a global audience for your business"
-        ), ctaBanner.getPoints());
-    }
-
-    @Test
-    void init_ShouldInitPropertiesFromHomePage_WhenTypeIsOpenBusinessAccount() {
-        initRequest(COMPONENT_LOCATION + "/cta_banner_businessAccount");
-        mockHomePage();
-
-        CtaBanner ctaBanner = request.adaptTo(CtaBanner.class);
-
-        assertEquals("Open a Business Account", ctaBanner.getTitle());
+        assertEquals("Subscribe To Our Newsletter", ctaBanner.getTitle());
+        assertEquals("Stay In The Loop!", ctaBanner.getTopTitle());
         assertEquals("/content/dhl/openBusinessAccount", ctaBanner.getButtonLink());
-        assertEquals("Join Us", ctaBanner.getButtonName());
+        assertEquals("Subscribe", ctaBanner.getButtonName());
         assertEquals("/prefix/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
         assertEquals("/prefix/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
         assertEquals("/prefix/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
-        assertEquals(Arrays.asList(
-                "Fortnightly insights, tips and free assets",
-                "Shape a global audience for your business"
-        ), ctaBanner.getPoints());
     }
 
     @Test
@@ -120,11 +92,11 @@ class CtaBannerTest {
         CtaBanner ctaBanner = resource.adaptTo(CtaBanner.class);
 
         assertEquals("CTA BANNER", ctaBanner.getTitle());
+        assertEquals("Custom Top Title", ctaBanner.getTopTitle());
         assertEquals("/content/test", ctaBanner.getButtonLink());
         assertEquals("Buy", ctaBanner.getButtonName());
         assertEquals("/prefix/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
         assertEquals("/prefix/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
         assertEquals("/prefix/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
-        assertEquals(new ArrayList<>(), ctaBanner.getPoints());
     }
 }
