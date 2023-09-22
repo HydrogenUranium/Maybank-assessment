@@ -138,7 +138,7 @@ public class LanguageVariant {
     /**
 	 * 
 	 */
-    public LanguageVariant(String name, String home, String link, String acceptlanguages, Boolean deflt, Boolean current, Boolean exact) {
+    public LanguageVariant(String name, String home, String link, String acceptlanguages, boolean deflt, boolean current, boolean exact) {
 		this.home = home;
 		this.link = link;
 		this.acceptlanguages = acceptlanguages;
