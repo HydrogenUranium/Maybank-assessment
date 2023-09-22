@@ -81,7 +81,7 @@ public class LanguageVariants {
 		
 		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 			for (LanguageVariant variant: entry.getValue()) {
-				if (variant.getCurrent()) {
+				if (variant.isCurrent()) {
 					currentRegion = entry.getKey();
 					return currentRegion;
 				}
@@ -101,8 +101,8 @@ public class LanguageVariants {
 		
 		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 			for (LanguageVariant variant: entry.getValue()) {
-				if (variant.getCurrent()) {
-					currentLanguage = variant.getAcceptLanguages().trim();
+				if (variant.isCurrent()) {
+					currentLanguage = variant.getAcceptlanguages().trim();
 					if (("*").equals(currentLanguage)) {
 						currentLanguage = "en";
 					}
@@ -123,7 +123,7 @@ public class LanguageVariants {
 			
 			for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 				for (LanguageVariant variant: entry.getValue()) {
-					if (variant.getCurrent()) {
+					if (variant.isCurrent()) {
 						languageVariantsList = entry.getValue();
 						languageVariantsList.sort(new LanguageVariantSorter());
 						return new ArrayList<>(languageVariantsList);
@@ -144,7 +144,7 @@ public class LanguageVariants {
 			for (LanguageVariant variant: entry.getValue()) {
 				JsonObject v = new JsonObject();
 				v.addProperty("path", variant.getLink());
-				v.addProperty("languages", variant.getAcceptLanguages());
+				v.addProperty("languages", variant.getAcceptlanguages());
 				
 				jsonVariants.add(v);
 			}
@@ -165,7 +165,7 @@ public class LanguageVariants {
 				boolean found = false;
 				LanguageVariant first = null;
 				for (LanguageVariant variant: entry.getValue()) {
-					if (variant.getDeflt()) {
+					if (variant.isDeflt()) {
 						found = true;
 						allLanguageVariants.add(new LinkVariant(entry.getKey(), variant.getLink(), variant.getHome()));
 						break;
@@ -246,7 +246,7 @@ public class LanguageVariants {
             String newExactPath = homepage.getPath();
             boolean exactPathExists = true;
 
-			if (StringUtils.isNoneBlank(currentHomePath)) {
+			if (!StringUtils.isBlank(currentHomePath)) {
 				newExactPath = path.replace(currentHomePath, newHomepage);
 				Resource resource = resourceResolver.getResource(newExactPath);
 				exactPathExists = (resource != null);
@@ -266,7 +266,7 @@ public class LanguageVariants {
 			languages.add(newItem);
 
 			String countryCode = pageUtilService.getCountryCodeByPagePath(homepage);
-			if (StringUtils.isNoneBlank(countryCode) && !currentHomePath.equals(newHomepage) && (!countries.containsKey(countryCode) || deflt)) {
+			if (!StringUtils.isBlank(countryCode) && !currentHomePath.equals(newHomepage) && (!countries.containsKey(countryCode) || deflt)) {
 				newItem.setRegion(region);
 				countries.put(countryCode, newItem);
 			}
