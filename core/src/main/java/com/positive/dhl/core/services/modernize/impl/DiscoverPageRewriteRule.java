@@ -81,7 +81,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
 
     @Override
     public String getId() {
-        return this.toString();
+        return String.format("%s:%s", staticTemplate, editableTemplate);
     }
 
     @Override
