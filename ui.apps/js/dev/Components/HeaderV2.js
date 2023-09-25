@@ -33,8 +33,8 @@ class HeaderV2 {
     $(document).on('click', this.sel.selectedCountry, this.showCountryOptions);
 
     $(document).on('click', '.headerV2__lang', (evt) => {
-      let href = $(evt.currentTarget).attr('href');
-      let home = $(evt.currentTarget).attr('data-home');
+      var href = $(evt.currentTarget).attr('href');
+      var home = $(evt.currentTarget).attr('data-home');
       if (home !== null && home.length > 0) {
         href = home;
       }
@@ -115,7 +115,10 @@ class HeaderV2 {
           removeClickListener();
           $(this.sel.countryOptions).removeClass('header-countryList--open');
           $(this.sel.countryOptions).hide();
-          window.location.href = $countrySelected.data("path");
+          var redirectPath = $countrySelected.siblings('.header-countryList__option-link').attr('href');
+          if (redirectPath !== null && redirectPath.length > 0) {
+            window.location.href = redirectPath;
+          }
         }
       }
     }

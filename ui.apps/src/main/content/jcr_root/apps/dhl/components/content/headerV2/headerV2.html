@@ -15,11 +15,12 @@
                         <div class="header-countryList__widget" id="countryList-widget">
                             <sly data-sly-repeat="${languageVariants.countries}">
                                 <div class="header-countryList__option">
-                                    <input type="radio" id="country-${item}" name="country-option" value="country-${item}" data-path="${languageVariants.countries[item].link}.html">
+                                    <input type="radio" id="country-${item}" name="country-option" value="country-${item}">
                                     <label for="country-${item}">
                                         <span class="fi fi-${item == 'global' ? 'aa' : item}"></span>
                                         <span>${languageVariants.countries[item].region}</span>
                                     </label>
+                                    <a class="header-countryList__option-link" href="${languageVariants.countries[item].link}.html"></a>
                                 </div>
                             </sly>
                         </div>
