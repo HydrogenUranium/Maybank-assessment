@@ -86,6 +86,37 @@
             }
           }
 
+          .header__desktopLinkItem--open {
+              background-color: transparent;
+          }
+
+          .header__desktopSearch {
+            display: block;
+            height: 26px;
+            min-width: 100%;
+            border-left: unset;
+
+            .icon {
+              display: inline-block;
+              background-image: url('__prefix__/discover/resources/img/searchicon.png');
+              background-image: none, url('__prefix__/discover/resources/img/searchicon.svg');
+              @include backgroundImage(contain);
+              width: 20px;
+              height: 26px;
+
+              margin: 0;
+              position: unset;
+
+            }
+
+            &--close {
+              .icon {
+                background-image: url('__prefix__/discover/resources/img/searchcloseicon.png');
+                background-image: none, url('__prefix__/discover/resources/img/searchcloseicon.svg');
+              }
+            }
+          }
+
           .header-countryList {
             display: none;
             position: absolute;
@@ -98,10 +129,12 @@
             width: 212px;
             max-height: 195px;
             overflow: auto;
+            font-size: 16px;
+            line-height: 14px;
+
 
             &__label {
               position: relative;
-              top: -6px;
               font-family: "Delivery", sans-serif;
               font-size: 10px;
               line-height: 14px;
@@ -119,6 +152,8 @@
             display: flex;
             align-items: center;
             text-decoration: none;
+            font-size: 16px;
+            line-height: 14px;
 
             .global-icon {
               display: block;

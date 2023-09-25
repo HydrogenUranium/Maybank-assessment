@@ -10,6 +10,13 @@
             </div>
             <div class="main-row__right">
                 <div class="header__icon">
+                    <div class="header__desktopLinkItem">
+                        <a href="#" class="header__desktopSearch" title="${ 'Search' @ i18n, context='html' }">
+                            <span class="icon"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="header__icon">
                     <div class="header-countryList">
                         <label for="countryList-widget" class="header-countryList__label">Countries & Regions</label>
                         <div class="header-countryList__widget" id="countryList-widget">
@@ -91,5 +98,27 @@
             </ul>
             <sly data-sly-resource="${'cta_banner_with_poin' @ resourceType='dhl/components/content/cta-banner-with-points'}"/>
         </nav>
+    </div>
+    <div class="header__searchform">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-xl-8 offset-xl-2">
+                    <form action="${meganav.searchResultsPage}" method="GET" autocomplete="off" data-suggestions="${meganav.AutocompleteUrl @context='unsafe'}" data-topsearches="${meganav.TopsearchesUrl @context='unsafe'}">
+                        <div class="form-group">
+                            <input class="form-field" type="text" name="searchfield" value="" placeholder="${ 'Enter a keyword or topic' @ i18n, context='html' }" />
+                            <button class="clear"><span class="sr-only">${ "Clear" @ i18n, context='html' }</span></button>
+                            <div class="suggestions"></div>
+                            <div class="top-searches">
+                                <h3>${ "Most Popular" @ i18n, context='html' }</h3>
+                                <div class="items"></div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">
+                            <span>${ "Search" @ i18n, context='html' }</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
