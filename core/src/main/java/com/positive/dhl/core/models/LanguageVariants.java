@@ -221,7 +221,8 @@ public class LanguageVariants {
 		countries = new TreeMap<>();
 
 		Page root = currentPage.getAbsoluteParent(1);
-		Page currentHome = pageUtilService.getHomePage(currentPage);
+        Page currentHome = pageUtilService.getHomePage(currentPage);
+        String currentCountryCode = pageUtilService.getCountryCodeByPagePath(currentPage);
 		String currentHomePath = currentHome != null ? currentHome.getPath() : StringUtils.EMPTY;
 		String path = currentPage.getPath();
 
@@ -266,7 +267,7 @@ public class LanguageVariants {
 			languages.add(newItem);
 
 			String countryCode = pageUtilService.getCountryCodeByPagePath(homepage);
-			if (!StringUtils.isBlank(countryCode) && !currentHomePath.equals(newHomepage) && (!countries.containsKey(countryCode) || deflt)) {
+			if (!StringUtils.isBlank(countryCode) && !countryCode.equals(currentCountryCode) && (!countries.containsKey(countryCode) || deflt)) {
 				newItem.setRegion(region);
 				countries.put(countryCode, newItem);
 			}
