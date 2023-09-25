@@ -45,12 +45,186 @@
       justify-content: space-between;
       align-items: center;
 
-      .right-side {
+      &__left {
+        .headerV2__logoWrap {
+          display: block;
+          width: 78px;
+          max-width: 100%;
+
+          @include respond(xl) {
+            width: 124px;
+          }
+
+          .headerV2__logo {
+            display: block;
+            width: 100%;
+            height: 0px;
+            padding-bottom: 37.32%;
+            background-image: none, url('__prefix__/discover/resources/img/new-logo.svg');
+            @include backgroundImage(contain);
+          }
+        }
+      }
+
+      &__right {
         display: flex;
         align-items: center;
 
-        @include respond(xl) {
-          display: none;
+        .header__icon {
+          position: relative;
+          margin: 0 8px;
+
+          &:last-child {
+            margin: 0 0 0 8px;
+          }
+
+          @include respond(xl) {
+            margin: 0 15px;
+
+            &:last-child {
+              margin: 0 0 0 15px;
+            }
+          }
+
+          .header-countryList {
+            display: none;
+            position: absolute;
+            background: map-get($palette, true-white) 0% 0% no-repeat padding-box;
+            border: 1px solid map-get($palette, true-black);
+            border-radius: 4px;
+            padding: 0 10px 18px;
+            z-index: 22;
+            right: 0;
+            width: 212px;
+            max-height: 195px;
+            overflow: auto;
+
+            &__label {
+              position: relative;
+              top: -6px;
+              font-family: "Delivery", sans-serif;
+              font-size: 10px;
+              line-height: 14px;
+              letter-spacing: 0px;
+              color: #363636;
+              opacity: 0.6;
+            }
+
+            .fi {
+              margin: 0 2px 0 6px;
+            }
+          }
+
+          .headerV2__desktopCountry {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+
+            .global-icon {
+              display: block;
+              background-image: url('__prefix__/discover/resources/img/globe.png');
+              background-image: none, url('__prefix__/discover/resources/img/globe.svg');
+              @include backgroundImage(contain);
+
+              width: 20px;
+              height: 20px;
+            }
+
+            .title {
+              color: map-get($palette, black);
+              padding-left: 5px;
+
+              &:hover {
+                color: map-get($palette, scarlet);
+              }
+            }
+          }
+
+          .headerV2__lang {
+            padding-right: 5px;
+            min-width: 36px;
+            font-size: 14px;
+            line-height: 14px;
+            color: map-get($palette, black);
+            text-align: center;
+            text-decoration: none;
+
+            &:last-child {
+              padding-right: 0;
+            }
+
+            &:hover {
+              color: map-get($palette, scarlet);
+            }
+
+            &--selected {
+              text-underline-offset: 5px;
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .headerV2__navigation {
+          display: block;
+          width: 30px;
+          height: 30px;
+          background: transparent;
+
+          @include respond(xl) {
+            display: none;
+          }
+
+          .headerV2__hamburger {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: map-get($palette, black);
+            position: relative;
+            top: 13px;
+            left: -7px;
+            transition: background 150ms ease;
+            margin-left: 10px;
+
+            &:before {
+              content: ' ';
+              display: block;
+              position: absolute;
+              top: -6px;
+              left: 0px;
+              background: map-get($palette, black);
+              width: 24px;
+              height: 2px;
+              transition: transform 150ms ease;
+            }
+
+            &:after {
+              content: ' ';
+              display: block;
+              position: absolute;
+              bottom: -6px;
+              left: 0px;
+              background: map-get($palette, black);
+              width: 24px;
+              height: 2px;
+              transition: transform 150ms ease;
+            }
+          }
+
+          &.header__navigation--open .headerV2__hamburger {
+            background: transparent;
+
+            &:before {
+              top: 0;
+              bottom: auto;
+              transform: rotate(45deg);
+            }
+
+            &:after {
+              top: 0;
+              bottom: auto;
+              transform: rotate(-45deg);
+            }
+          }
         }
       }
     }
@@ -63,11 +237,11 @@
         align-items: baseline;
       }
 
-      .left-side {
+      &__left {
         display: flex;
       }
 
-      .right-side {
+      &__right {
         display: flex;
         align-items: baseline;
         padding-left: 40px;
@@ -134,83 +308,6 @@
     }
   }
 
-  .headerV2__logoWrap {
-    display: block;
-    width: 78px;
-    max-width: 100%;
-
-    @include respond(xl) {
-      width: 124px;
-    }
-  }
-
-  .headerV2__logo {
-    display: block;
-    width: 100%;
-    height: 0px;
-    padding-bottom: 37.32%;
-    background-image: none, url('__prefix__/discover/resources/img/new-logo.svg');
-    @include backgroundImage(contain);
-  }
-  .headerV2__navigation {
-    display: block;
-    width: 30px;
-    height: 30px;
-    background: transparent;
-
-    .headerV2__hamburger {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: map-get($palette, black);
-      position: relative;
-      top: 13px;
-      left: -7px;
-      transition: background 150ms ease;
-      margin-left: 10px;
-
-      &:before {
-        content: ' ';
-        display: block;
-        position: absolute;
-        top: -6px;
-        left: 0px;
-        background: map-get($palette, black);
-        width: 24px;
-        height: 2px;
-        transition: transform 150ms ease;
-      }
-
-      &:after {
-        content: ' ';
-        display: block;
-        position: absolute;
-        bottom: -6px;
-        left: 0px;
-        background: map-get($palette, black);
-        width: 24px;
-        height: 2px;
-        transition: transform 150ms ease;
-      }
-    }
-
-    &.header__navigation--open .headerV2__hamburger {
-      background: transparent;
-
-      &:before {
-        top: 0;
-        bottom: auto;
-        transform: rotate(45deg);
-      }
-
-      &:after {
-        top: 0;
-        bottom: auto;
-        transform: rotate(-45deg);
-      }
-    }
-  }
-
   .headerV2__meganav {
     display: none;
     position: absolute;
@@ -223,65 +320,65 @@
     margin: 0;
     overflow: auto;
 
-    .menuNav-title {
-      font-size: 16px;
-      font-weight: bold;
-    }
-  }
+    .headerV2__meganavNavigation {
+      background: map-get($palette, true-white);
+      padding: 31px 36px 28px;
 
-  .headerV2__meganavNavigation {
-    background: map-get($palette, true-white);
-    padding: 31px 36px 28px;
-  }
+      .headerV2__meganavNav {
+        margin: 0px;
+        list-style: none;
+        position: relative;
 
-  .headerV2__meganavNav {
-    margin: 0px;
-    list-style: none;
-    position: relative;
-
-    > li {
-      display: block;
-      padding-bottom: 27px;
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-
-
-      a {
-        display: block;
-        padding: 15px 0;
-        text-decoration: none;
-      }
-
-      > a {
-        @include font($style: "%T1");
-        color: map-get($palette, scarlet);
-        text-transform: uppercase;
-        font-size: 16px;
-        padding: 15px 0 0;
-
-        &:hover {
-          color: #323232;
+        .menuNav-title {
+          font-size: 16px;
+          font-weight: bold;
         }
-      }
 
-      ul {
-        @extend .clearfix;
-
-        li {
+        > li {
           display: block;
-          margin-left: 32px;
+          padding-bottom: 27px;
+
+          &:last-child {
+            padding-bottom: 0;
+          }
+
 
           a {
-            @include font($style: "%T2Left", $colour: #323232);
-            font-weight: 200;
-            font-stretch: condensed;
-            font-size: 14px;
-            line-height: 16px;
+            display: block;
+            padding: 15px 0;
+            text-decoration: none;
+          }
+
+          > a {
+            @include font($style: "%T1");
+            color: map-get($palette, scarlet);
+            text-transform: uppercase;
+            font-size: 16px;
+            padding: 15px 0 0;
 
             &:hover {
-              color: map-get($palette, scarlet);
+              color: #323232;
+            }
+          }
+
+          ul {
+            @extend .clearfix;
+
+            li {
+              display: block;
+              margin-left: 32px;
+
+              a {
+                @include font($style: "%T2Left", $colour: #323232);
+                font-weight: 200;
+                font-stretch: condensed;
+                font-size: 14px;
+                line-height: 16px;
+
+                &:hover {
+                  color: map-get($palette, scarlet);
+                }
+              }
             }
           }
         }

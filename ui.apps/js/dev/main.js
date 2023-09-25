@@ -1,5 +1,6 @@
 // Import components
 import Header from './Components/Header';
+import HeaderV2 from './Components/HeaderV2';
 import BootstrapCarousel from './Components/BootstrapCarousel';
 import ArticleGrid from './Components/ArticleGrid';
 import SubscribePanel from './Components/SubscribePanel';
@@ -46,6 +47,7 @@ $(document).ready(() => {
   // ArticleCounter.init();
   IEDetector.init();
   Header.init();
+  HeaderV2.init();
   BootstrapCarousel.init();
   ArticleGrid.init();
   SubscribePanel.init();

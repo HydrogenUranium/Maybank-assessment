@@ -1,13 +1,50 @@
-<header class="headerV2-wrapper" data-sly-use.meganav="com.positive.dhl.core.models.Meganav">
+<header class="headerV2-wrapper"
+        data-sly-use.meganav="com.positive.dhl.core.models.Meganav"
+        data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants">
     <div class="header-container">
         <div class="main-row">
-            <div class="left-side">
+            <div class="main-row__left">
                 <div class="headerV2__logoWrap">
                     <a class="headerV2__logo" href="${meganav.homeUrl}" title="${meganav.siteTitle}"><span class="sr-only">${meganav.siteTitle}</span></a>
                 </div>
             </div>
-            <div class="right-side">
-                <div class="headerV2__desktopLinkItem">
+            <div class="main-row__right">
+                <div class="header__icon">
+                    <div class="header-countryList">
+                        <label for="countryList-widget" class="header-countryList__label">Countries & Regions</label>
+                        <div class="header-countryList__widget" id="countryList-widget">
+                            <sly data-sly-repeat="${languageVariants.countries}">
+                                <div class="header-countryList__option">
+                                    <input type="radio" id="country-${item}" name="country-option" value="country-${item}">
+                                    <label for="country-${item}">
+                                        <span class="fi fi-${item == 'global' ? 'aa' : item}"></span>
+                                        <span>${languageVariants.countries[item].region}</span>
+                                    </label>
+                                    <a class="header-countryList__option-link" href="${languageVariants.countries[item].link}.html"></a>
+                                </div>
+                            </sly>
+                        </div>
+                    </div>
+                    <div class="headerV2__desktopCountry">
+                        <sly data-sly-test.isGlobal="${languageVariants.getCurrentRegion == 'Global'}">
+                            <span class="global-icon"></span>
+                        </sly>
+                        <sly data-sly-test="${!isGlobal}">
+                            <span class="fi fi-${languageVariants.currentRegionCode}"></span>
+                            <span class="title">${ languageVariants.getCurrentRegion @ i18n, context='html' }</span>
+                        </sly>
+                    </div>
+                </div>
+                <div class="header__icon">
+                    <sly data-sly-test="${languageVariants.getCurrentRegion.length > 0 && languageVariants.getLanguageVariants.size > 0}">
+                        <a data-sly-repeat="${languageVariants.getLanguageVariants}"
+                           href="${item.link}.html" data-home="${ item.home }.html"
+                           class="headerV2__lang${((item.current) ? ' headerV2__lang--selected' : '') @ context='html'}">
+                            ${ item.name @ i18n, context='html' }
+                        </a>
+                    </sly>
+                </div>
+                <div class="header__icon">
                     <a class="headerV2__navigation" href="#">
                         <i class="headerV2__hamburger"></i>
                     </a>
@@ -15,13 +52,13 @@
             </div>
         </div>
         <div class="navigation-row" data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model">
-            <div class="left-side">
+            <div class="navigation-row__left">
                 <a class="navigation-item" href="${headerV2.homePageLink}"><span>${headerV2.homePageLabel}</span></a>
                 <sly data-sly-list="${meganav.panels}">
                     <a data-sly-set.currentPagePath="${currentPage.path}.html" class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }" href="${item.url}"><span>${item.navigationTitle}</span></a>
                 </sly>
             </div>
-            <div class="right-side">
+            <div class="navigation-row__right">
                 <a data-sly-test="${headerV2.buttonName}" class="button" href="${headerV2.buttonLink}" title="${headerV2.buttonName}">
                     <span>${headerV2.buttonName}</span>
                 </a>
