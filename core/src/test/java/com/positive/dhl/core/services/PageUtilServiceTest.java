@@ -3,6 +3,7 @@ package com.positive.dhl.core.services;
 import com.day.cq.wcm.api.Page;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -53,6 +54,7 @@ class PageUtilServiceTest {
         assertNull(pageUtilService.getAllHomePages(null));
         assertEquals(ValueMap.EMPTY, pageUtilService.getPageProperties(null));
         assertEquals(ValueMap.EMPTY, pageUtilService.getHomePageProperties(null));
+        assertEquals(StringUtils.EMPTY, pageUtilService.getCountryCodeByPagePath(null));
     }
 
     @Test
@@ -101,6 +103,12 @@ class PageUtilServiceTest {
     void test_getPageProperties()  {
         Page page = resource.adaptTo(Page.class);
         assertEquals("Root", pageUtilService.getPageProperties(page).get("jcr:content/jcr:title"));
+    }
+
+    @Test
+    void test_getCountryCodeByPagePath()  {
+        Page page = getPageUpperHomePage();
+        assertEquals("global", pageUtilService.getCountryCodeByPagePath(page));
     }
 
     private Page getPageUpperHomePage() {

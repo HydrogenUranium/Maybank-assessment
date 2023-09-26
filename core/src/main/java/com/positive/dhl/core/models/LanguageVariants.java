@@ -4,6 +4,8 @@ import com.day.cq.wcm.api.Page;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.positive.dhl.core.services.PageUtilService;
+import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -16,7 +18,9 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 /**
  *
@@ -34,9 +38,15 @@ public class LanguageVariants {
 
 	private HashMap<String, ArrayList<LanguageVariant>> variants;
 
+	@Getter
+	private Map<String, LanguageVariant> countries;
+
+	@Getter
+	private String currentRegionCode;
+
 	private String currentRegion;
 	private String currentLanguage;
-	private List<LanguageVariant> languageVariants;
+	private List<LanguageVariant> languageVariantsList;
 	private List<LinkVariant> allLanguageVariants;
 	private List<List<LinkVariant>> allLanguageVariantsGrouped;
 	
@@ -71,7 +81,7 @@ public class LanguageVariants {
 		
 		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 			for (LanguageVariant variant: entry.getValue()) {
-				if (variant.getCurrent()) {
+				if (variant.isCurrent()) {
 					currentRegion = entry.getKey();
 					return currentRegion;
 				}
@@ -91,8 +101,8 @@ public class LanguageVariants {
 		
 		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 			for (LanguageVariant variant: entry.getValue()) {
-				if (variant.getCurrent()) {
-					currentLanguage = variant.getAcceptLanguages().trim();
+				if (variant.isCurrent()) {
+					currentLanguage = variant.getAcceptlanguages().trim();
 					if (("*").equals(currentLanguage)) {
 						currentLanguage = "en";
 					}
@@ -108,20 +118,20 @@ public class LanguageVariants {
 	 *
 	 */
 	public List<LanguageVariant> getLanguageVariants() {
-		if (languageVariants == null) {
-			languageVariants = new ArrayList<>();
+		if (languageVariantsList == null) {
+			languageVariantsList = new ArrayList<>();
 			
 			for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 				for (LanguageVariant variant: entry.getValue()) {
-					if (variant.getCurrent()) {
-						languageVariants = entry.getValue();
-						languageVariants.sort(new LanguageVariantSorter());
-						return new ArrayList<>(languageVariants);
+					if (variant.isCurrent()) {
+						languageVariantsList = entry.getValue();
+						languageVariantsList.sort(new LanguageVariantSorter());
+						return new ArrayList<>(languageVariantsList);
 					}
 				}
 			}
 		}
-		return new ArrayList<>(languageVariants);
+		return new ArrayList<>(languageVariantsList);
 	}
 	
 	/**
@@ -134,7 +144,7 @@ public class LanguageVariants {
 			for (LanguageVariant variant: entry.getValue()) {
 				JsonObject v = new JsonObject();
 				v.addProperty("path", variant.getLink());
-				v.addProperty("languages", variant.getAcceptLanguages());
+				v.addProperty("languages", variant.getAcceptlanguages());
 				
 				jsonVariants.add(v);
 			}
@@ -155,7 +165,7 @@ public class LanguageVariants {
 				boolean found = false;
 				LanguageVariant first = null;
 				for (LanguageVariant variant: entry.getValue()) {
-					if (variant.getDeflt()) {
+					if (variant.isDeflt()) {
 						found = true;
 						allLanguageVariants.add(new LinkVariant(entry.getKey(), variant.getLink(), variant.getHome()));
 						break;
@@ -208,9 +218,12 @@ public class LanguageVariants {
 	@PostConstruct
     protected void init() {
 		variants = new HashMap<>();
+		countries = new TreeMap<>();
 
 		Page root = currentPage.getAbsoluteParent(1);
-		Page currentHome = pageUtilService.getHomePage(currentPage);
+        Page currentHome = pageUtilService.getHomePage(currentPage);
+        String currentCountryCode = pageUtilService.getCountryCodeByPagePath(currentPage);
+		String currentHomePath = currentHome != null ? currentHome.getPath() : StringUtils.EMPTY;
 		String path = currentPage.getPath();
 
 		if (root == null) {
@@ -221,16 +234,12 @@ public class LanguageVariants {
         for (Page homepage : homePages) {
             ValueMap homepageProperties = homepage.getProperties();
             boolean hideInNav = homepageProperties.get("hideInNav", false);
-            if (hideInNav) {
-                continue;
-            }
-
             String region = homepageProperties.get("siteregion", "").trim();
             String language = homepageProperties.get("sitelanguage", "").trim();
             String acceptlanguages = homepageProperties.get("acceptlanguages", "").trim();
-            Boolean enabled = homepageProperties.get("siteenabled", false);
-            Boolean deflt = homepageProperties.get("sitedefault", false);
-            if ((!enabled) || (region.equals(""))) {
+            boolean enabled = homepageProperties.get("siteenabled", false);
+            boolean deflt = homepageProperties.get("sitedefault", false);
+            if (hideInNav || !enabled || region.equals("")) {
                 continue;
             }
 
@@ -238,24 +247,34 @@ public class LanguageVariants {
             String newExactPath = homepage.getPath();
             boolean exactPathExists = true;
 
-            if (currentHome != null) {
-                newExactPath = path.replace(currentHome.getPath(), newHomepage);
-                Resource resource = resourceResolver.getResource(newExactPath);
-                exactPathExists = (resource != null);
+			if (!StringUtils.isBlank(currentHomePath)) {
+				newExactPath = path.replace(currentHomePath, newHomepage);
+				Resource resource = resourceResolver.getResource(newExactPath);
+				exactPathExists = (resource != null);
 
-                if (!exactPathExists) {
-                    newExactPath = newHomepage;
-                }
-            }
+				if (!exactPathExists) {
+					newExactPath = newHomepage;
+				}
+			}
 
-            LanguageVariant newItem = new LanguageVariant(language, newHomepage, newExactPath, acceptlanguages, deflt, path.contains(homepage.getPath()), exactPathExists);
-            if (!variants.containsKey(region)) {
-                ArrayList<LanguageVariant> languages = new ArrayList<>();
-                variants.put(region, languages);
-            }
+			LanguageVariant newItem = new LanguageVariant(language, newHomepage, newExactPath, acceptlanguages, deflt, path.contains(homepage.getPath()), exactPathExists);
+			if (!variants.containsKey(region)) {
+				ArrayList<LanguageVariant> languages = new ArrayList<>();
+				variants.put(region, languages);
+			}
 
-            ArrayList<LanguageVariant> languages = variants.get(region);
-            languages.add(newItem);
-        }
-    }
+			ArrayList<LanguageVariant> languages = variants.get(region);
+			languages.add(newItem);
+
+			String countryCode = pageUtilService.getCountryCodeByPagePath(homepage);
+			if (!StringUtils.isBlank(countryCode) && !countryCode.equals(currentCountryCode) && (!countries.containsKey(countryCode) || deflt)) {
+				newItem.setRegion(region);
+				countries.put(countryCode, newItem);
+			}
+
+			if (currentHomePath.equals(newHomepage)) {
+				currentRegionCode = countryCode;
+			}
+		}
+	}
 }

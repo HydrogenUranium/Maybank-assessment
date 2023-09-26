@@ -150,16 +150,23 @@
 
 								<img class="DHLdownload__image d-block d-md-none" src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${properties.assetimage}" alt="${properties.title}" />
 
-								<div class="forms marketoForm" data-marketo-form='{
-									"hiddenMunchkinId": "078-ERT-522",
-									"hiddenFormId": 1758
-								  }'>
+								<div class="forms marketoForm"
+									 data-marketo-form='{
+										"hiddenMunchkinId": "078-ERT-522",
+										"hiddenFormId": 1758
+									  }'
+									 hiddenMunchkinId = "078-ERT-522"
+									 hiddenFormId = "1758"
+									 munchkinid="903-EZK-832"
+									 formid="1796"
+									 formHost="https://express-resource.dhl.com"
+									 source="noconf">
 
 								  <div data-marketo-visible-form>
 									<div class="wysiwyg">
-									  <script src="//express-resources.dhl.com/js/forms2/js/forms2.min.js"></script>
+									  <script src="https://express-resources.dhl.com/js/forms2/js/forms2.min.js"></script>
 									  <form id="mktoForm_1796"></form>
-									  <script>MktoForms2.loadForm("//express-resources.dhl.com", "903-EZK-832", 1796);</script>
+									  <script>MktoForms2.loadForm("https://express-resources.dhl.com", "903-EZK-832", 1796);</script>
 									</div>
 								  </div>
 								</div>
