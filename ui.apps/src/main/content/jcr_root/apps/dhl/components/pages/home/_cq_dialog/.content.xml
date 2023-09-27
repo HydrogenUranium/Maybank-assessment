@@ -436,7 +436,8 @@
                                             </sitelanguage>
                                             <sitedefault
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                renderReadOnly="{Boolean}true"
                                                 text="Default language"
                                                 value="true"
                                                 name="./sitedefault">
@@ -446,7 +447,8 @@
                                             </sitedefault>
                                             <siteenabled
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                renderReadOnly="{Boolean}true"
                                                 text="Enabled in menus"
                                                 value="true"
                                                 name="./siteenabled">
