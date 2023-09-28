@@ -269,7 +269,7 @@ public class LanguageVariants {
 			String countryCode = pageUtilService.getCountryCodeByPagePath(homepage);
 			if (!StringUtils.isBlank(countryCode) && !countryCode.equals(currentCountryCode) && (!countries.containsKey(countryCode) || deflt)) {
 				newItem.setRegion(region);
-				countries.put(countryCode, newItem);
+				countries.put(countryCode.equals("global") ? "aa" : countryCode, newItem);
 			}
 
 			if (currentHomePath.equals(newHomepage)) {
