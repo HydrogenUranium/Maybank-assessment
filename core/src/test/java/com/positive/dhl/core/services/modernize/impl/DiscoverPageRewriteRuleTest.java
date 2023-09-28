@@ -127,7 +127,7 @@ class DiscoverPageRewriteRuleTest {
 
     @Test
     void getId() {
-        assertEquals(rule.getId(), rule.toString());
+        assertEquals("/apps/dhl/templates/dhl-article-page:/conf/dhl/settings/wcm/templates/article", rule.getId());
     }
 
     @Test
