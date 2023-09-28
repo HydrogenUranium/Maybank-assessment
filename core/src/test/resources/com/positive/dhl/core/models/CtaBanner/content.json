@@ -2,46 +2,38 @@
   "home": {
     "jcr:primaryType": "cq:Page",
     "jcr:content": {
-      "ctaBanner": {
-        "openBusinessAccount": {
-          "title": "Open a Business Account",
-          "desktopBackgroundImage": "/content/dam/images/desktop.jpg",
-          "buttonName": "Join Us",
-          "tabletBackgroundImage": "/content/dam/images/tablet.jpg",
-          "mobileBackgroundImage": "/content/dam/images/mobile.jpg",
-          "buttonLink": "/content/dhl/openBusinessAccount",
-          "points": {
-            "jcr:primaryType": "nt:unstructured",
-            "item0": {
-              "jcr:primaryType": "nt:unstructured",
-              "text": "Fortnightly insights, tips and free assets"
-            },
-            "item1": {
-              "jcr:primaryType": "nt:unstructured",
-              "text": "Shape a global audience for your business"
-            }
-          }
+      "ctaBanner-openBusinessAccount-title": "Open a Business Account",
+      "ctaBanner-openBusinessAccount-desktopBackgroundImage": "/content/dam/images/desktop.jpg",
+      "ctaBanner-openBusinessAccount-buttonName": "Join Us",
+      "ctaBanner-openBusinessAccount-tabletBackgroundImage": "/content/dam/images/tablet.jpg",
+      "ctaBanner-openBusinessAccount-mobileBackgroundImage": "/content/dam/images/mobile.jpg",
+      "ctaBanner-openBusinessAccount-buttonLink": "/content/dhl/openBusinessAccount",
+      "ctaBanner-openBusinessAccount-points": {
+        "jcr:primaryType": "nt:unstructured",
+        "item0": {
+          "jcr:primaryType": "nt:unstructured",
+          "text": "Fortnightly insights, tips and free assets"
         },
-        "subscribeToOurNewsletter": {
-          "desktopBackgroundImage": "/content/dam/images/subscribe-desktop.png",
-          "title": "SUBSCRIBE TO OUR NEWSLETTER",
-          "tabletBackgroundImage": "/content/dam/images/subscribe-tablet.png",
-          "mobileBackgroundImage": "/content/dam/images/subscribe-mobile.png",
-          "buttonLink": "/content/dhl/subscribe",
-          "buttonName": "Subscribe",
-          "points": {
-            "jcr:primaryType": "nt:unstructured",
-            "item0": {
-              "jcr:primaryType": "nt:unstructured",
-              "text": "Fortnightly insights, tips and free assets"
-            },
-            "item1": {
-              "jcr:primaryType": "nt:unstructured",
-              "text": "Shape a global audience for your business"
-            }
-          },
-          "jcr:primaryType": "cq:PageContent",
-          "sling:resourceType": "dhl/components/pages/home"
+        "item1": {
+          "jcr:primaryType": "nt:unstructured",
+          "text": "Shape a global audience for your business"
+        }
+      },
+      "ctaBanner-subscribeToOurNewsletter-desktopBackgroundImage": "/content/dam/images/subscribe-desktop.png",
+      "ctaBanner-subscribeToOurNewsletter-title": "SUBSCRIBE TO OUR NEWSLETTER",
+      "ctaBanner-subscribeToOurNewsletter-tabletBackgroundImage": "/content/dam/images/subscribe-tablet.png",
+      "ctaBanner-subscribeToOurNewsletter-mobileBackgroundImage": "/content/dam/images/subscribe-mobile.png",
+      "ctaBanner-subscribeToOurNewsletter-buttonLink": "/content/dhl/subscribe",
+      "ctaBanner-subscribeToOurNewsletter-buttonName": "Subscribe",
+      "ctaBanner-subscribeToOurNewsletter-points": {
+        "jcr:primaryType": "nt:unstructured",
+        "item0": {
+          "jcr:primaryType": "nt:unstructured",
+          "text": "Fortnightly insights, tips and free assets"
+        },
+        "item1": {
+          "jcr:primaryType": "nt:unstructured",
+          "text": "Shape a global audience for your business"
         }
       }
     },

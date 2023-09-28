@@ -5,26 +5,23 @@
       "jcr:title": "Home",
       "jcr:primaryType": "cq:PageContent",
       "sling:resourceType": "dhl/components/pages/home",
-      "header": {
+      "header-buttonLink": "/content/dhl/button",
+      "header-buttonName": "Button Name",
+      "header-signInLabel": "Sign In",
+      "header-categoryLinksLabel": "Categories",
+      "header-homePageLabel": "Home",
+      "header-companyLinksLabel": "Company",
+      "header-companyLinks": {
         "jcr:primaryType": "nt:unstructured",
-        "buttonLink": "/content/dhl/button",
-        "buttonName": "Button Name",
-        "signInLabel": "Sign In",
-        "categoryLinksLabel": "Categories",
-        "homePageLabel": "Home",
-        "companyLinksLabel": "Company",
-        "companyLinks": {
+        "item0": {
           "jcr:primaryType": "nt:unstructured",
-          "item0": {
-            "jcr:primaryType": "nt:unstructured",
-            "linkName": "Link Name 1",
-            "linkPath": "/content/dhl/link/1"
-          },
-          "item1": {
-            "jcr:primaryType": "nt:unstructured",
-            "linkName": "Link Name 2",
-            "linkPath": "/content/dhl/link/2"
-          }
+          "linkName": "Link Name 1",
+          "linkPath": "/content/dhl/link/1"
+        },
+        "item1": {
+          "jcr:primaryType": "nt:unstructured",
+          "linkName": "Link Name 2",
+          "linkPath": "/content/dhl/link/2"
         }
       }
     },
