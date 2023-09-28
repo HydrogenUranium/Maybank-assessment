@@ -982,11 +982,13 @@
                                                                                         fieldLabel="Link Path"
                                                                                         rootPath="/content/dhl"
                                                                                         name="./linkPath"/>
+                                                                                <hidden
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                        name="./cq:isCancelledForChildren"
+                                                                                        value="true"/>
                                                                             </items>
                                                                         </field>
-                                                                        <granite:data
-                                                                                jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./header-companyLinks"/>
                                                                     </companyLinksList>
                                                                 </items>
                                                             </companyLinks>
@@ -1053,11 +1055,13 @@
                                                                                 fieldLabel="Point"
                                                                                 required="true"
                                                                                 name="./text"/>
+                                                                        <hidden
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                name="./cq:isCancelledForChildren"
+                                                                                value="true"/>
                                                                     </items>
                                                                 </field>
-                                                                <granite:data
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-points"/>
                                                             </points>
                                                             <buttonName
                                                                     jcr:primaryType="nt:unstructured"
@@ -1145,11 +1149,13 @@
                                                                                 fieldLabel="Point"
                                                                                 required="true"
                                                                                 name="./text"/>
+                                                                        <hidden
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                name="./cq:isCancelledForChildren"
+                                                                                value="true"/>
                                                                     </items>
                                                                 </field>
-                                                                <granite:data
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-points"/>
                                                             </points>
                                                             <buttonName
                                                                     jcr:primaryType="nt:unstructured"
@@ -1328,11 +1334,13 @@
                                                                                         fieldLabel="Path"
                                                                                         rootPath="/content/dhl"
                                                                                         name="./linkPath"/>
+                                                                                <hidden
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                        name="./cq:isCancelledForChildren"
+                                                                                        value="true"/>
                                                                             </items>
                                                                         </field>
-                                                                        <granite:data
-                                                                                jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer-companyLinks"/>
                                                                     </companyLinksList>
                                                                 </items>
                                                             </companyLinks>
@@ -1379,11 +1387,13 @@
                                                                                         fieldLabel="Icon (for Mobile only) "
                                                                                         rootPath="/content/dam"
                                                                                         name="./linkIcon"/>
+                                                                                <hidden
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                        name="./cq:isCancelledForChildren"
+                                                                                        value="true"/>
                                                                             </items>
                                                                         </field>
-                                                                        <granite:data
-                                                                                jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer-socialLinks"/>
                                                                     </socialLinksList>
                                                                 </items>
                                                             </socialLinks>

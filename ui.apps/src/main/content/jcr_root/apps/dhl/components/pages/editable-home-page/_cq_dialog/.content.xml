@@ -966,7 +966,6 @@
                                                                             fieldLabel="Company Links List"
                                                                             fieldDescription="Add links like 'About Us', 'Contact Us'."
                                                                             composite="{Boolean}true"
-                                                                            name="./header-companyLinksList"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                                 jcr:primaryType="nt:unstructured"
@@ -983,11 +982,13 @@
                                                                                         fieldLabel="Link Path"
                                                                                         rootPath="/content/dhl"
                                                                                         name="./linkPath"/>
+                                                                                <hidden
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                        name="./cq:isCancelledForChildren"
+                                                                                        value="true"/>
                                                                             </items>
                                                                         </field>
-                                                                        <granite:data
-                                                                                jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./header-companyLinksList"/>
                                                                     </companyLinksList>
                                                                 </items>
                                                             </companyLinks>
@@ -1043,11 +1044,10 @@
                                                                     jcr:primaryType="nt:unstructured"
                                                                     fieldLabel="Points"
                                                                     composite="{Boolean}true"
-                                                                    name="./ctaBanner-subscribeToOurNewsletter-pointsList"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        name="./ctaBanner-subscribeToOurNewsletter-points">
+                                                                       jcr:primaryType="nt:unstructured"
+                                                                       name="./ctaBanner-subscribeToOurNewsletter-points">
                                                                     <items jcr:primaryType="nt:unstructured">
                                                                         <text
                                                                                 jcr:primaryType="nt:unstructured"
@@ -1055,11 +1055,13 @@
                                                                                 fieldLabel="Point"
                                                                                 required="true"
                                                                                 name="./text"/>
+                                                                        <hidden
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                name="./cq:isCancelledForChildren"
+                                                                                value="true"/>
                                                                     </items>
                                                                 </field>
-                                                                <granite:data
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-pointsList"/>
                                                             </points>
                                                             <buttonName
                                                                     jcr:primaryType="nt:unstructured"
@@ -1135,7 +1137,6 @@
                                                             <points
                                                                     jcr:primaryType="nt:unstructured"
                                                                     fieldLabel="Points"
-                                                                    name="./ctaBanner-openBusinessAccount-pointsList"
                                                                     composite="{Boolean}true"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -1148,11 +1149,13 @@
                                                                                 fieldLabel="Point"
                                                                                 required="true"
                                                                                 name="./text"/>
+                                                                        <hidden
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                name="./cq:isCancelledForChildren"
+                                                                                value="true"/>
                                                                     </items>
                                                                 </field>
-                                                                <granite:data
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-pointsList"/>
                                                             </points>
                                                             <buttonName
                                                                     jcr:primaryType="nt:unstructured"
@@ -1177,7 +1180,7 @@
                                                             </buttonLink>
                                                         </items>
                                                         <parentConfig jcr:primaryType="nt:unstructured"
-                                                                active="{Boolean}false"/>
+                                                                      active="{Boolean}false"/>
                                                     </ctaBannerOpenBusinessAccount>
                                                     <footer
                                                             jcr:title="Footer v.2"
@@ -1314,7 +1317,6 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             fieldLabel="Company Links List"
                                                                             fieldDescription="Add links like 'About us', 'Press', 'Contact'."
-                                                                            name="./footer-companyLinksList"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -1332,11 +1334,13 @@
                                                                                         fieldLabel="Path"
                                                                                         rootPath="/content/dhl"
                                                                                         name="./linkPath"/>
+                                                                                <hidden
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                        name="./cq:isCancelledForChildren"
+                                                                                        value="true"/>
                                                                             </items>
                                                                         </field>
-                                                                        <granite:data
-                                                                                jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer-companyLinksList"/>
                                                                     </companyLinksList>
                                                                 </items>
                                                             </companyLinks>
@@ -1360,7 +1364,6 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             fieldLabel="Social Network Links List"
                                                                             fieldDescription="Add links like 'LinkedIn', 'Instagram', 'Twitter', 'Facebook'."
-                                                                            name="./footer-socialLinksList"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -1384,11 +1387,13 @@
                                                                                         fieldLabel="Icon (for Mobile only) "
                                                                                         rootPath="/content/dam"
                                                                                         name="./linkIcon"/>
+                                                                                <hidden
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                        name="./cq:isCancelledForChildren"
+                                                                                        value="true"/>
                                                                             </items>
                                                                         </field>
-                                                                        <granite:data
-                                                                                jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer-socialLinksList"/>
                                                                     </socialLinksList>
                                                                 </items>
                                                             </socialLinks>
