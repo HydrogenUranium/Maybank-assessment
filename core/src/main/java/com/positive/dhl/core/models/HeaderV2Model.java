@@ -55,7 +55,7 @@ public class HeaderV2Model {
     private String companyLinksLabel;
 
     @InjectHomeProperty
-    @Named("header-companyLinks")
+    @Named("multifields/header-companyLinks")
     private Resource companyLinks;
 
     public List<LinkModel> getCompanyLinks() {

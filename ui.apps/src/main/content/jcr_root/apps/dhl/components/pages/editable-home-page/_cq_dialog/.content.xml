@@ -969,7 +969,7 @@
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                name="./header-companyLinks">
+                                                                                name="./multifields/header-companyLinks">
                                                                             <items jcr:primaryType="nt:unstructured">
                                                                                 <linkName
                                                                                         jcr:primaryType="nt:unstructured"
@@ -1047,7 +1047,7 @@
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                        jcr:primaryType="nt:unstructured"
-                                                                       name="./ctaBanner-subscribeToOurNewsletter-points">
+                                                                       name="./multifields/ctaBanner-subscribeToOurNewsletter-points">
                                                                     <items jcr:primaryType="nt:unstructured">
                                                                         <text
                                                                                 jcr:primaryType="nt:unstructured"
@@ -1141,7 +1141,7 @@
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        name="./ctaBanner-openBusinessAccount-points">
+                                                                        name="./multifields/ctaBanner-openBusinessAccount-points">
                                                                     <items jcr:primaryType="nt:unstructured">
                                                                         <text
                                                                                 jcr:primaryType="nt:unstructured"
@@ -1321,7 +1321,7 @@
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                name="./footer-companyLinks">
+                                                                                name="./multifields/footer-companyLinks">
                                                                             <items jcr:primaryType="nt:unstructured">
                                                                                 <label
                                                                                         jcr:primaryType="nt:unstructured"
@@ -1368,7 +1368,7 @@
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                name="./footer-socialLinks">
+                                                                                name="./multifields/footer-socialLinks">
                                                                             <items jcr:primaryType="nt:unstructured">
                                                                                 <linkName
                                                                                         jcr:primaryType="nt:unstructured"

@@ -15,43 +15,45 @@
       "footer-categoryLinksLabel": "Categories",
       "footer-companyLinksLabel": "Company",
       "footer-socialLinksLabel": "Social",
-      "footer-companyLinks": {
-        "jcr:primaryType": "nt:unstructured",
-        "item0": {
+      "multifields": {
+        "footer-companyLinks": {
           "jcr:primaryType": "nt:unstructured",
-          "linkName": "About us",
-          "linkPath": "/content/dhl/about-us"
+          "item0": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "About us",
+            "linkPath": "/content/dhl/about-us"
+          },
+          "item1": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "Press",
+            "linkPath": "#"
+          },
+          "item2": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "Contact",
+            "linkPath": "#"
+          }
         },
-        "item1": {
+        "footer-socialLinks": {
           "jcr:primaryType": "nt:unstructured",
-          "linkName": "Press",
-          "linkPath": "#"
-        },
-        "item2": {
-          "jcr:primaryType": "nt:unstructured",
-          "linkName": "Contact",
-          "linkPath": "#"
-        }
-      },
-      "footer-socialLinks": {
-        "jcr:primaryType": "nt:unstructured",
-        "item0": {
-          "jcr:primaryType": "nt:unstructured",
-          "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-facebook.svg",
-          "linkName": "Facebook",
-          "linkPath": "https://www.facebook.com/"
-        },
-        "item1": {
-          "jcr:primaryType": "nt:unstructured",
-          "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-twitter.svg",
-          "linkName": "Twitter",
-          "linkPath": "#"
-        },
-        "item2": {
-          "jcr:primaryType": "nt:unstructured",
-          "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-linkedIn.svg",
-          "linkName": "LinkedIn",
-          "linkPath": "#"
+          "item0": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-facebook.svg",
+            "linkName": "Facebook",
+            "linkPath": "https://www.facebook.com/"
+          },
+          "item1": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-twitter.svg",
+            "linkName": "Twitter",
+            "linkPath": "#"
+          },
+          "item2": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-linkedIn.svg",
+            "linkName": "LinkedIn",
+            "linkPath": "#"
+          }
         }
       }
     },

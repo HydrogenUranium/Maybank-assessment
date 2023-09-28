@@ -11,17 +11,19 @@
       "header-categoryLinksLabel": "Categories",
       "header-homePageLabel": "Home",
       "header-companyLinksLabel": "Company",
-      "header-companyLinks": {
-        "jcr:primaryType": "nt:unstructured",
-        "item0": {
+      "multifields": {
+        "header-companyLinks": {
           "jcr:primaryType": "nt:unstructured",
-          "linkName": "Link Name 1",
-          "linkPath": "/content/dhl/link/1"
-        },
-        "item1": {
-          "jcr:primaryType": "nt:unstructured",
-          "linkName": "Link Name 2",
-          "linkPath": "/content/dhl/link/2"
+          "item0": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "Link Name 1",
+            "linkPath": "/content/dhl/link/1"
+          },
+          "item1": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "Link Name 2",
+            "linkPath": "/content/dhl/link/2"
+          }
         }
       }
     },

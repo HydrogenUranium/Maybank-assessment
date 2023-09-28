@@ -60,7 +60,7 @@ public class FooterV2Model {
     private String companyLinksLabel;
 
     @InjectHomeProperty
-    @Named("footer-companyLinks")
+    @Named("multifields/footer-companyLinks")
     private Resource companyLinks;
 
     @InjectHomeProperty
@@ -69,7 +69,7 @@ public class FooterV2Model {
     private String socialLinksLabel;
 
     @InjectHomeProperty
-    @Named("footer-socialLinks")
+    @Named("multifields/footer-socialLinks")
     private Resource socialLinks;
 
     public List<LinkModel> getCompanyLinks() {

@@ -32,12 +32,12 @@ public class CtaBanner {
     private Resource pointsMultifield;
 
     @InjectHomeProperty
-    @Named("ctaBanner-subscribeToOurNewsletter-points")
+    @Named("multifields/ctaBanner-subscribeToOurNewsletter-points")
     @Optional
     private Resource pointsMultifieldSubscribe;
 
     @InjectHomeProperty
-    @Named("ctaBanner-openBusinessAccount-points")
+    @Named("multifields/ctaBanner-openBusinessAccount-points")
     @Optional
     private Resource pointsMultifieldOpenBusinessAccount;
 
