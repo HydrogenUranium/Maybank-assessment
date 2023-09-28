@@ -965,7 +965,7 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             fieldLabel="Company Links List"
                                                                             fieldDescription="Add links like 'About Us', 'Contact Us'."
-                                                                            cq-msm-lockable="header-companyLinksList"
+                                                                            composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                                 jcr:primaryType="nt:unstructured"
@@ -986,7 +986,7 @@
                                                                         </field>
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="header-companyLinksList"/>
+                                                                                cq-msm-lockable="./header-companyLinks"/>
                                                                     </companyLinksList>
                                                                 </items>
                                                             </companyLinks>
@@ -1042,7 +1042,6 @@
                                                                     jcr:primaryType="nt:unstructured"
                                                                     fieldLabel="Points"
                                                                     composite="{Boolean}true"
-                                                                    name="./ctaBanner-subscribeToOurNewsletter-pointsList"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                        jcr:primaryType="nt:unstructured"
@@ -1058,7 +1057,7 @@
                                                                 </field>
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-pointsList"/>
+                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-points"/>
                                                             </points>
                                                             <buttonName
                                                                     jcr:primaryType="nt:unstructured"
@@ -1134,7 +1133,6 @@
                                                             <points
                                                                     jcr:primaryType="nt:unstructured"
                                                                     fieldLabel="Points"
-                                                                    name="./ctaBanner-openBusinessAccount-pointsList"
                                                                     composite="{Boolean}true"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -1151,7 +1149,7 @@
                                                                 </field>
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-pointsList"/>
+                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-points"/>
                                                             </points>
                                                             <buttonName
                                                                     jcr:primaryType="nt:unstructured"
@@ -1313,7 +1311,6 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             fieldLabel="Company Links List"
                                                                             fieldDescription="Add links like 'About us', 'Press', 'Contact'."
-                                                                            name="./footer-companyLinksList"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -1335,7 +1332,7 @@
                                                                         </field>
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer-companyLinksList"/>
+                                                                                cq-msm-lockable="./footer-companyLinks"/>
                                                                     </companyLinksList>
                                                                 </items>
                                                             </companyLinks>
@@ -1359,7 +1356,6 @@
                                                                             jcr:primaryType="nt:unstructured"
                                                                             fieldLabel="Social Network Links List"
                                                                             fieldDescription="Add links like 'LinkedIn', 'Instagram', 'Twitter', 'Facebook'."
-                                                                            name="./footer-socialLinksList"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -1387,7 +1383,7 @@
                                                                         </field>
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer-socialLinksList"/>
+                                                                                cq-msm-lockable="./footer-socialLinks"/>
                                                                     </socialLinksList>
                                                                 </items>
                                                             </socialLinks>
