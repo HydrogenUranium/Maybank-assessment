@@ -48,7 +48,7 @@
     @include respond(xl) {
       &:after {
         opacity: 1;
-        background: transparent linear-gradient(90deg, rgba(255, 255, 255, 1) 30%, rgba(19, 19, 19, 1) 50%, rgba(19, 19, 19, 1) 100%);
+        background: transparent linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
       }
     }
 
