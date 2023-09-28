@@ -22,7 +22,7 @@ import java.util.List;
 public class RelatedPosts {
 
     @InjectHomeProperty
-    @Named("relatedPosts/title")
+    @Named("relatedPosts-title")
     private String homePropertyTitle;
 
     @Inject

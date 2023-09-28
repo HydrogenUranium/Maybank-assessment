@@ -33,7 +33,7 @@ class RelatedPostsTest {
     @Test
     void init_ShouldInitRelatedPosts_WhenContainsCustomTitle() {
         initRequest("/content/home/jcr:content/par/related_posts_with_title");
-        mockInjectHomeProperty(context, "relatedPosts/title" ,"");
+        mockInjectHomeProperty(context, "relatedPosts-title" ,"");
         RelatedPosts relatedPosts = request.adaptTo(RelatedPosts.class);
 
         assertEquals("Custom Title", relatedPosts.getTitle());
@@ -43,7 +43,7 @@ class RelatedPostsTest {
     @Test
     void init_ShouldInitRelatedPosts_WhenDoNotContainTitle() {
         initRequest("/content/home/jcr:content/par/related_posts_without_title");
-        mockInjectHomeProperty(context, "relatedPosts/title" ,"Related Posts");
+        mockInjectHomeProperty(context, "relatedPosts-title" ,"Related Posts");
         RelatedPosts relatedPosts = request.adaptTo(RelatedPosts.class);
 
         assertEquals("Related Posts", relatedPosts.getTitle());

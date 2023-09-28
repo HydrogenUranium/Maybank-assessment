@@ -880,10 +880,10 @@
                                                                             fieldLabel="Button Name"
                                                                             fieldDescription="This 'Open a business account' button will be displayed on the right side of the Header Navigation bar in the Desktop layout"
                                                                             emptyText="Open a business account"
-                                                                            name="./header/buttonName">
+                                                                            name="./header-buttonName">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./header/buttonName"/>
+                                                                                cq-msm-lockable="./header-buttonName"/>
                                                                     </buttonName>
                                                                     <buttonLink
                                                                             jcr:primaryType="nt:unstructured"
@@ -891,10 +891,10 @@
                                                                             fieldLabel="Button Link"
                                                                             fieldDescription="The 'Open a business account' button should lead to a page with a form to create a new business account"
                                                                             rootPath="/content/dhl"
-                                                                            name="./header/buttonLink">
+                                                                            name="./header-buttonLink">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./header/buttonLink"/>
+                                                                                cq-msm-lockable="./header-buttonLink"/>
                                                                     </buttonLink>
                                                                 </items>
                                                             </button>
@@ -909,10 +909,10 @@
                                                                             fieldLabel="Sign In Label (for Tablet/Mobile only)"
                                                                             fieldDescription="This 'Sign In' label will be displayed in the Hamburger Navigation Menu of the header in the Tablet and Mobile layout"
                                                                             emptyText="Sign In"
-                                                                            name="./header/signInLabel">
+                                                                            name="./header-signInLabel">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./header/signInLabel"/>
+                                                                                cq-msm-lockable="./header-signInLabel"/>
                                                                     </signInLabel>
                                                                 </items>
                                                             </signIn>
@@ -927,10 +927,10 @@
                                                                             fieldLabel="Category Links Label (for Tablet/Mobile only)"
                                                                             fieldDescription="This 'Categories' label will be displayed in the Hamburger Navigation Menu of the header in the Tablet and Mobile layout"
                                                                             emptyText="Categories"
-                                                                            name="./header/categoryLinksLabel">
+                                                                            name="./header-categoryLinksLabel">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./header/categoryLinksLabel"/>
+                                                                                cq-msm-lockable="./header-categoryLinksLabel"/>
                                                                     </categoryLinksLabel>
                                                                     <homePageLabel
                                                                             jcr:primaryType="nt:unstructured"
@@ -938,10 +938,10 @@
                                                                             fieldLabel="Home page Label (for Desktop only)"
                                                                             fieldDescription="This 'Home' label will be displayed on the first place on the left side of the of the Header Navigation bar in the Desktop layout"
                                                                             emptyText="Home"
-                                                                            name="./header/homePageLabel">
+                                                                            name="./header-homePageLabel">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./header/homePageLabel"/>
+                                                                                cq-msm-lockable="./header-homePageLabel"/>
                                                                     </homePageLabel>
                                                                 </items>
                                                             </categoryLinks>
@@ -956,21 +956,20 @@
                                                                             fieldLabel="Company Links Label (for Tablet/Mobile only)"
                                                                             fieldDescription="This 'Company' label will be displayed in the Hamburger Navigation Menu of the header in the Tablet and Mobile layout"
                                                                             emptyText="Company"
-                                                                            name="./header/companyLinksLabel">
+                                                                            name="./header-companyLinksLabel">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./header/companyLinksLabel"/>
+                                                                                cq-msm-lockable="./header-companyLinksLabel"/>
                                                                     </companyLinksLabel>
                                                                     <companyLinksList
                                                                             jcr:primaryType="nt:unstructured"
                                                                             fieldLabel="Company Links List"
                                                                             fieldDescription="Add links like 'About Us', 'Contact Us'."
-                                                                            composite="{Boolean}true"
-                                                                            name="./header/companyLinksList"
+                                                                            cq-msm-lockable="header-companyLinksList"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                name="./header/companyLinks">
+                                                                                name="./header-companyLinks">
                                                                             <items jcr:primaryType="nt:unstructured">
                                                                                 <linkName
                                                                                         jcr:primaryType="nt:unstructured"
@@ -987,7 +986,7 @@
                                                                         </field>
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./header/companyLinksList"/>
+                                                                                cq-msm-lockable="header-companyLinksList"/>
                                                                     </companyLinksList>
                                                                 </items>
                                                             </companyLinks>
@@ -1001,32 +1000,32 @@
                                                             <mobileBackgroundImage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                    name="./ctaBanner/subscribeToOurNewsletter/mobileBackgroundImage"
+                                                                    name="./ctaBanner-subscribeToOurNewsletter-mobileBackgroundImage"
                                                                     rootPath="/content/dam"
                                                                     fieldLabel="Mobile Background Image">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/subscribeToOurNewsletter/mobileBackgroundImage"/>
+                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-mobileBackgroundImage"/>
                                                             </mobileBackgroundImage>
                                                             <tabletBackgroundImage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                    name="./ctaBanner/subscribeToOurNewsletter/tabletBackgroundImage"
+                                                                    name="./ctaBanner-subscribeToOurNewsletter-tabletBackgroundImage"
                                                                     rootPath="/content/dam"
                                                                     fieldLabel="Tablet Background Image">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/subscribeToOurNewsletter/tabletBackgroundImage"/>
+                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-tabletBackgroundImage"/>
                                                             </tabletBackgroundImage>
                                                             <desktopBackgroundImage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                    name="./ctaBanner/subscribeToOurNewsletter/desktopBackgroundImage"
+                                                                    name="./ctaBanner-subscribeToOurNewsletter-desktopBackgroundImage"
                                                                     rootPath="/content/dam"
                                                                     fieldLabel="Desktop Background Image">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/subscribeToOurNewsletter/desktopBackgroundImage"/>
+                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-desktopBackgroundImage"/>
                                                             </desktopBackgroundImage>
                                                             <title
                                                                     jcr:primaryType="nt:unstructured"
@@ -1034,20 +1033,20 @@
                                                                     fieldLabel="Title"
                                                                     emptyText="Subscribe To Our Newsletter"
                                                                     value="Subscribe To Our Newsletter"
-                                                                    name="./ctaBanner/subscribeToOurNewsletter/title">
+                                                                    name="./ctaBanner-subscribeToOurNewsletter-title">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/subscribeToOurNewsletter/title"/>
+                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-title"/>
                                                             </title>
                                                             <points
                                                                     jcr:primaryType="nt:unstructured"
                                                                     fieldLabel="Points"
                                                                     composite="{Boolean}true"
-                                                                    name="./ctaBanner/subscribeToOurNewsletter/pointsList"
+                                                                    name="./ctaBanner-subscribeToOurNewsletter-pointsList"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                        jcr:primaryType="nt:unstructured"
-                                                                       name="./ctaBanner/subscribeToOurNewsletter/points">
+                                                                       name="./ctaBanner-subscribeToOurNewsletter-points">
                                                                     <items jcr:primaryType="nt:unstructured">
                                                                         <text
                                                                                 jcr:primaryType="nt:unstructured"
@@ -1059,7 +1058,7 @@
                                                                 </field>
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/subscribeToOurNewsletter/pointsList"/>
+                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-pointsList"/>
                                                             </points>
                                                             <buttonName
                                                                     jcr:primaryType="nt:unstructured"
@@ -1067,20 +1066,20 @@
                                                                     fieldLabel="Button Name"
                                                                     emptyText="Subscribe"
                                                                     value="Subscribe"
-                                                                    name="./ctaBanner/subscribeToOurNewsletter/buttonName">
+                                                                    name="./ctaBanner-subscribeToOurNewsletter-buttonName">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/subscribeToOurNewsletter/buttonName"/>
+                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-buttonName"/>
                                                             </buttonName>
                                                             <buttonLink
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                     fieldLabel="CTA Path"
                                                                     rootPath="/content/dhl"
-                                                                    name="./ctaBanner/subscribeToOurNewsletter/buttonLink">
+                                                                    name="./ctaBanner-subscribeToOurNewsletter-buttonLink">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/subscribeToOurNewsletter/buttonLink"/>
+                                                                        cq-msm-lockable="./ctaBanner-subscribeToOurNewsletter-buttonLink"/>
                                                             </buttonLink>
                                                         </items>
                                                         <parentConfig jcr:primaryType="nt:unstructured"
@@ -1094,32 +1093,32 @@
                                                             <mobileBackgroundImage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                    name="./ctaBanner/openBusinessAccount/mobileBackgroundImage"
+                                                                    name="./ctaBanner-openBusinessAccount-mobileBackgroundImage"
                                                                     rootPath="/content/dam"
                                                                     fieldLabel="Mobile Background Image">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/subscribeToOurNewsletter/mobileBackgroundImage"/>
+                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-mobileBackgroundImage"/>
                                                             </mobileBackgroundImage>
                                                             <tabletBackgroundImage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                    name="./ctaBanner/openBusinessAccount/tabletBackgroundImage"
+                                                                    name="./ctaBanner-openBusinessAccount-tabletBackgroundImage"
                                                                     rootPath="/content/dam"
                                                                     fieldLabel="Tablet Background Image">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/openBusinessAccount/tabletBackgroundImage"/>
+                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-tabletBackgroundImage"/>
                                                             </tabletBackgroundImage>
                                                             <desktopBackgroundImage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                    name="./ctaBanner/openBusinessAccount/desktopBackgroundImage"
+                                                                    name="./ctaBanner-openBusinessAccount-desktopBackgroundImage"
                                                                     rootPath="/content/dam"
                                                                     fieldLabel="Desktop Background Image">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/openBusinessAccount/desktopBackgroundImage"/>
+                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-desktopBackgroundImage"/>
                                                             </desktopBackgroundImage>
                                                             <title
                                                                     jcr:primaryType="nt:unstructured"
@@ -1127,20 +1126,20 @@
                                                                     fieldLabel="Title"
                                                                     emptyText="Open A Business Account"
                                                                     value="Open A Business Account"
-                                                                    name="./ctaBanner/openBusinessAccount/title">
+                                                                    name="./ctaBanner-openBusinessAccount-title">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/openBusinessAccount/title"/>
+                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-title"/>
                                                             </title>
                                                             <points
                                                                     jcr:primaryType="nt:unstructured"
                                                                     fieldLabel="Points"
-                                                                    name="./ctaBanner/openBusinessAccount/pointsList"
+                                                                    name="./ctaBanner-openBusinessAccount-pointsList"
                                                                     composite="{Boolean}true"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        name="./ctaBanner/openBusinessAccount/points">
+                                                                        name="./ctaBanner-openBusinessAccount-points">
                                                                     <items jcr:primaryType="nt:unstructured">
                                                                         <text
                                                                                 jcr:primaryType="nt:unstructured"
@@ -1152,7 +1151,7 @@
                                                                 </field>
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/openBusinessAccount/pointsList"/>
+                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-pointsList"/>
                                                             </points>
                                                             <buttonName
                                                                     jcr:primaryType="nt:unstructured"
@@ -1160,20 +1159,20 @@
                                                                     fieldLabel="Button Name"
                                                                     emptyText="Join Us"
                                                                     value="Join Us"
-                                                                    name="./ctaBanner/openBusinessAccount/buttonName">
+                                                                    name="./ctaBanner-openBusinessAccount-buttonName">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/openBusinessAccount/buttonName"/>
+                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-buttonName"/>
                                                             </buttonName>
                                                             <buttonLink
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                     fieldLabel="CTA Path"
                                                                     rootPath="/content/dhl"
-                                                                    name="./ctaBanner/openBusinessAccount/buttonLink">
+                                                                    name="./ctaBanner-openBusinessAccount-buttonLink">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./ctaBanner/openBusinessAccount/buttonLink"/>
+                                                                        cq-msm-lockable="./ctaBanner-openBusinessAccount-buttonLink"/>
                                                             </buttonLink>
                                                         </items>
                                                         <parentConfig jcr:primaryType="nt:unstructured"
@@ -1192,35 +1191,35 @@
                                                                     <logoIcon
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                            name="./footer/logoIcon"
+                                                                            name="./footer-logoIcon"
                                                                             rootPath="/content/dam"
                                                                             fieldLabel="Logo Icon"
                                                                             fieldDescription="Path to the 'DHL Group' logo in the AEM DAM">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/logoIcon"/>
+                                                                                cq-msm-lockable="./footer-logoIcon"/>
                                                                     </logoIcon>
                                                                     <logoTitle
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Logo Title"
-                                                                            name="./footer/logoTitle"
+                                                                            name="./footer-logoTitle"
                                                                             fieldDescription="Set logo image title for SEO"
                                                                             emptyText="DHL Group">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/logoTitle"/>
+                                                                                cq-msm-lockable="./footer-logoTitle"/>
                                                                     </logoTitle>
                                                                     <logoAltText
                                                                             jcr:primaryType="nt:unstructured"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Logo Alt Text"
-                                                                            name="./footer/logoAltText"
+                                                                            name="./footer-logoAltText"
                                                                             fieldDescription="Set logo image alt text for SEO"
                                                                             emptyText="DHL Group">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/logoAltText"/>
+                                                                                cq-msm-lockable="./footer-logoAltText"/>
                                                                     </logoAltText>
                                                                     <logoLink
                                                                             jcr:primaryType="nt:unstructured"
@@ -1228,11 +1227,11 @@
                                                                             fieldLabel="Logo link"
                                                                             fieldDescription="The logo should lead to the main page of DHL Group"
                                                                             multiple="false"
-                                                                            name="./footer/logoLink"
+                                                                            name="./footer-logoLink"
                                                                             rootPath="/content">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/logoLink"/>
+                                                                                cq-msm-lockable="./footer-logoLink"/>
                                                                     </logoLink>
                                                                 </items>
                                                             </logo>
@@ -1247,10 +1246,10 @@
                                                                             fieldLabel="Invitation Title"
                                                                             fieldDescription="The Title of the Invitation"
                                                                             emptyText="Ready to grow your business?"
-                                                                            name="./footer/invitation-title">
+                                                                            name="./footer-invitation-title">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/invitation-title"/>
+                                                                                cq-msm-lockable="./footer-invitation-title"/>
                                                                     </invitation-title>
                                                                     <invitation-text
                                                                             jcr:primaryType="nt:unstructured"
@@ -1258,10 +1257,10 @@
                                                                             fieldLabel="Invitation Text"
                                                                             fieldDescription="The Text of the Invitation"
                                                                             emptyText="Join over 5000+ SMEs already growing with Discover?"
-                                                                            name="./footer/invitation-text">
+                                                                            name="./footer-invitation-text">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/invitation-text"/>
+                                                                                cq-msm-lockable="./footer-invitation-text"/>
                                                                     </invitation-text>
                                                                     <promo-text
                                                                             jcr:primaryType="nt:unstructured"
@@ -1269,10 +1268,10 @@
                                                                             fieldLabel="Promo Text"
                                                                             fieldDescription="Text under the Logo"
                                                                             emptyText="Get tips and advice on delivering exceptional logistics service and expanding your business to global audience."
-                                                                            name="./footer/promo-text">
+                                                                            name="./footer-promo-text">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/promo-text"/>
+                                                                                cq-msm-lockable="./footer-promo-text"/>
                                                                     </promo-text>
                                                                 </items>
                                                             </text>
@@ -1287,10 +1286,10 @@
                                                                             fieldLabel="Category Links Label"
                                                                             fieldDescription="This 'Categories' label will be displayed above the list of all categories"
                                                                             emptyText="Categories"
-                                                                            name="./footer/categoryLinksLabel">
+                                                                            name="./footer-categoryLinksLabel">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/categoryLinksLabel"/>
+                                                                                cq-msm-lockable="./footer-categoryLinksLabel"/>
                                                                     </categoryLinksLabel>
                                                                 </items>
                                                             </categoryLinks>
@@ -1305,21 +1304,21 @@
                                                                             fieldLabel="Company Links Label"
                                                                             fieldDescription="This 'Company' label will be displayed above the list of all links connected to the company"
                                                                             emptyText="Company"
-                                                                            name="./footer/companyLinksLabel">
+                                                                            name="./footer-companyLinksLabel">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/companyLinksLabel"/>
+                                                                                cq-msm-lockable="./footer-companyLinksLabel"/>
                                                                     </companyLinksLabel>
                                                                     <companyLinksList
                                                                             jcr:primaryType="nt:unstructured"
                                                                             fieldLabel="Company Links List"
                                                                             fieldDescription="Add links like 'About us', 'Press', 'Contact'."
-                                                                            name="./footer/companyLinksList"
+                                                                            name="./footer-companyLinksList"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                name="./footer/companyLinks">
+                                                                                name="./footer-companyLinks">
                                                                             <items jcr:primaryType="nt:unstructured">
                                                                                 <label
                                                                                         jcr:primaryType="nt:unstructured"
@@ -1336,7 +1335,7 @@
                                                                         </field>
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/companyLinksList"/>
+                                                                                cq-msm-lockable="./footer-companyLinksList"/>
                                                                     </companyLinksList>
                                                                 </items>
                                                             </companyLinks>
@@ -1351,21 +1350,21 @@
                                                                             fieldLabel="Social Links Label"
                                                                             fieldDescription="This 'Social' label will be displayed above the list of all links connected to the social messengers"
                                                                             emptyText="Social"
-                                                                            name="./footer/socialLinksLabel">
+                                                                            name="./footer-socialLinksLabel">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/socialLinksLabel"/>
+                                                                                cq-msm-lockable="./footer-socialLinksLabel"/>
                                                                     </socialLinksLabel>
                                                                     <socialLinksList
                                                                             jcr:primaryType="nt:unstructured"
                                                                             fieldLabel="Social Network Links List"
                                                                             fieldDescription="Add links like 'LinkedIn', 'Instagram', 'Twitter', 'Facebook'."
-                                                                            name="./footer/socialLinksList"
+                                                                            name="./footer-socialLinksList"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                name="./footer/socialLinks">
+                                                                                name="./footer-socialLinks">
                                                                             <items jcr:primaryType="nt:unstructured">
                                                                                 <linkName
                                                                                         jcr:primaryType="nt:unstructured"
@@ -1388,7 +1387,7 @@
                                                                         </field>
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./footer/socialLinksList"/>
+                                                                                cq-msm-lockable="./footer-socialLinksList"/>
                                                                     </socialLinksList>
                                                                 </items>
                                                             </socialLinks>
@@ -1410,61 +1409,61 @@
                                                                                             jcr:primaryType="nt:unstructured"
                                                                                             sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                                                             fieldLabel="Marketo FormID"
-                                                                                            name="./footer/marketoFormId"
+                                                                                            name="./footer-marketoFormId"
                                                                                             value="1795"
                                                                                             emptyText="Marketo form ID of the 'hidden' form, such as 1795"
                                                                                             fieldDescription="Form (asset) ID of the form in Marketo">
                                                                                         <granite:data
                                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                                cq-msm-lockable="./footer/marketoFormId"/>
+                                                                                                cq-msm-lockable="./footer-marketoFormId"/>
                                                                                     </marketoformid>
                                                                                     <marketomunchkinid
                                                                                             jcr:primaryType="nt:unstructured"
                                                                                             sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                                                             fieldLabel="Marketo Munchkin ID"
-                                                                                            name="./footer/marketoMunchkinId"
+                                                                                            name="./footer-marketoMunchkinId"
                                                                                             value="903-EZK-832"
                                                                                             emptyText="Marketo project ID of the 'hidden' form, such as 903-EZK-832"
                                                                                             fieldDescription="Marketo project (munchkin ID)">
                                                                                         <granite:data
                                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                                cq-msm-lockable="./footer/marketoMunchkinId"/>
+                                                                                                cq-msm-lockable="./footer-marketoMunchkinId"/>
                                                                                     </marketomunchkinid>
                                                                                     <hiddenmarketoformid
                                                                                             jcr:primaryType="nt:unstructured"
                                                                                             sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                                                             fieldLabel="HIDDEN Marketo FormID"
-                                                                                            name="./footer/hiddenMarketoId"
+                                                                                            name="./footer-hiddenMarketoId"
                                                                                             value="1799"
                                                                                             emptyText="Marketo form ID of the 'hidden' form, such as 1799"
                                                                                             fieldDescription="Form (asset) ID of the form in Marketo. Refers to 'hidden' form.">
                                                                                         <granite:data
                                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                                cq-msm-lockable="./footer/hiddenMarketoId"/>
+                                                                                                cq-msm-lockable="./footer-hiddenMarketoId"/>
                                                                                     </hiddenmarketoformid>
                                                                                     <hiddenmarketomunchkinid
                                                                                             jcr:primaryType="nt:unstructured"
                                                                                             sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                                                             fieldLabel="HIDDEN Marketo Munchkin ID"
-                                                                                            name="./footer/hiddenMarketoMunchkinId"
+                                                                                            name="./footer-hiddenMarketoMunchkinId"
                                                                                             value="903-EZK-832"
                                                                                             emptyText="Marketo project ID of the 'hidden' form, such as 903-EZK-832"
                                                                                             fieldDescription="Marketo project (munchkin ID). Refers to 'hidden' form.">
                                                                                         <granite:data
                                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                                cq-msm-lockable="./footer/hiddenMarketoMunchkinId"/>
+                                                                                                cq-msm-lockable="./footer-hiddenMarketoMunchkinId"/>
                                                                                     </hiddenmarketomunchkinid>
                                                                                     <marketoHostname
                                                                                             jcr:primaryType="nt:unstructured"
                                                                                             sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                                                             fieldLabel="Marketo Host"
-                                                                                            name="./footer/marketoHostname"
+                                                                                            name="./footer-marketoHostname"
                                                                                             value="https://express-resource.dhl.com"
                                                                                             emptyText="Marketo hostname, such as https://express-resource.dhl.com"
                                                                                             fieldDescription="Marketo hostname. Controls where the form submissions are sent.">
                                                                                         <granite:data
                                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                                cq-msm-lockable="./footer/marketoHostname"/>
+                                                                                                cq-msm-lockable="./footer-marketoHostname"/>
                                                                                     </marketoHostname>
                                                                                 </items>
                                                                             </column>
@@ -1503,10 +1502,10 @@
                                                                         This default title will be used when the component doesn't have a custom title configured.
                                                                         If you don't set a default title and there's no custom title configuration,
                                                                         no title will be displayed for the related posts."
-                                                                    name="./relatedPosts/title">
+                                                                    name="./relatedPosts-title">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./relatedPosts/title"/>
+                                                                        cq-msm-lockable="./relatedPosts-title"/>
                                                             </title>
                                                         </items>
                                                     </relatedPosts>
