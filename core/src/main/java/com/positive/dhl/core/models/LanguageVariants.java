@@ -267,14 +267,21 @@ public class LanguageVariants {
 			languages.add(newItem);
 
 			String countryCode = pageUtilService.getCountryCodeByPagePath(homepage);
-			if (!StringUtils.isBlank(countryCode) && !countryCode.equals(currentCountryCode) && (!countries.containsKey(countryCode) || deflt)) {
-				newItem.setRegion(region);
-				countries.put(countryCode.equals("global") ? "aa" : countryCode, newItem);
-			}
+			setCountries(countryCode, currentCountryCode, deflt, region, newItem);
+			setCurrentRegionCode(currentHomePath, newHomepage, countryCode);
+		}
+	}
 
-			if (currentHomePath.equals(newHomepage)) {
-				currentRegionCode = countryCode;
-			}
+	private void setCountries(String countryCode, String currentCountryCode, boolean deflt, String region, LanguageVariant newItem) {
+		if (!StringUtils.isBlank(countryCode) && !countryCode.equals(currentCountryCode) && (!countries.containsKey(countryCode) || deflt)) {
+			newItem.setRegion(region);
+			countries.put(countryCode.equals("global") ? "aa" : countryCode, newItem);
+		}
+	}
+
+	private void setCurrentRegionCode(String currentHomePath, String newHomepage, String countryCode) {
+		if (currentHomePath.equals(newHomepage)) {
+			currentRegionCode = countryCode;
 		}
 	}
 }
