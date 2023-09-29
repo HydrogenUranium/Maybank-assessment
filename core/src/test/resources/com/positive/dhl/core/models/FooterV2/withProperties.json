@@ -5,19 +5,18 @@
       "jcr:title": "Home",
       "jcr:primaryType": "cq:PageContent",
       "sling:resourceType": "dhl/components/pages/home",
-      "footer": {
-        "jcr:primaryType": "nt:unstructured",
-        "invitation-text": "Join over 5000+ SMEs already growing with Discover",
-        "invitation-title": "Ready to grow your business?",
-        "logoAltText": "Alt Text",
-        "logoTitle": "DHL Group",
-        "promo-text": "Get tips and advice",
-        "logoIcon": "/content/dam/dhl-discover/common/icons/glo-footer-logo.svg",
-        "logoLink": "https://www.dhl.com/",
-        "categoryLinksLabel": "Categories",
-        "companyLinksLabel": "Company",
-        "socialLinksLabel": "Social",
-        "companyLinks": {
+      "footer-invitation-text": "Join over 5000+ SMEs already growing with Discover",
+      "footer-invitation-title": "Ready to grow your business?",
+      "footer-logoAltText": "Alt Text",
+      "footer-logoTitle": "DHL Group",
+      "footer-promo-text": "Get tips and advice",
+      "footer-logoIcon": "/content/dam/dhl-discover/common/icons/glo-footer-logo.svg",
+      "footer-logoLink": "https://www.dhl.com/",
+      "footer-categoryLinksLabel": "Categories",
+      "footer-companyLinksLabel": "Company",
+      "footer-socialLinksLabel": "Social",
+      "multifields": {
+        "footer-companyLinks": {
           "jcr:primaryType": "nt:unstructured",
           "item0": {
             "jcr:primaryType": "nt:unstructured",
@@ -35,7 +34,7 @@
             "linkPath": "#"
           }
         },
-        "socialLinks": {
+        "footer-socialLinks": {
           "jcr:primaryType": "nt:unstructured",
           "item0": {
             "jcr:primaryType": "nt:unstructured",

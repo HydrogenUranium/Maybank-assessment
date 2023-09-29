@@ -5,15 +5,14 @@
       "jcr:title": "Home",
       "jcr:primaryType": "cq:PageContent",
       "sling:resourceType": "dhl/components/pages/home",
-      "header": {
-        "jcr:primaryType": "nt:unstructured",
-        "buttonLink": "/content/dhl/button",
-        "buttonName": "Button Name",
-        "signInLabel": "Sign In",
-        "categoryLinksLabel": "Categories",
-        "homePageLabel": "Home",
-        "companyLinksLabel": "Company",
-        "companyLinks": {
+      "header-buttonLink": "/content/dhl/button",
+      "header-buttonName": "Button Name",
+      "header-signInLabel": "Sign In",
+      "header-categoryLinksLabel": "Categories",
+      "header-homePageLabel": "Home",
+      "header-companyLinksLabel": "Company",
+      "multifields": {
+        "header-companyLinks": {
           "jcr:primaryType": "nt:unstructured",
           "item0": {
             "jcr:primaryType": "nt:unstructured",

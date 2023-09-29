@@ -16,60 +16,60 @@ public class FooterV2Model {
 
     @InjectHomeProperty
     @Getter
-    @Named("footer/logoIcon")
+    @Named("footer-logoIcon")
     private String logoIcon;
 
     @InjectHomeProperty
     @Getter
-    @Named("footer/logoTitle")
+    @Named("footer-logoTitle")
     private String logoTitle;
 
     @InjectHomeProperty
     @Getter
-    @Named("footer/logoAltText")
+    @Named("footer-logoAltText")
     private String logoAltText;
 
     @InjectHomeProperty
     @Getter
-    @Named("footer/logoLink")
+    @Named("footer-logoLink")
     private String logoLink;
 
     @InjectHomeProperty
     @Getter
-    @Named("footer/invitation-title")
+    @Named("footer-invitation-title")
     private String invitationTitle;
 
     @InjectHomeProperty
     @Getter
-    @Named("footer/invitation-text")
+    @Named("footer-invitation-text")
     private String invitationText;
 
     @InjectHomeProperty
     @Getter
-    @Named("footer/promo-text")
+    @Named("footer-promo-text")
     private String promoText;
 
     @InjectHomeProperty
     @Getter
-    @Named("footer/categoryLinksLabel")
+    @Named("footer-categoryLinksLabel")
     private String categoryLinksLabel;
 
     @InjectHomeProperty
     @Getter
-    @Named("footer/companyLinksLabel")
+    @Named("footer-companyLinksLabel")
     private String companyLinksLabel;
 
     @InjectHomeProperty
-    @Named("footer/companyLinks")
+    @Named("multifields/footer-companyLinks")
     private Resource companyLinks;
 
     @InjectHomeProperty
     @Getter
-    @Named("footer/socialLinksLabel")
+    @Named("footer-socialLinksLabel")
     private String socialLinksLabel;
 
     @InjectHomeProperty
-    @Named("footer/socialLinks")
+    @Named("multifields/footer-socialLinks")
     private Resource socialLinks;
 
     public List<LinkModel> getCompanyLinks() {
