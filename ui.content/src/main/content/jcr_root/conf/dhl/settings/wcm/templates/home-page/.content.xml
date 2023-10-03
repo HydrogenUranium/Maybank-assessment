@@ -4,7 +4,7 @@
     <jcr:content
         cq:lastModified="{Date}2023-07-05T17:00:53.008+03:00"
         cq:lastModifiedBy="admin"
-        cq:templateType="/conf/dhl/settings/wcm/template-types/article"
+        cq:templateType="/conf/dhl/settings/wcm/template-types/home-page"
         jcr:primaryType="cq:PageContent"
         jcr:title="DHL Home Page (Editable)"
         status="enabled"/>
