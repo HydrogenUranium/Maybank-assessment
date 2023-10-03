@@ -60,6 +60,8 @@ class HeaderV2ModelTest {
         assertEquals("Sign In", headerV2Model.getSignInLabel());
         assertEquals("Categories", headerV2Model.getCategoryLinksLabel());
         assertEquals("Home", headerV2Model.getHomePageLabel());
+        assertEquals("... More", headerV2Model.getMoreLinkLabel());
+        assertEquals("... Less", headerV2Model.getLessLinkLabel());
         assertEquals("Company", headerV2Model.getCompanyLinksLabel());
         assertEquals("/content/home.html", headerV2Model.getHomePageLink());
         assertEquals("Link Name 1", headerV2Model.getCompanyLinks().get(0).getLinkName());
