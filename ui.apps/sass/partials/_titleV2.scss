@@ -45,25 +45,17 @@
     font: normal normal bold 28px/32px Delivery, sans-serif;
     color: #FFFFFF;
     text-align: center;
-    margin-left: 53px;
-    margin-right:53px;
-    padding-top: 70px;
-    padding-bottom: 65px;
+    padding: 70px 53px 65px;
+    border-top: 2px solid #454545;
     @include respond(md) {
+      border-top: none;
       color: #323232;
-      margin-left: 210px;
-      margin-right:210px;
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding: 20px 210px;
     }
     @include respond(xl) {
       line-height: 42px;
       font-size: 36px;
-      text-align: left;
-      margin-left: 310px;
-      margin-right:310px;
-      padding-top: 0px;
-      padding-bottom: 0px;
+      padding: 0 310px;
     }
   }
 }

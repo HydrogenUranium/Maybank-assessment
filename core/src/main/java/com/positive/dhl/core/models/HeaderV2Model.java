@@ -26,36 +26,36 @@ public class HeaderV2Model {
 
     @InjectHomeProperty
     @Getter
-    @Named("header/buttonName")
+    @Named("header-buttonName")
     private String buttonName;
 
     @InjectHomeProperty
     @Getter
-    @Named("header/buttonLink")
+    @Named("header-buttonLink")
     private String buttonLink;
 
     @InjectHomeProperty
     @Getter
-    @Named("header/signInLabel")
+    @Named("header-signInLabel")
     private String signInLabel;
 
     @InjectHomeProperty
     @Getter
-    @Named("header/categoryLinksLabel")
+    @Named("header-categoryLinksLabel")
     private String categoryLinksLabel;
 
     @InjectHomeProperty
     @Getter
-    @Named("header/homePageLabel")
+    @Named("header-homePageLabel")
     private String homePageLabel;
 
     @InjectHomeProperty
     @Getter
-    @Named("header/companyLinksLabel")
+    @Named("header-companyLinksLabel")
     private String companyLinksLabel;
 
     @InjectHomeProperty
-    @Named("header/companyLinks")
+    @Named("multifields/header-companyLinks")
     private Resource companyLinks;
 
     public List<LinkModel> getCompanyLinks() {

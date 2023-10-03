@@ -49,7 +49,7 @@ class LanguageVariantsTest {
         assertEquals(2, languageVariants.getAllLanguageVariants().size());
         assertEquals(1, languageVariants.getAllLanguageVariantsGrouped().size());
         assertEquals("us", languageVariants.getCurrentRegionCode());
-        assertEquals("Global", languageVariants.getCountries().get("global").getRegion());
+        assertEquals("Global", languageVariants.getCountries().get("aa").getRegion());
     }
 
     @Test

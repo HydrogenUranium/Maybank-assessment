@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
     jcr:primaryType="nt:unstructured">
     <items jcr:primaryType="nt:unstructured">
         <column jcr:primaryType="nt:unstructured">
@@ -11,15 +11,14 @@
                         <noIndexRobotsTagsInherit
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                            renderReadOnly="{Boolean}true"
                             text="Inherit 'noindex' value of 'Robots Tags' property in Sitemap for child pages"
                             name="./noIndexRobotsTagsInherit"
-                            value="{Boolean}true"/>
-                        <noIndexRobotsTagsInheritTypeHint
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
-                            ignoreData="{Boolean}true"
-                            name="./noIndexRobotsTagsInherit@TypeHint"
-                            value="Boolean"/>
+                            value="{Boolean}true">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-msm-lockable="./noIndexRobotsTagsInherit"/>
+                        </noIndexRobotsTagsInherit>
                         <sitemapChangefreq
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
@@ -59,13 +58,21 @@
                                     text="never"
                                     value="never"/>
                             </items>
+                            <granite:data
+                                    jcr:primaryType="nt:unstructured"
+                                    cq-msm-lockable="./sitemapChangefreq"/>
                         </sitemapChangefreq>
                         <sitemapChangefreqInherit
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                            renderReadOnly="{Boolean}true"
                             text="Inherit 'Change Frequency' property for child pages"
                             name="./sitemapChangefreqInherit"
-                            value="{Boolean}true"/>
+                            value="{Boolean}true">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-msm-lockable="./sitemapChangefreqInherit"/>
+                        </sitemapChangefreqInherit>
                         <sitemapChangefreqInheritTypeHint
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
@@ -123,6 +130,9 @@
                                     text="0.1"
                                     value="0.1"/>
                             </items>
+                            <granite:data
+                                    jcr:primaryType="nt:unstructured"
+                                    cq-msm-lockable="./sitemapPriority"/>
                         </sitemapPriority>
                         <sitemapPriorityTypeHint
                             jcr:primaryType="nt:unstructured"
@@ -133,9 +143,14 @@
                         <sitemapPriorityInherit
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                            renderReadOnly="{Boolean}true"
                             text="Inherit 'Priority' property for child pages"
                             name="./sitemapPriorityInherit"
-                            value="{Boolean}true"/>
+                            value="{Boolean}true">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-msm-lockable="./sitemapPriorityInherit"/>
+                        </sitemapPriorityInherit>
                         <sitemapPriorityInheritTypeHint
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
