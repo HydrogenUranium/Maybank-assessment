@@ -13,7 +13,13 @@
                 layout="responsiveGrid">
             <header
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/headerV2"/>
+                    sling:resourceType="dhl/components/content/headerV2">
+                <cta_banner_with_poin
+                        jcr:primaryType="nt:unstructured"
+                        type="businessAccount"
+                        style="sidebar"
+                        sling:resourceType="dhl/components/content/cta-banner-with-points"/>
+            </header>
             <responsivegrid
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm/foundation/components/responsivegrid"
