@@ -14,7 +14,10 @@
     limitations under the License.
 */-->
 <sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
-<div data-sly-use.downloadasset="com.positive.dhl.core.models.DownloadAsset" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
+<div
+    data-sly-use.downloadasset="com.positive.dhl.core.models.DownloadAsset"
+    data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
+    data-sly-use.marketoConfig="com.positive.dhl.core.models.MarketoConfiguration">
 	<div id="download" class="DHLdownload" data-sly-test="${(accountactions.downloadmarketo != true)}">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -151,22 +154,21 @@
 								<img class="DHLdownload__image d-block d-md-none" src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${properties.assetimage}" alt="${properties.title}" />
 
 								<div class="forms marketoForm"
-									 data-marketo-form='{
-										"hiddenMunchkinId": "078-ERT-522",
-										"hiddenFormId": 1758
-									  }'
-									 hiddenMunchkinId = "078-ERT-522"
-									 hiddenFormId = "1758"
-									 munchkinid="903-EZK-832"
-									 formid="1796"
-									 formHost="https://express-resource.dhl.com"
+									 hiddenMunchkinId = "${marketoConfig.hiddenMarketoMunchkinId @ context='attribute' || '078-ERT-522'}"
+									 hiddenFormId = "${marketoConfig.hiddenMarketoId @ context='attribute' || '1758'}"
+									 munchkinid="${marketoConfig.marketoMunchkinId @ context='attribute' || '903-EZK-832'}"
+									 formid="${marketoConfig.marketoFormId @ context='attribute' || '1796'}"
+									 formHost="${marketoConfig.marketoHostname @ context='attribute' || 'https://express-resource.dhl.com'}"
 									 source="noconf">
 
 								  <div data-marketo-visible-form>
 									<div class="wysiwyg">
 									  <script src="https://express-resources.dhl.com/js/forms2/js/forms2.min.js"></script>
 									  <form id="mktoForm_1796"></form>
-									  <script>MktoForms2.loadForm("https://express-resources.dhl.com", "903-EZK-832", 1796);</script>
+									  <script>MktoForms2.loadForm(
+                                        "${marketoConfig.marketoHostname @ context='scriptString' || 'https://express-resources.dhl.com'}",
+                                        "${marketoConfig.marketoMunchkinId @ context='attribute' || '903-EZK-832'}",
+                                        ${marketoConfig.marketoFormId @ context='attribute' || 1796});</script>
 									</div>
 								  </div>
 								</div>

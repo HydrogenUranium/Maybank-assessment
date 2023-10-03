@@ -1,7 +1,8 @@
-/* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.models;
 
+import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
@@ -13,18 +14,16 @@ import java.text.MessageFormat;
  */
 @Model(
 		adaptables = SlingHttpServletRequest.class,
-		resourceType = MarketoConfiguration.RESOURCE_TYPE,
 		defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
-
+@Getter
 public class MarketoConfiguration {
-
-	static final String RESOURCE_TYPE = "apps/dhl/components/content/inlineshipnowmarketo";
 
 	/**
 	 * Marketo form id - that's how we identify specific form within Marketo project
 	 */
 	@ValueMapValue
+	@Default(values = "1795")
 	private String marketoFormId;
 
 	/**
@@ -32,22 +31,26 @@ public class MarketoConfiguration {
 	 * it may contain one or more forms with different IDs
 	 */
 	@ValueMapValue
+	@Default(values = "903-EZK-832")
 	private  String marketoMunchkinId;
 	/**
 	 * Marketo hidden form id - identifier of the 'hidden' marketo form within Marketo project
 	 */
 	@ValueMapValue
+	@Default(values = "1756")
 	private  String hiddenMarketoId;
 	/**
 	 * Marketo munchkin id - also called Marketo project - is an identifier of a 'hidden' project in Marketo,
 	 * it may contain one or more forms with different IDs
 	 */
 	@ValueMapValue
+	@Default(values = "078-ERT-522")
 	private  String hiddenMarketoMunchkinId;
 	/**
 	 * This is a hostname where we try to get the form objects from
 	 */
 	@ValueMapValue
+	@Default(values = "https://express-resource.dhl.com")
 	private String marketoHostname;
 
 	private static final String MKTO_FORM_PLACEHOLDER = "mktoForm_{0}";
@@ -74,60 +77,5 @@ public class MarketoConfiguration {
 			marketoFormIdDiv = MessageFormat.format(MKTO_FORM_PLACEHOLDER, hiddenMarketoId);
 		}
 		return marketoFormIdDiv;
-	}
-
-	/**
-	 * Fetches the Marketo hostname
-	 * @return String representing marketo hostname
-	 */
-	public String getMarketoHostname(){
-		if(null != marketoHostname && !marketoHostname.isBlank()){
-			return marketoHostname;
-		}
-		return "https://express-resource.dhl.com";
-	}
-
-	/**
-	 * Provides marketo form id
-	 * @return String representing marketo form id, or default value
-	 */
-	public String getMarketoFormId() {
-		if(marketoFormId != null && !marketoFormId.isBlank()){
-			return marketoFormId;
-		}
-		return "1795";
-	}
-
-	/**
-	 * Provides Marketo munchkinID
-	 * @return String representing munchkin id, or default value
-	 */
-	public String getMarketoMunchkinId() {
-		if(marketoMunchkinId != null && !marketoMunchkinId.isBlank()){
-			return marketoMunchkinId;
-		}
-		return "903-EZK-832";
-	}
-
-	/**
-	 * Provides 'hidden' marketo form id
-	 * @return String representing marketo hidden form id, or default value
-	 */
-	public String getHiddenMarketoId() {
-		if(hiddenMarketoId != null && !hiddenMarketoId.isBlank()){
-			return hiddenMarketoId;
-		}
-		return "1756";
-	}
-
-	/**
-	 * Provides 'hidden' marketo munchkin id
-	 * @return String representing munchkin id of hidden form, or default value
-	 */
-	public String getHiddenMarketoMunchkinId() {
-		if(hiddenMarketoMunchkinId != null && !hiddenMarketoMunchkinId.isBlank()){
-			return hiddenMarketoMunchkinId;
-		}
-		return "078-ERT-522";
 	}
 }
