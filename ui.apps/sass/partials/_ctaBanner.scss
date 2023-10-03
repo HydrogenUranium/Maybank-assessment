@@ -45,6 +45,7 @@
       background: transparent linear-gradient(270deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%) 0% 0% no-repeat padding-box;
       z-index: -1;
     }
+
     @include respond(xl) {
       &:after {
         opacity: 1;
@@ -160,64 +161,62 @@
   }
 }
 
-.home-page-container-component {
-  .container_with-side-bar {
-    .container__sidebar {
-      .banner {
+.short-banners {
+  .cta-banner-with-points-component {
+    .banner {
+      @include respond(xl) {
+        &:after {
+          opacity: 0.8;
+          background: transparent linear-gradient(270deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%) 0% 0% no-repeat padding-box;
+        }
+      }
+
+      &__image {
         @include respond(xl) {
-          &:after {
-            opacity: 0.8;
-            background: transparent linear-gradient(270deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%) 0% 0% no-repeat padding-box;
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+
+      &__body {
+        @include respond(xl) {
+          padding: 34px 20px 20px;
+          margin-left: initial;
+          width: 100%;
+        }
+
+        .banner__body__list,
+        ul {
+          @include respond(md) {
+            width: 180px;
+          }
+
+          .banner__body__list__item,
+          li {
+            @include respond(xl) {
+              margin-bottom: 20px;
+            }
           }
         }
 
-        &__image {
-          @include respond(xl) {
-            width: 100%;
-            border-radius: 4px;
+        .banner__body__list--columns {
+          @include respond(md) {
+            columns: 1;
           }
         }
 
-        &__body {
+        &__title {
           @include respond(xl) {
-            padding: 34px 20px 20px;
-            margin-left: initial;
-            width: 100%;
+            line-height: 24px;
+            font-size: 17px;
           }
+        }
 
-          .banner__body__list,
-          ul {
-            @include respond(md) {
-              width: 180px;
-            }
-
-            .banner__body__list__item,
-            li {
-              @include respond(xl) {
-                margin-bottom: 20px;
-              }
-            }
-          }
-
-          .banner__body__list--columns {
-            @include respond(md) {
-              columns: 1;
-            }
-          }
-
-          &__title {
-            @include respond(xl) {
-              line-height: 24px;
-              font-size: 17px;
-            }
-          }
-
-          &__button {
-            @include respond(xl) {
-              display: block;
-              line-height: 24px;
-              font-size: 14px;
-            }
+        &__button {
+          @include respond(xl) {
+            display: block;
+            line-height: 24px;
+            font-size: 14px;
           }
         }
       }

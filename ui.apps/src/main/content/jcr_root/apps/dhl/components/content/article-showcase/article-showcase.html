@@ -25,7 +25,7 @@
                     <div class="article__info__metadata">${item.createdfriendly} ${item.readtime ? '|' : ''} ${item.readtime}</div>
                     <div class="article__info__description">${item.description}</div>
                     <div class="article__info__author">
-                        <div style="background-image: url('${item.authorimage @ context='unsafe'}');" class="article__info__author__avatar"></div>
+                        <div style="background-image: url('${!authormode ? accountactions.assetprefix : '' @ context='unsafe'}${item.authorimage @ context='unsafe'}');" class="article__info__author__avatar"></div>
                         <div class="article__info__author__name">${item.author}</div>
                     </div>
                 </div>
