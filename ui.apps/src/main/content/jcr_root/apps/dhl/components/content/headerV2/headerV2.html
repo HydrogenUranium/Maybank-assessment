@@ -64,8 +64,10 @@
                 <sly data-sly-list="${meganav.panels}">
                     <a data-sly-set.currentPagePath="${currentPage.path}.html" class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }" href="${item.url}"><span>${item.navigationTitle}</span></a>
                 </sly>
+                <span class="navigation-item navigation-item_more-less less">${headerV2.lessLinkLabel}</span>
             </div>
             <div class="navigation-row__right">
+                <span class="navigation-item navigation-item_more-less more">${headerV2.moreLinkLabel}</span>
                 <a data-sly-test="${headerV2.buttonName}" class="button" href="${headerV2.buttonLink}" title="${headerV2.buttonName}">
                     <span>${headerV2.buttonName}</span>
                 </a>
