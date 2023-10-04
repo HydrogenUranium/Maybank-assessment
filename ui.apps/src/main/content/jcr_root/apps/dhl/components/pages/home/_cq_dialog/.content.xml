@@ -990,8 +990,9 @@
                                                                     </companyLinksLabel>
                                                                     <companyLinksList
                                                                             jcr:primaryType="nt:unstructured"
-                                                                            fieldLabel="Company Links List"
-                                                                            fieldDescription="Add links like 'About Us', 'Contact Us'."
+                                                                            fieldLabel="Company Links List (inheritance cancelled)"
+                                                                            fieldDescription="Add links like 'About Us', 'Contact Us'.
+                                                                                              Synchronisation with Blueprint (Master) disabled (inheritance cancelled)"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -1069,7 +1070,8 @@
                                                             </title>
                                                             <points
                                                                     jcr:primaryType="nt:unstructured"
-                                                                    fieldLabel="Points"
+                                                                    fieldLabel="Points (inheritance cancelled)"
+                                                                    fieldDescription="Synchronisation with Blueprint (Master) disabled (inheritance cancelled)"
                                                                     composite="{Boolean}true"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -1163,7 +1165,8 @@
                                                             </title>
                                                             <points
                                                                     jcr:primaryType="nt:unstructured"
-                                                                    fieldLabel="Points"
+                                                                    fieldLabel="Points (inheritance cancelled)"
+                                                                    fieldDescription="Synchronisation with Blueprint (Master) disabled (inheritance cancelled)"
                                                                     composite="{Boolean}true"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                 <field sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -1342,8 +1345,9 @@
                                                                     </companyLinksLabel>
                                                                     <companyLinksList
                                                                             jcr:primaryType="nt:unstructured"
-                                                                            fieldLabel="Company Links List"
-                                                                            fieldDescription="Add links like 'About us', 'Press', 'Contact'."
+                                                                            fieldLabel="Company Links List (inheritance cancelled)"
+                                                                            fieldDescription="Add links like 'About us', 'Press', 'Contact'.
+                                                                                              Synchronisation with Blueprint (Master) disabled (inheritance cancelled)"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -1389,8 +1393,9 @@
                                                                     </socialLinksLabel>
                                                                     <socialLinksList
                                                                             jcr:primaryType="nt:unstructured"
-                                                                            fieldLabel="Social Network Links List"
-                                                                            fieldDescription="Add links like 'LinkedIn', 'Instagram', 'Twitter', 'Facebook'."
+                                                                            fieldLabel="Social Network Links List (inheritance cancelled)"
+                                                                            fieldDescription="Add links like 'LinkedIn', 'Instagram', 'Twitter', 'Facebook'.
+                                                                                              Synchronisation with Blueprint (Master) disabled (inheritance cancelled)"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
