@@ -23,7 +23,6 @@ public class MarketoConfiguration {
 	 * Marketo form id - that's how we identify specific form within Marketo project
 	 */
 	@ValueMapValue
-	@Default(values = "1795")
 	private String marketoFormId;
 
 	/**
@@ -31,20 +30,17 @@ public class MarketoConfiguration {
 	 * it may contain one or more forms with different IDs
 	 */
 	@ValueMapValue
-	@Default(values = "903-EZK-832")
 	private  String marketoMunchkinId;
 	/**
 	 * Marketo hidden form id - identifier of the 'hidden' marketo form within Marketo project
 	 */
 	@ValueMapValue
-	@Default(values = "1756")
 	private  String hiddenMarketoId;
 	/**
 	 * Marketo munchkin id - also called Marketo project - is an identifier of a 'hidden' project in Marketo,
 	 * it may contain one or more forms with different IDs
 	 */
 	@ValueMapValue
-	@Default(values = "078-ERT-522")
 	private  String hiddenMarketoMunchkinId;
 	/**
 	 * This is a hostname where we try to get the form objects from

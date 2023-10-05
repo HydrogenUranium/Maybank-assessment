@@ -77,7 +77,7 @@
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Marketo FormID"
                                     name="./marketoFormId"
-                                    value="1795"
+                                    value="1796"
                                     emptyText="Marketo form ID of the 'hidden' form, such as 1795"
                                     fieldDescription="Form (asset) ID of the form in Marketo"/>
                             <marketomunchkinid
@@ -93,7 +93,7 @@
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="HIDDEN Marketo FormID"
                                     name="./hiddenMarketoId"
-                                    value="1799"
+                                    value="1724"
                                     emptyText="Marketo form ID of the 'hidden' form, such as 1799"
                                     fieldDescription="Form (asset) ID of the form in Marketo. Refers to 'hidden' form."/>
                             <hiddenmarketomunchkinid
