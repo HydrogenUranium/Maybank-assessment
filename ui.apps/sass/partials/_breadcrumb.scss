@@ -1,44 +1,25 @@
 .cmp-breadcrumb {
-  padding: 10px 36px 0;
+  display: none;
 
   @include respond(xl) {
+    display: block;
     max-width: 1080px;
     margin: 0 auto;
     padding: 25px 0 0;
-  }
 
-  .cmp-breadcrumb__item {
-    display: inline-block;
-    font-family: "Delivery", sans-serif;
-    font-size: 12px;
-    line-height: 17px;
-
-    &:nth-last-of-type(1) {
-      font-weight: bold;
-      color: #D40511;
-
-      &:before {
-        content: '#';
-        margin-right: -2px;
-      }
-
-      @include respond(xl) {
-        font-weight: normal;
-        color: #707070;
-
-        &:before {
-          content: none;
-        }
-      }
-    }
-
-    @include respond(xl) {
+    .cmp-breadcrumb__item {
+      display: inline-block;
+      font-family: "Delivery", sans-serif;
       font-size: 14px;
       line-height: 20px;
       color: map-get($palette, dhl-black);
 
       &:not(:last-child):after {
         content: '>';
+        color: #707070;
+      }
+
+      &:last-child {
         color: #707070;
       }
 
