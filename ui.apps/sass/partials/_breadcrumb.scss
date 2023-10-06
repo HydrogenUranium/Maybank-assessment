@@ -24,8 +24,11 @@
       }
 
       &-link {
-        text-decoration: underline;
         color: unset;
+
+        span {
+          text-decoration: underline;
+        }
       }
     }
   }
