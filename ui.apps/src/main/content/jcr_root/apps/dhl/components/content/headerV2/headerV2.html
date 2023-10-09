@@ -59,10 +59,10 @@
             </div>
         </div>
         <div class="navigation-row" data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model">
-            <div class="navigation-row__left">
-                <a class="navigation-item" href="${headerV2.homePageLink}"><span>${headerV2.homePageLabel}</span></a>
+            <div class="navigation-row__left" data-sly-set.currentPagePath="${currentPage.path}.html">
+                <a class="navigation-item ${currentPagePath == headerV2.homePageLink ? 'active' : '' }" href="${headerV2.homePageLink}"><span>${headerV2.homePageLabel}</span></a>
                 <sly data-sly-list="${meganav.panels}">
-                    <a data-sly-set.currentPagePath="${currentPage.path}.html" class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }" href="${item.url}"><span>${item.navigationTitle}</span></a>
+                    <a class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }" href="${item.url}"><span>${item.navigationTitle}</span></a>
                 </sly>
                 <span class="navigation-item navigation-item_more-less less">${headerV2.lessLinkLabel}</span>
             </div>
