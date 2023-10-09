@@ -1,0 +1,14 @@
+<sly data-sly-use.model="com.positive.dhl.core.models.HeroBannerWithSummary"></sly>
+
+<div class="hero-banner-with-summary-component">
+    <div class="hero-banner" id="${model.id}">
+        <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
+             data-sly-call="${template.background @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>
+    </div>
+    <div class="summary" data-sly-test="${model.points.size > 1}">
+        <div class="summary__label">${model.summaryTitle}</div>
+        <div class="summary__points">
+            <div class="summary__points__item" data-sly-repeat="${model.points}">${item}</div>
+        </div>
+    </div>
+</div>
