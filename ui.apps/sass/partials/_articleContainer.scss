@@ -1,14 +1,35 @@
 .article-container-component {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: 1fr minmax(auto, 1080px) minmax(280px, 1fr);
-  grid-template-areas:"empty body sidebar";
+  margin: 0 35px;
+  .grid {
+    margin: 0 auto;
+    max-width: 1600px;
+    &__container {
+      max-width: 1380px;
+      margin-left: auto;
+      @include respond(xl) {
+        display: grid;
+        grid-template-columns: minmax(auto, 1080px) 300px;
+        grid-template-areas:"body sidebar";
+      }
 
-  &__body {
-    grid-area: body;
-  }
+      &__body {
+        @include respond(xl) {
+          grid-area: body;
+        }
+      }
 
-  &__sidebar {
-    grid-area: sidebar;
-  }
+      &__sidebar {
+        display: none;
+
+        @include respond(xl) {
+          margin-left: 20px;
+          display: block;
+          grid-area: sidebar;
+          .sidebar-container {
+            max-width: 280px;
+          }
+        }
+      }
+    }
+    }
 }

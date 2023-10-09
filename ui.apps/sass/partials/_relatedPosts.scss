@@ -11,6 +11,11 @@
   @include respond(xl) {
     margin-top: 50px;
   }
+  .horizontal-scroll {
+    &::-webkit-scrollbar-track {
+      margin: 50px;
+    }
+  }
   .title {
     font: normal normal bold 26px/26px Delivery, sans-serif;
     padding-left: 10px;
