@@ -231,7 +231,7 @@
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="buttonName" translate="true" updateDestinationLanguage="false"/>
     </node>
-    <node resourceType="dhl/components/content/hero-banner-with-summary">
+    <node resourceType="dhl/components/content/hero-banner">
       <property inherit="true" name="summaryTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/pages/amparticle">

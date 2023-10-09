@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
-class HeroBannerWithSummaryTest {
+class HeroBannerTest {
     private final AemContext context = new AemContext(ResourceResolverType.JCR_OAK);
     private final MockSlingHttpServletRequest request = context.request();
     private final ResourceResolver resourceResolver = context.resourceResolver();
@@ -42,11 +42,11 @@ class HeroBannerWithSummaryTest {
             }
             return "/prefix" + invocationOnMock.getArgument(0, String.class);
         });
-        context.load().json("/com/positive/dhl/core/models/HeroBannerWithSummary/content.json", "/content");
+        context.load().json("/com/positive/dhl/core/models/HeroBanner/content.json", "/content");
         mockInject(context, "currentPage", resourceResolver.getResource("/content/article").adaptTo(Page.class));
         context.registerService(Injector.class, assetInjector);
         context.registerService(AssetUtilService.class, assetUtils);
-        context.addModelsForClasses(HeroBannerWithSummary.class);
+        context.addModelsForClasses(HeroBanner.class);
     }
 
     private void initRequest(String path) {
@@ -57,32 +57,32 @@ class HeroBannerWithSummaryTest {
     @Test
     void init_shouldInitPropertiesFromPage_whenBackgroundIsNotConfigured() {
         initRequest("/content/article/jcr:content/root/article_container/body/hero_banner_with_sum");
-        HeroBannerWithSummary heroBannerWithSummary = request.adaptTo(HeroBannerWithSummary.class);
+        HeroBanner heroBanner = request.adaptTo(HeroBanner.class);
 
-        assertNotNull(heroBannerWithSummary);
-        assertEquals("Key Takeaways", heroBannerWithSummary.getSummaryTitle());
-        assertEquals(3, heroBannerWithSummary.getPoints().size());
-        assertEquals("A key takeaway from the article will come here which summarises the article in a succinct way", heroBannerWithSummary.getPoints().get(0));
-        assertEquals("It will make the reader curious to read the whole article", heroBannerWithSummary.getPoints().get(1));
-        assertEquals("And if they are in a hurry, they will still be able to get a quick summary anyway", heroBannerWithSummary.getPoints().get(2));
-        assertEquals("/prefix/heroimagedt.jpg", heroBannerWithSummary.getDesktopBackgroundImage());
-        assertEquals("/prefix/heroimagetab.jpg", heroBannerWithSummary.getTabletBackgroundImage());
-        assertEquals("/prefix/heroimagemob.jpg", heroBannerWithSummary.getMobileBackgroundImage());
+        assertNotNull(heroBanner);
+        assertEquals("Key Takeaways", heroBanner.getSummaryTitle());
+        assertEquals(3, heroBanner.getPoints().size());
+        assertEquals("A key takeaway from the article will come here which summarises the article in a succinct way", heroBanner.getPoints().get(0));
+        assertEquals("It will make the reader curious to read the whole article", heroBanner.getPoints().get(1));
+        assertEquals("And if they are in a hurry, they will still be able to get a quick summary anyway", heroBanner.getPoints().get(2));
+        assertEquals("/prefix/heroimagedt.jpg", heroBanner.getDesktopBackgroundImage());
+        assertEquals("/prefix/heroimagetab.jpg", heroBanner.getTabletBackgroundImage());
+        assertEquals("/prefix/heroimagemob.jpg", heroBanner.getMobileBackgroundImage());
     }
 
     @Test
     void init_shouldInitPropertiesFromComponent_whenBackgroundIsConfigured() {
         initRequest("/content/article/jcr:content/root/article_container/body/hero_banner_with_sum_custom_config");
-        HeroBannerWithSummary heroBannerWithSummary = request.adaptTo(HeroBannerWithSummary.class);
+        HeroBanner heroBanner = request.adaptTo(HeroBanner.class);
 
-        assertNotNull(heroBannerWithSummary);
-        assertEquals("Key Takeaways", heroBannerWithSummary.getSummaryTitle());
-        assertEquals(3, heroBannerWithSummary.getPoints().size());
-        assertEquals("A key takeaway from the article will come here which summarises the article in a succinct way", heroBannerWithSummary.getPoints().get(0));
-        assertEquals("It will make the reader curious to read the whole article", heroBannerWithSummary.getPoints().get(1));
-        assertEquals("And if they are in a hurry, they will still be able to get a quick summary anyway", heroBannerWithSummary.getPoints().get(2));
-        assertEquals("/prefix/desktop.jpg", heroBannerWithSummary.getDesktopBackgroundImage());
-        assertEquals("/prefix/tablet.jpg", heroBannerWithSummary.getTabletBackgroundImage());
-        assertEquals("/prefix/mobile.jpg", heroBannerWithSummary.getMobileBackgroundImage());
+        assertNotNull(heroBanner);
+        assertEquals("Key Takeaways", heroBanner.getSummaryTitle());
+        assertEquals(3, heroBanner.getPoints().size());
+        assertEquals("A key takeaway from the article will come here which summarises the article in a succinct way", heroBanner.getPoints().get(0));
+        assertEquals("It will make the reader curious to read the whole article", heroBanner.getPoints().get(1));
+        assertEquals("And if they are in a hurry, they will still be able to get a quick summary anyway", heroBanner.getPoints().get(2));
+        assertEquals("/prefix/desktop.jpg", heroBanner.getDesktopBackgroundImage());
+        assertEquals("/prefix/tablet.jpg", heroBanner.getTabletBackgroundImage());
+        assertEquals("/prefix/mobile.jpg", heroBanner.getMobileBackgroundImage());
     }
 }

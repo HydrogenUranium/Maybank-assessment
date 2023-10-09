@@ -1,6 +1,6 @@
-<sly data-sly-use.model="com.positive.dhl.core.models.HeroBannerWithSummary"></sly>
+<sly data-sly-use.model="com.positive.dhl.core.models.HeroBanner"></sly>
 
-<div class="hero-banner-with-summary-component">
+<div class="hero-banner-component">
     <div class="hero-banner" id="${model.id}">
         <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
              data-sly-call="${template.background @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>

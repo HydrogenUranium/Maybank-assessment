@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
-public class HeroBannerWithSummary {
+public class HeroBanner {
     @Inject
     @Required
     private Page currentPage;
