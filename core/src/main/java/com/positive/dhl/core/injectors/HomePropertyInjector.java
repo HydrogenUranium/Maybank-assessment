@@ -24,7 +24,7 @@ import static org.osgi.framework.Constants.SERVICE_RANKING;
 public class HomePropertyInjector extends AbstractInjector {
 
     @Reference
-    private PageUtilService pageUtils;
+    protected PageUtilService pageUtils;
 
     @Override
     public @NotNull String getName() {
@@ -42,9 +42,13 @@ public class HomePropertyInjector extends AbstractInjector {
         return null;
     }
 
+    protected boolean isAnnotationPresent(AnnotatedElement annotatedElement) {
+        return annotatedElement.isAnnotationPresent(InjectHomeProperty.class);
+    }
+
     @Override
     public @Nullable Object getValue(@NotNull Object object, String name, @NotNull Type type, @NotNull AnnotatedElement annotatedElement, @NotNull DisposalCallbackRegistry disposalCallbackRegistry) {
-        if (!annotatedElement.isAnnotationPresent(InjectHomeProperty.class)) {
+        if (!isAnnotationPresent(annotatedElement)) {
             return null;
         }
         var resource = getResource(object);

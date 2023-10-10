@@ -1,0 +1,225 @@
+.cta-banner-with-points-component {
+  margin-top: 30px;
+
+  @include respond(xl) {
+    margin-top: 50px;
+  }
+
+  .banner {
+    max-width: 1200px;
+    position: relative;
+    mix-blend-mode: multiply;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font: normal normal normal 17px/24px Delivery, sans-serif;
+
+    &__image {
+      position: absolute;
+      border-radius: 4px;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+
+      background: {
+        position: center;
+        repeat: no-repeat;
+        size: cover;
+      }
+
+      @include respond(xl) {
+        width: 50%;
+        border-radius: 4px 0px 0px 4px;
+      }
+    }
+
+    &:after {
+      opacity: 0.8;
+      content: "";
+      border-radius: inherit;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      mix-blend-mode: multiply;
+      background: transparent linear-gradient(270deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%) 0% 0% no-repeat padding-box;
+      z-index: -1;
+    }
+
+    @include respond(xl) {
+      &:after {
+        opacity: 1;
+        background: transparent linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
+      }
+    }
+
+    &__body {
+      padding: 34px 20px 20px;
+
+      @include respond(xl) {
+        padding: 30px 30px 30px 0px;
+        margin-left: auto;
+        width: 50%;
+      }
+
+      .banner__body__list,
+      ul {
+        width: 180px;
+        margin: 50px 20px 35px;
+        padding: 0px;
+        list-style: none;
+
+        @include respond(md) {
+          width: 65%;
+        }
+
+        @include respond(xl) {
+          width: auto;
+          margin: 20px 0px 20px 20px;
+        }
+
+        .banner__body__list__item,
+        li {
+          margin-top: 0px;
+          margin-bottom: 20px;
+          line-height: 24px;
+          color: white;
+
+          @include respond(xl) {
+            margin-bottom: 14px;
+            line-height: 24px;
+          }
+
+          &:before {
+            content: "\2022";
+            color: #FFCC00;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            position: initial
+          }
+        }
+      }
+
+      .banner__body__list--columns {
+        @include respond(md) {
+          columns: 2;
+          column-gap: 35px;
+        }
+
+        .banner__body__list__item {
+          @include respond(md) {
+            break-inside: avoid-column;
+          }
+        }
+      }
+
+      &__title {
+        font-weight: bold;
+        text-align: left;
+        letter-spacing: 0px;
+        text-transform: uppercase;
+
+        @include respond(xl) {
+          line-height: 36px;
+          font-size: 30px;
+        }
+      }
+
+      &__button {
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+        display: block;
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: bold;
+        background: #D40511 0% 0% no-repeat padding-box;
+        border-radius: 4px;
+        padding: 10px;
+
+        @include respond(xl) {
+          display: inline-block;
+          min-width: 210px;
+          line-height: 16px;
+          font-size: 18px;
+        }
+
+        &:hover {
+          color: #FFFFFF;
+          background-color: #eb131e;
+          text-decoration: none;
+        }
+
+        &:active {
+          background-color: #9A0000;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.short-banners {
+  .cta-banner-with-points-component {
+    .banner {
+      @include respond(xl) {
+        &:after {
+          opacity: 0.8;
+          background: transparent linear-gradient(270deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%) 0% 0% no-repeat padding-box;
+        }
+      }
+
+      &__image {
+        @include respond(xl) {
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+
+      &__body {
+        @include respond(xl) {
+          padding: 34px 20px 20px;
+          margin-left: initial;
+          width: 100%;
+        }
+
+        .banner__body__list,
+        ul {
+          @include respond(md) {
+            width: 180px;
+          }
+
+          .banner__body__list__item,
+          li {
+            @include respond(xl) {
+              margin-bottom: 20px;
+            }
+          }
+        }
+
+        .banner__body__list--columns {
+          @include respond(md) {
+            columns: 1;
+          }
+        }
+
+        &__title {
+          @include respond(xl) {
+            line-height: 24px;
+            font-size: 17px;
+          }
+        }
+
+        &__button {
+          @include respond(xl) {
+            display: block;
+            line-height: 24px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

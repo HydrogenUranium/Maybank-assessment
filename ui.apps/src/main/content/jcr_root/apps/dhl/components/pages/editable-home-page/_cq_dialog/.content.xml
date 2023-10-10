@@ -1467,6 +1467,88 @@
                                                             </title>
                                                         </items>
                                                     </relatedPosts>
+                                                    <ctaBannerSubscribeToOurNewsletter
+                                                            jcr:title="CTA Banner 'Subscribe to our Newsletter'"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <mobileBackgroundImage
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-mobileBackgroundImage"
+                                                                    rootPath="/content/dam"
+                                                                    fieldLabel="Mobile Background Image">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-mobileBackgroundImage"/>
+                                                            </mobileBackgroundImage>
+                                                            <tabletBackgroundImage
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-tabletBackgroundImage"
+                                                                    rootPath="/content/dam"
+                                                                    fieldLabel="Tablet Background Image">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-tabletBackgroundImage"/>
+                                                            </tabletBackgroundImage>
+                                                            <desktopBackgroundImage
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-desktopBackgroundImage"
+                                                                    rootPath="/content/dam"
+                                                                    fieldLabel="Desktop Background Image">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-desktopBackgroundImage"/>
+                                                            </desktopBackgroundImage>
+                                                            <topTitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Title"
+                                                                    emptyText="Stay In The Loop!"
+                                                                    value="Stay In The Loop!"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-topTitle">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-topTitle"/>
+                                                            </topTitle>
+                                                            <title
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Title"
+                                                                    emptyText="Subscribe To Our Newsletter And Be The First To Receive Exclusive Updates, Exciting Offers, And Insider Insights"
+                                                                    value="Subscribe To Our Newsletter And Be The First To Receive Exclusive Updates, Exciting Offers, And Insider Insights"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-title">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-title"/>
+                                                            </title>
+                                                            <buttonName
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Button Name"
+                                                                    emptyText="Subscribe"
+                                                                    value="Subscribe"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-buttonName">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-buttonName"/>
+                                                            </buttonName>
+                                                            <buttonLink
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldLabel="CTA Path"
+                                                                    rootPath="/content/dhl"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-buttonLink">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-buttonLink"/>
+                                                            </buttonLink>
+                                                        </items>
+                                                        <parentConfig jcr:primaryType="nt:unstructured"
+                                                                      active="{Boolean}false"/>
+                                                    </ctaBannerSubscribeToOurNewsletter>
                                                 </items>
                                             </accordion>
                                         </items>
