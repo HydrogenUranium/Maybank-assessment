@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
-          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
           jcr:primaryType="cq:Page">
     <jcr:content
             cq:deviceGroups="[mobile/groups/responsive]"
+            cq:lastModified="{Date}2023-10-10T14:08:09.185+03:00"
+            cq:lastModifiedBy="admin"
+            cq:template="/conf/dhl/settings/wcm/templates/article"
+            jcr:mixinTypes="[]"
             jcr:primaryType="cq:PageContent"
             sling:resourceType="dhl/components/pages/editable-article"
-            cq:template="/conf/dhl/settings/wcm/templates/article">
+            viewcount="{Long}9">
         <root
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid"
@@ -55,6 +58,16 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="dhl/components/content/cta-banner"
                             type="subscribeNewsletter"/>
+                    <responsivegrid_929485349
+                            jcr:created="{Date}2023-10-10T14:05:12.926+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2023-10-10T14:05:12.926+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid"
+                            editable="{Boolean}true">
+                        <cq:responsive jcr:primaryType="nt:unstructured"/>
+                    </responsivegrid_929485349>
                 </body>
                 <sidebar
                         jcr:primaryType="nt:unstructured"
@@ -67,24 +80,18 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="dhl/components/content/cta-banner-with-points"
                             type="businessAccount"/>
+                    <responsivegrid
+                            jcr:created="{Date}2023-10-10T14:07:50.160+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2023-10-10T14:07:50.160+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid"
+                            editable="{Boolean}true">
+                        <cq:responsive jcr:primaryType="nt:unstructured"/>
+                    </responsivegrid>
                 </sidebar>
             </article_container>
-            <article_container_author_panel
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-container"
-                    designMode="new"
-                    useArticleStyles="false">
-                <body
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <author_panel
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/article-author-panel"/>
-                </body>
-                <sidebar
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid"/>
-            </article_container_author_panel>
             <article_container_two
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/article-container"
@@ -96,35 +103,12 @@
                     <responsivegrid
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm/foundation/components/responsivegrid"
-                            editable="true">
-                    </responsivegrid>
+                            editable="true"/>
                 </body>
                 <sidebar
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid"/>
             </article_container_two>
-            <article_container_bottom
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-container"
-                    designMode="new"
-                    useArticleStyles="false">
-                <body
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <social_static
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/article-social-static"/>
-                    <content_banner
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/article-content-banner"/>
-                </body>
-                <sidebar
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid"/>
-            </article_container_bottom>
-            <similar_stories
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-similar-stories"/>
             <related_posts
                     jcr:created="{Date}2023-10-06T15:18:56.004+03:00"
                     jcr:createdBy="admin"
