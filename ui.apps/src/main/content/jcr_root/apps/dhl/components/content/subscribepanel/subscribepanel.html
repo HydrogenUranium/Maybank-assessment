@@ -75,11 +75,11 @@
 									"hiddenFormId": 1759
 									}'
 									source="noconf"
-									munchkinId = "${marketoConfig.getMarketoMunchkinId @ context='attribute' || '903-EZK-832' }"
-									formId = "${marketoConfig.getMarketoFormId @ context='attribute' || '1799' }"
-								 	formHost = "${marketoConfig.getMarketoHostname @ context='attribute'}"
-                                    hiddenMunchkinId = "${marketoConfig.getHiddenMarketoMunchkinId @ context='attribute' || '903-EZK-832' }"
-                                    hiddenFormId = "${marketoConfig.getHiddenMarketoId @ context='attribute' || '1759'}"
+									munchkinId = "${marketoConfig.getMarketoMunchkinId @ context='attribute' || marketoConfig.getDefaultSubscribePanelMunchkinId || '903-EZK-832' }"
+									formId = "${marketoConfig.getMarketoFormId @ context='attribute' || marketoConfig.getDefaultSubscribePanelFormId || '1799' }"
+								 	formHost = "${marketoConfig.getMarketoHostname @ context='attribute' || marketoConfig.getDefaultMarketoHostname} "
+                                    hiddenMunchkinId = "${marketoConfig.getHiddenMarketoMunchkinId @ context='attribute' || marketoConfig.getDefaultSubscribePanelHiddenMunchkinId || '903-EZK-832' }"
+                                    hiddenFormId = "${marketoConfig.getHiddenMarketoId @ context='attribute' || marketoConfig.getDefaultSubscribePanelHiddenFormId || '1759'}"
 								>
 									<div class="wysiwyg">
 										<div data-marketo-visible-form>
