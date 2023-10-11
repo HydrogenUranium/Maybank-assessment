@@ -59,8 +59,7 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                 allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Article 'Hero' Image (mobile). Disabled, use component configuration instead."
-                                                disabled="true"
+                                                fieldLabel="Article 'Hero' Image (mobile)"
                                                 name="./heroimagemob"
                                                 rootPath="/content/dam"
                                                 required="{Boolean}true"/>
@@ -68,8 +67,7 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                 allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Article 'Hero' Image (tablet). Disabled, use component configuration instead."
-                                                disabled="true"
+                                                fieldLabel="Article 'Hero' Image (tablet)"
                                                 name="./heroimagetab"
                                                 rootPath="/content/dam"
                                                 required="{Boolean}true"/>
@@ -77,8 +75,7 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                 allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Article 'Hero' Image (desktop). Disabled, use component configuration instead."
-                                                disabled="true"
+                                                fieldLabel="Article 'Hero' Image (desktop)"
                                                 name="./heroimagedt"
                                                 rootPath="/content/dam"
                                                 required="{Boolean}true"/>
