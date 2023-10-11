@@ -17,7 +17,7 @@
     "node": true,                    // Node.js global variables and Node.js-specific rules
     "es6": true
   },
-  "parser": "babel-eslint",          // https://github.com/babel/babel-eslint
+  "parser": "@babel/eslint-parser",
   "plugins": [],
   "rules": {
     /**

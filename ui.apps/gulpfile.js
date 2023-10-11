@@ -1,19 +1,21 @@
 // include gulp
 const gulp = require('gulp');
 const gulpIf = require('gulp-if');
-const util = require('gulp-util');
+// const util = require('gulp-util');
+const util = require('minimist')
 const replace = require('gulp-replace');
 const path = require('path');
 
 // include plug-ins
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
-// const uglify = require('gulp-uglify'); to be removed if 'gulp-terser' works (see below)
 const merge = require('merge-stream');
-const autoprefixer = require('gulp-autoprefixer');
-const eslint = require('gulp-eslint');
+// const autoprefixer = require('gulp-autoprefixer');
+const autoprefixer = require('autoprefixer');
+const postcss = require('gulp-postcss')
+const eslint = require('gulp-eslint-new');
 const babel = require('babelify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
@@ -21,7 +23,8 @@ const browserify = require('browserify');
 const terser = require('gulp-terser');
 
 // Environment
-const isDev = !util.env.prod;
+// const isDev = !util.env.prod;
+const isDev = util(process.argv.slice(2)).env === 'dev'; // replacement for gulp-util 'env' (deprecated for 4 years now)
 let prefix = '/etc.clientlibs/dhl/clientlibs';
 
 // Bundler for ES6
@@ -29,7 +32,7 @@ let bundler = null;
 let animatedBundler = null;
 
 // sass task
-gulp.task('sass', () => {
+gulp.task('sass', finished => {
   /* This is the main (site-wide) stylesheet */
   gulp.src('./sass/main.scss')
     .pipe(gulpIf(isDev, sourcemaps.init()))
@@ -38,7 +41,8 @@ gulp.task('sass', () => {
       includePaths: ['./sass']
     }).on('error', sass.logError))
     .pipe(replace('__prefix__', prefix))
-    .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
+    .pipe(postcss([autoprefixer()]))
+    // .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover/css'));
 
@@ -50,7 +54,8 @@ gulp.task('sass', () => {
       includePaths: ['./sass']
     }).on('error', sass.logError))
     .pipe(replace('__prefix__', prefix))
-    .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
+    .pipe(postcss([autoprefixer()]))
+    // .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages/css'));
 
@@ -62,9 +67,11 @@ gulp.task('sass', () => {
       includePaths: ['./sass']
     }).on('error', sass.logError))
     .pipe(replace('__prefix__', prefix))
-    .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
+    .pipe(postcss([autoprefixer()]))
+    // .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./sass'));
+  finished();
 });
 
 // javascript lint task
@@ -84,8 +91,8 @@ gulp.task('javascript', () => {
   let scriptDestAnimated = './src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages/js';
   // Create bundle
   if (bundler === null) {
-    bundler = browserify(path.join(scriptsPath, 'main.js'), { debug: isDev }).transform(babel);
-    animatedBundler = browserify(path.join(scriptsPath, 'animated.js'), { debug: isDev }).transform(babel);
+    bundler = browserify(path.join(scriptsPath, 'main.js'), { debug: isDev }).transform(babel, {presets: ["@babel/preset-env"]});
+    animatedBundler = browserify(path.join(scriptsPath, 'animated.js'), { debug: isDev }).transform(babel, {presets: ["@babel/preset-env"]});
   }
 
   let vendor = gulp.src(path.join(scriptsPath, 'vendor', '/**/*.js'))
@@ -141,14 +148,15 @@ gulp.task('javascript', () => {
 });
 
 // build task
-gulp.task('build', ['sass', 'javascript'], () => {
+gulp.task('build', gulp.series('sass', 'javascript'), finished => {
   gulp.src(['./sass/*.css', '!./node_modules/**/*']).pipe(gulp.dest('./build/sass'));
   gulp.src(['./js/mini/*.min.js', '!./node_modules/**/*']).pipe(gulp.dest('./build/js/mini'));
   gulp.src(['./**/*.php', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
   gulp.src(['./fonts/**/*', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build/fonts'));
   gulp.src(['./**/*.gif', './**/*.jpg', './**/*.jpeg', './**/*.png', './**/*.ico', './**/*.svg',
     '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
+  finished()
 });
 
 // default task
-gulp.task('default', ['sass', 'javascript']);
+gulp.task('default', gulp.series('sass', 'javascript'));
