@@ -1,0 +1,162 @@
+.article-header {
+  font-family: "Delivery", sans-serif;
+
+  &_breadcrumb {
+    padding-top: 7px;
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: bold;
+    color: #D40511;
+
+    @include respond(xl) {
+      display: none;
+    }
+  }
+
+  &_title {
+    padding-top: 3px;
+    font-size: 16px;
+    line-height: 23px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    @include respond(md) {
+      font-size: 20px;
+    }
+
+    @include respond(xl) {
+      padding-top: 48px;
+      font-size: 40px;
+      line-height: 40px;
+    }
+  }
+
+  &_author {
+    padding-top: 25px;
+
+    @include respond(md) {
+      padding-top: 20px;
+    }
+
+    @include respond(xl) {
+      display: none;
+    }
+
+    &-image {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+    }
+
+    &-description {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 5px;
+      font-size: 12px;
+      line-height: 17px;
+      color: map-get($palette, dhl-black);
+      opacity: 0.7;
+
+      &__name {
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      &__follow {
+        padding-left: 15px;
+        text-decoration: underline;
+        color: #D40511;
+        opacity: 1;
+      }
+    }
+  }
+
+  &_date {
+    margin-left: 36px;
+    padding-top: 3px;
+    font-size: 12px;
+    line-height: 17px;
+    color: map-get($palette, dhl-black);
+    opacity: 0.7;
+
+    @include respond(xl) {
+      margin-left: 0;
+      padding-top: 5px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .article-header_date-publishDate:after {
+      content: '|';
+      padding: 0 2px 0 5px;
+    }
+  }
+
+  &_share {
+    &-label {
+      display: none;
+
+      @include respond(xl) {
+        display: block;
+        padding-top: 23px;
+        font-size: 12px;
+        line-height: 17px;
+        font-weight: bold;
+        color: map-get($palette, dhl-black);
+      }
+    }
+
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-top: 27px;
+
+      @include respond(xl) {
+        padding-top: 0;
+      }
+
+      &__left {
+        display: flex;
+        gap: 10px;
+
+        .logo__image {
+          height: 27px;
+          width: 27px;
+          object-fit: contain;
+          margin: 0;
+        }
+      }
+
+      &__right {
+        .logo__image {
+          height: 10px;
+          width: 10px;
+          object-fit: contain;
+          margin: 0;
+        }
+
+        .st-label {
+          position: relative;
+          top: -1px;
+          font-size: 8px;
+          line-height: 25px;
+          letter-spacing: 0.48px;
+          color: #D40511;
+
+          @include respond(md) {
+            font-size: 11px;
+            line-height: 34px;
+            letter-spacing: 0.66px;
+          }
+
+          @include respond(xl) {
+            font-size: 12px;
+            line-height: 37px;
+            letter-spacing: 0.72px;
+          }
+        }
+      }
+    }
+  }
+}
