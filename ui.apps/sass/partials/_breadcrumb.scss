@@ -3,9 +3,7 @@
 
   @include respond(xl) {
     display: block;
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 25px 0 0;
+    padding: 18px 0 0;
 
     .cmp-breadcrumb__item {
       display: inline-block;

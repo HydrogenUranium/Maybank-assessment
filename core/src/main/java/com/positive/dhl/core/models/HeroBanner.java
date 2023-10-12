@@ -1,7 +1,6 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.positive.dhl.core.injectors.InjectAsset;
 import com.positive.dhl.core.services.AssetUtilService;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -42,15 +41,12 @@ public class HeroBanner {
     @Getter
     private final List<String> points = new ArrayList<>();
 
-    @InjectAsset
     @Getter
     private String mobileBackgroundImage;
 
-    @InjectAsset
     @Getter
     private String tabletBackgroundImage;
 
-    @InjectAsset
     @Getter
     private String desktopBackgroundImage;
 
@@ -69,17 +65,13 @@ public class HeroBanner {
         }
         ValueMap props = currentPage.getProperties();
 
-        if (mobileBackgroundImage.isBlank()) {
-            String defaultMobileBackgroundImage = props.get("heroimagemob", "");
-            mobileBackgroundImage = assetUtils.resolvePath(defaultMobileBackgroundImage);
-        }
-        if (tabletBackgroundImage.isBlank()) {
-            String defaultTabletBackgroundImage = props.get("heroimagetab", "");
-            tabletBackgroundImage = assetUtils.resolvePath(defaultTabletBackgroundImage);
-        }
-        if (desktopBackgroundImage.isBlank()) {
-            String defaultDesktopBackgroundImage = props.get("heroimagedt", "");
-            desktopBackgroundImage = assetUtils.resolvePath(defaultDesktopBackgroundImage);
-        }
+        String defaultMobileBackgroundImage = props.get("heroimagemob", "");
+        mobileBackgroundImage = assetUtils.resolvePath(defaultMobileBackgroundImage);
+
+        String defaultTabletBackgroundImage = props.get("heroimagetab", "");
+        tabletBackgroundImage = assetUtils.resolvePath(defaultTabletBackgroundImage);
+
+        String defaultDesktopBackgroundImage = props.get("heroimagedt", "");
+        desktopBackgroundImage = assetUtils.resolvePath(defaultDesktopBackgroundImage);
     }
 }
