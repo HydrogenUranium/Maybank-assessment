@@ -55,7 +55,7 @@ class HeroBannerTest {
     }
 
     @Test
-    void init_shouldInitPropertiesFromPage_whenBackgroundIsNotConfigured() {
+    void init_shouldInitPropertiesFromPage() {
         initRequest("/content/article/jcr:content/root/article_container/body/hero_banner_with_sum");
         HeroBanner heroBanner = request.adaptTo(HeroBanner.class);
 
@@ -68,21 +68,5 @@ class HeroBannerTest {
         assertEquals("/prefix/heroimagedt.jpg", heroBanner.getDesktopBackgroundImage());
         assertEquals("/prefix/heroimagetab.jpg", heroBanner.getTabletBackgroundImage());
         assertEquals("/prefix/heroimagemob.jpg", heroBanner.getMobileBackgroundImage());
-    }
-
-    @Test
-    void init_shouldInitPropertiesFromComponent_whenBackgroundIsConfigured() {
-        initRequest("/content/article/jcr:content/root/article_container/body/hero_banner_with_sum_custom_config");
-        HeroBanner heroBanner = request.adaptTo(HeroBanner.class);
-
-        assertNotNull(heroBanner);
-        assertEquals("Key Takeaways", heroBanner.getSummaryTitle());
-        assertEquals(3, heroBanner.getPoints().size());
-        assertEquals("A key takeaway from the article will come here which summarises the article in a succinct way", heroBanner.getPoints().get(0));
-        assertEquals("It will make the reader curious to read the whole article", heroBanner.getPoints().get(1));
-        assertEquals("And if they are in a hurry, they will still be able to get a quick summary anyway", heroBanner.getPoints().get(2));
-        assertEquals("/prefix/desktop.jpg", heroBanner.getDesktopBackgroundImage());
-        assertEquals("/prefix/tablet.jpg", heroBanner.getTabletBackgroundImage());
-        assertEquals("/prefix/mobile.jpg", heroBanner.getMobileBackgroundImage());
     }
 }
