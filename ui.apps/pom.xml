@@ -125,15 +125,6 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>sync pom version to package.json</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>run sync-pom-version</arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>npm ci</id>
                         <goals>
                             <goal>npm</goal>

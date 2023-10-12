@@ -155,7 +155,7 @@ gulp.task('build', gulp.series('sass', 'javascript'), finished => {
   gulp.src(['./fonts/**/*', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build/fonts'));
   gulp.src(['./**/*.gif', './**/*.jpg', './**/*.jpeg', './**/*.png', './**/*.ico', './**/*.svg',
     '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
-  finished()
+  finished();
 });
 
 // default task

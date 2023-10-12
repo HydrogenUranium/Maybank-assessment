@@ -1,6 +1,6 @@
 {
   "name": "discover-dhl",
-  "version": "2.0.0",
+  "version": "1.4.0-SNAPSHOT",
   "description": "Website for Discover",
   "main": "gulpfile.js",
   "scripts": {
@@ -8,7 +8,9 @@
     "create-component": "node tools/create-component.js",
     "dev": "gulp build --dev",
     "build": "gulp build --prod",
-    "sync-pom-version": "sync-pom-version"
+    "sync-pom-version": "sync-pom-version",
+    "test": "jest",
+    "postinstall": "sync-pom-version"
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,8 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser": "^2.1.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "merge-stream": "^2.0.0",
     "minimist": "^1.2.8",
     "sass": "^1.69.2",
