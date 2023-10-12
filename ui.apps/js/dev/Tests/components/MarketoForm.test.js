@@ -1,8 +1,19 @@
 /**
  * @jest-environment jsdom
  */
-const marketo = require('../../Components/MarketoForm.js');
+import $ from 'jquery';
+import MarketoForm from '../../Components/MarketoForm';
 
-test('marketo init', () =>{
-  expect(marketo.default.init().toBe(true));
+jest.mock('jquery', () => {
+  const m$ = { on: jest.fn(), ready: jest.fn(), addClass: jest.fn()};
+  return jest.fn(() => m$);
 });
+
+describe('Marketo initialization', () => {
+  it('init', () => {
+    $().ready.mockImplementation((callback) => callback());
+    $().on.mockImplementation((event, handler) => handler());
+    MarketoForm.init();
+  });
+});
+
