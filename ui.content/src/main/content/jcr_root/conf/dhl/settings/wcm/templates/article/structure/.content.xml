@@ -27,6 +27,25 @@
                         style="sidebar"
                         type="businessAccount"/>
             </headerv2>
+            <article_header_container
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/article-container"
+                    designMode="new"
+                    showSidebar="false"
+                    useArticleStyles="false">
+                <body
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/foundation/components/responsivegrid">
+                    <breadcrumb
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/breadcrumb"
+                            startLevel="3"/>
+                    <article-header
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/article-header"
+                            editable="{Boolean}true"/>
+                </body>
+            </article_header_container>
             <article_container
                     jcr:lastModified="{Date}2023-10-06T14:22:14.716+03:00"
                     jcr:lastModifiedBy="admin"
@@ -72,6 +91,10 @@
                 <sidebar
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
+                    <article_author_banner
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/article-author-banner"
+                            editable="{Boolean}true"/>
                     <cta_banner_with_poin
                             jcr:created="{Date}2023-10-06T11:55:23.748+03:00"
                             jcr:createdBy="admin"
@@ -109,6 +132,21 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid"/>
             </article_container_two>
+            <article_footer_container
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/article-container"
+                    designMode="new"
+                    showSidebar="false"
+                    useArticleStyles="false">
+                <body
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/foundation/components/responsivegrid">
+                    <article-footer
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/article-footer"
+                            editable="{Boolean}true"/>
+                </body>
+            </article_footer_container>
             <related_posts
                     jcr:created="{Date}2023-10-06T15:18:56.004+03:00"
                     jcr:createdBy="admin"

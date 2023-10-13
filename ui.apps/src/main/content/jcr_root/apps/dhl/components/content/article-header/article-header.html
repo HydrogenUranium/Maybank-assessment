@@ -18,7 +18,7 @@
   <div class="article-header_author-description">
     <div>
       <span class="article-header_author-description__name">${articlePage.article.author}</span>
-      <a class="article-header_author-description__follow" href="#"><span>Follow</span></a>
+      <a class="article-header_author-description__follow" href="${articleHeader.followPath}"><span>${articleHeader.followLabel}</span></a>
     </div>
     <div class="article-header_author-description__title">${articlePage.article.authortitle}</div>
   </div>
@@ -26,7 +26,7 @@
 <!--/* End */-->
 
 <div class="article-header_date">
-  <span class="article-header_date-publishDate">${articleHeader.publishDate}</span>
+  <time class="article-header_date-publishDate" date="${articleHeader.publishDate}">${articleHeader.publishDateFriendly}</time>
   <span class="article-header_date-readingDuration">${articleHeader.readingDuration}</span>
 </div>
 
