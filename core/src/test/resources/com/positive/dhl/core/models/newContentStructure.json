@@ -81,7 +81,7 @@
               "sling:resourceType": "dhl/components/pages/editable-article",
               "author": "Sansa Stark",
               "readtime": "6 min read",
-              "custompublishdate": "Wed Oct 11 2023 00:00:00 GMT+0200",
+              "custompublishdate": "Wed Oct 11 2023 12:00:00 GMT+0200",
               "root": {
                 "jcr:primaryType": "nt:unstructured",
                 "layout": "responsiveGrid",
