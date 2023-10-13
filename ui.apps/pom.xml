@@ -220,6 +220,13 @@
 
         <dependency>
             <groupId>com.positive</groupId>
+            <artifactId>dhl.ui.frontend</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.positive</groupId>
             <artifactId>dhl.ui.apps.structure</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
