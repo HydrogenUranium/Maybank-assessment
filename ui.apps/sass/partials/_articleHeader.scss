@@ -6,7 +6,7 @@
     font-size: 12px;
     line-height: 17px;
     font-weight: bold;
-    color: #D40511;
+    color: map-get($palette, scarlet);
 
     @include respond(xl) {
       display: none;
@@ -65,9 +65,13 @@
       &__follow {
         padding-left: 15px;
         text-decoration: underline;
-        color: #D40511;
+        color: map-get($palette, scarlet);
         opacity: 1;
       }
+    }
+
+    &.article-footer {
+      display: block;
     }
   }
 
@@ -142,7 +146,7 @@
           font-size: 8px;
           line-height: 25px;
           letter-spacing: 0.48px;
-          color: #D40511;
+          color: map-get($palette, scarlet);
 
           @include respond(md) {
             font-size: 11px;
@@ -157,6 +161,14 @@
           }
         }
       }
+    }
+
+    &.article-footer:after {
+      content: ' ';
+      display: block;
+      margin-top: 20px;
+      width: 100%;
+      border: 1px solid map-get($palette, scarlet);
     }
   }
 }

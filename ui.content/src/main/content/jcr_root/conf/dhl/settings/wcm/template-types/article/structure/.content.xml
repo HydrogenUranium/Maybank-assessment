@@ -54,6 +54,10 @@
                 <body
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
+                    <article_author_banner
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/article-author-banner"
+                            editable="{Boolean}true"/>
                     <hero_banner
                             jcr:created="{Date}2023-10-09T15:45:43.992+03:00"
                             jcr:createdBy="admin"
@@ -141,6 +145,21 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid"/>
             </article_container_bottom>
+            <article_footer_container
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/article-container"
+                    designMode="new"
+                    showSidebar="false"
+                    useArticleStyles="false">
+                <body
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/foundation/components/responsivegrid">
+                    <article-footer
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/article-footer"
+                            editable="{Boolean}true"/>
+                </body>
+            </article_footer_container>
             <similar_stories
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/article-similar-stories"/>

@@ -1445,6 +1445,164 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/accordion"
                                                     multiple="{Boolean}true" variant="quiet" margin="{Boolean}true">
                                                 <items jcr:primaryType="nt:unstructured">
+                                                    <articleHeader
+                                                            jcr:title="Article Header"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <shareIcons
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    jcr:title="Share icons"
+                                                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <shareOn
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                                            fieldLabel="Label (Desktop only)"
+                                                                            emptyText="Share on"
+                                                                            name="./articleHeader-shareOn">
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./articleHeader-shareOn"/>
+                                                                    </shareOn>
+                                                                    <socialNetwork
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            fieldLabel="Social Network Icons"
+                                                                            fieldDescription="Add icons for the list of social networks to be displayed on the left side"
+                                                                            composite="{Boolean}true"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                                                        <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                name="./multifields/socialNetwork">
+                                                                            <items jcr:primaryType="nt:unstructured">
+                                                                                <socialNetworkName
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                                        fieldLabel="Social Network"
+                                                                                        fieldDescription="Select a social network and set the appropriate icon for it"
+                                                                                        name="./socialNetworkName">
+                                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                                        <facebook
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                text="Facebook"
+                                                                                                value="facebook"/>
+                                                                                        <twitter
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                text="Twitter"
+                                                                                                value="twitter"/>
+                                                                                        <linkedin
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                text="Linkedin"
+                                                                                                value="linkedin"/>
+                                                                                        <wechat
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                text="WeChat"
+                                                                                                value="wechat"/>
+                                                                                        <weibo
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                text="Weibo"
+                                                                                                value="weibo"/>
+                                                                                    </items>
+                                                                                </socialNetworkName>
+                                                                                <socialNetworkIcon
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                                        fieldLabel="Social Network Icon Path"
+                                                                                        rootPath="/content/dam"
+                                                                                        name="./socialNetworkIconPath"/>
+                                                                            </items>
+                                                                        </field>
+                                                                    </socialNetwork>
+                                                                    <smartShareButtonsLabel
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                                            fieldLabel="'Smart Share Buttons' label"
+                                                                            fieldDescription="Add label for the 'Smart Share Buttons' icon to be displayed on the right side.
+                                                                                              This 'Smart Share Buttons' to help refer social channels
+                                                                                              that visitors will most likely engage with based on visitor characteristics"
+                                                                            emptyText="Share"
+                                                                            name="./articleHeader-smartShareButtonsLabel">
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./articleHeader-followLabel"/>
+                                                                    </smartShareButtonsLabel>
+                                                                    <smartShareButtonsIcon
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                            fieldLabel="'Smart Share Buttons' Icon"
+                                                                            fieldDescription="Add label for the 'Smart Share Buttons' icon to be displayed on the right side.
+                                                                                              This 'Smart Share Buttons' to help refer social channels
+                                                                                              that visitors will most likely engage with based on visitor characteristics"
+                                                                            rootPath="/content/dam"
+                                                                            name="./articleHeader-smartShareButtonsIconPath">
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./articleHeader-smartShareButtonsIconPath"/>
+                                                                    </smartShareButtonsIcon>
+                                                                </items>
+                                                            </shareIcons>
+                                                            <follow
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    jcr:title="Follow CTA (do not use on PROD)"
+                                                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <followLable
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldLabel="Follow CTA Label"
+                                                                            fieldDescription="Label for 'Follow' button or link.
+                                                                                              Back-End part of the functionality for Follow CTA will be implemented as part of DIS-372"
+                                                                            emptyText="Follow"
+                                                                            name="./articleHeader-followLabel">
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./articleHeader-followLabel"/>
+                                                                    </followLable>
+                                                                    <followPath
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                            fieldLabel="'Follow CTA Path"
+                                                                            fieldDescription="Path for 'Follow' button or link.
+                                                                                              Back-End part of the functionality for Follow CTA will be implemented as part of DIS-372"
+                                                                            rootPath="/content/dhl"
+                                                                            name="./articleHeader-followPath">
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./articleHeader-followPath"/>
+                                                                    </followPath>
+                                                                </items>
+                                                            </follow>
+                                                        </items>
+                                                    </articleHeader>
+                                                    <authorBanner
+                                                            jcr:title="Article Author Banner"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <title
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Article Author Banner Title (for Desktop only)"
+                                                                    emptyText="About the author"
+                                                                    fieldDescription="Title of the Article Author Banner in the right side bar of the Desktop layout"
+                                                                    name="./authorBanner-title">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./authorBanner-title"/>
+                                                            </title>
+                                                            <brief
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                                    fieldLabel="Brief Description (do not use on PROD)"
+                                                                    fieldDescription="Temporary solution for testing Front-End part of the Article Author Banner.
+                                                                                      Final solution will be implemented as part of DIS-372"
+                                                                    name="./authorBanner-brief">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./authorBanner-brief"/>
+                                                            </brief>
+                                                        </items>
+                                                    </authorBanner>
                                                     <relatedPosts
                                                             jcr:title="Related Posts"
                                                             jcr:primaryType="nt:unstructured"

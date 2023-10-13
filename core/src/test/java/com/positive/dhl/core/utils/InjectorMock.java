@@ -6,8 +6,7 @@ import org.apache.sling.models.spi.Injector;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class InjectorMock {
 
@@ -38,7 +37,7 @@ public class InjectorMock {
     public static void mockInject(AemContext context, String injectorName, Map<String, Object> map) {
         Injector injector = mock(Injector.class);
 
-        when(injector.getValue(any(), anyString(), any(), any(), any())).thenReturn(null);
+        lenient().when(injector.getValue(any(), anyString(), any(), any(), any())).thenReturn(null);
         when(injector.getName()).thenReturn(injectorName);
         map.forEach((name, value) -> when(injector.getValue(any(), eq(name), any(), any(), any())).thenReturn(value));
         context.registerService(Injector.class, injector);
