@@ -234,6 +234,10 @@
     <node resourceType="dhl/components/content/hero-banner">
       <property inherit="true" name="summaryTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
+    <node resourceType="dhl/components/content/cta-banner">
+      <property inherit="true" name="topTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="buttonName" translate="true" updateDestinationLanguage="false"/>
+    </node>
     <node resourceType="dhl/components/pages/amparticle">
       <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
