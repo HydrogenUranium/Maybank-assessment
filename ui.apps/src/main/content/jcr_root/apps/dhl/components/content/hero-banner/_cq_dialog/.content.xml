@@ -16,27 +16,11 @@
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="granite/ui/components/foundation/container">
                 <items jcr:primaryType="nt:unstructured">
-                    <mobileBackgroundImage
+                    <note
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            emptyText="Inherited from page properties"
-                            name="./mobileBackgroundImage"
-                            rootPath="/content/dam"
-                            fieldLabel="Mobile Background Image"/>
-                    <tabletBackgroundImage
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            emptyText="Inherited from page properties"
-                            name="./tabletBackgroundImage"
-                            rootPath="/content/dam"
-                            fieldLabel="Tablet Background Image"/>
-                    <desktopBackgroundImage
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            emptyText="Inherited from page properties"
-                            name="./desktopBackgroundImage"
-                            rootPath="/content/dam"
-                            fieldLabel="Desktop Background Image"/>
+                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                            jcr:title="Background Image"
+                            text="Utilize page properties to set up or adjust image settings."/>
                     <summaryTitle
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
