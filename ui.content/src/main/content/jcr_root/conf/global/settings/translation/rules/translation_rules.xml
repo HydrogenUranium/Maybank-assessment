@@ -450,6 +450,11 @@
       <property inherit="true" name="footer-socialLinksLabel" translate="true" updateDestinationLanguage="false"/>
 
       <property inherit="true" name="relatedPosts-title" translate="true" updateDestinationLanguage="false"/>
+
+      <property inherit="true" name="articleHeader-shareOn" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleHeader-smartShareButtonsLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleHeader-followLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="authorBanner-title" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/pages/editable-article">
       <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>

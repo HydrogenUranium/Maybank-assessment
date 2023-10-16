@@ -18,13 +18,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
-class ArticleHeaderModelTest {
+class ArticleAuthorBannerModelTest {
     public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/models/newContentStructure.json";
     public static final String ROOT_TEST_PAGE_PATH = "/content";
     public static final String ARTICLE_WITH_NEW_ARTICLE_SETUP_RESOURCE_PATH = "/content/dhl/global/en-global/category-page/article-page-with-new-article-setup";
@@ -43,7 +42,7 @@ class ArticleHeaderModelTest {
     @BeforeEach
     void setUp() {
         context.registerService(Injector.class, homePropertyInjector);
-        context.addModelsForClasses(ArticleHeaderModel.class);
+        context.addModelsForClasses(ArticleAuthorBannerModel.class);
 
         context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
     }
@@ -53,9 +52,6 @@ class ArticleHeaderModelTest {
 
         Resource currentResource = resourceResolver.getResource(path);
         request.setResource(currentResource);
-
-        Page currentPage = currentResource.adaptTo(Page.class);
-        mockInject(context, "currentPage", currentPage);
     }
 
     private void mockHomePage(String initRequestPath) {
@@ -68,19 +64,13 @@ class ArticleHeaderModelTest {
         initRequest(ARTICLE_WITH_NEW_ARTICLE_SETUP_RESOURCE_PATH);
         mockHomePage(ARTICLE_WITH_NEW_ARTICLE_SETUP_RESOURCE_PATH);
 
-        ArticleHeaderModel articleHeaderModel = request.adaptTo(ArticleHeaderModel.class);
-        assertNotNull(articleHeaderModel);
+        ArticleAuthorBannerModel articleAuthorBannerModel = request.adaptTo(ArticleAuthorBannerModel.class);
+        assertNotNull(articleAuthorBannerModel);
 
-        assertEquals("ARTICLE PAGE", articleHeaderModel.getArticleTitle());
-        assertEquals("2023-10-11", articleHeaderModel.getPublishDate());
-        assertEquals("11 October 2023", articleHeaderModel.getPublishDateFriendly());
-        assertEquals("6 min read", articleHeaderModel.getReadingDuration());
-        assertEquals("Share on", articleHeaderModel.getShareOn());
-        assertEquals("Share", articleHeaderModel.getSmartShareButtonsLabel());
-        assertEquals("/content/dam/dhl-discover/common/icons/icons8-share (1).svg", articleHeaderModel.getSmartShareButtonsIconPath());
-        assertEquals("Follow", articleHeaderModel.getFollowLabel());
-        assertEquals("#", articleHeaderModel.getFollowPath());
-        assertEquals(3, articleHeaderModel.getSocialNetwork().size());
+        assertEquals("About the Author", articleAuthorBannerModel.getTitle());
+        assertEquals("Small text about Author", articleAuthorBannerModel.getBrief());
+        assertEquals("Follow", articleAuthorBannerModel.getFollowLabel());
+        assertEquals("#", articleAuthorBannerModel.getFollowPath());
     }
 
     @Test
@@ -88,18 +78,12 @@ class ArticleHeaderModelTest {
         initRequest(ARTICLE_WITHOUT_NEW_ARTICLE_SETUP_RESOURCE_PATH);
         mockHomePage(ARTICLE_WITHOUT_NEW_ARTICLE_SETUP_RESOURCE_PATH);
 
-        ArticleHeaderModel articleHeaderModel = request.adaptTo(ArticleHeaderModel.class);
-        assertNotNull(articleHeaderModel);
+        ArticleAuthorBannerModel articleAuthorBannerModel = request.adaptTo(ArticleAuthorBannerModel.class);
+        assertNotNull(articleAuthorBannerModel);
 
-        assertEquals("ARTICLE PAGE without new article setup", articleHeaderModel.getArticleTitle());
-        assertEquals("2023-10-13", articleHeaderModel.getPublishDate());
-        assertEquals("13 October 2023", articleHeaderModel.getPublishDateFriendly());
-        assertNull(articleHeaderModel.getReadingDuration());
-        assertNull(articleHeaderModel.getShareOn());
-        assertNull(articleHeaderModel.getSmartShareButtonsLabel());
-        assertNull(articleHeaderModel.getSmartShareButtonsIconPath());
-        assertNull(articleHeaderModel.getFollowLabel());
-        assertNull(articleHeaderModel.getFollowPath());
-        assertEquals(0, articleHeaderModel.getSocialNetwork().size());
+        assertNull(articleAuthorBannerModel.getTitle());
+        assertNull(articleAuthorBannerModel.getBrief());
+        assertNull(articleAuthorBannerModel.getFollowLabel());
+        assertNull(articleAuthorBannerModel.getFollowPath());
     }
 }
