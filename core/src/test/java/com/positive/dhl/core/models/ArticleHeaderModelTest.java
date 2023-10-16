@@ -18,6 +18,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+
 import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -34,6 +38,8 @@ class ArticleHeaderModelTest {
     private final MockSlingHttpServletRequest request = context.request();
     private final ResourceResolver resourceResolver = context.resourceResolver();
 
+    private final LocalDateTime localDateTime = LocalDateTime.now();
+
     @Mock
     private PageUtilService pageUtils;
 
@@ -42,10 +48,29 @@ class ArticleHeaderModelTest {
 
     @BeforeEach
     void setUp() {
+
         context.registerService(Injector.class, homePropertyInjector);
         context.addModelsForClasses(ArticleHeaderModel.class);
 
         context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
+    }
+
+    /**
+     * Returns the today's date in the format yyyy-MM-dd
+     * @return String representing today's date
+     */
+    private String getTodayDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return localDateTime.format(formatter);
+    }
+
+    /**
+     * Returns the today's date in format dd month yyyy
+     * @return String representing today's date
+     */
+    private String getTodayDateText(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        return localDateTime.format(formatter);
     }
 
     private void initRequest(String path) {
@@ -54,7 +79,7 @@ class ArticleHeaderModelTest {
         Resource currentResource = resourceResolver.getResource(path);
         request.setResource(currentResource);
 
-        Page currentPage = currentResource.adaptTo(Page.class);
+        Page currentPage = Objects.requireNonNull(currentResource).adaptTo(Page.class);
         mockInject(context, "currentPage", currentPage);
     }
 
@@ -72,7 +97,7 @@ class ArticleHeaderModelTest {
         assertNotNull(articleHeaderModel);
 
         assertEquals("ARTICLE PAGE", articleHeaderModel.getArticleTitle());
-        assertEquals("2023-10-11", articleHeaderModel.getPublishDate());
+        assertEquals(getTodayDate(), articleHeaderModel.getPublishDate());
         assertEquals("11 October 2023", articleHeaderModel.getPublishDateFriendly());
         assertEquals("6 min read", articleHeaderModel.getReadingDuration());
         assertEquals("Share on", articleHeaderModel.getShareOn());
@@ -92,8 +117,8 @@ class ArticleHeaderModelTest {
         assertNotNull(articleHeaderModel);
 
         assertEquals("ARTICLE PAGE without new article setup", articleHeaderModel.getArticleTitle());
-        assertEquals("2023-10-13", articleHeaderModel.getPublishDate());
-        assertEquals("13 October 2023", articleHeaderModel.getPublishDateFriendly());
+        assertEquals(getTodayDate(), articleHeaderModel.getPublishDate());
+        assertEquals(getTodayDateText(), articleHeaderModel.getPublishDateFriendly());
         assertNull(articleHeaderModel.getReadingDuration());
         assertNull(articleHeaderModel.getShareOn());
         assertNull(articleHeaderModel.getSmartShareButtonsLabel());
