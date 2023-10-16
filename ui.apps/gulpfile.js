@@ -2,7 +2,7 @@
 const gulp = require('gulp');
 const gulpIf = require('gulp-if');
 // const util = require('gulp-util');
-const util = require('minimist')
+const util = require('minimist');
 const replace = require('gulp-replace');
 const path = require('path');
 
@@ -14,7 +14,7 @@ const rename = require('gulp-rename');
 const merge = require('merge-stream');
 // const autoprefixer = require('gulp-autoprefixer');
 const autoprefixer = require('autoprefixer');
-const postcss = require('gulp-postcss')
+const postcss = require('gulp-postcss');
 const eslint = require('gulp-eslint-new');
 const babel = require('babelify');
 const source = require('vinyl-source-stream');
@@ -91,8 +91,8 @@ gulp.task('javascript', () => {
   let scriptDestAnimated = './src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages/js';
   // Create bundle
   if (bundler === null) {
-    bundler = browserify(path.join(scriptsPath, 'main.js'), { debug: isDev }).transform(babel, {presets: ["@babel/preset-env"]});
-    animatedBundler = browserify(path.join(scriptsPath, 'animated.js'), { debug: isDev }).transform(babel, {presets: ["@babel/preset-env"]});
+    bundler = browserify(path.join(scriptsPath, 'main.js'), { debug: isDev }).transform(babel, {presets: ['@babel/preset-env']});
+    animatedBundler = browserify(path.join(scriptsPath, 'animated.js'), { debug: isDev }).transform(babel, {presets: ['@babel/preset-env']});
   }
 
   let vendor = gulp.src(path.join(scriptsPath, 'vendor', '/**/*.js'))
