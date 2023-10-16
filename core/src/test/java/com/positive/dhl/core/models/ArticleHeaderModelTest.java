@@ -97,7 +97,7 @@ class ArticleHeaderModelTest {
         assertNotNull(articleHeaderModel);
 
         assertEquals("ARTICLE PAGE", articleHeaderModel.getArticleTitle());
-        assertEquals(getTodayDate(), articleHeaderModel.getPublishDate());
+        assertEquals("2023-10-11", articleHeaderModel.getPublishDate());
         assertEquals("11 October 2023", articleHeaderModel.getPublishDateFriendly());
         assertEquals("6 min read", articleHeaderModel.getReadingDuration());
         assertEquals("Share on", articleHeaderModel.getShareOn());
