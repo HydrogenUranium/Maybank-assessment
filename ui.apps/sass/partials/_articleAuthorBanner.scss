@@ -76,6 +76,11 @@
       cursor: pointer;
       text-decoration: none;
       color: map-get($palette, scarlet);
+
+      &:hover {
+        text-decoration: none;
+        color: map-get($palette, scarlet);
+      }
     }
   }
 

@@ -67,6 +67,10 @@
         text-decoration: underline;
         color: map-get($palette, scarlet);
         opacity: 1;
+
+        &:hover {
+          color: map-get($palette, scarlet);
+        }
       }
     }
 
@@ -160,6 +164,10 @@
             letter-spacing: 0.72px;
           }
         }
+      }
+
+      .st-custom-button {
+        cursor: pointer;
       }
     }
 
