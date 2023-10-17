@@ -31,7 +31,6 @@
           "articleHeader-shareOn": "Share on",
           "articleHeader-smartShareButtonsLabel": "Share",
           "articleHeader-smartShareButtonsIconPath": "/content/dam/dhl-discover/common/icons/icons8-share (1).svg",
-          "authorBanner-brief": "Small text about Author",
           "authorBanner-title": "About the Author",
           "multifields": {
             "jcr:primaryType": "nt:unstructured",
@@ -82,6 +81,7 @@
               "author": "Sansa Stark",
               "readtime": "6 min read",
               "custompublishdate": "Wed Oct 11 2023 12:00:00 GMT+0200",
+              "authorBriefDescription": "Small text about Author",
               "root": {
                 "jcr:primaryType": "nt:unstructured",
                 "layout": "responsiveGrid",

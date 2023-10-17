@@ -116,6 +116,13 @@
                                                 fieldLabel="Author title"
                                                 name="./authortitle"
                                                 required="{Boolean}false"/>
+                                            <authorBriefDescription
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                    fieldLabel="Brief description of the author"
+                                                    fieldDescription="For Author Banner component"
+                                                    name="./authorBriefDescription">
+                                            </authorBriefDescription>
                                             <authorimage
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"

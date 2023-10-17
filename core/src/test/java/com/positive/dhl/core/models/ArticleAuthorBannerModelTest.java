@@ -18,6 +18,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Objects;
+
+import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -52,6 +55,9 @@ class ArticleAuthorBannerModelTest {
 
         Resource currentResource = resourceResolver.getResource(path);
         request.setResource(currentResource);
+
+        Page currentPage = Objects.requireNonNull(currentResource).adaptTo(Page.class);
+        mockInject(context, "currentPage", currentPage);
     }
 
     private void mockHomePage(String initRequestPath) {
