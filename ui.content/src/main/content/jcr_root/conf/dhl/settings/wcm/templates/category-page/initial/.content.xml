@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:template="/conf/dhl/settings/wcm/templates/category-page"
+        jcr:primaryType="cq:PageContent"
+        sling:resourceType="dhl/components/pages/editable-category-page">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid"
+            layout="responsiveGrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <articlelistcarousel
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/articlelistcarouselV2"/>
+                <articlegrid
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/articlegridV2"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>
