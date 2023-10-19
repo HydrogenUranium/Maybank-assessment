@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.injectors.AssetInjector;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
 import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -18,8 +19,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 import static com.positive.dhl.core.utils.InjectorMock.mockInject;
@@ -29,7 +33,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleHeaderModelTest {
-    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/models/newContentStructure.json";
+    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
     public static final String ROOT_TEST_PAGE_PATH = "/content";
     public static final String ARTICLE_WITH_NEW_ARTICLE_SETUP_RESOURCE_PATH = "/content/dhl/global/en-global/category-page/article-page-with-new-article-setup";
     public static final String ARTICLE_WITHOUT_NEW_ARTICLE_SETUP_RESOURCE_PATH = "/content/dhl/us/en-us/category-page/article-page-without-new-article-setup";
@@ -46,10 +50,14 @@ class ArticleHeaderModelTest {
     @InjectMocks
     private HomePropertyInjector homePropertyInjector;
 
+    @InjectMocks
+    private AssetInjector assetInjector;
+
     @BeforeEach
     void setUp() {
-
+        context.registerService(Injector.class, assetInjector);
         context.registerService(Injector.class, homePropertyInjector);
+        context.registerService(PageUtilService.class, new PageUtilService());
         context.addModelsForClasses(ArticleHeaderModel.class);
 
         context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
@@ -65,12 +73,11 @@ class ArticleHeaderModelTest {
     }
 
     /**
-     * Returns the today's date in format dd month yyyy
+     * Returns the today's date in long format
      * @return String representing today's date
      */
-    private String getTodayDateText(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-        return localDateTime.format(formatter);
+    private String getTodayDateText(Locale locale){
+        return DateFormat.getDateInstance(DateFormat.LONG, locale).format(new Date());
     }
 
     private void initRequest(String path) {
@@ -98,7 +105,7 @@ class ArticleHeaderModelTest {
 
         assertEquals("ARTICLE PAGE", articleHeaderModel.getArticleTitle());
         assertEquals("2023-10-11", articleHeaderModel.getPublishDate());
-        assertEquals("11 October 2023", articleHeaderModel.getPublishDateFriendly());
+        assertEquals("October 11, 2023", articleHeaderModel.getPublishDateFriendly());
         assertEquals("6 min read", articleHeaderModel.getReadingDuration());
         assertEquals("Share on", articleHeaderModel.getShareOn());
         assertEquals("Share", articleHeaderModel.getSmartShareButtonsLabel());
@@ -118,7 +125,7 @@ class ArticleHeaderModelTest {
 
         assertEquals("ARTICLE PAGE without new article setup", articleHeaderModel.getArticleTitle());
         assertEquals(getTodayDate(), articleHeaderModel.getPublishDate());
-        assertEquals(getTodayDateText(), articleHeaderModel.getPublishDateFriendly());
+        assertEquals(getTodayDateText(new Locale("en", "us")), articleHeaderModel.getPublishDateFriendly());
         assertNull(articleHeaderModel.getReadingDuration());
         assertNull(articleHeaderModel.getShareOn());
         assertNull(articleHeaderModel.getSmartShareButtonsLabel());

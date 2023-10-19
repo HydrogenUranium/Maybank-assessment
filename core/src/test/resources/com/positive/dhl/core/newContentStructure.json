@@ -1,4 +1,11 @@
 {
+  "jcr:primaryType": "cq:Page",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:title": "Root",
+    "cq:template": "/apps/dhl/templates/dhl-blank-page",
+    "sling:resourceType": "dhl/components/pages/blank"
+  },
   "dhl": {
     "jcr:primaryType": "cq:Page",
     "jcr:content": {
@@ -183,7 +190,7 @@
           "jcr:primaryType": "cq:PageContent",
           "sling:resourceType": "dhl/components/pages/home",
           "jcr:title": "Spanish version of US Page",
-          "jcr:language": "es",
+          "jcr:language": "es_us",
           "cq:isLanguageRoot": "true",
           "siteregion": "United States",
           "sitelanguage": "ES",

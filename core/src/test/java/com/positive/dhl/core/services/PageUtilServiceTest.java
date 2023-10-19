@@ -16,13 +16,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.Field;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class PageUtilServiceTest {
     public static final String PAGE_PATH = "/content";
-    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/services/newContentStructure.json";
+    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
+    public static final String EN_GLOBAL_HOME_PAGE_RESOURCE_PATH = "/content/dhl/global/en-global";
+    public static final String EN_US_HOME_PAGE_RESOURCE_PATH = "/content/dhl/us/en-us";
+    public static final String ES_US_ARTICLE_PAGE_RESOURCE_PATH = "/content/dhl/us/es-us/category-page/article-page";
 
     AemContext context = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
 
@@ -118,5 +120,18 @@ class PageUtilServiceTest {
             page = page.listChildren().next();
         }
         return page;
+    }
+
+    @Test
+    void test_getLocale()  {
+        assertEquals("en", pageUtilService.getLocale(getPage(EN_GLOBAL_HOME_PAGE_RESOURCE_PATH)).toString());
+        assertEquals("en_US", pageUtilService.getLocale(getPage(EN_US_HOME_PAGE_RESOURCE_PATH)).toString());
+        assertEquals("es_US", pageUtilService.getLocale(getPage(ES_US_ARTICLE_PAGE_RESOURCE_PATH)).toString());
+    }
+
+    private Page getPage(String pagePath) {
+        Resource pageResource = resourceResolver.getResource(pagePath);
+        assertNotNull(pageResource);
+        return pageResource.adaptTo(Page.class);
     }
 }
