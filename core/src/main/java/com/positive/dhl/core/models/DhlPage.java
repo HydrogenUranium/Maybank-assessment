@@ -208,10 +208,10 @@ public class DhlPage {
 		if (!homeProperties.isEmpty()) {
 
 			assetprefix = environmentConfiguration.getAssetPrefix();
-			pathprefix = homeProperties.get("jcr:content/pathprefix", "");
-			trackingid = homeProperties.get("jcr:content/trackingid", "");
-			gtmtrackingid = homeProperties.get("jcr:content/gtmtrackingid", "");
-			noindex = homeProperties.get("jcr:content/noindex", false);
+			pathprefix = homeProperties.get("pathprefix", "");
+			trackingid = homeProperties.get("trackingid", "");
+			gtmtrackingid = homeProperties.get("gtmtrackingid", "");
+			noindex = homeProperties.get("noindex", false);
 		}
 
 		String currentPagePath = currentPage.getPath();

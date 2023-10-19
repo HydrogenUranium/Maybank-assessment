@@ -160,7 +160,7 @@ public class Meganav {
 		ValueMap properties = pageUtilService.getPageProperties(home);
 		
 		if (!properties.isEmpty()) {
-			searchResultsPage = properties.get("jcr:content/searchresultspage", "");
+			searchResultsPage = properties.get("searchresultspage", "");
 		}
 		
 		homeUrl = home.getPath() + ".html";
