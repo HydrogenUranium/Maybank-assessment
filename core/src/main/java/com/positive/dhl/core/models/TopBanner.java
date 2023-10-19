@@ -17,6 +17,8 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class TopBanner {
+	public static final String TOP_BANNER = "topbanner";
+
 	@Inject
 	private Page currentPage;
 	
@@ -137,15 +139,15 @@ public class TopBanner {
 			}
 
 			String assetPrefix = environmentConfiguration.getAssetPrefix();
-			title = properties.get("jcr:content/topbanner" + prefix + "title", "");
-			subtitle = properties.get("jcr:content/topbanner" + prefix + "subtitle", "");
-			img = properties.get("jcr:content/topbanner" + prefix + "img", "");
+			title = properties.get(TOP_BANNER + prefix + "title", "");
+			subtitle = properties.get(TOP_BANNER + prefix + "subtitle", "");
+			img = properties.get(TOP_BANNER + prefix + "img", "");
 			if (!img.isBlank()) {
 				img = assetPrefix + img;
 			}
 			
-			url = properties.get("jcr:content/topbanner" + prefix + "url", "");
-			urltitle = properties.get("jcr:content/topbanner" + prefix + "urltitle", "");
+			url = properties.get(TOP_BANNER + prefix + "url", "");
+			urltitle = properties.get(TOP_BANNER + prefix + "urltitle", "");
 		}
     }
 }

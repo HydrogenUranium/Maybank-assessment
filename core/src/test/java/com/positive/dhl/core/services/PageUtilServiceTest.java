@@ -102,7 +102,7 @@ class PageUtilServiceTest {
     @Test
     void test_getPageProperties()  {
         Page page = resource.adaptTo(Page.class);
-        assertEquals("Root", pageUtilService.getPageProperties(page).get("jcr:content/jcr:title"));
+        assertEquals("Root", pageUtilService.getPageProperties(page).get("jcr:title"));
     }
 
     @Test

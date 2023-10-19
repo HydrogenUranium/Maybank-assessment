@@ -37,7 +37,7 @@ public class PageUtilService {
 
     public ValueMap getPageProperties(Page page) {
         return Optional.ofNullable(page)
-                .map(p -> p.adaptTo(ValueMap.class))
+                .map(Page::getProperties)
                 .orElse(ValueMap.EMPTY);
     }
 

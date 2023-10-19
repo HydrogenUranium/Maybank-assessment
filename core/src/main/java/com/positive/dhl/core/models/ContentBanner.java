@@ -20,7 +20,7 @@ import com.day.cq.wcm.api.Page;
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class ContentBanner {
-	public static final String JCR_CONTENT_CONTENTBANNER = "jcr:content/contentbanner";
+	public static final String JCR_CONTENT_CONTENTBANNER = "contentbanner";
 	@Inject
 	private Page currentPage;
 
@@ -166,8 +166,8 @@ public class ContentBanner {
 
 		String prefix = "0";
 
-		ValueMap currentPageProperties = currentPage.adaptTo(ValueMap.class);
-		if (currentPageProperties != null) {
+		ValueMap currentPageProperties = currentPage.getProperties();
+		if (!currentPageProperties.isEmpty()) {
 			prefix = currentPageProperties.get(JCR_CONTENT_CONTENTBANNER, "0");
 		}
 
