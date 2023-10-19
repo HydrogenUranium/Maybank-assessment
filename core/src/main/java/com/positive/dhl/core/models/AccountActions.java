@@ -3,7 +3,6 @@ package com.positive.dhl.core.models;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.jcr.RepositoryException;
 
 import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.services.PageUtilService;
@@ -547,25 +546,25 @@ public class AccountActions {
 			ValueMap properties = pageUtilServiceImpl.getPageProperties(home);
 
 			if (!properties.isEmpty()) {
-				welcomeMessage = properties.get("jcr:content/welcomemessage", "");
-				loginMessage = properties.get("jcr:content/loginmessage", "");
+				welcomeMessage = properties.get("welcomemessage", "");
+				loginMessage = properties.get("loginmessage", "");
 
-				signupMessage = properties.get("jcr:content/signupmessage", "");
-				signupPrivacyMessage = properties.get("jcr:content/signupprivacymessage", "");
-				signupEmailPrivacyMessage = properties.get("jcr:content/signupemailprivacymessage", "");
-				signupTCMessage = properties.get("jcr:content/signuptcmessage", "");
-				registerThanksMessage = properties.get("jcr:content/registerthanksmessage", "");
+				signupMessage = properties.get("signupmessage", "");
+				signupPrivacyMessage = properties.get("signupprivacymessage", "");
+				signupEmailPrivacyMessage = properties.get("signupemailprivacymessage", "");
+				signupTCMessage = properties.get("signuptcmessage", "");
+				registerThanksMessage = properties.get("registerthanksmessage", "");
 
-				createPasswordMessage = properties.get("jcr:content/createpasswordmessage", "");
-				createPasswordPrivacyMessage = properties.get("jcr:content/createpasswordprivacymessage", "");
-				createPasswordThanksMessage = properties.get("jcr:content/createpasswordthanksmessage", "");
+				createPasswordMessage = properties.get("createpasswordmessage", "");
+				createPasswordPrivacyMessage = properties.get("createpasswordprivacymessage", "");
+				createPasswordThanksMessage = properties.get("createpasswordthanksmessage", "");
 
-				shipNowMessage = properties.get("jcr:content/shipnowmessage", "");
+				shipNowMessage = properties.get("shipnowmessage", "");
 
-				shipnowmarketo = properties.get("jcr:content/shipnowmarketo", false);
-				newslettermarketo = properties.get("jcr:content/newslettermarketo", false);
-				downloadmarketo = properties.get("jcr:content/downloadmarketo", false);
-				usethirdpartycookie = properties.get("jcr:content/usethirdpartycookie", false);
+				shipnowmarketo = properties.get("shipnowmarketo", false);
+				newslettermarketo = properties.get("newslettermarketo", false);
+				downloadmarketo = properties.get("downloadmarketo", false);
+				usethirdpartycookie = properties.get("usethirdpartycookie", false);
 
 				contactEmail = "discover@dhl-news.com";
 				applyForAccountTitle = "Reach 220 territories across the world";
@@ -580,14 +579,14 @@ public class AccountActions {
 				};
 
 				homeUrl = home.getPath();
-				loginUrlNoRedirect = properties.get("jcr:content/loginpage", "/content/dhl/login").concat(HTML_EXTENSION);
-		        loginUrl = properties.get("jcr:content/loginpage", "/content/dhl/login").concat(HTML_EXTENSION);
-		        registerUrl = properties.get("jcr:content/registerpage", "/content/dhl/register").concat(HTML_EXTENSION);
-		        shipNowUrl = properties.get("jcr:content/shipnowpage", "/content/dhl/ship-now").concat(HTML_EXTENSION);
-		        editDetailsUrl = properties.get("jcr:content/editdetailspage", "/content/dhl/your-account").concat(HTML_EXTENSION);
-		        passwordReminderUrl = properties.get("jcr:content/passwordreminderpage", "/content/dhl/forgotten-password").concat(HTML_EXTENSION);
-		        deleteAccountUrl = properties.get("jcr:content/deleteaccountpage", "/content/dhl/your-account/delete-account").concat(HTML_EXTENSION);
-		        deleteAccountCompleteUrl = properties.get("jcr:content/deleteaccountcompletepage", "/content/dhl/your-account/delete-account/complete").concat(HTML_EXTENSION);
+				loginUrlNoRedirect = properties.get("loginpage", "/content/dhl/login").concat(HTML_EXTENSION);
+		        loginUrl = properties.get("loginpage", "/content/dhl/login").concat(HTML_EXTENSION);
+		        registerUrl = properties.get("registerpage", "/content/dhl/register").concat(HTML_EXTENSION);
+		        shipNowUrl = properties.get("shipnowpage", "/content/dhl/ship-now").concat(HTML_EXTENSION);
+		        editDetailsUrl = properties.get("editdetailspage", "/content/dhl/your-account").concat(HTML_EXTENSION);
+		        passwordReminderUrl = properties.get("passwordreminderpage", "/content/dhl/forgotten-password").concat(HTML_EXTENSION);
+		        deleteAccountUrl = properties.get("deleteaccountpage", "/content/dhl/your-account/delete-account").concat(HTML_EXTENSION);
+		        deleteAccountCompleteUrl = properties.get("deleteaccountcompletepage", "/content/dhl/your-account/delete-account/complete").concat(HTML_EXTENSION);
 
 		        // url handling if we've bypassed dispatcher - checking QS params
 				backUrlSelf = currentPage.getPath().concat(HTML_EXTENSION);
