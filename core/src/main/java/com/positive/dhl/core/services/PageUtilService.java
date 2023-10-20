@@ -91,16 +91,17 @@ public class PageUtilService {
         ValueMap homePageProperties = getHomePageProperties(page);
         String jcrLanguageProperty = homePageProperties.get(JCR_LANGUAGE, StringUtils.EMPTY);
 
-        if (StringUtils.equals(jcrLanguageProperty, "en")) {
+        if (StringUtils.isBlank(jcrLanguageProperty) || StringUtils.equals(jcrLanguageProperty, "en")) {
             String acceptLanguagesProperty = homePageProperties.get("acceptlanguages", StringUtils.EMPTY);
             Locale localeBasedOnAcceptLanguages = acceptLanguagesProperty.contains("-")
                     ? new Locale(acceptLanguagesProperty.split("-")[0], acceptLanguagesProperty.split("-")[1])
                     : new Locale(acceptLanguagesProperty);
-            return LocaleUtils.isAvailableLocale(localeBasedOnAcceptLanguages) ? localeBasedOnAcceptLanguages : new Locale("en");
+            return LocaleUtils.isAvailableLocale(localeBasedOnAcceptLanguages) && !StringUtils.isBlank(acceptLanguagesProperty)
+                    ? localeBasedOnAcceptLanguages : new Locale("en");
         }
 
         return jcrLanguageProperty.contains("_")
                 ? new Locale(jcrLanguageProperty.split("_")[0], jcrLanguageProperty.split("_")[1])
-                : new Locale("en");
+                : new Locale(jcrLanguageProperty);
     }
 }
