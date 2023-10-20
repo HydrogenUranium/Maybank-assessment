@@ -2,6 +2,7 @@ package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
+import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
 import lombok.NonNull;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -9,10 +10,12 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -25,6 +28,9 @@ import static com.day.cq.wcm.api.constants.NameConstants.*;
 public class ArticleHeaderModel {
     @Inject
     private Page currentPage;
+
+    @OSGiService
+    private PageUtilService pageUtilService;
 
     @Getter
     private String articleTitle;
@@ -75,7 +81,7 @@ public class ArticleHeaderModel {
 
             Date publishDateValue = getPublishDate(currentPageProperties);
             publishDate = new SimpleDateFormat("yyyy-MM-dd").format(publishDateValue);
-            publishDateFriendly = new SimpleDateFormat("dd MMMM yyyy").format(publishDateValue);
+            publishDateFriendly = DateFormat.getDateInstance(DateFormat.LONG, pageUtilService.getLocale(currentPage)).format(publishDateValue);
 
             readingDuration = currentPageProperties.get("readtime", String.class);
         }

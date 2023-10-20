@@ -32,6 +32,7 @@
                             text="- Author Name &lt;br&gt;
                                   - Author Title &lt;br&gt;
                                   - Author Image &lt;br&gt;
+                                  - Brief description of the author &lt;br&gt;
                                   are configured"/>
                 </items>
             </column>

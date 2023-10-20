@@ -91,10 +91,10 @@ public class CookiePolicy {
 		ValueMap properties = pageUtilService.getHomePageProperties(currentPage);
 
 		if (!properties.isEmpty()) {
-			message = properties.get("jcr:content/cookiemessage", "");
+			message = properties.get("cookiemessage", "");
 			ok = "Accept";
 			learnMore = "Learn more";
-			learnMoreLink = properties.get("jcr:content/cookielearnmore", "#").concat(".html");
+			learnMoreLink = properties.get("cookielearnmore", "#").concat(".html");
 		}
 	}
 }

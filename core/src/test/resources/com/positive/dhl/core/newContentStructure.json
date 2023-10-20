@@ -1,4 +1,11 @@
 {
+  "jcr:primaryType": "cq:Page",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:title": "Root",
+    "cq:template": "/apps/dhl/templates/dhl-blank-page",
+    "sling:resourceType": "dhl/components/pages/blank"
+  },
   "dhl": {
     "jcr:primaryType": "cq:Page",
     "jcr:content": {
@@ -6,6 +13,66 @@
       "sling:resourceType": "dhl/components/pages/root",
       "jcr:title": "DHL",
       "cq:template": "/apps/dhl/templates/dhl-blank-page"
+    },
+    "language-masters": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "jcr:title": "Language Masters",
+        "cq:template": "/apps/dhl/templates/dhl-blank-page",
+        "cq:robotsTags": "noindex",
+        "hideInNav": "true",
+        "sling:resourceType": "dhl/components/pages/blank"
+      },
+      "en-master": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "dhl/components/pages/home",
+          "jcr:title": "EN Language Master Home page"
+        },
+        "category-page": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:title": "CATEGORY PAGE",
+            "cq:template": "/apps/dhl/templates/dhl-article-group-page",
+            "sling:resourceType": "dhl/components/pages/articlecategory"
+          }
+        }
+      },
+      "es": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "ES Language Master",
+          "acceptlanguages": "*"
+        }
+      },
+      "fr": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "FR Language Master",
+          "acceptlanguages": "FR"
+        }
+      },
+      "zh": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "ZH Language Master",
+          "jcr:language": "zh"
+        }
+      },
+      "it": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "IT Language Master",
+          "acceptlanguages": "invalid-variant"
+        }
+      }
     },
     "global": {
       "jcr:primaryType": "cq:Page",
@@ -135,7 +202,7 @@
           "jcr:primaryType": "cq:PageContent",
           "sling:resourceType": "dhl/components/pages/home",
           "jcr:title": "English version of US Page",
-          "jcr:language": "en",
+          "jcr:language": "",
           "cq:isLanguageRoot": "true",
           "siteregion": "United States",
           "sitelanguage": "EN",
@@ -183,7 +250,7 @@
           "jcr:primaryType": "cq:PageContent",
           "sling:resourceType": "dhl/components/pages/home",
           "jcr:title": "Spanish version of US Page",
-          "jcr:language": "es",
+          "jcr:language": "es_us",
           "cq:isLanguageRoot": "true",
           "siteregion": "United States",
           "sitelanguage": "ES",
