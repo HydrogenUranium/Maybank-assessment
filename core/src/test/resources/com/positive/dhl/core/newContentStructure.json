@@ -14,6 +14,48 @@
       "jcr:title": "DHL",
       "cq:template": "/apps/dhl/templates/dhl-blank-page"
     },
+    "language-masters": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "jcr:title": "Language Masters",
+        "cq:template": "/apps/dhl/templates/dhl-blank-page",
+        "cq:robotsTags": "noindex",
+        "hideInNav": "true",
+        "sling:resourceType": "dhl/components/pages/blank"
+      },
+      "en-master": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "EN Language Master"
+        }
+      },
+      "es": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "ES Language Master",
+          "acceptlanguages": "*"
+        }
+      },
+      "fr": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "FR Language Master",
+          "acceptlanguages": "FR"
+        }
+      },
+      "zh": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "ZH Language Master",
+          "jcr:language": "zh"
+        }
+      }
+    },
     "global": {
       "jcr:primaryType": "cq:Page",
       "jcr:content": {
@@ -142,11 +184,11 @@
           "jcr:primaryType": "cq:PageContent",
           "sling:resourceType": "dhl/components/pages/home",
           "jcr:title": "English version of US Page",
-          "jcr:language": "en",
+          "jcr:language": "",
           "cq:isLanguageRoot": "true",
           "siteregion": "United States",
           "sitelanguage": "EN",
-          "acceptlanguages": "en-US",
+          "acceptlanguages": "invalid-value",
           "sitedefault": "true",
           "siteenabled": "true"
         },

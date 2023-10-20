@@ -96,7 +96,8 @@ public class PageUtilService {
             Locale localeBasedOnAcceptLanguages = acceptLanguagesProperty.contains("-")
                     ? new Locale(acceptLanguagesProperty.split("-")[0], acceptLanguagesProperty.split("-")[1])
                     : new Locale(acceptLanguagesProperty);
-            return LocaleUtils.isAvailableLocale(localeBasedOnAcceptLanguages) ? localeBasedOnAcceptLanguages : new Locale("en");
+            return LocaleUtils.isAvailableLocale(localeBasedOnAcceptLanguages) && !StringUtils.isBlank(acceptLanguagesProperty)
+                    ? localeBasedOnAcceptLanguages : new Locale("en");
         }
 
         return jcrLanguageProperty.contains("_")
