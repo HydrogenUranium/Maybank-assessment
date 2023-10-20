@@ -99,6 +99,8 @@ public class PageUtilService {
             return LocaleUtils.isAvailableLocale(localeBasedOnAcceptLanguages) ? localeBasedOnAcceptLanguages : new Locale("en");
         }
 
-        return new Locale(jcrLanguageProperty.split("_")[0], jcrLanguageProperty.split("_")[1]);
+        return jcrLanguageProperty.contains("_")
+                ? new Locale(jcrLanguageProperty.split("_")[0], jcrLanguageProperty.split("_")[1])
+                : new Locale("en");
     }
 }
