@@ -28,7 +28,17 @@
         "jcr:primaryType": "cq:Page",
         "jcr:content": {
           "jcr:primaryType": "nt:unstructured",
-          "jcr:title": "EN Language Master"
+          "sling:resourceType": "dhl/components/pages/home",
+          "jcr:title": "EN Language Master Home page"
+        },
+        "category-page": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:title": "CATEGORY PAGE",
+            "cq:template": "/apps/dhl/templates/dhl-article-group-page",
+            "sling:resourceType": "dhl/components/pages/articlecategory"
+          }
         }
       },
       "es": {
@@ -53,6 +63,14 @@
           "jcr:primaryType": "nt:unstructured",
           "jcr:title": "ZH Language Master",
           "jcr:language": "zh"
+        }
+      },
+      "it": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "IT Language Master",
+          "acceptlanguages": "invalid-variant"
         }
       }
     },
@@ -188,7 +206,7 @@
           "cq:isLanguageRoot": "true",
           "siteregion": "United States",
           "sitelanguage": "EN",
-          "acceptlanguages": "invalid-value",
+          "acceptlanguages": "en-US",
           "sitedefault": "true",
           "siteenabled": "true"
         },

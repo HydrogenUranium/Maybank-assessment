@@ -27,8 +27,11 @@ class PageUtilServiceTest {
     public static final String EMPTY_JCR_LANG_AND_FR_ACCEPT_LANG = "/content/dhl/language-masters/fr";
     public static final String ZH_JCR_LANG_AND_EMPTY_ACCEPT_LANG = "/content/dhl/language-masters/zh";
     public static final String EN_JCR_LANG_AND_ASTERISK_ACCEPT_LANG = "/content/dhl/global/en-global";
-    public static final String EMPTY_JCR_LANG_AND_INVALID_ACCEPT_LANG = "/content/dhl/us/en-us/category-page";
+    public static final String EMPTY_JCR_LANG_AND_INVALID_ACCEPT_LANG = "/content/dhl/language-masters/it";
     public static final String ES_US_JCR_LANG_AND_ES_US_ACCEPT_LANG = "/content/dhl/us/es-us/category-page/article-page";
+    public static final String ES_US_ARTICLE_PAGE_PATH = ES_US_JCR_LANG_AND_ES_US_ACCEPT_LANG;
+    public static final String EN_GLOBAL_HOME_PAGE_PATH = EN_JCR_LANG_AND_ASTERISK_ACCEPT_LANG;
+    public static final String ZH_MASTER_HOME_PAGE_PATH = ZH_JCR_LANG_AND_EMPTY_ACCEPT_LANG;
 
     AemContext context = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
 
@@ -113,8 +116,9 @@ class PageUtilServiceTest {
 
     @Test
     void test_getCountryCodeByPagePath()  {
-        Page page = getPageUpperHomePage();
-        assertEquals("global", pageUtilService.getCountryCodeByPagePath(page));
+        assertEquals("us", pageUtilService.getCountryCodeByPagePath(getPage(ES_US_ARTICLE_PAGE_PATH)));
+        assertEquals("global", pageUtilService.getCountryCodeByPagePath(getPage(EN_GLOBAL_HOME_PAGE_PATH)));
+        assertEquals("", pageUtilService.getCountryCodeByPagePath(getPage(ZH_MASTER_HOME_PAGE_PATH)));
     }
 
     private Page getPageUpperHomePage() {
