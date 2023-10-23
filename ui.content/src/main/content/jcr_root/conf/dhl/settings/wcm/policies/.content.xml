@@ -188,7 +188,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Category Page Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/articlegridV2,/apps/dhl/components/content/articlelistcarouselV2]">
+                            components="[/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/article-grid,/apps/dhl/components/content/article-carousel]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </category_page_policy>
                 </responsivegrid>

@@ -47,6 +47,7 @@ class DiscoverPageRewriteRuleTest {
         Map<String, Object> props = Map.of(
                 "editableTemplate", "/conf/dhl/settings/wcm/templates/article",
                 "staticTemplate", "/apps/dhl/templates/dhl-article-page",
+                "id", "/apps/dhl/templates/dhl-article-page:/conf/dhl/settings/wcm/templates/article",
                 "containerMappings", new String[]{
                         "par:root/article_container/body/responsivegrid",
                         "partwo:root/article_container_two/body/responsivegrid",
