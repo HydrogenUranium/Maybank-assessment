@@ -1467,7 +1467,7 @@
                                                                     </shareOn>
                                                                     <socialNetwork
                                                                             jcr:primaryType="nt:unstructured"
-                                                                            fieldLabel="Social Network Icons"
+                                                                            fieldLabel="Social Network Icons (inheritance cancelled)"
                                                                             fieldDescription="Add icons for the list of social networks to be displayed on the left side"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
