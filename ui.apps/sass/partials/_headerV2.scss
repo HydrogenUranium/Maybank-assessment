@@ -146,6 +146,14 @@
             .fi {
               margin: 0 2px 0 6px;
             }
+
+            .country-name {
+              display: inline-block;
+              width: 122px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
           }
 
           .headerV2__desktopCountry {
