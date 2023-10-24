@@ -3,7 +3,9 @@ package com.positive.dhl.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.tagging.TagManager;
 import com.positive.dhl.core.constants.DiscoverConstants;
+import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -13,11 +15,15 @@ import org.apache.sling.models.annotations.Model;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.text.ParseException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.day.cq.commons.jcr.JcrConstants.JCR_CONTENT;
+import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_CREATED;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_MOD;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_LEVEL;
 
 /**
@@ -96,35 +102,17 @@ public class Article {
 	 */
     @PostConstruct
 	protected void init() {
-    valid = false;
+    	valid = false;
 		Resource resource = resourceResolver.getResource(path);
 		if (resource == null) {
 			return;
 		}
 		ValueMap properties = resource.getValueMap();
-		Date jcrCreated = properties.get("jcr:content/jcr:created", new Date());
-		Date cqLastModified = properties.get("jcr:content/cq:lastModified", jcrCreated);
-		Date defaultLastPublication = jcrCreated.after(cqLastModified) ? jcrCreated : cqLastModified;
 
-		String customDate = properties.get("jcr:content/custompublishdate", "");
-		if ((customDate.isBlank()) && (customDate.contains("T"))) {
-			try {
-				String[] parts = customDate.split("T");
-				createdDate = (new SimpleDateFormat("yyyy-MM-dd")).parse(parts[0]);
-
-			} catch (ParseException e) {
-				createdDate = properties.get("jcr:content/custompublishdate", defaultLastPublication);
-			}
-
-		} else {
-			createdDate = properties.get("jcr:content/custompublishdate", defaultLastPublication);
-		}
-
-
+		createdDate = getPublishDate(properties);
 		created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
-		createdfriendly = (new SimpleDateFormat("dd MMMM yyyy")).format(createdDate);
+		createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, new PageUtilService().getLocale(resource)).format(createdDate);
 		icon = properties.get("jcr:content/mediatype", "");
-
 		grouptitle = getGroupTitle(resource);
 		grouppath = getGroupPath(resource);
 		groupTag = transformToTag(grouptitle);
@@ -147,7 +135,6 @@ public class Article {
 		heroimagedt = properties.get("jcr:content/heroimagedt", "");
 		youtubeid = properties.get("jcr:content/youtubeid", "");
 		readtime = properties.get("jcr:content/readtime", "");
-
 		author = properties.get("jcr:content/author", "");
 		authortitle = properties.get("jcr:content/authortitle", "");
 		authorimage = properties.get("jcr:content/authorimage", "");
@@ -156,21 +143,10 @@ public class Article {
 
 		counter = properties.get("jcr:content/counter", 0);
 
-		tags = new ArrayList<TagWrapper>();
-			/*
-			TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-			String[] tagPaths = properties.get("jcr:content/cq:tags", new String[] { });
-
-			for (String tagPath: tagPaths) {
-				Tag tag = tagManager.resolve(tagPath);
-				if (tag != null) {
-					tags.add(new TagWrapper(tag));
-				}
-			}
-			*/
+		tags = new ArrayList<>();
 		TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
 		if (tagManager != null) {
-			tagsToShow = Arrays.stream(tagManager.getTags(resource.getChild("jcr:content")))
+			tagsToShow = Arrays.stream(tagManager.getTags(resource.getChild(JCR_CONTENT)))
 					.map(tag -> transformToTag(tag.getTitle()))
 					.collect(Collectors.toList());
 		}
@@ -187,7 +163,7 @@ public class Article {
 				.map(r -> r.adaptTo(Page.class))
 				.map(p -> p.getAbsoluteParent(CATEGORY_PAGE_LEVEL))
 				.map(Page::getProperties)
-				.map(properties -> properties.get("navTitle", properties.get("jcr:title", "")))
+				.map(properties -> properties.get("navTitle", properties.get(JCR_TITLE, "")))
 				.orElse("");
     }
 
@@ -213,4 +189,15 @@ public class Article {
 				.map(Page::getPath)
 				.orElse("");
     }
+
+	private Date getPublishDate(@NonNull ValueMap properties) {
+		Date customPublishDate = properties.get("jcr:content/custompublishdate", Date.class);
+		if (customPublishDate != null) {
+			return customPublishDate;
+		} else {
+			Date jcrCreated = properties.get(PN_CREATED, new Date());
+			Date cqLastModified = properties.get(PN_PAGE_LAST_MOD, new Date());
+			return jcrCreated.after(cqLastModified) ? jcrCreated : cqLastModified;
+		}
+	}
 }
