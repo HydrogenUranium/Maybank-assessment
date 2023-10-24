@@ -128,10 +128,10 @@
             right: 0;
             width: 212px;
             max-height: 195px;
-            overflow: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
             font-size: 16px;
             line-height: 14px;
-
 
             &__label {
               position: relative;
@@ -143,16 +143,20 @@
               opacity: 0.6;
             }
 
-            .fi {
-              margin: 0 2px 0 6px;
-            }
+            &__widget {
+              min-width: 175px;
 
-            .country-name {
-              display: inline-block;
-              width: 122px;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
+              .fi {
+                margin: 0 2px 0 6px;
+              }
+
+              .country-name {
+                display: inline-block;
+                width: 125px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
             }
           }
 
