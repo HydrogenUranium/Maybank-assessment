@@ -3,15 +3,36 @@
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
     <jcr:content
+        cq:policy="dhl/components/pages/editable-category-page/category_page_policy"
         jcr:primaryType="nt:unstructured"
         sling:resourceType="wcm/core/components/policies/mappings">
         <root
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/core/components/policies/mapping">
             <responsivegrid
-                cq:policy="wcm/foundation/components/responsivegrid/category_page_policy"
+                cq:policy="wcm/foundation/components/responsivegrid/category_page_root_policy"
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/core/components/policies/mapping"/>
+                sling:resourceType="wcm/core/components/policies/mapping">
+                <dhl jcr:primaryType="nt:unstructured">
+                    <components jcr:primaryType="nt:unstructured">
+                        <content jcr:primaryType="nt:unstructured">
+                            <article-teaser
+                                cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping">
+                                <image
+                                    cq:policy="dhl/components/content/article-teaser/image/policy_1698230982513"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                            </article-teaser>
+                            <article-carousel
+                                cq:policy="dhl/components/content/article-carousel/article_carousel_policy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        </content>
+                    </components>
+                </dhl>
+            </responsivegrid>
         </root>
     </jcr:content>
 </jcr:root>
