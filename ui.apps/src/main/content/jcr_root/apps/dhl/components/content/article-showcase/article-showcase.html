@@ -12,7 +12,7 @@
         ${model.title}
     </div>
     <div class="article-items horizontal-scroll" data-sly-test="${isHorizontal}">
-        <sly data-sly-repeat="${model.articles}" data-sly-call="${articleCardTemplate.card @ article=item}"></sly>
+        <sly data-sly-repeat="${model.articles}" data-sly-call="${articleCardTemplate.card @ article=item, showTags=model.showTags}"></sly>
     </div>
     <sly data-sly-test="${isVertical}">
         <ul class="article-items">

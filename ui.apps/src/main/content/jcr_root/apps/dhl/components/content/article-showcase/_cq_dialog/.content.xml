@@ -40,6 +40,23 @@
                                     name="./linkPath"/>
                         </items>
                     </verticalOptions>
+                    <horizontalOptions
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="vertical-content-type-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="horizontal"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <showTags
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                    text="Show yellow tags inside article cards"
+                                    value="true"
+                                    name="./showTags">
+                            </showTags>
+                        </items>
+                    </horizontalOptions>
                     <designMode
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"

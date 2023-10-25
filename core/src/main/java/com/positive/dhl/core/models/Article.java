@@ -196,7 +196,7 @@ public class Article {
 			return customPublishDate;
 		} else {
 			Date jcrCreated = properties.get(PN_CREATED, new Date());
-			Date cqLastModified = properties.get(PN_PAGE_LAST_MOD, new Date());
+			Date cqLastModified = properties.get(PN_PAGE_LAST_MOD, jcrCreated);
 			return jcrCreated.after(cqLastModified) ? jcrCreated : cqLastModified;
 		}
 	}
