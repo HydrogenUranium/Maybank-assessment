@@ -44,6 +44,7 @@ class DiscoverHomePageRewriteRuleTest {
         Map<String, Object> props = Map.of(
                 "editableTemplate", "/conf/dhl/settings/wcm/templates/home-page",
                 "staticTemplate", "",
+                "id", "1",
                 "containerMappings", new String[]{"par:root/responsivegrid"},
                 "slingResourceType", "dhl/components/pages/home");
         context.registerService(ResourceResolverHelper.class, resourceResolverHelper);

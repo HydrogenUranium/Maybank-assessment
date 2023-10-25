@@ -1,4 +1,5 @@
 {
+  "id": "home",
   "editableTemplate":"/conf/dhl/settings/wcm/templates/home-page",
   "staticTemplate":"",
   "containerMappings":["par:root/responsivegrid"],

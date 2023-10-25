@@ -2,8 +2,10 @@ package com.positive.dhl.core.services;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageFilter;
+import com.day.cq.wcm.api.PageManager;
 import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.osgi.service.component.annotations.Component;
 
@@ -103,5 +105,17 @@ public class PageUtilService {
         return jcrLanguageProperty.contains("_")
                 ? new Locale(jcrLanguageProperty.split("_")[0], jcrLanguageProperty.split("_")[1])
                 : new Locale(jcrLanguageProperty);
+    }
+
+    public Locale getLocale(Resource resource) {
+        return getLocale(getPage(resource));
+    }
+
+    public Page getPage(Resource resource) {
+        return Optional.ofNullable(resource)
+                .map(Resource::getResourceResolver)
+                .map(rr -> rr.adaptTo(PageManager.class))
+                .map(pm -> pm.getContainingPage(resource))
+                .orElse(null);
     }
 }
