@@ -1,4 +1,4 @@
-<template data-sly-template.card="${@ article}">
+<template data-sly-template.card="${@ article, showTags}">
     <sly data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"></sly>
     <sly data-sly-test.authormode="${wcmmode.edit || wcmmode.preview}"></sly>
     <div class="article-card">
@@ -9,7 +9,7 @@
             <div class="article-card__info__author">${article.author ? 'By ' : ''} ${article.author}${article.author && article.createdfriendly ? ' on ' : ''}${article.createdfriendly}</div>
             <a href="${article.path}.html" class="article-card__info__title">${article.title}</a>
             <div class="article-card__info__description">${article.description}</div>
-            <div class="article-card__info__tags" data-sly-list="${article.tagsToShow @ begin = 0, end = 1}">
+            <div class="article-card__info__tags" data-sly-list="${article.tagsToShow @ begin = 0, end = 1}" data-sly-test="${showTags}">
                 <div class="article-card__info__tags__tag">${item}</div>
             </div>
         </div>
