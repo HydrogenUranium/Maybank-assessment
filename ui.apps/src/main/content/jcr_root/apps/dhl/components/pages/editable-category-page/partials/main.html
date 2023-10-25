@@ -1,0 +1,7 @@
+<template data-sly-template.data="${@accountactions}">
+	<div class="page-body">
+		<sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
+				 data-sly-repeat.child="${templatedContainer.structureResources}"
+				 data-sly-resource="${child.path @ resourceType=child.resourceType, decorationTagName='div'}"></sly>
+	</div>
+</template>

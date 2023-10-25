@@ -1,4 +1,5 @@
 {
+  "id": "article",
   "editableTemplate":"/conf/dhl/settings/wcm/templates/article",
   "staticTemplate":"/apps/dhl/templates/dhl-article-page",
   "containerMappings":[
