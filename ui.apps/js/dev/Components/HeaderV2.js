@@ -6,6 +6,9 @@ class HeaderV2 {
       menu: '.headerV2__meganav',
       selectedCountry: '.headerV2__desktopCountry',
       countryOptions: '.header-countryList',
+      categories: '.navigation-row__left',
+      moreLink: '.navigation-item_more-less.more',
+      lessLink: '.navigation-item_more-less.less',
     };
 
     this.cookieName = 'dhl-default-language';
@@ -17,15 +20,24 @@ class HeaderV2 {
     this.toggleMenu = this.toggleMenu.bind(this);
     this.checkScroll = this.checkScroll.bind(this);
     this.showCountryOptions = this.showCountryOptions.bind(this);
+    this.showHideMoreLink = this.showHideMoreLink.bind(this);
+    this.showSecondRowOfCategories = this.showSecondRowOfCategories.bind(this);
+    this.hideSecondRowOfCategories = this.hideSecondRowOfCategories.bind(this);
+
   }
 
   init() {
     if ($(this.sel.component).length <= 0) return false;
     this.bindEvents();
+    this.showHideMoreLink();
     return true;
   }
 
   bindEvents() {
+    $(window).on('stop.resize', this.showHideMoreLink);
+    $(document).on('click', this.sel.moreLink, this.showSecondRowOfCategories);
+    $(document).on('click', this.sel.lessLink, this.hideSecondRowOfCategories);
+
     $(document).on('click', this.sel.toggle, (e) => {
       e.preventDefault();
       this.toggleMenu();
@@ -128,6 +140,26 @@ class HeaderV2 {
     }
 
     document.addEventListener('click', clickListener);
+  }
+
+  showHideMoreLink() {
+    if ($(this.sel.categories).prop('scrollHeight') > $(this.sel.categories).prop('clientHeight')) {
+      $(this.sel.moreLink).show();
+    } else {
+      $(this.sel.moreLink).hide();
+    }
+  }
+
+  showSecondRowOfCategories() {
+    $(this.sel.categories).css({'overflow': 'unset', 'max-height': 'unset'});
+    $(this.sel.moreLink).hide();
+    $(this.sel.lessLink).show();
+  }
+
+  hideSecondRowOfCategories() {
+    $(this.sel.categories).css({'overflow': 'hidden', 'max-height': '51px'});
+    $(this.sel.moreLink).show();
+    $(this.sel.lessLink).hide();
   }
 }
 

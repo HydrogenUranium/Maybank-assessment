@@ -2,42 +2,13 @@
   "home": {
     "jcr:primaryType": "cq:Page",
     "jcr:content": {
-      "ctaBanner-openBusinessAccount-title": "Open a Business Account",
-      "ctaBanner-openBusinessAccount-desktopBackgroundImage": "/content/dam/images/desktop.jpg",
-      "ctaBanner-openBusinessAccount-buttonName": "Join Us",
-      "ctaBanner-openBusinessAccount-tabletBackgroundImage": "/content/dam/images/tablet.jpg",
-      "ctaBanner-openBusinessAccount-mobileBackgroundImage": "/content/dam/images/mobile.jpg",
-      "ctaBanner-openBusinessAccount-buttonLink": "/content/dhl/openBusinessAccount",
-      "multifields": {
-        "ctaBanner-openBusinessAccount-points": {
-          "jcr:primaryType": "nt:unstructured",
-          "item0": {
-            "jcr:primaryType": "nt:unstructured",
-            "text": "Fortnightly insights, tips and free assets"
-          },
-          "item1": {
-            "jcr:primaryType": "nt:unstructured",
-            "text": "Shape a global audience for your business"
-          }
-        },
-        "ctaBanner-subscribeToOurNewsletter-points": {
-          "jcr:primaryType": "nt:unstructured",
-          "item0": {
-            "jcr:primaryType": "nt:unstructured",
-            "text": "Fortnightly insights, tips and free assets"
-          },
-          "item1": {
-            "jcr:primaryType": "nt:unstructured",
-            "text": "Shape a global audience for your business"
-          }
-        }
-      },
-      "ctaBanner-subscribeToOurNewsletter-desktopBackgroundImage": "/content/dam/images/subscribe-desktop.png",
-      "ctaBanner-subscribeToOurNewsletter-title": "SUBSCRIBE TO OUR NEWSLETTER",
-      "ctaBanner-subscribeToOurNewsletter-tabletBackgroundImage": "/content/dam/images/subscribe-tablet.png",
-      "ctaBanner-subscribeToOurNewsletter-mobileBackgroundImage": "/content/dam/images/subscribe-mobile.png",
-      "ctaBanner-subscribeToOurNewsletter-buttonLink": "/content/dhl/subscribe",
-      "ctaBanner-subscribeToOurNewsletter-buttonName": "Subscribe"
+      "ctaBanner-article-subscribeToOurNewsletter-title": "Subscribe To Our Newsletter",
+      "ctaBanner-article-subscribeToOurNewsletter-topTitle": "Stay In The Loop!",
+      "ctaBanner-article-subscribeToOurNewsletter-desktopBackgroundImage": "/content/dam/images/desktop.jpg",
+      "ctaBanner-article-subscribeToOurNewsletter-buttonName": "Subscribe",
+      "ctaBanner-article-subscribeToOurNewsletter-tabletBackgroundImage": "/content/dam/images/tablet.jpg",
+      "ctaBanner-article-subscribeToOurNewsletter-mobileBackgroundImage": "/content/dam/images/mobile.jpg",
+      "ctaBanner-article-subscribeToOurNewsletter-buttonLink": "/content/dhl/openBusinessAccount"
     },
     "small-business-advice": {
       "jcr:primaryType": "cq:Page",
@@ -73,19 +44,14 @@
                     "type": "custom",
                     "style": "adaptive",
                     "title": "CTA BANNER",
+                    "topTitle": "Custom Top Title",
                     "buttonName": "Buy",
                     "buttonLink": "/content/test",
                     "jcr:lastModified": "Wed Sep 06 2023 15:07:43 GMT+0300",
                     "tabletBackgroundImage": "/content/dam/images/tablet.jpg",
                     "mobileBackgroundImage": "/content/dam/images/mobile.jpg",
-                    "sling:resourceType": "dhl/components/content/cta-banner-with-points",
+                    "sling:resourceType": "dhl/components/content/cta-banner",
                     "desktopBackgroundImage": "/content/dam/images/desktop.jpg"
-                  },
-                  "cta_banner_businessAccount": {
-                    "jcr:primaryType": "nt:unstructured",
-                    "type": "businessAccount",
-                    "style": "adaptive",
-                    "sling:resourceType": "dhl/components/content/cta-banner-with-points"
                   },
                   "cta_banner_subscribeNewsletter": {
                     "jcr:primaryType": "nt:unstructured",

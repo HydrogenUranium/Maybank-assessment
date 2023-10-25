@@ -51,6 +51,16 @@ public class HeaderV2Model {
 
     @InjectHomeProperty
     @Getter
+    @Named("header-moreLinkLabel")
+    private String moreLinkLabel;
+
+    @InjectHomeProperty
+    @Getter
+    @Named("header-lessLinkLabel")
+    private String lessLinkLabel;
+
+    @InjectHomeProperty
+    @Getter
     @Named("header-companyLinksLabel")
     private String companyLinksLabel;
 

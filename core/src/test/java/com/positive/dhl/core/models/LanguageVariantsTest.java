@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class LanguageVariantsTest {
-    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/models/newContentStructure.json";
+    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
     public static final String ROOT_TEST_PAGE_PATH = "/content";
     public static final String EN_US_CURRENT_RESOURCE_PATH = "/content/dhl/us/en-us/category-page/article-page";
     public static final String GLOBAL_CURRENT_RESOURCE_PATH = "/content/dhl/global/en-global";

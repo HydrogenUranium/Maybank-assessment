@@ -139,15 +139,6 @@
                             components="[group:DHL Components,group:DHL Template structure,group:DHL Home Page structure,/libs/wcm/foundation/components/responsivegrid,">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1574694950111>
-                    <policy_355443549935000
-                            jcr:lastModified="{Date}2023-08-21T11:18:08.464+03:00"
-                            jcr:lastModifiedBy="admin"
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Editable Article  - policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            components="[/apps/dhl/components/content/accordion,/apps/dhl/components/content/articlegrid,/apps/dhl/components/content/articlelistcarousel,/apps/dhl/components/content/articlelistcategoryexplore,/apps/dhl/components/content/articlepanel,/apps/dhl/components/content/download,/apps/dhl/components/content/figure,/apps/dhl/components/content/gallery,/apps/dhl/components/content/listicleitem,/apps/dhl/components/content/simpledownload,/apps/dhl/components/content/statpanel,/apps/dhl/components/content/subscribepanel,/apps/dhl/components/content/taglist,/apps/dhl/components/content/text,/apps/dhl/components/content/title]">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </policy_355443549935000>
                     <policy_457152354813000
                             jcr:lastModified="{Date}2023-09-20T15:11:55.953+03:00"
                             jcr:lastModifiedBy="admin"
@@ -157,6 +148,40 @@
                             components="[/apps/dhl/components/content/article-showcase,/apps/dhl/components/content/cta-banner-with-points,/apps/dhl/components/content/title-v2,/apps/dhl/components/content/top-tiles]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_457152354813000>
+                    <policy_355443549935000
+                            jcr:lastModified="{Date}2023-10-10T14:05:33.762+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Editable Article  - policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/apps/dhl/components/content/accordion,/apps/dhl/components/content/articlegrid,/apps/dhl/components/content/articlelistcarousel,/apps/dhl/components/content/articlelistcategoryexplore,/apps/dhl/components/content/articlepanel,/apps/dhl/components/content/download,/apps/dhl/components/content/figure,/apps/dhl/components/content/gallery,/apps/dhl/components/content/listicleitem,/apps/dhl/components/content/simpledownload,/apps/dhl/components/content/statpanel,/apps/dhl/components/content/subscribepanel,/apps/dhl/components/content/taglist,/apps/dhl/components/content/text,/apps/dhl/components/content/title,/apps/dhl/components/content/cta-banner,/apps/dhl/components/content/cta-banner-with-points]">
+                        <jcr:content
+                                cq:isDelivered="{Boolean}false"
+                                cq:lastReplicated="{Date}2023-09-18T12:12:00.044+03:00"
+                                cq:lastReplicated_publish="{Date}2023-09-18T12:12:00.044+03:00"
+                                cq:lastReplicatedBy="admin"
+                                cq:lastReplicatedBy_publish="admin"
+                                cq:lastReplicationAction="Activate"
+                                cq:lastReplicationAction_publish="Activate"
+                                jcr:mixinTypes="[cq:ReplicationStatus,cq:ReplicationStatus2]"
+                                jcr:primaryType="nt:unstructured"/>
+                    </policy_355443549935000>
+                    <policy_357549199894300
+                            jcr:lastModified="{Date}2023-10-10T14:08:36.531+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Editable Article Sidebar Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/apps/dhl/components/content/cta-banner,/apps/dhl/components/content/cta-banner-with-points]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_357549199894300>
+                    <category_page_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Category Page Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/article-grid,/apps/dhl/components/content/article-carousel]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </category_page_policy>
                 </responsivegrid>
             </components>
         </foundation>

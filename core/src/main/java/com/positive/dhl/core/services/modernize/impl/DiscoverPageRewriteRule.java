@@ -47,6 +47,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
     protected String editableTemplate;
     protected String staticTemplate;
     protected String slingResourceType;
+    protected String id;
 
     @Reference
     protected ResourceResolverHelper resourceResolverHelper;
@@ -81,7 +82,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
 
     @Override
     public String getId() {
-        return String.format("%s:%s", staticTemplate, editableTemplate);
+        return id;
     }
 
     @Override
@@ -224,7 +225,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
         editableTemplate = config.editableTemplate();
         staticTemplate = config.staticTemplate();
         slingResourceType = config.slingResourceType();
-
+        id = config.id();
     }
 
     @ObjectClassDefinition(
@@ -255,6 +256,9 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
                         "Follow this template <container path in static template>:<container path in editable template>"
         )
         String[] containerMappings();
+
+        @AttributeDefinition(name = "Id")
+        String id();
 
     }
 }

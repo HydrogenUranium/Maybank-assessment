@@ -24,8 +24,8 @@
                                 <div class="header-countryList__option">
                                     <input type="radio" id="country-${item}" name="country-option" value="country-${item}">
                                     <label for="country-${item}">
-                                        <span class="fi fi-${item}"></span>
-                                        <span>${languageVariants.countries[item].region}</span>
+                                        <span class="fi fi-${item == 'tw' ? 'twx' : item}"></span>
+                                        <span class="country-name">${languageVariants.countries[item].region}</span>
                                     </label>
                                     <a class="header-countryList__option-link" href="${languageVariants.countries[item].link}.html"></a>
                                 </div>
@@ -59,13 +59,15 @@
             </div>
         </div>
         <div class="navigation-row" data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model">
-            <div class="navigation-row__left">
-                <a class="navigation-item" href="${headerV2.homePageLink}"><span>${headerV2.homePageLabel}</span></a>
+            <div class="navigation-row__left" data-sly-set.currentPagePath="${currentPage.path}.html">
+                <a class="navigation-item ${currentPagePath == headerV2.homePageLink ? 'active' : '' }" href="${headerV2.homePageLink}"><span>${headerV2.homePageLabel}</span></a>
                 <sly data-sly-list="${meganav.panels}">
-                    <a data-sly-set.currentPagePath="${currentPage.path}.html" class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }" href="${item.url}"><span>${item.navigationTitle}</span></a>
+                    <a class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }" href="${item.url}"><span>${item.navigationTitle}</span></a>
                 </sly>
+                <span class="navigation-item navigation-item_more-less less">${headerV2.lessLinkLabel}</span>
             </div>
             <div class="navigation-row__right">
+                <span class="navigation-item navigation-item_more-less more">${headerV2.moreLinkLabel}</span>
                 <a data-sly-test="${headerV2.buttonName}" class="button" href="${headerV2.buttonLink}" title="${headerV2.buttonName}">
                     <span>${headerV2.buttonName}</span>
                 </a>
@@ -96,7 +98,7 @@
                     </ul>
                 </li>
             </ul>
-            <sly data-sly-resource="${'cta_banner_with_poin' @ resourceType='dhl/components/content/cta-banner-with-points'}"/>
+            <div class="short-banners" data-sly-resource="${'cta_banner_with_poin' @ resourceType='dhl/components/content/cta-banner-with-points'}"></div>
         </nav>
     </div>
     <div class="header__searchform">

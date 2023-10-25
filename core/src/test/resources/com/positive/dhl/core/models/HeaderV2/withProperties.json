@@ -10,6 +10,8 @@
       "header-signInLabel": "Sign In",
       "header-categoryLinksLabel": "Categories",
       "header-homePageLabel": "Home",
+      "header-moreLinkLabel": "... More",
+      "header-lessLinkLabel": "... Less",
       "header-companyLinksLabel": "Company",
       "multifields": {
         "header-companyLinks": {

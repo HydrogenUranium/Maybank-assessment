@@ -1,0 +1,291 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:title": "Root",
+    "cq:template": "/apps/dhl/templates/dhl-blank-page",
+    "sling:resourceType": "dhl/components/pages/blank"
+  },
+  "dhl": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:content": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "dhl/components/pages/root",
+      "jcr:title": "DHL",
+      "cq:template": "/apps/dhl/templates/dhl-blank-page"
+    },
+    "language-masters": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "jcr:title": "Language Masters",
+        "cq:template": "/apps/dhl/templates/dhl-blank-page",
+        "cq:robotsTags": "noindex",
+        "hideInNav": "true",
+        "sling:resourceType": "dhl/components/pages/blank"
+      },
+      "en-master": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "dhl/components/pages/home",
+          "jcr:title": "EN Language Master Home page"
+        },
+        "category-page": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:title": "CATEGORY PAGE",
+            "cq:template": "/apps/dhl/templates/dhl-article-group-page",
+            "sling:resourceType": "dhl/components/pages/articlecategory"
+          }
+        }
+      },
+      "es": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "ES Language Master",
+          "acceptlanguages": "*"
+        }
+      },
+      "fr": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "FR Language Master",
+          "acceptlanguages": "FR"
+        }
+      },
+      "zh": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "ZH Language Master",
+          "jcr:language": "zh"
+        }
+      },
+      "it": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:title": "IT Language Master",
+          "acceptlanguages": "invalid-variant"
+        }
+      }
+    },
+    "global": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "jcr:title": "GLOBAL Country page"
+      },
+      "en-global": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "sling:resourceType": "dhl/components/pages/home",
+          "jcr:title": "EN Global",
+          "jcr:language": "en",
+          "cq:isLanguageRoot": "true",
+          "siteregion": "Global",
+          "sitelanguage": "EN",
+          "acceptlanguages": "*",
+          "sitedefault": "true",
+          "siteenabled": "true",
+          "articleHeader-followLabel": "Follow",
+          "articleHeader-followPath": "#",
+          "articleHeader-shareOn": "Share on",
+          "articleHeader-smartShareButtonsLabel": "Share",
+          "articleHeader-smartShareButtonsIconPath": "/content/dam/dhl-discover/common/icons/icons8-share (1).svg",
+          "authorBanner-title": "About the Author",
+          "multifields": {
+            "jcr:primaryType": "nt:unstructured",
+            "socialNetwork": {
+              "jcr:primaryType": "nt:unstructured",
+              "item0": {
+                "jcr:primaryType": "nt:unstructured",
+                "socialNetworkName": "facebook",
+                "socialNetworkIconPath": "/content/dam/dhl-discover/common/icons/icon-sc-facebook.svg"
+              },
+              "item1": {
+                "jcr:primaryType": "nt:unstructured",
+                "socialNetworkName": "twitter",
+                "socialNetworkIconPath": "/content/dam/dhl-discover/common/icons/icon-sc-twitter.svg"
+              },
+              "item2": {
+                "jcr:primaryType": "nt:unstructured",
+                "socialNetworkName": "linkedin",
+                "socialNetworkIconPath": "/content/dam/dhl-discover/common/icons/icon-sc-linkedIn.svg"
+              }
+            }
+          }
+        },
+        "category-page": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:title": "CATEGORY PAGE",
+            "cq:template": "/apps/dhl/templates/dhl-article-group-page",
+            "sling:resourceType": "dhl/components/pages/articlecategory"
+          },
+          "article-page": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:content": {
+              "jcr:primaryType": "cq:PageContent",
+              "jcr:title": "ARTICLE PAGE",
+              "cq:template": "/conf/dhl/settings/wcm/templates/article-with-new-ux-design",
+              "sling:resourceType": "dhl/components/pages/editable-article"
+            }
+          },
+          "article-page-with-new-article-setup": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:content": {
+              "jcr:primaryType": "cq:PageContent",
+              "jcr:title": "ARTICLE PAGE",
+              "jcr:description": "Article Description",
+              "cq:template": "/conf/dhl/settings/wcm/templates/article-with-new-ux-design",
+              "sling:resourceType": "dhl/components/pages/editable-article",
+              "author": "Sansa Stark",
+              "authortitle": "Senior Content Writer, Discover",
+              "authorimage": "/content/dam/dhl/site-image/roundels/laptop.png",
+              "readtime": "6 min read",
+              "custompublishdate": "Wed Oct 11 2023 12:00:00 GMT+0200",
+              "authorBriefDescription": "Small text about Author",
+              "ogtagimage": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg",
+              "mediatype": "article",
+              "listbrief": "How subscription models are changing e-commerce habits",
+              "listimage": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+              "heroimagemob": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+              "heroimagetab": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+              "heroimagedt": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Desktop_1920x918_2.jpg",
+              "root": {
+                "jcr:primaryType": "nt:unstructured",
+                "layout": "responsiveGrid",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "article_header_container": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "body": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "article-header": {
+                      "jcr:primaryType": "nt:unstructured",
+                      "sling:resourceType": "dhl/components/content/article-header"
+                    }
+                  }
+                },
+                "article_container": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "dhl/components/content/article-container",
+                  "body": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                    "responsivegrid": {
+                      "jcr:primaryType": "nt:unstructured",
+                      "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                    }
+                  },
+                  "sidebar": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "article_author_banner": {
+                      "jcr:primaryType": "nt:unstructured",
+                      "jcr:lastModifiedBy": "admin",
+                      "jcr:lastModified": "Fri Oct 13 2023 08:47:53 GMT+0200",
+                      "sling:resourceType": "dhl/components/content/article-author-banner"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "us": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "jcr:title": "US Country page"
+      },
+      "en-us": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "sling:resourceType": "dhl/components/pages/home",
+          "jcr:title": "English version of US Page",
+          "jcr:language": "",
+          "cq:isLanguageRoot": "true",
+          "siteregion": "United States",
+          "sitelanguage": "EN",
+          "acceptlanguages": "en-US",
+          "sitedefault": "true",
+          "siteenabled": "true"
+        },
+        "category-page": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:title": "CATEGORY PAGE",
+            "cq:template": "/apps/dhl/templates/dhl-article-group-page",
+            "sling:resourceType": "dhl/components/pages/articlecategory"
+          },
+          "article-page": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:content": {
+              "jcr:primaryType": "cq:PageContent",
+              "jcr:title": "ARTICLE PAGE",
+              "cq:template": "/conf/dhl/settings/wcm/templates/article-with-new-ux-design",
+              "sling:resourceType": "dhl/components/pages/editable-article"
+            }
+          },
+          "article-page-without-new-article-setup": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:content": {
+              "jcr:primaryType": "cq:PageContent",
+              "jcr:title": "ARTICLE PAGE without new article setup",
+              "jcr:created": "Thu Oct 12 2023 13:35:08 GMT+0200",
+              "cq:template": "/conf/dhl/settings/wcm/templates/article-with-new-ux-design",
+              "sling:resourceType": "dhl/components/pages/editable-article",
+              "root": {
+                "jcr:primaryType": "nt:unstructured",
+                "layout": "responsiveGrid",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid"
+              }
+            }
+          }
+        }
+      },
+      "es-us": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "sling:resourceType": "dhl/components/pages/home",
+          "jcr:title": "Spanish version of US Page",
+          "jcr:language": "es_us",
+          "cq:isLanguageRoot": "true",
+          "siteregion": "United States",
+          "sitelanguage": "ES",
+          "acceptlanguages": "es-US",
+          "siteenabled": "true"
+        },
+        "category-page": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:title": "CATEGORY PAGE",
+            "cq:template": "/apps/dhl/templates/dhl-article-group-page",
+            "sling:resourceType": "dhl/components/pages/articlecategory"
+          },
+          "article-page": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:content": {
+              "jcr:primaryType": "cq:PageContent",
+              "jcr:title": "ARTICLE PAGE",
+              "cq:template": "/conf/dhl/settings/wcm/templates/article-with-new-ux-design",
+              "sling:resourceType": "dhl/components/pages/editable-article"
+            }
+          }
+        }
+      }
+    }
+  }
+}

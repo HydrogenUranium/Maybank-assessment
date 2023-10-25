@@ -1,0 +1,68 @@
+{
+  "name": "aem-maven-archetype",
+  "version": "1.0.0",
+  "description": "Generates an AEM Frontend project with Webpack",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "private": true,
+  "main": "src/main/webpack/site/main.ts",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "scripts": {
+    "webpack-build": "webpack --config ./webpack.dev.js",
+    "dev": "webpack --env dev --config ./webpack.dev.js && npm run dependencies && clientlib --verbose",
+    "prod": "webpack --config ./webpack.prod.js && npm run dependencies && clientlib --verbose",
+    "start": "webpack-dev-server --open --config ./webpack.dev.js",
+    "sync": "aemsync -d -p ../ui.apps/src/main/content",
+    "dependencies": "webpack --config ./webpack.dependency.js",
+    "watch": "webpack-dev-server --config ./webpack.dev.js --env writeToDisk & chokidar -c \"clientlib\" ./dist & aemsync -w ../ui.apps/src/main/content"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.28",
+    "@types/react-dom": "^18.2.13",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "acorn": "^6.1.0",
+    "aem-clientlib-generator": "^1.4.3",
+    "aemsync": "^4.0.1",
+    "autoprefixer": "^9.2.1",
+    "browserslist": "^4.2.1",
+    "chokidar-cli": "^3.0.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^10.1.0",
+    "css-loader": "^6.5.1",
+    "css-minimizer-webpack-plugin": "^3.2.0",
+    "cssnano": "^5.0.12",
+    "esbuild-loader": "^4.0.2",
+    "eslint": "^8.4.1",
+    "eslint-webpack-plugin": "^3.1.1",
+    "glob": "^10.3.10",
+    "glob-import-loader": "^1.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "postcss": "^8.2.15",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.45.0",
+    "sass-loader": "^12.4.0",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^0.14.1",
+    "terser-webpack-plugin": "^5.2.5",
+    "ts-loader": "^9.2.6",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.3.3333",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-import-glob-loader": "^1.6.3",
+    "webpack-merge": "^5.9.0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%"
+  ]
+}

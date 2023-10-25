@@ -7,11 +7,11 @@
         cq:template="/libs/cq/translation/templates/msft/msft-servicepage"
         jcr:isCheckedOut="{Boolean}true"
         jcr:primaryType="cq:PageContent"
-        jcr:title="DHL MS Translator (TRIAL)"
+        jcr:title="DHL MS Translator"
         sling:resourceSuperType="cq/cloudserviceconfigs/components/configpage"
         sling:resourceType="cq/translation/components/msft/msft-cloudconfig"
-        endpointUrl="https://api.cognitive.microsoft.com/sts/v1.0/issueToken"
+        endpointUrl="https://westeurope.api.cognitive.microsoft.com/sts/v1.0/issueToken"
         serviceattribution="Translated by Microsoft"
         servicelabel="MS Translation Connector"
-        subscriptionkey="d2cc3c285c3c4d618587f4db0a2d4de0"/>
+        subscriptionkey="999f589105f246379533f4ac8cf17025"/>
 </jcr:root>

@@ -1,0 +1,38 @@
+<sly data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage"
+     data-sly-set.article="${articlePage.article}"
+     data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
+     data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}"/>
+
+<div class="article-header_share article-footer">
+  <div class="article-header_share-container">
+    <div class="article-header_share-container__left">
+      <div data-sly-repeat="${articlePage.socialNetwork}" class="st-custom-button" data-network="${item}">
+        <img class="logo__image" alt="${item} sharing button" src="${!editmode ? accountactions.assetprefix : ''}${articlePage.socialNetwork[item]}">
+      </div>
+    </div>
+    <div class="article-header_share-container__right">
+      <div class="st-custom-button" data-network="sharethis">
+        <img class="logo__image" alt="Smart Share Buttons Icon" src="${!editmode ? accountactions.assetprefix : ''}${articlePage.smartShareButtonsIconPath}">
+        <span class="st-label">${articlePage.smartShareButtonsLabel}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/* This Author-related part of the code will be finalised as part of DIS-372 */-->
+<div class="article-header_author article-footer">
+  <img data-sly-test="${(article.authorimage.length > 0)}"
+       class="article-header_author-image"
+       src="${!editmode ? accountactions.assetprefix : ''}${article.authorimage}"
+       alt="${article.author}">
+  <div class="article-header_author-description">
+    <div>
+      <span class="article-header_author-description__name">${article.author}</span>
+      <a data-sly-test="${articlePage.followLabel}" class="article-header_author-description__follow" href="${articlePage.followPath}">
+        <span>${articlePage.followLabel}</span>
+      </a>
+    </div>
+    <div class="article-header_author-description__title">${article.authortitle}</div>
+  </div>
+</div>
+<!--/* End */-->

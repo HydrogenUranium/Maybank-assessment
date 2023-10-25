@@ -20,13 +20,14 @@
     <groupId>com.positive</groupId>
     <artifactId>dhl</artifactId>
     <packaging>pom</packaging>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.5.0-SNAPSHOT</version>
     <name>Deutsche Post AG Discover</name>
     <description>Deutsche Post AG Discover</description>
 
     <modules>
         <module>all</module>
         <module>core</module>
+        <module>ui.frontend</module>
         <module>ui.apps</module>
         <module>ui.apps.structure</module>
         <module>ui.config</module>
@@ -50,17 +51,16 @@
         <sling.password>admin</sling.password>
         <vault.user>admin</vault.user>
         <vault.password>admin</vault.password>
-        <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
+        <frontend-maven-plugin.version>1.14.0</frontend-maven-plugin.version>
         <core.wcm.components.version>2.22.2</core.wcm.components.version>
         <junit.version>5.9.1</junit.version>
         <mockito.version>5.3.1</mockito.version>
         <aecu.version>6.4.0</aecu.version>
         <akamai.version>5.0.0</akamai.version>
-
         <bnd.version>5.1.2</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aem.sdk.api>2023.8.13323.20230831T134651Z-230800</aem.sdk.api>
+        <aem.sdk.api>2023.9.13420.20230907T185228Z-230800</aem.sdk.api>
         <aemanalyser.version>1.5.8</aemanalyser.version>
         <componentGroupName>Deutsche Post AG Discover</componentGroupName>
         <maven.compiler.source>11</maven.compiler.source>
@@ -169,23 +169,9 @@
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>${frontend-maven-plugin.version}</version>
                     <configuration>
-                        <nodeVersion>v10.24.1</nodeVersion>
-                        <npmVersion>6.14.6</npmVersion>
+                        <nodeVersion>v16.20.0</nodeVersion>
+                        <npmVersion>8.19.4</npmVersion>
                     </configuration>
-                    <executions>
-                        <execution>
-                            <id>install node and npm</id>
-                            <goals>
-                                <goal>install-node-and-npm</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>npm install</id>
-                            <goals>
-                                <goal>npm</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.jacoco</groupId>
@@ -495,7 +481,7 @@ Bundle-DocURL:
                         <artifactId>frontend-maven-plugin</artifactId>
                         <configuration>
                             <nodeDownloadRoot>https://artifactory.dhl.com/nodejs/</nodeDownloadRoot>
-                            <npmDownloadRoot>https://artifactory.dhl.com/api/npm/npm/</npmDownloadRoot>
+                            <npmDownloadRoot>https://artifactory.dhl.com/artifactory/npm/npm/-/</npmDownloadRoot>
                         </configuration>
                     </plugin>
                 </plugins>

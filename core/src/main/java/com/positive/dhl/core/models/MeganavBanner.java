@@ -150,16 +150,16 @@ public class MeganavBanner {
 	protected void init() {
 		ValueMap properties = pageUtilService.getHomePageProperties(currentPage);
 		if (!properties.isEmpty()) {
-			title = properties.get("jcr:content/meganavbannertitle", "");
-			subtitle = properties.get("jcr:content/meganavbannersubtitle", "");
+			title = properties.get("meganavbannertitle", "");
+			subtitle = properties.get("meganavbannersubtitle", "");
 
-			point1 = properties.get("jcr:content/meganavbannerpoint1", "");
-			point2 = properties.get("jcr:content/meganavbannerpoint2", "");
-			point3 = properties.get("jcr:content/meganavbannerpoint3", "");
-			point4 = properties.get("jcr:content/meganavbannerpoint4", "");
+			point1 = properties.get("meganavbannerpoint1", "");
+			point2 = properties.get("meganavbannerpoint2", "");
+			point3 = properties.get("meganavbannerpoint3", "");
+			point4 = properties.get("meganavbannerpoint4", "");
 			
-			url = properties.get("jcr:content/meganavbannerurl", "");
-			urltitle = properties.get("jcr:content/meganavbannerurltitle", "");
+			url = properties.get("meganavbannerurl", "");
+			urltitle = properties.get("meganavbannerurltitle", "");
 		}
     }
 }

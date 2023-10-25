@@ -12,7 +12,7 @@
         ${model.title}
     </div>
     <div class="article-items horizontal-scroll" data-sly-test="${isHorizontal}">
-        <sly data-sly-repeat="${model.articles}" data-sly-call="${articleCardTemplate.card @ article=item}"></sly>
+        <sly data-sly-repeat="${model.articles}" data-sly-call="${articleCardTemplate.card @ article=item, showTags=model.showTags}"></sly>
     </div>
     <sly data-sly-test="${isVertical}">
         <ul class="article-items">
@@ -25,7 +25,7 @@
                     <div class="article__info__metadata">${item.createdfriendly} ${item.readtime ? '|' : ''} ${item.readtime}</div>
                     <div class="article__info__description">${item.description}</div>
                     <div class="article__info__author">
-                        <div style="background-image: url('${item.authorimage @ context='unsafe'}');" class="article__info__author__avatar"></div>
+                        <div style="background-image: url('${!authormode ? accountactions.assetprefix : '' @ context='unsafe'}${item.authorimage @ context='unsafe'}');" class="article__info__author__avatar"></div>
                         <div class="article__info__author__name">${item.author}</div>
                     </div>
                 </div>

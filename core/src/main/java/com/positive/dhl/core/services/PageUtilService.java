@@ -2,17 +2,22 @@ package com.positive.dhl.core.services;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageFilter;
+import com.day.cq.wcm.api.PageManager;
+import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.apache.jackrabbit.JcrConstants.JCR_LANGUAGE;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
 @Component(service = PageUtilService.class)
@@ -37,7 +42,7 @@ public class PageUtilService {
 
     public ValueMap getPageProperties(Page page) {
         return Optional.ofNullable(page)
-                .map(p -> p.adaptTo(ValueMap.class))
+                .map(Page::getProperties)
                 .orElse(ValueMap.EMPTY);
     }
 
@@ -82,5 +87,35 @@ public class PageUtilService {
                 .filter(Matcher::find)
                 .map(m -> m.group(1))
                 .orElse(StringUtils.EMPTY);
+    }
+
+    public Locale getLocale(Page page) {
+        ValueMap homePageProperties = getHomePageProperties(page);
+        String jcrLanguageProperty = homePageProperties.get(JCR_LANGUAGE, StringUtils.EMPTY);
+
+        if (StringUtils.isBlank(jcrLanguageProperty) || StringUtils.equals(jcrLanguageProperty, "en")) {
+            String acceptLanguagesProperty = homePageProperties.get("acceptlanguages", StringUtils.EMPTY);
+            Locale localeBasedOnAcceptLanguages = acceptLanguagesProperty.contains("-")
+                    ? new Locale(acceptLanguagesProperty.split("-")[0], acceptLanguagesProperty.split("-")[1])
+                    : new Locale(acceptLanguagesProperty);
+            return LocaleUtils.isAvailableLocale(localeBasedOnAcceptLanguages) && !StringUtils.isBlank(acceptLanguagesProperty)
+                    ? localeBasedOnAcceptLanguages : new Locale("en");
+        }
+
+        return jcrLanguageProperty.contains("_")
+                ? new Locale(jcrLanguageProperty.split("_")[0], jcrLanguageProperty.split("_")[1])
+                : new Locale(jcrLanguageProperty);
+    }
+
+    public Locale getLocale(Resource resource) {
+        return getLocale(getPage(resource));
+    }
+
+    public Page getPage(Resource resource) {
+        return Optional.ofNullable(resource)
+                .map(Resource::getResourceResolver)
+                .map(rr -> rr.adaptTo(PageManager.class))
+                .map(pm -> pm.getContainingPage(resource))
+                .orElse(null);
     }
 }

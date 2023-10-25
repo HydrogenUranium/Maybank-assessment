@@ -1,0 +1,27 @@
+<sly data-sly-use.authorBanner="com.positive.dhl.core.models.ArticleAuthorBannerModel"
+     data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage"
+     data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
+     data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}"/>
+
+<div class="article-author-banner_title">${authorBanner.title}</div>
+
+<!--/* This Author-related part of the code will be finalised as part of DIS-372 */-->
+<div class="article-author-banner_author">
+    <img data-sly-test="${(articlePage.article.authorimage.length > 0)}"
+         class="article-author-banner_author-image"
+         src="${!editmode ? accountactions.assetprefix : ''}${articlePage.article.authorimage}"
+         alt="${articlePage.article.author}">
+    <div class="article-author-banner_author-description">
+        <div class="article-author-banner_author-description__name">${articlePage.article.author}</div>
+        <div class="article-author-banner_author-description__title">${articlePage.article.authortitle}</div>
+    </div>
+</div>
+<!--/* End */-->
+
+<div data-sly-test="${authorBanner.brief}" class="article-author-banner_brief">${authorBanner.brief}</div>
+
+<div data-sly-test="${authorBanner.followLabel}" class="article-author-banner_follow">
+    <a class="article-author-banner_follow__button" href="${!editmode ? accountactions.assetprefix : ''}${authorBanner.followPath}">
+        <span>${authorBanner.followLabel}</span>
+    </a>
+</div>

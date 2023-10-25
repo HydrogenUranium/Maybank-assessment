@@ -28,7 +28,17 @@
                             </components>
                         </dhl>
                     </responsivegrid>
+                    <responsivegrid_929485349
+                            cq:policy="wcm/foundation/components/responsivegrid/policy_355443549935000"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                 </body>
+                <sidebar jcr:primaryType="nt:unstructured">
+                    <responsivegrid
+                            cq:policy="wcm/foundation/components/responsivegrid/policy_357549199894300"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                </sidebar>
             </article_container>
         </root>
     </jcr:content>

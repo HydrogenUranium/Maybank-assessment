@@ -43,7 +43,6 @@ class HomePropertyInjectorTest {
         context.load().json("/com/positive/dhl/core/injectors/HomePropertyInjector/content.json", "/content");
     }
 
-
     @Test
     void getName() {
         assertEquals("discover-home-property", homePropertyInjector.getName());
