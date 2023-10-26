@@ -61,6 +61,10 @@ public class ArticleShowcase {
 
     @Inject
     @Optional
+    private String showTags;
+
+    @Inject
+    @Optional
     @Default(values = "customPick")
     private String source;
 
