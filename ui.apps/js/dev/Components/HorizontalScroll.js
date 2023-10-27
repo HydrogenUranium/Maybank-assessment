@@ -75,9 +75,14 @@ class HorizontalScroll {
         }
       }
 
-      $('.horizontal-scroll').find('a').click(function(e) {
+      // Prevent click on links when scrolling.
+      //React doesn't use traditional event listeners so we need to use workaround adding class to button and checking for in click event
+      $('.horizontal-scroll').find('a, .horizontal-scroll__react-button').on('click', function(e) {
         if ($(this).closest('.horizontal-scroll_active').length > 0) {
           e.preventDefault();
+          if(this.classList.contains('horizontal-scroll__react-button')) {
+            this.classList.add('horizontal-scroll__react-button--prevent-click');
+          }
         }
       })
     })

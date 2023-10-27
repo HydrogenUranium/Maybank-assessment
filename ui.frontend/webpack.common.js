@@ -23,8 +23,8 @@ module.exports = {
     entry: collectEntryPoints(SOURCE_ROOT, ['component']),
     devtool: 'eval-source-map',
     output: {
-        filename: 'site/js/[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'js/[name].bundle.js',
+        path: path.resolve(__dirname, 'dist', 'site')
     },
    externals: {
        'react': 'React',
@@ -59,7 +59,10 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
-                            url: false
+                            url: false,
+                            modules: {
+                                localIdentName: '[local]__[hash:base64:5]',
+                            }
                         }
                     },
                     {
@@ -91,7 +94,7 @@ module.exports = {
            extensions: ['js', 'ts', 'tsx']
        }),
        new MiniCssExtractPlugin({
-           filename: 'site/css/[name].bundle.css',
+           filename: 'css/[name].bundle.css',
        })
     //    new CopyWebpackPlugin({
     //        patterns: [

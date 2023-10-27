@@ -463,6 +463,11 @@
       <property inherit="true" name="ctaBanner-article-subscribeToOurNewsletter-topTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="ctaBanner-article-subscribeToOurNewsletter-title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="ctaBanner-article-subscribeToOurNewsletter-buttonName" translate="true" updateDestinationLanguage="false"/>
+
+      <property inherit="true" name="articleGrid-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleGrid-allTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleGrid-sortTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleGrid-latestOptionTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
 
     <node resourceType="dhl/components/pages/landing">
