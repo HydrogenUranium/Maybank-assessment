@@ -161,7 +161,7 @@ class ArticlePageTest {
 
 	private void testArticle(Article article) {
 		assertNotNull(article);
-		assertTrue(article.getValid());
+		assertTrue(article.isValid());
 		assertNull(article.getCurrent());
 		assertEquals(0, article.getIndex());
 		assertNull(article.getThird());
@@ -196,7 +196,7 @@ class ArticlePageTest {
 		newArticle.setThird(true);
 		newArticle.setFourth(true);
 		newArticle.setCounter(2);
-		assertFalse(newArticle.getValid());
+		assertFalse(newArticle.isValid());
 		assertFalse(newArticle.getCurrent());
 		assertEquals(1, newArticle.getIndex());
 		assertTrue(newArticle.getThird());

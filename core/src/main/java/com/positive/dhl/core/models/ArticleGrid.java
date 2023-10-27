@@ -331,7 +331,7 @@ public class ArticleGrid {
 			while (linkResources.hasNext()) {
 				var linkResource = linkResources.next();
 				Article link = linkResource.adaptTo(Article.class);
-				if (link != null && link.getValid()) {
+				if (link != null && link.isValid()) {
 					link.setIndex(count);
 					articlesList.add(link);
 					count++;

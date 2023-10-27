@@ -6,14 +6,11 @@ import com.day.cq.wcm.api.PageManager;
 import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.osgi.service.component.annotations.Component;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -116,6 +113,13 @@ public class PageUtilService {
                 .map(Resource::getResourceResolver)
                 .map(rr -> rr.adaptTo(PageManager.class))
                 .map(pm -> pm.getContainingPage(resource))
+                .orElse(null);
+    }
+
+    public Page getPage(String resourcePath, ResourceResolver resourceResolver) {
+        return Optional.ofNullable(resourcePath)
+                .map(resourceResolver::getResource)
+                .map(this::getPage)
                 .orElse(null);
     }
 }

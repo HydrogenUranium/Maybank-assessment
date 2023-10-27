@@ -39,7 +39,7 @@ public class Article {
 	@Inject
 	public String path;
 
-	private Boolean valid;
+	private boolean valid;
 	private Boolean current;
 	private int index;
 	private Boolean third;

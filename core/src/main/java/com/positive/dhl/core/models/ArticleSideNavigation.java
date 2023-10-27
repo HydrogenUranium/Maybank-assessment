@@ -72,7 +72,7 @@ public class ArticleSideNavigation {
 					String url = props.get("url", "");
 
 					Article article = new Article(url, resourceResolver);
-					if (Boolean.TRUE.equals(article.getValid())) {
+					if (article.isValid()) {
 						articleList.add(article);
 					}
 				}
@@ -98,15 +98,13 @@ public class ArticleSideNavigation {
 			for (Hit hit: searchResult.getHits()) {
 				ValueMap properties = hit.getProperties();
 				boolean hideInNav = properties.get("hideInNav", false);
-				if (!hideInNav) {
-					if (!currentPage.getPath().equals(hit.getPath())) {
-						Article article = new Article(hit.getPath(), resourceResolver);
-						if (Boolean.TRUE.equals(article.getValid())) {
-							article.setIndex(count);
-							article.setThird(article.getIndex() % 3 == 0);
-							articleList.add(article);
-							count++;
-						}
+				if (!hideInNav && !currentPage.getPath().equals(hit.getPath())) {
+					Article article = new Article(hit.getPath(), resourceResolver);
+					if (article.isValid()) {
+						article.setIndex(count);
+						article.setThird(article.getIndex() % 3 == 0);
+						articleList.add(article);
+						count++;
 					}
 				}
 			}
@@ -122,7 +120,7 @@ public class ArticleSideNavigation {
 	 * Standard 'initialization' method of a Sling Model; sets up everything we need.
 	 */
 	@PostConstruct
-    protected void init() throws RepositoryException {
+    protected void init() {
 		ResourceResolver resourceResolver = resourceResolverHelper.getReadResourceResolver();
 		articles = new ArrayList<>();
 		if(null != resourceResolver){
