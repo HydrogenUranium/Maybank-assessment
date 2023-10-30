@@ -9,6 +9,7 @@
     "b2b-advice": {
       "jcr:primaryType": "cq:Page",
       "jcr:content": {
+        "jcr:title": "B2B Advice - title",
         "cq:template": "dhl/components/pages/editable-category-page",
         "jcr:primaryType": "cq:PageContent",
         "sling:resourceType": "dhl/components/pages/editable-category-page"
@@ -57,6 +58,8 @@
     "e-commerce-advice": {
       "jcr:primaryType": "cq:Page",
       "jcr:content": {
+        "jcr:title": "E-commerce Advice - title",
+        "navTitle": "E-commerce Advice - navTitle",
         "cq:template": "dhl/components/pages/editable-category-page",
         "jcr:primaryType": "cq:PageContent",
         "sling:resourceType": "dhl/components/pages/editable-category-page"
