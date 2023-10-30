@@ -1,7 +1,6 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.Template;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.AssetUtilService;
@@ -9,6 +8,7 @@ import com.positive.dhl.core.services.InitUtil;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 
 @Getter
 @Model(adaptables = SlingHttpServletRequest.class)
@@ -84,7 +86,10 @@ public class ArticleGridV2 {
 
         getSubCategories().forEach(category -> {
             var categoryArticles = articleService.getLatestArticles(category, 8);
-            categoryArticleMap.put(category.getNavigationTitle(), categoryArticles);
+            var categoryTitle = defaultIfBlank(category.getNavigationTitle(), category.getTitle());
+            if (categoryTitle != null) {
+                categoryArticleMap.put(categoryTitle, categoryArticles);
+            }
         });
     }
 
@@ -92,8 +97,8 @@ public class ArticleGridV2 {
         List<Page> subCategories = new ArrayList<>();
         currentPage.listChildren().forEachRemaining(page -> {
             String template = java.util.Optional.of(page)
-                    .map(Page::getTemplate)
-                    .map(Template::getPageTypePath)
+                    .map(Page::getContentResource)
+                    .map(Resource::getResourceType)
                     .orElse("");
             if (List.of("dhl/components/pages/articlecategory", "dhl/components/pages/editable-category-page").contains(template)) {
                 subCategories.add(page);
