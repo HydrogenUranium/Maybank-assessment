@@ -21,7 +21,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleServiceTest {
@@ -56,7 +56,9 @@ class ArticleServiceTest {
         when(hitOne.getPath()).thenReturn("/content/home/article_1");
         when(hitTwo.getPath()).thenReturn("/content/home/article_2");
         when(searchResult.getHits()).thenReturn(List.of(hitOne, hitTwo));
-        when(resolverHelper.getReadResourceResolver()).thenReturn(context.resourceResolver());
+        var resolver = spy(context.resourceResolver());
+        doNothing().when(resolver).close();
+        when(resolverHelper.getReadResourceResolver()).thenReturn(resolver);
     }
 
     @Test
