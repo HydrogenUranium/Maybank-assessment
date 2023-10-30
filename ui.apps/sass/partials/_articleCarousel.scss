@@ -1,0 +1,110 @@
+.article-carousel {
+  max-width: 1640px;
+  margin: auto;
+
+  @include respond(md) {
+    background: #F6F6F6 0% 0% no-repeat padding-box;
+    padding: 0 35px;
+  }
+
+  .article-carousel_container {
+    max-width: 1200px;
+    margin: auto;
+
+    @include respond(xl) {
+      display: flex;
+      align-items: baseline;
+      padding: 0;
+    }
+
+    .article-carousel_pageTitle {
+      font-size: 20px;
+      line-height: 54px;
+      font-weight: bold;
+      color: #323232;
+      padding: 0 35px;
+
+      @include respond(md) {
+        padding: 0;
+      }
+
+      @include respond(xl) {
+        font-size: 50px;
+        width: 40%;
+      }
+    }
+
+    .cmp-carousel {
+      @include respond(xl) {
+        width: 60%;
+      }
+
+      .cmp-teaser__content {
+        position: absolute;
+        bottom: 63px;
+        left: 35px;
+        color: map-get($palette, true-white);
+
+        .cmp-teaser__title {
+          font-size: 20px;
+          line-height: 24px;
+          font-weight: bold;
+        }
+
+        .cmp-teaser__article-category-tag {
+          font-size: 12px;
+          line-height: 17px;
+          font-weight: bold;
+        }
+
+        .cmp-teaser__article-author {
+          font-size: 12px;
+          line-height: 17px;
+        }
+      }
+
+      .cmp-image__image {
+        width: 100%;
+        height: 256px;
+        object-fit: cover;
+        object-position: center center;
+
+        @include respond(md) {
+          height: 366px;
+        }
+      }
+
+      .cmp-carousel__indicators {
+        display: flex;
+        justify-content: left;
+        padding: 11px 35px;
+
+        @include respond(md) {
+          padding: 20px 0;
+        }
+
+        .cmp-carousel__indicator {
+          margin: 0 7px;
+          width: 11px;
+          height: 11px;
+          background: #CCCCCC 0% 0% no-repeat padding-box;
+          border-radius: 40px;
+          transition: width 500ms;
+          font-size: 0;
+          text-indent: -3000px;
+
+          &--active {
+            width: 31px;
+            background: #D40511 0% 0% no-repeat padding-box;
+            transition: width 500ms;
+          }
+        }
+      }
+
+      .cmp-carousel__actions {
+        display: none;
+      }
+    }
+  }
+}
+
