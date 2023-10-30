@@ -6,7 +6,7 @@
      data-sly-use.titleTemplate="title.html"
      data-sly-use.descriptionTemplate="description.html"
      data-sly-use.actionsTemplate="actions.html"
-     data-sly-test.hasContent="${teaser.imageResource || teaser.pretitle || teaser.title || teaser.description || teaser.actions.size > 0}"
+     data-sly-test.hasContent="${teaser.imageResource || (properties.imageFromPageImage && properties.linkURL)}"
      id="${teaser.id}"
      class="cmp-teaser${!wcmmode.disabled && teaser.imageResource ? ' cq-dd-image' : ''}"
      data-cmp-data-layer="${teaser.data.json}">

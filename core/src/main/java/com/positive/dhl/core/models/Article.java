@@ -173,10 +173,12 @@ public class Article {
 				"b2b", "b2b"
 		);
 
-		return "#" + Arrays.stream(StringUtils.lowerCase(name)
-				.split(" "))
+		String tag = Arrays.stream(StringUtils.lowerCase(name)
+						.split(" "))
 				.map(s -> customTransformation.getOrDefault(s, StringUtils.capitalize(s)))
 				.collect(Collectors.joining());
+
+		return !StringUtils.isBlank(tag) ? "#" + tag : StringUtils.EMPTY;
 	}
 
     /**
@@ -196,7 +198,7 @@ public class Article {
 			return customPublishDate;
 		} else {
 			Date jcrCreated = properties.get(PN_CREATED, new Date());
-			Date cqLastModified = properties.get(PN_PAGE_LAST_MOD, jcrCreated);
+			Date cqLastModified = properties.get("jcr:content/" + PN_PAGE_LAST_MOD, jcrCreated);
 			return jcrCreated.after(cqLastModified) ? jcrCreated : cqLastModified;
 		}
 	}

@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.dam.api.Asset;
+import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
@@ -72,7 +73,7 @@ public class ArticleTeaserModel {
         if (imageFromPage) {
             imagePathFromPage = Optional.ofNullable(linkURL)
                     .map(link -> pageUtilService.getPage(link, resourceResolver))
-                    .map(pageUtilService::getPageProperties)
+                    .map(Page::getProperties)
                     .map(props -> props.get("listimage", StringUtils.EMPTY))
                     .orElse(StringUtils.EMPTY);
 
@@ -85,21 +86,7 @@ public class ArticleTeaserModel {
                     .orElse(StringUtils.EMPTY);
         }
 
-        if (Boolean.parseBoolean(titleFromPage)) {
-            titleFromLinkedPage = article.isValid()
-                    ? article.getTitle()
-                    : Optional.ofNullable(linkURL)
-                    .map(link -> pageUtilService.getPage(link, resourceResolver))
-                    .map(page -> {
-                        String pageTitle = page.getNavigationTitle();
-                        if (StringUtils.isBlank(pageTitle)) {
-                            pageTitle = page.getTitle();
-                        }
-                        return pageTitle;
-                    })
-                    .orElse(StringUtils.EMPTY);
-        }
-
+        titleFromLinkedPage = Boolean.parseBoolean(titleFromPage) ? article.getTitle() : StringUtils.EMPTY;
         categoryTag = article.getGroupTag();
         author = article.getAuthor();
         publishDate = article.getCreated();

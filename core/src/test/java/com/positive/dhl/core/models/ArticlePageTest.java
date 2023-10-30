@@ -179,10 +179,10 @@ class ArticlePageTest {
 		assertEquals("Senior Content Writer, Discover", article.getAuthortitle());
 		assertEquals("/content/dam/dhl/site-image/roundels/laptop.png", article.getAuthorimage());
 		assertEquals("6 min read", article.getReadtime());
-		assertEquals("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg", article.getListimage());
-		assertEquals("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg", article.getHeroimagemob());
-		assertEquals("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg", article.getHeroimagetab());
-		assertEquals("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Desktop_1920x918_2.jpg", article.getHeroimagedt());
+		assertEquals("/content/dam/dhl/listimage.jpg", article.getListimage());
+		assertEquals("/content/dam/dhl/heroimagemob.jpg", article.getHeroimagemob());
+		assertEquals("/content/dam/dhl/heroimagetab.jpg", article.getHeroimagetab());
+		assertEquals("/content/dam/dhl/heroimagedt.jpg", article.getHeroimagedt());
 		assertEquals("", article.getYoutubeid());
 		assertEquals(false, article.getShowshipnow());
 		assertEquals(0, article.getTags().size());
