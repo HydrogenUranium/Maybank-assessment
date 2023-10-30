@@ -7,6 +7,17 @@
     <dhl jcr:primaryType="nt:unstructured">
         <components jcr:primaryType="nt:unstructured">
             <pages jcr:primaryType="nt:unstructured">
+                <editable-category-page jcr:primaryType="nt:unstructured">
+                    <policy_1698235912030
+                            jcr:lastModified="{Date}2023-10-25T17:40:22.467+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Category Template Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="[wcm.foundation.components.page.responsive]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1698235912030>
+                </editable-category-page>
                 <editable-article jcr:primaryType="nt:unstructured">
                     <policy_1169514762602900
                             jcr:lastModified="{Date}2023-07-05T11:03:27.158+03:00"
@@ -166,6 +177,15 @@
                                 jcr:mixinTypes="[cq:ReplicationStatus,cq:ReplicationStatus2]"
                                 jcr:primaryType="nt:unstructured"/>
                     </policy_355443549935000>
+                    <policy_593144368255000
+                            jcr:lastModified="{Date}2023-10-25T16:51:32.213+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Category Template Root Component Policy "
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/libs/wcm/foundation/components/responsivegrid,group:DHL Category structure,group:DHL Components]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_593144368255000>
                     <policy_357549199894300
                             jcr:lastModified="{Date}2023-10-10T14:08:36.531+03:00"
                             jcr:lastModifiedBy="admin"

@@ -7,6 +7,9 @@ module.exports =  {
       ecmaVersion:  2018,  // Allows for the parsing of modern ECMAScript features
       sourceType:  'module',  // Allows for the use of imports
     },
+    plugins: [
+        "react-hooks"
+      ],
     rules:  {
         "curly": 1,
         "@typescript-eslint/explicit-function-return-type": [0],
@@ -21,6 +24,8 @@ module.exports =  {
         "eol-last": 1,
         "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
         "semi": 1,
-        "no-var": 0
+        "no-var": 0,
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
     },
   };
