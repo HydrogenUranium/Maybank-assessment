@@ -110,7 +110,7 @@ public class ArticleGridV2 {
             articles.forEach(article -> {
                 JsonObject articleJson = Json.createObjectBuilder()
                         .add("title", article.getTitle())
-                        .add("link", resourceResolver.map(article.getPath() + ".html"))
+                        .add("link", article.getPath() + ".html")
                         .add("description", article.getDescription())
                         .add("image", assetUtilService.resolvePath(article.getListimage()))
                         .add("date", article.getCreatedfriendly())
