@@ -33,9 +33,6 @@ public class ArticleGridV2 {
     @Inject
     private Page currentPage;
 
-    @Inject
-    private ResourceResolver resourceResolver;
-
     @OSGiService
     private InitUtil initUtil;
 
