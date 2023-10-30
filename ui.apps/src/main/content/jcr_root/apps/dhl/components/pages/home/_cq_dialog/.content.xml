@@ -1461,19 +1461,19 @@
                                                                             fieldLabel="Label (Desktop only)"
                                                                             emptyText="Share on"
                                                                             name="./articleHeader-shareOn">
-                                                                    <granite:data
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            cq-msm-lockable="./articleHeader-shareOn"/>
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./articleHeader-shareOn"/>
                                                                     </shareOn>
                                                                     <socialNetwork
                                                                             jcr:primaryType="nt:unstructured"
-                                                                            fieldLabel="Social Network Icons"
+                                                                            fieldLabel="Social Network Icons (inheritance cancelled)"
                                                                             fieldDescription="Add icons for the list of social networks to be displayed on the left side"
                                                                             composite="{Boolean}true"
                                                                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                                                                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                                                jcr:primaryType="nt:unstructured"
-                                                                                name="./multifields/socialNetwork">
+                                                                               jcr:primaryType="nt:unstructured"
+                                                                               name="./multifields/socialNetwork">
                                                                             <items jcr:primaryType="nt:unstructured">
                                                                                 <socialNetworkName
                                                                                         jcr:primaryType="nt:unstructured"
@@ -1522,9 +1522,9 @@
                                                                                               that visitors will most likely engage with based on visitor characteristics"
                                                                             emptyText="Share"
                                                                             name="./articleHeader-smartShareButtonsLabel">
-                                                                    <granite:data
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            cq-msm-lockable="./articleHeader-followLabel"/>
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./articleHeader-followLabel"/>
                                                                     </smartShareButtonsLabel>
                                                                     <smartShareButtonsIcon
                                                                             jcr:primaryType="nt:unstructured"
@@ -1535,9 +1535,9 @@
                                                                                               that visitors will most likely engage with based on visitor characteristics"
                                                                             rootPath="/content/dam"
                                                                             name="./articleHeader-smartShareButtonsIconPath">
-                                                                    <granite:data
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            cq-msm-lockable="./articleHeader-smartShareButtonsIconPath"/>
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./articleHeader-smartShareButtonsIconPath"/>
                                                                     </smartShareButtonsIcon>
                                                                 </items>
                                                             </shareIcons>
@@ -1622,48 +1622,76 @@
                                                             <mobileBackgroundImage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/mobileBackgroundImage"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-mobileBackgroundImage"
                                                                     rootPath="/content/dam"
-                                                                    fieldLabel="Mobile Background Image"/>
+                                                                    fieldLabel="Mobile Background Image">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-mobileBackgroundImage"/>
+                                                            </mobileBackgroundImage>
                                                             <tabletBackgroundImage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/tabletBackgroundImage"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-tabletBackgroundImage"
                                                                     rootPath="/content/dam"
-                                                                    fieldLabel="Tablet Background Image"/>
+                                                                    fieldLabel="Tablet Background Image">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-tabletBackgroundImage"/>
+                                                            </tabletBackgroundImage>
                                                             <desktopBackgroundImage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/desktopBackgroundImage"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-desktopBackgroundImage"
                                                                     rootPath="/content/dam"
-                                                                    fieldLabel="Desktop Background Image"/>
+                                                                    fieldLabel="Desktop Background Image">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-desktopBackgroundImage"/>
+                                                            </desktopBackgroundImage>
                                                             <topTitle
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                     fieldLabel="Title"
-                                                                    emptyText="Subscribe To Our Newsletter"
-                                                                    value="Subscribe To Our Newsletter"
-                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/topTitle"/>
+                                                                    emptyText="Stay In The Loop!"
+                                                                    value="Stay In The Loop!"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-topTitle">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-topTitle"/>
+                                                            </topTitle>
                                                             <title
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                     fieldLabel="Title"
-                                                                    emptyText="Subscribe To Our Newsletter"
-                                                                    value="Subscribe To Our Newsletter"
-                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/title"/>
+                                                                    emptyText="Subscribe To Our Newsletter And Be The First To Receive Exclusive Updates, Exciting Offers, And Insider Insights"
+                                                                    value="Subscribe To Our Newsletter And Be The First To Receive Exclusive Updates, Exciting Offers, And Insider Insights"
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-title">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-title"/>
+                                                            </title>
                                                             <buttonName
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                     fieldLabel="Button Name"
                                                                     emptyText="Subscribe"
                                                                     value="Subscribe"
-                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/buttonName"/>
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-buttonName">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-buttonName"/>
+                                                            </buttonName>
                                                             <buttonLink
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                     fieldLabel="CTA Path"
                                                                     rootPath="/content/dhl"
-                                                                    name="./article/ctaBanner/subscribeToOurNewsletter/buttonLink"/>
+                                                                    name="./ctaBanner-article-subscribeToOurNewsletter-buttonLink">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-subscribeToOurNewsletter-buttonLink"/>
+                                                            </buttonLink>
                                                         </items>
                                                         <parentConfig jcr:primaryType="nt:unstructured"
                                                                       active="{Boolean}false"/>
@@ -1672,6 +1700,76 @@
                                             </accordion>
                                         </items>
                                     </articleRelated>
+
+                                    <articleCategoryRelated
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="Article Category Related Components"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <accordion
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/accordion"
+                                                    multiple="{Boolean}true" variant="quiet" margin="{Boolean}true">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <articleGrid
+                                                            jcr:title="Article Grid"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <title
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Title"
+                                                                    emptyText="Categories"
+                                                                    value="Categories"
+                                                                    name="./articleGrid-title">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./articleGrid-title"/>
+                                                            </title>
+                                                            <allTitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Title for 'All' category"
+                                                                    emptyText="All"
+                                                                    name="./articleGrid-allTitle">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./articleGrid-allTitle"/>
+                                                            </allTitle>
+                                                            <sortTitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Title for 'Sort' selector"
+                                                                    emptyText="Sort By"
+                                                                    name="./articleGrid-sortTitle">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./articleGrid-sortTitle"/>
+                                                            </sortTitle>
+                                                            <latestOptionTitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Name for the 'Latest' option in selector"
+                                                                    emptyText="Latest"
+                                                                    name="./articleGrid-latestOptionTitle">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./articleGrid-latestOptionTitle"/>
+                                                            </latestOptionTitle>
+                                                            <showTags
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                                                    text="Show yellow tags inside article cards"
+                                                                    name="./articleGrid-showTags"
+                                                                    cq-msm-lockable="./articleGrid-showTags"
+                                                                    value="true"/>
+                                                        </items>
+                                                    </articleGrid>
+                                                </items>
+                                            </accordion>
+                                        </items>
+                                    </articleCategoryRelated>
                                 </items>
                             </column>
                         </items>
