@@ -10,20 +10,11 @@
                 <editable-category-page jcr:primaryType="nt:unstructured">
                     <category_page_policy
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="Category Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="[core.wcm.components.teaser.v1.design,core.wcm.components.teaser.v2.editor,core.wcm.components.carousel.v1,core.wcm.components.image.v3.editor]">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </category_page_policy>
-                    <policy_1698235912030
-                            jcr:lastModified="{Date}2023-10-25T17:40:22.467+03:00"
-                            jcr:lastModifiedBy="admin"
-                            jcr:primaryType="nt:unstructured"
                             jcr:title="DHL Category Template Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="[wcm.foundation.components.page.responsive]">
+                            clientlibs="[wcm.foundation.components.page.responsive,core.wcm.components.teaser.v1.design,core.wcm.components.teaser.v2.editor,core.wcm.components.carousel.v1,core.wcm.components.image.v3.editor]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </policy_1698235912030>
+                    </category_page_policy>
                 </editable-category-page>
                 <editable-article jcr:primaryType="nt:unstructured">
                     <policy_1169514762602900
