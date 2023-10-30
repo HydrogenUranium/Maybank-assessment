@@ -70,16 +70,14 @@
 									<li>${ 'Unsubscribe any time' @ i18n, context='html' }</li>
 								</ul>
 
-								<div class="forms marketoForm " data-marketo-form='{
-									"hiddenMunchkinId": "078-ERT-522",
-									"hiddenFormId": 1759
-									}'
-									source="noconf"
-									munchkinId = "${marketoConfig.getMarketoMunchkinId @ context='attribute' || marketoConfig.getDefaultSubscribePanelMunchkinId || '903-EZK-832' }"
-									formId = "${marketoConfig.getMarketoFormId @ context='attribute' || marketoConfig.getDefaultSubscribePanelFormId || '1799' }"
-								 	formHost = "${marketoConfig.getMarketoHostname @ context='attribute' || marketoConfig.getDefaultMarketoHostname} "
-                                    hiddenMunchkinId = "${marketoConfig.getHiddenMarketoMunchkinId @ context='attribute' || marketoConfig.getDefaultSubscribePanelHiddenMunchkinId || '903-EZK-832' }"
-                                    hiddenFormId = "${marketoConfig.getHiddenMarketoId @ context='attribute' || marketoConfig.getDefaultSubscribePanelHiddenFormId || '1759'}"
+								<div class="forms marketoForm " data-marketo-form
+									source="conf"
+									munchkinId = "${marketoConfig.getMarketoMunchkinId || '903-EZK-832' @ context='attribute'}"
+									formId = "${marketoConfig.getMarketoFormId || '1799' @ context='attribute'}"
+								 	formHost = "${marketoConfig.getMarketoHostname @ context='attribute'}"
+                                    hiddenFormId = "${marketoConfig.getHiddenMarketoId || '1759' @ context='attribute'}"
+                                    action="${accountactions.getAssetprefix}${currentPage.path}.form.html"
+                                    formstart="${accountactions.getAssetprefix}${currentNode.path}.form.html"
 								>
 									<div class="wysiwyg">
 										<div data-marketo-visible-form>

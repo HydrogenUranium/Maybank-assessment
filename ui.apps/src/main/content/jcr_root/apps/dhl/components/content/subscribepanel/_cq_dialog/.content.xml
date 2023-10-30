@@ -67,6 +67,14 @@
                                     value="903-EZK-832"
                                     emptyText="Marketo project ID of the 'hidden' form, such as 903-EZK-832"
                                     fieldDescription="Marketo project (munchkin ID)"/>
+                            <hiddenmarketoformid
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="HIDDEN Marketo FormID"
+                                    name="./hiddenMarketoId"
+                                    value="1759"
+                                    emptyText="Marketo form ID of the 'hidden' form, such as 1759"
+                                    fieldDescription="Form (asset) ID of the form in Marketo. Refers to 'hidden' form."/>
                             <marketoHostname
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
