@@ -31,7 +31,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleGridV2Test {
-    private final AemContext context = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
+    private final AemContext context = new AemContext();
     private final MockSlingHttpServletRequest request = context.request();
     private final ResourceResolver resourceResolver = context.resourceResolver();
 
