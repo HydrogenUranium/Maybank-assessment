@@ -52,37 +52,19 @@
             "item_0": {
               "jcr:primaryType": "nt:unstructured",
               "imageFromPageImage": "true",
-              "linkURL": "/content/dhl/us/en-us/small-business-advice/business-innovation-trends/what-next-for-the-sharing-economy",
+              "linkURL": "/content/dhl/us/en-us/small-business-advice/starting-a-business",
               "sling:resourceType": "dhl/components/content/article-teaser"
             },
             "item_1": {
               "jcr:primaryType": "nt:unstructured",
               "imageFromPageImage": "true",
-              "linkURL": "/content/dhl/us/en-us/small-business-advice/knowing-your-customer/thinking-inside-the-box",
+              "linkURL": "/content/dhl/us/en-us/small-business-advice/growing-your-business",
               "sling:resourceType": "dhl/components/content/article-teaser"
             },
             "item_2": {
               "jcr:primaryType": "nt:unstructured",
               "imageFromPageImage": "true",
-              "linkURL": "/content/dhl/us/en-us/small-business-advice/starting-a-business/what-is-on-demand-delivery",
-              "sling:resourceType": "dhl/components/content/article-teaser"
-            },
-            "item_3": {
-              "jcr:primaryType": "nt:unstructured",
-              "imageFromPageImage": "true",
-              "linkURL": "/content/dhl/us/en-us/small-business-advice/starting-a-business/returns-management",
-              "sling:resourceType": "dhl/components/content/article-teaser"
-            },
-            "item_4": {
-              "jcr:primaryType": "nt:unstructured",
-              "imageFromPageImage": "true",
-              "linkURL": "/content/dhl/us/en-us/small-business-advice/business-innovation-trends/robots-in-small-business",
-              "sling:resourceType": "dhl/components/content/article-teaser"
-            },
-            "item_5": {
-              "jcr:primaryType": "nt:unstructured",
-              "imageFromPageImage": "true",
-              "linkURL": "/content/dhl/us/en-us/small-business-advice/business-innovation-trends/small-business-news",
+              "linkURL": "/content/dhl/us/en-us/small-business-advice/business-innovation-trends",
               "sling:resourceType": "dhl/components/content/article-teaser"
             }
           }
