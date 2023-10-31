@@ -1,6 +1,7 @@
 .article-carousel {
   max-width: 1640px;
   margin: auto;
+  float: none !important;
 
   @include respond(md) {
     background: #F6F6F6 0% 0% no-repeat padding-box;
