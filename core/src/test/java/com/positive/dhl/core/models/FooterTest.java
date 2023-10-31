@@ -41,7 +41,7 @@ class FooterTest {
 		ctx.currentResource("/content/dhl/country/en");
 
 		Footer footer = ctx.request().adaptTo(Footer.class);
-		assert footer != null;
+		assertNotNull(footer);
 		assertEquals("Categories:", footer.getTitleColumnOne());
 		assertEquals("Most Read:", footer.getTitleColumnTwo());
 		assertEquals("Popular Topics:", footer.getTitleColumnTags());

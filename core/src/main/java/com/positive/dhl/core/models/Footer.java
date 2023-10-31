@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.positive.dhl.core.services.PageUtilService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -15,6 +16,9 @@ import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+
+import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
+import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
 
 /**
  *
@@ -174,7 +178,7 @@ public class Footer {
 		while (children.hasNext()) {
 			Page child = children.next();
 			ValueMap properties = child.adaptTo(ValueMap.class);
-			if ((properties != null) && ("dhl/components/pages/articlecategory").equals(properties.get("jcr:content/sling:resourceType", ""))) {
+			if ((properties != null) && StringUtils.equalsAny(properties.get("jcr:content/sling:resourceType", ""), CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
 				String url = child.getPath() + ".html";
 
 				boolean hideInNav = properties.get("jcr:content/hideInNav", false);
