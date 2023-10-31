@@ -10,6 +10,8 @@ import org.apache.sling.xss.XSSAPI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -75,12 +77,13 @@ class InputParamHelperImplTest {
 		assertEquals(2, formInputBase.getFormInputData().get(0).getLeadFormFields().size());
 	}
 
-	@Test
-	void getFormId(){
+	@ParameterizedTest
+	@ValueSource(strings = {"1234","1234 ", " 1234"})
+	void getFormId(String testId){
 		Map<String,Object> requestParamMap = new HashMap<>();
 		requestParamMap.put("dummy-field", "dummy-field-value");
 		requestParamMap.put("another-dummy-field", "another-dummy-field-value");
-		requestParamMap.put("formId", "1234");
+		requestParamMap.put("formId", testId);
 		request.setParameterMap(requestParamMap);
 		int formId = underTest.getFormId(request);
 		assertEquals(1234, formId);
