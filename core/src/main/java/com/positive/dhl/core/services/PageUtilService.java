@@ -24,8 +24,11 @@ public class PageUtilService {
     public static final int CATEGORY_PAGE_LEVEL = HOME_PAGE_LEVEL + 1;
     public static final int HOME_PAGE_DEPTH = HOME_PAGE_LEVEL + 1;
 
-    private static final String HOME_PAGE_STATIC_RESOURCE_TYPE = "dhl/components/pages/home";
-    private static final String HOME_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-home-page";
+    public static final String HOME_PAGE_STATIC_RESOURCE_TYPE = "dhl/components/pages/home";
+    public static final String HOME_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-home-page";
+
+    public static final String CATEGORY_PAGE_STATIC_RESOURCE_TYPE = "dhl/components/pages/articlecategory";
+    public static final String CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-category-page";
 
     public int getHomePageLevel() {
         return HOME_PAGE_LEVEL;

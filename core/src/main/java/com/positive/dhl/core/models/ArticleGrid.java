@@ -10,6 +10,7 @@ import com.positive.dhl.core.services.CategoryFinder;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -30,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import static com.positive.dhl.core.services.PageUtilService.*;
 
 
 /**
@@ -252,8 +255,7 @@ public class ArticleGrid {
 	private CategoryLink getCategoryLinkFromPage(Page page){
 		ValueMap categoryProperties = page.getProperties();
 
-		if (categoryProperties.get(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, "").
-				equals(com.positive.dhl.core.constants.DiscoverConstants.CATEGORY_PAGE_TEMPLATE)) {
+		if (StringUtils.equalsAny(categoryProperties.get(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, ""), CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
 			String title = categoryProperties.get("navTitle", "");
 			if (title.trim().length() == 0) {
 				title = categoryProperties.get(JcrConstants.JCR_TITLE, "");
@@ -263,9 +265,9 @@ public class ArticleGrid {
 			return new CategoryLink(categoryName, title, page.getPath());
 		}
 		if(LOGGER.isDebugEnabled()){
-		    LOGGER.debug("Page {} does not have a resource type {}, therefore NOT adapting it to CategoryLink object",
+		    LOGGER.debug("Page {} does not have a resource type {} or {}, therefore NOT adapting it to CategoryLink object",
 				    page.getPath(),
-				    com.positive.dhl.core.constants.DiscoverConstants.CATEGORY_PAGE_TEMPLATE);
+					CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE);
 		}
 		return null;
 	}
@@ -466,9 +468,10 @@ public class ArticleGrid {
 	 */
 	private Page getGroupPage(Page self) {
 			String[] resourceTypes = {
-					"dhl/components/pages/home",
-					"dhl/components/pages/editable-home-page",
-					"dhl/components/pages/articlecategory"
+					HOME_PAGE_STATIC_RESOURCE_TYPE,
+					HOME_PAGE_DYNAMIC_RESOURCE_TYPE,
+					CATEGORY_PAGE_STATIC_RESOURCE_TYPE,
+					CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE
 			};
 			return categoryFinder.getGroupPage(resourceTypes,self);
     }
