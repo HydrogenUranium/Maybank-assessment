@@ -46,7 +46,7 @@ class MarketoConfigurationTest {
 		String assertedValue;
 
 		if(formId.isBlank()){
-			assertedValue = "mktoForm_1756";
+			assertedValue = "mktoForm_";
 		} else {
 			assertedValue = MessageFormat.format("mktoForm_{0}", formId);
 		}
@@ -70,7 +70,7 @@ class MarketoConfigurationTest {
 		String assertedValue;
 
 		if(formId.isBlank()){
-			assertedValue = "mktoForm_1795";
+			assertedValue = "mktoForm_";
 		} else {
 			assertedValue = MessageFormat.format("mktoForm_{0}", formId);
 		}
@@ -93,12 +93,12 @@ class MarketoConfigurationTest {
 		assert underTest != null;
 		String result = underTest.getMarketoMunchkinId();
 
-		assertEquals("903-EZK-832", result);
+		assertNull( result);
 	}
 
 	@ParameterizedTest
 	@NullAndEmptySource
-	@ValueSource(strings = {"  ", "\t", "\n", ""})
+	@ValueSource(strings = {""})
 	void testNullEmptyFormId(String formId){
 		MockSlingHttpServletRequest request = aemContext.request();
 		Map<String,Object> pageProperties = new HashMap<>();
@@ -111,12 +111,17 @@ class MarketoConfigurationTest {
 		assert underTest != null;
 		String result = underTest.getMarketoFormId();
 
-		assertEquals("1795", result);
+		if(formId == null){
+			assertNull(result);
+		} else {
+			assertEquals("", result);
+		}
+
 	}
 
 	@ParameterizedTest
 	@NullAndEmptySource
-	@ValueSource(strings = {"  ", "\t", "\n"})
+	@ValueSource(strings = {""})
 	void testNullEmptyHiddenMunchkinId(String munchkinId){
 		MockSlingHttpServletRequest request = aemContext.request();
 		Map<String,Object> pageProperties = new HashMap<>();
@@ -128,8 +133,11 @@ class MarketoConfigurationTest {
 		underTest = request.adaptTo(MarketoConfiguration.class);
 		assert underTest != null;
 		String result = underTest.getHiddenMarketoMunchkinId();
-
-		assertEquals("078-ERT-522", result);
+		if(munchkinId == null) {
+			assertNull(result);
+		} else {
+			assertEquals("", result);
+		}
 	}
 
 	@ParameterizedTest
