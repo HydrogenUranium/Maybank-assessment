@@ -1,7 +1,6 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.Template;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.AssetUtilService;
@@ -9,7 +8,7 @@ import com.positive.dhl.core.services.InitUtil;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
@@ -30,15 +29,14 @@ import static com.day.cq.wcm.api.commands.WCMCommand.PAGE_TITLE_PARAM;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
 
+import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
+
 @Getter
 @Model(adaptables = SlingHttpServletRequest.class)
 @Slf4j
 public class ArticleGridV2 {
     @Inject
     private Page currentPage;
-
-    @Inject
-    private ResourceResolver resourceResolver;
 
     @OSGiService
     private InitUtil initUtil;
@@ -88,7 +86,10 @@ public class ArticleGridV2 {
 
         getSubCategories().forEach(category -> {
             var categoryArticles = articleService.getLatestArticles(category, 8);
-            categoryArticleMap.put(category.getNavigationTitle(), categoryArticles);
+            var categoryTitle = defaultIfBlank(category.getNavigationTitle(), category.getTitle());
+            if (categoryTitle != null) {
+                categoryArticleMap.put(categoryTitle, categoryArticles);
+            }
         });
     }
 
@@ -96,8 +97,8 @@ public class ArticleGridV2 {
         List<Page> subCategories = new ArrayList<>();
         currentPage.listChildren().forEachRemaining(page -> {
             String template = java.util.Optional.of(page)
-                    .map(Page::getTemplate)
-                    .map(Template::getPageTypePath)
+                    .map(Page::getContentResource)
+                    .map(Resource::getResourceType)
                     .orElse("");
             if (List.of(CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE).contains(template)) {
                 subCategories.add(page);
@@ -114,7 +115,7 @@ public class ArticleGridV2 {
             articles.forEach(article -> {
                 JsonObject articleJson = Json.createObjectBuilder()
                         .add(PAGE_TITLE_PARAM, article.getTitle())
-                        .add("link", resourceResolver.map(article.getPath() + ".html"))
+                        .add("link", article.getPath() + ".html")
                         .add("description", article.getDescription())
                         .add("image", assetUtilService.resolvePath(article.getListimage()))
                         .add("date", article.getCreatedfriendly())

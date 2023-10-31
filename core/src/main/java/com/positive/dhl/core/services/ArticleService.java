@@ -35,36 +35,37 @@ public class ArticleService {
     }
 
     public List<Article> getLatestArticles(Page parent, int limit) {
-        var resolver = resolverHelper.getReadResourceResolver();
-        Map<String, String> customPublishProp = Map.of(
-                "type", "cq:Page",
-                "path", parent.getPath(),
-                "1_property", "jcr:content/cq:template",
-                "1_property.operation", "like",
-                "1_property.value", "/conf/dhl/settings/wcm/templates/article",
-                "2_property", "jcr:content/custompublishdate",
-                "2_property.operation", "exists",
-                "orderby", "@jcr:content/custompublishdate",
-                "orderby.sort", "ask",
-                "p.limit", limit + ""
-        );
+        try (var resolver = resolverHelper.getReadResourceResolver()) {
+            Map<String, String> customPublishProp = Map.of(
+                    "type", "cq:Page",
+                    "path", parent.getPath(),
+                    "1_property", "jcr:content/cq:template",
+                    "1_property.operation", "like",
+                    "1_property.value", "/conf/dhl/settings/wcm/templates/article",
+                    "2_property", "jcr:content/custompublishdate",
+                    "2_property.operation", "exists",
+                    "orderby", "@jcr:content/custompublishdate",
+                    "orderby.sort", "ask",
+                    "p.limit", limit + ""
+            );
 
-        Map<String, String> createdProp = new HashMap<>(customPublishProp);
-        createdProp.put("orderby", "@jcr:content/jcr:created");
-        createdProp.put("2_property.operation", "not");
+            Map<String, String> createdProp = new HashMap<>(customPublishProp);
+            createdProp.put("orderby", "@jcr:content/jcr:created");
+            createdProp.put("2_property.operation", "not");
 
-        Map<String, String> lastModifiedProp = new HashMap<>(createdProp);
-        createdProp.put("orderby", "@jcr:content/cq:lastModified");
+            Map<String, String> lastModifiedProp = new HashMap<>(createdProp);
+            createdProp.put("orderby", "@jcr:content/cq:lastModified");
 
-        Map<String, Article> articleMap = new HashMap<>();
+            Map<String, Article> articleMap = new HashMap<>();
 
-        searchArticles(customPublishProp, resolver).forEach(article -> articleMap.put(article.getPath(), article));
-        searchArticles(createdProp, resolver).forEach(article -> articleMap.put(article.getPath(), article));
-        searchArticles(lastModifiedProp, resolver).forEach(article -> articleMap.put(article.getPath(), article));
+            searchArticles(customPublishProp, resolver).forEach(article -> articleMap.put(article.getPath(), article));
+            searchArticles(createdProp, resolver).forEach(article -> articleMap.put(article.getPath(), article));
+            searchArticles(lastModifiedProp, resolver).forEach(article -> articleMap.put(article.getPath(), article));
 
-        List<Article> articles = new ArrayList<>(articleMap.values());
-        articles.sort((o1, o2) -> o2.getCreatedDate().compareTo(o1.getCreatedDate()));
-        return articles.subList(0, Math.min(limit, articles.size()));
+            List<Article> articles = new ArrayList<>(articleMap.values());
+            articles.sort((o1, o2) -> o2.getCreatedDate().compareTo(o1.getCreatedDate()));
+            return articles.subList(0, Math.min(limit, articles.size()));
+        }
     }
 
     private List<Article> searchArticles(Map<String, String> props, ResourceResolver resolver) {

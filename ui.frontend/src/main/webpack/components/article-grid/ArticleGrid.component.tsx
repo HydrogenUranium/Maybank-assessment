@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { registerComponent } from '../../react-core/registry';
 import { ArticleCard } from './molecules/ArticleCard';
 import { Article } from './types';
 
 import styles from './styles.module.scss';
-import articleCardStyles from './molecules/styles.module.scss';
 
 interface ArticleGridProps {
     title: string;
@@ -28,19 +27,6 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({ title, categories, sho
     const [sortBy] = useState(sorting.options ? sorting.options[0].name : "");
     const [displayedArticles, setDisplayedArticles] = useState(categories.length ? categories[0].articles : []);
     const [selectedCategory, setCategory] = useState(categories.length ? categories[0].name : "");
-
-    // This is a hack to make sure that the first two lines of articles are always displayed and the rest are hidden
-    useEffect(() => {
-        if (articleListElement.current) {
-            const linesSet = new Set();
-
-            const lines = articleListElement.current.querySelectorAll("." + articleCardStyles.articleCard);
-            lines.forEach((line: HTMLElement) => {
-                linesSet.add(line.getBoundingClientRect().top);
-                line.style.display = linesSet.size > 2 ? "none" : "block";
-            });
-        }
-    }, [articleListElement, displayedArticles]);
 
     const handleCategoryClick = (categoryName: string, event) => {
         //This is used to prevent click event after dragging element
@@ -67,7 +53,7 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({ title, categories, sho
                 </div>
             </div>
             <ul className={`${styles.articleGridCategories} horizontal-scroll`}>
-                {categories.map((category, index) => (
+                {categories.map((category) => (
                     <li
                         className={`${styles.articleGridCategoriesCategory}
                             ${selectedCategory === category.name ? styles.articleGridCategoriesCategorySelected : ""}
@@ -79,15 +65,13 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({ title, categories, sho
                     </li>
                 ))}
             </ul>
-            <div >
-                <div ref={articleListElement} className={styles.articleGridArticles}>
-                    {displayedArticles.map((article) => (
-                        <ArticleCard
-                            article={article} key={article.link}
-                            showTags={showTags}
-                        />
-                    ))}
-                </div>
+            <div ref={articleListElement} className={styles.articleGridArticles}>
+                {displayedArticles.map((article) => (
+                    <ArticleCard
+                        article={article} key={article.link}
+                        showTags={showTags}
+                    />
+                ))}
             </div>
         </div>
     );
