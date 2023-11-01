@@ -247,6 +247,12 @@ Import-Package: javax.annotation;version=0.0.0,*
             <version>2.1.0</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
     </dependencies>
 
     <profiles>
