@@ -30,9 +30,9 @@ public class DiscoverCategoryPageRewriteRule extends DiscoverPageRewriteRuleCust
 
     @Modified
     @Activate
-    protected void init(Config config) {
+    protected void init(Config configuration) {
         super.resourceResolverHelper = resourceResolverHelperService;
-        super.activate(config);
+        super.activate(configuration);
     }
 
     @Override
