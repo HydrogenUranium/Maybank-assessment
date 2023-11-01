@@ -25,11 +25,11 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Description"
                             name="./description"/>
-                    <buttonName
+                    <buttonLabel
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Button Name"
-                            name="./buttonName"/>
+                            fieldLabel="Button Label"
+                            name="./buttonLabel"/>
                     <buttonLink
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
