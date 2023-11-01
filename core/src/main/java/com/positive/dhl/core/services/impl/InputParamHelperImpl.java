@@ -64,7 +64,7 @@ public class InputParamHelperImpl implements InputParamHelper {
 	public int getFormId(SlingHttpServletRequest request) {
 		var parameter = request.getRequestParameter(DiscoverConstants.FORMID_PARAM_NAME);
 		if(null != parameter){
-			String paramValue = xssapi.filterHTML(parameter.getString());
+			String paramValue = xssapi.filterHTML(parameter.getString().trim());
 			return Integer.parseInt(paramValue);
 		}
 		LOGGER.error("Form ID parameter was not present in the form submission. We return 0 but that is most likely wrong");
