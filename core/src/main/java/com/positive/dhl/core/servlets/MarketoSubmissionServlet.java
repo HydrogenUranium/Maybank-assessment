@@ -28,7 +28,11 @@ import java.util.List;
 		service = {Servlet.class})
 @SlingServletPrefix("/apps/")
 @SlingServletResourceTypes(
-		resourceTypes = "dhl/components/content/inlineshipnowmarketoconfigurable",
+		resourceTypes = {
+			"dhl/components/content/inlineshipnowmarketoconfigurable",
+			"dhl/components/content/download",
+			"dhl/components/content/subscribepanel"
+		},
 		methods = HttpConstants.METHOD_POST,
 		extensions = "html",
 		selectors = "form"
