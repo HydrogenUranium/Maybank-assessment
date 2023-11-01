@@ -28,8 +28,7 @@
       font: normal normal normal 20px/40px Delivery, sans-serif;
       color: #D40511;
       padding: 0 20px;
-      width: 400px;
-      max-width: 100%;
+      min-width: min(400px, 100%);
       &:hover {
         background-color: #D40511;
         color: white;
