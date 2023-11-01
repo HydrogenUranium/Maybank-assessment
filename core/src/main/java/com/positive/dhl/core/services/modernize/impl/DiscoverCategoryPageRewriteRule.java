@@ -26,14 +26,13 @@ import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOU
 @Slf4j
 public class DiscoverCategoryPageRewriteRule extends DiscoverPageRewriteRuleCustomContentMigration {
     @Reference
-    protected ResourceResolverHelper resolverHelper;
+    protected ResourceResolverHelper resourceResolverHelperService;
 
-    @Activate
     @Modified
-    @Override
-    protected void activate(Config config) {
+    @Activate
+    protected void init(Config config) {
+        super.resourceResolverHelper = resourceResolverHelperService;
         super.activate(config);
-        super.resourceResolverHelper = resolverHelper;
     }
 
     @Override
