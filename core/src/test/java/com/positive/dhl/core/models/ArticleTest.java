@@ -39,7 +39,7 @@ class ArticleTest {
         assertEquals("#SmallBusinessAdvice", article.getGroupTag());
         assertEquals("/content/dhl/global/home/small-business-advice", article.getGrouppath());
         assertEquals("Small Business advice", article.getGrouptitle());
-        assertEquals(true, article.getValid());
+        assertEquals(true, article.isValid());
         assertNull(article.getThird());
         assertEquals("/content/dam/desktop.jpg", article.getHeroimagedt());
         assertEquals("/content/dam/mobile.jpg", article.getHeroimagemob());

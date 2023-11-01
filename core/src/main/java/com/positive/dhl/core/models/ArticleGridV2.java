@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
@@ -25,6 +24,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.day.cq.wcm.api.commands.WCMCommand.PAGE_TITLE_PARAM;
+import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
+import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
 
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 
@@ -97,7 +100,7 @@ public class ArticleGridV2 {
                     .map(Page::getContentResource)
                     .map(Resource::getResourceType)
                     .orElse("");
-            if (List.of("dhl/components/pages/articlecategory", "dhl/components/pages/editable-category-page").contains(template)) {
+            if (List.of(CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE).contains(template)) {
                 subCategories.add(page);
             }
         });
@@ -111,7 +114,7 @@ public class ArticleGridV2 {
             JsonArrayBuilder articlesJson = Json.createArrayBuilder();
             articles.forEach(article -> {
                 JsonObject articleJson = Json.createObjectBuilder()
-                        .add("title", article.getTitle())
+                        .add(PAGE_TITLE_PARAM, article.getTitle())
                         .add("link", article.getPath() + ".html")
                         .add("description", article.getDescription())
                         .add("image", assetUtilService.resolvePath(article.getListimage()))
@@ -127,11 +130,11 @@ public class ArticleGridV2 {
         categories.build();
 
         return Json.createObjectBuilder()
-                .add("title", title)
+                .add(PAGE_TITLE_PARAM, title)
                 .add("showTags", showTags.equals("true"))
                 .add("categories", categories)
                 .add("sorting", Json.createObjectBuilder()
-                        .add("title", sortTitle)
+                        .add(PAGE_TITLE_PARAM, sortTitle)
                         .add("options", Json.createArrayBuilder()
                                 .add(Json.createObjectBuilder()
                                         .add("name", latestOptionTitle))))

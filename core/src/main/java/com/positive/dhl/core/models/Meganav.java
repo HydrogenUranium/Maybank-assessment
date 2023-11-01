@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 
 import com.positive.dhl.core.services.PageUtilService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -18,6 +19,9 @@ import org.apache.sling.models.annotations.Model;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+
+import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
+import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
 
 /**
  *
@@ -187,7 +191,8 @@ public class Meganav {
 		while (children.hasNext()) {
 			Page child = children.next();
 			ValueMap childProperties = child.adaptTo(ValueMap.class);
-			if ((childProperties != null) && ("dhl/components/pages/articlecategory").equals(childProperties.get("jcr:content/sling:resourceType", ""))) {
+			if (childProperties != null
+					&& StringUtils.equalsAny(childProperties.get("jcr:content/sling:resourceType", ""), CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
 				boolean hideInNav = childProperties.get("jcr:content/hideInNav", false);
 				if (hideInNav) {
 					continue;
