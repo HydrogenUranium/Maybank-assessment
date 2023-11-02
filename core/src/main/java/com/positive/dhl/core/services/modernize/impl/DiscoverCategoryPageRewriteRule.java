@@ -54,6 +54,9 @@ public class DiscoverCategoryPageRewriteRule extends DiscoverPageRewriteRuleCust
             node.setProperty("linkURL", paths.get(i));
             node.setProperty("imageFromPageImage", "true");
             node.setProperty(SLING_RESOURCE_TYPE_PROPERTY, "dhl/components/content/article-teaser");
+            node.setProperty("cq:panelTitle", "Article Teaser " + i);
+            node.setProperty("titleFromPage", "true");
+            node.setProperty("altValueFromDAM", "false");
         }
     }
 

@@ -26,7 +26,7 @@
       padding: 20px 35px 0;
 
       @include respond(md) {
-        padding: 20px 0 0;
+        padding: 20px 0;
         font-size: 30px;
       }
 
@@ -148,6 +148,7 @@
           transition: width 500ms;
           font-size: 0;
           text-indent: -3000px;
+          cursor: pointer;
 
           &--active {
             width: 31px;
