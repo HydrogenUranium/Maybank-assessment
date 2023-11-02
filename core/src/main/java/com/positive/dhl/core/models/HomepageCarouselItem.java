@@ -7,13 +7,13 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
 
 /**
  *
  */
-@Model(adaptables=Resource.class)
+@Model(adaptables=Resource.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class HomepageCarouselItem {
     @Inject
     public String imagemob;
@@ -30,7 +30,6 @@ public class HomepageCarouselItem {
     @Inject
     public String subtitle;
 
-    @Optional
     @Inject
     public String readtime;
 
@@ -49,7 +48,6 @@ public class HomepageCarouselItem {
     @Inject
     public String ctapath;
 
-    @Optional
     @Inject
     public String ctagrouppath;
 
