@@ -33,7 +33,7 @@ public class ArticleTeaserModel {
     private String linkURL;
 
     @ValueMapValue
-    private String altValueFromDAM;
+    private String altValueFromPageImage;
 
     @ValueMapValue
     private String alt;
@@ -77,7 +77,7 @@ public class ArticleTeaserModel {
                     .map(props -> props.get("listimage", StringUtils.EMPTY))
                     .orElse(StringUtils.EMPTY);
 
-            altTextFromPageImage = !Boolean.parseBoolean(altValueFromDAM)
+            altTextFromPageImage = !Boolean.parseBoolean(altValueFromPageImage)
                     ? alt
                     : Optional.of(imagePathFromPage)
                     .map(resourceResolver::getResource)

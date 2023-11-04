@@ -12,7 +12,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="DHL Category Template Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="[wcm.foundation.components.page.responsive,core.wcm.components.teaser.v1.design,core.wcm.components.teaser.v2.editor,core.wcm.components.carousel.v1,core.wcm.components.image.v3.editor]">
+                            clientlibs="[wcm.foundation.components.page.responsive]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </category_page_policy>
                 </editable-category-page>
@@ -139,22 +139,6 @@
                     </article_carousel_policy>
                 </article-carousel>
                 <article-teaser jcr:primaryType="nt:unstructured">
-                    <policy_1698190697067
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="Article Teaser Policy"
-                        sling:resourceType="wcm/core/components/policy/policy"
-                        actionsDisabled="true"
-                        allowedHeadingElements="[h1,h2,h3,h4,h5,h6]"
-                        descriptionHidden="true"
-                        disableLazyLoading="false"
-                        displayPopupTitle="true"
-                        isDecorative="false"
-                        pretitleHidden="true"
-                        showTitleType="false"
-                        titleType="h2"
-                        titleValueFromDAM="true">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </policy_1698190697067>
                     <image jcr:primaryType="nt:unstructured">
                         <article_teaser_image_policy
                             jcr:primaryType="nt:unstructured"
@@ -254,7 +238,7 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Category Page Root Policy"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/article-teaser,/apps/dhl/components/content/article-teaser/image,/apps/dhl/components/content/article-carousel,/apps/dhl/components/content/article-grid]">
+                        components="[/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/article-teaser/image,/apps/dhl/components/content/article-teaser,/apps/dhl/components/content/article-carousel,/apps/dhl/components/content/article-grid]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </category_page_root_policy>
                 </responsivegrid>
