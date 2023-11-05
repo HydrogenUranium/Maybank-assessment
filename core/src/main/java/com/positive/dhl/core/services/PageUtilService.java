@@ -34,12 +34,23 @@ public class PageUtilService {
         return HOME_PAGE_LEVEL;
     }
 
+    /**
+     * Returns the home page of the given page. By {@code home page} we understand the page that holds various component
+     * configuration entries in its jcr:content
+     * @param page is a {@link Page} that we try to get the homepage of
+     * @return {@code Page} objec that represents the 'home' page (with properties informing the components configurations) or {@code null} if none has been found
+     */
     public Page getHomePage(Page page) {
         return Optional.ofNullable(page)
                 .map(p -> p.getAbsoluteParent(getHomePageLevel()))
                 .orElse(null);
     }
 
+    /**
+     * Returns the {@link ValueMap} (properties) of AEM Page. This implementation is dependent on AEM Page api
+     * @param page is a {@link Page} object whose properties we want to get
+     * @return a {@code ValueMap} that represents the properties of the page or {@code ValueMap.EMPTY} if the page is {@code null}
+     */
     public ValueMap getPageProperties(Page page) {
         return Optional.ofNullable(page)
                 .map(Page::getProperties)

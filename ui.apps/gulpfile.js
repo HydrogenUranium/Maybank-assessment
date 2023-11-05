@@ -1,7 +1,6 @@
 // include gulp
 const gulp = require('gulp');
 const gulpIf = require('gulp-if');
-// const util = require('gulp-util');
 const util = require('minimist');
 const replace = require('gulp-replace');
 const path = require('path');
@@ -12,7 +11,6 @@ const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
 const merge = require('merge-stream');
-// const autoprefixer = require('gulp-autoprefixer');
 const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
 const eslint = require('gulp-eslint-new');
@@ -22,9 +20,8 @@ const buffer = require('vinyl-buffer');
 const browserify = require('browserify');
 const terser = require('gulp-terser');
 
-// Environment
-// const isDev = !util.env.prod;
-const isDev = util(process.argv.slice(2)).env === 'dev'; // replacement for gulp-util 'env' (deprecated for 4 years now)
+const isDev = util(process.argv.slice(3)).dev === true; // replacement for gulp-util 'env' (deprecated for 4 years now)
+console.log('Dev mode on: ' + isDev);
 let prefix = '/etc.clientlibs/dhl/clientlibs';
 
 // Bundler for ES6

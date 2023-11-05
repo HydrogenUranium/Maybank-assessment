@@ -1,0 +1,41 @@
+.cta-banner-gray-component{
+  background-color: #E2E2E2;
+  padding: 40px 40px 30px;
+  .title {
+    font: normal normal bold 30px Delivery, sans-serif;
+    color: #323232;
+    display: block;
+    text-align: center;
+    @include respond(md) {
+      display: initial;
+    }
+  }
+  .description {
+    margin: 18px 0;
+    font: normal normal normal 24px Delivery, sans-serif;
+    color: #323232;
+  }
+  .cta {
+    text-align: center;
+    &__button {
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+      margin: auto;
+      background-color: white;
+      border: 1px solid #D40511;
+      border-radius: 5px;
+      font: normal normal normal 20px/40px Delivery, sans-serif;
+      color: #D40511;
+      padding: 0 20px;
+      min-width: min(400px, 100%);
+      &:hover {
+        background-color: #D40511;
+        color: white;
+      }
+      &:active{
+        background-color: #9a0000;
+      }
+    }
+  }
+}
