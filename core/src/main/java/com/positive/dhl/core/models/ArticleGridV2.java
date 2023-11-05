@@ -100,7 +100,7 @@ public class ArticleGridV2 {
                     .map(Page::getContentResource)
                     .map(Resource::getResourceType)
                     .orElse("");
-            if (List.of(CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE).contains(template)) {
+            if (List.of(CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE).contains(template) && !page.isHideInNav()) {
                 subCategories.add(page);
             }
         });
