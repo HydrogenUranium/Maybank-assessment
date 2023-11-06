@@ -1212,6 +1212,64 @@
                                                         <parentConfig jcr:primaryType="nt:unstructured"
                                                                       active="{Boolean}false"/>
                                                     </ctaBannerOpenBusinessAccount>
+                                                    <ctaBannerGrayIndividualShipper
+                                                            jcr:title="CTA Banner Gray 'Individual Shipper'"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <title
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    name="./ctaBannerGray-individualShipper-title"
+                                                                    fieldLabel="Title">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBannerGray-individualShipper-title"/>
+                                                            </title>
+                                                            <description
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    name="./ctaBannerGray-individualShipper-description"
+                                                                    fieldLabel="Description">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBannerGray-individualShipper-description"/>
+                                                            </description>
+                                                            <buttonLabel
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    name="./ctaBannerGray-individualShipper-buttonLabel"
+                                                                    fieldLabel="Button Label">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBannerGray-individualShipper-buttonLabel"/>
+                                                            </buttonLabel>
+                                                            <buttonLink
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldLabel="CTA Path"
+                                                                    rootPath="/content/dhl"
+                                                                    name="./ctaBannerGray-individualShipper-buttonLink">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBannerGray-individualShipper-buttonLink"/>
+                                                            </buttonLink>
+                                                            <linkTarget
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                    fieldDescription="If checked the link will be opened in a new browser tab."
+                                                                    name="./ctaBannerGray-individualShipper-linkTarget"
+                                                                    text="Open Link in New Tab"
+                                                                    uncheckedValue="_self"
+                                                                    value="_blank">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBannerGray-individualShipper-linkTarget"/>
+                                                            </linkTarget>
+                                                        </items>
+                                                        <parentConfig jcr:primaryType="nt:unstructured"
+                                                                      active="{Boolean}false"/>
+                                                    </ctaBannerGrayIndividualShipper>
                                                     <footer
                                                             jcr:title="Footer v.2"
                                                             jcr:primaryType="nt:unstructured"

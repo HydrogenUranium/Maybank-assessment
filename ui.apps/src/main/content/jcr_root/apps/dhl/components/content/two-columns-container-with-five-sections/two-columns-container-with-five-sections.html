@@ -1,0 +1,35 @@
+<div data-sly-set.isEdit="${wcmmode.edit}" class="two-columns-container-with-five-sections-component
+    ${isEdit ? 'two-columns-container-with-five-sections-component__editor' : 'two-columns-container-with-five-sections-component__adaptive'}">
+    <div class="right-header-section"
+         data-sly-resource="${'headline' @ resourceType='wcm/foundation/components/responsivegrid'}">
+    </div>
+    <div class="main-container">
+        <div class="description-section" data-sly-test="${!isEdit}"
+             data-sly-resource="${'description' @ resourceType='wcm/foundation/components/responsivegrid'}">
+        </div>
+        <div class="columns-section">
+            <div class="columns-section__right-column">
+                <div class="columns-section__right-column__header-section" data-sly-test="${!isEdit}"
+                     data-sly-resource="${'headline' @ resourceType='wcm/foundation/components/responsivegrid'}">
+                </div>
+                <div class="columns-section__right-column__body"
+                     data-sly-resource="${'right-column-body' @ resourceType='wcm/foundation/components/responsivegrid'}">
+                </div>
+                <div class="columns-section__right-column__bottom"
+                     data-sly-resource="${'bottom' @ resourceType='wcm/foundation/components/responsivegrid'}">
+                </div>
+            </div>
+            <div class="columns-section__left-column">
+                <div class="columns-section__left-column__description"
+                     data-sly-resource="${'description' @ resourceType='wcm/foundation/components/responsivegrid'}">
+                </div>
+                <div class="columns-section__left-column__body"
+                     data-sly-resource="${'left-column-body' @ resourceType='wcm/foundation/components/responsivegrid'}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-section" data-sly-test="${!isEdit}"
+         data-sly-resource="${'bottom' @ resourceType='wcm/foundation/components/responsivegrid'}">
+    </div>
+</div>

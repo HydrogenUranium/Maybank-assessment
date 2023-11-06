@@ -15,4 +15,5 @@
     <filter root="/conf/dhl/settings/wcm/templates/article"/>
     <filter root="/conf/dhl/settings/wcm/templates/home-page"/>
     <filter root="/conf/dhl/settings/wcm/templates/category-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/right-aligned-marketo-form"/>
 </workspaceFilter>
