@@ -1,0 +1,12 @@
+{
+  "translationFactory": "Microsoft",
+  "defaultConnectorLabel": "Microsoft Translator",
+  "defaultConnectorAttribution": "Translations by Microsoft",
+  "defaultConnectorAuthUrl": "https://westeurope.api.cognitive.microsoft.com/sts/v1.0/issueToken",
+  "defaultConnectorSubscriptionKey": "$[secret:MS_TRANSLATION_SUBSCRIPTION_KEY]",
+  "languageMapLocation": "granite/translation/connector/config/msft/languageMapping",
+  "categoryMapLocation": "granite/translation/connector/config/msft/categoryMapping",
+  "retryAttempts": 2,
+  "timeoutCount": 0,
+  "defaultConnectorWorkspaceId": ""
+}
