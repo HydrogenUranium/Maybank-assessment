@@ -1,61 +1,90 @@
 .title-component {
-  position: relative;
+  font: normal normal bold 28px/32px Delivery, sans-serif;
   max-width: 1640px;
-  margin: 0px auto 0px auto;
-  background-color: #040404;
-  @include respond(md) {
-    background-color: initial;
-    margin-top: 30px;
-  }
-  @include respond(xl) {
-     margin-top: 45px;
-  }
-  .svg {
-    opacity: 0.29;
-    position: absolute;
-    &_top-left {
-      transform-origin: left;
-      top: 30px;
-      left: 0;
-      transform: translate(-148px, 0px);
-      @include respond(md) {
-        top: 0px;
-        transform: translate(-48px, 0px);
-      }
-      @include respond(xl) {
-        transform: none;
-      }
+
+  &--underline {
+    margin: 30px auto 0;
+    line-height: 29px;
+    font-size: 20px;
+    color: #323232;
+    @include respond(xl) {
+      margin-top: 50px;
+      line-height: 87px;
+      font-size: 60px;
     }
-    &_bottom-right {
-      transform-origin: right;
-      bottom: 30px;
-      right: 0;
-      transform: translate(+148px, 0px);
-      @include respond(md) {
-        bottom: 0px;
-        transform: translate(+48px, 0px);
-      }
-      @include respond(xl) {
-        transform: none;
+    .cmp-title{
+      &__text {
+        display: inline-block;
+        &:after {
+            content: " ";
+            display: block;
+            width: 50%;
+            border: 2px solid #d40511;
+            border-radius: 2px;
+        }
       }
     }
   }
 
-  .title {
-    font: normal normal bold 28px/32px Delivery, sans-serif;
-    color: #FFFFFF;
-    text-align: center;
-    padding: 70px 53px 65px;
-    border-top: 2px solid #454545;
+  &--strips {
+    position: relative;
+    margin: 0px auto 0px auto;
+    background-color: #040404;
     @include respond(md) {
-      border-top: none;
-      color: #323232;
-      padding: 20px 210px;
+      background-color: initial;
+      margin-top: 30px;
     }
     @include respond(xl) {
-      line-height: 42px;
-      font-size: 36px;
-      padding: 0 310px;
+       margin-top: 45px;
+    }
+    .svg {
+      opacity: 0.29;
+      position: absolute;
+      &_top-left {
+        transform-origin: left;
+        top: 30px;
+        left: 0;
+        transform: translate(-148px, 0px);
+        @include respond(md) {
+          top: 0px;
+          transform: translate(-48px, 0px);
+        }
+        @include respond(xl) {
+          transform: none;
+        }
+      }
+      &_bottom-right {
+        transform-origin: right;
+        bottom: 30px;
+        right: 0;
+        transform: translate(+148px, 0px);
+        @include respond(md) {
+          bottom: 0px;
+          transform: translate(+48px, 0px);
+        }
+        @include respond(xl) {
+          transform: none;
+        }
+      }
+    }
+
+    .cmp-title {
+      line-height: 32px;
+      font-size: 28px;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 70px 53px 65px;
+      border-top: 2px solid #454545;
+      @include respond(md) {
+        border-top: none;
+        color: #323232;
+        padding: 20px 210px;
+      }
+      @include respond(xl) {
+        line-height: 42px;
+        font-size: 36px;
+        padding: 0 310px;
+      }
     }
   }
 }
