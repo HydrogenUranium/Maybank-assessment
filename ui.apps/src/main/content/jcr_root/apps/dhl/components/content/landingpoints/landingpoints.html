@@ -1,25 +1,21 @@
-<!--/*
-    Copyright 2015 Adobe Systems Incorporated
-  
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-  
-        http://www.apache.org/licenses/LICENSE-2.0
-  
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-*/-->
-<div class="landingpoints-container" data-sly-use.landingPoints="com.positive.dhl.core.models.LandingPoints" data-sly-list="${landingPoints.landingpointitems}">
-	<div class="landingpoint">
-		<div class="landingpoint__title">
-			<h3><a href="#landingpoint-${item.index}">${item.title}</a></h3>
-		</div>
-		<div class="landingpoint__content">
+<sly data-sly-use.model="com.positive.dhl.core.models.LandingPoints"
+	 data-sly-set.isEmpty="${model.landingPointItems.size == 0}"></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+
+<div class="landing-points-component">
+	<img class="header-image" src="${model.image}" alt="${model.altText}">
+	<div id="${item.id}" class="landing-point" data-sly-repeat="${model.landingPointItems}">
+		<h3 class="landing-point__title">
+			${item.title}
+		</h3>
+		<div class="landing-point__content">
 			${item.content @ context='html'}
 		</div>
+		<style type="text/css">
+			#${item.id @ context='unsafe'}::before {
+				background-image: url('${item.icon || model.defaultIcon @ context='uri'}');
+			}
+		</style>
 	</div>
 </div>

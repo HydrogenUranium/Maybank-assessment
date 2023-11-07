@@ -1431,6 +1431,20 @@
                                                             </socialLinks>
                                                         </items>
                                                     </footer>
+                                                    <landingPoints
+                                                            jcr:title="Landings Points"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <defaultIcon
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldLabel="Default Icon"
+                                                                    fieldDescription="Points will use this icon if it is not configured"
+                                                                    rootPath="/content/dam"
+                                                                    name="./landingPoints-defaultIcon"/>
+                                                        </items>
+                                                    </landingPoints>
                                                 </items>
                                             </accordion>
                                         </items>

@@ -1,0 +1,39 @@
+.landing-points-component {
+  .header-image {
+    margin: 40px auto;
+    max-height: 200px;
+    display: block;
+    @include respond(xl) {
+      max-height: 350px;
+      margin: 20px auto;
+    }
+  }
+  .landing-point {
+    min-height: 45px;
+    color: #323232;
+    position: relative;
+    font: normal normal normal 14px/20px Delivery, sans-serif;
+    @include respond(xl) {
+      font-size: 20px;
+      line-height: 29px;
+    }
+    &::before{
+        content: "";
+        background-size: contain;
+        width: 40px;
+        height: 40px;
+        background-repeat: no-repeat;
+        display: block;
+        position: absolute;
+        top: 5px;
+    }
+    &__title{
+      margin: 0;
+      padding-left: 55px;
+      font-weight: bold;
+    }
+    &__content{
+      padding-left: 55px;
+    }
+  }
+}
