@@ -72,6 +72,7 @@
 
 								<div class="forms marketoForm " data-marketo-form
 									source="conf"
+                                    data-sly-set.marketoFormId="${marketoConfig.marketoFormId}"
 									munchkinId = "${marketoConfig.getMarketoMunchkinId || '903-EZK-832' @ context='attribute'}"
 									formId = "${marketoConfig.getMarketoFormId || '1799' @ context='attribute'}"
 								 	formHost = "${marketoConfig.getMarketoHostname @ context='attribute'}"
@@ -82,7 +83,7 @@
 									<div class="wysiwyg">
 										<div data-marketo-visible-form>
 											<script src="${marketoConfig.getMarketoHostname @ context='unsafe' || 'https://express-resources.dhl.com'}/js/forms2/js/forms2.min.js"></script>
-											<form id="${marketoConfig.formIdAsDivId || 'mktoForm_1799'}"></form>
+											<form id="mktoForm_${marketoFormId || '1799' @ context='attribute'}"></form>
 										</div>
 									</div>
 								</div>
