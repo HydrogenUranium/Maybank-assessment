@@ -105,6 +105,17 @@
           "mediatype": "infographic"
         }
       }
+    },
+    "logistic-advice": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:title": "Logistic Advice - title",
+        "navTitle": "Logistic Advice - navTitle",
+        "hideInNav": true,
+        "cq:template": "dhl/components/pages/editable-category-page",
+        "jcr:primaryType": "cq:PageContent",
+        "sling:resourceType": "dhl/components/pages/editable-category-page"
+      }
     }
   }
 }
