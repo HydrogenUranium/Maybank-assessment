@@ -1,43 +1,27 @@
 package com.positive.dhl.core.models;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.positive.dhl.core.injectors.InjectAsset;
+import lombok.Getter;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 
-/**
- *
- */
-@Model(adaptables=Resource.class)
+import javax.inject.Inject;
+import java.util.UUID;
+
+@Getter
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LandingPointItem {
 	@Inject
-    public String title;
+    private String title;
 
     @Inject
-    public String content;
+    private String content;
 
-	private int index;
-	
-    /**
-	 * 
-	 */
-    public int getIndex() {
-		return index;
-	}
+	@InjectAsset
+	private String icon;
 
-    /**
-	 * 
-	 */
-	public void setIndex(int index) {
-		this.index = index;
-	}
 
-    /**
-	 * 
-	 */
-    @PostConstruct
-	protected void init() {
-    	
-	}
+    private final String id = "landingPoint_" + UUID.randomUUID();
+
 }

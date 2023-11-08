@@ -6,6 +6,7 @@
     <property inherit="true" name="addLabel" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="allowedResponses" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="alt" translate="true" updateDestinationLanguage="false"/>
+    <property inherit="true" name="altText" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="attachFileLabel" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="benefits" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="buttonLabel" translate="true" updateDestinationLanguage="false"/>
