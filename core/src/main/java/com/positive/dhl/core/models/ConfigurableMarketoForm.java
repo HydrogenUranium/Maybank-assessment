@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
@@ -53,9 +54,6 @@ public class ConfigurableMarketoForm {
 	public String shipnowcontent;
 
 	public String getVisibleFormHost(){
-		if(null != marketohost && !marketoformid.isBlank()){
-			return marketohost;
-		}
-		return "https://express-resource.dhl.com";
+		return !StringUtils.isAnyBlank(marketohost, marketoformid) ? marketohost : "https://express-resource.dhl.com";
 	}
 }
