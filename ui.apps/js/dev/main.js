@@ -71,7 +71,6 @@ $(document).ready(() => {
   AuthenticationEvents.init();
   ServiceWorker.init();
   Offline.init();
-  LandingPoints.init();
   BackButton.init();
   MarketoForm.init();
   Shared.init();
