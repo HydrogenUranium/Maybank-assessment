@@ -1,0 +1,51 @@
+.textV2 {
+  padding-top: 15px;
+  font-family: "Delivery", sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  color: #363636;
+
+  h1, h2 {
+    font-size: 20px;
+    line-height: 29px;
+  }
+
+  hr {
+    height: 3px;
+    color: #D40511;
+    background-color: #D40511;
+    max-width: 260px;
+    border-style: none;
+    margin-top: 20px;
+  }
+
+  @include respond(md) {
+    padding-top: 35px;
+    font-size: 20px;
+    line-height: 29px;
+
+    h1, h2 {
+      font-size: 30px;
+      line-height: 43px;
+    }
+
+    hr {
+      margin-top: 40px;
+    }
+  }
+
+  @include respond(xl) {
+    padding-top: 75px;
+    font-size: 30px;
+    line-height: 43px;
+
+    h1, h2 {
+      font-size: 50px;
+      line-height: 72px;
+    }
+
+    hr {
+      margin-top: 80px;
+    }
+  }
+}
