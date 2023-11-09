@@ -28,7 +28,7 @@
 
   &_active {
     cursor: grabbing;
-    a {
+    a, .horizontal-scroll__react-button {
       cursor: grabbing;
     }
   }

@@ -7,6 +7,11 @@
     padding-bottom: 12px;
   }
 
+  &--white {
+    background: map-get($palette, true-white);
+    padding-bottom: 12px;
+  }
+
   &.forms {
     margin-top: 0;
     padding-top: 0;

@@ -1,5 +1,7 @@
 package com.positive.dhl.core.utils;
 
+import com.positive.dhl.core.injectors.AssetInjector;
+import com.positive.dhl.core.services.AssetUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import org.apache.sling.models.spi.Injector;
 
@@ -13,6 +15,38 @@ public class InjectorMock {
     public static String INJECT_ADAPTABLE = "adaptable";
     public static String INJECT_ASSET = "discover-asset";
     public static String INJECT_HOME_PAGE_PROPERTY = "discover-home-property";
+    public static String INJECT_HOME_PAGE_ASSET_PROPERTY = "discover-home-asset-property";
+
+    public static void initAssetInjector(AemContext context) {
+        initAssetInjector(context, "/prefix");
+    }
+
+    public static void initAssetInjector(AemContext context, String prefix) {
+        AssetUtilService assetUtils = mock(AssetUtilService.class);
+        when(assetUtils.resolvePath(anyString())).thenAnswer(invocationOnMock -> prefix + invocationOnMock.getArgument(0, String.class));
+        initAssetInjector(context, assetUtils);
+    }
+
+    public static void initAssetInjector(AemContext context, AssetUtilService assetUtils) {
+        context.registerService(AssetUtilService.class, assetUtils);
+        context.registerInjectActivateService(new AssetInjector());
+    }
+
+    public static void mockInjectAsset(AemContext context, String name, Object value) {
+        mockInject(context, INJECT_ASSET, name, value);
+    }
+
+    public static void mockInjectAsset(AemContext context, Map<String, Object> map) {
+        mockInject(context, INJECT_ASSET, map);
+    }
+
+    public static void mockInjectHomeAssetProperty(AemContext context, String name, Object value) {
+        mockInject(context, INJECT_HOME_PAGE_ASSET_PROPERTY, name, value);
+    }
+
+    public static void mockInjectHomeAssetProperty(AemContext context, Map<String, Object> map) {
+        mockInject(context, INJECT_HOME_PAGE_ASSET_PROPERTY, map);
+    }
 
     public static void mockInjectHomeProperty(AemContext context, String name, Object value) {
         mockInject(context, INJECT_HOME_PAGE_PROPERTY, name, value);

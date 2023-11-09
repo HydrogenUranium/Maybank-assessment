@@ -15,9 +15,6 @@
                 <articlelistcarousel
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/article-carousel"/>
-                <articlegrid
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-grid"/>
             </responsivegrid>
         </root>
     </jcr:content>

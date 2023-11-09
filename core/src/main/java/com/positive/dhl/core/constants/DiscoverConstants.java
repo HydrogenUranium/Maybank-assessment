@@ -20,7 +20,6 @@ public class DiscoverConstants {
 	public static final String DISCOVER_READ_SERVICE="discoverReader";
 	public static final String DISCOVER_WRITE_SERVICE="discoverWriter";
 	private static final String[] CATEGORIES_PROPERTY_NAMES = new String[] { "category0", "category1", "category2", "category3" };
-	public static final String CATEGORY_PAGE_TEMPLATE = "dhl/components/pages/articlecategory";
 	public static final String DHL_COMPONENT_PATH = "dhl/components/pages/";
 	public static final String APPLICATION_JSON = "application/json";
 	public static final String COOKIE_PARAM_NAME = "user_info_cookie";
@@ -36,6 +35,8 @@ public class DiscoverConstants {
 	public static final String DISCOVER_CONTEXT = "/discover";
 	public static final String HTTPS_PREFIX = "https://";
 	public static final String DEFAULT_HOSTNAME = HTTPS_PREFIX + "www.dhl.com";
+
+
 
 	private static final Map<String,String> articlesQueryMap;
 

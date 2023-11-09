@@ -49,6 +49,26 @@ module.exports = {
       assets: {
         js: ['dependencies/js/react-core.bundle.js'],
       }
+    },
+    {
+      ...libsBaseConfig,
+      name: 'discover-category-page',
+      categories: ['dhl.category-page'],
+      embed: ['dhl.react-core', 'dhl.article-grid'],
+      assets: {
+          js: [],
+          css: []
+        }
+    },
+    {
+      ...libsBaseConfig,
+      name: 'discover-article-grid',
+      categories: ['dhl.article-grid'],
+      dependencies: ['dhl.react-core'], 
+      assets: {
+        js: ['site/js/ArticleGrid.bundle.js'],
+        css: ['site/css/ArticleGrid.bundle.css']
+      }
     }
   ]
 };

@@ -126,8 +126,84 @@
           "jcr:content": {
             "jcr:primaryType": "cq:PageContent",
             "jcr:title": "CATEGORY PAGE",
-            "cq:template": "/apps/dhl/templates/dhl-article-group-page",
-            "sling:resourceType": "dhl/components/pages/articlecategory"
+            "cq:template": "/conf/dhl/settings/wcm/templates/category-page",
+            "sling:resourceType": "dhl/components/pages/editable-category-page",
+            "root": {
+              "jcr:primaryType": "nt:unstructured",
+              "layout": "responsiveGrid",
+              "sling:resourceType": "wcm/foundation/components/responsivegrid",
+              "responsivegrid": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "article_carousel": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "autopauseDisabled": "false",
+                  "accessibilityAutoItemTitles": "false",
+                  "delay": "5000",
+                  "sling:resourceType": "dhl/components/content/article-carousel",
+                  "autoplay": "false",
+                  "item_from_linked_article_page": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "altValueFromPageImage": "false",
+                    "imageFromPageImage": "true",
+                    "cq:panelTitle": "From Linked Article Page",
+                    "jcr:lastModifiedBy": "admin",
+                    "titleFromPage": "true",
+                    "alt": "Alt text",
+                    "linkURL": "/content/dhl/global/en-global/category-page/article-page-with-new-article-setup",
+                    "linkTarget": "_self",
+                    "sling:resourceType": "dhl/components/content/article-teaser",
+                    "isDecorative": "false"
+                  },
+                  "item_from_linked_subcategory_page": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "altValueFromPageImage": "false",
+                    "imageFromPageImage": "true",
+                    "cq:panelTitle": "From Linked Sub Category Page",
+                    "titleFromPage": "true",
+                    "alt": "Alt text",
+                    "linkURL": "/content/dhl/global/en-global/category-page/sub-category-page",
+                    "linkTarget": "_self",
+                    "sling:resourceType": "dhl/components/content/article-teaser",
+                    "isDecorative": "false"
+                  },
+                  "item_from_linked_home_page": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "altValueFromPageImage": "false",
+                    "imageFromPageImage": "true",
+                    "cq:panelTitle": "From Linked Invalid (Home) Page",
+                    "titleFromPage": "true",
+                    "linkURL": "/content/dhl/us/en-us",
+                    "linkTarget": "_self",
+                    "sling:resourceType": "dhl/components/content/article-teaser",
+                    "isDecorative": "false"
+                  },
+                  "item_custom_setup": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "altValueFromPageImage": "false",
+                    "jcr:title": "Custom Article Title",
+                    "imageFromPageImage": "false",
+                    "fileReference": "/content/dam/wknd-shared/en/activities/camping/camp-summer-night.jpg",
+                    "cq:panelTitle": "Custom Setup",
+                    "titleFromPage": "false",
+                    "alt": "Alt text",
+                    "linkURL": "/content/dhl/global/en-global/category-page/article-page-with-new-article-setup",
+                    "linkTarget": "_self",
+                    "sling:resourceType": "dhl/components/content/article-teaser",
+                    "isDecorative": "false",
+                    "altValueFromDAM": "true"
+                  },
+                  "item_empty_setup": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "dhl/components/content/article-teaser"
+                  }
+                },
+                "articlegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "dhl/components/content/article-grid"
+                }
+              }
+            }
           },
           "article-page": {
             "jcr:primaryType": "cq:Page",
@@ -155,10 +231,10 @@
               "ogtagimage": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg",
               "mediatype": "article",
               "listbrief": "How subscription models are changing e-commerce habits",
-              "listimage": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
-              "heroimagemob": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
-              "heroimagetab": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
-              "heroimagedt": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Desktop_1920x918_2.jpg",
+              "listimage": "/content/dam/dhl/listimage.jpg",
+              "heroimagemob": "/content/dam/dhl/heroimagemob.jpg",
+              "heroimagetab": "/content/dam/dhl/heroimagetab.jpg",
+              "heroimagedt": "/content/dam/dhl/heroimagedt.jpg",
               "root": {
                 "jcr:primaryType": "nt:unstructured",
                 "layout": "responsiveGrid",
@@ -196,6 +272,20 @@
                 }
               }
             }
+          },
+          "sub-category-page": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:created": "Fri Oct 20 2023 08:00:24 GMT+0200",
+            "jcr:content": {
+              "jcr:primaryType": "cq:PageContent",
+              "jcr:title": "SUB CATEGORY PAGE Title",
+              "cq:template": "/conf/dhl/settings/wcm/templates/category-page",
+              "listimage": "/content/dam/dhl/listimage.jpg",
+              "pageTitle": "SUB CATEGORY PAGE Page Title",
+              "sling:resourceType": "dhl/components/pages/editable-category-page",
+              "navTitle": "SUB CATEGORY PAGE Navigation Title",
+              "cq:lastModified": "Thu Oct 26 2023 10:39:45 GMT+0200"
+            }
           }
         }
       }
@@ -208,10 +298,11 @@
       },
       "en-us": {
         "jcr:primaryType": "cq:Page",
+        "jcr:created": "Fri Oct 20 2023 08:00:24 GMT+0200",
         "jcr:content": {
           "jcr:primaryType": "cq:PageContent",
           "sling:resourceType": "dhl/components/pages/home",
-          "jcr:title": "English version of US Page",
+          "jcr:title": "EN-US Global",
           "jcr:language": "",
           "cq:isLanguageRoot": "true",
           "siteregion": "United States",

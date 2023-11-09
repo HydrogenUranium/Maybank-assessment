@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+        xmlns:cq="http://www.day.com/jcr/cq/1.0"
+        xmlns:jcr="http://www.jcp.org/jcr/1.0"
+        xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Properties"
+        sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <formTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Form Title"
+                            name="./formTitle"/>
+                    <marketoid
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Marketo 'Element' ID (i.e. '078-ERT-522')"
+                            name="./marketoid"/>
+                    <marketoformid
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Marketo 'Form' ID (i.e. '1795')"
+                            name="./marketoformid"/>
+                    <marketohiddenformid
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Marketo 'Hidden Form' ID (i.e. '1795')"
+                            name="./marketohiddenformid"/>
+                    <marketohost
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Marketo instance hostname (such as https://express-resource.dhl.com)"
+                            value="https://express-resource.dhl.com"
+                            name="./marketohost"/>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

@@ -26,7 +26,6 @@ import ShipNowTwoStepForm from './Components/ShipNowTwoStepForm';
 import CompetitionForm from './Components/CompetitionForm';
 import ServiceWorker from './Components/ServiceWorker';
 import Offline from './Components/Offline';
-import LandingPoints from './Components/LandingPoints';
 import BackButton from './Components/BackButton';
 // import ArticleCounter from './Components/ArticleCounter'; commented out because it's reported unused
 import MarketoForm from './Components/MarketoForm';
@@ -72,7 +71,6 @@ $(document).ready(() => {
   AuthenticationEvents.init();
   ServiceWorker.init();
   Offline.init();
-  LandingPoints.init();
   BackButton.init();
   MarketoForm.init();
   Shared.init();

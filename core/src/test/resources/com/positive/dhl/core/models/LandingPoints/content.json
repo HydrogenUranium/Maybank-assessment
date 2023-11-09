@@ -1,0 +1,29 @@
+{
+  "landingPoints": {
+    "jcr:primaryType": "nt:unstructured",
+    "image": "/content/dam/images/image.svg",
+    "altText": "alt text",
+    "sling:resourceType": "dhl/components/content/landingpoints",
+    "items": {
+      "jcr:primaryType": "nt:unstructured",
+      "item0": {
+        "jcr:primaryType": "nt:unstructured",
+        "icon": "/content/dam/images/icon.svg",
+        "title": "Easy international shipping",
+        "content": "<p>A wide range of services and door-to-door shipping options to solve your international export challenges, covering 220 countries across the globe</p>"
+      },
+      "item1": {
+        "jcr:primaryType": "nt:unstructured",
+        "icon": "/content/dam/images/icon.svg",
+        "title": "Preferential business shipping rates",
+        "content": "<p>With rates adapted to your shipping volume, it’s pricing that fits your business – not the other way around</p>"
+      },
+      "item2": {
+        "jcr:primaryType": "nt:unstructured",
+        "icon": "/content/dam/images/icon.svg",
+        "title": "Flexible delivery options",
+        "content": "<p>Your customers will benefit from our On Demand Delivery services, allowing them to decide when and where their package is delivered. That means less enquiries and fewer returns for you</p>"
+      }
+    }
+  }
+}
