@@ -260,7 +260,7 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="General Content Page Container Policy"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="/apps/dhl/components/content/textV2"
+                        components="[/apps/dhl/components/content/followUs,/apps/dhl/components/content/textV2]"
                         layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </general_content_page_container_policy>

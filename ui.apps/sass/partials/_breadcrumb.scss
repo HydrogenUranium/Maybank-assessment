@@ -1,6 +1,6 @@
 .cmp-breadcrumb {
   display: block;
-  padding: 18px 35px 0;
+  padding: 18px 0 0;
   max-width: 1200px;
   margin: auto;
 
@@ -49,24 +49,6 @@
     .cmp-breadcrumb__item {
       &:not(:nth-of-type(-n+2)):not(:nth-last-of-type(1)) {
         display: none;
-      }
-    }
-  }
-}
-
-.page-body.category {
-  .cmp-breadcrumb {
-    @include respond(md) {
-      background: #F6F6F6 0% 0% no-repeat padding-box;
-    }
-
-    @include respond(xl) {
-      max-width: 1640px;
-      padding: 30px 35px 0;
-
-      &__list {
-        max-width: 1200px;
-        margin: auto;
       }
     }
   }

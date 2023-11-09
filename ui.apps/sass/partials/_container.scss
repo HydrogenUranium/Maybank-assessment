@@ -2,9 +2,18 @@
   max-width: 1640px;
   margin: auto;
   padding: 0 35px;
+  float: none !important;
 
   .cmp-container {
     max-width: 1200px;
     margin: auto;
+  }
+}
+
+.page-body.category {
+  .container {
+    @include respond(md) {
+      background: #F6F6F6 0% 0% no-repeat padding-box;
+    }
   }
 }
