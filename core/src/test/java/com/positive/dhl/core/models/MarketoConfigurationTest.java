@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -11,6 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.text.MessageFormat;
@@ -23,11 +25,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class MarketoConfigurationTest {
 
 	private final AemContext aemContext = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
+
+	@Mock
+	PageUtilService pageUtilService;
+
 	MarketoConfiguration underTest;
 
 	@BeforeEach
 	void setup(){
+		Map<String,Object> injectedServices = new HashMap<>();
+		injectedServices.put("pageUtilService", pageUtilService);
+
+		aemContext.registerService(PageUtilService.class, pageUtilService);
 		aemContext.addModelsForClasses(MarketoConfiguration.class);
+		aemContext.registerInjectActivateService(underTest, injectedServices);
 	}
 
 	@ParameterizedTest

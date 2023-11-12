@@ -74,7 +74,8 @@ class PageUtilServiceTest {
             assertNull(pageUtilService.getHomePage(page));
             assertEquals(ValueMap.EMPTY, pageUtilService.getHomePageProperties(page));
 
-            page = page.listChildren().next();
+	        assert page != null;
+	        page = page.listChildren().next();
         }
     }
 
@@ -105,7 +106,8 @@ class PageUtilServiceTest {
         for (int i = 0; i < homePageLevel; i++) {
             Page actualResult = pageUtilService.getAllHomePages(page).get(0);
             assertEquals(actualResult.getAbsoluteParent(homePageLevel), actualResult);
-            page = page.listChildren().next();
+	        assert page != null;
+	        page = page.listChildren().next();
         }
     }
 
@@ -126,7 +128,8 @@ class PageUtilServiceTest {
         Page page = resource.adaptTo(Page.class);
         int homePageLevel = pageUtilService.getHomePageLevel();
         for (int i = 0; i < homePageLevel + 1; i++) {
-            page = page.listChildren().next();
+	        assert page != null;
+	        page = page.listChildren().next();
         }
         return page;
     }
@@ -159,5 +162,17 @@ class PageUtilServiceTest {
         Resource pageResource = resourceResolver.getResource(pagePath);
         assertNotNull(pageResource);
         return pageResource.adaptTo(Page.class);
+    }
+
+    /**
+     * Verifies the functionality of {@link PageUtilService#isGlobalPage(Page)}
+     */
+    @Test
+    void isGlobalPage(){
+        Page pageNotGlobal = context.create().page("/content/dhl/au/en-au");
+        Page page = context.create().page("/content/dhl/global/en-global");
+        assertTrue(pageUtilService.isGlobalPage(page));
+        assertFalse(pageUtilService.isGlobalPage(pageNotGlobal));
+        assertFalse(pageUtilService.isGlobalPage(null));
     }
 }
