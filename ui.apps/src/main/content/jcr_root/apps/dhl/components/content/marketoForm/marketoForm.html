@@ -1,7 +1,10 @@
-<div class="ship-now-group"
-     data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
-     data-sly-use.cmf="com.positive.dhl.core.models.ConfigurableMarketoForm">
-  <div class="mb-5">
+<sly data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
+     data-sly-use.cmf="com.positive.dhl.core.models.ConfigurableMarketoForm"
+     data-sly-set.isEmpty="${!cmf.marketoformid || !cmf.marketohiddenformid}"></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+
+<div class="ship-now-group" data-sly-test="${!isEmpty}">
     <div class="forms marketoForm marketoForm--white"
          formId="${cmf.marketoformid @ context='attribute'}"
          munchkinId="${cmf.marketoid @ context='attribute'}"
@@ -20,5 +23,4 @@
         </sly>
       </div>
     </div>
-  </div>
 </div>

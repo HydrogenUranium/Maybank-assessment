@@ -1,9 +1,14 @@
-<div class="cta-banner-gray-component">
-    <b class="title">${properties.title}</b>
-    <p class="description">${properties.description}</p>
+<sly data-sly-use.model="com.positive.dhl.core.models.CtaBannerGray"
+        data-sly-set.isEmpty="${!model.buttonLabel || !model.description || !model.title}"></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+
+<div class="cta-banner-gray-component" data-sly-test="${!isEmpty}">
+    <b class="title">${model.title}</b>
+    <p class="description">${model.description}</p>
     <div class="cta">
-        <a class="cta__button" href="${properties.buttonLink}.html" title="${properties.buttonLabel}" target="${properties.linkTarget}">
-            <span>${properties.buttonLabel}</span>
+        <a class="cta__button" href="${model.buttonLink}.html" title="${model.buttonLabel}" target="${model.linkTarget}">
+            <span>${model.buttonLabel}</span>
         </a>
     </div>
 </div>
