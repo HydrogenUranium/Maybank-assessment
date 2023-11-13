@@ -19,10 +19,14 @@
                     style="sidebar"
                     type="businessAccount"/>
             </headerv2>
-            <breadcrumb
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/breadcrumb"
-                startLevel="3"/>
+            <breadcrumb-container
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/container">
+                <breadcrumb
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/content/breadcrumb"
+                        startLevel="3"/>
+            </breadcrumb-container>
             <responsivegrid
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid"

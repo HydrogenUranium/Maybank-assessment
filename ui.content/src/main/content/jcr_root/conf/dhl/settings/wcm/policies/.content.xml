@@ -52,6 +52,95 @@
             </pages>
             <content jcr:primaryType="nt:unstructured">
                 <text jcr:primaryType="nt:unstructured">
+                    <thank_you_page_text_policy
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Thank You Page Text Policy "
+                        sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <rtePlugins jcr:primaryType="nt:unstructured">
+                            <paraformat
+                                jcr:primaryType="nt:unstructured"
+                                features="*">
+                                <formats
+                                    jcr:primaryType="nt:unstructured"
+                                    override="true">
+                                    <item0
+                                        jcr:primaryType="nt:unstructured"
+                                        description="Paragraph"
+                                        tag="p"/>
+                                    <item1
+                                        jcr:primaryType="nt:unstructured"
+                                        description="Heading 1"
+                                        tag="h1"/>
+                                    <item2
+                                        jcr:primaryType="nt:unstructured"
+                                        description="Heading 2"
+                                        tag="h2"/>
+                                    <item3
+                                        jcr:primaryType="nt:unstructured"
+                                        description="Horizontal Rule (visual line break)"
+                                        tag="hr"/>
+                                </formats>
+                            </paraformat>
+                            <misctools
+                                jcr:primaryType="nt:unstructured"
+                                features="*">
+                                <specialCharsConfig jcr:primaryType="nt:unstructured">
+                                    <chars
+                                        jcr:primaryType="nt:unstructured"
+                                        override="true">
+                                        <item0
+                                            jcr:primaryType="nt:unstructured"
+                                            entity="&amp;copy;"
+                                            name="copyright"/>
+                                        <item1
+                                            jcr:primaryType="nt:unstructured"
+                                            entity="&amp;reg;"
+                                            name="registered"/>
+                                        <item2
+                                            jcr:primaryType="nt:unstructured"
+                                            entity="&amp;trade;"
+                                            name="trademark"/>
+                                    </chars>
+                                </specialCharsConfig>
+                            </misctools>
+                            <edit
+                                jcr:primaryType="nt:unstructured"
+                                features="-"/>
+                            <findreplace
+                                jcr:primaryType="nt:unstructured"
+                                features="-"/>
+                            <spellcheck
+                                jcr:primaryType="nt:unstructured"
+                                features="-"/>
+                            <image
+                                jcr:primaryType="nt:unstructured"
+                                features="-"/>
+                            <table
+                                jcr:primaryType="nt:unstructured"
+                                features="-"/>
+                            <format
+                                jcr:primaryType="nt:unstructured"
+                                features="bold,italic,underline"/>
+                            <subsuperscript
+                                jcr:primaryType="nt:unstructured"
+                                features="-"/>
+                            <undo
+                                jcr:primaryType="nt:unstructured"
+                                features="*"/>
+                            <lists
+                                jcr:primaryType="nt:unstructured"
+                                features="-"/>
+                            <justify
+                                jcr:primaryType="nt:unstructured"
+                                features="*"/>
+                            <links
+                                jcr:primaryType="nt:unstructured"
+                                features="modifylink,unlink,anchor"/>
+                        </rtePlugins>
+                    </thank_you_page_text_policy>
+                </text>
+                <text jcr:primaryType="nt:unstructured">
                     <policy_1692606883425
                             jcr:lastModified="{Date}2023-08-21T11:37:52.635+03:00"
                             jcr:lastModifiedBy="admin"
@@ -177,6 +266,16 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </article_teaser_policy>
                 </article-teaser>
+                <container jcr:primaryType="nt:unstructured">
+                    <general_content_page_container_policy
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="General Content Page Container Policy"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="[/apps/dhl/components/content/followUs,/apps/dhl/components/content/text]"
+                        layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </general_content_page_container_policy>
+                </container>
             </content>
         </components>
     </dhl>

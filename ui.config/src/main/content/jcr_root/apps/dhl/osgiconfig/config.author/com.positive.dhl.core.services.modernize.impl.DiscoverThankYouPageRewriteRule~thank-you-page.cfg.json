@@ -1,0 +1,7 @@
+{
+  "id": "standard",
+  "editableTemplate":"/conf/dhl/settings/wcm/templates/thank-you-page",
+  "staticTemplate":"/apps/dhl/templates/dhl-general-page",
+  "containerMappings":["par:root/container"],
+  "slingResourceType":"dhl/components/pages/standard"
+}

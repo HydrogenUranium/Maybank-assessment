@@ -1,0 +1,13 @@
+<sly data-sly-use.footerV2="com.positive.dhl.core.models.FooterV2Model"
+     data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
+     data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}"/>
+
+<div class="followUs__title">${footerV2.socialLinksLabel}</div>
+<div class="followUs__items">
+    <a class="followUs__item" data-sly-repeat="${footerV2.socialLinks}" href="${item.linkPath}">
+        <img class="logo__image"
+             src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.linkIcon}"
+             title="${item.linkName}"
+             alt="${item.linkName}" />
+    </a>
+</div>
