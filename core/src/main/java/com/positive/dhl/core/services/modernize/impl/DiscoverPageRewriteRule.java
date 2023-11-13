@@ -239,13 +239,10 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
     }
 
     protected boolean checkNodeFilters(Node node) {
-        var result = true;
-        if (CollectionUtils.isNotEmpty(filters)) {
-            for (Predicate<Node> filter : filters) {
-                result = result && filter.test(node);
-            }
+        if (CollectionUtils.isEmpty(filters)) {
+            return true;
         }
-        return result;
+        return filters.stream().allMatch(filter -> filter.test(node));
     }
 
     @Activate
