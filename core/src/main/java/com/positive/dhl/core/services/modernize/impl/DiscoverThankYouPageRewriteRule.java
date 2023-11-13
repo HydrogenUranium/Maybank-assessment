@@ -4,12 +4,16 @@ import com.adobe.aem.modernize.structure.StructureRewriteRule;
 import com.drew.lang.annotations.NotNull;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.jackrabbit.oak.commons.PathUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.metatype.annotations.Designate;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+
+import java.util.Map;
 
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
@@ -35,6 +39,19 @@ public class DiscoverThankYouPageRewriteRule extends DiscoverPageRewriteRuleCust
 
     @Override
     protected void initComponents(ResourceResolver resolver, @NotNull Node pageContent) throws RepositoryException {
+        Session session = resolver.adaptTo(Session.class);
+        if (session == null) {
+            throw new RepositoryException("Session is null");
+        }
+
+        for (Map.Entry<String, String> entry : containerMappings.entrySet()) {
+            String staticContainerPath = entry.getKey();
+            String dynamicContainerPath = entry.getValue();
+
+            var oldContainerChildNodes = pageContent.getNode(staticContainerPath).getNodes();
+            moveNodes(session, oldContainerChildNodes, PathUtils.concat(pageContent.getPath(), dynamicContainerPath));
+        }
+
         var newRootComponentPath = "root/container";
         var oldRootComponentResource = resolver.getResource(pageContent.getPath() + "/par");
         if (oldRootComponentResource == null) {
@@ -51,13 +68,7 @@ public class DiscoverThankYouPageRewriteRule extends DiscoverPageRewriteRuleCust
     }
 
     @Override
-    protected boolean isCopyOldNodes() {
-        return true;
-    }
-
-    @Override
     protected boolean pageNameFilter(Node node) throws RepositoryException {
         return node.getParent().getName().toLowerCase().contains("thank");
     }
-
 }

@@ -3,7 +3,6 @@ package com.positive.dhl.core.services.modernize.impl;
 import com.adobe.aem.modernize.RewriteException;
 import com.drew.lang.annotations.NotNull;
 import com.drew.lang.annotations.Nullable;
-import org.apache.jackrabbit.oak.commons.PathUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 
 import javax.jcr.Node;
@@ -29,12 +28,7 @@ public abstract class DiscoverPageRewriteRuleCustomContentMigration extends Disc
             }
             initComponents(resolver, pageContent);
             for(String oldContainerPath : containerMappings.keySet()) {
-                var oldContainerNode = pageContent.getNode(oldContainerPath);
-                if (isCopyOldNodes()) {
-                    var newContainerPath = containerMappings.get(oldContainerPath);
-                    moveNodes(session, oldContainerNode.getNodes(), PathUtils.concat(pageContent.getPath(), newContainerPath));
-                }
-                oldContainerNode.remove();
+                pageContent.getNode(oldContainerPath).remove();
             }
             changeTemplate(pageContent);
 
@@ -47,8 +41,4 @@ public abstract class DiscoverPageRewriteRuleCustomContentMigration extends Disc
     }
 
     protected abstract void initComponents(ResourceResolver resolver, @NotNull Node pageContent) throws RepositoryException;
-
-    protected boolean isCopyOldNodes() {
-        return false;
-    }
 }
