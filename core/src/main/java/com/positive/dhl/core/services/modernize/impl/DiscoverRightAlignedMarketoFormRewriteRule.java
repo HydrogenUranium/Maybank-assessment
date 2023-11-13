@@ -4,7 +4,6 @@ import com.adobe.aem.modernize.structure.StructureRewriteRule;
 import com.drew.lang.annotations.NotNull;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.oak.commons.PathUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.*;
@@ -60,14 +59,6 @@ public class DiscoverRightAlignedMarketoFormRewriteRule extends DiscoverPageRewr
         copyNodes(pageContent, session);
         processContainerNodes(pageContent, session);
         initializeTitle(pageContent);
-        initializeBanner(pageContent);
-    }
-
-    private void initializeBanner(Node pageContent) throws RepositoryException {
-        if (StringUtils.containsAny(pageContent.getPath(), "open-an-account", "ship-now")) {
-            var bannerGray = initNodeStructure(pageContent, "root/two_columns_container/bottom/cta_banner_gray");
-            bannerGray.setProperty("type", "individualShipper");
-        }
     }
 
     private void initializeTitle(Node pageContent) throws RepositoryException {
@@ -112,9 +103,15 @@ public class DiscoverRightAlignedMarketoFormRewriteRule extends DiscoverPageRewr
                 if (!session.nodeExists(target)) {
                     updateMarketoConfigurableNode(node);
                     session.move(node.getPath(), target);
+                    initializeBanner(pageContent);
                 }
             }
         }
+    }
+
+    private void initializeBanner(Node pageContent) throws RepositoryException {
+        var bannerGray = initNodeStructure(pageContent, "root/two_columns_container/bottom/cta_banner_gray");
+        bannerGray.setProperty("type", "individualShipper");
     }
 
     private void updateMarketoConfigurableNode(Node node) throws RepositoryException {

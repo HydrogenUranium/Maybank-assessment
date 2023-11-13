@@ -85,12 +85,6 @@
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm/foundation/components/responsivegrid"
                     editable="{Boolean}true">
-                <cq:responsive jcr:primaryType="nt:unstructured">
-                    <default
-                            jcr:primaryType="nt:unstructured"
-                            offset="1"
-                            width="10"/>
-                </cq:responsive>
             </responsivegrid>
             <footerv2
                     jcr:primaryType="nt:unstructured"
