@@ -43,11 +43,23 @@ if (DRY_RUN) {
     println("List of pages whose version was updated:")
     listPages.each({
         println(it)
-        def pageManager = resourceResolver.adaptTo(PageManager.class);
-        def page = getPage(it);
-        def date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
-        def label = String.format("%s - %s", VERSION_NAME, date);
+        def isVersionExist = false
 
-        pageManager.createRevision(page, label, "Groovy Script version");
+        pageManager.getRevisions(it, null, false).each({ revision ->
+            if (revision.getLabel().contains(VERSION_NAME)) {
+                println(">> Page Version Exist: " + it)
+                isVersionExist = true
+                return false
+            }
+        })
+
+        if (!isVersionExist) {
+            println(it)
+
+            def date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
+            def label = String.format("%s - %s", VERSION_NAME, date);
+
+            pageManager.createRevision(page, label, "Groovy Script version.");
+        }
     })
 }
