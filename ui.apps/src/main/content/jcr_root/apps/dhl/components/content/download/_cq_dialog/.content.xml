@@ -112,7 +112,7 @@
                                     <hiddenmarketoformid
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                            fieldLabel="OPTIONAL hidden Marketo FormID. Used for REST API Marketo submission. Defaults to '1724' if left empty."
+                                            fieldLabel="Used for REST API Marketo submission in 'global' country - ignored everywhere else. Defaults to '1724' if left empty."
                                             name="./hiddenMarketoId"
                                             value="1724"
                                             emptyText="1724"

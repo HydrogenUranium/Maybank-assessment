@@ -28,15 +28,16 @@ class MarketForm {
 
 
   /**
-   * Simple function that determines whether we have a hidden form on the page or not
+   * Simple function that determines whether we should submit the lead to hidden form via AEM and REST API or not
    * @param {Element} baseElement is the base element present in html stream, that is supposed to contain
    * the hidden form's properties (like munchkin & form IDs)
-   * @return {boolean} true in case there *is* a 'hidden' form on the page, false otherwise
+   * @return {boolean} true in case there *is* a 'hidden' form on the page and *apiSubmit* attribute is set to true, false otherwise
    */
-  isHiddenForm(baseElement) {
+  isValidAPISubmission(baseElement) {
     if (baseElement !== null) {
+      const apiSubmit = baseElement.getAttribute('apiSubmit');
       const hiddenFormId = baseElement.getAttribute('hiddenFormId');
-      if (hiddenFormId !== null && hiddenFormId !== '') {
+      if (apiSubmit && hiddenFormId !== null && hiddenFormId !== '') {
         return true;
       }
     }
@@ -123,13 +124,14 @@ class MarketForm {
     window.MktoForms2.whenReady(originalForm => {
       $('#mktoForms2BaseStyle').remove();
       $('#mktoForms2ThemeStyle').remove();
-      originalForm.onSuccess((e) => {
+      // eslint-disable-next-line no-unused-vars
+      originalForm.onSuccess((values, thankYouUrl) => {
         const hiddenFormId = baseElement.getAttribute('hiddenFormId');
         const formSubmissionPath = baseElement.getAttribute('action');
         const formStart = baseElement.getAttribute('formstart');
-        let needHiddenFormSubmission = this.isHiddenForm(baseElement);
+        let needHiddenFormSubmission = this.isValidAPISubmission(baseElement);
         if (needHiddenFormSubmission &&  formStart !== null && hiddenFormId !== null && formSubmissionPath !== null && formSubmissionPath !== ' ' ) {
-          let formData = this.buildFormData(e, hiddenFormId, formStart);
+          let formData = this.buildFormData(values, hiddenFormId, formStart);
           shared.submitForm(formSubmissionPath, formData).then(() => console.log('Submitted'));
         }
       });

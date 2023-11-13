@@ -76,15 +76,15 @@
 								<h2 class="forms__subtitle">${ 'Register using your email address' @ i18n, context='html' }</h2>
 								<div class="forms__row">
 									<div class="col-12 col-md-6">
-										<input id="register__firstname" name="firstname" type="text" placeholder="${ 'First name' @ i18n, context='html' }*" required data-msg="${ 'Enter first name' @ i18n, context='html' }" />
+                                        <label for="register__firstname"></label><input id="register__firstname" name="firstname" type="text" placeholder="${ 'First name' @ i18n, context='html' }*" required data-msg="${ 'Enter first name' @ i18n, context='html' }" />
 									</div>
 									<div class="col-12 col-md-6">
-										<input id="register__lastname" name="lastname" type="text" placeholder="${ 'Last name' @ i18n, context='html' }*" required data-msg="${ 'Enter last name' @ i18n, context='html' }" />
+                                        <label for="register__lastname"></label><input id="register__lastname" name="lastname" type="text" placeholder="${ 'Last name' @ i18n, context='html' }*" required data-msg="${ 'Enter last name' @ i18n, context='html' }" />
 									</div>
 								</div>
 								<div class="forms__row">
 									<div class="col-12">
-										<input id="register__email" type="email" placeholder="Email" name="email" required data-msg="${ 'Enter a valid email address' @ i18n, context='html' }" />
+                                        <label for="register__email"></label><input id="register__email" type="email" placeholder="Email" name="email" required data-msg="${ 'Enter a valid email address' @ i18n, context='html' }" />
 										<div class="forms__copy--small">
 											${accountactions.signupEmailPrivacyMessage @context='html'}
 										</div>
@@ -94,9 +94,9 @@
 
 								<div class="forms__row">
 									<div class="col-12">
-<div
+                                        <div
 											class="forms__password has-validity-check input-group mb-3">
-											<input id="register__password1" name="password" type="password" class="form-control" placeholder="${ 'Create password (optional)' @ i18n, context='html' }" data-msg="${ 'Enter your password' @ i18n, context='html' }" autocomplete="off" />
+                                            <label for="register__password1"></label><input id="register__password1" name="password" type="password" class="form-control" placeholder="${ 'Create password (optional)' @ i18n, context='html' }" data-msg="${ 'Enter your password' @ i18n, context='html' }" autocomplete="off" />
 											<div class="input-group-append">
 												<div class="input-group-text">
 													<input type="checkbox" id="showme1" data-field-id="register__password1"> <label for="showme1">${ 'Show' @ i18n, context='html' }</label>
@@ -167,7 +167,9 @@
                                      action="${accountactions.getAssetprefix}${currentPage.path}.form.html"
                                      formstart="${accountactions.getAssetprefix}${currentNode.path}.form.html"
                                      source="conf"
-                                     data-marketo-form>
+                                     data-sly-attribute.apiSubmit="${marketoConfig.isGlobalPage ? 'true' : 'false'}"
+                                     data-marketo-form
+                                >
 
 								  <div data-marketo-visible-form>
 									<div class="wysiwyg">

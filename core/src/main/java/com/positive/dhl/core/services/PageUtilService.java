@@ -136,4 +136,13 @@ public class PageUtilService {
                 .map(this::getPage)
                 .orElse(null);
     }
+
+    /**
+     * Utility method that helps determine if the provided page belongs to 'global' (is in path /content/dhl/global).
+     * @param currentPage is an instance of {@link Page} that we want to check
+     * @return boolean {@code true} if we page is in global, otherwise {@code false}
+     */
+    public boolean isGlobalPage(Page currentPage) {
+	    return this.getCountryCodeByPagePath(currentPage).equalsIgnoreCase("global");
+    }
 }

@@ -1,11 +1,14 @@
 package com.positive.dhl.core.models;
 
+import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +24,12 @@ import java.text.MessageFormat;
 )
 @Slf4j
 public class MarketoConfiguration {
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
+	@Inject
+	private Page currentPage;
 
 	@Inject
 	private String marketoSourceType;
@@ -63,8 +72,8 @@ public class MarketoConfiguration {
 
 	@PostConstruct
 	public void init(){
-		log.info("MarketoConfiguration init() method called");
-		log.info("MarketoConfiguration marketoSourceType: {}", marketoSourceType);
+		log.debug("MarketoConfiguration init() method called");
+		log.debug("MarketoConfiguration marketoSourceType: {}", marketoSourceType);
 	}
 
 	/**
@@ -100,6 +109,16 @@ public class MarketoConfiguration {
 			return marketoFormId;
 		}
 		return null;
+	}
+
+	/**
+	 * Utility method utilizing {@link PageUtilService} to figure out whether the page (where the comoponent using this model is)
+	 * belongs to 'global' (is in path /content/dhl/global).
+	 * This method returns boolean {@code true} if yes, otherwise {@code false}.
+	 * Also returns {@code false} if the page is {@code null} or some other error occurred during acquisition.
+	 */
+	public boolean isGlobalPage(){
+		return pageUtilService.isGlobalPage(currentPage);
 	}
 
 }
