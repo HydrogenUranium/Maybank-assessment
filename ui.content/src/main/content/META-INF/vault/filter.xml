@@ -15,5 +15,5 @@
     <filter root="/conf/dhl/settings/wcm/templates/article"/>
     <filter root="/conf/dhl/settings/wcm/templates/home-page"/>
     <filter root="/conf/dhl/settings/wcm/templates/category-page"/>
-    <filter root="/conf/dhl/settings/wcm/templates/general-content-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/thankyou-page"/>
 </workspaceFilter>

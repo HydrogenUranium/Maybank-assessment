@@ -10,8 +10,6 @@ import org.osgi.service.metatype.annotations.Designate;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
@@ -24,7 +22,7 @@ import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOU
 )
 @Designate(ocd = DiscoverPageRewriteRule.Config.class, factory = true)
 @Slf4j
-public class DiscoverStandardPageRewriteRule extends DiscoverPageRewriteRuleCustomContentMigration {
+public class DiscoverThankYouPageRewriteRule extends DiscoverPageRewriteRuleCustomContentMigration {
     @Reference
     protected ResourceResolverHelper resourceResolverHelperService;
 
@@ -42,23 +40,24 @@ public class DiscoverStandardPageRewriteRule extends DiscoverPageRewriteRuleCust
         if (oldRootComponentResource == null) {
             return;
         }
-        List<String> texts = new ArrayList<>();
-        oldRootComponentResource.getChildren().forEach(resource -> {
-            var valueMap = resource.getValueMap();
-            if(valueMap.containsKey("text")) {
-                texts.add(valueMap.get("text", String.class));
-            }
-        });
-        for(var i = 0; i < texts.size(); i++) {
-            var node = pageContent.addNode(newRootComponentPath + "/text_" + i);
-            node.setProperty(SLING_RESOURCE_TYPE_PROPERTY, "dhl/components/content/textV2");
-            node.setProperty("text", texts.get(i));
-            node.setProperty("textIsRich", "true");
-        }
 
-        if (pageContent.getParent().getName().toLowerCase().contains("thank")) {
-            var node = pageContent.addNode(newRootComponentPath + "/followUs");
-            node.setProperty(SLING_RESOURCE_TYPE_PROPERTY, "dhl/components/content/followUs");
-        }
+        var textLineSeparatorNode = pageContent.addNode(newRootComponentPath + "/text_lineSeparator");
+        textLineSeparatorNode.setProperty(SLING_RESOURCE_TYPE_PROPERTY, "dhl/components/content/text");
+        textLineSeparatorNode.setProperty("text", "<hr>");
+        textLineSeparatorNode.setProperty("textIsRich", "true");
+
+        var followUsNode = pageContent.addNode(newRootComponentPath + "/followUs");
+        followUsNode.setProperty(SLING_RESOURCE_TYPE_PROPERTY, "dhl/components/content/followUs");
     }
+
+    @Override
+    protected boolean isCopyOldNodes() {
+        return true;
+    }
+
+    @Override
+    protected boolean pageNameFilter(Node node) throws RepositoryException {
+        return node.getParent().getName().toLowerCase().contains("thank");
+    }
+
 }

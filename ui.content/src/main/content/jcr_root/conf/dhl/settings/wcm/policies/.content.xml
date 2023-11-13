@@ -40,7 +40,7 @@
                 </editable-home-page>
             </pages>
             <content jcr:primaryType="nt:unstructured">
-                <textV2 jcr:primaryType="nt:unstructured">
+                <text jcr:primaryType="nt:unstructured">
                     <thank_you_page_text_policy
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Thank You Page Text Policy "
@@ -128,7 +128,7 @@
                                 features="modifylink,unlink,anchor"/>
                         </rtePlugins>
                     </thank_you_page_text_policy>
-                </textV2>
+                </text>
                 <text jcr:primaryType="nt:unstructured">
                     <policy_1692606883425
                             jcr:lastModified="{Date}2023-08-21T11:37:52.635+03:00"
@@ -260,7 +260,7 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="General Content Page Container Policy"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[/apps/dhl/components/content/followUs,/apps/dhl/components/content/textV2]"
+                        components="[/apps/dhl/components/content/followUs,/apps/dhl/components/content/text]"
                         layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </general_content_page_container_policy>

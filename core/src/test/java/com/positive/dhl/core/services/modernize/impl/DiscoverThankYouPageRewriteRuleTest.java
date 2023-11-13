@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
-class DiscoverStandardPageRewriteRuleTest {
+class DiscoverThankYouPageRewriteRuleTest {
     AemContext context = new AemContext(ResourceResolverType.JCR_OAK);
     ResourceResolver resourceResolver = context.resourceResolver();
 
@@ -33,16 +33,16 @@ class DiscoverStandardPageRewriteRuleTest {
     @Mock
     ResourceResolverHelper resourceResolverHelper;
 
-    DiscoverStandardPageRewriteRule rule = new DiscoverStandardPageRewriteRule();
+    DiscoverThankYouPageRewriteRule rule = new DiscoverThankYouPageRewriteRule();
 
     @BeforeEach
     public void beforeEach() {
-        context.load().json("/com/positive/dhl/core/services/modernize/impl/DiscoverStandardPageRewriteRule/page-content.json", "/content/test");
-        context.load().json("/com/positive/dhl/core/services/modernize/impl/DiscoverStandardPageRewriteRule/conf-template.json", "/conf/dhl/settings/wcm/templates/general-content-page");
+        context.load().json("/com/positive/dhl/core/services/modernize/impl/DiscoverThankYouPageRewriteRule/page-content.json", "/content/test");
+        context.load().json("/com/positive/dhl/core/services/modernize/impl/DiscoverThankYouPageRewriteRule/conf-template.json", "/conf/dhl/settings/wcm/templates/thankyou-page");
 
         Map<String, Object> props = Map.of(
                 "id", "standard",
-                "editableTemplate", "/conf/dhl/settings/wcm/templates/general-content-page",
+                "editableTemplate", "/conf/dhl/settings/wcm/templates/thankyou-page",
                 "staticTemplate", "/apps/dhl/templates/dhl-general-page",
                 "containerMappings", new String[]{"par:root/container"},
                 "slingResourceType", "dhl/components/pages/standard");
@@ -69,6 +69,4 @@ class DiscoverStandardPageRewriteRuleTest {
     private Node getNode(String path) {
         return resourceResolver.getResource(path).adaptTo(Node.class);
     }
-
-
 }

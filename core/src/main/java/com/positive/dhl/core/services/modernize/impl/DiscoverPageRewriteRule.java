@@ -105,7 +105,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
 
         var resourceType = node.getProperty(SLING_RESOURCE_TYPE_PROPERTY).getString();
 
-        return StringUtils.equals(slingResourceType, resourceType);
+        return StringUtils.equals(slingResourceType, resourceType) && pageNameFilter(node);
     }
 
     protected Node getPageContent(Node node) throws RepositoryException {
@@ -216,6 +216,10 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
             throw new RewriteException("Unable to find sling:resourceType on template structure: " + path);
         }
         return structure.getProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY).getString();
+    }
+
+    protected boolean pageNameFilter(Node node) throws RepositoryException {
+        return !StringUtils.isBlank(node.getParent().getName());
     }
 
     @Activate

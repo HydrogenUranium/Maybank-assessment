@@ -23,13 +23,20 @@ public abstract class DiscoverPageRewriteRuleCustomContentMigration extends Disc
 
         try {
             for (Map.Entry<String, String> entry : containerMappings.entrySet()) {
-                createVersion(session, pageContent.getParent());
-                initContainer(pageContent, structureNode, entry.getValue());
+                String staticContainerPath = entry.getKey();
+                String dynamicContainerPath = entry.getValue();
 
-                var oldContainerNode = pageContent.getNode(entry.getKey());
+                createVersion(session, pageContent.getParent());
+                initContainer(pageContent, structureNode, dynamicContainerPath);
+
+                var oldContainerNode = pageContent.getNode(staticContainerPath);
                 String initSource = PathUtils.concat(editableTemplate, "initial/jcr:content/root");
                 String destination = PathUtils.concat(pageContent.getPath(), "root");
                 session.getWorkspace().copy(initSource, destination);
+
+                if (isCopyOldNodes()) {
+                    moveNodes(session, oldContainerNode.getNodes(), PathUtils.concat(pageContent.getPath(), dynamicContainerPath));
+                }
 
                 initComponents(resolver, pageContent);
 
@@ -46,4 +53,8 @@ public abstract class DiscoverPageRewriteRuleCustomContentMigration extends Disc
     }
 
     protected abstract void initComponents(ResourceResolver resolver, @NotNull Node pageContent) throws RepositoryException;
+
+    protected boolean isCopyOldNodes() {
+        return false;
+    }
 }

@@ -28,7 +28,7 @@
     "jcr:content": {
       "jcr:primaryType": "cq:PageContent",
       "jcr:title": "Thank you",
-      "cq:template": "/conf/dhl/settings/wcm/templates/general-content-page",
+      "cq:template": "/conf/dhl/settings/wcm/templates/thankyou-page",
       "sling:resourceType": "dhl/components/pages/editable-standard",
       "title": {
         "jcr:primaryType": "nt:unstructured",
@@ -43,10 +43,16 @@
           "jcr:primaryType": "nt:unstructured",
           "layout": "responsiveGrid",
           "sling:resourceType": "dhl/components/content/container",
-          "text_0": {
+          "text": {
             "jcr:primaryType": "nt:unstructured",
             "text": "<p>Thank You for requesting a&nbsp;<b>DHL EXPRESS BUSINESS ACCOUNT</b>. A DHL Certified International Specialist will contact you soon to verify the information and discuss your international shipping needs.</p>\n<p>If you've also signed up to receive emails, then we'll keep you updated with the latest insights, reports and guides to help take your business to a global audience - enjoy the ride!</p>\n",
-            "sling:resourceType": "dhl/components/content/textV2"
+            "sling:resourceType": "dhl/components/content/text"
+          },
+          "text_lineSeparator": {
+            "jcr:primaryType": "nt:unstructured",
+            "text": "<hr>",
+            "sling:resourceType": "dhl/components/content/text",
+            "textIsRich": "true"
           },
           "followUs": {
             "jcr:primaryType": "nt:unstructured",

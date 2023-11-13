@@ -15,8 +15,8 @@
                 <dhl jcr:primaryType="nt:unstructured">
                     <components jcr:primaryType="nt:unstructured">
                         <content jcr:primaryType="nt:unstructured">
-                            <textV2
-                                cq:policy="dhl/components/content/textV2/thank_you_page_text_policy"
+                            <text
+                                cq:policy="dhl/components/content/text/thank_you_page_text_policy"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                         </content>
