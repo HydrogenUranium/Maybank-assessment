@@ -38,11 +38,11 @@ class DiscoverThankYouPageRewriteRuleTest {
     @BeforeEach
     public void beforeEach() {
         context.load().json("/com/positive/dhl/core/services/modernize/impl/DiscoverThankYouPageRewriteRule/page-content.json", "/content/test");
-        context.load().json("/com/positive/dhl/core/services/modernize/impl/DiscoverThankYouPageRewriteRule/conf-template.json", "/conf/dhl/settings/wcm/templates/thankyou-page");
+        context.load().json("/com/positive/dhl/core/services/modernize/impl/DiscoverThankYouPageRewriteRule/conf-template.json", "/conf/dhl/settings/wcm/templates/thank-you-page");
 
         Map<String, Object> props = Map.of(
                 "id", "standard",
-                "editableTemplate", "/conf/dhl/settings/wcm/templates/thankyou-page",
+                "editableTemplate", "/conf/dhl/settings/wcm/templates/thank-you-page",
                 "staticTemplate", "/apps/dhl/templates/dhl-general-page",
                 "containerMappings", new String[]{"par:root/container"},
                 "slingResourceType", "dhl/components/pages/standard");

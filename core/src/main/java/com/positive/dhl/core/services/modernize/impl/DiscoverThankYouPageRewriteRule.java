@@ -13,6 +13,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
@@ -35,6 +36,14 @@ public class DiscoverThankYouPageRewriteRule extends DiscoverPageRewriteRuleCust
     protected void init(Config configuration) {
         super.resourceResolverHelper = resourceResolverHelperService;
         super.activate(configuration);
+
+        super.filters = List.of(node -> {
+            try {
+                return node.getParent().getName().toLowerCase().contains("thank");
+            } catch (RepositoryException e) {
+                return false;
+            }
+        });
     }
 
     @Override
@@ -65,10 +74,5 @@ public class DiscoverThankYouPageRewriteRule extends DiscoverPageRewriteRuleCust
 
         var followUsNode = pageContent.addNode(newRootComponentPath + "/followUs");
         followUsNode.setProperty(SLING_RESOURCE_TYPE_PROPERTY, "dhl/components/content/followUs");
-    }
-
-    @Override
-    protected boolean pageNameFilter(Node node) throws RepositoryException {
-        return node.getParent().getName().toLowerCase().contains("thank");
     }
 }

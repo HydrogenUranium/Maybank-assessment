@@ -9,6 +9,7 @@ import com.drew.lang.annotations.NotNull;
 import com.drew.lang.annotations.Nullable;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.oak.commons.PathUtils;
 import org.apache.sling.api.resource.ModifiableValueMap;
@@ -25,6 +26,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.function.Predicate;
 
 import static com.adobe.aem.modernize.model.ConversionJob.PN_PRE_MODERNIZE_VERSION;
 import static com.day.cq.commons.jcr.JcrConstants.NT_UNSTRUCTURED;
@@ -48,6 +50,8 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
     protected String staticTemplate;
     protected String slingResourceType;
     protected String id;
+
+    protected List<Predicate<Node>> filters;
 
     @Reference
     protected ResourceResolverHelper resourceResolverHelper;
@@ -105,7 +109,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
 
         var resourceType = node.getProperty(SLING_RESOURCE_TYPE_PROPERTY).getString();
 
-        return StringUtils.equals(slingResourceType, resourceType) && pageNameFilter(node);
+        return StringUtils.equals(slingResourceType, resourceType) && checkNodeFilters(node);
     }
 
     protected Node getPageContent(Node node) throws RepositoryException {
@@ -170,12 +174,15 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
         String date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
         var label = String.format("%s - %s", "Pre-Modernization", date);
         var revision = pageManager.createRevision(page, label, "Version of content before the modernization process was performed.");
-        ModifiableValueMap mvm = page.getContentResource().adaptTo(ModifiableValueMap.class);
-        if (mvm == null) {
-            throw new WCMException("Page content is null");
+        var pageContent = page.getContentResource();
+        if (pageContent != null) {
+            ModifiableValueMap mvm = pageContent.adaptTo(ModifiableValueMap.class);
+            if (mvm == null) {
+                throw new WCMException("Page content is null");
+            }
+            mvm.put(PN_PAGE_LAST_MOD, Calendar.getInstance());
+            mvm.put(PN_PRE_MODERNIZE_VERSION, revision.getId());
         }
-        mvm.put(PN_PAGE_LAST_MOD, Calendar.getInstance());
-        mvm.put(PN_PRE_MODERNIZE_VERSION, revision.getId());
     }
 
     protected Node getStructureNode(Session session) throws RepositoryException {
@@ -225,8 +232,14 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
         return structure.getProperty(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY).getString();
     }
 
-    protected boolean pageNameFilter(Node node) throws RepositoryException {
-        return !StringUtils.isBlank(node.getParent().getName());
+    protected boolean checkNodeFilters(Node node) {
+        var result = true;
+        if (CollectionUtils.isNotEmpty(filters)) {
+            for (Predicate<Node> filter : filters) {
+                result = result && filter.test(node);
+            }
+        }
+        return result;
     }
 
     @Activate

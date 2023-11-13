@@ -3,7 +3,7 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:deviceGroups="[mobile/groups/responsive]"
-        cq:template="/conf/dhl/settings/wcm/templates/thankyou-page"
+        cq:template="/conf/dhl/settings/wcm/templates/thank-you-page"
         jcr:primaryType="cq:PageContent"
         sling:resourceType="dhl/components/pages/editable-standard">
         <root

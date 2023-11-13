@@ -28,7 +28,7 @@
     "jcr:content": {
       "jcr:primaryType": "cq:PageContent",
       "jcr:title": "Thank you",
-      "cq:template": "/conf/dhl/settings/wcm/templates/thankyou-page",
+      "cq:template": "/conf/dhl/settings/wcm/templates/thank-you-page",
       "sling:resourceType": "dhl/components/pages/editable-standard",
       "title": {
         "jcr:primaryType": "nt:unstructured",

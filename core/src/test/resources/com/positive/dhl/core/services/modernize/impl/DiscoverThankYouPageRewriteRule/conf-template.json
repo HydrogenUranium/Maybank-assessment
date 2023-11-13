@@ -4,7 +4,7 @@
     "jcr:primaryType": "cq:Page",
     "jcr:content": {
       "jcr:primaryType": "cq:PageContent",
-      "cq:template": "/conf/dhl/settings/wcm/templates/thankyou-page",
+      "cq:template": "/conf/dhl/settings/wcm/templates/thank-you-page",
       "sling:resourceType": "dhl/components/pages/editable-standard",
       "root": {
         "jcr:primaryType": "nt:unstructured",
@@ -28,7 +28,7 @@
     "jcr:primaryType": "cq:Page",
     "jcr:content": {
       "jcr:primaryType": "cq:PageContent",
-      "cq:template": "/conf/dhl/settings/wcm/templates/thankyou-page",
+      "cq:template": "/conf/dhl/settings/wcm/templates/thank-you-page",
       "sling:resourceType": "dhl/components/pages/editable-standard",
       "root": {
         "jcr:primaryType": "nt:unstructured",
