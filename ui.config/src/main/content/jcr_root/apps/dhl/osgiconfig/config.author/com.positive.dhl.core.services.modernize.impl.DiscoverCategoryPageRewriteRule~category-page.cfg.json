@@ -3,5 +3,6 @@
   "editableTemplate":"/conf/dhl/settings/wcm/templates/category-page",
   "staticTemplate":"/apps/dhl/templates/dhl-article-group-page",
   "containerMappings":["parcarousel:root/responsivegrid"],
-  "slingResourceType":"dhl/components/pages/articlecategory"
+  "slingResourceType":"dhl/components/pages/articlecategory",
+  "enabled": false
 }
