@@ -17,6 +17,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
@@ -50,6 +51,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
     protected String staticTemplate;
     protected String slingResourceType;
     protected String id;
+    protected boolean enabled;
 
     protected List<Predicate<Node>> filters;
 
@@ -76,6 +78,10 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
 
     @Override
     public boolean hasPattern(@NotNull String... slingResourceTypes) {
+        if(!enabled) {
+            return false;
+        }
+
         return Arrays.asList(slingResourceTypes).contains(slingResourceType);
     }
 
@@ -250,12 +256,19 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
         staticTemplate = config.staticTemplate();
         slingResourceType = config.slingResourceType();
         id = config.id();
+        enabled = config.enabled();
     }
 
     @ObjectClassDefinition(
             name = "AEM Modernize Tools - Discover Page Rewrite Rule"
     )
     @interface Config {
+        @AttributeDefinition(
+                name = "enabled",
+                type = AttributeType.BOOLEAN
+        )
+        boolean enabled() default true;
+
         @AttributeDefinition(
                 name = "Static Template",
                 description = "The static template which will be updated by this Page Rewrite Rule"
