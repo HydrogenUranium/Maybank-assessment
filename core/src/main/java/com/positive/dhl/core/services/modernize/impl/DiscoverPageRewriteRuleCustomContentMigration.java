@@ -8,7 +8,6 @@ import org.apache.sling.api.resource.ResourceResolver;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import java.util.Map;
 import java.util.Set;
 
 public abstract class DiscoverPageRewriteRuleCustomContentMigration extends DiscoverPageRewriteRule {
@@ -16,34 +15,29 @@ public abstract class DiscoverPageRewriteRuleCustomContentMigration extends Disc
     public @Nullable Node applyTo(@NotNull Node node, @NotNull Set<String> set) throws RewriteException, RepositoryException {
         var session = node.getSession();
         var resolver = resourceResolverHelper.getResourceResolver(session);
-        var structureNode = session.getNode(editableTemplate + "/structure/jcr:content");
+        var initialNode = session.getNode(editableTemplate + "/initial/jcr:content/root");
 
         Node pageContent = getPageContent(node);
-        removeDesignPath(pageContent);
 
         try {
-            for (Map.Entry<String, String> entry : containerMappings.entrySet()) {
-                String staticContainerPath = entry.getKey();
-                String dynamicContainerPath = entry.getValue();
+            createVersion(session, pageContent.getParent());
+            removeDesignPath(pageContent);
+            resolver.copy(initialNode.getPath(), pageContent.getPath());
 
-                createVersion(session, pageContent.getParent());
-                initContainer(pageContent, structureNode, dynamicContainerPath);
-
-                var oldContainerNode = pageContent.getNode(staticContainerPath);
-                String initSource = PathUtils.concat(editableTemplate, "initial/jcr:content/root");
-                String destination = PathUtils.concat(pageContent.getPath(), "root");
-                session.getWorkspace().copy(initSource, destination);
-
+            for (String newContainerPath : containerMappings.values()) {
+                initNodeStructure(pageContent, newContainerPath);
+            }
+            initComponents(resolver, pageContent);
+            for(String oldContainerPath : containerMappings.keySet()) {
+                var oldContainerNode = pageContent.getNode(oldContainerPath);
                 if (isCopyOldNodes()) {
-                    moveNodes(session, oldContainerNode.getNodes(), PathUtils.concat(pageContent.getPath(), dynamicContainerPath));
+                    var newContainerPath = containerMappings.get(oldContainerPath);
+                    moveNodes(session, oldContainerNode.getNodes(), PathUtils.concat(pageContent.getPath(), newContainerPath));
                 }
-
-                initComponents(resolver, pageContent);
-
                 oldContainerNode.remove();
             }
-
             changeTemplate(pageContent);
+
             session.save();
         } catch (Exception exception) {
             session.refresh(false);

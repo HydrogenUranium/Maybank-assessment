@@ -38,6 +38,17 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1169514762602901>
                 </editable-home-page>
+                <editable-two-column-page jcr:primaryType="nt:unstructured">
+                    <policy_1699455642574
+                            jcr:lastModified="{Date}2023-11-08T17:01:19.029+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Right Aligned Marketo Form Page Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="wcm.foundation.components.page.responsive">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1699455642574>
+                </editable-two-column-page>
             </pages>
             <content jcr:primaryType="nt:unstructured">
                 <text jcr:primaryType="nt:unstructured">
@@ -340,6 +351,31 @@
                         components="[/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/article-teaser/image,/apps/dhl/components/content/article-teaser,/apps/dhl/components/content/article-carousel,/apps/dhl/components/content/article-grid]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </category_page_root_policy>
+                    <policy_right_aligned_marketo_form
+                            jcr:lastModified="{Date}2023-11-08T17:00:36.909+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Right Aligned Marketo Form"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/libs/wcm/foundation/components/responsivegrid,group:DHL Components,group:DHL Home Page structure,group:DHL Template structure]">
+                        <jcr:content
+                                cq:isDelivered="{Boolean}false"
+                                cq:lastReplicated="{Date}2023-09-18T18:30:34.114+03:00"
+                                cq:lastReplicated_publish="{Date}2023-09-18T18:30:34.114+03:00"
+                                cq:lastReplicatedBy="admin"
+                                cq:lastReplicatedBy_publish="admin"
+                                cq:lastReplicationAction="Activate"
+                                cq:lastReplicationAction_publish="Activate"
+                                jcr:mixinTypes="[cq:ReplicationStatus,cq:ReplicationStatus2]"
+                                jcr:primaryType="nt:unstructured"/>
+                    </policy_right_aligned_marketo_form>
+                    <disclaimer-text
+                            cq:styleDefaultClasses="disclaimer-text"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Disclaimer Text"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </disclaimer-text>
                 </responsivegrid>
             </components>
         </foundation>

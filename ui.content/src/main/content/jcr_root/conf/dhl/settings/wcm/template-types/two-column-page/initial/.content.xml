@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="cq:Page">
+    <jcr:content
+            jcr:primaryType="cq:PageContent"
+            sling:resourceType="dhl/components/pages/editable-two-column-page"
+            cq:template="/conf/dhl/settings/wcm/templates/right-aligned-marketo-form">
+        <root
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid"
+                layout="responsiveGrid">
+            <two_columns_container
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/two-columns-container-with-five-sections">
+                <headline
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/foundation/components/responsivegrid">
+                </headline>
+                <right-column-body
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/foundation/components/responsivegrid">
+                    <responsivegrid
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                    </responsivegrid>
+                </right-column-body>
+                <description
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/foundation/components/responsivegrid">
+                </description>
+                <left-column-body
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/foundation/components/responsivegrid">
+                    <responsivegrid
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                    </responsivegrid>
+                </left-column-body>
+                <bottom
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/foundation/components/responsivegrid">
+                    <cta_banner_gray
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/cta-banner-gray"/>
+                </bottom>
+            </two_columns_container>
+            <responsivegrid
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/foundation/components/responsivegrid">
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>

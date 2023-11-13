@@ -124,7 +124,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
     @Override
     public @Nullable Node applyTo(@NotNull Node node, @NotNull Set<String> set) throws RewriteException, RepositoryException {
         var session = node.getSession();
-        var structureContentNode = session.getNode(editableTemplate + "/structure/jcr:content");
+        var structureContentNode = getStructureNode(session);
 
         Node pageContent = getPageContent(node);
         removeDesignPath(pageContent);
@@ -138,7 +138,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
                     throw new RepositoryException("Node: " + structureContentNode.getPath() + " doesn't contain " + dynamicContainerPath);
                 }
                 createVersion(session, pageContent.getParent());
-                initContainer(pageContent, structureContentNode, dynamicContainerPath);
+                initNodeStructure(pageContent, dynamicContainerPath);
 
                 var containerNode = pageContent.getNode(staticContainerPath);
                 var containerChildNodes = containerNode.getNodes();
@@ -178,16 +178,23 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
         mvm.put(PN_PRE_MODERNIZE_VERSION, revision.getId());
     }
 
-    protected void initContainer(Node pageRoot, Node structureRoot, String containerPath) throws RepositoryException {
+    protected Node getStructureNode(Session session) throws RepositoryException {
+        return session.getNode(editableTemplate + "/structure/jcr:content");
+    }
+
+    protected Node initNodeStructure(Node rootNode, String containerPath) throws RepositoryException {
+        var structureNode = getStructureNode(rootNode.getSession());
+        var node = rootNode;
         for (String nodeName : containerPath.split("/")) {
-            structureRoot = structureRoot.getNode(nodeName);
-            if (pageRoot.hasNode(nodeName)) {
-                pageRoot = pageRoot.getNode(nodeName);
+            structureNode = structureNode.getNode(nodeName);
+            if (node.hasNode(nodeName)) {
+                node = node.getNode(nodeName);
             } else {
-                pageRoot = pageRoot.addNode(nodeName, NT_UNSTRUCTURED);
-                pageRoot.setProperty(SLING_RESOURCE_TYPE_PROPERTY, structureRoot.getProperty(SLING_RESOURCE_TYPE_PROPERTY).getString());
+                node = node.addNode(nodeName, NT_UNSTRUCTURED);
+                node.setProperty(SLING_RESOURCE_TYPE_PROPERTY, structureNode.getProperty(SLING_RESOURCE_TYPE_PROPERTY).getString());
             }
         }
+        return node;
     }
 
     protected void moveNodes(Session session, NodeIterator nodes, String target) throws RepositoryException {

@@ -1,0 +1,33 @@
+.editable-two-column-page{
+  background-color: #F6F6F6;
+  max-width: 1640px;
+  margin: 0 auto;
+  .breadcrumb {
+    display: none;
+    @include respond(xl) {
+      display: initial;
+    }
+    padding: 0 30px;
+    .cmp-breadcrumb {
+      max-width: 1340px;
+    }
+  }
+  .disclaimer-text{
+     padding-left: 35px;
+     padding-right: 35px;
+    p {
+        font-size: 12px;
+        line-height: 19px;
+        margin: 15px 0 30px;
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+  }
+}

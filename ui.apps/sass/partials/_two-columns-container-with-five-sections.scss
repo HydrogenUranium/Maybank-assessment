@@ -1,0 +1,129 @@
+.two-columns-container-with-five-sections-component {
+  .main-container {
+    padding: 0 30px;
+    @include respond(xl) {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .columns-section {
+      gap: 20px;
+      .marketoForm--white {
+        border: 1px solid #E2E2E2;
+        border-radius: 4px;
+      }
+    }
+    .description-section {
+      margin-top: 25px;
+    }
+    .columns-section,
+    .description-section {
+      @include respond(ml) {
+        margin-top: 30px;
+      }
+      @include respond(xl) {
+        margin-top: 50px;
+      }
+    }
+  }
+  .bottom-section {
+    margin-top: 20px;
+  }
+  &__editor {
+    .right-header-section {
+      padding-right: 20px;
+      width: calc(50% - 10px);
+      margin-left: auto;
+    }
+    .columns-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "left-column right-column";
+      &__left-column {
+        grid-area: left-column;
+      }
+      &__right-column {
+        grid-area: right-column;
+      }
+    }
+  }
+
+  &__adaptive {
+    .right-header-section {
+       display: none;
+       @include respond(xl) {
+         padding-right: 20px;
+         display: block;
+         width: calc(50% - 10px);
+         margin-left: auto;
+       }
+     }
+    .main-container {
+          .description-section {
+            @include respond(xl) {
+              display: none;
+            }
+          }
+          .columns-section {
+            .marketoForm--white {
+              @include respond(md) {
+                border: none;
+              }
+              @include respond(xl) {
+                border: 1px solid #E2E2E2;
+              }
+            }
+            @include respond(md) {
+              padding-left: 20px;
+              background: white;
+              border: 1px solid #E2E2E2;
+              border-radius: 4px;
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              grid-template-areas: "left-column right-column";
+            }
+            @include respond(xl) {
+              padding-left: 0;
+              background: transparent;
+              border: none;
+            }
+            &__left-column {
+              grid-area: left-column;
+              &__description {
+                display: none;
+                @include respond(xl) {
+                  display: initial;
+                }
+              }
+            }
+            &__right-column {
+              grid-area: right-column;
+              &__header-section {
+                @include respond(md) {
+                  padding: 0 20px;
+                }
+                @include respond(xl) {
+                  display: none;
+                }
+              }
+              &__body {
+                margin-top: 20px;
+                @include respond(md) {
+                  margin-top: 0;
+                }
+              }
+              &__bottom {
+                display: none;
+                @include respond(xl) {
+                  display: initial;
+                }
+              }
+            }
+          }
+    }
+    .bottom-section {
+      @include respond(xl) {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "cta_banner_gray": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:title": "Open a DHL Express Business Account for International Business Shipping",
+    "type": "individualShipper",
+    "sling:resourceType": "dhl/components/content/cta-banner-gray"
+  },
+
+  "cta_banner_gray_custom": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:title": "Open a DHL Express Business Account for International Business Shipping",
+    "buttonLabel": "Take me to MyDHL+",
+    "buttonLink": "/my/dhl",
+    "description": "Ship today without a DHL Express Business Account.",
+    "jcr:lastModifiedBy": "admin",
+    "type": "custom",
+    "title": "Are you an individual shipper?",
+    "linkTarget": "_self",
+    "jcr:lastModified": "Sun Nov 12 2023 20:06:48 GMT+0200",
+    "sling:resourceType": "dhl/components/content/cta-banner-gray"
+  }
+}
