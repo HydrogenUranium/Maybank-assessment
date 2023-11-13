@@ -33,12 +33,8 @@ class MarketoConfigurationTest {
 
 	@BeforeEach
 	void setup(){
-		Map<String,Object> injectedServices = new HashMap<>();
-		injectedServices.put("pageUtilService", pageUtilService);
-
 		aemContext.registerService(PageUtilService.class, pageUtilService);
 		aemContext.addModelsForClasses(MarketoConfiguration.class);
-		aemContext.registerInjectActivateService(underTest, injectedServices);
 	}
 
 	@ParameterizedTest
@@ -52,6 +48,7 @@ class MarketoConfigurationTest {
 
 		MockSlingHttpServletRequest request = aemContext.request();
 		underTest = request.adaptTo(MarketoConfiguration.class);
+
 		assert underTest != null;
 		String getFormIdAsFormId = underTest.getHiddenFormIdAsDivId();
 		String assertedValue;
