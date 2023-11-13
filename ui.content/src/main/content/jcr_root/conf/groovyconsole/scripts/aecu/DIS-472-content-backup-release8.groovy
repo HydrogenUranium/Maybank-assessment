@@ -16,12 +16,14 @@ def VERSION_NAME = "DIS-472 Before modifying on STAGE"
 
 // Section for preparing list of pages
 def contentPath = "/content/dhl"
-def resourceType = "dhl/components/pages/standard"
+def standardResourceType = "dhl/components/pages/standard"
+def twoColumnResourceType = "dhl/components/pages/landingtwocol"
+
 def getPagesByResourceType = """
             SELECT * FROM [cq:Page] AS page
             WHERE ISDESCENDANTNODE(page, '$contentPath')
-            AND page.[jcr:content/sling:resourceType] = '$resourceType'
-            AND NAME(page) LIKE '%thank%'
+            AND (page.[jcr:content/sling:resourceType] = '$standardResourceType'
+            AND NAME(page) LIKE '%thank%') OR page.[jcr:content/sling:resourceType] = '$twoColumnResourceType'
         """
 def getPagesByQuery = session.getWorkspace().getQueryManager().createQuery(getPagesByResourceType, 'JCR-SQL2')
 listPages = getPagesByQuery
