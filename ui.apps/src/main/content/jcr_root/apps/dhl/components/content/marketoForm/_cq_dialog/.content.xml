@@ -17,6 +17,12 @@
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="granite/ui/components/foundation/container">
                 <items jcr:primaryType="nt:unstructured">
+                    <formTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Form Title (optional)"
+                            fieldDescription="Optional. An empty value excludes the Form Title from the HTML markup"
+                            name="./formTitle"/>
                     <marketoid
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/foundation/form/textfield"
