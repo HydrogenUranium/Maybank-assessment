@@ -65,6 +65,7 @@ public class DiscoverRightAlignedMarketoFormRewriteRule extends DiscoverPageRewr
         var title = initNodeStructure(pageContent, "root/two_columns_container/headline/title_v2");
         title.setProperty("designMode", "bottomLeftUnderline");
         title.setProperty(JCR_TITLE, pageContent.getProperty(JCR_TITLE).getString());
+        addLiveSyncCancelledMixinType(title);
     }
 
     private void processContainerNodes(Node pageContent, Session session) throws RepositoryException {
@@ -112,6 +113,7 @@ public class DiscoverRightAlignedMarketoFormRewriteRule extends DiscoverPageRewr
     private void initializeBanner(Node pageContent) throws RepositoryException {
         var bannerGray = initNodeStructure(pageContent, "root/two_columns_container/bottom/cta_banner_gray");
         bannerGray.setProperty("type", "individualShipper");
+        addLiveRelationshipMixinType(bannerGray);
     }
 
     private void updateMarketoConfigurableNode(Node node) throws RepositoryException {
@@ -120,6 +122,7 @@ public class DiscoverRightAlignedMarketoFormRewriteRule extends DiscoverPageRewr
         setPropertyIfEmpty(node, "marketoid", "903-EZK-832");
         setPropertyIfEmpty(node, "marketohost", "https://express-resource.dhl.com");
         setPropertyIfEmpty(node, "marketohiddenformid", "6310");
+        addLiveSyncCancelledMixinType(node);
     }
 
     private void setPropertyIfEmpty(Node node, String propertyName, String value) throws RepositoryException {

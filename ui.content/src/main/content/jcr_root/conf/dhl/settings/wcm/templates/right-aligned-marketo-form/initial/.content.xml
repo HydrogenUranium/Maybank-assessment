@@ -9,41 +9,51 @@
         <root
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid"
+                jcr:mixinTypes="[cq:LiveRelationship]"
                 layout="responsiveGrid">
             <two_columns_container
                     jcr:primaryType="nt:unstructured"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
                     sling:resourceType="dhl/components/content/two-columns-container-with-five-sections">
                 <headline
                         jcr:primaryType="nt:unstructured"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
                 </headline>
                 <right-column-body
                         jcr:primaryType="nt:unstructured"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
                     <responsivegrid
                             jcr:primaryType="nt:unstructured"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
                             sling:resourceType="wcm/foundation/components/responsivegrid">
                     </responsivegrid>
                 </right-column-body>
                 <description
                         jcr:primaryType="nt:unstructured"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
                 </description>
                 <left-column-body
                         jcr:primaryType="nt:unstructured"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
                     <responsivegrid
                             jcr:primaryType="nt:unstructured"
+                            jcr:mixinTypes="[cq:LiveRelationship]"
                             sling:resourceType="wcm/foundation/components/responsivegrid">
                     </responsivegrid>
                 </left-column-body>
                 <bottom
                         jcr:primaryType="nt:unstructured"
+                        jcr:mixinTypes="[cq:LiveRelationship]"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
                 </bottom>
             </two_columns_container>
             <responsivegrid
                     jcr:primaryType="nt:unstructured"
+                    jcr:mixinTypes="[cq:LiveRelationship]"
                     sling:resourceType="wcm/foundation/components/responsivegrid">
             </responsivegrid>
         </root>

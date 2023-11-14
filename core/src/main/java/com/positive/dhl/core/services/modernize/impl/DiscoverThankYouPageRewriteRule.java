@@ -71,8 +71,10 @@ public class DiscoverThankYouPageRewriteRule extends DiscoverPageRewriteRuleCust
         textLineSeparatorNode.setProperty(SLING_RESOURCE_TYPE_PROPERTY, "dhl/components/content/text");
         textLineSeparatorNode.setProperty("text", "<hr>");
         textLineSeparatorNode.setProperty("textIsRich", "true");
+        addLiveRelationshipMixinType(textLineSeparatorNode);
 
         var followUsNode = pageContent.addNode(newRootComponentPath + "/followUs");
         followUsNode.setProperty(SLING_RESOURCE_TYPE_PROPERTY, "dhl/components/content/followUs");
+        addLiveRelationshipMixinType(followUsNode);
     }
 }
