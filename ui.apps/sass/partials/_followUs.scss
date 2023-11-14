@@ -1,0 +1,42 @@
+.followUs {
+  padding: 15px 0 50px;
+
+  &__title {
+    padding-bottom: 15px;
+    text-align: center;
+    font-family: "Delivery", sans-serif;
+    font-size: 20px;
+    line-height: 29px;
+    font-weight: bold;
+    color: #323232;
+
+    @include respond(xl) {
+      padding-bottom: 25px;
+      font-size: 32px;
+      line-height: 46px;
+    }
+  }
+
+  &__items {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item {
+    display: block;
+    height: 50px;
+
+    .logo__image {
+      height: 40px;
+      width: 40px;
+      object-fit: contain;
+      margin: 0 20px;
+
+      &:hover {
+        height: 50px;
+        width: 50px;
+        margin: 0 15px;
+      }
+    }
+  }
+}
