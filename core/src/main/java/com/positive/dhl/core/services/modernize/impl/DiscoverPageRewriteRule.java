@@ -32,6 +32,7 @@ import java.util.function.Predicate;
 import static com.adobe.aem.modernize.model.ConversionJob.PN_PRE_MODERNIZE_VERSION;
 import static com.day.cq.commons.jcr.JcrConstants.NT_UNSTRUCTURED;
 import static com.day.cq.wcm.api.constants.NameConstants.*;
+import static com.positive.dhl.core.helpers.JcrNodeHelper.addLiveRelationshipMixinType;
 import static com.positive.dhl.core.helpers.OSGiConfigHelper.arrayToMapWithDelimiter;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
@@ -195,23 +196,6 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
         return session.getNode(editableTemplate + "/structure/jcr:content");
     }
 
-    protected void addLiveRelationshipMixinType(Node node) throws RepositoryException {
-        if(node.canAddMixin("cq:LiveRelationship")) {
-            node.addMixin("cq:LiveRelationship");
-        } else {
-            log.warn("Unable to add mixin cq:LiveRelationship to node: {}", node.getPath());
-        }
-    }
-
-    protected void addLiveSyncCancelledMixinType(Node node) throws RepositoryException {
-        addLiveRelationshipMixinType(node);
-        if(node.canAddMixin("cq:LiveSyncCancelled")) {
-            node.addMixin("cq:LiveSyncCancelled");
-        } else {
-            log.warn("Unable to add mixin cq:LiveSyncCancelled to node: {}", node.getPath());
-        }
-    }
-
     protected Node initNodeStructure(Node rootNode, String containerPath) throws RepositoryException {
         var structureNode = getStructureNode(rootNode.getSession());
         var node = rootNode;
@@ -222,7 +206,6 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
             } else {
                 node = node.addNode(nodeName, NT_UNSTRUCTURED);
                 node.setProperty(SLING_RESOURCE_TYPE_PROPERTY, structureNode.getProperty(SLING_RESOURCE_TYPE_PROPERTY).getString());
-                node.addMixin("cq:LiveRelationship");
                 addLiveRelationshipMixinType(node);
             }
         }
