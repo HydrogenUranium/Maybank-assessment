@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:configTemplate="/libs/cq/translation/templates/msft/msft-servicepage"
         cq:isDelivered="{Boolean}true"
         cq:template="/libs/cq/cloudserviceconfigs/templates/servicepage"
         jcr:description="Microsoft Translation Connector"
-        jcr:isCheckedOut="{Boolean}true"
         jcr:primaryType="cq:PageContent"
         jcr:title="Microsoft Translator"
         sling:resourceType="cq/cloudserviceconfigs/components/servicepage"
         allowMultiple="{Boolean}true"
-        configsPath="[/conf/global/settings/cloudconfigs/translation/msft-translation,/conf/global/settings/cloudconfigs/translation/msft-translation]"
+        configsPath="[/conf/global/settings/cloudconfigs/translation/msft-translation]"
         connectedWhen="subscriptionkey"
         defaultName="msft-translation"
         description="Instantly translate your site into any of more than 40 languages.  Machine Translation is integrated into Social Communities and automatic translation workflows.  Keep translated content up-to-date automatically.  Customize your translation system to your organization’s terminology and style.  A limited trial is included, you may upgrade to a full-featured subscription at any time."
