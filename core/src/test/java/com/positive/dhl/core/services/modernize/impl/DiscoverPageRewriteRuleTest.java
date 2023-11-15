@@ -2,6 +2,8 @@ package com.positive.dhl.core.services.modernize.impl;
 
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.Revision;
+import com.positive.dhl.core.helpers.JcrNodeHelper;
+import com.positive.dhl.core.models.UserAccount;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -11,11 +13,16 @@ import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.jcr.nodetype.NodeTypeManager;
+import javax.jcr.nodetype.NodeTypeTemplate;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -40,7 +47,14 @@ class DiscoverPageRewriteRuleTest {
     DiscoverPageRewriteRule rule = new DiscoverPageRewriteRule();
 
     @BeforeEach
-    public void beforeEach() {
+    public void beforeEach() throws RepositoryException {
+        NodeTypeManager nodeTypeManager = resourceResolver.adaptTo(Session.class).getWorkspace().getNodeTypeManager();
+
+        // Create a new mixin node type
+        NodeTypeTemplate nodeTypeTemplate = nodeTypeManager.createNodeTypeTemplate();
+        nodeTypeTemplate.setName("cq:LiveRelationship");
+        nodeTypeTemplate.setMixin(true);
+
         context.load().json("/com/positive/dhl/core/services/modernize/impl/DiscoverPageRewriteRuleTest/page-content.json", "/content/test");
         context.load().json("/com/positive/dhl/core/services/modernize/impl/DiscoverPageRewriteRuleTest/conf-template.json", "/conf/dhl/settings/wcm/templates/article");
 
@@ -133,17 +147,20 @@ class DiscoverPageRewriteRuleTest {
 
     @Test
     void applyTo_ShouldMigratePage_WhenConditionsIsTrue() throws Exception {
-        ResourceResolver spyResourceResolver = spy(resourceResolver);
-        PageManager spyPageManager = spy(context.pageManager());
-        when(resourceResolverHelper.getResourceResolver(any(Session.class))).thenReturn(spyResourceResolver);
-        doReturn(spyPageManager).when(spyResourceResolver).adaptTo(PageManager.class);
-        doReturn(revision).when(spyPageManager).createRevision(any(), any(), any());
-        when(revision.getId()).thenReturn("1");
+        try (MockedStatic<JcrNodeHelper> mockedStatic = mockStatic(JcrNodeHelper.class)) {
+            mockedStatic.when(() -> JcrNodeHelper.addLiveRelationshipMixinType(any())).thenAnswer(Answers.RETURNS_DEFAULTS);
+            ResourceResolver spyResourceResolver = spy(resourceResolver);
+            PageManager spyPageManager = spy(context.pageManager());
+            when(resourceResolverHelper.getResourceResolver(any(Session.class))).thenReturn(spyResourceResolver);
+            doReturn(spyPageManager).when(spyResourceResolver).adaptTo(PageManager.class);
+            doReturn(revision).when(spyPageManager).createRevision(any(), any(), any());
+            when(revision.getId()).thenReturn("1");
 
-        Node node = getNode("/content/test/matches");
-        Node rewrittenNode = rule.applyTo(node, new HashSet<>());
+            Node node = getNode("/content/test/matches");
+            Node rewrittenNode = rule.applyTo(node, new HashSet<>());
 
-        Node expected = getNode("/content/test/migrated/jcr:content");
-        assertNodeStructureEquals(expected, rewrittenNode);
+            Node expected = getNode("/content/test/migrated/jcr:content");
+            assertNodeStructureEquals(expected, rewrittenNode);
+        }
     }
 }

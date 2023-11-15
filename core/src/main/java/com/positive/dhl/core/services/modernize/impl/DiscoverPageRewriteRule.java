@@ -32,6 +32,7 @@ import java.util.function.Predicate;
 import static com.adobe.aem.modernize.model.ConversionJob.PN_PRE_MODERNIZE_VERSION;
 import static com.day.cq.commons.jcr.JcrConstants.NT_UNSTRUCTURED;
 import static com.day.cq.wcm.api.constants.NameConstants.*;
+import static com.positive.dhl.core.helpers.JcrNodeHelper.addLiveRelationshipMixinType;
 import static com.positive.dhl.core.helpers.OSGiConfigHelper.arrayToMapWithDelimiter;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
@@ -205,6 +206,7 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
             } else {
                 node = node.addNode(nodeName, NT_UNSTRUCTURED);
                 node.setProperty(SLING_RESOURCE_TYPE_PROPERTY, structureNode.getProperty(SLING_RESOURCE_TYPE_PROPERTY).getString());
+                addLiveRelationshipMixinType(node);
             }
         }
         return node;

@@ -16,6 +16,7 @@ import javax.jcr.Session;
 import java.util.List;
 import java.util.Map;
 
+import static com.positive.dhl.core.helpers.JcrNodeHelper.addLiveRelationshipMixinType;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
 @Component(
@@ -71,8 +72,10 @@ public class DiscoverThankYouPageRewriteRule extends DiscoverPageRewriteRuleCust
         textLineSeparatorNode.setProperty(SLING_RESOURCE_TYPE_PROPERTY, "dhl/components/content/text");
         textLineSeparatorNode.setProperty("text", "<hr>");
         textLineSeparatorNode.setProperty("textIsRich", "true");
+        addLiveRelationshipMixinType(textLineSeparatorNode);
 
         var followUsNode = pageContent.addNode(newRootComponentPath + "/followUs");
         followUsNode.setProperty(SLING_RESOURCE_TYPE_PROPERTY, "dhl/components/content/followUs");
+        addLiveRelationshipMixinType(followUsNode);
     }
 }

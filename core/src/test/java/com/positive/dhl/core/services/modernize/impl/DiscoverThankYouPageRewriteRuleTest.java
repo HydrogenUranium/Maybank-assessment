@@ -2,6 +2,7 @@ package com.positive.dhl.core.services.modernize.impl;
 
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.Revision;
+import com.positive.dhl.core.helpers.JcrNodeHelper;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -10,7 +11,9 @@ import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Node;
@@ -52,18 +55,21 @@ class DiscoverThankYouPageRewriteRuleTest {
 
     @Test
     void applyTo_ShouldMigratePage_WhenConditionsIsTrue() throws Exception {
-        ResourceResolver spyResourceResolver = spy(resourceResolver);
-        PageManager spyPageManager = spy(context.pageManager());
-        when(resourceResolverHelper.getResourceResolver(any(Session.class))).thenReturn(spyResourceResolver);
-        doReturn(spyPageManager).when(spyResourceResolver).adaptTo(PageManager.class);
-        doReturn(revision).when(spyPageManager).createRevision(any(), any(), any());
-        when(revision.getId()).thenReturn("standard");
+        try (MockedStatic<JcrNodeHelper> mockedStatic = mockStatic(JcrNodeHelper.class)) {
+            mockedStatic.when(() -> JcrNodeHelper.addLiveRelationshipMixinType(any())).thenAnswer(Answers.RETURNS_DEFAULTS);
+            ResourceResolver spyResourceResolver = spy(resourceResolver);
+            PageManager spyPageManager = spy(context.pageManager());
+            when(resourceResolverHelper.getResourceResolver(any(Session.class))).thenReturn(spyResourceResolver);
+            doReturn(spyPageManager).when(spyResourceResolver).adaptTo(PageManager.class);
+            doReturn(revision).when(spyPageManager).createRevision(any(), any(), any());
+            when(revision.getId()).thenReturn("standard");
 
-        Node node = getNode("/content/test/matches-thank-you-page");
-        Node rewrittenNode = rule.applyTo(node, new HashSet<>());
+            Node node = getNode("/content/test/matches-thank-you-page");
+            Node rewrittenNode = rule.applyTo(node, new HashSet<>());
 
-        Node expected = getNode("/content/test/migrated-thank-you-page/jcr:content");
-        assertNodeStructureEquals(expected, rewrittenNode);
+            Node expected = getNode("/content/test/migrated-thank-you-page/jcr:content");
+            assertNodeStructureEquals(expected, rewrittenNode);
+        }
     }
 
     private Node getNode(String path) {
