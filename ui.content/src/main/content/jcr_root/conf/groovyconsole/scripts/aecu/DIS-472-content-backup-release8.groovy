@@ -1,10 +1,8 @@
-/*
-DIS-472 BackUp before content manipulation
+/* DIS-472 BackUp before content manipulation
 
 Steps:
 1)  def DRY_RUN = true
     - create a list of filters to prepare a BackUp package with all pages that will be affected
-
 2)  def DRY_RUN = false
     - update the version of each page that will be affected
 */
@@ -22,8 +20,8 @@ def twoColumnResourceType = "dhl/components/pages/landingtwocol"
 def getPagesByResourceType = """
             SELECT * FROM [cq:Page] AS page
             WHERE ISDESCENDANTNODE(page, '$contentPath')
-            AND (page.[jcr:content/sling:resourceType] = '$standardResourceType'
-            AND NAME(page) LIKE '%thank%') OR page.[jcr:content/sling:resourceType] = '$twoColumnResourceType'
+            AND ((page.[jcr:content/sling:resourceType] = '$standardResourceType'
+            AND NAME(page) LIKE '%thank%') OR page.[jcr:content/sling:resourceType] = '$twoColumnResourceType')
         """
 def getPagesByQuery = session.getWorkspace().getQueryManager().createQuery(getPagesByResourceType, 'JCR-SQL2')
 listPages = getPagesByQuery
@@ -44,7 +42,6 @@ if (DRY_RUN) {
     println("Results: " + listPages.size())
     println("List of pages whose version was updated:")
     listPages.each({
-        println(it)
         def isVersionExist = false
 
         pageManager.getRevisions(it, null, false).each({ revision ->
@@ -57,6 +54,7 @@ if (DRY_RUN) {
 
         if (!isVersionExist) {
             println(it)
+            def page = getPage(it);
 
             def date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
             def label = String.format("%s - %s", VERSION_NAME, date);
