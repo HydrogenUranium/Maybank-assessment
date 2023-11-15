@@ -15,12 +15,9 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -38,7 +35,6 @@ public class LanguageVariants {
 
 	private HashMap<String, ArrayList<LanguageVariant>> variants;
 
-	@Getter
 	private Map<String, LanguageVariant> countries;
 
 	@Getter
@@ -218,7 +214,7 @@ public class LanguageVariants {
 	@PostConstruct
     protected void init() {
 		variants = new HashMap<>();
-		countries = new TreeMap<>();
+		countries = new HashMap<>();
 
 		Page root = currentPage.getAbsoluteParent(1);
         Page currentHome = pageUtilService.getHomePage(currentPage);
@@ -277,6 +273,20 @@ public class LanguageVariants {
 			newItem.setRegion(region);
 			countries.put(countryCode.equals("global") ? "aa" : countryCode, newItem);
 		}
+	}
+
+	public Map<String, LanguageVariant> getCountries() {
+		Map<String, LanguageVariant> countriesOrderedByRegionWithGlobalOnFirstPosition = getCountriesOrderedByRegion();
+		Map<String, LanguageVariant> copy = new LinkedHashMap<>(countriesOrderedByRegionWithGlobalOnFirstPosition);
+		countriesOrderedByRegionWithGlobalOnFirstPosition.keySet().retainAll(Collections.singleton("aa"));
+		countriesOrderedByRegionWithGlobalOnFirstPosition.putAll(copy);
+		return countriesOrderedByRegionWithGlobalOnFirstPosition;
+	}
+
+	private Map<String, LanguageVariant> getCountriesOrderedByRegion() {
+		return countries.entrySet().stream()
+				.sorted(Map.Entry.comparingByValue(Comparator.comparing(LanguageVariant::getRegion)))
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 	}
 
 	private void setCurrentRegionCode(String currentHomePath, String newHomepage, String countryCode) {
