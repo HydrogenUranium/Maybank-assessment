@@ -38,7 +38,7 @@ if (DRY_RUN) {
     println("Results: " + listPages.size())
     if (listPages.size() > 0) {
         println("(!) Use this list of pages for preparing package:")
-        listPages.each({ println("""<filter root="$it"/>""")})
+        listPages.each({ println("""<filter root="$it/jcr:content"/>""")})
     }
 } else {
     println("Results: " + listPages.size())
