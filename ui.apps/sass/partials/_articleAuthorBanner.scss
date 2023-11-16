@@ -1,11 +1,17 @@
 .article-author-banner {
-  display: none;
-  margin-top: 50px;
-  padding: 25px;
-  background: map-get($palette, true-white) 0% 0% no-repeat padding-box;
-  border: 1px solid #E9E9E9;
-  border-radius: 4px;
-  font-family: "Delivery", sans-serif;
+  &_wrapper {
+    display: none;
+    margin-top: 50px;
+    padding: 25px;
+    background: map-get($palette, true-white) 0% 0% no-repeat padding-box;
+    border: 1px solid #E9E9E9;
+    border-radius: 4px;
+    font-family: "Delivery", sans-serif;
+
+    @include respond(xl) {
+      display: block;
+    }
+  }
 
   &_title {
     font-size: 18px;
@@ -36,10 +42,11 @@
 
       &__name {
         font-size: 16px;
-        line-height: 28px;
+        line-height: normal;
         font-weight: bold;
         color: map-get($palette, dhl-black);
         text-transform: capitalize;
+        padding-bottom: 5px;
       }
 
       &__title {
@@ -82,9 +89,5 @@
         color: map-get($palette, scarlet);
       }
     }
-  }
-
-  @include respond(xl) {
-    display: block;
   }
 }
