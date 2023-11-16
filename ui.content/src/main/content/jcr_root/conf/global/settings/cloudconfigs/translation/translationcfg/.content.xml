@@ -12,7 +12,7 @@
         sling:resourceType="cq/cloudserviceconfigs/components/servicepage"
         allowMultiple="{Boolean}true"
         category="marketingcloud"
-        configsPath="[/libs/settings/cloudconfigs/translation/translationcfg,/conf/global/settings/cloudconfigs/translation/translationcfg]"
+        configsPath="[/conf/global/settings/cloudconfigs/translation/translationcfg]"
         connectedWhen="defaultTranslationProvider"
         defaultName="translation"
         description="Manage routing configurations for sending content to configured translation connectors. Select the combination of configured translation connectors and content type to send for translation."
