@@ -1,4 +1,4 @@
-/* DIS-482 Replacing the old Marketo Forms - BACKUP
+/* DIS-482 Replacing old Marketo Forms - BACKUP
 
 Steps:
 1)  BACKUP:
@@ -111,9 +111,23 @@ def contentManipulation(listPages, componentResTypes, dryRun) {
     if (listPages.size() > 0) {
         listPages.each({ pagePath ->
             println ">> Page: " + pagePath
-            Node oldMarketoParentNode = getNode(pagePath + "/jcr:content/root/two_columns_container/right-column-body/responsivegrid")
+
             Node newMarketoParentNode = getNode(pagePath + "/jcr:content/root/two_columns_container/right-column-body")
-            oldMarketoParentNode.getNodes().each({ oldMarketo ->
+
+            def oldMarketoNodes = []
+            componentResTypes.each({ componentResType ->
+                def getOldMarketoNodes = """
+                    SELECT oldMarketo.* FROM [nt:unstructured] AS oldMarketo
+                    WHERE ISDESCENDANTNODE(oldMarketo, '$pagePath')
+                    AND oldMarketo.[sling:resourceType] = '$componentResType'
+                """
+                def getNodesByQuery = session.getWorkspace().getQueryManager().createQuery(getOldMarketoNodes, 'JCR-SQL2')
+                oldMarketoNodes += getNodesByQuery
+                        .execute()
+                        .getNodes()
+                        .collect{it}
+            })
+            oldMarketoNodes.each({ oldMarketo ->
                 if (oldMarketo.hasProperty("sling:resourceType")
                         && componentResTypes.contains(oldMarketo.getProperty("sling:resourceType").getString())) {
 
@@ -141,12 +155,14 @@ def contentManipulation(listPages, componentResTypes, dryRun) {
                                 .run(dryRun)
                     }
 
-                    println "-- Removing old Marketo Form Component"
-                    aecu.contentUpgradeBuilder()
-                            .forResources((String[])[oldMarketo.path])
-                            .doDeactivateResource()
-                            .doDeleteResource()
-                            .run(dryRun)
+                    if (newMarketoParentNode.hasNode("marketoform")) {
+                        println "-- Removing old Marketo Form Component"
+                        aecu.contentUpgradeBuilder()
+                                .forResources((String[])[oldMarketo.path])
+                                .doDeactivateResource()
+                                .doDeleteResource()
+                                .run(dryRun)
+                    }
                 }
             })
         })
