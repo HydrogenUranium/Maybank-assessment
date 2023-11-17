@@ -119,9 +119,9 @@ def contentManipulation(listPages, componentResTypes, dryRun) {
 
                     def newMarketoProperties = [
                             "sling:resourceType": "dhl/components/content/marketoForm",
-                            "marketoformid": oldMarketo.hasProperty("marketoMunchkinId") ? oldMarketo.getProperty("marketoMunchkinId").getString() : "903-EZK-832",
+                            "marketoformid": oldMarketo.hasProperty("marketoFormId") ? oldMarketo.getProperty("marketoFormId").getString() : "6412",
                             "marketohost": oldMarketo.hasProperty("marketoHostname") ? oldMarketo.getProperty("marketoHostname").getString() : "https://express-resource.dhl.com",
-                            "marketoid": oldMarketo.hasProperty("marketoFormId") ? oldMarketo.getProperty("marketoFormId").getString() : "6412",
+                            "marketoid": oldMarketo.hasProperty("marketoMunchkinId") ? oldMarketo.getProperty("marketoMunchkinId").getString() : "903-EZK-832",
                             "marketohiddenformid": oldMarketo.hasProperty("hiddenmarketoformid") ? oldMarketo.getProperty("hiddenmarketoformid").getString() : "6310",
                             "cq:isCancelledForChildren": "true",
                     ]
