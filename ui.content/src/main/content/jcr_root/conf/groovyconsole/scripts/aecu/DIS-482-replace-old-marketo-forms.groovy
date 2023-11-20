@@ -142,15 +142,15 @@ def contentManipulation(listPages, componentResTypes, dryRun) {
                             "cq:isCancelledForChildren": "true",
                     ]
 
-                    if (!newMarketoParentNode.hasNode("marketoform")) {
+                    if (!newMarketoParentNode.hasNode("marketoform-migrated")) {
                         println "-- Creating new Marketo Form Component"
                         aecu.contentUpgradeBuilder()
                                 .forResources((String[])[newMarketoParentNode.path])
-                                .doCreateResource("marketoform", "nt:unstructured", newMarketoProperties)
+                                .doCreateResource("marketoform-migrated", "nt:unstructured", newMarketoProperties)
                                 .run(dryRun)
 
                         aecu.contentUpgradeBuilder()
-                                .forResources((String[])[newMarketoParentNode.path + "/marketoform"])
+                                .forResources((String[])[newMarketoParentNode.path + "/marketoform-migrated"])
                                 .doAddMixin("cq:LiveRelationship")
                                 .doAddMixin("cq:LiveSyncCancelled")
                                 .doActivateResource()
