@@ -139,23 +139,28 @@ def contentManipulation(listPages, componentResTypes, dryRun) {
                             "marketohost": oldMarketo.hasProperty("marketoHostname") ? oldMarketo.getProperty("marketoHostname").getString() : "https://express-resource.dhl.com",
                             "marketoid": oldMarketo.hasProperty("marketoMunchkinId") ? oldMarketo.getProperty("marketoMunchkinId").getString() : "903-EZK-832",
                             "marketohiddenformid": oldMarketo.hasProperty("hiddenmarketoformid") ? oldMarketo.getProperty("hiddenmarketoformid").getString() : "6310",
-                            "cq:isCancelledForChildren": "true",
+                            "cq:isCancelledForChildren": true,
                     ]
 
-                    if (!newMarketoParentNode.hasNode("marketoform-migrated")) {
-                        println "-- Creating new Marketo Form Component"
+                    if (newMarketoParentNode.hasNode("marketoform")) {
                         aecu.contentUpgradeBuilder()
-                                .forResources((String[])[newMarketoParentNode.path])
-                                .doCreateResource("marketoform-migrated", "nt:unstructured", newMarketoProperties)
-                                .run(dryRun)
-
-                        aecu.contentUpgradeBuilder()
-                                .forResources((String[])[newMarketoParentNode.path + "/marketoform-migrated"])
-                                .doAddMixin("cq:LiveRelationship")
-                                .doAddMixin("cq:LiveSyncCancelled")
-                                .doActivateResource()
+                                .forResources((String[])[newMarketoParentNode.path + "/marketoform"])
+                                .doDeleteResource()
                                 .run(dryRun)
                     }
+
+                    println "-- Creating new Marketo Form Component"
+                    aecu.contentUpgradeBuilder()
+                            .forResources((String[])[newMarketoParentNode.path])
+                            .doCreateResource("marketoform", "nt:unstructured", newMarketoProperties)
+                            .run(dryRun)
+
+                    aecu.contentUpgradeBuilder()
+                            .forResources((String[])[newMarketoParentNode.path + "/marketoform"])
+                            .doAddMixin("cq:LiveRelationship")
+                            .doAddMixin("cq:LiveSyncCancelled")
+                            .doActivateResource()
+                            .run(dryRun)
 
                     if (newMarketoParentNode.hasNode("marketoform")) {
                         println "-- Removing old Marketo Form Component"
