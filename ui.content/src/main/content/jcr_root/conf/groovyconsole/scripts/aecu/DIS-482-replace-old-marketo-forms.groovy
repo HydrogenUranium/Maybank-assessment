@@ -52,8 +52,10 @@ def getListPages(contentPath, pageResType, componentResTypes) {
     componentResTypes.each({ componentResType ->
         def getPages = """
             SELECT page.* FROM [cq:Page] AS page
-            INNER JOIN [nt:unstructured] AS oldMarketoFormComponent ON ISDESCENDANTNODE(oldMarketoFormComponent, page)
+            INNER JOIN [nt:base] AS jcrContent ON ISCHILDNODE(jcrContent, page)
+            INNER JOIN [nt:unstructured] AS oldMarketoFormComponent ON ISDESCENDANTNODE(oldMarketoFormComponent, jcrContent)
             WHERE ISDESCENDANTNODE(page, '$contentPath')
+            AND NAME(jcrContent) = 'jcr:content'
             AND page.[jcr:content/sling:resourceType] = '$pageResType'
             AND oldMarketoFormComponent.[sling:resourceType] = '$componentResType'
         """
