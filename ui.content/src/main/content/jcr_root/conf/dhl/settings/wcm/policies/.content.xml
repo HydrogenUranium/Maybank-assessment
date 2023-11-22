@@ -231,7 +231,7 @@
                         jcr:title="Article Carousel Policy"
                         sling:resourceType="wcm/core/components/policy/policy"
                         autopauseDisabled="false"
-                        autoplay="false"
+                        autoplay="true"
                         components="/apps/dhl/components/content/article-teaser"
                         controlsPrepended="false"
                         delay="5000">
