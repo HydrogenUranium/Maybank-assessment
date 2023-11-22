@@ -569,6 +569,18 @@
         "set ACL for publisher-slovakia\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/sk)\nend",
         "set ACL for publisher-slovakia\nallow jcr:read on home(publisher-slovakia)\nend",
 
+        "create group author-japan",
+        "add author-japan to group discover-base-user",
+        "set properties on authorizable(author-japan)/profile\n set givenName to \"Author - Japan\"\n end",
+        "set ACL for author-japan\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/jp)\nend",
+        "set ACL for author-japan\nallow jcr:read on home(author-japan)\nend",
+
+        "create group publisher-japan",
+        "add publisher-japan to group discover-base-user",
+        "set properties on authorizable(publisher-japan)/profile\n set givenName to \"Publisher - Japan\"\n end",
+        "set ACL for publisher-japan\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/jp)\nend",
+        "set ACL for publisher-japan\nallow jcr:read on home(publisher-japan)\nend",
+
         "# !!!  SHOULD BE AT THE BOTTOM OF THIS SCRIPT !!!",
         "# *** GMP TRACKING ID ACCESS ***",
         "# *** remove access used to guarantee order of access ***",
