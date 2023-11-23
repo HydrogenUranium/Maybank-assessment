@@ -81,27 +81,34 @@ def setNewPageVersion(listPages, versionName, dryRun) {
     println("Results: " + listPages.size())
     println("List of pages whose version was updated:")
     if (listPages.size() > 0) {
-        listPages.each({
+        listPages.each({ pagePath ->
+            println('> Page: ' + pagePath)
             def isVersionExist = false
 
-            pageManager.getRevisions(it, null, false).each({ revision ->
+            def page = getPage(pagePath);
+            if (page.isLocked()) {
+                if (!dryRun) {
+                    page.unlock()
+                }
+                println('(!) INFO: Page was unlocked')
+            }
+
+            pageManager.getRevisions(pagePath, null, false).each({ revision ->
                 if (revision.getLabel().contains(versionName)) {
-                    println(">> Page Version Exist: " + it)
                     isVersionExist = true
+                    println('(!) INFO: Page Version already exists')
                     return false
                 }
             })
 
             if (!isVersionExist) {
-                println(it)
-                def page = getPage(it);
-
                 def date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
                 def label = String.format("%s - %s", versionName, date);
 
                 if (!dryRun) {
                     pageManager.createRevision(page, label, "Groovy Script version");
                 }
+                println('(!) INFO: New Page Version was created')
             }
         })
     }
@@ -110,7 +117,15 @@ def setNewPageVersion(listPages, versionName, dryRun) {
 def contentManipulation(listPages, componentResTypes, dryRun) {
     if (listPages.size() > 0) {
         listPages.each({ pagePath ->
-            println ">> Page: " + pagePath
+            println "> Page: " + pagePath
+
+            def page = getPage(pagePath);
+            if (page.isLocked()) {
+                if (!dryRun) {
+                    page.unlock()
+                }
+                println('(!) INFO: Page was unlocked')
+            }
 
             componentResTypes.each({ componentResType ->
                 aecu.contentUpgradeBuilder()
