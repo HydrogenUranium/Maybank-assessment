@@ -29,6 +29,10 @@ public class LandingPoints {
 	private String image;
 
 	@Inject
+	@Default(values = "icon")
+	private String pointType;
+
+	@Inject
 	@Default(values = "")
 	private String altText;
 

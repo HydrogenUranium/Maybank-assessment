@@ -1,7 +1,11 @@
 .landing-points-component {
+  p {
+    margin-bottom: 0;
+  }
   .header-image {
     margin: 40px auto;
     max-height: 200px;
+    max-width: 100%;
     display: block;
     @include respond(xl) {
       max-height: 350px;
@@ -34,6 +38,26 @@
     }
     &__content{
       padding-left: 55px;
+    }
+
+    &--red-dot {
+      min-height: 20px;
+      &::before{
+        content: "•";
+        color: #d40511;
+        top: 0;
+        display: block;
+        position: absolute;
+        font-size: 40px;
+      }
+      .landing-point {
+        &__title{
+          padding-left: 30px;
+        }
+        &__content{
+          padding-left: 30px;
+        }
+      }
     }
   }
 }
