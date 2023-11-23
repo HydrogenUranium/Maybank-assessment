@@ -275,6 +275,14 @@
                         layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </general_content_page_container_policy>
+                    <thank_you_page_container_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Thank You Page Container Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/apps/dhl/components/content/followUs,/apps/dhl/components/content/text,/apps/dhl/components/content/article-showcase]"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </thank_you_page_container_policy>
                 </container>
             </content>
         </components>
