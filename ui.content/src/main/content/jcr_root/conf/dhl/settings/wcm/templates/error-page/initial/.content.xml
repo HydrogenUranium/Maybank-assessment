@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:template="/conf/dhl/settings/wcm/templates/error-page"
+        jcr:primaryType="cq:PageContent"
+        sling:resourceType="dhl/components/pages/editable-standard">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid"
+            layout="responsiveGrid">
+            <container
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="dhl/components/content/container"
+                layout="responsiveGrid"/>
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <error_banner
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/error-banner"
+                    buttonLabel="Go Back to Home"
+                    description="Please click the button to go back home"
+                    title="Oops! page not found."/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>
