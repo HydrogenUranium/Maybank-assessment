@@ -1,0 +1,71 @@
+.error-banner-component {
+  min-height: 190px;
+  border: 2px solid #D40511;
+  border-radius: 4px;
+  margin: 35px;
+  position: relative;
+  padding: 20px;
+  @include respond(md) {
+    margin: 100px 35px;
+    margin-bottom: 500px;
+    padding: 30px min(500px, 50%) 30px 50px;
+  }
+  .title{
+    display: block;
+    text-align: center;
+    font: normal normal bold 40px Delivery,sans-serif;
+    color: #323232;
+    @include respond(md) {
+      text-align: left;
+    }
+  }
+  .description{
+    font: normal normal normal 24px/33px Delivery,sans-serif;
+    letter-spacing: 0px;
+    color: #323232;
+    text-align: center;
+    @include respond(md) {
+      text-align: left;
+    }
+  }
+  .image {
+    max-height: 500px;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    @include respond(md) {
+      max-width: min(500px, 50%);
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+  .button {
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: #FFFFFF;
+    background: #D40511 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    padding: 20px;
+    width: 100%;
+    @include respond(md) {
+      width: auto;
+      padding: 20px 50px;
+    }
+    display: inline-block;
+    font-weight: bold;
+    line-height: 14px;
+    font-size: 15px;
+    &:hover {
+      color: #FFFFFF;
+      background-color: #eb131e;
+      text-decoration: none;
+    }
+    &:active {
+      background-color: #9A0000;
+      text-decoration: none;
+    }
+  }
+}
