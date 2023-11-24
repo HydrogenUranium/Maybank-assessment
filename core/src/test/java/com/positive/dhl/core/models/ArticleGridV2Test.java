@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.InitUtil;
+import com.positive.dhl.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -58,6 +59,7 @@ class ArticleGridV2Test {
         context.registerService(InitUtil.class, initUtil);
         context.registerService(AssetUtilService.class, assetUtilService);
         context.registerService(ArticleService.class, articleService);
+        context.registerService(PathUtilService.class, new PathUtilService());
         context.load().json("/com/positive/dhl/core/models/ArticleGridV2/content.json", "/content");
     }
 
@@ -89,10 +91,10 @@ class ArticleGridV2Test {
 
         initRequest("/content/home");
         ArticleGridV2 articleGridV2 = request.adaptTo(ArticleGridV2.class);
+        assertNotNull(articleGridV2);
 
         JsonNode json = new ObjectMapper().readTree(articleGridV2.toJson());
 
-        assertNotNull(articleGridV2);
         assertEquals("Categories", articleGridV2.getTitle());
         assertEquals("All", articleGridV2.getAllCategoriesTitle());
         assertEquals("Categories", json.get("title").asText());
