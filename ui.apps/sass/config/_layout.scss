@@ -15,6 +15,11 @@ body {
 .page-body {
   overflow: hidden;
 
+  &--new-design {
+    max-width: 1640px;
+    margin: 0 auto;
+  }
+
   &.fixed {
     padding-top: 40.3px;
 
