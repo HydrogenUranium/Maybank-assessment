@@ -35,6 +35,7 @@
     "/content/dhl/hu:publisher-hungary",
     "/content/dhl/kh:publisher-cambodia",
     "/content/dhl/mm:publisher-myanmar",
-    "/content/dhl/sk:publisher-slovakia"
+    "/content/dhl/sk:publisher-slovakia",
+    "/content/dhl/jp:publisher-japan"
   ]
 }

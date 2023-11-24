@@ -19,7 +19,16 @@
 }
 
 .article-showcase-component_horizontal {
-  margin-top: 30px;
+  .horizontal-scroll {
+    margin-left: calc(-1 * (100vw - 100%)/2);
+    padding-left: calc(1 * (100vw - 100%)/2);
+    margin-right: calc(-1 * (100vw - 100%)/2);
+    padding-right: calc(1 * (100vw - 100%)/2);
+    &::-webkit-scrollbar-track {
+      margin: 35px;
+    }
+  }
+
   @include respond(xl) {
     margin-top: 50px;
   }
