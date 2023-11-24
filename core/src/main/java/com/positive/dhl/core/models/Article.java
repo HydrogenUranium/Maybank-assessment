@@ -1,13 +1,12 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.tagging.TagManager;
 import com.positive.dhl.core.constants.DiscoverConstants;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.TagUtilService;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -18,9 +17,7 @@ import javax.inject.Inject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
-import static com.day.cq.commons.jcr.JcrConstants.JCR_CONTENT;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_CREATED;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_MOD;
@@ -68,6 +65,7 @@ public class Article {
 	private List<TagWrapper> tags;
 	private List<String> tagsToShow = new ArrayList<>();
 	private Integer counter;
+	private Locale locale;
 
 
 
@@ -109,13 +107,17 @@ public class Article {
 		}
 		ValueMap properties = resource.getValueMap();
 
+		PageUtilService pageUtilService = new PageUtilService();
+		TagUtilService tagUtilService = new TagUtilService(pageUtilService);
+
+		locale = pageUtilService.getLocale(resource);
 		createdDate = getPublishDate(properties);
 		created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
-		createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, new PageUtilService().getLocale(resource)).format(createdDate);
+		createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, locale).format(createdDate);
 		icon = properties.get("jcr:content/mediatype", "");
 		grouptitle = getGroupTitle(resource);
 		grouppath = getGroupPath(resource);
-		groupTag = transformToTag(grouptitle);
+		groupTag = tagUtilService.transformToHashtag(grouptitle);
 
 		fullTitle = properties.get("jcr:content/jcr:title", "");
 		title = properties.get("jcr:content/navTitle", "");
@@ -144,15 +146,11 @@ public class Article {
 		counter = properties.get("jcr:content/counter", 0);
 
 		tags = new ArrayList<>();
-		TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-		if (tagManager != null) {
-			tagsToShow = Arrays.stream(tagManager.getTags(resource.getChild(JCR_CONTENT)))
-					.map(tag -> transformToTag(tag.getTitle()))
-					.collect(Collectors.toList());
-		}
+		tagsToShow = tagUtilService.getExternalTags(resource);
+
+		path = resourceResolver.map(path);
 
 		valid = true;
-		path = resourceResolver.map(path);
 	}
 
     /**
@@ -166,20 +164,6 @@ public class Article {
 				.map(properties -> properties.get("navTitle", properties.get(JCR_TITLE, "")))
 				.orElse("");
     }
-
-	private String transformToTag(String name) {
-		Map<String, String> customTransformation = Map.of(
-				"e-commerce", "eCommerce",
-				"b2b", "b2b"
-		);
-
-		String tag = Arrays.stream(StringUtils.lowerCase(name)
-						.split(" "))
-				.map(s -> customTransformation.getOrDefault(s, StringUtils.capitalize(s)))
-				.collect(Collectors.joining());
-
-		return !StringUtils.isBlank(tag) ? "#" + tag : StringUtils.EMPTY;
-	}
 
     /**
 	 *
