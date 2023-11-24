@@ -9,8 +9,8 @@
     color: #323232;
     @include respond(xl) {
       margin-top: 50px;
-      line-height: 87px;
-      font-size: 60px;
+      line-height: 72px;
+      font-size: 50px;
     }
     .cmp-title{
       &__text {
@@ -25,7 +25,7 @@
             position: absolute;
             top: 29px;
             @include respond(xl) {
-              top: 87px;
+              top: 72px;
             }
         }
       }
