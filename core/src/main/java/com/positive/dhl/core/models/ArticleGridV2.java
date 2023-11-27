@@ -5,6 +5,7 @@ import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.InitUtil;
+import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -27,7 +28,6 @@ import java.util.Map;
 
 import static com.day.cq.wcm.api.commands.WCMCommand.PAGE_TITLE_PARAM;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
-import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
 
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 
@@ -46,6 +46,9 @@ public class ArticleGridV2 {
 
     @OSGiService
     private ArticleService articleService;
+
+    @OSGiService
+    private PathUtilService pathUtilService;
 
     @InjectHomeProperty
     @Optional
@@ -117,7 +120,7 @@ public class ArticleGridV2 {
                         .add(PAGE_TITLE_PARAM, article.getTitle())
                         .add("link", article.getPath() + ".html")
                         .add("description", article.getDescription())
-                        .add("image", assetUtilService.resolvePath(article.getListimage()))
+                        .add("image", assetUtilService.resolvePath(pathUtilService.encodeUnsupportedCharacters(article.getListimage())))
                         .add("date", article.getCreatedfriendly())
                         .add("author", article.getAuthor())
                         .add("groupTag", article.getGroupTag())

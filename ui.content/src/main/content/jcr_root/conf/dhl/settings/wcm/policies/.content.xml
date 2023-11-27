@@ -49,6 +49,16 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1699455642574>
                 </editable-two-column-page>
+                <editable-standard jcr:primaryType="nt:unstructured">
+                    <policy_1700814075949
+                            jcr:lastModified="{Date}2023-11-24T10:21:27.856+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Error Page Policy"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1700814075949>
+                </editable-standard>
             </pages>
             <content jcr:primaryType="nt:unstructured">
                 <text jcr:primaryType="nt:unstructured">
@@ -231,7 +241,7 @@
                         jcr:title="Article Carousel Policy"
                         sling:resourceType="wcm/core/components/policy/policy"
                         autopauseDisabled="false"
-                        autoplay="false"
+                        autoplay="true"
                         components="/apps/dhl/components/content/article-teaser"
                         controlsPrepended="false"
                         delay="5000">
@@ -275,6 +285,14 @@
                         layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </general_content_page_container_policy>
+                    <thank_you_page_container_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Thank You Page Container Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/apps/dhl/components/content/followUs,/apps/dhl/components/content/text,/apps/dhl/components/content/article-showcase]"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </thank_you_page_container_policy>
                 </container>
             </content>
         </components>
@@ -376,6 +394,24 @@
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </disclaimer-text>
+                    <policy_49734103050200
+                            jcr:lastModified="{Date}2023-11-24T10:22:02.265+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Error Page Root Component Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/error-banner]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_49734103050200>
+                    <policy_49853650420900
+                            jcr:lastModified="{Date}2023-11-24T10:22:46.461+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Error Page Container Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/error-banner">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_49853650420900>
                 </responsivegrid>
             </components>
         </foundation>
