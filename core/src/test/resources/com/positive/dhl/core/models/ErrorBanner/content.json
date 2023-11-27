@@ -1,0 +1,11 @@
+{
+  "error_banner": {
+    "jcr:primaryType": "nt:unstructured",
+    "title": "title",
+    "description": "description",
+    "buttonLink": "buttonLink",
+    "buttonLabel": "buttonLabel",
+    "altText": "altText",
+    "sling:resourceType": "dhl/components/content/error-banner"
+  }
+}
