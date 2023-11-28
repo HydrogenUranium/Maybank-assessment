@@ -56,6 +56,22 @@
   input {
     width: 100%!important;
   }
+  .mktoRadioList {
+    padding-left: 36px;
+    label,
+    input {
+      margin-top: 10px;
+      display: inline;
+      width: auto !important;
+    }
+    label {
+      padding-left: 10px;
+      &:after {
+        content:"";
+        display:block;
+      }
+    }
+  }
 
   .mktoAsterix {
     display: none;
