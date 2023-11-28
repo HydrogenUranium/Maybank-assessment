@@ -1,0 +1,12 @@
+<div class="column-container-component ${properties.topMargin ? 'column-container-component--with-top-margin' : ''}">
+    <div class="grid grid--${properties.columns} grid--${properties.width}"
+            data-sly-set.containerClasses="${properties.removeFirstChildTopMargin ? 'grid__container--ignore-first-margin' : ''}">
+
+        <div class="grid__container ${containerClasses}"
+             data-sly-resource="${'first-container' @ resourceType='wcm/foundation/components/responsivegrid'}">
+        </div>
+        <div class="grid__container ${containerClasses}" data-sly-test="${properties.columns == 'two-columns'}"
+             data-sly-resource="${'second-container' @ resourceType='wcm/foundation/components/responsivegrid'}">
+        </div>
+    </div>
+</div>

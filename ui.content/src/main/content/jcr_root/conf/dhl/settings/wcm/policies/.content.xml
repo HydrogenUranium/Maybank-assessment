@@ -58,6 +58,24 @@
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1700814075949>
+                    <policy_22945248191000
+                            jcr:lastModified="{Date}2023-11-28T14:31:06.175+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Page - Two Columns Page Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="wcm.foundation.components.page.responsive">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_22945248191000>
+                    <policy_1701175963418
+                            jcr:lastModified="{Date}2023-11-28T14:53:02.015+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Page - One Column Page Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="wcm.foundation.components.page.responsive">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1701175963418>
                 </editable-standard>
             </pages>
             <content jcr:primaryType="nt:unstructured">
@@ -412,6 +430,33 @@
                             components="/apps/dhl/components/content/error-banner">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_49853650420900>
+                    <policy_22051396635900
+                            jcr:lastModified="{Date}2023-11-28T14:52:18.467+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Page - one column - author Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/libs/wcm/foundation/components/responsivegrid,group:DHL Components]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_22051396635900>
+                    <policy_22877503157200
+                            jcr:lastModified="{Date}2023-11-28T14:30:26.033+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Page - Two Columns Root Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/libs/wcm/foundation/components/responsivegrid,group:DHL Components,group:DHL Page Structure]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_22877503157200>
+                    <policy_1701175819246
+                            jcr:lastModified="{Date}2023-11-28T14:50:54.053+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Page - One Column Root Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/libs/wcm/foundation/components/responsivegrid,group:DHL Components,group:DHL Page Structure]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1701175819246>
                 </responsivegrid>
             </components>
         </foundation>

@@ -1,0 +1,31 @@
+.column-container-component {
+    margin: 0 35px;
+
+    &--with-top-margin {
+        margin-top: 30px;
+        @include respond(xl) {
+            margin-top: 50px;
+        }
+    }
+
+    .grid {
+        margin: 0 auto;
+        &--medium{
+            max-width: 1200px;
+        }
+
+        &--large{
+            max-width: 1380px;
+        }
+        &--two-columns {
+            @include respond(md) {
+                display: grid;
+                gap: 20px;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        &__container--ignore-first-margin :first-child {
+            margin-top: 0;
+        }
+    }
+}
