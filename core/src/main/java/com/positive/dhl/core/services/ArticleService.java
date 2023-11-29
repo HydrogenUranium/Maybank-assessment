@@ -36,22 +36,24 @@ public class ArticleService {
 
     public List<Article> getLatestArticles(Page parent, int limit) {
         try (var resolver = resolverHelper.getReadResourceResolver()) {
-            Map<String, String> customPublishProp = Map.of(
-                    "type", "cq:Page",
-                    "path", parent.getPath(),
-                    "1_property", "jcr:content/cq:template",
-                    "1_property.operation", "like",
-                    "1_property.value", "/conf/dhl/settings/wcm/templates/article",
-                    "2_property", "jcr:content/custompublishdate",
-                    "2_property.operation", "exists",
-                    "orderby", "@jcr:content/custompublishdate",
-                    "orderby.sort", "ask",
-                    "p.limit", limit + ""
-            );
+            Map<String, String> customPublishProp = new HashMap<>();
+            customPublishProp.put("type", "cq:Page");
+            customPublishProp.put("path", parent.getPath());
+            customPublishProp.put("group.p.or", "true");
+            customPublishProp.put("group.1_property", "jcr:content/cq:template");
+            customPublishProp.put("group.1_property.value", "/conf/dhl/settings/wcm/templates/article");
+            customPublishProp.put("group.2_property", "jcr:content/cq:template");
+            customPublishProp.put("group.2_property.operation", "like");
+            customPublishProp.put("group.2_property.value", "/apps/dhl/templates/dhl-animated-%");
+            customPublishProp.put("3_property", "jcr:content/custompublishdate");
+            customPublishProp.put("3_property.operation", "exists");
+            customPublishProp.put("orderby", "@jcr:content/custompublishdate");
+            customPublishProp.put("orderby.sort", "desc");
+            customPublishProp.put("p.limit", String.valueOf(limit));
 
             Map<String, String> createdProp = new HashMap<>(customPublishProp);
             createdProp.put("orderby", "@jcr:content/jcr:created");
-            createdProp.put("2_property.operation", "not");
+            createdProp.put("3_property.operation", "not");
 
             Map<String, String> lastModifiedProp = new HashMap<>(createdProp);
             createdProp.put("orderby", "@jcr:content/cq:lastModified");
