@@ -18,33 +18,66 @@
                 <items jcr:primaryType="nt:unstructured">
                     <note
                             jcr:primaryType="nt:unstructured"
+                            granite:hide="${!cqDesign.inheritImage}"
                             sling:resourceType="granite/ui/components/coral/foundation/alert"
                             jcr:title="Background Image"
                             text="Utilize page properties to set up or adjust image settings."/>
-                    <summaryTitle
+                    <customImage
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Summary Title"
-                            name="./summaryTitle"/>
-                    <summaryPoints
+                            granite:hide="${cqDesign.inheritImage}"
+                            sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <mobileBackgroundImage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./mobileBackgroundImage"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Mobile Background Image"/>
+                            <tabletBackgroundImage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./tabletBackgroundImage"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Tablet Background Image"/>
+                            <desktopBackgroundImage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./desktopBackgroundImage"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Desktop Background Image"/>
+                        </items>
+                    </customImage>
+                    <keyTakeawaysFeature
                             jcr:primaryType="nt:unstructured"
-                            validation="multifield-quantity max-3"
-                            fieldLabel="Summary Points (Will only be displayed if you have 2 or more points)"
-                            composite="{Boolean}true"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
-                        <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                               jcr:primaryType="nt:unstructured"
-                               name="./summaryPoints">
-                            <items jcr:primaryType="nt:unstructured">
-                                <text
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="Point"
-                                        required="true"
-                                        name="./text"/>
-                            </items>
-                        </field>
-                    </summaryPoints>
+                            granite:hide="${!cqDesign.keyTakeaways}"
+                            sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <summaryTitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Summary Title"
+                                    name="./summaryTitle"/>
+                            <summaryPoints
+                                    jcr:primaryType="nt:unstructured"
+                                    validation="multifield-quantity max-3"
+                                    fieldLabel="Summary Points (Will only be displayed if you have 2 or more points)"
+                                    composite="{Boolean}true"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                       jcr:primaryType="nt:unstructured"
+                                       name="./summaryPoints">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <text
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Point"
+                                                required="true"
+                                                name="./text"/>
+                                    </items>
+                                </field>
+                            </summaryPoints>
+                        </items>
+                    </keyTakeawaysFeature>
                 </items>
             </column>
         </items>

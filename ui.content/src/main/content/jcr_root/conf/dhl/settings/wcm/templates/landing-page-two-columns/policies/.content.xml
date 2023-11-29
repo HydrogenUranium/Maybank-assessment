@@ -40,6 +40,10 @@
                         sling:resourceType="wcm/core/components/policies/mapping"/>
                 </second-container>
             </column_container>
+            <hero_banner
+                    cq:policy="dhl/components/content/hero-banner/policy_1701253431611"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/core/components/policies/mapping"/>
         </root>
     </jcr:content>
 </jcr:root>
