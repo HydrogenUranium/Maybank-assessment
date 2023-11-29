@@ -14,6 +14,7 @@ import javax.jcr.Session;
 import com.drew.lang.annotations.NotNull;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.*;
 import org.apache.sling.models.annotations.Model;
@@ -78,56 +79,18 @@ public class ArticlePage {
 
 	@OSGiService
 	private EnvironmentConfiguration environmentConfiguration;
-	
+
+	@Getter
 	private Article article;
+
+	@Getter
+	@Setter
 	private String ogtagimage;
+
+	@Getter
+	@Setter
 	private String customStyles;
 
-    /**
-	 * 
-	 */
-	public Article getArticle() {
-		return article;
-	}
-
-    /**
-	 * 
-	 */
-	public void setArticle(Article article) {
-		this.article = article;
-	}
-
-    /**
-	 * 
-	 */
-	public String getOgtagimage() {
-		return ogtagimage;
-	}
-
-    /**
-	 * 
-	 */
-	public void setOgtagimage(String ogtagimage) {
-		this.ogtagimage = ogtagimage;
-	}
-
-    /**
-	 * 
-	 */
-	public String getCustomStyles() {
-		return customStyles;
-	}
-
-    /**
-	 * 
-	 */
-	public void setCustomStyles(String customStyles) {
-		this.customStyles = customStyles;
-	}
-
-    /**
-	 * 
-	 */
 	@PostConstruct
     protected void init() {
 		String assetprefix = environmentConfiguration.getAssetPrefix();
@@ -143,7 +106,7 @@ public class ArticlePage {
 			customStyles = properties.get("customstyles", "");
 			updateViewCount(properties);
 		}
-		article = new Article(currentPage.getPath(), resourceResolver);
+		article = currentPage.adaptTo(Article.class);
 	}
 
 	public Map<String, String> getSocialNetwork() {

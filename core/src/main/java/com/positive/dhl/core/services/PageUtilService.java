@@ -3,6 +3,7 @@ package com.positive.dhl.core.services;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageFilter;
 import com.day.cq.wcm.api.PageManager;
+import com.positive.dhl.core.models.Article;
 import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -144,5 +145,18 @@ public class PageUtilService {
      */
     public boolean isGlobalPage(Page currentPage) {
 	    return this.getCountryCodeByPagePath(currentPage).equalsIgnoreCase("global");
+    }
+
+    /**
+     * This method allows get {@link Article} model object by path.
+     * @param articlePagePath is a path of the Article {@link Page}
+     * @param resourceResolver is a {@link ResourceResolver}
+     * @return {@code Article} if the articlePagePath links to the Article otherwise {@code null}
+     */
+    public Article getArticle(String articlePagePath, ResourceResolver resourceResolver) {
+        return Optional.ofNullable(articlePagePath)
+                .map(resourceResolver::getResource)
+                .map(r -> r.adaptTo(Article.class))
+                .orElse(null);
     }
 }

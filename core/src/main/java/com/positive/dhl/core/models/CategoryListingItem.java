@@ -5,6 +5,8 @@ import java.util.*;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import com.positive.dhl.core.services.PageUtilService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -15,12 +17,19 @@ import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+
+import static com.day.cq.wcm.api.constants.NameConstants.*;
 
 /**
  *
  */
 @Model(adaptables=Resource.class)
 public class CategoryListingItem {
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	private String name;
 	private List<Article> articles;
 	
@@ -63,16 +72,17 @@ public class CategoryListingItem {
 		if (resource != null) {
     		ValueMap properties = resource.adaptTo(ValueMap.class);
     		if (properties != null) {
-    			name = properties.get("jcr:content/navTitle", "");
-    			if ((name == null) || (name.trim().length() == 0)) {
-    				name = properties.get("jcr:content/jcr:title", "");
-    			}
-    		}
+				name = properties.get("jcr:content/navTitle", "");
+				if (StringUtils.isBlank(name)) {
+					name = properties.get("jcr:content/jcr:title", "");
+				}
+
+			}
 
     		articles = new ArrayList<>();
     		if (builder != null) {
     			Map<String, String> map = new HashMap<>();
-    			map.put("type", "cq:Page");
+    			map.put("type", NT_PAGE);
     			map.put("path", resource.getPath());
     			
     			map.put("1_group.property", "jcr:content/hideInNav");
@@ -98,14 +108,12 @@ public class CategoryListingItem {
     				for (Hit hit: searchResult.getHits()) {
     					ValueMap hitProperties = hit.getProperties();
     					boolean hideInNav = hitProperties.get("hideInNav", false);
-    					if (hideInNav) {
-    						continue;
-    					}
-    					
-    					if (articles.size() < 5) {
-    						articles.add(new Article(hit.getPath(), resourceResolver));
-    					} else {
-    						break;
+    					if (!hideInNav) {
+							if (articles.size() < 5) {
+								articles.add(pageUtilService.getArticle(hit.getPath(), resourceResolver));
+							} else {
+								break;
+							}
     					}
     				}
 

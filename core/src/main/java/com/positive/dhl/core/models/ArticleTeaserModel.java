@@ -67,29 +67,31 @@ public class ArticleTeaserModel {
 
     @PostConstruct
     protected void init() {
-        Article article = new Article(linkURL, resourceResolver);
+        Article article = pageUtilService.getArticle(linkURL, resourceResolver);
 
-        imageFromPage = Boolean.parseBoolean(imageFromPageImage) && !StringUtils.isBlank(linkURL);
-        if (imageFromPage) {
-            imagePathFromPage = Optional.ofNullable(linkURL)
-                    .map(link -> pageUtilService.getPage(link, resourceResolver))
-                    .map(Page::getProperties)
-                    .map(props -> props.get("listimage", StringUtils.EMPTY))
-                    .orElse(StringUtils.EMPTY);
+        if (article != null) {
+            imageFromPage = Boolean.parseBoolean(imageFromPageImage) && !StringUtils.isBlank(linkURL);
+            if (imageFromPage) {
+                imagePathFromPage = Optional.ofNullable(linkURL)
+                        .map(link -> pageUtilService.getPage(link, resourceResolver))
+                        .map(Page::getProperties)
+                        .map(props -> props.get("listimage", StringUtils.EMPTY))
+                        .orElse(StringUtils.EMPTY);
 
-            altTextFromPageImage = !Boolean.parseBoolean(altValueFromPageImage)
-                    ? alt
-                    : Optional.of(imagePathFromPage)
-                    .map(resourceResolver::getResource)
-                    .map(r -> r.adaptTo(Asset.class))
-                    .map(a -> a.getMetadataValue(DC_DESCRIPTION))
-                    .orElse(StringUtils.EMPTY);
+                altTextFromPageImage = !Boolean.parseBoolean(altValueFromPageImage)
+                        ? alt
+                        : Optional.of(imagePathFromPage)
+                        .map(resourceResolver::getResource)
+                        .map(r -> r.adaptTo(Asset.class))
+                        .map(a -> a.getMetadataValue(DC_DESCRIPTION))
+                        .orElse(StringUtils.EMPTY);
+            }
+
+            titleFromLinkedPage = Boolean.parseBoolean(titleFromPage) ? article.getTitle() : StringUtils.EMPTY;
+            categoryTag = article.getGroupTag();
+            author = article.getAuthor();
+            publishDate = article.getCreated();
+            friendlyPublishDate = article.getCreatedfriendly();
         }
-
-        titleFromLinkedPage = Boolean.parseBoolean(titleFromPage) ? article.getTitle() : StringUtils.EMPTY;
-        categoryTag = article.getGroupTag();
-        author = article.getAuthor();
-        publishDate = article.getCreated();
-        friendlyPublishDate = article.getCreatedfriendly();
     }
 }

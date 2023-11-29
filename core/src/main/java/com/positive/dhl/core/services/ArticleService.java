@@ -16,12 +16,18 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.util.*;
 
+import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
+
 @Component(service = ArticleService.class)
 @Slf4j
 public class ArticleService {
 
+    public static final String ORDERBY = "orderby";
     @Reference
     protected ResourceResolverHelper resolverHelper;
+
+    @Reference
+    protected PageUtilService pageUtilService;
 
     @Reference
     protected QueryBuilder builder;
@@ -37,24 +43,24 @@ public class ArticleService {
     public List<Article> getLatestArticles(Page parent, int limit) {
         try (var resolver = resolverHelper.getReadResourceResolver()) {
             Map<String, String> customPublishProp = Map.of(
-                    "type", "cq:Page",
+                    "type", NT_PAGE,
                     "path", parent.getPath(),
                     "1_property", "jcr:content/cq:template",
                     "1_property.operation", "like",
                     "1_property.value", "/conf/dhl/settings/wcm/templates/article",
                     "2_property", "jcr:content/custompublishdate",
                     "2_property.operation", "exists",
-                    "orderby", "@jcr:content/custompublishdate",
+                    ORDERBY, "@jcr:content/custompublishdate",
                     "orderby.sort", "ask",
                     "p.limit", limit + ""
             );
 
             Map<String, String> createdProp = new HashMap<>(customPublishProp);
-            createdProp.put("orderby", "@jcr:content/jcr:created");
+            createdProp.put(ORDERBY, "@jcr:content/jcr:created");
             createdProp.put("2_property.operation", "not");
 
             Map<String, String> lastModifiedProp = new HashMap<>(createdProp);
-            createdProp.put("orderby", "@jcr:content/cq:lastModified");
+            createdProp.put(ORDERBY, "@jcr:content/cq:lastModified");
 
             Map<String, Article> articleMap = new HashMap<>();
 
@@ -82,7 +88,7 @@ public class ArticleService {
         List<Article> resources = new ArrayList<>();
         hits.forEach(hit -> {
             try {
-                resources.add(new Article(hit.getPath(), resourceResolver));
+                resources.add(pageUtilService.getArticle(hit.getPath(), resourceResolver));
             } catch (RepositoryException exception) {
                 log.warn("Failed to get path from sql response", exception);
             }

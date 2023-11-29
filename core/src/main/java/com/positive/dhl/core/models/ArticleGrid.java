@@ -1,6 +1,5 @@
 package com.positive.dhl.core.models;
 
-import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
@@ -10,6 +9,8 @@ import com.positive.dhl.core.services.CategoryFinder;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -32,6 +33,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import static com.day.cq.wcm.api.constants.NameConstants.PN_NAV_TITLE;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 import static com.positive.dhl.core.services.PageUtilService.*;
 
 
@@ -123,51 +126,17 @@ public class ArticleGrid {
 	@Optional
 	private String ctaLink;
 
+	@Getter
+	@Setter
 	private List<CategoryLink> categories;
+
+	@Getter
+	@Setter
 	private List<Article> articles;
+
+	@Getter
+	@Setter
 	private String mode;
-
-    /**
-	 *
-	 */
-	public List<CategoryLink> getCategories() {
-		return new ArrayList<>(categories);
-	}
-
-    /**
-	 *
-	 */
-	public void setCategories(List<CategoryLink> categories) {
-		this.categories = new ArrayList<>(categories);
-	}
-
-    /**
-	 *
-	 */
-	public List<Article> getArticles() {
-		return new ArrayList<>(articles);
-	}
-
-    /**
-	 *
-	 */
-	public void setArticles(List<Article> articles) {
-		this.articles = new ArrayList<>(articles);
-	}
-
-    /**
-	 *
-	 */
-	public String getMode() {
-		return mode;
-	}
-
-    /**
-	 *
-	 */
-	public void setMode(String mode) {
-		this.mode = mode;
-	}
 
 	/**
 	 * Returns the value associated with property ctaCopy, coming from ArticleGrid component's dialog.
@@ -256,9 +225,9 @@ public class ArticleGrid {
 		ValueMap categoryProperties = page.getProperties();
 
 		if (StringUtils.equalsAny(categoryProperties.get(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, ""), CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
-			String title = categoryProperties.get("navTitle", "");
+			String title = categoryProperties.get(PN_NAV_TITLE, "");
 			if (title.trim().length() == 0) {
-				title = categoryProperties.get(JcrConstants.JCR_TITLE, "");
+				title = categoryProperties.get(PN_TITLE, "");
 			}
 
 			String categoryName = title.replaceAll("[^A-Za-z\\d]", "-").toLowerCase();
@@ -397,7 +366,7 @@ public class ArticleGrid {
 					continue;
 				}
 
-				var article = new Article(hit.getPath(), resourceResolver);
+				var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
 				article.setIndex(count);
 				articlesList.add(article);
 

@@ -20,10 +20,6 @@ public class TagUtilService {
 
     public static final String EXTERNAL_TAGS_NAMESPACE = "dhl-article-external";
 
-    public TagUtilService(PageUtilService pageUtilService) {
-        this.pageUtilService = pageUtilService;
-    }
-
     /**
      * Returns the {@link List} External Tags of the Article.
      * These external tags are used to display in the Article Tiles in the Article Grid component
