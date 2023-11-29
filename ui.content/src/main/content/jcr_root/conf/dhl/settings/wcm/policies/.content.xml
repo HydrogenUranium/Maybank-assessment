@@ -79,6 +79,29 @@
                 </editable-standard>
             </pages>
             <content jcr:primaryType="nt:unstructured">
+                <hero-banner jcr:primaryType="nt:unstructured">
+                    <policy_1701253431611
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Page - Hero Banner - Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            inheritImage="false"
+                            keyTakeaways="false"
+                            margin="false"
+                            roundedCorners="false"
+                            topMargin="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1701253431611>
+                    <policy_108071559424200
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Article - Hero Banner - Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            inheritImage="true"
+                            keyTakeaways="true"
+                            margin="true"
+                            roundedCorners="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_108071559424200>
+                </hero-banner>
                 <text jcr:primaryType="nt:unstructured">
                     <thank_you_page_text_policy
                         jcr:primaryType="nt:unstructured"
