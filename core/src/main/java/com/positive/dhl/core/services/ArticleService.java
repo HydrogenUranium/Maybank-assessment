@@ -41,14 +41,14 @@ public class ArticleService {
             customPublishProp.put("path", parent.getPath());
             customPublishProp.put("group.p.or", "true");
             customPublishProp.put("group.1_property", "jcr:content/cq:template");
-            customPublishProp.put("group.1_property.operation", "like");
             customPublishProp.put("group.1_property.value", "/conf/dhl/settings/wcm/templates/article");
-            customPublishProp.put("group.2_property", "jcr:content/mediatype");
-            customPublishProp.put("group.2_property.value", "article");
+            customPublishProp.put("group.2_property", "jcr:content/cq:template");
+            customPublishProp.put("group.2_property.operation", "like");
+            customPublishProp.put("group.2_property.value", "/apps/dhl/templates/dhl-animated-%");
             customPublishProp.put("3_property", "jcr:content/custompublishdate");
             customPublishProp.put("3_property.operation", "exists");
             customPublishProp.put("orderby", "@jcr:content/custompublishdate");
-            customPublishProp.put("orderby.sort", "desc"); // Assuming 'desc' is the correct sort order
+            customPublishProp.put("orderby.sort", "desc");
             customPublishProp.put("p.limit", String.valueOf(limit));
 
             Map<String, String> createdProp = new HashMap<>(customPublishProp);
