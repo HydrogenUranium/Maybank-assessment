@@ -18,4 +18,6 @@
     <filter root="/conf/dhl/settings/wcm/templates/thank-you-page"/>
     <filter root="/conf/dhl/settings/wcm/templates/right-aligned-marketo-form"/>
     <filter root="/conf/dhl/settings/wcm/templates/error-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/landing-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/landing-page-two-columns"/>
 </workspaceFilter>
