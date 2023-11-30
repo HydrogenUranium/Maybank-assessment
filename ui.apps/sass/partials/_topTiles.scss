@@ -2,7 +2,6 @@
   margin: auto;
   display: grid;
   max-width: 1640px;
-  height: -webkit-fill-available;
   grid-template-areas: "article_1 article_1" "article_2 article_3";
   grid-gap: 0px;
   :nth-child(4) {
@@ -33,6 +32,7 @@
     grid-area: article_2;
   }
   @include respond(md) {
+    height: -webkit-fill-available;
     aspect-ratio: 3/1;
     grid-gap: 10px;
     margin-top: 10px;
