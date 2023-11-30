@@ -36,9 +36,10 @@
                         <sly data-sly-test.isGlobal="${languageVariants.getCurrentRegion == 'Global'}">
                             <span class="global-icon"></span>
                         </sly>
-                        <sly data-sly-test="${!isGlobal}">
-                            <span class="fi fi-${languageVariants.currentRegionCode}"></span>
-                            <span class="title">${ languageVariants.getCurrentRegion @ i18n, context='html' }</span>
+                        <sly data-sly-test="${!isGlobal}"
+                             data-sly-set.currentRegionCode="${languageVariants.currentRegionCode}">
+                            <span class="fi fi-${currentRegionCode}"></span>
+                            <span class="title">${ currentRegionCode == 'tw' ? 'Taiwan' : languageVariants.getCurrentRegion @ i18n, context='html' }</span>
                         </sly>
                     </div>
                 </div>
