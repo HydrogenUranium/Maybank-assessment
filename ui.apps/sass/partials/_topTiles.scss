@@ -32,6 +32,7 @@
     grid-area: article_2;
   }
   @include respond(md) {
+    height: -webkit-fill-available;
     aspect-ratio: 3/1;
     grid-gap: 10px;
     margin-top: 10px;
