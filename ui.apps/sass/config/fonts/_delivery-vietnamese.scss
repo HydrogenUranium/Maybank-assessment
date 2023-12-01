@@ -1,0 +1,51 @@
+/* Bold */
+@font-face {
+  font-family: "Delivery";
+  font-weight: bold; /* 700 */
+  src: url('__prefix__/discover/resources/fonts/delivery-vietnamese/DeliveryVietnamese_W_Bd.woff2') format('woff2'),
+       url('__prefix__/discover/resources/fonts/delivery-vietnamese/DeliveryVietnamese_W_Bd.woff') format('woff');
+  unicode-range: U+0100-017F, U+0080-00FF, U+0180-024F, U+1E00-1EFF, U+02B0-02FF, U+0300-036F;
+  font-synthesis: style;
+}
+
+/* Condensed Black */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 800; /* Extra bold */
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/delivery-vietnamese/DeliveryVietnamese_W_CdBlk.woff2') format('woff2'),
+       url('__prefix__/discover/resources/fonts/delivery-vietnamese/DeliveryVietnamese_W_CdBlk.woff') format('woff');
+  unicode-range: U+0100-017F, U+0080-00FF, U+0180-024F, U+1E00-1EFF, U+02B0-02FF, U+0300-036F;
+  font-synthesis: style;
+}
+
+/* Condensed Light */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 200; /* Light */
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/delivery-vietnamese/DeliveryVietnamese_W_CdLt.woff2') format('woff2'),
+       url('__prefix__/discover/resources/fonts/delivery-vietnamese/DeliveryVietnamese_W_CdLt.woff') format('woff');
+  unicode-range: U+0100-017F, U+0080-00FF, U+0180-024F, U+1E00-1EFF, U+02B0-02FF, U+0300-036F;
+  font-synthesis: style;
+}
+
+/* Light */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 300; /* Light */
+  src: url('__prefix__/discover/resources/fonts/delivery-vietnamese/DeliveryVietnamese_W_Lt.woff2') format('woff2'),
+       url('__prefix__/discover/resources/fonts/delivery-vietnamese/DeliveryVietnamese_W_Lt.woff') format('woff');
+  unicode-range: U+0100-017F, U+0080-00FF, U+0180-024F, U+1E00-1EFF, U+02B0-02FF, U+0300-036F;
+  font-synthesis: style;
+}
+
+/* Regular */
+@font-face {
+  font-family: "Delivery";
+  font-weight: normal; /* 400 */
+  src: url('__prefix__/discover/resources/fonts/delivery-vietnamese/DeliveryVietnamese_W_Rg.woff2') format('woff2'),
+       url('__prefix__/discover/resources/fonts/delivery-vietnamese/DeliveryVietnamese_W_Rg.woff') format('woff');
+  unicode-range: U+0100-017F, U+0080-00FF, U+0180-024F, U+1E00-1EFF, U+02B0-02FF, U+0300-036F;
+  font-synthesis: style;
+}
