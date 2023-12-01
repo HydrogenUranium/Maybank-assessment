@@ -14,7 +14,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.util.Map;
 
-import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 import static com.positive.dhl.core.helpers.JcrNodeHelper.addLiveRelationshipMixinType;
 import static com.positive.dhl.core.helpers.JcrNodeHelper.addLiveSyncCancelledMixinType;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
@@ -66,7 +66,7 @@ public class DiscoverRightAlignedMarketoFormRewriteRule extends DiscoverPageRewr
     private void initializeTitle(Node pageContent) throws RepositoryException {
         var title = initNodeStructure(pageContent, "root/two_columns_container/headline/title_v2");
         title.setProperty("designMode", "bottomLeftUnderline");
-        title.setProperty(JCR_TITLE, pageContent.getProperty(JCR_TITLE).getString());
+        title.setProperty(PN_TITLE, pageContent.getProperty(PN_TITLE).getString());
         addLiveSyncCancelledMixinType(title);
     }
 

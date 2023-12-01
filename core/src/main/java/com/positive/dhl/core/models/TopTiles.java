@@ -1,9 +1,11 @@
 package com.positive.dhl.core.models;
 
+import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -14,6 +16,9 @@ import java.util.List;
 
 @Model(adaptables= Resource.class)
 public class TopTiles {
+    @OSGiService
+    private PageUtilService pageUtilService;
+
     @Inject
     private ResourceResolver resourceResolver;
 
@@ -31,7 +36,7 @@ public class TopTiles {
             while (multifieldItems.hasNext()) {
                 var properties = multifieldItems.next().getValueMap();
                 String path = properties.get("articlePath", "");
-                articles.add(new Article(path, resourceResolver));
+                articles.add(pageUtilService.getArticle(path, resourceResolver));
             }
         }
     }

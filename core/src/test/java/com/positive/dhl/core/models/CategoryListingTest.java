@@ -58,7 +58,7 @@ class CategoryListingTest {
         
         CategoryListingItem item = categoryListing.getCategory1();
         assertNull(item.getName());
-        assertEquals(0, item.getArticles().size());
+        assertNull(item.getArticles());
         
         item.setName("");
         item.setArticles(new ArrayList<Article>());

@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.positive.dhl.core.injectors.InjectHomeProperty;
+import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -10,6 +11,7 @@ import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -20,6 +22,8 @@ import java.util.List;
 
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class RelatedPosts {
+    @OSGiService
+    private PageUtilService pageUtilService;
 
     @InjectHomeProperty
     @Named("relatedPosts-title")
@@ -51,9 +55,8 @@ public class RelatedPosts {
             while (multifieldItems.hasNext()) {
                 var properties = multifieldItems.next().getValueMap();
                 String path = properties.get("articlePath", "");
-                articles.add(new Article(path, resourceResolver));
+                articles.add(pageUtilService.getArticle(path, resourceResolver));
             }
         }
     }
-
 }

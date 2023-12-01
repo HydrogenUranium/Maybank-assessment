@@ -1,49 +1,57 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.tagging.TagManager;
 import com.positive.dhl.core.constants.DiscoverConstants;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.TagUtilService;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
-import static com.day.cq.commons.jcr.JcrConstants.JCR_CONTENT;
-import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
-import static com.day.cq.wcm.api.constants.NameConstants.PN_CREATED;
-import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_MOD;
+import static com.day.cq.wcm.api.constants.NameConstants.*;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_LEVEL;
 
 /**
  * It's a sling model of the 'article' piece of content
  */
 @Getter
-@Setter
-@Model(adaptables=Resource.class)
+@Model(adaptables=Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class Article {
-	@Inject
-	private ResourceResolver resourceResolver;
+	@Self
+	private Resource resource;
 
-	@Inject
-	public String path;
+	@OSGiService
+	private PageUtilService pageUtilService;
 
+	@OSGiService
+	private TagUtilService tagUtilService;
+
+	@Setter
 	private boolean valid;
-	private Boolean current;
+
+	@Setter
+	private boolean current;
+
+	@Setter
 	private int index;
-	private Boolean third;
-	private Boolean fourth;
+
+	@Setter
+	private boolean third;
+
+	@Setter
+	private boolean fourth;
+
 	private String createdfriendly;
 	private String created;
 	private Date createdDate;
@@ -64,12 +72,12 @@ public class Article {
 	private String heroimagetab;
 	private String heroimagedt;
 	private String youtubeid;
-	private Boolean showshipnow;
+	private boolean showshipnow;
 	private List<TagWrapper> tags;
 	private List<String> tagsToShow = new ArrayList<>();
-	private Integer counter;
-
-
+	private int counter;
+	private Locale locale;
+	protected String path;
 
 	/**
 	 * Returns the article category types
@@ -79,43 +87,19 @@ public class Article {
 		return DiscoverConstants.getCategoryTypes();
 	}
 
-    /**
-	 *
-	 */
-	public Article() { }
-
-	/**
-	 * Constructor setting up only the most basic properties
-	 * @param path is a String representing the repository path of the resource we're adapting to model
-	 * @param resourceResolver is an instance of {@link ResourceResolver}
-	 */
-	public Article(String path, ResourceResolver resourceResolver) {
-		this.resourceResolver = resourceResolver;
-		this.path = path;
-		this.init();
-	}
-
-
-
-    /**
-	 *
-	 */
     @PostConstruct
 	protected void init() {
     	valid = false;
-		Resource resource = resourceResolver.getResource(path);
-		if (resource == null) {
-			return;
-		}
 		ValueMap properties = resource.getValueMap();
 
+		locale = pageUtilService.getLocale(resource);
 		createdDate = getPublishDate(properties);
 		created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
-		createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, new PageUtilService().getLocale(resource)).format(createdDate);
+		createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, locale).format(createdDate);
 		icon = properties.get("jcr:content/mediatype", "");
 		grouptitle = getGroupTitle(resource);
 		grouppath = getGroupPath(resource);
-		groupTag = transformToTag(grouptitle);
+		groupTag = tagUtilService.transformToHashtag(grouptitle);
 
 		fullTitle = properties.get("jcr:content/jcr:title", "");
 		title = properties.get("jcr:content/navTitle", "");
@@ -144,15 +128,11 @@ public class Article {
 		counter = properties.get("jcr:content/counter", 0);
 
 		tags = new ArrayList<>();
-		TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-		if (tagManager != null) {
-			tagsToShow = Arrays.stream(tagManager.getTags(resource.getChild(JCR_CONTENT)))
-					.map(tag -> transformToTag(tag.getTitle()))
-					.collect(Collectors.toList());
-		}
+		tagsToShow = tagUtilService.getExternalTags(resource);
+
+		path = resource.getResourceResolver().map(resource.getPath());
 
 		valid = true;
-		path = resourceResolver.map(path);
 	}
 
     /**
@@ -163,23 +143,9 @@ public class Article {
 				.map(r -> r.adaptTo(Page.class))
 				.map(p -> p.getAbsoluteParent(CATEGORY_PAGE_LEVEL))
 				.map(Page::getProperties)
-				.map(properties -> properties.get("navTitle", properties.get(JCR_TITLE, "")))
+				.map(properties -> properties.get(PN_NAV_TITLE, properties.get(PN_TITLE, "")))
 				.orElse("");
     }
-
-	private String transformToTag(String name) {
-		Map<String, String> customTransformation = Map.of(
-				"e-commerce", "eCommerce",
-				"b2b", "b2b"
-		);
-
-		String tag = Arrays.stream(StringUtils.lowerCase(name)
-						.split(" "))
-				.map(s -> customTransformation.getOrDefault(s, StringUtils.capitalize(s)))
-				.collect(Collectors.joining());
-
-		return !StringUtils.isBlank(tag) ? "#" + tag : StringUtils.EMPTY;
-	}
 
     /**
 	 *

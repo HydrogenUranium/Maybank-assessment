@@ -10,6 +10,8 @@ import com.positive.dhl.core.services.CategoryFinder;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -123,51 +125,17 @@ public class ArticleGrid {
 	@Optional
 	private String ctaLink;
 
+	@Getter
+	@Setter
 	private List<CategoryLink> categories;
+
+	@Getter
+	@Setter
 	private List<Article> articles;
+
+	@Getter
+	@Setter
 	private String mode;
-
-    /**
-	 *
-	 */
-	public List<CategoryLink> getCategories() {
-		return new ArrayList<>(categories);
-	}
-
-    /**
-	 *
-	 */
-	public void setCategories(List<CategoryLink> categories) {
-		this.categories = new ArrayList<>(categories);
-	}
-
-    /**
-	 *
-	 */
-	public List<Article> getArticles() {
-		return new ArrayList<>(articles);
-	}
-
-    /**
-	 *
-	 */
-	public void setArticles(List<Article> articles) {
-		this.articles = new ArrayList<>(articles);
-	}
-
-    /**
-	 *
-	 */
-	public String getMode() {
-		return mode;
-	}
-
-    /**
-	 *
-	 */
-	public void setMode(String mode) {
-		this.mode = mode;
-	}
 
 	/**
 	 * Returns the value associated with property ctaCopy, coming from ArticleGrid component's dialog.
@@ -397,7 +365,7 @@ public class ArticleGrid {
 					continue;
 				}
 
-				var article = new Article(hit.getPath(), resourceResolver);
+				var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
 				article.setIndex(count);
 				articlesList.add(article);
 

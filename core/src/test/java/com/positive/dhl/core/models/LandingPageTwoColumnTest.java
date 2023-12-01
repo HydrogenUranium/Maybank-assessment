@@ -43,7 +43,7 @@ class LandingPageTwoColumnTest {
 		LandingPageTwoColumn landingPageTwoColumn = ctx.request().adaptTo(LandingPageTwoColumn.class);
         assertNotNull(landingPageTwoColumn);
 
-        assertEquals("Get up to 10% off your shipping costs*", landingPageTwoColumn.getFullTitle());
+        assertEquals("Get up to 10% off your shipping costs", landingPageTwoColumn.getFullTitle());
         assertEquals("Get up to 10% off your shipping costs", landingPageTwoColumn.getTitle());
         assertEquals("Start selling to a whole new audience", landingPageTwoColumn.getHerosubtitle());
         assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagemob());
@@ -54,7 +54,7 @@ class LandingPageTwoColumnTest {
         		"", landingPageTwoColumn.getShipNowMessage());
         assertEquals("https://mydhl.express.dhl/us/en/shipping_apps_redirect.html", landingPageTwoColumn.getShipNowUrl());
         assertEquals("", landingPageTwoColumn.getPreselectedCountry());
-        assertEquals(0, landingPageTwoColumn.getRelatedArticles().size());
+        assertEquals(1, landingPageTwoColumn.getRelatedArticles().size());
 
 		landingPageTwoColumn.setFullTitle("");
 		landingPageTwoColumn.setTitle("");

@@ -44,9 +44,9 @@
           "authortitle": "Discover content team",
           "pageTitle": "What paperwork do I need for international shipping? | Discover DHL",
           "cq:tags": [
-            "dhl:default/dhl_internationalshipping",
-            "dhl:default/e-commerce_advice",
-            "dhl:default/business_advice"
+            "dhl-article-external:default/dhl_internationalshipping",
+            "dhl-article-external:default/e-commerce_advice",
+            "dhl-article-external:default/business_advice"
           ],
           "sling:resourceType": "dhl/components/pages/article",
           "heroimagedt": "/content/dam/desktop.jpg",

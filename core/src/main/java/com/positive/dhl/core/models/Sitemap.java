@@ -28,8 +28,7 @@ import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
-import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
-import static com.day.cq.wcm.api.constants.NameConstants.PN_NAV_TITLE;
+import static com.day.cq.wcm.api.constants.NameConstants.*;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
 import static org.apache.jackrabbit.JcrConstants.JCR_CONTENT;
@@ -59,49 +58,49 @@ public class Sitemap {
 	private List<SitemapLinkGroup> otherPageLinks;
 	
     /**
-	 * 
+	 *
 	 */
 	public List<SitemapLinkGroup> getArticleLinks() {
 		return new ArrayList<>(articleLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setArticleLinks(List<SitemapLinkGroup> articleLinks) {
 		this.articleLinks = new ArrayList<>(articleLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public List<SitemapLinkGroup> getCategoryLinks() {
 		return new ArrayList<>(categoryLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setCategoryLinks(List<SitemapLinkGroup> categoryLinks) {
 		this.categoryLinks = new ArrayList<>(categoryLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public List<SitemapLinkGroup> getOtherPageLinks() {
 		return new ArrayList<>(otherPageLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setOtherPageLinks(List<SitemapLinkGroup> otherPageLinks) {
 		this.otherPageLinks = new ArrayList<>(otherPageLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	@PostConstruct
     protected void init() throws RepositoryException {
@@ -270,17 +269,17 @@ public class Sitemap {
 				if (!StringUtils.equalsAny(pageType, CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
 					continue;
 				}
-				
+
 				String groupTitle = groupProperties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
 				if (groupTitle.trim().length() == 0) {
 					groupTitle = groupProperties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
 				}
-				
+
 				SitemapLinkGroup currentItem = new SitemapLinkGroup();
 				currentItem.setHeader(groupTitle);
 				currentItem.setLink(groupChild.getPath().concat(HTML_EXTENSION));
 				currentItem.setLinks(getChildrenCategories(groupChild));
-				
+
 				links.add(currentItem);
     		}
 		}

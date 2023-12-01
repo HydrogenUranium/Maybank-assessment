@@ -4,24 +4,25 @@ import com.day.cq.wcm.api.Page;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.positive.dhl.core.services.ArticleService;
-import com.positive.dhl.core.services.AssetUtilService;
-import com.positive.dhl.core.services.InitUtil;
-import com.positive.dhl.core.services.PathUtilService;
+import com.positive.dhl.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.models.factory.ModelFactory;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
@@ -45,6 +46,15 @@ class ArticleGridV2Test {
     @Mock
     private ArticleService articleService;
 
+    @Mock
+    private PageUtilService pageUtilService;
+
+    @Mock
+    private TagUtilService tagUtilService;
+
+    @Mock
+    private PathUtilService pathUtilService;
+
     private void initRequest(String path) {
         request.setPathInfo(path);
         Resource resource = resourceResolver.getResource(path);
@@ -59,12 +69,18 @@ class ArticleGridV2Test {
         context.registerService(InitUtil.class, initUtil);
         context.registerService(AssetUtilService.class, assetUtilService);
         context.registerService(ArticleService.class, articleService);
-        context.registerService(PathUtilService.class, new PathUtilService());
+        context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(PageUtilService.class, pageUtilService);
+        context.registerService(TagUtilService.class, tagUtilService);
         context.load().json("/com/positive/dhl/core/models/ArticleGridV2/content.json", "/content");
+        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+        when(pathUtilService.encodeUnsupportedCharacters(anyString())).thenReturn("/content/dam/path/to/image");
+        when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
+        when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
     }
 
     private Article getArticle(String path) {
-        return new Article(path, resourceResolver);
+        return context.getService(ModelFactory.class).createModel(resourceResolver.getResource(path), Article.class);
     }
 
     @Test
@@ -79,7 +95,7 @@ class ArticleGridV2Test {
                 );
             }
             List<Article> articles = new ArrayList<>();
-            rootPage.listChildren().forEachRemaining(page -> articles.add(new Article(page.getPath(), resourceResolver)));
+            rootPage.listChildren().forEachRemaining(page -> articles.add(getArticle(page.getPath())));
             return articles;
         });
         when(assetUtilService.resolvePath(anyString())).thenReturn("/content/dhl/dam.png");

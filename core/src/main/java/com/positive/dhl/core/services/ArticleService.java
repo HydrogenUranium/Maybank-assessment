@@ -16,12 +16,18 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.util.*;
 
+import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
+
 @Component(service = ArticleService.class)
 @Slf4j
 public class ArticleService {
 
+    public static final String ORDERBY = "orderby";
     @Reference
     protected ResourceResolverHelper resolverHelper;
+
+    @Reference
+    protected PageUtilService pageUtilService;
 
     @Reference
     protected QueryBuilder builder;
@@ -37,7 +43,7 @@ public class ArticleService {
     public List<Article> getLatestArticles(Page parent, int limit) {
         try (var resolver = resolverHelper.getReadResourceResolver()) {
             Map<String, String> customPublishProp = new HashMap<>();
-            customPublishProp.put("type", "cq:Page");
+            customPublishProp.put("type", NT_PAGE);
             customPublishProp.put("path", parent.getPath());
             customPublishProp.put("group.p.or", "true");
             customPublishProp.put("group.1_property", "jcr:content/cq:template");
@@ -47,16 +53,16 @@ public class ArticleService {
             customPublishProp.put("group.2_property.value", "/apps/dhl/templates/dhl-animated-%");
             customPublishProp.put("3_property", "jcr:content/custompublishdate");
             customPublishProp.put("3_property.operation", "exists");
-            customPublishProp.put("orderby", "@jcr:content/custompublishdate");
+            customPublishProp.put(ORDERBY, "@jcr:content/custompublishdate");
             customPublishProp.put("orderby.sort", "desc");
             customPublishProp.put("p.limit", String.valueOf(limit));
 
             Map<String, String> createdProp = new HashMap<>(customPublishProp);
-            createdProp.put("orderby", "@jcr:content/jcr:created");
+            createdProp.put(ORDERBY, "@jcr:content/jcr:created");
             createdProp.put("3_property.operation", "not");
 
             Map<String, String> lastModifiedProp = new HashMap<>(createdProp);
-            createdProp.put("orderby", "@jcr:content/cq:lastModified");
+            createdProp.put(ORDERBY, "@jcr:content/cq:lastModified");
 
             Map<String, Article> articleMap = new HashMap<>();
 
@@ -84,7 +90,7 @@ public class ArticleService {
         List<Article> resources = new ArrayList<>();
         hits.forEach(hit -> {
             try {
-                resources.add(new Article(hit.getPath(), resourceResolver));
+                resources.add(pageUtilService.getArticle(hit.getPath(), resourceResolver));
             } catch (RepositoryException exception) {
                 log.warn("Failed to get path from sql response", exception);
             }

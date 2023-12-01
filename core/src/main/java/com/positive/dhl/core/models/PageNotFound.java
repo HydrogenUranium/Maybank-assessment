@@ -7,6 +7,9 @@ import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import com.positive.dhl.core.services.PageUtilService;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -18,68 +21,42 @@ import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
-import com.day.cq.wcm.api.NameConstants;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
-/**
- *
- */
+import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_HIDE_IN_NAV;
+
 @Model(adaptables=SlingHttpServletRequest.class)
 public class PageNotFound {
+	@OSGiService
+	private PageUtilService pageUtilService;
+
     @Inject
     private QueryBuilder builder;
 
 	@Inject
 	private ResourceResolver resourceResolver;
-	
+
+	@Getter
+	@Setter
 	private String searchResultsPage;
+
+	@Getter
+	@Setter
 	private List<Article> trendingArticles;
 	
-    /**
-	 * 
-	 */
-	public String getSearchResultsPage() {
-		return searchResultsPage;
-	}
-
-    /**
-	 * 
-	 */
-	public void setSearchResultsPage(String searchResultsPage) {
-		this.searchResultsPage = searchResultsPage;
-	}
-
-    /**
-	 * 
-	 */
-	public List<Article> getTrendingArticles() {
-		return new ArrayList<Article>(trendingArticles);
-	}
-
-    /**
-	 * 
-	 */
-	public void setTrendingArticles(List<Article> trendingArticles) {
-		this.trendingArticles = new ArrayList<Article>(trendingArticles);
-	}
-
-    /**
-	 * 
-	 */
 	@PostConstruct
     protected void init() throws RepositoryException {
         if (builder != null) {
 			//get search-results
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("type", NameConstants.NT_PAGE);
+			Map<String, String> map = new HashMap<>();
+			map.put("type", NT_PAGE);
 			map.put("property", "jcr:content/sling:resourceType");
 			map.put("property.value", "dhl/components/pages/searchresults");
 			Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
 		    SearchResult searchResult = query.getResult();
 		    if (searchResult != null) {
-				for (Hit hit: searchResult.getHits()) {
-					searchResultsPage = hit.getPath().concat(".html");
-					break;
-				}
+				searchResultsPage = searchResult.getHits().get(0).getPath().concat(".html");
 
 				Iterator<Resource> resources = searchResult.getResources();
 				if (resources.hasNext()) {
@@ -88,10 +65,10 @@ public class PageNotFound {
 		    }
         }
         
-		trendingArticles = new ArrayList<Article>();
+		trendingArticles = new ArrayList<>();
 		if (builder != null) {
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("type", NameConstants.NT_PAGE);
+			Map<String, String> map = new HashMap<>();
+			map.put("type", NT_PAGE);
 
 			map.put("group.p.or", "true");
 			
@@ -113,18 +90,16 @@ public class PageNotFound {
 				int count = 0;
 				for (Hit hit: searchResult.getHits()) {
 					ValueMap hitProperties = hit.getProperties();
-					Boolean hideInNav = hitProperties.get("hideInNav", false);
-					if (hideInNav) {
-						continue;
+					boolean hideInNav = hitProperties.get(PN_HIDE_IN_NAV, false);
+					if (!hideInNav) {
+						Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+						article.setIndex(count);
+						trendingArticles.add(article);
+
+						count++;
+
+						if (count > 3) break;
 					}
-					
-					Article article = new Article(hit.getPath(), resourceResolver);
-					article.setIndex(count);
-					trendingArticles.add(article);
-    				
-					count++;
-					
-					if (count > 3) break;
 				}
 
 				Iterator<Resource> resources = searchResult.getResources();

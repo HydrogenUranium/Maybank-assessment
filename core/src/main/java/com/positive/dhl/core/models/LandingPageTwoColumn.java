@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -14,15 +15,19 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class LandingPageTwoColumn {
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	@Inject
 	private ResourceResolver resourceResolver;
-	
+
 	@Inject
 	private Page currentPage;
 	
@@ -38,162 +43,162 @@ public class LandingPageTwoColumn {
 	private List<Article> relatedArticles;
 	
     /**
-	 * 
+	 *
 	 */
 	public String getFullTitle() {
 		return fullTitle;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setFullTitle(String fullTitle) {
 		this.fullTitle = fullTitle;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public String getTitle() {
 		return title;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public String getHerosubtitle() {
 		return herosubtitle;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setHerosubtitle(String herosubtitle) {
 		this.herosubtitle = herosubtitle;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public String getHeroimagemob() {
 		return heroimagemob;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setHeroimagemob(String heroimagemob) {
 		this.heroimagemob = heroimagemob;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public String getHeroimagetab() {
 		return heroimagetab;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setHeroimagetab(String heroimagetab) {
 		this.heroimagetab = heroimagetab;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public String getHeroimagedt() {
 		return heroimagedt;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setHeroimagedt(String heroimagedt) {
 		this.heroimagedt = heroimagedt;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public String getShipNowMessage() {
 		return shipNowMessage;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setShipNowMessage(String shipNowMessage) {
 		this.shipNowMessage = shipNowMessage;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public String getShipNowUrl() {
 		return shipNowUrl;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setShipNowUrl(String shipNowUrl) {
 		this.shipNowUrl = shipNowUrl;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public String getPreselectedCountry() {
 		return preselectedCountry;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setPreselectedCountry(String preselectedCountry) {
 		this.preselectedCountry = preselectedCountry;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public List<Article> getRelatedArticles() {
-		return new ArrayList<Article>(relatedArticles);
+		return new ArrayList<>(relatedArticles);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setRelatedArticles(List<Article> relatedArticles) {
-		this.relatedArticles = new ArrayList<Article>(relatedArticles);
+		this.relatedArticles = new ArrayList<>(relatedArticles);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	@PostConstruct
     protected void init() {
 		shipNowUrl = "https://webshipping.dhl.com";
-		
+
 		//HACK!
 		if (currentPage.getPath().contains("-uk")) {
 			shipNowUrl = "https://parcel.dhl.co.uk/";
 		}
-		
+
 		ValueMap properties = currentPage.adaptTo(ValueMap.class);
 	    if (properties != null) {
 			fullTitle = properties.get("jcr:content/jcr:title", "");
 			title = properties.get("jcr:content/navTitle", "");
-			if ((title == null) || (title.trim().length() == 0)) {
+			if (title.trim().length() == 0) {
 				title = fullTitle;
 			}
 
@@ -207,7 +212,7 @@ public class LandingPageTwoColumn {
 			preselectedCountry = properties.get("jcr:content/preselectedcountry", "");
 		}
 	    
-	    relatedArticles = new ArrayList<Article>();
+	    relatedArticles = new ArrayList<>();
 		
 		Resource relatedArticlePaths = currentPage.getContentResource("items");
 		if (relatedArticlePaths != null) {
@@ -217,7 +222,7 @@ public class LandingPageTwoColumn {
 				if (props != null) {
 					String url = props.get("url", "");
 					
-					Article article = new Article(url, resourceResolver);
+					Article article = pageUtilService.getArticle(url, resourceResolver);
 					relatedArticles.add(article);
 				}
 			}
