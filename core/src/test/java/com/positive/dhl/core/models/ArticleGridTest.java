@@ -132,6 +132,16 @@ class ArticleGridTest {
 		ArticleGrid articleGrid = request.adaptTo(ArticleGrid.class);
 		List<Article> articleList = Objects.requireNonNull(articleGrid).getArticles();
 		assertEquals(13, articleList.size());
+
+		articleGrid.setArticles(List.of(new Article()));
+		assertEquals(1, articleGrid.getArticles().size());
+
+		articleGrid.setCategories(List.of(new CategoryLink("category", "name", "link")));
+		assertEquals(1, articleGrid.getCategories().size());
+
+		articleGrid.setMode("mode");
+		assertEquals("mode", articleGrid.getMode());
+
 	}
 
 	private Article createArticleModel(Resource resource) {

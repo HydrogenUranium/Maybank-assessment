@@ -27,6 +27,7 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
+import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static com.day.cq.wcm.api.constants.NameConstants.*;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
@@ -57,49 +58,49 @@ public class Sitemap {
 	private List<SitemapLinkGroup> otherPageLinks;
 	
     /**
-	 * 
+	 *
 	 */
 	public List<SitemapLinkGroup> getArticleLinks() {
 		return new ArrayList<>(articleLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setArticleLinks(List<SitemapLinkGroup> articleLinks) {
 		this.articleLinks = new ArrayList<>(articleLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public List<SitemapLinkGroup> getCategoryLinks() {
 		return new ArrayList<>(categoryLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setCategoryLinks(List<SitemapLinkGroup> categoryLinks) {
 		this.categoryLinks = new ArrayList<>(categoryLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public List<SitemapLinkGroup> getOtherPageLinks() {
 		return new ArrayList<>(otherPageLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setOtherPageLinks(List<SitemapLinkGroup> otherPageLinks) {
 		this.otherPageLinks = new ArrayList<>(otherPageLinks);
 	}
 
     /**
-	 * 
+	 *
 	 */
 	@PostConstruct
     protected void init() throws RepositoryException {
@@ -118,7 +119,7 @@ public class Sitemap {
 				map.put(String.format("group.%1$s_property.operation", (x + 1)), "like");
 			}
 			
-			map.put("orderby", JCR_CONTENT + "/" + PN_TITLE);
+			map.put("orderby", JCR_CONTENT + "/" + JCR_TITLE);
 			map.put("orderby.sort", "desc");
 			map.put("p.limit", "50");
 			
@@ -138,7 +139,7 @@ public class Sitemap {
 							if (properties != null) {
 								String title = properties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
 								if ((title == null) || (title.trim().length() == 0)) {
-									title = properties.get(JCR_CONTENT + "/" + PN_TITLE, "");
+									title = properties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
 								}
 
 								SitemapLinkGroup linkGroup = new SitemapLinkGroup();
@@ -162,27 +163,29 @@ public class Sitemap {
 			Iterator<Page> children = home.listChildren();
 			while (children.hasNext()) {
 				Page child = children.next();
-				if (!child.isHideInNav()) {
-					SitemapLinkGroup linkGroup = new SitemapLinkGroup();
-					ValueMap properties = child.adaptTo(ValueMap.class);
+				if (child.isHideInNav()) {
+					continue;
+				}
 
-					if (properties != null) {
-						String pageType = properties.get(JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY, "");
-						if (!StringUtils.equalsAny(pageType, CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
-							continue;
-						}
+				SitemapLinkGroup linkGroup = new SitemapLinkGroup();
+				ValueMap properties = child.adaptTo(ValueMap.class);
 
-						String title = properties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
-						if (StringUtils.isBlank(title)) {
-							title = properties.get(JCR_CONTENT + "/" + PN_TITLE, "");
-						}
-
-						linkGroup.setHeader(title);
-						linkGroup.setLink(child.getPath().concat(HTML_EXTENSION));
-						linkGroup.setLinks(getChildrenCategories(child));
-
-						categoryLinks.add(linkGroup);
+				if (properties != null) {
+					String pageType = properties.get(JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY, "");
+					if (!StringUtils.equalsAny(pageType, CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
+						continue;
 					}
+
+					String title = properties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
+					if ((title == null) || (title.trim().length() == 0)) {
+						title = properties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
+					}
+
+					linkGroup.setHeader(title);
+					linkGroup.setLink(child.getPath().concat(HTML_EXTENSION));
+					linkGroup.setLinks(getChildrenCategories(child));
+
+					categoryLinks.add(linkGroup);
 				}
 			}
 
@@ -226,7 +229,7 @@ public class Sitemap {
 								if (properties != null) {
 									String title = properties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
 									if ((title == null) || (title.trim().length() == 0)) {
-										title = properties.get(JCR_CONTENT + "/" + PN_TITLE, "");
+										title = properties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
 									}
 
 									SitemapLinkGroup linkGroup = new SitemapLinkGroup();
@@ -258,7 +261,10 @@ public class Sitemap {
 			Page groupChild = groupChildren.next();
     		ValueMap groupProperties = groupChild.adaptTo(ValueMap.class);
     		
-    		if (groupProperties != null && !groupChild.isHideInNav()) {
+    		if (groupProperties != null) {
+				if (groupChild.isHideInNav()) {
+					continue;
+				}
 				String pageType = groupProperties.get(JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY, "");
 				if (!StringUtils.equalsAny(pageType, CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
 					continue;
@@ -266,7 +272,7 @@ public class Sitemap {
 
 				String groupTitle = groupProperties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
 				if (groupTitle.trim().length() == 0) {
-					groupTitle = groupProperties.get(JCR_CONTENT + "/" + PN_TITLE, "");
+					groupTitle = groupProperties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
 				}
 
 				SitemapLinkGroup currentItem = new SitemapLinkGroup();

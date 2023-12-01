@@ -1,12 +1,14 @@
 package com.positive.dhl.core.services;
 
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.models.Article;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.factory.ModelFactory;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.lang.reflect.Field;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class PageUtilServiceTest {
@@ -158,6 +161,24 @@ class PageUtilServiceTest {
         assertEquals("en", pageUtilService.getLocale(resourceResolver.getResource(EMPTY_JCR_LANG_AND_INVALID_ACCEPT_LANG)).toString());
     }
 
+    @Test
+    void test_getPage()  {
+        Page articlePage = pageUtilService.getPage(ES_US_ARTICLE_PAGE_PATH, resourceResolver);
+        assertNotNull(articlePage);
+        assertEquals(ES_US_ARTICLE_PAGE_PATH, articlePage.getPath());
+    }
+
+    @Test
+    void test_getArticle()  {
+        ResourceResolver mockResourceResolver = mock(ResourceResolver.class);
+        Resource mockResource = mock(Resource.class);
+        Article article = mock(Article.class);
+
+        when(mockResourceResolver.getResource(anyString())).thenReturn(mockResource);
+        when(mockResource.adaptTo(Article.class)).thenReturn(article);
+        assertNotNull(pageUtilService.getArticle(ES_US_ARTICLE_PAGE_PATH, mockResourceResolver));
+    }
+
     private Page getPage(String pagePath) {
         Resource pageResource = resourceResolver.getResource(pagePath);
         assertNotNull(pageResource);
@@ -174,5 +195,9 @@ class PageUtilServiceTest {
         assertTrue(pageUtilService.isGlobalPage(page));
         assertFalse(pageUtilService.isGlobalPage(pageNotGlobal));
         assertFalse(pageUtilService.isGlobalPage(null));
+    }
+
+    private Article createModel(Resource resource) {
+        return context.getService(ModelFactory.class).createModel(resource, Article.class);
     }
 }

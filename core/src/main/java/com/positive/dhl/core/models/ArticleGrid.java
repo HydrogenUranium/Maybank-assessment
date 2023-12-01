@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
@@ -33,8 +34,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static com.day.cq.wcm.api.constants.NameConstants.PN_NAV_TITLE;
-import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 import static com.positive.dhl.core.services.PageUtilService.*;
 
 
@@ -225,9 +224,9 @@ public class ArticleGrid {
 		ValueMap categoryProperties = page.getProperties();
 
 		if (StringUtils.equalsAny(categoryProperties.get(JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY, ""), CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
-			String title = categoryProperties.get(PN_NAV_TITLE, "");
+			String title = categoryProperties.get("navTitle", "");
 			if (title.trim().length() == 0) {
-				title = categoryProperties.get(PN_TITLE, "");
+				title = categoryProperties.get(JcrConstants.JCR_TITLE, "");
 			}
 
 			String categoryName = title.replaceAll("[^A-Za-z\\d]", "-").toLowerCase();

@@ -23,24 +23,40 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_NAV_TITLE;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 
-@Getter
-@Setter
 @Model(adaptables=SlingHttpServletRequest.class)
 public class LandingPage {
+
 	@OSGiService
 	private PageUtilService pageUtilService;
 
 	@Inject
 	private ResourceResolver resourceResolver;
-	
+
 	@Inject
 	private Page currentPage;
 	
+	@Getter
+	@Setter
 	private String fullTitle;
+
+	@Getter
+	@Setter
 	private String title;
+
+	@Getter
+	@Setter
 	private String heroimagemob;
+
+	@Getter
+	@Setter
 	private String heroimagetab;
+
+	@Getter
+	@Setter
 	private String heroimagedt;
+
+	@Getter
+	@Setter
 	private List<Article> relatedArticles;
 	
 	@PostConstruct

@@ -26,8 +26,6 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_HIDE_IN_NAV;
 
-@Getter
-@Setter
 @Model(adaptables=SlingHttpServletRequest.class)
 public class PageNotFound {
 	@OSGiService
@@ -38,8 +36,13 @@ public class PageNotFound {
 
 	@Inject
 	private ResourceResolver resourceResolver;
-	
+
+	@Getter
+	@Setter
 	private String searchResultsPage;
+
+	@Getter
+	@Setter
 	private List<Article> trendingArticles;
 	
 	@PostConstruct

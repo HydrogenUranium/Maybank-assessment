@@ -11,8 +11,11 @@ import javax.jcr.Session;
 
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageUtilService;
+import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -27,32 +30,38 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 
-@Getter
-@Setter
+@Slf4j
+@Data
 @Model(adaptables=SlingHttpServletRequest.class)
 public class SearchResultsList {
-    private final Logger log = LoggerFactory.getLogger(getClass());
-
     protected static final Integer RESULTS_PER_PAGE = 8;
     protected static final Integer MAX_TERMS_ALLOWED = 5;
-    
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @Inject
     private SlingHttpServletRequest request;
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @Inject
     private ResourceResolver resourceResolver;
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @Inject
     private QueryBuilder builder;
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @Inject
     private Page currentPage;
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @OSGiService
     private PageUtilService pageUtilService;
 

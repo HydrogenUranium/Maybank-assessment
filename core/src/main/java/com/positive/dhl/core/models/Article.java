@@ -9,6 +9,7 @@ import lombok.NonNull;
 import lombok.Setter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -25,7 +26,7 @@ import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_LEVEL
  * It's a sling model of the 'article' piece of content
  */
 @Getter
-@Model(adaptables=Resource.class)
+@Model(adaptables=Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class Article {
 	@Self
 	private Resource resource;

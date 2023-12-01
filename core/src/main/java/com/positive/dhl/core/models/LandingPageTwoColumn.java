@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.positive.dhl.core.services.PageUtilService;
+import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
@@ -23,16 +25,22 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_NAV_TITLE;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 
-@Getter
-@Setter
+@Data
 @Model(adaptables=SlingHttpServletRequest.class)
 public class LandingPageTwoColumn {
+
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
 	@OSGiService
 	private PageUtilService pageUtilService;
 
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
 	@Inject
 	private ResourceResolver resourceResolver;
-	
+
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
 	@Inject
 	private Page currentPage;
 	
