@@ -2,18 +2,25 @@ package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.TagUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.models.factory.ModelFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Arrays;
+import java.util.Locale;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -39,16 +46,27 @@ class ArticleTeaserModelTest {
     @Mock
     private PageUtilService pageUtilService;
 
+    @Mock
+    private TagUtilService tagUtilService;
+
     @BeforeEach
     void setUp() {
         context.registerService(PageUtilService.class, pageUtilService);
+        context.registerService(TagUtilService.class, tagUtilService);
+
         context.addModelsForClasses(ArticleTeaserModel.class);
         resourceResolver = context.resourceResolver();
         context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
+
+        lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+        lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
+        lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
     }
 
     @Test
     void test_articleTeaserFromLinkedArticlePage() {
+        Article article = createModel(getResource(ARTICLE_PAGE_RESOURCE_PATH));
+        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
         when(pageUtilService.getPage(any(), any())).thenReturn(getPage(ARTICLE_PAGE_RESOURCE_PATH));
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_FROM_LINKED_ARTICLE_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
@@ -66,6 +84,8 @@ class ArticleTeaserModelTest {
 
     @Test
     void test_articleTeaserFromLinkedCategoryPage() {
+        Article article = createModel(getResource(SUBCATEGORY_PAGE_RESOURCE_PATH));
+        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
         when(pageUtilService.getPage(any(), any())).thenReturn(getPage(SUBCATEGORY_PAGE_RESOURCE_PATH));
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_FROM_LINKED_SUBCATEGORY_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
@@ -83,6 +103,8 @@ class ArticleTeaserModelTest {
 
     @Test
     void test_articleTeaserFromLinkedHomePage() {
+        Article article = createModel(getResource(HOME_PAGE_RESOURCE_PATH));
+        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
         when(pageUtilService.getPage(any(), any())).thenReturn(getPage(HOME_PAGE_RESOURCE_PATH));
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_FROM_LINKED_HOME_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
@@ -91,7 +113,7 @@ class ArticleTeaserModelTest {
         assertTrue(articleTeaserModel.isImageFromPage());
         assertEquals("", articleTeaserModel.getImagePathFromPage());
         assertNull(articleTeaserModel.getAltTextFromPageImage());
-        assertEquals("", articleTeaserModel.getCategoryTag());
+        assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
         assertEquals("", articleTeaserModel.getAuthor());
         assertEquals("2023-10-20", articleTeaserModel.getPublishDate());
         assertEquals("October 20, 2023", articleTeaserModel.getFriendlyPublishDate());
@@ -100,6 +122,9 @@ class ArticleTeaserModelTest {
 
     @Test
     void test_articleTeaserCustomTitleAndImageSetup() {
+        Article article = createModel(getResource(ARTICLE_PAGE_RESOURCE_PATH));
+        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_WITH_CUSTOM_SETUP_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
 
@@ -115,6 +140,8 @@ class ArticleTeaserModelTest {
 
     @Test
     void test_articleTeaserEmptySetup() {
+        when(pageUtilService.getArticle(any(), any(ResourceResolver.class))).thenReturn(null);
+
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_EMPTY_SETUP_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
 
@@ -125,7 +152,11 @@ class ArticleTeaserModelTest {
         assertNull(articleTeaserModel.getAuthor());
         assertNull(articleTeaserModel.getPublishDate());
         assertNull(articleTeaserModel.getFriendlyPublishDate());
-        assertEquals("", articleTeaserModel.getTitleFromLinkedPage());
+        assertNull(articleTeaserModel.getTitleFromLinkedPage());
+    }
+
+    private Article createModel(Resource resource) {
+        return context.getService(ModelFactory.class).createModel(resource, Article.class);
     }
 
     private Page getPage(String pagePath) {

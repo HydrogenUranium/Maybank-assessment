@@ -4,16 +4,25 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.positive.dhl.core.services.PageUtilService;
+import lombok.Getter;
+import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  *
  */
 @Model(adaptables=Resource.class)
 public class HomepageArticlesPanel {
+
+	@OSGiService
+	private PageUtilService pageUtilService;
+
 	@Inject
 	private ResourceResolver resourceResolver;
 	
@@ -32,65 +41,25 @@ public class HomepageArticlesPanel {
 	@Optional
 	public String thirdArticlePath;
 
+	@Getter
+	@Setter
 	private Article firstArticle;
+
+	@Getter
+	@Setter
 	private Article secondArticle;
+
+	@Getter
+	@Setter
 	private Article thirdArticle;
-	
-    /**
-	 * 
-	 */
-	public Article getFirstArticle() {
-		return firstArticle;
-	}
 
-    /**
-	 * 
-	 */
-	public void setFirstArticle(Article firstArticle) {
-		this.firstArticle = firstArticle;
-	}
-
-    /**
-	 * 
-	 */
-	public Article getSecondArticle() {
-		return secondArticle;
-	}
-
-    /**
-	 * 
-	 */
-	public void setSecondArticle(Article secondArticle) {
-		this.secondArticle = secondArticle;
-	}
-
-    /**
-	 * 
-	 */
-	public Article getThirdArticle() {
-		return thirdArticle;
-	}
-
-    /**
-	 * 
-	 */
-	public void setThirdArticle(Article thirdArticle) {
-		this.thirdArticle = thirdArticle;
-	}
-
-    /**
-	 * 
-	 */
 	@PostConstruct
 	protected void init() {
-		if (firstArticlePath != null && firstArticlePath.length() > 0) {
-			firstArticle = new Article(firstArticlePath, resourceResolver);
-		}
-		if (secondArticlePath != null && secondArticlePath.length() > 0) {
-			secondArticle = new Article(secondArticlePath, resourceResolver);
-		}
-		if (thirdArticlePath != null && thirdArticlePath.length() > 0) {
-			thirdArticle = new Article(thirdArticlePath, resourceResolver);
-		}
+		firstArticle = StringUtils.isNoneBlank(firstArticlePath)
+				? pageUtilService.getArticle(firstArticlePath, resourceResolver) : null;
+		secondArticle = StringUtils.isNoneBlank(secondArticlePath)
+				? pageUtilService.getArticle(secondArticlePath, resourceResolver) : null;
+		thirdArticle = StringUtils.isNoneBlank(thirdArticlePath)
+				? pageUtilService.getArticle(thirdArticlePath, resourceResolver) : null;
 	}
 }

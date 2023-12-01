@@ -973,7 +973,6 @@
 						"sling:resourceType": "dhl/components/pages/articlecategory",
 						"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 						"cq:lastModifiedBy": "admin",
-						"navTitle": "Business",
 						"title": {
 							"jcr:primaryType": "nt:unstructured",
 							"jcr:title": "Help, advice and insights to power your business",
@@ -1024,8 +1023,7 @@
 							"jcr:uuid": "724f6a85-4e67-45b5-b29b-7f292e989875",
 							"sling:resourceType": "dhl/components/pages/articlecategory",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
-							"cq:lastModifiedBy": "admin",
-							"navTitle": "Entrepreneurship"
+							"cq:lastModifiedBy": "admin"
 						},
 						"kulani-kinis-company-profile": {
 							"jcr:primaryType": "cq:Page",
@@ -3042,7 +3040,7 @@
 						],
 						"subtitle": "Open a DHL express business account today",
 						"jcr:createdBy": "admin",
-						"jcr:title": "Get up to 10% off your shipping costs*",
+						"jcr:title": "Get up to 10% off your shipping costs",
 						"cq:lastReplicationAction": "Activate",
 						"jcr:versionHistory": "c2203373-020e-4ea7-b818-3f3bb4569292",
 						"cq:template": "/apps/dhl/templates/dhl-landing-page-twocol",
@@ -3070,7 +3068,6 @@
 						"cq:lastModifiedBy": "admin",
 						"herosubtitle": "Start selling to a whole new audience",
 						"shipnowurl": "https://mydhl.express.dhl/us/en/shipping_apps_redirect.html",
-						"navTitle": "Get up to 10% off your shipping costs",
 						"title": {
 							"jcr:primaryType": "nt:unstructured",
 							"sling:resourceType": "dhl/components/content/title"
@@ -3086,6 +3083,13 @@
 						"parthree": {
 							"jcr:primaryType": "nt:unstructured",
 							"sling:resourceType": "wcm/foundation/components/parsys"
+						},
+						"items": {
+							"jcr:primaryType": "nt:unstructured",
+							"item0": {
+								"jcr:primaryType": "nt:unstructured",
+								"url": "/content/dhl/en-global/business/entrepreneurship/kulani-kinis-company-profile"
+							}
 						}
 					},
 					"global-offer-terms-and-conditions": {

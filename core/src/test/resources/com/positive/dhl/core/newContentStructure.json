@@ -211,7 +211,13 @@
               "jcr:primaryType": "cq:PageContent",
               "jcr:title": "ARTICLE PAGE",
               "cq:template": "/conf/dhl/settings/wcm/templates/article-with-new-ux-design",
-              "sling:resourceType": "dhl/components/pages/editable-article"
+              "sling:resourceType": "dhl/components/pages/editable-article",
+              "cq:tags": [
+                "dhl-article-external:default/dhl_internationalshipping",
+                "dhl-article-external:default/e-commerce_advice",
+                "dhl-article-external:default/business_advice",
+                "dhl-article-internal:hidden"
+              ]
             }
           },
           "article-page-with-new-article-setup": {

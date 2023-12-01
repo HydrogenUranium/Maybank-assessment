@@ -4,14 +4,13 @@ import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
-import com.positive.dhl.core.services.CategoryFinder;
-import com.positive.dhl.core.services.PageUtilService;
-import com.positive.dhl.core.services.RepositoryChecks;
-import com.positive.dhl.core.services.ResourceResolverHelper;
+import com.positive.dhl.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.factory.ModelFactory;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +29,13 @@ import static org.mockito.Mockito.*;
 class ArticleGridTest {
     private final AemContext ctx = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
 
-    @Mock
+	@Mock
+	private PageUtilService pageUtilService;
+
+	@Mock
+	private TagUtilService tagUtilService;
+
+	@Mock
     private QueryBuilder mockQueryBuilder;
 
 	@Mock
@@ -65,21 +70,29 @@ class ArticleGridTest {
 		ctx.registerService(RepositoryChecks.class, repositoryChecks);
 		ctx.registerService(ResourceResolverHelper.class,resourceResolverHelper);
 		ctx.registerService(CategoryFinder.class, categoryFinder);
-		ctx.registerService(PageUtilService.class, new PageUtilService());
+		ctx.registerService(PageUtilService.class, pageUtilService);
+		ctx.registerService(TagUtilService.class, tagUtilService);
 
     	ctx.addModelsForClasses(ArticleGrid.class);
 		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resourceResolver);
+
+		lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+		lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
+		lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
 	}
 
 	@Test
 	void verifyFallbackWithQuery() throws RepositoryException {
+		Article article = createArticleModel(ctx.resourceResolver().getResource("/content/dhl/en-global/business/entrepreneurship/kulani-kinis-company-profile"));
+		lenient().when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+
 		List<Hit> hitList = new ArrayList<>();
 		hitList.add(hit);
     	when(categoryFinder.executeQuery(anyMap(),any(ResourceResolver.class))).thenReturn(searchResult);
 		when(searchResult.getHits()).thenReturn(hitList);
 		when(hit.getProperties()).thenReturn(hitProperties);
 		when(hitProperties.get(eq("hideInNav"),anyBoolean())).thenReturn(false);
-		when(hit.getPath()).thenReturn("dummy-hit-path");
+		when(hit.getPath()).thenReturn("/content/dhl/en-global/business/entrepreneurship/kulani-kinis-company-profile");
 
 		Map<String,Object> enGlobalProps = new HashMap<>();
 		enGlobalProps.put("category0","/content/dhl/en-global/business/entrepreneurship");
@@ -99,13 +112,16 @@ class ArticleGridTest {
 
 		ArticleGrid articleGrid = request.adaptTo(ArticleGrid.class);
 		List<Article> articleList = Objects.requireNonNull(articleGrid).getArticles();
-		assertEquals("dummy-hit-path", articleList.get(0).path);
+		assertEquals("/content/dhl/en-global/business/entrepreneurship/kulani-kinis-company-profile", articleList.get(0).path);
 	}
 
 	@Test
 	void verifyModeLatest() {
 		ctx.load().json("/com/positive/dhl/core/models/articelgrid.json","/content/dhl/en-global/jcr:content/par/articlegrid");
 		ctx.currentResource("/content/dhl/en-global/jcr:content/par/articlegrid");
+
+		Article article = createArticleModel(ctx.resourceResolver().getResource("/content/dhl/en-global/business/entrepreneurship/kulani-kinis-company-profile"));
+		lenient().when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("mode", "latest");
@@ -115,6 +131,20 @@ class ArticleGridTest {
 
 		ArticleGrid articleGrid = request.adaptTo(ArticleGrid.class);
 		List<Article> articleList = Objects.requireNonNull(articleGrid).getArticles();
-		assertEquals(4, articleList.size());
+		assertEquals(13, articleList.size());
+
+		articleGrid.setArticles(List.of(new Article()));
+		assertEquals(1, articleGrid.getArticles().size());
+
+		articleGrid.setCategories(List.of(new CategoryLink("category", "name", "link")));
+		assertEquals(1, articleGrid.getCategories().size());
+
+		articleGrid.setMode("mode");
+		assertEquals("mode", articleGrid.getMode());
+
+	}
+
+	private Article createArticleModel(Resource resource) {
+		return ctx.getService(ModelFactory.class).createModel(resource, Article.class);
 	}
 }

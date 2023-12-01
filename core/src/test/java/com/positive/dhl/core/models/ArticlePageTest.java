@@ -14,6 +14,7 @@ import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.injectors.AssetInjector;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.TagUtilService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -46,7 +47,10 @@ class ArticlePageTest {
 	private final LocalDateTime localDateTime = LocalDateTime.now();
 
 	@Mock
-	private PageUtilService pageUtils;
+	private PageUtilService pageUtilService;
+
+	@Mock
+	private TagUtilService tagUtilService;
 
 	@Mock
 	private EnvironmentConfiguration environmentConfiguration;
@@ -62,13 +66,17 @@ class ArticlePageTest {
 		context.registerService(Injector.class, assetInjector);
 		context.registerService(Injector.class, homePropertyInjector);
 		context.registerService(EnvironmentConfiguration.class, environmentConfiguration);
-		context.registerService(PageUtilService.class, new PageUtilService());
+		context.registerService(PageUtilService.class, pageUtilService);
+		context.registerService(TagUtilService.class, tagUtilService);
 		context.addModelsForClasses(ArticlePage.class);
 
 		context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
 
 		when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
 		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
+		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+		when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
+		when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
 	}
 
 	/**
@@ -100,7 +108,7 @@ class ArticlePageTest {
 
 	private void mockHomePage(String initRequestPath) {
 		String homePagePath = initRequestPath.substring(0, StringUtils.ordinalIndexOf(initRequestPath, "/", 5));
-		when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource(homePagePath).adaptTo(Page.class));
+		when(pageUtilService.getHomePage(any())).thenReturn(context.resourceResolver().getResource(homePagePath).adaptTo(Page.class));
 	}
 
 	@Test
@@ -113,8 +121,6 @@ class ArticlePageTest {
 
 		Article article = articlePage.getArticle();
 		testArticle(article);
-
-		testArticleSettersGetters();
 	}
 
 	@Test
@@ -162,10 +168,10 @@ class ArticlePageTest {
 	private void testArticle(Article article) {
 		assertNotNull(article);
 		assertTrue(article.isValid());
-		assertNull(article.getCurrent());
+		assertFalse(article.isCurrent());
 		assertEquals(0, article.getIndex());
-		assertNull(article.getThird());
-		assertNull(article.getFourth());
+		assertFalse(article.isThird());
+		assertFalse(article.isFourth());
 		assertEquals(0, article.getCounter());
 		assertEquals("October 11, 2023", article.getCreatedfriendly());
 		assertEquals("2023-10-11", article.getCreated());
@@ -184,66 +190,7 @@ class ArticlePageTest {
 		assertEquals("/content/dam/dhl/heroimagetab.jpg", article.getHeroimagetab());
 		assertEquals("/content/dam/dhl/heroimagedt.jpg", article.getHeroimagedt());
 		assertEquals("", article.getYoutubeid());
-		assertEquals(false, article.getShowshipnow());
+		assertFalse(article.isShowshipnow());
 		assertEquals(0, article.getTags().size());
-	}
-
-	private void testArticleSettersGetters() {
-		Article newArticle = new Article();
-		newArticle.setValid(false);
-		newArticle.setCurrent(false);
-		newArticle.setIndex(1);
-		newArticle.setThird(true);
-		newArticle.setFourth(true);
-		newArticle.setCounter(2);
-		assertFalse(newArticle.isValid());
-		assertFalse(newArticle.getCurrent());
-		assertEquals(1, newArticle.getIndex());
-		assertTrue(newArticle.getThird());
-		assertTrue(newArticle.getFourth());
-		assertEquals(2, newArticle.getCounter());
-
-		newArticle.setCreatedfriendly("");
-		newArticle.setCreated("");
-		newArticle.setIcon("");
-		newArticle.setGrouptitle("");
-		newArticle.setGrouppath("");
-		newArticle.setFullTitle("");
-		newArticle.setTitle("");
-		newArticle.setBrief("");
-		newArticle.setAuthor("");
-		newArticle.setAuthortitle("");
-		newArticle.setAuthorimage("");
-		newArticle.setReadtime("");
-		newArticle.setListimage("");
-		newArticle.setHeroimagemob("");
-		newArticle.setHeroimagetab("");
-		newArticle.setHeroimagedt("");
-		newArticle.setYoutubeid("");
-		newArticle.setShowshipnow(true);
-		newArticle.setTags(new ArrayList<TagWrapper>());
-
-		assertEquals("", newArticle.getCreatedfriendly());
-		assertEquals("", newArticle.getCreated());
-		assertEquals("", newArticle.getIcon());
-		assertEquals("", newArticle.getGrouptitle());
-		assertEquals("", newArticle.getGrouppath());
-		assertEquals("", newArticle.getFullTitle());
-		assertEquals("", newArticle.getTitle());
-		assertEquals("", newArticle.getBrief());
-		assertEquals("", newArticle.getAuthor());
-		assertEquals("", newArticle.getAuthortitle());
-		assertEquals("", newArticle.getAuthorimage());
-		assertEquals("", newArticle.getReadtime());
-		assertEquals("", newArticle.getListimage());
-		assertEquals("", newArticle.getHeroimagemob());
-		assertEquals("", newArticle.getHeroimagetab());
-		assertEquals("", newArticle.getHeroimagedt());
-		assertEquals("", newArticle.getYoutubeid());
-		assertEquals(true, newArticle.getShowshipnow());
-		assertEquals(0, newArticle.getTags().size());
-
-		List<String> items = Article.getArticlePageTypes();
-		assertTrue(items.size() > 0);
 	}
 }

@@ -29,6 +29,8 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
+
 /**
  *
  */
@@ -36,9 +38,9 @@ import org.slf4j.LoggerFactory;
 public class SearchResultsList {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    protected final Integer RESULTS_PER_PAGE = 8;
-    protected final Integer MAX_TERMS_ALLOWED = 5;
-    
+    protected static final Integer RESULTS_PER_PAGE = 8;
+    protected static final Integer MAX_TERMS_ALLOWED = 5;
+
     @Inject
     private SlingHttpServletRequest request;
 
@@ -69,37 +71,37 @@ public class SearchResultsList {
     private Integer nextPageNumber;
     private String sortBy;
     private String test;
-    
+
     /**
-     * 
+     *
      */
     public List<Article> getResults() {
         return new ArrayList<>(results);
     }
 
     /**
-     * 
+     *
      */
     public void setResults(List<Article> results) {
         this.results = new ArrayList<>(results);
     }
 
     /**
-     * 
+     *
      */
     public Map<String, Integer> getResultSummary() {
         return resultSummary;
     }
 
     /**
-     * 
+     *
      */
     public void setResultSummary(Map<String, Integer> resultSummary) {
         this.resultSummary = resultSummary;
     }
 
     /**
-     * 
+     *
      */
     public List<Article> getTrendingArticles() {
         if (null == trendingArticles) {
@@ -109,182 +111,182 @@ public class SearchResultsList {
     }
 
     /**
-     * 
+     *
      */
     public void setTrendingArticles(List<Article> trendingArticles) {
         this.trendingArticles = new ArrayList<>(trendingArticles);
     }
 
     /**
-     * 
+     *
      */
     public String getSearchTerm() {
         return searchTerm;
     }
 
     /**
-     * 
+     *
      */
     public void setSearchTerm(String searchTerm) {
         this.searchTerm = searchTerm;
     }
 
     /**
-     * 
+     *
      */
     public String getSearchResultsType() {
         return searchResultsType;
     }
 
     /**
-     * 
+     *
      */
     public void setSearchResultsType(String searchResultsType) {
         this.searchResultsType = searchResultsType;
     }
 
     /**
-     * 
+     *
      */
     public Boolean getNoSearchTerm() {
         return noSearchTerm;
     }
 
     /**
-     * 
+     *
      */
     public void setNoSearchTerm(Boolean noSearchTerm) {
         this.noSearchTerm = noSearchTerm;
     }
 
     /**
-     * 
+     *
      */
     public List<Article> getPagedResults() {
         return new ArrayList<>(pagedResults);
     }
 
     /**
-     * 
+     *
      */
     public void setPagedResults(List<Article> pagedResults) {
         this.pagedResults = new ArrayList<>(pagedResults);
     }
 
     /**
-     * 
+     *
      */
     public Integer getNumPages() {
         return numPages;
     }
 
     /**
-     * 
+     *
      */
     public void setNumPages(Integer numPages) {
         this.numPages = numPages;
     }
 
     /**
-     * 
+     *
      */
     public Integer getPageNumber() {
         return pageNumber;
     }
 
     /**
-     * 
+     *
      */
     public void setPageNumber(Integer pageNumber) {
         this.pageNumber = pageNumber;
     }
 
     /**
-     * 
+     *
      */
     public Integer getTotalResults() {
         return totalResults;
     }
 
     /**
-     * 
+     *
      */
     public void setTotalResults(Integer totalResults) {
         this.totalResults = totalResults;
     }
 
     /**
-     * 
+     *
      */
     public List<Integer> getPageNumbers() {
         return new ArrayList<>(pageNumbers);
     }
 
     /**
-     * 
+     *
      */
     public void setPageNumbers(List<Integer> pageNumbers) {
         this.pageNumbers = new ArrayList<>(pageNumbers);
     }
 
     /**
-     * 
+     *
      */
     public Integer getPreviousPageNumber() {
         return previousPageNumber;
     }
 
     /**
-     * 
+     *
      */
     public void setPreviousPageNumber(Integer previousPageNumber) {
         this.previousPageNumber = previousPageNumber;
     }
 
     /**
-     * 
+     *
      */
     public Integer getNextPageNumber() {
         return nextPageNumber;
     }
 
     /**
-     * 
+     *
      */
     public void setNextPageNumber(Integer nextPageNumber) {
         this.nextPageNumber = nextPageNumber;
     }
 
     /**
-     * 
+     *
      */
     public String getSortBy() {
         return sortBy;
     }
 
     /**
-     * 
+     *
      */
     public void setSortBy(String sortBy) {
         this.sortBy = sortBy;
     }
 
     /**
-     * 
+     *
      */
     public String getTest() {
         return test;
     }
 
     /**
-     * 
+     *
      */
     public void setTest(String test) {
         this.test = test;
     }
 
     /**
-     * 
+     *
      */
     @PostConstruct
     protected void init() throws RepositoryException, UnsupportedEncodingException {
@@ -347,7 +349,7 @@ public class SearchResultsList {
             if (builder != null && home != null) {
                 Map<String, String> map = new HashMap<>();
                 map.put("path", home.getPath());
-                map.put("type", NameConstants.NT_PAGE);
+                map.put("type", NT_PAGE);
                 
                 // group terms
                 map.put("1_group.p.or", "true");
@@ -402,7 +404,7 @@ public class SearchResultsList {
                         if (term.trim().length() < 3) {
                             continue;
                         }
-                        
+
                         term = Character.toUpperCase(term.charAt(0)) + term.substring(1);
 
                         termsCount++;
@@ -457,7 +459,7 @@ public class SearchResultsList {
                             continue;
                         }
 
-                        Article article = new Article(hit.getPath(), resourceResolver);
+                        Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
 
                         if (!resultSummary.containsKey(article.getIcon())) {
                             resultSummary.put(article.getIcon(), 0);
@@ -520,19 +522,19 @@ public class SearchResultsList {
             }
 
             List<Article> trendingArticleResults = new ArrayList<>();
-            if (results.size() == 0) {
+            if (results.isEmpty()) {
                 if (builder != null) {
                     Map<String, String> map = new HashMap<>();
-                    map.put("type", NameConstants.NT_PAGE);
+                    map.put("type", NT_PAGE);
                     map.put("group.p.or", "true");
-                    
+
                     List<String> articleTypes = Article.getArticlePageTypes();
                     for (int x = 0; x < articleTypes.size(); x++) {
                         map.put(String.format("group.%1$s_property", (x + 1)), "jcr:content/sling:resourceType");
                         map.put(String.format("group.%1$s_property.value", (x + 1)), String.format("dhl/components/pages/%1$s", articleTypes.get(x)));
                         map.put(String.format("group.%1$s_property.operation", (x + 1)), "like");
                     }
-                    
+
                     map.put("orderby", "@jcr:content/custompublishdate");
                     map.put("orderby.sort", "desc");
                     map.put("p.limit", "10");
@@ -548,14 +550,13 @@ public class SearchResultsList {
                             if (hideInNav) {
                                 continue;
                             }
-                            
-                            Article article = new Article(hit.getPath(), resourceResolver);
+
+                            Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
                             article.setIndex(count);
                             trendingArticleResults.add(article);
                         }
-                        
-                        trendingArticleResults.sort((o1, o2) -> o2.getCounter().compareTo(o1.getCounter()));
 
+                        trendingArticleResults.sort((o1, o2) -> Integer.compare(o2.getCounter(), o1.getCounter()));
                         for (Article article: trendingArticleResults) {
                             trendingArticles.add(article);
 

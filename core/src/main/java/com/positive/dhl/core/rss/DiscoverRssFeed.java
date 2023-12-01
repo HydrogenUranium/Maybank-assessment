@@ -19,6 +19,7 @@ import java.util.stream.StreamSupport;
 
 import static com.day.cq.commons.jcr.JcrConstants.*;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_TAGS;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
 public class DiscoverRssFeed {
@@ -60,7 +61,7 @@ public class DiscoverRssFeed {
         var resourceResolver = request.getResourceResolver();
         resourcePath = resource.getPath();
         mappedResourcePath =  resourceResolver.map(resource.getPath());
-        title = props.get(JCR_TITLE, resource.getName());
+        title = props.get(PN_TITLE, resource.getName());
         description = props.get(JCR_DESCRIPTION, "");
         publishedDate = formatDate(props.get(JCR_CREATED, Calendar.getInstance()));
         tags = getTagNames(props.get(PN_TAGS, new String[0]));

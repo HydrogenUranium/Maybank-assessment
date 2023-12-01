@@ -2,14 +2,19 @@ package com.positive.dhl.core.models;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import com.day.cq.search.result.Hit;
+import com.day.cq.search.result.SearchResult;
+import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageUtilService;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -17,7 +22,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.day.cq.search.PredicateGroup;
@@ -35,7 +39,7 @@ class SearchResultsListTest {
 	private ResourceResolver resourceResolver;
 	
 	@Mock
-	private QueryBuilder queryBuilder;
+	private QueryBuilder mockQueryBuilder;
 
     @Mock
     private Query page1MockQuery;
@@ -43,19 +47,46 @@ class SearchResultsListTest {
 	@Mock
 	private Session session;
 
+	@Mock
+	private SearchResult searchResult;
+
+	@Mock
+	private Hit hit;
+
+	@Mock
+	private PageUtilService pageUtilServiceMock;
+
+	@Mock
+	private Article article;
+
+	@Mock
+	private Iterator<Resource> resourceIterator;
+
+	@Mock
+	private Page page;
+
 	@BeforeEach
 	void setUp() throws Exception {
-	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
-        ctx.registerService(QueryBuilder.class, queryBuilder);
-		ctx.registerService(PageUtilService.class, new PageUtilService());
-	    ctx.addModelsForClasses(SearchResultsList.class);
+		ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
+		ctx.registerService(QueryBuilder.class, mockQueryBuilder);
+		ctx.registerService(PageUtilService.class, pageUtilServiceMock);
+		ctx.addModelsForClasses(PageNotFound.class);
+		ctx.currentResource("/content/dhl/country/en/search-results");
+
+		when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
+		when(searchResult.getHits()).thenReturn(List.of(hit));
+		when(hit.getPath()).thenReturn("/content/dhl/country/en/culture/dhl-mo-salah");
+		when(searchResult.getResources()).thenReturn(resourceIterator);
+		when(pageUtilServiceMock.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+		when(pageUtilServiceMock.getHomePage(any(Page.class))).thenReturn(page);
+		when(page.getPath()).thenReturn("/content/dhl/country/en");
 	}
 
 	@Test
 	void testSortByTitle() {
-		Mockito.when(queryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
 		ctx.currentResource("/content/dhl/country/en/search-results");
-		
+		when(page1MockQuery.getResult()).thenReturn(searchResult);
+
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("searchfield", "subscription");
 		params.put("sort", "title");
@@ -65,8 +96,10 @@ class SearchResultsListTest {
         request.setParameterMap(params);
         
 		SearchResultsList searchResultsList = request.adaptTo(SearchResultsList.class);
+		assertNotNull(searchResultsList);
 
-		assert searchResultsList != null;
+		assertNull(searchResultsList.getTest());
+		assertEquals("", searchResultsList.getSearchResultsType());
 		assertEquals("subscription", searchResultsList.getSearchTerm());
 		assertFalse(searchResultsList.getNoSearchTerm());
 		assertEquals("title", searchResultsList.getSortBy());
@@ -75,7 +108,7 @@ class SearchResultsListTest {
 		assertEquals(0, searchResultsList.getCountCompetition());
 		assertEquals(0, searchResultsList.getCountDownload());
 		assertEquals(0, searchResultsList.getCountInteractive());
-		assertEquals(0, searchResultsList.getCountAll());
+		assertEquals(1, searchResultsList.getCountAll());
 		
 		searchResultsList.setResults(new ArrayList<Article>());
 		searchResultsList.setResultSummary(new HashMap<String, Integer>());
@@ -106,10 +139,11 @@ class SearchResultsListTest {
 	}
 
 	@Test
-	void testSortByDate() {
-		Mockito.when(queryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
-		ctx.currentResource("/content/dhl/country/en/search-results");
-		
+	void testSortByDate() throws RepositoryException {
+		when(page1MockQuery.getResult()).thenReturn(null, searchResult);
+		Resource articlePageResource = ctx.resourceResolver().getResource("/content/dhl/country/en/culture/dhl-mo-salah/jcr:content");
+		when(hit.getProperties()).thenReturn(articlePageResource.getValueMap());
+
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("searchfield", "subscription");
 		params.put("sort", "date");
@@ -120,8 +154,7 @@ class SearchResultsListTest {
 		
 		SearchResultsList searchResultsList = request.adaptTo(SearchResultsList.class);
 
-		assert searchResultsList != null;
+		assertNotNull(searchResultsList);
 		assertEquals("date", searchResultsList.getSortBy());
 	}
-
 }
