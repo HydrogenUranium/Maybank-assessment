@@ -50,11 +50,21 @@ module.exports = {
         js: ['dependencies/js/react-core.bundle.js'],
       }
     },
+//    {
+//      ...libsBaseConfig,
+//      name: 'discover-react-common',
+//      categories: ['dhl.site'],
+//      embed: ['dhl.react-core', 'dhl.inline-search'],
+//      assets: {
+//          js: [],
+//          css: []
+//      }
+//    },
     {
       ...libsBaseConfig,
       name: 'discover-category-page',
       categories: ['dhl.category-page'],
-      embed: ['dhl.react-core', 'dhl.article-grid'],
+      embed: ['dhl.react-core', 'dhl.article-grid', 'dhl.search-bar'],
       assets: {
           js: [],
           css: []
@@ -69,6 +79,16 @@ module.exports = {
         js: ['site/js/ArticleGrid.bundle.js'],
         css: ['site/css/ArticleGrid.bundle.css']
       }
-    }
+    },
+   {
+     ...libsBaseConfig,
+     name: 'discover-search-bar',
+     categories: ['dhl.search-bar'],
+    //  dependencies: ['dhl.site'],
+     assets: {
+       js: ['site/js/SearchBar.bundle.js'],
+       css: ['site/css/SearchBar.bundle.css']
+     }
+   }
   ]
 };

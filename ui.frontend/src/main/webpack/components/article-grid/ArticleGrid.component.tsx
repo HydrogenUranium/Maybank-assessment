@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import { registerComponent } from '../../react-core/registry';
 import { ArticleCard } from './molecules/ArticleCard';
-import { Article } from './types';
+import { Article } from '../../types/article';
 
 import styles from './styles.module.scss';
 

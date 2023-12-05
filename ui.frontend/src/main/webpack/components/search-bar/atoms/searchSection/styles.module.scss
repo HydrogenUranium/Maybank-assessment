@@ -1,0 +1,31 @@
+.searchSection {
+    color: #323232;
+    &OverflowHidden {
+        overflow: hidden;
+        display: flex;
+        flex-flow: column;
+        padding-left: 2px;
+        padding-bottom: 2px;
+        padding-right: 2px;
+        margin-left: -2px;
+        margin-bottom: -2px;
+        margin-right: -2px;
+        .searchSectionItems {
+            column-gap: 20px;
+            margin:-2px;
+            padding: 2px;
+            display: flex;
+            overflow: hidden;
+            flex-flow: column wrap;
+        }
+    }
+
+    &Title {
+        font: normal normal bold 14px/20px Delivery, sans-serif;
+
+        &Thin {
+            opacity: 0.8;
+            font: normal normal normal 14px/14px Delivery;
+        }
+    }
+}

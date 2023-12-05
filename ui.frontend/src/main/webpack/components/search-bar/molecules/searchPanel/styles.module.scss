@@ -1,0 +1,146 @@
+.search {
+    height: 45px;
+    position: relative;
+    background: white;
+    border: 1px solid #5A5A5A;
+    border-radius: 4px;
+
+    input {
+        width: 500px;
+        border: none;
+        background: transparent;
+        padding: 0 45px;
+        height: 100%;
+
+        &:focus-visible {
+            border: none;
+        }
+    }
+
+    &Result {
+        z-index: 10;
+        position: absolute;
+        padding: 20px;
+        top: 50px;
+        width: 100%;
+        background: white;
+        border: 1px solid #5A5A5A;
+        border-radius: 4px;
+        max-height: calc(100vh - 100px);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        >div:not(:first-child) {
+            border-top: 1px solid #DFDFDF;
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+    }
+}
+
+.article {
+    display: flex;
+    padding: 8px 0;
+    min-width: 100%;
+    gap: 5px;
+    color: #323232;
+
+    &:hover {
+        color: #D40511;
+        text-decoration: none;
+        .articleInfoTitle {
+            text-decoration: underline;
+        }
+    }
+
+    &Image {
+        height: 40px;
+        min-width: 40px;
+        width: 40px;
+        margin-right: 5px;
+        background-size: cover;
+        border-radius: 4px;
+    }
+
+    &Info {
+        display: flex;
+        flex-direction: column;
+
+        &Title {
+            font: normal normal bold 16px/20px Delivery, sans-serif;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        &Metadata {
+            font: normal normal normal 12px/15px Delivery, sans-serif;
+            color: #323232;
+        }
+    }
+
+}
+
+.searchSection {
+    &Items {
+        &Item {
+            font: normal normal normal 14px/30px Delivery, sans-serif;
+            display: flex;
+            color: #323232;
+            border: none;
+            background: transparent; 
+            cursor: pointer;
+            text-align: left;
+
+            margin-left: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: calc(100% + 40px);
+
+            &:hover {
+                color: #323232;
+                text-decoration: none;
+                background: #ccc;
+            }
+            &Text {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+            }
+        }
+    }
+
+}
+
+.icon {
+    width: 15px;
+    height: 15px;
+    margin-top: 8px;
+    margin-right: 5px;    
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    &History {
+        background-image: url(http://localhost:4502/content/dam/images/history.svg);
+    }
+    &Trending {
+        background-image: url(http://localhost:4502/content/dam/images/hot.svg);
+    }
+}
+
+.absolute {
+    &Right {
+        position: absolute;
+        right: 0;
+    }
+
+    &Left {
+        position: absolute;
+        left: 0;
+    }
+}
