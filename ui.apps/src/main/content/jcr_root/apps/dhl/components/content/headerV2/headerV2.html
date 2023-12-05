@@ -17,6 +17,16 @@
                     </div>
                 </div>
                 <div class="header__icon">
+                    <a href="#" class="headerV2__desktopCountry">
+                        <sly data-sly-test.isGlobal="${languageVariants.getCurrentRegion == 'Global'}">
+                            <span class="global-icon"></span>
+                        </sly>
+                        <sly data-sly-test="${!isGlobal}"
+                             data-sly-set.currentRegionCode="${languageVariants.currentRegionCode}">
+                            <span class="fi fi-${currentRegionCode}"></span>
+                            <span class="title">${ currentRegionCode == 'tw' ? 'Taiwan' : languageVariants.getCurrentRegion @ i18n, context='html' }</span>
+                        </sly>
+                    </a>
                     <div class="header-countryList">
                         <label for="countryList-widget" class="header-countryList__label">Countries & Regions</label>
                         <div class="header-countryList__widget" id="countryList-widget">
@@ -31,16 +41,6 @@
                                 </div>
                             </sly>
                         </div>
-                    </div>
-                    <div class="headerV2__desktopCountry">
-                        <sly data-sly-test.isGlobal="${languageVariants.getCurrentRegion == 'Global'}">
-                            <span class="global-icon"></span>
-                        </sly>
-                        <sly data-sly-test="${!isGlobal}"
-                             data-sly-set.currentRegionCode="${languageVariants.currentRegionCode}">
-                            <span class="fi fi-${currentRegionCode}"></span>
-                            <span class="title">${ currentRegionCode == 'tw' ? 'Taiwan' : languageVariants.getCurrentRegion @ i18n, context='html' }</span>
-                        </sly>
                     </div>
                 </div>
                 <div class="header__icon">

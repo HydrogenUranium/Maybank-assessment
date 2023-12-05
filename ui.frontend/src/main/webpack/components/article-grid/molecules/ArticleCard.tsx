@@ -23,7 +23,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
     }
 }) => (
     <div className={styles.articleCard}>
-        <a href={link} className={styles.articleCardImage} style={{ backgroundImage: `url(${image})` }}>
+        <a tabIndex={-1} href={link} className={styles.articleCardImage} style={{ backgroundImage: `url(${image})` }}>
             <div className={styles.articleCardImageGroupTag}>{groupTag}</div>
         </a>
         <div className={styles.articleCardInfo}>
