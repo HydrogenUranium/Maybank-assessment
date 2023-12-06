@@ -10,12 +10,11 @@ import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.factory.ModelFactory;
-import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -29,6 +28,7 @@ import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -74,9 +74,12 @@ class ArticleGridV2Test {
         context.registerService(TagUtilService.class, tagUtilService);
         context.load().json("/com/positive/dhl/core/models/ArticleGridV2/content.json", "/content");
         when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
-        when(pathUtilService.encodeUnsupportedCharacters(anyString())).thenReturn("/content/dam/path/to/image");
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
+        lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
     }
 
     private Article getArticle(String path) {
@@ -98,7 +101,6 @@ class ArticleGridV2Test {
             rootPage.listChildren().forEachRemaining(page -> articles.add(getArticle(page.getPath())));
             return articles;
         });
-        when(assetUtilService.resolvePath(anyString())).thenReturn("/content/dhl/dam.png");
         mockInjectHomeProperty(context, "articleGrid-title", "Categories");
         mockInjectHomeProperty(context, "articleGrid-allTitle", "All");
         mockInjectHomeProperty(context, "articleGrid-sortTitle", "Sort By");

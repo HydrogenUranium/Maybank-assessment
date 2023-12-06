@@ -1,5 +1,4 @@
-<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
-<div id="articles" class="articleGrid hide-offline" data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" data-sly-use.grid="com.positive.dhl.core.models.ArticleGrid" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
+<div id="articles" class="articleGrid hide-offline" data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" data-sly-use.grid="com.positive.dhl.core.models.ArticleGrid">
 	<div class="articleGrid__navWrap">
 		<ul class="articleGrid__nav">
 			<li data-sly-test="${grid.hidelatest != true}" class="articleGrid__navItem"><a class="articleGrid__navLink${((grid.mode == 'latest') ? ' articleGrid__navLink--active' : '')}" href="${currentPage.path}.html#articles" title="Latest">Latest</a></li>
@@ -15,7 +14,7 @@
 			<div class="articleGrid__item col-12 col-md-6 col-lg-4">
 				<article class="articlePanel${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}${((item.index < 2) ? ' articlePanel--large' : '')}" id="articlePanelUniqueId">
 					<a class="articlePanel__image" href="${item.path}.html" title="${item.title}">
-						<amp-img src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.listimage}" height="69" width="90" layout="fixed"></amp-img>
+						<amp-img src="${item.listimage}" height="69" width="90" layout="fixed"></amp-img>
 						<span class="sr-only">${item.title}</span>
 					</a>
 					<div class="articlePanel__content">

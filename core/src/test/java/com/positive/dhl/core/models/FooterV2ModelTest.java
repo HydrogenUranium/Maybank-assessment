@@ -5,6 +5,7 @@ import com.positive.dhl.core.injectors.AssetInjector;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
 import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -15,6 +16,7 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -23,6 +25,8 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -41,6 +45,9 @@ class FooterV2ModelTest {
     @Mock
     private PageUtilService pageUtils;
 
+    @Mock
+    private PathUtilService pathUtilService;
+
     @InjectMocks
     private HomePropertyInjector homePropertyInjector;
 
@@ -54,7 +61,13 @@ class FooterV2ModelTest {
         context.registerService(Injector.class, assetInjector);
         context.registerService(AssetUtilService.class, assetUtils);
         context.registerService(Injector.class, homePropertyInjector);
+        context.registerService(PathUtilService.class, pathUtilService);
         context.addModelsForClasses(FooterV2Model.class);
+
+        when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
     }
 
     private void mockHomePage() {
@@ -77,7 +90,7 @@ class FooterV2ModelTest {
         assertEquals("https://www.dhl.com/", footerV2Model.getLogoLink());
         assertEquals("DHL Group", footerV2Model.getLogoTitle());
         assertEquals("Alt Text", footerV2Model.getLogoAltText());
-        assertEquals("/content/dam/dhl-discover/common/icons/glo-footer-logo.svg", footerV2Model.getLogoIcon());
+        assertEquals("/prefix/content/dam/dhl-discover/common/icons/glo-footer-logo.svg", footerV2Model.getLogoIcon());
         assertEquals("Ready to grow your business?", footerV2Model.getInvitationTitle());
         assertEquals("Join over 5000+ SMEs already growing with Discover", footerV2Model.getInvitationText());
         assertEquals("Get tips and advice", footerV2Model.getPromoText());
@@ -87,7 +100,7 @@ class FooterV2ModelTest {
         assertEquals("About us", footerV2Model.getCompanyLinks().get(0).getLinkName());
         assertEquals("/content/dhl/about-us", footerV2Model.getCompanyLinks().get(0).getLinkPath());
         assertEquals("Facebook", footerV2Model.getSocialLinks().get(0).getLinkName());
-        assertEquals("/content/dam/dhl-discover/common/icons/icon-sc-facebook.svg", footerV2Model.getSocialLinks().get(0).getLinkIcon());
+        assertEquals("/prefix/content/dam/dhl-discover/common/icons/icon-sc-facebook.svg", footerV2Model.getSocialLinks().get(0).getLinkIcon());
         assertEquals("https://www.facebook.com/", footerV2Model.getSocialLinks().get(0).getLinkPath());
     }
 
@@ -101,7 +114,7 @@ class FooterV2ModelTest {
         assertNull(footerV2Model.getLogoLink());
         assertNull(footerV2Model.getLogoTitle());
         assertNull(footerV2Model.getLogoAltText());
-        assertNull(footerV2Model.getLogoIcon());
+        assertEquals("", footerV2Model.getLogoIcon());
         assertNull(footerV2Model.getInvitationTitle());
         assertNull(footerV2Model.getInvitationText());
         assertNull(footerV2Model.getPromoText());

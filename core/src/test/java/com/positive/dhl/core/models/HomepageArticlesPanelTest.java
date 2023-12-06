@@ -7,6 +7,7 @@ import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -15,6 +16,7 @@ import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.Mock;
 
@@ -38,6 +40,9 @@ class HomepageArticlesPanelTest {
     private TagUtilService tagUtilService;
 
     @Mock
+    private PathUtilService pathUtilService;
+
+    @Mock
     private QueryBuilder mockQueryBuilder;
 
     @Mock
@@ -49,11 +54,16 @@ class HomepageArticlesPanelTest {
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
         ctx.registerService(PageUtilService.class, pageUtilService);
         ctx.registerService(TagUtilService.class, tagUtilService);
+        ctx.registerService(PathUtilService.class, pathUtilService);
         ctx.addModelsForClasses(HomepageArticlesPanel.class, Article.class);
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
+        lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
 	}
 
 	@Test

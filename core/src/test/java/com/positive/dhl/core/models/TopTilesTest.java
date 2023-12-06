@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -10,6 +11,7 @@ import org.apache.sling.models.factory.ModelFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -32,6 +34,9 @@ class TopTilesTest {
     @Mock
     private TagUtilService tagUtilService;
 
+    @Mock
+    private PathUtilService pathUtilService;
+
     @BeforeEach
     void setUp() throws Exception {
         context.addModelsForClasses(TopTiles.class);
@@ -39,10 +44,15 @@ class TopTilesTest {
 
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
+        context.registerService(PathUtilService.class, pathUtilService);
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
+        lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
     }
 
     @Test

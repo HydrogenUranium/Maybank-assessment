@@ -3,6 +3,7 @@ package com.positive.dhl.core.models;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -25,6 +26,9 @@ public class ArticleTeaserModel {
 
     @OSGiService
     private PageUtilService pageUtilService;
+
+    @OSGiService
+    private PathUtilService pathUtilService;
 
     @ValueMapValue
     private String imageFromPageImage;
@@ -76,6 +80,7 @@ public class ArticleTeaserModel {
                         .map(link -> pageUtilService.getPage(link, resourceResolver))
                         .map(Page::getProperties)
                         .map(props -> props.get("listimage", StringUtils.EMPTY))
+                        .map(pathUtilService::resolveAssetPath)
                         .orElse(StringUtils.EMPTY);
 
                 altTextFromPageImage = !Boolean.parseBoolean(altValueFromPageImage)

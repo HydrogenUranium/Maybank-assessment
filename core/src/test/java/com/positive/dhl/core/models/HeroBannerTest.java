@@ -5,6 +5,7 @@ import com.day.cq.wcm.api.policies.ContentPolicy;
 import com.day.cq.wcm.api.policies.ContentPolicyManager;
 import com.positive.dhl.core.injectors.AssetInjector;
 import com.positive.dhl.core.services.AssetUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -16,6 +17,7 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -23,7 +25,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -34,6 +36,9 @@ class HeroBannerTest {
 
     @Mock
     private AssetUtilService assetUtils;
+
+    @Mock
+    private PathUtilService pathUtilService;
 
     @InjectMocks
     private AssetInjector assetInjector;
@@ -49,17 +54,19 @@ class HeroBannerTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        when(assetUtils.resolvePath(anyString())).thenAnswer(invocationOnMock -> {
+        when(assetUtils.resolvePath(any())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
-            if(path.isBlank()) {
-                return "";
-            }
-            return "/prefix" + invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
+        lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
         });
         context.load().json("/com/positive/dhl/core/models/HeroBanner/content.json", "/content");
         mockInject(context, "currentPage", resourceResolver.getResource("/content/article").adaptTo(Page.class));
         context.registerService(Injector.class, assetInjector);
         context.registerService(AssetUtilService.class, assetUtils);
+        context.registerService(PathUtilService.class, pathUtilService);
         context.addModelsForClasses(HeroBanner.class);
 
         context.registerAdapter(ResourceResolver.class, ContentPolicyManager.class, contentPolicyManager);

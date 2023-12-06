@@ -13,8 +13,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
-<div class="heroCarousel" data-sly-use.slides="com.positive.dhl.core.models.ArticleList" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
+<div class="heroCarousel" data-sly-use.slides="com.positive.dhl.core.models.ArticleList">
 	<div id="heroCarouselUniqueId" class="carousel slide" data-ride="carousel">
 		<sly data-sly-unwrap data-sly-test="${(slides.carouselitems.size > 1)}">
 		<ol class="carousel-indicators" data-sly-list="${slides.articles}">
@@ -25,10 +24,10 @@
 		<div class="carousel-inner" data-sly-list="${slides.articles}">
 			<div class="carousel-item${(item.index == 0 ? ' active' : '')}" id="uniqueIdArticleCarouselHomepage${item.index}">
 				<style type="text/css">
-					@media screen and (min-width: 992px) { #uniqueIdArticleCarouselHomepage${item.index @ context='unsafe'} .hero__image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.heroimagedt @ context='unsafe'}') !important; } }
+					@media screen and (min-width: 992px) { #uniqueIdArticleCarouselHomepage${item.index @ context='unsafe'} .hero__image { background-image: url('${item.heroimagedt @ context='uri'}') !important; } }
 				</style>
 				<div class="hero hero--home" id="uniqueIdArticleCarouselHomepage${item.index}">
-					<div class="hero__image" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.heroimagemob @ context='unsafe'}');">
+					<div class="hero__image" style="background-image: url('${item.heroimagemob @ context='uri'}');">
 						<span class="sr-only">${item.title}</span>
 					</div>
 					<div class="container d-lg-flex align-items-end">

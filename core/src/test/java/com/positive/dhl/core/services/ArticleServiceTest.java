@@ -16,6 +16,7 @@ import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -39,6 +40,9 @@ class ArticleServiceTest {
 
     @Mock
     private TagUtilService tagUtilService;
+
+    @Mock
+    private PathUtilService pathUtilService;
 
     @Mock
     private QueryBuilder builder;
@@ -66,6 +70,7 @@ class ArticleServiceTest {
         context.load().json("/com/positive/dhl/core/services/ArticleServiceTest/content.json", "/content");
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
+        context.registerService(PathUtilService.class, pathUtilService);
         context.addModelsForClasses(Article.class);
 
         when(builder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(query);
@@ -80,6 +85,10 @@ class ArticleServiceTest {
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
+        lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
     }
 
     @Test
