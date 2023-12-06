@@ -1,6 +1,6 @@
 package com.positive.dhl.core.injectors;
 
-import com.positive.dhl.core.services.AssetUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.spi.DisposalCallbackRegistry;
 import org.apache.sling.models.spi.Injector;
@@ -22,7 +22,7 @@ import static org.osgi.framework.Constants.SERVICE_RANKING;
 public class AssetInjector extends AbstractInjector {
 
     @Reference
-    private AssetUtilService assetUtils;
+    private PathUtilService pathUtilService;
 
     @Override
     public @NotNull String getName() {
@@ -37,7 +37,7 @@ public class AssetInjector extends AbstractInjector {
         return  Optional.ofNullable(getResource(object))
                 .map(Resource::getValueMap)
                 .map(valueMap -> valueMap.get(name, ""))
-                .map(path -> assetUtils.resolvePath(path))
+                .map(path -> pathUtilService.resolveAssetPath(path))
                 .orElse("");
     }
 }

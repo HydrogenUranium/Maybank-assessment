@@ -35,9 +35,6 @@ class HeroBannerTest {
     private final ResourceResolver resourceResolver = context.resourceResolver();
 
     @Mock
-    private AssetUtilService assetUtils;
-
-    @Mock
     private PathUtilService pathUtilService;
 
     @InjectMocks
@@ -54,10 +51,6 @@ class HeroBannerTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        when(assetUtils.resolvePath(any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
         lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
@@ -65,7 +58,6 @@ class HeroBannerTest {
         context.load().json("/com/positive/dhl/core/models/HeroBanner/content.json", "/content");
         mockInject(context, "currentPage", resourceResolver.getResource("/content/article").adaptTo(Page.class));
         context.registerService(Injector.class, assetInjector);
-        context.registerService(AssetUtilService.class, assetUtils);
         context.registerService(PathUtilService.class, pathUtilService);
         context.addModelsForClasses(HeroBanner.class);
 

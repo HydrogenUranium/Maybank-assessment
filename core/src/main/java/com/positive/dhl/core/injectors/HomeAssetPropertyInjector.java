@@ -1,8 +1,8 @@
 package com.positive.dhl.core.injectors;
 
 import com.positive.dhl.core.components.EnvironmentConfigurationData;
-import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import org.apache.sling.models.spi.DisposalCallbackRegistry;
 import org.apache.sling.models.spi.Injector;
 import org.jetbrains.annotations.NotNull;
@@ -27,7 +27,7 @@ public class HomeAssetPropertyInjector extends HomePropertyInjector {
     protected PageUtilService pageUtilService;
 
     @Reference
-    private AssetUtilService assetUtils;
+    private PathUtilService pathUtilService;
 
     @Override
     public @NotNull String getName() {
@@ -49,7 +49,7 @@ public class HomeAssetPropertyInjector extends HomePropertyInjector {
     public @Nullable Object getValue(@NotNull Object object, String name, @NotNull Type type, @NotNull AnnotatedElement annotatedElement, @NotNull DisposalCallbackRegistry disposalCallbackRegistry) {
         Object result = super.getValue(object, name, type, annotatedElement, disposalCallbackRegistry);
         if (result instanceof String) {
-            return assetUtils.resolvePath((String) result);
+            return pathUtilService.resolveAssetPath((String) result);
         }
         return result;
     }
