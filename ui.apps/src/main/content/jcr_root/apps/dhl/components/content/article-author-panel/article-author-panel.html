@@ -1,17 +1,15 @@
 
 <sly data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage"
-    data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
-    data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}"
-    data-sly-test.isEmpty="${articlePage.article.author.length == 0}"></sly>
+    data-sly-set.author="${articlePage.article.author}"></sly>
 
-<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && !author}" data-emptytext="${component.title}"></div>
 
-<div class="mb-3" data-sly-test="${!isEmpty}">
+<div class="mb-3" data-sly-test="${author}">
     <figure class="authorPanel">
-        <img data-sly-test="${(articlePage.article.authorimage.length > 0)}" src="${!editmode ? accountactions.assetprefix : ''}${articlePage.article.authorimage}" alt="${articlePage.article.author}" class="authorPanel__image">
+        <img data-sly-test.authorimage="${articlePage.article.authorimage}" src="${authorimage}" alt="${author}" class="authorPanel__image">
         <figcaption class="authorPanel__caption">
-            <span class="authorPanel__name">${articlePage.article.author}</span>
-            <span class="authorPanel__title" data-sly-test="${(articlePage.article.authortitle.length > 0)}">${articlePage.article.authortitle}</span>
+            <span class="authorPanel__name">${author}</span>
+            <span class="authorPanel__title" data-sly-test.authortitle="${articlePage.article.authortitle}">${authortitle}</span>
         </figcaption>
     </figure>
 </div>

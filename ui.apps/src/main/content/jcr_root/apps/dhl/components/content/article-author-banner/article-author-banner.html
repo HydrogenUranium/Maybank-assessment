@@ -9,9 +9,9 @@
 
     <!--/* This Author-related part of the code will be finalised as part of DIS-372 */-->
     <div class="article-author-banner_author">
-        <img data-sly-test="${(articlePage.article.authorimage.length > 0)}"
+        <img data-sly-test.authorimage="${articlePage.article.authorimage}"
              class="article-author-banner_author-image"
-             src="${!editmode ? accountactions.assetprefix : ''}${articlePage.article.authorimage}"
+             src="${authorimage}"
              alt="${articleAuthor}">
         <div class="article-author-banner_author-description">
             <div class="article-author-banner_author-description__name">${articleAuthor}</div>
@@ -22,9 +22,9 @@
 
     <div data-sly-test="${authorBanner.brief}" class="article-author-banner_brief">${authorBanner.brief}</div>
 
-    <div data-sly-test="${authorBanner.followLabel}" class="article-author-banner_follow">
+    <div data-sly-test.followLabel="${authorBanner.followLabel}" class="article-author-banner_follow">
         <a class="article-author-banner_follow__button" href="${!editmode ? accountactions.assetprefix : ''}${authorBanner.followPath}">
-            <span>${authorBanner.followLabel}</span>
+            <span>${followLabel}</span>
         </a>
     </div>
 </div>

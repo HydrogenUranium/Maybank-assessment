@@ -1,13 +1,10 @@
-<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <footer class="footerV2-wrapper">
-    <div class="footer-container"
-         data-sly-use.footerV2="com.positive.dhl.core.models.FooterV2Model"
-         data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
+    <div class="footer-container" data-sly-use.footerV2="com.positive.dhl.core.models.FooterV2Model">
         <div class="promo">
             <div class="promo-logo">
                 <a class="logo__link" href="${footerV2.logoLink}">
                     <img class="logo__image"
-                         src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${footerV2.logoIcon}"
+                         src="${footerV2.logoIcon}"
                          title="${footerV2.logoTitle}"
                          alt="${footerV2.logoAltText}" />
                 </a>
@@ -35,7 +32,7 @@
                     <a class="links-group__item" data-sly-repeat="${footerV2.socialLinks}" href="${item.linkPath}">
                         <span class="not-mobile-only">${item.linkName}</span>
                         <img class="logo__image mobile-only"
-                             src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.linkIcon}"
+                             src="${item.linkIcon}"
                              title="${item.linkName}"
                              alt="${item.linkName}" />
                     </a>

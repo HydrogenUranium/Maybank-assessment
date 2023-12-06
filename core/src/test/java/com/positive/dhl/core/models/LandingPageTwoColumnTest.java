@@ -1,14 +1,18 @@
 package com.positive.dhl.core.models;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.Mock;
 
@@ -28,13 +32,22 @@ class LandingPageTwoColumnTest {
     @Mock
     private Query page1MockQuery;
 
-	@BeforeEach
+    @Mock
+    private PathUtilService pathUtilService;
+
+    @BeforeEach
 	void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
         ctx.registerService(PageUtilService.class, new PageUtilService());
-	    ctx.addModelsForClasses(LandingPageTwoColumn.class);
-	}
+        ctx.registerService(PathUtilService.class, pathUtilService);
+        ctx.addModelsForClasses(LandingPageTwoColumn.class);
+
+        when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
+    }
 
 	@Test
 	void test() {
@@ -46,9 +59,9 @@ class LandingPageTwoColumnTest {
         assertEquals("Get up to 10% off your shipping costs", landingPageTwoColumn.getFullTitle());
         assertEquals("Get up to 10% off your shipping costs", landingPageTwoColumn.getTitle());
         assertEquals("Start selling to a whole new audience", landingPageTwoColumn.getHerosubtitle());
-        assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagemob());
-        assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagetab());
-        assertEquals("/content/dam/dhl/landing-pages/new/desktop_towerblock.jpg", landingPageTwoColumn.getHeroimagedt());
+        assertEquals("/prefix/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagemob());
+        assertEquals("/prefix/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagetab());
+        assertEquals("/prefix/content/dam/dhl/landing-pages/new/desktop_towerblock.jpg", landingPageTwoColumn.getHeroimagedt());
         assertEquals("<p>Ship today without a DHL Express Account. It’s easy to get started. <br />\r\n" + 
         		"</p>\r\n" + 
         		"", landingPageTwoColumn.getShipNowMessage());

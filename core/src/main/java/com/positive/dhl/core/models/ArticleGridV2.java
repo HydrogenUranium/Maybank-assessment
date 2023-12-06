@@ -3,9 +3,7 @@ package com.positive.dhl.core.models;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.ArticleService;
-import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.InitUtil;
-import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -42,13 +40,7 @@ public class ArticleGridV2 {
     private InitUtil initUtil;
 
     @OSGiService
-    private AssetUtilService assetUtilService;
-
-    @OSGiService
     private ArticleService articleService;
-
-    @OSGiService
-    private PathUtilService pathUtilService;
 
     @InjectHomeProperty
     @Optional
@@ -120,7 +112,7 @@ public class ArticleGridV2 {
                         .add(PAGE_TITLE_PARAM, article.getTitle())
                         .add("link", article.getPath() + ".html")
                         .add("description", article.getDescription())
-                        .add("image", assetUtilService.resolvePath(pathUtilService.encodeUnsupportedCharacters(article.getListimage())))
+                        .add("image", article.getListimage())
                         .add("date", article.getCreatedfriendly())
                         .add("author", article.getAuthor())
                         .add("groupTag", article.getGroupTag())

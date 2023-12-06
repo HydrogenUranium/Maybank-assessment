@@ -3,6 +3,8 @@ package com.positive.dhl.core.models;
 import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 import java.text.DateFormat;
@@ -13,7 +15,9 @@ import java.util.*;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.injectors.AssetInjector;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -53,6 +57,12 @@ class ArticlePageTest {
 	private TagUtilService tagUtilService;
 
 	@Mock
+	private PathUtilService pathUtilService;
+
+	@Mock
+	AssetUtilService assetUtilService;
+
+	@Mock
 	private EnvironmentConfiguration environmentConfiguration;
 
 	@InjectMocks
@@ -68,6 +78,7 @@ class ArticlePageTest {
 		context.registerService(EnvironmentConfiguration.class, environmentConfiguration);
 		context.registerService(PageUtilService.class, pageUtilService);
 		context.registerService(TagUtilService.class, tagUtilService);
+		context.registerService(PathUtilService.class, pathUtilService);
 		context.addModelsForClasses(ArticlePage.class);
 
 		context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
@@ -77,6 +88,11 @@ class ArticlePageTest {
 		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
 		when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
 		when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
+
+		lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+			String path = invocationOnMock.getArgument(0, String.class);
+			return org.junit.platform.commons.util.StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+		});
 	}
 
 	/**
@@ -140,7 +156,7 @@ class ArticlePageTest {
 		assertEquals("", article.getReadtime());
 		assertNull(articlePage.getShareOn());
 		assertNull(articlePage.getSmartShareButtonsLabel());
-		assertNull(articlePage.getSmartShareButtonsIconPath());
+		assertEquals("", articlePage.getSmartShareButtonsIconPath());
 		assertNull(articlePage.getFollowLabel());
 		assertNull(articlePage.getFollowPath());
 		assertEquals(0, articlePage.getSocialNetwork().size());
@@ -159,7 +175,7 @@ class ArticlePageTest {
 
 		assertEquals("Share on", articlePage.getShareOn());
 		assertEquals("Share", articlePage.getSmartShareButtonsLabel());
-		assertEquals("/content/dam/dhl-discover/common/icons/icons8-share (1).svg", articlePage.getSmartShareButtonsIconPath());
+		assertEquals("/prefix/content/dam/dhl-discover/common/icons/icons8-share (1).svg", articlePage.getSmartShareButtonsIconPath());
 		assertEquals("Follow", articlePage.getFollowLabel());
 		assertEquals("#", articlePage.getFollowPath());
 		assertEquals(3, articlePage.getSocialNetwork().size());
@@ -183,12 +199,12 @@ class ArticlePageTest {
 		assertEquals("How subscription models are changing e-commerce habits", article.getBrief());
 		assertEquals("Sansa Stark", article.getAuthor());
 		assertEquals("Senior Content Writer, Discover", article.getAuthortitle());
-		assertEquals("/content/dam/dhl/site-image/roundels/laptop.png", article.getAuthorimage());
+		assertEquals("/prefix/content/dam/dhl/site-image/roundels/laptop.png", article.getAuthorimage());
 		assertEquals("6 min read", article.getReadtime());
-		assertEquals("/content/dam/dhl/listimage.jpg", article.getListimage());
-		assertEquals("/content/dam/dhl/heroimagemob.jpg", article.getHeroimagemob());
-		assertEquals("/content/dam/dhl/heroimagetab.jpg", article.getHeroimagetab());
-		assertEquals("/content/dam/dhl/heroimagedt.jpg", article.getHeroimagedt());
+		assertEquals("/prefix/content/dam/dhl/listimage.jpg", article.getListimage());
+		assertEquals("/prefix/content/dam/dhl/heroimagemob.jpg", article.getHeroimagemob());
+		assertEquals("/prefix/content/dam/dhl/heroimagetab.jpg", article.getHeroimagetab());
+		assertEquals("/prefix/content/dam/dhl/heroimagedt.jpg", article.getHeroimagedt());
 		assertEquals("", article.getYoutubeid());
 		assertFalse(article.isShowshipnow());
 		assertEquals(0, article.getTags().size());

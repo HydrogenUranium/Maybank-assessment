@@ -6,6 +6,7 @@ import com.positive.dhl.core.injectors.HomeAssetPropertyInjector;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
 import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -16,13 +17,13 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -35,7 +36,7 @@ class CtaBannerTest {
     private final ResourceResolver resourceResolver = context.resourceResolver();
 
     @Mock
-    private AssetUtilService assetUtils;
+    private PathUtilService pathUtilService;
 
     @Mock
     private PageUtilService pageUtils;
@@ -52,12 +53,16 @@ class CtaBannerTest {
     @BeforeEach
     void setUp() throws Exception {
         context.load().json("/com/positive/dhl/core/models/CtaBanner/content.json", "/content");
-        when(assetUtils.resolvePath(anyString())).thenAnswer(invocationOnMock -> "/prefix" + invocationOnMock.getArgument(0, String.class));
         context.registerService(Injector.class, assetInjector);
-        context.registerService(AssetUtilService.class, assetUtils);
+        context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(Injector.class, homePropertyInjector);
         context.registerService(Injector.class, homeAssetPropertyInjector);
         context.addModelsForClasses(CtaBannerWithPoints.class);
+
+        when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
     }
 
     private void mockHomePage() {

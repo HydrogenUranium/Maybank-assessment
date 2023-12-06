@@ -1,6 +1,7 @@
 package com.positive.dhl.core.services;
 
 import com.positive.dhl.core.components.EnvironmentConfiguration;
+import org.apache.commons.lang3.StringUtils;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
@@ -21,10 +22,7 @@ public class AssetUtilService {
     private String assetPrefix;
 
     public String resolvePath(String path) {
-        if(path == null || path.isBlank()) {
-            return path;
-        }
-        return assetPrefix + path;
+        return StringUtils.isNoneBlank(path) && path.startsWith("/content") ? assetPrefix + path : path;
     }
 
     @Activate

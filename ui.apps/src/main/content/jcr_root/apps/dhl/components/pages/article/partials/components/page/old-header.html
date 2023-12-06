@@ -2,10 +2,10 @@
 	<sly data-sly-test="${(articlePage.article.youtubeid.length > 0)}" data-sly-unwrap>
 	<div class="articleCarouselHomepage articleCarouselHomepage--static articleCarouselHomepage--video" id="uniqueIdArticleHeroVideo">
 		<style type="text/css">
-			@media screen and (min-width: 768px) { #uniqueIdArticleHeroVideo .articleCarouselHomepage__image {background-image: url('${articlePage.article.heroimagetab @ context='unsafe'}') !important;} }
-			@media screen and (min-width: 991px) { #uniqueIdArticleHeroVideo {background-image: url('${articlePage.article.heroimagedt @ context='unsafe'}');} }
+			@media screen and (min-width: 768px) { #uniqueIdArticleHeroVideo .articleCarouselHomepage__image {background-image: url('${articlePage.article.heroimagetab @ context='uri'}') !important;} }
+			@media screen and (min-width: 991px) { #uniqueIdArticleHeroVideo {background-image: url('${articlePage.article.heroimagedt @ context='uri'}');} }
 		</style>
-		<div class="articleCarouselHomepage__image hidden-lg-up" style="background-image: url('${articlePage.article.heroimagemob @ context='unsafe'}');"><span class="sr-only">${articlePage.article.title}</span></div>
+		<div class="articleCarouselHomepage__image hidden-lg-up" style="background-image: url('${articlePage.article.heroimagemob @ context='uri'}');"><span class="sr-only">${articlePage.article.title}</span></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-lg-6">
@@ -29,10 +29,10 @@
 	<sly data-sly-test="${(articlePage.article.youtubeid.length <= 0)}" data-sly-unwrap>
 	<div class="articleCarouselHomepage articleCarouselHomepage--static" id="uniqueIdArticleHeroHomepage">
 		<style type="text/css">
-			@media screen and (min-width: 768px) { #uniqueIdArticleHeroHomepage .articleCarouselHomepage__image {background-image: url('${articlePage.article.heroimagetab @ context='unsafe'}') !important;} }
-			@media screen and (min-width: 991px) { #uniqueIdArticleHeroHomepage {background-image: url('${articlePage.article.heroimagedt @ context='unsafe'}');} }
+			@media screen and (min-width: 768px) { #uniqueIdArticleHeroHomepage .articleCarouselHomepage__image {background-image: url('${articlePage.article.heroimagetab @ context='uri'}') !important;} }
+			@media screen and (min-width: 991px) { #uniqueIdArticleHeroHomepage {background-image: url('${articlePage.article.heroimagedt @ context='uri'}');} }
 		</style>
-		<div class="articleCarouselHomepage__image hidden-lg-up" style="background-image: url('${articlePage.article.heroimagemob @ context='unsafe'}');"><span class="sr-only">${articlePage.article.title}</span></div>
+		<div class="articleCarouselHomepage__image hidden-lg-up" style="background-image: url('${articlePage.article.heroimagemob @ context='uri'}');"><span class="sr-only">${articlePage.article.title}</span></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-lg-7">

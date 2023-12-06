@@ -1,9 +1,7 @@
 <sly data-sly-use.model="com.positive.dhl.core.models.RelatedPosts"
-     data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
      data-sly-use.articleSideNavigation="com.positive.dhl.core.models.ArticleSideNavigation"
      data-sly-set.articles="${model.articles.empty ? articleSideNavigation.articles : model.articles}"
-     data-sly-set.isEmpty="${articles.empty}"
-     data-sly-test.authormode="${wcmmode.edit || wcmmode.preview}"></sly>
+     data-sly-set.isEmpty="${articles.empty}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
@@ -11,7 +9,7 @@
     <div class="title">${model.title}</div>
     <div class="article-container horizontal-scroll">
         <div class="article-container__article" data-sly-repeat="${articles}">
-            <a href="${item.path}.html" class="article-container__article__image" style="background-image: url('${!authormode ? accountactions.assetprefix : '' @ context='unsafe'}${item.listimage @ context='uri'}');"></a>
+            <a href="${item.path}.html" class="article-container__article__image" style="background-image: url('${item.listimage @ context='uri'}');"></a>
             <div class="article-container__article__info">
                 <a href="${item.path}.html" class="article-container__article__info__title">${item.title}</a>
                 <div class="article-container__article__info__metadata">${item.createdfriendly} ${item.readtime ? '|' : ''} ${item.readtime}</div>

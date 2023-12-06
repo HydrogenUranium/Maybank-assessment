@@ -3,6 +3,7 @@ package com.positive.dhl.core.models;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.constants.DiscoverConstants;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
 import lombok.Getter;
 import lombok.NonNull;
@@ -33,6 +34,9 @@ public class Article {
 
 	@OSGiService
 	private PageUtilService pageUtilService;
+
+	@OSGiService
+	private PathUtilService pathUtilService;
 
 	@OSGiService
 	private TagUtilService tagUtilService;
@@ -112,16 +116,16 @@ public class Article {
 			brief = brief.substring(0, 120).concat("...");
 		}
 
-		listimage = properties.get("jcr:content/listimage", "");
+		listimage = pathUtilService.resolveAssetPath(properties.get("jcr:content/listimage", ""));
 
-		heroimagemob = properties.get("jcr:content/heroimagemob", "");
-		heroimagetab = properties.get("jcr:content/heroimagetab", "");
-		heroimagedt = properties.get("jcr:content/heroimagedt", "");
+		heroimagemob = pathUtilService.resolveAssetPath(properties.get("jcr:content/heroimagemob", ""));
+		heroimagetab = pathUtilService.resolveAssetPath(properties.get("jcr:content/heroimagetab", ""));
+		heroimagedt = pathUtilService.resolveAssetPath(properties.get("jcr:content/heroimagedt", ""));
 		youtubeid = properties.get("jcr:content/youtubeid", "");
 		readtime = properties.get("jcr:content/readtime", "");
 		author = properties.get("jcr:content/author", "");
 		authortitle = properties.get("jcr:content/authortitle", "");
-		authorimage = properties.get("jcr:content/authorimage", "");
+		authorimage = pathUtilService.resolveAssetPath(properties.get("jcr:content/authorimage", ""));
 
 		showshipnow = properties.get("jcr:content/showshipnow", false);
 
