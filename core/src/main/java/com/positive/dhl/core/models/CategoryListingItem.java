@@ -69,7 +69,7 @@ public class CategoryListingItem {
                 resources.next().getResourceResolver().close();
             }
         }
-        return articles;
+        return articlesFromSearchResult;
     }
 
     private String getPageTitle(ValueMap pageProperties) {
