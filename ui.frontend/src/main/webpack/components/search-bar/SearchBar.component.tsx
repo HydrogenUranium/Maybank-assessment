@@ -1,9 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { registerComponent } from '../../react-core/registry';
-
 import { IconButton } from './atoms/iconButton/IconButton';
 import { SearchPanel } from './molecules/searchPanel/SearchPanel';
+
+import styles from './styles.module.scss';
 
 interface SearchBarProps {
   recentSearchesTitle: string;
@@ -23,7 +24,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   const [active, setActive] = useState(false);
  
   return (
-    <div>
+    <div className={styles.searchBar}>
       {active ? (
         <SearchPanel
           recentSearchesTitle={recentSearchesTitle}

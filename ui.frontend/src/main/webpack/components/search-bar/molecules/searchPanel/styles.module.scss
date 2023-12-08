@@ -1,12 +1,19 @@
 .search {
     height: 45px;
-    position: relative;
+    position: absolute;
     background: white;
     border: 1px solid #5A5A5A;
+    right: 0;
+    z-index: 10;
     border-radius: 4px;
+    width: calc(100% - 40px);
+    margin: 0 20px;
+    @media screen and (min-width: 768px) {
+        width: 500px;
+    }
 
     input {
-        width: 500px;
+        width: 100%;
         border: none;
         background: transparent;
         padding: 0 45px;
@@ -36,6 +43,13 @@
             padding-top: 12px;
             margin-top: 12px;
         }
+    }
+}
+
+:global(.headerV2__navigation--open) {
+    .search {
+        width: calc(100% - 40px);
+        margin: 0 20px;
     }
 }
 

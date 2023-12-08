@@ -6,10 +6,10 @@ import { Article } from 'src/main/webpack/types/article';
 import { getMockArticles, getMockSuggestions } from 'src/main/webpack/services/api/search';
 import { getHighlightedSuggestion } from '../../helpers';
 import { IconButton } from '../../atoms/iconButton/IconButton';
-
-import styles from './styles.module.scss';
 import { useDataFetching } from '../../hooks/useDataFetching';
 import { SearchSection } from '../../atoms/searchSection/SearchSection';
+
+import styles from './styles.module.scss';
 
 interface SearchPanelProps {
   recentSearchesTitle: string;
@@ -147,7 +147,6 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
       <IconButton
         iconType='close'
         className={styles.absoluteRight}
-        hidden={!inputValue.length}
         onClick={handleCloseSearch} />
     </div>
   );
