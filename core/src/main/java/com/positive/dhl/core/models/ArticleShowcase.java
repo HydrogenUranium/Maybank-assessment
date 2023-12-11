@@ -85,7 +85,7 @@ public class ArticleShowcase {
             while (multifieldItems.hasNext()) {
                 var properties = multifieldItems.next().getValueMap();
                 String path = properties.get("articlePath", "");
-                Article article = pageUtils.getArticle(path, resourceResolver);
+                var article = pageUtils.getArticle(path, resourceResolver);
                 if (article != null) {
                     articles.add(article);
                 }

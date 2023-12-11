@@ -92,7 +92,7 @@ public class PageNotFound {
 					ValueMap hitProperties = hit.getProperties();
 					boolean hideInNav = hitProperties.get(PN_HIDE_IN_NAV, false);
 					if (!hideInNav) {
-						Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+						var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
 						if (article != null) {
 							article.setIndex(count);
 							trendingArticles.add(article);

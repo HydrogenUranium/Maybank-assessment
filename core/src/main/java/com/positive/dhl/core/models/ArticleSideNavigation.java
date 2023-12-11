@@ -79,7 +79,7 @@ public class ArticleSideNavigation {
 				if (props != null) {
 					String url = props.get("url", "");
 
-					Article article = pageUtilService.getArticle(url, resourceResolver);
+					var article = pageUtilService.getArticle(url, resourceResolver);
 					if (article != null && article.isValid()) {
 						articleList.add(article);
 					}
@@ -107,7 +107,7 @@ public class ArticleSideNavigation {
 				ValueMap properties = hit.getProperties();
 				boolean hideInNav = properties.get("hideInNav", false);
 				if (!hideInNav && !currentPage.getPath().equals(hit.getPath())) {
-					Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+					var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
 					if (article != null && article.isValid()) {
 						article.setIndex(count);
 						article.setThird(article.getIndex() % 3 == 0);

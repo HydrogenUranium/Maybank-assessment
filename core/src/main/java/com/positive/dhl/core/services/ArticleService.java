@@ -90,7 +90,7 @@ public class ArticleService {
         List<Article> resources = new ArrayList<>();
         hits.forEach(hit -> {
             try {
-                Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+                var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
                 if (article != null) {
                     resources.add(article);
                 }

@@ -55,7 +55,7 @@ public class RelatedPosts {
             while (multifieldItems.hasNext()) {
                 var properties = multifieldItems.next().getValueMap();
                 String path = properties.get("articlePath", "");
-                Article article = pageUtilService.getArticle(path, resourceResolver);
+                var article = pageUtilService.getArticle(path, resourceResolver);
                 if (article != null) {
                     articles.add(article);
                 }

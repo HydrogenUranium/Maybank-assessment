@@ -56,7 +56,7 @@ public class CategoryListingItem {
                 ValueMap hitProperties = hit.getProperties();
                 boolean hideInNav = hitProperties.get("hideInNav", false);
                 if (articlesFromSearchResult.size() < 5) {
-                    Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+                    var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
                     if (!hideInNav && article != null) {
                         articlesFromSearchResult.add(article);
                     }

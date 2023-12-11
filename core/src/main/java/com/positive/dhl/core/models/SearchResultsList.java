@@ -459,7 +459,7 @@ public class SearchResultsList {
                             continue;
                         }
 
-                        Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+                        var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
                         if (article != null) {
                             if (!resultSummary.containsKey(article.getIcon())) {
                                 resultSummary.put(article.getIcon(), 0);
@@ -552,7 +552,7 @@ public class SearchResultsList {
                                 continue;
                             }
 
-                            Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+                            var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
                             if (article != null) {
                                 article.setIndex(count);
                                 trendingArticleResults.add(article);
