@@ -80,7 +80,7 @@ public class ArticleSideNavigation {
 					String url = props.get("url", "");
 
 					Article article = pageUtilService.getArticle(url, resourceResolver);
-					if (article.isValid()) {
+					if (article != null && article.isValid()) {
 						articleList.add(article);
 					}
 				}
@@ -108,7 +108,7 @@ public class ArticleSideNavigation {
 				boolean hideInNav = properties.get("hideInNav", false);
 				if (!hideInNav && !currentPage.getPath().equals(hit.getPath())) {
 					Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
-					if (article.isValid()) {
+					if (article != null && article.isValid()) {
 						article.setIndex(count);
 						article.setThird(article.getIndex() % 3 == 0);
 						articleList.add(article);

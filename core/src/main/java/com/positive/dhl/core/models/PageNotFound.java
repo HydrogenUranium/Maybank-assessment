@@ -93,11 +93,11 @@ public class PageNotFound {
 					boolean hideInNav = hitProperties.get(PN_HIDE_IN_NAV, false);
 					if (!hideInNav) {
 						Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
-						article.setIndex(count);
-						trendingArticles.add(article);
-
-						count++;
-
+						if (article != null) {
+							article.setIndex(count);
+							trendingArticles.add(article);
+							count++;
+						}
 						if (count > 3) break;
 					}
 				}

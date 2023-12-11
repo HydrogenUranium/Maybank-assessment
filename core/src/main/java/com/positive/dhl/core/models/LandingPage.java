@@ -97,7 +97,9 @@ public class LandingPage {
 					String url = props.get("url", StringUtils.EMPTY);
 					
 					Article article = pageUtilService.getArticle(url, resourceResolver);
-					relatedArticles.add(article);
+					if (article != null) {
+						relatedArticles.add(article);
+					}
 				}
 			}
 		}

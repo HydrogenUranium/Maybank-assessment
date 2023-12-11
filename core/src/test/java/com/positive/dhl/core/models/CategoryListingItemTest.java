@@ -66,7 +66,7 @@ class CategoryListingItemTest {
         assertNotNull(categoryListingItem);
 
         assertEquals("Find out how DHL helped Mo Salah", categoryListingItem.getName());
-        assertEquals(1, categoryListingItem.getArticles().size());
+        assertEquals(0, categoryListingItem.getArticles().size());
 
         categoryListingItem.setName("name");
         assertEquals("name", categoryListingItem.getName());

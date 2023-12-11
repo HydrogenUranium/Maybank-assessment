@@ -460,25 +460,26 @@ public class SearchResultsList {
                         }
 
                         Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+                        if (article != null) {
+                            if (!resultSummary.containsKey(article.getIcon())) {
+                                resultSummary.put(article.getIcon(), 0);
+                            }
+                            resultSummary.put(article.getIcon(), resultSummary.get(article.getIcon()) + 1);
+                            totalResults++;
 
-                        if (!resultSummary.containsKey(article.getIcon())) {
-                            resultSummary.put(article.getIcon(), 0);
-                        }
-                        resultSummary.put(article.getIcon(), resultSummary.get(article.getIcon()) + 1);
-                        totalResults++;
-
-                        if (searchResultsType.length() == 0) {
-                            article.setIndex(count);
-                            article.setFourth((article.getIndex() + 1) % 4 == 0);
-                            results.add(article);
-                            count++;
-                            
-                        } else {
-                            if (searchResultsType.equals(article.getIcon())) {
+                            if (searchResultsType.length() == 0) {
                                 article.setIndex(count);
                                 article.setFourth((article.getIndex() + 1) % 4 == 0);
                                 results.add(article);
                                 count++;
+
+                            } else {
+                                if (searchResultsType.equals(article.getIcon())) {
+                                    article.setIndex(count);
+                                    article.setFourth((article.getIndex() + 1) % 4 == 0);
+                                    results.add(article);
+                                    count++;
+                                }
                             }
                         }
                     }
@@ -552,8 +553,10 @@ public class SearchResultsList {
                             }
 
                             Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
-                            article.setIndex(count);
-                            trendingArticleResults.add(article);
+                            if (article != null) {
+                                article.setIndex(count);
+                                trendingArticleResults.add(article);
+                            }
                         }
 
                         trendingArticleResults.sort((o1, o2) -> Integer.compare(o2.getCounter(), o1.getCounter()));

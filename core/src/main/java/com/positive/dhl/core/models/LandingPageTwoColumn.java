@@ -227,7 +227,9 @@ public class LandingPageTwoColumn {
 					String url = props.get("url", "");
 					
 					Article article = pageUtilService.getArticle(url, resourceResolver);
-					relatedArticles.add(article);
+					if (article != null) {
+						relatedArticles.add(article);
+					}
 				}
 			}
 		}
