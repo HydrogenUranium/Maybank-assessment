@@ -17,7 +17,6 @@ pipeline {
     }
 
     parameters {
-        string(description: 'The Project Release Version which will be set in the pom.xml', name: 'RELEASE_VERSION', trim: true)
         string(description: 'The Project Version for the next development iteration which will be set in the pom.xml', name: 'DEVELOPMENT_VERSION', trim: true)
         booleanParam(defaultValue: false, description: 'Run the maven release plugin with dryRun set to true', name: 'DRY_RUN')
     }
@@ -42,7 +41,6 @@ pipeline {
                         script{
                             sh '''
                                 export GIT_SSH_COMMAND='ssh -o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes -i $SSH_PRIVATE_KEY -F /dev/null'
-                                echo "Release version: $RELEASE_VERSION"
                                 echo "Next development version: $DEVELOPMENT_VERSION"
                                 echo "Dry run: $DRY_RUN"
                                 # env
@@ -56,10 +54,11 @@ pipeline {
                                     -Pdhl-artifactory \
                                     -Dresume=false \
                                     -Dtag=v$RELEASE_VERSION \
-                                    -DreleaseVersion=$RELEASE_VERSION \
-                                    -DdevelopmentVersion=$DEVELOPMENT_VERSION \
-                                    release:prepare \
+                                    -DnewVersion="$DEVELOPMENT_VERSION" \
+                                    versions:set \
                                     release:perform
+                                git add --all
+                                git commit -m "[maven versions plugin] Set next development version to $DEVELOPMENT_VERSION"
                             '''
                         }
                     }
