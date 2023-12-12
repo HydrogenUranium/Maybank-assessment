@@ -43,6 +43,7 @@ pipeline {
                                 echo ssh -i $SSH_PRIVATE_KEY -l git -o StrictHostKeyChecking=accept-new \\"\\$@\\" > ${WORKSPACE}/ssh_key
                                 chmod +x ${WORKSPACE}/ssh_key
                                 export GIT_SSH=${WORKSPACE}/ssh_key
+                                git remote set-url origin git@git.dhl.com:NDCW-10025/discover.git
                                 git config --add --local core.sshCommand 'ssh -o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes -i ${SSH_PRIVATE_KEY}\'
                                 echo "Next development version: $DEVELOPMENT_VERSION"
                                 echo "Dry run: $DRY_RUN"
