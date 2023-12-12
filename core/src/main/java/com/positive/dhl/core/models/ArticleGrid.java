@@ -366,9 +366,10 @@ public class ArticleGrid {
 				}
 
 				var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
-				article.setIndex(count);
-				articlesList.add(article);
-
+				if (article != null) {
+					article.setIndex(count);
+					articlesList.add(article);
+				}
 			} catch (RepositoryException repositoryException) {
 				LOGGER.error("Error has occurred when trying to read the properties of a " +
 						"search result. Some details (if available): {}", repositoryException.getMessage());

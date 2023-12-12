@@ -24,7 +24,6 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 
-import com.day.cq.wcm.api.NameConstants;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -459,28 +458,7 @@ public class SearchResultsList {
                             continue;
                         }
 
-                        Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
-
-                        if (!resultSummary.containsKey(article.getIcon())) {
-                            resultSummary.put(article.getIcon(), 0);
-                        }
-                        resultSummary.put(article.getIcon(), resultSummary.get(article.getIcon()) + 1);
-                        totalResults++;
-
-                        if (searchResultsType.length() == 0) {
-                            article.setIndex(count);
-                            article.setFourth((article.getIndex() + 1) % 4 == 0);
-                            results.add(article);
-                            count++;
-                            
-                        } else {
-                            if (searchResultsType.equals(article.getIcon())) {
-                                article.setIndex(count);
-                                article.setFourth((article.getIndex() + 1) % 4 == 0);
-                                results.add(article);
-                                count++;
-                            }
-                        }
+                        count = putArticleToResult(hit,count);
                     }
                     
                     //sorting
@@ -521,7 +499,6 @@ public class SearchResultsList {
                 }
             }
 
-            List<Article> trendingArticleResults = new ArrayList<>();
             if (results.isEmpty()) {
                 if (builder != null) {
                     Map<String, String> map = new HashMap<>();
@@ -544,20 +521,7 @@ public class SearchResultsList {
                     SearchResult searchResult = query.getResult();
                     if (searchResult != null) {
                         int count = 0;
-                        for (Hit hit: searchResult.getHits()) {
-                            ValueMap hitProperties = hit.getProperties();
-                            boolean hideInNav = hitProperties.get("hideInNav", false);
-                            if (hideInNav) {
-                                continue;
-                            }
-
-                            Article article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
-                            article.setIndex(count);
-                            trendingArticleResults.add(article);
-                        }
-
-                        trendingArticleResults.sort((o1, o2) -> Integer.compare(o2.getCounter(), o1.getCounter()));
-                        for (Article article: trendingArticleResults) {
+                        for (Article article: receiveTrendingArticleResults(searchResult)) {
                             trendingArticles.add(article);
 
                             count++;
@@ -573,7 +537,56 @@ public class SearchResultsList {
             }
         }
     }
-    
+
+    private int putArticleToResult(Hit hit, int count) throws RepositoryException {
+        var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+        if (article != null) {
+            if (!resultSummary.containsKey(article.getIcon())) {
+                resultSummary.put(article.getIcon(), 0);
+            }
+            resultSummary.put(article.getIcon(), resultSummary.get(article.getIcon()) + 1);
+            totalResults++;
+
+            if (searchResultsType.length() == 0) {
+                article.setIndex(count);
+                article.setFourth((article.getIndex() + 1) % 4 == 0);
+                results.add(article);
+                count++;
+
+            } else {
+                if (searchResultsType.equals(article.getIcon())) {
+                    article.setIndex(count);
+                    article.setFourth((article.getIndex() + 1) % 4 == 0);
+                    results.add(article);
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    private List<Article> receiveTrendingArticleResults(SearchResult searchResult) throws RepositoryException {
+        List<Article> result = new ArrayList<>();
+        int count = 0;
+        for (Hit hit: searchResult.getHits()) {
+            ValueMap hitProperties = hit.getProperties();
+            boolean hideInNav = hitProperties.get("hideInNav", false);
+            if (hideInNav) {
+                continue;
+            }
+
+            var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+            if (article != null) {
+                article.setIndex(count++);
+                result.add(article);
+            }
+        }
+
+        result.sort((o1, o2) -> Integer.compare(o2.getCounter(), o1.getCounter()));
+        return result;
+    }
+
     /**
      * 
      */

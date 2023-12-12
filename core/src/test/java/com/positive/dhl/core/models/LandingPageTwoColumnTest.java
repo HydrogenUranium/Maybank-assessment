@@ -67,7 +67,7 @@ class LandingPageTwoColumnTest {
         		"", landingPageTwoColumn.getShipNowMessage());
         assertEquals("https://mydhl.express.dhl/us/en/shipping_apps_redirect.html", landingPageTwoColumn.getShipNowUrl());
         assertEquals("", landingPageTwoColumn.getPreselectedCountry());
-        assertEquals(1, landingPageTwoColumn.getRelatedArticles().size());
+        assertEquals(0, landingPageTwoColumn.getRelatedArticles().size());
 
 		landingPageTwoColumn.setFullTitle("");
 		landingPageTwoColumn.setTitle("");

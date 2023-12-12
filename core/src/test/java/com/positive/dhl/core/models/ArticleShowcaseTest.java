@@ -1,13 +1,11 @@
 package com.positive.dhl.core.models;
 
-import com.day.cq.search.QueryBuilder;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,8 +17,8 @@ import java.util.List;
 
 import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -38,6 +36,9 @@ class ArticleShowcaseTest {
     @Mock
     private Page page;
 
+    @Mock
+    private Article article;
+
     @BeforeEach
     void setUp() throws Exception {
         context.addModelsForClasses(ArticleShowcase.class);
@@ -45,6 +46,7 @@ class ArticleShowcaseTest {
         context.registerService(ArticleService.class, articleService);
         mockInject(context, "currentPage", page);
         context.load().json("/com/positive/dhl/core/models/ArticleShowcase/content.json", "/content");
+        lenient().when(pageUtils.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
     }
 
     private void initRequest(String path) {
