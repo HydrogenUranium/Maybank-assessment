@@ -54,7 +54,7 @@ pipeline {
                                     -Dresume=false \
                                     -Dtag=v$RELEASE_VERSION \
                                     -DnewVersion="$DEVELOPMENT_VERSION" \
-                                    versions:set \
+                                    versions:set
                                 git add --all
                                 git commit -m "[maven versions plugin] Set next development version to $DEVELOPMENT_VERSION"
                                 git push origin feature/update-to-releaser-job
