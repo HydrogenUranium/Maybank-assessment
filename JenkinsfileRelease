@@ -45,7 +45,7 @@ pipeline {
                                 # env
                                 # ls -la
                                 # git remote -v
-                                # git config --list
+                                git config --list
                                 # git fetch --all
                                 mvn \
                                     -ntp \
