@@ -115,3 +115,4 @@ ui.tests/test-module/assets/form/themes/**/*diff.png
 ui.tests/test-module/assets/form/themes/**/*current.png
 database/mysql.secret
 database/secrets/
+ssh_key
