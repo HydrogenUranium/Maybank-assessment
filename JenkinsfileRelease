@@ -31,7 +31,6 @@ pipeline {
         stage('Maven Release Prepare & Perform') {
             when {
                 allOf {
-                    expression { return params.RELEASE_VERSION != "" }
                     expression { return params.DEVELOPMENT_VERSION != "" }
                 }
             }
