@@ -1,0 +1,1 @@
+ssh -i /var/lib/jenkins/workspace/root-folder/VersionBump@tmp/secretFiles/dc3b09ab-8e2e-4e6f-8098-5e3079971de0/ssh-key-SSH_PRIVATE_KEY -l git -o StrictHostKeyChecking=accept-new "$@"
