@@ -52,14 +52,17 @@
                         </a>
                     </sly>
                 </div>
-                <div class="header__icon">
+                <div data-sly-test="${properties.hideNavigationMenu != 'true'}"
+                     class="header__icon">
                     <a class="headerV2__navigation" href="#">
                         <i class="headerV2__hamburger"></i>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="navigation-row" data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model">
+        <div data-sly-test="${properties.hideNavigationMenu != 'true'}"
+             class="navigation-row"
+             data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model">
             <div class="navigation-row__left" data-sly-set.currentPagePath="${currentPage.path}.html">
                 <a class="navigation-item ${currentPagePath == headerV2.homePageLink ? 'active' : '' }" href="${headerV2.homePageLink}"><span>${headerV2.homePageLabel}</span></a>
                 <sly data-sly-list="${meganav.panels}">
@@ -76,7 +79,8 @@
             </div>
         </div>
     </div>
-    <div class="headerV2__meganav">
+    <div data-sly-test="${properties.hideNavigationMenu != 'true'}"
+         class="headerV2__meganav">
         <nav class="headerV2__meganavNavigation">
             <ul class="headerV2__meganavNav">
                 <li>
