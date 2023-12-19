@@ -15,6 +15,9 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -22,6 +25,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -102,10 +106,13 @@ class MarketoSubmissionServletTest {
 				.requestId("dummy-request-id")
 				.build();
 
+		when(inputParamHelper.getRequestParameter(any(SlingHttpServletRequest.class),eq("formStart")))
+				.thenReturn("/content/dhl/global/en-global/open-an-account/open-a-dhl-account/jcr:content/root/two_columns_container/right-column-body/marketoform.form.html");
 		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
 		when(configReader.getMarketoHost()).thenReturn("dummy-host");
 		when(configReader.getMarketoClientId()).thenReturn("dummy-client-id");
 		when(configReader.getMarketoClientSecret()).thenReturn("dummy-secret-id");
+		when(configReader.getAPIAllowedPaths()).thenReturn(List.of("/content/dhl/global/en-global"));
 		when(inputParamHelper.buildForm(any(SlingHttpServletRequest.class), anyList(), anyList())).thenReturn(formInputBase);
 		when(formInputBase.isOk()).thenReturn(true);
 		when(marketoCommunication.requestNewToken()).thenReturn("dummy-token");
@@ -119,6 +126,9 @@ class MarketoSubmissionServletTest {
 	@Test
 	void tokenNotReceived() throws ServletException, IOException {
 		request.setHeader("User-agent", "whatever");
+		when(inputParamHelper.getRequestParameter(any(SlingHttpServletRequest.class),eq("formStart")))
+				.thenReturn("/content/dhl/global/en-global/open-an-account/open-a-dhl-account/jcr:content/root/two_columns_container/right-column-body/marketoform.form.html");
+		when(configReader.getAPIAllowedPaths()).thenReturn(List.of("/content/dhl/global/en-global"));
 		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
 		when(configReader.getMarketoHost()).thenReturn("dummy-host");
 		when(configReader.getMarketoClientId()).thenReturn("dummy-client-id");
@@ -127,5 +137,35 @@ class MarketoSubmissionServletTest {
 
 		underTest.doPost(request,response);
 		verify(marketoCommunication, times(0)).submitForm(any(FormInputBase.class),anyString());
+	}
+
+	@Test
+	void pathValidation() throws ServletException, IOException {
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
+		underTest.doPost(request, response);
+		int status = response.getStatus();
+		assertEquals(202, status);
+	}
+
+	@ParameterizedTest(name = "{index} : Form path = ''{0}''")
+	@ValueSource(strings = {
+			"/content/dhl/global/vn-vn/open-an-account/open-a-dhl-account/jcr:content/root/two_columns_container/right-column-body/marketoform.form.html",
+			"/content/dhl/global/cz-cs/open-an-account/open-a-dhl-account/jcr:content/root/two_columns_container/right-column-body/marketoform.form.html"
+	})
+	@NullAndEmptySource
+	void testPathValidation(String formPath) throws ServletException, IOException {
+		when(inputParamHelper.getRequestParameter(any(SlingHttpServletRequest.class), anyString())).thenReturn(formPath);
+		if(formPath != null){
+			when(configReader.getAPIAllowedPaths()).thenReturn(List.of("/content/dhl/global/en-global"));
+		}
+
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
+		when(configReader.getMarketoHost()).thenReturn("dummy-host");
+		when(configReader.getMarketoClientId()).thenReturn("dummy-client-id");
+		when(configReader.getMarketoClientSecret()).thenReturn("dummy-secret-id");
+
+		underTest.doPost(request, response);
+		int status = response.getStatus();
+		assertEquals(202, status);
 	}
 }

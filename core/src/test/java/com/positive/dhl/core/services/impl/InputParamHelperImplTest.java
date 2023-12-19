@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -110,6 +111,23 @@ class InputParamHelperImplTest {
 		List<FormInputData> formInputData = form.getFormInputData();
 		assertEquals(2, formInputData.get(0).getLeadFormFields().size());
 		assertTrue(form.isOk());
+	}
+
+	@ParameterizedTest(name = "{index} : Parameter name = ''{0}''")
+	@ValueSource(strings = {"dummy-field", "dummy-fields", "nonsense"})
+	@NullAndEmptySource
+	void paramCheck(String param){
+		Map<String,Object> requestParamMap = getParametersMap();
+		requestParamMap.put("dummy-field", "dummy-field-value");
+		request.setParameterMap(requestParamMap);
+
+		String response = underTest.getRequestParameter(request, param);
+		if(null != param && param.equals("dummy-field")){
+			assertEquals("dummy-field-value", response);
+		} else {
+			assertNull(response);
+		}
+
 	}
 
 	private List<String> getAvailableFields(){
