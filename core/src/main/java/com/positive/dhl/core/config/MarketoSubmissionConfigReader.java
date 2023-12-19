@@ -1,5 +1,7 @@
 package com.positive.dhl.core.config;
 
+import java.util.List;
+
 public interface MarketoSubmissionConfigReader {
 
 	/**
@@ -50,4 +52,10 @@ public interface MarketoSubmissionConfigReader {
 	 * @return String representing the API path where we can get available fields for an individual form. Should never be empty or {@code null}
 	 */
 	String getMarketoFormFieldsAPIEndpoint();
+
+	/**
+	 * Provides the list of allowed paths where the hidden form submissions are allowed
+	 * @return List of Strings representing the allowed paths. Always returns at least {@code /content/dhl/global/en-global}
+	 */
+	List<String> getAPIAllowedPaths();
 }
