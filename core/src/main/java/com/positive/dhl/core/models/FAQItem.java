@@ -15,14 +15,16 @@
  */
 package com.positive.dhl.core.models;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import lombok.Getter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 /**
- *
+ * Simple Sling Model that represents a single FAQ item. It's used to populate the FAQ component.
+
  */
 @Model(adaptables=Resource.class)
 public class FAQItem {
@@ -33,24 +35,16 @@ public class FAQItem {
 	@Inject
 	public String content;
 
+	@Getter
 	private int index;
 
-	/**
-	 *
-	 */
-	public int getIndex() {
-		return index;
-	}
-
-	/**
-	 *
-	 */
 	public void setIndex(int index) {
 		this.index = index;
 	}
 
 	/**
-	 *
+	 * Method that gets executed whenever the model is 'constructed' (initialized), such as during the adaptation. It sets
+	 * both title & content properties to empty string values to prevent null pointer exceptions (if they're {@code null}).
 	 */
 	@PostConstruct
 	protected void init() {
