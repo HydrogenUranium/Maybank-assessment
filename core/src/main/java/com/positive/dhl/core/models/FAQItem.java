@@ -16,43 +16,43 @@
 package com.positive.dhl.core.models;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  * Simple Sling Model that represents a single FAQ item. It's used to populate the FAQ component.
 
  */
-@Model(adaptables=Resource.class)
+@Model(
+		adaptables=Resource.class,
+		defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FAQItem {
 
-	@Inject
-	public String title;
+	@ValueMapValue(injectionStrategy= InjectionStrategy.OPTIONAL)
+	private String title;
 
-	@Inject
-	public String content;
+	@ValueMapValue(injectionStrategy=InjectionStrategy.OPTIONAL)
+	private String content;
 
+	@Setter
 	@Getter
 	private int index;
 
-	public void setIndex(int index) {
-		this.index = index;
+	public String getContent(){
+		if(content != null){
+			return content;
+		}
+		return "";
 	}
 
-	/**
-	 * Method that gets executed whenever the model is 'constructed' (initialized), such as during the adaptation. It sets
-	 * both title & content properties to empty string values to prevent null pointer exceptions (if they're {@code null}).
-	 */
-	@PostConstruct
-	protected void init() {
-		if (title == null) {
-			title = "";
+	public String getTitle(){
+		if(title != null){
+			return title;
 		}
-		if (content == null) {
-			content = "";
-		}
+		return "";
 	}
 }
