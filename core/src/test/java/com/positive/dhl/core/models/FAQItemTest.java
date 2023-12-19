@@ -31,11 +31,15 @@ class FAQItemTest {
 		Map<String, Object> properties = new HashMap<>();
 		properties.put("title", "FAQ item title");
 		properties.put("content", "FAQ item content");
+		properties.put("index", 1);
 		Resource resource = context.create().resource("/content/dhl/global/en-global/faq/faq-item", properties);
 
 		underTest = resource.adaptTo(FAQItem.class);
+		assert underTest != null;
+		underTest.setIndex(2);
 		assertNotNull(underTest);
 		assertEquals("FAQ item title", underTest.title);
 		assertEquals("FAQ item content", underTest.content);
+		assertEquals(2, underTest.getIndex());
 	}
 }
