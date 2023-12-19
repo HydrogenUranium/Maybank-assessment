@@ -42,9 +42,19 @@
                         </goals>
                         <configuration>
                             <bnd><![CDATA[
+Export-Package: \
+    com.positive.dhl.core.helpers, \
+    com.positive.dhl.core.constants, \
+    com.positive.dhl.core.models, \
+    com.positive.dhl.core.services, \
+    com.positive.dhl.core.dto.general, \
+    com.positive.dhl.core.dto.marketo, \
+    com.akamai.edgegrid.signer, \
+    com.akamai.edgegrid.signer.exceptions
+
 Import-Package: javax.annotation;version=0.0.0,*
 -includeresource: @edgegrid-signer-*.jar;lib:=true
-                                ]]></bnd>
+                ]]></bnd>
                         </configuration>
                     </execution>
                 </executions>

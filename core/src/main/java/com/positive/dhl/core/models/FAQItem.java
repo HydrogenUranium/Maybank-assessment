@@ -28,32 +28,37 @@ import org.apache.sling.models.annotations.Model;
 public class FAQItem {
 
 	@Inject
-    public String title;
+	public String title;
 
-    @Inject
-    public String content;
-	
+	@Inject
+	public String content;
+
 	private int index;
-	
-    /**
-	 * 
+
+	/**
+	 *
 	 */
-    public int getIndex() {
+	public int getIndex() {
 		return index;
 	}
 
-    /**
-	 * 
+	/**
+	 *
 	 */
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	
-    /**
-	 * 
+
+	/**
+	 *
 	 */
-    @PostConstruct
+	@PostConstruct
 	protected void init() {
-    	
+		if (title == null) {
+			title = "";
+		}
+		if (content == null) {
+			content = "";
+		}
 	}
 }
