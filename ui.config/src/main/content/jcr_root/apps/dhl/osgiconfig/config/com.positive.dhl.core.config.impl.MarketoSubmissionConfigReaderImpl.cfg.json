@@ -6,5 +6,6 @@
   "formSubmissionAPIEndpoint": "/rest/v1/leads/submitForm.json",
   "marketoAuthenticationAPIEndpoint": "/identity/oauth/token",
   "marketoFormDescriptionAPIEndpoint": "/rest/v1/leads/describe2.json",
-  "marketoFormFieldsAPIEndpoint": "/rest/asset/v1/form/{0}/fields.json"
+  "marketoFormFieldsAPIEndpoint": "/rest/asset/v1/form/{0}/fields.json",
+  "validPathsForApiSubmission": "$[env:VALID_PATHS_FOR_API_SUBMISSION]"
 }

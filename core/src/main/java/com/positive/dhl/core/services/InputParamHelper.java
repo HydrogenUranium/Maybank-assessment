@@ -28,4 +28,13 @@ public interface InputParamHelper {
 	 * @return an int representing the formID or 0 in case nothing was found
 	 */
 	int getFormId(SlingHttpServletRequest request);
+
+	/**
+	 * Returns the value matching the provided parameter name from the request.
+	 * @param request is an instance of {@code SlingHttpServletRequest} where we extract the information from
+	 * @param paramName is the name of parameter we are looking for
+	 * @return a String representation of the parameter. If the parameter is not present, returns {@code null}. If you need another object type, you
+	 * need to take care of type-casting yourself.
+	 */
+	String getRequestParameter(SlingHttpServletRequest request, String paramName);
 }

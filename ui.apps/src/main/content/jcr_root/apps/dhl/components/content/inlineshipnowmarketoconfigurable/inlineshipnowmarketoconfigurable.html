@@ -21,7 +21,7 @@
 			 formId="${cmf.marketoformid || '6412' @ context='attribute' }"
 			 munchkinId="${cmf.marketoid || '903-EZK-832'@ context='attribute' }"
 			 formHost="${cmf.getVisibleFormHost || 'https://express-resource.dhl.com' @ context='attribute' }"
-			 hiddenFormId="${cmf.marketohiddenformid || '6310'@ context='attribute' }"
+			 hiddenFormId="${cmf.marketohiddenformid @ context='attribute' }"
 			 action="${accountactions.getAssetprefix}${currentPage.path}.form.html"
 			 formstart="${accountactions.getAssetprefix}${currentNode.path}.form.html"
 			 source="conf"
