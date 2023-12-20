@@ -35,9 +35,8 @@ class MarketForm {
    */
   isValidAPISubmission(baseElement) {
     if (baseElement !== null) {
-      const apiSubmit = baseElement.getAttribute('apiSubmit');
       const hiddenFormId = baseElement.getAttribute('hiddenFormId');
-      if (apiSubmit && apiSubmit === 'true' && hiddenFormId !== null && hiddenFormId !== '') {
+      if (hiddenFormId !== null && hiddenFormId !== '') {
         return true;
       }
     }
