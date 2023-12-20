@@ -14,9 +14,9 @@ jest.mock('jquery', () => {
 
 describe('Do we need Marketo API submission', () => {
   test.each([
-    ['apiSubmit="true"'],
-    ['apiSubmit="false"'],
-    ['apiSubmit="wrong"']
+    ['hiddenFormId="1796"'],
+    ['hiddenFormId="23487"'],
+    ['hiddenFormId=""']
   ])('Attribute: %s', (attribute) => {
     document.body.innerHTML = `
     <div data-marketo-form class="forms marketoForm" ${attribute} id="mktoForm_1795"></div>
@@ -24,8 +24,11 @@ describe('Do we need Marketo API submission', () => {
     MarketoForm.init();
     const baseElement = document.getElementById('mktoForm_1795');
     const response = MarketoForm.isValidAPISubmission(baseElement);
-    console.log(response);
-    // expect(response).toBe(attribute === 'apiSubmit="true"');
+    if (attribute === 'hiddenFormId=""') {
+      expect(response).toBeFalsy();
+    } else {
+      expect(response).toBeTruthy();
+    }
   });
 });
 
