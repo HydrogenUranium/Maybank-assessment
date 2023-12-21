@@ -70,9 +70,8 @@
                             <hiddenmarketoformid
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                    fieldLabel="HIDDEN Marketo FormID. If left empty, value 1759 will be used."
+                                    fieldLabel="HIDDEN Marketo FormID. If left empty, no hiddenFormId attribute will be rendered in HTML"
                                     name="./hiddenMarketoId"
-                                    value="1759"
                                     emptyText="Marketo form ID of the 'hidden' form, such as 1759."
                                     fieldDescription="Form (asset) ID of the form in Marketo. Refers to 'hidden' form."/>
                             <marketoHostname
