@@ -66,6 +66,13 @@ public @interface MarketoSubmissionConfig {
 			type = AttributeType.STRING
 	)
 	String marketoFormFieldsAPIEndpoint() default "/rest/asset/v1/form/{0}/fields.json";
+
+	@AttributeDefinition(
+			name = "API submission required path",
+			description = "Configuration that controls the paths (or portions of paths) that are valid for Marketo API submission. If left empty, only 'en-global' paths are valid.",
+			type = AttributeType.STRING
+	)
+	String[] validPathsForApiSubmission() default {"/content/dhl/global/en-global"};
 }
 
 

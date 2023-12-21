@@ -15,45 +15,44 @@
  */
 package com.positive.dhl.core.models;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
- *
+ * Simple Sling Model that represents a single FAQ item. It's used to populate the FAQ component.
+
  */
-@Model(adaptables=Resource.class)
+@Model(
+		adaptables=Resource.class,
+		defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FAQItem {
 
-	@Inject
-    public String title;
+	@ValueMapValue(injectionStrategy= InjectionStrategy.OPTIONAL)
+	private String title;
 
-    @Inject
-    public String content;
-	
+	@ValueMapValue(injectionStrategy=InjectionStrategy.OPTIONAL)
+	private String content;
+
+	@Setter
+	@Getter
 	private int index;
-	
-    /**
-	 * 
-	 */
-    public int getIndex() {
-		return index;
+
+	public String getContent(){
+		if(content != null){
+			return content;
+		}
+		return "";
 	}
 
-    /**
-	 * 
-	 */
-	public void setIndex(int index) {
-		this.index = index;
-	}
-	
-    /**
-	 * 
-	 */
-    @PostConstruct
-	protected void init() {
-    	
+	public String getTitle(){
+		if(title != null){
+			return title;
+		}
+		return "";
 	}
 }

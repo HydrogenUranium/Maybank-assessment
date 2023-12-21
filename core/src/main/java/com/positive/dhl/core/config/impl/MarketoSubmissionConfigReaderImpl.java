@@ -11,6 +11,9 @@ import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 import org.osgi.service.metatype.annotations.Designate;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Component(
 		service = MarketoSubmissionConfigReader.class,
 		configurationPolicy = ConfigurationPolicy.REQUIRE
@@ -27,6 +30,7 @@ public class MarketoSubmissionConfigReaderImpl implements MarketoSubmissionConfi
 	private String marketoFormDescriptionEndpoint;
 	private String marketoFormFieldsEndpoint;
 	private boolean marketoHiddenFormSubmissionsEnabled;
+	private String[] allowedAPISubmissionPaths;
 
 	@Activate
 	@Modified
@@ -39,6 +43,7 @@ public class MarketoSubmissionConfigReaderImpl implements MarketoSubmissionConfi
 		marketoFormDescriptionEndpoint = PropertiesUtil.toString(marketoSubmissionConfig.marketoFormDescriptionAPIEndpoint(),"/rest/v1/leads/describe2.json");
 		marketoFormFieldsEndpoint = PropertiesUtil.toString(marketoSubmissionConfig.marketoFormFieldsAPIEndpoint(), "/rest/asset/v1/form/{0}/fields.json");
 		marketoHiddenFormSubmissionsEnabled = PropertiesUtil.toBoolean(marketoSubmissionConfig.marketoHiddenFormSubmissionEnabled(),false);
+		allowedAPISubmissionPaths = PropertiesUtil.toStringArray(marketoSubmissionConfig.validPathsForApiSubmission(), new String[]{"/content/dhl/global/en-global"});
 	}
 
 	@Override
@@ -79,5 +84,13 @@ public class MarketoSubmissionConfigReaderImpl implements MarketoSubmissionConfi
 	@Override
 	public String getMarketoFormFieldsAPIEndpoint() {
 		return marketoFormFieldsEndpoint;
+	}
+
+	@Override
+	public List<String> getAPIAllowedPaths() {
+		if(null != allowedAPISubmissionPaths){
+			return Arrays.asList(allowedAPISubmissionPaths);
+		}
+		return List.of("/content/dhl/global/en-global");
 	}
 }

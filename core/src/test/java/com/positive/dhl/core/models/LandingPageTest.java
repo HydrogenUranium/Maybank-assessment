@@ -65,7 +65,7 @@ class LandingPageTest {
         assertEquals("/prefix/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", LandingPage.getHeroimagemob());
         assertEquals("/prefix/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", LandingPage.getHeroimagetab());
         assertEquals("/prefix/content/dam/dhl/landing-pages/new/desktop_towerblock.jpg", LandingPage.getHeroimagedt());
-        assertEquals(1, LandingPage.getRelatedArticles().size());
+        assertEquals(0, LandingPage.getRelatedArticles().size());
 
         LandingPage.setFullTitle("");
         LandingPage.setTitle("");
