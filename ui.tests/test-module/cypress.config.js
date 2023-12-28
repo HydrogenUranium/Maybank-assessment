@@ -47,7 +47,6 @@ let config = {
   },
   videosFolder: reportsPath + "/videos",
   screenshotsFolder: reportsPath + "/screenshots",
-  projectId: 'yubbt1'
 }
 
 module.exports = defineConfig(config);
