@@ -20,7 +20,7 @@ failOnConsoleError();
 
 describe('Console Error Test', () => {
     beforeEach(() => {
-        cy.visit(Cypress.env('AEM_PUBLISH_URL'));
+        cy.visit(Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global.html');
     });
 
     it('should not have any console errors', () => {
