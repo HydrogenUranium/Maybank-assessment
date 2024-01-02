@@ -1,25 +1,34 @@
-import { Article } from "../../types/article"
-import { get, simulateGet } from "./httpRequest"
+import { Article } from "../../types/article";
+import { get, simulateGet } from "./httpRequest";
 
 export const getArticles = async (query: string): Promise<Article[]> => {
-    return get({ url: `?query=${query}` })
-}
+    return get({ url: `?query=${query}` });
+};
 
-export const getMockSuggestions = async(query: string): Promise<string[]> => {
+export const getMockSuggestions = async (query: string): Promise<string[]> => {
     return simulateGet().then(() => {
         const words = query.split(' ');
         const lastWord = words.pop();
         const beginningOfSentence = words.join(' ');
         const matchingWords = wordArray.filter(word => word.startsWith(lastWord));
         const combinedSentences = matchingWords.map(word => `${beginningOfSentence} ${word}`);
-    
+
         return combinedSentences.slice(0, 5);
-    })
-} 
+    });
+};
 
 const wordArray = [
-    "help", "(BBX)", "and", "M-commerce:", "work", "Understanding", "Upscaling", "Sporting", "EDM", "Shipping", "businesses", "Fashion", "Personal", "test", "demand", "manage", "Instruments", "designing", "screen", "how", "Textiles", "e-commerce", "Fast", "harder", "some", "steps", "too", "techniques", "in", "search", "Express", "stay", "marketing", "Top", "store", "optimize", "Breakbulk", "business", "the", "guide", "small", "every", "you", "Luxury", "control", "with", "productivity", "are", "improve", "The", "box", "Medical", "for", "delivery", "bootstrap", "Devices", "How", "fast?", "101", "customer", "plan", "apps", "loyalty", "online", "team’s", "Musical", "Consumer", "ultimate", "tips", "Make", "efficiently", "supercharge", "surges", "your", "7", "Electronics", "Goods", "a", "to", "Here"
-  ];
+    "help", "(BBX)", "and", "M-commerce:", "work", "Understanding",
+    "Upscaling", "Sporting", "EDM", "Shipping", "businesses", "Fashion",
+    "Personal", "test", "demand", "manage", "Instruments", "designing", "screen", "how",
+    "Textiles", "e-commerce", "Fast", "harder", "some", "steps", "too", "techniques", "in",
+    "search", "Express", "stay", "marketing", "Top", "store", "optimize", "Breakbulk", "business",
+    "the", "guide", "small", "every", "you", "Luxury", "control", "with", "productivity", "are",
+    "improve", "The", "box", "Medical", "for", "delivery", "bootstrap", "Devices", "How", "fast?",
+    "101", "customer", "plan", "apps", "loyalty", "online", "team’s", "Musical", "Consumer",
+    "ultimate", "tips", "Make", "efficiently", "supercharge", "surges",
+    "your", "7", "Electronics", "Goods", "a", "to", "Here"
+];
 
 export const getMockArticles = async (query: string): Promise<Article[]> => {
     return simulateGet().then(() => {
@@ -35,9 +44,9 @@ export const getMockArticles = async (query: string): Promise<Article[]> => {
             resultArray.push(articleList[index]);
         });
 
-        return resultArray
+        return resultArray;
     });
-}
+};
 
 const articleList: Article[] = [
     {
@@ -151,84 +160,84 @@ const articleList: Article[] = [
         tags: []
     },
 
-        {
-            title: "test",
-            link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/test.html",
-            description: "",
-            image: "",
-            date: "November 29, 2023",
-            author: "",
-            groupTag: "#eCommerceAdvice",
-            tags: []
-        },
-        {
-            title: "Musical Instruments 101",
-            link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/musical-instruments-guide.html",
-            description: "We look to investigate if the music industry is in declining or simply changing. Discover what this may mean for your business here.",
-            image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis747-musical-instruments/06_Musical_Instruments_Desktop_1920x918@2x.jpg",
-            date: "November 15, 2023",
-            author: "",
-            groupTag: "#eCommerceAdvice",
-            tags: []
-        },
-        {
-            title: "Medical Devices 101",
-            link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/medical-devices-guide.html",
-            description: "Medical devices have made health more mobile by allowing anyone to access medical services from their own home. Learn more about these sector changes here.",
-            image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis680-medical-devices/09_Medical_Devices_Desktop_1920x918@2x.jpg",
-            date: "November 15, 2023",
-            author: "",
-            groupTag: "#eCommerceAdvice",
-            tags: []
-        },
-        {
-            title: "Textiles 101",
-            link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/textile-industry-guide.html",
-            description: "Recent developments in smart and sustainable textiles have revolutionised the industry. Learn how this shift could affect your business offering here.",
-            image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis678-textiles/08_Textiles_Desktop_1920x918@2x.jpg",
-            date: "November 15, 2023",
-            author: "",
-            groupTag: "#eCommerceAdvice",
-            tags: []
-        },
-        {
-            title: "Sporting Goods 101",
-            link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/sporting-goods-guide.html",
-            description: "The health and business sector has seen formidable business growth in recent years. See how your business can take advantage of this booming sector.",
-            image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis673-sporting-goods/Sporting-Goods-Desktop-1920x918@2x.jpg",
-            date: "November 15, 2023",
-            author: "",
-            groupTag: "#eCommerceAdvice",
-            tags: []
-        },
-        {
-            title: "Luxury Goods 101",
-            link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/luxury-goods-guide.html",
-            description: "The luxury goods sector is booming. Discover what changes have come with this business growth and what it means for your ecommerce.",
-            image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis675-luxury-goods/04_Luxury_Goods_Cosmetics_Desktop_1920x918@2x.jpg",
-            date: "November 15, 2023",
-            author: "",
-            groupTag: "#eCommerceAdvice",
-            tags: []
-        },
-        {
-            title: "Fast Fashion 101",
-            link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/fast-fashion-guide.html",
-            description: "The fashion industry is constantly changing at an ever increasing speed. Read about the changes to shipping and rise in sustainability concerns here.",
-            image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis672-fast-fashion/Header1_991x558px@2x.jpg",
-            date: "November 15, 2023",
-            author: "",
-            groupTag: "#eCommerceAdvice",
-            tags: []
-        },
-        {
-            title: "Consumer Electronics 101",
-            link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/consumer-electronics-guide.html",
-            description: "With more innovative consumer electric goods hitting the mainstream we’ve collated an expert guide on everything you need to know about the sector.",
-            image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis671-consumer-electronics/Desktop_1920x918@2x.jpg",
-            date: "November 15, 2023",
-            author: "",
-            groupTag: "#eCommerceAdvice",
-            tags: []
-        }
-]
+    {
+        title: "test",
+        link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/test.html",
+        description: "",
+        image: "",
+        date: "November 29, 2023",
+        author: "",
+        groupTag: "#eCommerceAdvice",
+        tags: []
+    },
+    {
+        title: "Musical Instruments 101",
+        link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/musical-instruments-guide.html",
+        description: "We look to investigate if the music industry is in declining or simply changing. Discover what this may mean for your business here.",
+        image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis747-musical-instruments/06_Musical_Instruments_Desktop_1920x918@2x.jpg",
+        date: "November 15, 2023",
+        author: "",
+        groupTag: "#eCommerceAdvice",
+        tags: []
+    },
+    {
+        title: "Medical Devices 101",
+        link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/medical-devices-guide.html",
+        description: "Medical devices have made health more mobile by allowing anyone to access medical services from their own home. Learn more about these sector changes here.",
+        image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis680-medical-devices/09_Medical_Devices_Desktop_1920x918@2x.jpg",
+        date: "November 15, 2023",
+        author: "",
+        groupTag: "#eCommerceAdvice",
+        tags: []
+    },
+    {
+        title: "Textiles 101",
+        link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/textile-industry-guide.html",
+        description: "Recent developments in smart and sustainable textiles have revolutionised the industry. Learn how this shift could affect your business offering here.",
+        image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis678-textiles/08_Textiles_Desktop_1920x918@2x.jpg",
+        date: "November 15, 2023",
+        author: "",
+        groupTag: "#eCommerceAdvice",
+        tags: []
+    },
+    {
+        title: "Sporting Goods 101",
+        link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/sporting-goods-guide.html",
+        description: "The health and business sector has seen formidable business growth in recent years. See how your business can take advantage of this booming sector.",
+        image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis673-sporting-goods/Sporting-Goods-Desktop-1920x918@2x.jpg",
+        date: "November 15, 2023",
+        author: "",
+        groupTag: "#eCommerceAdvice",
+        tags: []
+    },
+    {
+        title: "Luxury Goods 101",
+        link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/luxury-goods-guide.html",
+        description: "The luxury goods sector is booming. Discover what changes have come with this business growth and what it means for your ecommerce.",
+        image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis675-luxury-goods/04_Luxury_Goods_Cosmetics_Desktop_1920x918@2x.jpg",
+        date: "November 15, 2023",
+        author: "",
+        groupTag: "#eCommerceAdvice",
+        tags: []
+    },
+    {
+        title: "Fast Fashion 101",
+        link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/fast-fashion-guide.html",
+        description: "The fashion industry is constantly changing at an ever increasing speed. Read about the changes to shipping and rise in sustainability concerns here.",
+        image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis672-fast-fashion/Header1_991x558px@2x.jpg",
+        date: "November 15, 2023",
+        author: "",
+        groupTag: "#eCommerceAdvice",
+        tags: []
+    },
+    {
+        title: "Consumer Electronics 101",
+        link: "/content/dhl/global/en-global/e-commerce-advice/e-commerce-sector-guides/consumer-electronics-guide.html",
+        description: "With more innovative consumer electric goods hitting the mainstream we’ve collated an expert guide on everything you need to know about the sector.",
+        image: "/content/dam/global-master/2-global-e-commerce-advice/e-commerce-sector-guides/dis671-consumer-electronics/Desktop_1920x918@2x.jpg",
+        date: "November 15, 2023",
+        author: "",
+        groupTag: "#eCommerceAdvice",
+        tags: []
+    }
+];

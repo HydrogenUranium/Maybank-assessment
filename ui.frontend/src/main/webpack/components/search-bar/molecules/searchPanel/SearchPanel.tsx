@@ -34,7 +34,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
-  const recentSearches = useMemo(() => getRecentSearches(), [])
+  const recentSearches = useMemo(() => getRecentSearches(), []);
 
   useEffect(() => {
     focusInput();
@@ -42,16 +42,16 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
     window.addEventListener('mousedown', handleCloseSearch);
     window.addEventListener('click', stopPropagation);
     window.addEventListener('keyup', (event) => {
-      if (event.key === 'Escape') handleCloseSearch()
-    })
+      if (event.key === 'Escape') {handleCloseSearch();}
+    });
     return () => {
       window.removeEventListener('mousedown', handleCloseSearch);
       window.removeEventListener('click', stopPropagation);
       window.removeEventListener('keyup', handleCloseSearch);
-    }
+    };
   }, []);
 
-  const getSearchResultPagePath = (query: string) => { return `${searchResultPagePath}?query=${query}` };
+  const getSearchResultPagePath = (query: string) => { return `${searchResultPagePath}?query=${query}`; };
 
   const handleSearchClick = (): void => {
     putRecentSearch(inputValue);
@@ -60,7 +60,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
 
   const handleKeyClick = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter' && inputValue.length)
-      handleSearchClick();
+      {handleSearchClick();}
   };
 
   const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {

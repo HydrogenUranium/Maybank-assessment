@@ -2,6 +2,10 @@ const {merge} = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const common = require('./webpack.common.js');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+
+const SOURCE_ROOT = __dirname + '/src/main/webpack';
 
 module.exports = merge(common, {
     mode: 'production',
@@ -28,5 +32,12 @@ module.exports = merge(common, {
             }),
         ],
     },
+    plugins: [
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: path.resolve(__dirname, SOURCE_ROOT + '/assets/common'), to: './resources/common' }
+            ]
+        })
+    ],
     performance: {hints: false}
 });

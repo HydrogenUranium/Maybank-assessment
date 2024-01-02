@@ -19,7 +19,7 @@ export const get = async <T,>(config: HttpRequestConfig<T>): Promise<T> => {
     return handler(response);
 };
 
-export const simulateGet = (ms = 500): Promise<void> => new Promise((resolve, reject) => {
+export const simulateGet = (ms = 500): Promise<void> => new Promise((resolve) => {
     setTimeout(() => {
       resolve();
     }, ms);

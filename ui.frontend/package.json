@@ -14,6 +14,9 @@
     "dev": "webpack --env dev --config ./webpack.dev.js && npm run dependencies && clientlib --verbose",
     "prod": "webpack --config ./webpack.prod.js && npm run dependencies && clientlib --verbose",
     "start": "webpack-dev-server --open --config ./webpack.dev.js",
+    "eslint": "eslint --ext .ts --ext .tsx --ext .js --ext .jsx src",
+    "eslint:fix": "eslint --ext .ts --ext .tsx --ext .js --ext .jsx src --fix",
+    "stylelint": "stylelint --max-warnings 1 src/main/styles/**/*.scss",
     "sync": "aemsync -d -p ../ui.apps/src/main/content",
     "dependencies": "webpack --config ./webpack.dependency.js",
     "watch": "webpack-dev-server --config ./webpack.dev.js --env writeToDisk & chokidar -c \"clientlib\" ./dist & aemsync -w ../ui.apps/src/main/content"
