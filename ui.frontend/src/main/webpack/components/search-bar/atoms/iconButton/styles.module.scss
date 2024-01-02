@@ -13,12 +13,10 @@
         height: 100%;
         display: inline-block;
         &Close {
-            background-image: url('https://www.dhl.com/etc.clientlibs/dhl/clientlibs/discover/resources/img/searchcloseicon.png');
-            background-image: none, url('https://www.dhl.com/etc.clientlibs/dhl/clientlibs/discover/resources/img/searchcloseicon.svg');
+            background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/searchcloseicon.svg');
         }
         &Search {
-            background-image: url('https://www.dhl.com/etc.clientlibs/dhl/clientlibs/discover/resources/img/searchicon.png');
-            background-image: none, url('https://www.dhl.com/etc.clientlibs/dhl/clientlibs/discover/resources/img/searchicon.svg');
+            background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/searchicon.svg');
         }
     }
 

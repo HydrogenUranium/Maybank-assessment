@@ -140,10 +140,10 @@
     background-repeat: no-repeat;
     background-size: contain;
     &History {
-        background-image: url(http://localhost:4502/content/dam/images/history.svg);
+        background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/time-forward.svg');
     }
     &Trending {
-        background-image: url(http://localhost:4502/content/dam/images/hot.svg);
+        background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/fire.svg');
     }
 }
 

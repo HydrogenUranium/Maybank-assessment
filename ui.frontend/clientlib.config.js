@@ -58,7 +58,7 @@ module.exports = {
      assets: {
          js: [],
          css: [],
-         resources: ['site/resources/common/*.svg']
+         resources: ['site/resources/common/images/*.svg']
      }
    },
     {
