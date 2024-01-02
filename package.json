@@ -1,11 +1,9 @@
 {
   "devDependencies": {
-    "aemsync": "^5.0.5",
-    "cypress": "^13.6.2",
-    "cypress-terminal-report": "^5.3.10"
+    "aemsync": "^5.0.5"
   },
   "scripts": {
-    "sync": "aemsync -t http://admin:admin@localhost:4502 -w ./ui.apps/src/main/content",
-    "cypress": "npx cypress open --project ./ui.tests/test-module"
+    "aemsync": "aemsync -t http://admin:admin@localhost:4502 -w ./ui.apps/src/main/content",
+    "cypress": "cd ./ui.tests/test-module && npm run open"
   }
 }

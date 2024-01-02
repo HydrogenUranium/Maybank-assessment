@@ -130,3 +130,10 @@ The project comes with the auto-public repository configured. To setup the repos
 `npm install` - to install
 
 `npm run sync` - to run
+
+## Cypress
+`npm install` in ui.tests/test-module - to install
+
+`npm run open` in ui.tests/test-module - to run
+
+`npm run cypress` - to run from root

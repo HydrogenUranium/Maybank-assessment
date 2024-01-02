@@ -11,6 +11,7 @@
     "cypress-terminal-report": "^5.3.3"
   },
   "scripts": {
+    "open": "npx cypress open",
     "test": "cypress run --browser electron",
     "test-chrome": "cypress run --browser chrome",
     "test-firefox": "cypress run --browser firefox"
