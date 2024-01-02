@@ -1,0 +1,12 @@
+.searchBar {
+    height: 45px;
+    @media screen and (min-width: 768px) {
+        position: relative;
+    }
+}
+
+:global(.headerV2__navigation--open) {
+    .searchBar {
+        position: initial;
+    }
+}
