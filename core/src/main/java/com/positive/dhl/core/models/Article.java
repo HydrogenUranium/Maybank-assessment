@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
+import com.google.gson.annotations.Expose;
 import com.positive.dhl.core.constants.DiscoverConstants;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.TagUtilService;
@@ -52,32 +53,32 @@ public class Article {
 	@Setter
 	private boolean fourth;
 
-	private String createdfriendly;
+	@Expose private String createdfriendly;
 	private String created;
 	private Date createdDate;
 	private String icon;
 	private String grouptitle;
-	private String groupTag;
+	@Expose private String groupTag;
 	private String grouppath;
 	private String fullTitle;
-	private String title;
-	private String description;
+	@Expose private String title;
+	@Expose private String description;
 	private String brief;
-	private String author;
+	@Expose private String author;
 	private String authortitle;
 	private String authorimage;
 	private String readtime;
-	private String listimage;
+	@Expose private String listimage;
 	private String heroimagemob;
 	private String heroimagetab;
 	private String heroimagedt;
 	private String youtubeid;
 	private boolean showshipnow;
 	private List<TagWrapper> tags;
-	private List<String> tagsToShow = new ArrayList<>();
+	@Expose private List<String> tagsToShow = new ArrayList<>();
 	private int counter;
 	private Locale locale;
-	protected String path;
+	@Expose protected String path;
 
 	/**
 	 * Returns the article category types

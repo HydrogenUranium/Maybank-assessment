@@ -8,6 +8,8 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.models.Article;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -21,7 +23,8 @@ import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 @Component(service = ArticleService.class)
 @Slf4j
 public class ArticleService {
-
+    protected static final int MAX_SEARCH_TERMS_ALLOWED = 5;
+    protected static final int MIN_SEARCH_TERM_CHARACTERS_ALLOWED = 3;
     public static final String ORDERBY = "orderby";
     @Reference
     protected ResourceResolverHelper resolverHelper;
@@ -76,6 +79,86 @@ public class ArticleService {
         }
     }
 
+    public List<Article> getArticlesByTitle(String searchTerm, String searchScope, ResourceResolver resourceResolver) {
+        String[] propertiesToLook = { "jcr:content/jcr:title", "jcr:content/pageTitle", "jcr:content/navTitle", "jcr:content/cq:tags" };
+        String[] terms = getTerms(searchTerm);
+        String[] lowerCasedTerms = getLowerCasedTerms(searchTerm);
+        String[] upperCasedTerms = getUpperCasedTerms(searchTerm);
+        String[] capitalisedTerms = getCapitalisedTerms(searchTerm);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("path", searchScope);
+        map.put("type", NT_PAGE);
+        map.put("1_group.p.or", "true");
+
+        for (var propertiesToLookGroupIndex = 0; propertiesToLookGroupIndex < propertiesToLook.length; propertiesToLookGroupIndex++) {
+            map.put(String.format("1_group.%1$s_group.p.or", (propertiesToLookGroupIndex + 1)), "true");
+
+            setGroup(map, terms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex, "1_group.%1$s_group.1_group.%2$s_property");
+            setGroup(map, lowerCasedTerms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex, "1_group.%1$s_group.2_group.%2$s_property");
+            setGroup(map, capitalisedTerms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex, "1_group.%1$s_group.3_group.%2$s_property");
+            setGroup(map, upperCasedTerms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex, "1_group.%1$s_group.4_group.%2$s_property");
+        }
+
+        setOrderingAndLimiting(map);
+
+        var mapStr = new StringBuilder();
+        for (Map.Entry<String, String> predicate : map.entrySet()) {
+            mapStr.append(predicate.getKey()).append("=").append(predicate.getValue()).append("|");
+        }
+        log.debug("QueryBuilder map: {}", mapStr);
+
+        return searchArticles(map, resourceResolver);
+    }
+
+    private Map<String, String> setGroup(Map<String, String> map, String[] terms, String propertyToLook, int propertiesToLookGroupIndex, String groupPropertyTemplate) {
+        String groupPropertyOperationTemplate = groupPropertyTemplate + ".operation";
+        String groupPropertyValueTemplate = groupPropertyTemplate + ".value";
+        for (var termIndex = 0; termIndex < terms.length; termIndex++) {
+            String term = terms[termIndex];
+
+            map.put(String.format(groupPropertyTemplate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), propertyToLook);
+            map.put(String.format(groupPropertyOperationTemplate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), "like");
+            map.put(String.format(groupPropertyValueTemplate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), getTermRegexp(term));
+        }
+        return map;
+    }
+
+    private String getTermRegexp(String term) {
+        return "%".concat(Text.escapeIllegalXpathSearchChars(term)).concat("%");
+    }
+
+    private String[] getTerms(String searchTerm) {
+        List<String> result = new LinkedList<>();
+        String[] terms = searchTerm.trim().split("\\s");
+        for (var term: terms) {
+            if (term.trim().length() >= MIN_SEARCH_TERM_CHARACTERS_ALLOWED && result.size() <= MAX_SEARCH_TERMS_ALLOWED) {
+                result.add(term);
+            }
+        }
+        return result.toArray(new String[0]);
+    }
+
+    private String[] getLowerCasedTerms(String searchTerm) {
+        return Arrays.stream(getTerms(searchTerm)).map(String::toLowerCase).toArray(String[]::new);
+    }
+
+    private String[] getUpperCasedTerms(String searchTerm) {
+        return Arrays.stream(getTerms(searchTerm)).map(String::toUpperCase).toArray(String[]::new);
+    }
+
+    private String[] getCapitalisedTerms(String searchTerm) {
+        return Arrays.stream(getTerms(searchTerm)).map(StringUtils::capitalize).toArray(String[]::new);
+    }
+
+    private Map<String, String> setOrderingAndLimiting(Map<String, String> map) {
+        map.put(ORDERBY, "@jcr:content/jcr:score");
+        map.put("orderby.sort", "desc");
+        map.put("p.limit", "50");
+        map.put("p.guessTotal", "true");
+        return map;
+    }
+
     private List<Article> searchArticles(Map<String, String> props, ResourceResolver resolver) {
         Session session = resolver.adaptTo(Session.class);
         return java.util.Optional.ofNullable(builder)
@@ -90,7 +173,10 @@ public class ArticleService {
         List<Article> resources = new ArrayList<>();
         hits.forEach(hit -> {
             try {
-                resources.add(pageUtilService.getArticle(hit.getPath(), resourceResolver));
+                var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+                if (article != null &&  article.isValid()) {
+                    resources.add(article);
+                }
             } catch (RepositoryException exception) {
                 log.warn("Failed to get path from sql response", exception);
             }

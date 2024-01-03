@@ -1,10 +1,12 @@
-<div class="search-bar-component aem-react-component"
-         data-component-name="search-bar"
-         data-config='{
-            "recentSearchesTitle": "Recent Searches",
-            "trendingTopicsTitle": "Trending Topics",
-            "articlesTitle": "Articles",
-            "trendingTopics": ["Green Logistics", "Sustainable Packaging", "HS codes"],
+<div data-sly-use.searchBarModel="com.positive.dhl.core.models.SearchBarModel"
+     class="search-bar-component aem-react-component"
+     data-component-name="search-bar"
+     data-config='{
+            "currentPagePath": "${currentPage.path}",
+            "recentSearchesTitle": "${searchBarModel.recentSearchesTitle}",
+            "trendingTopicsTitle": "${searchBarModel.trendingTopicsTitle}",
+            "articlesTitle": "${searchBarModel.articlesTitle}",
+            "trendingTopics": ${searchBarModel.trendingTopics},
             "searchResultPagePath": ""
          }'>
 </div>

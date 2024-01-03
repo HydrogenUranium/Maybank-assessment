@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { getRecentSearches, putRecentSearch } from 'src/main/webpack/services/local-storage/recentSearch';
 import { Article } from 'src/main/webpack/types/article';
-import { getMockArticles, getMockSuggestions } from 'src/main/webpack/services/api/search';
+import { getArticleSuggestions, getTagSuggestions } from 'src/main/webpack/services/api/search';
 import { getHighlightedSuggestion } from '../../helpers';
 import { IconButton } from '../../atoms/iconButton/IconButton';
 import { useDataFetching } from '../../hooks/useDataFetching';
@@ -29,8 +29,8 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   handleCloseSearch
 }) => {
   const [inputValue, setInputValue] = useState('');
-  const [suggestions] = useDataFetching(inputValue, getMockSuggestions);
-  const [articles] = useDataFetching(inputValue, getMockArticles);
+  const [tagSuggestions] = useDataFetching(inputValue, getTagSuggestions);
+  const [articleSuggestions] = useDataFetching(inputValue, getArticleSuggestions);
   const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -92,7 +92,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
         {inputValue.length > 0
           ? (<>
             <SearchSection
-              items={suggestions}
+              items={tagSuggestions}
               title=''
               renderItem={(suggestion) => (
                 <button
@@ -107,16 +107,16 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
               )}
             />
             <SearchSection
-              items={articles}
+              items={articleSuggestions}
               title={articlesTitle}
               thinTitle
               overflowHidden
               renderItem={(article: Article) => (
-                <a href={article.link} className={styles.article} key={article.link}>
-                  <div className={styles.articleImage} style={{ backgroundImage: `url(${article.image})` }}></div>
+                <a href={`${article.path}.html`} className={styles.article} key={article.path}>
+                  <div className={styles.articleImage} style={{ backgroundImage: `url(${article.listimage})` }}></div>
                   <div className={styles.articleInfo}>
                     <div className={styles.articleInfoTitle}>{article.title}</div>
-                    <div className={styles.articleInfoMetadata}>{article.date}</div>
+                    <div className={styles.articleInfoMetadata}>{article.createdfriendly}</div>
                   </div>
                 </a>
               )}

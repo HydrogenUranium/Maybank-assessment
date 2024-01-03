@@ -1,0 +1,49 @@
+package com.positive.dhl.core.servlets;
+
+import com.google.gson.*;
+import com.positive.dhl.core.services.ArticleService;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.http.entity.ContentType;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.servlets.HttpConstants;
+import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
+import javax.servlet.Servlet;
+import java.io.IOException;
+import java.util.Collections;
+
+import static com.adobe.cq.dam.cfm.SemanticDataType.JSON;
+import static org.apache.commons.codec.CharEncoding.UTF_8;
+
+@Component(service = { Servlet.class })
+@SlingServletResourceTypes(
+        resourceTypes = "wcm/foundation/components/responsivegrid",
+        methods = HttpConstants.METHOD_GET,
+        extensions = JSON,
+        selectors = "searcharticlesuggest")
+public class GetArticlesServlet extends SlingSafeMethodsServlet {
+    private static final long serialVersionUID = 5380383600055940736L;
+
+    @Reference
+    protected transient ArticleService articleService;
+
+    @Override
+    public void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+        response.setCharacterEncoding(UTF_8);
+        response.setContentType(ContentType.APPLICATION_JSON.getMimeType());
+        var searchTerm = request.getParameter("s");
+        var searchScope = request.getParameter("homepagepath");
+
+        var articles = StringUtils.isAnyBlank(searchTerm, searchScope)
+                ? Collections.emptyList() : articleService.getArticlesByTitle(searchTerm, searchScope,  request.getResourceResolver());
+
+        var gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
+        response.getWriter().write(gson.toJson(articles));
+    }
+}
