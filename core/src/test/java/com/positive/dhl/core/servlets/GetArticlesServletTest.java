@@ -3,6 +3,7 @@ package com.positive.dhl.core.servlets;
 import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -14,6 +15,7 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -47,6 +49,10 @@ class GetArticlesServletTest {
     @Mock
     private TagUtilService tagUtilService;
 
+    @Mock
+    private PathUtilService pathUtilService;
+
+
     @BeforeEach
     void setUp() {
         context.requestPathInfo().setResourcePath("/content");
@@ -54,10 +60,15 @@ class GetArticlesServletTest {
 
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
+        context.registerService(PathUtilService.class, pathUtilService);
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
+        lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
 
         Article article1 = createArticleModel(context.resourceResolver().getResource("/content/home/article_1"));
         Article article2 = createArticleModel(context.resourceResolver().getResource("/content/home/article_2"));
@@ -85,7 +96,7 @@ class GetArticlesServletTest {
                     "\"title\":\"What paperwork do I need for international shipping?\"," +
                     "\"description\":\"What paperwork do I need for international shipping?\"," +
                     "\"author\":\"Anna Thompson\"," +
-                    "\"listimage\":\"/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
+                    "\"listimage\":\"/prefix/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                     "\"tagsToShow\":[\"#CategoryPage\"]," +
                     "\"path\":\"/content/home/article_1\"" +
                 "}," +
@@ -95,7 +106,7 @@ class GetArticlesServletTest {
                     "\"title\":\"What paperwork do I need for international shipping?\"," +
                     "\"description\":\"What paperwork do I need for international shipping?\"," +
                     "\"author\":\"Anna Thompson\"," +
-                    "\"listimage\":\"/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
+                    "\"listimage\":\"/prefix/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                     "\"tagsToShow\":[\"#CategoryPage\"]," +
                     "\"path\":\"/content/home/article_2\"" +
                 "}" +
