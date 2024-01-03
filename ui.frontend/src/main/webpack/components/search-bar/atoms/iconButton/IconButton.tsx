@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 
 type IconButtonProps = {
   iconType: 'close' | 'search',
+  dataTestId?: string,
   className?: string,
   hidden?: boolean,
   onClick?: (event: React.MouseEvent<HTMLElement>) => void,
@@ -12,17 +13,21 @@ type IconButtonProps = {
 
 export const IconButton: React.FC<IconButtonProps> = ({
   iconType,
+  dataTestId,
   className,
   hidden,
   onClick
 }) => (
-  <button onClick={onClick} className={
-    classNames(
-      styles.searchButton,
-      { [className]: className },
-      { [styles.hidden]: hidden }
-    )
-  }>
+  <button
+    data-testid={dataTestId}
+    onClick={onClick}
+    className={
+      classNames(
+        styles.searchButton,
+        { [className]: className },
+        { [styles.hidden]: hidden }
+      )
+    }>
     <span className={
       classNames(
         styles.searchButtonImage,

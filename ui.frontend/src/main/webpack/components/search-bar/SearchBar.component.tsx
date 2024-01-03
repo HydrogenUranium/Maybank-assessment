@@ -37,6 +37,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       ) : (
         <IconButton
           iconType='search'
+          dataTestId='open-search'
           onClick={() => setActive(true)}
         />
       )}

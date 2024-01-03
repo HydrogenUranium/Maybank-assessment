@@ -148,11 +148,13 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
     <div className={styles.search} ref={searchRef}>
       <IconButton
         iconType='search'
+        dataTestId='handle-search'
         className={styles.absoluteLeft}
         onClick={handleSearchClick}
       />
       <input
-        aria-label={"Search"}
+        aria-label='Search'
+        data-testid='search-input'
         onChange={handleInputChange}
         ref={inputRef}
         value={inputValue}
@@ -164,6 +166,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
         : renderDefaultSearchResults()}
       <IconButton
         iconType='close'
+        dataTestId='close-search'
         className={styles.absoluteRight}
         onClick={handleCloseSearch} />
     </div>

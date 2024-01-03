@@ -59,7 +59,7 @@ module.exports = {
                         options: {
                             url: false,
                             modules: {
-                                localIdentName: '[local]',
+                                localIdentName: '[local]__[hash:base64:5]',
                             }
                         }
                     },
