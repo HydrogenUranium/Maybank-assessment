@@ -1,11 +1,13 @@
 package com.positive.dhl.core.models;
 
 import com.positive.dhl.core.injectors.InjectHomeProperty;
+import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.inject.Named;
 import java.util.LinkedList;
@@ -13,9 +15,10 @@ import java.util.List;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class FooterV2Model {
+    @OSGiService
+    private PathUtilService pathUtilService;
 
     @InjectHomeProperty
-    @Getter
     @Named("footer-logoIcon")
     private String logoIcon;
 
@@ -71,6 +74,10 @@ public class FooterV2Model {
     @InjectHomeProperty
     @Named("multifields/footer-socialLinks")
     private Resource socialLinks;
+
+    public String getLogoIcon() {
+        return pathUtilService.resolveAssetPath(logoIcon);
+    }
 
     public List<LinkModel> getCompanyLinks() {
         return getInnerLinks(companyLinks);

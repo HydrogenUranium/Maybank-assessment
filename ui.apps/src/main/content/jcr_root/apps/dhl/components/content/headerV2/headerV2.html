@@ -11,6 +11,16 @@
             <div class="main-row__right">
                 <div class="search-bar" data-sly-resource="${'search-bar' @ resourceType='dhl/components/content/search-bar'}"></div>
                 <div class="header__icon">
+                    <a href="#" class="headerV2__desktopCountry">
+                        <sly data-sly-test.isGlobal="${languageVariants.getCurrentRegion == 'Global'}">
+                            <span class="global-icon"></span>
+                        </sly>
+                        <sly data-sly-test="${!isGlobal}"
+                             data-sly-set.currentRegionCode="${languageVariants.currentRegionCode}">
+                            <span class="fi fi-${currentRegionCode}"></span>
+                            <span class="title">${ currentRegionCode == 'tw' ? 'Taiwan' : languageVariants.getCurrentRegion @ i18n, context='html' }</span>
+                        </sly>
+                    </a>
                     <div class="header-countryList">
                         <label for="countryList-widget" class="header-countryList__label">Countries & Regions</label>
                         <div class="header-countryList__widget" id="countryList-widget">
@@ -26,16 +36,6 @@
                             </sly>
                         </div>
                     </div>
-                    <div class="headerV2__desktopCountry">
-                        <sly data-sly-test.isGlobal="${languageVariants.getCurrentRegion == 'Global'}">
-                            <span class="global-icon"></span>
-                        </sly>
-                        <sly data-sly-test="${!isGlobal}"
-                             data-sly-set.currentRegionCode="${languageVariants.currentRegionCode}">
-                            <span class="fi fi-${currentRegionCode}"></span>
-                            <span class="title">${ currentRegionCode == 'tw' ? 'Taiwan' : languageVariants.getCurrentRegion @ i18n, context='html' }</span>
-                        </sly>
-                    </div>
                 </div>
                 <div class="header__icon">
                     <sly data-sly-test="${languageVariants.getCurrentRegion.length > 0 && languageVariants.getLanguageVariants.size > 0}">
@@ -46,14 +46,17 @@
                         </a>
                     </sly>
                 </div>
-                <div class="header__icon">
+                <div data-sly-test="${properties.hideNavigationMenu != 'true'}"
+                     class="header__icon">
                     <a class="headerV2__navigation" href="#">
                         <i class="headerV2__hamburger"></i>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="navigation-row" data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model">
+        <div data-sly-test="${properties.hideNavigationMenu != 'true'}"
+             class="navigation-row"
+             data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model">
             <div class="navigation-row__left" data-sly-set.currentPagePath="${currentPage.path}.html">
                 <a class="navigation-item ${currentPagePath == headerV2.homePageLink ? 'active' : '' }" href="${headerV2.homePageLink}"><span>${headerV2.homePageLabel}</span></a>
                 <sly data-sly-list="${meganav.panels}">
@@ -70,7 +73,8 @@
             </div>
         </div>
     </div>
-    <div class="headerV2__meganav">
+    <div data-sly-test="${properties.hideNavigationMenu != 'true'}"
+         class="headerV2__meganav">
         <nav class="headerV2__meganavNavigation">
             <ul class="headerV2__meganavNav">
                 <li>

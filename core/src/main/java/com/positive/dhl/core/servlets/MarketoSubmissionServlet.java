@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Optional;
 
 @Component(
 		service = {Servlet.class})
@@ -52,7 +53,7 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-		boolean canProceed = canProceed();
+		boolean canProceed = canProceed(request);
 		if(canProceed){
 			LOGGER.info("OSGi configuration sets Marketo Hidden form submission to 'enabled'. Proceeding ...");
 			int formId = inputParamHelper.getFormId(request);
@@ -101,11 +102,11 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 	}
 
 	/**
-	 * Simple check to verify if the functionality is enabled in OSGi configuration of the form submissions.
+	 * Simple check to verify if the functionality is enabled in OSGi configuration of the form submissions. Additionally, it also checks if the path to the form matches the allowed paths
 	 * @return boolean {@code true} if functionality is enabled (and hostname, clientId & secretId values are present in OSGi configuration)
 	 * or {@code false} if the functionality is disabled or any of the critical values is missing
 	 */
-	private boolean canProceed(){
+	private boolean canProceed(SlingHttpServletRequest request){
 		boolean functionalityEnabled = configReader.getMarketoHiddenFormSubmissionEnabled();
 		String hostname = configReader.getMarketoHost();
 		String clientId = configReader.getMarketoClientId();
@@ -115,7 +116,25 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 		boolean client = clientId != null && !clientId.isEmpty();
 		boolean secret = secretId != null && !secretId.isEmpty();
 
-		return functionalityEnabled && host && client && secret;
+		boolean isPathValid = isPathValid(request);
+
+		return functionalityEnabled && host && client && secret && isPathValid;
+	}
+
+	/**
+	 * Validates that the provided 'path' of the request is valid for API submission. This is controlled by OSGi configuration.
+	 * @param request SlingHttpServletRequest representing the request
+	 * @return a boolean {@code true} if provided 'path' is valid for API submission or {@code false} if it's not
+	 */
+	private boolean isPathValid(SlingHttpServletRequest request){
+		String formStart = inputParamHelper.getRequestParameter(request, "formStart");
+		if(null != formStart){
+			Optional<String> pathOK = configReader.getAPIAllowedPaths().stream()
+					.filter(formStart::contains)
+					.findFirst();
+			return pathOK.isPresent();
+		}
+		return false;
 	}
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" amp data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
+<html lang="en" amp data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage">
     <head>
 		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
 		<meta charset="UTF-8">
@@ -29,22 +29,21 @@
 
 		<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
-		<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
-        <script id="articleData" type="application/ld+json" data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage">
-            {
-				"title": "${articlePage.article.title @ context='unsafe'}",
-				"description": "${articlePage.article.brief @ context='unsafe'}",
-				"imageMobile": "${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagemob @ context='unsafe'}",
-				"imageDesktop": "${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagedt @ context='unsafe'}",
-				"categoryName": "${articlePage.article.grouptitle @ context='unsafe'}",
-				"categoryLink": "${articlePage.article.grouppath @ context='unsafe'}",
-				"timeToRead": "${articlePage.article.readtime @ context='unsafe'}",
-				"isLarge": false,
-				"isVideo": false
-            }
-        </script>
+    <script id="articleData" type="application/ld+json" data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage">
+        {
+		"title": "${articlePage.article.title @ context='text'}",
+		"description": "${articlePage.article.brief @ context='text'}",
+		"imageMobile": "${articlePage.article.heroimagemob @ context='uri'}",
+		"imageDesktop": "${articlePage.article.heroimagedt @ context='uri'}",
+		"categoryName": "${articlePage.article.grouptitle @ context='text'}",
+		"categoryLink": "${articlePage.article.grouppath @ context='uri'}",
+		"timeToRead": "${articlePage.article.readtime @ context='text'}",
+		"isLarge": false,
+		"isVideo": false
+        }
+    </script>
 
-        <sly data-sly-include="partials/assets/amp-article.html" data-sly-unwrap />
+    <sly data-sly-include="partials/assets/amp-article.html" data-sly-unwrap />
 
 		<!--/* Include Adobe Dynamic Tag Management libraries for the header */-->
 		<sly data-sly-include="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp" data-sly-unwrap/>

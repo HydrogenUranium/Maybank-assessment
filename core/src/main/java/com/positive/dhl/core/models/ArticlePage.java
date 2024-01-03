@@ -13,6 +13,7 @@ import javax.jcr.Session;
 
 import com.drew.lang.annotations.NotNull;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
+import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -32,6 +33,9 @@ import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
 @Model(adaptables=SlingHttpServletRequest.class)
 public class ArticlePage {
 	public static final String VIEW_COUNT = "viewcount";
+
+	@OSGiService
+	private PathUtilService pathUtilService;
 
 	@Inject
 	private ResourceResolver resourceResolver;
@@ -97,7 +101,9 @@ public class ArticlePage {
 		String akamaiHostname = environmentConfiguration.getAkamaiHostname();
 
 		ValueMap properties = currentPage.getProperties();
-		
+
+		smartShareButtonsIconPath = pathUtilService.resolveAssetPath(smartShareButtonsIconPath);
+
 		if (!properties.isEmpty()) {
 			String customOgTagImage = properties.get("ogtagimage", "");
 			ogtagimage = customOgTagImage.trim().length() > 0
@@ -115,7 +121,10 @@ public class ArticlePage {
 			socialNetwork.listChildren().forEachRemaining(r -> {
 				ValueMap vm = r.adaptTo(ValueMap.class);
 				if (vm != null && !vm.isEmpty()) {
-					socialNetworkMap.put(vm.get("socialNetworkName", String.class), vm.get("socialNetworkIconPath", String.class));
+					socialNetworkMap.put(
+							vm.get("socialNetworkName", String.class),
+							pathUtilService.resolveAssetPath(vm.get("socialNetworkIconPath", String.class))
+					);
 				}
 			});
 		}

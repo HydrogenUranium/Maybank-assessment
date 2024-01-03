@@ -2,9 +2,7 @@
      data-sly-use.model="com.positive.dhl.core.models.ArticleShowcase"
      data-sly-set.isEmpty="${model.articles.size == 0}"
      data-sly-set.isVertical="${model.designMode == 'vertical'}"
-     data-sly-set.isHorizontal="${model.designMode == 'horizontal'}"
-     data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
-     data-sly-test.authormode="${wcmmode.edit || wcmmode.preview}"></sly>
+     data-sly-set.isHorizontal="${model.designMode == 'horizontal'}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 <div class="article-showcase-component article-showcase-component_${model.designMode}" data-sly-test="${!isEmpty}">
@@ -17,15 +15,15 @@
     <sly data-sly-test="${isVertical}">
         <ul class="article-items">
             <li class="article" data-sly-repeat="${model.articles}">
-                <a href="${item.path}.html" class="article__image"
-                   style="background-image: url('${!authormode ? accountactions.assetprefix : '' @ context='unsafe'}${item.listimage @ context='uri'}');"></a>
+                <a tabindex="-1" href="${item.path}.html" class="article__image"
+                   style="background-image: url('${item.listimage @ context='uri'}');"></a>
                 <div class="article__info">
                     <div class="article__info__group-tag">${item.groupTag}</div>
                     <a href="${item.path}.html" class="article__info__title">${item.title}</a>
                     <div class="article__info__metadata">${item.createdfriendly} ${item.readtime ? '|' : ''} ${item.readtime}</div>
                     <div class="article__info__description">${item.description}</div>
                     <div class="article__info__author">
-                        <div style="background-image: url('${!authormode ? accountactions.assetprefix : '' @ context='unsafe'}${item.authorimage @ context='unsafe'}');" class="article__info__author__avatar"></div>
+                        <div style="background-image: url('${item.authorimage @ context='uri'}');" class="article__info__author__avatar"></div>
                         <div class="article__info__author__name">${item.author}</div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.policies.ContentPolicy;
 import com.day.cq.wcm.api.policies.ContentPolicyManager;
 import com.positive.dhl.core.injectors.InjectAsset;
-import com.positive.dhl.core.services.AssetUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -39,7 +39,7 @@ public class HeroBanner {
 
     @OSGiService
     @Required
-    private AssetUtilService assetUtils;
+    private PathUtilService pathUtilService;
 
     @Inject
     @Getter
@@ -112,8 +112,8 @@ public class HeroBanner {
     private void initInheritedImage() {
         ValueMap props = currentPage.getProperties();
 
-        mobileBackgroundImage = assetUtils.resolvePath(props.get("heroimagemob", ""));
-        tabletBackgroundImage = assetUtils.resolvePath(props.get("heroimagetab", ""));
-        desktopBackgroundImage = assetUtils.resolvePath(props.get("heroimagedt", ""));
+        mobileBackgroundImage = pathUtilService.resolveAssetPath(props.get("heroimagemob", ""));
+        tabletBackgroundImage = pathUtilService.resolveAssetPath(props.get("heroimagetab", ""));
+        desktopBackgroundImage = pathUtilService.resolveAssetPath(props.get("heroimagedt", ""));
     }
 }

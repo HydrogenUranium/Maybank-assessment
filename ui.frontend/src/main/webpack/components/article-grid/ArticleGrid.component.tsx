@@ -41,6 +41,12 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({ title, categories, sho
         }
     };
 
+    const handleCategoryKeyPress = (categoryName: string, event) => {
+        if (event.key === 'Enter') {
+            handleCategoryClick(categoryName, event);
+        }
+    };
+
     return (
         <div className={styles.articleGrid}>
             <div className={styles.articleGridHeader}>
@@ -52,19 +58,25 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({ title, categories, sho
                     </div>
                 </div>
             </div>
-            <ul className={`${styles.articleGridCategories} horizontal-scroll`}>
-                {categories.map((category) => (
-                    <li
-                        className={`${styles.articleGridCategoriesCategory}
-                            ${selectedCategory === category.name ? styles.articleGridCategoriesCategorySelected : ""}
-                            horizontal-scroll__react-button`}
-                        key={category.name}
-                        onClick={(event) => handleCategoryClick(category.name, event)}
-                    >
-                        {category.name}
-                    </li>
-                ))}
-            </ul>
+            <nav aria-label={title}>
+                <ul className={`${styles.articleGridCategories} horizontal-scroll`}>
+                    {categories.map((category) => (
+                        <li
+                            className={`${styles.articleGridCategoriesCategory}
+                                ${selectedCategory === category.name ? styles.articleGridCategoriesCategorySelected : ""}
+                                horizontal-scroll__react-button`}
+                            tabIndex={0}
+                            role="button"
+                            aria-selected={selectedCategory === category.name}
+                            key={category.name}
+                            onClick={(event) => handleCategoryClick(category.name, event)}
+                            onKeyDown={(event) => handleCategoryKeyPress(category.name, event)}>
+                            {category.name}
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+
             <div ref={articleListElement} className={styles.articleGridArticles}>
                 {displayedArticles.map((article) => (
                     <ArticleCard

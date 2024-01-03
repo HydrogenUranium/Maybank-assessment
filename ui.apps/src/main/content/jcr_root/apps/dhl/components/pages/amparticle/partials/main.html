@@ -13,11 +13,10 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
-<div class="page-body" data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage" data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
+<div class="page-body" data-sly-use.articlePage="com.positive.dhl.core.models.ArticlePage" data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage">
 	<div class="hero hero--divider" id="heroItemIdOne">
 		<a data-sly-test="${(articlePage.article.youtubeid.length <= 0)}" href="${articlePage.article.path}.html">
-			<amp-img src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.heroimagemob @ context='unsafe'}" height="230" width="411" layout="responsive"></amp-img>
+			<amp-img src="${articlePage.article.heroimagemob}" height="230" width="411" layout="responsive"></amp-img>
   		</a>
   		<amp-youtube data-sly-test="${(articlePage.article.youtubeid.length > 0)}" data-videoid="${articlePage.article.youtubeid}" data-param-controls="0" data-param-modestbranding="1" data-param-showinfo="0" layout="responsive" width="480" height="270"></amp-youtube>
 		<div class="hero__itemContent">
@@ -36,7 +35,7 @@
 
 				<div class="mb-3" data-sly-test="${(articlePage.article.author.length > 0)}">
 					<figure class="authorPanel">
-					    <amp-img src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${articlePage.article.authorimage}" alt="${articlePage.article.author}" class="authorPanel__image" height="60" width="60" layout="fixed"></amp-img>
+					    <amp-img src="${articlePage.article.authorimage}" alt="${articlePage.article.author}" class="authorPanel__image" height="60" width="60" layout="fixed"></amp-img>
 					    <figcaption class="authorPanel__caption">
 							<span class="authorPanel__name">${articlePage.article.author}</span>
 							<span class="authorPanel__title" data-sly-test="${(articlePage.article.authortitle.length > 0)}">${articlePage.article.authortitle}</span>

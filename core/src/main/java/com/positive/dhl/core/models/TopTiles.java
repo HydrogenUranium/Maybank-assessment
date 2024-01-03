@@ -36,7 +36,10 @@ public class TopTiles {
             while (multifieldItems.hasNext()) {
                 var properties = multifieldItems.next().getValueMap();
                 String path = properties.get("articlePath", "");
-                articles.add(pageUtilService.getArticle(path, resourceResolver));
+                var article = pageUtilService.getArticle(path, resourceResolver);
+                if (article != null) {
+                    articles.add(article);
+                }
             }
         }
     }

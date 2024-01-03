@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -22,6 +23,9 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class LandingPageTwoColumn {
+	@OSGiService
+	private PathUtilService pathUtilService;
+
 	@OSGiService
 	private PageUtilService pageUtilService;
 
@@ -88,7 +92,7 @@ public class LandingPageTwoColumn {
 	 *
 	 */
 	public String getHeroimagemob() {
-		return heroimagemob;
+		return pathUtilService.resolveAssetPath(heroimagemob);
 	}
 
     /**
@@ -102,7 +106,7 @@ public class LandingPageTwoColumn {
 	 *
 	 */
 	public String getHeroimagetab() {
-		return heroimagetab;
+		return pathUtilService.resolveAssetPath(heroimagetab);
 	}
 
     /**
@@ -116,7 +120,7 @@ public class LandingPageTwoColumn {
 	 *
 	 */
 	public String getHeroimagedt() {
-		return heroimagedt;
+		return pathUtilService.resolveAssetPath(heroimagedt);
 	}
 
     /**
@@ -222,8 +226,10 @@ public class LandingPageTwoColumn {
 				if (props != null) {
 					String url = props.get("url", "");
 					
-					Article article = pageUtilService.getArticle(url, resourceResolver);
-					relatedArticles.add(article);
+					var article = pageUtilService.getArticle(url, resourceResolver);
+					if (article != null) {
+						relatedArticles.add(article);
+					}
 				}
 			}
 		}

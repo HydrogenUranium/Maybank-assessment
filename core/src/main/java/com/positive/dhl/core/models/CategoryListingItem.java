@@ -55,12 +55,13 @@ public class CategoryListingItem {
             for (Hit hit : searchResult.getHits()) {
                 ValueMap hitProperties = hit.getProperties();
                 boolean hideInNav = hitProperties.get("hideInNav", false);
-                if (!hideInNav) {
-                    if (articlesFromSearchResult.size() < 5) {
-                        articlesFromSearchResult.add(pageUtilService.getArticle(hit.getPath(), resourceResolver));
-                    } else {
-                        break;
+                if (articlesFromSearchResult.size() < 5) {
+                    var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+                    if (!hideInNav && article != null) {
+                        articlesFromSearchResult.add(article);
                     }
+                } else {
+                    break;
                 }
             }
 
@@ -69,7 +70,7 @@ public class CategoryListingItem {
                 resources.next().getResourceResolver().close();
             }
         }
-        return articles;
+        return articlesFromSearchResult;
     }
 
     private String getPageTitle(ValueMap pageProperties) {

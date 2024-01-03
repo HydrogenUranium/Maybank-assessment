@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.jetbrains.annotations.Nullable;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.*;
@@ -153,6 +154,7 @@ public class PageUtilService {
      * @param resourceResolver is a {@link ResourceResolver}
      * @return {@code Article} if the articlePagePath links to the Article otherwise {@code null}
      */
+    @Nullable
     public Article getArticle(String articlePagePath, ResourceResolver resourceResolver) {
         return Optional.ofNullable(articlePagePath)
                 .map(resourceResolver::getResource)

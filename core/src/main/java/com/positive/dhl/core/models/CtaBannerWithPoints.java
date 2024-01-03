@@ -2,7 +2,7 @@ package com.positive.dhl.core.models;
 
 import com.positive.dhl.core.injectors.InjectAsset;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
-import com.positive.dhl.core.services.AssetUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -24,7 +24,7 @@ import java.util.UUID;
 public class CtaBannerWithPoints {
 
     @OSGiService
-    private AssetUtilService assetUtils;
+    private PathUtilService pathUtilService;
 
     @ChildResource
     @Named("points")
@@ -163,9 +163,9 @@ public class CtaBannerWithPoints {
     private void initSubscribe() {
         title = titleSubscribe;
         points = extractPoints(pointsMultifieldSubscribe);
-        mobileBackgroundImage = assetUtils.resolvePath(mobileBackgroundImageSubscribe);
-        tabletBackgroundImage = assetUtils.resolvePath(tabletBackgroundImageSubscribe);
-        desktopBackgroundImage = assetUtils.resolvePath(desktopBackgroundImageSubscribe);
+        mobileBackgroundImage = pathUtilService.resolveAssetPath(mobileBackgroundImageSubscribe);
+        tabletBackgroundImage = pathUtilService.resolveAssetPath(tabletBackgroundImageSubscribe);
+        desktopBackgroundImage = pathUtilService.resolveAssetPath(desktopBackgroundImageSubscribe);
         buttonName = buttonNameSubscribe;
         buttonLink = buttonLinkSubscribe;
     }
@@ -173,9 +173,9 @@ public class CtaBannerWithPoints {
     private void initOpenBusinessAccount() {
         title = titleOpenBusinessAccount;
         points = extractPoints(pointsMultifieldOpenBusinessAccount);
-        mobileBackgroundImage = assetUtils.resolvePath(mobileBackgroundImageOpenBusinessAccount);
-        tabletBackgroundImage = assetUtils.resolvePath(tabletBackgroundImageOpenBusinessAccount);
-        desktopBackgroundImage = assetUtils.resolvePath(desktopBackgroundImageOpenBusinessAccount);
+        mobileBackgroundImage = pathUtilService.resolveAssetPath(mobileBackgroundImageOpenBusinessAccount);
+        tabletBackgroundImage = pathUtilService.resolveAssetPath(tabletBackgroundImageOpenBusinessAccount);
+        desktopBackgroundImage = pathUtilService.resolveAssetPath(desktopBackgroundImageOpenBusinessAccount);
         buttonName = buttonNameOpenBusinessAccount;
         buttonLink = buttonLinkOpenBusinessAccount;
     }

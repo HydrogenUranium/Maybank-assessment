@@ -4,9 +4,9 @@ import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -14,6 +14,7 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -35,12 +36,21 @@ class LandingPageTest {
     @Mock
     private Query page1MockQuery;
 
+    @Mock
+    private PathUtilService pathUtilService;
+
     @BeforeEach
     void setUp() throws Exception {
         ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
         ctx.registerService(PageUtilService.class, new PageUtilService());
+        ctx.registerService(PathUtilService.class, pathUtilService);
         ctx.addModelsForClasses(LandingPage.class);
+
+        when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
     }
 
     @Test
@@ -52,10 +62,10 @@ class LandingPageTest {
 
         assertEquals("Get up to 10% off your shipping costs", LandingPage.getFullTitle());
         assertEquals("Get up to 10% off your shipping costs", LandingPage.getTitle());
-        assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", LandingPage.getHeroimagemob());
-        assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", LandingPage.getHeroimagetab());
-        assertEquals("/content/dam/dhl/landing-pages/new/desktop_towerblock.jpg", LandingPage.getHeroimagedt());
-        assertEquals(1, LandingPage.getRelatedArticles().size());
+        assertEquals("/prefix/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", LandingPage.getHeroimagemob());
+        assertEquals("/prefix/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", LandingPage.getHeroimagetab());
+        assertEquals("/prefix/content/dam/dhl/landing-pages/new/desktop_towerblock.jpg", LandingPage.getHeroimagedt());
+        assertEquals(0, LandingPage.getRelatedArticles().size());
 
         LandingPage.setFullTitle("");
         LandingPage.setTitle("");

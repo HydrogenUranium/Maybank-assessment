@@ -2,8 +2,10 @@ package com.positive.dhl.core.utils;
 
 import com.positive.dhl.core.injectors.AssetInjector;
 import com.positive.dhl.core.services.AssetUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import org.apache.sling.models.spi.Injector;
+import org.junit.platform.commons.util.StringUtils;
 
 import java.util.Collections;
 import java.util.Map;
@@ -23,13 +25,16 @@ public class InjectorMock {
     }
 
     public static void initAssetInjector(AemContext context, String prefix) {
-        AssetUtilService assetUtils = mock(AssetUtilService.class);
-        when(assetUtils.resolvePath(anyString())).thenAnswer(invocationOnMock -> prefix + invocationOnMock.getArgument(0, String.class));
-        initAssetInjector(context, assetUtils);
+        PathUtilService pathUtilService = mock(PathUtilService.class);
+        when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
+        initAssetInjector(context, pathUtilService);
     }
 
-    public static void initAssetInjector(AemContext context, AssetUtilService assetUtils) {
-        context.registerService(AssetUtilService.class, assetUtils);
+    public static void initAssetInjector(AemContext context, PathUtilService pathUtilService) {
+        context.registerService(PathUtilService.class, pathUtilService);
         context.registerInjectActivateService(new AssetInjector());
     }
 

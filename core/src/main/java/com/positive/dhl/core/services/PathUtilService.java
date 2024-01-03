@@ -2,7 +2,9 @@ package com.positive.dhl.core.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -15,6 +17,9 @@ import java.util.List;
 @Component(service = PathUtilService.class)
 @Slf4j
 public class PathUtilService {
+    @Reference
+    private AssetUtilService assetUtilService;
+
     private static final List<String> UNSUPPORTED_CHARACTERS = Arrays.asList(
             "(",
             ")",
@@ -35,5 +40,9 @@ public class PathUtilService {
         }
 
         return StringUtils.isBlank(encodedPath) ? path : encodedPath;
+    }
+
+    public String resolveAssetPath(String assetPath) {
+        return StringUtils.isNoneBlank(assetPath) ? assetUtilService.resolvePath(encodeUnsupportedCharacters(assetPath)) : StringUtils.EMPTY;
     }
 }

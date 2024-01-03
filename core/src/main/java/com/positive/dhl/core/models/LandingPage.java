@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +26,8 @@ import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 
 @Model(adaptables=SlingHttpServletRequest.class)
 public class LandingPage {
+	@OSGiService
+	private PathUtilService pathUtilService;
 
 	@OSGiService
 	private PageUtilService pageUtilService;
@@ -43,17 +46,26 @@ public class LandingPage {
 	@Setter
 	private String title;
 
-	@Getter
 	@Setter
 	private String heroimagemob;
 
-	@Getter
+	public String getHeroimagemob() {
+		return pathUtilService.resolveAssetPath(heroimagemob);
+	}
+
 	@Setter
 	private String heroimagetab;
 
-	@Getter
+	public String getHeroimagetab() {
+		return pathUtilService.resolveAssetPath(heroimagetab);
+	}
+
 	@Setter
 	private String heroimagedt;
+
+	public String getHeroimagedt() {
+		return pathUtilService.resolveAssetPath(heroimagedt);
+	}
 
 	@Getter
 	@Setter
@@ -84,8 +96,10 @@ public class LandingPage {
 				if (props != null) {
 					String url = props.get("url", StringUtils.EMPTY);
 					
-					Article article = pageUtilService.getArticle(url, resourceResolver);
-					relatedArticles.add(article);
+					var article = pageUtilService.getArticle(url, resourceResolver);
+					if (article != null) {
+						relatedArticles.add(article);
+					}
 				}
 			}
 		}
