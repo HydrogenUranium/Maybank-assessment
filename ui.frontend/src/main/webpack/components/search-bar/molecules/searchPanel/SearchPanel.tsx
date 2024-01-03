@@ -54,7 +54,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
 
   const handleSearchClick = (): void => {
     putRecentSearch(inputValue);
-    window.location.href = `${searchResultPagePath}?searchfield=${inputValue}`;
+    window.location.href = getSearchResultPagePath(inputValue);
   };
 
   const handleKeyClick = (event: React.KeyboardEvent<HTMLInputElement>): void => {

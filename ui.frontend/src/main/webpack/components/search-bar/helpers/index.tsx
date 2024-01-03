@@ -19,5 +19,3 @@ export const getHighlightedSuggestion = (input, suggestion) => {
     </>
   );
 };
-
-export const getSearchResultPagePath = (query: string, path: string) => { return `${path}?query=${query}`; };
