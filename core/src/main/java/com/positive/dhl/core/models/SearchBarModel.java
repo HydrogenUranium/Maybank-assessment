@@ -40,6 +40,10 @@ public class SearchBarModel {
     @Named("searchBar-articlesTitle")
     private String articlesTitle;
 
+    @InjectHomeProperty
+    @Named("searchBar-searchResultPage")
+    private String searchResultPage;
+
     private String trendingTopics;
 
     @PostConstruct

@@ -1,8 +1,6 @@
 import { HttpRequestConfig } from "../../types/services/api/httpRequest";
 import { jsonResponseHandler } from "./responseUtils";
 
-
-
 const getResponseError = async (response: Response) => {
     const text = await response.text();
     return text ? JSON.parse(text) : new Error(response.statusText);

@@ -63,7 +63,9 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({ title, categories, sho
                     {categories.map((category) => (
                         <li
                             className={`${styles.articleGridCategoriesCategory}
-                                ${selectedCategory === category.name ? styles.articleGridCategoriesCategorySelected : ""}
+                                ${selectedCategory === category.name
+                                    ? styles.articleGridCategoriesCategorySelected
+                                    : ""}
                                 horizontal-scroll__react-button`}
                             tabIndex={0}
                             role="button"

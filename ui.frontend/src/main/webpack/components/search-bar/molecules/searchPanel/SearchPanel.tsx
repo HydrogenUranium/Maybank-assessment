@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { getRecentSearches, putRecentSearch } from 'src/main/webpack/services/local-storage/recentSearch';
-import { Article } from 'src/main/webpack/types/article';
 import { getArticleSuggestions, getTagSuggestions } from 'src/main/webpack/services/api/search';
 import { getHighlightedSuggestion } from '../../helpers';
 import { IconButton } from '../../atoms/iconButton/IconButton';
@@ -42,7 +41,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
     window.addEventListener('mousedown', handleCloseSearch);
     window.addEventListener('click', stopPropagation);
     window.addEventListener('keyup', (event) => {
-      if (event.key === 'Escape') {handleCloseSearch();}
+      if (event.key === 'Escape') { handleCloseSearch(); }
     });
     return () => {
       window.removeEventListener('mousedown', handleCloseSearch);
@@ -51,16 +50,15 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
     };
   }, []);
 
-  const getSearchResultPagePath = (query: string) => { return `${searchResultPagePath}?query=${query}`; };
+  const getSearchResultPagePath = (query: string) => { return `${searchResultPagePath}?searchfield=${query}`; };
 
   const handleSearchClick = (): void => {
     putRecentSearch(inputValue);
-    window.location.href = `${searchResultPagePath}?query=${inputValue}`;
+    window.location.href = `${searchResultPagePath}?searchfield=${inputValue}`;
   };
 
   const handleKeyClick = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key === 'Enter' && inputValue.length)
-      {handleSearchClick();}
+    if (event.key === 'Enter' && inputValue.length) { handleSearchClick(); }
   };
 
   const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
@@ -73,6 +71,78 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   };
 
   const focusInput = (): void => inputRef.current?.focus();
+
+  const renderSearchResults = () => {
+    if (tagSuggestions.length == 0 && articleSuggestions.length == 0) {
+      return;
+    }
+
+    return (
+      <div className={styles.searchResult}>
+        <SearchSection
+          items={tagSuggestions}
+          title=''
+          renderItem={(suggestion) => (
+            <button
+              onClick={() => {
+                setInputValue(suggestion);
+                focusInput();
+              }}
+              className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemText)}
+              key={suggestion}>
+              {getHighlightedSuggestion(inputValue, suggestion)}
+            </button>
+          )}
+        />
+        <SearchSection
+          items={articleSuggestions}
+          title={articlesTitle}
+          thinTitle
+          overflowHidden
+          renderItem={(article) => (
+            <a href={`${article.path}.html`} className={styles.article} key={article.path}>
+              <div className={styles.articleImage} style={{ backgroundImage: `url(${article.listimage})` }}></div>
+              <div className={styles.articleInfo}>
+                <div className={styles.articleInfoTitle}>{article.title}</div>
+                <div className={styles.articleInfoMetadata}>{article.createdfriendly}</div>
+              </div>
+            </a>
+          )}
+        />
+      </div>
+    );
+  };
+
+  const renderDefaultSearchResults = () => {
+    if (recentSearches.length == 0 && trendingTopics.length == 0) {
+      return;
+    }
+
+    return (
+      <div className={styles.searchResult}>
+        <SearchSection
+          items={recentSearches}
+          title={recentSearchesTitle}
+          renderItem={(search) => (
+            <a href={getSearchResultPagePath(search)} className={styles.searchSectionItemsItem} key={search}>
+              <span className={classNames(styles.icon, styles.iconHistory)}></span>
+              <span className={styles.searchSectionItemsItemText}>{search}</span>
+            </a>
+          )}
+        />
+        <SearchSection
+          items={trendingTopics}
+          title={trendingTopicsTitle}
+          renderItem={(topic) => (
+            <a href={getSearchResultPagePath(topic)} className={styles.searchSectionItemsItem} key={topic}>
+              <span className={classNames(styles.icon, styles.iconTrending)}></span>
+              <span className={styles.searchSectionItemsItemText}>{topic}</span>
+            </a>
+          )}
+        />
+      </div>
+    );
+  };
 
   return (
     <div className={styles.search} ref={searchRef}>
@@ -88,62 +158,10 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
         value={inputValue}
         onKeyDown={handleKeyClick}
       />
-      <div className={styles.searchResult}>
-        {inputValue.length > 0
-          ? (<>
-            <SearchSection
-              items={tagSuggestions}
-              title=''
-              renderItem={(suggestion) => (
-                <button
-                  onClick={() => {
-                    setInputValue(suggestion);
-                    focusInput();
-                  }}
-                  className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemText)}
-                  key={suggestion}>
-                  {getHighlightedSuggestion(inputValue, suggestion)}
-                </button>
-              )}
-            />
-            <SearchSection
-              items={articleSuggestions}
-              title={articlesTitle}
-              thinTitle
-              overflowHidden
-              renderItem={(article: Article) => (
-                <a href={`${article.path}.html`} className={styles.article} key={article.path}>
-                  <div className={styles.articleImage} style={{ backgroundImage: `url(${article.listimage})` }}></div>
-                  <div className={styles.articleInfo}>
-                    <div className={styles.articleInfoTitle}>{article.title}</div>
-                    <div className={styles.articleInfoMetadata}>{article.createdfriendly}</div>
-                  </div>
-                </a>
-              )}
-            />
-          </>) : (<>
-            <SearchSection
-              items={recentSearches}
-              title={recentSearchesTitle}
-              renderItem={(search) => (
-                <a href={getSearchResultPagePath(search)} className={styles.searchSectionItemsItem} key={search}>
-                  <span className={classNames(styles.icon, styles.iconHistory)}></span>
-                  <span className={styles.searchSectionItemsItemText}>{search}</span>
-                </a>
-              )}
-            />
-            <SearchSection
-              items={trendingTopics}
-              title={trendingTopicsTitle}
-              renderItem={(topic) => (
-                <a href={getSearchResultPagePath(topic)} className={styles.searchSectionItemsItem} key={topic}>
-                  <span className={classNames(styles.icon, styles.iconTrending)}></span>
-                  <span className={styles.searchSectionItemsItemText}>{topic}</span>
-                </a>
-              )}
-            />
-          </>)}
-      </div>
+
+      {inputValue.length > 0
+        ? renderSearchResults()
+        : renderDefaultSearchResults()}
       <IconButton
         iconType='close'
         className={styles.absoluteRight}

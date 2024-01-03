@@ -1063,6 +1063,16 @@
                                                                         jcr:primaryType="nt:unstructured"
                                                                         cq-msm-lockable="./searchBar-articlesTitle"/>
                                                             </articlesTitle>
+                                                            <searchResultPage
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    name="./searchBar-searchResultPage"
+                                                                    rootPath="/content/dhl"
+                                                                    fieldLabel="Search Result Page">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./searchBar-searchResulPage"/>
+                                                            </searchResultPage>
                                                         </items>
                                                     </searchBar>
                                                     <ctaBannerSubscribeToOurNewsletter
