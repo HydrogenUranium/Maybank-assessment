@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "aemsync": "^5.0.5"
+  },
+  "scripts": {
+    "aemsync": "aemsync -t http://admin:admin@localhost:4502 -w ./ui.apps/src/main/content",
+    "cypress": "cd ./ui.tests/test-module && npm run open"
+  }
+}
