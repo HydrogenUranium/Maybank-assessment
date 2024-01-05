@@ -32,11 +32,11 @@ export const getTags = async (query: string): Promise<any> => {
 
 export const getTagSuggestions = async(query: string): Promise<string[]> => {
     return getTags(query).then((result) => {
-        const resultArray = [];
+        const resultSet = new Set<string>();
         result.results.forEach(suggestion => {
-            resultArray.push(suggestion);
+            resultSet.add(suggestion);
         });
-        return resultArray.slice(0, 5);
+        return Array.from(resultSet).slice(0, 5);
     });
 };
 
