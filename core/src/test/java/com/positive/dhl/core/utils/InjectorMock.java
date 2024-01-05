@@ -7,6 +7,7 @@ import io.wcm.testing.mock.aem.junit5.AemContext;
 import org.apache.sling.models.spi.Injector;
 import org.junit.platform.commons.util.StringUtils;
 
+import java.util.Collections;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.*;
@@ -66,7 +67,7 @@ public class InjectorMock {
     }
 
     public static void mockInject(AemContext context, String injectorName, String name, Object value) {
-        mockInject(context, injectorName, Map.of(name, value));
+        mockInject(context, injectorName, Collections.singletonMap(name, value));
     }
 
     public static void mockInject(AemContext context, Map<String, Object> map) {

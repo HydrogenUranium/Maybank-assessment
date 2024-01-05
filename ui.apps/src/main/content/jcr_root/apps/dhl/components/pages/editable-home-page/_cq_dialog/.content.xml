@@ -1022,6 +1022,59 @@
                                                             </companyLinks>
                                                         </items>
                                                     </headerV2>
+                                                    <searchBar
+                                                            jcr:title="Search Bar"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <recentSearchesTitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Recent Searches Title"
+                                                                    emptyText="Recent Searches"
+                                                                    name="./searchBar-recentSearchesTitle">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./searchBar-recentSearchesTitle"/>
+                                                            </recentSearchesTitle>
+                                                            <trendingTopicsTitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Trending Topics Title"
+                                                                    emptyText="Trending Topics"
+                                                                    name="./searchBar-trendingTopicsTitle">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./searchBar-trendingTopicsTitle"/>
+                                                            </trendingTopicsTitle>
+                                                            <trendingTopicsList
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/alert"
+                                                                    jcr:title="Trending Topics List "
+                                                                    text="- comes from 'DHL Search Suggestions' tag namespace &lt;br&gt;
+                                                                    (/content/cq:tags/dhlsuggested)"/>
+                                                            <articlesTitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Suggested Articles Title"
+                                                                    emptyText="Articles"
+                                                                    name="./searchBar-articlesTitle">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./searchBar-articlesTitle"/>
+                                                            </articlesTitle>
+                                                            <searchResultPage
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    name="./searchBar-searchResultPage"
+                                                                    rootPath="/content/dhl"
+                                                                    fieldLabel="Search Result Page">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./searchBar-searchResulPage"/>
+                                                            </searchResultPage>
+                                                        </items>
+                                                    </searchBar>
                                                     <ctaBannerSubscribeToOurNewsletter
                                                             jcr:title="CTA Banner 'Subscribe to our Newsletter'"
                                                             jcr:primaryType="nt:unstructured"

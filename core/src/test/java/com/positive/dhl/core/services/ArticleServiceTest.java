@@ -65,6 +65,8 @@ class ArticleServiceTest {
     @InjectMocks
     private ArticleService articleService;
 
+    private ResourceResolver resolver;
+
     @BeforeEach
     void setUp() throws RepositoryException {
         context.load().json("/com/positive/dhl/core/services/ArticleServiceTest/content.json", "/content");
@@ -78,9 +80,9 @@ class ArticleServiceTest {
         when(hitOne.getPath()).thenReturn("/content/home/article_1");
         when(hitTwo.getPath()).thenReturn("/content/home/article_2");
         when(searchResult.getHits()).thenReturn(List.of(hitOne, hitTwo));
-        var resolver = spy(context.resourceResolver());
-        doNothing().when(resolver).close();
-        when(resolverHelper.getReadResourceResolver()).thenReturn(resolver);
+        resolver = spy(context.resourceResolver());
+        lenient().doNothing().when(resolver).close();
+        lenient().when(resolverHelper.getReadResourceResolver()).thenReturn(resolver);
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
@@ -103,6 +105,20 @@ class ArticleServiceTest {
         assertEquals(2, articles.size());
         assertEquals("/content/home/article_2", articles.get(0).getPath());
         assertEquals("/content/home/article_1", articles.get(1).getPath());
+    }
+
+    @Test
+    void getArticlesByTitle_ShouldReturnArticles_WhenArticlesAreFound() {
+        Article article1 = createArticleModel(context.resourceResolver().getResource("/content/home/article_1"));
+        Article article2 = createArticleModel(context.resourceResolver().getResource("/content/home/article_2"));
+        lenient().when(pageUtilService.getArticle(eq("/content/home/article_1"), any(ResourceResolver.class))).thenReturn(article1);
+        lenient().when(pageUtilService.getArticle(eq("/content/home/article_2"), any(ResourceResolver.class))).thenReturn(article2);
+
+        var articles = articleService.getArticlesByTitle("dhl", "/content/home", resolver);
+
+        assertEquals(2, articles.size());
+        assertEquals("/content/home/article_1", articles.get(0).getPath());
+        assertEquals("/content/home/article_2", articles.get(1).getPath());
     }
 
     private Article createArticleModel(Resource resource) {

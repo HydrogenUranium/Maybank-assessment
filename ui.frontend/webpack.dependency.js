@@ -19,7 +19,7 @@ module.exports = merge(common, {
     externals: [],
     mode: 'production',
     optimization: {
-        minimizer: [ new TerserPlugin()]
+        minimize: false
     },
     performance: {hints: false}
 });

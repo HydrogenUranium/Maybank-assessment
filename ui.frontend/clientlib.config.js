@@ -50,11 +50,23 @@ module.exports = {
         js: ['dependencies/js/react-core.bundle.js'],
       }
     },
+   {
+     ...libsBaseConfig,
+     name: 'discover-react-common',
+     categories: ['dhl.site', 'dhl.react-common'],
+     embed: ['dhl.react-core', 'dhl.search-bar'],
+     assets: {
+         js: [],
+         css: [],
+         resources: ['site/resources/common/images/*.svg']
+     }
+   },
     {
       ...libsBaseConfig,
       name: 'discover-category-page',
       categories: ['dhl.category-page'],
-      embed: ['dhl.react-core', 'dhl.article-grid'],
+      embed: ['dhl.article-grid'],
+      dependencies: ['dhl.react-common'],
       assets: {
           js: [],
           css: []
@@ -64,11 +76,20 @@ module.exports = {
       ...libsBaseConfig,
       name: 'discover-article-grid',
       categories: ['dhl.article-grid'],
-      dependencies: ['dhl.react-core'], 
+      dependencies: ['dhl.react-common'], 
       assets: {
         js: ['site/js/ArticleGrid.bundle.js'],
         css: ['site/css/ArticleGrid.bundle.css']
       }
-    }
+    },
+   {
+     ...libsBaseConfig,
+     name: 'discover-search-bar',
+     categories: ['dhl.search-bar'],
+     assets: {
+       js: ['site/js/SearchBar.bundle.js'],
+       css: ['site/css/SearchBar.bundle.css']
+     }
+   }
   ]
 };

@@ -3,7 +3,7 @@ export type Article = {
     date: string,
     description: string,
     image: string,
-    groupTag: string[],
+    groupTag: string,
     link: string,
     tags: string[],
     title: string,

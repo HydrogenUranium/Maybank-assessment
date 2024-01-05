@@ -1,0 +1,27 @@
+.searchButton {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 45px;
+    height: 45px;
+    padding: 12px;
+    &Image {
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        &Close {
+            background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/searchcloseicon.svg');
+        }
+        &Search {
+            background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/searchicon.svg');
+        }
+    }
+
+}
+
+.hidden {
+    visibility: hidden;
+}

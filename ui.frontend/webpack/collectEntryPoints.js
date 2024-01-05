@@ -4,7 +4,7 @@ const glob = require('glob');
 const collectEntryPoints = (sourceRootFolder, entryPointTypes, extension = '(js|ts|jsx|tsx)') =>{
     const __collectEntryPoints = (entryPointType) => {
         return glob.sync(path.join(sourceRootFolder, `**`, `*.${entryPointType}.+${extension}`).replace(/\\/g, '/'));
-    }
+    };
 
     return entryPointTypes
         .reduce((a, entryPoint) => [...a, ...__collectEntryPoints(entryPoint)], [])
@@ -15,8 +15,8 @@ const collectEntryPoints = (sourceRootFolder, entryPointTypes, extension = '(js|
             return {
                 ...a,
                 [chunkName]: filePath
-            }
+            };
         }, {});
-}
+};
 
 module.exports = collectEntryPoints;

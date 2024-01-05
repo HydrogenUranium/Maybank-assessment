@@ -1,10 +1,8 @@
 'use strict';
 
 const path = require('path');
-const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TSConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const collectEntryPoints = require('./webpack/collectEntryPoints');
@@ -96,11 +94,6 @@ module.exports = {
        new MiniCssExtractPlugin({
            filename: 'css/[name].bundle.css',
        })
-    //    new CopyWebpackPlugin({
-    //        patterns: [
-    //            { from: path.resolve(__dirname, SOURCE_ROOT + '/resources'), to: './clientlib-site/' }
-    //        ]
-    //    })
    ],
     stats: {
         assetsSort: 'chunks',

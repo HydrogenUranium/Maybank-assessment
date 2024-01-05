@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import { registerComponent } from '../../react-core/registry';
 import { ArticleCard } from './molecules/ArticleCard';
-import { Article } from './types';
+import { Article } from '../../types/article';
 
 import styles from './styles.module.scss';
 
@@ -63,7 +63,9 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({ title, categories, sho
                     {categories.map((category) => (
                         <li
                             className={`${styles.articleGridCategoriesCategory}
-                                ${selectedCategory === category.name ? styles.articleGridCategoriesCategorySelected : ""}
+                                ${selectedCategory === category.name
+                                    ? styles.articleGridCategoriesCategorySelected
+                                    : ""}
                                 horizontal-scroll__react-button`}
                             tabIndex={0}
                             role="button"
