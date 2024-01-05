@@ -124,3 +124,16 @@ A ClientLib will consist of the following files and directories:
 The project comes with the auto-public repository configured. To setup the repository in your Maven settings, refer to:
 
     http://helpx.adobe.com/experience-manager/kb/SetUpTheAdobeMavenRepository.html
+
+
+## AEM Sync
+`npm install` - to install
+
+`npm run sync` - to run
+
+## Cypress
+`npm install` in ui.tests/test-module - to install
+
+`npm run open` in ui.tests/test-module - to run
+
+`npm run cypress` - to run from root
