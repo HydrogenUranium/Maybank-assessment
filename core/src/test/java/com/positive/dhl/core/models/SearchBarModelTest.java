@@ -51,6 +51,7 @@ class SearchBarModelTest {
         mockInjectHomeProperty(context, "searchBar-recentSearchesTitle" ,"Recent Searches");
         mockInjectHomeProperty(context, "searchBar-trendingTopicsTitle" ,"Trending Topics");
         mockInjectHomeProperty(context, "searchBar-articlesTitle" ,"Articles");
+        mockInjectHomeProperty(context, "searchBar-searchResultPage" ,"/content/dhl/global/en-global/search-results");
 
         SearchBarModel searchBarModel = request.adaptTo(SearchBarModel.class);
         assertNotNull(searchBarModel);
@@ -59,6 +60,7 @@ class SearchBarModelTest {
         assertEquals("Trending Topics", searchBarModel.getTrendingTopicsTitle());
         assertEquals("Articles", searchBarModel.getArticlesTitle());
         assertEquals("[\"Business\",\"China\",\"small business\"]", searchBarModel.getTrendingTopics());
+        assertEquals("/dhl/global/en-global/search-results", searchBarModel.getSearchResultPage());
     }
 
     @Test
@@ -68,6 +70,7 @@ class SearchBarModelTest {
         mockInjectHomeProperty(context, "searchBar-recentSearchesTitle" ,null);
         mockInjectHomeProperty(context, "searchBar-trendingTopicsTitle" ,null);
         mockInjectHomeProperty(context, "searchBar-articlesTitle" ,null);
+        mockInjectHomeProperty(context, "searchBar-searchResultPage" ,null);
 
         SearchBarModel searchBarModel = request.adaptTo(SearchBarModel.class);
         assertNotNull(searchBarModel);
@@ -76,5 +79,6 @@ class SearchBarModelTest {
         assertNull(searchBarModel.getTrendingTopicsTitle());
         assertNull(searchBarModel.getArticlesTitle());
         assertEquals("[]", searchBarModel.getTrendingTopics());
+        assertEquals("", searchBarModel.getSearchResultPage());
     }
 }

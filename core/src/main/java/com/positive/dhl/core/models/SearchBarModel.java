@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import lombok.AccessLevel;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -40,15 +41,18 @@ public class SearchBarModel {
     @Named("searchBar-articlesTitle")
     private String articlesTitle;
 
+    @Getter(AccessLevel.NONE)
     @InjectHomeProperty
     @Named("searchBar-searchResultPage")
-    private String searchResultPage;
+    private String searchResultPagePath;
 
     private String trendingTopics;
+    private String searchResultPage;
 
     @PostConstruct
     private void init() {
         trendingTopics = receiveDefaultTrendingTopicsList();
+        searchResultPage = StringUtils.isNoneBlank(searchResultPagePath) ? resourceResolver.map(searchResultPagePath) : StringUtils.EMPTY;
     }
 
     private String receiveDefaultTrendingTopicsList() {
