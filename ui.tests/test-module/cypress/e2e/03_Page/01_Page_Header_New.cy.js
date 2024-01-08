@@ -6,13 +6,12 @@ describe('Header Test', () => {
 
   beforeEach(() => {
     cy.visit(pageUrl);
-    //cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
-    cy.AEMLogin(Cypress.env('AEM_PUBLISH_USERNAME'), Cypress.env('AEM_PUBLISH_PASSWORD'));
+    cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
   });
 
    it('redirects to the homepage when logo is clicked', () => {
       cy.get('.headerV2__logo').click({force: true});
-      cy.url().should('eq', pageUrl);
+      cy.url().should('eq', Cypress.env('AEM_PUBLISH_URL') + '/discover/en-global');
     });
 
   it('Verify search button is clickable and open the search field', () => {

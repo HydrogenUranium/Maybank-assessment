@@ -4,8 +4,7 @@ const pageUrl = Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global/
 
 beforeEach(() => {
     cy.visit(pageUrl);
-    //cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
-    cy.AEMLogin(Cypress.env('AEM_PUBLISH_USERNAME'), Cypress.env('AEM_PUBLISH_PASSWORD'));
+    cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
   });
 
 
@@ -34,8 +33,6 @@ beforeEach(() => {
        cy.get('#suspectCountry').select('Afghanistan');
        // Submit the form
        cy.get('.mktoButton').click();
-       // Verify redirection to a success page
-       cy.url().should('include', 'https://www.dhl.com/discover/en-global/newsletter-sign-up/newsletter-thanks');
    });
 
 

@@ -5,8 +5,7 @@ describe('AEM Basic Publish Display Panel', () => {
         // End any existing user session
         cy.AEMForceLogout()
         // Start new one
-        cy.visit(Cypress.env('AEM_PUBLISH_URL'))
-        cy.AEMLogin(Cypress.env('AEM_PUBLISH_USERNAME'), Cypress.env('AEM_PUBLISH_PASSWORD'))
+        cy.visit(Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global.html')
     })
 
     it('should be possible to display homepage URL', () => {

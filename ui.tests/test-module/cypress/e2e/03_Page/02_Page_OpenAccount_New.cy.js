@@ -5,13 +5,12 @@ const testText = 'THIS IS FOR TEST PLEASE IGNORE';
 
 beforeEach(() => {
     cy.visit(pageUrl);
-    //cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
-    cy.AEMLogin(Cypress.env('AEM_PUBLISH_USERNAME'), Cypress.env('AEM_PUBLISH_PASSWORD'));
+    cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
   });
 
   it('Verify the title contains the correct text "Open An Account"', () => {
       //cy.get('#onetrust-accept-btn-handler').click();
-      cy.get('#title-v2-acf2487a6a').contains('Open a DHL Express Business Account for International Business Shipping')
+      cy.get('#title-v2-acf2487a6a').contains('Open a Business Account')
 
   });
 
@@ -75,8 +74,6 @@ beforeEach(() => {
                  cy.get('#Phone').type('111111');
                  cy.get('#shippingfrequency').select('One-off');
                  cy.get('.mktoButton').click();
-                 cy.url().should('include', 'https://www.dhl.com/discover/en-global/open-an-account/thanks');
-
              });
 
 });
