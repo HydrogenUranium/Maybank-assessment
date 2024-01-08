@@ -383,6 +383,7 @@ public class SearchResultsList {
                 for (Map.Entry<String, String> predicate : map.entrySet()) {
                     mapStr += predicate.getKey() + "=" + predicate.getValue() + "|";
                 }
+                mapStr = mapStr.replaceAll("[\n\r]", "_");
                 log.debug("QueryBuilder map: {}", mapStr);
     
                 // execute
