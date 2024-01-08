@@ -82,22 +82,13 @@ public class ArticleService {
     public List<Article> getArticlesByTitle(String searchTerm, String searchScope, ResourceResolver resourceResolver) {
         String[] propertiesToLook = { "jcr:content/jcr:title", "jcr:content/pageTitle", "jcr:content/navTitle", "jcr:content/cq:tags" };
         String[] terms = getTerms(searchTerm);
-        String[] lowerCasedTerms = getLowerCasedTerms(searchTerm);
-        String[] upperCasedTerms = getUpperCasedTerms(searchTerm);
-        String[] capitalisedTerms = getCapitalisedTerms(searchTerm);
 
         Map<String, String> map = new HashMap<>();
         map.put("path", searchScope);
         map.put("type", NT_PAGE);
-        map.put("1_group.p.or", "true");
 
         for (var propertiesToLookGroupIndex = 0; propertiesToLookGroupIndex < propertiesToLook.length; propertiesToLookGroupIndex++) {
-            map.put(String.format("1_group.%1$s_group.p.or", (propertiesToLookGroupIndex + 1)), "true");
-
-            setGroup(map, terms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex, "1_group.%1$s_group.1_group.%2$s_property");
-            setGroup(map, lowerCasedTerms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex, "1_group.%1$s_group.2_group.%2$s_property");
-            setGroup(map, capitalisedTerms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex, "1_group.%1$s_group.3_group.%2$s_property");
-            setGroup(map, upperCasedTerms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex, "1_group.%1$s_group.4_group.%2$s_property");
+            setTermGroupPredicates(map, terms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex);
         }
 
         setOrderingAndLimiting(map);
@@ -111,21 +102,20 @@ public class ArticleService {
         return searchArticles(map, resourceResolver);
     }
 
-    private Map<String, String> setGroup(Map<String, String> map, String[] terms, String propertyToLook, int propertiesToLookGroupIndex, String groupPropertyTemplate) {
-        String groupPropertyOperationTemplate = groupPropertyTemplate + ".operation";
-        String groupPropertyValueTemplate = groupPropertyTemplate + ".value";
+    private Map<String, String> setTermGroupPredicates(Map<String, String> map, String[] terms, String propertyToLook, int propertiesToLookGroupIndex) {
+        var termGroupPredicatesTemplate = "1_group.%1$s_group.%2$s_group.1_containsIgnoreCase";
+        String propertyPredicate = termGroupPredicatesTemplate + ".property";
+        String valuePredicate = termGroupPredicatesTemplate + ".value";
+
+        // match condition for 'terms' group
+        map.put(String.format("1_group.%1$s_group.p.and", (propertiesToLookGroupIndex + 1)), "true");
+
         for (var termIndex = 0; termIndex < terms.length; termIndex++) {
             String term = terms[termIndex];
-
-            map.put(String.format(groupPropertyTemplate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), propertyToLook);
-            map.put(String.format(groupPropertyOperationTemplate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), "like");
-            map.put(String.format(groupPropertyValueTemplate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), getTermRegexp(term));
+            map.put(String.format(propertyPredicate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), propertyToLook);
+            map.put(String.format(valuePredicate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), term);
         }
         return map;
-    }
-
-    private String getTermRegexp(String term) {
-        return "%".concat(Text.escapeIllegalXpathSearchChars(term)).concat("%");
     }
 
     private String[] getTerms(String searchTerm) {
@@ -137,18 +127,6 @@ public class ArticleService {
             }
         }
         return result.toArray(new String[0]);
-    }
-
-    private String[] getLowerCasedTerms(String searchTerm) {
-        return Arrays.stream(getTerms(searchTerm)).map(String::toLowerCase).toArray(String[]::new);
-    }
-
-    private String[] getUpperCasedTerms(String searchTerm) {
-        return Arrays.stream(getTerms(searchTerm)).map(String::toUpperCase).toArray(String[]::new);
-    }
-
-    private String[] getCapitalisedTerms(String searchTerm) {
-        return Arrays.stream(getTerms(searchTerm)).map(StringUtils::capitalize).toArray(String[]::new);
     }
 
     private Map<String, String> setOrderingAndLimiting(Map<String, String> map) {
