@@ -11,7 +11,6 @@ import javax.jcr.Session;
 
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageUtilService;
-import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -354,9 +353,8 @@ public class SearchResultsList {
                 map.put("1_group.p.or", "true");
                 String[] fields = { "jcr:content/jcr:title", "jcr:content/pageTitle", "jcr:content/navTitle", "jcr:content/cq:tags" };
                 String[] terms = searchTerm.trim().split("\\s");
-                String[] termsLowercase = searchTerm.toLowerCase().trim().split("\\s");
                 for (int i = 0; i < fields.length; i++) {
-                    map.put(String.format("1_group.%1$s_group.p.or", (i + 1)), "true");
+                    map.put(String.format("1_group.%1$s_group.p.true", (i + 1)), "true");
                     int termsCount = 0;
                     for (int j = 0; j < terms.length; j++) {
                         String term = terms[j];
@@ -367,49 +365,8 @@ public class SearchResultsList {
                         }
 
                         termsCount++;
-                        map.put(String.format("1_group.%1$s_group.1_group.%2$s_property", (i + 1), (j + 1)), fields[i]);
-                        map.put(String.format("1_group.%1$s_group.1_group.%2$s_property.operation", (i + 1), (j + 1)), "like");
-                        map.put(String.format("1_group.%1$s_group.1_group.%2$s_property.value", (i + 1), (j + 1)), "%".concat(Text.escapeIllegalXpathSearchChars(term)).concat("%"));
-
-                        if (termsCount >= MAX_TERMS_ALLOWED) {
-                            break;
-                        }
-                    }
-
-                    termsCount = 0;
-                    for (int j = 0; j < termsLowercase.length; j++) {
-                        String term = termsLowercase[j];
-
-                        // words with less than 3 characters are ignored
-                        if (term.trim().length() < 3) {
-                            continue;
-                        }
-
-                        termsCount++;
-                        map.put(String.format("1_group.%1$s_group.2_group.%2$s_property", (i + 1), (j + 1)), fields[i]);
-                        map.put(String.format("1_group.%1$s_group.2_group.%2$s_property.operation", (i + 1), (j + 1)), "like");
-                        map.put(String.format("1_group.%1$s_group.2_group.%2$s_property.value", (i + 1), (j + 1)), "%".concat(Text.escapeIllegalXpathSearchChars(term)).concat("%"));
-
-                        if (termsCount >= MAX_TERMS_ALLOWED) {
-                            break;
-                        }
-                    }
-
-                    termsCount = 0;
-                    for (int j = 0; j < termsLowercase.length; j++) {
-                        String term = termsLowercase[j];
-                        
-                        // words with less than 3 characters are ignored 
-                        if (term.trim().length() < 3) {
-                            continue;
-                        }
-
-                        term = Character.toUpperCase(term.charAt(0)) + term.substring(1);
-
-                        termsCount++;
-                        map.put(String.format("1_group.%1$s_group.3_group.%2$s_property", (i + 1), (j + 1)), fields[i]);
-                        map.put(String.format("1_group.%1$s_group.3_group.%2$s_property.operation", (i + 1), (j + 1)), "like");
-                        map.put(String.format("1_group.%1$s_group.3_group.%2$s_property.value", (i + 1), (j + 1)), "%".concat(Text.escapeIllegalXpathSearchChars(term)).concat("%"));
+                        map.put(String.format("1_group.%1$s_group.%2$s_group.1_containsIgnoreCase.property", (i + 1), (j + 1)), fields[i]);
+                        map.put(String.format("1_group.%1$s_group.%2$s_group.1_containsIgnoreCase.value", (i + 1), (j + 1)), term);
 
                         if (termsCount >= MAX_TERMS_ALLOWED) {
                             break;
