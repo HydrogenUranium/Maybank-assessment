@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton should render "IconButton" component property 1`] = `
+<button
+  className="searchButton"
+  data-testid="testId"
+>
+  <span
+    className="searchButtonImage"
+  />
+</button>
+`;

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          jcr:primaryType="nt:unstructured"
+          title="Search Results"
+          descriptionFormat="Browse search results for &lt;b&gt;{0}&lt;/b&gt; (Showing {1} of {2} results)"
+          descriptionFormatNoResults="No results found for &lt;b&gt;{0}&lt;/b&gt;"
+          popularSearchesTitle="Popular searches"
+          sortByTitle="Sort By"
+          latestSortOptionTitle="Latest"
+          showMoreResultsButtonTitle="Show more results"
+/>

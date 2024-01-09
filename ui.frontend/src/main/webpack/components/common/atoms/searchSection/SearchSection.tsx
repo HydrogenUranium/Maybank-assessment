@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import styles from './styles.module.scss';
 
 interface SearchSectionProps<T> {
-  title: string;
   items: T[];
   renderItem: (item: T, index: number) => JSX.Element;
+  title?: string;
   thinTitle?: boolean;
   overflowHidden?: boolean;
 }
