@@ -28,7 +28,7 @@ describe('Subscribe newsletter page', () => {
 
     it('Verify that an error message "This field is required" is displayed when a required field is left blank', () => {
         cy.get('#Email').type('test@gmail.com');
-        cy.get('.mk  toButton').click();
+        cy.get('.mktoButton').click();
         cy.get('#ValidMsgsuspectCountry').should('be.visible').and('contain', 'This field is required.') ;
     });
 
