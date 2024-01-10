@@ -69,6 +69,7 @@
         <jacoco.version>0.8.7</jacoco.version>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.javascript.lcov.reportPaths>${project.basedir}/coverage/lcov.info</sonar.javascript.lcov.reportPaths>
         <sonar.junit.reportsPath>${project.basedir}/target/surefire-reports</sonar.junit.reportsPath>
     </properties>
 
