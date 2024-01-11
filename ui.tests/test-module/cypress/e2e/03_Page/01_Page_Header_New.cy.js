@@ -1,7 +1,7 @@
 describe('Header Test', () => {
   const pageUrl = Cypress.env('AEM_PUBLISH_URL')+ '/content/dhl/global/en-global.html';
       const searchButtonSelector = '.searchButtonImage__y8c7h';
-      const searchInputSelector = '[data-testid="search-input"]';
+      const searchInputSelector = '[data-testid="search-bar-input"]';
       const closeSearchSelector = '[data-testid="close-search"] > .searchButtonImage__y8c7h';
 
     beforeEach(() => {
