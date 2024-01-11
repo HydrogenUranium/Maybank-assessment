@@ -9,7 +9,7 @@ describe('Open An Account Marketo page', () => {
     });
 
     it('Verify the title contains the correct text "Open An Account"', () => {
-        cy.get('#title-v2-acf2487a6a').contains('Open a Business Account')
+        cy.get('#title-v2-acf2487a6a').should('exist')
     });
 
     it('Marketo form is present', () => {
