@@ -59,7 +59,8 @@ public class Article {
 
 	@Expose private String createdfriendly;
 	private String created;
-	private Date createdDate;
+    private Date createdDate;
+	@Expose private long createdMilliseconds;
 	private String icon;
 	private String grouptitle;
 	@Expose private String groupTag;
@@ -71,7 +72,7 @@ public class Article {
 	@Expose private String author;
 	private String authortitle;
 	private String authorimage;
-	private String readtime;
+	@Expose private String readtime;
 	@Expose private String listimage;
 	private String heroimagemob;
 	private String heroimagetab;
@@ -99,6 +100,7 @@ public class Article {
 
 		locale = pageUtilService.getLocale(resource);
 		createdDate = getPublishDate(properties);
+		createdMilliseconds = createdDate.getTime();
 		created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
 		createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, locale).format(createdDate);
 		icon = properties.get("jcr:content/mediatype", "");

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Article should render "Article" component property 1`] = `
+<div
+  className="article"
+>
+  <a
+    className="articleImage"
+    href="/discover/en-global/logistics-advice/essential-guides/what-is-reverse-logistics.html"
+    style={
+      {
+        "backgroundImage": "url(/discover/content/dam/global-master/4-logistics-advice/essential-guides/wec0787-what-is-reverse-logistics/Mobile_991x558_V02.jpg)",
+      }
+    }
+    tabIndex={-1}
+  />
+  <div
+    className="articleInfo"
+  >
+    <div
+      className="articleInfoGroupTag"
+    >
+      #LogisticsAdvice
+    </div>
+    <a
+      className="articleInfoTitle"
+      href="/discover/en-global/logistics-advice/essential-guides/what-is-reverse-logistics.html"
+    >
+      What is Reverse Logistics?
+    </a>
+    <div
+      className="articleInfoMetadata"
+    >
+      April 20, 2023
+    </div>
+    <div
+      className="articleInfoDescription"
+      dangerouslySetInnerHTML={
+        {
+          "__html": "<b>Discover</b> everything you need to know about reverse <b>logistics</b> including types, benefits, challenges, and strategies to optimize your reverse <b>logistics</b> practices.",
+        }
+      }
+    />
+  </div>
+</div>
+`;

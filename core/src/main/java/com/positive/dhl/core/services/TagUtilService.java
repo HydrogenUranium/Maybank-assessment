@@ -2,6 +2,7 @@ package com.positive.dhl.core.services;
 
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
+import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
@@ -15,10 +16,14 @@ import static com.day.cq.commons.jcr.JcrConstants.JCR_CONTENT;
 @Component(service = TagUtilService.class)
 public class TagUtilService {
 
+    public static final String EXTERNAL_TAGS_NAMESPACE = "dhl-article-external";
+    private static final String TRENDING_TOPICS_TAGS_NAMESPACE = "dhlsuggested:";
+
     @Reference
     private PageUtilService pageUtilService;
 
-    public static final String EXTERNAL_TAGS_NAMESPACE = "dhl-article-external";
+    @Reference
+    protected ResourceResolverHelper resolverHelper;
 
     /**
      * Returns the {@link List} External Tags of the Article.
@@ -45,6 +50,24 @@ public class TagUtilService {
                 })
                 .map(this::transformToHashtag)
                 .collect(Collectors.toList());
+    }
+
+    public List<String> getDefaultTrendingTopicsList() {
+        TagManager tagManager = resolverHelper.getReadResourceResolver().adaptTo(TagManager.class);
+
+        List<String> trendingTopicsList = new ArrayList<>();
+        if (tagManager != null) {
+            var trendingTopicsTagsNamespace = tagManager.resolve(TRENDING_TOPICS_TAGS_NAMESPACE);
+            if (null != trendingTopicsTagsNamespace) {
+                Iterator<Tag> trendingTopicsTags = trendingTopicsTagsNamespace.listChildren();
+                while (trendingTopicsTags.hasNext()) {
+                    trendingTopicsList.add(trendingTopicsTags.next().getTitle());
+                }
+                trendingTopicsList.sort(String::compareTo);
+            }
+        }
+
+        return trendingTopicsList;
     }
 
     public String transformToHashtag(String tagTitle) {

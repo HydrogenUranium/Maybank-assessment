@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { registerComponent } from '../../react-core/registry';
+import { registerComponent } from '../../react-core';
 import { IconButton } from './atoms/iconButton/IconButton';
 import { SearchPanel } from './molecules/searchPanel/SearchPanel';
 

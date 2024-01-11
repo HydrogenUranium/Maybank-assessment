@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleGrid should render component "ArticleGrid" property 1`] = `
+<div
+  className="articleGrid"
+>
+  <div
+    className="articleGridHeader"
+  >
+    <div
+      className="articleGridHeaderTitle"
+    >
+      Article Grid
+    </div>
+    <div
+      className="articleGridHeaderSort"
+    >
+      <label
+        className="articleGridHeaderSortLabel"
+        htmlFor="sort-by"
+      >
+        Sort By
+      </label>
+      <div
+        className="articleGridHeaderSortSelect"
+        id="sort-by"
+      >
+        Latests
+      </div>
+    </div>
+  </div>
+  <nav
+    aria-label="Article Grid"
+  >
+    <ul
+      className="articleGridCategories horizontal-scroll"
+    >
+      <li
+        aria-selected={true}
+        className="articleGridCategoriesCategory
+                                articleGridCategoriesCategorySelected
+                                horizontal-scroll__react-button"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        All
+      </li>
+      <li
+        aria-selected={false}
+        className="articleGridCategoriesCategory
+                                
+                                horizontal-scroll__react-button"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        Logistics
+      </li>
+    </ul>
+  </nav>
+  <div
+    className="articleGridArticles"
+  >
+    <div
+      className="articleCard"
+    >
+      <a
+        className="articleCardImage"
+        href="/discover/en-global/logistics-advice/essential-guides/what-is-reverse-logistics"
+        style={
+          {
+            "backgroundImage": "url(/discover/content/dam/global-master/4-logistics-advice/essential-guides/wec0787-what-is-reverse-logistics/Mobile_991x558_V02.jpg)",
+          }
+        }
+        tabIndex={-1}
+      >
+        <div
+          className="articleCardImageGroupTag"
+        >
+          #LogisticsAdvice
+        </div>
+      </a>
+      <div
+        className="articleCardInfo"
+      >
+        <div
+          className="articleCardInfoAuthor"
+        >
+          Anna Thompson | April 20, 2023
+        </div>
+        <a
+          className="articleCardInfoTitle"
+          href="/discover/en-global/logistics-advice/essential-guides/what-is-reverse-logistics"
+        >
+          What is Reverse Logistics?
+        </a>
+        <div
+          className="articleCardInfoDescription"
+        >
+          Discover everything you need to know about reverse logistics including types, benefits, challenges, and strategies to optimize your reverse logistics practices.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

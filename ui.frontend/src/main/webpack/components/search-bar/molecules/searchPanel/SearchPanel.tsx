@@ -2,11 +2,11 @@ import React, { useRef, useState, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { getRecentSearches, putRecentSearch } from 'src/main/webpack/services/local-storage/recentSearch';
-import { getArticleSuggestions, getTagSuggestions } from 'src/main/webpack/services/api/search';
-import { getHighlightedSuggestion } from '../../helpers';
+import { getArticles, getTagSuggestions } from 'src/main/webpack/services/api/search';
 import { IconButton } from '../../atoms/iconButton/IconButton';
-import { useDataFetching } from '../../hooks/useDataFetching';
-import { SearchSection } from '../../atoms/searchSection/SearchSection';
+import { useDataFetching } from '../../../../hooks/useDataFetching';
+import { SearchSection } from '../../../common/atoms/searchSection/SearchSection';
+import { highlightMatches } from 'src/main/webpack/utils';
 
 import styles from './styles.module.scss';
 
@@ -29,7 +29,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [tagSuggestions] = useDataFetching(inputValue, getTagSuggestions);
-  const [articleSuggestions] = useDataFetching(inputValue, getArticleSuggestions);
+  const [articleSuggestions] = useDataFetching(inputValue, getArticles);
   const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -48,7 +48,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
       window.removeEventListener('click', stopPropagation);
       window.removeEventListener('keyup', handleCloseSearch);
     };
-  }, []);
+  }, [handleCloseSearch]);
 
   const getSearchResultPagePath = (query: string) => { return `${searchResultPagePath}?searchfield=${query}`; };
 
@@ -89,9 +89,8 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                 focusInput();
               }}
               className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemText)}
-              key={suggestion}>
-              {getHighlightedSuggestion(inputValue, suggestion)}
-            </button>
+              dangerouslySetInnerHTML={{__html: highlightMatches(suggestion, "^" + inputValue, "gi")}}
+              key={suggestion}/>
           )}
         />
         <SearchSection
@@ -154,7 +153,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
       />
       <input
         aria-label='Search'
-        data-testid='search-input'
+        data-testid='search-bar-input'
         onChange={handleInputChange}
         ref={inputRef}
         value={inputValue}
