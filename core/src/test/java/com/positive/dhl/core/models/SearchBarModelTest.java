@@ -1,19 +1,22 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.tagging.InvalidTagFormatException;
-import com.day.cq.tagging.TagManager;
+import com.positive.dhl.core.services.TagUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.List;
 
 import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class SearchBarModelTest {
@@ -21,13 +24,17 @@ class SearchBarModelTest {
     public static final String ROOT_TEST_PAGE_PATH = "/content";
     public static final String ARTICLE_RESOURCE_PATH = "/content/dhl/us/en-us/category-page/article-page-without-new-article-setup";
 
-    private final AemContext context = new AemContext(ResourceResolverType.JCR_OAK);
+    private final AemContext context = new AemContext();
     private final MockSlingHttpServletRequest request = context.request();
     private final ResourceResolver resourceResolver = context.resourceResolver();
+
+    @Mock
+    private TagUtilService tagUtilService;
 
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
         context.addModelsForClasses(SearchBarModel.class);
+        context.registerService(TagUtilService.class, tagUtilService);
         context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
     }
 
@@ -36,18 +43,11 @@ class SearchBarModelTest {
         request.setResource(resourceResolver.getResource(path));
     }
 
-    private void mockTags() throws InvalidTagFormatException {
-        TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
-        tagManager.createTag("dhlsuggested:Business", "Business", "Business");
-        tagManager.createTag("dhlsuggested:China", "China", "China");
-        tagManager.createTag("dhlsuggested:Small-business", "small business", "small business");
-    }
-
     @Test
-    void test_withValidSetup() throws InvalidTagFormatException {
+    void test_withValidSetup() {
         initRequest(ARTICLE_RESOURCE_PATH);
 
-        mockTags();
+        when(tagUtilService.getDefaultTrendingTopicsList()).thenReturn(List.of("Business", "China", "small business"));
         mockInjectHomeProperty(context, "searchBar-recentSearchesTitle" ,"Recent Searches");
         mockInjectHomeProperty(context, "searchBar-trendingTopicsTitle" ,"Trending Topics");
         mockInjectHomeProperty(context, "searchBar-articlesTitle" ,"Articles");
@@ -60,7 +60,7 @@ class SearchBarModelTest {
         assertEquals("Trending Topics", searchBarModel.getTrendingTopicsTitle());
         assertEquals("Articles", searchBarModel.getArticlesTitle());
         assertEquals("[\"Business\",\"China\",\"small business\"]", searchBarModel.getTrendingTopics());
-        assertEquals("/dhl/global/en-global/search-results", searchBarModel.getSearchResultPage());
+        assertEquals("/content/dhl/global/en-global/search-results", searchBarModel.getSearchResultPage());
     }
 
     @Test

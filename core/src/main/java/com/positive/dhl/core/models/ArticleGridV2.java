@@ -110,13 +110,13 @@ public class ArticleGridV2 {
             articles.forEach(article -> {
                 JsonObject articleJson = Json.createObjectBuilder()
                         .add(PAGE_TITLE_PARAM, article.getTitle())
-                        .add("link", article.getPath() + ".html")
+                        .add("path", article.getPath() + ".html")
                         .add("description", article.getDescription())
-                        .add("image", article.getListimage())
-                        .add("date", article.getCreatedfriendly())
+                        .add("listimage", article.getListimage())
+                        .add("createdfriendly", article.getCreatedfriendly())
                         .add("author", article.getAuthor())
                         .add("groupTag", article.getGroupTag())
-                        .add("tags", Json.createArrayBuilder(article.getTagsToShow()).build())
+                        .add("tagsToShow", Json.createArrayBuilder(article.getTagsToShow()).build())
                         .build();
                 articlesJson.add(articleJson);
             });

@@ -239,6 +239,15 @@
       <property inherit="true" name="topTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="buttonName" translate="true" updateDestinationLanguage="false"/>
     </node>
+    <node resourceType="dhl/components/content/search">
+      <property inherit="true" name="descriptionFormat" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="descriptionFormatNoResults" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="latestSortOptionTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="popularSearchesTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="showMoreResultsButtonTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="sortByTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
+    </node>
     <node resourceType="dhl/components/pages/amparticle">
       <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>

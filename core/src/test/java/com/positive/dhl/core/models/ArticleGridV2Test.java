@@ -126,6 +126,6 @@ class ArticleGridV2Test {
         assertEquals("E-commerce Advice - navTitle", eCommerceAdviceCategory.get("name").asText());
         JsonNode article = allCategory.get("articles").get(0);
         assertEquals("What paperwork do I need for international shipping?", article.get("title").asText());
-        assertEquals("/content/home/e-commerce-advice/article.html", article.get("link").asText());
+        assertEquals("/content/home/e-commerce-advice/article.html", article.get("path").asText());
     }
 }

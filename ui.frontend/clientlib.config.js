@@ -74,6 +74,17 @@ module.exports = {
     },
     {
       ...libsBaseConfig,
+      name: 'discover-search-result-page',
+      categories: ['dhl.search-result-page'],
+      embed: ['dhl.search'],
+      dependencies: ['dhl.react-common'],
+      assets: {
+          js: [],
+          css: []
+        }
+    },
+    {
+      ...libsBaseConfig,
       name: 'discover-article-grid',
       categories: ['dhl.article-grid'],
       dependencies: ['dhl.react-common'], 
@@ -90,6 +101,16 @@ module.exports = {
        js: ['site/js/SearchBar.bundle.js'],
        css: ['site/css/SearchBar.bundle.css']
      }
-   }
+   },
+   {
+    ...libsBaseConfig,
+    name: 'discover-search',
+    categories: ['dhl.search'],
+    dependencies: ['dhl.react-common'], 
+    assets: {
+      js: ['site/js/Search.bundle.js'],
+      css: ['site/css/Search.bundle.css']
+    }
+  }
   ]
 };

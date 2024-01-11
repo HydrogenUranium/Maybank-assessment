@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar should render component "SearchBar" property 1`] = `
+<div
+  className="searchBar"
+>
+  <button
+    className="searchButton"
+    data-testid="open-search"
+    onClick={[Function]}
+  >
+    <span
+      className="searchButtonImage searchButtonImageSearch"
+    />
+  </button>
+</div>
+`;

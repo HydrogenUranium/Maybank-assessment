@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchPanel should render component "SearchPanel" property 1`] = `
+<div
+  className="search"
+>
+  <button
+    className="searchButton absoluteLeft"
+    data-testid="handle-search"
+    onClick={[Function]}
+  >
+    <span
+      className="searchButtonImage searchButtonImageSearch"
+    />
+  </button>
+  <input
+    aria-label="Search"
+    data-testid="search-bar-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    value=""
+  />
+  <div
+    className="searchResult"
+  >
+    <div
+      className="searchSection"
+    >
+      <div
+        className="searchSectionTitle"
+      >
+        Trending Topics
+      </div>
+      <div
+        className="searchSectionItems"
+      >
+        <a
+          className="searchSectionItemsItem"
+          href="/search-result?searchfield=Business"
+        >
+          <span
+            className="icon iconTrending"
+          />
+          <span
+            className="searchSectionItemsItemText"
+          >
+            Business
+          </span>
+        </a>
+        <a
+          className="searchSectionItemsItem"
+          href="/search-result?searchfield=China"
+        >
+          <span
+            className="icon iconTrending"
+          />
+          <span
+            className="searchSectionItemsItemText"
+          >
+            China
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <button
+    className="searchButton absoluteRight"
+    data-testid="close-search"
+    onClick={[Function]}
+  >
+    <span
+      className="searchButtonImage searchButtonImageClose"
+    />
+  </button>
+</div>
+`;

@@ -91,12 +91,9 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
             log.debug("Skipping resource at {}: externalised location is null", resource.getPath());
             return;
         }
-        Url url = sitemap.addUrl(location);
+        var url = sitemap.addUrl(location);
         if (lastmodEnabled) {
-            Calendar lastmod = getLastmodDate(page);
-            if (lastmod != null) {
-                url.setLastModified(lastmod.toInstant());
-            }
+            setLastmode(url, page);
         }
         if (changefreqEnabled) {
             url.setChangeFrequency(getChangeFrequency(page));
@@ -105,17 +102,36 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
             url.setPriority(getPriority(page));
         }
         if (languageAlternatesEnabled) {
-            for (Map.Entry<Locale, String> alternative : getAlternateLanguageLinks(page).entrySet()) {
-                AlternateLanguageExtension ext = url.addExtension(AlternateLanguageExtension.class);
-                if (ext == null) {
-                    log.debug("Could not create a AlternateLanguageExtension, aborting");
-                    break;
-                }
-                ext.setLocale(alternative.getKey());
-                ext.setHref(alternative.getValue());
-            }
+            setLanguageAlternates(url, page);
         }
         log.debug("Added the {} to Extended Sitemap", url);
+    }
+
+    private Url setLastmode(Url url, Page page) {
+        Calendar lastmod = getLastmodDate(page);
+        if (lastmod != null) {
+            url.setLastModified(lastmod.toInstant());
+        }
+
+        return url;
+    }
+
+    private Url setLanguageAlternates(Url url, Page page) {
+        for (Map.Entry<Locale, String> alternative : getAlternateLanguageLinks(page).entrySet()) {
+            AlternateLanguageExtension ext = url.addExtension(AlternateLanguageExtension.class);
+            if (ext == null) {
+                log.debug("Could not create a AlternateLanguageExtension, aborting");
+                break;
+            }
+            if (alternative.getKey().toLanguageTag().equals("en")) {
+                ext.setDefaultLocale();
+            } else {
+                ext.setLocale(alternative.getKey());
+            }
+            ext.setHref(alternative.getValue());
+        }
+
+        return url;
     }
 
     @Override
@@ -153,7 +169,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
         if (resourceResolver.isEmpty()) {
             return StringUtils.EMPTY;
         }
-        Resource canonicalResource = resourceResolver.get().resolve(canonicalUrl);
+        var canonicalResource = resourceResolver.get().resolve(canonicalUrl);
         if (ResourceUtil.isNonExistingResource(canonicalResource)) {
             boolean hasExtension = canonicalUrl.matches(".+\\.\\w{2,5}$");
             return externalize(canonicalResource, hasExtension ? HTML_EXTENSION : StringUtils.EMPTY);
@@ -179,7 +195,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
         }
         Map<Locale, String> hrefs = new LinkedHashMap<>();
         for (final Map.Entry<Locale, Page> alternative : languageAlternatives.entrySet()) {
-            Page alternativePage = alternative.getValue();
+            var alternativePage = alternative.getValue();
             String href = getCanonicalUrl(alternativePage);
             if (href != null) {
                 hrefs.put(alternative.getKey(), href);
@@ -272,7 +288,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     private Url.ChangeFrequency getChangeFrequency(Page page) {
-        Url.ChangeFrequency changeFrequency = getPageChangeFrequency(page);
+        var changeFrequency = getPageChangeFrequency(page);
         if (changeFrequency == null) {
             changeFrequency = getPageChangeFrequency(getInheritanceEnabledPage(page, "sitemapChangefreqInherit"));
         }
@@ -309,7 +325,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     private double getDefaultPriority(Page page) {
         Resource resource = page.adaptTo(Resource.class);
         if (StringUtils.equals(priorityDefaultValue, "pageDepth")) {
-            double priority = 1.0;
+            var priority = 1.0;
             while (resource != null && !SitemapUtil.isSitemapRoot(resource)) {
                 resource = resource.getParent();
                 priority -= 0.1;
@@ -321,7 +337,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     private Page getInheritanceEnabledPage(Page inheritanceEnabledPage, String inheritedProperty) {
-        boolean isInheritanceEnabled = false;
+        var isInheritanceEnabled = false;
         while (inheritanceEnabledPage != null && !isInheritanceEnabled) {
             inheritanceEnabledPage = inheritanceEnabledPage.getParent();
             isInheritanceEnabled = Optional.ofNullable(inheritanceEnabledPage)

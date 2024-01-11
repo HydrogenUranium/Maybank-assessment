@@ -76,6 +76,15 @@
                             clientlibs="wcm.foundation.components.page.responsive">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1701175963418>
+                    <policy_1704781633995
+                            jcr:lastModified="{Date}2024-01-09T08:27:24.916+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Search Result Page Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="[dhl.search-result-page]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1704781633995>
                 </editable-standard>
             </pages>
             <content jcr:primaryType="nt:unstructured">
@@ -480,6 +489,13 @@
                             components="[/libs/wcm/foundation/components/responsivegrid,group:DHL Components,group:DHL Page Structure]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1701175819246>
+                    <policy_1704781670430
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Search Page Root Component Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/libs/wcm/foundation/components/responsivegrid,group:DHL Components]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1704781670430>
                 </responsivegrid>
             </components>
         </foundation>

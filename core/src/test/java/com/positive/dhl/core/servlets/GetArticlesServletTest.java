@@ -92,20 +92,24 @@ class GetArticlesServletTest {
         String expected = "[" +
                 "{" +
                     "\"createdfriendly\":\"August 3, 2023\"," +
+                    "\"createdMilliseconds\":1691046000000," +
                     "\"groupTag\":\"#CategoryPage\"," +
                     "\"title\":\"What paperwork do I need for international shipping?\"," +
                     "\"description\":\"What paperwork do I need for international shipping?\"," +
                     "\"author\":\"Anna Thompson\"," +
+                    "\"readtime\":\"4 min read\"," +
                     "\"listimage\":\"/prefix/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                     "\"tagsToShow\":[\"#CategoryPage\"]," +
                     "\"path\":\"/content/home/article_1\"" +
                 "}," +
                 "{" +
                     "\"createdfriendly\":\"August 4, 2023\"," +
+                    "\"createdMilliseconds\":1691132400000," +
                     "\"groupTag\":\"#CategoryPage\"," +
                     "\"title\":\"What paperwork do I need for international shipping?\"," +
                     "\"description\":\"What paperwork do I need for international shipping?\"," +
                     "\"author\":\"Anna Thompson\"," +
+                    "\"readtime\":\"4 min read\"," +
                     "\"listimage\":\"/prefix/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                     "\"tagsToShow\":[\"#CategoryPage\"]," +
                     "\"path\":\"/content/home/article_2\"" +
