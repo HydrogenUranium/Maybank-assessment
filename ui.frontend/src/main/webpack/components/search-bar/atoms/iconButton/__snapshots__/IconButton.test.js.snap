@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton should render "IconButton" component property 1`] = `
+<button
+  className="searchButton className"
+  data-testid="testId"
+  onClick={[Function]}
+>
+  <span
+    className="searchButtonImage searchButtonImageClose"
+  />
+</button>
+`;
+
+exports[`IconButton should render "IconButton" component property when hidden=true 1`] = `
+<button
+  className="searchButton className hidden"
+  data-testid="testId"
+  onClick={[Function]}
+>
+  <span
+    className="searchButtonImage searchButtonImageClose"
+  />
+</button>
+`;

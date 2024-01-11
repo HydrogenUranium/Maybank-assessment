@@ -1,10 +1,12 @@
 export type Article = {
     author: string,
-    date: string,
+    createdfriendly: string,
+    createdMilliseconds: number,
     description: string,
-    image: string,
+    listimage: string,
     groupTag: string,
-    link: string,
-    tags: string[],
+    path: string,
+    tagsToShow: string[],
     title: string,
+    readtime: string,
 }

@@ -13,25 +13,28 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
     showTags = false,
     article: {
         author,
-        date,
+        createdfriendly,
         description,
-        image,
+        listimage,
         groupTag,
-        link,
-        tags,
+        path,
+        tagsToShow,
         title
     }
 }) => (
     <div className={styles.articleCard}>
-        <a tabIndex={-1} href={link} className={styles.articleCardImage} style={{ backgroundImage: `url(${image})` }}>
+        <a tabIndex={-1}
+            href={path}
+            className={styles.articleCardImage}
+            style={{ backgroundImage: `url(${listimage})` }}>
             <div className={styles.articleCardImageGroupTag}>{groupTag}</div>
         </a>
         <div className={styles.articleCardInfo}>
-            <div className={styles.articleCardInfoAuthor}>{[author, date].filter(i => i).join(' | ')}</div>
-            <a href={link} className={styles.articleCardInfoTitle}>{title}</a>
+            <div className={styles.articleCardInfoAuthor}>{[author, createdfriendly].filter(i => i).join(' | ')}</div>
+            <a href={path} className={styles.articleCardInfoTitle}>{title}</a>
             <div className={styles.articleCardInfoDescription}>{description}</div>
             {showTags && <div className={styles.articleCardInfoTags}>
-                {tags.map((item) => (
+                {tagsToShow.map((item) => (
                     <div className={styles.articleCardInfoTagsTag} key={item}>{item}</div>
                 ))}
             </div>}

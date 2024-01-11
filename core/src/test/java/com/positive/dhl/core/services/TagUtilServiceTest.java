@@ -14,7 +14,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class TagUtilServiceTest {
@@ -34,6 +37,9 @@ class TagUtilServiceTest {
     @Mock
     PageUtilService pageUtilService;
 
+    @Mock
+    ResourceResolverHelper resolverHelper;
+
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
         resourceResolver = context.resourceResolver();
@@ -46,6 +52,9 @@ class TagUtilServiceTest {
         tagManager.createTag("dhl-article-external:default/e-commerce_advice", "e-Commerce advice", "e-Commerce advice");
         tagManager.createTag("dhl-article-external:default/business_advice", "Business Advice", "Business Advice");
         tagManager.createTag("dhl-article-internal:hidden", "Hidden", "Hidden");
+        tagManager.createTag("dhlsuggested:Business", "Business", "Business");
+        tagManager.createTag("dhlsuggested:China", "China", "China");
+        tagManager.createTag("dhlsuggested:Small-business", "small business", "small business");
     }
 
     @Test
@@ -89,5 +98,14 @@ class TagUtilServiceTest {
         assertEquals(
                 "",
                 tagUtilService.transformToHashtag(null));
+    }
+
+    @Test
+    void test_getDefaultTrendingTopicsList() {
+        when(resolverHelper.getReadResourceResolver()).thenReturn(context.resourceResolver());
+
+        assertNotNull(tagUtilService);
+        List<String> list = tagUtilService.getDefaultTrendingTopicsList();
+        assertEquals(List.of("Business", "China", "small business"), list);
     }
 }

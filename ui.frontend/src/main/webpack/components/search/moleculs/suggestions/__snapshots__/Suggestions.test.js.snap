@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Suggestions should render "Suggestions" component property when input is empty 1`] = `
+<div
+  className="searchSection"
+>
+  <div
+    className="searchSection"
+  >
+    <div
+      className="searchSectionItems"
+    >
+      <button
+        className="searchSectionItemsItem"
+        onClick={[Function]}
+      >
+        <span
+          className="icon iconHistory"
+        />
+        <span
+          className="searchSectionItemsItemText"
+        >
+          Business
+        </span>
+      </button>
+      <button
+        className="searchSectionItemsItem"
+        onClick={[Function]}
+      >
+        <span
+          className="icon iconHistory"
+        />
+        <span
+          className="searchSectionItemsItemText"
+        >
+          China
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Suggestions should render "Suggestions" component property when input is not empty but there is no suggestions 1`] = `null`;

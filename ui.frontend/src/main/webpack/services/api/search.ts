@@ -39,9 +39,3 @@ export const getTagSuggestions = async(query: string): Promise<string[]> => {
         return Array.from(resultSet).slice(0, 5);
     });
 };
-
-export const getArticleSuggestions = async (query: string): Promise<Article[]> => {
-    return getArticles(query).then((result) => {
-        return result.slice(0, 5);
-    });
-};

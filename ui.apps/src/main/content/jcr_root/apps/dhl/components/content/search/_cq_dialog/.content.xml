@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Properties"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <title
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Title"
+                            name="./title"/>
+                    <note
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                            jcr:title="The format for the description should be as follows:"
+                            text=" {0} - search query;
+                                {1} - number of showing items;
+                                {2} - number of all items;"/>
+                    <note2
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                            jcr:title="Example"
+                            size="L"
+                            text="Browse search results for {0} (Showing {1} of {2} results)"/>
+                    <descriptionFormat
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                            fieldLabel="Description Format"
+                            fieldDescription="This field configures the display format of the information line, showing the current search query and the count of displayed results.
+                                              Please note the background information above."
+                            useFixedInlineToolbar="{Boolean}true"
+                            name="./descriptionFormat"/>
+                    <descriptionFormatNoResults
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                            fieldLabel="'No results found for' Description Format"
+                            fieldDescription="This field sets the format of the information line displayed when no search results are found.
+                                              Please note the background information above."
+                            useFixedInlineToolbar="{Boolean}true"
+                            name="./descriptionFormatNoResults"/>
+                    <popularSearchesTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="'Popular Searches' Title"
+                            name="./popularSearchesTitle"/>
+                    <sortByTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="'Sort By' Title"
+                            name="./sortByTitle"/>
+                    <latestSortOptionTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="'Latest' Sort Option Title"
+                            name="./latestSortOptionTitle"/>
+                    <showMoreResultsButtonTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="'Show More Results' Button Title"
+                            name="./showMoreResultsButtonTitle"/>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

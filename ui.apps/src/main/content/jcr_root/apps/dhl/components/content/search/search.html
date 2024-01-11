@@ -1,0 +1,17 @@
+<sly data-sly-use.searchModel="com.positive.dhl.core.models.Search"></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit}" data-emptytext="${component.title}"></div>
+
+<div class="search-component aem-react-component"
+     data-component-name="search"
+     data-config='{
+            "title": "${searchModel.title}",
+            "descriptionFormat": "${searchModel.descriptionFormat}",
+            "descriptionFormatNoResults": "${searchModel.descriptionFormatNoResults}",
+            "popularSearchesTitle": "${searchModel.popularSearchesTitle}",
+            "sortByTitle": "${searchModel.sortByTitle}",
+            "latestSortOptionTitle": "${searchModel.latestSortOptionTitle}",
+            "showMoreResultsButtonTitle": "${searchModel.showMoreResultsButtonTitle}",
+            "popularSearches": ${searchModel.popularTopics}
+         }'>
+</div>

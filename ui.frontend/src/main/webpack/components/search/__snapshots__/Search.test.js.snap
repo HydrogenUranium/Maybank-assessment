@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search should render component "Search" property 1`] = `
+<div
+  className="search"
+>
+  <div
+    className="searchForm"
+  >
+    <div
+      className="searchFormInputWrapper"
+    >
+      <button
+        className="searchButton"
+        data-testid="hendle-search"
+        onClick={[Function]}
+      >
+        <span
+          className="searchButtonImage"
+        />
+      </button>
+      <input
+        aria-label="Search"
+        data-testid="search-input"
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        value=""
+      />
+    </div>
+    <h1
+      className="searchFormTitle"
+    >
+      Search Results
+    </h1>
+    <div
+      className="searchFormDetails"
+      dangerouslySetInnerHTML={
+        {
+          "__html": "",
+        }
+      }
+    />
+  </div>
+  <div
+    className="searchResult"
+  >
+    <div
+      className="searchResultHeadline"
+    >
+      <div
+        className="trending"
+      >
+        <div
+          className="trendingTitle"
+        >
+          Popular searches
+          :
+        </div>
+        <div
+          className="trendingItem"
+          onClick={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          Business
+        </div>
+        <div
+          className="trendingItem"
+          onClick={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          China
+        </div>
+      </div>
+    </div>
+    <div
+      className="searchResultItems"
+    />
+  </div>
+</div>
+`;

@@ -82,7 +82,7 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({ title, categories, sho
             <div ref={articleListElement} className={styles.articleGridArticles}>
                 {displayedArticles.map((article) => (
                     <ArticleCard
-                        article={article} key={article.link}
+                        article={article} key={article.path}
                         showTags={showTags}
                     />
                 ))}
