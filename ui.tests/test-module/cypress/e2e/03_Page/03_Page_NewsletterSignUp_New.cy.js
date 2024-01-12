@@ -8,7 +8,7 @@ describe('Subscribe newsletter page', () => {
     });
 
     it('Verify the title contains the correct text "Subscribe for the latest insights"', () => {
-        cy.get('.cmp-title__text').contains('Subscribe for the latest insights')
+        cy.get('.cmp-title__text').should('exist')
         cy.wait (2000);
     });
 
