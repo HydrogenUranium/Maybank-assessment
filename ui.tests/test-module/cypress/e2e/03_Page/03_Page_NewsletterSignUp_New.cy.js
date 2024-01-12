@@ -1,6 +1,6 @@
 describe('Subscribe newsletter page', () => {
 
-    const pageUrl = 'https://publish-p58772-e1126664.adobeaemcloud.com' + '/content/dhl/global/en-global/newsletter-sign-up.html';
+    const pageUrl = Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global/newsletter-sign-up.html';
 
     beforeEach(() => {
         cy.visit(pageUrl);
