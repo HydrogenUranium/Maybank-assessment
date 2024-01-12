@@ -1,6 +1,6 @@
 describe('Subscribe newsletter page', () => {
 
-    const pageUrl = Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global/newsletter-sign-up.html';
+    const pageUrl = 'https://publish-p58772-e1126664.adobeaemcloud.com' + '/content/dhl/global/en-global/newsletter-sign-up.html';
 
     beforeEach(() => {
         cy.visit(pageUrl);
@@ -8,7 +8,7 @@ describe('Subscribe newsletter page', () => {
     });
 
     it('Verify the title contains the correct text "Subscribe for the latest insights"', () => {
-        cy.get('.cmp-title__text').should('exist')
+        cy.get('#title-v2-9ab11e8541').should('exist')
         cy.wait (2000);
     });
 
