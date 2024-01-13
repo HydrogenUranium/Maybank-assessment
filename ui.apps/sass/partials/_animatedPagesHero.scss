@@ -6,6 +6,10 @@
   position: relative;
 
   $block: &;
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
 
   @include respond(md) {
     padding: 40px 0 107px;

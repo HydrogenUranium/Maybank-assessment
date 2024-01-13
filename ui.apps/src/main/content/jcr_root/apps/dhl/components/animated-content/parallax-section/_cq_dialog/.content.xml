@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Properties"
+          sling:resourceType="cq/gui/components/authoring/dialog" xmlns:granite="http://www.adobe.com/jcr/granite/1.0">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <type
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Type"
+                            name="./type">
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <chemicalImpact
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Chemical Impact"
+                                    value="chemical-impact"/>
+
+                            <creativeCampaigns
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Creative Campaigns"
+                                    value="creative-campaigns"/>
+
+                            <deathOfTheDoubleBass
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Death Of The Double Bass"
+                                    value="death-of-the-double-bass"/>
+
+                            <dhlBoxes
+                                    jcr:primaryType="nt:unstructured"
+                                    text="DHL Boxes"
+                                    value="dhl-boxes"/>
+
+                            <eCommerceWinning
+                                    jcr:primaryType="nt:unstructured"
+                                    text="E-commerce Winning"
+                                    value="e-commerce-winning"/>
+
+                            <gettingCertified
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Getting Certified"
+                                    value="getting-certified"/>
+
+                            <menJewelry
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Men Jewelry"
+                                    value="men-jewelry"/>
+
+                            <smartwatches
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Smartwatches"
+                                    value="smartwatches"/>
+
+                            <takingFashionHome
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Taking Fashion Home"
+                                    value="taking-fashion-home"/>
+
+                            <trendingInGrooming
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Trending In Grooming"
+                                    value="trending-in-grooming"/>
+                            <larryVsHarry
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Larry Vs Harry"
+                                    value="larry-vs-harry"/>
+                        </items>
+                    </type>
+                    <title
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Title"
+                            name="./title"/>
+                    <firstDescriptionPart
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                            useFixedInlineToolbar="{Boolean}true"
+                            fieldLabel="First Description Part"
+                            name="./firstDescriptionPart"/>
+                    <secondTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Title For Second Part"
+                            name="./secondTitle"/>
+                    <secondDescriptionPart
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                            useFixedInlineToolbar="{Boolean}true"
+                            fieldLabel="Second Description Part"
+                            name="./secondDescriptionPart"/>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

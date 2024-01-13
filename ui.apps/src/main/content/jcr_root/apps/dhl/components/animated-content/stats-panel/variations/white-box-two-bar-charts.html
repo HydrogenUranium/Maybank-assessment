@@ -1,0 +1,63 @@
+<sly data-sly-use.idModel="com.positive.dhl.core.models.UniqueId"></sly>
+
+<div class='statsPanel statsPanel--alt statsPanel--spacing parallaxSection' data-duration="4" data-separator="," data-decimal="." >
+  <div class="container position-relative">
+    <div class="parallaxSection__tile parallaxSection__tile--down parallaxSection__tile--alt statsPanel__parallaxBox" data-max-top="20" data-min-top="-20">
+      <div class="col-lg-6">
+        <p class="statsPanel__title">${properties.title}</p>
+        <div class="statsPanel__copy statsPanel__copy--alt">${properties.firstDescriptionPart @ context='html'}</div>
+        <div class="d-none d-lg-block"><br></div>
+        <div class="d-none d-lg-block">
+          <div class="statsPanel__copy statsPanel__copy--alt">${properties.secondDescriptionPart @ context='html'}</div>
+        </div>
+      </div>
+      <div class="col-lg-6 offset-xl-1 col-xl-5">
+        <div class="statsPanel__boxWrapper">
+          <div class="col-lg-6 ">
+            <div class="statsPanel__wrapper statsPanel__wrapper--alt">
+              <div class="statsPanel__statsWrapper statsPanel__statsWrapper--alt">
+                <h4 class="statsPanel__statsValue statsPanel__statsValue--alt" data-sly-test="${properties.hidePercentage != 'true'}" data-start="0" data-end="${properties.leftBlockPercent}" data-suffix="%" data-duration="2.4">${properties.leftBlockPercent}%</h4>
+                <h2 class="statsPanel__value statsPanel__value--alt">${properties.leftBlockTitle}</h2>
+              </div>
+              <div class="boxFill boxFill--dark">
+				  <div class="boxFill__fill boxFill__fillstat__${idModel.id}">
+                      <style type="text/css">
+                    .boxFill--show .boxFill__fillstat__${idModel.id @ context='unsafe'} {
+                        height: calc((((100% - 32.4%) / 100) * ${properties.leftBlockPercent @ context='unsafe'}) + 32.4%);
+                        transition: height 4000ms ease-out;
+                    }
+                </style>
+				    <div class="boxFill__fillTop"></div>
+				  </div>
+				  <div class="boxFill__front"></div>
+				</div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="statsPanel__wrapper statsPanel__wrapper--alt">
+              <div class="statsPanel__statsWrapper statsPanel__statsWrapper--altDown">
+                <h4 class="statsPanel__statsValue statsPanel__statsValue--alt" data-sly-test="${properties.hidePercentage != 'true'}" data-start="0" data-end="${properties.rightBlockPercent}" data-suffix="%">${properties.rightBlockPercent}%</h4>
+                <h2 class="statsPanel__value statsPanel__value--alt">${properties.rightBlockTitle}</h2>
+              </div>
+              <div class="boxFill boxFill--dark">
+				  <div class="boxFill__fill boxFill__fillstat2__${idModel.id}">
+                      <style type="text/css">
+                    .boxFill--show .boxFill__fillstat2__${idModel.id @ context='unsafe'} {
+                        height: calc((((100% - 32.4%) / 100) * ${properties.rightBlockPercent @ context='unsafe'}) + 32.4%);
+                        transition: height 4000ms ease-out;
+                    }
+                </style>
+				    <div class="boxFill__fillTop"></div>
+				  </div>
+				  <div class="boxFill__front"></div>
+				</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 d-lg-none">
+        <div class="statsPanel__copy statsPanel__copy--alt">${properties.secondDescriptionPart @ context='html'}</div>
+      </div>
+    </div>
+  </div>
+</div>

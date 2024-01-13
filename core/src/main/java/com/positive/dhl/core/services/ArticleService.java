@@ -54,6 +54,8 @@ public class ArticleService {
             customPublishProp.put("group.2_property", "jcr:content/cq:template");
             customPublishProp.put("group.2_property.operation", "like");
             customPublishProp.put("group.2_property.value", "/apps/dhl/templates/dhl-animated-%");
+            customPublishProp.put("group.3_property", "jcr:content/cq:template");
+            customPublishProp.put("group.3_property.value", "/conf/dhl/settings/wcm/templates/animated-page");
             customPublishProp.put("3_property", "jcr:content/custompublishdate");
             customPublishProp.put("3_property.operation", "exists");
             customPublishProp.put(ORDERBY, "@jcr:content/custompublishdate");

@@ -21,4 +21,5 @@
     <filter root="/conf/dhl/settings/wcm/templates/landing-page"/>
     <filter root="/conf/dhl/settings/wcm/templates/landing-page-two-columns"/>
     <filter root="/conf/dhl/settings/wcm/templates/search-result-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/animated-page"/>
 </workspaceFilter>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Properties"
+          sling:resourceType="cq/gui/components/authoring/dialog" xmlns:granite="http://www.adobe.com/jcr/granite/1.0">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <type
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Type"
+                            name="./type">
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <blueLeftOneBarChart
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Blue Background With One Bar Chart On The Left"
+                                    value="blue-left-one-bar-chart"/>
+                            <oneBarChart
+                                    jcr:primaryType="nt:unstructured"
+                                    text="One Bar Chart"
+                                    value="one-bar-chart"/>
+                            <twoBarCharts
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Two Bar Charts"
+                                    value="two-bar-charts"/>
+                            <twoBarCharts
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Two Bar Charts"
+                                    value="two-bar-charts"/>
+                            <blueTwoBarCharts
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Blue Background with Two Bar Charts"
+                                    value="blue-two-bar-charts"/>
+
+                            <lightBlueTwoCarCharts
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Light Blue Background With Two Car Charts"
+                                    value="light-blue-two-bar-charts"/>
+
+                            <whiteBoxTwoBarCharts
+                                    jcr:primaryType="nt:unstructured"
+                                    text="White Box With Two Bar Charts"
+                                    value="white-box-two-bar-charts"/>
+
+                            <whiteBoxOneBarChart
+                                    jcr:primaryType="nt:unstructured"
+                                    text="White Box With One Bar Chart"
+                                    value="white-box-one-bar-chart"/>
+                        </items>
+                    </type>
+                    <title
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Title"
+                            name="./title"/>
+                    <firstDescriptionPart
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                            useFixedInlineToolbar="{Boolean}true"
+                            fieldLabel="First Description Part"
+                            name="./firstDescriptionPart"/>
+                    <secondDescriptionPart
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                            useFixedInlineToolbar="{Boolean}true"
+                            fieldLabel="Second Description Part"
+                            name="./secondDescriptionPart"/>
+                    <leftBlockPercent
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                            fieldLabel="Left Block Percent"
+                            min="0"
+                            max="100"
+                            name="./leftBlockPercent"/>
+                    <leftBlockTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Left Block"
+                            name="./leftBlockTitle"/>
+                    <rightBlockPercent
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                            fieldLabel="Right Block Percent"
+                            min="0"
+                            max="100"
+                            name="./rightBlockPercent"/>
+                    <rightBlockTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Right Block"
+                            name="./rightBlockTitle"/>
+                    <hidePercentage
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                            text="Hide percentage"
+                            value="true"
+                            name="./hidePercentage"/>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

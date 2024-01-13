@@ -1407,12 +1407,21 @@
     padding: 0;
     margin: 0 0 20px;
 
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
     &:last-child {
       margin: 0;
     }
 
     &--alt {
       color: map-get($palette, true-black);
+          a {
+            color: #000;
+            text-decoration: underline;
+          }
     }
   }
 
