@@ -352,7 +352,7 @@
                             allowedEmbeddables="core/wcm/components/embed/v1/embed/embeddable/youtube"
                             embeddablesDisabled="false"
                             htmlDisabled="true"
-                            urlDisabled="true"
+                            urlDisabled="false"
                             youtubeAutoPlayDefaultValue="false"
                             youtubeAutoPlayEnabled="true"
                             youtubeLoopDefaultValue="false"
