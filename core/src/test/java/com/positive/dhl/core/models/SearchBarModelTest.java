@@ -1,9 +1,11 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.tagging.InvalidTagFormatException;
+import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.TagUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +16,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -40,14 +44,19 @@ class SearchBarModelTest {
 
     private void initRequest(String path) {
         request.setPathInfo(path);
-        request.setResource(resourceResolver.getResource(path));
+
+        Resource currentResource = resourceResolver.getResource(path);
+        request.setResource(currentResource);
+
+        Page currentPage = currentResource.adaptTo(Page.class);
+        mockInject(context, "currentPage", currentPage);
     }
 
     @Test
     void test_withValidSetup() {
         initRequest(ARTICLE_RESOURCE_PATH);
 
-        when(tagUtilService.getDefaultTrendingTopicsList()).thenReturn(List.of("Business", "China", "small business"));
+        when(tagUtilService.getDefaultTrendingTopicsList(any(Resource.class))).thenReturn(List.of("Business", "China", "small business"));
         mockInjectHomeProperty(context, "searchBar-recentSearchesTitle" ,"Recent Searches");
         mockInjectHomeProperty(context, "searchBar-trendingTopicsTitle" ,"Trending Topics");
         mockInjectHomeProperty(context, "searchBar-articlesTitle" ,"Articles");

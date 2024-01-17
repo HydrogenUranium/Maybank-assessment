@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.day.cq.wcm.api.Page;
 import com.google.gson.Gson;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.TagUtilService;
@@ -14,6 +15,7 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Getter
@@ -25,6 +27,9 @@ public class SearchBarModel {
     @Getter(AccessLevel.NONE)
     @SlingObject
     private ResourceResolver resourceResolver;
+
+    @Inject
+    private Page currentPage;
 
     @InjectHomeProperty
     @Named("searchBar-recentSearchesTitle")
@@ -48,7 +53,7 @@ public class SearchBarModel {
 
     @PostConstruct
     private void init() {
-        trendingTopics = new Gson().toJson(tagUtilService.getDefaultTrendingTopicsList());
+        trendingTopics = new Gson().toJson(tagUtilService.getDefaultTrendingTopicsList(currentPage.getContentResource()));
         searchResultPage = StringUtils.isNoneBlank(searchResultPagePath) ? resourceResolver.map(searchResultPagePath) : StringUtils.EMPTY;
     }
 }

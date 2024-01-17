@@ -34,8 +34,9 @@ class SearchTest {
 
     @Test
     void test() {
-        when(tagUtilService.getDefaultTrendingTopicsList()).thenReturn(List.of("Business", "China"));
         Resource resource = context.resourceResolver().getResource("/content/home/search/jcr:content/search");
+        when(tagUtilService.getDefaultTrendingTopicsList(resource)).thenReturn(List.of("Business", "China"));
+
         Search search = resource.adaptTo(Search.class);
 
         assertNotNull(search);
