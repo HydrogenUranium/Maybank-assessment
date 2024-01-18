@@ -24,6 +24,10 @@
                                             cq:policy="dhl/components/content/text/policy_1692606883425"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <embed
+                                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -31,7 +35,22 @@
                     <responsivegrid_929485349
                             cq:policy="wcm/foundation/components/responsivegrid/policy_355443549935000"
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                            sling:resourceType="wcm/core/components/policies/mapping">
+                        <dhl jcr:primaryType="nt:unstructured">
+                            <components jcr:primaryType="nt:unstructured">
+                                <content jcr:primaryType="nt:unstructured">
+                                    <text
+                                            cq:policy="dhl/components/content/text/policy_1692606883425"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <embed
+                                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                </content>
+                            </components>
+                        </dhl>
+                    </responsivegrid_929485349>
                     <hero_banner
                             cq:policy="dhl/components/content/hero-banner/policy_108071559424200"
                             jcr:primaryType="nt:unstructured"

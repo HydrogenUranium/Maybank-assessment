@@ -581,6 +581,57 @@
         "set ACL for publisher-japan\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/jp)\nend",
         "set ACL for publisher-japan\nallow jcr:read on home(publisher-japan)\nend",
 
+        "create group author-nigeria",
+        "add author-nigeria to group discover-base-user",
+        "set properties on authorizable(author-nigeria)/profile\n set givenName to \"Author - Nigeria\"\n end",
+        "set ACL for author-nigeria\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ng)\nend",
+        "set ACL for author-nigeria\nallow jcr:read on home(author-nigeria)\nend",
+
+        "create group publisher-nigeria",
+        "add publisher-nigeria to group discover-base-user",
+        "set properties on authorizable(publisher-nigeria)/profile\n set givenName to \"Publisher - Nigeria\"\n end",
+        "set ACL for publisher-nigeria\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ng)\nend",
+        "set ACL for publisher-nigeria\nallow jcr:read on home(publisher-nigeria)\nend",
+
+
+        "create group author-kenya",
+        "add author-kenya to group discover-base-user",
+        "set properties on authorizable(author-kenya)/profile\n set givenName to \"Author - Kenya\"\n end",
+        "set ACL for author-kenya\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ke)\nend",
+        "set ACL for author-kenya\nallow jcr:read on home(author-kenya)\nend",
+
+        "create group publisher-kenya",
+        "add publisher-kenya to group discover-base-user",
+        "set properties on authorizable(publisher-kenya)/profile\n set givenName to \"Publisher - Kenya\"\n end",
+        "set ACL for publisher-kenya\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ke)\nend",
+        "set ACL for publisher-kenya\nallow jcr:read on home(publisher-kenya)\nend",
+
+
+        "create group author-south-africa",
+        "add author-south-africa to group discover-base-user",
+        "set properties on authorizable(author-south-africa)/profile\n set givenName to \"Author - South Africa\"\n end",
+        "set ACL for author-south-africa\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/za)\nend",
+        "set ACL for author-south-africa\nallow jcr:read on home(author-south-africa)\nend",
+
+        "create group publisher-south-africa",
+        "add publisher-south-africa to group discover-base-user",
+        "set properties on authorizable(publisher-south-africa)/profile\n set givenName to \"Publisher - South Africa\"\n end",
+        "set ACL for publisher-south-africa\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/za)\nend",
+        "set ACL for publisher-south-africa\nallow jcr:read on home(publisher-south-africa)\nend",
+
+
+        "create group author-united-arab-emirates",
+        "add author-united-arab-emirates to group discover-base-user",
+        "set properties on authorizable(author-united-arab-emirates)/profile\n set givenName to \"Author - United Arab Emirates\"\n end",
+        "set ACL for author-united-arab-emirates\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ae)\nend",
+        "set ACL for author-united-arab-emirates\nallow jcr:read on home(author-united-arab-emirates)\nend",
+
+        "create group publisher-united-arab-emirates",
+        "add publisher-united-arab-emirates to group discover-base-user",
+        "set properties on authorizable(publisher-united-arab-emirates)/profile\n set givenName to \"Publisher - United Arab Emirates\"\n end",
+        "set ACL for publisher-united-arab-emirates\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ae)\nend",
+        "set ACL for publisher-united-arab-emirates\nallow jcr:read on home(publisher-united-arab-emirates)\nend",
+
         "# !!!  SHOULD BE AT THE BOTTOM OF THIS SCRIPT !!!",
         "# *** GMP TRACKING ID ACCESS ***",
         "# *** remove access used to guarantee order of access ***",

@@ -216,7 +216,7 @@
                             jcr:lastModified="{Date}2023-08-21T11:37:52.635+03:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="Text - policy"
+                            jcr:title="Article Text - policy"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <rtePlugins jcr:primaryType="nt:unstructured">
@@ -294,6 +294,20 @@
                                     jcr:primaryType="nt:unstructured"
                                     features="*"/>
                         </rtePlugins>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Table"
+                                    cq:styleGroupMultiple="true"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="simpleRedTable"
+                                            cq:styleId="1705323402730"
+                                            cq:styleLabel="Simple Red"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                        </cq:styleGroups>
                     </policy_1692606883425>
                 </text>
                 <article-carousel jcr:primaryType="nt:unstructured">
@@ -355,6 +369,28 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </thank_you_page_container_policy>
                 </container>
+                <embed jcr:primaryType="nt:unstructured">
+                    <article_embed_component_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Embed Component Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            allowedEmbeddables="core/wcm/components/embed/v1/embed/embeddable/youtube"
+                            embeddablesDisabled="false"
+                            htmlDisabled="true"
+                            urlDisabled="false"
+                            youtubeAutoPlayDefaultValue="false"
+                            youtubeAutoPlayEnabled="true"
+                            youtubeLoopDefaultValue="false"
+                            youtubeLoopEnabled="true"
+                            youtubeMuteDefaultValue="false"
+                            youtubeMuteEnabled="true"
+                            youtubePlaysInlineDefaultValue="false"
+                            youtubePlaysInlineEnabled="true"
+                            youtubeRelatedVideosDefaultValue="true"
+                            youtubeRelatedVideosEnabled="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </article_embed_component_policy>
+                </embed>
             </content>
         </components>
     </dhl>
@@ -393,7 +429,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Editable Article  - policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[/apps/dhl/components/content/accordion,/apps/dhl/components/content/articlegrid,/apps/dhl/components/content/articlelistcarousel,/apps/dhl/components/content/articlelistcategoryexplore,/apps/dhl/components/content/articlepanel,/apps/dhl/components/content/download,/apps/dhl/components/content/figure,/apps/dhl/components/content/gallery,/apps/dhl/components/content/listicleitem,/apps/dhl/components/content/simpledownload,/apps/dhl/components/content/statpanel,/apps/dhl/components/content/subscribepanel,/apps/dhl/components/content/taglist,/apps/dhl/components/content/text,/apps/dhl/components/content/title,/apps/dhl/components/content/cta-banner,/apps/dhl/components/content/cta-banner-with-points]">
+                            components="[/apps/dhl/components/content/accordion,/apps/dhl/components/content/articlegrid,/apps/dhl/components/content/articlelistcarousel,/apps/dhl/components/content/articlelistcategoryexplore,/apps/dhl/components/content/articlepanel,/apps/dhl/components/content/download,/apps/dhl/components/content/figure,/apps/dhl/components/content/gallery,/apps/dhl/components/content/listicleitem,/apps/dhl/components/content/simpledownload,/apps/dhl/components/content/statpanel,/apps/dhl/components/content/subscribepanel,/apps/dhl/components/content/taglist,/apps/dhl/components/content/text,/apps/dhl/components/content/title,/apps/dhl/components/content/cta-banner,/apps/dhl/components/content/cta-banner-with-points,/apps/dhl/components/content/embed]">
                         <jcr:content
                                 cq:isDelivered="{Boolean}false"
                                 cq:lastReplicated="{Date}2023-09-18T12:12:00.044+03:00"
