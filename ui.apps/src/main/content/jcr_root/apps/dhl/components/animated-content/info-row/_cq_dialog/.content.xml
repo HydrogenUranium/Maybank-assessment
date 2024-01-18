@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Properties"
+          sling:resourceType="cq/gui/components/authoring/dialog" xmlns:granite="http://www.adobe.com/jcr/granite/1.0">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <type
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Type"
+                            name="./type">
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <changeInAsia
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Change In Asia"
+                                    value="change-in-asia"/>
+                            <chinaMiddleClass
+                                    jcr:primaryType="nt:unstructured"
+                                    text="China Middle Class"
+                                    value="china-middle-class"/>
+                            <cosmetic
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Cosmetic"
+                                    value="cosmetic"/>
+                            <dependableDelivery
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Dependable Delivery"
+                                    value="dependable-delivery"/>
+                            <dhlMedicalExpress
+                                    jcr:primaryType="nt:unstructured"
+                                    text="DHL Medical Express"
+                                    value="dhl-medical-express"/>
+                            <electricTrends
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Electric Trends"
+                                    value="electric-trends"/>
+                            <getingGoodsToCustomers
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Getting Goods To Customers"
+                                    value="getting-goods-to-customers"/>
+                            <goingGlobal
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Going Global"
+                                    value="going-global"/>
+                            <guitar
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Guitar"
+                                    value="guitar"/>
+                            <homeTestingKits
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Home Testing Kits"
+                                    value="home-testing-kits"/>
+                            <largestProductMarkets
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Largest Product Markets"
+                                    value="largest-product-markets"/>
+                            <lookingHealthy
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Looking Healthy"
+                                    value="looking-healthy"/>
+                            <makingFashion
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Making Fashion"
+                                    value="making-fashion"/>
+                            <premiumPapers
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Premium Papers"
+                                    value="premium-papers"/>
+                            <sensors
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Sensors"
+                                    value="sensors"/>
+                            <smartFabrics
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Smart Fabrics"
+                                    value="smart-fabrics"/>
+                            <smartHome
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Smart Home"
+                                    value="smart-home"/>
+                            <sportingGoods
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Sporting Goods"
+                                    value="sporting-goods"/>
+                        </items>
+                    </type>
+                    <title
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Title"
+                            name="./title"/>
+                    <firstDescriptionPart
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                            useFixedInlineToolbar="{Boolean}true"
+                            fieldLabel="First Description Part"
+                            name="./firstDescriptionPart"/>
+                    <secondDescriptionPart
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                            useFixedInlineToolbar="{Boolean}true"
+                            fieldLabel="Second Description Part"
+                            name="./secondDescriptionPart"/>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

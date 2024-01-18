@@ -1,0 +1,17 @@
+<div class='videoRow'>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8 offset-lg-2">
+        <div class="videoRow__title">${properties.title}</div>
+        <div class="videoRow__videoWrapper">
+          <video class="videoRow__video" poster="/etc.clientlibs/dhl/clientlibs/discover-animatedpages/resources/img/videoPoster.jpg" autoplay playsinline muted loop>
+            <source src="/etc.clientlibs/dhl/clientlibs/discover-animatedpages/resources/img/boxVideo.webm" type="video/webm">
+            <source src="/etc.clientlibs/dhl/clientlibs/discover-animatedpages/resources/img/boxVideo.mp4" type="video/mp4">
+            <img src="/etc.clientlibs/dhl/clientlibs/discover-animatedpages/resources/img/videoPoster.jpg" alt="Your brwoser doesn't support video">
+          </video>
+        </div>
+        <div class="videoRow__text">${properties.description @ context='html'}</div>
+      </div>
+    </div>
+  </div>
+</div>

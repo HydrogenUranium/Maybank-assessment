@@ -218,11 +218,11 @@ class ShipNowTwoStepForm {
       if (result) {
         IN.API.Profile('me').fields('id', 'first-name', 'last-name', 'email-address').result((result) => {
           var member = result.values[0];
-  
+
           this.firstname = member.firstName;
           this.lastname = member.lastName;
           this.email = member.emailAddress;
-  
+
           this.nextForm();
         });
       }

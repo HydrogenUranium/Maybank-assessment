@@ -289,8 +289,16 @@
     line-height: 1.6;
     color: #ffffff;
 
+    a {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
     &--alt {
       color: #000000;
+        a {
+          color: #000000;
+        }
     }
 
     &--center {

@@ -86,6 +86,17 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1704781633995>
                 </editable-standard>
+                <editable-animated-page jcr:primaryType="nt:unstructured">
+                    <policy_1705397229637
+                            jcr:lastModified="{Date}2024-01-16T11:28:49.276+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Animated Page Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="[wcm.foundation.components.page.responsive,dhl.animatedpages]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1705397229637>
+                </editable-animated-page>
             </pages>
             <content jcr:primaryType="nt:unstructured">
                 <hero-banner jcr:primaryType="nt:unstructured">
@@ -532,6 +543,24 @@
                             components="[/libs/wcm/foundation/components/responsivegrid,group:DHL Components]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1704781670430>
+                    <policy_1705397210177
+                            jcr:lastModified="{Date}2024-01-16T11:27:03.990+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Animated Page Root Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[/libs/wcm/foundation/components/responsivegrid,group:DHL Article structure,group:DHL Components,group:DHL Template structure]">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_1705397210177>
+                    <policy_2171260242775700
+                            jcr:lastModified="{Date}2024-01-16T11:30:06.439+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Animated Page Container Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="group:DHL Animated Components">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_2171260242775700>
                 </responsivegrid>
             </components>
         </foundation>
