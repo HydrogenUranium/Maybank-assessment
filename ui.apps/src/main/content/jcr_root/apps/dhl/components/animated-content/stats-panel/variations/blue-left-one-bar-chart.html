@@ -1,0 +1,33 @@
+<sly data-sly-use.idModel="com.positive.dhl.core.models.UniqueId"></sly>
+
+<div class='statsPanel' data-duration="4" data-separator="," data-decimal=".">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-5 offset-lg-1">
+        <div class="statsPanel__wrapper">
+			<div class="boxFill">
+			  <div class="boxFill__shadow"></div>
+			  <div class="boxFill__fill boxFill__fillstat__${idModel.id}">
+                  <style type="text/css">
+                    .boxFill--show .boxFill__fillstat__${idModel.id @ context='unsafe'} {
+                        height: calc((((100% - 32.4%) / 100) * ${properties.leftBlockPercent @ context='unsafe'}) + 32.4%);
+                        transition: height 4000ms ease-out;
+                    }
+                </style>
+			    <div class="boxFill__fillTop"></div>
+			  </div>
+			  <div class="boxFill__front"></div>
+			</div>
+          <div class="statsPanel__statsWrapper">
+            <h4 class="statsPanel__statsValue" data-sly-test="${properties.hidePercentage != 'true'}"
+                data-start="0" data-end="${properties.leftBlockPercent}" data-suffix="%">${properties.leftBlockPercent}%</h4>
+            <h2 class="statsPanel__value">${properties.leftBlockTitle}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+          <div class="statsPanel__copy">${properties.firstDescriptionPart @ context='html'}</div>
+      </div>
+    </div>
+  </div>
+</div>

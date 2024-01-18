@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Properties"
+          sling:resourceType="cq/gui/components/authoring/dialog" xmlns:granite="http://www.adobe.com/jcr/granite/1.0">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <type
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Type"
+                            name="./type">
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <artificialIntelligenceInFacion
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Artificial Intelligence In Fashion"
+                                    value="artificial-intelligence-in-fashion"/>
+                            <demandIsOffScale
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Demand Is Off Scale"
+                                    value="demand-is-off-scale"/>
+                            <luxury
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Luxury"
+                                    value="luxury"/>
+                            <makingFabricsFromFood
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Making Fabrics From Food"
+                                    value="making-fabrics-from-food"/>
+                            <personalTouch
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Personal Touch"
+                                    value="personal-touch"/>
+                            <portableHealthcare
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Portable Healthcare"
+                                    value="portable-healthcare"/>
+                            <smartHomeMarket
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Smart Home Market"
+                                    value="smart-home-market"/>
+                            <sportsEquipment
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Sports Equipment"
+                                    value="sports-equipment"/>
+                            <visualAuthenticity
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Visual Authenticity"
+                                    value="visual-authenticity"/>
+                            <worldOfChange
+                                    jcr:primaryType="nt:unstructured"
+                                    text="World Of Change"
+                                    value="world-of-change"/>
+                            <lowerPrices
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Lower Prices"
+                                    value="lower-prices"/>
+                        </items>
+                    </type>
+                    <title
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Title"
+                            name="./title"/>
+                    <firstDescriptionPart
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                            useFixedInlineToolbar="{Boolean}true"
+                            fieldLabel="First Description Part"
+                            name="./firstDescriptionPart"/>
+                    <secondDescriptionPart
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                            useFixedInlineToolbar="{Boolean}true"
+                            fieldLabel="Second Description Part"
+                            name="./secondDescriptionPart"/>
+                    <accordion
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/accordion"
+                            multiple="{Boolean}true" variant="quiet" margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <firstCard
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="First Card"
+                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                            fieldLabel="Title"
+                                            name="./firstCardTitle"/>
+                                    <description
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                            useFixedInlineToolbar="{Boolean}true"
+                                            fieldLabel="Description"
+                                            name="./firstCardDescription"/>
+                                </items>
+                            </firstCard>
+                            <secondCard
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Second Card"
+                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                            fieldLabel="Title"
+                                            name="./secondCardTitle"/>
+                                    <description
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                            useFixedInlineToolbar="{Boolean}true"
+                                            fieldLabel="Description"
+                                            name="./secondCardDescription"/>
+                                </items>
+                            </secondCard>
+                            <thirdCard
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Third Card"
+                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                            fieldLabel="Title"
+                                            name="./thirdCardTitle"/>
+                                    <description
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                            useFixedInlineToolbar="{Boolean}true"
+                                            fieldLabel="Description"
+                                            name="./thirdCardDescription"/>
+                                </items>
+                            </thirdCard>
+                            <forthCard
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Forth Card"
+                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                            fieldLabel="Title"
+                                            name="./forthCardTitle"/>
+                                    <description
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                            useFixedInlineToolbar="{Boolean}true"
+                                            fieldLabel="Description"
+                                            name="./forthCardDescription"/>
+                                </items>
+                            </forthCard>
+                        </items>
+                    </accordion>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

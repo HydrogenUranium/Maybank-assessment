@@ -89,6 +89,59 @@
     <property inherit="true" name="xAxisTitle" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="yAxisTitle" translate="true" updateDestinationLanguage="false"/>
 
+    <property inherit="true" name="firstDescriptionPart" translate="true" updateDestinationLanguage="false"/>
+    <property inherit="true" name="secondDescriptionPart" translate="true" updateDestinationLanguage="false"/>
+    <property inherit="true" name="secondTitle" translate="true" updateDestinationLanguage="false"/>
+
+    <node resourceType="dhl/components/animated-content/stats-panel">
+      <property inherit="true" name="leftBlockTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="rightBlockTitle" translate="true" updateDestinationLanguage="false"/>
+    </node>
+
+    <node resourceType="dhl/components/animated-content/showcase-panel">
+      <property inherit="true" name="firstCardTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="firstCardDescription" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="secondCardTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="secondCardDescription" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="thirdCardTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="thirdCardDescription" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="forthCardTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="forthCardDescription" translate="true" updateDestinationLanguage="false"/>
+    </node>
+
+    <node resourceType="dhl/components/animated-content/form">
+      <property inherit="true" name="linkText" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="formTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="firstNamePlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="firstNameMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="lastNamePlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="lastNameMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="emailPlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="emailMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="companyNamePlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="companyNameMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="phoneNumberPlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="phoneNumberMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="addressPlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="addressMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="zipOrPostcodePlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="zipOrPostcodeMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="cityPlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="cityMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="countryPlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="countryMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="nextButtonTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="applyNowTitle" translate="true" updateDestinationLanguage="false"/>
+    </node>
+
+    <node resourceType="dhl/components/animated-content/carousel-row">
+      <property inherit="true" name="previousTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="nextTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="firstItemTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="secondItemTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="thirdItemTitle" translate="true" updateDestinationLanguage="false"/>
+    </node>
+
     <node resourceType="dhl/components/ampcontent/download">
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>

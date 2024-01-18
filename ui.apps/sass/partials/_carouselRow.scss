@@ -38,6 +38,10 @@
     line-height: 1.6;
     color: #ffffff;
     margin: 0;
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
 
     @include respond(xl) {
       margin: 0 0 20px;
