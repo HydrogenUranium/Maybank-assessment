@@ -8,8 +8,6 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.models.Article;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.jackrabbit.util.Text;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -26,6 +24,8 @@ public class ArticleService {
     protected static final int MAX_SEARCH_TERMS_ALLOWED = 5;
     protected static final int MIN_SEARCH_TERM_CHARACTERS_ALLOWED = 3;
     public static final String ORDERBY = "orderby";
+    public static final String JCR_CONTENT_CQ_TEMPLATE = "jcr:content/cq:template";
+
     @Reference
     protected ResourceResolverHelper resolverHelper;
 
@@ -49,12 +49,12 @@ public class ArticleService {
             customPublishProp.put("type", NT_PAGE);
             customPublishProp.put("path", parent.getPath());
             customPublishProp.put("group.p.or", "true");
-            customPublishProp.put("group.1_property", "jcr:content/cq:template");
+            customPublishProp.put("group.1_property", JCR_CONTENT_CQ_TEMPLATE);
             customPublishProp.put("group.1_property.value", "/conf/dhl/settings/wcm/templates/article");
-            customPublishProp.put("group.2_property", "jcr:content/cq:template");
+            customPublishProp.put("group.2_property", JCR_CONTENT_CQ_TEMPLATE);
             customPublishProp.put("group.2_property.operation", "like");
             customPublishProp.put("group.2_property.value", "/apps/dhl/templates/dhl-animated-%");
-            customPublishProp.put("group.3_property", "jcr:content/cq:template");
+            customPublishProp.put("group.3_property", JCR_CONTENT_CQ_TEMPLATE);
             customPublishProp.put("group.3_property.value", "/conf/dhl/settings/wcm/templates/animated-page");
             customPublishProp.put("3_property", "jcr:content/custompublishdate");
             customPublishProp.put("3_property.operation", "exists");
@@ -89,6 +89,7 @@ public class ArticleService {
         map.put("path", searchScope);
         map.put("type", NT_PAGE);
 
+        map.put("1_group.p.or", "true");
         for (var propertiesToLookGroupIndex = 0; propertiesToLookGroupIndex < propertiesToLook.length; propertiesToLookGroupIndex++) {
             setTermGroupPredicates(map, terms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex);
         }
@@ -108,9 +109,6 @@ public class ArticleService {
         var termGroupPredicatesTemplate = "1_group.%1$s_group.%2$s_group.1_containsIgnoreCase";
         String propertyPredicate = termGroupPredicatesTemplate + ".property";
         String valuePredicate = termGroupPredicatesTemplate + ".value";
-
-        // match condition for 'terms' group
-        map.put(String.format("1_group.%1$s_group.p.and", (propertiesToLookGroupIndex + 1)), "true");
 
         for (var termIndex = 0; termIndex < terms.length; termIndex++) {
             String term = terms[termIndex];
