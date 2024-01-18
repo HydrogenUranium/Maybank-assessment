@@ -17,7 +17,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class TagUtilServiceTest {
@@ -36,9 +35,6 @@ class TagUtilServiceTest {
 
     @Mock
     PageUtilService pageUtilService;
-
-    @Mock
-    ResourceResolverHelper resolverHelper;
 
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
@@ -102,10 +98,8 @@ class TagUtilServiceTest {
 
     @Test
     void test_getDefaultTrendingTopicsList() {
-        when(resolverHelper.getReadResourceResolver()).thenReturn(context.resourceResolver());
-
         assertNotNull(tagUtilService);
-        List<String> list = tagUtilService.getDefaultTrendingTopicsList();
+        List<String> list = tagUtilService.getDefaultTrendingTopicsList(resource);
         assertEquals(List.of("Business", "China", "small business"), list);
     }
 }
