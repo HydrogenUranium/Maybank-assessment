@@ -30,9 +30,10 @@ import java.util.Optional;
 @SlingServletPrefix("/apps/")
 @SlingServletResourceTypes(
 		resourceTypes = {
-			"dhl/components/content/inlineshipnowmarketoconfigurable",
-			"dhl/components/content/download",
-			"dhl/components/content/subscribepanel"
+				"dhl/components/content/inlineshipnowmarketoconfigurable",
+				"dhl/components/content/download",
+				"dhl/components/content/subscribepanel",
+				"dhl/components/content/marketoForm"
 		},
 		methods = HttpConstants.METHOD_POST,
 		extensions = "html",

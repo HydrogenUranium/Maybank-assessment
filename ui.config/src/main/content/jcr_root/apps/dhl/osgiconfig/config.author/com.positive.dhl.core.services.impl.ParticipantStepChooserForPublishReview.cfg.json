@@ -36,6 +36,10 @@
     "/content/dhl/kh:publisher-cambodia",
     "/content/dhl/mm:publisher-myanmar",
     "/content/dhl/sk:publisher-slovakia",
-    "/content/dhl/jp:publisher-japan"
+    "/content/dhl/jp:publisher-japan",
+    "/content/dhl/ng:publisher-nigeria",
+    "/content/dhl/ke:publisher-kenya",
+    "/content/dhl/za:publisher-south-africa",
+    "/content/dhl/ae:publisher-united-arab-emirates"
   ]
 }
