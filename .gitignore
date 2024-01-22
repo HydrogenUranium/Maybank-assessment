@@ -116,3 +116,4 @@ ui.tests/test-module/assets/form/themes/**/*current.png
 database/mysql.secret
 database/secrets/
 ssh_key
+/ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover/resources/flags/

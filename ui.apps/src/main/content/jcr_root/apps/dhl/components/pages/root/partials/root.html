@@ -4,7 +4,7 @@
 		<sly data-sly-test="${(currentSession.userID == null || currentSession.userID == 'anonymous')}" data-sly-unwrap>
 			<script src="//assets.adobedtm.com/cd52279ef3fa/3cec625096bb/launch-${dhlpage.trackingid}.min.js" async></script>
 
-			<sly data-sly-test="${(dhlpage.gtmtrackingid != '')}" data-sly-unwrap> 
+			<sly data-sly-test="${(dhlpage.gtmtrackingid != '')}" data-sly-unwrap>
 			<!-- Google Tag Manager -->
 			<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -14,15 +14,15 @@
 			<!-- End Google Tag Manager -->
     		</sly>
     	</sly>
-    	
+
     	<meta name="dhl-path-prefix" content="${dhlpage.pathprefix}" />
-    	
+
         <sly data-sly-include="partials/head.html" data-sly-unwrap/>
         <sly data-sly-include="partials/headlibs.html" data-sly-unwrap/>
     </head>
     <body style="background: #fff;" data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants">
-		<sly data-sly-test="${(currentSession.userID == null || currentSession.userID == 'anonymous')}" data-sly-unwrap> 
-		<sly data-sly-test="${(dhlpage.gtmtrackingid != '')}" data-sly-unwrap> 
+		<sly data-sly-test="${(currentSession.userID == null || currentSession.userID == 'anonymous')}" data-sly-unwrap>
+		<sly data-sly-test="${(dhlpage.gtmtrackingid != '')}" data-sly-unwrap>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${dhlpage.gtmtrackingid @ context = 'unsafe'}"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -55,7 +55,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="header__countrySelectPanel">
 				<div class="mob">
 					<div class="welcomes">
@@ -77,7 +77,7 @@
 					<div class="welcomes">
 						<h3>${ 'Welcome' @ i18n, context='html' }</h3>
 						<p>${ 'Please Select a Location' @ i18n, context='html' }</p>
-		
+
 						<div class="countries">
 							<div class="container">
 								<div class="row">
@@ -97,22 +97,22 @@
 				</div>
 			</div>
 		</header>
-        
+
 		<div class="root__countrySelectPanel">
 		    <div class="mask">
 		        <svg width="100"  height="100"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="background: none;">
 		            <circle class="loader-svg" cx="50" cy="50" fill="none" stroke="var(--color)" stroke-width="var(--stroke-width)" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(159.821 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="0.6s" begin="0s" repeatCount="indefinite"></animateTransform></circle>
 		            <style>
 		            :root { --color: #ccc; --stroke-width: 7; }
-		            
+
 		            @supports (-ms-ime-align: auto) {
 		                .loader-svg { -webkit-animation: rotation 0.6s infinite linear; animation: rotation 0.6s infinite linear; -webkit-transform-origin: center; -ms-transform-origin: center; transform-origin: center; }
-		            
+
 		                @-webkit-keyframes rotation {
 		                    from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
 		                    to { -webkit-transform: rotate(359deg); transform: rotate(359deg); }
 		                }
-		                
+
 		                @keyframes rotation {
 		                    from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
 		                    to { -webkit-transform: rotate(359deg); transform: rotate(359deg); }
@@ -135,7 +135,7 @@
 							</div>
 						</div>
 					</div>
-	
+
 					<div class="countries">
 						<div class="container">
 							<div class="row">
@@ -159,7 +159,6 @@
 		<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
 			<sly data-sly-call="${clientlib.js @ categories='dhl.site'}"/>
 		</sly>
-		
-		<script src="https://r1-t.trackedlink.net/_dmpt.js" type="text/javascript"></script>
+
     </body>
 </html>
