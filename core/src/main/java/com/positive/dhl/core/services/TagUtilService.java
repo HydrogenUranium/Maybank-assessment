@@ -2,7 +2,6 @@ package com.positive.dhl.core.services;
 
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
-import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
@@ -21,9 +20,6 @@ public class TagUtilService {
 
     @Reference
     private PageUtilService pageUtilService;
-
-    @Reference
-    protected ResourceResolverHelper resolverHelper;
 
     /**
      * Returns the {@link List} External Tags of the Article.
@@ -52,16 +48,19 @@ public class TagUtilService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getDefaultTrendingTopicsList() {
-        TagManager tagManager = resolverHelper.getReadResourceResolver().adaptTo(TagManager.class);
+    public List<String> getDefaultTrendingTopicsList(Resource pageResource) {
+        TagManager tagManager = pageResource.getResourceResolver().adaptTo(TagManager.class);
 
         List<String> trendingTopicsList = new ArrayList<>();
         if (tagManager != null) {
             var trendingTopicsTagsNamespace = tagManager.resolve(TRENDING_TOPICS_TAGS_NAMESPACE);
             if (null != trendingTopicsTagsNamespace) {
                 Iterator<Tag> trendingTopicsTags = trendingTopicsTagsNamespace.listChildren();
+                var locale = pageUtilService.getLocale(pageResource);
                 while (trendingTopicsTags.hasNext()) {
-                    trendingTopicsList.add(trendingTopicsTags.next().getTitle());
+                    var tag = trendingTopicsTags.next();
+                    String tagLocalizedTitle = tag.getLocalizedTitle(locale);
+                    trendingTopicsList.add(tagLocalizedTitle == null ? tag.getTitle() : tagLocalizedTitle);
                 }
                 trendingTopicsList.sort(String::compareTo);
             }
