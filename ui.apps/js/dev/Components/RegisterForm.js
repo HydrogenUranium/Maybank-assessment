@@ -1,9 +1,6 @@
 class RegisterForm {
   constructor() {
     this.config = {
-      fbAppId: '1080031328801211',
-      goClientId: '313469837420-l882h39ge8n8n9pb97ldvjk3fm8ppqgs.apps.googleusercontent.com',
-
       urlToken: '/libs/granite/csrf/token.json',
       urlRefreshCheck: '/apps/dhl/discoverdhlapi/refresh_token/index.form.html',
       urlRegister: '/apps/dhl/discoverdhlapi/register/index.form.html',
@@ -12,9 +9,6 @@ class RegisterForm {
 
     this.sel = {
       component: '.page-body.register, #download, .gated',
-      buttonFacebook: '.forms__cta--social.fb',
-      buttonLinkedin: '.forms__cta--social.li',
-      buttonGooglePlus: '.forms__cta--social.go'
     };
 
     this.getPathPrefix = this.getPathPrefix.bind(this);
@@ -24,9 +18,6 @@ class RegisterForm {
     this.bindEvents = this.bindEvents.bind(this);
     this.loggedIn = this.loggedIn.bind(this);
 
-    this.tryRegisterFacebook = this.tryRegisterFacebook.bind(this);
-    this.tryRegisterLinkedin = this.tryRegisterLinkedin.bind(this);
-    this.tryRegisterGoogle = this.tryRegisterGoogle.bind(this);
     this.tryRegister = this.tryRegister.bind(this);
 
     this.executeRegister = this.executeRegister.bind(this);
@@ -78,76 +69,6 @@ class RegisterForm {
       return ($('#' + $(element).attr('data-equalTo')).val() === $(element).val());
     }, 'Passwords do not match');
 
-    if ($(this.sel.component).find(this.sel.buttonFacebook).length > 0) {
-      window.fbAsyncInit = () => {
-        window.fb_interval = setInterval(() => {
-          if (typeof (window.FB) !== 'undefined' && window.FB !== null) {
-            window.FB.init({
-              appId: this.config.fbAppId,
-              cookie: true,
-              xfbml: true,
-              version: 'v2.8'
-            });
-
-            clearInterval(window.fb_interval);
-          }
-        }, 100);
-      };
-
-      if (document.getElementById('facebook-jssdk') === null) {
-        var fjs = document.getElementsByTagName('script')[0];
-        var js = document.createElement('script');
-        js.id = 'facebook-jssdk';
-        js.src = '//connect.facebook.net/en_EN/sdk.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }
-      $(this.sel.component).find(this.sel.buttonFacebook).on('click', (evt) => {
-        this.tryRegisterFacebook(evt);
-        return false;
-      });
-    }
-
-    if ($(this.sel.component).find(this.sel.buttonLinkedin).length > 0) {
-      $(this.sel.component).find(this.sel.buttonLinkedin).on('click', (evt) => {
-        this.tryRegisterLinkedin(evt);
-        return false;
-      });
-    }
-
-    var googleButton = $(this.sel.component).find(this.sel.buttonGooglePlus);
-    if (googleButton.length > 0) {
-      window.go_interval = setInterval(() => {
-        if (typeof (window.gapi) !== 'undefined' && window.gapi !== null) {
-          window.gapi.load('auth2', () => {
-            var auth2 = window.gapi.auth2.init({
-              client_id: this.config.goClientId,
-              cookiepolicy: 'single_host_origin'
-            });
-
-            var element = googleButton.get(0);
-            auth2.attachClickHandler(element, {},
-              (googleUser) => {
-                this.tryRegisterGoogle(googleUser);
-                return false;
-              },
-              (result) => {
-                if (result.error !== 'popup_closed_by_user') {
-                  alert(result.error);
-                }
-              }
-            );
-          });
-
-          clearInterval(window.go_interval);
-        }
-      }, 100);
-
-      $(this.sel.component).find(this.sel.buttonGooglePlus).on('click', (evt) => {
-        evt.preventDefault();
-        return false;
-      });
-    }
-
     $(this.sel.component).find('#glb-register-start form#register-detail-form').validate({
       rules: {
         register__email: 'email',
@@ -175,98 +96,6 @@ class RegisterForm {
       evt.preventDefault();
       this.tryCategorySelection(evt);
       return false;
-    });
-  }
-
-  tryRegisterFacebook(evt) {
-    evt.preventDefault();
-
-    $(this.sel.component).find(this.sel.buttonFacebook).text('please wait...');
-
-    window.FB.login((loginResponse) => {
-      if (loginResponse.authResponse) {
-        window.FB.api('/me', (dataResponse) => {
-          var data = {
-            firstname: dataResponse.first_name,
-            lastname: dataResponse.last_name,
-            username: dataResponse.email,
-            password: dataResponse.id,
-            islinkedin: 'true',
-            tcagree: true
-          };
-
-          this.executeRegister(data, () => {
-            $(this.sel.component).find(this.sel.buttonFacebook).text('Facebook');
-          });
-        }, { fields: [ 'id', 'email', 'first_name', 'last_name' ]});
-      }
-      return false;
-    }, { scope: 'email,public_profile', return_scopes: true });
-  }
-
-  tryRegisterLinkedin(evt) {
-    evt.preventDefault();
-
-    $(this.sel.component).find(this.sel.buttonLinkedin).text('please wait...');
-
-    IN.User.authorize(() => {
-      IN.API.Profile('me').fields('id', 'first-name', 'last-name', 'email-address').result((result) => {
-        var member = result.values[0];
-
-        var data = {
-          firstname: member.firstName,
-          lastname: member.lastName,
-          username: member.emailAddress,
-          password: member.id,
-          islinkedin: 'true',
-          tcagree: true
-        };
-
-        this.executeRegister(data, () => {
-          $(this.sel.component).find(this.sel.buttonLinkedin).text('LinkedIn');
-        });
-      });
-    });
-
-    setInterval(() => {
-      var result = window.IN.User.isAuthorized();
-      if (result) {
-        IN.API.Profile('me').fields('id', 'first-name', 'last-name', 'email-address').result((result) => {
-          var member = result.values[0];
-
-          var data = {
-            firstname: member.firstName,
-            lastname: member.lastName,
-            username: member.emailAddress,
-            password: member.id,
-            islinkedin: 'true',
-            tcagree: true
-          };
-
-          this.executeRegister(data, () => {
-            $(this.sel.component).find(this.sel.buttonLinkedin).text('LinkedIn');
-          });
-        });
-      }
-    }, 1000);
-    return false;
-  }
-
-  tryRegisterGoogle(googleUser) {
-    var basicProfile = googleUser.getBasicProfile();
-
-    var data = {
-      firstname: basicProfile.getGivenName(),
-      lastname: basicProfile.getFamilyName(),
-      username: basicProfile.getEmail(),
-      password: basicProfile.getId(),
-      islinkedin: 'true',
-      tcagree: true
-    };
-
-    $(this.sel.component).find(this.sel.buttonGooglePlus).text('please wait...');
-    this.executeRegister(data, () => {
-      $(this.sel.component).find(this.sel.buttonGooglePlus).text('Google+');
     });
   }
 

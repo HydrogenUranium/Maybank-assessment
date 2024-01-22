@@ -4,13 +4,6 @@ class ShipNowTwoStepForm {
     this.lastname = '';
     this.email = '';
 
-    this.config = {
-      // fbAppId: '1000773163337798',
-      fbAppId: '1080031328801211',
-      // goClientId: '913960352236-u7un0l22tvkmlbpa5bcnf1uqg4csi7e3.apps.googleusercontent.com',
-      goClientId: '313469837420-l882h39ge8n8n9pb97ldvjk3fm8ppqgs.apps.googleusercontent.com'
-    };
-
     this.sel = {
       component: '.shipNowMulti.wysiwyg, .animatedForm',
       swingbutton: '.shipNowMulti__headcta--red',
@@ -18,10 +11,6 @@ class ShipNowTwoStepForm {
       form1: 'form.forms.form1.ship-now-twostep',
       form2: 'form.forms.form2.ship-now-twostep',
       countryselect: 'form.forms.form2.ship-now-twostep #shipnow_country',
-
-      buttonFacebook: '.forms__cta--social.facebook',
-      buttonLinkedin: '.forms__cta--social.linkedin',
-      buttonGooglePlus: '.forms__cta--social.google'
     };
 
     this.getPathPrefix = this.getPathPrefix.bind(this);
@@ -29,9 +18,7 @@ class ShipNowTwoStepForm {
     this.bindEvents = this.bindEvents.bind(this);
 
     this.toggleAddress = this.toggleAddress.bind(this);
-    this.submitFacebook = this.submitFacebook.bind(this);
-    this.submitLinkedin = this.submitLinkedin.bind(this);
-    this.submitGoogle = this.submitGoogle.bind(this);
+
     this.submitForm1 = this.submitForm1.bind(this);
     this.nextForm = this.nextForm.bind(this);
     this.submitForm2 = this.submitForm2.bind(this);
@@ -53,76 +40,6 @@ class ShipNowTwoStepForm {
     var country = $(this.sel.form2).data('preselectcountry');
     if ((country !== null) && $.trim(country).length > 0) {
       $(this.sel.countryselect).val(country).trigger('change');
-    }
-
-    if ($(this.sel.component).find(this.sel.buttonFacebook).length > 0) {
-      window.fbAsyncInit = () => {
-        window.fb_interval = setInterval(() => {
-          if (typeof (window.FB) !== 'undefined' && window.FB !== null) {
-            window.FB.init({
-              appId: this.config.fbAppId,
-              cookie: true,
-              xfbml: true,
-              version: 'v2.8'
-            });
-
-            clearInterval(window.fb_interval);
-          }
-        }, 100);
-      };
-
-      if (document.getElementById('facebook-jssdk') === null) {
-        var fjs = document.getElementsByTagName('script')[0];
-        var js = document.createElement('script');
-        js.id = 'facebook-jssdk';
-        js.src = '//connect.facebook.net/en_EN/sdk.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }
-      $(this.sel.component).find(this.sel.buttonFacebook).on('click', (evt) => {
-        this.submitFacebook(evt);
-        return false;
-      });
-    }
-
-    if ($(this.sel.component).find(this.sel.buttonLinkedin).length > 0) {
-      $(this.sel.component).find(this.sel.buttonLinkedin).on('click', (evt) => {
-        this.submitLinkedin(evt);
-        return false;
-      });
-    }
-
-    var googleButton = $(this.sel.component).find(this.sel.buttonGooglePlus);
-    if (googleButton.length > 0) {
-      window.go_interval = setInterval(() => {
-        if (typeof (window.gapi) !== 'undefined' && window.gapi !== null) {
-          window.gapi.load('auth2', () => {
-            var auth2 = window.gapi.auth2.init({
-              client_id: this.config.goClientId,
-              cookiepolicy: 'single_host_origin'
-            });
-
-            var element = googleButton.get(0);
-            auth2.attachClickHandler(element, {},
-              (googleUser) => {
-                this.submitGoogle(googleUser);
-                return false;
-              },
-              (result) => {
-                if (result.error !== 'popup_closed_by_user') {
-                  alert(result.error);
-                }
-              }
-            );
-          });
-
-          clearInterval(window.go_interval);
-        }
-      }, 100);
-
-      $(this.sel.component).find(this.sel.buttonGooglePlus).on('click', (evt) => {
-        evt.preventDefault();
-        return false;
-      });
     }
 
     $(document).on('click', this.sel.swingbutton, (evt) => {
@@ -179,66 +96,6 @@ class ShipNowTwoStepForm {
       $('#shipnow_zip', this.sel.form).removeAttr('required').attr('placeholder', 'ZIP or Postcode').removeClass('error').closest('div').find('label').remove();
       $('#shipnow_city', this.sel.form).removeAttr('required').attr('placeholder', 'City').removeClass('error').closest('div').find('label').remove();
     }
-  }
-
-  submitFacebook(evt) {
-    evt.preventDefault();
-
-    window.FB.login((loginResponse) => {
-      if (loginResponse.authResponse) {
-        window.FB.api('/me', (dataResponse) => {
-          this.firstname = dataResponse.first_name;
-          this.lastname = dataResponse.last_name;
-          this.email = dataResponse.email;
-
-          this.nextForm();
-        }, { fields: [ 'id', 'email', 'first_name', 'last_name' ]});
-      }
-      return false;
-    }, { scope: 'email,public_profile', return_scopes: true });
-  }
-
-  submitLinkedin(evt) {
-    evt.preventDefault();
-
-    IN.User.authorize(() => {
-      IN.API.Profile('me').fields('id', 'first-name', 'last-name', 'email-address').result((result) => {
-        var member = result.values[0];
-
-        this.firstname = member.firstName;
-        this.lastname = member.lastName;
-        this.email = member.emailAddress;
-
-        this.nextForm();
-      });
-    });
-
-    setInterval(() => {
-      var result = window.IN.User.isAuthorized();
-      if (result) {
-        IN.API.Profile('me').fields('id', 'first-name', 'last-name', 'email-address').result((result) => {
-          var member = result.values[0];
-
-          this.firstname = member.firstName;
-          this.lastname = member.lastName;
-          this.email = member.emailAddress;
-
-          this.nextForm();
-        });
-      }
-    }, 1000);
-
-    return false;
-  }
-
-  submitGoogle(googleUser) {
-    var basicProfile = googleUser.getBasicProfile();
-
-    this.firstname = basicProfile.getGivenName();
-    this.lastname = basicProfile.getFamilyName();
-    this.email = basicProfile.getEmail();
-
-    this.nextForm();
   }
 
   submitForm1(e) {

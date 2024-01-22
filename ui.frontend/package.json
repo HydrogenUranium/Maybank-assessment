@@ -1,5 +1,5 @@
 {
-  "name": "aem-maven-archetype",
+  "name": "discover-dhl-front-end-module",
   "version": "1.0.0",
   "description": "Generates an AEM Frontend project with Webpack",
   "repository": {
