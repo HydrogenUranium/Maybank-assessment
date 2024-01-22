@@ -25,7 +25,6 @@
   <link rel="icon" sizes="128x128" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
   <link rel="apple-touch-icon" sizes="128x128" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
   <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
 
   <title>${currentPage.pageTitle || currentPage.name}</title>
   <meta name="description" content="${properties.jcr:description}"/>
@@ -73,14 +72,6 @@
   <link rel="apple-touch-icon" sizes="152x152" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/180.png">
 
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="https://apis.google.com/js/api:client.js"></script>
-
-  <script type="text/javascript" src="//platform.linkedin.com/in.js">
-    api_key: 86y0x90b8zt01a
-    authorize: false
-  </script>
-
   <meta property="og:type" content="article" />
   <meta property="og:url" content="${dhlpage.fullUrl}" />
   <meta property="og:title" content="${currentPage.pageTitle || currentPage.name}" />
@@ -93,11 +84,5 @@
   <meta name="twitter:description" content="${properties.jcr:description}" />
   <meta name="twitter:image" content="https://${dhlpage.akamaiHostname}/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png" />
 
-  <meta name="google-signin-client_id" content="530300053917-ee8p43bdbd6lee4i81nu5l526k44ni6v.apps.googleusercontent.com">
-
-  <!--/* Initializes the Social Network Link UI */-->
-  <sly data-sly-use.socialNetworkLinksModel="com.positive.dhl.core.models.SocialNetworkLinksModel" data-sly-test="${socialNetworkLinksModel.headCodeInclusion}">
-    ${socialNetworkLinksModel.headCodeInclusion @ context="unsafe"}
-  </sly>
   <sly data-sly-include="author.html" ></sly>
 </sly>

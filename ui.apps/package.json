@@ -26,6 +26,7 @@
     "@babel/core": "^7.23.0",
     "@babel/eslint-parser": "^7.22.15",
     "@babel/preset-env": "^7.22.20",
+    "aemsync": "^5.0.5",
     "autoprefixer": "^10.4.16",
     "babel-core": "^6.26.3",
     "babelify": "^10.0.0",
@@ -48,14 +49,14 @@
     "sass": "^1.69.2",
     "sync-pom-version-to-package": "^1.6.1",
     "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
-    "aemsync": "^5.0.5"
+    "vinyl-source-stream": "^2.0.0"
   },
   "browserslist": [
     "defaults and fully supports es6-module",
     "maintained node versions"
   ],
   "dependencies": {
+    "flag-icons": "^7.1.0",
     "jquery": "^3.7.1"
   }
 }
