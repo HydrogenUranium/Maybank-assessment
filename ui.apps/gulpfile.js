@@ -43,6 +43,14 @@ gulp.task('sass', finished => {
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover/css'));
 
+    gulp.src('node_modules/flag-icons/css/flag-icons.min.css')
+        .pipe(gulpIf(isDev, sourcemaps.init()))
+        .pipe(replace('../flags', prefix + "/discover/resources/flags"))
+        .pipe(postcss([autoprefixer()]))
+        // .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
+        .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
+        .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover/css'));
+
   /* This is for a 'standalone' stylesheet meant to be delivered via a separate clientlib AEM package */
   gulp.src('./sass/animated-pages.scss')
     .pipe(gulpIf(isDev, sourcemaps.init()))
@@ -144,8 +152,13 @@ gulp.task('javascript', () => {
   return merge(vendor, app, animatedApp);
 });
 
+gulp.task('copyFlagIcons', () => {
+  return gulp.src('node_modules/flag-icons/flags/**/*')
+    .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover/resources/flags'));
+});
+
 // build task
-gulp.task('build', gulp.series('sass', 'javascript'), finished => {
+gulp.task('build', gulp.series('sass', 'javascript', 'copyFlagIcons'), finished => {
   gulp.src(['./sass/*.css', '!./node_modules/**/*']).pipe(gulp.dest('./build/sass'));
   gulp.src(['./js/mini/*.min.js', '!./node_modules/**/*']).pipe(gulp.dest('./build/js/mini'));
   gulp.src(['./**/*.php', '!./node_modules/**/*', '!./build/**/*']).pipe(gulp.dest('./build'));
@@ -156,4 +169,4 @@ gulp.task('build', gulp.series('sass', 'javascript'), finished => {
 });
 
 // default task
-gulp.task('default', gulp.series('sass', 'javascript'));
+gulp.task('default', gulp.series('sass', 'javascript', 'copyFlagIcons'));

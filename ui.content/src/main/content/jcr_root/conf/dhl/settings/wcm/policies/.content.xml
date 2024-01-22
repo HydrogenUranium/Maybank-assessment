@@ -12,7 +12,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="DHL Category Template Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="[wcm.foundation.components.page.responsive]">
+                            clientlibs="[wcm.foundation.components.page.responsive,dhl.category-page]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </category_page_policy>
                 </editable-category-page>
