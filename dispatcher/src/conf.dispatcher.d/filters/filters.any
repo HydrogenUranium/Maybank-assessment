@@ -44,3 +44,6 @@ $include "./default_filters.any"
      /selectors '(rss|all|element|thumb|319)'
      /extension '(xml|png)'
 }
+
+# Allow WEBP images
+/3100 { /type "allow" /method "GET" /extension '(webp)' /path "/content/dam/*" }
