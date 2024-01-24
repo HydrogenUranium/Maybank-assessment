@@ -51,6 +51,7 @@ class TagUtilServiceTest {
         tagManager.createTag("dhlsuggested:Business", "Business", "Business");
         tagManager.createTag("dhlsuggested:China", "China", "China");
         tagManager.createTag("dhlsuggested:Small-business", "small business", "small business");
+        tagManager.createTag("dhl-author-highlights:recommended", "recommended", "recommended");
     }
 
     @Test
@@ -73,6 +74,15 @@ class TagUtilServiceTest {
         assertArrayEquals(
                 new String[]{},
                 tagUtilService.getExternalTags(articleWithoutTagsPageResource).toArray());
+    }
+
+    @Test
+    void test_getHighlightTags() {
+        assertArrayEquals(new String[]{}, tagUtilService.getHighlightsTags(null).toArray());
+
+        Resource article = resourceResolver.getResource(ARTICLE_WITH_TAGS_PAGE_PATH);
+        assertNotNull(article);
+        assertArrayEquals(new String[]{"recommended"}, tagUtilService.getHighlightsTags(article).toArray());
     }
 
     @Test

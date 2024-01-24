@@ -1,0 +1,22 @@
+.sort {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    &Label {
+        margin-bottom: 0px;
+        margin-right: 20px;
+
+        &:after {
+            content: ":";
+        }
+    }
+
+    &Select {
+        min-width: 160px;
+
+        @media screen and (max-width: 567px) {
+            margin-top: 10px;
+        }
+    }
+}

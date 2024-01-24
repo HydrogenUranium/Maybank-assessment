@@ -94,7 +94,9 @@
   "dependencies": {
     "classnames": "^2.3.2",
     "react-dom": "^18.2.0",
-    "react-string-format": "^1.0.1"
+    "react-select": "^5.8.0",
+    "react-string-format": "^1.0.1",
+    "usehooks-ts": "^2.9.5"
   },
   "browserslist": [
     "last 2 version",

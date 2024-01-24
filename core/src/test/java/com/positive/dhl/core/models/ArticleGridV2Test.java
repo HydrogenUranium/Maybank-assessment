@@ -88,7 +88,7 @@ class ArticleGridV2Test {
 
     @Test
     void test() throws JsonProcessingException {
-        when(articleService.getLatestArticles(any(Page.class), anyInt())).thenAnswer(invocationOnMock -> {
+        when(articleService.getAllArticles(any(Page.class))).thenAnswer(invocationOnMock -> {
             Page rootPage = invocationOnMock.getArgument(0, Page.class);
             String path = rootPage.getPath();
             if (path.equals("/content/home")) {

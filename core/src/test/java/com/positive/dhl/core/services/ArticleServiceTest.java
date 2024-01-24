@@ -5,6 +5,7 @@ import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.models.ArticleGrid;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -91,15 +92,19 @@ class ArticleServiceTest {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
         });
-    }
 
-    @Test
-    void getLatestArticles_ShouldReturnArticles_WhenArticlesAreFound() {
         Article article1 = createArticleModel(context.resourceResolver().getResource("/content/home/article_1"));
         Article article2 = createArticleModel(context.resourceResolver().getResource("/content/home/article_2"));
         lenient().when(pageUtilService.getArticle(eq("/content/home/article_1"), any(ResourceResolver.class))).thenReturn(article1);
         lenient().when(pageUtilService.getArticle(eq("/content/home/article_2"), any(ResourceResolver.class))).thenReturn(article2);
+    }
 
+    private Article createArticleModel(Resource resource) {
+        return context.getService(ModelFactory.class).createModel(resource, Article.class);
+    }
+
+    @Test
+    void getLatestArticles_ShouldReturnArticles_WhenArticlesAreFound() {
         var articles = articleService.getLatestArticles("/content/home", 2);
 
         assertEquals(2, articles.size());
@@ -108,20 +113,20 @@ class ArticleServiceTest {
     }
 
     @Test
-    void getArticlesByTitle_ShouldReturnArticles_WhenArticlesAreFound() {
-        Article article1 = createArticleModel(context.resourceResolver().getResource("/content/home/article_1"));
-        Article article2 = createArticleModel(context.resourceResolver().getResource("/content/home/article_2"));
-        lenient().when(pageUtilService.getArticle(eq("/content/home/article_1"), any(ResourceResolver.class))).thenReturn(article1);
-        lenient().when(pageUtilService.getArticle(eq("/content/home/article_2"), any(ResourceResolver.class))).thenReturn(article2);
-
-        var articles = articleService.getArticlesByTitle("dhl", "/content/home", resolver);
+    void getAllArticles_ShouldReturnArticles_WhenArticlesAreFound() {
+        var articles = articleService.getAllArticles(resolver.getResource("/content/home").adaptTo(Page.class));
 
         assertEquals(2, articles.size());
         assertEquals("/content/home/article_1", articles.get(0).getPath());
         assertEquals("/content/home/article_2", articles.get(1).getPath());
     }
 
-    private Article createArticleModel(Resource resource) {
-        return context.getService(ModelFactory.class).createModel(resource, Article.class);
+    @Test
+    void getArticlesByTitle_ShouldReturnArticles_WhenArticlesAreFound() {
+        var articles = articleService.getArticlesByTitle("dhl", "/content/home", resolver);
+
+        assertEquals(2, articles.size());
+        assertEquals("/content/home/article_1", articles.get(0).getPath());
+        assertEquals("/content/home/article_2", articles.get(1).getPath());
     }
 }

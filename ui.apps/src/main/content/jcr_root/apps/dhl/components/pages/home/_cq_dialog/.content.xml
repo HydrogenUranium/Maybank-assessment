@@ -1757,6 +1757,16 @@
                                                                         jcr:primaryType="nt:unstructured"
                                                                         cq-msm-lockable="./articleGrid-latestOptionTitle"/>
                                                             </latestOptionTitle>
+                                                            <recommendedOptionTitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Name for the 'Recommended' option in selector"
+                                                                    emptyText="Recommended"
+                                                                    name="./articleGrid-recommendedOptionTitle">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./articleGrid-recommendedOptionTitle"/>
+                                                            </recommendedOptionTitle>
                                                             <showTags
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/foundation/form/checkbox"
