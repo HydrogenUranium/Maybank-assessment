@@ -81,6 +81,7 @@ public class Article {
 	private boolean showshipnow;
 	private List<TagWrapper> tags;
 	@Expose private List<String> tagsToShow = new ArrayList<>();
+	private List<String> highlights = new ArrayList<>();
 	private int counter;
 	private Locale locale;
 	@Expose protected String path;
@@ -136,6 +137,7 @@ public class Article {
 
 		tags = new ArrayList<>();
 		tagsToShow = tagUtilService.getExternalTags(resource);
+		highlights = tagUtilService.getHighlightsTags(resource);
 
 		path = resource.getResourceResolver().map(resource.getPath());
 

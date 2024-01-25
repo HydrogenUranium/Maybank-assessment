@@ -68,6 +68,12 @@ public class ArticleGridV2 {
 
     @InjectHomeProperty
     @Optional
+    @Named("articleGrid-recommendedOptionTitle")
+    @Default(values = "Recommended")
+    private String recommendedOptionTitle;
+
+    @InjectHomeProperty
+    @Optional
     @Named("articleGrid-showTags")
     @Default(values = "false")
     private String showTags;
@@ -76,11 +82,11 @@ public class ArticleGridV2 {
 
     @PostConstruct
     private void init() {
-        var allLatestArticles = articleService.getLatestArticles(currentPage, 8);
+        var allLatestArticles = articleService.getAllArticles(currentPage);
         categoryArticleMap.put(allCategoriesTitle, allLatestArticles);
 
         getSubCategories().forEach(category -> {
-            var categoryArticles = articleService.getLatestArticles(category, 8);
+            var categoryArticles = articleService.getAllArticles(category);
             var categoryTitle = defaultIfBlank(category.getNavigationTitle(), category.getTitle());
             if (categoryTitle != null) {
                 categoryArticleMap.put(categoryTitle, categoryArticles);
@@ -114,9 +120,11 @@ public class ArticleGridV2 {
                         .add("description", article.getDescription())
                         .add("listimage", article.getListimage())
                         .add("createdfriendly", article.getCreatedfriendly())
+                        .add("createdMilliseconds", article.getCreatedMilliseconds())
                         .add("author", article.getAuthor())
                         .add("groupTag", article.getGroupTag())
                         .add("tagsToShow", Json.createArrayBuilder(article.getTagsToShow()).build())
+                        .add("highlights", Json.createArrayBuilder(article.getHighlights()).build())
                         .build();
                 articlesJson.add(articleJson);
             });
@@ -128,11 +136,10 @@ public class ArticleGridV2 {
                 .add(PAGE_TITLE_PARAM, title)
                 .add("showTags", showTags.equals("true"))
                 .add("categories", categories)
-                .add("sorting", Json.createObjectBuilder()
-                        .add(PAGE_TITLE_PARAM, sortTitle)
-                        .add("options", Json.createArrayBuilder()
-                                .add(Json.createObjectBuilder()
-                                        .add("name", latestOptionTitle))))
+                .add("showMoreResultsButtonTitle", "Show More")
+                .add("recommendedOptionTitle", recommendedOptionTitle)
+                .add("latestOptionTitle", latestOptionTitle)
+                .add("sortingTitle", sortTitle)
                 .build().toString();
     }
 }

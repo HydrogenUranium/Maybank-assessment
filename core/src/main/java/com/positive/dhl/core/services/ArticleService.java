@@ -43,46 +43,62 @@ public class ArticleService {
                 .orElse(new ArrayList<>());
     }
 
-    public List<Article> getLatestArticles(Page parent, int limit) {
+    private List<Article> getArticles(Map<String, String> customProps) {
         try (var resolver = resolverHelper.getReadResourceResolver()) {
-            Map<String, String> customPublishProp = new HashMap<>();
-            customPublishProp.put("type", NT_PAGE);
-            customPublishProp.put("path", parent.getPath());
-            customPublishProp.put("group.p.or", "true");
-            customPublishProp.put("group.1_property", JCR_CONTENT_CQ_TEMPLATE);
-            customPublishProp.put("group.1_property.value", "/conf/dhl/settings/wcm/templates/article");
-            customPublishProp.put("group.2_property", JCR_CONTENT_CQ_TEMPLATE);
-            customPublishProp.put("group.2_property.operation", "like");
-            customPublishProp.put("group.2_property.value", "/apps/dhl/templates/dhl-animated-%");
-            customPublishProp.put("group.3_property", JCR_CONTENT_CQ_TEMPLATE);
-            customPublishProp.put("group.3_property.value", "/conf/dhl/settings/wcm/templates/animated-page");
-            customPublishProp.put("3_property", "jcr:content/custompublishdate");
-            customPublishProp.put("3_property.operation", "exists");
-            customPublishProp.put(ORDERBY, "@jcr:content/custompublishdate");
-            customPublishProp.put("orderby.sort", "desc");
-            customPublishProp.put("p.limit", String.valueOf(limit));
+            Map<String, String> props = new HashMap<>();
+            props.put("type", NT_PAGE);
+            props.put("group.p.or", "true");
+            props.put("group.1_property", JCR_CONTENT_CQ_TEMPLATE);
+            props.put("group.1_property.value", "/conf/dhl/settings/wcm/templates/article");
+            props.put("group.2_property", JCR_CONTENT_CQ_TEMPLATE);
+            props.put("group.2_property.operation", "like");
+            props.put("group.2_property.value", "/apps/dhl/templates/dhl-animated-%");
+            props.put("group.3_property", JCR_CONTENT_CQ_TEMPLATE);
+            props.put("group.3_property.value", "/conf/dhl/settings/wcm/templates/animated-page");
+            props.putAll(customProps);
 
-            Map<String, String> createdProp = new HashMap<>(customPublishProp);
-            createdProp.put(ORDERBY, "@jcr:content/jcr:created");
-            createdProp.put("3_property.operation", "not");
-
-            Map<String, String> lastModifiedProp = new HashMap<>(createdProp);
-            createdProp.put(ORDERBY, "@jcr:content/cq:lastModified");
-
-            Map<String, Article> articleMap = new HashMap<>();
-
-            searchArticles(customPublishProp, resolver).forEach(article -> articleMap.put(article.getPath(), article));
-            searchArticles(createdProp, resolver).forEach(article -> articleMap.put(article.getPath(), article));
-            searchArticles(lastModifiedProp, resolver).forEach(article -> articleMap.put(article.getPath(), article));
-
-            List<Article> articles = new ArrayList<>(articleMap.values());
-            articles.sort((o1, o2) -> o2.getCreatedDate().compareTo(o1.getCreatedDate()));
-            return articles.subList(0, Math.min(limit, articles.size()));
+            return searchArticles(props, resolver);
         }
     }
 
+    public List<Article> getAllArticles(Page parent) {
+        return getArticles(Map.of(
+                "p.limit", "-1",
+                "path", parent.getPath()
+        ));
+    }
+
+    public List<Article> getLatestArticles(Page parent, int limit) {
+        Map<String, String> customPublishProp = Map.of(
+                "path", parent.getPath(),
+                "1_property", "jcr:content/custompublishdate",
+                "1_property.operation", "exists",
+                ORDERBY, "@jcr:content/custompublishdate",
+                "orderby.sort", "desc",
+                "p.limit", String.valueOf(limit)
+        );
+
+
+        Map<String, String> createdProp = new HashMap<>(customPublishProp);
+        createdProp.put(ORDERBY, "@jcr:content/jcr:created");
+        createdProp.put("1_property.operation", "not");
+
+        Map<String, String> lastModifiedProp = new HashMap<>(createdProp);
+        createdProp.put(ORDERBY, "@jcr:content/cq:lastModified");
+
+        Map<String, Article> uniqueArticlesMap = new HashMap<>();
+
+        getArticles(customPublishProp).forEach(article -> uniqueArticlesMap.put(article.getPath(), article));
+        getArticles(createdProp).forEach(article -> uniqueArticlesMap.put(article.getPath(), article));
+        getArticles(lastModifiedProp).forEach(article -> uniqueArticlesMap.put(article.getPath(), article));
+
+        List<Article> articles = new ArrayList<>(uniqueArticlesMap.values());
+        articles.sort((o1, o2) -> o2.getCreatedDate().compareTo(o1.getCreatedDate()));
+        return articles.subList(0, Math.min(limit, articles.size()));
+    }
+
     public List<Article> getArticlesByTitle(String searchTerm, String searchScope, ResourceResolver resourceResolver) {
-        String[] propertiesToLook = { "jcr:content/jcr:title", "jcr:content/pageTitle", "jcr:content/navTitle", "jcr:content/cq:tags" };
+        String[] propertiesToLook = {"jcr:content/jcr:title", "jcr:content/pageTitle", "jcr:content/navTitle", "jcr:content/cq:tags"};
         String[] terms = getTerms(searchTerm);
 
         Map<String, String> map = new HashMap<>();
@@ -121,7 +137,7 @@ public class ArticleService {
     private String[] getTerms(String searchTerm) {
         List<String> result = new LinkedList<>();
         String[] terms = searchTerm.trim().split("\\s");
-        for (var term: terms) {
+        for (var term : terms) {
             if (term.trim().length() >= MIN_SEARCH_TERM_CHARACTERS_ALLOWED && result.size() <= MAX_SEARCH_TERMS_ALLOWED) {
                 result.add(term);
             }
@@ -152,7 +168,7 @@ public class ArticleService {
         hits.forEach(hit -> {
             try {
                 var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
-                if (article != null &&  article.isValid()) {
+                if (article != null && article.isValid()) {
                     resources.add(article);
                 }
             } catch (RepositoryException exception) {

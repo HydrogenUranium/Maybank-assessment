@@ -216,7 +216,8 @@
                 "dhl-article-external:default/dhl_internationalshipping",
                 "dhl-article-external:default/e-commerce_advice",
                 "dhl-article-external:default/business_advice",
-                "dhl-article-internal:hidden"
+                "dhl-article-internal:hidden",
+                "dhl-author-highlights:recommended"
               ]
             }
           },

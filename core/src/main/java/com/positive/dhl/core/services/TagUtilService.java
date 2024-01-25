@@ -16,10 +16,31 @@ import static com.day.cq.commons.jcr.JcrConstants.JCR_CONTENT;
 public class TagUtilService {
 
     public static final String EXTERNAL_TAGS_NAMESPACE = "dhl-article-external";
-    private static final String TRENDING_TOPICS_TAGS_NAMESPACE = "dhlsuggested:";
+    public static final String TRENDING_TOPICS_TAGS_NAMESPACE = "dhlsuggested:";
+    public static final String AUTHOR_HIGHLIGHTS_TAGS_NAMESPACE = "dhl-author-highlights";
 
     @Reference
     private PageUtilService pageUtilService;
+
+    public Tag[] getTags(Resource pageResource) {
+        return Optional.ofNullable(pageResource)
+                .map(Resource::getResourceResolver)
+                .map(rr -> rr.adaptTo(TagManager.class))
+                .map(tm -> tm.getTags(pageResource.getChild(JCR_CONTENT)))
+                .orElse(new Tag[0]);
+    }
+
+    public List<String> getHighlightsTags(Resource pageResource) {
+        Tag[] tags = getTags(pageResource);
+
+        return Arrays.stream(tags)
+                .filter(tag -> {
+                    String namespace = tag.getNamespace().getName();
+                    return AUTHOR_HIGHLIGHTS_TAGS_NAMESPACE.equals(namespace);
+                })
+                .map(Tag::getName)
+                .collect(Collectors.toList());
+    }
 
     /**
      * Returns the {@link List} External Tags of the Article.
@@ -29,11 +50,7 @@ public class TagUtilService {
      * or {@code List.EMPTY} if the pageResource is {@code null} or Article doesn't contain External Tags
      */
     public List<String> getExternalTags(Resource pageResource) {
-        Tag[] tags = Optional.ofNullable(pageResource)
-                .map(Resource::getResourceResolver)
-                .map(rr -> rr.adaptTo(TagManager.class))
-                .map(tm -> tm.getTags(pageResource.getChild(JCR_CONTENT)))
-                .orElse(new Tag[0]);
+        Tag[] tags = getTags(pageResource);
 
         return Arrays.stream(tags)
                 .filter(tag -> {
