@@ -356,7 +356,7 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="General Content Page Container Policy"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[/apps/dhl/components/content/followUs,/apps/dhl/components/content/text]"
+                        components="[group:DHL Components]"
                         layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </general_content_page_container_policy>
@@ -364,7 +364,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Thank You Page Container Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[/apps/dhl/components/content/followUs,/apps/dhl/components/content/text,/apps/dhl/components/content/article-showcase]"
+                            components="[group:DHL Components]"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </thank_you_page_container_policy>
@@ -420,7 +420,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Home page responsivegrid policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[/apps/dhl/components/content/article-showcase,/apps/dhl/components/content/cta-banner-with-points,/apps/dhl/components/content/title-v2,/apps/dhl/components/content/top-tiles]">
+                            components="[group:DHL Components]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_457152354813000>
                     <policy_355443549935000
@@ -429,7 +429,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Editable Article  - policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[/apps/dhl/components/content/accordion,/apps/dhl/components/content/articlegrid,/apps/dhl/components/content/articlelistcarousel,/apps/dhl/components/content/articlelistcategoryexplore,/apps/dhl/components/content/articlepanel,/apps/dhl/components/content/download,/apps/dhl/components/content/figure,/apps/dhl/components/content/gallery,/apps/dhl/components/content/listicleitem,/apps/dhl/components/content/simpledownload,/apps/dhl/components/content/statpanel,/apps/dhl/components/content/subscribepanel,/apps/dhl/components/content/taglist,/apps/dhl/components/content/text,/apps/dhl/components/content/title,/apps/dhl/components/content/cta-banner,/apps/dhl/components/content/cta-banner-with-points,/apps/dhl/components/content/embed]">
+                            components="[group:DHL Components,/apps/dhl/components/content/articlegrid]">
                         <jcr:content
                                 cq:isDelivered="{Boolean}false"
                                 cq:lastReplicated="{Date}2023-09-18T12:12:00.044+03:00"
@@ -456,14 +456,14 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Editable Article Sidebar Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[/apps/dhl/components/content/cta-banner,/apps/dhl/components/content/cta-banner-with-points]">
+                            components="[group:DHL Components]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_357549199894300>
                     <category_page_root_policy
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Category Page Root Policy"
                         sling:resourceType="wcm/core/components/policy/policy"
-                        components="[/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/article-teaser/image,/apps/dhl/components/content/article-teaser,/apps/dhl/components/content/article-carousel,/apps/dhl/components/content/article-grid]">
+                        components="[group:DHL Components,/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/article-grid]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </category_page_root_policy>
                     <policy_right_aligned_marketo_form
@@ -558,7 +558,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Animated Page Container Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="group:DHL Animated Components">
+                            components="[group:DHL Animated Components,group:DHL Components]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_2171260242775700>
                 </responsivegrid>
