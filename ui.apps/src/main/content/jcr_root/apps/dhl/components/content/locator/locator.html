@@ -1,0 +1,17 @@
+<sly data-sly-use.model="com.positive.dhl.core.models.ServicePointLocatorModel"
+     data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
+     data-sly-test.url="${model.url}">
+
+  <iframe class="locator-frame"
+          src="${url}"
+          title="DHL Discover Global Service Point Locator">
+  </iframe>
+
+  <style>
+    .locator-frame {
+      width: 100%;
+      min-height:  710px
+    }
+  </style>
+</sly>
+<sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!url}"></sly>
