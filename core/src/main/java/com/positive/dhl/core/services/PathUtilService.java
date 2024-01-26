@@ -45,4 +45,18 @@ public class PathUtilService {
     public String resolveAssetPath(String assetPath) {
         return StringUtils.isNoneBlank(assetPath) ? assetUtilService.resolvePath(encodeUnsupportedCharacters(assetPath)) : StringUtils.EMPTY;
     }
+
+    public String appendQueryParamToURL(String uri, String param, String value) {
+        URI oldUri;
+        String result = StringUtils.EMPTY;
+        String appendQuery = param + "=" + value;
+        try {
+            oldUri = new URI(uri);
+            result = new URI(oldUri.getScheme(), oldUri.getAuthority(), oldUri.getPath(),
+                    oldUri.getQuery() == null ? appendQuery : oldUri.getQuery() + "&" + appendQuery).toASCIIString();
+        } catch (URISyntaxException ex) {
+            log.error("An error occurred preparing URL path", ex);
+        }
+        return result;
+    }
 }

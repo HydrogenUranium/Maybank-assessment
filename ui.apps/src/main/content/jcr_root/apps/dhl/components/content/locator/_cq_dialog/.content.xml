@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+        xmlns:cq="http://www.day.com/jcr/cq/1.0"
+        xmlns:jcr="http://www.jcp.org/jcr/1.0"
+        xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Service Point Locator"
+        sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <domain
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Domain"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <domain
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Agency domain (Example: 'https://locator.dhl.com/results') [mandatory]"
+                                    fieldDescription="Request URL to Global Service Point Locator without parameters.
+                                              Must begin with the protocol 'https' and end before a question mark '?'"
+                                    required="{Boolean}true"
+                                    name="./domain"/>
+                        </items>
+                    </domain>
+                    <location
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Location"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <countryCodeQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Country Code (Example: 'FR' or 'CN') [mandatory]"
+                                    fieldDescription="Only ISO 3166-1 - Alpha-2 for country code can be used.
+                                              When rendering the service point information, the time format,
+                                              and distance unit are derived from the country information."
+                                    required="{Boolean}true"
+                                    name="./countryCodeQueryParam"/>
+                            <addressQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Address (Example: 'Paris' or 'Shenzhen') [conditional]"
+                                    fieldDescription="The address near which Service Points are to be found.
+                                              If servicePointID or idf is used address is not needed"
+                                    name="./addressQueryParam"/>
+                            <servicePointIDQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Service Point ID (Example: 'BRU001') [conditional]"
+                                    fieldDescription="Unique key with 6 characters, consisting of Service Area for first 3 characters (e.g. BRU)
+                                              and the last 3 characters is the Facility code (e.g. 001).
+                                              If address is used id not possible to use"
+                                    name="./servicePointIDQueryParam"/>
+<!--
+                            <idfQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Facility Reference ID (Example: 'ES282291') [conditional]"
+                                    fieldDescription="Unique code to identify facility used in country legacy systems.
+                                              If address or servicePointID is used idf not possible to use"
+                                    name="./idfQueryParam"/>
+-->
+                            <maxDistanceQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Maximum distance  (Example: '100') [conditional]"
+                                    fieldDescription="Maximum distance in kilometers between the geocoded address and the returned Service Points.
+                                                      Values equal or less than 0 are ignored"
+                                    name="./maxDistanceQueryParam"/>
+                        </items>
+                    </location>
+                    <localization
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Localization"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <languageQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Language Code (Example: 'fr' or 'zh-CN') [optional]"
+                                    fieldDescription="Represents the language"
+                                    name="./languageQueryParam"/>
+<!--
+                            <languageCountryCodeQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Language Country Code (Example: 'en') [optional]"
+                                    fieldDescription="Can be used to differentiate between linguistic variants of the same Language"
+                                    name="./languageCountryCodeQueryParam"/>
+-->
+                            <resultUomQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Distance uom (Example: 'mi' or 'km') [optional]"
+                                    fieldDescription="To be used when returning response, it can be either km or mi. If not provided, default uom is returned"
+                                    name="./resultUomQueryParam"/>
+                        </items>
+                    </localization>
+                    <paymentHandlingOptions
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Payment / Handling Options"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <capabilityQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Comma separated list of physical process capability codes (Example: '88,73' or '86,87') [optional]"
+                                    fieldDescription="For example, the '88,73' capability combinations will be allowed with these options:
+                                              88: I will pay at the DHL Service Point,
+                                              73: I will create a DHL shipping label at the DHL Service Point"
+                                    name="./capabilityQueryParam"/>
+                        </items>
+                    </paymentHandlingOptions>
+                    <packagingParameters
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Packaging Parameters"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <lengthQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Max. length of the shipment (Example: '30') [optional]"
+                                    fieldDescription="The highest dimension.
+                                              Decimals are allowed as well (decimal separator either “,” or “.”)"
+                                    name="./lengthQueryParam"/>
+                            <widthQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Max. width of the shipment (Example: '20') [optional]"
+                                    fieldDescription="The middle dimension.
+                                              Decimals are allowed as well (decimal separator either “,” or “.”)"
+                                    name="./widthQueryParam"/>
+                            <heightQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Max. height of the shipment (Example: '10') [optional]"
+                                    fieldDescription="The middle dimension.
+                                              Decimals are allowed as well (decimal separator either “,” or “.”)"
+                                    name="./heightQueryParam"/>
+                            <dimensionsUomQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Dimension units (Example: 'cm' or 'in') [conditional]"
+                                    fieldDescription="Required with any of length, width or height parameter"
+                                    name="./dimensionsUomQueryParam"/>
+                            <weightQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Max. weight of the shipment (Example: '10') [optional]"
+                                    fieldDescription="Decimals are allowed as well (decimal separator either “,” or “.”)"
+                                    name="./weightQueryParam"/>
+                            <weightUomQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Weight units (Example: 'kg' or 'lb') [conditional]"
+                                    fieldDescription="Required if weight is passed in"
+                                    name="./weightUomQueryParam"/>
+                        </items>
+                    </packagingParameters>
+                    <openingHours
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Open on"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <openDayQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Open on Weekday (Example: '0' or '6') [optional]"
+                                    fieldDescription="Valid values as follow:
+                                                      1 - Monday
+                                                      2 - Tuesday
+                                                      3 - Wednesday
+                                                      4 - Thursday
+                                                      5 - Friday
+                                                      6 - Saturday
+                                                      0 – Sunday"
+                                    name="./openDayQueryParam"/>
+                            <openBeforeQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Service points open Before given Time (Example: '14:00') [optional]"
+                                    fieldDescription="E.g.: 14:00 will find service points which are open before 14:00.
+                                                      The time format (24h or AM/PM) is derived from the 'countryCode'.
+                                                      E.g. for countryCode=GB will be time format AM/PM.
+                                                      E.g. for countryCode=DE will be time format 24h"
+                                    name="./openBeforeQueryParam"/>
+                            <openAfterQueryParam
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Service points open After given Time (Example: '15:00') [optional]"
+                                    fieldDescription="E.g.: 14:00 will find service points which are open after 15:00.
+                                                      The time format (24h or AM/PM) is derived from the 'countryCode'.
+                                                      E.g. for countryCode=GB will be time format AM/PM.
+                                                      E.g. for countryCode=DE will be time format 24h"
+                                    name="./openAfterQueryParam"/>
+                        </items>
+                    </openingHours>
+<!--
+                    <clientAppCodeQueryParam
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Client application code (Example: gspl or ODD) [optional]"
+                            name="./clientAppCodeQueryParam"/>
+-->
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
