@@ -30,12 +30,11 @@ class ServicePointLocatorModelTest {
         resourceResolver = context.resourceResolver();
 
         context.addModelsForClasses(ServicePointLocatorModel.class);
-
     }
 
     @Test
     void getUrl() {
-        Resource configuredLocatorComponent = context.resourceResolver().getResource(CONFIGURED_LOCATOR_COMPONENT_RESOURCE_PATH);
+        Resource configuredLocatorComponent = resourceResolver.getResource(CONFIGURED_LOCATOR_COMPONENT_RESOURCE_PATH);
         ServicePointLocatorModel configuredLocator = context.getService(ModelFactory.class).createModel(configuredLocatorComponent, ServicePointLocatorModel.class);
         assertNotNull(configuredLocator);
         assertEquals(
@@ -57,7 +56,7 @@ class ServicePointLocatorModelTest {
                         "&openAfter=15%3A00",
                 configuredLocator.getUrl());
 
-        Resource nonConfiguredLocatorComponent = context.resourceResolver().getResource(EMPTY_LOCATOR_COMPONENT_RESOURCE_PATH);
+        Resource nonConfiguredLocatorComponent = resourceResolver.getResource(EMPTY_LOCATOR_COMPONENT_RESOURCE_PATH);
         ServicePointLocatorModel nonConfiguredLocator = context.getService(ModelFactory.class).createModel(nonConfiguredLocatorComponent, ServicePointLocatorModel.class);
         assertNotNull(nonConfiguredLocator);
         assertEquals(

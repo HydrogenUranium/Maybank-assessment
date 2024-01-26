@@ -61,15 +61,6 @@
                                               and the last 3 characters is the Facility code (e.g. 001).
                                               If address is used id not possible to use"
                                     name="./servicePointIDQueryParam"/>
-<!--
-                            <idfQueryParam
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                    fieldLabel="Facility Reference ID (Example: 'ES282291') [conditional]"
-                                    fieldDescription="Unique code to identify facility used in country legacy systems.
-                                              If address or servicePointID is used idf not possible to use"
-                                    name="./idfQueryParam"/>
--->
                             <maxDistanceQueryParam
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
@@ -90,14 +81,6 @@
                                     fieldLabel="Language Code (Example: 'fr' or 'zh-CN') [optional]"
                                     fieldDescription="Represents the language"
                                     name="./languageQueryParam"/>
-<!--
-                            <languageCountryCodeQueryParam
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                    fieldLabel="Language Country Code (Example: 'en') [optional]"
-                                    fieldDescription="Can be used to differentiate between linguistic variants of the same Language"
-                                    name="./languageCountryCodeQueryParam"/>
--->
                             <resultUomQueryParam
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
@@ -205,13 +188,6 @@
                                     name="./openAfterQueryParam"/>
                         </items>
                     </openingHours>
-<!--
-                    <clientAppCodeQueryParam
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
-                            fieldLabel="Client application code (Example: gspl or ODD) [optional]"
-                            name="./clientAppCodeQueryParam"/>
--->
                 </items>
             </column>
         </items>

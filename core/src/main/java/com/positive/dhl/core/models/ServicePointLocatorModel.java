@@ -34,15 +34,11 @@ public class ServicePointLocatorModel {
     private String addressQueryParam;
     @ValueMapValue
     private String servicePointIDQueryParam;
-//  @ValueMapValue
-//  private String idfQueryParam;
     @ValueMapValue
     private String maxDistanceQueryParam;
 
     @ValueMapValue
     private String languageQueryParam;
-//  @ValueMapValue
-//  private String languageCountryCodeQueryParam;
     @ValueMapValue
     private String resultUomQueryParam;
 
@@ -68,9 +64,6 @@ public class ServicePointLocatorModel {
     private String openBeforeQueryParam;
     @ValueMapValue
     private String openAfterQueryParam;
-
-//  @ValueMapValue
-//  private String clientAppCodeQueryParam;
 
     @Getter
     private String url;
