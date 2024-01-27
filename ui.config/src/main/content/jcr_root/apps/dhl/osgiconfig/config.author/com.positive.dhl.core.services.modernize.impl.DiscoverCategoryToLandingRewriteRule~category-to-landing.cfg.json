@@ -1,0 +1,11 @@
+{
+  "id": "category-to-landing",
+  "editableTemplate":"/conf/dhl/settings/wcm/templates/landing-page",
+  "staticTemplate":"/apps/dhl/templates/dhl-article-group-page",
+  "containerMappings":[
+    "parcarousel:root/column_container/first-container/responsivegrid",
+    "par:root/column_container/first-container/responsivegrid"
+  ],
+  "slingResourceType":"dhl/components/pages/articlecategory",
+  "enabled": true
+}

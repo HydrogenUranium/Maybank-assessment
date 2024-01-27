@@ -212,12 +212,21 @@ public class DiscoverPageRewriteRule implements StructureRewriteRule {
         return node;
     }
 
+    protected void moveNode(Session session, Node node, String target) throws RepositoryException {
+        String oldPath = node.getPath();
+        String newPath = PathUtils.concat(target, node.getName());
+        int counter = 1;
+        while (session.nodeExists(newPath)) {
+            newPath = PathUtils.concat(target, node.getName()) + "_" + counter;
+            counter++;
+        }
+        session.move(oldPath, newPath);
+    }
+
     protected void moveNodes(Session session, NodeIterator nodes, String target) throws RepositoryException {
         while (nodes.hasNext()) {
             var child = nodes.nextNode();
-            String oldPath = child.getPath();
-            String newPath = PathUtils.concat(target, child.getName());
-            session.move(oldPath, newPath);
+            moveNode(session, child, target);
         }
     }
 
