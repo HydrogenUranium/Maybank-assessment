@@ -497,7 +497,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Error Page Root Component Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/error-banner]">
+                            components="[group:DHL Components,/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/error-banner]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_49734103050200>
                     <policy_49853650420900
@@ -506,7 +506,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Error Page Container Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/error-banner">
+                            components="[group:DHL Components,/apps/dhl/components/content/error-banner]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_49853650420900>
                     <policy_22051396635900
