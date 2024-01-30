@@ -49,10 +49,7 @@ public class DiscoverThankYouPageRewriteRule extends DiscoverPageRewriteRuleCust
 
     @Override
     protected void initComponents(ResourceResolver resolver, @NotNull Node pageContent) throws RepositoryException {
-        Session session = resolver.adaptTo(Session.class);
-        if (session == null) {
-            throw new RepositoryException("Session is null");
-        }
+        Session session = getSession(resolver);
 
         for (Map.Entry<String, String> entry : containerMappings.entrySet()) {
             String staticContainerPath = entry.getKey();

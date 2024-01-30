@@ -53,10 +53,7 @@ public class DiscoverRightAlignedMarketoFormRewriteRule extends DiscoverPageRewr
 
     @Override
     protected void initComponents(ResourceResolver resolver, @NotNull Node pageContent) throws RepositoryException {
-        Session session = resolver.adaptTo(Session.class);
-        if (session == null) {
-            throw new RepositoryException("Session is null");
-        }
+        Session session = getSession(resolver);
 
         copyNodes(pageContent, session);
         processContainerNodes(pageContent, session);

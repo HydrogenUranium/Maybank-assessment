@@ -74,6 +74,12 @@ public class ArticleGridV2 {
 
     @InjectHomeProperty
     @Optional
+    @Named("articleGrid-ShowMoreButtonTitle")
+    @Default(values = "Show More")
+    private String showMoreButtonTitle;
+
+    @InjectHomeProperty
+    @Optional
     @Named("articleGrid-showTags")
     @Default(values = "false")
     private String showTags;
@@ -136,7 +142,7 @@ public class ArticleGridV2 {
                 .add(PAGE_TITLE_PARAM, title)
                 .add("showTags", showTags.equals("true"))
                 .add("categories", categories)
-                .add("showMoreResultsButtonTitle", "Show More")
+                .add("showMoreResultsButtonTitle", showMoreButtonTitle)
                 .add("recommendedOptionTitle", recommendedOptionTitle)
                 .add("latestOptionTitle", latestOptionTitle)
                 .add("sortingTitle", sortTitle)
