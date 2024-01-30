@@ -142,7 +142,7 @@ public class ArticleGridV2 {
                 .add(PAGE_TITLE_PARAM, title)
                 .add("showTags", showTags.equals("true"))
                 .add("categories", categories)
-                .add("showMoreResultsButtonTitle", "Show More")
+                .add("showMoreResultsButtonTitle", showMoreButtonTitle)
                 .add("recommendedOptionTitle", recommendedOptionTitle)
                 .add("latestOptionTitle", latestOptionTitle)
                 .add("sortingTitle", sortTitle)
