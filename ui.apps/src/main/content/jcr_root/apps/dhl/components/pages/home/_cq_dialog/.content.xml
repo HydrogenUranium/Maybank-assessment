@@ -1767,6 +1767,16 @@
                                                                         jcr:primaryType="nt:unstructured"
                                                                         cq-msm-lockable="./articleGrid-recommendedOptionTitle"/>
                                                             </recommendedOptionTitle>
+                                                            <showMoreButtonTitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Name for the 'Show More' button"
+                                                                    emptyText="Show More"
+                                                                    name="./articleGrid-ShowMoreButtonTitle">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./articleGrid-ShowMoreButtonTitle"/>
+                                                            </showMoreButtonTitle>
                                                             <showTags
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/foundation/form/checkbox"

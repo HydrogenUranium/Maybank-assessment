@@ -12,7 +12,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="DHL Category Template Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="[wcm.foundation.components.page.responsive,dhl.category-page]">
+                            clientlibs="[dhl.category-page]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </category_page_policy>
                 </editable-category-page>
@@ -22,8 +22,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Article Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="wcm.foundation.components.page.responsive">
+                            sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1169514762602900>
                 </editable-article>
@@ -33,8 +32,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Home Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="wcm.foundation.components.page.responsive">
+                            sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1169514762602901>
                 </editable-home-page>
@@ -44,8 +42,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Right Aligned Marketo Form Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="wcm.foundation.components.page.responsive">
+                            sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1699455642574>
                 </editable-two-column-page>
@@ -63,8 +60,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Landing Page - Two Columns Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="wcm.foundation.components.page.responsive">
+                            sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_22945248191000>
                     <policy_1701175963418
@@ -72,8 +68,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Landing Page - One Column Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="wcm.foundation.components.page.responsive">
+                            sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1701175963418>
                     <policy_1704781633995
@@ -93,7 +88,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Animated Page Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            clientlibs="[wcm.foundation.components.page.responsive,dhl.animatedpages]">
+                            clientlibs="[dhl.animatedpages]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1705397229637>
                 </editable-animated-page>

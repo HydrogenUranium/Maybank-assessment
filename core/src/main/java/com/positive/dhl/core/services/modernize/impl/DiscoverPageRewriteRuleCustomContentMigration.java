@@ -7,6 +7,7 @@ import org.apache.sling.api.resource.ResourceResolver;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import java.util.Set;
 
 public abstract class DiscoverPageRewriteRuleCustomContentMigration extends DiscoverPageRewriteRule {
@@ -38,6 +39,15 @@ public abstract class DiscoverPageRewriteRuleCustomContentMigration extends Disc
             throw new RewriteException("Failed to process page migration ", exception);
         }
         return pageContent;
+    }
+
+    protected Session getSession(ResourceResolver resolver) throws RepositoryException {
+        Session session = resolver.adaptTo(Session.class);
+        if (session == null) {
+            throw new RepositoryException("Session is null");
+        }
+
+        return session;
     }
 
     protected abstract void initComponents(ResourceResolver resolver, @NotNull Node pageContent) throws RepositoryException;
