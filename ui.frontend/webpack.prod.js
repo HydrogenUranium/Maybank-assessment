@@ -39,5 +39,6 @@ module.exports = merge(common, {
             ]
         })
     ],
+    devtool: false,
     performance: {hints: false}
 });
