@@ -6,10 +6,12 @@ import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.LinkedList;
@@ -67,6 +69,17 @@ public class HeaderV2Model {
     @InjectHomeProperty
     @Named("multifields/header-companyLinks")
     private Resource companyLinks;
+
+    @Getter
+    private String hideNavigationMenu;
+
+    @PostConstruct
+    private void init() {
+        ValueMap currentPageProperties = currentPage.getProperties();
+        if (!currentPageProperties.isEmpty()) {
+            hideNavigationMenu = currentPageProperties.get("hideNavigationMenu", "");
+        }
+    }
 
     public List<LinkModel> getCompanyLinks() {
         List<LinkModel> links = new LinkedList<>();

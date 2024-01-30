@@ -1,6 +1,8 @@
 <header class="headerV2-wrapper"
         data-sly-use.meganav="com.positive.dhl.core.models.Meganav"
-        data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants">
+        data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants"
+        data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model"
+        data-sly-set.showNavigationMenu="${(properties.hideNavigationMenu || headerV2.hideNavigationMenu) != 'true'}">
     <div class="header-container">
         <div class="main-row">
             <div class="main-row__left">
@@ -46,7 +48,7 @@
                         </a>
                     </sly>
                 </div>
-                <div data-sly-test="${properties.hideNavigationMenu != 'true'}"
+                <div data-sly-test="${showNavigationMenu}"
                      class="header__icon">
                     <a class="headerV2__navigation" href="#">
                         <i class="headerV2__hamburger"></i>
@@ -54,9 +56,8 @@
                 </div>
             </div>
         </div>
-        <div data-sly-test="${properties.hideNavigationMenu != 'true'}"
-             class="navigation-row"
-             data-sly-use.headerV2="com.positive.dhl.core.models.HeaderV2Model">
+        <div data-sly-test="${showNavigationMenu}"
+             class="navigation-row">
             <div class="navigation-row__left" data-sly-set.currentPagePath="${currentPage.path}.html">
                 <a class="navigation-item ${currentPagePath == headerV2.homePageLink ? 'active' : '' }" href="${headerV2.homePageLink}"><span>${headerV2.homePageLabel}</span></a>
                 <sly data-sly-list="${meganav.panels}">
@@ -73,7 +74,7 @@
             </div>
         </div>
     </div>
-    <div data-sly-test="${properties.hideNavigationMenu != 'true'}"
+    <div data-sly-test="${showNavigationMenu}"
          class="headerV2__meganav">
         <nav class="headerV2__meganavNavigation">
             <ul class="headerV2__meganavNav">

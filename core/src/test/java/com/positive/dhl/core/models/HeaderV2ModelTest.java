@@ -6,6 +6,8 @@ import com.positive.dhl.core.injectors.HomePropertyInjector;
 import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.spi.Injector;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -18,17 +20,20 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 
+import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class HeaderV2ModelTest {
-    private final static String COMPONENT_LOCATION = "/content/home/small-business-advice/article/jcr:content/root/header";
+    private final static String PAGE_LOCATION = "/content/home/small-business-advice/article";
+    private final static String COMPONENT_LOCATION = PAGE_LOCATION +"/jcr:content/root/header";
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
     MockSlingHttpServletRequest request = context.request();
+    ResourceResolver resolver = context.resourceResolver();
 
     @Mock
     private PageUtilService pageUtils;
@@ -49,10 +54,18 @@ class HeaderV2ModelTest {
         request.setPathInfo(COMPONENT_LOCATION);
     }
 
+    private void init(String resourcePath) {
+        context.load().json(resourcePath, "/content");
+        when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
+
+        Resource resource = resolver.getResource(PAGE_LOCATION);
+        Page page = resource.adaptTo(Page.class);
+        mockInject(context, "currentPage", page);
+    }
+
     @Test
     void test_withProperties() {
-        context.load().json("/com/positive/dhl/core/models/HeaderV2/withProperties.json", "/content");
-        when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
+        init("/com/positive/dhl/core/models/HeaderV2/withProperties.json");
 
         HeaderV2Model headerV2Model = request.adaptTo(HeaderV2Model.class);
         assertEquals("Button Name", headerV2Model.getButtonName());
@@ -66,12 +79,12 @@ class HeaderV2ModelTest {
         assertEquals("/content/home.html", headerV2Model.getHomePageLink());
         assertEquals("Link Name 1", headerV2Model.getCompanyLinks().get(0).getLinkName());
         assertEquals("/content/dhl/link/1", headerV2Model.getCompanyLinks().get(0).getLinkPath());
+        assertEquals("true", headerV2Model.getHideNavigationMenu());
     }
 
     @Test
     void test_withoutProperties() {
-        context.load().json("/com/positive/dhl/core/models/HeaderV2/withoutProperties.json", "/content");
-        when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
+        init("/com/positive/dhl/core/models/HeaderV2/withoutProperties.json");
 
         HeaderV2Model headerV2Model = request.adaptTo(HeaderV2Model.class);
         assertNull(headerV2Model.getButtonName());
