@@ -74,6 +74,12 @@ public class ArticleGridV2 {
 
     @InjectHomeProperty
     @Optional
+    @Named("articleGrid-ShowMoreButtonTitle")
+    @Default(values = "Show More")
+    private String showMoreButtonTitle;
+
+    @InjectHomeProperty
+    @Optional
     @Named("articleGrid-showTags")
     @Default(values = "false")
     private String showTags;

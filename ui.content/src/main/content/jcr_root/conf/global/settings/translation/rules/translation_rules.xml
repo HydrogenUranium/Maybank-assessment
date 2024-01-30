@@ -532,6 +532,7 @@
       <property inherit="true" name="articleGrid-sortTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="articleGrid-latestOptionTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="articleGrid-recommendedOptionTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleGrid-ShowMoreButtonTitle" translate="true" updateDestinationLanguage="false"/>
 
       <property inherit="true" name="ctaBannerGray-individualShipper-title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="ctaBannerGray-individualShipper-description" translate="true" updateDestinationLanguage="false"/>
