@@ -38,6 +38,7 @@
       "article": {
         "jcr:primaryType": "cq:Page",
         "jcr:content": {
+          "hideNavigationMenu": "true",
           "jcr:primaryType": "cq:PageContent",
           "jcr:title": "Article",
           "cq:template": "/conf/dhl/settings/wcm/templates/article",
