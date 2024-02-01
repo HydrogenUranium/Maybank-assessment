@@ -13,7 +13,7 @@
     <filter root="/conf/groovyconsole/scripts"/>
 
     <filter root="/conf/dhl/settings/wcm/template-types"/>
-    <filter root="/conf/dhl/settings/wcm/policies" mode="update"/>
+    <filter root="/conf/dhl/settings/wcm/policies"/>
     <filter root="/conf/dhl/settings/wcm/templates/article"/>
     <filter root="/conf/dhl/settings/wcm/templates/home-page"/>
     <filter root="/conf/dhl/settings/wcm/templates/category-page"/>
