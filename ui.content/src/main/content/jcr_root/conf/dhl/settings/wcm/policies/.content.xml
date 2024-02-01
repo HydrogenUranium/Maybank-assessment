@@ -22,7 +22,8 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Article Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy">
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1169514762602900>
                 </editable-article>
@@ -32,7 +33,8 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Home Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy">
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1169514762602901>
                 </editable-home-page>
@@ -42,7 +44,8 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Right Aligned Marketo Form Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy">
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1699455642574>
                 </editable-two-column-page>
@@ -60,7 +63,8 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Landing Page - Two Columns Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy">
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_22945248191000>
                     <policy_1701175963418
@@ -68,7 +72,8 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Landing Page - One Column Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy">
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            clientlibs="">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1701175963418>
                     <policy_1704781633995
@@ -492,7 +497,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Error Page Root Component Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[group:DHL Components,/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/error-banner]">
+                            components="[/libs/wcm/foundation/components/responsivegrid,/apps/dhl/components/content/error-banner]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_49734103050200>
                     <policy_49853650420900
@@ -501,7 +506,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Error Page Container Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[group:DHL Components,/apps/dhl/components/content/error-banner]">
+                            components="/apps/dhl/components/content/error-banner">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_49853650420900>
                     <policy_22051396635900
