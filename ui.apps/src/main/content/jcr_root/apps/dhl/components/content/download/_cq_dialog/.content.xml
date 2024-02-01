@@ -115,7 +115,8 @@
                                             fieldLabel="Used for REST API Marketo submission in 'global' country - ignored everywhere else."
                                             name="./hiddenMarketoId"
                                             emptyText="1724"
-                                            fieldDescription="Marketo form ID of the 'hidden' form, such as 1724. This ID represents the ID in 'rest of the world' Marketo instance."/>
+                                            fieldDescription="Marketo form ID of the 'hidden' form, such as 1724. This ID represents the ID in 'rest of the world' Marketo instance.
+                                                              Without this ID, hidden submission will not be possible"/>
                         </items>
                     </column>
                 </items>
