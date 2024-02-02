@@ -38,7 +38,7 @@ export const Suggestions: React.FC<SuggestionsProps> = (
         <SearchSection
           items={recentSearches}
           renderItem={(search) => (
-            <button onClick={() => handleSearch(search)} className={styles.searchSectionItemsItem} key={search}>
+            <button onClick={() => handleSearch(search)} className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemWithIcon)} key={search}>
               <span className={classNames(styles.icon, styles.iconHistory)}></span>
               <span className={styles.searchSectionItemsItemText}>{search}</span>
             </button>

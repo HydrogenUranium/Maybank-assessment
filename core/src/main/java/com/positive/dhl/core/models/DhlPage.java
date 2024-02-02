@@ -1,29 +1,28 @@
 package com.positive.dhl.core.models;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.WCMMode;
+import com.positive.dhl.core.components.EnvironmentConfiguration;
+import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.PageUtilService;
+import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.WCMMode;
-import com.positive.dhl.core.components.EnvironmentConfiguration;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
 
-/**
- *
- */
+@Getter
 @Model(adaptables=SlingHttpServletRequest.class)
 public class DhlPage {
 
@@ -45,157 +44,28 @@ public class DhlPage {
 	private String fullUrl;
 	private String fullarticlepath;
 	private String amparticlepath;
-	private String trackingid;
-	private String gtmtrackingid;
-	private String pathprefix;
 	private String assetprefix;
 	private String akamaiHostname;
-
-	private boolean noindex;
 	private List<Canonical> canonicals;
-	
-    /**
-	 * 
-	 */
-	public String getFullUrl() {
-		return fullUrl;
-	}
 
-    /**
-	 * 
-	 */
-	public void setFullUrl(String fullUrl) {
-		this.fullUrl = fullUrl;
-	}
+	@InjectHomeProperty
+	@Default(values = "")
+	private String trackingid;
+	@InjectHomeProperty
+	@Default(values = "")
+	private String gtmtrackingid;
+	@InjectHomeProperty
+	@Default(values = "")
+	private String pathprefix;
+	@InjectHomeProperty
+	@Default(values = "ltr")
+	private String direction;
 
-    /**
-	 * 
-	 */
-	public String getFullarticlepath() {
-		return fullarticlepath;
-	}
+	private boolean noindex = false;
 
-    /**
-	 * 
-	 */
-	public void setFullarticlepath(String fullarticlepath) {
-		this.fullarticlepath = fullarticlepath;
-	}
-
-    /**
-	 * 
-	 */
-	public String getAmparticlepath() {
-		return amparticlepath;
-	}
-
-    /**
-	 * 
-	 */
-	public void setAmparticlepath(String amparticlepath) {
-		this.amparticlepath = amparticlepath;
-	}
-	
-    /**
-	 * 
-	 */
-	public String getTrackingid() {
-		return trackingid;
-	}
-
-    /**
-	 * 
-	 */
-	public void setTrackingid(String trackingid) {
-		this.trackingid = trackingid;
-	}
-	
-    /**
-	 * 
-	 */
-	public String getGtmtrackingid() {
-		return gtmtrackingid;
-	}
-
-    /**
-	 * 
-	 */
-	public void setGtmtrackingid(String gtmtrackingid) {
-		this.gtmtrackingid = gtmtrackingid;
-	}
-	
-    /**
-	 * 
-	 */
-	public String getPathprefix() {
-		return pathprefix;
-	}
-
-    /**
-	 * 
-	 */
-	public void setPathprefix(String pathprefix) {
-		this.pathprefix = pathprefix;
-	}
-
-	/**
-	 *
-	 */
-	public boolean getNoindex() {
-		return noindex;
-	}
-
-    /**
-	 * 
-	 */
-	public List<Canonical> getCanonicals() {
-		return new ArrayList<>(canonicals);
-	}
-
-	/**
-	 *
-	 */
-	public void setNoindex(boolean noindex) {
-		this.noindex = noindex;
-	}
-
-    /**
-	 * 
-	 */
-	public void setCanonicals(List<Canonical> canonicals) {
-		this.canonicals = new ArrayList<>(canonicals);
-	}
-
-	/**
-	 *
-	 */
-	public String getAssetprefix() { return assetprefix; }
-
-	/**
-	 *
-	 */
-	public void setAssetprefix(String assetprefix) { this.assetprefix = assetprefix; }
-
-		/**
-	 *
-	 */
-	public String getAkamaiHostname() { return akamaiHostname; }
-
-	/**
-	 *
-	 */
-	public void setAkamaiHostname(String akamaiHostname) { this.akamaiHostname = akamaiHostname; }
-
-    /**
-	 * 
-	 */
 	@PostConstruct
     protected void init() {
-		pathprefix = "";
-		assetprefix = "";
-		trackingid = "";
-		gtmtrackingid = "";
-		noindex = false;
+		assetprefix = environmentConfiguration.getAssetPrefix();
 		akamaiHostname = environmentConfiguration.getAkamaiHostname();
 
 		boolean isPublishRunmode = true;
@@ -206,26 +76,21 @@ public class DhlPage {
 
 		ValueMap homeProperties = pageUtilService.getHomePageProperties(currentPage);
 		if (!homeProperties.isEmpty()) {
-
-			assetprefix = environmentConfiguration.getAssetPrefix();
-			pathprefix = homeProperties.get("pathprefix", "");
-			trackingid = homeProperties.get("trackingid", "");
-			gtmtrackingid = homeProperties.get("gtmtrackingid", "");
 			noindex = homeProperties.get("noindex", false);
 		}
 
 		String currentPagePath = currentPage.getPath();
 
 		fullUrl = (HTTPS_PREFIX + akamaiHostname).concat(request.getResourceResolver().map(currentPagePath));
-		
+
 		ValueMap properties = currentPage.getProperties();
 		if (properties != null) {
 			fullarticlepath = properties.get("fullarticlepath", "");
 			amparticlepath = properties.get("amparticlepath", "");
-			
+
 			String path = properties.get("redirectTarget", "");
 			if (!path.equals(currentPagePath) && !path.isEmpty() && isPublishRunmode) {
-				response.setStatus(302);  
+				response.setStatus(302);
 				response.setHeader("Location", path);
 			}
 
