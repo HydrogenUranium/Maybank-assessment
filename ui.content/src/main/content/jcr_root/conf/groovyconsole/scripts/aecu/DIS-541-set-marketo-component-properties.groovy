@@ -5,6 +5,7 @@ Steps:
     - define scope
 
     def MARKET = "/content/dhl/global"                                      // specify the country
+    def MARKETO_COMPONENT = ALL_MARKETO_COMPONENTS.marketoForm              // specify the Marketo component
 
 1)  BEFORE:
     - show Marketo components before update
@@ -27,7 +28,6 @@ Steps:
     def SHOW_ONLY = false
     def CONTENT_MANIPULATION = true
 
-    def MARKETO_COMPONENT = ALL_MARKETO_COMPONENTS.marketoForm              // specify the Marketo component
     def MARKETO_COMPONENT_PROPERTY = MARKETO_COMPONENT.marketoHiddenFormId  // specify the Marketo component property
     def MARKETO_COMPONENT_PROPERTY_VALUE = "1756"                           // specify the Marketo component property value
 
