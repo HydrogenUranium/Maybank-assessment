@@ -13,7 +13,8 @@ Steps:
     def CONTENT_MANIPULATION = false
 
 2)  BACKUP:
-    - create a BackUp package
+    - create a backup package of the pages that will be affected
+    - update the version of each page that will be affected
 
     def SHOW_ONLY = false
     def CONTENT_MANIPULATION = false
@@ -35,6 +36,7 @@ Steps:
     def SHOW_ONLY = true
     def CONTENT_MANIPULATION = false
 */
+import java.text.SimpleDateFormat;
 
 def ALL_MARKETO_COMPONENTS = [
         "marketoForm": [
@@ -100,19 +102,59 @@ def setMarketoComponentProperty(market, marketoComponent, marketoComponentProper
                 .run(dryRun)
     }
 }
-
-def printFiltersForBackupPackage(market, marketoComponent) {
-    def listPagePaths = []
+def getListAffectedPages(market, marketoComponent) {
+    def listPages = []
     def pageUtilService = getService("com.positive.dhl.core.services.PageUtilService")
 
     getComponents(market, marketoComponent.resType).each { node ->
-        listPagePaths.add(pageUtilService.getPage(getResource(node.path)).path)
+        listPages.add(pageUtilService.getPage(getResource(node.path)))
     }
 
-    println("Results: " + listPagePaths.size())
-    if (listPagePaths.size() > 0) {
+    return listPages;
+}
+
+def setNewPageVersion(listPages, versionName, dryRun) {
+    println("----------------------------------------")
+    println("List of pages whose version was updated:")
+    if (listPages.size() > 0) {
+        listPages.each({ pagePath ->
+            println('> Page: ' + pagePath)
+            def isVersionExist = false
+
+            def page = getPage(pagePath);
+            if (page.isLocked()) {
+                if (!dryRun) {
+                    page.unlock()
+                }
+                println('(!) INFO: Page was unlocked')
+            }
+
+            pageManager.getRevisions(pagePath, null, false).each({ revision ->
+                if (revision.getLabel().contains(versionName)) {
+                    isVersionExist = true
+                    println('(!) INFO: Page Version already exists')
+                    return false
+                }
+            })
+
+            if (!isVersionExist) {
+                def date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
+                def label = String.format("%s - %s", versionName, date);
+
+                if (!dryRun) {
+                    pageManager.createRevision(page, label, "Groovy Script version");
+                }
+                println('(!) INFO: New Page Version was created')
+            }
+        })
+    }
+}
+
+def printFiltersForBackupPackage(listPages) {
+    println("Results: " + listPages.size())
+    if (listPages.size() > 0) {
         println("(!) Use this list of pages for preparing package:")
-        listPagePaths.each({ println("""<filter root="$it/jcr:content"/>""")})
+        listPages.each({ println("""<filter root="$it.path/jcr:content"/>""")})
     }
 }
 
@@ -123,6 +165,8 @@ if (SHOW_ONLY) {
     if (CONTENT_MANIPULATION) {
         setMarketoComponentProperty(MARKET, MARKETO_COMPONENT, MARKETO_COMPONENT_PROPERTY, MARKETO_COMPONENT_PROPERTY_VALUE, DRY_RUN)
     } else {
-        printFiltersForBackupPackage(MARKET, MARKETO_COMPONENT)
+        def listAffectedPages = getListAffectedPages(MARKET, MARKETO_COMPONENT)
+        printFiltersForBackupPackage(listAffectedPages)
+        setNewPageVersion(listAffectedPages, "DIS-541 Marketo components", DRY_RUN)
     }
 }
