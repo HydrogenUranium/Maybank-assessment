@@ -16,6 +16,7 @@ Steps:
     - create a backup package of the pages that will be affected
     - update the version of each page that will be affected
 
+    def DRY_RUN = true / false                                              // new Versions are not created in DRY RUN mode
     def SHOW_ONLY = false
     def CONTENT_MANIPULATION = false
 
@@ -63,7 +64,7 @@ def ALL_MARKETO_COMPONENTS = [
 ]
 
 def DRY_RUN = true
-def SHOW_ONLY = false
+def SHOW_ONLY = true
 def CONTENT_MANIPULATION = false
 def MARKET = "/content/dhl/global"
 def MARKETO_COMPONENT = ALL_MARKETO_COMPONENTS.marketoForm
@@ -107,7 +108,7 @@ def getListAffectedPages(market, marketoComponent) {
     def pageUtilService = getService("com.positive.dhl.core.services.PageUtilService")
 
     getComponents(market, marketoComponent.resType).each { node ->
-        listPages.add(pageUtilService.getPage(getResource(node.path)))
+        listPages.add(pageUtilService.getPage(getResource(node.path)).path)
     }
 
     return listPages;
@@ -115,6 +116,9 @@ def getListAffectedPages(market, marketoComponent) {
 
 def setNewPageVersion(listPages, versionName, dryRun) {
     println("----------------------------------------")
+    if (dryRun) {
+        println("(!) DRY RUN mode")
+    }
     println("List of pages whose version was updated:")
     if (listPages.size() > 0) {
         listPages.each({ pagePath ->
@@ -154,7 +158,7 @@ def printFiltersForBackupPackage(listPages) {
     println("Results: " + listPages.size())
     if (listPages.size() > 0) {
         println("(!) Use this list of pages for preparing package:")
-        listPages.each({ println("""<filter root="$it.path/jcr:content"/>""")})
+        listPages.each({ println("""<filter root="$it/jcr:content"/>""")})
     }
 }
 
