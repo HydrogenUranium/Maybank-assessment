@@ -71,10 +71,11 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 				var formSubmissionResponse = marketoCommunication.submitForm(form,token );
 				provideResponse(formSubmissionResponse, pw);
 			} else {
+				LOGGER.error("The Marketo hidden form submission was failed");
 				pw.write("KO");
 			}
 		} else {
-			LOGGER.warn("OSGi configuration sets the Marketo hidden form submission to 'disabled'. Not doing anything...");
+			LOGGER.error("OSGi and/or Environment configuration don't allow submit hidden form. Not doing anything...");
 		}
 		response.setStatus(202);
 	}

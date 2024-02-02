@@ -37,6 +37,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/foundation/form/textfield"
                             fieldLabel="Marketo 'Hidden Form' ID (i.e. '1795')"
+                            fieldDescription="Without this ID, hidden submission will not be possible"
                             name="./marketohiddenformid"/>
                     <marketohost
                             jcr:primaryType="nt:unstructured"
