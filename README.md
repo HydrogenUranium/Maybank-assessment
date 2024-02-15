@@ -138,7 +138,7 @@ The project comes with the auto-public repository configured. To setup the repos
 
 `npm run cypress` - to run from root
 
-## Useful Scripts
+## Useful Scripts 
 
 `npm run aemsync` - to run aemsync
 
