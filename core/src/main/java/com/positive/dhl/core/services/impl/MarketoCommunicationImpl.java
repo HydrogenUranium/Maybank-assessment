@@ -82,6 +82,10 @@ public class MarketoCommunicationImpl implements MarketoCommunication {
 				String path = MessageFormat.format(marketoConnectionData.getFormFieldsAPIPath(),Integer.toString(formId));
 				String destination = MessageFormat.format(DiscoverConstants.DESTINATION_CONCATENATION, hostname, path);
 				String jsonResponse = httpCommunication.sendGetMessage(destination,authToken);
+				if (!jsonResponse.contains("result")) {
+					LOGGER.error("The Marketo hidden form submission was failed. " +
+							"Check 'errors' and 'warnings' in the response to understand reason of the issue: {}", jsonResponse);
+				}
 				FormFieldsResponse formFieldsResponse = initUtil.getObjectMapper().readValue(jsonResponse,FormFieldsResponse.class);
 				return formFieldsResponse.getFormFields();
 			} catch (HttpRequestException | JsonProcessingException e) {
