@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.designer.Style;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.InitUtil;
@@ -12,6 +13,7 @@ import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -35,6 +37,9 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 public class ArticleGridV2 {
     @Inject
     private Page currentPage;
+
+    @ScriptVariable
+    protected Style currentStyle;
 
     @OSGiService
     private InitUtil initUtil;
@@ -88,11 +93,14 @@ public class ArticleGridV2 {
 
     @PostConstruct
     private void init() {
+        boolean enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
         var allLatestArticles = articleService.getAllArticles(currentPage);
+        allLatestArticles.forEach(article -> article.initAssetDeliveryProperties(enableAssetDelivery));
         categoryArticleMap.put(allCategoriesTitle, allLatestArticles);
 
         getSubCategories().forEach(category -> {
             var categoryArticles = articleService.getAllArticles(category);
+            categoryArticles.forEach(article -> article.initAssetDeliveryProperties(enableAssetDelivery));
             var categoryTitle = defaultIfBlank(category.getNavigationTitle(), category.getTitle());
             if (categoryTitle != null) {
                 categoryArticleMap.put(categoryTitle, categoryArticles);

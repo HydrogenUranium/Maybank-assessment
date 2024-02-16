@@ -1,11 +1,16 @@
 package com.positive.dhl.core.models;
 
+import com.day.cq.wcm.api.designer.Style;
 import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Source;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -14,16 +19,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@Model(adaptables= Resource.class)
+@Model(adaptables = { Resource.class, SlingHttpServletRequest.class })
 public class TopTiles {
+
     @OSGiService
     private PageUtilService pageUtilService;
 
     @Inject
     private ResourceResolver resourceResolver;
 
+    @ScriptVariable
+    protected Style currentStyle;
+
     @Inject
     @Named("articles")
+    @ChildResource
     private Resource articleMultifield;
 
     @Getter
@@ -31,6 +41,8 @@ public class TopTiles {
 
     @PostConstruct
     protected void init() {
+        boolean enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
+
         if (articleMultifield != null) {
             Iterator<Resource> multifieldItems = articleMultifield.listChildren();
             while (multifieldItems.hasNext()) {
@@ -39,6 +51,7 @@ public class TopTiles {
                 var article = pageUtilService.getArticle(path, resourceResolver);
                 if (article != null) {
                     articles.add(article);
+                    article.initAssetDeliveryProperties(enableAssetDelivery);
                 }
             }
         }

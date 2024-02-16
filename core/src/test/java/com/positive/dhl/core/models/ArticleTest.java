@@ -22,8 +22,8 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -63,6 +63,23 @@ class ArticleTest {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
         });
+    }
+
+    @Test
+    void initAssetDeliveryProperties() {
+        lenient().when(pathUtilService.resolveAssetPath(any(), anyBoolean(), anyMap())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/adobe/dynamicmedia/deliver" + invocationOnMock.getArgument(0, String.class) : "";
+        });
+
+        Article article = createModel(getResource(ARTICLE_PAGE_PATH));
+        article.initAssetDeliveryProperties(true);
+
+        checkModel(article);
+        assertEquals("/adobe/dynamicmedia/deliver/content/dam/global-master/8-site-images/roundels/anna_thompson.jpg", article.getAuthorimage());
+        assertEquals("/adobe/dynamicmedia/deliver/content/dam/desktop.jpg", article.getHeroimagedt());
+        assertEquals("/adobe/dynamicmedia/deliver/content/dam/mobile.jpg", article.getHeroimagemob());
+        assertEquals("/adobe/dynamicmedia/deliver/content/dam/tablet.jpg", article.getHeroimagetab());
     }
 
     @Test

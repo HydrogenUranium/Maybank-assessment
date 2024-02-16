@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.day.cq.wcm.api.designer.Style;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
@@ -20,10 +21,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.Locale;
 
+import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyMap;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
@@ -42,6 +45,9 @@ class RelatedPostsTest {
     @Mock
     private PathUtilService pathUtilService;
 
+    @Mock
+    private Style currentStyle;
+
     @BeforeEach
     void setUp() throws Exception {
         context.load().json("/com/positive/dhl/core/models/RelatedPosts/content.json", "/content");
@@ -50,10 +56,16 @@ class RelatedPostsTest {
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
 
+        mockInject(context, "script-bindings", "currentStyle", currentStyle);
+        when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
         lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
+        });
+        lenient().when(pathUtilService.resolveAssetPath(any(), anyBoolean(), anyMap())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
         });
@@ -73,6 +85,7 @@ class RelatedPostsTest {
         mockInjectHomeProperty(context, "relatedPosts-title" ,"");
         RelatedPosts relatedPosts = request.adaptTo(RelatedPosts.class);
 
+        assertNotNull(relatedPosts);
         assertEquals("Custom Title", relatedPosts.getTitle());
         assertEquals(5, relatedPosts.getArticles().size());
     }

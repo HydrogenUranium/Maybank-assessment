@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.day.cq.wcm.api.designer.Style;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -24,6 +26,9 @@ import java.util.List;
 public class RelatedPosts {
     @OSGiService
     private PageUtilService pageUtilService;
+
+    @ScriptVariable
+    protected Style currentStyle;
 
     @InjectHomeProperty
     @Named("relatedPosts-title")
@@ -61,5 +66,7 @@ public class RelatedPosts {
                 }
             }
         }
+        boolean enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
+        articles.forEach(article -> article.initAssetDeliveryProperties(enableAssetDelivery));
     }
 }
