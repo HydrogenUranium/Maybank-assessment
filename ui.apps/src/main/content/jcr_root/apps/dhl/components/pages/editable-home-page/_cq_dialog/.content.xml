@@ -467,6 +467,42 @@
                                             </acceptlanguages>
                                         </items>
                                     </dhllanguagesettings>
+                                    <direction
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="DHL Site Text Direction"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <direction
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldLabel="Direction"
+                                                    fieldDescription="direction property sets the direction of
+                                                    an HTML element‘s text. This is useful for languages that use right-to-left
+                                                    scripts like Adlam, Arabic, Dhivehi, Hebrew, Mandinka, N’Ko, Pashto,
+                                                    Persian, Pular, Sindhi, Syriac, Thaana, Urdu, Yiddish, etc."
+                                                    granite:class="cq-dialog-dropdown-showhide"
+                                                    name="./direction">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cq-msm-lockable="./direction"/>
+                                                <items
+                                                        jcr:primaryType="nt:unstructured">
+                                                    <ltr
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Left-to-right (Default)"
+                                                            value="ltr"/>
+                                                    <rtl
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Right-to-left"
+                                                            value="rtl"/>
+                                                    <auto
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Auto. (only recommended if the text direction is unknown)."
+                                                            value="auto"/>
+                                                </items>
+                                            </direction>
+                                        </items>
+                                    </direction>
                                 </items>
                             </column>
                         </items>
@@ -1071,7 +1107,7 @@
                                                                     fieldLabel="Search Result Page">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
-                                                                        cq-msm-lockable="./searchBar-searchResulPage"/>
+                                                                        cq-msm-lockable="./searchBar-searchResultPage"/>
                                                             </searchResultPage>
                                                         </items>
                                                     </searchBar>

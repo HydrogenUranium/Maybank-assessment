@@ -35,9 +35,19 @@
       margin: 0;
       padding-left: 55px;
       font-weight: bold;
+
+      [dir="rtl"] & {
+        padding-left: 0;
+        padding-right: 55px;
+      }
     }
     &__content{
       padding-left: 55px;
+
+      [dir="rtl"] & {
+        padding-left: 0;
+        padding-right: 55px;
+      }
     }
 
     &--red-dot {

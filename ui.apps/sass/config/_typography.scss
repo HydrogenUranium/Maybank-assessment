@@ -27,7 +27,7 @@
 
   @include respond(lg) {
     font-size: 60px;
-    text-align: left;
+    text-align: inherit;
   }
 }
 
@@ -47,7 +47,7 @@
 
   @include respond(lg) {
     font-size: 40px;
-    text-align: left;
+    text-align: inherit;
   }
 }
 
@@ -64,7 +64,7 @@
   font-stretch: condensed;
   line-height: 1.23;
   letter-spacing: normal;
-  text-align: left;
+  text-align: inherit;
 
   @include respond(md) {
     font-size: 28px;
@@ -85,7 +85,7 @@
   font-stretch: condensed;
   line-height: 1.18;
   letter-spacing: normal;
-  text-align: left;
+  text-align: inherit;
 }
 
 %T1 {
@@ -96,7 +96,7 @@
   font-stretch: condensed;
   line-height: normal;
   letter-spacing: normal;
-  text-align: left;
+  text-align: inherit;
 }
 
 %T2 {
@@ -117,6 +117,9 @@
 %T2Left {
   @extend %T2;
   text-align: left;
+  [dir="rtl"] & {
+    text-align: right;
+  }
 }
 
 %T3 {
@@ -127,7 +130,7 @@
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: left;
+  text-align: inherit;
 }
 
 %T4 {
@@ -138,7 +141,7 @@
   font-stretch: normal;
   line-height: 1.6;
   letter-spacing: normal;
-  text-align: left;
+  text-align: inherit;
 }
 
 %T5 {
@@ -149,7 +152,7 @@
   font-stretch: normal;
   line-height: 1.54;
   letter-spacing: normal;
-  text-align: left;
+  text-align: inherit;
 }
 
 %readTime {

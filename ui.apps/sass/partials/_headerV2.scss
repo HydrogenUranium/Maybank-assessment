@@ -11,6 +11,10 @@
   transition: width 0.3s ease;
   font-family: "Delivery", sans-serif;
 
+  [dir="rtl"] & {
+    background: transparent linear-gradient(to left, map-get($palette, sunflower-yellow) 0%, map-get($palette, sunflower-yellow) 30%, #FFE57F 79%, #FFF0B2 100%) 0% 0% no-repeat padding-box;
+  }
+
   &.headerV2__navigation--open {
     @include respond(md) {
       width: 390px;
@@ -132,6 +136,11 @@
             overflow-x: hidden;
             font-size: 16px;
             line-height: 14px;
+
+            [dir="rtl"] & {
+              right: unset;
+              left: 0;
+            }
 
             &__label {
               position: relative;
@@ -283,12 +292,14 @@
       display: none;
       @include respond(xl) {
         display: flex;
+        column-gap: 40px;
         justify-content: space-between;
         align-items: baseline;
       }
 
       &__left {
         display: flex;
+        column-gap: 40px;
         flex-flow: row wrap;
         overflow: hidden;
         max-height: 51px;
@@ -296,8 +307,8 @@
 
       &__right {
         display: flex;
+        column-gap: 40px;
         align-items: baseline;
-        padding-left: 40px;
 
         .button {
           cursor: pointer;
@@ -311,7 +322,6 @@
           background: #D40511 0% 0% no-repeat padding-box;
           border-radius: 4px;
           padding: 10px;
-          margin-right: 40px;
           margin-bottom: 3px;
 
           &:hover {
@@ -343,7 +353,6 @@
     @include respond(xl) {
       display: inline;
       border-bottom: unset;
-      padding-right: 40px;
 
       font-size: 14px;
       white-space: nowrap;
@@ -366,7 +375,6 @@
 
     &.navigation-item_more-less {
       display: none;
-      padding-right: 40px;
       font-weight: bold;
       color: map-get($palette, scarlet);
       cursor: pointer;
@@ -381,7 +389,7 @@
         background-size: contain;
         background-position: center center;
         background-repeat: no-repeat;
-        margin-left: 8px;
+        margin: 0 8px;
         position: relative;
         top: 3px;
       }

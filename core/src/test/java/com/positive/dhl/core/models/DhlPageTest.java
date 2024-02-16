@@ -16,6 +16,10 @@ import com.positive.dhl.core.components.EnvironmentConfiguration;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 
+import java.util.Map;
+
+import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
+
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class DhlPageTest {
     private final AemContext ctx = new AemContext();
@@ -29,6 +33,12 @@ class DhlPageTest {
 		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
 		ctx.registerService(PageUtilService.class, new PageUtilService());
 	    ctx.addModelsForClasses(DhlPage.class);
+		mockInjectHomeProperty(ctx, Map.of(
+				"trackingid", "tracking-id",
+				"gtmtrackingid", "gmt-tracking-id",
+				"pathprefix", "/discover",
+				"direction", "rtl"
+		));
 
 		when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
 		lenient().when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
@@ -45,15 +55,10 @@ class DhlPageTest {
 		assertEquals("https://www.dhl.com/content/dhl/standardpage", dhlPage.getFullUrl());
 		assertEquals("/content/dhl/business/finding-new-customers/The-subscription-economy/The-Subscription-Economy", dhlPage.getAmparticlepath());
 		assertEquals("", dhlPage.getFullarticlepath());
-		
-		dhlPage.setFullUrl("");
-		assertEquals("", dhlPage.getFullUrl());
-		
-		dhlPage.setFullarticlepath("test");
-		assertEquals("test", dhlPage.getFullarticlepath());
-		
-		dhlPage.setAmparticlepath("");
-		assertEquals("", dhlPage.getAmparticlepath());
+		assertEquals("gmt-tracking-id", dhlPage.getGtmtrackingid());
+		assertEquals("tracking-id", dhlPage.getTrackingid());
+		assertEquals("/discover", dhlPage.getPathprefix());
+		assertEquals("rtl", dhlPage.getDirection());
 	}
 
 }
