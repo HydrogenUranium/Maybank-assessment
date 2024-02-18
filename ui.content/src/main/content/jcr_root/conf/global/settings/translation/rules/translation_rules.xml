@@ -537,6 +537,10 @@
       <property inherit="true" name="ctaBannerGray-individualShipper-title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="ctaBannerGray-individualShipper-description" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="ctaBannerGray-individualShipper-buttonLabel" translate="true" updateDestinationLanguage="false"/>
+
+      <property inherit="true" name="searchBar-articlesTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-recentSearchesTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-trendingTopicsTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
 
     <node resourceType="dhl/components/pages/landing">
