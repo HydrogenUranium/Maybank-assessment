@@ -33,6 +33,11 @@
             top: -5px;
             left: -15px;
             font-size: 20px;
+
+            [dir="rtl"] & {
+              left: unset;
+              right: -15px;
+            }
         }
         }
     }
@@ -156,5 +161,21 @@
     &:before {
       right: 9px;
     }
+  }
+}
+
+//Used to remove margin of first element in column
+@mixin flat-top-first {
+  > :first-child {
+    margin-top: 0;
+    > :first-child {
+        margin-top: 0;
+        > :first-child {
+            margin-top: 0;
+            > :first-child {
+                margin-top: 0;
+              }
+          }
+      }
   }
 }

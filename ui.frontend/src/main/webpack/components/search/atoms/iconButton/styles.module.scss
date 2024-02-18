@@ -7,6 +7,10 @@
     aspect-ratio: 1/1;
     position: absolute;
     left: 0;
+    [dir="rtl"] & {
+      left: unset;
+      right: 0;
+    }
     &Image {
         background-size: contain;
         background-position: center center;

@@ -1,5 +1,5 @@
 .forms {
-  text-align: left;
+  text-align: inherit;
   margin-top: 40px;
 
   @include respond(md) {
@@ -118,7 +118,7 @@
 
   &__row {
     @include make-row();
-    text-align: left;
+    text-align: inherit;
 
     @include respond(md) {
       margin-top: 10px;
@@ -213,6 +213,10 @@
     background-size: 8px 8px;
     background-position: center right 17px;
     background-repeat: no-repeat;
+
+    [dir="rtl"] & {
+      background-position: center left 17px;
+    }
   }
 
   %custom-checkbox {
@@ -597,7 +601,7 @@
 
 .validity-checks {
   font-size: 0;
-  text-align: left;
+  text-align: inherit;
   margin-top: 10px;
 
   $block: &;

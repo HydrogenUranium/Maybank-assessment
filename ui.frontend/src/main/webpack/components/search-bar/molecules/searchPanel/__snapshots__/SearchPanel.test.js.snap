@@ -35,7 +35,7 @@ exports[`SearchPanel should render component "SearchPanel" property 1`] = `
         className="searchSectionItems"
       >
         <a
-          className="searchSectionItemsItem"
+          className="searchSectionItemsItem searchSectionItemsItemWithIcon"
           href="/search-result?searchfield=Business"
         >
           <span
@@ -48,7 +48,7 @@ exports[`SearchPanel should render component "SearchPanel" property 1`] = `
           </span>
         </a>
         <a
-          className="searchSectionItemsItem"
+          className="searchSectionItemsItem searchSectionItemsItemWithIcon"
           href="/search-result?searchfield=China"
         >
           <span
