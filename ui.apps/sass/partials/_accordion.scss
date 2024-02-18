@@ -26,6 +26,8 @@
 			background-color: map-get($palette, white-two);
 			border: none;
 			padding: 0;
+      display: flex;
+      justify-content: space-between;
 
 			h3 {
 				@include font($style: "%T4");
@@ -34,7 +36,7 @@
 			}
 		}
 
-		.card__header:before {
+		.card__header:after {
 			content: ' ';
 			display: block;
 			width: 20px;
@@ -45,9 +47,6 @@
       background-size: 18px 8px;
       background-repeat: no-repeat;
 			line-height: 5rem;
-			position: absolute;
-			right: 14px;
-			top: 26px;
 			transition: transform 100ms ease;
 
 			@include respond(md) {
@@ -55,7 +54,7 @@
 			}
 		}
 
-		.card__header[aria-expanded="true"]:before {
+		.card__header[aria-expanded="true"]:after {
 			transform: rotate(-180deg)
 		}
 

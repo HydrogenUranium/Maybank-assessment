@@ -4,6 +4,8 @@
   },
   "scripts": {
     "aemsync": "aemsync -t http://admin:admin@localhost:4502 -w ./ui.apps/src/main/content",
-    "cypress": "cd ./ui.tests/test-module && npm run open"
+    "cypress": "cd ./ui.tests/test-module && npm run open",
+    "build:frontend": "cd ./ui.frontend && npm run dev",
+    "build:css": "cd ./ui.apps && npm run build:css"
   }
 }

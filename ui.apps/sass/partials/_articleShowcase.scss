@@ -1,9 +1,14 @@
 .article-showcase-component {
   .title {
     font: normal normal bold 20px/40px Delivery, sans-serif;
-    padding-left: 10px;
+    padding: 0 10px;
     margin-bottom: 16px;
     border-left: 2px solid #DD3741;
+
+    [dir="rtl"] & {
+      border-right: 2px solid #DD3741;
+      border-left: none;
+    }
   }
   .link {
     margin-top: 15px;
@@ -152,6 +157,10 @@
 
         &__metadata {
           display: none;
+          :not(:first-child)::before {
+            content: "|";
+            margin-right: 2px;
+          }
           @include respond(md) {
             display: initial;
             margin-top: 10px;

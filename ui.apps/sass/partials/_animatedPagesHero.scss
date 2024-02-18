@@ -18,6 +18,9 @@
   @include respond(xl) {
     padding: 65px 0 99px;
   }
+  .row {
+    justify-content: center;
+  }
 
   &__arrow {
     display: block;
@@ -41,6 +44,7 @@
 
   &__title {
     font-family: $font-family--animated;
+    max-width: 770px;
     font-size: 32px;
     font-weight: 800;
     font-stretch: condensed;
@@ -62,6 +66,7 @@
 
   &__copy {
     font-family: $font-family--animated;
+    max-width: 770px;
     font-size: 15px;
     font-weight: 400;
     line-height: 1.6;

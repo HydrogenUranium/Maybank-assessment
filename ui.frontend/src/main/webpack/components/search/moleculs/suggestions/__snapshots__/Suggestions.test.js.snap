@@ -11,7 +11,7 @@ exports[`Suggestions should render "Suggestions" component property when input i
       className="searchSectionItems"
     >
       <button
-        className="searchSectionItemsItem"
+        className="searchSectionItemsItem searchSectionItemsItemWithIcon"
         onClick={[Function]}
       >
         <span
@@ -24,7 +24,7 @@ exports[`Suggestions should render "Suggestions" component property when input i
         </span>
       </button>
       <button
-        className="searchSectionItemsItem"
+        className="searchSectionItemsItem searchSectionItemsItemWithIcon"
         onClick={[Function]}
       >
         <span

@@ -226,11 +226,21 @@
         &:nth-child(4),
         &:nth-child(8) {
           padding-right: 10px;
+
+          [dir="rtl"] & {
+            padding-right: 0px;
+            padding-left: 10px;
+          }
         }
 
         &:nth-child(5),
         &:nth-child(9){
           padding-left: 10px;
+
+          [dir="rtl"] & {
+            padding-left: 0px;
+            padding-right: 10px;
+          }
         }
       }
     }

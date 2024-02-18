@@ -98,10 +98,10 @@ exports[`ArticleGrid should render component "ArticleGrid" property 1`] = `
   <nav
     aria-label="Article Grid"
   >
-    <ul
+    <div
       className="articleGridCategories horizontal-scroll"
     >
-      <li
+      <div
         aria-selected={true}
         className="articleGridCategoriesCategory
                           articleGridCategoriesCategorySelected
@@ -112,8 +112,8 @@ exports[`ArticleGrid should render component "ArticleGrid" property 1`] = `
         tabIndex={0}
       >
         All
-      </li>
-      <li
+      </div>
+      <div
         aria-selected={false}
         className="articleGridCategoriesCategory
                           
@@ -124,8 +124,8 @@ exports[`ArticleGrid should render component "ArticleGrid" property 1`] = `
         tabIndex={0}
       >
         Logistics
-      </li>
-    </ul>
+      </div>
+    </div>
   </nav>
   <div
     className="articleGridArticles"
