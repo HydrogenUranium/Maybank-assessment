@@ -139,14 +139,17 @@ public class Countries {
 
 	 */
 	public String getCountryName(Node country) throws RepositoryException {
-			Resource resource = resourceResolverHelper.getReadResourceResolver().getResource(country.getName());
+		try (var resourceResolver = resourceResolverHelper.getReadResourceResolver()) {
+			var resource = resourceResolver.getResource(country.getName());
 			if(null != resource){
 				Country ctry = resource.adaptTo(Country.class);
 				if(null != ctry){
 					return ctry.getCountryName();
 				}
 			}
-			return null;
+		}
+
+		return null;
 	}
 
 	/**
@@ -163,8 +166,8 @@ public class Countries {
 	}
 
 	private void populateCountryMap(){
-		@Cleanup ResourceResolver resourceResolver = getResourceResolver();
-		Resource resource = resourceResolver.getResource(environmentConfiguration.getCountryInfoLocation());
+		@Cleanup var resourceResolver = getResourceResolver();
+		var resource = resourceResolver.getResource(environmentConfiguration.getCountryInfoLocation());
 		if(null != resource){
 			Iterable<Resource> resourceIterator = resource.getChildren();
 			for (Resource item : resourceIterator) {

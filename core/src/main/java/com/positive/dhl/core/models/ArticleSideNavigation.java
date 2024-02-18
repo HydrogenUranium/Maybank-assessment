@@ -69,7 +69,7 @@ public class ArticleSideNavigation {
 
 	private List<Article> processItems(Page page, ResourceResolver resourceResolver){
 		List<Article> articleList = new ArrayList<>();
-		Resource relatedArticlePaths = page.getContentResource("items");
+		var relatedArticlePaths = page.getContentResource("items");
 		if (relatedArticlePaths != null) {
 			String resource = relatedArticlePaths.getPath();
 			LOGGER.info("Going to iterate {} to look for property 'url' - this will populate the 'side navigation'", resource);
@@ -101,7 +101,7 @@ public class ArticleSideNavigation {
 
 	private List<Article> processSearchResult(SearchResult searchResult, ResourceResolver resourceResolver){
 		List<Article> articleList = new ArrayList<>();
-		int count = 0;
+		var count = 0;
 		try {
 			for (Hit hit: searchResult.getHits()) {
 				ValueMap properties = hit.getProperties();
@@ -129,19 +129,20 @@ public class ArticleSideNavigation {
 	 */
 	@PostConstruct
     protected void init() {
-		ResourceResolver resourceResolver = resourceResolverHelper.getReadResourceResolver();
-		articles = new ArrayList<>();
-		if(null != resourceResolver){
-			articles.addAll(processItems(currentPage, resourceResolver));
+		try (var resourceResolver = resourceResolverHelper.getReadResourceResolver()){
+			articles = new ArrayList<>();
+			if (null != resourceResolver) {
+				articles.addAll(processItems(currentPage, resourceResolver));
 
-			if (articles.isEmpty() && null != builder) {
-				Page parentPage = currentPage.getParent();
-				if (null != parentPage){
-					Page categoryPage = categoryFinder.getGroupPage(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE,parentPage);
-					categoryPage = categoryPage == null ? categoryFinder.getGroupPage(CATEGORY_PAGE_STATIC_RESOURCE_TYPE,parentPage) : categoryPage;
-					if(null != categoryPage){
-						SearchResult searchResult = runQuery(categoryPage,resourceResolver);
-						articles.addAll(processSearchResult(searchResult,resourceResolver ));
+				if (articles.isEmpty() && null != builder) {
+					var parentPage = currentPage.getParent();
+					if (null != parentPage){
+						var categoryPage = categoryFinder.getGroupPage(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE,parentPage);
+						categoryPage = categoryPage == null ? categoryFinder.getGroupPage(CATEGORY_PAGE_STATIC_RESOURCE_TYPE,parentPage) : categoryPage;
+						if(null != categoryPage){
+							var searchResult = runQuery(categoryPage,resourceResolver);
+							articles.addAll(processSearchResult(searchResult,resourceResolver ));
+						}
 					}
 				}
 			}
