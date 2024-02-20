@@ -25,6 +25,7 @@ public class ArticleService {
     protected static final int MIN_SEARCH_TERM_CHARACTERS_ALLOWED = 3;
     public static final String ORDERBY = "orderby";
     public static final String JCR_CONTENT_CQ_TEMPLATE = "jcr:content/cq:template";
+    public static final String P_LIMIT = "p.limit";
 
     @Reference
     protected ResourceResolverHelper resolverHelper;
@@ -36,11 +37,16 @@ public class ArticleService {
     protected QueryBuilder builder;
 
     public List<Article> getLatestArticles(String parentPath, int limit) {
-        return Optional.ofNullable(resolverHelper.getReadResourceResolver())
-                .map(resolver -> resolver.getResource(parentPath))
-                .map(resource -> resource.adaptTo(Page.class))
-                .map(page -> getLatestArticles(page, limit))
-                .orElse(new ArrayList<>());
+        List<Article> result;
+        try (var resourceResolver = resolverHelper.getReadResourceResolver()) {
+            result = Optional.ofNullable(resourceResolver)
+                    .map(resolver -> resolver.getResource(parentPath))
+                    .map(resource -> resource.adaptTo(Page.class))
+                    .map(page -> getLatestArticles(page, limit))
+                    .orElse(new ArrayList<>());
+        }
+
+        return result;
     }
 
     private List<Article> getArticles(Map<String, String> customProps) {
@@ -63,7 +69,7 @@ public class ArticleService {
 
     public List<Article> getAllArticles(Page parent) {
         return getArticles(Map.of(
-                "p.limit", "-1",
+                P_LIMIT, "-1",
                 "path", parent.getPath()
         ));
     }
@@ -75,7 +81,7 @@ public class ArticleService {
                 "1_property.operation", "exists",
                 ORDERBY, "@jcr:content/custompublishdate",
                 "orderby.sort", "desc",
-                "p.limit", String.valueOf(limit)
+                P_LIMIT, String.valueOf(limit)
         );
 
 
@@ -148,7 +154,7 @@ public class ArticleService {
     private Map<String, String> setOrderingAndLimiting(Map<String, String> map) {
         map.put(ORDERBY, "@jcr:content/jcr:score");
         map.put("orderby.sort", "desc");
-        map.put("p.limit", "50");
+        map.put(P_LIMIT, "50");
         map.put("p.guessTotal", "true");
         return map;
     }
