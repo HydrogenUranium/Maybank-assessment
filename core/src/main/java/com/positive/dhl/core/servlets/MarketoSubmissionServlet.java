@@ -54,6 +54,7 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
+		LOGGER.info("Test INFO message");
 		boolean canProceed = canProceed(request);
 		if(canProceed){
 			LOGGER.info("OSGi configuration sets Marketo Hidden form submission to 'enabled'. Proceeding ...");
