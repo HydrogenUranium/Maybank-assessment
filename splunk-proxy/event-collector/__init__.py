@@ -5,6 +5,7 @@ import azure.functions as func
 import json
 import os
 import typing
+import gzip
 
 TOKEN_NAME_PROD = "TOKEN_PROD"
 TOKEN_NAME_STAGE = "TOKEN_STAGE"
@@ -85,7 +86,18 @@ def main(req: func.HttpRequest, msgprod: func.Out[typing.List[str]], msgstage: f
             json.dumps({'text': 'Invalid token', 'code': 4}),
             status_code=403, mimetype=MIMETYPE_JSON)
 
-    req_body_string = req.get_body().decode("utf-8")
+    req_encoding_value = req.headers.get('Content-Encoding')
+    if req_encoding_value in ['gzip']:
+        logging.info('Detected Content-Encoding: %s, decompressing byte stream.' % req_encoding_value)
+        req_bytes = gzip.decompress(req.get_body())
+    elif req_encoding_value is None:
+        req_bytes = req.get_body()
+    else:
+        logging.info('Unsupported Content-Encoding: %s' % req_encoding_value)
+        return func.HttpResponse(
+            json.dumps({'text': 'Invalid data format', 'code': 6}),
+            status_code=500, mimetype=MIMETYPE_JSON)
+    req_body_string = req_bytes.decode("utf-8")
     # logging.info(f"Message: {req_body_string}")
     store_to_eventhub(msgprod, msgstage, req_body_string)
 
