@@ -15,9 +15,11 @@ import org.junit.platform.commons.util.StringUtils;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.day.cq.wcm.api.designer.Style;
 import java.util.Arrays;
 import java.util.Locale;
 
+import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -36,6 +38,9 @@ class TopTilesTest {
 
     @Mock
     private PathUtilService pathUtilService;
+
+    @Mock
+    private Style currentStyle;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -57,11 +62,14 @@ class TopTilesTest {
 
     @Test
     void init_ShouldInitArticles_WhenArticlesAreConfigured() {
+        mockInject(context, "script-bindings", "currentStyle", currentStyle);
+        when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
         Article article = createArticleModel(context.resourceResolver().getResource("/content/top-tiles"));
         when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
         TopTiles topTiles = context.resourceResolver().getResource("/content/top-tiles").adaptTo(TopTiles.class);
 
+        assertNotNull(topTiles);
         assertEquals(4, topTiles.getArticles().size());
     }
 
