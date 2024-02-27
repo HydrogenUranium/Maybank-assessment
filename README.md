@@ -129,7 +129,7 @@ The project comes with the auto-public repository configured. To setup the repos
 ## AEM Sync
 `npm install` - to install
 
-`npm run sync` - to run
+`npm run aemsync` - to run
 
 ## Cypress
 `npm install` in ui.tests/test-module - to install
@@ -137,3 +137,13 @@ The project comes with the auto-public repository configured. To setup the repos
 `npm run open` in ui.tests/test-module - to run
 
 `npm run cypress` - to run from root
+
+## Useful Scripts
+
+`npm run aemsync` - to run aemsync
+
+`npm run build:frontend` - to run frontend build
+
+`npm run build:css` - to run apps scss build
+
+`npm run cypress` - to run cypress

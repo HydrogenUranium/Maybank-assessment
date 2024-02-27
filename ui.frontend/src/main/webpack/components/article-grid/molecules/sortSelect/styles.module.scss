@@ -1,11 +1,10 @@
 .sort {
-    margin-left: auto;
     display: flex;
     align-items: center;
+    gap: 20px;
 
     &Label {
         margin-bottom: 0px;
-        margin-right: 20px;
 
         &:after {
             content: ":";

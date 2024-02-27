@@ -54,7 +54,7 @@
 
   &__editor {
     .right-header-section {
-      padding-right: 20px;
+      padding-right: 70px;
       width: calc(50% - 10px);
       margin-left: auto;
     }
@@ -79,7 +79,7 @@
       display: none;
 
       @include respond(xl) {
-        padding-right: 20px;
+        padding-right: 70px;
         display: block;
         width: calc(50% - 10px);
         margin-left: auto;

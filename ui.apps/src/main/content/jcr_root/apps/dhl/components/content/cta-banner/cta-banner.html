@@ -2,7 +2,7 @@
      data-sly-set.isEmpty=${!model.title}></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
-<div class="cta-banner-component" data-sly-test="${!isEmpty}">
+<article class="cta-banner-component" data-sly-test="${!isEmpty}">
     <div class="banner">
         <div class="banner__body">
             <div class="banner__body__top-title">${model.topTitle}</div>
@@ -14,4 +14,4 @@
                  data-sly-call="${template.background @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>
         </div>
     </div>
-</div>
+</article>

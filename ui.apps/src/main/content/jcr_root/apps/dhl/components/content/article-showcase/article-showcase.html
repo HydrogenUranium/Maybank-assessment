@@ -5,30 +5,33 @@
      data-sly-set.isHorizontal="${model.designMode == 'horizontal'}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
-<div class="article-showcase-component article-showcase-component_${model.designMode}" data-sly-test="${!isEmpty}">
-    <div class="title" data-sly-test="${model.title}">
+<section class="article-showcase-component article-showcase-component_${model.designMode}" data-sly-test="${!isEmpty}">
+    <h2 class="title" data-sly-test="${model.title}">
         ${model.title}
-    </div>
+    </h2>
     <div class="article-items horizontal-scroll" data-sly-test="${isHorizontal}">
         <sly data-sly-repeat="${model.articles}" data-sly-call="${articleCardTemplate.card @ article=item, showTags=model.showTags}"></sly>
     </div>
     <sly data-sly-test="${isVertical}">
-        <ul class="article-items">
-            <li class="article" data-sly-repeat="${model.articles}">
+        <div class="article-items">
+            <article class="article" data-sly-repeat="${model.articles}">
                 <a tabindex="-1" href="${item.path}.html" class="article__image"
                    style="background-image: url('${item.listimage @ context='uri'}');"></a>
                 <div class="article__info">
                     <div class="article__info__group-tag">${item.groupTag}</div>
-                    <a href="${item.path}.html" class="article__info__title">${item.title}</a>
-                    <div class="article__info__metadata">${item.createdfriendly} ${item.readtime ? '|' : ''} ${item.readtime}</div>
+                    <h3><a href="${item.path}.html" class="article__info__title">${item.title}</a></h3>
+                    <div class="article__info__metadata">
+                        <time datetime="${item.created}" data-sly-test="${item.createdfriendly}">${item.createdfriendly}</time>
+                        <span data-sly-test="${item.readtime}">${item.readtime}</span>
+                    </div>
                     <div class="article__info__description">${item.description}</div>
                     <div class="article__info__author">
                         <div style="background-image: url('${item.authorimage @ context='uri'}');" class="article__info__author__avatar"></div>
                         <div class="article__info__author__name">${item.author}</div>
                     </div>
                 </div>
-            </li>
-        </ul>
+            </article>
+        </div>
         <a class="link" data-sly-test="${model.linkName}" href="${model.linkPath}.html">${model.linkName}</a>
     </sly>
-</div>
+</section>

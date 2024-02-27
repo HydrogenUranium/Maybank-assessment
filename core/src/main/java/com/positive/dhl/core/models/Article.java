@@ -59,7 +59,7 @@ public class Article {
 	private boolean fourth;
 
 	@Expose private String createdfriendly;
-	private String created;
+	@Expose private String created;
     private Date createdDate;
 	@Expose private long createdMilliseconds;
 	private String icon;
