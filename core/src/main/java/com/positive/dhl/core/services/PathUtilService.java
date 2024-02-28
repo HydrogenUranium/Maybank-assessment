@@ -27,8 +27,16 @@ public class PathUtilService {
     @Reference
     private AssetUtilService assetUtilService;
 
-    @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-    protected volatile AssetDelivery assetDelivery;
+    protected AssetDelivery assetDelivery;
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC)
+    public synchronized void bindAssetDelivery(AssetDelivery assetDelivery) {
+        this.assetDelivery = assetDelivery;
+    }
+
+    public synchronized void unbindAssetDelivery(AssetDelivery assetDelivery) {
+        this.assetDelivery = null;
+    }
 
     @Reference
     protected MimeTypeService mimeTypeService;
