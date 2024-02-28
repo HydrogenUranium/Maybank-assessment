@@ -12,6 +12,7 @@ import org.apache.sling.commons.mime.MimeTypeService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.scribe.utils.MapUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -67,7 +68,9 @@ public class PathUtilService {
     }
 
     public String resolveAssetPath(String assetPath, boolean useWebOptimized, Map<String, Object> props) {
+        log.debug("Resolve Asset Path for:{}, useWebOptimized:{}", assetPath, useWebOptimized);
         if(StringUtils.isBlank(assetPath)) {
+            log.debug("Path is empty, return empty resolved path");
             return StringUtils.EMPTY;
         }
 
@@ -89,10 +92,19 @@ public class PathUtilService {
                     if(props != null) {
                         defaultProps.putAll(props);
                     }
-
-                    return assetDelivery.getDeliveryURL(imageResource, defaultProps);
+                    log.debug("Optimize Image by properties: {}", MapUtils.toString(defaultProps));
+                    String optimizedPath = assetDelivery.getDeliveryURL(imageResource, defaultProps);
+                    log.debug("Optimized Image path: {}", optimizedPath);
+                    return optimizedPath;
+                } else {
+                    log.error("Failed optimized image because, image:{} and asset:{}", imageResource, asset);
                 }
+            } catch(Exception e) {
+                log.error("Failed optimized image", e);
             }
+        } else {
+            log.debug("Image is not optimized useWebOptimized:{}, and assetDelivery:{}",
+                    useWebOptimized, assetDelivery == null ? "is not injected": "injected successfully");
         }
 
         return assetUtilService.resolvePath(encodeUnsupportedCharacters(assetPath));
