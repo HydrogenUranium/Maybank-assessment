@@ -28,7 +28,7 @@ public class PathUtilService {
     private AssetUtilService assetUtilService;
 
     @Reference(policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.OPTIONAL)
-    protected AssetDelivery assetDelivery;
+    protected volatile AssetDelivery assetDelivery;
 
     @Reference
     protected MimeTypeService mimeTypeService;
