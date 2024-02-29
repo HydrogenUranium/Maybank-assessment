@@ -2,7 +2,6 @@ package com.positive.dhl.core.services;
 
 import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.dam.api.Asset;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.oak.commons.PropertiesUtil;
@@ -12,6 +11,7 @@ import org.apache.sling.commons.mime.MimeTypeService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
 import org.scribe.utils.MapUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -27,9 +27,16 @@ public class PathUtilService {
     @Reference
     private AssetUtilService assetUtilService;
 
-    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
-    @Getter
     protected AssetDelivery assetDelivery;
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC)
+    public synchronized void bindAssetDelivery(AssetDelivery assetDelivery) {
+        this.assetDelivery = assetDelivery;
+    }
+
+    public synchronized void unbindAssetDelivery(AssetDelivery assetDelivery) {
+        this.assetDelivery = null;
+    }
 
     @Reference
     protected MimeTypeService mimeTypeService;
