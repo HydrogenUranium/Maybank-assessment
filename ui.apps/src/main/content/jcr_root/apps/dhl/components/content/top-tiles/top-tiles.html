@@ -5,7 +5,6 @@
 <div class="top-tiles-component" data-sly-list="${model.articles}">
     <a href="${item.path}.html" class="tile" title="${item.title}">
         <div class="article" data-sly-set.id="${model.id}-${itemList.count}">
-            <link rel="preload" href="/content/dam/global-master/1-business-advice/peak-season-advice/the-growing-demand-for-bespoke-fashion/nav-fashion-supply-chain.jpg" as="image">
             <div id="${id}" class="article__background">
                 <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
                      data-sly-call="${template.background @ id=id, mobile=item.heroimagemob, tablet=item.heroimagetab, desktop=item.heroimagedt}"></sly>
