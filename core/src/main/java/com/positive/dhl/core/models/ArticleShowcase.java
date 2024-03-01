@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.designer.Style;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -28,6 +30,9 @@ public class ArticleShowcase {
 
     @OSGiService
     private PageUtilService pageUtils;
+
+    @ScriptVariable
+    protected Style currentStyle;
 
     @OSGiService
     private ArticleService articleService;
@@ -91,9 +96,16 @@ public class ArticleShowcase {
                 }
             }
         }
+        initArticles();
     }
 
     private void initLatestArticles() {
         articles = articleService.getLatestArticles(pageUtils.getHomePage(currentPage), 4);
+        initArticles();
+    }
+
+    private void initArticles(){
+        boolean enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
+        articles.forEach(article -> article.initAssetDeliveryProperties(enableAssetDelivery));
     }
 }
