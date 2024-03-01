@@ -75,8 +75,12 @@ public class Article {
 	private String authorimage;
 	@Expose private String readtime;
 	@Expose private String listimage;
+
+	@Setter
 	private String heroimagemob;
+	@Setter
 	private String heroimagetab;
+	@Setter
 	private String heroimagedt;
 
 	private String listimageProp;
