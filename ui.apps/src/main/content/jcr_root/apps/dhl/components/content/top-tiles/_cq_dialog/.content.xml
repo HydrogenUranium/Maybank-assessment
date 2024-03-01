@@ -21,6 +21,14 @@
                             text="desktop and tablet screens are 3:2 (3:1 for second article).
                             For mobile devices, the aspect ratio is dynamic.">
                     </note>
+                    <note2
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Image Inheritance"
+                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                            text="By default, the mobile hero banner image of the article will be used as the tile
+                            image for mobile, tablet, and desktop devices.
+                            Content Authors can override those images using appropriate properties.">
+                    </note2>
                     <articles
                         jcr:primaryType="nt:unstructured"
                         fieldLabel="Articles"
@@ -44,13 +52,13 @@
                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                         name="./mobileImage"
                                         rootPath="/content/dam"
-                                        fieldLabel="Mobile Image"/>
+                                        fieldLabel="Override Mobile Image"/>
                                 <desktopImage
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                         name="./desktopImage"
                                         rootPath="/content/dam"
-                                        fieldLabel="Desktop and Tablet Image"/>
+                                        fieldLabel="Override Desktop and Tablet Image"/>
                             </items>
                         </field>
                     </articles>
