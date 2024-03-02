@@ -2,13 +2,17 @@
      data-sly-test.isEmpty=${model.articles.empty}></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
-<div class="top-tiles-component" data-sly-list="${model.articles}">
-    <a href="${item.path}.html" class="tile" title="${item.title}">
-        <div class="article" data-sly-set.id="${model.id}-${itemList.count}">
-            <div id="${id}" class="article__background">
-                <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
-                     data-sly-call="${template.background @ id=id, mobile=item.heroimagemob, tablet=item.heroimagetab, desktop=item.heroimagedt}"></sly>
-            </div>
+<div class="top-tiles-component">
+    <a href="${item.path}.html" class="tile" data-sly-repeat="${model.articles}" title="${item.title}">
+        <div class="article">
+            <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+                 data-sly-call="${template.picture @
+                 mobile=item.heroimagemob,
+                 tablet=item.heroimagetab,
+                 desktop=item.heroimagedt,
+                 imgClass='article__image',
+                 priority='high'
+             }"></sly>
             <div class="article__info">
                 <div class="article__info__title">${item.title}</div>
                 <div class="article__info__group-tag">${item.groupTag}</div>

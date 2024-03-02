@@ -45,9 +45,6 @@ public class TopTiles {
     @Getter
     private final List<Article> articles = new ArrayList<>();
 
-    @Getter
-    private final String id = "top-tiles_" + UUID.randomUUID();
-
     @PostConstruct
     protected void init() {
         boolean enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
