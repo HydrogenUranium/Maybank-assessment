@@ -4,9 +4,15 @@
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
 <div class="hero-banner-component ${model.margin ? 'hero-banner-component--with-margins' : ''}" data-sly-test="${!isEmpty}">
-    <div class="hero-banner ${model.roundedCorners ? 'hero-banner--with-rounded-corners' : ''}" id="${model.id}">
-        <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
-             data-sly-call="${template.background @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>
+    <div class="hero-banner ${model.roundedCorners ? 'hero-banner--with-rounded-corners' : ''}">
+    <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+         data-sly-call="${template.picture @
+             mobile=model.mobileBackgroundImage,
+             tablet=model.tabletBackgroundImage,
+             desktop=model.desktopBackgroundImage,
+             imgClass='hero-banner__image',
+             priority='high'
+     }"></sly>
     </div>
     <div class="summary" data-sly-test="${model.points.size > 1 && model.keyTakeaways}">
         <div class="summary__label">${model.summaryTitle}</div>

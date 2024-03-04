@@ -76,9 +76,6 @@ public class HeroBanner {
     @Getter
     private boolean margin;
 
-    @Getter
-    private final String id = "hero_" + UUID.randomUUID();
-
     @PostConstruct
     protected void init() {
         initDesignProperties();
