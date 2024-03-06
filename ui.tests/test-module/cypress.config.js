@@ -25,10 +25,10 @@ const publishPass = process.env.AEM_PUBLISH_PASSWORD || 'admin'
 
 let config = {
   env: {
-    AEM_AUTHOR_URL: "https://author-p58772-e528782.adobeaemcloud.com",
+    AEM_AUTHOR_URL: authorURL,
     AEM_AUTHOR_USERNAME: authorName,
     AEM_AUTHOR_PASSWORD: authorPass,
-    AEM_PUBLISH_URL: "https://publish-p58772-e528782.adobeaemcloud.com",
+    AEM_PUBLISH_URL: publishURL,
     AEM_PUBLISH_USERNAME: publishName,
     AEM_PUBLISH_PASSWORD: publishPass,
     REPORTS_PATH: reportsPath,
