@@ -541,6 +541,8 @@
       <property inherit="true" name="searchBar-articlesTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="searchBar-recentSearchesTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="searchBar-trendingTopicsTitle" translate="true" updateDestinationLanguage="false"/>
+
+      <property inherit="true" name="video-unsupportedMessage" translate="true" updateDestinationLanguage="false"/>
     </node>
 
     <node resourceType="dhl/components/pages/landing">
