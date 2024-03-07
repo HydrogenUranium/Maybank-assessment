@@ -23,6 +23,7 @@ Steps:
 
 3)  MANIPULATION:
     - update Marketo components property
+    - publish affected pages that was published
 
     def DRY_RUN = true / false
     def SHOW_ONLY = false
@@ -36,7 +37,26 @@ Steps:
 
     def SHOW_ONLY = true
     def CONTENT_MANIPULATION = false
+
+FILTERS:
+    Filters allows users to apply conditional filtering to retrieved components.
+    By setting the USE_FILTERS flag, users can control whether filtering should be applied.
+    When enabled, filters defined in the FILTERS collection are sequentially applied to each component.
+    If a component fails to pass any filter condition, it is excluded from the final result.
+
+    EXAMPLES:
+    - get components without configured hidden id and with marketo form id 1795
+    def FILTERS = [
+        (node) -> !node.hasProperty(MARKETO_COMPONENT.marketoHiddenFormId) || node.getProperty(MARKETO_COMPONENT.marketoHiddenFormId).getString().isBlank(),
+        (node) -> node.getProperty(MARKETO_COMPONENT.marketoFormId).getString().equals("1795"),
+    ]
+
+    - exclude components under open-an-account page
+    def FILTERS = [
+        (node) -> !(node.getPath() ==~ /\/content\/dhl\/.*\/open-an-account\/jcr:content\/.+/)
+    ]
 */
+
 import java.text.SimpleDateFormat;
 
 def ALL_MARKETO_COMPONENTS = [
@@ -70,15 +90,30 @@ def MARKET = "/content/dhl/global"
 def MARKETO_COMPONENT = ALL_MARKETO_COMPONENTS.marketoForm
 def MARKETO_COMPONENT_PROPERTY = MARKETO_COMPONENT.marketoHiddenFormId
 def MARKETO_COMPONENT_PROPERTY_VALUE = "1756"
+def USE_FILTERS = false
 
-def getComponents(market, componentResourceType) {
-    return sql2Query("SELECT * FROM [nt:unstructured] AS node WHERE ISDESCENDANTNODE([${market}]) and (node.[sling:resourceType]='${componentResourceType}')")
+def FILTERS = [
+        (node) -> node.hasProperty(MARKETO_COMPONENT.marketoHiddenFormId),
+        (node) -> node.getProperty(MARKETO_COMPONENT.marketoHiddenFormId).getString().equals("6310"),
+]
+
+def getComponents(market, componentResourceType, useFilters, filters) {
+    def allComponents = sql2Query("SELECT * FROM [nt:unstructured] AS node WHERE ISDESCENDANTNODE([${market}]) and (node.[sling:resourceType]='${componentResourceType}')")
+    if (!useFilters) {
+        return allComponents;
+    }
+
+    return allComponents.findAll { component ->
+        filters.every { filter ->
+            filter(component)
+        }
+    }
 }
 
-def showMarketoComponents(market, marketoComponent) {
+def showMarketoComponents(market, marketoComponent, useFilters, filters) {
     def data = []
 
-    getComponents(market, marketoComponent.resType).each { node ->
+    getComponents(market, marketoComponent.resType, useFilters, filters).each { node ->
         data.add([
                 node.path,
                 node.hasProperty("${marketoComponent.marketoFormId}") ? node.getProperty("${marketoComponent.marketoFormId}").getString() : '',
@@ -94,8 +129,8 @@ def showMarketoComponents(market, marketoComponent) {
     }
 }
 
-def setMarketoComponentProperty(market, marketoComponent, marketoComponentProperty, marketoComponentPropertyValue, dryRun) {
-    getComponents(market, marketoComponent.resType).each { node ->
+def setMarketoComponentProperty(market, marketoComponent, marketoComponentProperty, marketoComponentPropertyValue, dryRun, useFilters, filters) {
+    getComponents(market, marketoComponent.resType, useFilters, filters).each { node ->
         aecu.contentUpgradeBuilder()
                 .forResources((String[])[node.path])
                 .doSetProperty(marketoComponentProperty, marketoComponentPropertyValue)
@@ -103,11 +138,11 @@ def setMarketoComponentProperty(market, marketoComponent, marketoComponentProper
                 .run(dryRun)
     }
 }
-def getListAffectedPages(market, marketoComponent) {
+def getListAffectedPages(market, marketoComponent, useFilters, filters) {
     def listPages = []
     def pageUtilService = getService("com.positive.dhl.core.services.PageUtilService")
 
-    getComponents(market, marketoComponent.resType).each { node ->
+    getComponents(market, marketoComponent.resType, useFilters, filters).each { node ->
         listPages.add(pageUtilService.getPage(getResource(node.path)).path)
     }
 
@@ -154,6 +189,37 @@ def setNewPageVersion(listPages, versionName, dryRun) {
     }
 }
 
+def republishPages(listPages, dryRun) {
+    def wrongPaths = []
+    def notPublished = []
+
+    def filtered = listPages.stream()
+            .map(path -> path + "/jcr:content")
+            .filter(path -> {
+                if(getResource(path) == null) {
+                    wrongPaths.add(path)
+                    println("(!) Page doesn't exist " + path)
+                    return false
+                }
+
+                def node = getNode(path)
+
+                if(!node.hasProperty("cq:lastReplicationAction") || !node.getProperty("cq:lastReplicationAction").getString().equals("Activate")) {
+                    notPublished.add(path)
+                    println("(!) Skip page republication for unpablished page ${path} ")
+                    return false
+                }
+
+                return true
+            }).toList()
+
+    filtered.each({
+        aecu.contentUpgradeBuilder().forResources((String[])[it])
+                .doActivateResource()
+                .run(dryRun)
+    })
+}
+
 def printFiltersForBackupPackage(listPages) {
     println("Results: " + listPages.size())
     if (listPages.size() > 0) {
@@ -164,12 +230,13 @@ def printFiltersForBackupPackage(listPages) {
 
 // MAIN
 if (SHOW_ONLY) {
-    showMarketoComponents(MARKET, MARKETO_COMPONENT)
+    showMarketoComponents(MARKET, MARKETO_COMPONENT, USE_FILTERS, FILTERS)
 } else {
+    def listAffectedPages = getListAffectedPages(MARKET, MARKETO_COMPONENT, USE_FILTERS, FILTERS)
     if (CONTENT_MANIPULATION) {
-        setMarketoComponentProperty(MARKET, MARKETO_COMPONENT, MARKETO_COMPONENT_PROPERTY, MARKETO_COMPONENT_PROPERTY_VALUE, DRY_RUN)
+        setMarketoComponentProperty(MARKET, MARKETO_COMPONENT, MARKETO_COMPONENT_PROPERTY, MARKETO_COMPONENT_PROPERTY_VALUE, DRY_RUN, USE_FILTERS, FILTERS)
+        republishPages(listAffectedPages, DRY_RUN)
     } else {
-        def listAffectedPages = getListAffectedPages(MARKET, MARKETO_COMPONENT)
         printFiltersForBackupPackage(listAffectedPages)
         setNewPageVersion(listAffectedPages, "DIS-541 Marketo components", DRY_RUN)
     }
