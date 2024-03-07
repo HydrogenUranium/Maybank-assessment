@@ -82,9 +82,9 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
 
       {/* Categories Navigation */}
       <nav aria-label={title}>
-        <ul className={`${styles.articleGridCategories} horizontal-scroll`}>
+        <div className={`${styles.articleGridCategories} horizontal-scroll`}>
           {categories.map((category) => (
-            <li
+            <div
               className={`${styles.articleGridCategoriesCategory}
                           ${selectedCategory === category.name ? styles.articleGridCategoriesCategorySelected : ""}
                           horizontal-scroll__react-button`}
@@ -95,9 +95,9 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
               onClick={(event) => handleCategoryClick(category.name, event)}
               onKeyDown={(event) => handleCategoryKeyPress(category.name, event)}>
               {category.name}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </nav>
 
 

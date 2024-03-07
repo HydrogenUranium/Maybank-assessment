@@ -8,6 +8,11 @@
     border-radius: 4px;
     width: calc(100% - 40px);
     margin: 0 20px;
+
+    [dir="rtl"] & {
+      right: unset;
+      left: 0;
+    }
     @media screen and (min-width: 768px) {
         width: 500px;
     }
@@ -114,6 +119,17 @@
             padding-right: 20px;
             width: calc(100% + 40px);
 
+            [dir="rtl"] & {
+              text-align: right;
+              margin-left: 0px;
+              margin-right: -20px;
+            }
+
+            &WithIcon {
+              gap: 5px;
+              align-items: center;
+            }
+
             &:hover {
                 color: #323232;
                 text-decoration: none;
@@ -134,11 +150,10 @@
 .icon {
     width: 15px;
     height: 15px;
-    margin-top: 8px;
-    margin-right: 5px;    
     display: inline-block;
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
     &History {
         background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/time-forward.svg');
     }
@@ -151,10 +166,18 @@
     &Right {
         position: absolute;
         right: 0;
+        [dir="rtl"] & {
+          right: unset;
+          left: 0;
+        }
     }
 
     &Left {
         position: absolute;
         left: 0;
+        [dir="rtl"] & {
+          left: unset;
+          right: 0;
+        }
     }
 }

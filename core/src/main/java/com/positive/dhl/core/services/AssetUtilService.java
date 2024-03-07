@@ -22,7 +22,7 @@ public class AssetUtilService {
     private String assetPrefix;
 
     public String resolvePath(String path) {
-        return StringUtils.isNoneBlank(path) && path.startsWith("/content") ? assetPrefix + path : path;
+        return StringUtils.isNoneBlank(path) && (path.startsWith("/content") || path.startsWith("/adobe/dynamicmedia")) ? assetPrefix + path : path;
     }
 
     @Activate

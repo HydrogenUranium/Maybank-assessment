@@ -4,8 +4,14 @@
     margin: 0 auto;
     max-width: 1600px;
     &__container {
+      gap: 20px;
       max-width: 1380px;
       margin-left: auto;
+
+      [dir="rtl"] & {
+        margin-left: 0;
+        margin-right: auto;
+      }
       @include respond(xl) {
         display: grid;
         grid-template-columns: minmax(auto, 1080px) 300px;
@@ -22,7 +28,6 @@
         display: none;
 
         @include respond(xl) {
-          margin-left: 20px;
           display: block;
           grid-area: sidebar;
           .sidebar-container {
@@ -31,5 +36,5 @@
         }
       }
     }
-    }
+  }
 }

@@ -19,7 +19,7 @@
                     <h2 class="hero__subTitle">${articlePage.article.grouptitle} <sly data-sly-unwrap data-sly-test="${articlePage.article.readtime}">&middot; ${articlePage.article.readtime}</sly></h2>
                     <h1 class="hero__title">${articlePage.article.fullTitle}</h1>
                     <div class="clearfix">
-                        <time class="hero__date" date="${articlePage.article.created}">${articlePage.article.createdfriendly}</time>
+                        <time class="hero__date" datetime="${articlePage.article.created}">${articlePage.article.createdfriendly}</time>
                         <button class="hero__saveForOffline hero__saveForOffline--desktop" title="${ 'Save Article' @ i18n, context='html' }"><span>${ 'Save Article' @ i18n, context='html' }</span></button>
                     </div>
                     <div style="width: 100%; clear: both; margin-top: 20px;">

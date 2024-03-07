@@ -44,12 +44,19 @@
       mix-blend-mode: multiply;
       background: transparent linear-gradient(270deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%) 0% 0% no-repeat padding-box;
       z-index: -1;
+      [dir="rtl"] & {
+        background: transparent linear-gradient(90deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%) 0% 0% no-repeat padding-box;
+      }
     }
 
     @include respond(xl) {
       &:after {
         opacity: 1;
         background: transparent linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
+
+        [dir="rtl"] & {
+          background: transparent linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
+        }
       }
     }
 
@@ -75,7 +82,7 @@
 
         @include respond(xl) {
           width: auto;
-          margin: 20px 0px 20px 20px;
+          margin: 20px;
         }
 
         .banner__body__list__item,
@@ -97,7 +104,12 @@
             display: inline-block;
             width: 1em;
             margin-left: -1em;
-            position: initial
+            position: initial;
+
+            [dir="rtl"] & {
+              margin-right: -1em;
+              margin-left: 0;
+            }
           }
         }
       }
@@ -117,7 +129,6 @@
 
       &__title {
         font-weight: bold;
-        text-align: left;
         letter-spacing: 0px;
         text-transform: uppercase;
 
@@ -168,6 +179,10 @@
         &:after {
           opacity: 0.8;
           background: transparent linear-gradient(270deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%) 0% 0% no-repeat padding-box;
+
+          [dir="rtl"] & {
+            background: transparent linear-gradient(90deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%) 0% 0% no-repeat padding-box;
+          }
         }
       }
 
@@ -223,3 +238,5 @@
     }
   }
 }
+
+

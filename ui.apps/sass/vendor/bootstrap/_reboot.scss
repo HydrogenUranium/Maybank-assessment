@@ -65,6 +65,10 @@ body {
   background-color: $body-bg; // 2
 }
 
+[dir="rtl"] body{
+   text-align: right; // 3
+}
+
 // Suppress the focus outline on elements that cannot be accessed via keyboard.
 // This prevents an unwanted focus outline from appearing around elements that
 // might still respond to pointer events.

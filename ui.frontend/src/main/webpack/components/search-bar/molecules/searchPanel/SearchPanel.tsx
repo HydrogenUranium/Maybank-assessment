@@ -123,7 +123,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
           items={recentSearches}
           title={recentSearchesTitle}
           renderItem={(search) => (
-            <a href={getSearchResultPagePath(search)} className={styles.searchSectionItemsItem} key={search}>
+            <a href={getSearchResultPagePath(search)} className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemWithIcon)} key={search}>
               <span className={classNames(styles.icon, styles.iconHistory)}></span>
               <span className={styles.searchSectionItemsItemText}>{search}</span>
             </a>
@@ -133,7 +133,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
           items={trendingTopics}
           title={trendingTopicsTitle}
           renderItem={(topic) => (
-            <a href={getSearchResultPagePath(topic)} className={styles.searchSectionItemsItem} key={topic}>
+            <a href={getSearchResultPagePath(topic)} className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemWithIcon)} key={topic}>
               <span className={classNames(styles.icon, styles.iconTrending)}></span>
               <span className={styles.searchSectionItemsItemText}>{topic}</span>
             </a>

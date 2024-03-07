@@ -30,6 +30,7 @@ import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_LEVEL
 @Getter
 @Model(adaptables=Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class Article {
+
 	@Self
 	private Resource resource;
 
@@ -58,7 +59,7 @@ public class Article {
 	private boolean fourth;
 
 	@Expose private String createdfriendly;
-	private String created;
+	@Expose private String created;
     private Date createdDate;
 	@Expose private long createdMilliseconds;
 	private String icon;
@@ -74,9 +75,20 @@ public class Article {
 	private String authorimage;
 	@Expose private String readtime;
 	@Expose private String listimage;
+
+	@Setter
 	private String heroimagemob;
+	@Setter
 	private String heroimagetab;
+	@Setter
 	private String heroimagedt;
+
+	private String listimageProp;
+	private String heroimagemobProp;
+	private String heroimagetabProp;
+	private String heroimagedtProp;
+	private String authorimageProp;
+
 	private String youtubeid;
 	private boolean showshipnow;
 	private List<TagWrapper> tags;
@@ -85,6 +97,23 @@ public class Article {
 	private int counter;
 	private Locale locale;
 	@Expose protected String path;
+
+	public void initAssetDeliveryProperties(boolean enableAssetDelivery, Map<String, Object> props) {
+		listimage = pathUtilService.resolveAssetPath(listimageProp, enableAssetDelivery, props);
+		heroimagemob = pathUtilService.resolveAssetPath(heroimagemobProp, enableAssetDelivery, props);
+		heroimagetab = pathUtilService.resolveAssetPath(heroimagetabProp, enableAssetDelivery, props);
+		heroimagedt = pathUtilService.resolveAssetPath(heroimagedtProp, enableAssetDelivery, props);
+		authorimage = pathUtilService.resolveAssetPath(authorimageProp, enableAssetDelivery, props);
+
+	}
+
+	public void initAssetDeliveryProperties(boolean enableAssetDelivery) {
+		initAssetDeliveryProperties(enableAssetDelivery, new HashMap<>());
+	}
+
+	public void initAssetDeliveryProperties(boolean enableAssetDelivery, String quality) {
+		initAssetDeliveryProperties(enableAssetDelivery, Map.of("quality", quality));
+	}
 
 	/**
 	 * Returns the article category types
@@ -120,16 +149,22 @@ public class Article {
 			brief = brief.substring(0, 120).concat("...");
 		}
 
-		listimage = pathUtilService.resolveAssetPath(properties.get("jcr:content/listimage", ""));
+		listimageProp = properties.get("jcr:content/listimage", "");
+		heroimagemobProp = properties.get("jcr:content/heroimagemob", "");
+		heroimagetabProp = properties.get("jcr:content/heroimagetab", "");
+		heroimagedtProp = properties.get("jcr:content/heroimagedt", "");
+		authorimageProp = properties.get("jcr:content/authorimage", "");
 
-		heroimagemob = pathUtilService.resolveAssetPath(properties.get("jcr:content/heroimagemob", ""));
-		heroimagetab = pathUtilService.resolveAssetPath(properties.get("jcr:content/heroimagetab", ""));
-		heroimagedt = pathUtilService.resolveAssetPath(properties.get("jcr:content/heroimagedt", ""));
+		listimage = pathUtilService.resolveAssetPath(listimageProp);
+		heroimagemob = pathUtilService.resolveAssetPath(heroimagemobProp);
+		heroimagetab = pathUtilService.resolveAssetPath(heroimagetabProp);
+		heroimagedt = pathUtilService.resolveAssetPath(heroimagedtProp);
+		authorimage = pathUtilService.resolveAssetPath(authorimageProp);
+
 		youtubeid = properties.get("jcr:content/youtubeid", "");
 		readtime = properties.get("jcr:content/readtime", "");
 		author = properties.get("jcr:content/author", "");
 		authortitle = properties.get("jcr:content/authortitle", "");
-		authorimage = pathUtilService.resolveAssetPath(properties.get("jcr:content/authorimage", ""));
 
 		showshipnow = properties.get("jcr:content/showshipnow", false);
 

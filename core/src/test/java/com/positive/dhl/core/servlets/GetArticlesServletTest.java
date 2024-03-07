@@ -92,6 +92,7 @@ class GetArticlesServletTest {
         String expected = "[" +
                 "{" +
                     "\"createdfriendly\":\"August 3, 2023\"," +
+                    "\"created\":\"2023-08-03\"," +
                     "\"createdMilliseconds\":1691046000000," +
                     "\"groupTag\":\"#CategoryPage\"," +
                     "\"title\":\"What paperwork do I need for international shipping?\"," +
@@ -104,6 +105,7 @@ class GetArticlesServletTest {
                 "}," +
                 "{" +
                     "\"createdfriendly\":\"August 4, 2023\"," +
+                    "\"created\":\"2023-08-04\"," +
                     "\"createdMilliseconds\":1691132400000," +
                     "\"groupTag\":\"#CategoryPage\"," +
                     "\"title\":\"What paperwork do I need for international shipping?\"," +

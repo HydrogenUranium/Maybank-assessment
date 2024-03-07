@@ -10,7 +10,8 @@
     "build": "gulp build --prod",
     "sync-pom-version": "sync-pom-version",
     "test": "jest --coverage",
-    "postinstall": "sync-pom-version"
+    "postinstall": "sync-pom-version",
+    "build:css": "npx gulp sass"
   },
   "repository": {
     "type": "git",
