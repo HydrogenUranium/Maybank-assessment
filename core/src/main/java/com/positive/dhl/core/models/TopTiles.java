@@ -19,7 +19,6 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class })

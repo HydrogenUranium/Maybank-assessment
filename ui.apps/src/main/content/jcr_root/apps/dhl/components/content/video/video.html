@@ -1,0 +1,21 @@
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit}" data-emptytext="${component.title}"></div>
+
+<div
+        data-sly-use.model="com.positive.dhl.core.models.Video"
+        data-sly-set.align="video-component--align-${model.align @ context='unsafe'}"
+        class="video-component ${model.align ? align : ''}">
+    <video
+            data-sly-attribute.controls="${model.controls}"
+            data-sly-attribute.loop="${model.loop}"
+            data-sly-attribute.autoplay="${model.autoplay}"
+            data-sly-attribute.muted="${model.muted}"
+            data-sly-set.maxHeightStyle="max-height: ${model.maxHeight}px;"
+            data-sly-set.maxWidthStyle="max-width: min(${model.maxWidth}px, 100%);"
+            data-sly-set.widthStyle="width: 100%;"
+            data-sly-set.style = "${model.maxHeight ? maxHeightStyle : 'max-height: 100%;'} ${model.maxWidth ? maxWidthStyle : 'max-width: 100%;'} ${model.fullWidth ? widthStyle : ''}"
+            style="${style @ context='styleString'}"
+            poster="${model.poster}">
+        <source src="${model.videoPath}" type="${model.mimeType}">
+        ${model.unsupportedMessage}
+    </video>
+</div>
