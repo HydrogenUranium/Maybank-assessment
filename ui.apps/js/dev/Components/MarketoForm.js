@@ -131,7 +131,11 @@ class MarketForm {
         let needHiddenFormSubmission = this.isValidAPISubmission(baseElement);
         if (needHiddenFormSubmission &&  formStart !== null && hiddenFormId !== null && formSubmissionPath !== null && formSubmissionPath !== ' ' ) {
           let formData = this.buildFormData(values, hiddenFormId, formStart);
-          shared.submitForm(formSubmissionPath, formData).then(() => console.log('Submitted'));
+          shared.submitForm(formSubmissionPath, formData).then(() => {
+            console.log('Second submission was a success');
+            window.location.replace(thankYouUrl);
+          });
+          return false;
         }
       });
     });
