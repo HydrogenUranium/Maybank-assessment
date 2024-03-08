@@ -28,6 +28,10 @@ public class ResourceResolverHelper {
 	@Reference
 	ResourceResolverFactory resourceResolverFactory;
 
+	public ResourceResolver getUserManagerResourceResolver(){
+		return getResourceResolver(DiscoverConstants.DISCOVER_USER_MANAGER_Service);
+	}
+
 	/**
 	 * Provides 'read' ResourceResolver (that has no permissions to modify anything, just read).
 	 * Calling code should take care to close this resolver when no longer needed (either in 'finally' block

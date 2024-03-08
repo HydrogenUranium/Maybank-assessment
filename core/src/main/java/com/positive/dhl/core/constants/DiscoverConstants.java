@@ -18,6 +18,7 @@ public class DiscoverConstants {
 	 */
 	public static final String FORM_START_PARAM = "formStart";
 	public static final String DISCOVER_READ_SERVICE="discoverReader";
+	public static final String DISCOVER_USER_MANAGER_Service = "discoverUserManager";
 	public static final String DISCOVER_WRITE_SERVICE="discoverWriter";
 	private static final String[] CATEGORIES_PROPERTY_NAMES = new String[] { "category0", "category1", "category2", "category3" };
 	public static final String DHL_COMPONENT_PATH = "dhl/components/pages/";
