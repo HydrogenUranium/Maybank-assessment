@@ -1,0 +1,21 @@
+.video-component {
+  margin-top: 30px;
+  @include respond(xl) {
+    margin-top: 50px;
+  }
+  display: flex;
+  &--align {
+    &-left{
+      justify-content: flex-start;
+    }
+    &-right{
+      justify-content: flex-end;
+    }
+    &-center{
+      justify-content: center;
+    }
+  }
+  video {
+    object-fit: cover;
+  }
+}

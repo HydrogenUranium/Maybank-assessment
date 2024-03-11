@@ -1,0 +1,16 @@
+{
+  "video": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:createdBy": "admin",
+    "fullWidth": "true",
+    "jcr:lastModifiedBy": "admin",
+    "poster": "/content/dam/global-master/5-about-dhl/dhl-stories/being-globally-connected-strengthens-us/1_Inline_636x357_global connectedness strengthens us_John Pearson DHL.jpg",
+    "controls": "true",
+    "jcr:created": "Wed Mar 06 2024 12:01:04 GMT+0200",
+    "align": "left",
+    "jcr:lastModified": "Wed Mar 06 2024 15:57:11 GMT+0200",
+    "sling:resourceType": "dhl/components/content/video",
+    "videoPath": "/content/dam/global-master/video.webm",
+    "maxWidth": 100
+  }
+}

@@ -1592,6 +1592,24 @@
                                                                     name="./landingPoints-defaultIcon"/>
                                                         </items>
                                                     </landingPoints>
+                                                    <video
+                                                            jcr:title="Video"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <unsupportedMessage
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldLabel="An error message that displayed when video playback is not supported by the client browser."
+                                                                    rootPath="/content/dam"
+                                                                    emptyText="Your browser does not support the video playback."
+                                                                    name="./video-unsupportedMessage">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./video-unsupportedMessage"/>
+                                                            </unsupportedMessage>
+                                                        </items>
+                                                    </video>
                                                 </items>
                                             </accordion>
                                         </items>

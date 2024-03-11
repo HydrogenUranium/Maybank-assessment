@@ -22,7 +22,6 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class HeroBanner {
@@ -75,9 +74,6 @@ public class HeroBanner {
 
     @Getter
     private boolean margin;
-
-    @Getter
-    private final String id = "hero_" + UUID.randomUUID();
 
     @PostConstruct
     protected void init() {

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Video"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+<content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+        <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}false">
+            <items jcr:primaryType="nt:unstructured">
+                <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Basic"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}false">
+                    <items jcr:primaryType="nt:unstructured">
+                        <content
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                            <items jcr:primaryType="nt:unstructured">
+                                <videoPath
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        name="./videoPath"
+                                        fieldDescription="The path to the video file in the DAM."
+                                        rootPath="/content/dam"
+                                        fieldLabel="Video Path"/>
+                                <poster
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        name="./poster"
+                                        fieldDescription="The path to the poster image in the DAM."
+                                        rootPath="/content/dam"
+                                        fieldLabel="Poster (Thumbnail)"/>
+                                <fullWidth
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        text="Full Width"
+                                        fieldDescription="Set the video player to occupy the full width of its containing element."
+                                        value="true"
+                                        name="./fullWidth"/>
+                                <maxWidth
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                        fieldLabel="Width Limit"
+                                        fieldDescription="The width limit of the video player in pixels. If not specified, the video player will default to the intrinsic width of the video file."
+                                        min="0"
+                                        name="./maxWidth"/>
+                                <maxHeight
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                        fieldLabel="Height Limit"
+                                        fieldDescription="The height limit of the video player in pixels. If not specified, the video player will default to the intrinsic height of the video file."
+                                        min="0"
+                                        name="./maxHeight"/>
+                                <align
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Align Video with size limits"
+                                        name="./align">
+                                    <items
+                                            jcr:primaryType="nt:unstructured">
+                                        <left
+                                                jcr:primaryType="nt:unstructured"
+                                                text="left"
+                                                value="left"/>
+                                        <right
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Right"
+                                                value="right"/>
+                                        <center
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Center"
+                                                value="center"/>
+                                    </items>
+                                </align>
+                            </items>
+                        </content>
+                    </items>
+                </properties>
+                <advanced
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Advanced"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                    <items jcr:primaryType="nt:unstructured">
+                        <content
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                            <items jcr:primaryType="nt:unstructured">
+                                <controls
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        text="Controls"
+                                        fieldDescription="Display controls for the video player."
+                                        value="true"
+                                        name="./controls"/>
+                                <autoplay
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        text="Autoplay"
+                                        fieldDescription="Start playing the video automatically."
+                                        value="true"
+                                        name="./autoplay"/>
+                                <loop
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        text="Loop"
+                                        fieldDescription="Loop the video after reaching the end."
+                                        value="true"
+                                        name="./loop"/>
+                                <muted
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        text="Muted"
+                                        fieldDescription="Mute the audio of the video."
+                                        value="true"
+                                        name="./muted"/>
+                            </items>
+                        </content>
+                    </items>
+                </advanced>
+            </items>
+        </tabs>
+    </items>
+</content>
+</jcr:root>
+
