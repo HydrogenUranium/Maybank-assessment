@@ -58,7 +58,7 @@ class DiscoverAuthenticationInfoPostProcessorTest {
     Value value;
 
     @Test
-    void postProcess() throws LoginException, RepositoryException {
+    void postProcess_shouldAddLastLogin() throws RepositoryException {
         when(resourceResolverHelper.getUserManagerResourceResolver()).thenReturn(resolver);
         when(resolver.adaptTo(Session.class)).thenReturn(session);
         when(session.getUserManager()).thenReturn(userManager);
@@ -71,4 +71,35 @@ class DiscoverAuthenticationInfoPostProcessorTest {
         verify(user, times(1)).setProperty("profile/lastloggedin", value);
     }
 
+    @Test
+    void postProcess_shouldIgnoreRequest_whenInfoIsNull() throws RepositoryException {
+        processor.postProcess(null, context.request(), context.response());
+        verify(user, times(0)).setProperty("profile/lastloggedin", value);
+    }
+
+    @Test
+    void postProcess_shouldIgnoreRequest_whenUserIdIsNull() throws RepositoryException {
+        processor.postProcess(info, context.request(), context.response());
+        verify(user, times(0)).setProperty("profile/lastloggedin", value);
+    }
+
+    @Test
+    void postProcess_shouldLogError_whenSessionISNull() throws RepositoryException {
+        when(resourceResolverHelper.getUserManagerResourceResolver()).thenReturn(resolver);
+        when(info.getUser()).thenReturn("user");
+
+        processor.postProcess(info, context.request(), context.response());
+        verify(user, times(0)).setProperty("profile/lastloggedin", value);
+    }
+
+    @Test
+    void postProcess_shouldLogError_whenUserISNull() throws RepositoryException {
+        when(resourceResolverHelper.getUserManagerResourceResolver()).thenReturn(resolver);
+        when(resolver.adaptTo(Session.class)).thenReturn(session);
+        when(session.getUserManager()).thenReturn(userManager);
+        when(info.getUser()).thenReturn("user");
+
+        processor.postProcess(info, context.request(), context.response());
+        verify(user, times(0)).setProperty("profile/lastloggedin", value);
+    }
 }
