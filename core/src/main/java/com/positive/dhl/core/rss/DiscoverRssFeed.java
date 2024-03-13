@@ -120,7 +120,7 @@ public class DiscoverRssFeed {
     }
 
     private String getArticleIntroduction() {
-        var par = getChildResource("/jcr:content/par");
+        var par = getChildResource("/jcr:content/root/article_container/body/responsivegrid");
         if (par == null) {
             return "";
         }
