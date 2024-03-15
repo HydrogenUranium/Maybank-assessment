@@ -251,7 +251,7 @@
                             </paraformat>
                             <misctools
                                     jcr:primaryType="nt:unstructured"
-                                    features="sourceedit">
+                                    features="sourceedit,specialchars">
                                 <specialCharsConfig jcr:primaryType="nt:unstructured">
                                     <chars
                                             jcr:primaryType="nt:unstructured"
@@ -273,13 +273,13 @@
                             </misctools>
                             <edit
                                     jcr:primaryType="nt:unstructured"
-                                    features="-"/>
+                                    features="paste-wordhtml,paste-plaintext"/>
                             <findreplace
                                     jcr:primaryType="nt:unstructured"
-                                    features="-"/>
+                                    features="*"/>
                             <spellcheck
                                     jcr:primaryType="nt:unstructured"
-                                    features="-"/>
+                                    features="*"/>
                             <lists
                                     jcr:primaryType="nt:unstructured"
                                     features="*"/>
@@ -300,10 +300,10 @@
                                     features="*"/>
                             <undo
                                     jcr:primaryType="nt:unstructured"
-                                    features="-"/>
+                                    features="*"/>
                             <image
                                     jcr:primaryType="nt:unstructured"
-                                    features="-"/>
+                                    features="*"/>
                         </rtePlugins>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
