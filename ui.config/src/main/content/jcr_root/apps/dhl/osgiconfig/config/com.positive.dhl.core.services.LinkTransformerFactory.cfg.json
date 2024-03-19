@@ -1,0 +1,12 @@
+{
+  "rewrite.elements":[
+    "img:src",
+    "source:srcset",
+    "source:src",
+    "video:poster"
+  ],
+  "whitelisted.links": [
+    "/content/dam/.*",
+    "/adobe/dynamicmedia/deliver/.*"
+  ]
+}

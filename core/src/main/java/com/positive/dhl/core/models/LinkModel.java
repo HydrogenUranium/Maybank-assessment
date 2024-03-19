@@ -21,10 +21,7 @@ public class LinkModel {
     @ValueMapValue
     private String linkPath;
 
+    @Getter
     @ValueMapValue
     private String linkIcon;
-
-    public String getLinkIcon() {
-        return pathUtilService.resolveAssetPath(linkIcon);
-    }
 }

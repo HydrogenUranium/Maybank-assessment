@@ -12,9 +12,10 @@
 		<div class="landing-point__content">
 			${item.content @ context='html'}
 		</div>
-		<style type="text/css" data-sly-test="${model.pointType == 'icon'}">
+		<style type="text/css" data-sly-test="${model.pointType == 'icon'}"
+					 data-sly-use.picture="${'com.positive.dhl.core.models.Picture' @ image = item.icon || model.defaultIcon, forceMap = true }">
 			#${item.id @ context='unsafe'}::before {
-				background-image: url('${item.icon || model.defaultIcon @ context='uri'}');
+				background-image: url('${picture.image @ context='uri'}');
 			}
 		</style>
 	</div>

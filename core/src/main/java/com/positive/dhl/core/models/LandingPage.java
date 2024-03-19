@@ -25,6 +25,8 @@ import static com.day.cq.wcm.api.constants.NameConstants.PN_NAV_TITLE;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 
 @Model(adaptables=SlingHttpServletRequest.class)
+@Getter
+@Setter
 public class LandingPage {
 	@OSGiService
 	private PathUtilService pathUtilService;
@@ -37,38 +39,12 @@ public class LandingPage {
 
 	@Inject
 	private Page currentPage;
-	
-	@Getter
-	@Setter
+
 	private String fullTitle;
-
-	@Getter
-	@Setter
 	private String title;
-
-	@Setter
 	private String heroimagemob;
-
-	public String getHeroimagemob() {
-		return pathUtilService.resolveAssetPath(heroimagemob);
-	}
-
-	@Setter
 	private String heroimagetab;
-
-	public String getHeroimagetab() {
-		return pathUtilService.resolveAssetPath(heroimagetab);
-	}
-
-	@Setter
 	private String heroimagedt;
-
-	public String getHeroimagedt() {
-		return pathUtilService.resolveAssetPath(heroimagedt);
-	}
-
-	@Getter
-	@Setter
 	private List<Article> relatedArticles;
 	
 	@PostConstruct

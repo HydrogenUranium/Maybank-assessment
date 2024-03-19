@@ -1,13 +1,11 @@
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.injectors.InjectAsset;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -35,7 +33,7 @@ public class Video {
 
     private String mimeType;
 
-    @InjectAsset
+    @Inject
     private String poster;
 
     @Inject
@@ -75,6 +73,5 @@ public class Video {
     @PostConstruct
     protected void init() {
         mimeType = assetUtilService.getMimeType(videoPath);
-        videoPath = pathUtilService.resolveAssetPath(videoPath);
     }
 }

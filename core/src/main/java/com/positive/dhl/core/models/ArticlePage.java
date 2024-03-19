@@ -18,6 +18,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.*;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -61,6 +62,7 @@ public class ArticlePage {
 	@Optional
 	@InjectHomeProperty
 	@Getter
+	@Default(values = "")
 	@Named("articleHeader-smartShareButtonsIconPath")
 	private String smartShareButtonsIconPath;
 
@@ -102,8 +104,6 @@ public class ArticlePage {
 
 		ValueMap properties = currentPage.getProperties();
 
-		smartShareButtonsIconPath = pathUtilService.resolveAssetPath(smartShareButtonsIconPath);
-
 		if (!properties.isEmpty()) {
 			String customOgTagImage = properties.get("ogtagimage", "");
 			ogtagimage = customOgTagImage.trim().length() > 0
@@ -123,7 +123,7 @@ public class ArticlePage {
 				if (vm != null && !vm.isEmpty()) {
 					socialNetworkMap.put(
 							vm.get("socialNetworkName", String.class),
-							pathUtilService.resolveAssetPath(vm.get("socialNetworkIconPath", String.class))
+							vm.get("socialNetworkIconPath", String.class)
 					);
 				}
 			});

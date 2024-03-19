@@ -24,8 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import static com.positive.dhl.core.utils.InjectorMock.mockInject;
-import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
+import static com.positive.dhl.core.utils.InjectorMock.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
@@ -54,6 +53,9 @@ class ArticleGridV2Test {
     private TagUtilService tagUtilService;
 
     @Mock
+    private AssetUtilService assetUtilService;
+
+    @Mock
     private PathUtilService pathUtilService;
 
     private void initRequest(String path) {
@@ -69,23 +71,16 @@ class ArticleGridV2Test {
         context.addModelsForClasses(ArticleGridV2.class);
         context.registerService(InitUtil.class, initUtil);
         context.registerService(ArticleService.class, articleService);
+        context.registerService(AssetUtilService.class, assetUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.load().json("/com/positive/dhl/core/models/ArticleGridV2/content.json", "/content");
-        mockInject(context, "script-bindings", "currentStyle", currentStyle);
+        mockInject(context, INJECT_SCRIPT_BINDINGS, "currentStyle", currentStyle);
         when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
         when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
-        lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
-        lenient().when(pathUtilService.resolveAssetPath(any(), anyBoolean(), anyMap())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
     }
 
     private Article getArticle(String path) {
@@ -106,6 +101,10 @@ class ArticleGridV2Test {
             List<Article> articles = new ArrayList<>();
             rootPage.listChildren().forEachRemaining(page -> articles.add(getArticle(page.getPath())));
             return articles;
+        });
+        lenient().when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/discover" + invocationOnMock.getArgument(0, String.class) : "";
         });
         mockInjectHomeProperty(context, "articleGrid-title", "Categories");
         mockInjectHomeProperty(context, "articleGrid-allTitle", "All");
@@ -133,5 +132,6 @@ class ArticleGridV2Test {
         JsonNode article = allCategory.get("articles").get(0);
         assertEquals("What paperwork do I need for international shipping?", article.get("title").asText());
         assertEquals("/content/home/e-commerce-advice/article.html", article.get("path").asText());
+        assertEquals("/discover/content/dam/image.jpg", article.get("listimage").asText());
     }
 }
