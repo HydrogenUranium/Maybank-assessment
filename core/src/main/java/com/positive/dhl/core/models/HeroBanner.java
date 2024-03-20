@@ -1,79 +1,56 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.policies.ContentPolicy;
-import com.day.cq.wcm.api.policies.ContentPolicyManager;
-import com.positive.dhl.core.injectors.InjectAsset;
-import com.positive.dhl.core.services.PathUtilService;
+import com.day.cq.wcm.api.designer.Style;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Required;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
+@Getter
 public class HeroBanner {
     @Inject
     @Required
     private Page currentPage;
 
-    @Inject
-    protected Resource resource;
+    @ScriptVariable
+    protected Style currentStyle;
 
     @Inject
-    @Required
-    private ResourceResolver resourceResolver;
-
-    @OSGiService
-    @Required
-    private PathUtilService pathUtilService;
-
-    @Inject
-    @Getter
     private String summaryTitle;
 
     @ChildResource
     @Named("summaryPoints")
     private Resource pointsMultifield;
 
-    @Getter
     private final List<String> points = new ArrayList<>();
 
-    @InjectAsset
-    @Getter
+    @Inject
     private String mobileBackgroundImage;
 
-    @InjectAsset
-    @Getter
+    @Inject
     private String tabletBackgroundImage;
 
-    @InjectAsset
-    @Getter
+    @Inject
     private String desktopBackgroundImage;
 
-    @Getter
     private boolean inheritImage;
-
-    @Getter
     private boolean keyTakeaways;
-
-    @Getter
     private boolean roundedCorners;
-
-    @Getter
     private boolean margin;
+    private boolean enableAssetDelivery;
 
     @PostConstruct
     protected void init() {
@@ -87,14 +64,11 @@ public class HeroBanner {
     }
 
     private void initDesignProperties() {
-        ValueMap properties = Optional.ofNullable(resourceResolver.adaptTo(ContentPolicyManager.class))
-                .map(contentPolicyManager -> contentPolicyManager.getPolicy(resource))
-                .map(ContentPolicy::getProperties).orElse(ValueMap.EMPTY);
-
-        margin = properties.get("margin", false);
-        inheritImage = properties.get("inheritImage", false);
-        keyTakeaways = properties.get("keyTakeaways", false);
-        roundedCorners = properties.get("roundedCorners", false);
+        margin = currentStyle.get("margin", false);
+        inheritImage = currentStyle.get("inheritImage", false);
+        keyTakeaways = currentStyle.get("keyTakeaways", false);
+        roundedCorners = currentStyle.get("roundedCorners", false);
+        enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
     }
 
     private void initTakeawaysFeature() {
@@ -108,8 +82,8 @@ public class HeroBanner {
     private void initInheritedImage() {
         ValueMap props = currentPage.getProperties();
 
-        mobileBackgroundImage = pathUtilService.resolveAssetPath(props.get("heroimagemob", ""));
-        tabletBackgroundImage = pathUtilService.resolveAssetPath(props.get("heroimagetab", ""));
-        desktopBackgroundImage = pathUtilService.resolveAssetPath(props.get("heroimagedt", ""));
+        mobileBackgroundImage = props.get("heroimagemob", "");
+        tabletBackgroundImage = props.get("heroimagetab", "");
+        desktopBackgroundImage = props.get("heroimagedt", "");
     }
 }

@@ -73,10 +73,13 @@ public class ArticleShowcase {
     @Named("articles")
     private Resource articleMultifield;
 
+    private boolean enableAssetDelivery;
+
     private List<Article> articles = new ArrayList<>();
 
     @PostConstruct
     private void init() {
+        enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
         if (source.equals("customPick")) {
             initCustomPick();
         } else if (source.equals("latest")) {
@@ -96,16 +99,10 @@ public class ArticleShowcase {
                 }
             }
         }
-        initArticles();
     }
 
     private void initLatestArticles() {
         articles = articleService.getLatestArticles(pageUtils.getHomePage(currentPage), 4);
-        initArticles();
     }
 
-    private void initArticles(){
-        boolean enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
-        articles.forEach(article -> article.initAssetDeliveryProperties(enableAssetDelivery));
-    }
 }

@@ -1,7 +1,6 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.positive.dhl.core.injectors.AssetInjector;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
 import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -41,12 +40,8 @@ class HeaderV2ModelTest {
     @InjectMocks
     private HomePropertyInjector homePropertyInjector;
 
-    @InjectMocks
-    private AssetInjector assetInjector;
-
     @BeforeEach
     void setUp() {
-        context.registerService(Injector.class, assetInjector);
         context.registerService(Injector.class, homePropertyInjector);
         context.registerService(PageUtilService.class, pageUtils);
         context.addModelsForClasses(HeaderV2Model.class);

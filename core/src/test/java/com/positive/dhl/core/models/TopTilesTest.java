@@ -53,22 +53,6 @@ class TopTilesTest {
         when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
-        when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
-        when(pathUtilService.resolveAssetPath(any(), anyBoolean(), any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            Boolean useOptimized = invocationOnMock.getArgument(1, Boolean.class);
-            String prefix = useOptimized ? "/optimized" : "/prefix";
-            return StringUtils.isNotBlank(path) ? prefix + invocationOnMock.getArgument(0, String.class) : "";
-        });
-        when(pathUtilService.resolveAssetPath(any(), anyBoolean())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            Boolean useOptimized = invocationOnMock.getArgument(1, Boolean.class);
-            String prefix = useOptimized ? "/optimized" : "/prefix";
-            return StringUtils.isNotBlank(path) ? prefix + invocationOnMock.getArgument(0, String.class) : "";
-        });
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
         when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
         lenient().when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class)))
@@ -83,14 +67,14 @@ class TopTilesTest {
         assertEquals(4, topTiles.getArticles().size());
 
         Article article = topTiles.getArticles().get(0);
-        assertEquals("/prefix/content/dam/mob.jpg", article.getHeroimagemob());
-        assertEquals("/prefix/content/dam/mob.jpg", article.getHeroimagetab());
-        assertEquals("/prefix/content/dam/mob.jpg", article.getHeroimagedt());
+        assertEquals("/content/dam/mob.jpg", article.getHeroimagemob());
+        assertEquals("/content/dam/mob.jpg", article.getHeroimagetab());
+        assertEquals("/content/dam/mob.jpg", article.getHeroimagedt());
 
         Article secondArticle = topTiles.getArticles().get(1);
-        assertEquals("/prefix/content/dam/overridden-mobile.png", secondArticle.getHeroimagemob());
-        assertEquals("/prefix/content/dam/overridden-desktop.png", secondArticle.getHeroimagetab());
-        assertEquals("/prefix/content/dam/overridden-desktop.png", secondArticle.getHeroimagedt());
+        assertEquals("/content/dam/overridden-mobile.png", secondArticle.getHeroimagemob());
+        assertEquals("/content/dam/overridden-desktop.png", secondArticle.getHeroimagetab());
+        assertEquals("/content/dam/overridden-desktop.png", secondArticle.getHeroimagedt());
     }
 
     private Article createArticleModel(Resource resource) {

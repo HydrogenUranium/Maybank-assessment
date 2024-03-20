@@ -8,6 +8,7 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.commons.mime.MimeTypeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -15,24 +16,20 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class PathUtilServiceTest {
     public static final String PATH_WITHOUT_UNSUPPORTED_CHARACTERS = "/content/dam/path-without-unsupported-characters/name-without-spaces.jpg";
-    public static final String PATH_OPTIMIZED_IMAGE = "/adobe/dynamicmedia/deliver/name-without-spaces.jpg";
     public static final String PATH_WITH_SPACES_AND_UNSUPPORTED_CHARACTERS = "/content/dam/path-with-unsupported-characters-()><'/name with spaces.jpg";
     public static final String PATH_WITH_ENCODED_SPACES_AND_UNSUPPORTED_CHARACTERS = "/content/dam/path-with-unsupported-characters-%28%29%3E%3C%27/name%20with%20spaces.jpg";
+    public static final String PATH_WITH_UNSUPPORTED_CHARACTERS = "/content/dam/path()'/img.jpg";
+    public static final String MAPPED_PATH = "/discover/content/dam/path%28%29%27/img.jpg";
 
     @InjectMocks
     PathUtilService pathUtilService;
-
-    @Mock
-    AssetUtilService assetUtilService;
-
-    @Mock
-    AssetDelivery assetDelivery;
 
     @Mock
     ResourceResolverHelper resourceResolverHelper;
@@ -55,47 +52,23 @@ class PathUtilServiceTest {
 
         assertEquals(
                 PATH_WITHOUT_UNSUPPORTED_CHARACTERS,
-                pathUtilService.encodeUnsupportedCharacters(PATH_WITHOUT_UNSUPPORTED_CHARACTERS));
+                pathUtilService.encodePath(PATH_WITHOUT_UNSUPPORTED_CHARACTERS));
 
         assertEquals(
                 PATH_WITH_ENCODED_SPACES_AND_UNSUPPORTED_CHARACTERS,
-                pathUtilService.encodeUnsupportedCharacters(PATH_WITH_SPACES_AND_UNSUPPORTED_CHARACTERS));
+                pathUtilService.encodePath(PATH_WITH_SPACES_AND_UNSUPPORTED_CHARACTERS));
     }
 
     @Test
-    void test_resolveAssetPath() {
-        when(assetUtilService.resolvePath(anyString())).thenReturn(PATH_WITH_ENCODED_SPACES_AND_UNSUPPORTED_CHARACTERS);
-
-        assertNotNull(pathUtilService);
-
-        assertEquals(
-                PATH_WITH_ENCODED_SPACES_AND_UNSUPPORTED_CHARACTERS,
-                pathUtilService.resolveAssetPath(PATH_WITH_SPACES_AND_UNSUPPORTED_CHARACTERS));
-    }
-
-    @Test
-    void test_resolveAssetPath_WebOptimizedTrue() {
-        when(assetDelivery.getDeliveryURL(any(), anyMap())).thenReturn(PATH_OPTIMIZED_IMAGE);
+    void test_map() {
         when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
-        when(resolver.getResource(anyString())).thenReturn(resource);
-        when(resource.adaptTo(Asset.class)).thenReturn(asset);
-        when(asset.getMimeType()).thenReturn("\"image/jpeg\"");
-        when(asset.getPath()).thenReturn(PATH_WITH_SPACES_AND_UNSUPPORTED_CHARACTERS);
-        when(asset.getName()).thenReturn("path-with-unsupported-characters-()><'/name with spaces");
-        when(mimeTypeService.getExtension(anyString())).thenReturn("jpg");
+        lenient().when(resolver.map(anyString())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/discover" + invocationOnMock.getArgument(0, String.class) : "";
+        });
 
-        String path = pathUtilService.resolveAssetPath(PATH_WITH_SPACES_AND_UNSUPPORTED_CHARACTERS, true);
+        String path = pathUtilService.map(PATH_WITH_UNSUPPORTED_CHARACTERS);
 
-        assertEquals(PATH_OPTIMIZED_IMAGE, path);
+        assertEquals(MAPPED_PATH, path);
     }
-
-    @Test
-    void test_resolveAssetPath_WebOptimizedFalse() {
-        when(assetUtilService.resolvePath(anyString())).thenReturn(PATH_WITH_ENCODED_SPACES_AND_UNSUPPORTED_CHARACTERS);
-
-        String path = pathUtilService.resolveAssetPath(PATH_WITH_SPACES_AND_UNSUPPORTED_CHARACTERS, false);
-
-        assertEquals(PATH_WITH_ENCODED_SPACES_AND_UNSUPPORTED_CHARACTERS, path);
-    }
-
 }

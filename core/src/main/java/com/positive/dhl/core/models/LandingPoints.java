@@ -1,7 +1,6 @@
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.injectors.InjectAsset;
-import com.positive.dhl.core.injectors.InjectHomeAssetProperty;
+import com.positive.dhl.core.injectors.InjectHomeProperty;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -25,7 +24,7 @@ public class LandingPoints {
 	@ChildResource
 	private Resource linksResource;
 
-	@InjectAsset
+	@Inject
 	private String image;
 
 	@Inject
@@ -36,7 +35,7 @@ public class LandingPoints {
 	@Default(values = "")
 	private String altText;
 
-	@InjectHomeAssetProperty
+	@InjectHomeProperty
 	@Named("landingPoints-defaultIcon")
 	private String defaultIcon;
 

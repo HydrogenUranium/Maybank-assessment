@@ -1,8 +1,6 @@
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.injectors.InjectAsset;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
-import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -10,7 +8,6 @@ import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -22,9 +19,6 @@ import java.util.UUID;
 
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class})
 public class CtaBannerWithPoints {
-
-    @OSGiService
-    private PathUtilService pathUtilService;
 
     @ChildResource
     @Named("points")
@@ -61,7 +55,7 @@ public class CtaBannerWithPoints {
     @Optional
     private String titleOpenBusinessAccount;
 
-    @InjectAsset
+    @Inject
     @Getter
     @Optional
     private String mobileBackgroundImage;
@@ -76,7 +70,7 @@ public class CtaBannerWithPoints {
     @Optional
     private String mobileBackgroundImageOpenBusinessAccount;
 
-    @InjectAsset
+    @Inject
     @Getter
     @Optional
     private String tabletBackgroundImage;
@@ -91,7 +85,7 @@ public class CtaBannerWithPoints {
     @Optional
     private String tabletBackgroundImageOpenBusinessAccount;
 
-    @InjectAsset
+    @Inject
     @Getter
     @Optional
     private String desktopBackgroundImage;
@@ -163,9 +157,9 @@ public class CtaBannerWithPoints {
     private void initSubscribe() {
         title = titleSubscribe;
         points = extractPoints(pointsMultifieldSubscribe);
-        mobileBackgroundImage = pathUtilService.resolveAssetPath(mobileBackgroundImageSubscribe);
-        tabletBackgroundImage = pathUtilService.resolveAssetPath(tabletBackgroundImageSubscribe);
-        desktopBackgroundImage = pathUtilService.resolveAssetPath(desktopBackgroundImageSubscribe);
+        mobileBackgroundImage = mobileBackgroundImageSubscribe;
+        tabletBackgroundImage = tabletBackgroundImageSubscribe;
+        desktopBackgroundImage = desktopBackgroundImageSubscribe;
         buttonName = buttonNameSubscribe;
         buttonLink = buttonLinkSubscribe;
     }
@@ -173,9 +167,9 @@ public class CtaBannerWithPoints {
     private void initOpenBusinessAccount() {
         title = titleOpenBusinessAccount;
         points = extractPoints(pointsMultifieldOpenBusinessAccount);
-        mobileBackgroundImage = pathUtilService.resolveAssetPath(mobileBackgroundImageOpenBusinessAccount);
-        tabletBackgroundImage = pathUtilService.resolveAssetPath(tabletBackgroundImageOpenBusinessAccount);
-        desktopBackgroundImage = pathUtilService.resolveAssetPath(desktopBackgroundImageOpenBusinessAccount);
+        mobileBackgroundImage = mobileBackgroundImageOpenBusinessAccount;
+        tabletBackgroundImage = tabletBackgroundImageOpenBusinessAccount;
+        desktopBackgroundImage = desktopBackgroundImageOpenBusinessAccount;
         buttonName = buttonNameOpenBusinessAccount;
         buttonLink = buttonLinkOpenBusinessAccount;
     }

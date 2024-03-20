@@ -38,7 +38,7 @@ RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)
 RewriteCond %{REQUEST_URI} ^/discover/
 RewriteCond %{REQUEST_URI} !^/discover/([a-z]{2}-[a-z]{2}|en-global)
-RewriteCond %{REQUEST_URI} !^/discover/(content/dam|apps/dhl|content/dhl)/
+RewriteCond %{REQUEST_URI} !^/discover/(content/dam|apps/dhl|content/dhl|adobe/dynamicmedia/deliver)/
 RewriteRule ^/discover/(.+)$ https://%{HTTP_HOST}/discover/en-global/$1 [R=301,L]
 
 ### DYNAMIC PASS-THROUGH TO AEM ###
@@ -46,6 +46,8 @@ RewriteRule ^/discover/(.+)$ https://%{HTTP_HOST}/discover/en-global/$1 [R=301,L
 RewriteRule ^/discover/apps/dhl/(servlet-handler|discoverdhlapi)/(.+)$ /apps/dhl/$1/$2 [PT,L,NC]
 # all assets in content/dam
 RewriteRule ^/discover/(content/dam)/(.+)$ /$1/$2 [PT,L,NC]
+# dynamic media
+RewriteRule ^/discover/adobe/dynamicmedia/deliver/(.+)$ /adobe/dynamicmedia/deliver/$1 [PT,L,NC]
 # Search Articles servlet
 RewriteRule ^/discover/(content/dhl/.+/jcr[:]content/root\.searcharticlesuggest\.json.*)$ /$1 [PT,L,NC]
 # rss generator pages

@@ -44,13 +44,7 @@ class VideoTest {
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);
 
-        when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
-
         when(assetUtilService.getMimeType(anyString())).thenReturn("video/webm");
-        mockInjectAsset(context, "poster", "/content/dam/poster.png");
         mockInjectHomeProperty(context, "video-unsupportedMessage", "Your browser does not support the video playback.");
     }
 
@@ -65,7 +59,7 @@ class VideoTest {
         assertFalse(video.isMuted());
         assertTrue(video.isFullWidth());
         assertEquals("video/webm", video.getMimeType());
-        assertEquals("/prefix/content/dam/global-master/video.webm", video.getVideoPath());
+        assertEquals("/content/dam/global-master/video.webm", video.getVideoPath());
         assertEquals("/content/dam/poster.png", video.getPoster());
         assertEquals("left", video.getAlign());
         assertEquals(0, video.getMaxHeight());
