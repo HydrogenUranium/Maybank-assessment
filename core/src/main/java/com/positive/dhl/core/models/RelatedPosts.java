@@ -50,6 +50,9 @@ public class RelatedPosts {
     private Resource articleMultifield;
 
     @Getter
+    private boolean enableAssetDelivery;
+
+    @Getter
     private final List<Article> articles = new ArrayList<>();
 
     @PostConstruct
@@ -66,7 +69,6 @@ public class RelatedPosts {
                 }
             }
         }
-        boolean enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
-        articles.forEach(article -> article.initAssetDeliveryProperties(enableAssetDelivery));
+        enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
     }
 }

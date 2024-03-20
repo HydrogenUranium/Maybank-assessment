@@ -2,16 +2,16 @@
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
           jcr:isCheckedOut="{Boolean}false"
           jcr:primaryType="cq:WorkflowModel"
-          jcr:uuid="7d877237-c854-4bcb-b996-c48b9c0d0ded"
+          jcr:uuid="a5f66ca9-550d-4852-8a92-468f418d1823"
           sling:resourceType="cq/workflow/components/model"
           description="No Description"
-          title="Request for Page Publication">
+          title="Request for Activation">
     <metaData
-            cq:generatingPage="/conf/global/settings/workflow/models/request-for-page-publication/jcr:content"
-            cq:lastModified="{Long}1685699015221"
+            cq:generatingPage="/conf/global/settings/workflow/models/request_for_activation/jcr:content"
+            cq:lastModified="{Long}1710928992186"
             cq:lastModifiedBy="admin"
             jcr:primaryType="nt:unstructured"
-            lastSynced="{Date}2023-06-02T12:43:35.218+03:00"/>
+            lastSynced="{Date}2024-03-20T12:03:12.181+02:00"/>
     <nodes jcr:primaryType="nt:unstructured">
         <node0
                 jcr:primaryType="cq:WorkflowNode"

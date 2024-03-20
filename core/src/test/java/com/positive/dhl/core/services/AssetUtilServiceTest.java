@@ -1,26 +1,38 @@
 package com.positive.dhl.core.services;
 
+import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.dam.api.Asset;
-import com.positive.dhl.core.components.EnvironmentConfiguration;
+import com.day.cq.dam.api.DamConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.commons.mime.MimeTypeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class AssetUtilServiceTest {
-    @Mock
-    private EnvironmentConfiguration environmentConfiguration;
 
     @Mock
     private ResourceResolverHelper resourceResolverHelper;
+
+    @Mock
+    private AssetDelivery assetDelivery;
+
+    @Mock
+    private PathUtilService pathUtilService;
+
+    @Mock
+    private MimeTypeService mimeTypeService;
 
     @Mock
     private ResourceResolver resolver;
@@ -31,58 +43,137 @@ class AssetUtilServiceTest {
     @Mock
     private Asset asset;
 
-    @Mock
-    private AssetUtilService.Config config;
-
     @InjectMocks
     private AssetUtilService service;
 
     @Test
-    void resolvePath_ShouldReturnOriginalLink_WhenAssetPrefixIsEmpty() {
-        when(config.assetPrefix()).thenReturn("");
-        service.activate(config);
+    void resolvePath_ShouldReturnOriginalLink_WhenAssetDeliveryIsNotInjected() {
+        service.unbindAssetDelivery(assetDelivery);
 
         String originalLink = "/content/dam/image.jpg";
-        String resolvedLink = service.resolvePath(originalLink);
+        String resolvedLink = service.getDeliveryURL(originalLink);
 
         assertEquals(originalLink, resolvedLink);
     }
 
     @Test
-    void resolvePath_ShouldReturnLinkWithAsserPrefix_WhenAssetPrefixIsConfigured() {
-        String prefix = "/discover";
-        when(config.assetPrefix()).thenReturn(prefix);
-        service.activate(config);
+    void resolvePath_ShouldReturnEmptyLink_WhenAssetPathIsBlank() {
+        String resolvedLink = service.getDeliveryURL(null);
 
-        String originalLink = "/content/dam/image.jpg";
-        String resolvedLink = service.resolvePath(originalLink);
-
-        assertEquals(prefix + originalLink, resolvedLink);
+        assertEquals("", resolvedLink);
     }
 
     @Test
-    void resolvePath_ShouldReturnLinkWithAsserPrefix_WhenAssetPrefixIsNotConfigured() {
-        String prefix = "/env-asset-prefix";
-        when(environmentConfiguration.getAssetPrefix()).thenReturn(prefix);
-        service.activate(config);
-
+    void getDeliveryURL_ShouldReturnLinkWithAsserPrefix_WhenAssetAssetDeliveryIsInjectedAndPropsAreNull() {
         String originalLink = "/content/dam/image.jpg";
-        String resolvedLink = service.resolvePath(originalLink);
+        when(assetDelivery.getDeliveryURL(any(), anyMap())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, Resource.class).getPath();
+            return StringUtils.isNotBlank(path) ? "/adobe/dynamicmedia/delivery" + path : "";
+        });
+        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
+        when(resolver.getResource(anyString())).thenReturn(resource);
+        when(resource.getPath()).thenReturn(originalLink);
+        when(resource.adaptTo(Asset.class)).thenReturn(asset);
+        when(asset.getMimeType()).thenReturn("image/jpeg");
+        when(asset.getName()).thenReturn("image");
+        when(asset.getPath()).thenReturn(originalLink);
+        when(mimeTypeService.getExtension(anyString())).thenReturn("jpg");
+        when(pathUtilService.encodePath(anyString())).thenAnswer(invocationOnMock ->
+                 invocationOnMock.getArgument(0, String.class)
+        );
+        service.bindAssetDelivery(assetDelivery);
 
-        assertEquals(prefix + originalLink, resolvedLink);
+        String resolvedLink = service.getDeliveryURL(originalLink);
+
+        assertEquals("/adobe/dynamicmedia/delivery/content/dam/image.jpg", resolvedLink);
     }
 
     @Test
-    void test() {
+    void getDeliveryURL_ShouldReturnLinkWithAsserPrefix_WhenAssetAssetDeliveryIsInjected() {
+        String originalLink = "/content/dam/image.jpg";
+        when(assetDelivery.getDeliveryURL(any(), anyMap())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, Resource.class).getPath();
+            return StringUtils.isNotBlank(path) ? "/adobe/dynamicmedia/delivery" + path : "";
+        });
+        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
+        when(resolver.getResource(anyString())).thenReturn(resource);
+        when(resource.getPath()).thenReturn(originalLink);
+        when(resource.adaptTo(Asset.class)).thenReturn(asset);
+        when(asset.getMimeType()).thenReturn("image/jpeg");
+        when(asset.getName()).thenReturn("image");
+        when(asset.getPath()).thenReturn(originalLink);
+        when(mimeTypeService.getExtension(anyString())).thenReturn("jpg");
+        when(pathUtilService.encodePath(anyString())).thenAnswer(invocationOnMock ->
+                invocationOnMock.getArgument(0, String.class)
+        );
+        service.bindAssetDelivery(assetDelivery);
+
+        String resolvedLink = service.getDeliveryURL(originalLink, new HashMap<>());
+
+        assertEquals("/adobe/dynamicmedia/delivery/content/dam/image.jpg", resolvedLink);
+    }
+
+    @Test
+    void getDeliveryURL_ShouldReturnOriginalLink_WhenThrowException() {
+        String originalLink = "/content/dam/image.jpg";
+        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
+        when(resolver.getResource(anyString())).thenThrow(new NullPointerException());
+
+        String resolvedLink = service.getDeliveryURL(originalLink, new HashMap<>());
+
+        assertEquals(originalLink, resolvedLink);
+    }
+
+    @Test
+    void getAltText() {
+        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
+        when(resolver.getResource(anyString())).thenReturn(resource);
+        when(resource.adaptTo(Asset.class)).thenReturn(asset);
+        when(asset.getMetadataValue(DamConstants.DC_DESCRIPTION)).thenReturn("alt");
+
+        String altText = service.getAltText("/content/dam/img.jpg");
+
+        assertEquals("alt", altText);
+    }
+
+    @Test
+    void getMimeType() {
         when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
         when(resolver.getResource(anyString())).thenReturn(resource);
         when(resource.adaptTo(Asset.class)).thenReturn(asset);
         when(asset.getMimeType()).thenReturn("video/mp4");
 
-        service.activate(config);
-
         String mimeType = service.getMimeType("/content/dam/video.mp4");
 
         assertEquals("video/mp4", mimeType);
+    }
+
+    @Test
+    void getMappedDeliveryUrl() {
+        when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/discover" + path : "";
+        });
+        String originalLink = "/content/dam/image.jpg";
+        when(assetDelivery.getDeliveryURL(any(), anyMap())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, Resource.class).getPath();
+            return StringUtils.isNotBlank(path) ? "/adobe/dynamicmedia/delivery" + path : "";
+        });
+        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
+        when(resolver.getResource(anyString())).thenReturn(resource);
+        when(resource.getPath()).thenReturn(originalLink);
+        when(resource.adaptTo(Asset.class)).thenReturn(asset);
+        when(asset.getMimeType()).thenReturn("image/jpeg");
+        when(asset.getName()).thenReturn("image");
+        when(asset.getPath()).thenReturn(originalLink);
+        when(mimeTypeService.getExtension(anyString())).thenReturn("jpg");
+        when(pathUtilService.encodePath(anyString())).thenAnswer(invocationOnMock ->
+                invocationOnMock.getArgument(0, String.class)
+        );
+        service.bindAssetDelivery(assetDelivery);
+
+        String resolvedLink = service.getMappedDeliveryUrl(originalLink, new HashMap<>());
+
+        assertEquals("/discover/adobe/dynamicmedia/delivery/content/dam/image.jpg", resolvedLink);
     }
 }

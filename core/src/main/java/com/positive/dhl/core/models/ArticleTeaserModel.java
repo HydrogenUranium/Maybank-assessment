@@ -80,7 +80,6 @@ public class ArticleTeaserModel {
                         .map(link -> pageUtilService.getPage(link, resourceResolver))
                         .map(Page::getProperties)
                         .map(props -> props.get("listimage", StringUtils.EMPTY))
-                        .map(pathUtilService::resolveAssetPath)
                         .orElse(StringUtils.EMPTY);
 
                 altTextFromPageImage = !Boolean.parseBoolean(altValueFromPageImage)

@@ -46,11 +46,6 @@ class LandingPageTest {
         ctx.registerService(PageUtilService.class, new PageUtilService());
         ctx.registerService(PathUtilService.class, pathUtilService);
         ctx.addModelsForClasses(LandingPage.class);
-
-        when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
     }
 
     @Test
@@ -62,9 +57,9 @@ class LandingPageTest {
 
         assertEquals("Get up to 10% off your shipping costs", LandingPage.getFullTitle());
         assertEquals("Get up to 10% off your shipping costs", LandingPage.getTitle());
-        assertEquals("/prefix/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", LandingPage.getHeroimagemob());
-        assertEquals("/prefix/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", LandingPage.getHeroimagetab());
-        assertEquals("/prefix/content/dam/dhl/landing-pages/new/desktop_towerblock.jpg", LandingPage.getHeroimagedt());
+        assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", LandingPage.getHeroimagemob());
+        assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", LandingPage.getHeroimagetab());
+        assertEquals("/content/dam/dhl/landing-pages/new/desktop_towerblock.jpg", LandingPage.getHeroimagedt());
         assertEquals(0, LandingPage.getRelatedArticles().size());
 
         LandingPage.setFullTitle("");
