@@ -1794,10 +1794,21 @@
                                                         </items>
                                                     </relatedPosts>
                                                     <ctaBannerSubscribeToOurNewsletter
-                                                            jcr:title="CTA Banner 'Subscribe to our Newsletter'"
+                                                            jcr:title="Bottom CTA Banner"
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                                         <items jcr:primaryType="nt:unstructured">
+                                                            <disable
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                    fieldDescription="If checked the banner won't be shown."
+                                                                    name="./ctaBanner-article-bottom-disabled"
+                                                                    text="Disable"
+                                                                    value="{Boolean}true">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./ctaBanner-article-bottom-disabled"/>
+                                                            </disable>
                                                             <mobileBackgroundImage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"

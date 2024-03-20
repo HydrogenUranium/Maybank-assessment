@@ -19,6 +19,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -72,6 +74,7 @@ class CtaBannerTest {
         assertEquals("/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
         assertEquals("/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
         assertEquals("/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
+        assertTrue(ctaBanner.isDisabled());
     }
 
     @Test
