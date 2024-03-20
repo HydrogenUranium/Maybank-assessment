@@ -251,7 +251,7 @@
                             </paraformat>
                             <misctools
                                     jcr:primaryType="nt:unstructured"
-                                    features="-">
+                                    features="sourceedit,specialchars">
                                 <specialCharsConfig jcr:primaryType="nt:unstructured">
                                     <chars
                                             jcr:primaryType="nt:unstructured"
@@ -273,13 +273,13 @@
                             </misctools>
                             <edit
                                     jcr:primaryType="nt:unstructured"
-                                    features="-"/>
+                                    features="paste-wordhtml,paste-plaintext"/>
                             <findreplace
                                     jcr:primaryType="nt:unstructured"
-                                    features="-"/>
+                                    features="*"/>
                             <spellcheck
                                     jcr:primaryType="nt:unstructured"
-                                    features="-"/>
+                                    features="*"/>
                             <lists
                                     jcr:primaryType="nt:unstructured"
                                     features="*"/>
@@ -291,11 +291,17 @@
                                     features="bold,italic,underline"/>
                             <links
                                     jcr:primaryType="nt:unstructured"
-                                    features="*"/>
+                                    features="modifylink,unlink,anchor"/>
                             <table
                                     jcr:primaryType="nt:unstructured"
                                     features="*"/>
                             <subsuperscript
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <undo
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <image
                                     jcr:primaryType="nt:unstructured"
                                     features="*"/>
                         </rtePlugins>
