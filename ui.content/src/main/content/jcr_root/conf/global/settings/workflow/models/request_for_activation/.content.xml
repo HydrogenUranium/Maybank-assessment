@@ -63,8 +63,8 @@
                             sling:resourceType="cq/workflow/components/model/dynamic_participant">
                         <metaData
                                 jcr:primaryType="nt:unstructured"
-                                DYNAMIC_PARTICIPANT="/libs/workflow/scripts/initiator-participant-chooser.ecma"
-                                DO_NOTIFY="true"/>
+                                DO_NOTIFY="true"
+                                DYNAMIC_PARTICIPANT="/libs/workflow/scripts/initiator-participant-chooser.ecma"/>
                     </dynamic_participant>
                     <or
                             jcr:lastModified="{Date}2023-06-01T20:24:05.272+03:00"
