@@ -1,7 +1,5 @@
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.injectors.InjectAsset;
-import com.positive.dhl.core.injectors.InjectHomeAssetProperty;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -38,27 +36,27 @@ public class CtaBanner {
     @Named("ctaBanner-article-subscribeToOurNewsletter-topTitle")
     private String topTitleGlobal;
 
-    @InjectAsset
+    @Inject
     @Getter
     private String mobileBackgroundImage;
 
-    @InjectHomeAssetProperty
+    @InjectHomeProperty
     @Named("ctaBanner-article-subscribeToOurNewsletter-mobileBackgroundImage")
     private String mobileBackgroundImageGlobal;
 
-    @InjectAsset
+    @Inject
     @Getter
     private String tabletBackgroundImage;
 
-    @InjectHomeAssetProperty
+    @InjectHomeProperty
     @Named("ctaBanner-article-subscribeToOurNewsletter-tabletBackgroundImage")
     private String tabletBackgroundImageGlobal;
 
-    @InjectAsset
+    @Inject
     @Getter
     private String desktopBackgroundImage;
 
-    @InjectHomeAssetProperty
+    @InjectHomeProperty
     @Named("ctaBanner-article-subscribeToOurNewsletter-desktopBackgroundImage")
     private String desktopBackgroundImageGlobal;
 

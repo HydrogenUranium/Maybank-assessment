@@ -1,7 +1,9 @@
 package com.positive.dhl.core.servlets;
 
 import com.google.gson.*;
+import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.services.ArticleService;
+import com.positive.dhl.core.services.AssetUtilService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.entity.ContentType;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -15,6 +17,7 @@ import org.osgi.service.component.annotations.Reference;
 import javax.servlet.Servlet;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 import static com.adobe.cq.dam.cfm.SemanticDataType.JSON;
 import static org.apache.commons.codec.CharEncoding.UTF_8;
@@ -37,9 +40,13 @@ public class GetArticlesServlet extends SlingSafeMethodsServlet {
         response.setContentType(ContentType.APPLICATION_JSON.getMimeType());
         var searchTerm = request.getParameter("s");
         var searchScope = request.getParameter("homepagepath");
+        var useWebOptimized = Boolean.parseBoolean(request.getParameter("optimized"));
+        var imgQuality = request.getParameter("imgquality");
 
-        var articles = StringUtils.isAnyBlank(searchTerm, searchScope)
+        List<Article> articles = StringUtils.isAnyBlank(searchTerm, searchScope)
                 ? Collections.emptyList() : articleService.getArticlesByTitle(searchTerm, searchScope,  request.getResourceResolver());
+
+        articles.forEach(article -> article.initAssetDeliveryProperties(useWebOptimized, imgQuality));
 
         var gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.positive.dhl.core.utils.InjectorMock.mockInjectAsset;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -23,7 +22,6 @@ class ErrorBannerTest {
     void setUp() throws Exception {
         context.load().json("/com/positive/dhl/core/models/ErrorBanner/content.json", "/content/home/errorPage/jcr:content");
         context.addModelsForClasses(ErrorBanner.class);
-        mockInjectAsset(context, "image", "/image.png");
     }
 
     @Test

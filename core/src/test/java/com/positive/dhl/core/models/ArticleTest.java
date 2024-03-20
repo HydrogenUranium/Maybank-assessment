@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
@@ -46,6 +47,9 @@ class ArticleTest {
     @Mock
     private PathUtilService pathUtilService;
 
+    @Mock
+    private AssetUtilService assetUtilService;
+
     @BeforeEach
     void setUp() throws Exception {
         resourceResolver = context.resourceResolver();
@@ -55,23 +59,19 @@ class ArticleTest {
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(AssetUtilService.class, assetUtilService);
 
         when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
-        when(pathUtilService.resolveAssetPath(anyString())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
     }
 
     @Test
     void initAssetDeliveryProperties() {
-        lenient().when(pathUtilService.resolveAssetPath(any(), anyBoolean(), anyMap())).thenAnswer(invocationOnMock -> {
+        lenient().when(assetUtilService.getMappedDeliveryUrl(anyString(), anyMap())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/adobe/dynamicmedia/deliver" + invocationOnMock.getArgument(0, String.class) : "";
         });
-
         Article article = createModel(getResource(ARTICLE_PAGE_PATH));
         article.initAssetDeliveryProperties(true);
 
@@ -91,7 +91,7 @@ class ArticleTest {
         assertEquals("From Waybills to Export Licenses, this guide breaks down the jargon to help you navigate customs seamlessly. ", article.getBrief());
         assertEquals("What paperwork do I need for international shipping?", article.getDescription());
         assertEquals("Anna Thompson", article.getAuthor());
-        assertEquals("/prefix/content/dam/global-master/8-site-images/roundels/anna_thompson.jpg", article.getAuthorimage());
+        assertEquals("/content/dam/global-master/8-site-images/roundels/anna_thompson.jpg", article.getAuthorimage());
         assertEquals("Discover content team", article.getAuthortitle());
         assertEquals("2023-08-04", article.getCreated());
         assertEquals("August 4, 2023", article.getCreatedfriendly());
@@ -99,9 +99,9 @@ class ArticleTest {
         assertEquals("#SmallBusinessAdvice", article.getGroupTag());
         assertEquals("/content/dhl/global/home/small-business-advice", article.getGrouppath());
         assertEquals("Small Business advice", article.getGrouptitle());
-        assertEquals("/prefix/content/dam/desktop.jpg", article.getHeroimagedt());
-        assertEquals("/prefix/content/dam/mobile.jpg", article.getHeroimagemob());
-        assertEquals("/prefix/content/dam/tablet.jpg", article.getHeroimagetab());
+        assertEquals("/content/dam/desktop.jpg", article.getHeroimagedt());
+        assertEquals("/content/dam/mobile.jpg", article.getHeroimagemob());
+        assertEquals("/content/dam/tablet.jpg", article.getHeroimagetab());
         assertEquals("infographic", article.getIcon());
         assertEquals("4 min read", article.getReadtime());
         assertEquals("en", article.getLocale().toString());

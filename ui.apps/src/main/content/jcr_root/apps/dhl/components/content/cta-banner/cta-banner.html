@@ -11,7 +11,7 @@
         </div>
         <div class="banner__image" id="${model.id}">
             <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
-                 data-sly-call="${template.background @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>
+                 data-sly-call="${template.adaptiveBackground @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>
         </div>
     </div>
 </article>

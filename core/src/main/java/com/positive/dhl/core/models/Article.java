@@ -3,6 +3,7 @@ package com.positive.dhl.core.models;
 import com.day.cq.wcm.api.Page;
 import com.google.gson.annotations.Expose;
 import com.positive.dhl.core.constants.DiscoverConstants;
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
@@ -39,6 +40,9 @@ public class Article {
 
 	@OSGiService
 	private PathUtilService pathUtilService;
+
+	@OSGiService
+	private AssetUtilService assetUtilService;
 
 	@OSGiService
 	private TagUtilService tagUtilService;
@@ -83,12 +87,6 @@ public class Article {
 	@Setter
 	private String heroimagedt;
 
-	private String listimageProp;
-	private String heroimagemobProp;
-	private String heroimagetabProp;
-	private String heroimagedtProp;
-	private String authorimageProp;
-
 	private String youtubeid;
 	private boolean showshipnow;
 	private List<TagWrapper> tags;
@@ -98,13 +96,23 @@ public class Article {
 	private Locale locale;
 	@Expose protected String path;
 
-	public void initAssetDeliveryProperties(boolean enableAssetDelivery, Map<String, Object> props) {
-		listimage = pathUtilService.resolveAssetPath(listimageProp, enableAssetDelivery, props);
-		heroimagemob = pathUtilService.resolveAssetPath(heroimagemobProp, enableAssetDelivery, props);
-		heroimagetab = pathUtilService.resolveAssetPath(heroimagetabProp, enableAssetDelivery, props);
-		heroimagedt = pathUtilService.resolveAssetPath(heroimagedtProp, enableAssetDelivery, props);
-		authorimage = pathUtilService.resolveAssetPath(authorimageProp, enableAssetDelivery, props);
+	public String getMappedValue(String path, boolean enableAssetDelivery, Map<String, Object> props) {
+		return enableAssetDelivery ? assetUtilService.getMappedDeliveryUrl(path, props) : pathUtilService.map(path);
+	}
 
+	/**
+	 * This method updates all asset paths. If the article is used in HTL, all link transformations will
+	 * be processed by the link transformer, and link optimization will be processed in the HTL template. However,
+	 * if the article is used outside HTL, this method can transform and optimize links.
+	 * @param enableAssetDelivery enable dynamic media asset optimization
+	 * @param props dynamic media parameters
+	 */
+	public void initAssetDeliveryProperties(boolean enableAssetDelivery, Map<String, Object> props) {
+			listimage = getMappedValue(listimage, enableAssetDelivery, props);
+			heroimagemob = getMappedValue(heroimagemob, enableAssetDelivery, props);
+			heroimagetab = getMappedValue(heroimagetab, enableAssetDelivery, props);
+			heroimagedt = getMappedValue(heroimagedt, enableAssetDelivery, props);
+			authorimage = getMappedValue(authorimage, enableAssetDelivery, props);
 	}
 
 	public void initAssetDeliveryProperties(boolean enableAssetDelivery) {
@@ -112,7 +120,12 @@ public class Article {
 	}
 
 	public void initAssetDeliveryProperties(boolean enableAssetDelivery, String quality) {
-		initAssetDeliveryProperties(enableAssetDelivery, Map.of("quality", quality));
+		if (quality == null) {
+			initAssetDeliveryProperties(enableAssetDelivery);
+		} else {
+			initAssetDeliveryProperties(enableAssetDelivery, Map.of("quality", quality));
+		}
+
 	}
 
 	/**
@@ -149,17 +162,11 @@ public class Article {
 			brief = brief.substring(0, 120).concat("...");
 		}
 
-		listimageProp = properties.get("jcr:content/listimage", "");
-		heroimagemobProp = properties.get("jcr:content/heroimagemob", "");
-		heroimagetabProp = properties.get("jcr:content/heroimagetab", "");
-		heroimagedtProp = properties.get("jcr:content/heroimagedt", "");
-		authorimageProp = properties.get("jcr:content/authorimage", "");
-
-		listimage = pathUtilService.resolveAssetPath(listimageProp);
-		heroimagemob = pathUtilService.resolveAssetPath(heroimagemobProp);
-		heroimagetab = pathUtilService.resolveAssetPath(heroimagetabProp);
-		heroimagedt = pathUtilService.resolveAssetPath(heroimagedtProp);
-		authorimage = pathUtilService.resolveAssetPath(authorimageProp);
+		listimage = properties.get("jcr:content/listimage", "");
+		heroimagemob = properties.get("jcr:content/heroimagemob", "");
+		heroimagetab = properties.get("jcr:content/heroimagetab", "");
+		heroimagedt = properties.get("jcr:content/heroimagedt", "");
+		authorimage = properties.get("jcr:content/authorimage", "");
 
 		youtubeid = properties.get("jcr:content/youtubeid", "");
 		readtime = properties.get("jcr:content/readtime", "");

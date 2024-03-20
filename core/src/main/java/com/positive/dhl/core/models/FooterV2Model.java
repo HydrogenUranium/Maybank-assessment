@@ -5,6 +5,7 @@ import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -14,51 +15,45 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
+@Getter
 public class FooterV2Model {
     @OSGiService
     private PathUtilService pathUtilService;
 
     @InjectHomeProperty
+    @Default(values = "")
     @Named("footer-logoIcon")
     private String logoIcon;
 
     @InjectHomeProperty
-    @Getter
     @Named("footer-logoTitle")
     private String logoTitle;
 
     @InjectHomeProperty
-    @Getter
     @Named("footer-logoAltText")
     private String logoAltText;
 
     @InjectHomeProperty
-    @Getter
     @Named("footer-logoLink")
     private String logoLink;
 
     @InjectHomeProperty
-    @Getter
     @Named("footer-invitation-title")
     private String invitationTitle;
 
     @InjectHomeProperty
-    @Getter
     @Named("footer-invitation-text")
     private String invitationText;
 
     @InjectHomeProperty
-    @Getter
     @Named("footer-promo-text")
     private String promoText;
 
     @InjectHomeProperty
-    @Getter
     @Named("footer-categoryLinksLabel")
     private String categoryLinksLabel;
 
     @InjectHomeProperty
-    @Getter
     @Named("footer-companyLinksLabel")
     private String companyLinksLabel;
 
@@ -67,17 +62,12 @@ public class FooterV2Model {
     private Resource companyLinks;
 
     @InjectHomeProperty
-    @Getter
     @Named("footer-socialLinksLabel")
     private String socialLinksLabel;
 
     @InjectHomeProperty
     @Named("multifields/footer-socialLinks")
     private Resource socialLinks;
-
-    public String getLogoIcon() {
-        return pathUtilService.resolveAssetPath(logoIcon);
-    }
 
     public List<LinkModel> getCompanyLinks() {
         return getInnerLinks(companyLinks);

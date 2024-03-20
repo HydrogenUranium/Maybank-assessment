@@ -44,9 +44,12 @@ public class TopTiles {
     @Getter
     private final List<Article> articles = new ArrayList<>();
 
+    @Getter
+    private boolean enableAssetDelivery;
+
     @PostConstruct
     protected void init() {
-        boolean enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
+        enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
         log.debug("Enable Asset Delivery: {}", enableAssetDelivery);
 
         if (articleMultifield != null) {
@@ -60,18 +63,16 @@ public class TopTiles {
                 if (article != null) {
                     articles.add(article);
                     log.debug("Article Listed Image: {}", article.getListimage());
-                    article.initAssetDeliveryProperties(enableAssetDelivery);
 
                     if(!desktopImage.isBlank()) {
-                        String optimizedDesktopImage = pathUtilService.resolveAssetPath(desktopImage, enableAssetDelivery);
-                        article.setHeroimagedt(optimizedDesktopImage);
-                        article.setHeroimagetab(optimizedDesktopImage);
+                        article.setHeroimagedt(desktopImage);
+                        article.setHeroimagetab(desktopImage);
                     } else {
                         article.setHeroimagedt(article.getHeroimagemob());
                         article.setHeroimagetab(article.getHeroimagemob());
                     }
                     if(!mobileImage.isBlank()) {
-                        article.setHeroimagemob(pathUtilService.resolveAssetPath(mobileImage, enableAssetDelivery));
+                        article.setHeroimagemob(mobileImage);
                     }
                     log.debug("Article Listed Image after initialization of asset delivery: {}", article.getListimage());
                 }

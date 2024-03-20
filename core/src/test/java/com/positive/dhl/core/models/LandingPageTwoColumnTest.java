@@ -42,11 +42,6 @@ class LandingPageTwoColumnTest {
         ctx.registerService(PageUtilService.class, new PageUtilService());
         ctx.registerService(PathUtilService.class, pathUtilService);
         ctx.addModelsForClasses(LandingPageTwoColumn.class);
-
-        when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
     }
 
 	@Test
@@ -59,9 +54,9 @@ class LandingPageTwoColumnTest {
         assertEquals("Get up to 10% off your shipping costs", landingPageTwoColumn.getFullTitle());
         assertEquals("Get up to 10% off your shipping costs", landingPageTwoColumn.getTitle());
         assertEquals("Start selling to a whole new audience", landingPageTwoColumn.getHerosubtitle());
-        assertEquals("/prefix/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagemob());
-        assertEquals("/prefix/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagetab());
-        assertEquals("/prefix/content/dam/dhl/landing-pages/new/desktop_towerblock.jpg", landingPageTwoColumn.getHeroimagedt());
+        assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagemob());
+        assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagetab());
+        assertEquals("/content/dam/dhl/landing-pages/new/desktop_towerblock.jpg", landingPageTwoColumn.getHeroimagedt());
         assertEquals("<p>Ship today without a DHL Express Account. It’s easy to get started. <br />\r\n" + 
         		"</p>\r\n" + 
         		"", landingPageTwoColumn.getShipNowMessage());

@@ -1,10 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.positive.dhl.core.injectors.AssetInjector;
-import com.positive.dhl.core.injectors.HomeAssetPropertyInjector;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
-import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -17,7 +14,6 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -44,25 +40,13 @@ class CtaBannerTest {
     @InjectMocks
     private HomePropertyInjector homePropertyInjector;
 
-    @InjectMocks
-    private HomeAssetPropertyInjector homeAssetPropertyInjector;
-
-    @InjectMocks
-    private AssetInjector assetInjector;
 
     @BeforeEach
     void setUp() throws Exception {
         context.load().json("/com/positive/dhl/core/models/CtaBanner/content.json", "/content");
-        context.registerService(Injector.class, assetInjector);
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(Injector.class, homePropertyInjector);
-        context.registerService(Injector.class, homeAssetPropertyInjector);
         context.addModelsForClasses(CtaBannerWithPoints.class);
-
-        when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
     }
 
     private void mockHomePage() {
@@ -85,9 +69,9 @@ class CtaBannerTest {
         assertEquals("Stay In The Loop!", ctaBanner.getTopTitle());
         assertEquals("/content/dhl/openBusinessAccount", ctaBanner.getButtonLink());
         assertEquals("Subscribe", ctaBanner.getButtonName());
-        assertEquals("/prefix/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
-        assertEquals("/prefix/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
-        assertEquals("/prefix/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
+        assertEquals("/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
+        assertEquals("/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
+        assertEquals("/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
     }
 
     @Test
@@ -100,8 +84,8 @@ class CtaBannerTest {
         assertEquals("Custom Top Title", ctaBanner.getTopTitle());
         assertEquals("/content/test", ctaBanner.getButtonLink());
         assertEquals("Buy", ctaBanner.getButtonName());
-        assertEquals("/prefix/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
-        assertEquals("/prefix/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
-        assertEquals("/prefix/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
+        assertEquals("/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
+        assertEquals("/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
+        assertEquals("/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
     }
 }
