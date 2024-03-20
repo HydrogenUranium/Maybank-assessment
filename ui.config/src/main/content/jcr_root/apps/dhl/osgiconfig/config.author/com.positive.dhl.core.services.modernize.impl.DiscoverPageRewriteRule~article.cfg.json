@@ -7,5 +7,6 @@
     "partwo:root/article_container_two/body/responsivegrid",
     "parthree:root/responsivegrid"
   ],
-  "slingResourceType":"dhl/components/pages/article"
+  "slingResourceType":"dhl/components/pages/article",
+  "enabled": false
 }

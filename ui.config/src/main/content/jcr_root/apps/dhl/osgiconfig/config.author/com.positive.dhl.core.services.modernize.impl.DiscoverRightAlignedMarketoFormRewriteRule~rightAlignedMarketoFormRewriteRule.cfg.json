@@ -7,5 +7,6 @@
     "partwo:root/two_columns_container/right-column-body/responsivegrid",
     "parthree:root/responsivegrid"
   ],
-  "slingResourceType":"dhl/components/pages/landingtwocol"
+  "slingResourceType":"dhl/components/pages/landingtwocol",
+  "enabled": false
 }
