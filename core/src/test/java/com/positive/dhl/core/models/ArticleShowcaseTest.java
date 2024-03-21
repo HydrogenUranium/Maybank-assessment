@@ -56,14 +56,6 @@ class ArticleShowcaseTest {
         context.registerService(ArticleService.class, articleService);
         context.registerService(PathUtilService.class, pathUtilService);
         context.addModelsForClasses(ArticleShowcase.class);
-        lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
-        lenient().when(pathUtilService.resolveAssetPath(any(), anyBoolean(), anyMap())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
         mockInject(context, "currentPage", page);
         context.load().json("/com/positive/dhl/core/models/ArticleShowcase/content.json", "/content");
         lenient().when(pageUtils.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);

@@ -52,6 +52,14 @@
                                             text="Add margins"
                                             value="true"
                                             uncheckedValue="false"/>
+                                    <enableAssetDelivery
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldDescription="When checked, WebOptimized Image Delivery are enabled."
+                                            name="./enableAssetDelivery"
+                                            text="Enable Web Optimized Images"
+                                            uncheckedValue="false"
+                                            value="{Boolean}true"/>
                                 </items>
                             </column>
                         </items>

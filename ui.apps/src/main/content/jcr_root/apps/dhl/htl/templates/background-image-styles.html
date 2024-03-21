@@ -1,17 +1,33 @@
-<template data-sly-template.background="${@ id, mobile, tablet, desktop}">
-    <style type="text/css">
+<template data-sly-template.adaptiveBackground="${@ id, mobile, tablet, desktop}">
+    <style type="text/css" data-sly-use.model="${'com.positive.dhl.core.models.Picture' @
+      mobileImage = mobile,
+      tabletImage = tablet,
+      desktopImage = desktop,
+      forceMap = true
+    }">
         #${id @ context='unsafe'} {
-            background-image: url('${mobile @ context='uri'}');
+            background-image: url('${model.mobileImage @ context='uri'}');
         }
         @media screen and (min-width: 768px) {
             #${id @ context='unsafe'} {
-                background-image: url('${tablet @ context='uri'}');
+                background-image: url('${model.desktopImage @ context='uri'}');
             }
         }
         @media screen and (min-width: 1200px) {
             #${id @ context='unsafe'} {
-                background-image: url('${desktop @ context='uri'}');
+                background-image: url('${model.tabletImage @ context='uri'}');
             }
+        }
+    </style>
+</template>
+
+<template data-sly-template.background="${@ id, image}">
+    <style type="text/css" data-sly-use.model="${'com.positive.dhl.core.models.Picture' @
+      image = image,
+      forceMap = true
+    }">
+        #${id @ context='unsafe'} {
+            background-image: url('${model.image @ context='uri'}');
         }
     </style>
 </template>

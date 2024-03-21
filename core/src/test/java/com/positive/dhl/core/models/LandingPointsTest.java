@@ -9,8 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static com.positive.dhl.core.utils.InjectorMock.initAssetInjector;
-import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeAssetProperty;
+import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -27,8 +26,7 @@ class LandingPointsTest {
 
     @Test
     void getLandingPointItems() {
-        mockInjectHomeAssetProperty(aemContext, "landingPoints-defaultIcon", "/defaultIcon.png");
-        initAssetInjector(aemContext);
+        mockInjectHomeProperty(aemContext, "landingPoints-defaultIcon", "/defaultIcon.png");
 
         LandingPoints landingPoints = aemContext.resourceResolver().getResource("/content/dhl/open-account/jcr:content/root/responsivegrid/landingPoints")
                 .adaptTo(LandingPoints.class);
@@ -37,10 +35,10 @@ class LandingPointsTest {
         assertEquals(3, landingPoints.getLandingPointItems().size());
         List<LandingPointItem> points = landingPoints.getLandingPointItems();
         LandingPointItem point = points.get(0);
-        assertEquals("/prefix/content/dam/images/icon.svg", point.getIcon());
+        assertEquals("/content/dam/images/icon.svg", point.getIcon());
         assertEquals("<p>A wide range of services and door-to-door shipping options to solve your international export challenges, covering 220 countries across the globe</p>", point.getContent());
         assertEquals("Easy international shipping", point.getTitle());
-        assertEquals("/prefix/content/dam/images/image.svg", landingPoints.getImage());
+        assertEquals("/content/dam/images/image.svg", landingPoints.getImage());
         assertEquals("/defaultIcon.png", landingPoints.getDefaultIcon());
         assertEquals("alt text", landingPoints.getAltText());
     }

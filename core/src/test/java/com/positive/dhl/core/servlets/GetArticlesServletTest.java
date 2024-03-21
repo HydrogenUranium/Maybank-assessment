@@ -65,10 +65,6 @@ class GetArticlesServletTest {
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
-        lenient().when(pathUtilService.resolveAssetPath(any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/prefix" + invocationOnMock.getArgument(0, String.class) : "";
-        });
 
         Article article1 = createArticleModel(context.resourceResolver().getResource("/content/home/article_1"));
         Article article2 = createArticleModel(context.resourceResolver().getResource("/content/home/article_2"));
@@ -86,6 +82,10 @@ class GetArticlesServletTest {
 
     @Test
     void doGet_withParameters() throws IOException {
+        lenient().when(pathUtilService.map(any())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/discover" + invocationOnMock.getArgument(0, String.class) : "";
+        });
         request.setParameterMap(Map.of("s", "searchTerm", "homepagepath", "/content"));
         servlet.doGet(request, response);
         String responseBody = context.response().getOutputAsString();
@@ -99,7 +99,7 @@ class GetArticlesServletTest {
                     "\"description\":\"What paperwork do I need for international shipping?\"," +
                     "\"author\":\"Anna Thompson\"," +
                     "\"readtime\":\"4 min read\"," +
-                    "\"listimage\":\"/prefix/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
+                    "\"listimage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                     "\"tagsToShow\":[\"#CategoryPage\"]," +
                     "\"path\":\"/content/home/article_1\"" +
                 "}," +
@@ -112,7 +112,7 @@ class GetArticlesServletTest {
                     "\"description\":\"What paperwork do I need for international shipping?\"," +
                     "\"author\":\"Anna Thompson\"," +
                     "\"readtime\":\"4 min read\"," +
-                    "\"listimage\":\"/prefix/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
+                    "\"listimage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                     "\"tagsToShow\":[\"#CategoryPage\"]," +
                     "\"path\":\"/content/home/article_2\"" +
                 "}" +

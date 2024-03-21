@@ -5,6 +5,7 @@
     "description": "description",
     "buttonLink": "buttonLink",
     "buttonLabel": "buttonLabel",
+    "image": "/image.png",
     "altText": "altText",
     "sling:resourceType": "dhl/components/content/error-banner"
   }

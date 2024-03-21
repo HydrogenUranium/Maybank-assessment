@@ -1,6 +1,5 @@
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.injectors.InjectAsset;
 import lombok.Getter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -18,7 +17,7 @@ public class LandingPointItem {
     @Inject
     private String content;
 
-	@InjectAsset
+	@Inject
 	private String icon;
 
 

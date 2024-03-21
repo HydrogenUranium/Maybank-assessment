@@ -1,6 +1,5 @@
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.injectors.InjectAsset;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -26,7 +25,8 @@ public class ErrorBanner {
     @Inject
     private String buttonLabel;
 
-    @InjectAsset
+    @Inject
+    @Default(values = "")
     private String image;
 
     @Inject

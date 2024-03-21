@@ -9,6 +9,8 @@ import javax.inject.Inject;
 
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -22,6 +24,8 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
+@Getter
+@Setter
 public class LandingPageTwoColumn {
 	@OSGiService
 	private PathUtilService pathUtilService;
@@ -34,7 +38,7 @@ public class LandingPageTwoColumn {
 
 	@Inject
 	private Page currentPage;
-	
+
 	private String fullTitle;
 	private String title;
 	private String herosubtitle;
@@ -45,150 +49,16 @@ public class LandingPageTwoColumn {
 	private String shipNowUrl;
 	private String preselectedCountry;
 	private List<Article> relatedArticles;
-	
-    /**
-	 *
-	 */
-	public String getFullTitle() {
-		return fullTitle;
-	}
 
-    /**
-	 *
-	 */
-	public void setFullTitle(String fullTitle) {
-		this.fullTitle = fullTitle;
-	}
 
-    /**
-	 *
-	 */
-	public String getTitle() {
-		return title;
-	}
-
-    /**
-	 *
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-    /**
-	 *
-	 */
-	public String getHerosubtitle() {
-		return herosubtitle;
-	}
-
-    /**
-	 *
-	 */
-	public void setHerosubtitle(String herosubtitle) {
-		this.herosubtitle = herosubtitle;
-	}
-
-    /**
-	 *
-	 */
-	public String getHeroimagemob() {
-		return pathUtilService.resolveAssetPath(heroimagemob);
-	}
-
-    /**
-	 *
-	 */
-	public void setHeroimagemob(String heroimagemob) {
-		this.heroimagemob = heroimagemob;
-	}
-
-    /**
-	 *
-	 */
-	public String getHeroimagetab() {
-		return pathUtilService.resolveAssetPath(heroimagetab);
-	}
-
-    /**
-	 *
-	 */
-	public void setHeroimagetab(String heroimagetab) {
-		this.heroimagetab = heroimagetab;
-	}
-
-    /**
-	 *
-	 */
-	public String getHeroimagedt() {
-		return pathUtilService.resolveAssetPath(heroimagedt);
-	}
-
-    /**
-	 *
-	 */
-	public void setHeroimagedt(String heroimagedt) {
-		this.heroimagedt = heroimagedt;
-	}
-
-    /**
-	 *
-	 */
-	public String getShipNowMessage() {
-		return shipNowMessage;
-	}
-
-    /**
-	 *
-	 */
-	public void setShipNowMessage(String shipNowMessage) {
-		this.shipNowMessage = shipNowMessage;
-	}
-
-    /**
-	 *
-	 */
-	public String getShipNowUrl() {
-		return shipNowUrl;
-	}
-
-    /**
-	 *
-	 */
-	public void setShipNowUrl(String shipNowUrl) {
-		this.shipNowUrl = shipNowUrl;
-	}
-
-    /**
-	 *
-	 */
-	public String getPreselectedCountry() {
-		return preselectedCountry;
-	}
-
-    /**
-	 *
-	 */
-	public void setPreselectedCountry(String preselectedCountry) {
-		this.preselectedCountry = preselectedCountry;
-	}
-
-    /**
-	 *
-	 */
 	public List<Article> getRelatedArticles() {
 		return new ArrayList<>(relatedArticles);
 	}
 
-    /**
-	 *
-	 */
 	public void setRelatedArticles(List<Article> relatedArticles) {
 		this.relatedArticles = new ArrayList<>(relatedArticles);
 	}
 
-    /**
-	 *
-	 */
 	@PostConstruct
     protected void init() {
 		shipNowUrl = "https://webshipping.dhl.com";
