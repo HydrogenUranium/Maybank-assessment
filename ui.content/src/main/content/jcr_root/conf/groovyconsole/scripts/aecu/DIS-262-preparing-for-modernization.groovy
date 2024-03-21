@@ -34,8 +34,8 @@ def VERSION_LABEL = "Before converting to Article Editable template"
 def getPagesWithRemovedTemplate(removedTemplates, contentScope) {
     def pagesWithRemovedTemplate = []
     getPage(contentScope).recurse { page ->
-        if (page.path ==~ /^\/content\/dhl\/(language-masters|global|\w{2})\/.*/) { // don't check old pages
-            def template = page?.template?.path
+        if (page.path ==~ /^\/content\/dhl\/(language-masters|global|\w{2})\/.*/) {
+            def template = page?.contentResource?.valueMap?.get("cq:template", "")
 
             if (removedTemplates.contains(template)) {
                 pagesWithRemovedTemplate.add(page.path)
