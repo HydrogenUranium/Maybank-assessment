@@ -7,5 +7,5 @@
     "par:root/column_container/first-container/responsivegrid"
   ],
   "slingResourceType":"dhl/components/pages/articlecategory",
-  "enabled": true
+  "enabled": false
 }
