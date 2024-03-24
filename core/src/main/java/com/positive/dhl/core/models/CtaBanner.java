@@ -28,6 +28,14 @@ public class CtaBanner {
     @Getter
     private String topTitle;
 
+    @Getter
+    private boolean disabled = false;
+
+    @InjectHomeProperty
+    @Named("ctaBanner-article-bottom-disabled")
+    @Default(booleanValues = false)
+    private boolean disabledGlobal;
+
     @InjectHomeProperty
     @Named("ctaBanner-article-subscribeToOurNewsletter-title")
     private String titleGlobal;
@@ -82,6 +90,7 @@ public class CtaBanner {
     @PostConstruct
     protected void init() {
         if(type.equals("subscribeNewsletter")) {
+            disabled = disabledGlobal;
             title = titleGlobal;
             topTitle = topTitleGlobal;
             mobileBackgroundImage = mobileBackgroundImageGlobal;
