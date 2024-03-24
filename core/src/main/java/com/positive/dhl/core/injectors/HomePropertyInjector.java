@@ -69,6 +69,11 @@ public class HomePropertyInjector extends AbstractInjector {
                     .orElse(null);
         }
 
+        if (type == Boolean.class) {
+            return homePage.map(Page::getProperties)
+                    .map(valueMap -> valueMap.get(name, Boolean.class)).orElse(false);
+        }
+
         return homePage.map(Page::getProperties)
                 .map(valueMap -> valueMap.get(name))
                 .orElse(null);

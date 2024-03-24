@@ -8,7 +8,8 @@
       "ctaBanner-article-subscribeToOurNewsletter-buttonName": "Subscribe",
       "ctaBanner-article-subscribeToOurNewsletter-tabletBackgroundImage": "/content/dam/images/tablet.jpg",
       "ctaBanner-article-subscribeToOurNewsletter-mobileBackgroundImage": "/content/dam/images/mobile.jpg",
-      "ctaBanner-article-subscribeToOurNewsletter-buttonLink": "/content/dhl/openBusinessAccount"
+      "ctaBanner-article-subscribeToOurNewsletter-buttonLink": "/content/dhl/openBusinessAccount",
+      "ctaBanner-article-bottom-disabled": "true"
     },
     "small-business-advice": {
       "jcr:primaryType": "cq:Page",
