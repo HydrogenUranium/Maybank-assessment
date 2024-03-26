@@ -1,4 +1,4 @@
-/* DIS-262 Preparing for the modernization AMP pages
+/* DIS-262 Preparing for the modernization
 Steps:
 
 0)  INITIAL SETUP
