@@ -65,6 +65,14 @@ body {
   background-color: $body-bg; // 2
 }
 
+[lang^="ko"] body {
+  font-family: "Delivery-ko", $font-family-base;
+}
+
+[lang^="ja"] body {
+  font-family: "Delivery-ja", $font-family-base;
+}
+
 [dir="rtl"] body{
    text-align: right; // 3
 }

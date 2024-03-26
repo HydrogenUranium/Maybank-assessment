@@ -21,11 +21,15 @@
     }
 
     &Title {
-        font: normal normal bold 14px/20px Delivery, sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 20px;
 
         &Thin {
             opacity: 0.8;
-            font: normal normal normal 14px/14px Delivery;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 14px;
         }
     }
 }

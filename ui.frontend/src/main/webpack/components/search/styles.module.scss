@@ -42,7 +42,8 @@
         background: transparent;
         padding-left: 50px;
         height: 100%;
-        font: normal normal normal 16px/25px Delivery, sans-serif;
+        font-size: 16px;
+        line-height: 25px;
 
         [dir="rtl"] & {
           padding-left: 0px;
@@ -67,7 +68,9 @@
 
     &Title {
       margin-top: 20px;
-      font: normal normal bold 28px/40px Delivery, sans-serif;
+      font-weight: bold;
+      font-size: 28px;
+      line-height: 40px;
       @media screen and (min-width: 768px) {
         margin-top: 30px;
         line-height: 50px;
@@ -82,7 +85,8 @@
     }
 
     &Details {
-      font: normal normal normal 16px/25px Delivery, sans-serif;
+      font-size: 16px;
+      line-height: 25px;
       @media screen and (min-width: 768px) {
         line-height: 30px;
         font-size: 20px;
@@ -100,7 +104,8 @@
     }
 
     &Headline {
-      font: normal normal normal 14px/30px Delivery, sans-serif;
+      font-size: 14px;
+      line-height: 30px;
       gap: 20px;
       @media screen and (min-width: 768px) {
         display: flex;

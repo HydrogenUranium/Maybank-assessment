@@ -17,7 +17,9 @@
     }
   }
   .title {
-    font: normal normal bold 26px/26px Delivery, sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 26px;
     padding: 0 10px;
     border-left: 2px solid white;
     margin-bottom: 27px;
@@ -74,7 +76,9 @@
         flex-direction: column;
         justify-content: center;
         &__title {
-          font: normal normal bold 20px/22px Delivery, sans-serif;
+          font-weight: bold;
+          font-size: 20px;
+          line-height: 22px;
           overflow: hidden;
           display: -webkit-box;
           -webkit-line-clamp: 2;
@@ -89,7 +93,9 @@
         }
         &__metadata {
           margin-top: 5px;
-          font: normal normal normal 14px/20px Delivery, sans-serif;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 20px;
           opacity: 0.7;
           :not(:first-child)::before {
               content: "|";

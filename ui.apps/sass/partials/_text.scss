@@ -1,9 +1,17 @@
 .text {
   padding-top: 15px;
-  font-family: "Delivery", sans-serif;
   font-size: 14px;
   line-height: 22px;
   color: #323232;
+
+  @include headersWithRteWrapper(no-margin, margin, 0);
+  @include headersWithRteWrapper(margin-small, margin, 0.5em 0);
+  @include headersWithRteWrapper(margin-medium, margin, 1em 0);
+  @include headersWithRteWrapper(margin-large, margin, 1.5em 0);
+  @include headersWithRteWrapper(no-margin, display, block);
+  @include headersWithRteWrapper(margin-small, display, block);
+  @include headersWithRteWrapper(margin-medium, display, block);
+  @include headersWithRteWrapper(margin-large, display, block);
 
   h1, h2 {
     font-size: 20px;
