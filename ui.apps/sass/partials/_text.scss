@@ -1,21 +1,31 @@
 .text {
-  padding-top: 15px;
+  padding-top: 10px;
   font-size: 14px;
   line-height: 22px;
   color: #323232;
 
-  @include headersWithRteWrapper(no-margin, margin, 0);
-  @include headersWithRteWrapper(margin-small, margin, 0.5em 0);
-  @include headersWithRteWrapper(margin-medium, margin, 1em 0);
-  @include headersWithRteWrapper(margin-large, margin, 1.5em 0);
-  @include headersWithRteWrapper(no-margin, display, block);
-  @include headersWithRteWrapper(margin-small, display, block);
-  @include headersWithRteWrapper(margin-medium, display, block);
-  @include headersWithRteWrapper(margin-large, display, block);
+  h1, h2, h3, h4 {
+    font-weight: bold;
+  }
 
-  h1, h2 {
+  h1 {
     font-size: 20px;
-    line-height: 29px;
+    line-height: 28px;
+  }
+
+  h2 {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  h4 {
+    font-size: 16px;
+    line-height: 22px;
   }
 
   hr {
@@ -28,14 +38,30 @@
   }
 
   @include respond(md) {
-    padding-top: 35px;
+    padding-top: 18px;
     font-size: 20px;
     line-height: 29px;
 
-    h1, h2 {
+    h1 {
       font-size: 30px;
-      line-height: 43px;
+      line-height: 38px;
     }
+
+    h2 {
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+    h3 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    h4 {
+      font-size: 16px;
+      line-height: 22px;
+    }
+
 
     hr {
       margin-top: 40px;
@@ -43,13 +69,28 @@
   }
 
   @include respond(xl) {
-    padding-top: 40px;
+    padding-top: 20px;
     font-size: 30px;
     line-height: 43px;
 
-    h1, h2 {
-      font-size: 50px;
-      line-height: 72px;
+    h1 {
+      font-size: 40px;
+      line-height: 50px;
+    }
+
+    h2 {
+      font-size: 35px;
+      line-height: 42px;
+    }
+
+    h3 {
+      font-size: 25px;
+      line-height: 32px;
+    }
+
+    h4 {
+      font-size: 20px;
+      line-height: 28px;
     }
 
     hr {

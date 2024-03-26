@@ -48,7 +48,6 @@ body {
   @extend .table;
   text-align: inherit;
   background-color: transparent !important;
-  font-family: $font-family;
 
   &[border="0"] {
     * {
@@ -83,12 +82,12 @@ body {
 
   h2 {
     @include font($style: "%H3");
-    margin: 0px 0px 26px;
+    margin: 0px 0px 20px;
   }
 
   h3 {
     @include font($style: "%H4");
-    margin: 0px 0px 20px;
+    margin: 0px 0px 16px;
   }
 
   h4 {

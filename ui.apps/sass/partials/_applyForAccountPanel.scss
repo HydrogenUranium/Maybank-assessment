@@ -46,7 +46,6 @@
         margin: 20px 0 30px;
         list-style-type: none;
         font-weight: 400;
-        font-family: $font-family;
 
         @include respond(md) {
             margin-top: 0;

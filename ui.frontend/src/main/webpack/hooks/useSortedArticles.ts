@@ -8,7 +8,7 @@ import { SortByOptions } from '../types';
  * @param {String} sortBy - The property to sort the articles by.
  * @returns {Array} The sorted array of articles.
  */
-export const useSortedArticles = (articles: Article[], sortBy: SortByOptions): Article[] => {
+export const useSortedArticles = (articles: Article[], sortBy?: SortByOptions): Article[] => {
   const [sortedArticles, setSortedArticles] = useState([]);
 
   const sortByDate = (a: Article, b: Article) => b.createdMilliseconds - a.createdMilliseconds;
