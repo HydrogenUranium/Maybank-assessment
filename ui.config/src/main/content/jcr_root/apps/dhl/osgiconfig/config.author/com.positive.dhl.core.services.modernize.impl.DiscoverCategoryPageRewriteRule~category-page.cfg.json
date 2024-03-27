@@ -4,5 +4,5 @@
   "staticTemplate":"/apps/dhl/templates/dhl-article-group-page",
   "containerMappings":["parcarousel:root/responsivegrid"],
   "slingResourceType":"dhl/components/pages/articlecategory",
-  "enabled": false
+  "enabled": true
 }

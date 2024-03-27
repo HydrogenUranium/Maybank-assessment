@@ -1,4 +1,4 @@
-/* DIS-262 Publish modernized AMP pages
+/* DIS-262 Publish pages
 Steps:
 
 0)  INITIAL SETUP
