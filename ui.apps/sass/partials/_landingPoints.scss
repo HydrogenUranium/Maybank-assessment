@@ -16,7 +16,8 @@
     min-height: 45px;
     color: #323232;
     position: relative;
-    font: normal normal normal 14px/20px Delivery, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
     @include respond(xl) {
       font-size: 20px;
       line-height: 29px;

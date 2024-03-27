@@ -1,13 +1,31 @@
 .text {
-  padding-top: 15px;
-  font-family: "Delivery", sans-serif;
+  padding-top: 10px;
   font-size: 14px;
   line-height: 22px;
   color: #323232;
 
-  h1, h2 {
+  h1, h2, h3, h4 {
+    font-weight: bold;
+  }
+
+  h1 {
     font-size: 20px;
-    line-height: 29px;
+    line-height: 28px;
+  }
+
+  h2 {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  h4 {
+    font-size: 16px;
+    line-height: 22px;
   }
 
   hr {
@@ -20,14 +38,30 @@
   }
 
   @include respond(md) {
-    padding-top: 35px;
+    padding-top: 18px;
     font-size: 20px;
     line-height: 29px;
 
-    h1, h2 {
+    h1 {
       font-size: 30px;
-      line-height: 43px;
+      line-height: 38px;
     }
+
+    h2 {
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+    h3 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    h4 {
+      font-size: 16px;
+      line-height: 22px;
+    }
+
 
     hr {
       margin-top: 40px;
@@ -35,13 +69,28 @@
   }
 
   @include respond(xl) {
-    padding-top: 40px;
+    padding-top: 20px;
     font-size: 30px;
     line-height: 43px;
 
-    h1, h2 {
-      font-size: 50px;
-      line-height: 72px;
+    h1 {
+      font-size: 40px;
+      line-height: 50px;
+    }
+
+    h2 {
+      font-size: 35px;
+      line-height: 42px;
+    }
+
+    h3 {
+      font-size: 25px;
+      line-height: 32px;
+    }
+
+    h4 {
+      font-size: 20px;
+      line-height: 28px;
     }
 
     hr {

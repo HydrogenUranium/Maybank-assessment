@@ -10,19 +10,25 @@
   &--white {
     .marketoForm__container{
       .mktoCaptchaDisclaimer {
-        font: italic normal normal 16px/23px Delivery, sans-serif;
+        font-style: italic;
+        font-size: 16px;
+        line-height: 23px;
       }
       .mktoFormRow {
         .mktoLabel{
-          font: normal normal normal 16px/23px Delivery, sans-serif;
+          font-size: 16px;
+          line-height: 23px;
         }
         .mktoHtmlText {
-          font: italic normal normal 16px/23px Delivery, sans-serif;
+          font-style: italic;
+          font-size: 16px;
+          line-height: 23px;
         }
         input, select {
           box-shadow: none;
           border: 1px solid #707070;
-          font: normal normal normal 18px/26px Delivery, sans-serif;
+          font-size: 18px;
+          line-height: 26px;
           color: #828282;
           padding: 16px;
         }
@@ -112,7 +118,6 @@
     margin: 0;
     display: block;
     line-height: normal;
-    font-family: "Delivery",sans-serif;
   }
 
   .wysiwyg {
@@ -126,7 +131,6 @@
 
   .mktoButtonWrap {
     margin-left: 0 !important;
-    font-family: "Delivery",sans-serif;
   }
 
   .mktoButton {

@@ -6,7 +6,6 @@
     background: map-get($palette, true-white) 0% 0% no-repeat padding-box;
     border: 1px solid #E9E9E9;
     border-radius: 4px;
-    font-family: "Delivery", sans-serif;
 
     @include respond(xl) {
       display: block;
