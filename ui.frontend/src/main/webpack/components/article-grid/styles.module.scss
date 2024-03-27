@@ -19,7 +19,9 @@
         }
 
         &Title {
-            font: normal normal bold 20px/40px Delivery, sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 40px;
             padding: 0 10px;
             border-left: 2px solid #dd3741;
         }
@@ -44,7 +46,9 @@
 
         &Category {
             cursor: pointer;
-            font: normal normal bold 18px/26px Delivery;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 26px;
             letter-spacing: 0px;
             color: #323232;
 
