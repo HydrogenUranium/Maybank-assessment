@@ -3,7 +3,7 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:deviceGroups="[mobile/groups/responsive]"
-        cq:template="/conf/dhl/settings/wcm/templates/ap12313"
+        cq:template="/conf/dhl/settings/wcm/templates/animated-page"
         jcr:primaryType="cq:PageContent"
         sling:resourceType="dhl/components/pages/editable-animated-page">
         <root
