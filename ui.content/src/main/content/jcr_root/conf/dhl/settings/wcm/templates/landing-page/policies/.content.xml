@@ -15,7 +15,26 @@
                     <responsivegrid
                         cq:policy="wcm/foundation/components/responsivegrid/policy_22051396635900"
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/core/components/policies/mapping"/>
+                        sling:resourceType="wcm/core/components/policies/mapping">
+                        <dhl jcr:primaryType="nt:unstructured">
+                            <components jcr:primaryType="nt:unstructured">
+                                <content jcr:primaryType="nt:unstructured">
+                                    <top-tiles
+                                            cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <related-posts
+                                            cq:policy="dhl/components/content/related-posts/policy_dhl_related-posts"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-showcase
+                                            cq:policy="dhl/components/content/article-showcase/policy_dhl_showcase"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                </content>
+                            </components>
+                        </dhl>
+                    </responsivegrid>
                 </first-container>
             </column_container>
             <hero_banner

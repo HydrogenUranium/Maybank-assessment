@@ -99,6 +99,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Landing Page - Hero Banner - Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
+                            enableAssetDelivery="true"
                             inheritImage="false"
                             keyTakeaways="false"
                             margin="false"
@@ -110,6 +111,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Article - Hero Banner - Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
+                            enableAssetDelivery="true"
                             inheritImage="true"
                             keyTakeaways="true"
                             margin="true"
@@ -414,6 +416,42 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </article_embed_component_policy>
                 </embed>
+                <top-tiles jcr:primaryType="nt:unstructured">
+                    <policy_dhl_top-tiles
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Top Tiles Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAssetDelivery="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_dhl_top-tiles>
+                </top-tiles>
+                <article-showcase jcr:primaryType="nt:unstructured">
+                    <policy_dhl_showcase
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Article Showcase Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAssetDelivery="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_dhl_showcase>
+                </article-showcase>
+                <related-posts jcr:primaryType="nt:unstructured">
+                    <policy_dhl_related-posts
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Related Posts Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAssetDelivery="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_dhl_related-posts>
+                </related-posts>
+                <article-grid jcr:primaryType="nt:unstructured">
+                    <policy_dhl_article-grid
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Article Grid Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAssetDelivery="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_dhl_article-grid>
+                </article-grid>
             </content>
         </components>
     </dhl>
