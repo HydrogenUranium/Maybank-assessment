@@ -1,0 +1,170 @@
+/* Condensed Thin */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 100; /* Thin */
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Thin.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3;
+  font-synthesis: style;
+}
+
+/* Condensed ExtraLight */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 200; /* ExtraLight */
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-ExtraLight.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3;
+  font-synthesis: style;
+}
+
+/* Light */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 300; /* Light */
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Light.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3;
+  font-synthesis: style;
+}
+
+/* Regular */
+@font-face {
+  font-family: "Delivery";
+  font-weight: normal; /* 400 */
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Regular.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3;
+  font-synthesis: style;
+}
+
+/* Medium */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 500;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Medium.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3;
+  font-synthesis: style;
+}
+
+/* SemiBold */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 600;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-SemiBold.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3;
+  font-synthesis: style;
+}
+
+/* Bold */
+@font-face {
+  font-family: "Delivery";
+  font-weight: bold; /* 700 */
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Bold.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3;
+  font-synthesis: style;
+}
+
+/* Condensed ExtraBold */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 800;
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-ExtraBold.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3;
+  font-synthesis: style;
+}
+
+/* Condensed Black */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 900;
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Black.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3;
+  font-synthesis: style;
+}
+
+/* Condensed Thin */
+@font-face {
+  font-family: "Delivery-ko";
+  font-weight: 100; /* Thin */
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Thin.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3, U+0030-0039;
+  font-synthesis: style;
+}
+
+/* Condensed ExtraLight */
+@font-face {
+  font-family: "Delivery-ko";
+  font-weight: 200; /* ExtraLight */
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-ExtraLight.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3, U+0030-0039;
+  font-synthesis: style;
+}
+
+/* Light */
+@font-face {
+  font-family: "Delivery-ko";
+  font-weight: 300; /* Light */
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Light.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3, U+0030-0039;
+  font-synthesis: style;
+}
+
+/* Regular */
+@font-face {
+  font-family: "Delivery-ko";
+  font-weight: normal; /* 400 */
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Regular.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3, U+0030-0039;
+  font-synthesis: style;
+}
+
+/* Medium */
+@font-face {
+  font-family: "Delivery-ko";
+  font-weight: 500;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Medium.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3, U+0030-0039;
+  font-synthesis: style;
+}
+
+/* SemiBold */
+@font-face {
+  font-family: "Delivery-ko";
+  font-weight: 600;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-SemiBold.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3, U+0030-0039;
+  font-synthesis: style;
+}
+
+/* Bold */
+@font-face {
+  font-family: "Delivery-ko";
+  font-weight: bold; /* 700 */
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Bold.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3, U+0030-0039;
+  font-synthesis: style;
+}
+
+/* Condensed ExtraBold */
+@font-face {
+  font-family: "Delivery-ko";
+  font-weight: 800;
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-ExtraBold.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3, U+0030-0039;
+  font-synthesis: style;
+}
+
+/* Condensed Black */
+@font-face {
+  font-family: "Delivery-ko";
+  font-weight: 900;
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/noto-sans-kr/NotoSansKR-Black.ttf') format('truetype');
+  unicode-range:U+AC00-D7A3, U+0030-0039;
+  font-synthesis: style;
+}
+

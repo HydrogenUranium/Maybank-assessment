@@ -134,7 +134,9 @@
       margin: 10px;
       letter-spacing: 0px;
       color: #FFFFFF;
-      font: normal normal bold 12px/17px Delivery, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 17px;
       @include respond(xl) {
         line-height: 20px;
         font-size: 14px;

@@ -1,5 +1,7 @@
 .title-component {
-  font: normal normal bold 28px/32px Delivery, sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 32px;
   max-width: 1640px;
 
   &--underline {

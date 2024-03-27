@@ -8,11 +8,13 @@
      margin-top: 50px;
   }
   &__text {
-    font: normal normal bold 16px/37px Delivery, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 37px;
     margin-top: 20px;
     margin-bottom: 0px;
     @include respond(xl) {
-       font: normal normal bold 30px/37px Delivery, sans-serif;
+       font-size: 30px;
     }
   }
 }

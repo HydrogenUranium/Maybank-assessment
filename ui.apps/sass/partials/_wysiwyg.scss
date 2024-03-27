@@ -26,11 +26,7 @@
 
     p {
         @include font("%T4", map-get($palette, black));
-        margin-bottom: 20px;
-
-        @include respond(lg) {
-          margin-bottom: 30px;
-        }
+        margin-bottom: 16px;
     }
 
     ul,
@@ -84,7 +80,6 @@
       p {
         @include font("%H3");
         font-size: 25px;
-        margin-bottom: 25px;
         text-align: center;
         margin-bottom: 16px;
 
