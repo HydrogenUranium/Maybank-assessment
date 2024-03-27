@@ -30,10 +30,30 @@
                                 cq:policy="dhl/components/content/article-carousel/article_carousel_policy"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <top-tiles
+                                    cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <related-posts
+                                    cq:policy="dhl/components/content/related-posts/policy_dhl_related-posts"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <article-showcase
+                                    cq:policy="dhl/components/content/article-showcase/policy_dhl_showcase"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
                         </content>
                     </components>
                 </dhl>
             </responsivegrid>
+            <category_container jcr:primaryType="nt:unstructured">
+                <responsivegrid jcr:primaryType="nt:unstructured">
+                    <article_grid
+                            cq:policy="dhl/components/content/article-grid/policy_dhl_article-grid"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                </responsivegrid>
+            </category_container>
         </root>
     </jcr:content>
 </jcr:root>
