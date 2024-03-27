@@ -36,7 +36,7 @@
                                     value="custom"/>
                             <subscribeNewsletter
                                     jcr:primaryType="nt:unstructured"
-                                    text="Subscribe To Our Newsletter (Home Page Configuration for article)"
+                                    text="Common Bottom CTA Banner (Home Page Configuration for article)"
                                     value="subscribeNewsletter"/>
                         </items>
                     </type>
