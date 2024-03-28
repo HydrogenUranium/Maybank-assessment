@@ -39,12 +39,69 @@
     }
 
     p a,
+    li a,
     h1 a,
     h2 a,
     h3 a,
     h4 a,
     h5 a {
       @include hoverText($text-decoration-normal: underline, $text-decoration-hover: underline);
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 20px;
+      line-height: 28px;
+      @include respond(md) {
+        font-size: 30px;
+        line-height: 38px;
+      }
+      @include respond(xl) {
+        font-size: 40px;
+        line-height: 50px;
+      }
+    }
+
+    h2 {
+      font-size: 18px;
+      line-height: 26px;
+      @include respond(md) {
+        font-size: 20px;
+        line-height: 26px;
+      }
+      @include respond(xl) {
+        font-size: 35px;
+        line-height: 42px;
+      }
+    }
+
+    h3 {
+      font-size: 18px;
+      line-height: 24px;
+      @include respond(md) {
+        font-size: 18px;
+        line-height: 24px;
+      }
+      @include respond(xl) {
+        font-size: 25px;
+        line-height: 32px;
+      }
+    }
+
+    h4 {
+      font-size: 16px;
+      line-height: 22px;
+      @include respond(md) {
+        font-size: 16px;
+        line-height: 22px;
+      }
+      @include respond(xl) {
+        font-size: 20px;
+        line-height: 28px;
+      }
     }
 
     img {
