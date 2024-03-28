@@ -13,9 +13,12 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
-<figure class="figure ${figure.alignment}" data-sly-use.figure="com.positive.dhl.core.models.Figure" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
-    <img src="${!editmode ? accountactions.assetprefix : ''}${figure.imagernd}" alt="${figure.alt}">
+<sly data-sly-use.figure="com.positive.dhl.core.models.Figure"
+		 data-sly-set.isEmpty="${!(figure.content || figure.imagernd || figure.caption1 || figure.caption2)}"></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+<figure class="figure ${figure.alignment}" >
+    <img src="${figure.imagernd}" alt="${figure.alt}">
     <figcaption class="figure__caption">
 		<span class="figure__caption-title">${figure.caption1}</span>
 		<p class="figure__caption-text">${figure.caption2}</p>
