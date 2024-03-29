@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-    jcr:primaryType="cq:Component"
-    jcr:title="Legacy Header (Deprecated)"
-    jcr:description="This component was extracted from the article page component, serves as a temporary solution
-        to support the old design. It is important to note that it should only be used as part of the template structure
-        to facilitate a smooth transition to new components with the updated design."
-    componentGroup="DHL Template structure"/>
