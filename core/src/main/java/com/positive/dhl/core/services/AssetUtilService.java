@@ -66,7 +66,7 @@ public class AssetUtilService {
         }
 
         try(ResourceResolver resolver = resourceResolverHelper.getReadResourceResolver()) {
-            Resource imageResource = resolver.getResource(assetPath);
+            Resource imageResource = resolver.getResource(pathUtilService.decodePath(assetPath));
             Asset asset = Optional.ofNullable(imageResource).map(resource -> resource.adaptTo(Asset.class)).orElse(null);
             if(asset != null) {
                 Map<String, Object> defaultProps = getDefaultProperties(asset);

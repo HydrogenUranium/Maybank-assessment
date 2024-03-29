@@ -8,6 +8,7 @@ import org.osgi.service.component.annotations.Reference;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -47,12 +48,16 @@ public class PathUtilService {
         return StringUtils.isBlank(encodedPath) ? path : encodedPath;
     }
 
+    public String decodePath(String path) {
+        return URLDecoder.decode(path, StandardCharsets.UTF_8);
+    }
+
     public String map(String path) {
         if(path == null) {
             return null;
         }
         try (var resolver = resourceResolverHelper.getReadResourceResolver()) {
-            return encodeUnsupportedCharacters(resolver.map(path));
+            return encodeUnsupportedCharacters(resolver.map(decodePath(path)));
         } catch (UnsupportedEncodingException e) {
             log.error("An error occurred encoding URL path", e);
             return path;
