@@ -1,7 +1,7 @@
 package com.positive.dhl.core.servlets;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
-import com.positive.dhl.core.components.DotmailerComponent;
+import com.positive.dhl.core.components.MailerComponent;
 import com.positive.dhl.core.helpers.ValidatedRequestEntry;
 import com.positive.dhl.core.services.ShipNowService;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -35,7 +35,7 @@ public class ShipNowServlet extends StandardFormInputServlet {
   @Reference
   private transient DataSourcePool dataSourcePool;
 	@Reference
-	private transient DotmailerComponent dotmailerComponent;
+	private transient MailerComponent mailerComponent;
 	@Reference
 	private transient ShipNowService shipNowService;
 	@Override
@@ -50,11 +50,6 @@ public class ShipNowServlet extends StandardFormInputServlet {
 
 	@Override
 	protected void performActionAfterSave(ValidatedRequestEntry entry) {
-		try {
-			dotmailerComponent.ExecuteShipNowWelcome(entry.get("firstname").toString(), entry.get("email").toString());
-
-		} catch (IOException ex) {
-			log.error("Exception occurred calling dot-mailer service", ex);
-		}
+		mailerComponent.ExecuteShipNowWelcome(entry.get("firstname").toString(), entry.get("email").toString());
 	}
 }

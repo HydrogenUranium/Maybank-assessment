@@ -26,7 +26,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.positive.dhl.core.components.DotmailerComponent;
+import com.positive.dhl.core.components.MailerComponent;
 import com.positive.dhl.core.models.Registration;
 import com.positive.dhl.core.models.UserAccount;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
@@ -65,7 +65,7 @@ public class RegisterServlet extends SlingAllMethodsServlet {
 	 * 
 	 */
 	@Reference
-	private transient DotmailerComponent dotmailerComponent;
+	private transient MailerComponent mailerComponent;
 
     /**
 	 * 
@@ -151,7 +151,7 @@ public class RegisterServlet extends SlingAllMethodsServlet {
 							responseJson.addProperty("ttl", user.getTimeToLive());
 							responseBody = responseJson.toString();
 
-							dotmailerComponent.ExecuteWelcome(firstname, username);
+							mailerComponent.ExecuteWelcome(firstname, username);
 
 						} else {
 							responseBody = "{ \"status\": \"ko\", \"error\": \"Error occurred while attempting to register\" }";
