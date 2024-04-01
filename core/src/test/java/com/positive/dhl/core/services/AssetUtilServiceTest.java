@@ -81,6 +81,9 @@ class AssetUtilServiceTest {
         when(pathUtilService.encodePath(anyString())).thenAnswer(invocationOnMock ->
                  invocationOnMock.getArgument(0, String.class)
         );
+        when(pathUtilService.decodePath(anyString())).thenAnswer(invocationOnMock ->
+                invocationOnMock.getArgument(0, String.class)
+        );
         service.bindAssetDelivery(assetDelivery);
 
         String resolvedLink = service.getDeliveryURL(originalLink);
@@ -104,6 +107,9 @@ class AssetUtilServiceTest {
         when(asset.getPath()).thenReturn(originalLink);
         when(mimeTypeService.getExtension(anyString())).thenReturn("jpg");
         when(pathUtilService.encodePath(anyString())).thenAnswer(invocationOnMock ->
+                invocationOnMock.getArgument(0, String.class)
+        );
+        when(pathUtilService.decodePath(anyString())).thenAnswer(invocationOnMock ->
                 invocationOnMock.getArgument(0, String.class)
         );
         service.bindAssetDelivery(assetDelivery);
@@ -168,6 +174,9 @@ class AssetUtilServiceTest {
         when(asset.getPath()).thenReturn(originalLink);
         when(mimeTypeService.getExtension(anyString())).thenReturn("jpg");
         when(pathUtilService.encodePath(anyString())).thenAnswer(invocationOnMock ->
+                invocationOnMock.getArgument(0, String.class)
+        );
+        when(pathUtilService.decodePath(anyString())).thenAnswer(invocationOnMock ->
                 invocationOnMock.getArgument(0, String.class)
         );
         service.bindAssetDelivery(assetDelivery);
