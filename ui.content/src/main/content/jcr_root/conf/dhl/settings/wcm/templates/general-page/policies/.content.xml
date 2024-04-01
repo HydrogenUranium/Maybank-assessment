@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:policy="dhl/components/pages/editable-standard/policy_1701175963418"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="wcm/core/components/policies/mappings">
+        <root
+            cq:policy="wcm/foundation/components/responsivegrid/policy_1701175819246"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/core/components/policies/mapping">
+            <column_container jcr:primaryType="nt:unstructured">
+                <first-container jcr:primaryType="nt:unstructured">
+                    <responsivegrid
+                        cq:policy="wcm/foundation/components/responsivegrid/policy_22051396635900"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/core/components/policies/mapping">
+                        <dhl jcr:primaryType="nt:unstructured">
+                            <components jcr:primaryType="nt:unstructured">
+                                <content jcr:primaryType="nt:unstructured">
+                                    <top-tiles
+                                            cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <related-posts
+                                            cq:policy="dhl/components/content/related-posts/policy_dhl_related-posts"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-showcase
+                                            cq:policy="dhl/components/content/article-showcase/policy_dhl_showcase"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                </content>
+                            </components>
+                        </dhl>
+                    </responsivegrid>
+                </first-container>
+            </column_container>
+            <hero_banner
+                    cq:policy="dhl/components/content/hero-banner/policy_1701253431611"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/core/components/policies/mapping"/>
+        </root>
+    </jcr:content>
+</jcr:root>
