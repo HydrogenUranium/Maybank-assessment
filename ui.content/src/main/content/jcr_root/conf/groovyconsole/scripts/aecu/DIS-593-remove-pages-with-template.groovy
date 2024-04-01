@@ -3,35 +3,68 @@ Steps:
 
 0)  INITIAL SETUP
     - define scope
-    def CONTENT_SCOPE = "/content/dhl"
-    def PAGE_TEMPLATES = [
-            "/conf/dhl/settings/wcm/templates/right-aligned-marketo-form",
+    @Field contentScope = "/content/dhl"
+    @Field templates = [
+            "/apps/dhl/templates/dhl-blank-page",
+            "/apps/dhl/templates/dhl-general-page",
+            "/apps/dhl/templates/dhl-register-page",
     ]
 
-1)  BACKUP:
+1) AFFECTED PAGES:
+    - show a list of affected pages
+    @Field dryRun = true
+    @Field contentManipulation = false
+
+2) BACKUP:
     - create a backup package of the pages that will be affected
-    def DRY_RUN = true
-    def CONTENT_MANIPULATION = false
+    @Field dryRun = false
+    @Field contentManipulation = false
 
 2)  MANIPULATION:
-    def DRY_RUN = true / false
-    def CONTENT_MANIPULATION = true
+    @Field dryRun = true / false
+    @Field contentManipulation = true
 
 3)  CHECK:
     - check result (expected: 'Results: 0')
-    def DRY_RUN = true
-    def CONTENT_MANIPULATION = false
+    @Field dryRun = true
+    @Field contentManipulation = false
 
 */
 
-def DRY_RUN = true
-def CONTENT_MANIPULATION = false
-def CONTENT_SCOPE = "/content/dhl"
-def PAGE_TEMPLATES = [
-        "/apps/dhl/templates/dhl-article-group-page",
-]
+import groovy.transform.Field
 
-def getAffectedPagePaths(contentScope, templates) {
+@Field dryRun = true
+@Field contentManipulation = false
+@Field contentScope = "/content/dhl"
+@Field templates = [
+        "/apps/dhl/templates/dhl-blank-page",
+        "/apps/dhl/templates/dhl-general-page",
+        "/apps/dhl/templates/dhl-register-page",
+]
+@Field versionAndPackageName = "DIS-593-before-removing-static-pages"
+
+@Field packagesPath = "/etc/packages/my_packages"
+@Field packageDefinitionPath = "$packagesPath/${versionAndPackageName}.zip/jcr:content/vlt:definition"
+
+main()
+
+/* Methods */
+
+// main
+def main() {
+    def affectedPagePaths = getAffectedPagePaths()
+    if (contentManipulation) {
+        removePages(affectedPagePaths)
+    } else {
+        if (dryRun) {
+            showListPages(affectedPagePaths)
+        } else {
+            createBackupPackage(affectedPagePaths)
+        }
+    }
+}
+
+def getAffectedPagePaths() {
     def affectedPagePaths = []
     getPage(contentScope).recurse { page ->
         def template = page?.contentResource?.valueMap?.get("cq:template", "")
@@ -44,7 +77,14 @@ def getAffectedPagePaths(contentScope, templates) {
     return affectedPagePaths
 }
 
-def removePages(affectedPagePaths, dryRun) {
+def showListPages(listPages) {
+    println("Affected pages: " + listPages.size())
+    if (listPages.size() > 0) {
+        listPages.each({ println(""""$it",""") })
+    }
+}
+
+def removePages(affectedPagePaths) {
     affectedPagePaths.each { pagePath ->
         if (getPage(pagePath) != null) {
             aecu.contentUpgradeBuilder()
@@ -56,18 +96,73 @@ def removePages(affectedPagePaths, dryRun) {
     }
 }
 
-def printFiltersForBackupPackage(listPages) {
-    println("Results: " + listPages.size())
-    if (listPages.size() > 0) {
-        println("(!) Use this list of pages for preparing package:")
-        listPages.each({ println("""<filter root="$it/jcr:content"/>""")})
+//create or update the package funtion
+def createOrUpdatePackage() {
+    def definitionNode
+
+    if (session.nodeExists(packageDefinitionPath)) {
+        definitionNode = getNode(packageDefinitionPath)
+        println "(!) INFO: A package with this name already exists"
+    } else {
+        def fileNode = getNode(packagesPath).addNode("${versionAndPackageName}.zip", "nt:file")
+
+        def contentNode = fileNode.addNode("jcr:content", "nt:resource")
+
+        contentNode.addMixin("vlt:Package")
+        contentNode.set("jcr:mimeType", "application/zip")
+
+        def stream = new ByteArrayInputStream("".bytes)
+        def binary = session.valueFactory.createBinary(stream)
+
+        contentNode.set("jcr:data", binary)
+
+        definitionNode = contentNode.addNode("vlt:definition", "vlt:PackageDefinition")
+        definitionNode.set("sling:resourceType", "cq/packaging/components/pack/definition")
+        definitionNode.set("name", versionAndPackageName)
+        definitionNode.set("path", "$packagesPath/$versionAndPackageName")
     }
+
+    definitionNode
 }
 
-// MAIN
-def affectedPagePaths = getAffectedPagePaths(CONTENT_SCOPE, PAGE_TEMPLATES)
-if (CONTENT_MANIPULATION) {
-    removePages(affectedPagePaths, DRY_RUN)
-} else {
-    printFiltersForBackupPackage(affectedPagePaths)
+//package filter nodes
+def packageFilterNodes(definitionNode) {
+    def filterNode
+
+    if (definitionNode.hasNode("filter")) {
+        filterNode = definitionNode.getNode("filter")
+        filterNode.nodes.each {
+            it.remove()
+        }
+    } else {
+        filterNode = definitionNode.addNode("filter")
+        filterNode.set("sling:resourceType", "cq/packaging/components/pack/definition/filterlist")
+    }
+
+    filterNode
+}
+
+def createBackupPackage(listPages) {
+    if (dryRun) {
+        println "(!) DRY RUN mode"
+    }
+
+    def definitionNode = createOrUpdatePackage()
+    def filterNode = packageFilterNodes(definitionNode)
+
+    listPages.eachWithIndex {
+        path,
+        i ->
+            def f = filterNode.addNode("filter$i")
+
+            f.set("mode", "replace")
+            f.set("root", path + "/jcr:content")
+            f.set("rules", new String[0])
+    }
+
+    if (!dryRun) {
+        save()
+    }
+
+    println "> Please go to '/crx/packmgr/index.jsp' and build created package: " + versionAndPackageName
 }
