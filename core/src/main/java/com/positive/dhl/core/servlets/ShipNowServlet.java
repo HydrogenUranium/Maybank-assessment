@@ -50,6 +50,6 @@ public class ShipNowServlet extends StandardFormInputServlet {
 
 	@Override
 	protected void performActionAfterSave(ValidatedRequestEntry entry) {
-		mailerComponent.ExecuteShipNowWelcome(entry.get("firstname").toString(), entry.get("email").toString());
+		//mailerComponent.ExecuteShipNowWelcome(entry.get("firstname").toString(), entry.get("email").toString());
 	}
 }
