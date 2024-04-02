@@ -105,7 +105,7 @@ public class AssetUtilService {
                 .map(Asset::getName)
                 .map(FilenameUtils::removeExtension)
                 .map(pathUtilService::encodePath)
-                .map(name -> name.replaceAll("[^a-zA-Z0-9%]", ""))
+                .map(name -> name.replaceAll("[^a-zA-Z0-9%\\-]", ""))
                 .orElse("");
     }
 
