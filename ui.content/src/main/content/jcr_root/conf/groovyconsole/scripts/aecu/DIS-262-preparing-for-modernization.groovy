@@ -1,60 +1,82 @@
-/* DIS-262 Preparing for the modernization
+/* DIS-262 Preparing for the modernization - Blank,General,Register
 Steps:
 
 0)  INITIAL SETUP
     - define scope
-    def MARKET = "/content/dhl"
-    def TEMPLATES = ["/apps/dhl/templates/dhl-amp-article-page"]
+    @Field contentScope = "/content/dhl"
+    @Field templates = [
+            "/apps/dhl/templates/dhl-blank-page",
+            "/apps/dhl/templates/dhl-general-page",
+            "/apps/dhl/templates/dhl-register-page",
+    ]
+    @Field versionAndPackageName = "before-converting-static-to-editable-template"
 
-1)  BACKUP:
+1) SHOW A LIST OF AFFECTED PAGES:
+    - to include them in the AEM Modernize Tool using this JS: new AemModernize.createJobForm().#addChildren(['/content/dhl/global/en-global']))
+    - to publish them after modernization using this groovy script 'DIS-262-publish-modernized-amp-pages.groovy'
+
+    @Field showListAffectedPages = true
+
+2)  BACKUP:
     - create a backup package of the pages that will be affected
-    def DRY_RUN = true
-    def SHOW_LIST_FOR_PUBLISHING = false
-
-2)  VERSION:
     - update the version of each page that will be affected
-    def DRY_RUN = false
-    def SHOW_LIST_FOR_PUBLISHING = false
 
-3)  LIST FOR PUBLISHING:
-    - show list affected pages for publishing them after modernization by this groovy script 'DIS-262-publish-modernized-amp-pages.groovy'
-    def SHOW_LIST_FOR_PUBLISHING = true
+    @Field dryRun = false
+    @Field showListAffectedPages = false
 
 */
 import java.text.SimpleDateFormat;
+import groovy.transform.Field
 
-def DRY_RUN = true
-def SHOW_LIST_FOR_PUBLISHING = false
-def CONTENT_SCOPE = "/content/dhl"
-def TEMPLATES = [
-        "/apps/dhl/templates/dhl-amp-article-page",
+@Field dryRun = true
+@Field showListAffectedPages = true
+@Field contentScope = "/content/dhl"
+@Field templates = [
+        "/apps/dhl/templates/dhl-blank-page",
+        "/apps/dhl/templates/dhl-general-page",
+        "/apps/dhl/templates/dhl-register-page",
 ]
-def VERSION_LABEL = "Before converting to Article Editable template"
+@Field versionAndPackageName = "DIS-594-before-converting-static-to-editable-template"
 
-def getPagesWithRemovedTemplate(removedTemplates, contentScope) {
+@Field packagesPath = "/etc/packages/my_packages"
+@Field packageDefinitionPath = "$packagesPath/${versionAndPackageName}.zip/jcr:content/vlt:definition"
+
+main()
+
+/* Methods */
+
+// main
+def main() {
+    def affectedPages = getPagesWithRemovedTemplate(templates)
+    if (showListAffectedPages) {
+        showListPages(affectedPages)
+    } else {
+        createBackupPackage(affectedPages)
+        setNewPageVersion(affectedPages)
+    }
+}
+
+def getPagesWithRemovedTemplate(removedTemplates) {
     def pagesWithRemovedTemplate = []
     getPage(contentScope).recurse { page ->
-        if (page.path ==~ /^\/content\/dhl\/(language-masters|global|\w{2})\/.*/) {
-            def template = page?.contentResource?.valueMap?.get("cq:template", "")
-
-            if (removedTemplates.contains(template)) {
-                pagesWithRemovedTemplate.add(page.path)
-            }
+        def content = page.node
+        if (page.path ==~ /^\/content\/dhl\/(language-masters|global|\w{2})(\/.*)?/ && content && removedTemplates.contains(content.get("cq:template"))) {
+            pagesWithRemovedTemplate.add(page.path)
         }
     }
 
     return pagesWithRemovedTemplate
 }
 
-def showListForPublishing(listPages) {
+def showListPages(listPages) {
     println("Results: " + listPages.size())
     if (listPages.size() > 0) {
-        println("(!) Use this list of pages for publishing:")
-        listPages.each({ println(""""$it",""")})
+        println("(!) Use this list of pages to modernize and to publish:")
+        listPages.each({ println(""""$it",""") })
     }
 }
 
-def setNewPageVersion(listPages, versionName, dryRun) {
+def setNewPageVersion(listPages) {
     if (listPages.size() > 0) {
         println("----------------------------------------")
         if (dryRun) {
@@ -67,7 +89,7 @@ def setNewPageVersion(listPages, versionName, dryRun) {
             def isVersionExist = false
 
             def page = getPage(pagePath);
-            if (page.isLocked()) {
+            if (page?.isLocked()) {
                 if (!dryRun) {
                     page.unlock()
                 }
@@ -75,7 +97,7 @@ def setNewPageVersion(listPages, versionName, dryRun) {
             }
 
             pageManager.getRevisions(pagePath, null, false).each({ revision ->
-                if (revision.getLabel().contains(versionName)) {
+                if (revision.getLabel().contains(versionAndPackageName)) {
                     isVersionExist = true
                     println('(!) INFO: Page Version already exists')
                     return false
@@ -84,7 +106,7 @@ def setNewPageVersion(listPages, versionName, dryRun) {
 
             if (!isVersionExist) {
                 def date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
-                def label = String.format("%s - %s", versionName, date);
+                def label = String.format("%s - %s", versionAndPackageName, date);
 
                 if (!dryRun) {
                     pageManager.createRevision(page, label, "Groovy Script version");
@@ -95,26 +117,73 @@ def setNewPageVersion(listPages, versionName, dryRun) {
     }
 }
 
-def getListAffectedPages(modifiedNodes) {
-    return modifiedNodes
+//create or update the package funtion
+def createOrUpdatePackage() {
+    def definitionNode
+
+    if (session.nodeExists(packageDefinitionPath)) {
+        definitionNode = getNode(packageDefinitionPath)
+        println "(!) INFO: A package with this name already exists"
+    } else {
+        def fileNode = getNode(packagesPath).addNode("${versionAndPackageName}.zip", "nt:file")
+
+        def contentNode = fileNode.addNode("jcr:content", "nt:resource")
+
+        contentNode.addMixin("vlt:Package")
+        contentNode.set("jcr:mimeType", "application/zip")
+
+        def stream = new ByteArrayInputStream("".bytes)
+        def binary = session.valueFactory.createBinary(stream)
+
+        contentNode.set("jcr:data", binary)
+
+        definitionNode = contentNode.addNode("vlt:definition", "vlt:PackageDefinition")
+        definitionNode.set("sling:resourceType", "cq/packaging/components/pack/definition")
+        definitionNode.set("name", versionAndPackageName)
+        definitionNode.set("path", "$packagesPath/$versionAndPackageName")
+    }
+
+    definitionNode
 }
 
-def printFiltersForBackupPackage(listPages) {
-    println("Results: " + listPages.size())
-    if (listPages.size() > 0) {
-        println("(!) Use this list of pages for preparing package:")
-        listPages.each({ println("""<filter root="$it/jcr:content"/>""")})
+//package filter nodes
+def packageFilterNodes(definitionNode) {
+    def filterNode
+
+    if (definitionNode.hasNode("filter")) {
+        filterNode = definitionNode.getNode("filter")
+        filterNode.nodes.each {
+            it.remove()
+        }
+    } else {
+        filterNode = definitionNode.addNode("filter")
+        filterNode.set("sling:resourceType", "cq/packaging/components/pack/definition/filterlist")
     }
+
+    filterNode
 }
 
-// MAIN
-def modifiedNodes = getPagesWithRemovedTemplate(TEMPLATES, CONTENT_SCOPE)
-if (SHOW_LIST_FOR_PUBLISHING) {
-    showListForPublishing(modifiedNodes)
-} else {
-    def listAffectedPages = getListAffectedPages(modifiedNodes)
-    if (DRY_RUN) {
-        printFiltersForBackupPackage(listAffectedPages)
+def createBackupPackage(listPages) {
+    if (dryRun) {
+        println "(!) DRY RUN mode"
     }
-    setNewPageVersion(listAffectedPages, VERSION_LABEL, DRY_RUN)
+
+    def definitionNode = createOrUpdatePackage()
+    def filterNode = packageFilterNodes(definitionNode)
+
+    listPages.eachWithIndex {
+        path,
+        i ->
+            def f = filterNode.addNode("filter$i")
+
+            f.set("mode", "replace")
+            f.set("root", path + "/jcr:content")
+            f.set("rules", new String[0])
+    }
+
+    if (!dryRun) {
+        save()
+    }
+
+    println "> Please go to '/crx/packmgr/index.jsp' and build created package: " + versionAndPackageName
 }
