@@ -1,4 +1,4 @@
-/* DIS-262 Preparing for the modernization - Blank,General,Register
+/* DIS-593 Remove pages with templates
 Steps:
 
 0)  INITIAL SETUP
@@ -9,34 +9,39 @@ Steps:
             "/apps/dhl/templates/dhl-general-page",
             "/apps/dhl/templates/dhl-register-page",
     ]
-    @Field versionAndPackageName = "before-converting-static-to-editable-template"
 
-1) SHOW A LIST OF AFFECTED PAGES:
-    - to include them in the AEM Modernize Tool using this JS: new AemModernize.createJobForm().#addChildren(['/content/dhl/global/en-global']))
-    - to publish them after modernization using this groovy script 'DIS-262-publish-modernized-amp-pages.groovy'
+1) AFFECTED PAGES:
+    - show a list of affected pages
+    @Field dryRun = true
+    @Field contentManipulation = false
 
-    @Field showListAffectedPages = true
-
-2)  BACKUP:
+2) BACKUP:
     - create a backup package of the pages that will be affected
-    - update the version of each page that will be affected
-
     @Field dryRun = false
-    @Field showListAffectedPages = false
+    @Field contentManipulation = false
+
+2)  MANIPULATION:
+    @Field dryRun = true / false
+    @Field contentManipulation = true
+
+3)  CHECK:
+    - check result (expected: 'Results: 0')
+    @Field dryRun = true
+    @Field contentManipulation = false
 
 */
-import java.text.SimpleDateFormat;
+
 import groovy.transform.Field
 
 @Field dryRun = true
-@Field showListAffectedPages = true
+@Field contentManipulation = false
 @Field contentScope = "/content/dhl"
 @Field templates = [
         "/apps/dhl/templates/dhl-blank-page",
         "/apps/dhl/templates/dhl-general-page",
         "/apps/dhl/templates/dhl-register-page",
 ]
-@Field versionAndPackageName = "DIS-594-before-converting-static-to-editable-template"
+@Field versionAndPackageName = "DIS-593-before-removing-static-pages"
 
 @Field packagesPath = "/etc/packages/my_packages"
 @Field packageDefinitionPath = "$packagesPath/${versionAndPackageName}.zip/jcr:content/vlt:definition"
@@ -47,73 +52,47 @@ main()
 
 // main
 def main() {
-    def affectedPages = getPagesWithRemovedTemplate(templates)
-    if (showListAffectedPages) {
-        showListPages(affectedPages)
+    def affectedPagePaths = getAffectedPagePaths()
+    if (contentManipulation) {
+        removePages(affectedPagePaths)
     } else {
-        createBackupPackage(affectedPages)
-        setNewPageVersion(affectedPages)
+        if (dryRun) {
+            showListPages(affectedPagePaths)
+        } else {
+            createBackupPackage(affectedPagePaths)
+        }
     }
 }
 
-def getPagesWithRemovedTemplate(removedTemplates) {
-    def pagesWithRemovedTemplate = []
+def getAffectedPagePaths() {
+    def affectedPagePaths = []
     getPage(contentScope).recurse { page ->
-        def content = page.node
-        if (page.path ==~ /^\/content\/dhl\/(language-masters|global|\w{2})(\/.*)?/ && content && removedTemplates.contains(content.get("cq:template"))) {
-            pagesWithRemovedTemplate.add(page.path)
+        def template = page?.contentResource?.valueMap?.get("cq:template", "")
+
+        if (templates.contains(template)) {
+            affectedPagePaths.add(page.path)
         }
     }
 
-    return pagesWithRemovedTemplate
+    return affectedPagePaths
 }
 
 def showListPages(listPages) {
-    println("Results: " + listPages.size())
+    println("Affected pages: " + listPages.size())
     if (listPages.size() > 0) {
-        println("(!) Use this list of pages to modernize and to publish:")
         listPages.each({ println(""""$it",""") })
     }
 }
 
-def setNewPageVersion(listPages) {
-    if (listPages.size() > 0) {
-        println("----------------------------------------")
-        if (dryRun) {
-            println("(!) DRY RUN mode")
+def removePages(affectedPagePaths) {
+    affectedPagePaths.each { pagePath ->
+        if (getPage(pagePath) != null) {
+            aecu.contentUpgradeBuilder()
+                    .forResources((String[])[pagePath])
+                    .doDeactivateContainingPage()
+                    .doDeleteContainingPage()
+                    .run(dryRun)
         }
-        println("List of pages whose version was updated:")
-
-        listPages.each({ pagePath ->
-            println('> Page: ' + pagePath)
-            def isVersionExist = false
-
-            def page = getPage(pagePath);
-            if (page?.isLocked()) {
-                if (!dryRun) {
-                    page.unlock()
-                }
-                println('(!) INFO: Page was unlocked')
-            }
-
-            pageManager.getRevisions(pagePath, null, false).each({ revision ->
-                if (revision.getLabel().contains(versionAndPackageName)) {
-                    isVersionExist = true
-                    println('(!) INFO: Page Version already exists')
-                    return false
-                }
-            })
-
-            if (!isVersionExist) {
-                def date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
-                def label = String.format("%s - %s", versionAndPackageName, date);
-
-                if (!dryRun) {
-                    pageManager.createRevision(page, label, "Groovy Script version");
-                }
-                println('(!) INFO: New Page Version was created')
-            }
-        })
     }
 }
 

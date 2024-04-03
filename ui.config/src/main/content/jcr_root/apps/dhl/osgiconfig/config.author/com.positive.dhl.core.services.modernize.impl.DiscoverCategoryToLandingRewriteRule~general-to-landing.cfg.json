@@ -1,0 +1,10 @@
+{
+  "id": "general-to-landing",
+  "editableTemplate":"/conf/dhl/settings/wcm/templates/general-page",
+  "staticTemplate":"/apps/dhl/templates/dhl-general-page",
+  "containerMappings":[
+    "par:root/column_container/first-container/responsivegrid"
+  ],
+  "slingResourceType":"dhl/components/pages/standard",
+  "enabled": true
+}
