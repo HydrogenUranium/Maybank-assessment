@@ -16,13 +16,25 @@ export const getComponentPath = (): string => {
     return JSON.parse(componentConfig).currentPagePath + '/jcr:content/root';
 };
 
+
+const getUniqueArticlesByPath = (articles: Article[]): Article[] => {
+    const articlesMap = new Map<string, Article>();
+    articles.forEach(article => {
+        articlesMap.set(article.path, article);
+    });
+    return Array.from(articlesMap.values());
+};
+  
+
 export const getArticles = async (query: string): Promise<Article[]> => {
     const prefix = getPathPrefix();
     const homePagePathSuffix = getHomePagePath();
     const componentPath = getComponentPath();
-    return get({ 
+    const articles = await get<Article[]>({ 
         url: `${prefix}${componentPath}.searcharticlesuggest.json?s=${query}&homepagepath=${homePagePathSuffix}` 
     });
+
+    return getUniqueArticlesByPath(articles)
 };
 
 export const getTags = async (query: string): Promise<any> => {
