@@ -26,10 +26,7 @@ public class PageUtilService {
     public static final int CATEGORY_PAGE_LEVEL = HOME_PAGE_LEVEL + 1;
     public static final int HOME_PAGE_DEPTH = HOME_PAGE_LEVEL + 1;
 
-    public static final String HOME_PAGE_STATIC_RESOURCE_TYPE = "dhl/components/pages/home";
     public static final String HOME_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-home-page";
-
-    public static final String CATEGORY_PAGE_STATIC_RESOURCE_TYPE = "dhl/components/pages/articlecategory";
     public static final String CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-category-page";
 
     public int getHomePageLevel() {
@@ -75,7 +72,7 @@ public class PageUtilService {
         }
         ValueMap pageProperties = page.getProperties();
         String resourceType = pageProperties.get(SLING_RESOURCE_TYPE_PROPERTY, "");
-        boolean isHomePageResourceType = resourceType.equals(HOME_PAGE_DYNAMIC_RESOURCE_TYPE) || resourceType.equals(HOME_PAGE_STATIC_RESOURCE_TYPE);
+        boolean isHomePageResourceType = resourceType.equals(HOME_PAGE_DYNAMIC_RESOURCE_TYPE);
         return page.getDepth() == HOME_PAGE_DEPTH && isHomePageResourceType;
     }
 

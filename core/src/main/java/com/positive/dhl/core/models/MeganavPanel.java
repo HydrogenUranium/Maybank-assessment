@@ -6,7 +6,6 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -18,7 +17,6 @@ import java.util.*;
 
 import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
-import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
 import static org.apache.jackrabbit.JcrConstants.JCR_CONTENT;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
@@ -143,7 +141,7 @@ public class MeganavPanel {
 			Page child = children.next();
 			ValueMap properties = child.adaptTo(ValueMap.class);
 			if ((properties != null)
-					&& StringUtils.equalsAny(properties.get(JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY, ""), CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
+					&& properties.get(JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY, "").equals(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
 				panels.add(new MeganavPanel(count, child, topLevelCategory, null, null));
 				count++;
 			}
@@ -156,11 +154,8 @@ public class MeganavPanel {
 			map.put("path", page.getPath());
 			map.put("group.p.or", "true");
 			map.put("group.1_property", JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY);
-			map.put("group.1_property.value", CATEGORY_PAGE_STATIC_RESOURCE_TYPE);
+			map.put("group.1_property.value", CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE);
 			map.put("group.1_property.operation", "like");
-			map.put("group.2_property", JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY);
-			map.put("group.2_property.value", CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE);
-			map.put("group.2_property.operation", "like");
 			map.put("p.limit", "50");
 
 			Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));

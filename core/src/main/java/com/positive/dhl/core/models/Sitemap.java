@@ -30,13 +30,9 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static com.day.cq.wcm.api.constants.NameConstants.*;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
-import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
 import static org.apache.jackrabbit.JcrConstants.JCR_CONTENT;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
-/**
- *
- */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class Sitemap {
 	protected static final String HTML_EXTENSION = ".html";
@@ -56,52 +52,31 @@ public class Sitemap {
 	private List<SitemapLinkGroup> articleLinks;
 	private List<SitemapLinkGroup> categoryLinks;
 	private List<SitemapLinkGroup> otherPageLinks;
-	
-    /**
-	 *
-	 */
+
 	public List<SitemapLinkGroup> getArticleLinks() {
 		return new ArrayList<>(articleLinks);
 	}
 
-    /**
-	 *
-	 */
 	public void setArticleLinks(List<SitemapLinkGroup> articleLinks) {
 		this.articleLinks = new ArrayList<>(articleLinks);
 	}
 
-    /**
-	 *
-	 */
 	public List<SitemapLinkGroup> getCategoryLinks() {
 		return new ArrayList<>(categoryLinks);
 	}
 
-    /**
-	 *
-	 */
 	public void setCategoryLinks(List<SitemapLinkGroup> categoryLinks) {
 		this.categoryLinks = new ArrayList<>(categoryLinks);
 	}
 
-    /**
-	 *
-	 */
 	public List<SitemapLinkGroup> getOtherPageLinks() {
 		return new ArrayList<>(otherPageLinks);
 	}
 
-    /**
-	 *
-	 */
 	public void setOtherPageLinks(List<SitemapLinkGroup> otherPageLinks) {
 		this.otherPageLinks = new ArrayList<>(otherPageLinks);
 	}
 
-    /**
-	 *
-	 */
 	@PostConstruct
     protected void init() throws RepositoryException {
 		articleLinks = new ArrayList<>();
@@ -138,7 +113,7 @@ public class Sitemap {
 							ValueMap properties = page.adaptTo(ValueMap.class);
 							if (properties != null) {
 								String title = properties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
-								if ((title == null) || (title.trim().length() == 0)) {
+								if (title.isBlank()) {
 									title = properties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
 								}
 
@@ -172,12 +147,12 @@ public class Sitemap {
 
 				if (properties != null) {
 					String pageType = properties.get(JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY, "");
-					if (!StringUtils.equalsAny(pageType, CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
+					if (!pageType.equals(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
 						continue;
 					}
 
 					String title = properties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
-					if ((title == null) || (title.trim().length() == 0)) {
+					if (title.isBlank()) {
 						title = properties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
 					}
 
@@ -228,7 +203,7 @@ public class Sitemap {
 								ValueMap properties = resource.adaptTo(ValueMap.class);
 								if (properties != null) {
 									String title = properties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
-									if ((title == null) || (title.trim().length() == 0)) {
+									if (title.isBlank()) {
 										title = properties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
 									}
 
@@ -249,10 +224,7 @@ public class Sitemap {
 			}
 		}
 	}
-	
-    /**
-	 * 
-	 */
+
 	private List<SitemapLinkGroup> getChildrenCategories(Page page) {
 		List<SitemapLinkGroup> links = new ArrayList<>();
 
@@ -266,12 +238,12 @@ public class Sitemap {
 					continue;
 				}
 				String pageType = groupProperties.get(JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY, "");
-				if (!StringUtils.equalsAny(pageType, CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
+				if (!pageType.equals(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
 					continue;
 				}
 
 				String groupTitle = groupProperties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
-				if (groupTitle.trim().length() == 0) {
+				if (groupTitle.isBlank()) {
 					groupTitle = groupProperties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
 				}
 
