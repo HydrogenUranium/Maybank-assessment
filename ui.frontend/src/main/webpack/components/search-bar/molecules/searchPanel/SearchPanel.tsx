@@ -99,7 +99,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
           thinTitle
           overflowHidden
           renderItem={(article) => (
-            <a href={`${article.path}.html`} className={styles.article} key={article.path}>
+            <a href={`${article.path}.html`} className={styles.article} key={article.path} onClick={() => putRecentSearch(inputRef.current?.value)}>
               <div className={styles.articleImage} style={{ backgroundImage: `url(${article.listimage})` }}></div>
               <div className={styles.articleInfo}>
                 <div className={styles.articleInfoTitle}>{article.title}</div>
