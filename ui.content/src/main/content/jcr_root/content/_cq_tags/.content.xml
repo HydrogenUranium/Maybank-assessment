@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          cq:isDelivered="{Boolean}true"
+          cq:lastReplicated="{Date}2023-12-08T15:03:55.801Z"
+          cq:lastReplicated_publish="{Date}2023-12-08T15:03:55.801Z"
+          cq:lastReplicatedBy="aecu-content-migrator"
+          cq:lastReplicatedBy_publish="aecu-content-migrator"
+          cq:lastReplicationAction="Activate"
+          cq:lastReplicationAction_publish="Activate"
+          jcr:mixinTypes="[cq:ReplicationStatus,cq:ReplicationStatus2,rep:AccessControllable,sling:Redirect]"
+          jcr:primaryType="sling:Folder"
+          jcr:title="Tags"
+          sling:resourceType="sling:redirect"
+          sling:target="/tagging"
+          hidden="{Boolean}true"
+          languages="[ar,ar_ae,bg,cs,cs_cz,da,de,de_at,de_ch,de_de,el,el_gr,en,en_au,en_bd,en_cn,en_cz,en_es,en_fr,en_gb,en_ie,en_in,en_it,en_ke,en_kh,en_kr,en_lk,en_mm,en_my,en_ng,en_nz,en_ph,en_pk,en_pt,en_sg,en_sk,en_th,en_us,en_vn,en_za,es,es_es,fr,fr_be,fr_ca,he,hi,hu,id,id_id,it,it_it,ja,ja_jp,ko,ko_kr,ms,nl,nl_be,pl,pt,pt_pt,sk,sk_sk,sv,th,th_th,vi,vi_vn,zh,zh_cn,zh_hk,zh_tw]"/>
