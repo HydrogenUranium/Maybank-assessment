@@ -48,17 +48,15 @@ class AssetUtilServiceTest {
 
     @Test
     void resolvePath_ShouldReturnOriginalLink_WhenAssetDeliveryIsNotInjected() {
-        service.unbindAssetDelivery(assetDelivery);
-
         String originalLink = "/content/dam/image.jpg";
-        String resolvedLink = service.getDeliveryURL(originalLink);
+        String resolvedLink = service.getDeliveryURL(originalLink, assetDelivery);
 
         assertEquals(originalLink, resolvedLink);
     }
 
     @Test
     void resolvePath_ShouldReturnEmptyLink_WhenAssetPathIsBlank() {
-        String resolvedLink = service.getDeliveryURL(null);
+        String resolvedLink = service.getDeliveryURL(null, assetDelivery);
 
         assertEquals("", resolvedLink);
     }
@@ -84,9 +82,8 @@ class AssetUtilServiceTest {
         when(pathUtilService.decodePath(anyString())).thenAnswer(invocationOnMock ->
                 invocationOnMock.getArgument(0, String.class)
         );
-        service.bindAssetDelivery(assetDelivery);
 
-        String resolvedLink = service.getDeliveryURL(originalLink);
+        String resolvedLink = service.getDeliveryURL(originalLink, assetDelivery);
 
         assertEquals("/adobe/dynamicmedia/delivery/content/dam/image.jpg", resolvedLink);
     }
@@ -112,9 +109,8 @@ class AssetUtilServiceTest {
         when(pathUtilService.decodePath(anyString())).thenAnswer(invocationOnMock ->
                 invocationOnMock.getArgument(0, String.class)
         );
-        service.bindAssetDelivery(assetDelivery);
 
-        String resolvedLink = service.getDeliveryURL(originalLink, new HashMap<>());
+        String resolvedLink = service.getDeliveryURL(originalLink, new HashMap<>(), assetDelivery);
 
         assertEquals("/adobe/dynamicmedia/delivery/content/dam/image.jpg", resolvedLink);
     }
@@ -125,7 +121,7 @@ class AssetUtilServiceTest {
         when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
         when(resolver.getResource(anyString())).thenThrow(new NullPointerException());
 
-        String resolvedLink = service.getDeliveryURL(originalLink, new HashMap<>());
+        String resolvedLink = service.getDeliveryURL(originalLink, new HashMap<>(), assetDelivery);
 
         assertEquals(originalLink, resolvedLink);
     }
@@ -179,9 +175,8 @@ class AssetUtilServiceTest {
         when(pathUtilService.decodePath(anyString())).thenAnswer(invocationOnMock ->
                 invocationOnMock.getArgument(0, String.class)
         );
-        service.bindAssetDelivery(assetDelivery);
 
-        String resolvedLink = service.getMappedDeliveryUrl(originalLink, new HashMap<>());
+        String resolvedLink = service.getMappedDeliveryUrl(originalLink, new HashMap<>(), assetDelivery);
 
         assertEquals("/discover/adobe/dynamicmedia/delivery/content/dam/image.jpg", resolvedLink);
     }

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class OSGiConfigHelper {
 
-    public static String DEFAULT_DELIMITER = ":";
+    public static final String DEFAULT_DELIMITER = ":";
 
     private OSGiConfigHelper() {
         throw new IllegalStateException("Utility class");

@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
@@ -23,6 +24,11 @@ public class Picture {
 
     @OSGiService(injectionStrategy = InjectionStrategy.REQUIRED)
     protected PathUtilService pathUtilService;
+
+    @OSGiService(
+            injectionStrategy = InjectionStrategy.OPTIONAL
+    )
+    protected AssetDelivery assetDelivery;
 
     @RequestAttribute
     protected String image;
@@ -90,8 +96,8 @@ public class Picture {
     }
 
     protected List<Map.Entry<String, String>> getOptimizedImagesWithMimeTypes(String assetPath) {
-        String webpImage = assetUtilService.getDeliveryURL(assetPath);
-        String defaultImage = assetUtilService.getDeliveryURL(assetPath, Map.of("preferwebp", "false"));
+        String webpImage = assetUtilService.getDeliveryURL(assetPath, assetDelivery);
+        String defaultImage = assetUtilService.getDeliveryURL(assetPath, Map.of("preferwebp", "false"), assetDelivery);
         if(forceMap) {
             webpImage = pathUtilService.map(webpImage);
             defaultImage = pathUtilService.map(defaultImage);
