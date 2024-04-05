@@ -1,9 +1,6 @@
 package com.positive.dhl.core.models;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
-import javax.jcr.Session;
 
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import com.positive.dhl.core.components.DotmailerComponent;
+import com.positive.dhl.core.components.MailerComponent;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 
@@ -19,16 +16,16 @@ class UserAccountTest {
     private final AemContext ctx = new AemContext(ResourceResolverType.JCR_MOCK);
     
     @Mock
-    DotmailerComponent dotmailerComponent;
+    MailerComponent mailerComponent;
     
 	@BeforeEach
 	public void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/RegistrationsStore.json", "/content");
 	    
-	    dotmailerComponent = mock(DotmailerComponent.class);
-	    Mockito.when(dotmailerComponent.ExecutePasswordReset(anyString(), anyString(), anyString(), anyString())).thenReturn(true);
-	    Mockito.when(dotmailerComponent.ExecutePasswordResetConfirm(anyString(), anyString())).thenReturn(true);
-	    Mockito.when(dotmailerComponent.ExecuteDeleteAccount(anyString(), anyString())).thenReturn(true);
+	    mailerComponent = mock(MailerComponent.class);
+	    Mockito.when(mailerComponent.ExecutePasswordReset(anyString(), anyString(), anyString(), anyString())).thenReturn(true);
+	    Mockito.when(mailerComponent.ExecutePasswordResetConfirm(anyString(), anyString())).thenReturn(true);
+	    Mockito.when(mailerComponent.ExecuteDeleteAccount(anyString(), anyString())).thenReturn(true);
 	}
 
 	@Test

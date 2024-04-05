@@ -1,6 +1,6 @@
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.components.DotmailerComponent;
+import com.positive.dhl.core.components.MailerComponent;
 import com.positive.dhl.core.exceptions.DiscoverUserExistsException;
 import com.positive.dhl.core.exceptions.DiscoverUserNotFoundException;
 
@@ -545,7 +545,7 @@ public class UserAccount {
 	/**
 	 * 
 	 */
-	public static boolean requestPassword(Connection connection, DotmailerComponent dotmailerComponent, String page, String username) throws SQLException, IOException {
+	public static boolean requestPassword(Connection connection, MailerComponent mailerComponent, String page, String username) throws SQLException {
 		int id = findByUsername(connection, username);
 		if (id == 0) {
 			return false;
@@ -569,13 +569,13 @@ public class UserAccount {
 			updateStatement.executeUpdate();
 		}
 		
-		return dotmailerComponent.ExecutePasswordReset(page, firstname, username, passwordResetToken);
+		return mailerComponent.ExecutePasswordReset(page, firstname, username, passwordResetToken);
 	}
 
 	/**
 	 * 
 	 */
-	public static boolean resetPassword(Connection connection, DotmailerComponent dotmailerComponent, String username, String token, String password) throws SQLException, IOException, NoSuchAlgorithmException {
+	public static boolean resetPassword(Connection connection, MailerComponent mailerComponent, String username, String token, String password) throws SQLException, NoSuchAlgorithmException {
 		int id = findByUsername(connection, username);
 		if (id == 0) {
 			return false;
@@ -610,13 +610,13 @@ public class UserAccount {
 			updateStatement.executeUpdate();
 		}
 		
-		return dotmailerComponent.ExecutePasswordResetConfirm(firstname, username);
+		return mailerComponent.ExecutePasswordResetConfirm(firstname, username);
 	}
 
 	/**
 	 * 
 	 */
-	public static boolean deleteAccount(Connection connection, DotmailerComponent dotmailerComponent, String username) throws SQLException, IOException, DiscoverUserNotFoundException {
+	public static boolean deleteAccount(Connection connection, MailerComponent mailerComponent, String username) throws SQLException, DiscoverUserNotFoundException {
 		int id = findByUsername(connection, username);
 		if (id == 0) {
 			throw new DiscoverUserNotFoundException("An account with the email address '" + username + COULD_NOT_BE_FOUND);
@@ -639,7 +639,7 @@ public class UserAccount {
 			deleteStatement.executeUpdate();
 		}
 		
-		return dotmailerComponent.ExecuteDeleteAccount(firstname, username);
+		return mailerComponent.ExecuteDeleteAccount(firstname, username);
 	}
 
 	/**

@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
-import com.positive.dhl.core.components.DotmailerComponent;
+import com.positive.dhl.core.components.MailerComponent;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.models.UserAccount;
 
@@ -54,7 +54,7 @@ public class UpdatePasswordServlet extends SlingAllMethodsServlet {
 	 * 
 	 */
 	@Reference
-	private transient DotmailerComponent dotmailerComponent;
+	private transient MailerComponent mailerComponent;
 
     /**
 	 * 
@@ -73,7 +73,7 @@ public class UpdatePasswordServlet extends SlingAllMethodsServlet {
 					DataSource dataSource = (DataSource)this.source.getDataSource(DatabaseHelpers.DATA_SOURCE_NAME);
 					if (dataSource != null) {
 			        	try (Connection connection = dataSource.getConnection()) {
-							boolean result = UserAccount.resetPassword(connection, dotmailerComponent, username, token, password);
+							boolean result = UserAccount.resetPassword(connection, mailerComponent, username, token, password);
 							
 							if (result) {
 								responseBody = "{ \"status\": \"ok\" }";
