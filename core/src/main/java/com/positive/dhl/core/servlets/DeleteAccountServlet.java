@@ -22,7 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
-import com.positive.dhl.core.components.DotmailerComponent;
+import com.positive.dhl.core.components.MailerComponent;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.models.UserAccount;
 
@@ -59,7 +59,7 @@ public class DeleteAccountServlet extends SlingAllMethodsServlet {
 	 * 
 	 */
 	@Reference
-	private transient DotmailerComponent dotmailerComponent;
+	private transient MailerComponent mailerComponent;
 
     /**
 	 * 
@@ -82,7 +82,7 @@ public class DeleteAccountServlet extends SlingAllMethodsServlet {
 						}
 						if (user != null && user.isAuthenticated()) {
 							try (Connection connection = dataSource.getConnection()) {
-								if (UserAccount.deleteAccount(connection, dotmailerComponent, username)) {
+								if (UserAccount.deleteAccount(connection, mailerComponent, username)) {
 									responseBody = "{ \"status\": \"ok\", \"error\": \"\" }";
 
 								} else {

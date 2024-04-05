@@ -1,7 +1,7 @@
 package com.positive.dhl.core.shipnow;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
-import com.positive.dhl.core.components.DotmailerComponent;
+import com.positive.dhl.core.components.MailerComponent;
 import com.positive.dhl.core.services.ShipNowService;
 import com.positive.dhl.core.servlets.ShipNowServlet;
 import com.positive.dhl.core.helpers.ValidatedRequestEntry;
@@ -45,7 +45,7 @@ class ShipNowServletTest {
     ResultSet results;
     
     @Mock
-    DotmailerComponent dotmailerComponent;
+    MailerComponent mailerComponent;
     
     @Mock
     DataSourcePool dataSourcePool;
@@ -69,14 +69,14 @@ class ShipNowServletTest {
 		Map<String,Object> injectedServices = new HashMap<>();
 		injectedServices.put("shipNowService", shipNowService);
 		injectedServices.put("dataSourcePool", dataSourcePool);
-		injectedServices.put("dotmailerComponent", dotmailerComponent);
+		injectedServices.put("mailerComponent", mailerComponent);
 
 		request = ctx.request();
 		response = ctx.response();
 
 		ctx.registerService(ShipNowService.class,shipNowService);
 		ctx.registerService(DataSourcePool.class,dataSourcePool);
-		ctx.registerService(DotmailerComponent.class,dotmailerComponent);
+		ctx.registerService(MailerComponent.class, mailerComponent);
 	  underTest = new ShipNowServlet();
 		ctx.registerInjectActivateService(underTest,injectedServices);
         
@@ -85,7 +85,7 @@ class ShipNowServletTest {
 		Mockito.when(connection.prepareStatement(anyString())).thenReturn(statement);
 		Mockito.when(statement.executeQuery()).thenReturn(results);
 		Mockito.when(statement.executeUpdate()).thenReturn(1);
-    Mockito.when(dotmailerComponent.ExecuteShipNowWelcome(anyString(), anyString())).thenReturn(true);
+    Mockito.when(mailerComponent.ExecuteShipNowWelcome(anyString(), anyString())).thenReturn(true);
 	}
 	
 	@Test

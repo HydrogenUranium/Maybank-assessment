@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.day.commons.datasource.poolservice.DataSourcePool;
-import com.positive.dhl.core.components.DotmailerComponent;
+import com.positive.dhl.core.components.MailerComponent;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
 import com.positive.dhl.core.models.UserAccount;
 
@@ -57,7 +57,7 @@ public class RequestPasswordServlet extends SlingAllMethodsServlet {
 	 * 
 	 */
 	@Reference
-	private transient DotmailerComponent dotmailerComponent;
+	private transient MailerComponent mailerComponent;
 
     /**
 	 * 
@@ -76,7 +76,7 @@ public class RequestPasswordServlet extends SlingAllMethodsServlet {
 					if (dataSource != null) {
 						boolean result = false;
 			        	try (Connection connection = dataSource.getConnection()) {
-							result = UserAccount.requestPassword(connection, dotmailerComponent, page, username);
+							result = UserAccount.requestPassword(connection, mailerComponent, page, username);
 						}
 						
 						if (result) {

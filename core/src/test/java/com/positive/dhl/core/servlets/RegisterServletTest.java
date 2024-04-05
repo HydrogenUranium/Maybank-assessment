@@ -4,7 +4,7 @@ import com.day.commons.datasource.poolservice.DataSourcePool;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.positive.dhl.core.components.DotmailerComponent;
+import com.positive.dhl.core.components.MailerComponent;
 import com.positive.dhl.core.helpers.ValidationHelper;
 import com.positive.dhl.core.models.UserAccount;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -44,7 +44,7 @@ class RegisterServletTest {
     private final MockSlingHttpServletResponse response = context.response();
 
     @Mock
-    private DotmailerComponent dotmailerComponent;
+    private MailerComponent mailerComponent;
 
     @Mock
     private DataSourcePool dataSourcePool;
@@ -320,7 +320,7 @@ class RegisterServletTest {
             assertEquals("token", json.get("token").asText());
             assertEquals("refresh-token", json.get("refresh_token").asText());
             assertEquals(60_000, json.get("ttl").asInt());
-            verify(dotmailerComponent, times(1)).ExecuteWelcome("Dmytro", "test@dhl.com");
+            verify(mailerComponent, times(1)).ExecuteWelcome("Dmytro", "test@dhl.com");
         }
     }
 }
