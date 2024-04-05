@@ -46,13 +46,6 @@
                                                 </field>
                                             </canonicals>
 
-                                            <noindex
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                text="Set 'no-index' meta-tag on this page (if no-index is set on the site - this page will already have no-index set)"
-                                                name="./noindex"
-                                                value="true"/>
-
                                             <hideNavigationMenu
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"

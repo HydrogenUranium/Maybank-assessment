@@ -2,6 +2,7 @@ package com.positive.dhl.core.services.impl;
 
 import com.adobe.aem.wcm.seo.localization.LanguageAlternativesService;
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.Writer;
@@ -45,6 +47,9 @@ public class PageTreeSitemapGeneratorImplTest {
     private ResourceResolver resourceResolver;
     private SitemapImpl sitemap;
 
+    @Mock
+    private PageUtilService pageUtilService;
+
     @InjectMocks
     private PageTreeSitemapGeneratorImpl pageTreeSitemapGenerator;
 
@@ -67,6 +72,7 @@ public class PageTreeSitemapGeneratorImplTest {
         resourceResolver = context.resourceResolver();
         context.registerService(LanguageAlternativesService.class, languageAlternativesService);
         context.registerService(ReplicationStatusCheck.class, replicationStatusCheck);
+        context.registerService(PageUtilService.class, pageUtilService);
 
         sitemap = spy(new SitemapImpl(writer, extensionProviderManager));
         resource = getResource(TEST_RESOURCE_PATH);

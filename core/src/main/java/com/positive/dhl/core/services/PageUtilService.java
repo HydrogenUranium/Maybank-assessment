@@ -13,9 +13,11 @@ import org.jetbrains.annotations.Nullable;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
 import static org.apache.jackrabbit.JcrConstants.JCR_LANGUAGE;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
@@ -43,6 +45,34 @@ public class PageUtilService {
         return Optional.ofNullable(page)
                 .map(p -> p.getAbsoluteParent(getHomePageLevel()))
                 .orElse(null);
+    }
+
+    public Page getAncestorPageByPredicate(Page page, Predicate<Page> predicate) {
+        return Optional.ofNullable(page)
+                .map(Page::getParent)
+                .map(parent -> predicate.test(parent) ? parent : getAncestorPageByPredicate(parent, predicate))
+                .orElse(null);
+    }
+
+    public boolean hasNoIndex(Page currentPage) {
+        if(currentPage == null) {
+            return false;
+        }
+        return Arrays.asList(currentPage.getProperties().get(PN_ROBOTS_TAGS, new String[0])).contains("noindex");
+    }
+
+    public boolean hasInheritedNoIndex(Page currentPage) {
+        Page ancestor = getAncestorPageByPredicate(currentPage,
+                page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
+
+        return hasNoIndex(ancestor);
+    }
+
+    public boolean hasNoIndex(Page currentPage, boolean checkInheritance) {
+        if (checkInheritance) {
+            return hasNoIndex(currentPage) || hasInheritedNoIndex(currentPage);
+        }
+        return hasNoIndex(currentPage);
     }
 
     /**

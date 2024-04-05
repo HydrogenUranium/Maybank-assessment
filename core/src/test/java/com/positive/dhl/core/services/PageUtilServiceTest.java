@@ -197,7 +197,42 @@ class PageUtilServiceTest {
         assertFalse(pageUtilService.isGlobalPage(null));
     }
 
-    private Article createModel(Resource resource) {
-        return context.getService(ModelFactory.class).createModel(resource, Article.class);
+    @Test
+    void getAncestorPageByPredicate_whenAncestorExist() {
+        Page currentPage = resourceResolver.getResource(ES_US_JCR_LANG_AND_ES_US_ACCEPT_LANG).adaptTo(Page.class);
+
+        Page ancestor = pageUtilService.getAncestorPageByPredicate(currentPage, page ->
+                page.getTitle().equals("DHL"));
+
+        assertNotNull(ancestor);
+        assertEquals("DHL", ancestor.getTitle());
+    }
+
+    @Test
+    void getAncestorPageByPredicate_whenAncestorNotExist() {
+        Page currentPage = resourceResolver.getResource(ES_US_JCR_LANG_AND_ES_US_ACCEPT_LANG).adaptTo(Page.class);
+
+        Page ancestor = pageUtilService.getAncestorPageByPredicate(currentPage, page ->
+                page.getTitle().equals("Not Exist"));
+
+        assertNull(ancestor);
+    }
+
+    @Test
+    void hasInheritedNoIndex() {
+        Page currentPage = resourceResolver.getResource(ES_US_JCR_LANG_AND_ES_US_ACCEPT_LANG).adaptTo(Page.class);
+
+        boolean result = pageUtilService.hasInheritedNoIndex(currentPage);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void hasNoIndex() {
+        Page currentPage = resourceResolver.getResource(EMPTY_JCR_LANG_AND_EMPTY_ACCEPT_LANG).adaptTo(Page.class);
+
+        boolean result = pageUtilService.hasNoIndex(currentPage);
+
+        assertFalse(result);
     }
 }
