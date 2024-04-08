@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useMemo } from 'react';
+import React, { useRef, useState, useEffect, useMemo, StrictMode } from 'react';
 import classNames from 'classnames';
 
 import { getRecentSearches, putRecentSearch } from 'src/main/webpack/services/local-storage/recentSearch';
@@ -78,37 +78,39 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
     }
 
     return (
-      <div className={styles.searchResult}>
-        <SearchSection
-          items={tagSuggestions}
-          title=''
-          renderItem={(suggestion) => (
-            <button
-              onClick={() => {
-                setInputValue(suggestion);
-                focusInput();
-              }}
-              className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemText)}
-              dangerouslySetInnerHTML={{__html: highlightMatches(suggestion, "^" + inputValue, "gi")}}
-              key={suggestion}/>
-          )}
-        />
-        <SearchSection
-          items={articleSuggestions}
-          title={articlesTitle}
-          thinTitle
-          overflowHidden
-          renderItem={(article) => (
-            <a href={`${article.path}.html`} className={styles.article} key={article.path}>
-              <div className={styles.articleImage} style={{ backgroundImage: `url(${article.listimage})` }}></div>
-              <div className={styles.articleInfo}>
-                <div className={styles.articleInfoTitle}>{article.title}</div>
-                <div className={styles.articleInfoMetadata}>{article.createdfriendly}</div>
-              </div>
-            </a>
-          )}
-        />
-      </div>
+      <StrictMode>
+        <div className={styles.searchResult}>
+          <SearchSection
+            items={tagSuggestions}
+            title=''
+            renderItem={(suggestion) => (
+              <button
+                onClick={() => {
+                  setInputValue(suggestion);
+                  focusInput();
+                }}
+                className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemText)}
+                dangerouslySetInnerHTML={{__html: highlightMatches(suggestion, "^" + inputValue, "gi")}}
+                key={suggestion}/>
+            )}
+          />
+          <SearchSection
+            items={articleSuggestions}
+            title={articlesTitle}
+            thinTitle
+            overflowHidden
+            renderItem={(article) => (
+              <a href={`${article.path}.html`} className={styles.article} key={article.path}  onClick={() => putRecentSearch(inputRef.current?.value)}>
+                <div className={styles.articleImage} style={{ backgroundImage: `url(${article.listimage})` }}></div>
+                <div className={styles.articleInfo}>
+                  <div className={styles.articleInfoTitle}>{article.title}</div>
+                  <div className={styles.articleInfoMetadata}>{article.createdfriendly}</div>
+                </div>
+              </a>
+            )}
+          />
+        </div>
+      </StrictMode>
     );
   };
 

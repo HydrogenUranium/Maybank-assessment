@@ -12,8 +12,6 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.commons.mime.MimeTypeService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,17 +24,6 @@ public class AssetUtilService {
 
     public static final String DEFAULT_DELIVERY_QUALITY = "82";
 
-    protected AssetDelivery assetDelivery;
-
-    @Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC)
-    public synchronized void bindAssetDelivery(AssetDelivery assetDelivery) {
-        this.assetDelivery = assetDelivery;
-    }
-
-    public synchronized void unbindAssetDelivery(AssetDelivery assetDelivery) {
-        this.assetDelivery = null;
-    }
-
     @Reference
     protected MimeTypeService mimeTypeService;
 
@@ -46,16 +33,16 @@ public class AssetUtilService {
     @Reference
     private ResourceResolverHelper resourceResolverHelper;
 
-    public String getMappedDeliveryUrl(String assetPath, Map<String, Object> props) {
-        return pathUtilService.map(getDeliveryURL(assetPath, props));
+    public String getMappedDeliveryUrl(String assetPath, Map<String, Object> props, AssetDelivery assetDelivery) {
+        return pathUtilService.map(getDeliveryURL(assetPath, props, assetDelivery));
     }
 
 
-    public String getDeliveryURL(String assetPath) {
-        return getDeliveryURL(assetPath, null);
+    public String getDeliveryURL(String assetPath, AssetDelivery assetDelivery) {
+        return getDeliveryURL(assetPath, null, assetDelivery);
     }
 
-    public String getDeliveryURL(String assetPath, Map<String, Object> props) {
+    public String getDeliveryURL(String assetPath, Map<String, Object> props, AssetDelivery assetDelivery) {
         if(StringUtils.isBlank(assetPath)) {
             log.debug("Path is empty, return empty resolved path");
             return StringUtils.EMPTY;

@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.wcm.api.Page;
 import com.google.gson.annotations.Expose;
 import com.positive.dhl.core.constants.DiscoverConstants;
@@ -14,6 +15,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
@@ -46,6 +48,11 @@ public class Article {
 
 	@OSGiService
 	private TagUtilService tagUtilService;
+
+	@OSGiService(
+			injectionStrategy = InjectionStrategy.OPTIONAL
+	)
+	protected AssetDelivery assetDelivery;
 
 	@Setter
 	private boolean valid;
@@ -97,7 +104,7 @@ public class Article {
 	@Expose protected String path;
 
 	public String getMappedValue(String path, boolean enableAssetDelivery, Map<String, Object> props) {
-		return enableAssetDelivery ? assetUtilService.getMappedDeliveryUrl(path, props) : pathUtilService.map(path);
+		return enableAssetDelivery ? assetUtilService.getMappedDeliveryUrl(path, props, assetDelivery) : pathUtilService.map(path);
 	}
 
 	/**
