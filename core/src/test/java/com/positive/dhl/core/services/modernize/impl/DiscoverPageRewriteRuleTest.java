@@ -3,7 +3,6 @@ package com.positive.dhl.core.services.modernize.impl;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.Revision;
 import com.positive.dhl.core.helpers.JcrNodeHelper;
-import com.positive.dhl.core.models.UserAccount;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;

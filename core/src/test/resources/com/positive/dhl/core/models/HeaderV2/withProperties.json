@@ -4,7 +4,7 @@
     "jcr:content": {
       "jcr:title": "Home",
       "jcr:primaryType": "cq:PageContent",
-      "sling:resourceType": "dhl/components/pages/home",
+      "sling:resourceType": "dhl/components/pages/editable-home-page",
       "header-buttonLink": "/content/dhl/button",
       "header-buttonName": "Button Name",
       "header-signInLabel": "Sign In",
@@ -33,7 +33,7 @@
       "jcr:primaryType": "cq:Page",
       "jcr:content": {
         "jcr:primaryType": "cq:PageContent",
-        "sling:resourceType": "dhl/components/pages/articlecategory"
+        "sling:resourceType": "dhl/components/pages/editable-category-page"
       },
       "article": {
         "jcr:primaryType": "cq:Page",

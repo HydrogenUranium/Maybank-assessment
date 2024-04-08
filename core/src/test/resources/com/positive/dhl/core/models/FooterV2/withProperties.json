@@ -4,7 +4,7 @@
     "jcr:content": {
       "jcr:title": "Home",
       "jcr:primaryType": "cq:PageContent",
-      "sling:resourceType": "dhl/components/pages/home",
+      "sling:resourceType": "dhl/components/pages/editable-home-page",
       "footer-invitation-text": "Join over 5000+ SMEs already growing with Discover",
       "footer-invitation-title": "Ready to grow your business?",
       "footer-logoAltText": "Alt Text",
@@ -61,7 +61,7 @@
       "jcr:primaryType": "cq:Page",
       "jcr:content": {
         "jcr:primaryType": "cq:PageContent",
-        "sling:resourceType": "dhl/components/pages/articlecategory"
+        "sling:resourceType": "dhl/components/pages/editable-category-page"
       },
       "article": {
         "jcr:primaryType": "cq:Page",
