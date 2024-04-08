@@ -22,7 +22,6 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
@@ -68,7 +67,7 @@ class ArticleTest {
 
     @Test
     void initAssetDeliveryProperties() {
-        lenient().when(assetUtilService.getMappedDeliveryUrl(anyString(), anyMap())).thenAnswer(invocationOnMock -> {
+        lenient().when(assetUtilService.getMappedDeliveryUrl(anyString(), anyMap(), any())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/adobe/dynamicmedia/deliver" + invocationOnMock.getArgument(0, String.class) : "";
         });

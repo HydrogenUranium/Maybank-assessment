@@ -18,6 +18,7 @@ import static com.positive.dhl.core.utils.InjectorMock.INJECT_REQUEST_ATTRIBUTES
 import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -50,11 +51,11 @@ class PictureTest {
     void test() {
         when(assetUtilService.getAltText(anyString())).thenReturn("alt");
         when(assetUtilService.getMimeType(anyString())).thenReturn("image/jpg");
-        when(assetUtilService.getDeliveryURL(anyString())).thenAnswer(invocationOnMock -> {
+        when(assetUtilService.getDeliveryURL(anyString(), any())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/dynamicmedia" + path + "?preferwebp=true" : "";
         });
-        when(assetUtilService.getDeliveryURL(anyString())).thenAnswer(invocationOnMock -> {
+        when(assetUtilService.getDeliveryURL(anyString(), any())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/dynamicmedia" + path : "";
         });
