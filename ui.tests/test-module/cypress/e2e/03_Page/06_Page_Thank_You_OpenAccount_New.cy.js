@@ -11,9 +11,9 @@ describe('Thank You Page Open An Account', () => {
   });
 
   it('2.Verify that the page title is correct with bold and matches the expected title', function() {
-    cy.get('h2').should('contain', 'Thank You for requesting a DHL EXPRESS BUSINESS ACCOUNT.')
+    cy.get('h2>b').should('contain', 'Thank You for requesting a DHL EXPRESS BUSINESS ACCOUNT.')
       .and(($h2) => {
-        expect($h2).to.have.css('font-weight', '400'); //find the bold
+        expect($h2).to.have.css('font-weight', '700'); //find the bold
       });
   });
 
