@@ -2,11 +2,9 @@
 import Header from './Components/Header';
 import HeaderV2 from './Components/HeaderV2';
 import BootstrapCarousel from './Components/BootstrapCarousel';
-import ArticleGrid from './Components/ArticleGrid';
 import SubscribePanel from './Components/SubscribePanel';
 import Password from './Components/Password';
 import PasswordValidity from './Components/PasswordValidity';
-// import FormValidation from './Components/FormValidation'; commented out as it's reported unused
 import ShowHide from './Components/ShowHide';
 import CookieBanner from './Components/CookieBanner';
 import SearchForm from './Components/SearchForm';
@@ -25,9 +23,6 @@ import ShipNowForm from './Components/ShipNowForm';
 import ShipNowTwoStepForm from './Components/ShipNowTwoStepForm';
 import CompetitionForm from './Components/CompetitionForm';
 import ServiceWorker from './Components/ServiceWorker';
-import Offline from './Components/Offline';
-import BackButton from './Components/BackButton';
-// import ArticleCounter from './Components/ArticleCounter'; commented out because it's reported unused
 import MarketoForm from './Components/MarketoForm';
 import LanguageDetect from './Components/LanguageDetect';
 import Shared from './Components/Shared';
@@ -43,16 +38,13 @@ $(document).ready(() => {
   if ((window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone)) $('html').addClass('pwa');
   // Initiate components
   LanguageDetect.init();
-  // ArticleCounter.init();
   IEDetector.init();
   Header.init();
   HeaderV2.init();
   BootstrapCarousel.init();
-  ArticleGrid.init();
   SubscribePanel.init();
   Password.init();
   PasswordValidity.init();
-  // FormValidation.init();
   ShowHide.init();
   CookieBanner.init();
   SearchForm.init();
@@ -70,8 +62,6 @@ $(document).ready(() => {
   DeleteAccountForm.init();
   AuthenticationEvents.init();
   ServiceWorker.init();
-  Offline.init();
-  BackButton.init();
   MarketoForm.init();
   Shared.init();
   HorizontalScroll.init();

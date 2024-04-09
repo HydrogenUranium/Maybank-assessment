@@ -3,13 +3,13 @@
     "jcr:primaryType": "cq:Page",
     "jcr:content": {
       "jcr:primaryType": "cq:PageContent",
-      "sling:resourceType": "dhl/components/pages/home"
+      "sling:resourceType": "dhl/components/pages/editable-home-page"
     },
     "small-business-advice": {
       "jcr:primaryType": "cq:Page",
       "jcr:content": {
         "jcr:primaryType": "cq:PageContent",
-        "sling:resourceType": "dhl/components/pages/articlecategory"
+        "sling:resourceType": "dhl/components/pages/editable-category-page"
       },
       "article": {
         "jcr:primaryType": "cq:Page",

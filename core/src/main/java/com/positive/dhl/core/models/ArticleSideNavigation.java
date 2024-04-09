@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
-import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
 
 /**
  * Serves as a Sling model for ArticleSideNavigation functionality used in home page template
@@ -138,7 +137,6 @@ public class ArticleSideNavigation {
 					var parentPage = currentPage.getParent();
 					if (null != parentPage){
 						var categoryPage = categoryFinder.getGroupPage(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE,parentPage);
-						categoryPage = categoryPage == null ? categoryFinder.getGroupPage(CATEGORY_PAGE_STATIC_RESOURCE_TYPE,parentPage) : categoryPage;
 						if(null != categoryPage){
 							var searchResult = runQuery(categoryPage,resourceResolver);
 							articles.addAll(processSearchResult(searchResult,resourceResolver ));

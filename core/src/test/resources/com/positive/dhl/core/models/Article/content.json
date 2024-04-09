@@ -3,14 +3,14 @@
     "jcr:primaryType": "cq:Page",
     "jcr:content": {
       "jcr:primaryType": "cq:PageContent",
-      "sling:resourceType": "dhl/components/pages/home"
+      "sling:resourceType": "dhl/components/pages/editable-home-page"
     },
     "small-business-advice": {
       "jcr:primaryType": "cq:Page",
       "jcr:content": {
         "jcr:primaryType": "cq:PageContent",
         "pageTitle": "Small Business Advice | Small Business Resources | Discover DHL",
-        "sling:resourceType": "dhl/components/pages/articlecategory",
+        "sling:resourceType": "dhl/components/pages/editable-category-page",
         "navTitle": "Small Business advice"
       },
       "article": {
@@ -48,7 +48,7 @@
             "dhl-article-external:default/e-commerce_advice",
             "dhl-article-external:default/business_advice"
           ],
-          "sling:resourceType": "dhl/components/pages/article",
+          "sling:resourceType": "dhl/components/pages/editable-article",
           "heroimagedt": "/content/dam/desktop.jpg",
           "cq:lastRolledoutBy": "david.akara@dhl.com",
           "ogtagimage": "/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg",

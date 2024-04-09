@@ -1,28 +1,21 @@
 package com.positive.dhl.core.models;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageUtilService;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
-
-import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
-import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
-import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
-/**
- *
- */
+import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
+
 @Model(adaptables=SlingHttpServletRequest.class)
 public class Footer {
 	@Inject
@@ -39,122 +32,71 @@ public class Footer {
 	private List<TagWrapper> linksColumnTags;
 	private String titleSocial;
 	private List<SocialLink> linksSocial;
-	
-    /**
-	 * 
-	 */
+
 	public String getTitleColumnOne() {
 		return titleColumnOne;
 	}
 
-    /**
-	 * 
-	 */
 	public void setTitleColumnOne(String titleColumnOne) {
 		this.titleColumnOne = titleColumnOne;
 	}
 
-    /**
-	 * 
-	 */
 	public List<Link> getLinksColumnOne() {
 		return new ArrayList<>(linksColumnOne);
 	}
 
-    /**
-	 * 
-	 */
 	public void setLinksColumnOne(List<Link> linksColumnOne) {
 		this.linksColumnOne = new ArrayList<>(linksColumnOne);
 	}
 
-    /**
-	 * 
-	 */
 	public String getTitleColumnTwo() {
 		return titleColumnTwo;
 	}
 
-    /**
-	 * 
-	 */
 	public void setTitleColumnTwo(String titleColumnTwo) {
 		this.titleColumnTwo = titleColumnTwo;
 	}
 
-    /**
-	 * 
-	 */
 	public List<CategoryLink> getLinksColumnTwo() {
 		return new ArrayList<>(linksColumnTwo);
 	}
 
-    /**
-	 * 
-	 */
 	public void setLinksColumnTwo(List<CategoryLink> linksColumnTwo) {
 		this.linksColumnTwo = new ArrayList<>(linksColumnTwo);
 	}
 
-    /**
-	 * 
-	 */
 	public String getTitleColumnTags() {
 		return titleColumnTags;
 	}
 
-    /**
-	 * 
-	 */
 	public void setTitleColumnTags(String titleColumnTags) {
 		this.titleColumnTags = titleColumnTags;
 	}
 
-    /**
-	 * 
-	 */
 	public List<TagWrapper> getLinksColumnTags() {
 		return new ArrayList<>(linksColumnTags);
 	}
 
-    /**
-	 * 
-	 */
 	public void setLinksColumnTags(List<TagWrapper> linksColumnTags) {
 		this.linksColumnTags = new ArrayList<>(linksColumnTags);
 	}
 
-    /**
-	 * 
-	 */
 	public String getTitleSocial() {
 		return titleSocial;
 	}
 
-    /**
-	 * 
-	 */
 	public void setTitleSocial(String titleSocial) {
 		this.titleSocial = titleSocial;
 	}
 
-    /**
-	 * 
-	 */
 	public List<SocialLink> getLinksSocial() {
 		return new ArrayList<>(linksSocial);
 	}
 
-    /**
-	 * 
-	 */
 	public void setLinksSocial(List<SocialLink> linksSocial) {
 		this.linksSocial = new ArrayList<>(linksSocial);
 	}
 
-    /**
-	 * 
-	 */
 	@PostConstruct
     protected void init() {
 		titleColumnOne = "Categories:";
@@ -178,7 +120,7 @@ public class Footer {
 		while (children.hasNext()) {
 			Page child = children.next();
 			ValueMap properties = child.adaptTo(ValueMap.class);
-			if ((properties != null) && StringUtils.equalsAny(properties.get("jcr:content/sling:resourceType", ""), CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
+			if ((properties != null) && properties.get("jcr:content/sling:resourceType", "").equals(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
 				String url = child.getPath() + ".html";
 
 				boolean hideInNav = properties.get("jcr:content/hideInNav", false);

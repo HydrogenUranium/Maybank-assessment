@@ -92,7 +92,7 @@
     "trackingid": "f5a07920ff7f",
     "siteregion": "Global",
     "createpasswordthanksmessage": "<p>Now you have access to a world of new information, research and insight. For the very latest updates, come back and visit every week.</p>\r\n",
-    "sling:resourceType": "dhl/components/pages/home",
+    "sling:resourceType": "dhl/components/pages/editable-home-page",
     "cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
     "registerthanksmessage": "<p>Now you have access to a world of new information, research and insight. For the very latest updates, come back and visit every week.<br />\r\n</p>\r\n",
     "topbanner1img": "/content/dam/dhl/site-image/banner-images/reception.jpg",

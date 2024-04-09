@@ -17,7 +17,7 @@
           "dhl:culture-hype"
         ],
         "jcr:description": "",
-        "sling:resourceType": "dhl/components/pages/home",
+        "sling:resourceType": "dhl/components/pages/editable-home-page",
         "jcr:primaryType": "cq:PageContent"
       },
       "business": {
@@ -27,7 +27,7 @@
           "jcr:title": "business",
           "jcr:description": "business description",
           "jcr:primaryType": "cq:PageContent",
-          "sling:resourceType": "dhl/components/pages/articlecategory"
+          "sling:resourceType": "dhl/components/pages/editable-category-page"
         },
         "productivity": {
           "jcr:primaryType": "cq:Page",
@@ -35,7 +35,7 @@
             "jcr:created": "{Date}2023-02-14T07:41:12.362Z",
             "jcr:title": "productivity",
             "jcr:description": "productivity description",
-            "sling:resourceType": "dhl/components/pages/articlecategory",
+            "sling:resourceType": "dhl/components/pages/editable-category-page",
             "jcr:primaryType": "cq:PageContent"
           },
           "the-future-of-cyber-sales": {
@@ -43,7 +43,7 @@
             "jcr:content": {
               "jcr:title": "The future of cyber sales",
               "jcr:description": "description",
-              "sling:resourceType": "dhl/components/pages/article",
+              "sling:resourceType": "dhl/components/pages/editable-article",
               "jcr:primaryType": "cq:PageContent",
               "jcr:created": "{Date}2023-02-14T07:41:12.362Z",
               "image": {},
@@ -71,7 +71,7 @@
               "jcr:created": "{Date}2023-02-14T07:41:12.362Z",
               "jcr:title": "AI science fiction it is not",
               "jcr:description": "description",
-              "sling:resourceType": "dhl/components/pages/article",
+              "sling:resourceType": "dhl/components/pages/editable-article",
               "jcr:primaryType": "cq:PageContent",
               "root": {
                 "article_container": {

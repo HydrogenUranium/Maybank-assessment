@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jcr:root 
-    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-    xmlns:jcr="http://www.jcp.org/jcr/1.0"
-    jcr:primaryType="cq:Component"
-    jcr.title="DHL Content Hub Animated Page (Nov 2019 - 6)"
-    jcr.description="DHL Content Hub Animated Page (Nov 2019 - 6)"
-    sling:resourceSuperType="dhl/components/pages/master"
-    componentGroup=".hidden"/>
