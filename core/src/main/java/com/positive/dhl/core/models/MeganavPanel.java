@@ -124,6 +124,8 @@ public class MeganavPanel {
     /**
 	 * 
 	 */
+	// TODO: refactor code complexity in legacy.
+	@java.lang.SuppressWarnings("java:S3776")
 	public MeganavPanel(int index, Page page, Page topLevelCategory, QueryBuilder builder, ResourceResolver resourceResolver) throws RepositoryException {
 		this.index = index;
 		this.page = page;

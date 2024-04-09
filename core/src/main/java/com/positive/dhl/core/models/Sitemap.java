@@ -70,6 +70,8 @@ public class Sitemap {
 	}
 
 	@PostConstruct
+	// TODO: refactor code complexity in legacy.
+	@java.lang.SuppressWarnings({"java:S3776", "java:S6541", "java:S135"})
     protected void init() throws RepositoryException {
 		articleLinks = new ArrayList<>();
 		var home = pageUtilService.getHomePage(currentPage);
@@ -78,18 +80,18 @@ public class Sitemap {
 			map.put("type", NT_PAGE);
 			map.put("path", home.getPath());
 			map.put("group.p.or", "true");
-			
+
 			List<String> articleTypes = Article.getArticlePageTypes();
 			for (var x = 0; x < articleTypes.size(); x++) {
 				map.put(String.format("group.%1$s_property", (x + 1)), JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY);
 				map.put(String.format("group.%1$s_property.value", (x + 1)), String.format("dhl/components/pages/%1$s", articleTypes.get(x)));
 				map.put(String.format("group.%1$s_property.operation", (x + 1)), "like");
 			}
-			
+
 			map.put("orderby", JCR_CONTENT + "/" + JCR_TITLE);
 			map.put("orderby.sort", "desc");
 			map.put("p.limit", "50");
-			
+
 			var query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
 	        var searchResult = query.getResult();
 	        if (searchResult != null) {
@@ -124,7 +126,7 @@ public class Sitemap {
 				}
 	        }
 		}
-		
+
 		categoryLinks = new ArrayList<>();
 		if (home != null) {
 			Iterator<Page> children = home.listChildren();
@@ -242,7 +244,7 @@ public class Sitemap {
 
 			links.add(currentItem);
 		}
-		
+
 		return links;
 	}
 }
