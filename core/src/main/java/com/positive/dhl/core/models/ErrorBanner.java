@@ -1,35 +1,36 @@
 package com.positive.dhl.core.models;
 
 import lombok.Getter;
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import javax.inject.Inject;
-
-@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 @Getter
 public class ErrorBanner {
 
-    @Inject
+    @ValueMapValue
     private String title;
 
-    @Inject
+    @ValueMapValue
     private String description;
 
-    @Inject
+    @ValueMapValue
     private String buttonLink;
 
-    @Inject
+    @ValueMapValue
+    private String refreshPageButtonLabel;
+
+    @ValueMapValue
     private String buttonLabel;
 
-    @Inject
+    @ValueMapValue
     @Default(values = "")
     private String image;
 
-    @Inject
+    @ValueMapValue
     @Default(values = "")
     private String altText;
 

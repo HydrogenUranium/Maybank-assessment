@@ -301,6 +301,9 @@
       <property inherit="true" name="sortByTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
     </node>
+    <node resourceType="dhl/components/content/error-banner">
+      <property inherit="true" name="refreshPageButtonLabel" translate="true" updateDestinationLanguage="false"/>
+    </node>
     <node resourceType="dhl/components/pages/amparticle">
       <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>

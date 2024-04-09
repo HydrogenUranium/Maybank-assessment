@@ -34,6 +34,8 @@ RewriteCond %{REQUEST_METHOD} (GET|HEAD)
 RewriteRule ^/discover/content/dhl((?!jcr:content/root.searcharticlesuggest.json).)*$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 
+RewriteRule ^/discover/discover/(.+)$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
+
 ### Redirect requests towards /discover/* that do not contain recognizable locale to en-global
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)
 RewriteCond %{REQUEST_URI} ^/discover/

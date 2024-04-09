@@ -1,13 +1,22 @@
 <sly data-sly-use.model="com.positive.dhl.core.models.ErrorBanner"
-        data-sly-set.isEmpty="${!model.buttonLabel || !model.description || !model.title}"></sly>
+     data-sly-set.title="${model.title}"
+     data-sly-set.description="${model.description}"
+     data-sly-set.buttonLabel="${model.buttonLabel}"
+     data-sly-set.refreshPageButtonLabel="${model.refreshPageButtonLabel}"
+     data-sly-set.hasContent="${refreshPageButtonLabel || buttonLabel || description || title}"></sly>
 
-<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && !hasContent}" data-emptytext="${component.title}"></div>
 
-<div class="error-banner-component" data-sly-test="${!isEmpty}">
-    <b class="title">${model.title}.</b>
+<div class="error-banner-component" data-sly-test="${hasContent}">
+    <b class="title">${title}.</b>
     <img class="image" src="${model.image}" alt="${model.altText}"/>
-    <p class="description">${model.description}</p>
-    <a class="button" href="${model.buttonLink}.html" title="${model.buttonLabel}">
-        <span>${model.buttonLabel}</span>
+    <p class="description">${description}</p>
+    <a data-sly-test="${buttonLabel}"
+       class="button" href="${model.buttonLink}.html" title="${buttonLabel}">
+        <span>${buttonLabel}</span>
+    </a>
+    <a data-sly-test="${refreshPageButtonLabel}"
+       class="button" href onClick="window.location.reload();" title="${refreshPageButtonLabel}">
+        <span>${model.refreshPageButtonLabel}</span>
     </a>
 </div>

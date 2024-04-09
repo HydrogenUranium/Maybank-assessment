@@ -16,6 +16,10 @@ Include conf.d/variables/custom.vars
 	SetEnvIfExpr "%{ENV:NOTFOUNDPAGE} =~ /^$/" NOTFOUNDPAGE=discover/en-global/page-not-found
 	ErrorDocument 404 /%{ENV:NOTFOUNDPAGE}
 
+	SetEnvIf Request_URI "^/discover/(\w{2}-\w{2,6})/.*" RATELIMITS=discover/$1/page-rate-limits
+	SetEnvIfExpr "%{ENV:RATELIMITS} =~ /^$/" RATELIMITS=discover/en-global/page-rate-limits
+	ErrorDocument 429 /%{ENV:RATELIMITS}
+
 	<IfModule mod_headers.c>
 		# Add X-Vhost header to help in troubleshooting
 		SetEnvIfNoCase Host ^(.+)$ CUSTOM_HOST=$1
