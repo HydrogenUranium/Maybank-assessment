@@ -13,9 +13,11 @@ import org.jetbrains.annotations.Nullable;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
 import static org.apache.jackrabbit.JcrConstants.JCR_LANGUAGE;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
@@ -26,10 +28,7 @@ public class PageUtilService {
     public static final int CATEGORY_PAGE_LEVEL = HOME_PAGE_LEVEL + 1;
     public static final int HOME_PAGE_DEPTH = HOME_PAGE_LEVEL + 1;
 
-    public static final String HOME_PAGE_STATIC_RESOURCE_TYPE = "dhl/components/pages/home";
     public static final String HOME_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-home-page";
-
-    public static final String CATEGORY_PAGE_STATIC_RESOURCE_TYPE = "dhl/components/pages/articlecategory";
     public static final String CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-category-page";
 
     public int getHomePageLevel() {
@@ -46,6 +45,34 @@ public class PageUtilService {
         return Optional.ofNullable(page)
                 .map(p -> p.getAbsoluteParent(getHomePageLevel()))
                 .orElse(null);
+    }
+
+    public Page getAncestorPageByPredicate(Page page, Predicate<Page> predicate) {
+        return Optional.ofNullable(page)
+                .map(Page::getParent)
+                .map(parent -> predicate.test(parent) ? parent : getAncestorPageByPredicate(parent, predicate))
+                .orElse(null);
+    }
+
+    public boolean hasNoIndex(Page currentPage) {
+        if(currentPage == null) {
+            return false;
+        }
+        return Arrays.asList(currentPage.getProperties().get(PN_ROBOTS_TAGS, new String[0])).contains("noindex");
+    }
+
+    public boolean hasInheritedNoIndex(Page currentPage) {
+        Page ancestor = getAncestorPageByPredicate(currentPage,
+                page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
+
+        return hasNoIndex(ancestor);
+    }
+
+    public boolean hasNoIndex(Page currentPage, boolean checkInheritance) {
+        if (checkInheritance) {
+            return hasNoIndex(currentPage) || hasInheritedNoIndex(currentPage);
+        }
+        return hasNoIndex(currentPage);
     }
 
     /**
@@ -75,7 +102,7 @@ public class PageUtilService {
         }
         ValueMap pageProperties = page.getProperties();
         String resourceType = pageProperties.get(SLING_RESOURCE_TYPE_PROPERTY, "");
-        boolean isHomePageResourceType = resourceType.equals(HOME_PAGE_DYNAMIC_RESOURCE_TYPE) || resourceType.equals(HOME_PAGE_STATIC_RESOURCE_TYPE);
+        boolean isHomePageResourceType = resourceType.equals(HOME_PAGE_DYNAMIC_RESOURCE_TYPE);
         return page.getDepth() == HOME_PAGE_DEPTH && isHomePageResourceType;
     }
 

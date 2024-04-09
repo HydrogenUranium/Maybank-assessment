@@ -1,6 +1,5 @@
 {
   "resourceTypes":[
-    "dhl/components/pages/article",
     "dhl/components/pages/editable-article"
   ]
 }

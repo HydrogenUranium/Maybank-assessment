@@ -5,7 +5,6 @@ import Header from './Components/Header';
 import IEDetector from './Components/IEDetector';
 import LandingPageButton from './Components/LandingPageButton';
 import Count from './Components/Count';
-import AnimatedForm from './Components/AnimatedForm';
 import CarouselRow from './Components/CarouselRow';
 import AnimatedParallax from './Components/AnimatedParallax';
 import SmoothScroll from './Components/SmoothScroll';
@@ -26,7 +25,6 @@ $(document).ready(() => {
   Header.init();
   Count.init();
   LandingPageButton.init();
-  // AnimatedForm.init();
   CarouselRow.init();
   AnimatedParallax.init();
   AnimatedShowcasePanel.init();

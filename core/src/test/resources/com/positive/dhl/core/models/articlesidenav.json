@@ -37,7 +37,7 @@
     "pageTitle": "How To Start An E-commerce In 10 Minutes | Discover DHL",
     "cq:tags": [],
     "jcr:uuid": "4b6e5d9d-5a4b-428b-8b5e-6ad7716d62da",
-    "sling:resourceType": "dhl/components/pages/article",
+    "sling:resourceType": "dhl/components/pages/editable-article",
     "cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
     "heroimagedt": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Desktop_1920x918.jpg",
     "ogtagimage": "/content/dam/dhl/business-matters/10-minute-startup/adventure2_tablet.jpg",

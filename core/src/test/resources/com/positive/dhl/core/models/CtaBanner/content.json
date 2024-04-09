@@ -16,7 +16,7 @@
       "jcr:content": {
         "jcr:primaryType": "cq:PageContent",
         "pageTitle": "Small Business Advice | Small Business Resources | Discover DHL",
-        "sling:resourceType": "dhl/components/pages/articlecategory",
+        "sling:resourceType": "dhl/components/pages/editable-category-page",
         "navTitle": "Small Business advice"
       },
       "article": {

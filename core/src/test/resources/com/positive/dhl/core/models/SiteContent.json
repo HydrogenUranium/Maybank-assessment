@@ -88,7 +88,7 @@
 					"jcr:uuid": "3d0896ad-43be-431d-bc9e-17be7bfc59c3",
 					"cookiemessage": "<p>We use cookies on our website to improve your experience. View our <a title=\"Terms of Use\" href=\"/content/dhl/terms-of-use.html\" target=\"_blank\">Cookie Policy</a>.</p>\r\n",
 					"createpasswordthanksmessage": "<p>Now you have access to a world of new information, research and insight. For the very latest updates, come back and visit every week.</p>\r\n",
-					"sling:resourceType": "dhl/components/pages/home",
+					"sling:resourceType": "dhl/components/pages/editable-home-page",
 					"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 					"registerthanksmessage": "<p>Now you have access to a world of new information, research and insight. For the very latest updates, come back and visit every week.<br />\r\n</p>\r\n",
 					"topbanner1img": "/etc/designs/dhl/discover/img/applyForAccount.png",
@@ -970,7 +970,7 @@
 						"pageTitle": "Help And Guidance To Boost Your Business | Discover DHL",
 						"cq:tags": [],
 						"jcr:uuid": "1efd99c2-f2f3-4587-9678-25359cd30a33",
-						"sling:resourceType": "dhl/components/pages/articlecategory",
+						"sling:resourceType": "dhl/components/pages/editable-category-page",
 						"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 						"cq:lastModifiedBy": "admin",
 						"title": {
@@ -1021,7 +1021,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Entrepreneurship Insights | Discover DHL",
 							"jcr:uuid": "724f6a85-4e67-45b5-b29b-7f292e989875",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin"
 						},
@@ -1195,7 +1195,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Productivity & Time Management - Discover DHL ",
 							"jcr:uuid": "0139df00-6593-4eb7-91a2-cb935abd28b2",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Productivity"
@@ -1400,7 +1400,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Getting to Market - Discover DHL",
 							"jcr:uuid": "34be7489-309e-4b2f-ab8e-aa651ecf68d2",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Getting to Market"
@@ -1502,7 +1502,7 @@
 							"pageTitle": "Finding New Customers in New Markets | Discover DHL",
 							"cq:tags": [],
 							"jcr:uuid": "0b97e1e8-7eb1-4c5a-b10e-a093fc6c2352",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Finding new customers"
@@ -1582,7 +1582,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Ethical business for the sustainable world | Discover DHL",
 							"jcr:uuid": "73f598e9-74d3-4be9-b3de-5a1c6f60e2ec",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Business Ethics"
@@ -1697,7 +1697,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Market Intelligence Across the Globe | Discover DHL",
 							"jcr:uuid": "a3d7158d-3021-4afb-9afe-85ee36448d64",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Market Intelligence"
@@ -1842,7 +1842,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Business Management - Discover DHL",
 							"jcr:uuid": "88547ccb-d953-45e7-81c0-9db0df25185f",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Managing your business"
@@ -1980,7 +1980,7 @@
 							"hideInNav": "true",
 							"pageTitle": "Newsletter Subscriber Survey",
 							"jcr:uuid": "3f43744a-8021-4816-957f-5914610eb047",
-							"sling:resourceType": "dhl/components/pages/article",
+							"sling:resourceType": "dhl/components/pages/editable-article",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"heroimagedt": "/content/dam/dhl/business-matters/3_getting-to-market/gavin-conboy/Desktop_1920x918_B.jpg",
 							"cq:lastModifiedBy": "anisha.mistry@mavad.co.uk",
@@ -2018,7 +2018,7 @@
 						"jcr:isCheckedOut": true,
 						"pageTitle": "E-commerce & Digital Marketing Tips | Discover DHL",
 						"jcr:uuid": "6f712742-15f1-489b-9e67-565232f13f9e",
-						"sling:resourceType": "dhl/components/pages/articlecategory",
+						"sling:resourceType": "dhl/components/pages/editable-category-page",
 						"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 						"cq:lastModifiedBy": "admin",
 						"navTitle": "E-commerce",
@@ -2070,7 +2070,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Grow your international business with our e-commerce advice | Discover DHL",
 							"jcr:uuid": "1ec23b8b-be8b-4bb1-b825-7a95b8e8d366",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "E-commerce Advice"
@@ -2335,7 +2335,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "International Country Guides For Business & E-commerce | Discover DHL",
 							"jcr:uuid": "6211082c-5fdc-4aa0-891b-67e406366303",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "International Guides"
@@ -2395,7 +2395,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Conversion Rate Optimization - Discover DHL",
 							"jcr:uuid": "bae5520b-b142-405b-b446-9e095fc7b916",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Conversion Rate Optimization"
@@ -2480,7 +2480,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Customer Service | Discover DHL",
 							"jcr:uuid": "2e8f5c52-d9ce-4aa4-889a-1eb43410828e",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Customer Service"
@@ -2566,7 +2566,7 @@
 						"jcr:isCheckedOut": true,
 						"pageTitle": "Culture - Trends, Adventure, Fashion, Art, Travel | Discover DHL",
 						"jcr:uuid": "a82171df-93b0-4ab2-99f2-1bfd31078430",
-						"sling:resourceType": "dhl/components/pages/articlecategory",
+						"sling:resourceType": "dhl/components/pages/editable-category-page",
 						"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 						"cq:lastModifiedBy": "admin",
 						"navTitle": "Culture",
@@ -2618,7 +2618,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Adventure Life | Discover DHL",
 							"jcr:uuid": "c75c0030-00d9-43f1-afdc-0b72821f751f",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Adventure"
@@ -2728,7 +2728,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Travel and Exploration | Discover DHL",
 							"jcr:uuid": "f5f5c3b9-11e2-4e7f-a6af-18d4a411bcb3",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Travel"
@@ -2783,7 +2783,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "The E-Commerce Fashion Business | Discover DHL",
 							"jcr:uuid": "b630032f-b5b1-4690-a602-88eb948b4565",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Fashion"
@@ -2848,7 +2848,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Music Business | Discover DHL",
 							"jcr:uuid": "7cfda719-9c85-483e-ac1a-86af1282e6bc",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Music"
@@ -2885,7 +2885,7 @@
 							"jcr:isCheckedOut": true,
 							"pageTitle": "Competitions - Discvoer DHL",
 							"jcr:uuid": "3dc422e0-b983-43a1-a5ed-37b92b23f4d5",
-							"sling:resourceType": "dhl/components/pages/articlecategory",
+							"sling:resourceType": "dhl/components/pages/editable-category-page",
 							"cq:lastModifiedBy": "admin",
 							"navTitle": "Competition"
 						},
@@ -2967,7 +2967,7 @@
 								"dhl:default/partnerships"
 							],
 							"jcr:uuid": "22e2953d-c2dd-4af1-9c8d-b71a9bf5cc57",
-							"sling:resourceType": "dhl/components/pages/article",
+							"sling:resourceType": "dhl/components/pages/editable-article",
 							"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 							"heroimagedt": "/content/dam/dhl/culture-hype/mo-salah/new/new_desk_DHL_MoSalah_Header_Desktop_1920x918.jpg",
 							"ogtagimage": "/content/dam/dhl/culture-hype/mo-salah/gallery/Mo-Salah-Training_0023.jpg",
@@ -3008,7 +3008,7 @@
 						"pageTitle": "Follow Susie Goodall's sailing in Golden Globe Race 2018 | Discover DHL",
 						"cq:tags": [],
 						"jcr:uuid": "0ad71f4d-5b35-4cc3-bdf2-e5a44ecf344c",
-						"sling:resourceType": "dhl/components/pages/articlecategory",
+						"sling:resourceType": "dhl/components/pages/editable-category-page",
 						"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 						"cq:lastModifiedBy": "admin",
 						"navTitle": "The latest on Susie Goodall",

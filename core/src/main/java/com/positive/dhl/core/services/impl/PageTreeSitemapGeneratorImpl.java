@@ -3,6 +3,8 @@ package com.positive.dhl.core.services.impl;
 import com.adobe.aem.wcm.seo.localization.LanguageAlternativesService;
 import com.day.cq.replication.ReplicationStatus;
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.services.PageUtilService;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.jetbrains.annotations.NotNull;
 import com.positive.dhl.core.constants.ChangeFrequencyEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -61,6 +63,9 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     private boolean priorityEnabled;
     private String priorityDefaultValue;
     private boolean languageAlternatesEnabled;
+
+    @Reference
+    private PageUtilService pageUtilService;
 
     @Reference
     private LanguageAlternativesService languageAlternativesService;
@@ -209,18 +214,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     public boolean isNoIndex(Page page) {
-        return hasPageNoIndex(page) || hasPageNoIndex(getInheritanceEnabledPage(page, "noIndexRobotsTagsInherit"));
-    }
-
-    private boolean hasPageNoIndex(Page page) {
-        return Optional.ofNullable(page)
-                .filter(Page::hasContent)
-                .map(Page::getContentResource)
-                .map(Resource::getValueMap)
-                .map(p -> p.get(PN_ROBOTS_TAGS, String[].class))
-                .map(Arrays::asList)
-                .map(mp -> mp.contains("noindex"))
-                .orElse(Boolean.FALSE);
+        return pageUtilService.hasNoIndex(page, true);
     }
 
     public boolean isRedirect(Page page) {
@@ -337,18 +331,8 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     private Page getInheritanceEnabledPage(Page inheritanceEnabledPage, String inheritedProperty) {
-        var isInheritanceEnabled = false;
-        while (inheritanceEnabledPage != null && !isInheritanceEnabled) {
-            inheritanceEnabledPage = inheritanceEnabledPage.getParent();
-            isInheritanceEnabled = Optional.ofNullable(inheritanceEnabledPage)
-                    .filter(Page::hasContent)
-                    .map(Page::getContentResource)
-                    .map(Resource::getValueMap)
-                    .map(props -> props.get(inheritedProperty, Boolean.class))
-                    .filter(p -> p)
-                    .orElse(Boolean.FALSE);
-        }
-        return isInheritanceEnabled ? inheritanceEnabledPage : null;
+        return pageUtilService
+                .getAncestorPageByPredicate(inheritanceEnabledPage, page -> page.getProperties().get(inheritedProperty, false));
     }
 
     @ObjectClassDefinition(name = "DHL Discovery - Page Tree Sitemap Generator")

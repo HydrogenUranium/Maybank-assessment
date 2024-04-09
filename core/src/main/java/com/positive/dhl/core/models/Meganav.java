@@ -21,11 +21,7 @@ import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
-import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_STATIC_RESOURCE_TYPE;
 
-/**
- *
- */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class Meganav {
     @Inject
@@ -47,108 +43,63 @@ public class Meganav {
 	private List<SocialLink> linksSocial;
 	private String autocompleteUrl;
 	private String topsearchesUrl;
-	
-    /**
-	 * 
-	 */
+
 	public String getSiteTitle() {
 		return siteTitle;
 	}
 
-    /**
-	 * 
-	 */
 	public void setSiteTitle(String siteTitle) {
 		this.siteTitle = siteTitle;
 	}
 
-    /**
-	 * 
-	 */
 	public String getHomeUrl() {
 		return homeUrl;
 	}
 
-    /**
-	 * 
-	 */
 	public void setHomeUrl(String homeUrl) {
 		this.homeUrl = homeUrl;
 	}
 
-    /**
-	 * 
-	 */
 	public String getSearchResultsPage() {
 		return searchResultsPage;
 	}
 
-    /**
-	 * 
-	 */
 	public void setSearchResultsPage(String searchResultsPage) {
 		this.searchResultsPage = searchResultsPage;
 	}
 
-    /**
-	 * 
-	 */
 	public List<MeganavPanel> getPanels() {
 		return new ArrayList<>(panels);
 	}
 
-    /**
-	 * 
-	 */
 	public void setPanels(List<MeganavPanel> panels) {
 		this.panels = new ArrayList<>(panels);
 	}
 
-    /**
-	 * 
-	 */
 	public List<SocialLink> getLinksSocial() {
 		return new ArrayList<>(linksSocial);
 	}
 
-    /**
-	 * 
-	 */
 	public void setLinksSocial(List<SocialLink> linksSocial) {
 		this.linksSocial = new ArrayList<>(linksSocial);
 	}
 
-    /**
-	 * 
-	 */
 	public String getAutocompleteUrl() {
 		return autocompleteUrl;
 	}
 
-    /**
-	 * 
-	 */
 	public void setAutocompleteUrl(String autocompleteUrl) {
 		this.autocompleteUrl = autocompleteUrl;
 	}
 
-    /**
-	 * 
-	 */
 	public String getTopsearchesUrl() {
 		return topsearchesUrl;
 	}
 
-    /**
-	 * 
-	 */
 	public void setTopsearchesUrl(String topsearchesUrl) {
 		this.topsearchesUrl = topsearchesUrl;
 	}
 
-    /**
-	 * 
-	 */
 	@PostConstruct
     protected void init() throws RepositoryException {
 		autocompleteUrl = "/apps/dhl/discoverdhlapi/tags/index.json";
@@ -192,7 +143,7 @@ public class Meganav {
 			Page child = children.next();
 			ValueMap childProperties = child.adaptTo(ValueMap.class);
 			if (childProperties != null
-					&& StringUtils.equalsAny(childProperties.get("jcr:content/sling:resourceType", ""), CATEGORY_PAGE_STATIC_RESOURCE_TYPE, CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
+					&& childProperties.get("jcr:content/sling:resourceType", "").equals(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
 				boolean hideInNav = childProperties.get("jcr:content/hideInNav", false);
 				if (hideInNav) {
 					continue;

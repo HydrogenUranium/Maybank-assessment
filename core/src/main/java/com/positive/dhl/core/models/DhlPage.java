@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
 import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
 
 @Getter
@@ -61,7 +62,7 @@ public class DhlPage {
 	@Default(values = "ltr")
 	private String direction;
 
-	private boolean noindex = false;
+	private String robotsTags = "";
 
 	@PostConstruct
     protected void init() {
@@ -74,47 +75,48 @@ public class DhlPage {
 			isPublishRunmode = false;
 		}
 
-		ValueMap homeProperties = pageUtilService.getHomePageProperties(currentPage);
-		if (!homeProperties.isEmpty()) {
-			noindex = homeProperties.get("noindex", false);
-		}
-
 		String currentPagePath = currentPage.getPath();
 
 		fullUrl = (HTTPS_PREFIX + akamaiHostname).concat(request.getResourceResolver().map(currentPagePath));
 
 		ValueMap properties = currentPage.getProperties();
-		if (properties != null) {
-			fullarticlepath = properties.get("fullarticlepath", "");
-			amparticlepath = properties.get("amparticlepath", "");
+		fullarticlepath = properties.get("fullarticlepath", "");
+		amparticlepath = properties.get("amparticlepath", "");
 
-			String path = properties.get("redirectTarget", "");
-			if (!path.equals(currentPagePath) && !path.isEmpty() && isPublishRunmode) {
-				response.setStatus(302);
-				response.setHeader("Location", path);
-			}
+		String path = properties.get("redirectTarget", "");
+		if (!path.equals(currentPagePath) && !path.isEmpty() && isPublishRunmode) {
+			response.setStatus(302);
+			response.setHeader("Location", path);
+		}
 
-			// if 'noindex' is set on the homepage, all pages have no-index set, otherwise the settings is on individual pages
-			if (!noindex) {
-				noindex = properties.get("noindex", false);
-			}
+		robotsTags = getRobotTags(currentPage);
 
-			// get list of canonical URLs
- 			canonicals = new ArrayList<>();
-			Resource canonicalItems = currentPage.getContentResource("canonicalitems");
-			if (canonicalItems != null) {
-				Iterator<Resource> canonicalItemsIterator = canonicalItems.listChildren();
-				while (canonicalItemsIterator.hasNext()) {
-					ValueMap props = canonicalItemsIterator.next().adaptTo(ValueMap.class);
-					if (props != null) {
+		pageUtilService.getAncestorPageByPredicate(currentPage,
+				page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
 
-						String url = props.get("url", "");
-						if (!("").equals(url)) {
-							canonicals.add(new Canonical(url));
-						}
+		// get list of canonical URLs
+		canonicals = new ArrayList<>();
+		Resource canonicalItems = currentPage.getContentResource("canonicalitems");
+		if (canonicalItems != null) {
+			Iterator<Resource> canonicalItemsIterator = canonicalItems.listChildren();
+			while (canonicalItemsIterator.hasNext()) {
+				ValueMap props = canonicalItemsIterator.next().adaptTo(ValueMap.class);
+				if (props != null) {
+
+					String url = props.get("url", "");
+					if (!("").equals(url)) {
+						canonicals.add(new Canonical(url));
 					}
 				}
 			}
 		}
+	}
+
+	private String getRobotTags(Page page) {
+		String tags = String.join(", ", page.getProperties().get(PN_ROBOTS_TAGS, new String[0]));
+		if(!tags.contains("noindex") && pageUtilService.hasInheritedNoIndex(page)) {
+			return tags.isBlank() ? "noindex" : tags + ", noindex";
+		}
+		return tags;
 	}
 }

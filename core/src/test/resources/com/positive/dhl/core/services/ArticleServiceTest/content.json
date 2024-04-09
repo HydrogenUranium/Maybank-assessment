@@ -4,7 +4,7 @@
     "jcr:content": {
       "cq:template": "/conf/dhl/settings/wcm/templates/category-page",
       "jcr:primaryType": "cq:PageContent",
-      "sling:resourceType": "dhl/components/pages/home"
+      "sling:resourceType": "dhl/components/pages/editable-home-page"
     },
     "article_1": {
       "jcr:primaryType": "cq:Page",

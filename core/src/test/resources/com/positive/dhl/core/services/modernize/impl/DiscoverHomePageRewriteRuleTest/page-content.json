@@ -4,7 +4,7 @@
     "jcr:content": {
       "jcr:primaryType": "cq:PageContent",
       "jcr:title": "Small business & global logistics advice | Discover DHL Global",
-      "sling:resourceType": "dhl/components/pages/home",
+      "sling:resourceType": "dhl/components/pages/editable-home-page",
       "par": {
         "jcr:primaryType": "nt:unstructured",
         "cq:lastRolledout": "Fri Aug 25 2023 19:52:13 GMT+0300",

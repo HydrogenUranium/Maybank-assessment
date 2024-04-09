@@ -28,7 +28,7 @@
         "jcr:primaryType": "cq:Page",
         "jcr:content": {
           "jcr:primaryType": "nt:unstructured",
-          "sling:resourceType": "dhl/components/pages/home",
+          "sling:resourceType": "dhl/components/pages/editable-home-page",
           "jcr:title": "EN Language Master Home page"
         },
         "category-page": {
@@ -37,7 +37,7 @@
             "jcr:primaryType": "cq:PageContent",
             "jcr:title": "CATEGORY PAGE",
             "cq:template": "/apps/dhl/templates/dhl-article-group-page",
-            "sling:resourceType": "dhl/components/pages/articlecategory"
+            "sling:resourceType": "dhl/components/pages/editable-category-page"
           }
         }
       },
@@ -84,7 +84,7 @@
         "jcr:primaryType": "cq:Page",
         "jcr:content": {
           "jcr:primaryType": "cq:PageContent",
-          "sling:resourceType": "dhl/components/pages/home",
+          "sling:resourceType": "dhl/components/pages/editable-home-page",
           "jcr:title": "EN Global",
           "jcr:language": "en",
           "cq:isLanguageRoot": "true",
@@ -399,7 +399,7 @@
         "jcr:created": "Fri Oct 20 2023 08:00:24 GMT+0200",
         "jcr:content": {
           "jcr:primaryType": "cq:PageContent",
-          "sling:resourceType": "dhl/components/pages/home",
+          "sling:resourceType": "dhl/components/pages/editable-home-page",
           "jcr:title": "EN-US Global",
           "jcr:language": "",
           "cq:isLanguageRoot": "true",
@@ -415,7 +415,7 @@
             "jcr:primaryType": "cq:PageContent",
             "jcr:title": "CATEGORY PAGE",
             "cq:template": "/apps/dhl/templates/dhl-article-group-page",
-            "sling:resourceType": "dhl/components/pages/articlecategory"
+            "sling:resourceType": "dhl/components/pages/editable-category-page"
           },
           "article-page": {
             "jcr:primaryType": "cq:Page",
@@ -447,7 +447,7 @@
         "jcr:primaryType": "cq:Page",
         "jcr:content": {
           "jcr:primaryType": "cq:PageContent",
-          "sling:resourceType": "dhl/components/pages/home",
+          "sling:resourceType": "dhl/components/pages/editable-home-page",
           "jcr:title": "Spanish version of US Page",
           "jcr:language": "es_us",
           "cq:isLanguageRoot": "true",
@@ -462,7 +462,7 @@
             "jcr:primaryType": "cq:PageContent",
             "jcr:title": "CATEGORY PAGE",
             "cq:template": "/apps/dhl/templates/dhl-article-group-page",
-            "sling:resourceType": "dhl/components/pages/articlecategory"
+            "sling:resourceType": "dhl/components/pages/editable-category-page"
           },
           "article-page": {
             "jcr:primaryType": "cq:Page",

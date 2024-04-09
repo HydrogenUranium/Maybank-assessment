@@ -3,7 +3,7 @@
     "jcr:primaryType": "cq:Page",
     "jcr:content": {
       "jcr:primaryType": "cq:PageContent",
-      "sling:resourceType": "dhl/components/pages/home",
+      "sling:resourceType": "dhl/components/pages/editable-home-page",
       "par": {
         "article-showcase": {
           "jcr:primaryType": "nt:unstructured",

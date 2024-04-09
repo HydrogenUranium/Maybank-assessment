@@ -100,7 +100,7 @@
       "jcr:lastModified": "Wed Oct 27 2010 15:33:24 GMT-0400",
       "jcr:primaryType": "cq:PageContent",
       "cq:template": "/apps/dhl/templates/dhl-article-page",
-      "sling:resourceType": "dhl/components/pages/home",
+      "sling:resourceType": "dhl/components/pages/editable-home-page",
       "par": {
         "jcr:primaryType": "nt:unstructured",
         "sling:resourceType": "foundation/components/parsys",

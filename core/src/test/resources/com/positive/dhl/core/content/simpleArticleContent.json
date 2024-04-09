@@ -1,0 +1,9 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:title": "Article",
+    "cq:template": "/apps/dhl/templates/editable-article",
+    "sling:resourceType": "dhl/components/pages/editable-article"
+  }
+}

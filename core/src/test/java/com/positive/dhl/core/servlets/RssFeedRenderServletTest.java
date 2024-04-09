@@ -53,7 +53,7 @@ class RssFeedRenderServletTest {
 
     @Test
     void doGet_ShouldReturnRSS_WhenConfigurationIsCorrect() throws ServletException {
-        when(configuration.resourceTypes()).thenReturn(new String[]{"dhl/components/pages/article"});
+        when(configuration.resourceTypes()).thenReturn(new String[]{"dhl/components/pages/editable-article"});
         when(configuration.maxPages()).thenReturn(1);
 
         when(dispatcherFactory.getRequestDispatcher(any(String.class), any())).thenAnswer(getRequestDispatcherInvocation -> {

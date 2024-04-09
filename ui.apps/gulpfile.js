@@ -64,18 +64,6 @@ gulp.task('sass', finished => {
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages/css'));
 
-  /* This is for a 'standalone' stylesheet meant to be delivered via a separate clientlib AEM package */
-  gulp.src('./sass/amp-*.scss')
-    .pipe(gulpIf(isDev, sourcemaps.init()))
-    .pipe(sass({
-      outputStyle: 'compressed',
-      includePaths: ['./sass']
-    }).on('error', sass.logError))
-    .pipe(replace('__prefix__', prefix))
-    .pipe(postcss([autoprefixer()]))
-    // .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
-    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
-    .pipe(gulp.dest('./sass'));
   finished();
 });
 
