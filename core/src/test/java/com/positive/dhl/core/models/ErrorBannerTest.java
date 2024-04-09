@@ -35,6 +35,7 @@ class ErrorBannerTest {
         assertEquals("description", errorBanner.getDescription());
         assertEquals("buttonLink", errorBanner.getButtonLink());
         assertEquals("buttonLabel", errorBanner.getButtonLabel());
+        assertEquals("Refresh Page", errorBanner.getRefreshPageButtonLabel());
         assertEquals("/image.png", errorBanner.getImage());
         assertEquals("altText", errorBanner.getAltText());
     }
