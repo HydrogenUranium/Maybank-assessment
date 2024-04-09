@@ -1,34 +1,26 @@
 package com.positive.dhl.core.models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
+import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageUtilService;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
-
-import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
-import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
-import com.day.cq.search.result.SearchResult;
-import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import java.util.*;
+
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
-import static com.day.cq.wcm.api.constants.NameConstants.*;
+import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_NAV_TITLE;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
 import static org.apache.jackrabbit.JcrConstants.JCR_CONTENT;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
@@ -80,7 +72,7 @@ public class Sitemap {
 	@PostConstruct
     protected void init() throws RepositoryException {
 		articleLinks = new ArrayList<>();
-		Page home = pageUtilService.getHomePage(currentPage);
+		var home = pageUtilService.getHomePage(currentPage);
 		if (builder != null && home != null) {
 			Map<String, String> map = new HashMap<>();
 			map.put("type", NT_PAGE);
@@ -88,7 +80,7 @@ public class Sitemap {
 			map.put("group.p.or", "true");
 			
 			List<String> articleTypes = Article.getArticlePageTypes();
-			for (int x = 0; x < articleTypes.size(); x++) {
+			for (var x = 0; x < articleTypes.size(); x++) {
 				map.put(String.format("group.%1$s_property", (x + 1)), JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY);
 				map.put(String.format("group.%1$s_property.value", (x + 1)), String.format("dhl/components/pages/%1$s", articleTypes.get(x)));
 				map.put(String.format("group.%1$s_property.operation", (x + 1)), "like");
@@ -98,11 +90,11 @@ public class Sitemap {
 			map.put("orderby.sort", "desc");
 			map.put("p.limit", "50");
 			
-			Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
-	        SearchResult searchResult = query.getResult();
+			var query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
+	        var searchResult = query.getResult();
 	        if (searchResult != null) {
 				for (Hit hit: searchResult.getHits()) {
-					Resource resource = resourceResolver.getResource(hit.getPath());
+					var resource = resourceResolver.getResource(hit.getPath());
 					if (resource != null) {
 						Page page = resource.adaptTo(Page.class);
 						if (page != null) {
@@ -117,7 +109,7 @@ public class Sitemap {
 									title = properties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
 								}
 
-								SitemapLinkGroup linkGroup = new SitemapLinkGroup();
+								var linkGroup = new SitemapLinkGroup();
 								linkGroup.setHeader(title);
 								linkGroup.setLink(hit.getPath().concat(HTML_EXTENSION));
 								articleLinks.add(linkGroup);
@@ -142,7 +134,7 @@ public class Sitemap {
 					continue;
 				}
 
-				SitemapLinkGroup linkGroup = new SitemapLinkGroup();
+				var linkGroup = new SitemapLinkGroup();
 				ValueMap properties = child.adaptTo(ValueMap.class);
 
 				if (properties != null) {
@@ -188,11 +180,11 @@ public class Sitemap {
 				map.put("orderby.sort", "desc");
 				map.put("p.limit", "50");
 
-				Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
-				SearchResult searchResult = query.getResult();
+				var query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
+				var searchResult = query.getResult();
 				if (searchResult != null) {
 					for (Hit hit : searchResult.getHits()) {
-						Resource item = resourceResolver.getResource(hit.getPath());
+						var item = resourceResolver.getResource(hit.getPath());
 						if (item != null) {
 							Page resource = item.adaptTo(Page.class);
 							if (resource != null) {
@@ -207,7 +199,7 @@ public class Sitemap {
 										title = properties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
 									}
 
-									SitemapLinkGroup linkGroup = new SitemapLinkGroup();
+									var linkGroup = new SitemapLinkGroup();
 									linkGroup.setHeader(title);
 									linkGroup.setLink(hit.getPath().concat(HTML_EXTENSION));
 									otherPageLinks.add(linkGroup);
@@ -231,29 +223,24 @@ public class Sitemap {
 		Iterator<Page> groupChildren = page.listChildren();
 		while (groupChildren.hasNext()) {
 			Page groupChild = groupChildren.next();
-    		ValueMap groupProperties = groupChild.adaptTo(ValueMap.class);
-    		
-    		if (groupProperties != null) {
-				if (groupChild.isHideInNav()) {
-					continue;
-				}
-				String pageType = groupProperties.get(JCR_CONTENT + "/" + SLING_RESOURCE_TYPE_PROPERTY, "");
-				if (!pageType.equals(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
-					continue;
-				}
+    		ValueMap groupProperties = groupChild.getProperties();
+			String pageType = groupProperties.get(SLING_RESOURCE_TYPE_PROPERTY, "");
 
-				String groupTitle = groupProperties.get(JCR_CONTENT + "/" + PN_NAV_TITLE, "");
-				if (groupTitle.isBlank()) {
-					groupTitle = groupProperties.get(JCR_CONTENT + "/" + JCR_TITLE, "");
-				}
+			if (groupChild.isHideInNav() || !pageType.equals(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE)) {
+				continue;
+			}
 
-				SitemapLinkGroup currentItem = new SitemapLinkGroup();
-				currentItem.setHeader(groupTitle);
-				currentItem.setLink(groupChild.getPath().concat(HTML_EXTENSION));
-				currentItem.setLinks(getChildrenCategories(groupChild));
+			String groupTitle = groupProperties.get(PN_NAV_TITLE, "");
+			if (groupTitle.isBlank()) {
+				groupTitle = groupProperties.get(JCR_TITLE, "");
+			}
 
-				links.add(currentItem);
-    		}
+			var currentItem = new SitemapLinkGroup();
+			currentItem.setHeader(groupTitle);
+			currentItem.setLink(groupChild.getPath().concat(HTML_EXTENSION));
+			currentItem.setLinks(getChildrenCategories(groupChild));
+
+			links.add(currentItem);
 		}
 		
 		return links;

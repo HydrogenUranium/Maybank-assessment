@@ -1,10 +1,8 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.search.PredicateGroup;
-import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
-import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -134,7 +132,7 @@ public class MeganavPanel {
 			this.current = (page.getPath().equals(topLevelCategory.getPath()));
 		}
 
-		int count = 0;
+		var count = 0;
 		panels = new ArrayList<>();
 		Iterator<Page> children = page.listChildren();
 		while (children.hasNext()) {
@@ -158,8 +156,8 @@ public class MeganavPanel {
 			map.put("group.1_property.operation", "like");
 			map.put("p.limit", "50");
 
-			Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
-	        SearchResult searchResult = query.getResult();
+			var query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
+	        var searchResult = query.getResult();
 	        if (searchResult != null) {
 				for (Hit hit: searchResult.getHits()) {
 					ValueMap hitProperties = hit.getProperties();
@@ -167,13 +165,13 @@ public class MeganavPanel {
 					if (hideInNav) {
 						continue;
 					}
-					Resource resource = resourceResolver.getResource(hit.getPath());
+					var resource = resourceResolver.getResource(hit.getPath());
 					if (resource != null) {
 			    		ValueMap properties = resource.adaptTo(ValueMap.class);
 			    		if (properties != null) {
 			    			boolean showInMeganav = properties.get("jcr:content/showinmeganav", false);
 			    			if (showInMeganav) {
-			    				ArticleCategory articleCategory = new ArticleCategory();
+			    				var articleCategory = new ArticleCategory();
 
 			    				articleCategory.path = hit.getPath().trim();
 				    			String externalUrl = properties.get("jcr:content/externalurl", "");
