@@ -1,6 +1,8 @@
 package com.positive.dhl.core.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
@@ -27,11 +29,14 @@ class DhlPageTest {
 	@Mock
 	private EnvironmentConfiguration environmentConfiguration;
 
+	@Mock
+	private PageUtilService pageUtilService;
+
 	@BeforeEach
 	void setUp() throws Exception {
 		ctx.load().json("/com/positive/dhl/core/models/StandardAemPage.json", "/content/dhl");
 		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
-		ctx.registerService(PageUtilService.class, new PageUtilService());
+		ctx.registerService(PageUtilService.class, pageUtilService);
 	    ctx.addModelsForClasses(DhlPage.class);
 		mockInjectHomeProperty(ctx, Map.of(
 				"trackingid", "tracking-id",
@@ -59,6 +64,17 @@ class DhlPageTest {
 		assertEquals("tracking-id", dhlPage.getTrackingid());
 		assertEquals("/discover", dhlPage.getPathprefix());
 		assertEquals("rtl", dhlPage.getDirection());
+		assertEquals("", dhlPage.getRobotsTags());
 	}
 
+	@Test
+	void initialization_ShouldHaveNoIndex_WhenAncestorHaveInheritableNoIndex() {
+		when(pageUtilService.hasInheritedNoIndex(any())).thenReturn(true);
+		ctx.currentResource("/content/dhl/standardpage");
+
+		DhlPage dhlPage = ctx.request().adaptTo(DhlPage.class);
+
+		assertNotNull(dhlPage);
+		assertEquals("noindex", dhlPage.getRobotsTags());
+	}
 }

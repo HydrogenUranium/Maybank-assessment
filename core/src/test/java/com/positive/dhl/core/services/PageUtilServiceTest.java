@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.factory.ModelFactory;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -234,5 +233,25 @@ class PageUtilServiceTest {
         boolean result = pageUtilService.hasNoIndex(currentPage);
 
         assertFalse(result);
+    }
+
+    @Test
+    void hasNoIndex_withInheritedLogic_WhenAncestorWithoutInheritableNoIndex() {
+        Page currentPage = resourceResolver.getResource(EMPTY_JCR_LANG_AND_EMPTY_ACCEPT_LANG).adaptTo(Page.class);
+
+        boolean result = pageUtilService.hasNoIndex(currentPage, true);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void hasNoIndex_withInheritedLogic_WhenAncestorHasInheritableNoIndex() {
+        context.load().json("/com/positive/dhl/core/content/inheritableNoIndexPageContent.json", "/content/dhl/home");
+        context.load().json("/com/positive/dhl/core/content/simpleArticleContent.json", "/content/dhl/home/article");
+        Page currentPage = resourceResolver.getResource("/content/dhl/home/article").adaptTo(Page.class);
+
+        boolean result = pageUtilService.hasNoIndex(currentPage, true);
+
+        assertTrue(result);
     }
 }
