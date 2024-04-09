@@ -35,9 +35,7 @@
     <link rel="canonical" href="${canonical.url}" />
   </sly>
 
-  <sly data-sly-unwrap data-sly-test="${ dhlpage.noindex == true }">
-    <meta name="robots" content="noindex" />
-  </sly>
+  <meta  data-sly-test="${dhlpage.robotsTags}" name="robots" content="${dhlpage.robotsTags}" />
 
   <script type="application/ld+json">
 	{

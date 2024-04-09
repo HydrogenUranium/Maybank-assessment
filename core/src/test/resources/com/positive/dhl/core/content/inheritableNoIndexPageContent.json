@@ -1,0 +1,12 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:title": "Language Masters",
+    "cq:template": "/apps/dhl/templates/dhl-blank-page",
+    "cq:robotsTags": "noindex",
+    "noIndexRobotsTagsInherit": "true",
+    "hideInNav": "true",
+    "sling:resourceType": "dhl/components/pages/blank"
+  }
+}
