@@ -1,5 +1,7 @@
 package com.positive.dhl.core.rss;
 
+import com.positive.dhl.core.services.PageContentExtractorService;
+import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -11,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.servlet.RequestDispatcher;
@@ -32,6 +35,12 @@ class DiscoverRssFeedTest {
     private final MockSlingHttpServletRequest request = context.request();
     private final MockSlingHttpServletResponse response = context.response();
 
+    @Spy
+    private PageContentExtractorService pageExtractor;
+
+    @Spy
+    private PageUtilService pageUtilService;
+
     @Mock
     private MockRequestDispatcherFactory dispatcherFactory;
 
@@ -48,7 +57,7 @@ class DiscoverRssFeedTest {
         String path = "/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales";
         request.setResource(context.resourceResolver().getResource(path));
 
-        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
+        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
         rssFeed.printHeader();
         rssFeed.printFooter();
 
@@ -74,7 +83,7 @@ class DiscoverRssFeedTest {
         String path = "/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales";
         request.setResource(context.resourceResolver().getResource(path));
 
-        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
+        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
         rssFeed.printEntry();
 
         String responseBody = context.response().getOutputAsString()
@@ -100,7 +109,7 @@ class DiscoverRssFeedTest {
         request.setResource(context.resourceResolver().getResource(path));
         request.setServerPort(4503);
 
-        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
+        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
         rssFeed.printEntry();
 
         String responseBody = context.response().getOutputAsString()
@@ -129,8 +138,8 @@ class DiscoverRssFeedTest {
         request.setRequestDispatcherFactory(dispatcherFactory);
         request.setResource(resourceResolver.getResource(path));
 
-        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
-        rssFeed.printEntry(resourceResolver.getResource(articlePath));
+        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
+        rssFeed.printEntry(resourceResolver.getResource(articlePath), false);
 
         verify(dispatcherFactory, times(1))
                 .getRequestDispatcher(articlePath + ".rss.entry.xml", null);
@@ -148,10 +157,10 @@ class DiscoverRssFeedTest {
         request.setRequestDispatcherFactory(dispatcherFactory);
         request.setResource(resourceResolver.getResource(path));
 
-        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
+        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
 
         assertThrows(IOException.class, () ->
-                rssFeed.printEntry(resourceResolver.getResource(articlePath))
+                rssFeed.printEntry(resourceResolver.getResource(articlePath), false)
         );
     }
 
@@ -171,8 +180,8 @@ class DiscoverRssFeedTest {
         request.setRequestDispatcherFactory(dispatcherFactory);
         request.setResource(resourceResolver.getResource(path));
 
-        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
-        rssFeed.printEntries(articleIterator, 1);
+        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
+        rssFeed.printEntries(articleIterator, 1, false);
 
         verify(dispatcherFactory, times(1))
                 .getRequestDispatcher(anyString(), any());
@@ -198,8 +207,8 @@ class DiscoverRssFeedTest {
         request.setRequestDispatcherFactory(dispatcherFactory);
         request.setResource(resourceResolver.getResource(path));
 
-        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response);
-        rssFeed.printEntries(articleIterator);
+        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
+        rssFeed.printEntries(articleIterator, false);
 
 
         verify(dispatcherFactory, times(2))
