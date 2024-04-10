@@ -10,11 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class LanguageVariantsTest {
-    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
     public static final String ROOT_TEST_PAGE_PATH = "/content";
     public static final String EN_US_CURRENT_RESOURCE_PATH = "/content/dhl/us/en-us/category-page/article-page";
     public static final String GLOBAL_CURRENT_RESOURCE_PATH = "/content/dhl/global/en-global";
@@ -23,7 +23,7 @@ class LanguageVariantsTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
+        context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
 
         context.registerService(PageUtilService.class, new PageUtilService());
         context.addModelsForClasses(LanguageVariants.class);

@@ -104,6 +104,32 @@ class DiscoverRssFeedTest {
     }
 
     @Test
+    void printEntry_ShouldAddFullBody_WhenFullBodyIsTrue() throws IOException {
+        String path = "/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales";
+        request.setResource(context.resourceResolver().getResource(path));
+        doReturn("<div>full body</div>").when(pageExtractor).extract(any(Resource.class));
+
+        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
+        rssFeed.printEntry(true);
+
+        String responseBody = context.response().getOutputAsString()
+                .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
+        String expected = "<item>\n" +
+                "<link>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<title>The future of cyber sales</title>\n" +
+                "<description>description</description>\n" +
+                "<articleBody><![CDATA[<div>full body</div>]]></articleBody>\n" +
+                "<region>Global</region>\n" +
+                "<language>EN</language>\n" +
+                "<pubDate/>\n" +
+                "<tags>tech-futures,culture-hype</tags>\n" +
+                "<thumbnail>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
+                "</item>\n";
+
+        assertXmlEquals(expected, responseBody);
+    }
+
+    @Test
     void printEntry_ShouldAddDataToResponseWithPort_WhenPortIsNotHttp() throws IOException {
         String path = "/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales";
         request.setResource(context.resourceResolver().getResource(path));
