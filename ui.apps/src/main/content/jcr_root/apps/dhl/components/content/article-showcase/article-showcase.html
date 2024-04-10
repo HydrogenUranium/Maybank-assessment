@@ -33,7 +33,7 @@
                     <div class="article__info__description">${item.description}</div>
                     <div class="article__info__author">
                         <sly data-sly-test="${item.authorimage}"
-                                data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+                             data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
                              data-sly-call="${template.picture @
                              image=item.authorimage,
                              useWebOptimized=model.enableAssetDelivery,
