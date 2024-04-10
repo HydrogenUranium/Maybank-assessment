@@ -32,7 +32,12 @@
                     </div>
                     <div class="article__info__description">${item.description}</div>
                     <div class="article__info__author">
-                        <div style="background-image: url('${item.authorimage @ context='uri'}');" class="article__info__author__avatar"></div>
+                        <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+                             data-sly-call="${template.picture @
+                             image=item.authorimage,
+                             useWebOptimized=model.enableAssetDelivery,
+                             imgClass='article__info__author__avatar'
+                         }"></sly>
                         <div class="article__info__author__name">${item.author}</div>
                     </div>
                 </div>
