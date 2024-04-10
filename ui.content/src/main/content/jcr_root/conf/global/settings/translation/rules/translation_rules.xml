@@ -142,26 +142,6 @@
       <property inherit="true" name="thirdItemTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
 
-    <node resourceType="dhl/components/ampcontent/download">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctatitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctatitlesample" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/ampcontent/figure">
-      <property inherit="true" name="caption1" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="caption2" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="content" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/ampcontent/gallery">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/ampcontent/subscribepanel">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctatitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
     <node resourceType="dhl/components/content/accordion">
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="content" translate="true" updateDestinationLanguage="false"/>
@@ -210,13 +190,6 @@
       <property inherit="true" name="description" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="ctatext" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/homepagecarouselsimplified">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/inlinequotepanel">
-      <property inherit="true" name="quote" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="author" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/inlineshipnowmarketo">
       <property inherit="true" name="formtitle" translate="true" updateDestinationLanguage="false"/>
@@ -303,133 +276,6 @@
     </node>
     <node resourceType="dhl/components/content/error-banner">
       <property inherit="true" name="refreshPageButtonLabel" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/amparticle">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/animatedpage201901">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/animatedpage20190225">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/animatedpage20190523">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/animatedpage20190624">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/animatedpage20190724">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/animatedpage20190805">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/animatedpage20191021">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/animatedpage20191025">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/animatedpage20191101">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/animatedpage20191122">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/article">
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/articlecategory">
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/articlegated">
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="authortitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="gatetitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="gatesubtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="gatecontent" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/pages/blank">
       <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
@@ -546,44 +392,6 @@
       <property inherit="true" name="searchBar-trendingTopicsTitle" translate="true" updateDestinationLanguage="false"/>
 
       <property inherit="true" name="video-unsupportedMessage" translate="true" updateDestinationLanguage="false"/>
-    </node>
-
-    <node resourceType="dhl/components/pages/landing">
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="shipnowmessage" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/landingtwocol">
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="herosubtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="shipnowmessage" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/usershipnow">
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="thanksmessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="shipnowmessage" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/pages/usershipnowthanks">
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="thanksmessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="shipnowmessage" translate="true" updateDestinationLanguage="false"/>
     </node>
     <filter/>
     <node pathContains="&quot;&amp;#34;&amp;amp;#34;&amp;amp;amp;#34;/cq:annotations&amp;amp;amp;#34;&amp;amp;#34;&amp;#34;&quot;">
