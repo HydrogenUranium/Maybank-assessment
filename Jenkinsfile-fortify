@@ -78,7 +78,7 @@ pipeline {
                 script {
                     try {
                         sh '''
-                            /home/ci/FortifyASG.sh 375228956
+                            /home/ci/FortifyASG.sh 375582152
                         '''
                     } catch (err) {
                         unstable(message: "${STAGE_NAME} is unstable; underlying error was... ${err}")
