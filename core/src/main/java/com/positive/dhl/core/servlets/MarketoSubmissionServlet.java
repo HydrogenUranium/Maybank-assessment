@@ -73,11 +73,12 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 			} else {
 				LOGGER.error("The Marketo hidden form submission was failed");
 				pw.write("KO");
+				canProceed = false;
 			}
 		} else {
 			LOGGER.error("OSGi and/or Environment configuration don't allow submit hidden form. Not doing anything...");
 		}
-		response.setStatus(202);
+		response.setStatus(canProceed ? 202 : 500);
 	}
 
 	private void provideResponse(FormSubmissionResponse formSubmissionResponse, PrintWriter printWriter){
