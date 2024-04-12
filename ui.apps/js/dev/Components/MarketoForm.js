@@ -134,8 +134,6 @@ class MarketForm {
           shared.submitForm(formSubmissionPath, formData).then(response => {
             if (response.status == 202) {
               console.log('Second submission was a success');
-            } else {
-              console.log('Second submission was rejected (check AEM Logs)');
             }
             window.location.replace(thankYouUrl);
           });
