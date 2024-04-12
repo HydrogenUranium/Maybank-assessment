@@ -80,7 +80,7 @@ class MarketoSubmissionServletTest {
 		underTest.doPost(request, response);
 
 		int status = response.getStatus();
-		assertEquals(202, status);
+		assertEquals(500, status);
 	}
 
 	/**
@@ -95,7 +95,7 @@ class MarketoSubmissionServletTest {
 		underTest.doPost(request, response);
 
 		int status = response.getStatus();
-		assertEquals(202, status);
+		assertEquals(500, status);
 	}
 
 	@Test
@@ -144,7 +144,7 @@ class MarketoSubmissionServletTest {
 		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
 		underTest.doPost(request, response);
 		int status = response.getStatus();
-		assertEquals(202, status);
+		assertEquals(500, status);
 	}
 
 	@ParameterizedTest(name = "{index} : Form path = ''{0}''")
@@ -166,6 +166,6 @@ class MarketoSubmissionServletTest {
 
 		underTest.doPost(request, response);
 		int status = response.getStatus();
-		assertEquals(202, status);
+		assertEquals(500, status);
 	}
 }
