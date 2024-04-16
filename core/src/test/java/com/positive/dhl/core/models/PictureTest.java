@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -32,10 +33,14 @@ class PictureTest {
     @Mock
     PathUtilService pathUtilService;
 
+    @Mock
+    AssetDelivery assetDelivery;
+
     @BeforeEach
     void init() {
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);
+        context.registerService(AssetDelivery.class, assetDelivery);
         context.addModelsForClasses(Picture.class);
         mockInject(context, INJECT_REQUEST_ATTRIBUTES, Map.of(
                 "image", "/content/dam/image.jpg",
