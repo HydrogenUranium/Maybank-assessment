@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +25,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class SearchBarModelTest {
-    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
     public static final String ROOT_TEST_PAGE_PATH = "/content";
     public static final String ARTICLE_RESOURCE_PATH = "/content/dhl/us/en-us/category-page/article-page-without-new-article-setup";
 
@@ -39,7 +39,7 @@ class SearchBarModelTest {
     void setUp() throws InvalidTagFormatException {
         context.addModelsForClasses(SearchBarModel.class);
         context.registerService(TagUtilService.class, tagUtilService);
-        context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
+        context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
     }
 
     private void initRequest(String path) {

@@ -17,13 +17,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.Field;
 
+import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class PageUtilServiceTest {
     public static final String PAGE_PATH = "/content";
-    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
     public static final String EMPTY_JCR_LANG_AND_EMPTY_ACCEPT_LANG = "/content/dhl/language-masters/en-master";
     public static final String EMPTY_JCR_LANG_AND_ASTERISK_ACCEPT_LANG = "/content/dhl/language-masters/es";
     public static final String EMPTY_JCR_LANG_AND_FR_ACCEPT_LANG = "/content/dhl/language-masters/fr";
@@ -47,7 +47,7 @@ class PageUtilServiceTest {
     @BeforeEach
     void setUp() {
         resourceResolver = context.resourceResolver();
-        context.load().json(TEST_RESOURCE_PATH, PAGE_PATH);
+        context.load().json(NEW_CONTENT_STRUCTURE_JSON, PAGE_PATH);
         resource = resourceResolver.getResource(PAGE_PATH);
     }
 

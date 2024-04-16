@@ -11,11 +11,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ServicePointLocatorModelTest {
-    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
     public static final String ROOT_TEST_PAGE_PATH = "/content";
     public static final String CONFIGURED_LOCATOR_COMPONENT_RESOURCE_PATH = "/content/dhl/global/en-global/landing-with-configured-locator/jcr:content/root/column_container/first-container/responsivegrid/locator";
     public static final String EMPTY_LOCATOR_COMPONENT_RESOURCE_PATH = "/content/dhl/global/en-global/landing-with-non-configured-locator/jcr:content/root/column_container/first-container/responsivegrid/locator";
@@ -26,7 +26,7 @@ class ServicePointLocatorModelTest {
 
     @BeforeEach
     void setUp() {
-        context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
+        context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
         resourceResolver = context.resourceResolver();
 
         context.addModelsForClasses(ServicePointLocatorModel.class);
