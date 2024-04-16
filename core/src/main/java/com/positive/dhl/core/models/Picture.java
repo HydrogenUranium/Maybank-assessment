@@ -88,7 +88,9 @@ public class Picture {
         if(assetPath == null) {
             return new ArrayList<>();
         }
-        return useWebOptimized && isInternalAsset(assetPath) ? getOptimizedImagesWithMimeTypes(assetPath) : getImageWithMimeType(assetPath);
+        return useWebOptimized && isInternalAsset(assetPath) && assetDelivery != null
+                ? getOptimizedImagesWithMimeTypes(assetPath)
+                : getImageWithMimeType(assetPath);
     }
 
     protected List<Map.Entry<String, String>> getImageWithMimeType(String assetPath) {
