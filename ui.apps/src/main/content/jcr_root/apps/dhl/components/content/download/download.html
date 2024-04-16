@@ -29,7 +29,7 @@
 								<h2 class="DHLdownload__title">${properties.title}</h2>
 								<p class="DHLdownload__copy">${properties.brief}</p>
 
-								<img class="DHLdownload__image d-block d-md-none" src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${properties.assetimage}" alt="${properties.title}" />
+								<img class="DHLdownload__image d-block d-md-none" src="${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.assetimage}" alt="${properties.title}" />
 
 								<div class="DHLdownload__ctas no-logged-in" style="display: none;">
 									<button class="DHLdownload__cta--red" data-show-hide-target="download-form">${ 'Register to download' @ i18n, context='html' }</button>
@@ -42,7 +42,7 @@
 									<a href="#" target="_blank" class="DHLdownload__cta--red">${properties.ctatitle}</a>
 								</div>
 							</div>
-							<img class="DHLdownload__image d-none d-md-block" src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${properties.assetimage}" alt="${properties.title}" />
+							<img class="DHLdownload__image d-none d-md-block" src="${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.assetimage}" alt="${properties.title}" />
 						</div>
 					</div>
 					<div id="glb-register-start" class="DHLdownload__hidden-form" data-show-hide-id="download-form">
@@ -153,7 +153,7 @@
 								<h2 class="DHLdownload__title">${properties.title}</h2>
 								<p class="DHLdownload__copy">${properties.brief}</p>
 
-								<img class="DHLdownload__image d-block d-md-none" src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${properties.assetimage}" alt="${properties.title}" />
+								<img class="DHLdownload__image d-block d-md-none" src="${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.assetimage}" alt="${properties.title}" />
 
 								<div class="forms marketoForm"
                                      data-sly-set.marketoHostname="${marketoConfig.marketoHostname}"
@@ -180,7 +180,7 @@
 								  </div>
 								</div>
     						</div>
-							<img class="DHLdownload__image d-none d-md-block" src="${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${properties.assetimage}" alt="${properties.title}" />
+							<img class="DHLdownload__image d-none d-md-block" src="${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.assetimage}" alt="${properties.title}" />
 						</div>
 					</div>
 				</div>

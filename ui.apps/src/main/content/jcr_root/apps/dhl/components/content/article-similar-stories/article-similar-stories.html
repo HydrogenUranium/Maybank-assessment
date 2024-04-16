@@ -28,8 +28,8 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active" data-sly-list="${articleSideNavigation.articles}">
                             <sly data-sly-unwrap data-sly-test="${(item.third && item.index != 0)}">
-                                ${'</div>' @context='unsafe'}
-                                ${'<div class="carousel-item">' @context='unsafe'}
+                                ${'</div>' @context='html'}
+                                ${'<div class="carousel-item">' @context='html'}
                             </sly>
                             <div class="col-4" style="align-self: flex-start;">
                                 <article class="articlePanel${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}" id="articlePanelUniqueId">

@@ -9,7 +9,7 @@
                  data-sly-call="${template.adaptiveBackground @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>
             <style type="text/css" data-sly-use.backgroundImage="${'com.positive.dhl.core.models.Picture' @ image = model.mobileBackgroundImage, forceMap = true}">
                 .short-banners {
-                    #${model.id @ context='unsafe'} {
+                    #${model.id @ context='styleToken'} {
                         background-image: url('${backgroundImage.image @ context='uri'}');
                     }
                 }

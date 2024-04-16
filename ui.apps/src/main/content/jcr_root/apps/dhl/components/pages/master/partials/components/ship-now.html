@@ -7,14 +7,14 @@
 					<div class="col-12 col-md-5 col-lg-6">
 						<span class="ecom-form__title">${ 'Apply for a DHL Express Account' @ i18n, context='html' }</span>
 						<div class="ecom-form__copy">
-							${accountactions.shipNowMessage @context='unsafe'}
+							${accountactions.shipNowMessage @context='html'}
 
 							<div class="link-below d-none d-md-block">
 								<a href="https://webshipping.dhl.com" rel="external" target="_blank" title="${ 'Want to ship a package now?' @ i18n, context='html' }">${ 'Want to ship a package now?' @ i18n, context='html' }</a>
 							</div>
 						</div>
 					</div>
-					<form action="${accountactions.shipNowUrl @context='unsafe'}" class="forms col-12 col-md-7 col-lg-6" novalidate="novalidate">
+					<form action="${accountactions.shipNowUrl @context='uri'}" class="forms col-12 col-md-7 col-lg-6" novalidate="novalidate">
 						<div class="forms__row">
 							<div class="col-12 col-md-6">
 								<input id="firstname" type="text" placeholder="${ 'First name' @ i18n, context='html' }*" name="firstname" value="" data-msg="${ 'Enter first name' @ i18n, context='html' }" required />
@@ -38,7 +38,7 @@
 						<div class="forms__row">
 							<div class="col-12">
 								<input type="submit" class="forms__cta--red" value="${ 'Apply now' @ i18n, context='html' }" />
-								
+
 								<div class="link-below no-border d-block d-md-none">
 									<a href="https://webshipping.dhl.com" rel="external" target="_blank" title="Want to ship a package now?">${ 'Want to ship a package now?' @ i18n, context='html' }</a>
 								</div>
@@ -55,10 +55,10 @@
 		<div class="row ">
 			<div class="col-12">
 				<div class="row">
-					<form class="forms col-12" action="${accountactions.shipNowUrl @context='unsafe'}">
+					<form class="forms col-12" action="${accountactions.shipNowUrl @context='uri'}">
 						<div class="row align-items-center">
 							<div class="col-12 col-lg-4">
-								<a href="${accountactions.shipNowUrl @context='unsafe'}" class="ecom-form__title">${ 'Apply for a DHL Express Account' @ i18n, context='html' }</a>
+								<a href="${accountactions.shipNowUrl @context='uri'}" class="ecom-form__title">${ 'Apply for a DHL Express Account' @ i18n, context='html' }</a>
 								<div class="link-below d-none d-md-block">
 									<a href="https://webshipping.dhl.com" rel="external" target="_blank" title="Want to ship a package now?">${ 'Want to ship a package now?' @ i18n, context='html' }</a>
 								</div>
@@ -67,7 +67,7 @@
 								<div class="signup-elements">
 									<input type="email" placeholder="Business email address*" name="email" data-msg="${ 'Enter a valid email address' @ i18n, context='html' }" />
 									<div class="forms__checkbox">
-										<input id="tandcs2" type="checkbox" name="tandcs" /> 
+										<input id="tandcs2" type="checkbox" name="tandcs" />
 										<label for="tandcs2">${accountactions.signupTCMessage @context='html'}</label>
 									</div>
 								</div>

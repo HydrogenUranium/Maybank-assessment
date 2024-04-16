@@ -32,12 +32,12 @@
 			<div class="marketoForm__container">
 				<h3 class="marketoForm__title">${ 'Apply for a business account today' @ i18n, context='html' }</h3>
 				<div data-marketo-visible-form>
-					<script src="${marketoConfig.marketoHostname @ context='unsafe'}/js/forms2/js/forms2.min
+					<script src="${marketoConfig.marketoHostname @ context='uri'}/js/forms2/js/forms2.min
 					.js"></script>
 					<form id="${marketoConfig.formIdAsDivId @ context='html'}"></form>
-					<script>MktoForms2.loadForm("${marketoConfig.marketoHostname @ context='unsafe'}",
-							"${marketoConfig.marketoMunchkinId @ context='unsafe'}",
-							"${marketoConfig.marketoFormId @ context='unsafe'}");</script>
+					<script>MktoForms2.loadForm("${marketoConfig.marketoHostname @ context='uri'}",
+							"${marketoConfig.marketoMunchkinId @ context='uri'}",
+							"${marketoConfig.marketoFormId @ context='uri'}");</script>
 					<form id="${marketoConfig.hiddenFormIdAsDivId @ context='html'}"></form>
 				</div>
 

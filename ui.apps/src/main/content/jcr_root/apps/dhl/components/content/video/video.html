@@ -2,7 +2,7 @@
 
 <div
         data-sly-use.model="com.positive.dhl.core.models.Video"
-        data-sly-set.align="video-component--align-${model.align @ context='unsafe'}"
+        data-sly-set.align="video-component--align-${model.align}"
         class="video-component ${model.align ? align : ''}">
     <video
             data-sly-attribute.controls="${model.controls}"
