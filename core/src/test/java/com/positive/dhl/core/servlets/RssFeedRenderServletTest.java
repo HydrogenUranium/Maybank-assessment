@@ -1,5 +1,7 @@
 package com.positive.dhl.core.servlets;
 
+import com.positive.dhl.core.services.PageContentExtractorService;
+import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -11,7 +13,9 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.servlet.RequestDispatcher;
@@ -28,7 +32,15 @@ class RssFeedRenderServletTest {
 
     private final MockSlingHttpServletRequest request = context.request();
     private final MockSlingHttpServletResponse response = context.response();
-    private final RssFeedRenderServlet servlet = new RssFeedRenderServlet();
+
+    @Spy
+    private PageContentExtractorService pageExtractor;
+
+    @Spy
+    private PageUtilService pageUtilService;
+
+    @InjectMocks
+    private RssFeedRenderServlet servlet;
 
     @Mock
     private MockRequestDispatcherFactory dispatcherFactory;

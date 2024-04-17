@@ -3,7 +3,9 @@ package com.positive.dhl.core.rss;
 import com.day.cq.commons.SimpleXml;
 import com.day.cq.commons.feed.StringResponseWrapper;
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.services.PageContentExtractorService;
 import com.positive.dhl.core.services.PageUtilService;
+import org.apache.jackrabbit.oak.commons.PathUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.*;
@@ -26,7 +28,9 @@ public class DiscoverRssFeed {
     private final SlingHttpServletRequest request;
     private final SlingHttpServletResponse response;
     private final SimpleXml xml;
-    private PageUtilService pageUtilService;
+    private final PageUtilService pageUtilService;
+    private final PageContentExtractorService pageExtractor;
+    private final Resource resource;
 
     private final String title;
     private final String description;
@@ -39,13 +43,14 @@ public class DiscoverRssFeed {
     private final String urlPrefix;
     private final String thumbnailImageUrl;
     private final String link;
-    private final String articleBody;
 
-    public DiscoverRssFeed(SlingHttpServletRequest req, SlingHttpServletResponse resp) throws IOException {
+    public DiscoverRssFeed(SlingHttpServletRequest req, SlingHttpServletResponse resp, PageContentExtractorService pageExtractor, PageUtilService pageUtilService) throws IOException {
         request = req;
         response = resp;
+        this.pageUtilService = pageUtilService;
+        this.pageExtractor = pageExtractor;
+        this.resource = request.getResource();
 
-        var resource = request.getResource();
         if (ResourceUtil.isNonExistingResource(resource)) {
             throw new ResourceNotFoundException("No data to render.");
         }
@@ -68,8 +73,6 @@ public class DiscoverRssFeed {
         urlPrefix = getUrlPrefix();
         thumbnailImageUrl = getThumbnailImageUrl();
         link = getHtmlLink();
-        articleBody = getArticleIntroduction();
-        pageUtilService = new PageUtilService();
 
         Page languageCopyRoot = getLanguageRoot(resource);
         if (languageCopyRoot == null) {
@@ -138,25 +141,25 @@ public class DiscoverRssFeed {
                 .collect(Collectors.joining(","));
     }
 
-    public void printEntry(Resource resource) throws IOException {
+    public void printEntry(Resource resource, boolean isFullBody) throws IOException {
         try {
             request.setAttribute("com.day.cq.wcm.api.components.ComponentContext/bypass", "true");
             var wrapper = new StringResponseWrapper(response);
-            request.getRequestDispatcher(getFeedEntryPath(resource)).include(request, wrapper);
+            request.getRequestDispatcher(getFeedEntryPath(resource, isFullBody)).include(request, wrapper);
             xml.getWriter().print(wrapper.getString());
         } catch (ServletException exception) {
             throw new IOException(exception.getMessage(), exception);
         }
     }
 
-    public void printEntries(Iterator<Resource> resources) throws IOException {
-        printEntries(resources, 1450);
+    public void printEntries(Iterator<Resource> resources, boolean isWithBody) throws IOException {
+        printEntries(resources, 1450, isWithBody);
     }
 
-    public void printEntries(Iterator<Resource> resources, int max) throws IOException {
+    public void printEntries(Iterator<Resource> resources, int max, boolean isWithBody) throws IOException {
         var i = 0;
         while (resources.hasNext() && (max == 0 || i++ < max)) {
-            printEntry(resources.next());
+            printEntry(resources.next(), isWithBody);
         }
     }
 
@@ -177,6 +180,13 @@ public class DiscoverRssFeed {
     }
 
     public void printEntry() throws IOException {
+        printEntry(false);
+    }
+
+    public void printEntry(boolean isFullBody) throws IOException {
+        String articleBody = isFullBody
+                ? pageExtractor.extract(resource)
+                : getArticleIntroduction();
         xml.omitXmlDeclaration(true);
         xml.open("item")
                 .open("link", link, false).close()
@@ -191,7 +201,11 @@ public class DiscoverRssFeed {
         xml.tidyUp();
     }
 
-    private String getFeedEntryPath(Resource resource) {
+
+    private String getFeedEntryPath(Resource resource, boolean isFullBody) {
+        if(isFullBody) {
+            return resource.getPath() + ".rss.entry.fullbody.xml";
+        }
         return resource.getPath() + ".rss.entry.xml";
     }
 

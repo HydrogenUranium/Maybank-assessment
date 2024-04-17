@@ -1,0 +1,27 @@
+<!--/* The component uses bootstrap */-->
+
+<sly data-sly-use.model="com.positive.dhl.core.models.Tabs"
+     data-sly-set.isEmpty=${!model.tabList.size}></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+
+<div class="tabs-component" data-sly-test="${!isEmpty}">
+  <div class="rules-cont mb-4">
+    <ul class="nav nav-tabs row" id="tabs-${model.id}" role="tablist" data-sly-list="${model.tabList}">
+      <li class="nav-item" style="width: calc(100% / ${model.tabList.size @ context='styleToken'});">
+        <a class="nav-link t-red ${itemList.first ? 'active' : ''}" id="${item.id}-${model.id}-tab" data-toggle="tab" href="#${item.id}-${model.id}" role="tab" aria-controls="${item.id}-${model.id}" aria-selected="true">
+          <div class="text-center" data-sly-test="${item.image}">
+            <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+                 data-sly-call="${template.picture @ image=item.image}"></sly>
+          </div>
+          <h4 class="nav-link__title text-center mb-0" data-sly-element="${model.titleElement}">${item.title}</h4>
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content" id="tabs-content-${model.id}" data-sly-list="${model.tabList}">
+      <div class="tab-pane fade ${itemList.first ? 'show active' : ''}" id="${item.id}-${model.id}" role="tabpanel" aria-labelledby="${item.id}-${model.id}-tab">
+        ${item.body @ context='html'}
+      </div>
+    </div>
+  </div>
+</div>

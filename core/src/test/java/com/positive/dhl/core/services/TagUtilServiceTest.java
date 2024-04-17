@@ -16,12 +16,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class TagUtilServiceTest {
     public static final String PAGE_PATH = "/content";
-    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
     public static final String ARTICLE_WITH_TAGS_PAGE_PATH = "/content/dhl/global/en-global/category-page/article-page";
     public static final String ARTICLE_WITHOUT_TAGS_PAGE_PATH = "/content/dhl/us/es-us/category-page/article-page";
 
@@ -39,7 +39,7 @@ class TagUtilServiceTest {
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
         resourceResolver = context.resourceResolver();
-        context.load().json(TEST_RESOURCE_PATH, PAGE_PATH);
+        context.load().json(NEW_CONTENT_STRUCTURE_JSON, PAGE_PATH);
         resource = resourceResolver.getResource(PAGE_PATH);
         pageUtilService = new PageUtilService();
 
