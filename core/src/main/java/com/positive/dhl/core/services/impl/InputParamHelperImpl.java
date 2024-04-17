@@ -13,6 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.Cookie;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.*;
 
 @Component(
@@ -21,6 +24,7 @@ import java.util.*;
 public class InputParamHelperImpl implements InputParamHelper {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(InputParamHelperImpl.class);
+	protected static final String DEFAULT_IP_V_4_ADDRESS = "192.168.0.250";
 
 	@Reference
 	XSSAPI xssapi;
@@ -106,7 +110,7 @@ public class InputParamHelperImpl implements InputParamHelper {
 
 	private Map<String,Object> buildVisitorData(SlingHttpServletRequest request){
 		Map<String,Object> visitorData = new HashMap<>();
-		String ip = request.getRemoteAddr();
+		String ip = getIp(request);
 		var queryString = request.getQueryString();
 		String userAgent = request.getHeader(DiscoverConstants.USER_AGENT_HEADER);
 		String referrer = request.getParameter("referer");
@@ -127,6 +131,25 @@ public class InputParamHelperImpl implements InputParamHelper {
 			visitorData.put(DiscoverConstants.PAGE_URL, referrer);
 		}
 		return visitorData;
+	}
+
+	/**
+	 * Marketo currently does not support IPv6 addresses so this method replace the IPv6 to default IPv4 address to prevent error
+	 * and allow Marketo handle this request
+	 * @param request is an instance of {@link SlingHttpServletRequest}
+	 * @return value of the 'IPv4 address'
+	 */
+	private String getIp(SlingHttpServletRequest request)  {
+		String ip = request.getRemoteAddr();
+
+		try {
+			var address = InetAddress.getByName(ip);
+			ip = address instanceof Inet4Address ? ip : DEFAULT_IP_V_4_ADDRESS;
+		} catch (UnknownHostException e) {
+			LOGGER.error("Unable to read IP address: {}", e.getMessage());
+		}
+
+		return ip;
 	}
 
 
