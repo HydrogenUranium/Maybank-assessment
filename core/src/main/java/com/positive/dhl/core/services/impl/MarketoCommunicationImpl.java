@@ -13,6 +13,7 @@ import com.positive.dhl.core.exceptions.HttpRequestException;
 import com.positive.dhl.core.services.HttpCommunication;
 import com.positive.dhl.core.services.MarketoCommunication;
 import com.positive.dhl.core.services.InitUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -83,8 +84,11 @@ public class MarketoCommunicationImpl implements MarketoCommunication {
 				String destination = MessageFormat.format(DiscoverConstants.DESTINATION_CONCATENATION, hostname, path);
 				String jsonResponse = httpCommunication.sendGetMessage(destination,authToken);
 				if (!jsonResponse.contains("result")) {
+					var errorMessage = StringUtils.substringBetween(jsonResponse, "errors", ",");
+					var warningMessage = StringUtils.substringBetween(jsonResponse, "warnings", ",");
 					LOGGER.error("The Marketo hidden form submission was failed. " +
-							"Check 'errors' and 'warnings' in the response to understand reason of the issue: {}", jsonResponse);
+							"Check 'errors={}' and 'warnings={}' in the response to understand reason of the issue",
+							errorMessage, warningMessage);
 				}
 				FormFieldsResponse formFieldsResponse = initUtil.getObjectMapper().readValue(jsonResponse,FormFieldsResponse.class);
 				return formFieldsResponse.getFormFields();
