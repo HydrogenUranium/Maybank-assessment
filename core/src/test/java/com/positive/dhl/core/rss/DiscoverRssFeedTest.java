@@ -1,5 +1,8 @@
 package com.positive.dhl.core.rss;
 
+import com.day.cq.tagging.InvalidTagFormatException;
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.positive.dhl.core.services.PageContentExtractorService;
 import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -48,8 +51,12 @@ class DiscoverRssFeedTest {
     private RequestDispatcher dispatcher;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws InvalidTagFormatException {
         context.load().json("/com/positive/dhl/core/servlets/RssFeedRenderServlet/repository.json", "/content/dhl");
+        TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
+        tagManager.createTag("dhl:tech-futures", "Tech Futures", "description");
+        tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
+
     }
 
     @Test
@@ -69,7 +76,7 @@ class DiscoverRssFeedTest {
                 "<link>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
                 "<title>The future of cyber sales</title>\n" +
                 "<description>description</description>\n" +
-                "<language>EN</language>\n" +
+                "<language>en</language>\n" +
                 "<region>Global</region>\n" +
                 "<pubDate/>\n" +
                 "</channel>\n" +
@@ -94,9 +101,9 @@ class DiscoverRssFeedTest {
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
                 "<region>Global</region>\n" +
-                "<language>EN</language>\n" +
+                "<language>en</language>\n" +
                 "<pubDate/>\n" +
-                "<tags>tech-futures,culture-hype</tags>\n" +
+                "<tags>Tech Futures,Culture Hype</tags>\n" +
                 "<thumbnail>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
                 "</item>\n";
 
@@ -120,9 +127,9 @@ class DiscoverRssFeedTest {
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<div>full body</div>]]></articleBody>\n" +
                 "<region>Global</region>\n" +
-                "<language>EN</language>\n" +
+                "<language>en</language>\n" +
                 "<pubDate/>\n" +
-                "<tags>tech-futures,culture-hype</tags>\n" +
+                "<tags>Tech Futures,Culture Hype</tags>\n" +
                 "<thumbnail>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
                 "</item>\n";
 
@@ -146,9 +153,9 @@ class DiscoverRssFeedTest {
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
                 "<region>Global</region>\n" +
-                "<language>EN</language>\n" +
+                "<language>en</language>\n" +
                 "<pubDate/>\n" +
-                "<tags>tech-futures,culture-hype</tags>\n" +
+                "<tags>Tech Futures,Culture Hype</tags>\n" +
                 "<thumbnail>http://localhost:4503/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
                 "</item>\n";
 

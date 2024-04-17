@@ -2,20 +2,21 @@ package com.positive.dhl.core.rss;
 
 import com.day.cq.commons.SimpleXml;
 import com.day.cq.commons.feed.StringResponseWrapper;
+import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.PageContentExtractorService;
 import com.positive.dhl.core.services.PageUtilService;
-import org.apache.jackrabbit.oak.commons.PathUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.*;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceNotFoundException;
+import org.apache.sling.api.resource.ResourceUtil;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Iterator;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -24,6 +25,7 @@ import static com.day.cq.wcm.api.constants.NameConstants.PN_TAGS;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
+@Slf4j
 public class DiscoverRssFeed {
     private final SlingHttpServletRequest request;
     private final SlingHttpServletResponse response;
@@ -69,21 +71,16 @@ public class DiscoverRssFeed {
         title = props.get(PN_TITLE, resource.getName());
         description = props.get(JCR_DESCRIPTION, "");
         publishedDate = formatDate(props.get(JCR_CREATED, Calendar.getInstance()));
-        tags = getTagNames(props.get(PN_TAGS, new String[0]));
         urlPrefix = getUrlPrefix();
         thumbnailImageUrl = getThumbnailImageUrl();
         link = getHtmlLink();
+        region = Optional.ofNullable(getLanguageRoot(resource))
+                .map(Page::getProperties)
+                .map(valueMap -> valueMap.get("siteregion", "")).orElse("");
+        Locale locale = pageUtilService.getLocale(resource);
+        language = locale.toLanguageTag();
 
-        Page languageCopyRoot = getLanguageRoot(resource);
-        if (languageCopyRoot == null) {
-            language = "";
-            region = "";
-        } else {
-            ValueMap properties = languageCopyRoot.getProperties();
-            language = properties.get("sitelanguage", "");
-            region = properties.get("siteregion", "");
-        }
-
+        tags = getTagNames(props.get(PN_TAGS, new String[0]), locale);
         xml = new SimpleXml(response.getWriter());
     }
 
@@ -134,10 +131,16 @@ public class DiscoverRssFeed {
                 .findFirst().map(props -> props.get("text", "")).orElse("");
     }
 
-    private String getTagNames(String[] tags) {
+    private String getTagNames(String[] tags, Locale locale) {
+        TagManager tagManager = request.getResourceResolver().adaptTo(TagManager.class);
+        if (tagManager == null) {
+            log.error("Tag Manager is null");
+            return "";
+        }
         return Arrays.stream(tags)
-                .map(fullName -> fullName.replace(":", "/").split("/"))
-                .map(parts -> parts[parts.length - 1])
+                .map(tagManager::resolve)
+                .filter(Objects::nonNull)
+                .map(tag -> tag.getTitle(locale))
                 .collect(Collectors.joining(","));
     }
 
