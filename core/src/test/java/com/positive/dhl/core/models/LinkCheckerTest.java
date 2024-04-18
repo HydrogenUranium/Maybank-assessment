@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class LinkCheckerTest {
-    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
     public static final String ROOT_TEST_PAGE_PATH = "/content";
     public static final String CURRENT_RESOURCE_PATH = "/content/dhl/global/en-global";
     public static final String INTERNAL_LINK = "/content/dhl/global/en-global/any-page";
@@ -24,7 +24,7 @@ class LinkCheckerTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
+        context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
         context.addModelsForClasses(LinkChecker.class);
         context.currentResource(CURRENT_RESOURCE_PATH);
     }

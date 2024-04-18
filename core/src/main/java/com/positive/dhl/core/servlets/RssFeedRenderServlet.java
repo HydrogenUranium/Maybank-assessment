@@ -2,6 +2,8 @@ package com.positive.dhl.core.servlets;
 
 import com.drew.lang.annotations.NotNull;
 import com.positive.dhl.core.rss.DiscoverRssFeed;
+import com.positive.dhl.core.services.PageContentExtractorService;
+import com.positive.dhl.core.services.PageUtilService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -12,6 +14,7 @@ import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.Designate;
@@ -38,6 +41,12 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
     private int maxPages;
     private String queryFormat;
 
+    @Reference
+    private PageContentExtractorService pageExtractor;
+
+    @Reference
+    private PageUtilService pageUtilService;
+
     @Activate
     @Modified
     public void activate(RssFeedRenderServlet.Configuration config) {
@@ -50,16 +59,17 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
 
     @Override
     protected void doGet(@NotNull SlingHttpServletRequest req, @NotNull SlingHttpServletResponse resp) throws ServletException {
-        String[] selectors = req.getRequestPathInfo().getSelectors();
-        boolean isEntry = selectors.length > 1 && "entry".equals(selectors[1]);
-        boolean isAll = selectors.length > 1 && "all".equals(selectors[1]);
+        var selectors = List.of(req.getRequestPathInfo().getSelectors());
+        boolean isEntry = selectors.contains("entry");
+        boolean isAll = selectors.contains("all");
+        boolean isFullBody = selectors.contains("fullbody");
         try {
             resp.setContentType("application/rss+xml");
             resp.setCharacterEncoding("utf-8");
-            var feed = new DiscoverRssFeed(req, resp);
+            var feed = new DiscoverRssFeed(req, resp, pageExtractor, pageUtilService);
 
             if(isEntry) {
-                feed.printEntry();
+                feed.printEntry(isFullBody);
                 return;
             }
 
@@ -68,9 +78,9 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
 
             feed.printHeader();
             if (isAll) {
-                feed.printEntries(pages);
+                feed.printEntries(pages, isFullBody);
             } else {
-                feed.printEntries(pages, maxPages);
+                feed.printEntries(pages, maxPages, isFullBody);
             }
             feed.printFooter();
 

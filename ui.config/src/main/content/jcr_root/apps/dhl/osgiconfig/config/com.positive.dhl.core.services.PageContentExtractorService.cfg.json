@@ -1,0 +1,9 @@
+{
+  "componentsWithProperties":[
+    "dhl/components/content/text::text",
+    "dhl/components/content/title::jcr:title",
+    "dhl/components/content/title-v2::jcr:title",
+    "dhl/components/content/quote::text",
+    "dhl/components/content/figure::content"
+  ]
+}

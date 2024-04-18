@@ -1,0 +1,18 @@
+{
+  "titleElement": "h3",
+  "tabList": {
+    "jcr:primaryType": "nt:unstructured",
+    "item0": {
+      "jcr:primaryType": "nt:unstructured",
+      "image": "/image.png",
+      "body": "body",
+      "title": "DHL logistics"
+    },
+    "item1": {
+      "jcr:primaryType": "nt:unstructured",
+      "image": "/image.png",
+      "body": "e-commerce",
+      "title": "E-commerce"
+    }
+  }
+}
