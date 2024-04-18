@@ -36,21 +36,6 @@
                     </responsivegrid>
                 </body>
             </article_container>
-            <article_container_two
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-container">
-                <body
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <responsivegrid
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="wcm/foundation/components/responsivegrid">
-                        <html5embed
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="dhl/components/content/html5embed"/>
-                    </responsivegrid>
-                </body>
-            </article_container_two>
             <responsivegrid
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm/foundation/components/responsivegrid">

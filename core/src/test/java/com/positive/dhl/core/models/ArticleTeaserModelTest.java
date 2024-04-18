@@ -12,7 +12,6 @@ import org.apache.sling.models.factory.ModelFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.platform.commons.util.StringUtils;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -24,10 +23,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
+import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleTeaserModelTest {
-    public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
     public static final String ROOT_TEST_PAGE_PATH = "/content";
 
     public static final String ARTICLE_TEASER_COMPONENT_FROM_LINKED_ARTICLE_PAGE_RESOURCE_PATH = "/content/dhl/global/en-global/category-page/jcr:content/root/responsivegrid/article_carousel/item_from_linked_article_page";
@@ -62,7 +61,7 @@ class ArticleTeaserModelTest {
 
         context.addModelsForClasses(ArticleTeaserModel.class);
         resourceResolver = context.resourceResolver();
-        context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
+        context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));

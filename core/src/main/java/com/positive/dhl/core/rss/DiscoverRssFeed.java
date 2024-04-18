@@ -2,18 +2,21 @@ package com.positive.dhl.core.rss;
 
 import com.day.cq.commons.SimpleXml;
 import com.day.cq.commons.feed.StringResponseWrapper;
+import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.services.PageContentExtractorService;
 import com.positive.dhl.core.services.PageUtilService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.*;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceNotFoundException;
+import org.apache.sling.api.resource.ResourceUtil;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Iterator;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -22,11 +25,14 @@ import static com.day.cq.wcm.api.constants.NameConstants.PN_TAGS;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
+@Slf4j
 public class DiscoverRssFeed {
     private final SlingHttpServletRequest request;
     private final SlingHttpServletResponse response;
     private final SimpleXml xml;
-    private PageUtilService pageUtilService;
+    private final PageUtilService pageUtilService;
+    private final PageContentExtractorService pageExtractor;
+    private final Resource resource;
 
     private final String title;
     private final String description;
@@ -39,13 +45,14 @@ public class DiscoverRssFeed {
     private final String urlPrefix;
     private final String thumbnailImageUrl;
     private final String link;
-    private final String articleBody;
 
-    public DiscoverRssFeed(SlingHttpServletRequest req, SlingHttpServletResponse resp) throws IOException {
+    public DiscoverRssFeed(SlingHttpServletRequest req, SlingHttpServletResponse resp, PageContentExtractorService pageExtractor, PageUtilService pageUtilService) throws IOException {
         request = req;
         response = resp;
+        this.pageUtilService = pageUtilService;
+        this.pageExtractor = pageExtractor;
+        this.resource = request.getResource();
 
-        var resource = request.getResource();
         if (ResourceUtil.isNonExistingResource(resource)) {
             throw new ResourceNotFoundException("No data to render.");
         }
@@ -64,23 +71,16 @@ public class DiscoverRssFeed {
         title = props.get(PN_TITLE, resource.getName());
         description = props.get(JCR_DESCRIPTION, "");
         publishedDate = formatDate(props.get(JCR_CREATED, Calendar.getInstance()));
-        tags = getTagNames(props.get(PN_TAGS, new String[0]));
         urlPrefix = getUrlPrefix();
         thumbnailImageUrl = getThumbnailImageUrl();
         link = getHtmlLink();
-        articleBody = getArticleIntroduction();
-        pageUtilService = new PageUtilService();
+        region = Optional.ofNullable(getLanguageRoot(resource))
+                .map(Page::getProperties)
+                .map(valueMap -> valueMap.get("siteregion", "")).orElse("");
+        Locale locale = pageUtilService.getLocale(resource);
+        language = locale.toLanguageTag();
 
-        Page languageCopyRoot = getLanguageRoot(resource);
-        if (languageCopyRoot == null) {
-            language = "";
-            region = "";
-        } else {
-            ValueMap properties = languageCopyRoot.getProperties();
-            language = properties.get("sitelanguage", "");
-            region = properties.get("siteregion", "");
-        }
-
+        tags = getTagNames(props.get(PN_TAGS, new String[0]), locale);
         xml = new SimpleXml(response.getWriter());
     }
 
@@ -131,32 +131,38 @@ public class DiscoverRssFeed {
                 .findFirst().map(props -> props.get("text", "")).orElse("");
     }
 
-    private String getTagNames(String[] tags) {
+    private String getTagNames(String[] tags, Locale locale) {
+        TagManager tagManager = request.getResourceResolver().adaptTo(TagManager.class);
+        if (tagManager == null) {
+            log.error("Tag Manager is null");
+            return "";
+        }
         return Arrays.stream(tags)
-                .map(fullName -> fullName.replace(":", "/").split("/"))
-                .map(parts -> parts[parts.length - 1])
+                .map(tagManager::resolve)
+                .filter(Objects::nonNull)
+                .map(tag -> tag.getTitle(locale))
                 .collect(Collectors.joining(","));
     }
 
-    public void printEntry(Resource resource) throws IOException {
+    public void printEntry(Resource resource, boolean isFullBody) throws IOException {
         try {
             request.setAttribute("com.day.cq.wcm.api.components.ComponentContext/bypass", "true");
             var wrapper = new StringResponseWrapper(response);
-            request.getRequestDispatcher(getFeedEntryPath(resource)).include(request, wrapper);
+            request.getRequestDispatcher(getFeedEntryPath(resource, isFullBody)).include(request, wrapper);
             xml.getWriter().print(wrapper.getString());
         } catch (ServletException exception) {
             throw new IOException(exception.getMessage(), exception);
         }
     }
 
-    public void printEntries(Iterator<Resource> resources) throws IOException {
-        printEntries(resources, 1450);
+    public void printEntries(Iterator<Resource> resources, boolean isWithBody) throws IOException {
+        printEntries(resources, 1450, isWithBody);
     }
 
-    public void printEntries(Iterator<Resource> resources, int max) throws IOException {
+    public void printEntries(Iterator<Resource> resources, int max, boolean isWithBody) throws IOException {
         var i = 0;
         while (resources.hasNext() && (max == 0 || i++ < max)) {
-            printEntry(resources.next());
+            printEntry(resources.next(), isWithBody);
         }
     }
 
@@ -177,6 +183,13 @@ public class DiscoverRssFeed {
     }
 
     public void printEntry() throws IOException {
+        printEntry(false);
+    }
+
+    public void printEntry(boolean isFullBody) throws IOException {
+        String articleBody = isFullBody
+                ? pageExtractor.extract(resource)
+                : getArticleIntroduction();
         xml.omitXmlDeclaration(true);
         xml.open("item")
                 .open("link", link, false).close()
@@ -191,7 +204,11 @@ public class DiscoverRssFeed {
         xml.tidyUp();
     }
 
-    private String getFeedEntryPath(Resource resource) {
+
+    private String getFeedEntryPath(Resource resource, boolean isFullBody) {
+        if(isFullBody) {
+            return resource.getPath() + ".rss.entry.fullbody.xml";
+        }
         return resource.getPath() + ".rss.entry.xml";
     }
 

@@ -78,6 +78,20 @@ class InputParamHelperImplTest {
 		assertEquals(2, formInputBase.getFormInputData().get(0).getLeadFormFields().size());
 	}
 
+	@Test
+	void ipV6(){
+		request.setRemoteAddr("2601:243:ce7e:3c90:65a8:2864:2e12:348e");
+		FormInputBase formInputBase = underTest.buildForm(request, permittedFormFields, formFields);
+		assertEquals("127.0.0.1", formInputBase.getFormInputData().get(0).getVisitorData().get("leadClientIpAddress"));
+	}
+
+	@Test
+	void ipV4(){
+		request.setRemoteAddr("38.187.3.201");
+		FormInputBase formInputBase = underTest.buildForm(request, permittedFormFields, formFields);
+		assertEquals("38.187.3.201", formInputBase.getFormInputData().get(0).getVisitorData().get("leadClientIpAddress"));
+	}
+
 	@ParameterizedTest
 	@ValueSource(strings = {"1234","1234 ", " 1234"})
 	void getFormId(String testId){

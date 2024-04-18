@@ -53,6 +53,6 @@ RewriteRule ^/discover/adobe/dynamicmedia/deliver/(.+)$ /adobe/dynamicmedia/deli
 # Search Articles servlet
 RewriteRule ^/discover/(content/dhl/.+/jcr[:]content/root\.searcharticlesuggest\.json.*)$ /$1 [PT,L,NC]
 # rss generator pages
-RewriteRule ^/discover((/)(\w{2}-)(global|\w{2}))?(.+)?(\.thumb\.319\.319\.png|\.rss\.all\.xml|\.rss\.xml)$ /content/dhl$2$4$1$5$6 [PT,L,NC]
+RewriteRule ^/discover((/)(\w{2}-)(global|\w{2}))?(.+)?(\.thumb\.319\.319\.png|\.rss(\.all)?(\.fullbody)?\.xml)$ /content/dhl$2$4$1$5$6 [PT,L,NC]
 # all html pages
 RewriteRule ^/discover/((\w{2})-(global|\w{2}).*)$ /content/dhl/$3/$1.html [PT,L,NC]

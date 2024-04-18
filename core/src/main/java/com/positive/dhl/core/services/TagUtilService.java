@@ -57,10 +57,7 @@ public class TagUtilService {
                     String namespace = tag.getNamespace().getName();
                     return EXTERNAL_TAGS_NAMESPACE.equals(namespace);
                 })
-                .map(tag -> {
-                    String tagLocalizedTitle = tag.getLocalizedTitle(pageUtilService.getLocale(pageResource));
-                    return tagLocalizedTitle == null ? tag.getTitle() : tagLocalizedTitle;
-                })
+                .map(tag -> tag.getTitle(pageUtilService.getLocale(pageResource)))
                 .map(this::transformToHashtag)
                 .collect(Collectors.toList());
     }

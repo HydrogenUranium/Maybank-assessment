@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
+import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static com.positive.dhl.core.utils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -36,7 +37,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticlePageTest {
-	public static final String TEST_RESOURCE_PATH = "/com/positive/dhl/core/newContentStructure.json";
 	public static final String ROOT_TEST_PAGE_PATH = "/content";
 	public static final String ARTICLE_WITH_NEW_ARTICLE_SETUP_RESOURCE_PATH = "/content/dhl/global/en-global/category-page/article-page-with-new-article-setup";
 	public static final String ARTICLE_WITHOUT_NEW_ARTICLE_SETUP_RESOURCE_PATH = "/content/dhl/us/en-us/category-page/article-page-without-new-article-setup";
@@ -71,7 +71,7 @@ class ArticlePageTest {
 		context.registerService(PathUtilService.class, pathUtilService);
 		context.addModelsForClasses(ArticlePage.class);
 
-		context.load().json(TEST_RESOURCE_PATH, ROOT_TEST_PAGE_PATH);
+		context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
 
 		when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
 		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
