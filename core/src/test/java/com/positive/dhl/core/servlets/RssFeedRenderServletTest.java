@@ -1,5 +1,7 @@
 package com.positive.dhl.core.servlets;
 
+import com.day.cq.tagging.InvalidTagFormatException;
+import com.day.cq.tagging.TagManager;
 import com.positive.dhl.core.services.PageContentExtractorService;
 import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -52,8 +54,11 @@ class RssFeedRenderServletTest {
     private RssFeedRenderServlet.Configuration configuration;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws InvalidTagFormatException {
         context.load().json("/com/positive/dhl/core/servlets/RssFeedRenderServlet/repository.json", "/content/dhl");
+        TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
+        tagManager.createTag("dhl:tech-futures", "Tech Futures", "description");
+        tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
     }
 
 
@@ -97,7 +102,7 @@ class RssFeedRenderServletTest {
                 "<link>http://localhost/dhl/country/en-global.html</link>\n" +
                 "<title>E-commerce business &amp; global logistics advice | Discover DHL</title>\n" +
                 "<description/>\n" +
-                "<language>EN</language>\n" +
+                "<language>en</language>\n" +
                 "<region>Global</region>\n" +
                 "<pubDate/><item>\n" +
                 "<link>http://localhost/dhl/country/en-global/business/productivity/ai-science-fiction-it-is-not.html</link>\n" +
@@ -105,7 +110,7 @@ class RssFeedRenderServletTest {
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<h2>Article Body ai-science-fiction-it-is-not</h2>]]></articleBody>\n" +
                 "<region>Global</region>\n" +
-                "<language>EN</language>\n" +
+                "<language>en</language>\n" +
                 "<pubDate/>\n" +
                 "<tags/>\n" +
                 "<thumbnail/>\n" +
@@ -115,9 +120,9 @@ class RssFeedRenderServletTest {
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
                 "<region>Global</region>\n" +
-                "<language>EN</language>\n" +
+                "<language>en</language>\n" +
                 "<pubDate/>\n" +
-                "<tags>tech-futures,culture-hype</tags>\n" +
+                "<tags>Tech Futures,Culture Hype</tags>\n" +
                 "<thumbnail>http://localhost/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
                 "</item>\n" +
                 "</channel>\n" +
