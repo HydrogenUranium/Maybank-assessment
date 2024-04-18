@@ -18,13 +18,14 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.*;
 
+import static org.apache.commons.text.lookup.StringLookupFactory.KEY_LOCALHOST;
+
 @Component(
 		service = InputParamHelper.class
 )
 public class InputParamHelperImpl implements InputParamHelper {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(InputParamHelperImpl.class);
-	protected static final String DEFAULT_IP_V_4_ADDRESS = "192.168.0.250";
 
 	@Reference
 	XSSAPI xssapi;
@@ -144,7 +145,7 @@ public class InputParamHelperImpl implements InputParamHelper {
 
 		try {
 			var address = InetAddress.getByName(ip);
-			ip = address instanceof Inet4Address ? ip : DEFAULT_IP_V_4_ADDRESS;
+			ip = address instanceof Inet4Address ? ip : InetAddress.getByName(KEY_LOCALHOST).getHostAddress();
 		} catch (UnknownHostException e) {
 			LOGGER.error("Unable to read IP address: {}", e.getMessage());
 		}

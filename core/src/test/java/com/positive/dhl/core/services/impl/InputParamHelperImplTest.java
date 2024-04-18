@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.positive.dhl.core.services.impl.InputParamHelperImpl.DEFAULT_IP_V_4_ADDRESS;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -83,7 +82,7 @@ class InputParamHelperImplTest {
 	void ipV6(){
 		request.setRemoteAddr("2601:243:ce7e:3c90:65a8:2864:2e12:348e");
 		FormInputBase formInputBase = underTest.buildForm(request, permittedFormFields, formFields);
-		assertEquals(DEFAULT_IP_V_4_ADDRESS, formInputBase.getFormInputData().get(0).getVisitorData().get("leadClientIpAddress"));
+		assertEquals("127.0.0.1", formInputBase.getFormInputData().get(0).getVisitorData().get("leadClientIpAddress"));
 	}
 
 	@Test
