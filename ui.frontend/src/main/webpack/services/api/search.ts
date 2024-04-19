@@ -12,7 +12,7 @@ export const getHomePagePath = (): string => {
 };
 
 export const getComponentPath = (): string => {
-    var componentConfig = document.querySelector('.headerV2 .search-bar-component').getAttribute('data-config');
+    const componentConfig = document.querySelector('.headerV2 .search-bar-component').getAttribute('data-config');
     return JSON.parse(componentConfig).currentPagePath + '/jcr:content/root';
 };
 
@@ -38,8 +38,9 @@ export const getArticles = async (query: string): Promise<Article[]> => {
 };
 
 export const getTags = async (query: string): Promise<any> => {
+    const homePagePathSuffix = getHomePagePath();
     const prefix = getPathPrefix();
-    return get({ url: `${prefix}/apps/dhl/discoverdhlapi/tags/index.json?s=${query}` });
+    return get({ url: `${prefix}/apps/dhl/discoverdhlapi/tags/index.json?s=${query}&homepagepath=${homePagePathSuffix}` });
 };
 
 export const getTagSuggestions = async(query: string): Promise<string[]> => {

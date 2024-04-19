@@ -2,18 +2,23 @@ package com.positive.dhl.core.services;
 
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.day.cq.commons.jcr.JcrConstants.JCR_CONTENT;
 
 @Component(service = TagUtilService.class)
+@Slf4j
 public class TagUtilService {
+    public static final String DEFAULT_TAG_TITLE_LANGUAGE = "en";
 
     public static final String EXTERNAL_TAGS_NAMESPACE = "dhl-article-external";
     public static final String TRENDING_TOPICS_TAGS_NAMESPACE = "dhlsuggested:";
@@ -96,5 +101,65 @@ public class TagUtilService {
                 : StringUtils.EMPTY;
 
         return !StringUtils.isBlank(tag) ? "#" + tag : StringUtils.EMPTY;
+    }
+
+    private Tag getTag(ResourceResolver resolver, String rootTagID) {
+        return Optional.ofNullable(resolver.adaptTo(TagManager.class))
+                .map(tagManager -> tagManager.resolve(rootTagID)).orElse(null);
+    }
+
+    public List<Tag> getTagsContainingWords(ResourceResolver resolver, List<String> words, String rootTagID, Locale locale) {
+        if(words.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        var rootTag = getTag(resolver, rootTagID);
+
+        Predicate<String> predicate = title -> words.stream()
+                .allMatch(word -> title.contains(word.toLowerCase()));
+
+        return searchTagsByLocalizedTitlePredicate(predicate, rootTag, locale);
+    }
+
+    public List<Tag> getTagsByLocalizedPrefix(ResourceResolver resolver, String query, String rootTagID, Locale locale) {
+        var rootTag = getTag(resolver, rootTagID);
+
+        return searchTagsByLocalizedPrefix(query, rootTag, locale);
+    }
+
+    public List<Tag> searchTagsByLocalizedPrefix(String prefix, Tag root, Locale locale) {
+        return searchTagsByLocalizedTitlePredicate(s -> s.startsWith(prefix.toLowerCase()), root, locale);
+    }
+
+    private List<Tag> searchTagsByLocalizedTitlePredicate(Predicate<String> predicate, Tag root, Locale locale) {
+        List<Tag> tagList = new ArrayList<>();
+        if (root == null) {
+            log.error("Root tag for tag search is not found");
+            return tagList;
+        }
+        collectTags(predicate, root, locale, tagList);
+        return tagList;
+    }
+
+    private void collectTags(Predicate<String> predicate, Tag parent, Locale locale, List<Tag> tagList) {
+        Iterator<Tag> tags = parent.listChildren();
+
+        while (tags.hasNext()) {
+            var tag = tags.next();
+            String tagName = getLocalizedTitle(tag, locale);
+
+            if (predicate.test(tagName.toLowerCase().trim())) {
+                tagList.add(tag);
+            }
+
+            collectTags(predicate, tag, locale, tagList);
+        }
+    }
+
+    private String getLocalizedTitle(Tag tag, Locale locale) {
+        boolean useDefaultIfNull = locale.getLanguage().equals(DEFAULT_TAG_TITLE_LANGUAGE);
+        String titleForUndefinedLocale = useDefaultIfNull ? tag.getTitle() : "";
+
+        return Optional.ofNullable(tag.getLocalizedTitle(locale)).orElse(titleForUndefinedLocale);
     }
 }
