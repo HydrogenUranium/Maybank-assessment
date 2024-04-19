@@ -56,9 +56,6 @@ public class ArticleService {
             props.put("group.p.or", "true");
             props.put("group.1_property", JCR_CONTENT_CQ_TEMPLATE);
             props.put("group.1_property.value", "/conf/dhl/settings/wcm/templates/article");
-            props.put("group.2_property", JCR_CONTENT_CQ_TEMPLATE);
-            props.put("group.2_property.operation", "like");
-            props.put("group.2_property.value", "/apps/dhl/templates/dhl-animated-%");
             props.put("group.3_property", JCR_CONTENT_CQ_TEMPLATE);
             props.put("group.3_property.value", "/conf/dhl/settings/wcm/templates/animated-page");
             props.putAll(customProps);

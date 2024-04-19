@@ -3,12 +3,13 @@ package com.positive.dhl.core.rss;
 import com.day.cq.tagging.InvalidTagFormatException;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
-import com.positive.dhl.core.services.PageContentExtractorService;
-import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.models.Article;
+import com.positive.dhl.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.testing.mock.sling.servlet.MockRequestDispatcherFactory;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
@@ -44,6 +45,15 @@ class DiscoverRssFeedTest {
     @Spy
     private PageUtilService pageUtilService;
 
+    @Spy
+    private PathUtilService pathUtilService;
+
+    @Spy
+    private AssetUtilService assetUtilService;
+
+    @Spy
+    private TagUtilService tagUtilService;
+
     @Mock
     private MockRequestDispatcherFactory dispatcherFactory;
 
@@ -52,7 +62,13 @@ class DiscoverRssFeedTest {
 
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
+        context.registerService(PageUtilService.class, pageUtilService);
+        context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(AssetUtilService.class, assetUtilService);
+        context.registerService(TagUtilService.class, tagUtilService);
+
         context.load().json("/com/positive/dhl/core/servlets/RssFeedRenderServlet/repository.json", "/content/dhl");
+        context.addModelsForClasses(Article.class);
         TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
         tagManager.createTag("dhl:tech-futures", "Tech Futures", "description");
         tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
@@ -172,7 +188,7 @@ class DiscoverRssFeedTest {
         request.setResource(resourceResolver.getResource(path));
 
         DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
-        rssFeed.printEntry(resourceResolver.getResource(articlePath), false);
+        rssFeed.printEntry(articlePath, false);
 
         verify(dispatcherFactory, times(1))
                 .getRequestDispatcher(articlePath + ".rss.entry.xml", null);
@@ -193,63 +209,29 @@ class DiscoverRssFeedTest {
         DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
 
         assertThrows(IOException.class, () ->
-                rssFeed.printEntry(resourceResolver.getResource(articlePath), false)
+                rssFeed.printEntry(articlePath, false)
         );
     }
 
     @Test
-    void printEntries_ShouldAddFixedEntries_WhenMaxArgumentProvided() throws IOException, ServletException {
+    void printEntries_ShouldAddEntries_WhenLinksAreProvided() throws IOException, ServletException {
         String path = "/content/dhl/country/en-global/business/productivity";
         String[] articles = new String[]{
                 path + "/the-future-of-cyber-sales",
                 path + "/ai-science-fiction-it-is-not"
         };
         ResourceResolver resourceResolver = context.resourceResolver();
-        Iterator<Resource> articleIterator = Arrays.stream(articles)
-                .map(resourceResolver::getResource)
-                .collect(Collectors.toList())
-                .iterator();
         when(dispatcherFactory.getRequestDispatcher(any(String.class), any())).thenReturn(dispatcher);
         request.setRequestDispatcherFactory(dispatcherFactory);
         request.setResource(resourceResolver.getResource(path));
 
         DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
-        rssFeed.printEntries(articleIterator, 1, false);
-
-        verify(dispatcherFactory, times(1))
-                .getRequestDispatcher(anyString(), any());
-        verify(dispatcherFactory, times(1))
-                .getRequestDispatcher(articles[0] + ".rss.entry.xml", null);
-        verify(dispatcher, times(1))
-                .include(any(), any());
-    }
-
-    @Test
-    void printEntries_ShouldAddFixedEntries_WhenMaxArgumentIsNotProvided() throws IOException, ServletException {
-        String path = "/content/dhl/country/en-global/business/productivity";
-        String[] articles = new String[]{
-                path + "/the-future-of-cyber-sales",
-                path + "/ai-science-fiction-it-is-not"
-        };
-        ResourceResolver resourceResolver = context.resourceResolver();
-        Iterator<Resource> articleIterator = Arrays.stream(articles)
-                .map(resourceResolver::getResource)
-                .collect(Collectors.toList())
-                .iterator();
-        when(dispatcherFactory.getRequestDispatcher(any(String.class), any())).thenReturn(dispatcher);
-        request.setRequestDispatcherFactory(dispatcherFactory);
-        request.setResource(resourceResolver.getResource(path));
-
-        DiscoverRssFeed rssFeed = new DiscoverRssFeed(request, response, pageExtractor, pageUtilService);
-        rssFeed.printEntries(articleIterator, false);
-
+        rssFeed.printEntries(Arrays.asList(articles), false);
 
         verify(dispatcherFactory, times(2))
                 .getRequestDispatcher(anyString(), any());
-        for (String article : articles) {
-            verify(dispatcherFactory, times(1))
-                    .getRequestDispatcher(article + ".rss.entry.xml", null);
-        }
+        verify(dispatcherFactory, times(1))
+                .getRequestDispatcher(articles[0] + ".rss.entry.xml", null);
         verify(dispatcher, times(2))
                 .include(any(), any());
     }

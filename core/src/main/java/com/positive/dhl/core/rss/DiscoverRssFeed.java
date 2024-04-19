@@ -4,6 +4,7 @@ import com.day.cq.commons.SimpleXml;
 import com.day.cq.commons.feed.StringResponseWrapper;
 import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.services.PageContentExtractorService;
 import com.positive.dhl.core.services.PageUtilService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,18 +16,16 @@ import org.apache.sling.api.resource.ResourceUtil;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static com.day.cq.commons.jcr.JcrConstants.*;
-import static com.day.cq.wcm.api.constants.NameConstants.PN_TAGS;
-import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
 @Slf4j
 public class DiscoverRssFeed {
+    public static final int SUB_REQUEST_LIMITATION = 1450;
+
     private final SlingHttpServletRequest request;
     private final SlingHttpServletResponse response;
     private final SimpleXml xml;
@@ -57,30 +56,27 @@ public class DiscoverRssFeed {
             throw new ResourceNotFoundException("No data to render.");
         }
 
-        var jcrContent = resource.getChild(JCR_CONTENT);
-
-        if (jcrContent == null) {
-            throw new ResourceNotFoundException("No jcr:content.");
+        Article article = resource.adaptTo(Article.class);
+        if (article == null) {
+            throw new ResourceNotFoundException("Failed to adapt resource to article");
         }
 
-        var props = jcrContent.getValueMap();
+        resourcePath = article.getJcrPath();
+        mappedResourcePath =  article.getPath();
 
-        var resourceResolver = request.getResourceResolver();
-        resourcePath = resource.getPath();
-        mappedResourcePath =  resourceResolver.map(resource.getPath());
-        title = props.get(PN_TITLE, resource.getName());
-        description = props.get(JCR_DESCRIPTION, "");
-        publishedDate = formatDate(props.get(JCR_CREATED, Calendar.getInstance()));
+        title = article.getTitle();
+        description = article.getDescription();
+        publishedDate = article.getCreated();
         urlPrefix = getUrlPrefix();
         thumbnailImageUrl = getThumbnailImageUrl();
         link = getHtmlLink();
         region = Optional.ofNullable(getLanguageRoot(resource))
                 .map(Page::getProperties)
                 .map(valueMap -> valueMap.get("siteregion", "")).orElse("");
-        Locale locale = pageUtilService.getLocale(resource);
+        var locale = article.getLocale();
         language = locale.toLanguageTag();
 
-        tags = getTagNames(props.get(PN_TAGS, new String[0]), locale);
+        tags = getTagNames(article.getValueMap().get("jcr:content/cq:tags", new String[0]), locale);
         xml = new SimpleXml(response.getWriter());
     }
 
@@ -144,25 +140,24 @@ public class DiscoverRssFeed {
                 .collect(Collectors.joining(","));
     }
 
-    public void printEntry(Resource resource, boolean isFullBody) throws IOException {
+    public void printEntry(String path, boolean isFullBody) throws IOException {
         try {
             request.setAttribute("com.day.cq.wcm.api.components.ComponentContext/bypass", "true");
             var wrapper = new StringResponseWrapper(response);
-            request.getRequestDispatcher(getFeedEntryPath(resource, isFullBody)).include(request, wrapper);
+            request.getRequestDispatcher(getFeedEntryPath(path, isFullBody)).include(request, wrapper);
             xml.getWriter().print(wrapper.getString());
         } catch (ServletException exception) {
             throw new IOException(exception.getMessage(), exception);
         }
     }
 
-    public void printEntries(Iterator<Resource> resources, boolean isWithBody) throws IOException {
-        printEntries(resources, 1450, isWithBody);
-    }
+    public void printEntries(List<String> paths, boolean isWithBody) throws IOException {
+        if (paths.size() > SUB_REQUEST_LIMITATION) {
+            paths = paths.subList(0, SUB_REQUEST_LIMITATION);
+        }
 
-    public void printEntries(Iterator<Resource> resources, int max, boolean isWithBody) throws IOException {
-        var i = 0;
-        while (resources.hasNext() && (max == 0 || i++ < max)) {
-            printEntry(resources.next(), isWithBody);
+        for(String path : paths) {
+            printEntry(path, isWithBody);
         }
     }
 
@@ -205,18 +200,10 @@ public class DiscoverRssFeed {
     }
 
 
-    private String getFeedEntryPath(Resource resource, boolean isFullBody) {
+    private String getFeedEntryPath(String path, boolean isFullBody) {
         if(isFullBody) {
-            return resource.getPath() + ".rss.entry.fullbody.xml";
+            return path + ".rss.entry.fullbody.xml";
         }
-        return resource.getPath() + ".rss.entry.xml";
-    }
-
-    private String formatDate(Calendar calendar) {
-        try {
-            return (new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss")).format(calendar.getTime());
-        } catch (Exception exception) {
-            return "";
-        }
+        return path + ".rss.entry.xml";
     }
 }
