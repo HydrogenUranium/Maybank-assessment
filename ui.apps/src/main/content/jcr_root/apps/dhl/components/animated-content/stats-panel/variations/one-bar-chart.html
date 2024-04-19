@@ -16,8 +16,8 @@
           <div class="boxFill boxFill--dark">
             <div class="boxFill__fill boxFill__fillstat__${idModel.id}">
               <style type="text/css">
-                        .boxFill--show .boxFill__fillstat__${idModel.id @ context='unsafe'} {
-                            height: calc((((100% - 32.4%) / 100) * ${properties.leftBlockPercent @ context='unsafe'}) + 32.4%);
+                        .boxFill--show .boxFill__fillstat__${idModel.id @ context='styleToken'} {
+                            height: calc((((100% - 32.4%) / 100) * ${properties.leftBlockPercent @ context='number'}) + 32.4%);
                             transition: height 4000ms ease-out;
                         }
                     </style>

@@ -4,9 +4,9 @@
 
 <sly data-sly-test="${contentBanner.Hasbanner}">
     <style type="text/css">
-      @media screen and (min-width: 768px) {#applyForAccountPanel--article--id { background-image: url(${contentBanner.Img @context='unsafe'}) !important;} }
+      @media screen and (min-width: 768px) {#applyForAccountPanel--article--id { background-image: url(${contentBanner.Img @context='uri'}) !important;} }
     </style>
-    <div id="applyForAccountPanel--article--id" class="applyForAccountPanel applyForAccountPanel--article" style="background-image: url('${contentBanner.Imgmob @context='unsafe'}');">
+    <div id="applyForAccountPanel--article--id" class="applyForAccountPanel applyForAccountPanel--article" style="background-image: url('${contentBanner.Imgmob @context='uri'}');">
         <div class="col-12">
             <h4 class="applyForAccountPanel__subtitle">${contentBanner.Subtitle}</h4>
             <h3 class="applyForAccountPanel__title">${contentBanner.Title}</h3>

@@ -18,10 +18,10 @@
 	<div id="carouselId" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner" data-sly-list="${gallery.slides}">
 			<div class="carousel-item ${((itemList.index == 0) ? 'active' : '')}" id="uniqueIdImageGallerySlide${itemList.index}">
-				<style type="text/css">@media screen and (min-width: 768px) { #uniqueIdImageGallerySlide${itemList.index @context='unsafe'} .image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.imagetab @context='unsafe'}') !important; } }</style>
-				<style type="text/css">@media screen and (min-width: 991px) { #uniqueIdImageGallerySlide${itemList.index @context='unsafe'} .image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.imagedt @context='unsafe'}') !important; } }</style>
+				<style type="text/css">@media screen and (min-width: 768px) { #uniqueIdImageGallerySlide${itemList.index @context='styleToken'} .image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='uri'}${item.imagetab @context='uri'}') !important; } }</style>
+				<style type="text/css">@media screen and (min-width: 991px) { #uniqueIdImageGallerySlide${itemList.index @context='styleToken'} .image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='uri'}${item.imagedt @context='uri'}') !important; } }</style>
 				<figure class="figure">
-					<div style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='unsafe'}${item.imagemob @context='unsafe'}');" class="figure__image"></div>
+					<div style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='uri'}${item.imagemob @context='uri'}');" class="figure__image"></div>
 					<figcaption class="figure__caption">
 						<span class="figure__caption-title">${item.title}</span>
 						<p class="figure__caption-text">${item.brief}</p>

@@ -5,16 +5,16 @@
       desktopImage = desktop,
       forceMap = true
     }">
-        #${id @ context='unsafe'} {
+        #${id @ context='styleToken'} {
             background-image: url('${model.mobileImage @ context='uri'}');
         }
         @media screen and (min-width: 768px) {
-            #${id @ context='unsafe'} {
+            #${id @ context='styleToken'} {
                 background-image: url('${model.desktopImage @ context='uri'}');
             }
         }
         @media screen and (min-width: 1200px) {
-            #${id @ context='unsafe'} {
+            #${id @ context='styleToken'} {
                 background-image: url('${model.tabletImage @ context='uri'}');
             }
         }
@@ -26,7 +26,7 @@
       image = image,
       forceMap = true
     }">
-        #${id @ context='unsafe'} {
+        #${id @ context='styleToken'} {
             background-image: url('${model.image @ context='uri'}');
         }
     </style>

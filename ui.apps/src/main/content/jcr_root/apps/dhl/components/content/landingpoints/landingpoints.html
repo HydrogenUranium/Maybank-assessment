@@ -14,7 +14,7 @@
 		</div>
 		<style type="text/css" data-sly-test="${model.pointType == 'icon'}"
 					 data-sly-use.picture="${'com.positive.dhl.core.models.Picture' @ image = item.icon || model.defaultIcon, forceMap = true }">
-			#${item.id @ context='unsafe'}::before {
+			#${item.id @ context='styleToken'}::before {
 				background-image: url('${picture.image @ context='uri'}');
 			}
 		</style>

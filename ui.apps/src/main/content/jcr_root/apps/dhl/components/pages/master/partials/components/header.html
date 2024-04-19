@@ -86,7 +86,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12 col-xl-8 offset-xl-2">
-					<form action="${meganav.searchResultsPage}" method="GET" autocomplete="off" data-suggestions="${meganav.AutocompleteUrl @context='unsafe'}" data-topsearches="${meganav.TopsearchesUrl @context='unsafe'}">
+					<form action="${meganav.searchResultsPage}" method="GET" autocomplete="off" data-suggestions="${meganav.AutocompleteUrl @context='uri'}" data-topsearches="${meganav.TopsearchesUrl @context='uri'}">
 						<div class="form-group">
 							<input class="form-field" type="text" name="searchfield" value="" placeholder="${ 'Enter a keyword or topic' @ i18n, context='html' }" />
 							<button class="clear"><span class="sr-only">${ "Clear" @ i18n, context='html' }</span></button>
