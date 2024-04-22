@@ -102,6 +102,8 @@ public class Article {
 	private int counter;
 	private Locale locale;
 	@Expose protected String path;
+	private String jcrPath;
+	private ValueMap valueMap;
 
 	public String getMappedValue(String path, boolean enableAssetDelivery, Map<String, Object> props) {
 		return enableAssetDelivery ? assetUtilService.getMappedDeliveryUrl(path, props, assetDelivery) : pathUtilService.map(path);
@@ -146,48 +148,49 @@ public class Article {
     @PostConstruct
 	protected void init() {
     	valid = false;
-		ValueMap properties = resource.getValueMap();
+		valueMap = resource.getValueMap();
 
 		locale = pageUtilService.getLocale(resource);
-		createdDate = getPublishDate(properties);
+		createdDate = getPublishDate(valueMap);
 		createdMilliseconds = createdDate.getTime();
 		created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
 		createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, locale).format(createdDate);
-		icon = properties.get("jcr:content/mediatype", "");
+		icon = valueMap.get("jcr:content/mediatype", "");
 		grouptitle = getGroupTitle(resource);
 		grouppath = getGroupPath(resource);
 		groupTag = tagUtilService.transformToHashtag(grouptitle);
 
-		fullTitle = properties.get("jcr:content/jcr:title", "");
-		title = properties.get("jcr:content/navTitle", "");
-		description = properties.get("jcr:content/jcr:description", "");
+		fullTitle = valueMap.get("jcr:content/jcr:title", "");
+		title = valueMap.get("jcr:content/navTitle", "");
+		description = valueMap.get("jcr:content/jcr:description", "");
 		if (title.isBlank()) {
 			title = fullTitle;
 		}
-		brief = properties.get("jcr:content/listbrief", "");
+		brief = valueMap.get("jcr:content/listbrief", "");
 		if (brief.length() > 120) {
 			brief = brief.substring(0, 120).concat("...");
 		}
 
-		listimage = properties.get("jcr:content/listimage", "");
-		heroimagemob = properties.get("jcr:content/heroimagemob", "");
-		heroimagetab = properties.get("jcr:content/heroimagetab", "");
-		heroimagedt = properties.get("jcr:content/heroimagedt", "");
-		authorimage = properties.get("jcr:content/authorimage", "");
+		listimage = valueMap.get("jcr:content/listimage", "");
+		heroimagemob = valueMap.get("jcr:content/heroimagemob", "");
+		heroimagetab = valueMap.get("jcr:content/heroimagetab", "");
+		heroimagedt = valueMap.get("jcr:content/heroimagedt", "");
+		authorimage = valueMap.get("jcr:content/authorimage", "");
 
-		youtubeid = properties.get("jcr:content/youtubeid", "");
-		readtime = properties.get("jcr:content/readtime", "");
-		author = properties.get("jcr:content/author", "");
-		authortitle = properties.get("jcr:content/authortitle", "");
+		youtubeid = valueMap.get("jcr:content/youtubeid", "");
+		readtime = valueMap.get("jcr:content/readtime", "");
+		author = valueMap.get("jcr:content/author", "");
+		authortitle = valueMap.get("jcr:content/authortitle", "");
 
-		showshipnow = properties.get("jcr:content/showshipnow", false);
+		showshipnow = valueMap.get("jcr:content/showshipnow", false);
 
-		counter = properties.get("jcr:content/counter", 0);
+		counter = valueMap.get("jcr:content/counter", 0);
 
 		tags = new ArrayList<>();
 		tagsToShow = tagUtilService.getExternalTags(resource);
 		highlights = tagUtilService.getHighlightsTags(resource);
 
+		jcrPath = resource.getPath();
 		path = resource.getResourceResolver().map(resource.getPath());
 
 		valid = true;

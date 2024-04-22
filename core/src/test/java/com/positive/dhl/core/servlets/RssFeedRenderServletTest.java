@@ -2,8 +2,8 @@ package com.positive.dhl.core.servlets;
 
 import com.day.cq.tagging.InvalidTagFormatException;
 import com.day.cq.tagging.TagManager;
-import com.positive.dhl.core.services.PageContentExtractorService;
-import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.models.Article;
+import com.positive.dhl.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -23,8 +23,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.positive.dhl.core.utils.AssertXml.assertXmlEquals;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
 
@@ -41,6 +44,18 @@ class RssFeedRenderServletTest {
     @Spy
     private PageUtilService pageUtilService;
 
+    @Spy
+    private PathUtilService pathUtilService;
+
+    @Spy
+    private AssetUtilService assetUtilService;
+
+    @Spy
+    private TagUtilService tagUtilService;
+
+    @Mock
+    private ArticleService articleService;
+
     @InjectMocks
     private RssFeedRenderServlet servlet;
 
@@ -55,6 +70,12 @@ class RssFeedRenderServletTest {
 
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
+        context.registerService(PageUtilService.class, pageUtilService);
+        context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(AssetUtilService.class, assetUtilService);
+        context.registerService(TagUtilService.class, tagUtilService);
+        context.registerService(ArticleService.class, articleService);
+
         context.load().json("/com/positive/dhl/core/servlets/RssFeedRenderServlet/repository.json", "/content/dhl");
         TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
         tagManager.createTag("dhl:tech-futures", "Tech Futures", "description");
@@ -70,8 +91,11 @@ class RssFeedRenderServletTest {
 
     @Test
     void doGet_ShouldReturnRSS_WhenConfigurationIsCorrect() throws ServletException {
-        when(configuration.resourceTypes()).thenReturn(new String[]{"dhl/components/pages/editable-article"});
         when(configuration.maxPages()).thenReturn(1);
+        List<Article> articles = new ArrayList<>();
+        articles.add(request.getResourceResolver().getResource("/content/dhl/country/en-global/business/productivity/ai-science-fiction-it-is-not").adaptTo(Article.class));
+        articles.add(request.getResourceResolver().getResource("/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales").adaptTo(Article.class));
+        when(articleService.getLatestArticles(any(String.class), anyInt())).thenReturn(articles);
 
         when(dispatcherFactory.getRequestDispatcher(any(String.class), any())).thenAnswer(getRequestDispatcherInvocation -> {
             String pathWithExtension = getRequestDispatcherInvocation.getArgument(0, String.class);
