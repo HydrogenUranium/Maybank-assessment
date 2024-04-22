@@ -5,6 +5,7 @@ import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.models.Article;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,9 @@ public class ArticleService {
 
     @Reference
     protected PageUtilService pageUtilService;
+
+    @Reference
+    protected TagUtilService tagUtilService;
 
     @Reference
     protected QueryBuilder builder;
@@ -101,7 +105,7 @@ public class ArticleService {
     }
 
     public List<Article> getArticlesByTitle(String searchTerm, String searchScope, ResourceResolver resourceResolver) {
-        String[] propertiesToLook = {"jcr:content/jcr:title", "jcr:content/pageTitle", "jcr:content/navTitle", "jcr:content/cq:tags"};
+        String[] propertiesToLook = {"jcr:content/jcr:title", "jcr:content/pageTitle", "jcr:content/navTitle"};
         String[] terms = getTerms(searchTerm);
 
         Map<String, String> map = new HashMap<>();
@@ -109,8 +113,16 @@ public class ArticleService {
         map.put("type", NT_PAGE);
 
         map.put("1_group.p.or", "true");
+        map.put("1_group." + propertiesToLook.length + "_group.p.or", "true");
         for (var propertiesToLookGroupIndex = 0; propertiesToLookGroupIndex < propertiesToLook.length; propertiesToLookGroupIndex++) {
             setTermGroupPredicates(map, terms, propertiesToLook[propertiesToLookGroupIndex], propertiesToLookGroupIndex);
+        }
+        var locale = pageUtilService.getLocale(resourceResolver.getResource(searchScope));
+
+        try (var resolver = resolverHelper.getReadResourceResolver()) {
+            List<Tag> tags = tagUtilService.getTagsContainingWords(resolver, List.of(terms), "dhl:", locale);
+
+            setTermsGroupTagPredicates(map, tags, propertiesToLook.length);
         }
 
         setOrderingAndLimiting(map);
@@ -132,6 +144,19 @@ public class ArticleService {
         for (var termIndex = 0; termIndex < terms.length; termIndex++) {
             String term = terms[termIndex];
             map.put(String.format(propertyPredicate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), propertyToLook);
+            map.put(String.format(valuePredicate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), term);
+        }
+        return map;
+    }
+
+    private Map<String, String> setTermsGroupTagPredicates(Map<String, String> map, List<Tag> tags, int propertiesToLookGroupIndex) {
+        var propertyName = "@jcr:content/cq:tags";
+        var propertyPredicate = "1_group.%1$s_group.%2$s_property";
+        var valuePredicate = propertyPredicate + ".value";
+
+        for (var termIndex = 0; termIndex < tags.size(); termIndex++) {
+            String term = tags.get(termIndex).getTagID();
+            map.put(String.format(propertyPredicate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), propertyName);
             map.put(String.format(valuePredicate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), term);
         }
         return map;
