@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.TagUtilService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -48,7 +49,7 @@ public class GetTagsStartingWithServlet extends SlingAllMethodsServlet {
 		String startsWith = request.getParameter("s");
 		String homePagePath = request.getParameter("homepagepath");
 
-		if ((startsWith == null) || (!startsWith.matches("\\w+"))) {
+		if (StringUtils.isBlank(startsWith)) {
 			return "{ \"results\": [], \"status\": \"ko\", \"error\": \"Invalid parameter\" }";
 		}
 
