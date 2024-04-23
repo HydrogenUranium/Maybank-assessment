@@ -6,6 +6,7 @@
         "/content/dam/(.*)</discover/content/dam/$1",
         "/adobe/dynamicmedia/deliver/(.*)</discover/adobe/dynamicmedia/deliver/$1",
         "/content/dhl:/discover",
+        "/content/dhl.sitemap.sitemap.xml:/discover/sitemap.xml",
         "/content/dhl.sitemap.(global|\\w{2})-sitemap.xml:/discover/$1/sitemap.xml"
     ],
     "resource.resolver.map.location": "/etc/map.publish"
