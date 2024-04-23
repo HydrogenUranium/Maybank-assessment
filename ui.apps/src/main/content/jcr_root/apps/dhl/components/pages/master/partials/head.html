@@ -29,11 +29,9 @@
   <title>${currentPage.pageTitle || currentPage.name}</title>
   <meta name="description" content="${properties.jcr:description}"/>
 
-  <link rel="canonical" href="${dhlpage.fullUrl}" />
-
-  <sly data-sly-list.canonical="${dhlpage.canonicals}" data-sly-unwrap>
-    <link rel="canonical" href="${canonical.url}" />
-  </sly>
+  <link data-sly-use.page="com.adobe.cq.wcm.core.components.models.Page"
+        data-sly-test="${page.canonicalLink}"
+        rel="canonical" href="${page.canonicalLink}">
 
   <meta  data-sly-test="${dhlpage.robotsTags}" name="robots" content="${dhlpage.robotsTags}" />
 

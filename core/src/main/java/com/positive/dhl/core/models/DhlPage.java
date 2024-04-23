@@ -8,7 +8,6 @@ import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
@@ -16,9 +15,6 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
 import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
@@ -47,7 +43,6 @@ public class DhlPage {
 	private String amparticlepath;
 	private String assetprefix;
 	private String akamaiHostname;
-	private List<Canonical> canonicals;
 
 	@InjectHomeProperty
 	@Default(values = "")
@@ -69,8 +64,8 @@ public class DhlPage {
 		assetprefix = environmentConfiguration.getAssetPrefix();
 		akamaiHostname = environmentConfiguration.getAkamaiHostname();
 
-		boolean isPublishRunmode = true;
-		WCMMode mode = WCMMode.fromRequest(request);
+		var isPublishRunmode = true;
+		var mode = WCMMode.fromRequest(request);
 		if (mode != WCMMode.DISABLED) {
 			isPublishRunmode = false;
 		}
@@ -93,27 +88,10 @@ public class DhlPage {
 
 		pageUtilService.getAncestorPageByPredicate(currentPage,
 				page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
-
-		// get list of canonical URLs
-		canonicals = new ArrayList<>();
-		Resource canonicalItems = currentPage.getContentResource("canonicalitems");
-		if (canonicalItems != null) {
-			Iterator<Resource> canonicalItemsIterator = canonicalItems.listChildren();
-			while (canonicalItemsIterator.hasNext()) {
-				ValueMap props = canonicalItemsIterator.next().adaptTo(ValueMap.class);
-				if (props != null) {
-
-					String url = props.get("url", "");
-					if (!("").equals(url)) {
-						canonicals.add(new Canonical(url));
-					}
-				}
-			}
-		}
 	}
 
 	private String getRobotTags(Page page) {
-		String tags = String.join(", ", page.getProperties().get(PN_ROBOTS_TAGS, new String[0]));
+		var tags = String.join(", ", page.getProperties().get(PN_ROBOTS_TAGS, new String[0]));
 		if(!tags.contains("noindex") && pageUtilService.hasInheritedNoIndex(page)) {
 			return tags.isBlank() ? "noindex" : tags + ", noindex";
 		}
