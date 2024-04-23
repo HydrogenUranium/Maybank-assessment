@@ -53,7 +53,7 @@ class AllCategoriesTest {
         assertNotNull(allCategories);
         assertEquals(8, allCategories.getCategoryLinks().size());
 
-        allCategories.setCategoryLinks(new ArrayList<CategoryLinkGroup>());
+        allCategories.setCategoryLinks(new ArrayList<SitemapLinkGroup>());
 
         assertEquals(0, allCategories.getCategoryLinks().size());
 	}

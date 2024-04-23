@@ -27,19 +27,19 @@ public class AllCategories {
 	@OSGiService
 	private PageUtilService pageUtilService;
 
-	private List<CategoryLinkGroup> categoryLinks;
+	private List<SitemapLinkGroup> categoryLinks;
 	
     /**
 	 * 
 	 */
-	public List<CategoryLinkGroup> getCategoryLinks() {
+	public List<SitemapLinkGroup> getCategoryLinks() {
 		return new ArrayList<>(categoryLinks);
 	}
 
     /**
 	 * 
 	 */
-	public void setCategoryLinks(List<CategoryLinkGroup> categoryLinks) {
+	public void setCategoryLinks(List<SitemapLinkGroup> categoryLinks) {
 		this.categoryLinks = new ArrayList<>(categoryLinks);
 	}
 
@@ -50,15 +50,15 @@ public class AllCategories {
     protected void init() {
 		categoryLinks = new ArrayList<>();
 		
-		var home = pageUtilService.getHomePage(currentPage);
-		var interestItems = home.getContentResource("interestitems");
+		Page home = pageUtilService.getHomePage(currentPage);
+		Resource interestItems = home.getContentResource("interestitems");
 		if (interestItems != null) {
 			Iterator<Resource> interestItemsIterator = interestItems.listChildren();
 			while (interestItemsIterator.hasNext()) {
 				ValueMap props = interestItemsIterator.next().adaptTo(ValueMap.class);
 				
 				if (props != null) {
-					var linkGroup = new CategoryLinkGroup();
+					SitemapLinkGroup linkGroup = new SitemapLinkGroup();
 					linkGroup.setHeader(props.get("title", ""));
 					linkGroup.setLink("/content/dhl.html");
 					categoryLinks.add(linkGroup);
