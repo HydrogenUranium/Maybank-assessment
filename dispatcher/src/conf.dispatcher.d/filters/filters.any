@@ -17,7 +17,6 @@ $include "./default_filters.any"
 /3003 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/tags*" }
 
 # /3004 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/sitemap*" }
-/3005 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/robots*" }
 /3006 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/google*" }
 /3007 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/searchsuggest*" }
 /3008 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/tags*" }
