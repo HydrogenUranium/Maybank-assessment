@@ -139,11 +139,6 @@
     "jcr:createdBy": "admin",
     "jcr:created": "Wed Oct 19 2022 15:46:56 GMT+0200"
   },
-  "site-map": {
-    "jcr:primaryType": "cq:Page",
-    "jcr:createdBy": "admin",
-    "jcr:created": "Wed Oct 19 2022 15:46:56 GMT+0200"
-  },
   "search-results": {
     "jcr:primaryType": "cq:Page",
     "jcr:createdBy": "admin",

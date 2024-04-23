@@ -310,11 +310,6 @@
 					},
 					"absolutefooterrightitems": {
 						"jcr:primaryType": "nt:unstructured",
-						"item0": {
-							"jcr:primaryType": "nt:unstructured",
-							"url": "/content/dhl/site-map.html",
-							"title": "Site map"
-						},
 						"item1": {
 							"jcr:primaryType": "nt:unstructured",
 							"url": "/content/dhl/legal-notice.html",
@@ -473,45 +468,6 @@
 						"sling:resourceType": "dhl/components/pages/standard",
 						"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
 						"cq:lastModifiedBy": "admin",
-						"title": {
-							"jcr:primaryType": "nt:unstructured",
-							"sling:resourceType": "dhl/components/content/title"
-						},
-						"par": {
-							"jcr:primaryType": "nt:unstructured",
-							"sling:resourceType": "wcm/foundation/components/parsys"
-						}
-					}
-				},
-				"site-map": {
-					"jcr:primaryType": "cq:Page",
-					"jcr:createdBy": "admin",
-					"jcr:created": "Sat Sep 26 2020 04:01:09 GMT+0000",
-					"jcr:content": {
-						"jcr:primaryType": "nt:unstructured",
-						"jcr:mixinTypes": [
-							"cq:ReplicationStatus",
-							"mix:versionable"
-						],
-						"jcr:title": "Site Map",
-						"cq:lastReplicationAction": "Activate",
-						"jcr:versionHistory": "51f2bdfb-42c1-4e64-be56-b83a087afa8c",
-						"cq:lastReplicatedBy": "admin",
-						"jcr:predecessors": [
-							"ef72aa12-a018-41cb-a691-370144b4fb8b"
-						],
-						"cq:contextHubSegmentsPath": "/etc/segmentation/contexthub",
-						"cq:lastReplicated": "Tue Sep 29 2020 22:30:58 GMT+0000",
-						"cq:lastModified": "Wed May 16 2018 12:45:03 GMT+0200",
-						"jcr:description": "The full list of URLs for discover.dhl.com. Navigate through our articles on logistics and the future of small business. ",
-						"jcr:baseVersion": "ef72aa12-a018-41cb-a691-370144b4fb8b",
-						"jcr:isCheckedOut": true,
-						"hideInNav": "true",
-						"pageTitle": "Site Map - Discover DHL",
-						"jcr:uuid": "0402cb1c-d50f-4105-a8a9-54d4751d0717",
-						"sling:resourceType": "dhl/components/pages/sitemap",
-						"cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
-						"cq:lastModifiedBy": "idanisman",
 						"title": {
 							"jcr:primaryType": "nt:unstructured",
 							"sling:resourceType": "dhl/components/content/title"
