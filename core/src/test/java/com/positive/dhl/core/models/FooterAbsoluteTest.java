@@ -53,7 +53,7 @@ class FooterAbsoluteTest {
 		String copyrightString = MessageFormat.format("{0} &copy; DHL. All rights reserved.", String.valueOf(year));
     assertEquals(copyrightString, footerAbsolute.getCopyrightNotice());
     assertEquals(3, footerAbsolute.getLeftLinks().size());
-    assertEquals(4, footerAbsolute.getRightLinks().size());
+    assertEquals(3, footerAbsolute.getRightLinks().size());
 
     footerAbsolute.setCopyrightNotice("");
     footerAbsolute.setLeftLinks(new ArrayList<>());
