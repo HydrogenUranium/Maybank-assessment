@@ -38,6 +38,15 @@ class HeaderV2 {
     $(document).on('click', this.sel.moreLink, this.showSecondRowOfCategories);
     $(document).on('click', this.sel.lessLink, this.hideSecondRowOfCategories);
 
+    $(document).ready(function(){
+      $("#countrySearch").on("keyup", function() {
+        const value = $(this).val().toLowerCase();
+        $("#countryList-widget .header-countryList__option").filter(function() {
+          $(this).toggle($(this).find(".country-name").text().toLowerCase().startsWith(value))
+        });
+      });
+    });
+
     $(document).on('click', this.sel.toggle, (e) => {
       e.preventDefault();
       this.toggleMenu();
@@ -112,33 +121,30 @@ class HeaderV2 {
 
   showCountryOptions(e) {
     e.preventDefault();
-    $(this.sel.countryOptions).addClass('header-countryList--open')
+    if($(this.sel.countryOptions).hasClass('header-countryList--open')) {
+      closeOptions();
+    }
+
+    $(this.sel.countryOptions).addClass('header-countryList--open');
     $(this.sel.countryOptions).show();
 
-    var clickListener = (event) => {
-      var $target = $(event.target);
-      if (!$target.closest('.header-countryList__option').length && $('.header-countryList__option').is(':visible')) {
-        $(this.sel.countryOptions).removeClass('header-countryList--open');
-        $(this.sel.countryOptions).hide();
-        removeClickListener();
-      } else {
-        var $countrySelected = $('.header-countryList__option input[name="country-option"]:checked');
-        if ($countrySelected.length) {
-          removeClickListener();
-          $(this.sel.countryOptions).removeClass('header-countryList--open');
-          $(this.sel.countryOptions).hide();
-          var redirectPath = $countrySelected.siblings('.header-countryList__option-link').attr('href');
-          if (redirectPath !== null && redirectPath.length > 0) {
-            window.location.href = redirectPath;
-          }
-        }
+    const clickListener = (event) => {
+      const $target = $(event.target);
+
+      if (!$target.closest('.header-countryList').length) {
+        closeOptions();
       }
     }
 
-    var removeClickListener = () => {
+    const closeOptions = () => {
+      $("#countrySearch").val("");
+      $("#countrySearch").trigger("keyup");
+      $(this.sel.countryOptions).removeClass('header-countryList--open');
+      $(this.sel.countryOptions).hide();
       document.removeEventListener('click', clickListener);
     }
 
+    $("#countrySearch").focus();
     document.addEventListener('click', clickListener);
   }
 

@@ -347,6 +347,8 @@
       <property inherit="true" name="header-homePageLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="header-moreLinkLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="header-lessLinkLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-countrySelector-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-countrySelector-searchPlaceholder" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="header-companyLinksLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="linkName" translate="true" updateDestinationLanguage="false"/>
 

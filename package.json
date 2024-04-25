@@ -7,6 +7,7 @@
     "aemsync:publish": "aemsync -t http://admin:admin@localhost:4503 -w ./ui.apps/src/main/content",
     "cypress": "cd ./ui.tests/test-module && npm run open",
     "build:frontend": "cd ./ui.frontend && npm run dev",
-    "build:css": "cd ./ui.apps && npm run build:css"
+    "build:css": "cd ./ui.apps && npm run build:css",
+    "build:js": "cd ./ui.apps && npm run build:js"
   }
 }

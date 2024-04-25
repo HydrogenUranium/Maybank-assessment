@@ -75,6 +75,8 @@ class HeaderV2ModelTest {
         assertEquals("Link Name 1", headerV2Model.getCompanyLinks().get(0).getLinkName());
         assertEquals("/content/dhl/link/1", headerV2Model.getCompanyLinks().get(0).getLinkPath());
         assertEquals("true", headerV2Model.getHideNavigationMenu());
+        assertEquals("Search", headerV2Model.getCountrySearchPlaceholder());
+        assertEquals("Countries & Regions", headerV2Model.getCountrySelectorTitle());
     }
 
     @Test
