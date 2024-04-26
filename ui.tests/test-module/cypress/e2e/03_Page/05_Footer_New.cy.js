@@ -19,6 +19,10 @@ describe('Footer', () => {
 
   it('2.Verify when click DHL logo, it redirects to correct url dhl.com', () => {
     cy.get('.logo__link > .logo__image').should('exist');
+    cy.get('a.logo__link')
+             .should('have.attr', 'href')
+             .and('include', 'https://www.dhl.com/')
+;
   });
 
   it('3.Verify that each footer link redirects to the correct destination', () => {
