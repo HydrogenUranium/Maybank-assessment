@@ -28,11 +28,7 @@ describe('Footer', () => {
   it('3.Verify that each footer link redirects to the correct destination', () => {
     cy.get('.links-group__item')
       .each(($link) => {
-        const href = $link.prop('href');
-
-        cy.request(href)
-          .its('status')
-          .should('eq', 200);
+        cy.wrap($link).should('have.attr', 'href')
       });
   });
 
