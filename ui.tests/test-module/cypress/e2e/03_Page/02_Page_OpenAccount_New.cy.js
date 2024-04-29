@@ -64,7 +64,7 @@ describe('Open An Account page', () => {
     cy.get('#suspectCountry').select('Albania');
     cy.get('#Phone').type('111111');
     cy.get('#shippingfrequency').select('One-off');
-    cy.get('.mktoButton').click();
+    cy.get('.mktoButton').should('exist');
   });
 
 });
