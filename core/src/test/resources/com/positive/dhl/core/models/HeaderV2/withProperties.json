@@ -13,6 +13,8 @@
       "header-moreLinkLabel": "... More",
       "header-lessLinkLabel": "... Less",
       "header-companyLinksLabel": "Company",
+      "header-countrySelector-searchPlaceholder": "Search",
+      "header-countrySelector-title": "Countries & Regions",
       "multifields": {
         "header-companyLinks": {
           "jcr:primaryType": "nt:unstructured",

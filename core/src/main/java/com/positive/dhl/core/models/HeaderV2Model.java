@@ -3,10 +3,12 @@ package com.positive.dhl.core.models;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.PageUtilService;
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -19,58 +21,63 @@ import java.util.List;
 
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
+@Getter
 public class HeaderV2Model {
     @OSGiService
+    @Getter(AccessLevel.NONE)
     private PageUtilService pageUtilService;
 
     @Inject
+    @Getter(AccessLevel.NONE)
     private Page currentPage;
 
     @InjectHomeProperty
-    @Getter
     @Named("header-buttonName")
     private String buttonName;
 
     @InjectHomeProperty
-    @Getter
     @Named("header-buttonLink")
     private String buttonLink;
 
     @InjectHomeProperty
-    @Getter
     @Named("header-signInLabel")
     private String signInLabel;
 
     @InjectHomeProperty
-    @Getter
     @Named("header-categoryLinksLabel")
     private String categoryLinksLabel;
 
     @InjectHomeProperty
-    @Getter
     @Named("header-homePageLabel")
     private String homePageLabel;
 
     @InjectHomeProperty
-    @Getter
     @Named("header-moreLinkLabel")
     private String moreLinkLabel;
 
     @InjectHomeProperty
-    @Getter
     @Named("header-lessLinkLabel")
     private String lessLinkLabel;
 
     @InjectHomeProperty
-    @Getter
     @Named("header-companyLinksLabel")
     private String companyLinksLabel;
 
     @InjectHomeProperty
+    @Default(values = "Search")
+    @Named("header-countrySelector-searchPlaceholder")
+    private String countrySearchPlaceholder;
+
+    @InjectHomeProperty
+    @Default(values = "Countries & Regions")
+    @Named("header-countrySelector-title")
+    private String countrySelectorTitle;
+
+    @InjectHomeProperty
+    @Getter(AccessLevel.NONE)
     @Named("multifields/header-companyLinks")
     private Resource companyLinks;
 
-    @Getter
     private String hideNavigationMenu;
 
     @PostConstruct

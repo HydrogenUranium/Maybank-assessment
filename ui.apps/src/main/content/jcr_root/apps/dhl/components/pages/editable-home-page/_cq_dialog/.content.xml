@@ -890,6 +890,33 @@
                                                                     </buttonLink>
                                                                 </items>
                                                             </button>
+                                                            <contrySelector
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    jcr:title="Country Selector"
+                                                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <title
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldLabel="Title"
+                                                                            emptyText="Countries &amp; regions"
+                                                                            name="./header-countrySelector-title">
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./header-countrySelector-title"/>
+                                                                    </title>
+                                                                    <searchPlaceholder
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldLabel="Search Placeholder"
+                                                                            emptyText="Search"
+                                                                            name="./header-countrySelector-searchPlaceholder">
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./header-countrySelector-searchPlaceholder"/>
+                                                                    </searchPlaceholder>
+                                                                </items>
+                                                            </contrySelector>
                                                             <signIn
                                                                     jcr:primaryType="nt:unstructured"
                                                                     jcr:title="Sign In"
