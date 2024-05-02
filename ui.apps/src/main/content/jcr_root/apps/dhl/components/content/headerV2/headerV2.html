@@ -24,17 +24,16 @@
                         </sly>
                     </a>
                     <div class="header-countryList">
-                        <label for="countryList-widget" class="header-countryList__label">Countries & Regions</label>
+                        <label for="countryList-widget" class="header-countryList__label">${headerV2.countrySelectorTitle}</label>
+                        <input class="countrySearch" id="countrySearch" type="text" placeholder="${headerV2.countrySearchPlaceholder}">
                         <div class="header-countryList__widget" id="countryList-widget">
                             <sly data-sly-repeat="${languageVariants.countries}">
-                                <div class="header-countryList__option">
-                                    <input type="radio" id="country-${item}" name="country-option" value="country-${item}">
+                                <a class="header-countryList__option" href="${languageVariants.countries[item].link}.html">
                                     <label for="country-${item}">
                                         <span class="fi fi-${item == 'tw' ? 'twx' : item}"></span>
                                         <span class="country-name">${languageVariants.countries[item].region}</span>
                                     </label>
-                                    <a class="header-countryList__option-link" href="${languageVariants.countries[item].link}.html"></a>
-                                </div>
+                                </a>
                             </sly>
                         </div>
                     </div>

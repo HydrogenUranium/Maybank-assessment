@@ -11,7 +11,8 @@
     "sync-pom-version": "sync-pom-version",
     "test": "jest --coverage",
     "postinstall": "sync-pom-version",
-    "build:css": "npx gulp sass"
+    "build:css": "npx gulp sass",
+    "build:js": "npx gulp javascript"
   },
   "repository": {
     "type": "git",
