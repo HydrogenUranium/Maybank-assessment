@@ -1,0 +1,65 @@
+/* Condensed ExtraLight */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 200; /* ExtraLight */
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-ExtraLight.ttf') format('truetype');
+  unicode-range:  U+0590-05FF;
+  font-synthesis: style;
+}
+
+/* Light */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 300; /* Light */
+  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Light.ttf') format('truetype');
+  unicode-range:  U+0590-05FF;
+  font-synthesis: style;
+}
+
+/* Regular */
+@font-face {
+  font-family: "Delivery";
+  font-weight: normal; /* 400 */
+  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Regular.ttf') format('truetype');
+  unicode-range:  U+0590-05FF;
+  font-synthesis: style;
+}
+
+/* Medium */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 500;
+  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Medium.ttf') format('truetype');
+  unicode-range:  U+0590-05FF;
+  font-synthesis: style;
+}
+
+/* SemiBold */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 600;
+  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-SemiBold.ttf') format('truetype');
+  unicode-range:  U+0590-05FF;
+  font-synthesis: style;
+}
+
+/* Bold */
+@font-face {
+  font-family: "Delivery";
+  font-weight: bold; /* 700 */
+  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Bold.ttf') format('truetype');
+  unicode-range:  U+0590-05FF;
+  font-synthesis: style;
+}
+
+/* Condensed ExtraBold */
+@font-face {
+  font-family: "Delivery";
+  font-weight: 800;
+  font-stretch: condensed;
+  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-ExtraBold.ttf') format('truetype');
+  unicode-range:  U+0590-05FF;
+  font-synthesis: style;
+}
+
