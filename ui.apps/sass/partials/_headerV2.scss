@@ -126,7 +126,7 @@
             background: map-get($palette, true-white) 0% 0% no-repeat padding-box;
             border: 1px solid map-get($palette, true-black);
             border-radius: 4px;
-            padding: 0 10px 18px;
+            padding: 0 10px 5px;
             z-index: 22;
             right: 0;
             width: 212px;
@@ -175,9 +175,13 @@
             }
 
             .countrySearch {
+              position: sticky;
+              top: 0;
+              z-index: 1;
+              margin: 0 -10px;
+              padding: 0 10px;
               display: block;
-              width: 100%;
-              padding: 0;
+              width: calc(100% + 20px);
               margin-bottom: 4px;
               border: none;
             }

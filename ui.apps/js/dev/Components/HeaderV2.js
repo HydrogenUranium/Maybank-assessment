@@ -132,6 +132,14 @@ class HeaderV2 {
       const $target = $(event.target);
 
       if (!$target.closest('.header-countryList').length) {
+        event.preventDefault();
+        closeOptions();
+      }
+    }
+
+    const keyupListener = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
         closeOptions();
       }
     }
@@ -142,10 +150,12 @@ class HeaderV2 {
       $(this.sel.countryOptions).removeClass('header-countryList--open');
       $(this.sel.countryOptions).hide();
       document.removeEventListener('click', clickListener);
+      document.removeEventListener('click', keyupListener);
     }
 
     $("#countrySearch").focus();
     document.addEventListener('click', clickListener);
+    document.addEventListener('keyup', keyupListener);
   }
 
   showHideMoreLink() {
