@@ -3,8 +3,6 @@ class Carousel {
     this.sel = {
       component: '.article-carousel',
       indicator: '.cmp-carousel__indicator',
-      previous: '.cmp-carousel__action.cmp-carousel__action--previous',
-      next: '.cmp-carousel__action.cmp-carousel__action--next',
     };
 
     this.bindEvents = this.bindEvents.bind(this);
@@ -19,22 +17,26 @@ class Carousel {
         }, false);
       });
 
-      var tStart = null;
-      $(document).bind('touchstart', function (e) {
-        tStart = (evt.touches || evt.originalEvent.touches)[0].clientX;
-      });
+      $(this.sel.component).each(function() {
+        var tStart = null;
 
-      $(document).bind('touchend', function (e) {
-        if (!tStart) {
-          return;
-        }
-        var tEnd = e.originalEvent.changedTouches[0].clientX;
-        if (tStart - tEnd > 5) {
-          $(this.sel.previous).trigger('click');
-        } else if (tEnd - tStart > 5) {
-          $(this.sel.next).trigger('click');
-        }
-      }, this);
+        this.addEventListener("touchstart", function(e) {
+          tStart = (e.touches || e.originalEvent.touches)[0].clientX;
+        }, false);
+
+        this.addEventListener("touchmove", function(e) {
+          if (!tStart) {
+            return;
+          }
+          var tEnd = e.touches[0].clientX;
+          if (tStart - tEnd > 10) {
+            $('.cmp-carousel__action.cmp-carousel__action--next').trigger('click');
+          } else if (tEnd - tStart > 10) {
+            $('.cmp-carousel__action.cmp-carousel__action--previous').trigger('click');
+          }
+          tStart = null;
+        }, false);
+      });
     }
   }
 
