@@ -6,7 +6,6 @@ class Carousel {
       previous: '.cmp-carousel__action.cmp-carousel__action--previous',
       next: '.cmp-carousel__action.cmp-carousel__action--next',
     };
-    this.carousel = null;
 
     this.bindEvents = this.bindEvents.bind(this);
     this.init = this.init.bind(this);
