@@ -34,6 +34,7 @@ class Carousel {
           } else if (tEnd - tStart > 10) {
             $('.cmp-carousel__action.cmp-carousel__action--previous').trigger('click');
           }
+          $('.cmp-carousel__indicator.cmp-carousel__indicator--active').trigger('click'); // to pause the playing of the Carousel
           tStart = null;
         }, false);
       });
