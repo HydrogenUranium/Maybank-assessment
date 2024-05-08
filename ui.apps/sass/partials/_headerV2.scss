@@ -171,6 +171,7 @@
               label {
                 cursor: pointer;
                 margin: 0;
+                width: 100%;
               }
             }
 
@@ -215,7 +216,7 @@
 
               .country-name {
                 display: inline-block;
-                width: 155px;
+                width: calc(100% - 30px);
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
