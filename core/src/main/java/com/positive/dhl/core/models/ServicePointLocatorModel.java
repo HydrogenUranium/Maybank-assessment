@@ -7,6 +7,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Required;
@@ -65,6 +66,10 @@ public class ServicePointLocatorModel {
     @ValueMapValue
     private String openAfterQueryParam;
 
+    @ValueMapValue
+    @Default(values = StringUtils.EMPTY)
+    private String additionalUrlParamOrSuffix;
+
     @Getter
     private String url;
 
@@ -76,7 +81,8 @@ public class ServicePointLocatorModel {
                     : new URIBuilder(domain)
                     .addParameters(getQueryParams())
                     .build()
-                    .toString();
+                    .toString()
+                    .concat(additionalUrlParamOrSuffix);
         } catch (IllegalAccessException | URISyntaxException ex) {
             log.error("An error occurred preparing URL for Service Point Locator", ex);
         }
