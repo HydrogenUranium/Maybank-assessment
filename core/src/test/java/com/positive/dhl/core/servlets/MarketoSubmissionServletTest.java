@@ -47,7 +47,7 @@ class MarketoSubmissionServletTest {
 	FormInputBase formInputBase;
 	@Mock
 	MarketoSubmissionConfigReader configReader;
-	@InjectMocks
+//	@InjectMocks
 	MarketoSubmissionServlet underTest;
 
 	@BeforeEach
