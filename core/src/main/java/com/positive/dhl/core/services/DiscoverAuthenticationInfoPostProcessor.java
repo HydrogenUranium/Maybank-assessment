@@ -40,8 +40,7 @@ public class DiscoverAuthenticationInfoPostProcessor implements AuthenticationIn
         String userId = info.getUser();
         if (StringUtils.isNotBlank(userId)) {
 
-            try {
-                ResourceResolver resolver = resourceResolverHelper.getUserManagerResourceResolver();
+            try(var resolver = resourceResolverHelper.getUserManagerResourceResolver()) {
                 JackrabbitSession session = ((JackrabbitSession) resolver.adaptTo(Session.class));
 
                 if (session == null) {

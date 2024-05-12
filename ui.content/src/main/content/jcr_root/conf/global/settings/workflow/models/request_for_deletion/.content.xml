@@ -3,29 +3,16 @@
           jcr:primaryType="cq:Page">
     <jcr:content
             cq:designPath="/libs/settings/wcm/designs/default"
-            cq:lastModified="{Date}2024-05-13T14:23:11.175+03:00"
-            cq:lastModifiedBy="admin"
+            cq:lastModified="{Date}2024-05-15T09:08:19.000+03:00"
+            cq:lastModifiedBy="test-global-author"
             cq:template="/libs/cq/workflow/templates/model"
             jcr:primaryType="cq:PageContent"
             jcr:title="Request for Deletion"
             sling:resourceType="cq/workflow/components/pages/model"
-            lastSynced="{Date}2024-05-13T14:23:12.023+03:00">
+            lastSynced="{Date}2024-05-15T09:08:27.942+03:00">
         <flow
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="foundation/components/parsys">
-            <process_1044144770
-                    jcr:created="{Date}2024-05-07T12:12:05.905+03:00"
-                    jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2024-05-13T11:16:53.592+03:00"
-                    jcr:lastModifiedBy="admin"
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="Email Notification"
-                    sling:resourceType="cq/workflow/components/model/process">
-                <metaData
-                        jcr:primaryType="nt:unstructured"
-                        PROCESS="com.positive.dhl.core.services.impl.PublisherEmailNotification"
-                        PROCESS_AUTO_ADVANCE="true"/>
-            </process_1044144770>
             <process
                     jcr:created="{Date}2014-11-05T14:39:38.052+01:00"
                     jcr:createdBy="admin"
@@ -54,6 +41,19 @@
                         PROCESS="com.day.cq.wcm.workflow.process.DeletePageProcess"
                         PROCESS_AUTO_ADVANCE="true"/>
             </process_0>
+            <process_1044144770
+                    jcr:created="{Date}2024-05-07T12:12:05.905+03:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2024-05-13T18:23:04.506+03:00"
+                    jcr:lastModifiedBy="test-global-author"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Email Notification"
+                    sling:resourceType="cq/workflow/components/model/process">
+                <metaData
+                        jcr:primaryType="nt:unstructured"
+                        PROCESS="com.positive.dhl.core.services.impl.PublisherPageRemovalNotification"
+                        PROCESS_AUTO_ADVANCE="true"/>
+            </process_1044144770>
         </flow>
     </jcr:content>
 </jcr:root>

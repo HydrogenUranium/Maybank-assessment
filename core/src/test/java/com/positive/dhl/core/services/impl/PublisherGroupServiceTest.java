@@ -1,21 +1,67 @@
 package com.positive.dhl.core.services.impl;
 
+import com.day.cq.workflow.exec.WorkItem;
+import com.day.cq.workflow.exec.Workflow;
+import com.day.cq.workflow.exec.WorkflowData;
+import com.day.cq.workflow.metadata.MetaDataMap;
+import com.positive.dhl.core.services.ResourceResolverHelper;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.jackrabbit.api.security.user.Authorizable;
+import org.apache.jackrabbit.api.security.user.Group;
+import org.apache.jackrabbit.api.security.user.UserManager;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.jcr.RepositoryException;
+import javax.jcr.Value;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith({MockitoExtension.class, AemContextExtension.class})
 class PublisherGroupServiceTest {
+
+    private final AemContext context = new AemContext();
 
     @Mock
     private PublisherGroupService.Configuration configuration;
 
-    private final PublisherGroupService publisherGroupService = new PublisherGroupService();
+    @Mock
+    private ResourceResolverHelper resolverHelper;
+
+    @InjectMocks
+    private PublisherPageRemovalNotification service;
+
+    @Mock
+    private UserManager userManager;
+
+    @Mock
+    private Group group;
+
+    @Mock
+    private Authorizable user;
+
+    @Mock
+    private Value value;
+
+    @InjectMocks
+    private PublisherGroupService publisherGroupService;
+
+    @BeforeEach
+    void setUp() {
+        context.registerAdapter(ResourceResolver.class, UserManager.class, userManager);
+        when(configuration.defaultParticipant()).thenReturn("global");
+    }
 
     @ParameterizedTest
     @CsvSource({
@@ -25,11 +71,26 @@ class PublisherGroupServiceTest {
     })
     void getPublisherGroup(String mapping, String pagePath, String expected) {
         when(configuration.mappings()).thenReturn(new String[]{mapping});
-        when(configuration.defaultParticipant()).thenReturn("global");
         publisherGroupService.activate(configuration);
 
         String result = publisherGroupService.getPublisherGroup(pagePath);
 
         assertEquals(expected, result);
+    }
+
+    @Test
+    void getPublisherEmails() throws RepositoryException {
+        when(configuration.mappings()).thenReturn(new String[]{"/content/my:malaysia"});
+        when(resolverHelper.getReadResourceResolver()).thenReturn(context.resourceResolver());
+        when(userManager.getAuthorizable(anyString())).thenReturn(group);
+        when(group.getDeclaredMembers()).thenReturn(List.of(user).iterator());
+        when(user.hasProperty("profile/email")).thenReturn(true);
+        when(user.getProperty("profile/email")).thenReturn(new Value[]{value});
+        when(value.getString()).thenReturn("dmytro@gmail.com");
+        publisherGroupService.activate(configuration);
+
+        List<String> emails = publisherGroupService.getPublisherEmails("/content/my/home");
+
+        assertEquals(emails, List.of("dmytro@gmail.com"));
     }
 }
