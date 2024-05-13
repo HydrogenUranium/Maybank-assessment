@@ -196,9 +196,9 @@
                             <additionalUrlParamOrSuffix
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                    fieldLabel="Additional parameter or suffix for the URL (Example: '&amp;mobile=y') [optional]"
+                                    fieldLabel="Additional parameter for the URL (Example: '&amp;mobile=y' to remove DHL header banner) [optional]"
                                     fieldDescription="Be careful: this string will be appended to the URL as is.
-                                              Stick to the standard URL format requirements"
+                                              Stick to the standard URL format requirements and SPL API"
                                     name="./additionalUrlParamOrSuffix"/>
                         </items>
                     </additionalPart>

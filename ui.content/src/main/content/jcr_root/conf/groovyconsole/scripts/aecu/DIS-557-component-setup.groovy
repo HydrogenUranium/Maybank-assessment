@@ -81,6 +81,7 @@ def getAffectedNodePaths() {
                 "2_property.value": propertyValue,
                 "2_property.operation": "not",
                 "property.and": "true",
+                "p.limit": "-1",
         ]
         createQuery(predicates).result.hits.each { hit ->
             paths.add(hit.node.path)
