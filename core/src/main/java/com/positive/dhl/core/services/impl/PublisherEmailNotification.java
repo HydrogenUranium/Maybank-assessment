@@ -17,6 +17,7 @@ import org.apache.jackrabbit.api.security.user.UserManager;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import javax.jcr.RepositoryException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
@@ -25,60 +26,37 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-@Component(service = WorkflowProcess.class, property = {"process.label=Delete Page Email Notification Process"})
 @Slf4j
-public class PublisherEmailNotification implements WorkflowProcess {
-
-    @Reference
-    private MessageGatewayService messageGatewayService;
-
-    @Reference
-    private PublisherGroupService publisherGroupService;
-
-    @Reference
-    private ResourceResolverHelper resolverHelper;
-
-    private List<String> getRecipients(String pagePath) throws WorkflowException {
-        List<String> recipients = new ArrayList<>();
-        try(var resolver = resolverHelper.getReadResourceResolver()) {
-            UserManager userManager = resolver.adaptTo(UserManager.class);
-            if(userManager == null) {
-                return recipients;
-            }
-            var group = userManager.getAuthorizable(publisherGroupService.getPublisherGroup(pagePath));
-            if (group instanceof Group) {
-                Iterator<Authorizable> members = ((Group) group).getDeclaredMembers();
-                while (members.hasNext()) {
-                    Authorizable member = members.next();
-                    if (member.hasProperty("profile/email")) {
-                        var email = member.getProperty("profile/email")[0].getString();
-                        recipients.add(email);
-                    }
-                }
-            }
-        } catch (Exception ex) {
-            throw new WorkflowException("Failed to send email notification to group members", ex);
-        }
-
-        return recipients;
-    }
-
-    private String getDate() {
+public abstract class PublisherEmailNotification implements WorkflowProcess {
+    protected String getDate() {
         var offset = ZoneOffset.of("+02:00");
         var currentDateTime = LocalDateTime.now(offset);
         var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss").withLocale(Locale.GERMANY);
         return currentDateTime.format(formatter);
     }
 
-    @Override
-    public void execute(WorkItem item, WorkflowSession session, MetaDataMap args) throws WorkflowException {
-        var payloadPath = item.getWorkflowData().getPayload().toString();
-        var initiator = item.getWorkflow().getInitiator();
-        var date = getDate();
+    protected String getPayloadPath(WorkItem item) {
+        return item.getWorkflowData().getPayload().toString();
+    }
 
-        MessageGateway<HtmlEmail> messageGateway = messageGatewayService.getGateway(HtmlEmail.class);
+    protected String getInitiator(WorkItem item) {
+        return item.getWorkflow().getInitiator();
+    }
+
+    protected abstract List<String> getRecipients(String payloadPath) throws RepositoryException;
+
+    protected abstract MessageGateway<HtmlEmail> getMessageGateway();
+
+    @Override
+    public final void execute(WorkItem item, WorkflowSession session, MetaDataMap args) throws WorkflowException {
+        var payloadPath = getPayloadPath(item);
         var email = new HtmlEmail();
-        List<String> recipients = getRecipients(payloadPath);
+        List<String> recipients = null;
+        try {
+            recipients = getRecipients(payloadPath);
+        } catch (RepositoryException e) {
+            throw new WorkflowException(e);
+        }
 
         if(recipients.isEmpty()) {
             log.warn("No responsible publishers for: {}", payloadPath);
@@ -94,18 +72,18 @@ public class PublisherEmailNotification implements WorkflowProcess {
         }
 
         try {
-            email.setSubject("Notification of Page Removal");
-            email.setHtmlMsg(String.format(
-                            "<html><body>" +
-                            "<p>Hi,</p>" +
-                            "<p>Page Removal operation has been started</p>"+
-                            "<ul><li>Page Path: %s</li><li>Removed By: %s</li><li>Removal Date: %s (GMT+2)</li></ul>" +
-                            "<p>This is an automatically generated message. Please do not reply.</p>" +
-                            "</body></html>", payloadPath, initiator, date));
+            setEmailBody(email, item, session, args);
         } catch (EmailException e) {
             throw new WorkflowException(e);
         }
 
-        messageGateway.send(email);
+        try {
+            getMessageGateway().send(email);
+        } catch (Exception e) {
+            log.warn("Failed to sand email: {}", e.getMessage());
+        }
+
     }
+
+    public abstract void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException;
 }

@@ -2,16 +2,16 @@
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
           jcr:isCheckedOut="{Boolean}false"
           jcr:primaryType="cq:WorkflowModel"
-          jcr:uuid="3e368001-f404-49d7-b280-626946a4e3e2"
+          jcr:uuid="7c4166cc-81f3-42f1-842c-3a94a490cf0f"
           sling:resourceType="cq/workflow/components/model"
           description="No Description"
-          title="Request for Deletion">
+          title="Request to complete Move operation">
     <metaData
-            cq:generatingPage="/conf/global/settings/workflow/models/request_for_deletion/jcr:content"
-            cq:lastModified="{Long}1715753307944"
+            cq:generatingPage="/conf/global/settings/workflow/models/request_to_complete_move_operation/jcr:content"
+            cq:lastModified="{Long}1715753027020"
             cq:lastModifiedBy="admin"
             jcr:primaryType="nt:unstructured"
-            lastSynced="{Date}2024-05-15T09:08:27.942+03:00"/>
+            lastSynced="{Date}2024-05-15T09:03:47.019+03:00"/>
     <nodes jcr:primaryType="nt:unstructured">
         <node0
                 jcr:primaryType="cq:WorkflowNode"
@@ -21,39 +21,28 @@
         </node0>
         <node1
                 jcr:primaryType="cq:WorkflowNode"
-                description="Deactivates the page"
-                title="Deactivates the page"
+                title="Replicate After Page Move"
                 type="PROCESS">
             <metaData
                     jcr:primaryType="nt:unstructured"
-                    PROCESS="com.day.cq.wcm.workflow.process.DeactivatePageProcess"
+                    PROCESS="com.day.cq.wcm.workflow.process.AfterMovePageProcess"
                     PROCESS_AUTO_ADVANCE="true"/>
         </node1>
         <node2
-                jcr:primaryType="cq:WorkflowNode"
-                description="Deletes the page"
-                title="Delete page"
-                type="PROCESS">
-            <metaData
-                    jcr:primaryType="nt:unstructured"
-                    PROCESS="com.day.cq.wcm.workflow.process.DeletePageProcess"
-                    PROCESS_AUTO_ADVANCE="true"/>
-        </node2>
-        <node3
                 jcr:primaryType="cq:WorkflowNode"
                 title="Email Notification"
                 type="PROCESS">
             <metaData
                     jcr:primaryType="nt:unstructured"
-                    PROCESS="com.positive.dhl.core.services.impl.PublisherPageRemovalNotification"
+                    PROCESS="com.positive.dhl.core.services.impl.PublisherPageMovingNotification"
                     PROCESS_AUTO_ADVANCE="true"/>
-        </node3>
-        <node4
+        </node2>
+        <node3
                 jcr:primaryType="cq:WorkflowNode"
                 title="End"
                 type="END">
             <metaData jcr:primaryType="nt:unstructured"/>
-        </node4>
+        </node3>
     </nodes>
     <transitions jcr:primaryType="nt:unstructured">
         <node0_x0023_node1
@@ -73,15 +62,8 @@
         <node2_x0023_node3
                 jcr:primaryType="cq:WorkflowTransition"
                 from="node2"
-                rule="\0"
                 to="node3">
             <metaData jcr:primaryType="nt:unstructured"/>
         </node2_x0023_node3>
-        <node3_x0023_node4
-                jcr:primaryType="cq:WorkflowTransition"
-                from="node3"
-                to="node4">
-            <metaData jcr:primaryType="nt:unstructured"/>
-        </node3_x0023_node4>
     </transitions>
 </jcr:root>
