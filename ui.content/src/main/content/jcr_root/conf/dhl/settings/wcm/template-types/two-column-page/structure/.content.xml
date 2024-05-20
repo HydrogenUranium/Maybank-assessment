@@ -24,9 +24,20 @@
                         style="sidebar"
                         type="businessAccount"/>
             </headerv2>
-            <breadcrumb
+            <breadcrumb-responsivegrid
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/breadcrumb"/>
+                    sling:resourceType="wcm/foundation/components/responsivegrid"
+                    layout="responsiveGrid">
+                <breadcrumb-container
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/content/container"
+                        editable="{Boolean}false">
+                    <breadcrumb
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/breadcrumb"
+                            startLevel="3"/>
+                </breadcrumb-container>
+            </breadcrumb-responsivegrid>
             <two_columns_container
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/two-columns-container-with-five-sections">
