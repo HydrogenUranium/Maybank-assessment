@@ -28,7 +28,7 @@
                         <input class="countrySearch" id="countrySearch" type="text" placeholder="${headerV2.countrySearchPlaceholder}">
                         <div class="header-countryList__widget" id="countryList-widget">
                             <sly data-sly-repeat="${languageVariants.countries}">
-                                <a class="header-countryList__option" href="${languageVariants.countries[item].link @ extension='html'}">
+                                <a class="header-countryList__option" href="${languageVariants.countries[item].link}.html">
                                     <label for="country-${item}">
                                         <span class="fi fi-${item == 'tw' ? 'twx' : item}"></span>
                                         <span class="country-name">${languageVariants.countries[item].region}</span>
@@ -41,7 +41,7 @@
                 <div class="header__icon">
                     <sly data-sly-test="${languageVariants.getCurrentRegion.length > 0 && languageVariants.getLanguageVariants.size > 0}">
                         <a data-sly-repeat="${languageVariants.getLanguageVariants}"
-                           href="${item.link @ extension='html'}" data-home="${ item.home  @ extension='html'}"
+                           href="${item.link}.html" data-home="${ item.home }.html"
                            class="headerV2__lang${((item.current) ? ' headerV2__lang--selected' : '') @ context='html'}">
                             ${ item.name @ i18n, context='html' }
                         </a>
@@ -57,7 +57,7 @@
         </div>
         <div data-sly-test="${showNavigationMenu}"
              class="navigation-row">
-            <div class="navigation-row__left" data-sly-set.currentPagePath="${currentPage.path @ extension='html'}">
+            <div class="navigation-row__left" data-sly-set.currentPagePath="${currentPage.path}.html">
                 <a class="navigation-item ${currentPagePath == headerV2.homePageLink ? 'active' : '' }" href="${headerV2.homePageLink}"><span>${headerV2.homePageLabel}</span></a>
                 <sly data-sly-list="${meganav.panels}">
                     <a class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }" href="${item.url}"><span>${item.navigationTitle}</span></a>
