@@ -89,17 +89,25 @@ def moveNoindex(affectedNodePaths) {
                 .doDeleteProperty("noindex")
                 .run(dryRun)
 
-        //set new 'noindex' property
+        //removing single-value 'noindex' property
         aecu.contentUpgradeBuilder()
                 .forResources((String[]) [pagePath + "/jcr:content"])
                 .filterByProperty("cq:robotsTags", "noindex")
                 .doDeleteProperty("cq:robotsTags")
                 .run(dryRun)
 
+        //set new 'noindex' property
         aecu.contentUpgradeBuilder()
                 .forResources((String[]) [pagePath + "/jcr:content"])
                 .filterByNotMultiValuePropContains("cq:robotsTags", ["noindex"] as String[])
                 .doAddValuesToMultiValueProperty("cq:robotsTags", (String[])["noindex"])
+                .run(dryRun)
+
+        //removing 'index' property
+        aecu.contentUpgradeBuilder()
+                .forResources((String[]) [pagePath + "/jcr:content"])
+                .filterByMultiValuePropContains("cq:robotsTags", ["index"] as String[])
+                .doRemoveValuesOfMultiValueProperty("cq:robotsTags", (String[])["index"])
                 .run(dryRun)
 
         //publishing or unpublishing page
