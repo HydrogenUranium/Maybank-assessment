@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static com.day.cq.wcm.api.constants.NameConstants.*;
+import static com.day.cq.wcm.foundation.List.URL_EXTENSION;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_LEVEL;
 
 /**
@@ -191,7 +192,7 @@ public class Article {
 		highlights = tagUtilService.getHighlightsTags(resource);
 
 		jcrPath = resource.getPath();
-		path = resource.getResourceResolver().map(resource.getPath());
+		path = resource.getResourceResolver().map(resource.getPath().concat(URL_EXTENSION));
 
 		valid = true;
 	}

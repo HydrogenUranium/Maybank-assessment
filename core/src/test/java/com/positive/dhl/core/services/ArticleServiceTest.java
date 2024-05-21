@@ -102,8 +102,8 @@ class ArticleServiceTest {
         var articles = articleService.getLatestArticles("/content/home", 2);
 
         assertEquals(2, articles.size());
-        assertEquals("/content/home/article_2", articles.get(0).getPath());
-        assertEquals("/content/home/article_1", articles.get(1).getPath());
+        assertEquals("/content/home/article_2.html", articles.get(0).getPath());
+        assertEquals("/content/home/article_1.html", articles.get(1).getPath());
     }
 
     @Test
@@ -111,8 +111,8 @@ class ArticleServiceTest {
         var articles = articleService.getAllArticles(resolver.getResource("/content/home").adaptTo(Page.class));
 
         assertEquals(2, articles.size());
-        assertEquals("/content/home/article_1", articles.get(0).getPath());
-        assertEquals("/content/home/article_2", articles.get(1).getPath());
+        assertEquals("/content/home/article_1.html", articles.get(0).getPath());
+        assertEquals("/content/home/article_2.html", articles.get(1).getPath());
     }
 
     @Test
@@ -120,7 +120,7 @@ class ArticleServiceTest {
         var articles = articleService.getArticlesByTitle("dhl", "/content/home", resolver);
 
         assertEquals(2, articles.size());
-        assertEquals("/content/home/article_1", articles.get(0).getPath());
-        assertEquals("/content/home/article_2", articles.get(1).getPath());
+        assertEquals("/content/home/article_1.html", articles.get(0).getPath());
+        assertEquals("/content/home/article_2.html", articles.get(1).getPath());
     }
 }

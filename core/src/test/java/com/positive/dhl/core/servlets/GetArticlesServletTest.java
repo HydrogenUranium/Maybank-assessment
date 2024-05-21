@@ -101,7 +101,7 @@ class GetArticlesServletTest {
                     "\"readtime\":\"4 min read\"," +
                     "\"listimage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                     "\"tagsToShow\":[\"#CategoryPage\"]," +
-                    "\"path\":\"/content/home/article_1\"" +
+                    "\"path\":\"/content/home/article_1.html\"" +
                 "}," +
                 "{" +
                     "\"createdfriendly\":\"August 4, 2023\"," +
@@ -114,7 +114,7 @@ class GetArticlesServletTest {
                     "\"readtime\":\"4 min read\"," +
                     "\"listimage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                     "\"tagsToShow\":[\"#CategoryPage\"]," +
-                    "\"path\":\"/content/home/article_2\"" +
+                    "\"path\":\"/content/home/article_2.html\"" +
                 "}" +
         "]";
         assertEquals(expected, responseBody);
