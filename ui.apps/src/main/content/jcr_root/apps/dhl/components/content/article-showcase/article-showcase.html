@@ -15,7 +15,7 @@
     <sly data-sly-test="${isVertical}">
         <div class="article-items">
             <article class="article" data-sly-repeat="${model.articles}">
-                <a tabindex="-1" href="${item.path}.html" class="article__picture">
+                <a tabindex="-1" href="${item.path}" class="article__picture">
                     <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
                          data-sly-call="${template.picture @
                          image=item.listimage,
@@ -25,7 +25,7 @@
                 </a>
                 <div class="article__info">
                     <div class="article__info__group-tag">${item.groupTag}</div>
-                    <h3><a href="${item.path}.html" class="article__info__title">${item.title}</a></h3>
+                    <h3><a href="${item.path}" class="article__info__title">${item.title}</a></h3>
                     <div class="article__info__metadata">
                         <time datetime="${item.created}" data-sly-test="${item.createdfriendly}">${item.createdfriendly}</time>
                         <span data-sly-test="${item.readtime}">${item.readtime}</span>

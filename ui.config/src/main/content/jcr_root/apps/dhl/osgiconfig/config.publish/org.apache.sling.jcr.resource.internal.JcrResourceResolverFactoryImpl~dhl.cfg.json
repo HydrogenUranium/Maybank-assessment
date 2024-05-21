@@ -2,6 +2,7 @@
     "resource.resolver.mapping": [
         "/:/discover/",
         "/content/dhl.html:/discover",
+        "/content/dhl/(global|\\w{2})/(.*).html</discover/$2",
         "/content/dhl/(global|\\w{2})/(.*)</discover/$2",
         "/content/dam/(.*)</discover/content/dam/$1",
         "/adobe/dynamicmedia/deliver/(.*)</discover/adobe/dynamicmedia/deliver/$1",

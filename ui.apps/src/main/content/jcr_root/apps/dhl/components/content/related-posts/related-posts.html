@@ -9,7 +9,7 @@
     <h2 class="title">${model.title}</h2>
     <div class="article-container horizontal-scroll">
         <article class="article-container__article" data-sly-repeat="${articles}">
-            <a href="${item.path}.html" class="article-container__article__image-wrapper">
+            <a href="${item.path}" class="article-container__article__image-wrapper">
                 <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
                      data-sly-call="${template.picture @
                      image=item.listimage,
@@ -18,7 +18,7 @@
                 }"></sly>
             </a>
             <div class="article-container__article__info">
-                <a href="${item.path}.html" class="article-container__article__info__title">${item.title}</a>
+                <a href="${item.path}" class="article-container__article__info__title">${item.title}</a>
                 <div class="article-container__article__info__metadata">
                     <time data-sly-test="${item.createdfriendly}" datetime="${item.created}">${item.createdfriendly}</time>
                     <span data-sly-test="${item.readtime}">${item.readtime}</span>
