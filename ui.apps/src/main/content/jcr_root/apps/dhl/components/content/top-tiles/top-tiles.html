@@ -3,7 +3,7 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 <div class="top-tiles-component">
-    <a href="${item.path}.html" class="tile" data-sly-repeat="${model.articles}" title="${item.title}">
+    <a href="${item.path}" class="tile" data-sly-repeat="${model.articles}" title="${item.title}">
         <div class="article">
             <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
                  data-sly-call="${template.picture @
