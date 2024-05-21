@@ -94,11 +94,11 @@ public class DiscoverRssFeed {
         if (image == null) {
             return "";
         }
-        return urlPrefix + mappedResourcePath + ".thumb.319.319.png";
+        return urlPrefix + mappedResourcePath.replace(".html","") + ".thumb.319.319.png";
     }
 
     private String getHtmlLink() {
-        return urlPrefix + mappedResourcePath + ".html";
+        return urlPrefix + mappedResourcePath;
     }
 
     private String getUrlPrefix() {

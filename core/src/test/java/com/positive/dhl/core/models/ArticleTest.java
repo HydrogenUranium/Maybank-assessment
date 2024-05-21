@@ -104,7 +104,7 @@ class ArticleTest {
         assertEquals("infographic", article.getIcon());
         assertEquals("4 min read", article.getReadtime());
         assertEquals("en", article.getLocale().toString());
-        assertEquals("/content/dhl/global/home/small-business-advice/article", article.getPath());
+        assertEquals("/content/dhl/global/home/small-business-advice/article.html", article.getPath());
 
         checkGettersAndSetters(article);
     }

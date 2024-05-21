@@ -137,7 +137,7 @@ class ArticleSideNavigationTest {
         ArticleSideNavigation articleSideNavigation = request.adaptTo(ArticleSideNavigation.class);
         assertNotNull(articleSideNavigation);
         assertEquals(3, articleSideNavigation.getArticles().size());
-        assertEquals("/content/dhl/en-global/business/entrepreneurship/effective-entrepreneurs", articleSideNavigation.getArticles().get(0).path);
+        assertEquals("/content/dhl/en-global/business/entrepreneurship/effective-entrepreneurs.html", articleSideNavigation.getArticles().get(0).path);
     }
 
     private Page setUpArticlePage() {
