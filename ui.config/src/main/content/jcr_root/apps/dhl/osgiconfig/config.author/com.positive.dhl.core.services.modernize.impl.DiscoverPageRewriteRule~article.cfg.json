@@ -8,5 +8,5 @@
     "parthree:root/responsivegrid"
   ],
   "slingResourceType":"dhl/components/pages/article",
-  "enabled": false
+  "enabled": true
 }
