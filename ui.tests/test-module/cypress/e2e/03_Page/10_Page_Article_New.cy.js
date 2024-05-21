@@ -2,10 +2,10 @@ describe('Category Landing Page', () => {
   const pageUrl = Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global/automation-testing/Page-Article.html'
 
   beforeEach(() => {
-      cy.visit(pageUrl);
-      cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
-      //cy.AEMLogin(Cypress.env('AEM_PUBLISH_USERNAME'), Cypress.env('AEM_PUBLISH_PASSWORD'));
-    });
+    cy.visit(pageUrl);
+    cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
+    //cy.AEMLogin(Cypress.env('AEM_PUBLISH_USERNAME'), Cypress.env('AEM_PUBLISH_PASSWORD'));
+  });
 
   it('1. Verify breadcrumb exists', function() {
     cy.viewport('macbook-11');
@@ -44,7 +44,7 @@ describe('Category Landing Page', () => {
 
   it('7. Verify title exists', function() {
     cy.viewport('macbook-11');
-    cy.get('.aem-Grid > .title > h1').should('exist');
+    cy.get('.aem-Grid > .title h1').should('exist');
   });
 
   it('8. Verify text exists', function() {
@@ -107,7 +107,6 @@ describe('Category Landing Page', () => {
     });
   });
 
-/*
   it('18. Verify the tab exists and content changes on click', function() {
     cy.get('.tabs').should('exist').within(() => {
       cy.get('[id*="-tab"]').should('have.length.gt', 1);
@@ -124,10 +123,9 @@ describe('Category Landing Page', () => {
       cy.get('[id*="-tab"]').eq(3).click();
       cy.get('[id*="-content"]').
 
-should('contain', 'Advertising brochures, journals, magazines, or periodicals for commercial purposes can only be imported by the government-authorized importers. For personal purposes, the quantity of the items should be kept to 10 sets or 50 pieces max.');
+      should('contain', 'Advertising brochures, journals, magazines, or periodicals for commercial purposes can only be imported by the government-authorized importers. For personal purposes, the quantity of the items should be kept to 10 sets or 50 pieces max.');
     });
   });
-*/
 
   it('19. Verify the related posts section exists and shows only 3 articles', function() {
     cy.get('.related-posts-component').should('exist');
