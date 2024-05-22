@@ -1,11 +1,12 @@
-<template data-sly-template.picture="${@image, useWebOptimized, desktop, tablet, mobile, imgClass, alt, priority}">
+<template data-sly-template.picture="${@image, useWebOptimized, desktop, tablet, mobile, imgClass, pictureClass, alt, priority}">
     <picture data-sly-use.model="${'com.positive.dhl.core.models.Picture' @
-      image = image,
-      mobileImage = mobile,
-      tabletImage = tablet,
-      desktopImage = desktop,
-      useWebOptimized = useWebOptimized
-    }">
+        image = image,
+        mobileImage = mobile,
+        tabletImage = tablet,
+        desktopImage = desktop,
+        useWebOptimized = useWebOptimized
+      }"
+      class="${pictureClass}">
       <source data-sly-repeat="${model.mobileImages}" data-sly-test="${model.mobileImages}" srcset="${item.key}" type="${item.value}" media="(max-width: 768px)" />
       <source data-sly-repeat="${model.tabletImages}" data-sly-test="${model.tabletImages}" srcset="${item.key}" type="${item.value}" media="(min-width: 768px) and (max-width: 1200px)" />
       <source data-sly-repeat="${model.desktopImages}" data-sly-test="${model.desktopImages}" srcset="${item.key}" type="${item.value}" media="(min-width: 1200px)" />
