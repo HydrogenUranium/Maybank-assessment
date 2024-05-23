@@ -13,22 +13,19 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
-<div class="listicles" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
-    <div class="listicles__row">
-    	<div class="listicle--image listicle--${(properties.style == 'one-third' ? 'two-thirds' : (properties.layout == 'two-thirds' ? 'one-third' : 'half'))}"
-           style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.image @ context='uri'}');"
-           data-sly-test="${properties.textside == 'right'}" >
+<sly data-sly-set.isEmpty="${!properties.title && !properties.content && !properties.image}"></sly>
 
-        </div>
-        <div class="listicle--${properties.colour} listicle--${properties.style}">
-            <h2 class="listicle__title">${properties.title}</h2>
-            <p class="listicle__copy">${properties.content}</p>
-        </div>
-        <div class="listicle--image listicle--${(properties.style == 'one-third' ? 'two-thirds' : (properties.layout == 'two-thirds' ? 'one-third' : 'half'))}"
-             style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.image @ context='uri'}');"
-             data-sly-test="${properties.textside == 'left'}">
-
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+<div class="listicle-component" data-sly-test="${!isEmpty}">
+    <div class="listicle__row listicle__row--text-${properties.textside} listicle__row--text-${properties.style}" >
+        <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+             data-sly-call="${template.picture @
+                 image=properties.image,
+                 pictureClass='listicle__row__picture'
+             }"></sly>
+        <div class="listicle__row__text listicle__row__text--${properties.colour}">
+            <h2 class="listicle__row__text__title">${properties.title}</h2>
+            <p class="listicle__row__text__body">${properties.content}</p>
         </div>
     </div>
 </div>
