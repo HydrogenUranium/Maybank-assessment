@@ -19,7 +19,7 @@ describe('DHL Landing Page', () => {
       });
 
       it('1.Verify Title V2 is exist', function() {
-        cy.get('.cmp-title__text').should('exist');
+        cy.get('.title-v2').should('exist');
       });
 
       it('2.Verify text is exist', function() {
