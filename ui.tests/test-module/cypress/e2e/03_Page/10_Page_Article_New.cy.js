@@ -91,9 +91,9 @@ describe('Category Landing Page', () => {
 
   it('15. Verify listicle item exists with text content and image', function() {
     cy.viewport('macbook-11');
-    cy.get('.listicles__row').should('be.visible');
-    cy.get('.listicle__copy').should('be.visible');
-    cy.get('.listicle--image').should('be.visible');
+    cy.get('.listicle__row').should('be.visible');
+    cy.get('.listicle__row__text__body').should('be.visible');
+    cy.get('.listicle__row__picture').should('be.visible');
   });
 
 
