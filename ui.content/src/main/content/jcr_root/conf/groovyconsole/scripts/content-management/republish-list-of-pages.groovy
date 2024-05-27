@@ -37,6 +37,6 @@ println("Pages to publish: $filtered.size")
 
 filtered.each({
     aecu.contentUpgradeBuilder().forResources((String[])[it])
-            .doActivateResource()
+            .doActivateContainingPage()
             .run(DRY_RUN)
 })
