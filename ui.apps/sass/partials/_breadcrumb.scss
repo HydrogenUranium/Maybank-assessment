@@ -30,6 +30,11 @@
     &-link {
       color: unset;
 
+      &:hover {
+        color: #d40511;
+        text-decoration: none;
+      }
+
       span {
         text-decoration: underline;
       }
