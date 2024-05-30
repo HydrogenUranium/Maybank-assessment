@@ -35,6 +35,7 @@ println("Wrong paths: $wrongPaths.size")
 println("Not published: $notPublished.size")
 println("Pages to publish: $filtered.size")
 
+
 filtered.each({
     aecu.contentUpgradeBuilder().forResources((String[])[it])
             .doActivateContainingPage()
