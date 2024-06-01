@@ -51,7 +51,7 @@ class CtaBannerTest {
     }
 
     private void mockHomePage() {
-        when(pageUtils.getHomePage(any())).thenReturn(resourceResolver.getResource("/content/home").adaptTo(Page.class));
+        when(pageUtils.getHomePage(any(Page.class))).thenReturn(resourceResolver.getResource("/content/home").adaptTo(Page.class));
     }
 
     private void initRequest(String path) {

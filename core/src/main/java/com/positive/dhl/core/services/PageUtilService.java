@@ -47,6 +47,10 @@ public class PageUtilService {
                 .orElse(null);
     }
 
+    public Page getHomePage(Resource resource) {
+        return getHomePage(getPage(resource));
+    }
+
     public Page getAncestorPageByPredicate(Page page, Predicate<Page> predicate) {
         return Optional.ofNullable(page)
                 .map(Page::getParent)

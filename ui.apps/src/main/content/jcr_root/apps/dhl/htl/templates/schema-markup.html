@@ -1,0 +1,7 @@
+
+<sly data-sly-use.model="com.positive.dhl.core.models.SchemaModel">
+  <script type="application/ld+json"
+          data-sly-repeat="${model.schemas}"
+          data-sly-text="${item @ context='unsafe'}">
+  </script>
+</sly>

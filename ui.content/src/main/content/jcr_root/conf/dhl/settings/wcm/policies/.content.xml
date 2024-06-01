@@ -515,7 +515,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Embed Component Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            allowedEmbeddables="core/wcm/components/embed/v1/embed/embeddable/youtube"
+                            allowedEmbeddables="[dhl/components/content/embed/embeddable/youtube]"
                             embeddablesDisabled="false"
                             htmlDisabled="false"
                             urlDisabled="false"

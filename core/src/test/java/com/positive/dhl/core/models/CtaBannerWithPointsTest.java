@@ -53,7 +53,7 @@ class CtaBannerWithPointsTest {
     }
 
     private void mockHomePage() {
-        when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
+        when(pageUtils.getHomePage(any(Page.class))).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
     }
 
     private void initRequest(String path) {

@@ -139,9 +139,9 @@
                                                 fieldLabel="Media Category"
                                                 name="./mediatype"
                                                 required="{Boolean}true">
-
                                                 <items jcr:primaryType="nt:unstructured">
                                                     <article jcr:primaryType="nt:unstructured" text="article" value="article" />
+                                                    <blog jcr:primaryType="nt:unstructured" text="blog post" value="blogPost" />
                                                     <video jcr:primaryType="nt:unstructured" text="video" value="video" />
                                                     <competition jcr:primaryType="nt:unstructured" text="competition" value="competition" />
                                                     <infographic jcr:primaryType="nt:unstructured" text="infographic" value="infographic" />

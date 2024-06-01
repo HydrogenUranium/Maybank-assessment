@@ -1,0 +1,64 @@
+{
+  "jcr:primaryType": "dam:Asset",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Thu May 30 2024 07:43:38 GMT+0300",
+  "jcr:uuid": "43662977-b2e7-48bc-b42e-223e2bc36b8f",
+  "jcr:content": {
+    "jcr:primaryType": "dam:AssetContent",
+    "cq:lastReplicatedBy_publish": "admin",
+    "cq:isDelivered": false,
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "admin",
+    "jcr:lastModifiedBy": "admin",
+    "cq:lastReplicationAction_publish": "Activate",
+    "cq:lastReplicated": "Wed Jun 05 2024 13:23:51 GMT+0300",
+    "dam:assetState": "processed",
+    "jcr:lastModified": "Thu May 30 2024 07:43:40 GMT+0300",
+    "cq:lastReplicated_publish": "Wed Jun 05 2024 13:23:51 GMT+0300",
+    "renditions": {
+      "jcr:primaryType": "nt:folder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Thu May 30 2024 07:43:38 GMT+0300",
+      "original": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Thu May 30 2024 07:43:38 GMT+0300",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "admin",
+          "jcr:mimeType": "video/mp4",
+          "jcr:lastModified": "Thu May 30 2024 07:43:38 GMT+0300",
+          ":jcr:data": 1128726
+        }
+      }
+    },
+    "related": {
+      "jcr:primaryType": "nt:unstructured"
+    },
+    "metadata": {
+      "jcr:primaryType": "nt:unstructured",
+      "dam:youtube_privacy": "public",
+      "dam:extracted": "{Date}Thu May 30 2024 07:43:39 GMT+0300",
+      "dc:format": "video/mp4",
+      "dc:description": "description",
+      "tiff:Orientation": 1,
+      "dam:youtube_category": "Film & Animation",
+      "xmp:ModifyDate": "{Date}Thu Apr 25 2024 09:17:25 GMT+0000",
+      "xmp:CreateDate": "{Date}Thu Apr 25 2024 09:17:25 GMT+0000",
+      "dam:sha1": "fe42ded49f1a0d67b734fe1b57ec6531c00fe144",
+      "dam:size": 1128726,
+      "dc:title": "title",
+      "xmpDM:scale": "1/48000",
+      "xmpDM:value": 646143,
+      "xmpDM:duration": {
+        "jcr:primaryType": "nt:unstructured",
+        "xmpDM:scale": "1/48000",
+        "xmpDM:value": 646143,
+        "xmpNodeType": "xmpStruct"
+      },
+      "Iptc4xmpCore:CreatorContactInfo": {
+        "jcr:primaryType": "nt:unstructured"
+      }
+    }
+  }
+}

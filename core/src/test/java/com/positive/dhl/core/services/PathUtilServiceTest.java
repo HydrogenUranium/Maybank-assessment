@@ -1,7 +1,8 @@
 package com.positive.dhl.core.services;
 
-import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.dam.api.Asset;
+import com.positive.dhl.core.utils.RequestUtils;
+import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -11,13 +12,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -27,6 +29,9 @@ class PathUtilServiceTest {
     public static final String PATH_WITH_ENCODED_SPACES_AND_UNSUPPORTED_CHARACTERS = "/content/dam/path-with-unsupported-characters-%28%29%3E%3C%27/name%20with%20spaces.jpg";
     public static final String PATH_WITH_UNSUPPORTED_CHARACTERS = "/content/dam/path()'/img.jpg";
     public static final String MAPPED_PATH = "/discover/content/dam/path%28%29%27/img.jpg";
+    public static final String MAPPED_ABSOLUTE_PATH = "https://dhl.com/discover/content/dam/path%28%29%27/img.jpg";
+
+    AemContext context = new AemContext();
 
     @InjectMocks
     PathUtilService pathUtilService;
@@ -70,5 +75,22 @@ class PathUtilServiceTest {
         String path = pathUtilService.map(PATH_WITH_UNSUPPORTED_CHARACTERS);
 
         assertEquals(MAPPED_PATH, path);
+    }
+
+    @Test
+    void test_getFullMappedPath() {
+        try(MockedStatic<RequestUtils> mockedStatic = mockStatic(RequestUtils.class)){
+            mockedStatic.when(() -> RequestUtils.getUrlPrefix(any())).thenReturn("https://dhl.com");
+
+            when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
+            lenient().when(resolver.map(anyString())).thenAnswer(invocationOnMock -> {
+                String path = invocationOnMock.getArgument(0, String.class);
+                return StringUtils.isNotBlank(path) ? "/discover" + invocationOnMock.getArgument(0, String.class) : "";
+            });
+
+            String path = pathUtilService.getFullMappedPath(PATH_WITH_UNSUPPORTED_CHARACTERS, context.request());
+
+            assertEquals(MAPPED_ABSOLUTE_PATH, path);
+        }
     }
 }
