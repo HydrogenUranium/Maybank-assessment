@@ -1,3 +1,5 @@
+RewriteRule ^/discover/jp-jp(.*)$ https://%{HTTP_HOST}/discover/ja-jp$1 [R=301,L]
+##
 RewriteRule ^/discover/business-matters$ https://%{HTTP_HOST}/discover/en-global/business [R=301,L]
 RewriteRule ^/discover/business-matters/5-coolest-things-in-business-this-week$ https://%{HTTP_HOST}/discover/en-global/business/market-intelligence/5-coolest-things-in-business [R=301,L]
 RewriteRule ^/discover/business-matters/5-coolest-things-in-business$ https://%{HTTP_HOST}/discover/en-global/business/market-intelligence/5-coolest-things-in-business [R=301,L]
