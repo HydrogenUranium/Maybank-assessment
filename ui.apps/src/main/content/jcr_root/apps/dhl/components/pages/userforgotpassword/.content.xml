@@ -2,8 +2,11 @@
 <jcr:root
     xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
     xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    cq:deprecated="Page component for Static Templates"
+    cq:deprecatedReason="Deprecated after the migration to Dynamic Templates"
     jcr:primaryType="cq:Component"
-    jcr.title="DHL Content Hub User Forgot Password"
+    jcr.title="(DEPRECATED) DHL Content Hub User Forgot Password"
     jcr.description="DHL Content Hub User Forgot Password"
     sling:resourceSuperType="dhl/components/pages/master"
     componentGroup=".hidden"/>
