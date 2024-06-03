@@ -22,4 +22,20 @@
 
   <!--/* Initializes the Experience Manager authoring UI */-->
   <sly data-sly-include="/libs/wcm/core/components/init/init.jsp" data-sly-unwrap/>
+
+  <script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "DHL Discover",
+		"url": "${dhlpage.fullUrl @ context='uri'}",
+		"logo": "https://${dhlpage.akamaiHostname @ context='uri'}/etc.clientlibs/dhl/clientlibs/discover/resources/img/new-logo.svg",
+		"sameAs": [
+			"https://www.linkedin.com/showcase/discover-dhl-for-business/",
+			"https://www.facebook.com/discoverbydhl/",
+			"https://www.instagram.com/discoverbydhl/"
+		]
+  }
+	</script>
+
 </sly>
