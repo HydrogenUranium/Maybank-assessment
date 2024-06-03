@@ -1,18 +1,3 @@
-<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ~ Copyright 2021 Adobe
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
 <template data-sly-template.favicons="${ @ path ='The path to the client library resources folder', dhlpage, accountactions}">
     <link rel="icon" sizes="192x192" href="${path}/icon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="${path}/apple-touch-icon-180x180.png">
@@ -28,4 +13,27 @@
     <meta name="msapplication-square70x70logo" content="${path}/icon-70x70.png">
     <meta name="dhl-path-prefix" content="${dhlpage.pathprefix}" />
     <meta name="dhl-path-home" content="${accountactions.homeUrl}" />
+</template>
+<template data-sly-template.dhlFavicons="${ @ path ='The path to the client library resources folder'}">
+    <link rel="icon" sizes="192x192" href="${path}/192.png">
+    <link rel="icon" sizes="128x128" href="${path}/128.png">
+    <link rel="apple-touch-icon-precomposed" sizes="128x128" href="${path}/128.png">
+
+    <link rel="shortcut icon" href="${path}/favicon_dhl.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="${path}/favicon_dhl.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="${path}/192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="${path}/160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="${path}/96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="${path}/64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="${path}/32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${path}/16.png">
+    <link rel="apple-touch-icon" href="${path}/57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="${path}/114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="${path}/72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="${path}/144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="${path}/60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${path}/120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${path}/76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${path}/152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="${path}/180.png">
 </template>

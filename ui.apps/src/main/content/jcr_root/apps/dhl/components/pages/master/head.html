@@ -48,6 +48,8 @@
                                 clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
                                 hasCloudconfigSupport     = page.hasCloudconfigSupport}"></sly>
     <sly data-sly-test.appResourcesPath=${page.appResourcesPath} data-sly-call="${headResources.favicons @ path = appResourcesPath, dhlpage = dhlpage, accountactions = accountactions}"></sly>
+    <sly data-sly-test=${!appResourcesPath} data-sly-call="${headResources.dhlFavicons @ path = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons"}"></sly>
+
     <sly data-sly-list="${page.htmlPageItems}"><script data-sly-test="${item.location.name == 'header'}"
             data-sly-element="${item.element.name @ context='unsafe'}" data-sly-attribute="${item.attributes}"></script>
     </sly>
