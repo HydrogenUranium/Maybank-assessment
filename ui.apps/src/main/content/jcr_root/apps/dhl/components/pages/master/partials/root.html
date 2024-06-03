@@ -5,8 +5,6 @@
 			data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants">
     <body>
 
-        <sly data-sly-use.main="partials/main.html" data-sly-call="${main.data @ accountactions=accountactions}" data-sly-unwrap/>
-        <sly data-sly-use.footer="partials/components/footer.html" data-sly-call="${footer.data @ accountactions=accountactions}" data-sly-unwrap/>
 
 		<sly data-sly-test="${!accountactions.usethirdpartycookie}" data-sly-unwrap>
 			<sly data-sly-include="partials/components/cookie-policy.html" data-sly-unwrap/>

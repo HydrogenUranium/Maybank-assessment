@@ -31,8 +31,15 @@
   <sly data-sly-include="custombodyinjections.html"></sly>
   <sly data-sly-include="body.skiptomaincontent.html"></sly>
   <sly data-sly-use.oldDeprecatedHeader="partials/components/header.html"
-       data-sly-call="${oldDeprecatedHeader.data @ accountactions=accountactions, languageVariants=languageVariants}" />
+       data-sly-call="${oldDeprecatedHeader.data @ accountactions=accountactions, languageVariants=languageVariants}"/>
+  <sly data-sly-use.oldDeprecatedBody="partials/main.html"
+       data-sly-call="${oldDeprecatedBody.data @ accountactions=accountactions}"/>
+
   <sly data-sly-include="body.html"></sly>
+
+  <sly data-sly-use.oldDeprecatedFooter="partials/components/footer.html"
+       data-sly-call="${oldDeprecatedFooter.data @ accountactions=accountactions}"/>
+
   <sly data-sly-call="${footer.footer @ page = page, pwa = pwa}"></sly>
 </sly>
 </body>
