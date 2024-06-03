@@ -17,17 +17,6 @@
 <sly data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants" data-sly-unwrap>
 
 
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="${dhlpage.fullUrl}" />
-  <meta property="og:title" content="${currentPage.pageTitle || currentPage.name}" />
-  <meta property="og:description" content="${properties.jcr:description}" />
-  <meta property="og:image" content="https://${dhlpage.akamaiHostname}/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:url" content="${dhlpage.fullUrl}" />
-  <meta name="twitter:title" content="${currentPage.pageTitle || currentPage.name}" />
-  <meta name="twitter:description" content="${properties.jcr:description}" />
-  <meta name="twitter:image" content="https://${dhlpage.akamaiHostname}/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png" />
 
   <sly data-sly-include="author.html" ></sly>
 </sly>
