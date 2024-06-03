@@ -5,18 +5,6 @@
 			data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants"
 			dir="${dhlpage.direction != 'ltr' ? dhlpage.direction : ''}">
     <head>
-		<sly data-sly-test="${(currentSession.userID == null || currentSession.userID == 'anonymous')}" data-sly-unwrap>
-			<script src="//assets.adobedtm.com/cd52279ef3fa/3cec625096bb/launch-${dhlpage.trackingid}.min.js" async></script>
-			<sly data-sly-test="${(dhlpage.gtmtrackingid != '')}" data-sly-unwrap>
-			<!-- Google Tag Manager -->
-			<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-			})(window,document,'script','dataLayer','${dhlpage.gtmtrackingid @ context = "unsafe"}');</script>
-			<!-- End Google Tag Manager -->
-			</sly>
-    	</sly>
 
 
         <sly data-sly-include="partials/head.html" data-sly-unwrap/>
