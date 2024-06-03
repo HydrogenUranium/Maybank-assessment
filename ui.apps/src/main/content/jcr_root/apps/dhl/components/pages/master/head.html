@@ -13,7 +13,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
-<template data-sly-template.head="${ @ page, pwa }"
+<template data-sly-template.head="${ @ page, pwa, dhlpage, accountactions }"
           data-sly-use.headlibRenderer="headlibs.html"
           data-sly-use.headResources="head.resources.html">
     <meta charset="UTF-8">
@@ -41,7 +41,7 @@
                                 clientLibCategories       = page.clientLibCategories,
                                 clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
                                 hasCloudconfigSupport     = page.hasCloudconfigSupport}"></sly>
-    <sly data-sly-test.appResourcesPath=${page.appResourcesPath} data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
+    <sly data-sly-test.appResourcesPath=${page.appResourcesPath} data-sly-call="${headResources.favicons @ path = appResourcesPath, dhlpage = dhlpage, accountactions = accountactions}"></sly>
     <sly data-sly-list="${page.htmlPageItems}"><script data-sly-test="${item.location.name == 'header'}"
             data-sly-element="${item.element.name @ context='unsafe'}" data-sly-attribute="${item.attributes}"></script>
     </sly>
