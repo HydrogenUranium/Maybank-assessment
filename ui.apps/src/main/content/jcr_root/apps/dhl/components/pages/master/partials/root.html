@@ -5,7 +5,6 @@
 			data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants">
     <body>
 
-        <sly data-sly-use.header="partials/components/header.html" data-sly-call="${header.data @ accountactions=accountactions, languageVariants=languageVariants}" data-sly-unwrap/>
         <sly data-sly-use.main="partials/main.html" data-sly-call="${main.data @ accountactions=accountactions}" data-sly-unwrap/>
         <sly data-sly-use.footer="partials/components/footer.html" data-sly-call="${footer.data @ accountactions=accountactions}" data-sly-unwrap/>
 

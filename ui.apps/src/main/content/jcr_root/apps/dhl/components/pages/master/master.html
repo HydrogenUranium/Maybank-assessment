@@ -3,6 +3,7 @@
       data-sly-use.pwa="com.adobe.cq.wcm.core.components.models.PWA"
       data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" dir="${dhlpage.direction != 'ltr' ? dhlpage.direction : ''}"
       data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
+      data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants"
       data-sly-use.head="head.html"
       data-sly-use.footer="footer.html"
       data-sly-use.redirect="redirect.html">
@@ -29,6 +30,8 @@
 <sly data-sly-test="${!isRedirectPage}">
   <sly data-sly-include="custombodyinjections.html"></sly>
   <sly data-sly-include="body.skiptomaincontent.html"></sly>
+  <sly data-sly-use.oldDeprecatedHeader="partials/components/header.html"
+       data-sly-call="${oldDeprecatedHeader.data @ accountactions=accountactions, languageVariants=languageVariants}" />
   <sly data-sly-include="body.html"></sly>
   <sly data-sly-call="${footer.footer @ page = page, pwa = pwa}"></sly>
 </sly>
