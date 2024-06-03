@@ -12,3 +12,16 @@
     </sly>
   </sly>
 </sly>
+
+<sly>
+  <!--/* Include the site client libraries (loading only the CSS in the header, JS will be loaded in the footer) */-->
+  <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.css @ categories='dhl.site'}"/>
+  </sly>
+
+  <!--/* Include Adobe Dynamic Tag Management libraries for the header */-->
+  <sly data-sly-include="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp" data-sly-unwrap/>
+
+  <!--/* Initializes the Experience Manager authoring UI */-->
+  <sly data-sly-include="/libs/wcm/core/components/init/init.jsp" data-sly-unwrap/>
+</sly>
