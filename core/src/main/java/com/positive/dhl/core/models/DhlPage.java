@@ -57,7 +57,6 @@ public class DhlPage {
 	@Default(values = "ltr")
 	private String direction;
 
-	@Deprecated
 	private String robotsTags = "";
 
 	@PostConstruct
@@ -91,7 +90,6 @@ public class DhlPage {
 				page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
 	}
 
-	@Deprecated
 	private String getRobotTags(Page page) {
 		var tags = String.join(", ", page.getProperties().get(PN_ROBOTS_TAGS, new String[0]));
 		if(!tags.contains("noindex") && pageUtilService.hasInheritedNoIndex(page)) {
