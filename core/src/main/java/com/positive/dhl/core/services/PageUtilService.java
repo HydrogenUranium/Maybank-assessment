@@ -184,6 +184,7 @@ public class PageUtilService {
     @Nullable
     public Article getArticle(String articlePagePath, ResourceResolver resourceResolver) {
         return Optional.ofNullable(articlePagePath)
+                .filter(StringUtils::isNoneBlank)
                 .map(resourceResolver::getResource)
                 .map(r -> r.adaptTo(Article.class))
                 .orElse(null);
