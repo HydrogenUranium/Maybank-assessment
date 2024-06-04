@@ -134,9 +134,6 @@
                     <social_static
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="dhl/components/content/article-social-static"/>
-                    <content_banner
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/article-content-banner"/>
                 </body>
                 <sidebar
                         jcr:primaryType="nt:unstructured"
