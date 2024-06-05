@@ -3,7 +3,8 @@
     "img:src",
     "source:srcset",
     "source:src",
-    "video:poster"
+    "video:poster",
+    "a:href"
   ],
   "whitelisted.links": [
     "/content/dam/.*",
