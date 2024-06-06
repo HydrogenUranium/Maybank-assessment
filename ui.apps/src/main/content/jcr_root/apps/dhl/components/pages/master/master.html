@@ -1,1 +1,51 @@
-<sly data-sly-include="partials/root.html" data-sly-unwrap/>
+<!DOCTYPE HTML>
+<html data-sly-use.page="com.adobe.cq.wcm.core.components.models.Page" lang="${page.language}"
+      data-sly-use.pwa="com.adobe.cq.wcm.core.components.models.PWA"
+      data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage" dir="${dhlpage.direction != 'ltr' ? dhlpage.direction : ''}"
+      data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
+      data-sly-use.languageVariants="com.positive.dhl.core.models.LanguageVariants"
+      data-sly-use.head="head.html"
+      data-sly-use.footer="footer.html"
+      data-sly-use.redirect="redirect.html">
+<head data-sly-call="${head.head @ page = page, pwa = pwa, dhlpage = dhlpage, accountactions = accountactions}"></head>
+<body class="${page.cssClassNames}"
+      id="${page.id}"
+      data-cmp-link-accessibility-enabled
+      data-cmp-link-accessibility-text="${'opens in a new tab' @ i18n}"
+      data-cmp-data-layer-enabled="${page.data ? true : false}"
+      data-cmp-data-layer-name="${page.dataLayerName @ context='scriptToken'}">
+<script data-sly-test.dataLayerEnabled="${page.data}">
+          var dataLayerName = '${page.dataLayerName @ context="scriptToken"}' || 'adobeDataLayer';
+          window[dataLayerName] = window[dataLayerName]  || [];
+          window[dataLayerName].push({
+              page: JSON.parse("${page.data.json @ context='scriptString'}"),
+              event:'cmp:show',
+              eventInfo: {
+                  path: 'page.${page.id @ context="scriptString"}'
+              }
+          });
+        </script>
+<sly data-sly-test.isRedirectPage="${page.redirectTarget && (wcmmode.edit || wcmmode.preview)}"
+     data-sly-call="${redirect.redirect @ redirectTarget = page.redirectTarget}"></sly>
+<sly data-sly-test="${!isRedirectPage}">
+  <sly data-sly-include="custombodyinjections.html"></sly>
+  <sly data-sly-include="body.skiptomaincontent.html"></sly>
+
+  <!--/* Deprecated. Should be removed after deleting Deprecated Page Components */-->
+  <sly data-sly-use.oldDeprecatedHeader="partials/components/header.html"
+       data-sly-call="${oldDeprecatedHeader.data @ accountactions=accountactions, languageVariants=languageVariants}"/>
+  <sly data-sly-use.oldDeprecatedBody="partials/main.html"
+       data-sly-call="${oldDeprecatedBody.data @ accountactions=accountactions}"/>
+  <!--/* End */-->
+
+  <sly data-sly-include="body.html"></sly>
+
+  <!--/* Deprecated. Should be removed after deleting Deprecated Page Components */-->
+  <sly data-sly-use.oldDeprecatedFooter="partials/components/footer.html"
+       data-sly-call="${oldDeprecatedFooter.data @ accountactions=accountactions}"/>
+  <!--/* End */-->
+
+  <sly data-sly-call="${footer.footer @ page = page, pwa = pwa}"></sly>
+</sly>
+</body>
+</html>

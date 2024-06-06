@@ -1,0 +1,57 @@
+<template data-sly-template.favicons="${ @ path ='The path to the client library resources folder'}">
+    <link rel="icon" sizes="192x192" href="${path}/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="${path}/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="${path}/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${path}/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${path}/apple-touch-icon-120x120.png">
+    <meta name="msapplication-square310x310logo" content="${path}/icon-310x310.png">
+    <meta name="msapplication-wide310x150logo" content="${path}/icon-310x150.png">
+    <meta name="msapplication-square150x150logo" content="${path}/icon-150x150.png">
+    <meta name="msapplication-square70x70logo" content="${path}/icon-70x70.png">
+</template>
+
+<template data-sly-template.dhlFavicons="${ @ path ='The path to the client library resources folder'}">
+    <link rel="icon" sizes="192x192" href="${path}/192.png">
+    <link rel="icon" sizes="128x128" href="${path}/128.png">
+    <link rel="apple-touch-icon-precomposed" sizes="128x128" href="${path}/128.png">
+
+    <link rel="shortcut icon" href="${path}/favicon_dhl.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="${path}/favicon_dhl.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="${path}/192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="${path}/160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="${path}/96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="${path}/64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="${path}/32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${path}/16.png">
+    <link rel="apple-touch-icon" href="${path}/57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="${path}/114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="${path}/72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="${path}/144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="${path}/60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${path}/120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${path}/76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${path}/152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="${path}/180.png">
+</template>
+
+<template data-sly-template.dhlSocialMedia="${ @ path ='The path to the client library resources folder', dhlpage}">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="${dhlpage.fullUrl}" />
+    <meta property="og:title" content="${currentPage.pageTitle || currentPage.name}" />
+    <meta property="og:description" content="${properties.jcr:description}" />
+    <meta property="og:image" content="https://${dhlpage.akamaiHostname}${path}/192.png" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="${dhlpage.fullUrl}" />
+    <meta name="twitter:title" content="${currentPage.pageTitle || currentPage.name}" />
+    <meta name="twitter:description" content="${properties.jcr:description}" />
+    <meta name="twitter:image" content="https://${dhlpage.akamaiHostname}${path}/192.png" />
+</template>
+
+<template data-sly-template.dhlResources="${ @ dhlpage, accountactions}">
+    <meta name="dhl-path-prefix" content="${dhlpage.pathprefix}" />
+    <meta name="dhl-path-home" content="${accountactions.homeUrl}" />
+    <sly data-sly-unwrap data-sly-test="${(dhlpage.amparticlepath.length > 0)}">
+        <link rel="amphtml" href="${dhlpage.amparticlepath}.html">
+    </sly>
+</template>
