@@ -79,15 +79,15 @@ pipeline {
                     rtMavenResolver(
                             id: 'artifactory-resolver',
                             serverId: 'server',
-                            releaseRepo: 'maven-release',
-                            snapshotRepo: 'maven-snapshot'
+                            releaseRepo: 'maven-remote',
+                            snapshotRepo: 'maven-remote'
                     )
 
                     rtMavenDeployer(
                             id: 'artifactory-deployer',
                             serverId: 'server',
-                            releaseRepo: 'maven-dhl-release-local',
-                            snapshotRepo: 'maven-dhl-snapshot-local'
+                            releaseRepo: 'discover-proj-prg-release',
+                            snapshotRepo: 'discover-proj-prg-release'
                     )
 
                     rtMavenRun (

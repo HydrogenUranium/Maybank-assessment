@@ -473,7 +473,7 @@ Bundle-DocURL:
                 <repository>
                     <id>central</id>
                     <name>Artifactory PRG-releases</name>
-                    <url>https://artifactory.dhl.com/artifactory/maven-release</url>
+                    <url>https://artifactory.dhl.com/artifactory/maven-remote</url>
                 </repository>
             </repositories>
             <build>
@@ -485,6 +485,24 @@ Bundle-DocURL:
                             <nodeDownloadRoot>https://artifactory.dhl.com/nodejs/</nodeDownloadRoot>
                             <npmDownloadRoot>https://artifactory.dhl.com/artifactory/npm/npm/-/</npmDownloadRoot>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>npm set artifactory</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>config set registry https://artifactory.dhl.com/artifactory/api/npm/npmjs/</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
