@@ -67,7 +67,7 @@ class FetchYouTubeDataServletTest {
     @Test
     void testDoGet_validRequest() throws IOException {
         String apiKey = "test-api-key";
-        String videoId = "test-video-id";
+        String videoId = "yaBMNgAcBWA";
         String apiResponse = "{\"kind\":\"youtube#videoListResponse\",\"items\":[]}";
 
         try (MockedStatic<HttpClients> mockedStatic = mockStatic(HttpClients.class)) {
