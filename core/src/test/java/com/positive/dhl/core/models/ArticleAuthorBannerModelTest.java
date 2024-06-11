@@ -62,7 +62,7 @@ class ArticleAuthorBannerModelTest {
 
     private void mockHomePage(String initRequestPath) {
         String homePagePath = initRequestPath.substring(0, StringUtils.ordinalIndexOf(initRequestPath, "/", 5));
-        when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource(homePagePath).adaptTo(Page.class));
+        when(pageUtils.getHomePage(any(Page.class))).thenReturn(context.resourceResolver().getResource(homePagePath).adaptTo(Page.class));
     }
 
     @Test

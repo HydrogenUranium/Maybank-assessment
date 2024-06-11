@@ -79,10 +79,18 @@
                                                 value="center"/>
                                     </items>
                                 </align>
+                                <schemaAlert
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/alert"
+                                        jcr:title="Schema Markup Generation"
+                                        text="- The component should have a configured thumbnail. &lt;br&gt;
+                                                - The asset should have a title and description. &lt;br&gt;
+                                                Otherwise, the schema will be omitted."/>
                             </items>
                         </content>
                     </items>
                 </properties>
+
                 <advanced
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Advanced"
