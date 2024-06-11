@@ -1,0 +1,43 @@
+<template data-sly-template.head="${ @ page, pwa, dhlpage, accountactions }"
+          data-sly-use.headlibRenderer="headlibs.html"
+          data-sly-use.headResources="head.resources.html">
+    <meta charset="UTF-8">
+    <title>${page.title}${page.brandSlug ? ' | ' : ''}${page.brandSlug}</title>
+    <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}"/>
+    <meta data-sly-test.description="${page.description || properties['jcr:description']}" name="description" content="${description}"/>
+    <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta data-sly-test="${dhlpage.robotsTags}" name="robots" content="${dhlpage.robotsTags}" />
+
+    <sly data-sly-test.isPwaEnabled="${pwa.enabled}">
+        <link rel="manifest" href="${pwa.manifestPath}" crossorigin="use-credentials"/>
+        <meta name="theme-color" content="${pwa.themeColor}"/>
+        <link rel="apple-touch-icon" href="${pwa.iconPath}"/>
+        <sly data-sly-use.clientlib="core/wcm/components/commons/v1/templates/clientlib.html"
+             data-sly-call="${clientlib.css @ categories='core.wcm.components.page.v2.pwa'}"></sly>
+        <meta name="cq:sw_path" content="${pwa.serviceWorkerPath @ context ='text'}"/>
+    </sly>
+    <sly data-sly-test="${!isPwaEnabled}">
+        <meta name="theme-color" content="#d40511">
+        <link rel="manifest" href="/etc.clientlibs/dhl/clientlibs/discover/resources/manifest.json">
+        <link rel="apple-touch-icon" sizes="128x128" href="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/128.png">
+    </sly>
+    <sly data-sly-include="head.links.html"></sly>
+    <sly data-sly-include="customheaderlibs.html"></sly>
+    <sly data-sly-call="${headlibRenderer.headlibs @
+                                page                      = page,
+                                designPath                = page.designPath,
+                                staticDesignPath          = page.staticDesignPath,
+                                clientLibCategories       = page.clientLibCategories,
+                                clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
+                                hasCloudconfigSupport     = page.hasCloudconfigSupport}"></sly>
+    <sly data-sly-test.appResourcesPath=${page.appResourcesPath} data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
+    <sly data-sly-test=${!appResourcesPath} data-sly-call="${headResources.dhlFavicons @ path = '/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons'}"></sly>
+    <sly data-sly-call="${headResources.dhlResources @ dhlpage = dhlpage, accountactions = accountactions}"></sly>
+    <sly data-sly-call="${headResources.dhlSocialMedia @ path = '/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons', dhlpage = dhlpage}"></sly>
+
+    <sly data-sly-list="${page.htmlPageItems}"><script data-sly-test="${item.location.name == 'header'}"
+            data-sly-element="${item.element.name @ context='unsafe'}" data-sly-attribute="${item.attributes}"></script>
+    </sly>
+</template>
