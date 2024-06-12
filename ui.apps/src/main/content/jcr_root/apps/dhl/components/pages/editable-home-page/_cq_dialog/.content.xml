@@ -1686,7 +1686,7 @@
                                                                             name="./articleHeader-smartShareButtonsLabel">
                                                                         <granite:data
                                                                                 jcr:primaryType="nt:unstructured"
-                                                                                cq-msm-lockable="./articleHeader-followLabel"/>
+                                                                                cq-msm-lockable="./articleHeader-smartShareButtonsLabel"/>
                                                                     </smartShareButtonsLabel>
                                                                     <smartShareButtonsIcon
                                                                             jcr:primaryType="nt:unstructured"
