@@ -51,7 +51,7 @@ class HomePropertyInjectorTest {
         MockSlingHttpServletRequest request = context.request();
         request.setPathInfo("/content/home/small-business-advice/article/jcr:content/par/component.html");
         when(annotatedElement.isAnnotationPresent(any())).thenReturn(true);
-        when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
+        when(pageUtils.getHomePage(any(Page.class))).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
 
         Object result = homePropertyInjector.getValue(request, "country", String.class, annotatedElement, disposalCallbackRegistry);
 
@@ -63,7 +63,7 @@ class HomePropertyInjectorTest {
         MockSlingHttpServletRequest request = context.request();
         request.setPathInfo("/content/home/small-business-advice/article/jcr:content/par/component.html");
         when(annotatedElement.isAnnotationPresent(any())).thenReturn(true);
-        when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
+        when(pageUtils.getHomePage(any(Page.class))).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
 
         Object result = homePropertyInjector.getValue(request, "enabled", Boolean.class, annotatedElement, disposalCallbackRegistry);
 
