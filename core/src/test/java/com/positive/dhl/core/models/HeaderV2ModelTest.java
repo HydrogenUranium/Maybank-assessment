@@ -51,7 +51,7 @@ class HeaderV2ModelTest {
 
     private void init(String resourcePath) {
         context.load().json(resourcePath, "/content");
-        when(pageUtils.getHomePage(any())).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
+        when(pageUtils.getHomePage(any(Page.class))).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
 
         Resource resource = resolver.getResource(PAGE_LOCATION);
         Page page = resource.adaptTo(Page.class);

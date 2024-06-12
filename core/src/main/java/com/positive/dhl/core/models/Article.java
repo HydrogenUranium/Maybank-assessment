@@ -197,6 +197,10 @@ public class Article {
 		valid = true;
 	}
 
+	public String getCreated(String pattern) {
+		return (new SimpleDateFormat(pattern)).format(createdDate);
+	}
+
     /**
 	 *
 	 */

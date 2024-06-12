@@ -1,7 +1,9 @@
 package com.positive.dhl.core.services;
 
+import com.positive.dhl.core.utils.RequestUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -62,5 +64,12 @@ public class PathUtilService {
             log.error("An error occurred encoding URL path", e);
             return path;
         }
+    }
+
+    public String getFullMappedPath(String path, SlingHttpServletRequest request) {
+        if(path == null) {
+            return null;
+        }
+        return RequestUtils.getUrlPrefix(request) + map(path);
     }
 }

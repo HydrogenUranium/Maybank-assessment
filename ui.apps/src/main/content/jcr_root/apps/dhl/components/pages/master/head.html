@@ -37,6 +37,8 @@
     <sly data-sly-call="${headResources.dhlResources @ dhlpage = dhlpage, accountactions = accountactions}"></sly>
     <sly data-sly-call="${headResources.dhlSocialMedia @ path = '/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons', dhlpage = dhlpage}"></sly>
 
+    <sly data-sly-include="/apps/dhl/htl/templates/schema-markup.html"></sly>
+
     <sly data-sly-list="${page.htmlPageItems}"><script data-sly-test="${item.location.name == 'header'}"
             data-sly-element="${item.element.name @ context='unsafe'}" data-sly-attribute="${item.attributes}"></script>
     </sly>

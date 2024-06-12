@@ -7,6 +7,7 @@ import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.services.PageContentExtractorService;
 import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.utils.RequestUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -67,7 +68,7 @@ public class DiscoverRssFeed {
         title = article.getTitle();
         description = article.getDescription();
         publishedDate = article.getCreated();
-        urlPrefix = getUrlPrefix();
+        urlPrefix = RequestUtils.getUrlPrefix(request);
         thumbnailImageUrl = getThumbnailImageUrl();
         link = getHtmlLink();
         region = Optional.ofNullable(getLanguageRoot(resource))
@@ -101,19 +102,6 @@ public class DiscoverRssFeed {
         return urlPrefix + mappedResourcePath;
     }
 
-    private String getUrlPrefix() {
-        var url = new StringBuilder(request.getScheme());
-        url.append("://");
-        url.append(request.getServerName());
-
-        int port = request.getServerPort();
-        if (!(port == 80 || port == 443)) {
-            url.append(":");
-            url.append(port);
-        }
-        url.append(request.getContextPath());
-        return url.toString();
-    }
 
     private String getArticleIntroduction() {
         var par = getChildResource("/jcr:content/root/article_container/body/responsivegrid");

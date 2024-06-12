@@ -62,7 +62,7 @@ class PageUtilServiceTest {
 
     @Test
     void test_forNull()  {
-        assertNull(pageUtilService.getHomePage(null));
+        assertNull(pageUtilService.getHomePage((Page) null));
         assertNull(pageUtilService.getAllHomePages(null));
         assertEquals(ValueMap.EMPTY, pageUtilService.getPageProperties(null));
         assertEquals(ValueMap.EMPTY, pageUtilService.getHomePageProperties(null));

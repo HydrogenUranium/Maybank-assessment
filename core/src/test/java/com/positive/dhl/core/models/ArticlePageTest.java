@@ -109,7 +109,7 @@ class ArticlePageTest {
 
 	private void mockHomePage(String initRequestPath) {
 		String homePagePath = initRequestPath.substring(0, StringUtils.ordinalIndexOf(initRequestPath, "/", 5));
-		when(pageUtilService.getHomePage(any())).thenReturn(context.resourceResolver().getResource(homePagePath).adaptTo(Page.class));
+		when(pageUtilService.getHomePage(any(Page.class))).thenReturn(context.resourceResolver().getResource(homePagePath).adaptTo(Page.class));
 	}
 
 	@Test
