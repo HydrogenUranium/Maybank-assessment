@@ -6,7 +6,6 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.positive.dhl.core.constants.DiscoverConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -55,9 +54,7 @@ public class PageListServlet extends SlingAllMethodsServlet {
 
             JsonArray pagesArray = new JsonArray();
             for (Hit hit : result.getHits()) {
-                JsonObject pageObject = new JsonObject();
-                pageObject.addProperty("path", hit.getPath());
-                pagesArray.add(pageObject);
+                pagesArray.add(hit.getPath());
             }
 
             response.setContentType("application/json");
