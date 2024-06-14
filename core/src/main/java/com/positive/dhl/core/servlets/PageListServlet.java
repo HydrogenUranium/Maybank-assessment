@@ -49,6 +49,8 @@ public class PageListServlet extends SlingAllMethodsServlet {
             queryMap.put("path", "/content/dhl");
             queryMap.put("type", "cq:Page");
             queryMap.put("p.limit", "-1");
+            queryMap.put("orderby", "@jcr:path");
+            queryMap.put("orderby.sort", "asc");
             Query query = queryBuilder.createQuery(PredicateGroup.create(queryMap), resolver.adaptTo(Session.class));
             SearchResult result = query.getResult();
 
