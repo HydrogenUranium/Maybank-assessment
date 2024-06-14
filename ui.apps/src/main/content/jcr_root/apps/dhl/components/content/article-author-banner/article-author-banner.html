@@ -22,9 +22,9 @@
 
     <div data-sly-test="${authorBanner.brief}" class="article-author-banner_brief">${authorBanner.brief}</div>
 
-    <div data-sly-test.followLabel="${authorBanner.followLabel}" class="article-author-banner_follow">
-        <a class="article-author-banner_follow__button" href="${!editmode ? accountactions.assetprefix : ''}${authorBanner.followPath}">
-            <span>${followLabel}</span>
+    <div data-sly-test="${authorBanner.followLabel && authorBanner.followPath}" class="article-author-banner_follow">
+        <a class="article-author-banner_follow__button" href="${authorBanner.followPath}">
+            <span>${authorBanner.followLabel}</span>
         </a>
     </div>
 </article>

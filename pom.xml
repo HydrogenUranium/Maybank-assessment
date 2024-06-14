@@ -71,6 +71,7 @@
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.javascript.lcov.reportPaths>${project.basedir}/coverage/lcov.info</sonar.javascript.lcov.reportPaths>
         <sonar.junit.reportsPath>${project.basedir}/target/surefire-reports</sonar.junit.reportsPath>
+        <baseline.skip>false</baseline.skip>
     </properties>
 
     <build>
@@ -240,6 +241,10 @@ Bundle-DocURL:
                     <groupId>biz.aQute.bnd</groupId>
                     <artifactId>bnd-baseline-maven-plugin</artifactId>
                     <version>${bnd.version}</version>
+                    <configuration>
+                        <failOnMissing>false</failOnMissing>
+                        <skip>${baseline.skip}</skip>
+                    </configuration>
                 </plugin>
                 <!-- Maven Resources Plugin -->
                 <plugin>
