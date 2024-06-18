@@ -8,7 +8,7 @@ pipeline {
     tools {
         maven 'Maven 3.6.3'
         jdk 'JDK11'
-    }
+    }   
 
     options {
         disableConcurrentBuilds()
@@ -32,7 +32,21 @@ pipeline {
             }
         }
 
-        stage('Fortify ASG/Sonar Scan'){
+        stage('Fortify ASG'){
+            steps {
+                script {
+                    try {
+                        sh '''
+                            /home/ci/FortifyASG.sh 375582152
+                        '''
+                    } catch (err) {
+                        unstable(message: "${STAGE_NAME} is unstable; underlying error was... ${err}")
+                    }
+                }
+            }
+        }
+        
+        /*stage('Fortify ASG/Sonar Scan'){
 			agent {
                  label 'fortify_agent'
             }
@@ -57,9 +71,9 @@ pipeline {
                     
                 }
             }
-        }
+        }*/
 
-        /*stage('Sonarqube Analysis') {
+        stage('Sonarqube Analysis') {
             steps {
                 script {
                     withSonarQubeEnv(installationName: 'Central Sonar') {
@@ -67,7 +81,7 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
 
         stage('Quality Gate') {
             steps {
@@ -100,15 +114,15 @@ pipeline {
                     rtMavenResolver(
                             id: 'artifactory-resolver',
                             serverId: 'server',
-                            releaseRepo: 'maven-release',
-                            snapshotRepo: 'maven-snapshot'
+                            releaseRepo: 'maven-remote',
+                            snapshotRepo: 'maven-remote'
                     )
 
                     rtMavenDeployer(
                             id: 'artifactory-deployer',
                             serverId: 'server',
-                            releaseRepo: 'maven-dhl-release-local',
-                            snapshotRepo: 'maven-dhl-snapshot-local'
+                            releaseRepo: 'discover-proj-prg-release',
+                            snapshotRepo: 'discover-proj-prg-release'
                     )
 
                     rtMavenRun (
