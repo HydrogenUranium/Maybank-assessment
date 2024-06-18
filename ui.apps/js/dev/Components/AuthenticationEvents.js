@@ -263,7 +263,6 @@ class AuthenticationEvents {
       $('.articleGrid .article-grid-item-loggedin').show();
     } else {
       $('.articleGrid .article-grid-item-subscribe').show();
-      $('.subscribePanel').show();
     }
   }
 }

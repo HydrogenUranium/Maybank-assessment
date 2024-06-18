@@ -34,7 +34,6 @@ import java.util.Optional;
 		resourceTypes = {
 				"dhl/components/content/inlineshipnowmarketoconfigurable",
 				"dhl/components/content/download",
-				"dhl/components/content/subscribepanel",
 				"dhl/components/content/marketoForm"
 		},
 		methods = HttpConstants.METHOD_POST,
