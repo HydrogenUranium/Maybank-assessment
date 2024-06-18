@@ -1,4 +1,4 @@
-/* DIS-446 Remove Deleted pages
+/* DIS-722 Remove Deleted pages
 
 Steps:
 
