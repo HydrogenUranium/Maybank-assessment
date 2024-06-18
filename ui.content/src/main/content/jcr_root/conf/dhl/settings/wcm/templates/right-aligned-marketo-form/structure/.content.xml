@@ -9,7 +9,6 @@
             jcr:isCheckedOut="{Boolean}true"
             jcr:mixinTypes="[cq:ReplicationStatus2,mix:versionable]"
             jcr:primaryType="cq:PageContent"
-            jcr:uuid="b3566f36-2220-4a12-a2f8-8d34fa2e1f78"
             sling:resourceType="dhl/components/pages/editable-two-column-page">
         <root
                 jcr:primaryType="nt:unstructured"

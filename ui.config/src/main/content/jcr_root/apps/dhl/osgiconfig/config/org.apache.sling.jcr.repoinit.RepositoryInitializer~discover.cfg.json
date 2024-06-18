@@ -473,6 +473,7 @@
         "set ACL for discover-reader\nallow jcr:read on /content/dam\nend",
         "set ACL for discover-reader\nallow jcr:read on /content/cq:tags\nend",
         "set ACL for discover-reader\nallow jcr:read on /conf/dhl\nend",
+        "set ACL for discover-reader\nallow jcr:read on /oak:index\nend",
         "set ACL for discover-writer\nallow jcr:all on /content/dhl\nend",
         "set ACL for discover-writer\nallow jcr:all on /content/dam\nend",
 

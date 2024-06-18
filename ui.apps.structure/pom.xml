@@ -35,13 +35,16 @@
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <configuration>
                     <packageType>container</packageType>
+                    <allowIndexDefinitions>true</allowIndexDefinitions>
                     <properties>
                         <cloudManagerTarget>none</cloudManagerTarget>
+                        <noIntermediateSaves>true</noIntermediateSaves>
                     </properties>
                     <filters>
                         <!-- /apps root -->
                         <filter><root>/apps</root></filter>
                         <filter><root>/apps/dhl</root></filter>
+                        <filter><root>/oak:index</root></filter>
 
                         <!-- Common overlay roots -->
                         <filter><root>/apps/sling</root></filter>

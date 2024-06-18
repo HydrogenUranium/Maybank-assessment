@@ -6,7 +6,7 @@ import { getArticles, getTagSuggestions } from 'src/main/webpack/services/api/se
 import { IconButton } from '../../atoms/iconButton/IconButton';
 import { useDataFetching } from '../../../../hooks/useDataFetching';
 import { SearchSection } from '../../../common/atoms/searchSection/SearchSection';
-import { highlightMatches } from 'src/main/webpack/utils';
+import { getCommonPrefix, highlightMatches } from 'src/main/webpack/utils';
 
 import styles from './styles.module.scss';
 
@@ -90,7 +90,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                   focusInput();
                 }}
                 className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemText)}
-                dangerouslySetInnerHTML={{__html: highlightMatches(suggestion, "^" + inputValue, "gi")}}
+                dangerouslySetInnerHTML={{__html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, inputValue, true) + ").*", "gi")}}
                 key={suggestion}/>
             )}
           />
@@ -100,7 +100,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
             thinTitle
             overflowHidden
             renderItem={(article) => (
-              <a href={`${article.path}.html`} className={styles.article} key={article.path}  onClick={() => putRecentSearch(inputRef.current?.value)}>
+              <a href={`${article.path}`} className={styles.article} key={article.path}  onClick={() => putRecentSearch(inputRef.current?.value)}>
                 <div className={styles.articleImage} style={{ backgroundImage: `url(${article.listimage})` }}></div>
                 <div className={styles.articleInfo}>
                   <div className={styles.articleInfoTitle}>{article.title}</div>

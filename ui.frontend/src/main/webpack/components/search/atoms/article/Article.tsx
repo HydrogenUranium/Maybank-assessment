@@ -13,11 +13,11 @@ type ArticleProps = {
 
 export const Article: React.FC<ArticleProps> = ({ article, highlitedWords = [] }) => (
   <div className={styles.article}>
-    <a tabIndex={-1} href={`${article.path}.html`} className={styles.articleImage}
+    <a tabIndex={-1} href={`${article.path}`} className={styles.articleImage}
       style={{ backgroundImage: `url(${article.listimage})` }}></a>
     <div className={styles.articleInfo}>
       <div className={styles.articleInfoGroupTag}>{article.groupTag}</div>
-      <a href={`${article.path}.html`} className={styles.articleInfoTitle}>
+      <a href={`${article.path}`} className={styles.articleInfoTitle}>
         {article.title}
       </a>
       <div className={styles.articleInfoMetadata}>

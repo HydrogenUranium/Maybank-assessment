@@ -6,3 +6,17 @@ export const  highlightMatches = (text, regex, flags = "g") => {
     return text.replace(pattern, match => `<b>${match}</b>`);
 };
 
+export function getCommonPrefix(str1, str2, caseInsensitive = false) {
+    const origin = str1;
+
+    if (caseInsensitive) {
+        str1 = str1.toLowerCase();
+        str2 = str2.toLowerCase();
+    }
+
+    let i = 0;
+    while (i < str1.length && i < str2.length && str1[i] === str2[i]) {
+        i++;
+    }
+    return origin.slice(0, i);
+}
