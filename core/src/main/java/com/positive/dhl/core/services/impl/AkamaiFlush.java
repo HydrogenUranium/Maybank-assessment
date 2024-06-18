@@ -148,10 +148,9 @@ public class AkamaiFlush {
 	 * @return updated {@link String} that can be used to form Akamaized URL
 	 */
 	private String updatePath(String path){
-		if(path.contains("/content/dhl")){
-			return path.replace("/content/dhl","");
+		try (var resourceResolver = getResourceResolver()){
+			return resourceResolver.map(path);
 		}
-		return path;
 	}
 
 	private ResourceResolver getResourceResolver(){
