@@ -1,158 +1,168 @@
-/* DIS-446 Remove Deleted pages
+/* DIS-722 Remove Deleted pages
 
 Steps:
+
 0)  INITIAL SETUP
     - define scope
 
-    def MARKET = "/content/dhl"                                             // specify the country
+1) AFFECTED ITEMS:
+    - show a list of affected items
+    - add affected items to the '@Field affectedItemPaths'
+    @Field dryRun = true
+    @Field contentManipulation = false
 
-1)  BEFORE:
-    - show Deleted pages
-
-    def SHOW_ONLY = true
-    def CONTENT_MANIPULATION = false
-
-2)  BACKUP:
+2) BACKUP:
     - create a backup package of the pages that will be affected
     - update the version of each page that will be affected
-
-    def DRY_RUN = true / false                                              // new Versions are not created in DRY RUN mode
-    def SHOW_ONLY = false
-    def CONTENT_MANIPULATION = false
+    @Field dryRun = false
+    @Field contentManipulation = false
 
 3)  MANIPULATION:
-    - remove Deleted Pages
+    @Field dryRun = false
+    @Field contentManipulation = true
 
-    def DRY_RUN = true / false
-    def SHOW_ONLY = false
-    def CONTENT_MANIPULATION = true
+4)  CHECK:
+    - remove items from '@Field affectedItemPaths'
+    - check result (expected: 'Results: 0')
+    @Field dryRun = true
+    @Field contentManipulation = false
 
-
-4)  AFTER:
-    - show Deleted pages after update
-
-    def SHOW_ONLY = true
-    def CONTENT_MANIPULATION = false
 */
-import java.text.SimpleDateFormat;
 
-def DRY_RUN = true
-def SHOW_ONLY = false
-def CONTENT_MANIPULATION = false
-def MARKET = "/content/dhl"
+import groovy.transform.Field
 
-def getComponents(market) {
-    return sql2Query("""
-        SELECT * FROM [cq:Page] AS page
-        WHERE ISDESCENDANTNODE(page, '${market}')
-        AND page.[jcr:content/deleted] IS NOT NULL
-    """)
+@Field dryRun = true
+@Field contentManipulation = false
+@Field contentScope = "/content/dhl"
+
+@Field affectedItemPaths = [
+
+]
+
+@Field versionAndPackageName = "DIS-722-before-removing-deleted-pages"
+
+@Field packagesPath = "/etc/packages/my_packages"
+@Field packageDefinitionPath = "$packagesPath/${versionAndPackageName}.zip/jcr:content/vlt:definition"
+
+main()
+
+/* Methods */
+
+// main
+def main() {
+    affectedItemPaths = getAffectedItemPaths()
+    if (contentManipulation) {
+        contentManipulation(affectedItemPaths)
+    } else {
+        if (dryRun) {
+            showAffectedItems(affectedItemPaths)
+        } else {
+            createBackupPackage(affectedItemPaths)
+        }
+    }
 }
 
-def showDeletedPages(market) {
-    def data = []
+def getAffectedItemPaths() {
+    def paths = []
+    if (affectedItemPaths.size() == 0) {
+        getPage(contentScope).recurse { page ->
+            def content = page.node
+            if (content && content.get("deleted")) {
+                paths.add(page.path)
+            }
+        }
+        return paths
+    } else {
+        return affectedItemPaths
+    }
+}
 
-    getComponents(market).each { node ->
-        data.add([
-                node.path,
-        ])
+def contentManipulation(affectedNodePaths) {
+    affectedNodePaths.each { nodePath ->
+        if (getResource(nodePath)) {
+            aecu.contentUpgradeBuilder()
+                    .forResources((String[]) [nodePath])
+                    .doDeactivateContainingPage()
+                    .doDeleteContainingPage()
+                    .run(dryRun)
+        }
+    }
+}
+
+def showAffectedItems(affectedItemPaths) {
+    println("Affected items: " + affectedItemPaths.size())
+    if (affectedItemPaths.size() > 0) {
+        affectedItemPaths.each({ println(""""$it",""") })
+    }
+}
+
+//create or update the package funtion
+def createOrUpdatePackage() {
+    def definitionNode
+
+    if (session.nodeExists(packageDefinitionPath)) {
+        definitionNode = getNode(packageDefinitionPath)
+        println "(!) INFO: A package with this name already exists"
+    } else {
+        def fileNode = getNode(packagesPath).addNode("${versionAndPackageName}.zip", "nt:file")
+
+        def contentNode = fileNode.addNode("jcr:content", "nt:resource")
+
+        contentNode.addMixin("vlt:Package")
+        contentNode.set("jcr:mimeType", "application/zip")
+
+        def stream = new ByteArrayInputStream("".bytes)
+        def binary = session.valueFactory.createBinary(stream)
+
+        contentNode.set("jcr:data", binary)
+
+        definitionNode = contentNode.addNode("vlt:definition", "vlt:PackageDefinition")
+        definitionNode.set("sling:resourceType", "cq/packaging/components/pack/definition")
+        definitionNode.set("name", versionAndPackageName)
+        definitionNode.set("path", "$packagesPath/$versionAndPackageName")
     }
 
-    if (data.size > 0) {
-        println "Deleted Pages"
-        data.each {
-            println it
+    definitionNode
+}
+
+//package filter nodes
+def packageFilterNodes(definitionNode) {
+    def filterNode
+
+    if (definitionNode.hasNode("filter")) {
+        filterNode = definitionNode.getNode("filter")
+        filterNode.nodes.each {
+            it.remove()
         }
     } else {
-        println "There is no Deleted pages"
+        filterNode = definitionNode.addNode("filter")
+        filterNode.set("sling:resourceType", "cq/packaging/components/pack/definition/filterlist")
     }
 
+    filterNode
 }
 
-def removeDeletedPages(market, dryRun) {
-    getComponents(market).each { node ->
-        aecu.contentUpgradeBuilder()
-                .forResources((String[])[node.path])
-                .doDeactivateContainingPage()
-                .run(dryRun)
-    }
-
-    getComponents(market).each { node ->
-        aecu.contentUpgradeBuilder()
-                .forResources((String[])[node.path])
-                .doDeleteContainingPage()
-                .run(dryRun)
-    }
-
-}
-def getListAffectedPages(market) {
-    def listPages = []
-    def pageUtilService = getService("com.positive.dhl.core.services.PageUtilService")
-
-    getComponents(market).each { node ->
-        listPages.add(pageUtilService.getPage(getResource(node.path)).path)
-    }
-
-    return listPages;
-}
-
-def setNewPageVersion(listPages, versionName, dryRun) {
-    println("----------------------------------------")
+def createBackupPackage(listPages) {
     if (dryRun) {
-        println("(!) DRY RUN mode")
+        println "(!) DRY RUN mode"
     }
-    println("List of pages whose version was updated:")
-    if (listPages.size() > 0) {
-        listPages.each({ pagePath ->
-            println('> Page: ' + pagePath)
-            def isVersionExist = false
 
-            def page = getPage(pagePath);
-            if (page.isLocked()) {
-                if (!dryRun) {
-                    page.unlock()
-                }
-                println('(!) INFO: Page was unlocked')
-            }
+    def definitionNode = createOrUpdatePackage()
+    def filterNode = packageFilterNodes(definitionNode)
 
-            pageManager.getRevisions(pagePath, null, false).each({ revision ->
-                if (revision.getLabel().contains(versionName)) {
-                    isVersionExist = true
-                    println('(!) INFO: Page Version already exists')
-                    return false
-                }
-            })
+    listPages.eachWithIndex {
+        path,
+        i ->
+            def f = filterNode.addNode("filter$i")
 
-            if (!isVersionExist) {
-                def date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss.SSS").format(new Date());
-                def label = String.format("%s - %s", versionName, date);
-
-                if (!dryRun) {
-                    pageManager.createRevision(page, label, "Groovy Script version");
-                }
-                println('(!) INFO: New Page Version was created')
-            }
-        })
+            f.set("mode", "replace")
+            f.set("root", path + "/jcr:content")
+            f.set("rules", new String[0])
     }
-}
 
-def printFiltersForBackupPackage(listPages) {
-    println("Results: " + listPages.size())
-    if (listPages.size() > 0) {
-        println("(!) Use this list of pages for preparing package:")
-        listPages.each({ println("""<filter root="$it/jcr:content"/>""")})
+    if (!dryRun) {
+        save()
     }
-}
 
-// MAIN
-if (SHOW_ONLY) {
-    showDeletedPages(MARKET)
-} else {
-    if (CONTENT_MANIPULATION) {
-        removeDeletedPages(MARKET, DRY_RUN)
-    } else {
-        def listAffectedPages = getListAffectedPages(MARKET)
-        printFiltersForBackupPackage(listAffectedPages)
-        setNewPageVersion(listAffectedPages, "DIS-446 Remove Deleted Pages", DRY_RUN)
-    }
+    println "> Please go to '/crx/packmgr/index.jsp' and build created package: " + versionAndPackageName
 }
