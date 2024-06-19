@@ -138,7 +138,7 @@ public class AkamaiFlush {
 		if(StringUtils.isBlank(hostname)){
 			hostname = DiscoverConstants.DEFAULT_HOSTNAME;
 		}
-		return MessageFormat.format("{0}{1}{2}", hostname,environmentConfiguration.getAssetPrefix(),updatePath(path));
+		return MessageFormat.format("{0}{1}", hostname,updatePath(path));
 	}
 
 	/**
