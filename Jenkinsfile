@@ -24,7 +24,7 @@ pipeline {
         }
 
         stage('Fortify RUN') {
-			agent {
+	        agent {
                  label 'fortify_agent'
             }
             steps {
@@ -33,6 +33,9 @@ pipeline {
         }
 
         stage('Fortify ASG'){
+		    agent {
+                 	label 'fortify_agent'
+            	}
             steps {
                 script {
                     try {
@@ -45,7 +48,7 @@ pipeline {
                 }
             }
         }
-        
+
         /*stage('Fortify ASG/Sonar Scan'){
 			agent {
                  label 'fortify_agent'
@@ -68,7 +71,7 @@ pipeline {
 							}
                         }
                     )
-                    
+
                 }
             }
         }*/
@@ -100,7 +103,7 @@ pipeline {
                     }
                 }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'srv_jenkins_creds', passwordVariable:
+                withCredentials([usernamePassword(credentialsId: 'discover_artifactory_user', passwordVariable:
                         'artifactory_pwd', usernameVariable: 'artifactory_user')]){
                     rtServer (
                             id: 'server',
