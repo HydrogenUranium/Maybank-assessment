@@ -23,20 +23,13 @@ pipeline {
 
         }
 
-        stage('Fortify RUN') {
+        stage('Fortify RUN, ASG scan') {
 	        agent {
                  label 'fortify_agent'
             }
             steps {
                 sh 'mvn -ntp -DskipTests com.fortify.sca.plugins.maven:sca-maven-plugin:clean com.fortify.sca.plugins.maven:sca-maven-plugin:translate com.fortify.sca.plugins.maven:sca-maven-plugin:scan'
-            }
-        }
-
-        stage('Fortify ASG'){
-		    agent {
-                 	label 'fortify_agent'
-            	}
-            steps {
+                
                 script {
                     try {
                         sh '''
@@ -48,6 +41,7 @@ pipeline {
                 }
             }
         }
+
 
         /*stage('Fortify ASG/Sonar Scan'){
 			agent {
