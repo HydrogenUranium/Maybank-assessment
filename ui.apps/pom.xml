@@ -66,7 +66,16 @@
                 <configuration>
                     <properties>
                         <cloudManagerTarget>none</cloudManagerTarget>
+                        <noIntermediateSaves>true</noIntermediateSaves>
                     </properties>
+                    <validatorsSettings>
+                        <jackrabbit-filter>
+                            <options>
+                                <validRoots>/oak:index</validRoots>
+                            </options>
+                        </jackrabbit-filter>
+                    </validatorsSettings>
+                    <allowIndexDefinitions>true</allowIndexDefinitions>
                     <group>com.positive</group>
                     <name>dhl.ui.apps</name>
                     <packageType>application</packageType>

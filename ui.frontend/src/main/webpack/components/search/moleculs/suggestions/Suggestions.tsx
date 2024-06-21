@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { useDataFetching } from '../../../../hooks/useDataFetching';
 import { getTagSuggestions } from 'src/main/webpack/services/api/search';
 import { SearchSection } from '../../../common/atoms';
-import { highlightMatches } from 'src/main/webpack/utils';
+import { getCommonPrefix, highlightMatches } from 'src/main/webpack/utils';
 
 import styles from './styles.module.scss';
 
@@ -63,7 +63,7 @@ export const Suggestions: React.FC<SuggestionsProps> = (
               focusInput();
             }}
             className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemText)}
-            dangerouslySetInnerHTML={{ __html: highlightMatches(suggestion, "^" + inputValue, "gi") }}
+            dangerouslySetInnerHTML={{ __html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, inputValue, true) + ").*", "gi") }}
             key={suggestion}>
           </button>
         )}

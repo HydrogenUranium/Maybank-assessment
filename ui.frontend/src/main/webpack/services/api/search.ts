@@ -40,7 +40,7 @@ export const getArticles = async (query: string): Promise<Article[]> => {
 export const getTags = async (query: string): Promise<any> => {
     const homePagePathSuffix = getHomePagePath();
     const prefix = getPathPrefix();
-    return get({ url: `${prefix}/apps/dhl/discoverdhlapi/tags/index.json?s=${query}&homepagepath=${homePagePathSuffix}` });
+    return get({ url: `${prefix}/apps/dhl/discoverdhlapi/suggestions/index.json?s=${query}&homepagepath=${homePagePathSuffix}` });
 };
 
 export const getTagSuggestions = async(query: string): Promise<string[]> => {

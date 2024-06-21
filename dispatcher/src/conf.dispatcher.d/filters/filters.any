@@ -14,12 +14,11 @@ $include "./default_filters.any"
 ### bespoke DHL api endpoints
 /3001 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/*" } ## ??
 /3002 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/login/index.json" }
-/3003 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/tags*" }
 
 /3005 { /type "allow" /method "GET" /url "/bin/get-all-pages" }
 /3006 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/google*" }
 /3007 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/searchsuggest*" }
-/3008 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/tags*" }
+/3008 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/suggestions*" }
 
 #/3009 { /type "allow" /method "POST" /url "/conf/dhl/servlet-handler/shipnow" }
 /3010 { /type "allow" /method "POST" /url "/apps/dhl/servlet-handler/*" }
