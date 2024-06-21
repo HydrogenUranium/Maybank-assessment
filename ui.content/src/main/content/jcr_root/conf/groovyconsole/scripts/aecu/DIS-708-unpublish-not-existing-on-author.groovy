@@ -1,48 +1,43 @@
-/* DIS-722 Remove Deleted pages
+/* DIS-708 Unpublish not existing on Author
 
 Steps:
 
 0)  INITIAL SETUP
-    - define scope
+    - define scope in the '@Field contentScope'
+    - define Publish Env URL Host in the '@Field publishEnvHost'
 
 1) AFFECTED ITEMS:
     - show a list of affected items
-    - add affected items to the '@Field affectedItemPaths'
     @Field dryRun = true
-    @Field contentManipulation = false
 
-2) BACKUP:
-    - create a backup package of the pages that will be affected
-    - update the version of each page that will be affected
+    - add affected items to the '@Field affectedItemPaths'
+
+2)  MANIPULATION:
+    - create a package of the pages that exist on Publish but don't exist on Author
     @Field dryRun = false
-    @Field contentManipulation = false
 
-3)  MANIPULATION:
-    @Field dryRun = false
-    @Field contentManipulation = true
+    - replicate this package to remove on Publish not existing pages
 
-4)  CHECK:
+3)  CHECK:
     - remove items from '@Field affectedItemPaths'
     - check result (expected: 'Results: 0')
     @Field dryRun = true
-    @Field contentManipulation = false
-
 */
 
 import groovy.transform.Field
+import groovy.json.JsonSlurper
+import java.net.HttpURLConnection
+import java.net.URL
 
 @Field dryRun = true
-@Field contentManipulation = false
 @Field contentScope = "/content/dhl"
+@Field publishEnvHost = "https://publish-p58772-e528780.adobeaemcloud.com"
 
 @Field affectedItemPaths = [
 
 ]
 
-@Field versionAndPackageName = "DIS-722-before-removing-deleted-pages"
-
-@Field packagesPath = "/etc/packages/my_packages"
-@Field packageDefinitionPath = "$packagesPath/${versionAndPackageName}.zip/jcr:content/vlt:definition"
+@Field versionAndPackageName = "DIS-708-unpublish-not-existing-on-author"
 
 main()
 
@@ -51,41 +46,55 @@ main()
 // main
 def main() {
     affectedItemPaths = getAffectedItemPaths()
-    if (contentManipulation) {
-        contentManipulation(affectedItemPaths)
+    if (dryRun) {
+        showAffectedItems(affectedItemPaths)
     } else {
-        if (dryRun) {
-            showAffectedItems(affectedItemPaths)
-        } else {
-            createBackupPackage(affectedItemPaths)
-        }
+        createBackupPackage(affectedItemPaths)
     }
+}
+
+def getAllPagesOnPublishEnv() {
+    def url = new URL(publishEnvHost + "/bin/get-all-pages")
+    HttpURLConnection connection = (HttpURLConnection) url.openConnection()
+    connection.setRequestMethod("GET")
+    connection.setRequestProperty("Accept", "application/json")
+
+    int responseCode = connection.getResponseCode()
+
+    def responseArray = []
+    if (responseCode == HttpURLConnection.HTTP_OK) {
+        BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream()))
+        String inputLine
+        StringBuffer response = new StringBuffer()
+
+        while ((inputLine = input.readLine()) != null) {
+            response.append(inputLine)
+        }
+        input.close()
+
+        // Parse the JSON response
+        def jsonSlurper = new JsonSlurper()
+        responseArray = jsonSlurper.parseText(response.toString())
+    } else {
+        println("GET request failed")
+    }
+    connection.disconnect()
+
+    return responseArray
 }
 
 def getAffectedItemPaths() {
     def paths = []
     if (affectedItemPaths.size() == 0) {
-        getPage(contentScope).recurse { page ->
-            def content = page.node
-            if (content && content.get("deleted")) {
-                paths.add(page.path)
+        getAllPagesOnPublishEnv().each { pagePath ->
+            if (!getPage(pagePath)) {
+                paths.add(pagePath)
             }
         }
+
         return paths
     } else {
         return affectedItemPaths
-    }
-}
-
-def contentManipulation(affectedNodePaths) {
-    affectedNodePaths.each { nodePath ->
-        if (getResource(nodePath)) {
-            aecu.contentUpgradeBuilder()
-                    .forResources((String[]) [nodePath])
-                    .doDeactivateContainingPage()
-                    .doDeleteContainingPage()
-                    .run(dryRun)
-        }
     }
 }
 
@@ -95,6 +104,10 @@ def showAffectedItems(affectedItemPaths) {
         affectedItemPaths.each({ println(""""$it",""") })
     }
 }
+
+
+@Field packagesPath = "/etc/packages/my_packages"
+@Field packageDefinitionPath = "$packagesPath/${versionAndPackageName}.zip/jcr:content/vlt:definition"
 
 //create or update the package funtion
 def createOrUpdatePackage() {
@@ -156,7 +169,7 @@ def createBackupPackage(listPages) {
             def f = filterNode.addNode("filter$i")
 
             f.set("mode", "replace")
-            f.set("root", path + "/jcr:content")
+            f.set("root", path)
             f.set("rules", new String[0])
     }
 

@@ -42,7 +42,7 @@ RewriteRule ^/discover/discover/(.+)$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)
 RewriteCond %{REQUEST_URI} ^/discover/
 RewriteCond %{REQUEST_URI} !^/discover/([a-z]{2}-[a-z]{2}|en-global)
-RewriteCond %{REQUEST_URI} !^/discover/(content/dam|apps/dhl|content/dhl|adobe/dynamicmedia/deliver)/
+RewriteCond %{REQUEST_URI} !^/discover/(content/dam|apps/dhl|content/dhl|adobe/dynamicmedia/deliver|bin)/
 RewriteRule ^/discover/(.+)$ https://%{HTTP_HOST}/discover/en-global/$1 [R=301,L]
 
 ### DYNAMIC PASS-THROUGH TO AEM ###
