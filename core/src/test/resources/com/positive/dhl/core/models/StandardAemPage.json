@@ -151,16 +151,6 @@
 					],
 					"sling:resourceType": "wcm/msm/components/ghost"
 				},
-				"subscribepanel_580697853": {
-					"jcr:primaryType": "nt:unstructured",
-					"jcr:createdBy": "admin",
-					"jcr:lastModifiedBy": "admin",
-					"ctatitle": "Subscribe",
-					"jcr:created": "Fri Feb 28 2020 10:40:00 GMT+0100",
-					"title": "Sign up to the Discover newsletter",
-					"jcr:lastModified": "Fri Feb 28 2020 10:41:14 GMT+0100",
-					"sling:resourceType": "dhl/components/content/subscribepanel"
-				},
 				"text_1526141757": {
 					"jcr:primaryType": "nt:unstructured",
 					"jcr:mixinTypes": [

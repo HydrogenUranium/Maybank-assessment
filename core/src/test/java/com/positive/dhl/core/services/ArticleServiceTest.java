@@ -25,6 +25,7 @@ import javax.jcr.Session;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -116,8 +117,17 @@ class ArticleServiceTest {
     }
 
     @Test
-    void getArticlesByTitle_ShouldReturnArticles_WhenArticlesAreFound() {
-        var articles = articleService.getArticlesByTitle("dhl", "/content/home", resolver);
+    void findArticlesByPageProperties_ShouldReturnArticles_WhenArticlesAreFound() {
+        var articles = articleService.findArticlesByPageProperties("dhl", "/content/home", resolver);
+
+        assertEquals(2, articles.size());
+        assertEquals("/content/home/article_1.html", articles.get(0).getPath());
+        assertEquals("/content/home/article_2.html", articles.get(1).getPath());
+    }
+
+    @Test
+    void findArticlesByFullText_ShouldReturnArticles_WhenArticlesAreFound() {
+        var articles = articleService.findArticlesByFullText("business advice", "/content/home", resolver);
 
         assertEquals(2, articles.size());
         assertEquals("/content/home/article_1.html", articles.get(0).getPath());

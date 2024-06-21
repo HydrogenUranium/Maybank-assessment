@@ -2,10 +2,11 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/dhl/clientlibs"/>
     <filter root="/apps/dhl/components"/>
+    <filter root="/apps/dhl/config"/>
     <filter root="/apps/dhl/i18n"/>
-    <!-- TODO remove this filter after release. This filter should be used to clean up templates -->
-    <filter root="/apps/dhl/templates"/>
     <filter root="/apps/dhl/htl"/>
     <filter root="/apps/dhl/workflow"/>
     <filter root="/apps/msm" />
+    <filter root="/oak:index/dhl.englishLucene-1-custom-1" />
+    <filter root="/oak:index/dhl.englishSuggestionsLucene-1-custom-1" />
 </workspaceFilter>

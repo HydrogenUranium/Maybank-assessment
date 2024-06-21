@@ -1,10 +1,7 @@
 package com.positive.dhl.core.servlets;
 
 import com.positive.dhl.core.models.Article;
-import com.positive.dhl.core.services.ArticleService;
-import com.positive.dhl.core.services.PageUtilService;
-import com.positive.dhl.core.services.PathUtilService;
-import com.positive.dhl.core.services.TagUtilService;
+import com.positive.dhl.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -20,6 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.jcr.query.Query;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +27,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class GetArticlesServletTest {
@@ -36,6 +35,7 @@ class GetArticlesServletTest {
 
     private final MockSlingHttpServletRequest request = context.request();
     private final MockSlingHttpServletResponse response = context.response();
+    private final ResourceResolver resolver = context.resourceResolver();
 
     @InjectMocks
     private GetArticlesServlet servlet;
@@ -52,6 +52,11 @@ class GetArticlesServletTest {
     @Mock
     private PathUtilService pathUtilService;
 
+    @Mock
+    private ResourceResolverHelper resourceResolverHelper;
+
+    @Mock
+    private ResourceResolver resolverMock;
 
     @BeforeEach
     void setUp() {
@@ -68,9 +73,13 @@ class GetArticlesServletTest {
 
         Article article1 = createArticleModel(context.resourceResolver().getResource("/content/home/article_1"));
         Article article2 = createArticleModel(context.resourceResolver().getResource("/content/home/article_2"));
-        lenient().when(articleService.getArticlesByTitle(anyString(), anyString(), any(ResourceResolver.class))).thenReturn(List.of(article1, article2));
+        lenient().when(articleService.findArticles(anyString(), anyString(), any(ResourceResolver.class), anyBoolean()))
+                .thenReturn(List.of(article1, article2));
 
-        request.setResource(context.resourceResolver().getResource("/content"));
+        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolverMock);
+        when(resolverMock.findResources(anyString(), anyString())).thenAnswer(invocationOnMock ->
+                resolver.findResources(invocationOnMock.getArgument(0), Query.JCR_SQL2));
+        request.setResource(resolver.getResource("/content"));
     }
 
     @Test

@@ -4,6 +4,8 @@ import lombok.experimental.UtilityClass;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 
+import javax.jcr.Session;
+
 @UtilityClass
 public class RequestUtils {
 
@@ -24,5 +26,9 @@ public class RequestUtils {
     public static Resource getResource(SlingHttpServletRequest request) {
         var resourceResolver = request.getResourceResolver();
         return resourceResolver.resolve(request.getPathInfo());
+    }
+
+    public static Session getSession(SlingHttpServletRequest request) {
+        return request.getResourceResolver().adaptTo(Session.class);
     }
 }

@@ -138,7 +138,7 @@ public class AkamaiFlush {
 		if(StringUtils.isBlank(hostname)){
 			hostname = DiscoverConstants.DEFAULT_HOSTNAME;
 		}
-		return MessageFormat.format("{0}{1}{2}", hostname,environmentConfiguration.getAssetPrefix(),updatePath(path));
+		return MessageFormat.format("{0}{1}", hostname,updatePath(path));
 	}
 
 	/**
@@ -148,10 +148,9 @@ public class AkamaiFlush {
 	 * @return updated {@link String} that can be used to form Akamaized URL
 	 */
 	private String updatePath(String path){
-		if(path.contains("/content/dhl")){
-			return path.replace("/content/dhl","");
+		try (var resourceResolver = getResourceResolver()){
+			return resourceResolver.map(path);
 		}
-		return path;
 	}
 
 	private ResourceResolver getResourceResolver(){

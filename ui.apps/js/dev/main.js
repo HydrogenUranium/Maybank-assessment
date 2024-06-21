@@ -3,7 +3,6 @@ import Header from './Components/Header';
 import HeaderV2 from './Components/HeaderV2';
 import Carousel from './Components/Carousel';
 import BootstrapCarousel from './Components/BootstrapCarousel';
-import SubscribePanel from './Components/SubscribePanel';
 import Password from './Components/Password';
 import PasswordValidity from './Components/PasswordValidity';
 import ShowHide from './Components/ShowHide';
@@ -44,7 +43,6 @@ $(document).ready(() => {
   HeaderV2.init();
   Carousel.init();
   BootstrapCarousel.init();
-  SubscribePanel.init();
   Password.init();
   PasswordValidity.init();
   ShowHide.init();

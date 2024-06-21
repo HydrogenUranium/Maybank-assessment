@@ -24,6 +24,7 @@ import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 public class ArticleService {
     protected static final int MAX_SEARCH_TERMS_ALLOWED = 5;
     protected static final int MIN_SEARCH_TERM_CHARACTERS_ALLOWED = 3;
+    protected static final int MAX_TERMS_FULL_TEXT_SEARCH = 20;
     public static final String ORDERBY = "orderby";
     public static final String JCR_CONTENT_CQ_TEMPLATE = "jcr:content/cq:template";
     public static final String P_LIMIT = "p.limit";
@@ -104,9 +105,36 @@ public class ArticleService {
         return articles.subList(0, Math.min(limit, articles.size()));
     }
 
-    public List<Article> getArticlesByTitle(String searchTerm, String searchScope, ResourceResolver resourceResolver) {
+    public List<Article> findArticles(String searchQuery, String searchScope, ResourceResolver resourceResolver, boolean fulltextSearch) {
+        return fulltextSearch
+                ? findArticlesByFullText(searchQuery, searchScope, resourceResolver)
+                : findArticlesByPageProperties(searchQuery, searchScope, resourceResolver);
+
+    }
+
+    public List<Article> findArticlesByFullText(String searchQuery, String searchScope, ResourceResolver resourceResolver) {
+        List<String> terms = getFullTextSearchTerms(searchQuery);
+        Map<String, String> map = new HashMap<>();
+        map.put("path", searchScope);
+        map.put("type", NT_PAGE);
+
+        setFullTextTerms(terms, map);
+
+        setOrderingAndLimiting(map);
+
+        return searchArticles(map, resourceResolver);
+    }
+
+    private void setFullTextTerms(List<String> terms, Map<String, String> map) {
+        map.put("group.p.or", "true");
+        for(var i = 0; i < terms.size(); i++) {
+            map.put("group." + (i + 1) + "_fulltext", "\"" + terms.get(i) + "\"");
+        }
+    }
+
+    public List<Article> findArticlesByPageProperties(String searchTerm, String searchScope, ResourceResolver resourceResolver) {
         String[] propertiesToLook = {"jcr:content/jcr:title", "jcr:content/pageTitle", "jcr:content/navTitle"};
-        String[] terms = getTerms(searchTerm);
+        String[] terms = getTermsByLength(searchTerm);
 
         Map<String, String> map = new HashMap<>();
         map.put("path", searchScope);
@@ -162,7 +190,59 @@ public class ArticleService {
         return map;
     }
 
-    private String[] getTerms(String searchTerm) {
+    /**
+     * Generates a list of search terms based on the input phrase.
+     * The list includes the full phrase, single words, and combinations
+     * of words in the proper order. The number of terms is limited to
+     * protect the query from becoming too large.
+     *
+     * @param searchTerm The input phrase to generate search terms from.
+     * @return List of search terms including single words and combinations
+     *         to boost text that contains words in proper order.
+     * Example:
+     * <pre>
+     * {@code
+     * String searchTerm = "International e-commerce Business Guide";
+     * int limit = 10;
+     * List<String> combinations = getFullTextSearchTerms(searchTerm, limit);
+     *
+     * // Output:
+     * // [
+     * //   "International",
+     * //   "e-commerce",
+     * //   "Business",
+     * //   "Guide",
+     * //   "International e-commerce",
+     * //   "e-commerce Business",
+     * //   "Business Guide",
+     * //   "International e-commerce Business",
+     * //   "e-commerce Business Guide"
+     * //   "International e-commerce Business Guide",
+     * // ]
+     * }
+     * </pre>
+     */
+    private List<String> getFullTextSearchTerms(String searchTerm) {
+        String[] words = searchTerm.trim().split("\\s+");
+        List<String> terms = new ArrayList<>();
+
+        for (var len = 1; len <= words.length && terms.size() < MAX_TERMS_FULL_TEXT_SEARCH; len++) {
+            for (var start = 0; start <= words.length - len && terms.size() < MAX_TERMS_FULL_TEXT_SEARCH; start++) {
+                var combination = new StringBuilder();
+                for (int i = start; i < start + len; i++) {
+                    if (i > start) {
+                        combination.append(" ");
+                    }
+                    combination.append(words[i]);
+                }
+                terms.add(combination.toString());
+            }
+        }
+
+        return terms;
+    }
+
+    private String[] getTermsByLength(String searchTerm) {
         List<String> result = new LinkedList<>();
         String[] terms = searchTerm.trim().split("\\s");
         for (var term : terms) {
@@ -170,6 +250,7 @@ public class ArticleService {
                 result.add(term);
             }
         }
+
         return result.toArray(new String[0]);
     }
 

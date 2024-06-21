@@ -262,4 +262,16 @@
             <type>zip</type>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>Artifactory PRG-releases</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Artifactory PRG-snapshots</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
