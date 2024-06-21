@@ -236,11 +236,6 @@
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="content" translate="true" updateDestinationLanguage="false"/>
     </node>
-    <node resourceType="dhl/components/content/subscribepanel">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctatitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
     <node resourceType="dhl/components/content/taglist">
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
     </node>
