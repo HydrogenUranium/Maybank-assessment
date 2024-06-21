@@ -94,7 +94,7 @@ class AkamaiFlushTest {
 		when(akamaiFlushConfigReader.getAllowedContentPaths()).thenReturn(allowedContentPaths);
 		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
 		when(environmentConfiguration.getAkamaiHostname()).thenReturn("uat1.dhl.dhl");
-		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
+		lenient().when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
 		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
 		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
 		when(initUtil.getObjectMapper()).thenReturn(new ObjectMapper());
@@ -128,7 +128,7 @@ class AkamaiFlushTest {
 		when(akamaiFlushConfigReader.getAllowedContentPaths()).thenReturn(allowedContentPaths);
 		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
 		when(environmentConfiguration.getAkamaiHostname()).thenReturn("uat1.dhl.dhl");
-		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
+		lenient().when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
 		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
 		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
 		when(httpCommunication.sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class)))
@@ -152,7 +152,7 @@ class AkamaiFlushTest {
 		when(akamaiFlushConfigReader.getAllowedContentPaths()).thenReturn(allowedContentPaths);
 		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
 		when(environmentConfiguration.getAkamaiHostname()).thenReturn("uat1.dhl.dhl");
-		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
+		lenient().when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
 		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
 		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
 
