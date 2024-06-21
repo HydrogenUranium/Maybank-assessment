@@ -10,7 +10,6 @@ import com.positive.dhl.core.utils.RequestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +24,10 @@ import javax.jcr.query.Row;
 import javax.jcr.query.RowIterator;
 import javax.servlet.Servlet;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.StringUtils.normalizeSpace;
@@ -132,7 +134,7 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
         RowIterator rows = query.execute().getRows();
         while (rows.hasNext()) {
             var suggestedLastWord = ((Row) rows.next()).getValue("rep:" + mode + "()").getString();
-            var suggestion = (base + suggestedLastWord).trim();
+            var suggestion = StringUtils.joinWith(" ", base, suggestedLastWord).trim();
             if(!StringUtils.equalsIgnoreCase(searchString.trim(), suggestion)) {
                 suggestions.add(suggestion);
             }
@@ -158,7 +160,7 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
     }
 
     private String getStringWithoutLastWord(String query) {
-        return normalizeSpace(query).replaceAll("\\s*\\S+$", "") + " ";
+        return normalizeSpace(query).replaceAll(getLastWord(query) + "$", "").trim();
     }
 
     private String getLastWord(String query){
