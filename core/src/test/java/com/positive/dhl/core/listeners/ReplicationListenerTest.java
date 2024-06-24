@@ -2,10 +2,16 @@ package com.positive.dhl.core.listeners;
 
 import com.day.cq.replication.ReplicationAction;
 import com.day.cq.replication.ReplicationActionType;
+import com.day.cq.replication.ReplicationStatus;
+import com.day.cq.replication.Replicator;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
+import com.positive.dhl.core.services.PageUtilService;
+import com.positive.dhl.core.services.ResourceResolverHelper;
 import com.positive.dhl.core.services.impl.AkamaiFlush;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +21,7 @@ import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.osgi.service.event.Event;
 
+import javax.jcr.Session;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +39,24 @@ class ReplicationListenerTest {
 	@Mock
 	AkamaiFlush akamaiFlush;
 
+	@Mock
+	private ResourceResolverHelper resourceResolverHelper;
+
+	@Mock
+	private ResourceResolver resourceResolver;
+
+	@Mock
+	private Resource resource;
+
+	@Mock
+	private Replicator replicator;
+
+	@Mock
+	private ReplicationStatus replicationStatus;
+
+	@Mock
+	private Session session;
+
 	ReplicationListener underTest;
 
 	private static final String DUMMY_PATH = "/content/dummy-path";
@@ -44,6 +69,14 @@ class ReplicationListenerTest {
 
 		context.registerService(AkamaiFlushConfigReader.class,akamaiFlushConfigReader);
 		context.registerService(AkamaiFlush.class,akamaiFlush);
+		context.registerService(ResourceResolverHelper.class, resourceResolverHelper);
+		context.registerService(Replicator.class, replicator);
+
+		lenient().when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resourceResolver);
+		lenient().when(resourceResolver.getResource(any())).thenReturn(resource);
+		lenient().when(resource.adaptTo(ReplicationStatus.class)).thenReturn(replicationStatus);
+		lenient().when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
+		lenient().when(replicationStatus.isActivated()).thenReturn(true);
 
 		underTest = new ReplicationListener();
 		context.registerInjectActivateService(underTest,injectedServices);

@@ -8,10 +8,7 @@ import com.positive.dhl.core.constants.AkamaiInvalidationResult;
 import com.positive.dhl.core.dto.akamai.FlushRequest;
 import com.positive.dhl.core.dto.general.HttpApiResponse;
 import com.positive.dhl.core.exceptions.HttpRequestException;
-import com.positive.dhl.core.services.HttpCommunication;
-import com.positive.dhl.core.services.InitUtil;
-import com.positive.dhl.core.services.RepositoryChecks;
-import com.positive.dhl.core.services.ResourceResolverHelper;
+import com.positive.dhl.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -57,6 +54,9 @@ class AkamaiFlushTest {
 	@Mock
 	CloseableHttpClient closeableHttpClient;
 
+	@Mock
+	PageUtilService pageUtilService;
+
 	AkamaiFlush underTest;
 
 	@BeforeEach
@@ -75,6 +75,7 @@ class AkamaiFlushTest {
 		context.registerService(RepositoryChecks.class, repositoryChecks);
 		context.registerService(HttpCommunication.class, httpCommunication);
 		context.registerService(InitUtil.class, initUtil);
+		context.registerService(PageUtilService.class, pageUtilService);
 
 		underTest = new AkamaiFlush();
 		context.registerInjectActivateService(underTest,injectedServices);

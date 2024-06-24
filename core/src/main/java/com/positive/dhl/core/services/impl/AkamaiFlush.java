@@ -11,10 +11,7 @@ import com.positive.dhl.core.dto.akamai.ErrorResponse;
 import com.positive.dhl.core.dto.akamai.FlushRequest;
 import com.positive.dhl.core.dto.akamai.FlushResponse;
 import com.positive.dhl.core.exceptions.HttpRequestException;
-import com.positive.dhl.core.services.HttpCommunication;
-import com.positive.dhl.core.services.InitUtil;
-import com.positive.dhl.core.services.RepositoryChecks;
-import com.positive.dhl.core.services.ResourceResolverHelper;
+import com.positive.dhl.core.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -53,22 +50,31 @@ public class AkamaiFlush {
 	@Reference
 	private InitUtil initUtil;
 
-	public AkamaiInvalidationResult invalidateAkamaiCache(String path){
-		if(canWeFlush(path)){
-			var finalUrlToFlush = getHostname(path);
-			log.info("About to flush the following URL from Akamai: {}", finalUrlToFlush);
+	@Reference
+	private PageUtilService pageUtilService;
 
-			FlushRequest request = FlushRequest.builder()
-					.itemsToFlush(getUrlsToFlush(finalUrlToFlush))
-					.build();
+	public AkamaiInvalidationResult invalidateAkamaiCache(String path) {
+		return canWeFlush(path) ? sendInvalidationRequest(getHostname(path)) : getSkippedResult(path);
+	}
 
-			FlushResponse response = invalidateItemFromAkamai(request, getAkamaiCredentials());
-			if(response != null && response.getDetail().equalsIgnoreCase("request accepted")){
-				return AkamaiInvalidationResult.OK;
-			}
+	public AkamaiInvalidationResult invalidateAkamaiCache(String path, String pathSuffix) {
+		return canWeFlush(path) ? sendInvalidationRequest(getHostname(path) + pathSuffix) : getSkippedResult(path);
+	}
 
-			return AkamaiInvalidationResult.REJECTED;
-		}
+	private AkamaiInvalidationResult sendInvalidationRequest(String finalUrlToFlush) {
+		log.info("About to flush the following URL from Akamai: {}", finalUrlToFlush);
+
+		FlushRequest request = FlushRequest.builder()
+				.itemsToFlush(getUrlsToFlush(finalUrlToFlush))
+				.build();
+
+		FlushResponse response = invalidateItemFromAkamai(request, getAkamaiCredentials());
+
+		return (response != null && response.getDetail().equalsIgnoreCase("request accepted"))
+				? AkamaiInvalidationResult.OK : AkamaiInvalidationResult.REJECTED;
+	}
+
+	private AkamaiInvalidationResult getSkippedResult(String path) {
 		log.info("Skipping akamai flush for page '{}'", path);
 		return AkamaiInvalidationResult.SKIPPED;
 	}
