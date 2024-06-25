@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
-import { useDataFetching } from '../../../../hooks/useDataFetching';
-import { getTagSuggestions } from 'src/main/webpack/services/api/search';
 import { SearchSection } from '../../../common/atoms';
 import { getCommonPrefix, highlightMatches } from 'src/main/webpack/utils';
 
@@ -10,35 +8,32 @@ import styles from './styles.module.scss';
 
 interface SuggestionsProps {
   recentSearches: string[];
-  inputValue: string;
-  hidden: boolean;
-  focusInput: () => void;
-  setInputValue: (value: string) => void;
+  suggestions: string[];
+  suggestionsQuery: string;
+  activeSuggestion: number;
   handleSearch: (value: string) => void;
 }
 
 export const Suggestions: React.FC<SuggestionsProps> = (
   {
     recentSearches,
-    inputValue,
-    hidden,
-    focusInput,
-    setInputValue,
+    suggestions,
+    suggestionsQuery,
+    activeSuggestion,
     handleSearch
   }) => {
-  const [suggestions] = useDataFetching(inputValue, getTagSuggestions);
-
-  if(hidden) {
-    return null;
-  }
-
-  if (!inputValue) {
-    return (
+  if (!suggestionsQuery) {
+    return (recentSearches.length &&
       <div className={styles.searchSection}>
         <SearchSection
           items={recentSearches}
-          renderItem={(search) => (
-            <button onClick={() => handleSearch(search)} className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemWithIcon)} key={search}>
+          renderItem={(search, index) => (
+            <button onClick={() => handleSearch(search)} className={
+              classNames(
+                styles.searchSectionItemsItem, 
+                styles.searchSectionItemsItemWithIcon,
+                {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
+              )} key={search}>
               <span className={classNames(styles.icon, styles.iconHistory)}></span>
               <span className={styles.searchSectionItemsItemText}>{search}</span>
             </button>
@@ -56,14 +51,16 @@ export const Suggestions: React.FC<SuggestionsProps> = (
     <div className={styles.searchSection}>
       <SearchSection
         items={suggestions}
-        renderItem={(suggestion) => (
+        renderItem={(suggestion, index) => (
           <button
-            onClick={() => {
-              setInputValue(suggestion);
-              focusInput();
-            }}
-            className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemText)}
-            dangerouslySetInnerHTML={{ __html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, inputValue, true) + ").*", "gi") }}
+            onClick={() => handleSearch(suggestion)}
+            className={
+              classNames(
+                styles.searchSectionItemsItem, 
+                styles.searchSectionItemsItemText,
+                {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
+              )}
+            dangerouslySetInnerHTML={{ __html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionsQuery.trim(), true) + ").*", "gi") }}
             key={suggestion}>
           </button>
         )}

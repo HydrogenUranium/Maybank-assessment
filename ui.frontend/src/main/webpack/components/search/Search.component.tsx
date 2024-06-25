@@ -5,7 +5,7 @@ import { Article, IconButton } from './atoms';
 import { Suggestions } from './moleculs';
 import { getRecentSearches, putRecentSearch } from '../../services/local-storage';
 import { useDataFetching, useSortedArticles } from '../../hooks';
-import { getArticles } from '../../services/api/search';
+import { getArticles, getTagSuggestions } from '../../services/api/search';
 import { registerComponent } from '../../react-core';
 
 import styles from './styles.module.scss';
@@ -35,31 +35,36 @@ export const Search: React.FC<SearchProps> = ({
   const params = new URLSearchParams(url.search);
   const searchfield = params.get('searchfield') || '';
 
-  const [query, setQuery] = useState(searchfield);
   const [inputValue, setInputValue] = useState(searchfield);
+  const [articlesQuery, setArticlesQuery] = useState(searchfield);
+  const [suggestionQuery, setSuggestionQuery] = useState(inputValue);
+  const [activeSuggestion, setActiveSuggestion] = useState(-1);
   const [hiddenSuggestions, setHiddenSuggestions] = useState(true);
   const [limit, setLimit] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
-  const recentSearches = useMemo(() => getRecentSearches(), [query]);
+  const recentSearches = useMemo(() => getRecentSearches(), [articlesQuery]);
 
-  const [articles, loading] = useDataFetching(query, getArticles);
+  const [suggestions] = useDataFetching(suggestionQuery, getTagSuggestions);
+  const [articles, loading] = useDataFetching(articlesQuery, getArticles);
   const sortedArticles = useSortedArticles(articles);
 
-  const focusInput = (): void => inputRef.current?.focus();
   const blurInput = useCallback((): void => {
     inputRef.current?.blur();
   }, [inputRef]);
 
   const handleCloseSearch = useCallback(() => {
     blurInput();
+    setActiveSuggestion(-1);
     setHiddenSuggestions(true);
   }, [blurInput, setHiddenSuggestions]);
   
   useEffect(() => {
-    const handleKeyUp = (event) => {
-      if (event.key === 'Escape') { handleCloseSearch(); }
-    };
+    const handleKeyUp = ({key}) => {
+      if (key === 'Escape') {
+        handleCloseSearch();
+      }
+    }
   
     if (!hiddenSuggestions) {
       searchRef.current?.addEventListener('mousedown', stopPropagation);
@@ -77,7 +82,21 @@ export const Search: React.FC<SearchProps> = ({
       window.removeEventListener('click', stopPropagation);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [hiddenSuggestions, handleCloseSearch]);
+  }, [hiddenSuggestions, handleCloseSearch])
+
+  useEffect(() => {
+    setActiveSuggestion(-1);
+  }, [suggestions, setActiveSuggestion])
+
+  useEffect(() => {
+    if(activeSuggestion < 0) return;
+
+    const items = suggestionQuery.length ? suggestions : recentSearches;
+
+    if(activeSuggestion < items.length) {
+      setInputValue(items[activeSuggestion]);
+    }
+  }, [activeSuggestion]);
 
   useEffect(() => {
     setLimit(Math.min(10, sortedArticles.length));
@@ -96,20 +115,45 @@ export const Search: React.FC<SearchProps> = ({
       setInputValue(query);
     }
     putRecentSearch(query);
-    setQuery(query);
+    setArticlesQuery(query);
     updateURLquery(query);
     handleCloseSearch();
   };
 
   const handleSearchClick = () => handleSearch(inputValue);
 
-  const handleKeyClick = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key === 'Enter' && inputValue.length) { handleSearchClick(); }
+  const getSuggestionLength = () => {
+    return suggestionQuery.length
+      ? suggestions.length
+      : recentSearches.length
+  }
+
+  const handleArrowDown = () => {
+    setActiveSuggestion((prevSelected) => {
+      return prevSelected < getSuggestionLength() - 1 ? prevSelected + 1 : 0
+    });
+  }
+
+  const handleArrowUp = () => {
+    setActiveSuggestion((prevSelected) => {
+      return prevSelected > 0 ? prevSelected  - 1 : getSuggestionLength() - 1
+    });
+  }
+
+  const handleKeyClick = ({key}: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (key === 'Enter' && inputValue.length) { 
+      handleSearchClick(); 
+    } else if (key === 'ArrowDown') {
+      handleArrowDown();
+    } else if (key === 'ArrowUp') {
+      handleArrowUp();
+    }
   };
 
   const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const value = event.target.value;
     setInputValue(value);
+    setSuggestionQuery(value);
   };
 
   const handleShowMore = () => {
@@ -117,7 +161,7 @@ export const Search: React.FC<SearchProps> = ({
   };
 
   const getSearchDetails = (): string => {
-    if (!query) {
+    if (!articlesQuery) {
       return '';
     }
   
@@ -125,7 +169,7 @@ export const Search: React.FC<SearchProps> = ({
       ? descriptionFormat 
       : descriptionFormatNoResults || descriptionFormat;
   
-    return format(descriptionFormatToUse, query, limit, sortedArticles.length);
+    return format(descriptionFormatToUse, articlesQuery, limit, sortedArticles.length);
   };
 
   return (
@@ -148,14 +192,13 @@ export const Search: React.FC<SearchProps> = ({
             value={inputValue}
             onKeyDown={handleKeyClick}
           />
-          <Suggestions
-            inputValue={inputValue}
+          {!hiddenSuggestions && <Suggestions
             recentSearches={recentSearches}
-            hidden={hiddenSuggestions}
-            focusInput={focusInput}
-            setInputValue={setInputValue}
+            activeSuggestion={activeSuggestion}
+            suggestionsQuery={suggestionQuery}
+            suggestions={suggestions}
             handleSearch={handleSearch}
-          />
+          />}
         </div>
         <h1 className={styles.searchFormTitle}>{title}</h1>
         <div className={styles.searchFormDetails}
@@ -192,7 +235,7 @@ export const Search: React.FC<SearchProps> = ({
               <Article
                 key={item.path}
                 article={item}
-                highlitedWords={query.split(" ")}
+                highlightedWords={articlesQuery.split(" ")}
               />
             ))
           }
