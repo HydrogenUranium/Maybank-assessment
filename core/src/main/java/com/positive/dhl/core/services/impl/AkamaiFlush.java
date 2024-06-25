@@ -23,6 +23,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.positive.dhl.core.constants.DiscoverConstants.DISCOVER_CONTEXT;
+
 /**
  * Orchestrates the whole process of removing items from Akamai cache upon activation (or on any other request)
  */
@@ -144,7 +146,7 @@ public class AkamaiFlush {
 		if(StringUtils.isBlank(hostname)){
 			hostname = DiscoverConstants.DEFAULT_HOSTNAME;
 		}
-		return MessageFormat.format("{0}{1}", hostname,updatePath(path));
+		return MessageFormat.format("{0}{1}{2}", hostname, DISCOVER_CONTEXT, updatePath(path));
 	}
 
 	/**
