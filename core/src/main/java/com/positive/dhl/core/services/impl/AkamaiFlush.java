@@ -143,14 +143,13 @@ public class AkamaiFlush {
 
 	/**
 	 * Updates the path based on a simple rule - if the path leads to 'dam' (/content/dam...), we return the original value. Otherwise,
-	 * we return original value without '/content/dhl'
+	 * we return original value without '/content/dhl/{global OR country_code}'
 	 * @param path is the path as passed to the method (possibly captured by the job listening on replication requests)
 	 * @return updated {@link String} that can be used to form Akamaized URL
 	 */
 	private String updatePath(String path){
-		try (var resourceResolver = getResourceResolver()){
-			return resourceResolver.map(path);
-		}
+		String regex = "/content/dhl/(global|\\w{2})/(.*)";
+		return path.replaceAll(regex, "/$2");
 	}
 
 	private ResourceResolver getResourceResolver(){
