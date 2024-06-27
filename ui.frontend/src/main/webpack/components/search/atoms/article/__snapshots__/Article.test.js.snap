@@ -37,7 +37,7 @@ exports[`Article should render "Article" component property 1`] = `
       className="articleInfoDescription"
       dangerouslySetInnerHTML={
         {
-          "__html": "<b>Discover</b> everything you need to know about reverse <b>logistics</b> including types, benefits, challenges, and strategies to optimize your reverse <b>logistics</b> practices.",
+          "__html": "<b></b>Discover<b></b> <b></b>everything<b></b> <b></b>you<b></b> <b></b>need<b></b> <b></b>to<b></b> <b></b>know<b></b> <b></b>about<b></b> <b></b>reverse<b></b> <b></b>logistics<b></b> <b></b>including<b></b> <b></b>types<b></b>, <b></b>benefits<b></b>, <b></b>challenges<b></b>, <b></b>and<b></b> <b></b>strategies<b></b> <b></b>to<b></b> <b></b>optimize<b></b> <b></b>your<b></b> <b></b>reverse<b></b> <b></b>logistics<b></b> <b></b>practices<b></b>.",
         }
       }
     />
