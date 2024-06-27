@@ -3,14 +3,14 @@ package com.positive.dhl.core.listeners;
 
 import com.day.cq.replication.*;
 import com.day.cq.replication.ReplicationActionType;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
 import com.positive.dhl.core.constants.AkamaiInvalidationResult;
+import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import com.positive.dhl.core.services.impl.AkamaiFlush;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.Event;
@@ -19,9 +19,8 @@ import org.osgi.service.event.EventHandler;
 
 import javax.jcr.Session;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import static com.positive.dhl.core.services.PageUtilService.CONTENT_ROOT_PATH;
 import static com.positive.dhl.core.services.PageUtilService.ROOT_PAGE_PATH;
 
 @Slf4j
@@ -46,19 +45,19 @@ public class ReplicationListener implements EventHandler {
 	@Reference
 	private Replicator replicator;
 
+	@Reference
+	private PageUtilService pageUtilService;
+
 	@Override
 	public void handleEvent(Event event) {
 		if(akamaiFlushConfigReader.isEnabled()){
 			var replicationAction = ReplicationAction.fromEvent(event);
 			if (null != replicationAction && isInScope(replicationAction)) {
-
 				String replicationPagePath = replicationAction.getPath();
 
-				log.info("Path: {}", replicationPagePath);
-				AkamaiInvalidationResult flushReplicatedPageResult = akamaiFlush.invalidateAkamaiCache(replicationPagePath);
-				log.info(RESULT_OF_FLUSH_REQUEST, flushReplicatedPageResult);
-
-				flushSitemapAndRss(replicationPagePath);
+				flushPageCache(replicationPagePath);
+				activateParentPagesAndFlushRssCache(replicationPagePath);
+				flushSitemapCache(replicationPagePath);
 			} else {
 				log.info("It appears the replication TYPE was different than '{}' or '{}'. Therefore, not sending anything to Akamai...", ReplicationActionType.ACTIVATE, ReplicationActionType.DEACTIVATE);
 			}
@@ -66,7 +65,6 @@ public class ReplicationListener implements EventHandler {
 		else {
 			log.info("Akamai flush is disabled. To enable, verify the environment settings in Adobe Cloud Manager.");
 		}
-
 	}
 
 	private boolean isInScope(ReplicationAction replicationAction){
@@ -74,73 +72,80 @@ public class ReplicationListener implements EventHandler {
 		return actionType.equals(ReplicationActionType.ACTIVATE) || actionType.equals(ReplicationActionType.DEACTIVATE);
 	}
 
-	private void flushSitemapAndRss(String pagePath) {
+	private void flushPageCache(String pagePath) {
+		AkamaiInvalidationResult flushReplicatedPageResult = akamaiFlush.invalidateAkamaiCache(pagePath);
+		log.info(RESULT_OF_FLUSH_REQUEST, flushReplicatedPageResult);
+	}
+
+	private void flushSitemapCache(String pagePath) {
+		AkamaiInvalidationResult sitemapHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pageUtilService.getHomePagePath(pagePath), "/sitemap.xml");
+		log.info(RESULT_OF_FLUSH_REQUEST, sitemapHomePageFlushResult);
+		AkamaiInvalidationResult sitemapRootPageFlushResult = akamaiFlush.invalidateAkamaiCache(ROOT_PAGE_PATH, "/sitemap-index.xml");
+		log.info(RESULT_OF_FLUSH_REQUEST, sitemapRootPageFlushResult);
+	}
+
+	private void activateParentPagesAndFlushRssCache(String pagePath) {
 		try (var resourceResolver = resourceResolverHelper.getReadResourceResolver()) {
-			String homePagePath = getHomePagePath(pagePath);
-			if (isActivatedPage(homePagePath, resourceResolver)) {
-				publishPage(homePagePath, resourceResolver);
-				publishPage(ROOT_PAGE_PATH, resourceResolver);
+			PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
+			if (pageManager != null) {
+				Page page = pageManager.getContainingPage(pagePath);
+				if (page != null) {
+					flushRssCache(page);
 
-				AkamaiInvalidationResult sitemapHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(homePagePath, "/sitemap.xml");
-				log.info(RESULT_OF_FLUSH_REQUEST, sitemapHomePageFlushResult);
-				AkamaiInvalidationResult sitemapRootPageFlushResult = akamaiFlush.invalidateAkamaiCache(ROOT_PAGE_PATH, "/sitemap-index.xml");
-				log.info(RESULT_OF_FLUSH_REQUEST, sitemapRootPageFlushResult);
-
-				AkamaiInvalidationResult rssHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(homePagePath, ".rss.xml");
-				log.info(RESULT_OF_FLUSH_REQUEST, rssHomePageFlushResult);
-				AkamaiInvalidationResult rssAllHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(homePagePath, ".rss.all.xml");
-				log.info(RESULT_OF_FLUSH_REQUEST, rssAllHomePageFlushResult);
-				AkamaiInvalidationResult rssRootPageFlushResult = akamaiFlush.invalidateAkamaiCache(ROOT_PAGE_PATH, ".rss.xml");
-				log.info(RESULT_OF_FLUSH_REQUEST, rssRootPageFlushResult);
-				AkamaiInvalidationResult rssAllRootPageFlushResult = akamaiFlush.invalidateAkamaiCache(ROOT_PAGE_PATH, ".rss.all.xml");
-				log.info(RESULT_OF_FLUSH_REQUEST, rssAllRootPageFlushResult);
+					Page parent = page.getParent();
+					while (parent != null && !CONTENT_ROOT_PATH.equals(parent.getPath())) {
+						publishPage(parent);
+						flushRssCache(parent);
+						parent = parent.getParent();
+					}
+				} else {
+					log.error("Page not found at path: " + pagePath);
+				}
+			} else {
+				log.error("PageManager service is unavailable");
 			}
 		} catch (Exception e) {
 			log.error("Error during page replication", e);
 		}
 	}
 
-	public String getHomePagePath(String pagePath) {
-		return Optional.ofNullable(pagePath)
-				.map(path -> Pattern.compile("^(/content/dhl/(global|\\w{2})/(\\w{2})-(global|\\w{2}))").matcher(path))
-				.filter(Matcher::find)
-				.map(m -> m.group(1))
-				.orElse(StringUtils.EMPTY);
+	private void flushRssCache(Page page) {
+		String pagePath = page.getPath();
+		AkamaiInvalidationResult rssHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.xml");
+		log.info(RESULT_OF_FLUSH_REQUEST, rssHomePageFlushResult);
+		AkamaiInvalidationResult rssAllHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.all.xml");
+		log.info(RESULT_OF_FLUSH_REQUEST, rssAllHomePageFlushResult);
+		AkamaiInvalidationResult rssFullbodyHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.fullbody.xml");
+		log.info(RESULT_OF_FLUSH_REQUEST, rssFullbodyHomePageFlushResult);
+		AkamaiInvalidationResult rssAllFullbodyHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.all.fullbody.xml");
+		log.info(RESULT_OF_FLUSH_REQUEST, rssAllFullbodyHomePageFlushResult);
 	}
 
-	private boolean isActivatedPage(String pagePath, ResourceResolver resourceResolver) {
-		boolean result = false;
-		Resource resource = resourceResolver.getResource(pagePath);
-		if (resource != null) {
-			ReplicationStatus replicationStatus = resource.adaptTo(ReplicationStatus.class);
-			if (replicationStatus != null) {
-				result = replicationStatus.isActivated();
-			} else {
-				log.error("Failed to get ReplicationStatus for resource: {}", pagePath);
-			}
-		} else {
-			log.error("Resource not found: {}", pagePath);
+	private boolean isActivatedPage(Page page) {
+		return Optional.ofNullable(page)
+				.map(p -> {
+					ReplicationStatus replicationStatus = p.adaptTo(ReplicationStatus.class);
+					if (replicationStatus != null) {
+						return replicationStatus.isActivated();
+					} else {
+						log.error("Failed to get ReplicationStatus for page: {}", p.getPath());
+						return false;
+					}
+				})
+				.orElse(false);
+	}
+
+	public void publishPage(Page page) throws ReplicationException {
+		if (!isActivatedPage(page)) {
+			return;
 		}
-		return result;
-	}
-
-	public void publishPage(String pagePath, ResourceResolver resourceResolver) throws ReplicationException {
-		try {
-			if (resourceResolver != null) {
-				Session session = resourceResolver.adaptTo(Session.class);
-
-				if (session != null) {
-					ReplicationOptions replicationOptions = new ReplicationOptions();
-					replicator.replicate(session, ReplicationActionType.ACTIVATE, pagePath, replicationOptions);
-					log.info("Page published successfully: {}", pagePath);
-				} else {
-					log.error("Could not get JCR session from resource resolver.");
-				}
-			} else {
-				log.error("Could not get service resource resolver.");
-			}
-		} catch ( ReplicationException e) {
-			log.error("Error during replicating : {}", pagePath);
+		Session session = page.getContentResource().getResourceResolver().adaptTo(Session.class);
+		if (session != null) {
+			String pagePath = page.getPath();
+			replicator.replicate(session, ReplicationActionType.ACTIVATE, pagePath);
+			log.info("Page published successfully: {}", pagePath);
+		} else {
+			log.error("Could not get JCR session");
 		}
 	}
 }

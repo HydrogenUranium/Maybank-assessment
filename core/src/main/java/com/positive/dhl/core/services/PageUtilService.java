@@ -28,6 +28,7 @@ public class PageUtilService {
     public static final int CATEGORY_PAGE_LEVEL = HOME_PAGE_LEVEL + 1;
     public static final int HOME_PAGE_DEPTH = HOME_PAGE_LEVEL + 1;
 
+    public static final String CONTENT_ROOT_PATH = "/content";
     public static final String ROOT_PAGE_PATH = "/content/dhl";
     public static final String HOME_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-home-page";
     public static final String CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-category-page";

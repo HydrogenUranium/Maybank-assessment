@@ -4,6 +4,8 @@ import com.day.cq.replication.ReplicationAction;
 import com.day.cq.replication.ReplicationActionType;
 import com.day.cq.replication.ReplicationStatus;
 import com.day.cq.replication.Replicator;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.ResourceResolverHelper;
@@ -18,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.osgi.service.event.Event;
 
@@ -26,12 +29,14 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ReplicationListenerTest {
+	public static final String PAGE_PATH = "/content";
 
-	AemContext context = new AemContext(ResourceResolverType.RESOURCEPROVIDER_MOCK);
+	AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
 	@Mock
 	AkamaiFlushConfigReader akamaiFlushConfigReader;
@@ -57,29 +62,37 @@ class ReplicationListenerTest {
 	@Mock
 	private Session session;
 
+	@Mock
+	private PageManager pageManager;
+
+	@Mock
+	private PageUtilService pageUtilService;
+
 	ReplicationListener underTest;
 
-	private static final String DUMMY_PATH = "/content/dummy-path";
+	public static final String DUMMY_PATH = "/content/dhl/us/es-us/category-page/article-page";
 
 	@BeforeEach
 	void setUp() {
-		Map<String,Object> injectedServices = new HashMap<>();
+		MockitoAnnotations.initMocks(this);
+
+		Map<String, Object> injectedServices = new HashMap<>();
 		injectedServices.putIfAbsent("akamaiFlushConfigReader", akamaiFlushConfigReader);
 		injectedServices.putIfAbsent("akamaiFlush", akamaiFlush);
 
-		context.registerService(AkamaiFlushConfigReader.class,akamaiFlushConfigReader);
-		context.registerService(AkamaiFlush.class,akamaiFlush);
+		context.registerService(AkamaiFlushConfigReader.class, akamaiFlushConfigReader);
+		context.registerService(AkamaiFlush.class, akamaiFlush);
 		context.registerService(ResourceResolverHelper.class, resourceResolverHelper);
 		context.registerService(Replicator.class, replicator);
+		context.registerService(PageUtilService.class, pageUtilService);
 
-		lenient().when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resourceResolver);
-		lenient().when(resourceResolver.getResource(any())).thenReturn(resource);
-		lenient().when(resource.adaptTo(ReplicationStatus.class)).thenReturn(replicationStatus);
-		lenient().when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
-		lenient().when(replicationStatus.isActivated()).thenReturn(true);
+		resourceResolver = context.resourceResolver();
+		context.load().json(NEW_CONTENT_STRUCTURE_JSON, PAGE_PATH);
+
+		lenient().when(resourceResolverHelper.getWriteResourceResolver()).thenReturn(resourceResolver);
 
 		underTest = new ReplicationListener();
-		context.registerInjectActivateService(underTest,injectedServices);
+		context.registerInjectActivateService(underTest, injectedServices);
 	}
 
 	@Test
@@ -90,11 +103,11 @@ class ReplicationListenerTest {
 	}
 
 	@Test
-	void invalidReplicationAction(){
+	void invalidReplicationAction() {
 		when(akamaiFlushConfigReader.isEnabled()).thenReturn(true);
-		try (MockedStatic<ReplicationAction> replicationActionMockedStatic = mockStatic(ReplicationAction.class)){
+		try (MockedStatic<ReplicationAction> replicationActionMockedStatic = mockStatic(ReplicationAction.class)) {
 			replicationActionMockedStatic.when(() -> ReplicationAction.fromEvent(any(Event.class)))
-					.thenReturn(new ReplicationAction(ReplicationActionType.TEST,DUMMY_PATH));
+					.thenReturn(new ReplicationAction(ReplicationActionType.TEST, DUMMY_PATH));
 
 			underTest.handleEvent(mock(Event.class));
 			verifyNoMoreInteractions(akamaiFlush);
@@ -102,11 +115,15 @@ class ReplicationListenerTest {
 	}
 
 	@Test
-	void happyPathScenario(){
+	void happyPathScenario() {
+		resource = resourceResolver.getResource(PAGE_PATH);
+		Page page = resource.adaptTo(Page.class);
+		lenient().when(pageManager.getContainingPage(DUMMY_PATH)).thenReturn(page);
+
 		when(akamaiFlushConfigReader.isEnabled()).thenReturn(true);
-		try (MockedStatic<ReplicationAction> replicationActionMockedStatic = mockStatic(ReplicationAction.class)){
+		try (MockedStatic<ReplicationAction> replicationActionMockedStatic = mockStatic(ReplicationAction.class)) {
 			replicationActionMockedStatic.when(() -> ReplicationAction.fromEvent(any(Event.class)))
-					.thenReturn(new ReplicationAction(ReplicationActionType.ACTIVATE,DUMMY_PATH));
+					.thenReturn(new ReplicationAction(ReplicationActionType.ACTIVATE, DUMMY_PATH));
 
 			Event testEvent = initializeEvent();
 			underTest.handleEvent(testEvent);
@@ -114,10 +131,10 @@ class ReplicationListenerTest {
 		}
 	}
 
-	private Event initializeEvent(){
-		Map<String,Object> eventProperties = new HashMap<>();
+	private Event initializeEvent() {
+		Map<String, Object> eventProperties = new HashMap<>();
 		String[] agentIds = {"publish"};
-		String[] paths = {"/content/dummy-path"};
+		String[] paths = {"/content/dhl/us/es-us/category-page/article-page"};
 		eventProperties.put("modificationDate", Calendar.getInstance());
 		eventProperties.put("agentIds", agentIds);
 		eventProperties.put("type", ReplicationActionType.ACTIVATE);

@@ -52,9 +52,6 @@ public class AkamaiFlush {
 	@Reference
 	private InitUtil initUtil;
 
-	@Reference
-	private PageUtilService pageUtilService;
-
 	public AkamaiInvalidationResult invalidateAkamaiCache(String path) {
 		return canWeFlush(path) ? sendInvalidationRequest(getHostname(path)) : getSkippedResult(path);
 	}

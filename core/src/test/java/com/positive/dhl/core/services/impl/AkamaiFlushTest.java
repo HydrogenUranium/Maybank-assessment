@@ -54,9 +54,6 @@ class AkamaiFlushTest {
 	@Mock
 	CloseableHttpClient closeableHttpClient;
 
-	@Mock
-	PageUtilService pageUtilService;
-
 	AkamaiFlush underTest;
 
 	@BeforeEach
@@ -75,7 +72,6 @@ class AkamaiFlushTest {
 		context.registerService(RepositoryChecks.class, repositoryChecks);
 		context.registerService(HttpCommunication.class, httpCommunication);
 		context.registerService(InitUtil.class, initUtil);
-		context.registerService(PageUtilService.class, pageUtilService);
 
 		underTest = new AkamaiFlush();
 		context.registerInjectActivateService(underTest,injectedServices);
