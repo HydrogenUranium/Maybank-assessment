@@ -92,13 +92,15 @@ public class AkamaiFlush {
 
 		try {
 			var response = httpCommunication.sendPostMessage(finalUrl, flushRequest,client);
-			if(null != response && response.getHttpStatus() == 400){
+			if (response == null) {
+				log.error("Null response from Akamai");
+			} else if (response.getHttpStatus() == 400) {
 				ErrorResponse errorResponse = initUtil.getObjectMapper().readValue(response.getJsonResponse(), ErrorResponse.class);
 				log.error("Error response from Akamai: {}", errorResponse);
-			} else if (null != response){
+			} else {
+				log.info("Akamai response code '{}'", response.getHttpStatus());
 				return initUtil.getObjectMapper().readValue(response.getJsonResponse(),FlushResponse.class);
 			}
-
 		} catch (HttpRequestException e) {
 			log.error("Http request to Akamai failed with error message: {}", e.getMessage());
 		} catch (JsonProcessingException e) {

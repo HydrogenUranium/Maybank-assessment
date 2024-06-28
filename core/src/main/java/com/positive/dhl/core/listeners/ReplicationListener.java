@@ -79,9 +79,9 @@ public class ReplicationListener implements EventHandler {
 
 	private void flushSitemapCache(String pagePath) {
 		AkamaiInvalidationResult sitemapHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pageUtilService.getHomePagePath(pagePath), "/sitemap.xml");
-		log.info(RESULT_OF_FLUSH_REQUEST, sitemapHomePageFlushResult, pagePath);
+		log.info(RESULT_OF_FLUSH_REQUEST, sitemapHomePageFlushResult, pagePath + "/sitemap.xml");
 		AkamaiInvalidationResult sitemapRootPageFlushResult = akamaiFlush.invalidateAkamaiCache(ROOT_PAGE_PATH, "/sitemap-index.xml");
-		log.info(RESULT_OF_FLUSH_REQUEST, sitemapRootPageFlushResult, pagePath);
+		log.info(RESULT_OF_FLUSH_REQUEST, sitemapRootPageFlushResult, pagePath + "/sitemap-index.xml");
 	}
 
 	private void activateParentPagesAndFlushRssCache(String pagePath) {
