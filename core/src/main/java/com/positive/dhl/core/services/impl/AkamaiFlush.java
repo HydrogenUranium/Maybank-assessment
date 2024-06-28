@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Set;
 
 import static com.positive.dhl.core.constants.DiscoverConstants.DISCOVER_CONTEXT;
+import static com.positive.dhl.core.services.PageUtilService.ROOT_PAGE_PATH;
 
 /**
  * Orchestrates the whole process of removing items from Akamai cache upon activation (or on any other request)
@@ -154,7 +155,7 @@ public class AkamaiFlush {
 	 */
 	private String updatePath(String path){
 		String regex = "/content/dhl/(global|\\w{2})/(.*)";
-		return path.replaceAll(regex, "/$2");
+		return ROOT_PAGE_PATH.equals(path) ? StringUtils.EMPTY : path.replaceAll(regex, "/$2");
 	}
 
 	private ResourceResolver getResourceResolver(){

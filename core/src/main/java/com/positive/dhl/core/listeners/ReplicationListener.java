@@ -31,7 +31,7 @@ import static com.positive.dhl.core.services.PageUtilService.ROOT_PAGE_PATH;
 		}
 )
 public class ReplicationListener implements EventHandler {
-	private static final String RESULT_OF_FLUSH_REQUEST = "Result of flush request to Akamai: {}";
+	private static final String RESULT_OF_FLUSH_REQUEST = "Result of flush request to Akamai: {} ({})";
 
 	@Reference
 	private AkamaiFlushConfigReader akamaiFlushConfigReader;
@@ -74,14 +74,14 @@ public class ReplicationListener implements EventHandler {
 
 	private void flushPageCache(String pagePath) {
 		AkamaiInvalidationResult flushReplicatedPageResult = akamaiFlush.invalidateAkamaiCache(pagePath);
-		log.info(RESULT_OF_FLUSH_REQUEST, flushReplicatedPageResult);
+		log.info(RESULT_OF_FLUSH_REQUEST, flushReplicatedPageResult, pagePath);
 	}
 
 	private void flushSitemapCache(String pagePath) {
 		AkamaiInvalidationResult sitemapHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pageUtilService.getHomePagePath(pagePath), "/sitemap.xml");
-		log.info(RESULT_OF_FLUSH_REQUEST, sitemapHomePageFlushResult);
+		log.info(RESULT_OF_FLUSH_REQUEST, sitemapHomePageFlushResult, pagePath);
 		AkamaiInvalidationResult sitemapRootPageFlushResult = akamaiFlush.invalidateAkamaiCache(ROOT_PAGE_PATH, "/sitemap-index.xml");
-		log.info(RESULT_OF_FLUSH_REQUEST, sitemapRootPageFlushResult);
+		log.info(RESULT_OF_FLUSH_REQUEST, sitemapRootPageFlushResult, pagePath);
 	}
 
 	private void activateParentPagesAndFlushRssCache(String pagePath) {
@@ -112,13 +112,13 @@ public class ReplicationListener implements EventHandler {
 	private void flushRssCache(Page page) {
 		String pagePath = page.getPath();
 		AkamaiInvalidationResult rssHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.xml");
-		log.info(RESULT_OF_FLUSH_REQUEST, rssHomePageFlushResult);
+		log.info(RESULT_OF_FLUSH_REQUEST, rssHomePageFlushResult, pagePath);
 		AkamaiInvalidationResult rssAllHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.all.xml");
-		log.info(RESULT_OF_FLUSH_REQUEST, rssAllHomePageFlushResult);
+		log.info(RESULT_OF_FLUSH_REQUEST, rssAllHomePageFlushResult, pagePath);
 		AkamaiInvalidationResult rssFullbodyHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.fullbody.xml");
-		log.info(RESULT_OF_FLUSH_REQUEST, rssFullbodyHomePageFlushResult);
+		log.info(RESULT_OF_FLUSH_REQUEST, rssFullbodyHomePageFlushResult, pagePath);
 		AkamaiInvalidationResult rssAllFullbodyHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.all.fullbody.xml");
-		log.info(RESULT_OF_FLUSH_REQUEST, rssAllFullbodyHomePageFlushResult);
+		log.info(RESULT_OF_FLUSH_REQUEST, rssAllFullbodyHomePageFlushResult, pagePath);
 	}
 
 	private boolean isActivatedPage(Page page) {
