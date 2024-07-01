@@ -85,7 +85,8 @@ public class ReplicationListener implements EventHandler {
 	}
 
 	private void activateParentPagesAndFlushRssCache(String pagePath) {
-		try (var resourceResolver = resourceResolverHelper.getReadResourceResolver()) {
+		var resourceResolver = resourceResolverHelper.getReadResourceResolver();
+		try {
 			PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
 			if (pageManager != null) {
 				Page page = pageManager.getContainingPage(pagePath);

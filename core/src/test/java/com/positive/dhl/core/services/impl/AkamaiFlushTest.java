@@ -110,6 +110,37 @@ class AkamaiFlushTest {
 	}
 
 	@Test
+	void invalidateAkamaiSitemapCache() throws HttpRequestException {
+		List<String> allowedContentPaths = new ArrayList<>();
+		allowedContentPaths.add("/content/dhl");
+		List<String> allowedContentTypes = new ArrayList<>();
+		allowedContentTypes.add("cq:Page");
+
+		this.akamaiStubbing();
+
+		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(context.resourceResolver());
+		when(akamaiFlushConfigReader.getAllowedContentPaths()).thenReturn(allowedContentPaths);
+		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
+		when(environmentConfiguration.getAkamaiHostname()).thenReturn("uat1.dhl.dhl");
+		lenient().when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
+		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
+		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
+		when(initUtil.getObjectMapper()).thenReturn(new ObjectMapper());
+		when(httpCommunication.sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class)))
+				.thenReturn(HttpApiResponse.builder().httpStatus(201).jsonResponse("{\n" +
+						"  \"httpStatus\": 201,\n" +
+						"  \"estimatedSeconds\": 5,\n" +
+						"  \"purgeId\": \"edcp-NZbXzFpHBjcJeryhw6PVgG\",\n" +
+						"  \"supportId\": \"edcp-NZbXzFpHBjcJeryhw6PVgG\",\n" +
+						"  \"detail\": \"Request accepted\"\n" +
+						"}").build());
+
+		AkamaiInvalidationResult akamaiInvalidationSitemapResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", "/sitemap.xml");
+		verify(httpCommunication, times(1)).sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class));
+		assertEquals(AkamaiInvalidationResult.OK, akamaiInvalidationSitemapResult);
+	}
+
+	@Test
 	void invalidateAkamaiCacheCommsError() throws HttpRequestException {
 
 
