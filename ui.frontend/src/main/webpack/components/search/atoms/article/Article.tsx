@@ -8,10 +8,10 @@ import { highlightMatches } from 'src/main/webpack/utils';
 
 type ArticleProps = {
   article: ArticleType;
-  highlitedWords?: string[];
+  highlightedWords?: string[];
 }
 
-export const Article: React.FC<ArticleProps> = ({ article, highlitedWords = [] }) => (
+export const Article: React.FC<ArticleProps> = ({ article, highlightedWords = [] }) => (
   <div className={styles.article}>
     <a tabIndex={-1} href={`${article.path}`} className={styles.articleImage}
       style={{ backgroundImage: `url(${article.listimage})` }}></a>
@@ -26,7 +26,7 @@ export const Article: React.FC<ArticleProps> = ({ article, highlitedWords = [] }
       <div
         className={styles.articleInfoDescription}
         dangerouslySetInnerHTML={{
-          __html: highlightMatches(article.description, `(\\b${highlitedWords.join('\\b|\\b')}\\b)`, "gi")
+          __html: highlightMatches(article.description, `(\\b${highlightedWords.join('\\b|\\b')}\\b)`, "gi")
         }}
       />
     </div>

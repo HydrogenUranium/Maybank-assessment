@@ -28,8 +28,11 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   handleCloseSearch
 }) => {
   const [inputValue, setInputValue] = useState('');
-  const [tagSuggestions] = useDataFetching(inputValue, getTagSuggestions);
-  const [articleSuggestions] = useDataFetching(inputValue, getArticles);
+  const [suggestionQuery, setSuggestionQuery] = useState('');
+  const [articlesQuery, setArticlesQuery] = useState('');
+  const [activeSuggestion, setActiveSuggestion] = useState(-1);
+  const [suggestions] = useDataFetching(suggestionQuery, getTagSuggestions);
+  const [articles] = useDataFetching(articlesQuery, getArticles);
   const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -50,20 +53,65 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
     };
   }, [handleCloseSearch]);
 
+  const getSuggestionLength = () => {
+    return suggestionQuery.length
+      ? suggestions.length
+      : recentSearches.length + trendingTopics.length
+  }
+
+  useEffect(() => {
+    if(activeSuggestion < 0) return;
+
+    if(suggestionQuery.length === 0 && activeSuggestion < recentSearches.length + trendingTopics.length) {
+      setInputValue([...recentSearches, ...trendingTopics][activeSuggestion]);
+    } else if(activeSuggestion < suggestions.length) {
+      setInputValue(suggestions[activeSuggestion]);
+      setArticlesQuery(suggestions[activeSuggestion]);
+    }
+  }, [activeSuggestion]);
+
+  useEffect(() => {
+    setActiveSuggestion(-1);
+  }, [suggestions]);
+
   const getSearchResultPagePath = (query: string) => { return `${searchResultPagePath}?searchfield=${query}`; };
 
-  const handleSearchClick = (): void => {
-    putRecentSearch(inputValue);
-    window.location.href = getSearchResultPagePath(inputValue);
+  const handleSearchClick = (value = inputValue): void => {
+    putRecentSearch(value);
+    window.location.href = getSearchResultPagePath(value);
   };
 
-  const handleKeyClick = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key === 'Enter' && inputValue.length) { handleSearchClick(); }
+  const handleArrowDown = () => {
+    setActiveSuggestion((prevSelected) => {
+      return prevSelected < getSuggestionLength() - 1
+        ? prevSelected + 1
+        : 0
+    });
+  }
+
+  const handleArrowUp = () => {
+    setActiveSuggestion((prevSelected) => {
+      return prevSelected > 0 
+        ? prevSelected  - 1 
+        : getSuggestionLength() - 1
+    });
+  }
+
+  const handleKeyClick = ({ key }: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (key === 'Enter' && inputValue.length) {
+      handleSearchClick();
+    } else if (key === 'ArrowDown') {
+      handleArrowDown();
+    } else if (key === 'ArrowUp') {
+      handleArrowUp();
+    }
   };
 
   const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const query = event.target.value;
     setInputValue(query);
+    setArticlesQuery(query);
+    setSuggestionQuery(query);
   };
 
   const stopPropagation = (event: Event): void => {
@@ -73,34 +121,33 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const focusInput = (): void => inputRef.current?.focus();
 
   const renderSearchResults = () => {
-    if (tagSuggestions.length == 0 && articleSuggestions.length == 0) {
-      return;
-    }
-
-    return (
+    return ((suggestions.length || articles.length) &&
       <StrictMode>
         <div className={styles.searchResult}>
           <SearchSection
-            items={tagSuggestions}
+            items={suggestions}
             title=''
-            renderItem={(suggestion) => (
+            renderItem={(suggestion, index) => (
               <button
                 onClick={() => {
-                  setInputValue(suggestion);
-                  focusInput();
+                  handleSearchClick(suggestion)
                 }}
-                className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemText)}
-                dangerouslySetInnerHTML={{__html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, inputValue, true) + ").*", "gi")}}
-                key={suggestion}/>
+                className={classNames(
+                  styles.searchSectionItemsItem,
+                  styles.searchSectionItemsItemText,
+                  {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
+                )}
+                dangerouslySetInnerHTML={{ __html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionQuery.trim(), true) + ").*", "gi") }}
+                key={suggestion} />
             )}
           />
           <SearchSection
-            items={articleSuggestions}
+            items={articles}
             title={articlesTitle}
             thinTitle
             overflowHidden
             renderItem={(article) => (
-              <a href={`${article.path}`} className={styles.article} key={article.path}  onClick={() => putRecentSearch(inputRef.current?.value)}>
+              <a href={`${article.path}`} className={styles.article} key={article.path} onClick={() => putRecentSearch(inputRef.current?.value)}>
                 <div className={styles.articleImage} style={{ backgroundImage: `url(${article.listimage})` }}></div>
                 <div className={styles.articleInfo}>
                   <div className={styles.articleInfoTitle}>{article.title}</div>
@@ -115,7 +162,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   };
 
   const renderDefaultSearchResults = () => {
-    if (recentSearches.length == 0 && trendingTopics.length == 0) {
+    if (!(recentSearches.length || trendingTopics.length)) {
       return;
     }
 
@@ -124,8 +171,13 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
         <SearchSection
           items={recentSearches}
           title={recentSearchesTitle}
-          renderItem={(search) => (
-            <a href={getSearchResultPagePath(search)} className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemWithIcon)} key={search}>
+          renderItem={(search, index) => (
+            <a href={getSearchResultPagePath(search)} className={
+              classNames(
+                styles.searchSectionItemsItem,
+                styles.searchSectionItemsItemWithIcon,
+                {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
+              )} key={search}>
               <span className={classNames(styles.icon, styles.iconHistory)}></span>
               <span className={styles.searchSectionItemsItemText}>{search}</span>
             </a>
@@ -134,8 +186,13 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
         <SearchSection
           items={trendingTopics}
           title={trendingTopicsTitle}
-          renderItem={(topic) => (
-            <a href={getSearchResultPagePath(topic)} className={classNames(styles.searchSectionItemsItem, styles.searchSectionItemsItemWithIcon)} key={topic}>
+          renderItem={(topic, index) => (
+            <a href={getSearchResultPagePath(topic)} className={
+              classNames(
+                styles.searchSectionItemsItem, 
+                styles.searchSectionItemsItemWithIcon,
+                {[styles.searchSectionItemsItemActive]: index === activeSuggestion - recentSearches.length}
+              )} key={topic}>
               <span className={classNames(styles.icon, styles.iconTrending)}></span>
               <span className={styles.searchSectionItemsItemText}>{topic}</span>
             </a>
@@ -151,7 +208,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
         iconType='search'
         dataTestId='handle-search'
         className={styles.absoluteLeft}
-        onClick={handleSearchClick}
+        onClick={() => handleSearchClick()}
       />
       <input
         aria-label='Search'
@@ -162,7 +219,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
         onKeyDown={handleKeyClick}
       />
 
-      {inputValue.length > 0
+      {suggestionQuery.length
         ? renderSearchResults()
         : renderDefaultSearchResults()}
       <IconButton
