@@ -89,7 +89,7 @@ class ReplicationListenerTest {
 		resourceResolver = context.resourceResolver();
 		context.load().json(NEW_CONTENT_STRUCTURE_JSON, PAGE_PATH);
 
-		lenient().when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resourceResolver);
+		lenient().when(resourceResolverHelper.getWriteResourceResolver()).thenReturn(resourceResolver);
 
 		underTest = new ReplicationListener();
 		context.registerInjectActivateService(underTest, injectedServices);
