@@ -1,7 +1,6 @@
 {
     "scripts": [
         "create path /(rep:root)",
-        "create service user discover-writer with path /home/users/system/discover",
         "create service user discover-reader with path /home/users/system/discover",
         "create service user discover-user-manager with path /home/users/system/discover",
         "create service user sling-distribution-importer",
@@ -474,8 +473,6 @@
         "set ACL for discover-reader\nallow jcr:read on /content/cq:tags\nend",
         "set ACL for discover-reader\nallow jcr:read on /conf/dhl\nend",
         "set ACL for discover-reader\nallow jcr:read on /oak:index\nend",
-        "set ACL for discover-writer\nallow jcr:all on /content/dhl\nend",
-        "set ACL for discover-writer\nallow jcr:all on /content/dam\nend",
 
         "set ACL for discover-user-manager\nallow jcr:all on /home/users\nend",
 

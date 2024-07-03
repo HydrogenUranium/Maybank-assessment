@@ -56,7 +56,7 @@ public class ReplicationListener implements EventHandler {
 				String replicationPagePath = replicationAction.getPath();
 
 				flushPageCache(replicationPagePath);
-				activateParentPagesAndFlushRssCache(replicationPagePath);
+				flushRssCache(replicationPagePath);
 				flushSitemapCache(replicationPagePath);
 			} else {
 				log.info("It appears the replication TYPE was different than '{}' or '{}'. Therefore, not sending anything to Akamai...", ReplicationActionType.ACTIVATE, ReplicationActionType.DEACTIVATE);
@@ -84,9 +84,8 @@ public class ReplicationListener implements EventHandler {
 		log.info(RESULT_OF_FLUSH_REQUEST, sitemapRootPageFlushResult, pagePath + "/sitemap-index.xml");
 	}
 
-	private void activateParentPagesAndFlushRssCache(String pagePath) {
-		var resourceResolver = resourceResolverHelper.getWriteResourceResolver();
-		try {
+	private void flushRssCache(String pagePath) {
+		try(var resourceResolver = resourceResolverHelper.getReadResourceResolver()) {
 			PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
 			if (pageManager != null) {
 				Page page = pageManager.getContainingPage(pagePath);
@@ -95,7 +94,6 @@ public class ReplicationListener implements EventHandler {
 
 					Page parent = page.getParent();
 					while (parent != null && !CONTENT_ROOT_PATH.equals(parent.getPath())) {
-						publishPage(parent);
 						flushRssCache(parent);
 						parent = parent.getParent();
 					}
@@ -120,33 +118,5 @@ public class ReplicationListener implements EventHandler {
 		log.info(RESULT_OF_FLUSH_REQUEST, rssFullbodyHomePageFlushResult, pagePath);
 		AkamaiInvalidationResult rssAllFullbodyHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.all.fullbody.xml");
 		log.info(RESULT_OF_FLUSH_REQUEST, rssAllFullbodyHomePageFlushResult, pagePath);
-	}
-
-	private boolean isActivatedPage(Page page) {
-		return Optional.ofNullable(page)
-				.map(p -> {
-					ReplicationStatus replicationStatus = p.adaptTo(ReplicationStatus.class);
-					if (replicationStatus != null) {
-						return replicationStatus.isActivated();
-					} else {
-						log.error("Failed to get ReplicationStatus for page: {}", p.getPath());
-						return false;
-					}
-				})
-				.orElse(false);
-	}
-
-	public void publishPage(Page page) throws ReplicationException {
-		if (!isActivatedPage(page)) {
-			return;
-		}
-		Session session = page.getContentResource().getResourceResolver().adaptTo(Session.class);
-		if (session != null) {
-			String pagePath = page.getPath();
-			replicator.replicate(session, ReplicationActionType.ACTIVATE, pagePath);
-			log.info("Page published successfully: {}", pagePath);
-		} else {
-			log.error("Could not get JCR session");
-		}
 	}
 }

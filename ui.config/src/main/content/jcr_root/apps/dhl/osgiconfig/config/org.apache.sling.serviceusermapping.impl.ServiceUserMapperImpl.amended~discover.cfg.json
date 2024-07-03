@@ -1,7 +1,6 @@
 {
   "user.mapping": [
     "dhl.core:discoverReader=[discover-reader]",
-    "dhl.core:discoverWriter=[discover-writer]",
     "dhl.core:discoverUserManager=[discover-user-manager]"
   ]
 }
