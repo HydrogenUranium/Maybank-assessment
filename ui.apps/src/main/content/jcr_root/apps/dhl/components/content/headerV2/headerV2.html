@@ -42,6 +42,7 @@
                     <sly data-sly-test="${languageVariants.getCurrentRegion.length > 0 && languageVariants.getLanguageVariants.size > 0}">
                         <a data-sly-repeat="${languageVariants.getLanguageVariants}"
                            href="${item.link}.html" data-home="${ item.home }.html"
+                           lang="${item.acceptlanguages}" hreflang="${item.acceptlanguages}"
                            class="headerV2__lang${((item.current) ? ' headerV2__lang--selected' : '') @ context='html'}">
                             ${ item.name @ i18n, context='html' }
                         </a>
