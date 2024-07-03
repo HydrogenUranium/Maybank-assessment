@@ -62,7 +62,7 @@ public class AkamaiFlush {
 	}
 
 	private AkamaiInvalidationResult sendInvalidationRequest(String finalUrlToFlush) {
-		log.info("About to flush the following URL from Akamai: {}", finalUrlToFlush);
+		log.info("Akamai Flush: About to flush the following URL from Akamai: {}", finalUrlToFlush);
 
 		FlushRequest request = FlushRequest.builder()
 				.itemsToFlush(getUrlsToFlush(finalUrlToFlush))
@@ -75,7 +75,7 @@ public class AkamaiFlush {
 	}
 
 	private AkamaiInvalidationResult getSkippedResult(String path) {
-		log.info("Skipping akamai flush for page '{}'", path);
+		log.info("Akamai Flush: Skipping akamai flush for page '{}'", path);
 		return AkamaiInvalidationResult.SKIPPED;
 	}
 
@@ -93,18 +93,18 @@ public class AkamaiFlush {
 		try {
 			var response = httpCommunication.sendPostMessage(finalUrl, flushRequest,client);
 			if (response == null) {
-				log.error("Null response from Akamai");
+				log.error("Akamai Flush: Null response from Akamai");
 			} else if (response.getHttpStatus() == 400) {
 				ErrorResponse errorResponse = initUtil.getObjectMapper().readValue(response.getJsonResponse(), ErrorResponse.class);
-				log.error("Error response from Akamai: {}", errorResponse);
+				log.error("Akamai Flush: Error response from Akamai: {}", errorResponse);
 			} else {
-				log.info("Akamai response code '{}'", response.getHttpStatus());
+				log.info("Akamai Flush: Akamai response code '{}'", response.getHttpStatus());
 				return initUtil.getObjectMapper().readValue(response.getJsonResponse(),FlushResponse.class);
 			}
 		} catch (HttpRequestException e) {
-			log.error("Http request to Akamai failed with error message: {}", e.getMessage());
+			log.error("Akamai Flush: Http request to Akamai failed with error message: {}", e.getMessage());
 		} catch (JsonProcessingException e) {
-			log.error("Failed to parse the json response from Akamai. Error message was: {}", e.getMessage());
+			log.error("Akamai Flush: Failed to parse the json response from Akamai. Error message was: {}", e.getMessage());
 		}
 		return null;
 	}

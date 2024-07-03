@@ -11,6 +11,7 @@ import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import com.positive.dhl.core.services.impl.AkamaiFlush;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.Event;
@@ -31,16 +32,13 @@ import static com.positive.dhl.core.services.PageUtilService.ROOT_PAGE_PATH;
 		}
 )
 public class ReplicationListener implements EventHandler {
-	private static final String RESULT_OF_FLUSH_REQUEST = "Result of flush request to Akamai: {} ({})";
+	private static final String RESULT_OF_FLUSH_REQUEST = "Akamai Flush: Result of flush request to Akamai: {} ({})";
 
 	@Reference
 	private AkamaiFlushConfigReader akamaiFlushConfigReader;
 
 	@Reference
 	private AkamaiFlush akamaiFlush;
-
-	@Reference
-	private ResourceResolverHelper resourceResolverHelper;
 
 	@Reference
 	private PageUtilService pageUtilService;
@@ -56,11 +54,11 @@ public class ReplicationListener implements EventHandler {
 				flushSitemapCache(replicationPagePath);
 				flushAllRssCache(replicationPagePath);
 			} else {
-				log.info("It appears the replication TYPE was different than '{}' or '{}'. Therefore, not sending anything to Akamai...", ReplicationActionType.ACTIVATE, ReplicationActionType.DEACTIVATE);
+				log.info("Akamai Flush: It appears the replication TYPE was different than '{}' or '{}'. Therefore, not sending anything to Akamai...", ReplicationActionType.ACTIVATE, ReplicationActionType.DEACTIVATE);
 			}
 		}
 		else {
-			log.info("Akamai flush is disabled. To enable, verify the environment settings in Adobe Cloud Manager.");
+			log.info("Akamai Flush: Akamai flush is disabled. To enable, verify the environment settings in Adobe Cloud Manager.");
 		}
 	}
 
@@ -82,32 +80,13 @@ public class ReplicationListener implements EventHandler {
 	}
 
 	private void flushAllRssCache(String pagePath) {
-		var resourceResolver = resourceResolverHelper.getReadResourceResolver();
-		try {
-			PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
-			if (pageManager != null) {
-				Page page = pageManager.getContainingPage(pagePath);
-				if (page != null) {
-					flushRssCache(page);
-
-					Page parent = page.getParent();
-					while (parent != null && !CONTENT_ROOT_PATH.equals(parent.getPath())) {
-						flushRssCache(parent);
-						parent = parent.getParent();
-					}
-				} else {
-					log.error("Page not found at path: " + pagePath);
-				}
-			} else {
-				log.error("PageManager service is unavailable");
-			}
-		} catch (Exception e) {
-			log.error("Error during page replication", e);
+		while (StringUtils.isNoneBlank(pagePath) && !CONTENT_ROOT_PATH.equals(pagePath)) {
+			flushRssCache(pagePath);
+			pagePath = removeSubstringFromLastSlash(pagePath);
 		}
 	}
 
-	private void flushRssCache(Page page) {
-		String pagePath = page.getPath();
+	private void flushRssCache(String pagePath) {
 		AkamaiInvalidationResult rssHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.xml");
 		log.info(RESULT_OF_FLUSH_REQUEST, rssHomePageFlushResult, pagePath);
 		AkamaiInvalidationResult rssAllHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.all.xml");
@@ -116,5 +95,10 @@ public class ReplicationListener implements EventHandler {
 		log.info(RESULT_OF_FLUSH_REQUEST, rssFullbodyHomePageFlushResult, pagePath);
 		AkamaiInvalidationResult rssAllFullbodyHomePageFlushResult = akamaiFlush.invalidateAkamaiCache(pagePath, ".rss.all.fullbody.xml");
 		log.info(RESULT_OF_FLUSH_REQUEST, rssAllFullbodyHomePageFlushResult, pagePath);
+	}
+
+	public String removeSubstringFromLastSlash(String s) {
+		int lastSlashIndex = s.lastIndexOf('/');
+		return lastSlashIndex != -1 ? s.substring(0, lastSlashIndex) : s;
 	}
 }
