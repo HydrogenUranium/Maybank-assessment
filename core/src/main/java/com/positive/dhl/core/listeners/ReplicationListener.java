@@ -3,12 +3,9 @@ package com.positive.dhl.core.listeners;
 
 import com.day.cq.replication.ReplicationAction;
 import com.day.cq.replication.ReplicationActionType;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
 import com.positive.dhl.core.constants.AkamaiInvalidationResult;
 import com.positive.dhl.core.services.PageUtilService;
-import com.positive.dhl.core.services.ResourceResolverHelper;
 import com.positive.dhl.core.services.impl.AkamaiFlush;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -17,9 +14,6 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventConstants;
 import org.osgi.service.event.EventHandler;
-
-import javax.jcr.Session;
-import java.util.Optional;
 
 import static com.positive.dhl.core.services.PageUtilService.CONTENT_ROOT_PATH;
 import static com.positive.dhl.core.services.PageUtilService.ROOT_PAGE_PATH;
@@ -97,7 +91,7 @@ public class ReplicationListener implements EventHandler {
 		log.info(RESULT_OF_FLUSH_REQUEST, rssAllFullbodyHomePageFlushResult, pagePath);
 	}
 
-	public String removeSubstringFromLastSlash(String s) {
+	private String removeSubstringFromLastSlash(String s) {
 		int lastSlashIndex = s.lastIndexOf('/');
 		return lastSlashIndex != -1 ? s.substring(0, lastSlashIndex) : s;
 	}
