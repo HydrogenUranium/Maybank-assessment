@@ -38,7 +38,7 @@ class ReplicationListenerTest {
 
 	ReplicationListener underTest;
 
-	private static final String DUMMY_PATH = "/content/dummy-path";
+	private static final String DUMMY_PATH = "/content/dhl/global/en-global/test-page";
 
 	@BeforeEach
 	void setUp() {
@@ -89,7 +89,7 @@ class ReplicationListenerTest {
 	private Event initializeEvent(){
 		Map<String,Object> eventProperties = new HashMap<>();
 		String[] agentIds = {"publish"};
-		String[] paths = {"/content/dummy-path"};
+		String[] paths = {"/content/dhl/global/en-global/test-page"};
 		eventProperties.put("modificationDate", Calendar.getInstance());
 		eventProperties.put("agentIds", agentIds);
 		eventProperties.put("type", ReplicationActionType.ACTIVATE);

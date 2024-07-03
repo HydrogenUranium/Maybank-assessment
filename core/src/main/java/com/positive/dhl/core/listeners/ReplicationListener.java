@@ -45,8 +45,11 @@ public class ReplicationListener implements EventHandler {
 				String replicationPagePath = replicationAction.getPath();
 
 				flushPageCache(replicationPagePath);
-				flushSitemapCache(replicationPagePath);
-				flushAllRssCache(replicationPagePath);
+
+				if (replicationPagePath.matches("^/content/dhl/(global|\\w{2})(/.*)?$")) {
+					flushSitemapCache(replicationPagePath);
+					flushAllRssCache(replicationPagePath);
+				}
 			} else {
 				log.info("Akamai Flush: It appears the replication TYPE was different than '{}' or '{}'. Therefore, not sending anything to Akamai...", ReplicationActionType.ACTIVATE, ReplicationActionType.DEACTIVATE);
 			}
