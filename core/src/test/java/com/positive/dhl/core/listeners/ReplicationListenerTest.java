@@ -3,7 +3,6 @@ package com.positive.dhl.core.listeners;
 import com.day.cq.replication.ReplicationAction;
 import com.day.cq.replication.ReplicationActionType;
 import com.day.cq.replication.ReplicationStatus;
-import com.day.cq.replication.Replicator;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
@@ -20,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.osgi.service.event.Event;
 
@@ -54,9 +52,6 @@ class ReplicationListenerTest {
 	private Resource resource;
 
 	@Mock
-	private Replicator replicator;
-
-	@Mock
 	private ReplicationStatus replicationStatus;
 
 	@Mock
@@ -74,8 +69,6 @@ class ReplicationListenerTest {
 
 	@BeforeEach
 	void setUp() {
-		MockitoAnnotations.initMocks(this);
-
 		Map<String, Object> injectedServices = new HashMap<>();
 		injectedServices.putIfAbsent("akamaiFlushConfigReader", akamaiFlushConfigReader);
 		injectedServices.putIfAbsent("akamaiFlush", akamaiFlush);
@@ -83,13 +76,11 @@ class ReplicationListenerTest {
 		context.registerService(AkamaiFlushConfigReader.class, akamaiFlushConfigReader);
 		context.registerService(AkamaiFlush.class, akamaiFlush);
 		context.registerService(ResourceResolverHelper.class, resourceResolverHelper);
-		context.registerService(Replicator.class, replicator);
 		context.registerService(PageUtilService.class, pageUtilService);
 
 		resourceResolver = context.resourceResolver();
 		context.load().json(NEW_CONTENT_STRUCTURE_JSON, PAGE_PATH);
 
-		lenient().when(resourceResolverHelper.getWriteResourceResolver()).thenReturn(resourceResolver);
 
 		underTest = new ReplicationListener();
 		context.registerInjectActivateService(underTest, injectedServices);
@@ -116,8 +107,10 @@ class ReplicationListenerTest {
 
 	@Test
 	void happyPathScenario() {
+		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resourceResolver);
 		resource = resourceResolver.getResource(PAGE_PATH);
 		Page page = resource.adaptTo(Page.class);
+
 		lenient().when(pageManager.getContainingPage(DUMMY_PATH)).thenReturn(page);
 
 		when(akamaiFlushConfigReader.isEnabled()).thenReturn(true);

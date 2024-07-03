@@ -1,7 +1,7 @@
 /* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.listeners;
 
-import com.day.cq.replication.*;
+import com.day.cq.replication.ReplicationAction;
 import com.day.cq.replication.ReplicationActionType;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
@@ -43,9 +43,6 @@ public class ReplicationListener implements EventHandler {
 	private ResourceResolverHelper resourceResolverHelper;
 
 	@Reference
-	private Replicator replicator;
-
-	@Reference
 	private PageUtilService pageUtilService;
 
 	@Override
@@ -56,8 +53,8 @@ public class ReplicationListener implements EventHandler {
 				String replicationPagePath = replicationAction.getPath();
 
 				flushPageCache(replicationPagePath);
-				flushRssCache(replicationPagePath);
 				flushSitemapCache(replicationPagePath);
+				flushAllRssCache(replicationPagePath);
 			} else {
 				log.info("It appears the replication TYPE was different than '{}' or '{}'. Therefore, not sending anything to Akamai...", ReplicationActionType.ACTIVATE, ReplicationActionType.DEACTIVATE);
 			}
@@ -84,8 +81,9 @@ public class ReplicationListener implements EventHandler {
 		log.info(RESULT_OF_FLUSH_REQUEST, sitemapRootPageFlushResult, pagePath + "/sitemap-index.xml");
 	}
 
-	private void flushRssCache(String pagePath) {
-		try(var resourceResolver = resourceResolverHelper.getReadResourceResolver()) {
+	private void flushAllRssCache(String pagePath) {
+		var resourceResolver = resourceResolverHelper.getReadResourceResolver();
+		try {
 			PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
 			if (pageManager != null) {
 				Page page = pageManager.getContainingPage(pagePath);
