@@ -7,6 +7,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.helpers.FullTextSearchHelper;
 import com.positive.dhl.core.models.Article;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -24,7 +25,9 @@ import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 public class ArticleService {
     protected static final int MAX_SEARCH_TERMS_ALLOWED = 5;
     protected static final int MIN_SEARCH_TERM_CHARACTERS_ALLOWED = 3;
-    protected static final int MAX_TERMS_FULL_TEXT_SEARCH = 20;
+
+    protected static final int MAX_RESULTS = 50;
+
     public static final String ORDERBY = "orderby";
     public static final String JCR_CONTENT_CQ_TEMPLATE = "jcr:content/cq:template";
     public static final String P_LIMIT = "p.limit";
@@ -58,6 +61,7 @@ public class ArticleService {
         try (var resolver = resolverHelper.getReadResourceResolver()) {
             Map<String, String> props = new HashMap<>();
             props.put("type", NT_PAGE);
+            props.put("p.excerpt", "true");
             props.put("group.p.or", "true");
             props.put("group.1_property", JCR_CONTENT_CQ_TEMPLATE);
             props.put("group.1_property.value", "/conf/dhl/settings/wcm/templates/article");
@@ -113,22 +117,73 @@ public class ArticleService {
     }
 
     public List<Article> findArticlesByFullText(String searchQuery, String searchScope, ResourceResolver resourceResolver) {
-        List<String> terms = getFullTextSearchTerms(searchQuery);
+        List<List<String>> termGroups = FullTextSearchHelper.getFullTextSpellcheckedSearchTerms(searchQuery, searchScope, resourceResolver);
+        var locale = pageUtilService.getLocale(searchScope, resourceResolver);
+        Map<String, Tag> tagMap = tagUtilService.getLocalizedTagMap(resourceResolver, "dhl:", locale);
+
+        Set<String> uniquePaths = new HashSet<>();
+        List<Article> uniqueArticles = new ArrayList<>();
+
+        for (List<String> terms : termGroups) {
+            if (uniqueArticles.size() >= MAX_RESULTS) {
+                break;
+            }
+
+            List<Article> articles = findArticlesByFullText(terms, searchScope, tagMap, resourceResolver);
+            for (Article article : articles) {
+                if (uniqueArticles.size() < MAX_RESULTS && uniquePaths.add(article.getPath())) {
+                    uniqueArticles.add(article);
+                }
+            }
+        }
+
+        return uniqueArticles;
+    }
+
+    public List<Article> findArticlesByFullText(List<String> terms, String searchScope, Map<String, Tag> tagMap, ResourceResolver resourceResolver) {
         Map<String, String> map = new HashMap<>();
         map.put("path", searchScope);
         map.put("type", NT_PAGE);
+        map.put("explain", "true");
 
-        setFullTextTerms(terms, map);
+        setFullTextTerms(terms, tagMap, map);
 
         setOrderingAndLimiting(map);
 
         return searchArticles(map, resourceResolver);
     }
 
-    private void setFullTextTerms(List<String> terms, Map<String, String> map) {
-        map.put("group.p.or", "true");
-        for(var i = 0; i < terms.size(); i++) {
-            map.put("group." + (i + 1) + "_fulltext", "\"" + terms.get(i) + "\"");
+    private void setFullTextTerms(List<String> terms, Map<String, Tag> tagMap, Map<String, String> searchParams) {
+        List<String> tagIds = extractSearchedTagIds(terms, tagMap);
+        addFullTextTermsToParams(terms, searchParams);
+        addTagSearchToParams(tagIds, terms.size(), searchParams);
+    }
+
+    private List<String> extractSearchedTagIds(List<String> terms, Map<String, Tag> tagMap) {
+        List<String> tagIds = new ArrayList<>();
+        for (String tagName : terms) {
+            if (tagMap.containsKey(tagName)) {
+                tagIds.add(tagMap.get(tagName).getTagID());
+            }
+        }
+        return tagIds;
+    }
+
+    private void addFullTextTermsToParams(List<String> terms, Map<String, String> searchParams) {
+        searchParams.put("group.p.or", "true");
+        for (var i = 0; i < terms.size(); i++) {
+            searchParams.put("group." + (i + 1) + "_fulltext", "\"" + terms.get(i) + "\"");
+        }
+    }
+
+    private void addTagSearchToParams(List<String> tagIds, int termCount, Map<String, String> searchParams) {
+        if (tagIds.isEmpty()) {
+            return;
+        }
+        int tagIndex = termCount + 1;
+        searchParams.put("group." + tagIndex + "_property", "@jcr:content/cq:tags");
+        for (var i = 0; i < tagIds.size(); i++) {
+            searchParams.put("group." + tagIndex + "_property." + (i + 1) + "_value", tagIds.get(i));
         }
     }
 
@@ -190,57 +245,6 @@ public class ArticleService {
         return map;
     }
 
-    /**
-     * Generates a list of search terms based on the input phrase.
-     * The list includes the full phrase, single words, and combinations
-     * of words in the proper order. The number of terms is limited to
-     * protect the query from becoming too large.
-     *
-     * @param searchTerm The input phrase to generate search terms from.
-     * @return List of search terms including single words and combinations
-     *         to boost text that contains words in proper order.
-     * Example:
-     * <pre>
-     * {@code
-     * String searchTerm = "International e-commerce Business Guide";
-     * int limit = 10;
-     * List<String> combinations = getFullTextSearchTerms(searchTerm, limit);
-     *
-     * // Output:
-     * // [
-     * //   "International",
-     * //   "e-commerce",
-     * //   "Business",
-     * //   "Guide",
-     * //   "International e-commerce",
-     * //   "e-commerce Business",
-     * //   "Business Guide",
-     * //   "International e-commerce Business",
-     * //   "e-commerce Business Guide"
-     * //   "International e-commerce Business Guide",
-     * // ]
-     * }
-     * </pre>
-     */
-    private List<String> getFullTextSearchTerms(String searchTerm) {
-        String[] words = searchTerm.trim().split("\\s+");
-        List<String> terms = new ArrayList<>();
-
-        for (var len = 1; len <= words.length && terms.size() < MAX_TERMS_FULL_TEXT_SEARCH; len++) {
-            for (var start = 0; start <= words.length - len && terms.size() < MAX_TERMS_FULL_TEXT_SEARCH; start++) {
-                var combination = new StringBuilder();
-                for (int i = start; i < start + len; i++) {
-                    if (i > start) {
-                        combination.append(" ");
-                    }
-                    combination.append(words[i]);
-                }
-                terms.add(combination.toString());
-            }
-        }
-
-        return terms;
-    }
 
     private String[] getTermsByLength(String searchTerm) {
         List<String> result = new LinkedList<>();
@@ -257,7 +261,7 @@ public class ArticleService {
     private Map<String, String> setOrderingAndLimiting(Map<String, String> map) {
         map.put(ORDERBY, "@jcr:content/jcr:score");
         map.put("orderby.sort", "desc");
-        map.put(P_LIMIT, "50");
+        map.put(P_LIMIT, "" + MAX_RESULTS);
         map.put("p.guessTotal", "true");
         return map;
     }

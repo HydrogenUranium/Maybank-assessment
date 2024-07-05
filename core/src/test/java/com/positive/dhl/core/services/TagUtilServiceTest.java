@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
+import static com.positive.dhl.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})

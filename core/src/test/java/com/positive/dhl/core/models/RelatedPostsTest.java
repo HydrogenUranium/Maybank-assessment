@@ -21,8 +21,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.Locale;
 
-import static com.positive.dhl.core.utils.InjectorMock.mockInject;
-import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
+import static com.positive.dhl.junitUtils.InjectorMock.mockInject;
+import static com.positive.dhl.junitUtils.InjectorMock.mockInjectHomeProperty;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;

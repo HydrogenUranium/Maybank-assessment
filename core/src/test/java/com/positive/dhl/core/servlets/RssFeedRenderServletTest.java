@@ -26,7 +26,7 @@ import javax.servlet.ServletException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.positive.dhl.core.utils.AssertXml.assertXmlEquals;
+import static com.positive.dhl.junitUtils.AssertXml.assertXmlEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;

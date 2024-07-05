@@ -20,7 +20,7 @@ import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 
 import java.util.Map;
 
-import static com.positive.dhl.core.utils.InjectorMock.mockInjectHomeProperty;
+import static com.positive.dhl.junitUtils.InjectorMock.mockInjectHomeProperty;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class DhlPageTest {
