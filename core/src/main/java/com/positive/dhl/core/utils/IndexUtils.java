@@ -12,11 +12,11 @@ import java.util.regex.Pattern;
 @UtilityClass
 public class IndexUtils {
 
-    private static final Pattern PATTERN = Pattern.compile(".*?-(\\d+)(?:-custom-(\\d+))?");
+    private static final Pattern PATTERN = Pattern.compile("^[a-zA-Z.]+(?:-(\\d+))?(?:-custom-(\\d+))?$");
 
     private static int getVersion(String name) {
         var matcher = PATTERN.matcher(name);
-        if (matcher.find()) {
+        if (matcher.find() && matcher.group(1) != null) {
             return Integer.parseInt(matcher.group(1));
         }
         return 0;
