@@ -6,14 +6,16 @@ import org.apache.sling.api.resource.ResourceResolver;
 
 import javax.jcr.query.Query;
 import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @UtilityClass
 public class IndexUtils {
 
+    private static final Pattern PATTERN = Pattern.compile(".*?-(\\d+)(?:-custom-(\\d+))?");
+
     private static int getVersion(String name) {
-        var pattern = Pattern.compile(".*?-(\\d+).*");
-        var matcher = pattern.matcher(name);
+        var matcher = PATTERN.matcher(name);
         if (matcher.find()) {
             return Integer.parseInt(matcher.group(1));
         }
@@ -21,10 +23,9 @@ public class IndexUtils {
     }
 
     private static int getCustomVersion(String name) {
-        var pattern = Pattern.compile(".*-custom-(\\d+).*");
-        var matcher = pattern.matcher(name);
-        if (matcher.find()) {
-            return Integer.parseInt(matcher.group(1));
+        var matcher = PATTERN.matcher(name);
+        if (matcher.find() && matcher.group(2) != null) {
+            return Integer.parseInt(matcher.group(2));
         }
         return 0;
     }
