@@ -151,6 +151,10 @@ public class PageUtilService {
                 : new Locale(jcrLanguageProperty);
     }
 
+    public Locale getLocale(String pagePath, ResourceResolver resolver) {
+        return getLocale(getPage(pagePath, resolver));
+    }
+
     public Locale getLocale(Resource resource) {
         return getLocale(getPage(resource));
     }

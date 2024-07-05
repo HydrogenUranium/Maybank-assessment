@@ -127,6 +127,16 @@ public class TagUtilService {
         return searchTagsByLocalizedPrefix(query, rootTag, locale);
     }
 
+    public Map<String, Tag> getLocalizedTagMap(ResourceResolver resolver, String rootTagId, Locale locale) {
+        Map<String, Tag> map = new HashMap<>();
+
+        var tags = searchTagsByLocalizedTitlePredicate(s -> !s.isBlank(), getTag(resolver, rootTagId), locale);
+
+        tags.forEach(tag -> map.put(getLocalizedTitle(tag, locale).trim().toLowerCase(), tag));
+
+        return map;
+    }
+
     public List<Tag> searchTagsByLocalizedPrefix(String prefix, Tag root, Locale locale) {
         return searchTagsByLocalizedTitlePredicate(s -> s.startsWith(prefix.toLowerCase()), root, locale);
     }

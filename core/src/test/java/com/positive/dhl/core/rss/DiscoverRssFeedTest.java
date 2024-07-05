@@ -1,7 +1,6 @@
 package com.positive.dhl.core.rss;
 
 import com.day.cq.tagging.InvalidTagFormatException;
-import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.services.*;
@@ -9,7 +8,6 @@ import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.testing.mock.sling.servlet.MockRequestDispatcherFactory;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
@@ -24,10 +22,8 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.stream.Collectors;
 
-import static com.positive.dhl.core.utils.AssertXml.assertXmlEquals;
+import static com.positive.dhl.junitUtils.AssertXml.assertXmlEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;

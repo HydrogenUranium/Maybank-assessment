@@ -26,7 +26,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static com.positive.dhl.core.utils.AssertNode.assertNodeStructureEquals;
+import static com.positive.dhl.junitUtils.AssertNode.assertNodeStructureEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;

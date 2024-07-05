@@ -1,22 +1,20 @@
 package com.positive.dhl.core.servlets;
 
-import com.google.gson.*;
+import com.google.gson.GsonBuilder;
 import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.services.ArticleService;
-import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.ResourceResolverHelper;
+import com.positive.dhl.core.utils.IndexUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.entity.ContentType;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import javax.jcr.query.Query;
 import javax.servlet.Servlet;
 import java.io.IOException;
 import java.util.Collections;
@@ -66,13 +64,7 @@ public class GetArticlesServlet extends SlingSafeMethodsServlet {
 
     private boolean hasFullTextIndex(String searchScope) {
         try(var resolver = resolverHelper.getReadResourceResolver()) {
-            var queryString = "SELECT * FROM [oak:QueryIndexDefinition]\n" +
-                    "WHERE ISDESCENDANTNODE('/oak:index')\n" +
-                    "AND [dhlFullTextSearch] = true\n" +
-                    "AND [includedPaths] = '" + searchScope + "'";
-            var resources = resolver.findResources(queryString, Query.JCR_SQL2);
-
-            return resources.hasNext();
+            return IndexUtils.hasFullTextIndex(searchScope, resolver);
         }
     }
 }

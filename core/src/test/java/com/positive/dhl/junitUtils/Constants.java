@@ -1,4 +1,4 @@
-package com.positive.dhl.core.utils;
+package com.positive.dhl.junitUtils;
 
 public class Constants {
 

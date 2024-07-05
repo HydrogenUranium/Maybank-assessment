@@ -1,4 +1,4 @@
-package com.positive.dhl.core.utils;
+package com.positive.dhl.junitUtils;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import org.apache.sling.models.spi.Injector;

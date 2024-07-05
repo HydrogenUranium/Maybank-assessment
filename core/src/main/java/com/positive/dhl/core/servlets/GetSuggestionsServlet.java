@@ -6,7 +6,8 @@ import com.google.gson.JsonPrimitive;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import com.positive.dhl.core.services.TagUtilService;
-import com.positive.dhl.core.utils.RequestUtils;
+import com.positive.dhl.core.utils.IndexUtils;
+import com.positive.dhl.core.utils.QueryManagerUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -18,10 +19,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.jcr.RepositoryException;
-import javax.jcr.query.Query;
 import javax.jcr.query.QueryManager;
-import javax.jcr.query.Row;
-import javax.jcr.query.RowIterator;
 import javax.servlet.Servlet;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,7 +70,7 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
         String query = request.getParameter("s");
         String homePagePath = request.getParameter("homepagepath");
         String indexName = getSuggestionIndexName(homePagePath);
-        var queryManager = RequestUtils.getSession(request).getWorkspace().getQueryManager();
+        var queryManager = QueryManagerUtils.getQueryManager(request);
 
         List<String> tags = getTagsByQuery(request, query, homePagePath);
         List<String> suggestions = getSuggestionRows(query, SUGGEST, indexName, queryManager);
@@ -127,36 +125,23 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
         var base = getStringWithoutLastWord(searchString);
         var lastWord = getLastWord(searchString);
 
-        var queryString = String.format("SELECT [rep:%s()]  FROM [nt:unstructured] WHERE %s('%s') OPTION(INDEX NAME [%s])",
-                mode, mode, lastWord, indexName);
-        var query = queryManager.createQuery(queryString, Query.JCR_SQL2);
+        List<String> suggestedWords = QueryManagerUtils.getSuggestedWords(lastWord, mode, indexName, queryManager);
 
-        RowIterator rows = query.execute().getRows();
-        while (rows.hasNext()) {
-            var suggestedLastWord = ((Row) rows.next()).getValue("rep:" + mode + "()").getString();
-            var suggestion = StringUtils.joinWith(" ", base, suggestedLastWord).trim();
-            if(!StringUtils.equalsIgnoreCase(searchString.trim(), suggestion)) {
-                suggestions.add(suggestion);
+
+        suggestedWords.forEach(suggestedWord -> {
+            var fullSuggestion = StringUtils.joinWith(" ", base, suggestedWord).trim();
+            if(!StringUtils.equalsIgnoreCase(searchString.trim(), fullSuggestion)) {
+                suggestions.add(fullSuggestion);
             }
-        }
+        });
 
         return suggestions;
     }
 
     private String getSuggestionIndexName(String homePath) {
         try(var resolver = resolverHelper.getReadResourceResolver()) {
-            var queryString = "SELECT * FROM [oak:QueryIndexDefinition]\n" +
-                    "WHERE ISDESCENDANTNODE('/oak:index')\n" +
-                    "AND [dhlSuggestions] = true\n" +
-                    "AND [includedPaths] = '" + homePath + "'";
-            var resources = resolver.findResources(queryString, Query.JCR_SQL2);
-
-            if (resources.hasNext()) {
-                return resources.next().getName();
-            }
+            return IndexUtils.getSuggestionIndexName(homePath, resolver);
         }
-
-        return null;
     }
 
     private String getStringWithoutLastWord(String query) {

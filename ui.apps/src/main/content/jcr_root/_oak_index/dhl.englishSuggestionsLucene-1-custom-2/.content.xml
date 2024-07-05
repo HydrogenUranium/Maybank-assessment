@@ -17,10 +17,16 @@
             <charFilters jcr:primaryType="nt:unstructured">
                 <HTMLStrip jcr:primaryType="nt:unstructured"/>
                 <Mapping jcr:primaryType="nt:unstructured"/>
+                <PatternReplace
+                        jcr:primaryType="nt:unstructured"
+                        class="org.apache.lucene.analysis.pattern.PatternReplaceCharFilterFactory"
+                        pattern="/content/[^\\s]+"
+                        replacement=""
+                />
             </charFilters>
             <tokenizer
                     jcr:primaryType="nt:unstructured"
-                    name="Classic"/>
+                    name="Standard"/>
             <filters jcr:primaryType="nt:unstructured">
                 <LowerCase jcr:primaryType="nt:unstructured"/>
             </filters>
@@ -69,6 +75,28 @@
                         analyzed="{Boolean}true"
                         isRegexp="{Boolean}false"
                         name="jcr:description"
+                        nodeScopeIndex="{Boolean}true"
+                        ordered="{Boolean}true"
+                        propertyIndex="{Boolean}true"
+                        type="String"
+                        useInSpellcheck="{Boolean}true"
+                        useInSuggest="{Boolean}true"/>
+                <text
+                        jcr:primaryType="nt:unstructured"
+                        analyzed="{Boolean}true"
+                        isRegexp="{Boolean}false"
+                        name="text"
+                        nodeScopeIndex="{Boolean}true"
+                        ordered="{Boolean}true"
+                        propertyIndex="{Boolean}true"
+                        type="String"
+                        useInSpellcheck="{Boolean}true"
+                        useInSuggest="{Boolean}true"/>
+                <title
+                        jcr:primaryType="nt:unstructured"
+                        analyzed="{Boolean}true"
+                        isRegexp="{Boolean}false"
+                        name="title"
                         nodeScopeIndex="{Boolean}true"
                         ordered="{Boolean}true"
                         propertyIndex="{Boolean}true"

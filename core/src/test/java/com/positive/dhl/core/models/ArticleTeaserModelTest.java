@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
-import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
+import static com.positive.dhl.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleTeaserModelTest {

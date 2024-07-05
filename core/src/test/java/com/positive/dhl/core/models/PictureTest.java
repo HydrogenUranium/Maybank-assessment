@@ -15,8 +15,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Map;
 
-import static com.positive.dhl.core.utils.InjectorMock.INJECT_REQUEST_ATTRIBUTES;
-import static com.positive.dhl.core.utils.InjectorMock.mockInject;
+import static com.positive.dhl.junitUtils.InjectorMock.INJECT_REQUEST_ATTRIBUTES;
+import static com.positive.dhl.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;

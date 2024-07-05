@@ -18,28 +18,25 @@
         <cq:Page jcr:primaryType="nt:unstructured">
             <include0
                     jcr:primaryType="nt:unstructured"
-                    path="jcr:content/*"/>
+                    path="jcr:content/root/*"/>
             <include1
                     jcr:primaryType="nt:unstructured"
-                    path="jcr:content/*/*"/>
+                    path="jcr:content/root/*/*"/>
             <include2
                     jcr:primaryType="nt:unstructured"
-                    path="jcr:content/*/*/*"/>
+                    path="jcr:content/root/*/*/*"/>
             <include3
                     jcr:primaryType="nt:unstructured"
-                    path="jcr:content/*/*/*/*"/>
+                    path="jcr:content/root/*/*/*/*"/>
             <include4
                     jcr:primaryType="nt:unstructured"
-                    path="jcr:content/*/*/*/*/*"/>
+                    path="jcr:content/root/*/*/*/*/*"/>
             <include5
                     jcr:primaryType="nt:unstructured"
-                    path="jcr:content/*/*/*/*/*/*"/>
+                    path="jcr:content/root/*/*/*/*/*/*"/>
             <include6
                     jcr:primaryType="nt:unstructured"
-                    path="jcr:content/*/*/*/*/*/*/*"/>
-            <include7
-                    jcr:primaryType="nt:unstructured"
-                    path="jcr:content/*/*/*/*/*/*/*/*"/>
+                    path="jcr:content/root/*/*/*/*/*/*/*"/>
         </cq:Page>
     </aggregates>
     <analyzers jcr:primaryType="nt:unstructured">
@@ -47,10 +44,16 @@
             <charFilters jcr:primaryType="nt:unstructured">
                 <HTMLStrip jcr:primaryType="nt:unstructured"/>
                 <Mapping jcr:primaryType="nt:unstructured"/>
+                <PatternReplace
+                        jcr:primaryType="nt:unstructured"
+                        class="org.apache.lucene.analysis.pattern.PatternReplaceCharFilterFactory"
+                        pattern="/content/[^\\s]+"
+                        replacement=""
+                />
             </charFilters>
             <tokenizer
                     jcr:primaryType="nt:unstructured"
-                    name="Classic"/>
+                    name="Standard"/>
             <filters jcr:primaryType="nt:unstructured">
                 <LowerCase jcr:primaryType="nt:unstructured"/>
                 <Stop

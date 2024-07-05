@@ -18,7 +18,7 @@ import javax.jcr.Session;
 import java.util.HashSet;
 import java.util.Map;
 
-import static com.positive.dhl.core.utils.AssertNode.assertNodeStructureEquals;
+import static com.positive.dhl.junitUtils.AssertNode.assertNodeStructureEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
