@@ -4,7 +4,6 @@
     <jcr:content
         cq:deviceGroups="[mobile/groups/responsive]"
         cq:template="/conf/dhl/settings/wcm/templates/category-page"
-        jcr:mixinTypes="[]"
         jcr:primaryType="cq:PageContent"
         sling:resourceType="dhl/components/pages/editable-category-page">
         <root
@@ -21,16 +20,16 @@
                     type="businessAccount"/>
             </headerv2>
             <breadcrumb-responsivegrid
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/foundation/components/responsivegrid"
-                layout="responsiveGrid">
-                <breadcrumb-container
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/container">
-                    <breadcrumb
+                    sling:resourceType="wcm/foundation/components/responsivegrid"
+                    layout="responsiveGrid">
+                <breadcrumb-container
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="dhl/components/content/breadcrumb"
-                        startLevel="3"/>
+                        sling:resourceType="dhl/components/content/container">
+                    <breadcrumb
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/breadcrumb"
+                            startLevel="3"/>
                 </breadcrumb-container>
             </breadcrumb-responsivegrid>
             <responsivegrid
@@ -38,30 +37,30 @@
                 sling:resourceType="wcm/foundation/components/responsivegrid"
                 editable="true"/>
             <category_container
-                jcr:created="{Date}2023-10-25T16:51:45.924+03:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2023-10-25T16:51:45.924+03:00"
-                jcr:lastModifiedBy="admin"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/category-container">
-                <responsivegrid
+                    jcr:created="{Date}2023-10-25T16:51:45.924+03:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2023-10-25T16:51:45.924+03:00"
+                    jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid">
+                    sling:resourceType="dhl/components/content/category-container">
+                <responsivegrid
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/foundation/components/responsivegrid">
                     <article_grid
-                        jcr:created="{Date}2023-10-25T17:19:48.794+03:00"
-                        jcr:createdBy="admin"
-                        jcr:lastModified="{Date}2023-10-25T17:19:48.794+03:00"
-                        jcr:lastModifiedBy="admin"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="dhl/components/content/article-grid"/>
+                            jcr:created="{Date}2023-10-25T17:19:48.794+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2023-10-25T17:19:48.794+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/article-grid"/>
                     <cta_banner_with_poin
-                        jcr:created="{Date}2023-10-25T16:52:05.515+03:00"
-                        jcr:createdBy="admin"
-                        jcr:lastModified="{Date}2023-10-25T16:52:20.785+03:00"
-                        jcr:lastModifiedBy="admin"
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="dhl/components/content/cta-banner-with-points"
-                        type="subscribeNewsletter"/>
+                            jcr:created="{Date}2023-10-25T16:52:05.515+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2023-10-25T16:52:20.785+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/cta-banner-with-points"
+                            type="subscribeNewsletter"/>
                 </responsivegrid>
             </category_container>
             <footerv2
