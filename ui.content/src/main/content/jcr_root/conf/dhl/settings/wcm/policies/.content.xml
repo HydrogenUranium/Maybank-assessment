@@ -119,6 +119,61 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_108071559424200>
                 </hero-banner>
+                <title jcr:primaryType="nt:unstructured">
+                    <title_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Title Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            allowedTypes="[h1,h2,h3,h4]"
+                            linkDisabled="false"
+                            type="h1">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Text"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-title"
+                                            cq:styleId="1720439129848"
+                                            cq:styleLabel="Custom Titile"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Top and Bottom Extra Spacing"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-title--mg0"
+                                            cq:styleId="1720439142951"
+                                            cq:styleLabel="No Spacing (0)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="custom-title--mg1"
+                                            cq:styleId="1720439187384"
+                                            cq:styleLabel="Small (0.5em)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="custom-title--mg2"
+                                            cq:styleId="1720439199935"
+                                            cq:styleLabel="Regular (1em)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="custom-title--mg3"
+                                            cq:styleId="1720439210332"
+                                            cq:styleLabel="Medium (1.5em)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item4
+                                            cq:styleClasses="custom-title--mg4"
+                                            cq:styleId="1720439291878"
+                                            cq:styleLabel="Large (2em)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </title_policy>
+                </title>
                 <text jcr:primaryType="nt:unstructured">
                     <thank_you_page_text_policy
                         jcr:primaryType="nt:unstructured"
