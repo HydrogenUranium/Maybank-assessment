@@ -43,23 +43,24 @@ public class GetArticlesServlet extends SlingSafeMethodsServlet {
         response.setCharacterEncoding(UTF_8);
         response.setContentType(ContentType.APPLICATION_JSON.getMimeType());
 
-        var resolver = request.getResourceResolver();
         var searchTerm = request.getParameter("s");
         var searchScope = request.getParameter("homepagepath");
         var useWebOptimized = Boolean.parseBoolean(request.getParameter("optimized"));
         var imgQuality = request.getParameter("imgquality");
         var fullTextSearch = hasFullTextIndex(searchScope);
 
-        List<Article> articles = StringUtils.isAnyBlank(searchTerm, searchScope)
-                ? Collections.emptyList()
-                : articleService.findArticles(searchTerm, searchScope,  resolver, fullTextSearch);
+        try (var resolver = resolverHelper.getReadResourceResolver()) {
+            List<Article> articles = StringUtils.isAnyBlank(searchTerm, searchScope)
+                    ? Collections.emptyList()
+                    : articleService.findArticles(searchTerm, searchScope, resolver, fullTextSearch);
 
-        articles.forEach(article -> article.initAssetDeliveryProperties(useWebOptimized, imgQuality));
+            articles.forEach(article -> article.initAssetDeliveryProperties(useWebOptimized, imgQuality));
 
-        var gson = new GsonBuilder()
-                .excludeFieldsWithoutExposeAnnotation()
-                .create();
-        response.getWriter().write(gson.toJson(articles));
+            var gson = new GsonBuilder()
+                    .excludeFieldsWithoutExposeAnnotation()
+                    .create();
+            response.getWriter().write(gson.toJson(articles));
+        }
     }
 
     private boolean hasFullTextIndex(String searchScope) {
