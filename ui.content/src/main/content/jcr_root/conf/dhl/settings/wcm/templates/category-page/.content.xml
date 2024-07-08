@@ -2,8 +2,6 @@
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
     jcr:primaryType="cq:Template">
     <jcr:content
-        cq:lastModified="{Date}2024-07-08T11:43:41.807+02:00"
-        cq:lastModifiedBy="admin"
         cq:templateType="/conf/dhl/settings/wcm/template-types/category-page"
         jcr:primaryType="cq:PageContent"
         jcr:title="DHL Discover Category Page (Editable)"
