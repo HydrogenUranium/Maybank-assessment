@@ -8,5 +8,5 @@
     <filter root="/apps/dhl/workflow"/>
     <filter root="/apps/msm" />
     <filter root="/oak:index/dhl.englishLucene-1-custom-2" />
-    <filter root="/oak:index/dhl.englishSuggestionsLucene-1-custom-2" />
+    <filter root="/oak:index/dhl.englishSuggestionsLucene-1-custom-3" />
 </workspaceFilter>
