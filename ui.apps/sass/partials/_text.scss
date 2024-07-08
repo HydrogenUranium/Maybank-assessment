@@ -136,6 +136,39 @@
       }
     }
   }
+
+  &.custom-text p {
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  &.custom-text--p1 p {
+    font-size: 20px;
+  }
+
+  &.custom-text--p2 p {
+    font-size: 18px;
+  }
+
+  &.custom-text--p3 p {
+    font-size: 16px;
+  }
+
+  &.custom-text--mb0 p {
+    margin-bottom: 0;
+  }
+
+  &.custom-text--mb1 p {
+    margin-bottom: 10px;
+  }
+
+  &.custom-text--mb2 p {
+    margin-bottom: 20px;
+  }
+
+  &.custom-text--mb3 p {
+    margin-bottom: 30px;
+  }
 }
 .text.text-general-page {
   font-size: 15px;

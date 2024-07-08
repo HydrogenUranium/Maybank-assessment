@@ -208,17 +208,85 @@
                         </rtePlugins>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
-                                    cq:styleGroupLabel="Extra Spacing"
-                                    cq:styleGroupMultiple="true"
+                                    cq:styleGroupLabel="Text"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text"
+                                            cq:styleId="1705323402740"
+                                            cq:styleLabel="Custom Text"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Font"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text--p3"
+                                            cq:styleId="1720434563090"
+                                            cq:styleLabel="Regular (16px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="custom-text--p2"
+                                            cq:styleId="1720434574579"
+                                            cq:styleLabel="Medium (18px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="custom-text--p1"
+                                            cq:styleId="1720434583692"
+                                            cq:styleLabel="Large (20px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                            <item2
+                                    cq:styleGroupLabel="Top Extra Spacing"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
                                     <item0
                                             cq:styleClasses="middle-extra-top-spacing"
                                             cq:styleId="1708421999909"
-                                            cq:styleLabel="Middle Extra Top Spacing (35px)"
+                                            cq:styleLabel="Top - Middle Spacing (35px)"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item0>
+                            </item2>
+                            <item3
+                                    cq:styleGroupLabel="Bottom Extra Spacing"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text--mb0"
+                                            cq:styleId="1720434441217"
+                                            cq:styleLabel="No Spacing (0px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="custom-text--mb1"
+                                            cq:styleId="1720434450121"
+                                            cq:styleLabel="Small (10px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="custom-text--mb2"
+                                            cq:styleId="1720434457709"
+                                            cq:styleLabel="Medium (20px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="custom-text--mb3"
+                                            cq:styleId="1720434472742"
+                                            cq:styleLabel="Large (30px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item3>
+                            <item4
+                                    cq:styleGroupLabel="Table"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="simpleRedTable"
+                                            cq:styleId="1705323402730"
+                                            cq:styleLabel="Simple Red"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item4>
                         </cq:styleGroups>
                     </thank_you_page_text_policy>
                     <policy_1692606883425
@@ -309,20 +377,76 @@
                         </rtePlugins>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
-                                    cq:styleGroupLabel="Extra Spacing"
-                                    cq:styleGroupMultiple="true"
+                                    cq:styleGroupLabel="Text"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text"
+                                            cq:styleId="1705323402740"
+                                            cq:styleLabel="Custom Text"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Font"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text--p3"
+                                            cq:styleId="1720434563090"
+                                            cq:styleLabel="Regular (16px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="custom-text--p2"
+                                            cq:styleId="1720434574579"
+                                            cq:styleLabel="Medium (18px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="custom-text--p1"
+                                            cq:styleId="1720434583692"
+                                            cq:styleLabel="Large (20px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                            <item2
+                                    cq:styleGroupLabel="Top Extra Spacing"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
                                     <item0
                                             cq:styleClasses="middle-extra-top-spacing"
                                             cq:styleId="1708421999909"
-                                            cq:styleLabel="Middle Extra Top Spacing (35px)"
+                                            cq:styleLabel="Top - Middle Spacing (35px)"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item0>
-                            <item1
+                            </item2>
+                            <item3
+                                    cq:styleGroupLabel="Bottom Extra Spacing"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text--mb0"
+                                            cq:styleId="1720434441217"
+                                            cq:styleLabel="No Spacing (0px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="custom-text--mb1"
+                                            cq:styleId="1720434450121"
+                                            cq:styleLabel="Small (10px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="custom-text--mb2"
+                                            cq:styleId="1720434457709"
+                                            cq:styleLabel="Medium (20px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="custom-text--mb3"
+                                            cq:styleId="1720434472742"
+                                            cq:styleLabel="Large (30px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item3>
+                            <item4
                                     cq:styleGroupLabel="Table"
-                                    cq:styleGroupMultiple="true"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
                                     <item0
@@ -331,7 +455,7 @@
                                             cq:styleLabel="Simple Red"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item1>
+                            </item4>
                         </cq:styleGroups>
                     </policy_1692606883425>
                     <general_text_policy
@@ -449,7 +573,286 @@
                                     jcr:primaryType="nt:unstructured"
                                     features="-"/>
                         </rtePlugins>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Text"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text"
+                                            cq:styleId="1705323402740"
+                                            cq:styleLabel="Custom Text"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Font"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text--p3"
+                                            cq:styleId="1720434563090"
+                                            cq:styleLabel="Regular (16px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="custom-text--p2"
+                                            cq:styleId="1720434574579"
+                                            cq:styleLabel="Medium (18px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="custom-text--p1"
+                                            cq:styleId="1720434583692"
+                                            cq:styleLabel="Large (20px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                            <item2
+                                    cq:styleGroupLabel="Top Extra Spacing"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="middle-extra-top-spacing"
+                                            cq:styleId="1708421999909"
+                                            cq:styleLabel="Top - Middle Spacing (35px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item2>
+                            <item3
+                                    cq:styleGroupLabel="Bottom Extra Spacing"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text--mb0"
+                                            cq:styleId="1720434441217"
+                                            cq:styleLabel="No Spacing (0px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="custom-text--mb1"
+                                            cq:styleId="1720434450121"
+                                            cq:styleLabel="Small (10px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="custom-text--mb2"
+                                            cq:styleId="1720434457709"
+                                            cq:styleLabel="Medium (20px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="custom-text--mb3"
+                                            cq:styleId="1720434472742"
+                                            cq:styleLabel="Large (30px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item3>
+                            <item4
+                                    cq:styleGroupLabel="Table"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="simpleRedTable"
+                                            cq:styleId="1705323402730"
+                                            cq:styleLabel="Simple Red"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item4>
+                        </cq:styleGroups>
                     </general_text_policy>
+                    <text_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Text Policy"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <rtePlugins jcr:primaryType="nt:unstructured">
+                            <paraformat
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-">
+                                <formats
+                                        jcr:primaryType="nt:unstructured"
+                                        override="true">
+                                    <item0
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Paragraph"
+                                            tag="p"/>
+                                    <item1
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 1"
+                                            tag="h1"/>
+                                    <item2
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 2"
+                                            tag="h2"/>
+                                    <item3
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 3"
+                                            tag="h3"/>
+                                    <item4
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 4"
+                                            tag="h4"/>
+                                    <item5
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 5"
+                                            tag="h5"/>
+                                    <item6
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 6"
+                                            tag="h6"/>
+                                    <item7
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Quote"
+                                            tag="blockquote"/>
+                                    <item8
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Horizontal Rule (visual line break)"
+                                            tag="hr"/>
+                                    <item9
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Preformatted"
+                                            tag="pre"/>
+                                </formats>
+                            </paraformat>
+                            <misctools
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-">
+                                <specialCharsConfig jcr:primaryType="nt:unstructured">
+                                    <chars
+                                            jcr:primaryType="nt:unstructured"
+                                            override="true">
+                                        <item0
+                                                jcr:primaryType="nt:unstructured"
+                                                entity="&amp;copy;"
+                                                name="copyright"/>
+                                        <item1
+                                                jcr:primaryType="nt:unstructured"
+                                                entity="&amp;euro;"
+                                                name="euro"/>
+                                        <item2
+                                                jcr:primaryType="nt:unstructured"
+                                                entity="&amp;reg;"
+                                                name="registered"/>
+                                        <item3
+                                                jcr:primaryType="nt:unstructured"
+                                                entity="&amp;trade;"
+                                                name="trademark"/>
+                                    </chars>
+                                </specialCharsConfig>
+                            </misctools>
+                            <edit
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <findreplace
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <undo
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <spellcheck
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <image
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <table
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <lists
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <justify
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <format
+                                    jcr:primaryType="nt:unstructured"
+                                    features="bold,italic"/>
+                            <links
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <subsuperscript
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                        </rtePlugins>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Text"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text"
+                                            cq:styleId="1705323402740"
+                                            cq:styleLabel="Custom Text"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Font"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text--p3"
+                                            cq:styleId="1720434563090"
+                                            cq:styleLabel="Regular (16px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="custom-text--p2"
+                                            cq:styleId="1720434574579"
+                                            cq:styleLabel="Medium (18px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="custom-text--p1"
+                                            cq:styleId="1720434583692"
+                                            cq:styleLabel="Large (20px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                            <item2
+                                    cq:styleGroupLabel="Top Extra Spacing"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="middle-extra-top-spacing"
+                                            cq:styleId="1708421999909"
+                                            cq:styleLabel="Top - Middle Spacing (35px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item2>
+                            <item3
+                                    cq:styleGroupLabel="Bottom Extra Spacing"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="custom-text--mb0"
+                                            cq:styleId="1720434441217"
+                                            cq:styleLabel="No Spacing (0px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="custom-text--mb1"
+                                            cq:styleId="1720434450121"
+                                            cq:styleLabel="Small (10px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="custom-text--mb2"
+                                            cq:styleId="1720434457709"
+                                            cq:styleLabel="Medium (20px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="custom-text--mb3"
+                                            cq:styleId="1720434472742"
+                                            cq:styleLabel="Large (30px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item3>
+                            <item4
+                                    cq:styleGroupLabel="Table"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="simpleRedTable"
+                                            cq:styleId="1705323402730"
+                                            cq:styleLabel="Simple Red"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item4>
+                        </cq:styleGroups>
+                    </text_policy>
                 </text>
                 <article-carousel jcr:primaryType="nt:unstructured">
                     <article_carousel_policy
