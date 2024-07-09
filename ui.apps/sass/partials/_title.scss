@@ -20,28 +20,6 @@
     margin: 2em 0;
   }
 
-  &.custom-title {
-    .cmp-title__text {
-      font-weight: 700;
-    }
-
-    h1 {
-      font-size: 40px;
-    }
-
-    h2 {
-      font-size: 35px;
-    }
-
-    h3 {
-      font-size: 30px;
-    }
-
-    h4 {
-      font-size: 25px;
-    }
-  }
-
   h1, h2, h3, h4 {
     font-weight: bold;
   }
@@ -96,5 +74,23 @@
       font-size: 20px;
       line-height: 28px;
     }
+  }
+}
+
+[lang^="ko"] body .title {
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 35px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+  h4 {
+    font-size: 25px;
   }
 }

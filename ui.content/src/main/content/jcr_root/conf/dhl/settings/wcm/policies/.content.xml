@@ -129,17 +129,6 @@
                             type="h1">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
-                            <item0
-                                    cq:styleGroupLabel="Text"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="custom-title"
-                                            cq:styleId="1720439129848"
-                                            cq:styleLabel="Custom Titile"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item0>
                             <item1
                                     cq:styleGroupLabel="Top and Bottom Extra Spacing"
                                     jcr:primaryType="nt:unstructured">
@@ -262,17 +251,6 @@
                                 features="modifylink,unlink,anchor"/>
                         </rtePlugins>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
-                            <item0
-                                    cq:styleGroupLabel="Text"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="custom-text"
-                                            cq:styleId="1705323402740"
-                                            cq:styleLabel="Custom Text"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item0>
                             <item1
                                     cq:styleGroupLabel="Font"
                                     jcr:primaryType="nt:unstructured">
@@ -431,17 +409,6 @@
                                     features="*"/>
                         </rtePlugins>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
-                            <item0
-                                    cq:styleGroupLabel="Text"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="custom-text"
-                                            cq:styleId="1705323402740"
-                                            cq:styleLabel="Custom Text"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item0>
                             <item1
                                     cq:styleGroupLabel="Font"
                                     jcr:primaryType="nt:unstructured">
@@ -629,17 +596,6 @@
                                     features="-"/>
                         </rtePlugins>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
-                            <item0
-                                    cq:styleGroupLabel="Text"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="custom-text"
-                                            cq:styleId="1705323402740"
-                                            cq:styleLabel="Custom Text"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item0>
                             <item1
                                     cq:styleGroupLabel="Font"
                                     jcr:primaryType="nt:unstructured">
@@ -826,17 +782,6 @@
                                     features="-"/>
                         </rtePlugins>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
-                            <item0
-                                    cq:styleGroupLabel="Text"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="custom-text"
-                                            cq:styleId="1705323402740"
-                                            cq:styleLabel="Custom Text"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item0>
                             <item1
                                     cq:styleGroupLabel="Font"
                                     jcr:primaryType="nt:unstructured">
