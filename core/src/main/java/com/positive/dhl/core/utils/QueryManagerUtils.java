@@ -49,7 +49,7 @@ public class QueryManagerUtils {
             return suggestions;
         }
 
-        var queryString = String.format("SELECT [rep:%s()]  FROM [nt:unstructured] WHERE %s('%s') AND ISDESCENDANTNODE('') OPTION(INDEX NAME [%s])",
+        var queryString = String.format("SELECT [rep:%s()]  FROM [nt:unstructured] WHERE %s('%s') AND ISDESCENDANTNODE('/suggest') OPTION(INDEX NAME [%s])",
                 mode, mode, searchString, indexName);
         var query = queryManager.createQuery(queryString, Query.JCR_SQL2);
 
