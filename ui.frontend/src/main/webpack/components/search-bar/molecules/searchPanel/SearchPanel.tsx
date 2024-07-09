@@ -121,7 +121,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const focusInput = (): void => inputRef.current?.focus();
 
   const renderSearchResults = () => {
-    return ((suggestions.length || articles.length) &&
+    return (!!(suggestions.length || articles.length) &&
       <StrictMode>
         <div className={styles.searchResult}>
           <SearchSection
