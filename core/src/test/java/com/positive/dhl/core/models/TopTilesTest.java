@@ -19,7 +19,7 @@ import com.day.cq.wcm.api.designer.Style;
 import java.util.Arrays;
 import java.util.Locale;
 
-import static com.positive.dhl.core.utils.InjectorMock.mockInject;
+import static com.positive.dhl.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;

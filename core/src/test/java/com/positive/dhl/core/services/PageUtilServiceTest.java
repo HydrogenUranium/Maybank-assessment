@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.Field;
 
-import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
+import static com.positive.dhl.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -157,6 +157,10 @@ class PageUtilServiceTest {
         assertEquals("zh", pageUtilService.getLocale(getPage(ZH_JCR_LANG_AND_EMPTY_ACCEPT_LANG)).toString());
         assertEquals("es_US", pageUtilService.getLocale(getPage(ES_US_JCR_LANG_AND_ES_US_ACCEPT_LANG)).toString());
         assertEquals("en", pageUtilService.getLocale(getPage(EMPTY_JCR_LANG_AND_INVALID_ACCEPT_LANG)).toString());
+
+        assertEquals("en", pageUtilService.getLocale(EMPTY_JCR_LANG_AND_EMPTY_ACCEPT_LANG, resourceResolver).toString());
+        assertEquals("en", pageUtilService.getLocale(EMPTY_JCR_LANG_AND_ASTERISK_ACCEPT_LANG, resourceResolver).toString());
+        assertEquals("fr", pageUtilService.getLocale(EMPTY_JCR_LANG_AND_FR_ACCEPT_LANG, resourceResolver).toString());
     }
 
     @Test

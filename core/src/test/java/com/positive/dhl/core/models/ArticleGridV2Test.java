@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import static com.positive.dhl.core.utils.InjectorMock.*;
+import static com.positive.dhl.junitUtils.InjectorMock.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;

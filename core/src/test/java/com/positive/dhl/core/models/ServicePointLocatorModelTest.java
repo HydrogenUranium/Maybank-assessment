@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.positive.dhl.core.utils.Constants.NEW_CONTENT_STRUCTURE_JSON;
+import static com.positive.dhl.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})

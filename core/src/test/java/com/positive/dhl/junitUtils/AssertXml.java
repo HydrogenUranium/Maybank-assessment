@@ -1,4 +1,4 @@
-package com.positive.dhl.core.utils;
+package com.positive.dhl.junitUtils;
 
 import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.Diff;

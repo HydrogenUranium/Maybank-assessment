@@ -13,8 +13,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.positive.dhl.core.utils.InjectorMock.INJECT_SCRIPT_BINDINGS;
-import static com.positive.dhl.core.utils.InjectorMock.mockInject;
+import static com.positive.dhl.junitUtils.InjectorMock.INJECT_SCRIPT_BINDINGS;
+import static com.positive.dhl.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
