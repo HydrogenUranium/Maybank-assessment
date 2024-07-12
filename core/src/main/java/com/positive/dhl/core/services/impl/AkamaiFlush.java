@@ -11,10 +11,7 @@ import com.positive.dhl.core.dto.akamai.ErrorResponse;
 import com.positive.dhl.core.dto.akamai.FlushRequest;
 import com.positive.dhl.core.dto.akamai.FlushResponse;
 import com.positive.dhl.core.exceptions.HttpRequestException;
-import com.positive.dhl.core.services.HttpCommunication;
-import com.positive.dhl.core.services.InitUtil;
-import com.positive.dhl.core.services.RepositoryChecks;
-import com.positive.dhl.core.services.ResourceResolverHelper;
+import com.positive.dhl.core.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -27,6 +24,7 @@ import java.util.List;
 import java.util.Set;
 
 import static com.positive.dhl.core.constants.DiscoverConstants.DISCOVER_CONTEXT;
+import static com.positive.dhl.core.services.PageUtilService.ROOT_PAGE_PATH;
 
 /**
  * Orchestrates the whole process of removing items from Akamai cache upon activation (or on any other request)
@@ -55,23 +53,29 @@ public class AkamaiFlush {
 	@Reference
 	private InitUtil initUtil;
 
-	public AkamaiInvalidationResult invalidateAkamaiCache(String path){
-		if(canWeFlush(path)){
-			var finalUrlToFlush = getHostname(path);
-			log.info("About to flush the following URL from Akamai: {}", finalUrlToFlush);
+	public AkamaiInvalidationResult invalidateAkamaiCache(String path) {
+		return canWeFlush(path) ? sendInvalidationRequest(getHostname(path)) : getSkippedResult(path);
+	}
 
-			FlushRequest request = FlushRequest.builder()
-					.itemsToFlush(getUrlsToFlush(finalUrlToFlush))
-					.build();
+	public AkamaiInvalidationResult invalidateAkamaiCache(String path, String pathSuffix) {
+		return canWeFlush(path) ? sendInvalidationRequest(getHostname(path) + pathSuffix) : getSkippedResult(path);
+	}
 
-			FlushResponse response = invalidateItemFromAkamai(request, getAkamaiCredentials());
-			if(response != null && response.getDetail().equalsIgnoreCase("request accepted")){
-				return AkamaiInvalidationResult.OK;
-			}
+	private AkamaiInvalidationResult sendInvalidationRequest(String finalUrlToFlush) {
+		log.info("Akamai Flush: About to flush the following URL from Akamai: {}", finalUrlToFlush);
 
-			return AkamaiInvalidationResult.REJECTED;
-		}
-		log.info("Skipping akamai flush for page '{}'", path);
+		FlushRequest request = FlushRequest.builder()
+				.itemsToFlush(getUrlsToFlush(finalUrlToFlush))
+				.build();
+
+		FlushResponse response = invalidateItemFromAkamai(request, getAkamaiCredentials());
+
+		return (response != null && response.getDetail().equalsIgnoreCase("request accepted"))
+				? AkamaiInvalidationResult.OK : AkamaiInvalidationResult.REJECTED;
+	}
+
+	private AkamaiInvalidationResult getSkippedResult(String path) {
+		log.info("Akamai Flush: Skipping akamai flush for page '{}'", path);
 		return AkamaiInvalidationResult.SKIPPED;
 	}
 
@@ -88,17 +92,19 @@ public class AkamaiFlush {
 
 		try {
 			var response = httpCommunication.sendPostMessage(finalUrl, flushRequest,client);
-			if(null != response && response.getHttpStatus() == 400){
+			if (response == null) {
+				log.error("Akamai Flush: Null response from Akamai");
+			} else if (response.getHttpStatus() == 400) {
 				ErrorResponse errorResponse = initUtil.getObjectMapper().readValue(response.getJsonResponse(), ErrorResponse.class);
-				log.error("Error response from Akamai: {}", errorResponse);
-			} else if (null != response){
+				log.error("Akamai Flush: Error response from Akamai: {}", errorResponse);
+			} else {
+				log.info("Akamai Flush: Akamai response code '{}'", response.getHttpStatus());
 				return initUtil.getObjectMapper().readValue(response.getJsonResponse(),FlushResponse.class);
 			}
-
 		} catch (HttpRequestException e) {
-			log.error("Http request to Akamai failed with error message: {}", e.getMessage());
+			log.error("Akamai Flush: Http request to Akamai failed with error message: {}", e.getMessage());
 		} catch (JsonProcessingException e) {
-			log.error("Failed to parse the json response from Akamai. Error message was: {}", e.getMessage());
+			log.error("Akamai Flush: Failed to parse the json response from Akamai. Error message was: {}", e.getMessage());
 		}
 		return null;
 	}
@@ -151,7 +157,7 @@ public class AkamaiFlush {
 	 */
 	private String updatePath(String path){
 		String regex = "/content/dhl/(global|\\w{2})/(.*)";
-		return path.replaceAll(regex, "/$2");
+		return ROOT_PAGE_PATH.equals(path) ? StringUtils.EMPTY : path.replaceAll(regex, "/$2");
 	}
 
 	private ResourceResolver getResourceResolver(){
