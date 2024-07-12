@@ -1,0 +1,15 @@
+azienda, impresa, società, ditta
+cliente, consumatore, acquirente
+prodotto, articolo, merce
+vendita, commercio, transazione
+spedizione, consegna, trasporto
+innovazione, progresso, novità
+dati, informazioni, statistiche
+mercato, commercio, settore
+strategia, piano, approccio
+tecnologia, tecnica, metodo
+leader, capo, dirigente
+crescita, espansione, aumento
+squadra, gruppo, personale
+sfida, ostacolo, difficoltà
+opportunità, possibilità, occasione

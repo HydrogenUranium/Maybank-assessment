@@ -1,6 +1,7 @@
 package com.positive.dhl.core.utils;
 
 import lombok.experimental.UtilityClass;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 
@@ -9,25 +10,40 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Integer.parseInt;
+
 @UtilityClass
 public class IndexUtils {
 
-    private static final Pattern PATTERN = Pattern.compile("^[a-zA-Z.]+(?:-(\\d+))?(?:-custom-(\\d+))?$");
+    private static final Pattern PATTERN = Pattern.compile("^([a-zA-Z.]+)(?:-(\\d+))?(?:-custom-(\\d+))?$");
+    private static final int NAME_GROUP = 1;
+    private static final int VERSION_GROUP = 2;
+    private static final int CUSTOM_VERSION_GROUP = 3;
+
+    private static String getPatternGroup(String name, int group, String absentValue) {
+        var matcher = PATTERN.matcher(name);
+        if (matcher.find() && matcher.group(group) != null) {
+            return matcher.group(group);
+        }
+        return absentValue;
+    }
+
+    private static int getPatternGroup(String name, int group, int absentValue) {
+        String groupValue = getPatternGroup(name, group, String.valueOf(absentValue));
+        return Integer.parseInt(groupValue);
+    }
+
 
     private static int getVersion(String name) {
-        var matcher = PATTERN.matcher(name);
-        if (matcher.find() && matcher.group(1) != null) {
-            return Integer.parseInt(matcher.group(1));
-        }
-        return 0;
+        return getPatternGroup(name, VERSION_GROUP, 0);
     }
 
     private static int getCustomVersion(String name) {
-        var matcher = PATTERN.matcher(name);
-        if (matcher.find() && matcher.group(2) != null) {
-            return Integer.parseInt(matcher.group(2));
-        }
-        return 0;
+        return getPatternGroup(name, CUSTOM_VERSION_GROUP, 0);
+    }
+
+    private static String getBaseName(String name) {
+        return getPatternGroup(name, NAME_GROUP, "");
     }
 
     private static int compareNames(String name1, String name2) {
@@ -77,10 +93,27 @@ public class IndexUtils {
                 "WHERE ISDESCENDANTNODE('/oak:index')\n" +
                 "AND [dhlFullTextSearch] = true\n";
         var resourceIterator = resolver.findResources(queryString, Query.JCR_SQL2);
+        var indexesAndVersions = splitByIndexName(resourceIterator);
+        List<Resource> indexes = new ArrayList<>();
+        indexesAndVersions.forEach((s, resources) -> {
+            var index = getIndexResourceWithLastVersion(resources);
+            if(isPathIncluded(index, searchScope)) {
+                indexes.add(index);
+            }
+        });
 
-        var index = IndexUtils.getIndexResourceWithLastVersion(resourceIterator);
+        return !indexes.isEmpty();
+    }
 
-        return IndexUtils.isPathIncluded(index, searchScope);
+    public static Map<String, List<Resource>> splitByIndexName(Iterator<Resource> resourceIterator){
+        var map = new HashMap<String, List<Resource>>();
+
+        resourceIterator.forEachRemaining(resource -> {
+            String name = getBaseName(resource.getName());
+            map.computeIfAbsent(name, k -> new ArrayList<>()).add(resource);
+        });
+
+        return map;
     }
 
     public static String getSuggestionIndexName(String homePath, ResourceResolver resolver) {
@@ -88,9 +121,15 @@ public class IndexUtils {
                 "WHERE ISDESCENDANTNODE('/oak:index')\n" +
                 "AND [dhlSuggestions] = true\n";
         var resourceIterator = resolver.findResources(queryString, Query.JCR_SQL2);
+        var indexesAndVersions = splitByIndexName(resourceIterator);
+        List<Resource> indexes = new ArrayList<>();
+        indexesAndVersions.forEach((s, resources) -> {
+            var index = getIndexResourceWithLastVersion(resources);
+            if(isPathIncluded(index, homePath)) {
+                indexes.add(index);
+            }
+        });
 
-        var index = IndexUtils.getIndexResourceWithLastVersion(resourceIterator);
-
-        return index != null && IndexUtils.isPathIncluded(index, homePath) ? index.getName() : null;
+        return indexes.isEmpty() ? null : indexes.get(0).getName();
     }
 }

@@ -10,6 +10,7 @@ import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.helpers.FullTextSearchHelper;
 import com.positive.dhl.core.models.Article;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -172,7 +173,9 @@ public class ArticleService {
     private void addFullTextTermsToParams(List<String> terms, Map<String, String> searchParams) {
         searchParams.put("group.p.or", "true");
         for (var i = 0; i < terms.size(); i++) {
-            searchParams.put("group." + (i + 1) + "_fulltext", "\"" + terms.get(i) + "\"");
+            String term = terms.get(i);
+            String wrappedTerm = term.contains(" ") ? StringUtils.wrap(term, "\"") : term;
+            searchParams.put("group." + (i + 1) + "_fulltext", wrappedTerm);
         }
     }
 

@@ -1,0 +1,14 @@
+bedrijf, onderneming, firma
+klant, consument, koper
+product, artikel, goed
+verkoop, transactie, handel
+levering, distributie, verzending
+innovatie, vooruitgang, vernieuwing
+gegevens, informatie, data
+markt, sector, industrie
+strategie, plan, aanpak
+technologie, techniek, methode
+groei, expansie, toename
+team, groep, personeel
+uitdaging, obstakel, probleem
+kans, mogelijkheid, gelegenheid
