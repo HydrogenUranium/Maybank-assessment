@@ -1,4 +1,25 @@
 .title {
+
+  &.custom-title--mg0 .cmp-title__text {
+    margin:0;
+  }
+
+  &.custom-title--mg1 .cmp-title__text {
+    margin: 0.5em 0;
+  }
+
+  &.custom-title--mg2 .cmp-title__text {
+    margin: 1em 0;
+  }
+
+  &.custom-title--mg3 .cmp-title__text {
+    margin: 1.5em 0;
+  }
+
+  &.custom-title--mg4 .cmp-title__text {
+    margin: 2em 0;
+  }
+
   h1, h2, h3, h4 {
     font-weight: bold;
   }
@@ -53,5 +74,23 @@
       font-size: 20px;
       line-height: 28px;
     }
+  }
+}
+
+[lang^="ko"] body .title {
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 35px;
+  }
+
+  h3 {
+    font-size: 25px;
+  }
+
+  h4 {
+    font-size: 20px;
   }
 }
