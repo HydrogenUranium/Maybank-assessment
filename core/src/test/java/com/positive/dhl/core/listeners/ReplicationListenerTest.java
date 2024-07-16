@@ -3,7 +3,6 @@ package com.positive.dhl.core.listeners;
 import com.day.cq.replication.ReplicationAction;
 import com.day.cq.replication.ReplicationActionType;
 import com.positive.dhl.core.config.AkamaiFlushConfigReader;
-import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.impl.AkamaiFlush;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -33,12 +32,9 @@ class ReplicationListenerTest {
 	@Mock
 	AkamaiFlush akamaiFlush;
 
-	@Mock
-	private PageUtilService pageUtilService;
-
 	ReplicationListener underTest;
 
-	private static final String DUMMY_PATH = "/content/dhl/global/en-global/test-page";
+	private static final String DUMMY_PATH = "/content/dummy-path";
 
 	@BeforeEach
 	void setUp() {
@@ -46,9 +42,8 @@ class ReplicationListenerTest {
 		injectedServices.putIfAbsent("akamaiFlushConfigReader", akamaiFlushConfigReader);
 		injectedServices.putIfAbsent("akamaiFlush", akamaiFlush);
 
-		context.registerService(AkamaiFlushConfigReader.class, akamaiFlushConfigReader);
-		context.registerService(AkamaiFlush.class, akamaiFlush);
-		context.registerService(PageUtilService.class, pageUtilService);
+		context.registerService(AkamaiFlushConfigReader.class,akamaiFlushConfigReader);
+		context.registerService(AkamaiFlush.class,akamaiFlush);
 
 		underTest = new ReplicationListener();
 		context.registerInjectActivateService(underTest,injectedServices);
@@ -89,7 +84,7 @@ class ReplicationListenerTest {
 	private Event initializeEvent(){
 		Map<String,Object> eventProperties = new HashMap<>();
 		String[] agentIds = {"publish"};
-		String[] paths = {"/content/dhl/global/en-global/test-page"};
+		String[] paths = {"/content/dummy-path"};
 		eventProperties.put("modificationDate", Calendar.getInstance());
 		eventProperties.put("agentIds", agentIds);
 		eventProperties.put("type", ReplicationActionType.ACTIVATE);
