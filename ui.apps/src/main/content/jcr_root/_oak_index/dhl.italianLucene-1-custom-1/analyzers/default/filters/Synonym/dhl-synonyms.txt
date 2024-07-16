@@ -1,0 +1,10 @@
+azienda, impresa, società, ditta
+cliente, consumatore, acquirente
+prodotto, articolo, merce
+vendita, commercio, transazione
+spedizione, consegna, trasporto
+innovazione, progresso, novità
+dati, informazioni, statistiche
+mercato, commercio, settore
+strategia, piano, approccio
+tecnologia, tecnica, metodo

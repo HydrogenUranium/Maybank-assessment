@@ -1,0 +1,14 @@
+firma, spoločnosť, podnik
+zákazník, klient, spotrebiteľ
+produkt, tovar, výrobok
+predaj, obchod, transakcia
+doručenie, dodávka, preprava
+inovácia, novinka, pokrok
+údaje, informácie, dáta
+trh, obchod, sektor
+stratégia, plán, prístup
+technológia, technika, metóda
+rast, expanzia, zväčšenie
+tím, skupina, personál
+výzva, prekážka, problém
+príležitosť, možnosť, šanca
