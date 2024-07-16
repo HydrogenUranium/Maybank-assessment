@@ -1,0 +1,11 @@
+unternehmen, firma, betrieb
+verkauf, absatz, vertrieb
+kunden, klienten, verbraucher
+markt, handelsplatz, börse
+produkte, waren, erzeugnisse
+dienstleistungen, service, leistungen
+lieferung, versand, zustellung
+wachstum, expansion, zunahme
+innovation, neuerung, fortschritt
+online, internet, web
+

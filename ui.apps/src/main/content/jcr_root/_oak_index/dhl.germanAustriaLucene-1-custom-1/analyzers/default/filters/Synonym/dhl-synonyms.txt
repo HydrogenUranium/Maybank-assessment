@@ -1,0 +1,11 @@
+unternehmen, firma, betrieb
+erfolg, triumph, sieg
+mitarbeiter, angestellte, beschäftigte
+kunde, klient, verbraucher
+teamarbeit, zusammenarbeit, kooperation
+vertrauen, zuversicht, glauben
+innovation, neuerung, fortschritt
+zustellung, lieferung, versand
+motivation, ansporn, antrieb
+globalisierung, internationalisierung, weltwirtschaft
+

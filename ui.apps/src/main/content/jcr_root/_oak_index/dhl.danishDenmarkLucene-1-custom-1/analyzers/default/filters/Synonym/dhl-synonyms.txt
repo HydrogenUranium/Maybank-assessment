@@ -1,0 +1,13 @@
+kunder, forbrugere, klienter
+produkter, varer
+forsendelse, levering
+tilbud, rabatter, kampagner
+ordre, køb
+markedsføring, promotion
+forretning, virksomhed, firma
+indtjening, omsætning
+mere, yderligere
+online, digital
+handel, transaktion, salg
+nogle, flere, visse
+oplev, erfaring
