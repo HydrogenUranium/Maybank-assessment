@@ -3,12 +3,13 @@
         data-sly-set.style="${properties.style}"
         data-sly-set.roundedColor="${properties.roundedColor}"
         data-sly-set.spikedColor="${properties.spikedColor}"
+        data-sly-set.textSize="${properties.textSize}"
         data-sly-set.text="${properties.text}"
 ></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
-<div class="callout-box-component" data-sly-test="${!isEmpty}">
+<div class="callout-box-component callout-box-component_${textSize}-text" data-sly-test="${!isEmpty}">
   <div class="callout-box callout-box_rounded callout-box_rounded_${roundedColor}"
        data-sly-test="${style == 'rounded'}">
     <div class="top-right-border"></div>
