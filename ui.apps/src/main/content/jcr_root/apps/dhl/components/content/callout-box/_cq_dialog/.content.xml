@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Callout Box"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <text
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                            fieldLabel="Text"
+                            name="./text"/>
+                    <style
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Style (Rounded or Spiked)"
+                            fieldDescription="The component supports two styles: rounded and spiked."
+                            granite:class="cq-dialog-dropdown-showhide"
+                            name="./style">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-dropdown-showhide-target=".style-options-showhide"/>
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <rounded
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Rounded"
+                                    value="rounded"/>
+                            <spiked
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Spiked"
+                                    value="spiked"/>
+                        </items>
+                    </style>
+                    <rounded
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="style-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="rounded"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <color
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Color"
+                                    granite:class="cq-dialog-dropdown-showhide"
+                                    name="./roundedColor">
+                                <items
+                                        jcr:primaryType="nt:unstructured">
+                                    <yellow
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Yellow"
+                                            value="yellow"/>
+                                    <lightGray
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Light Gray"
+                                            value="lightGray"/>
+                                    <darkGray
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Dark Gray"
+                                            value="darkGray"/>
+                                </items>
+                            </color>
+                        </items>
+                    </rounded>
+                    <spiked
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="style-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="spiked"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <color
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Color"
+                                    granite:class="cq-dialog-dropdown-showhide"
+                                    name="./spikedColor">
+                                <items
+                                        jcr:primaryType="nt:unstructured">
+                                    <yellow
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Yellow"
+                                            value="yellow"/>
+                                    <gray
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Gray"
+                                            value="gray"/>
+                                    <black
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Black"
+                                            value="black"/>
+                                </items>
+                            </color>
+                        </items>
+                    </spiked>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
