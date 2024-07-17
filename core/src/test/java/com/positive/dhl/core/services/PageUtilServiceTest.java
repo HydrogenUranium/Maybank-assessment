@@ -258,4 +258,17 @@ class PageUtilServiceTest {
 
         assertTrue(result);
     }
+
+    @Test
+    void test_getHomePagesByPath()  {
+        assertEquals("", pageUtilService.getHomePagePath("/content/dhl/language-masters/pt_br/news-and-insights1/dhl-stories"));
+        assertEquals("", pageUtilService.getHomePagePath("/content/dhl/Archive/master-backup/old-ship-now/thanks-sn"));
+        assertEquals("", pageUtilService.getHomePagePath("/content/dhl/au"));
+        assertEquals("/content/dhl/au/en-au", pageUtilService.getHomePagePath("/content/dhl/au/en-au"));
+        assertEquals("/content/dhl/au/en-au", pageUtilService.getHomePagePath("/content/dhl/au/en-au/small-business-advice/growing-your-business/making-more-of-your-time"));
+        assertEquals("", pageUtilService.getHomePagePath("/content/dhl/global"));
+        assertEquals("/content/dhl/global/en-global", pageUtilService.getHomePagePath("/content/dhl/global/en-global"));
+        assertEquals("/content/dhl/global/en-global", pageUtilService.getHomePagePath("/content/dhl/global/en-global/ship-with-dhl/services/optional-services"));
+    }
+
 }
