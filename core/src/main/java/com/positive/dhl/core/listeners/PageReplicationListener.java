@@ -36,7 +36,7 @@ import static com.positive.dhl.core.services.PageUtilService.ROOT_PAGE_PATH;
         })
 public class PageReplicationListener implements EventHandler, JobConsumer {
     static final String JOB_TOPIC = "solr/content/replication";
-    private static final String KEY_REPLICATION_ACTION = "replicationAction";
+    protected static final String KEY_REPLICATION_ACTION = "replicationAction";
 
     private static final String RESULT_OF_FLUSH_REQUEST = "Akamai Flush: Result of flush request to Akamai: {} ({})";
 
