@@ -21,6 +21,7 @@ import static com.positive.dhl.core.services.PageUtilService.ROOT_PAGE_PATH;
 @Slf4j
 @Component(
 		service = EventHandler.class,
+		immediate = true,
 		property = {
 				EventConstants.EVENT_TOPIC + "=" + ReplicationAction.EVENT_TOPIC
 		}
