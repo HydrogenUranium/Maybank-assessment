@@ -14,6 +14,7 @@ import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -107,7 +108,7 @@ class AkamaiFlushTest {
 						"  \"detail\": \"Request accepted\"\n" +
 						"}").build());
 
-		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path");
+		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", StringUtils.EMPTY);
 		verify(httpCommunication, times(1)).sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class));
 		assertEquals(AkamaiInvalidationResult.OK, akamaiInvalidationResult);
 	}
@@ -134,7 +135,7 @@ class AkamaiFlushTest {
 		when(httpCommunication.sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class)))
 				.thenReturn(null);
 
-		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path");
+		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", StringUtils.EMPTY);
 		verify(httpCommunication, times(1)).sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class));
 		assertEquals(AkamaiInvalidationResult.REJECTED, akamaiInvalidationResult);
 	}
@@ -156,7 +157,7 @@ class AkamaiFlushTest {
 		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
 		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
 
-		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path");
+		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", StringUtils.EMPTY);
 		verify(httpCommunication, times(1)).sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class));
 		assertEquals(AkamaiInvalidationResult.REJECTED, akamaiInvalidationResult);
 	}
@@ -173,7 +174,7 @@ class AkamaiFlushTest {
 		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
 		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
 
-		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path");
+		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", StringUtils.EMPTY);
 		assertEquals(AkamaiInvalidationResult.SKIPPED, akamaiInvalidationResult);
 	}
 
@@ -189,8 +190,39 @@ class AkamaiFlushTest {
 		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
 		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
 
-		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/dummy-path");
+		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/dummy-path", StringUtils.EMPTY);
 		assertEquals(AkamaiInvalidationResult.SKIPPED, akamaiInvalidationResult);
+	}
+
+	@Test
+	void invalidateAkamaiSitemapCache() throws HttpRequestException {
+		List<String> allowedContentPaths = new ArrayList<>();
+		allowedContentPaths.add("/content/dhl");
+		List<String> allowedContentTypes = new ArrayList<>();
+		allowedContentTypes.add("cq:Page");
+
+		this.akamaiStubbing();
+
+		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(context.resourceResolver());
+		when(akamaiFlushConfigReader.getAllowedContentPaths()).thenReturn(allowedContentPaths);
+		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
+		when(environmentConfiguration.getAkamaiHostname()).thenReturn("uat1.dhl.dhl");
+		lenient().when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
+		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
+		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
+		when(initUtil.getObjectMapper()).thenReturn(new ObjectMapper());
+		when(httpCommunication.sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class)))
+				.thenReturn(HttpApiResponse.builder().httpStatus(201).jsonResponse("{\n" +
+						"  \"httpStatus\": 201,\n" +
+						"  \"estimatedSeconds\": 5,\n" +
+						"  \"purgeId\": \"edcp-NZbXzFpHBjcJeryhw6PVgG\",\n" +
+						"  \"supportId\": \"edcp-NZbXzFpHBjcJeryhw6PVgG\",\n" +
+						"  \"detail\": \"Request accepted\"\n" +
+						"}").build());
+
+		AkamaiInvalidationResult akamaiInvalidationSitemapResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", "/sitemap.xml");
+		verify(httpCommunication, times(1)).sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class));
+		assertEquals(AkamaiInvalidationResult.OK, akamaiInvalidationSitemapResult);
 	}
 
 	private void akamaiStubbing(){
