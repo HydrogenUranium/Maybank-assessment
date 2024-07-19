@@ -6,180 +6,223 @@
     font-weight: bold;
     color: black;
 
-    &__rounded {
-      margin: 13px;
-      padding: 50px 60px;
+    &__text {
+      position: relative;
+    }
+
+    &_rounded {
+      margin: 10px;
+      padding: 45px 40px;
       font-size: 20px;
       line-height: 25px;
+      @include respond(md) {
+        margin: 13px;
+        padding: 50px 60px;
+        font-size: 25px;
+        line-height: 30px;
+      }
+      @include respond(xl) {
+        font-size: 28px;
+        line-height: 35px;
+      }
 
       .callout-border {
         position: absolute;
-        border-radius: 100px;
+        border-radius: 90px;
         width: 100%;
         height: 100%;
         left: 0;
         top: 0;
-        border: 6px solid;
+        border: 5px solid;
+        @include respond(md) {
+          border-radius: 100px;
+          border-width: 6px;
+        }
       }
 
       .background {
         background-color: #FFCC00;
         z-index: -1;
         position: absolute;
-        border-radius: 100px;
+        border-radius: 90px;
         width: calc(100% - 7px);
         height: calc(100% - 4px);
-        right: -10px;
+        right: -5px;
         top: 2px;
+        @include respond(md) {
+          border-radius: 100px;
+          right: -10px;
+        }
       }
 
       .top-right-border {
         width: 50%;
-        height: calc(50% + 13px);
-        max-height: 113px;
+        height: calc(50% + 10px);
+        max-height: 100px;
         position: absolute;
-        right: -13px;
-        top: -13px;
-        border: 6px dashed;
-        border-radius: 0 113px 0 0;
-        border-bottom-right-radius: 20px 7px;
-        border-bottom-color: transparent;
-        border-left: none;
+        right: -10px;
+        top: -10px;
+        border: 5px dashed;
+        border-radius: 0 100px 0 0;
+        border-bottom-right-radius: 20px 5px;
+        border-bottom-color: transparent !important;
+        border-left: 1px solid transparent !important;
+        @include respond(md) {
+          border-width: 6px;
+          height: calc(50% + 13px);
+          border-radius: 0 113px 0 0;
+          border-bottom-right-radius: 20px 6px;
+          right: -13px;
+          top: -13px;
+        }
       }
 
       .bottom-left-border {
         width: 25%;
         min-width: 180px;
-        height: calc(50% + 13px);
-        max-height: 113px;
+        height: calc(50% + 10px);
+        max-height: 100px;
         position: absolute;
-        left: -13px;
-        bottom: -13px;
-        border: 6px solid;
-        border-radius: 0 0 0 113px;
-        border-top: none;
-        border-right: none;
+        left: -10px;
+        bottom: -10px;
+        border: 5px solid;
+        border-radius: 0 0 0 100px;
+        border-top: 1px solid transparent !important;
+        border-right: 1px solid transparent !important;
+        @include respond(md) {
+          border-width: 6px;
+          left: -13px;
+          bottom: -13px;
+          border-radius: 0 0 0 113px;
+          height: calc(50% + 13px);
+          max-height: 113px;
+        }
       }
 
-      &__lightGray {
+      &_lightGray {
         .background {
           background-color: #F5F5F5;
         }
       }
 
-      &__darkGray {
+      &_darkGray {
         .background {
           background-color: #CCCCCC;
         }
       }
     }
 
-    &__spiked {
-      margin: 10px 26px 20px 10px;
-      padding: 60px 130px 60px 100px;
-      font-size: 28px;
-      line-height: 35px;
+    &_spiked {
+      margin: 10px 16px 10px 10px;
+      padding: 30px 45px 50px 35px;
+      font-size: 18px;
+      line-height: 22px;
+
+      @include respond(md) {
+        margin: 10px 26px 20px 10px;
+        padding: 60px 100px 60px 70px;
+        font-size: 20px;
+        line-height: 25px;
+      }
+
+      @include respond(xl) {
+        padding: 60px 130px 60px 100px;
+        font-size: 20px;
+        line-height: 25px;
+      }
 
       .top-left-line {
         position: absolute;
         width: 10%;
-        border-top: 7px solid;
+        border-top: 5px solid;
         top: 0;
-        left: 0;
+        left: 1px;
+        @include respond(md) {
+          border-width: 7px;
+        }
       }
 
       .left-curve {
-        width: 180px;
+        width: 100%;
         height: 100%;
-        border: 7px solid;
-        border-top: none;
-        border-right: none;
+        border: 5px solid;
+        border-top: 1px solid transparent !important;
+        border-right: 1px solid transparent !important;
         position: absolute;
-        border-radius: 0 0 0 95%;
+        border-radius: 0 0 0 90px;
         top: 0;
         left: 0;
+
+        @include respond(md) {
+          border-width: 7px;
+          border-radius: 0 0 0 180px;
+        }
       }
 
       .right-curve {
-        width: 180px;
+        width: calc(90% - 100px);
         height: calc(100% - 30px);
-        border: 7px solid;
+        border: 5px solid;
         position: absolute;
-        border-top-right-radius: 100%;
-        border-bottom: none;
-        border-left: none;
+        border-top-right-radius: 90px;
+        border-bottom: 1px solid transparent !important;
+        border-left: 1px solid transparent !important;
         top: 0;
-        right: 30px;
-      }
-
-      .top-right-line {
-        border-top: 7px solid;
-        position: absolute;
-        width: calc(100% - 210px - 180px);
-        right: 210px;
-        top: 0;
-      }
-
-      .bottom-line {
-        top: 0;
-        height: 100%;
-        position: absolute;
-        border-bottom: 7px solid;
-        width: calc(100% - 180px);
-        left: 180px;
+        right: 10px;
+        @include respond(md) {
+          right: 30px;
+          border-width: 7px;
+          border-top-right-radius: 180px;
+        }
       }
 
       .background {
         position: absolute;
         z-index: -1;
-        left: 170px;
+        left: -10px;
         top: -10px;
         background-color: #FFCC00;
-        width: calc(100% - 180px - 180px - 30px);
+        width: calc(100% - 10px);
         height: calc(100% - 5px);
-
-        &::before {
-          content: "";
-          position: absolute;
-          border-radius: 0 0 0 95%;
-          width: 180px;
-          height: 100%;
-          left: -180px;
-          top: 0;
-          background-color: #FFCC00;
-        }
-
-        &::after {
-          content: "";
-          position: absolute;
-          border-radius: 0 95% 0 0;
-          width: 180px;
-          height: 100%;
-          right: -180px;
-          top: 0;
-          background-color: #FFCC00;
+        border-radius: 0 90px 0 90px;
+        right: 10px;
+        @include respond(md) {
+          width: calc(100% - 32px);
+          right: 30px;
+          border-radius: 0 180px 0 180px;
         }
       }
 
       .right-bottom-circle {
-        bottom: -12px;
-        right: -25px;
+        bottom: -7px;
+        right: -15px;
         position: absolute;
-        border: 7px solid;
-        width: 30px;
-        height: 30px;
+        border: 5px solid;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
+        @include respond(md) {
+          border-width: 7px;
+          width: 30px;
+          height: 30px;
+          bottom: -12px;
+          right: -25px;
+        }
       }
 
       .bottom-short-line {
         width: 30%;
-        border-bottom: 7px solid;
+        border-bottom: 5px solid;
         position: absolute;
         left: 35%;
-        bottom: -20px
+        bottom: -10px;
+        @include respond(md) {
+          border-width: 7px;
+          bottom: -20px;
+        }
       }
 
-      &__gray {
+      &_gray {
         .background {
           background-color: #CCCCCC;
           &::before {
@@ -193,19 +236,19 @@
         .top-left-line {
           border-color:#FFCC00;
         }
-  
+
         .left-curve {
           border-color:#FFCC00;
         }
-  
+
         .right-curve {
           border-color:#FFCC00;
         }
-  
+
         .top-right-line {
           border-color:#FFCC00;
-        } 
-  
+        }
+
         .bottom-line {
           border-color:#FFCC00;
         }
@@ -219,41 +262,35 @@
         }
       }
 
-      &__black {
+      &_black {
         color: white;
         .background {
           background-color: #001C20;
-          &::before {
-            background-color: #001C20;
-          }
-          &::after {
-            background-color: #001C20;
-          }
         }
 
         .top-left-line {
           border-color:#FFCC00;
         }
-  
+
         .left-curve {
           border-color:#FFCC00;
         }
-  
+
         .right-curve {
           border-color:#FFCC00;
         }
-  
+
         .top-right-line {
           border-color:#FFCC00;
-        } 
-  
+        }
+
         .bottom-line {
           border-color:#FFCC00;
         }
         .bottom-short-line {
           border-color:#FFCC00;
         }
-        
+
         .right-bottom-circle {
           border-color:#FFCC00;
         }
