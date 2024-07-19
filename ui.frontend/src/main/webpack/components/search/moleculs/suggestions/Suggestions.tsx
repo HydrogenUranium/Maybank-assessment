@@ -23,7 +23,7 @@ export const Suggestions: React.FC<SuggestionsProps> = (
     handleSearch
   }) => {
   if (!suggestionsQuery) {
-    return (recentSearches.length &&
+    return (!!recentSearches.length &&
       <div className={styles.searchSection}>
         <SearchSection
           items={recentSearches}
