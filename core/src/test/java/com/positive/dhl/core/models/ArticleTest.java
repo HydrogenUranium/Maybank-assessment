@@ -94,7 +94,7 @@ class ArticleTest {
         assertEquals("Discover content team", article.getAuthortitle());
         assertEquals("2023-08-04", article.getCreated());
         assertEquals("August 4, 2023", article.getCreatedfriendly());
-        assertEquals("What paperwork do I need for international shipping?", article.getFullTitle());
+        assertEquals("What paperwork do I need for international shipping?", article.getTitle());
         assertEquals("#SmallBusinessAdvice", article.getGroupTag());
         assertEquals("/content/dhl/global/home/small-business-advice", article.getGrouppath());
         assertEquals("Small Business advice", article.getGrouptitle());

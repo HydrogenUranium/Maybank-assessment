@@ -10,7 +10,7 @@
                 <div class="col-12 ">
                     <h2 class="similarStories__title">${ 'Similar stories' @ i18n, context='html' }</h2>
                     <ul class="similarStories__list" data-sly-list="${articleSideNavigation.articles}">
-                        <li class="similarStories__list-item"><a href="${item.path}" class="similarStories__link">${item.title}</a></li>
+                        <li class="similarStories__list-item"><a href="${item.path}" class="similarStories__link">${item.navTitle}</a></li>
                     </ul>
                 </div>
             </div>
@@ -35,17 +35,17 @@
                                 <article class="articlePanel${((item.youtubeid.length > 0) ? ' articlePanel--video' : '')}" id="articlePanelUniqueId">
                                     <a class="articlePanel__image"
                                        href="${item.path}"
-                                       title="${item.title}"
+                                       title="${item.navTitle}"
                                        style="background-image: url('${item.listimage @ context='uri'}');">
-                                        <span class="sr-only">${item.title}</span>
+                                        <span class="sr-only">${item.navTitle}</span>
                                     </a>
                                     <div class="articlePanel__content">
-                                        <a href="${item.path}" title="${item.title}">
-                                            <h2 class="articlePanel__title">${item.title}</h2>
+                                        <a href="${item.path}" title="${item.navTitle}">
+                                            <h2 class="articlePanel__title">${item.navTitle}</h2>
                                             <p class="articlePanel__description">${item.brief}</p>
                                         </a>
                                         <h3 class="articlePanel__subTitle">
-                                            <a href="${item.path}" title="Business">${item.grouptitle}</a> <sly data-sly-unwrap data-sly-test="${(item.readtime.length > 0)}">&middot; <a class="noUnderline" href="${item.path}" title="${item.title}">3 min read</sly></a>
+                                            <a href="${item.path}" title="Business">${item.grouptitle}</a> <sly data-sly-unwrap data-sly-test="${(item.readtime.length > 0)}">&middot; <a class="noUnderline" href="${item.path}" title="${item.navTitle}">3 min read</a></sly>
                                         </h3>
                                     </div>
                                 </article>

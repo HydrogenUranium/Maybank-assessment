@@ -3,6 +3,7 @@ package com.positive.dhl.core.models;
 import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.wcm.api.Page;
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.positive.dhl.core.constants.DiscoverConstants;
 import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
@@ -78,8 +79,10 @@ public class Article {
 	private String grouptitle;
 	@Expose private String groupTag;
 	private String grouppath;
-	private String fullTitle;
-	@Expose private String title;
+	private String title;
+	private String pageTitle;
+	@SerializedName("title")
+	@Expose private String navTitle;
 	@Expose private String description;
 	private String brief;
 	@Expose private String author;
@@ -161,12 +164,10 @@ public class Article {
 		grouppath = getGroupPath(resource);
 		groupTag = tagUtilService.transformToHashtag(grouptitle);
 
-		fullTitle = valueMap.get("jcr:content/jcr:title", "");
-		title = valueMap.get("jcr:content/navTitle", "");
+		title = valueMap.get("jcr:content/jcr:title", "");
+		navTitle = valueMap.get("jcr:content/navTitle", title);
+		pageTitle = valueMap.get("jcr:content/pageTitle", title);
 		description = valueMap.get("jcr:content/jcr:description", "");
-		if (title.isBlank()) {
-			title = fullTitle;
-		}
 		brief = valueMap.get("jcr:content/listbrief", "");
 		if (brief.length() > 120) {
 			brief = brief.substring(0, 120).concat("...");

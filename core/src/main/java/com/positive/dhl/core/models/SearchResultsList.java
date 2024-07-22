@@ -421,7 +421,7 @@ public class SearchResultsList {
                     
                     //sorting
                     if (("title").equals(sortBy)) {
-                        results.sort((o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
+                        results.sort((o1, o2) -> o1.getNavTitle().compareTo(o2.getNavTitle()));
                     } else {
                         results.sort((o1, o2) -> o2.getCreated().compareTo(o1.getCreated()));
                     }

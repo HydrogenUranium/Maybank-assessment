@@ -6,7 +6,7 @@
 				@media screen and (min-width: 992px) { #heroItemIdOne .hero__image { background-image: url('${articlePage.article.heroimagedt @ context='uri'}') !important; } }
 			</style>
     <div class="hero__image" style="background-image: url('${articlePage.article.heroimagemob @ context='uri'}');">
-        <span class="sr-only">${articlePage.article.title}</span>
+        <span class="sr-only">${articlePage.article.navTitle}</span>
         <sly data-sly-unwrap data-sly-test="${(articlePage.article.youtubeid.length > 0)}">
             <a class="hero__playButton" href="https://youtu.be/${articlePage.article.youtubeid}"><span class="sr-only">${ 'Play Video' @ i18n, context='html' }</span></a>
             <iframe class="hero__video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -17,7 +17,7 @@
             <div class="col-12 col-lg-10 col-xl-8 offset-lg-2">
                 <div class="hero__itemContent">
                     <h2 class="hero__subTitle">${articlePage.article.grouptitle} <sly data-sly-unwrap data-sly-test="${articlePage.article.readtime}">&middot; ${articlePage.article.readtime}</sly></h2>
-                    <h1 class="hero__title">${articlePage.article.fullTitle}</h1>
+                    <h1 class="hero__title">${articlePage.article.title}</h1>
                     <div class="clearfix">
                         <time class="hero__date" datetime="${articlePage.article.created}">${articlePage.article.createdfriendly}</time>
                         <button class="hero__saveForOffline hero__saveForOffline--desktop" title="${ 'Save Article' @ i18n, context='html' }"><span>${ 'Save Article' @ i18n, context='html' }</span></button>
@@ -33,7 +33,7 @@
     <button class="hero__saveForOffline" title="Save Article"><span>${ 'Save Article' @ i18n, context='html' }</span></button>
     <script id="articleData" type="application/ld+json">
 			{
-				"title": "${articlePage.article.title @ context='text'}",
+				"title": "${articlePage.article.navTitle @ context='text'}",
 				"description": "${articlePage.article.brief @ context='text'}",
 				"imageMobile": "${articlePage.article.heroimagemob @ context='uri'}",
 				"imageDesktop": "${articlePage.article.heroimagedt @ context='uri'}",
