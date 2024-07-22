@@ -135,7 +135,7 @@ class ArticlePageTest {
 		Article article = articlePage.getArticle();
 		assertNotNull(article);
 
-		assertEquals("ARTICLE PAGE without new article setup", article.getFullTitle());
+		assertEquals("ARTICLE PAGE without new article setup", article.getTitle());
 		assertEquals(getTodayDate(), article.getCreated());
 		assertEquals(getTodayDateText(new Locale("en", "us")), article.getCreatedfriendly());
 		assertEquals("", article.getReadtime());
@@ -179,8 +179,9 @@ class ArticlePageTest {
 		assertEquals("article", article.getIcon());
 		assertEquals("CATEGORY PAGE", article.getGrouptitle());
 		assertEquals("/content/dhl/global/en-global/category-page", article.getGrouppath());
-		assertEquals("ARTICLE PAGE", article.getFullTitle());
 		assertEquals("ARTICLE PAGE", article.getTitle());
+		assertEquals("ARTICLE PAGE", article.getNavTitle());
+		assertEquals("ARTICLE PAGE", article.getPageTitle());
 		assertEquals("How subscription models are changing e-commerce habits", article.getBrief());
 		assertEquals("Sansa Stark", article.getAuthor());
 		assertEquals("Senior Content Writer, Discover", article.getAuthortitle());

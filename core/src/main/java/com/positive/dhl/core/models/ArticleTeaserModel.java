@@ -91,7 +91,7 @@ public class ArticleTeaserModel {
                         .orElse(StringUtils.EMPTY);
             }
 
-            titleFromLinkedPage = Boolean.parseBoolean(titleFromPage) ? article.getTitle() : StringUtils.EMPTY;
+            titleFromLinkedPage = Boolean.parseBoolean(titleFromPage) ? article.getNavTitle() : StringUtils.EMPTY;
             categoryTag = article.getGroupTag();
             author = article.getAuthor();
             publishDate = article.getCreated();
