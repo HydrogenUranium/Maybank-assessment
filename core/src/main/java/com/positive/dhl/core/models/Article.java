@@ -113,6 +113,10 @@ public class Article {
 		return enableAssetDelivery ? assetUtilService.getMappedDeliveryUrl(path, props, assetDelivery) : pathUtilService.map(path);
 	}
 
+	public String getPageTitleWithBr() {
+		return pageTitle.replaceAll("(\r\n|\n)", "<br>");
+	}
+
 	/**
 	 * This method updates all asset paths. If the article is used in HTL, all link transformations will
 	 * be processed by the link transformer, and link optimization will be processed in the HTL template. However,

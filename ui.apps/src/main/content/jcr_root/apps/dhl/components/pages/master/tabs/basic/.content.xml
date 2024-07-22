@@ -92,7 +92,8 @@
                         <pagetitle
                                 cq:showOnCreate="{Boolean}true"
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                rows="2"
                                 fieldDescription="Defines a page title that is displayable in the page content, instead of the 'Title'."
                                 fieldLabel="Page Title"
                                 name="./pageTitle"
