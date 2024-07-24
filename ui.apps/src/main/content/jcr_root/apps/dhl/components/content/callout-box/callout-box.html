@@ -1,0 +1,30 @@
+<sly
+        data-sly-set.isEmpty="${!properties.text}"
+        data-sly-set.style="${properties.style}"
+        data-sly-set.roundedColor="${properties.roundedColor}"
+        data-sly-set.spikedColor="${properties.spikedColor}"
+        data-sly-set.text="${properties.text}"
+></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+
+<div class="callout-box-component" data-sly-test="${!isEmpty}">
+  <div class="callout-box callout-box_rounded callout-box_rounded_${roundedColor}"
+       data-sly-test="${style == 'rounded'}">
+    <div class="top-right-border"></div>
+    <div class="bottom-left-border"></div>
+    <div class="background"></div>
+    <div class="callout-border"></div>
+    <div class="callout-box__text">${text}</div>
+  </div>
+  <div class="callout-box callout-box_spiked callout-box_spiked_${spikedColor}"
+       data-sly-test="${style == 'spiked'}">
+    <div class="top-left-line"></div>
+    <div class="left-curve"></div>
+    <div class="right-curve"></div>
+    <div class="bottom-short-line"></div>
+    <div class="right-bottom-circle"></div>
+    <div class="background"></div>
+    <div class="callout-box__text">${text}</div>
+  </div>
+</div>
