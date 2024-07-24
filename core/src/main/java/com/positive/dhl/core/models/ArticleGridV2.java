@@ -129,7 +129,7 @@ public class ArticleGridV2 {
             JsonArrayBuilder articlesJson = Json.createArrayBuilder();
             articles.forEach(article -> {
                 JsonObject articleJson = Json.createObjectBuilder()
-                        .add(PAGE_TITLE_PARAM, article.getTitle())
+                        .add(PAGE_TITLE_PARAM, article.getNavTitle())
                         .add("path", article.getPath())
                         .add("description", article.getDescription())
                         .add("listimage", article.getListimage())

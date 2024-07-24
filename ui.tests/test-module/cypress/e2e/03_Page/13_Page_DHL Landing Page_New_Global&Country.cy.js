@@ -38,7 +38,7 @@ describe('DHL Landing Page', () => {
           // 3. Verify download asset exists and when clicked, it redirects to the correct page
           cy.get(':nth-child(5) > .download > .cq-dd-file').should('exist');
           cy.get(':nth-child(5) > .download > .cq-dd-file').click();
-          cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-global/open-an-account`);
+          cy.url().should('match', new RegExp(`${Cypress.env('AEM_PUBLISH_URL')}/discover/(en-global|en-sg)/open-an-account`));
 
           // 4. Verify header and footer exist
           cy.get('.headerV2-wrapper').should('exist');

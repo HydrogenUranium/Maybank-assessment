@@ -25,7 +25,7 @@
 						<span class="categoryHero__category">${item.grouptitle}</span>
 						<sly data-sly-unwrap data-sly-test="${item.readtime}"><span class="readTime">${item.readtime}</span></sly>
 					</span>
-					<h2 class="categoryHero__articleTitle">${item.title}</h2>
+					<h2 class="categoryHero__articleTitle">${item.navTitle}</h2>
 					<span href="${item.path}" class="hero__cta--red d-none d-md-inline-block d-lg-none">${ "Read more" @ i18n, context='html' } </span>
 					<p class="categoryHero__articleIntro d-none d-large-block">${item.brief}</p>
 				</div>

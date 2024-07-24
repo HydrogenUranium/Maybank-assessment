@@ -65,7 +65,7 @@ public class DiscoverRssFeed {
         resourcePath = article.getJcrPath();
         mappedResourcePath =  article.getPath();
 
-        title = article.getTitle();
+        title = article.getNavTitle();
         description = article.getDescription();
         publishedDate = article.getCreated();
         urlPrefix = RequestUtils.getUrlPrefix(request);

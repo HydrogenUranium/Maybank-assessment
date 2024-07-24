@@ -56,7 +56,7 @@ public class BlogPostingSchemaAdapter extends AbstractSchemaAdapter {
         webPage.addProperty("@id", pathUtilService.getFullMappedPath(article.getPath(), request));
         blogPosting.add("mainEntityOfPage", webPage);
 
-        blogPosting.addProperty("headline", article.getFullTitle());
+        blogPosting.addProperty("headline", article.getTitle());
         blogPosting.addProperty("description", article.getDescription());
         blogPosting.addProperty("image", pathUtilService.getFullMappedPath(article.getHeroimagemob(), request));
 

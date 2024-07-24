@@ -67,7 +67,7 @@ class BlogPostingSchemaAdapterTest {
     @Test
     void testToJson() {
         when(article.getPath()).thenReturn(ARTICLE_PATH);
-        when(article.getFullTitle()).thenReturn("Sample Blog Title");
+        when(article.getTitle()).thenReturn("Sample Blog Title");
         when(article.getDescription()).thenReturn("Sample Blog Description");
         when(article.getHeroimagemob()).thenReturn("/content/dam/sample.jpg");
         when(pathUtilService.getFullMappedPath(anyString(), any()))

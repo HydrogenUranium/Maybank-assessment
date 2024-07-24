@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Set;
 
 import static com.positive.dhl.core.constants.DiscoverConstants.DISCOVER_CONTEXT;
+import static com.positive.dhl.core.services.PageUtilService.ROOT_PAGE_PATH;
 
 /**
  * Orchestrates the whole process of removing items from Akamai cache upon activation (or on any other request)
@@ -55,9 +56,9 @@ public class AkamaiFlush {
 	@Reference
 	private InitUtil initUtil;
 
-	public AkamaiInvalidationResult invalidateAkamaiCache(String path){
+	public AkamaiInvalidationResult invalidateAkamaiCache(String path, String pathSuffix){
 		if(canWeFlush(path)){
-			var finalUrlToFlush = getHostname(path);
+			var finalUrlToFlush = getHostname(path) + pathSuffix;
 			log.info("About to flush the following URL from Akamai: {}", finalUrlToFlush);
 
 			FlushRequest request = FlushRequest.builder()
@@ -88,17 +89,19 @@ public class AkamaiFlush {
 
 		try {
 			var response = httpCommunication.sendPostMessage(finalUrl, flushRequest,client);
-			if(null != response && response.getHttpStatus() == 400){
+			if (response == null) {
+				log.error("Akamai Flush: Null response from Akamai");
+			} else if (response.getHttpStatus() == 400) {
 				ErrorResponse errorResponse = initUtil.getObjectMapper().readValue(response.getJsonResponse(), ErrorResponse.class);
-				log.error("Error response from Akamai: {}", errorResponse);
-			} else if (null != response){
+				log.error("Akamai Flush: Error response from Akamai: {}", errorResponse);
+			} else {
+				log.info("Akamai Flush: Akamai response code '{}'", response.getHttpStatus());
 				return initUtil.getObjectMapper().readValue(response.getJsonResponse(),FlushResponse.class);
 			}
-
 		} catch (HttpRequestException e) {
-			log.error("Http request to Akamai failed with error message: {}", e.getMessage());
+			log.error("Akamai Flush: Http request to Akamai failed with error message: {}", e.getMessage());
 		} catch (JsonProcessingException e) {
-			log.error("Failed to parse the json response from Akamai. Error message was: {}", e.getMessage());
+			log.error("Akamai Flush: Failed to parse the json response from Akamai. Error message was: {}", e.getMessage());
 		}
 		return null;
 	}
