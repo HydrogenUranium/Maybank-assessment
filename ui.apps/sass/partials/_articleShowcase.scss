@@ -182,7 +182,6 @@
           }
 
           @include respond(xl) {
-            -webkit-line-clamp: 1;
             font-size: 20px;
             line-height: 22px;
           }
