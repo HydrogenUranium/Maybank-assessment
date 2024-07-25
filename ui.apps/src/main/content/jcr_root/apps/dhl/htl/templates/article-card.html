@@ -15,7 +15,9 @@
                 <span data-sly-test="${article.author}">${article.author}</span>
                 <time datetime="${article.created}" data-sly-test="${article.createdfriendly}">${article.createdfriendly}</time>
             </div>
-            <h3><a href="${article.path}" class="article-card__info__title">${article.title}</a></h3>
+            <h3><a href="${article.path}" class="article-card__info__title">
+                ${article.pageTitleWithBr @ context='html'}
+            </a></h3>
             <div class="article-card__info__description">${article.description}</div>
             <div class="article-card__info__tags" data-sly-list="${article.tagsToShow @ begin = 0, end = 1}" data-sly-test="${showTags}">
                 <div class="article-card__info__tags__tag">${item}</div>
