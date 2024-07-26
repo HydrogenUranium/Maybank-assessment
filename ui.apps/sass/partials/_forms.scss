@@ -638,12 +638,12 @@
   }
 }
 
-.download.parbase {
+.download.parbase, .simpledownload.button {
   .icon.type_pdf {
     display: none !important;
   }
 
-  .cq-dd-file {
+  .cq-dd-file, .cmp-button {
     @include font("%T2");
     display: inline-block;
     padding: 12px 20px;
