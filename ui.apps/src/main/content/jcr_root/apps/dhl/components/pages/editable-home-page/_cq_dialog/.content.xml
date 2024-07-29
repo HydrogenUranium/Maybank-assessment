@@ -1107,7 +1107,7 @@
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                     fieldLabel="Search Input Aria Label"
-                                                                    emptyText="Search Input Bar"
+                                                                    emptyText="Search Bar Input"
                                                                     name="./searchBar-searchInputAriaLabel">
                                                                 <granite:data
                                                                         jcr:primaryType="nt:unstructured"
