@@ -1,5 +1,37 @@
 .callout-box-component {
-  margin: 30px 0;
+  margin-top: 30px;
+  overflow: hidden;
+  @include respond(xl) {
+    margin-top: 50px;
+  }
+  &_large-text {
+    font-size: 20px;
+    line-height: 25px;
+    @include respond(md) {
+      font-size: 25px;
+      line-height: 30px;
+    }
+    @include respond(xl) {
+      font-size: 28px;
+      line-height: 35px;
+    }
+  }
+
+  &_medium-text {
+    font-size: 18px;
+    line-height: 22px;
+
+    @include respond(md) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    @include respond(xl) {
+      font-size: 20px;
+      line-height: 25px;
+    }
+  }
+
   .callout-box {
     z-index: 1;
     position: relative;
@@ -13,17 +45,9 @@
     &_rounded {
       margin: 10px;
       padding: 45px 40px;
-      font-size: 20px;
-      line-height: 25px;
       @include respond(md) {
         margin: 13px;
         padding: 50px 60px;
-        font-size: 25px;
-        line-height: 30px;
-      }
-      @include respond(xl) {
-        font-size: 28px;
-        line-height: 35px;
       }
 
       .callout-border {
@@ -33,10 +57,10 @@
         height: 100%;
         left: 0;
         top: 0;
-        border: 5px solid;
+        border: 4px solid;
         @include respond(md) {
           border-radius: 100px;
-          border-width: 6px;
+          border-width: 5px;
         }
       }
 
@@ -62,13 +86,13 @@
         position: absolute;
         right: -10px;
         top: -10px;
-        border: 5px dashed;
+        border: 4px dashed;
         border-radius: 0 100px 0 0;
         border-bottom-right-radius: 20px 5px;
         border-bottom-color: transparent !important;
         border-left: 1px solid transparent !important;
         @include respond(md) {
-          border-width: 6px;
+          border-width: 5px;
           height: calc(50% + 13px);
           border-radius: 0 113px 0 0;
           border-bottom-right-radius: 20px 6px;
@@ -85,12 +109,12 @@
         position: absolute;
         left: -10px;
         bottom: -10px;
-        border: 5px solid;
+        border: 4px solid;
         border-radius: 0 0 0 100px;
         border-top: 1px solid transparent !important;
         border-right: 1px solid transparent !important;
         @include respond(md) {
-          border-width: 6px;
+          border-width: 5px;
           left: -13px;
           bottom: -13px;
           border-radius: 0 0 0 113px;
@@ -115,20 +139,14 @@
     &_spiked {
       margin: 10px 16px 10px 10px;
       padding: 30px 45px 50px 35px;
-      font-size: 18px;
-      line-height: 22px;
 
       @include respond(md) {
         margin: 10px 26px 20px 10px;
         padding: 60px 100px 60px 70px;
-        font-size: 20px;
-        line-height: 25px;
       }
 
       @include respond(xl) {
         padding: 60px 130px 60px 100px;
-        font-size: 20px;
-        line-height: 25px;
       }
 
       .top-left-line {
