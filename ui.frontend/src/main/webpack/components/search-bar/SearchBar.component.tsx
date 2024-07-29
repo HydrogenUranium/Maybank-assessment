@@ -9,6 +9,10 @@ import styles from './styles.module.scss';
 interface SearchBarProps {
   recentSearchesTitle: string;
   trendingTopicsTitle: string;
+  openAriaLabel: string;
+  closeAriaLabel: string;
+  searchButtonAriaLabel: string;
+  searchInputAriaLabel: string;
   articlesTitle: string;
   trendingTopics: string[];
   searchResultPagePath: string;
@@ -17,6 +21,10 @@ interface SearchBarProps {
 export const SearchBar: React.FC<SearchBarProps> = ({
   recentSearchesTitle,
   trendingTopicsTitle,
+  searchButtonAriaLabel,
+  searchInputAriaLabel,
+  openAriaLabel,
+  closeAriaLabel,
   articlesTitle,
   trendingTopics,
   searchResultPagePath
@@ -29,6 +37,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         <SearchPanel
           recentSearchesTitle={recentSearchesTitle}
           trendingTopicsTitle={trendingTopicsTitle}
+          closeAriaLabel={closeAriaLabel}
+          searchButtonAriaLabel={searchButtonAriaLabel}
+          searchInputAriaLabel={searchInputAriaLabel}
           articlesTitle={articlesTitle}
           trendingTopics={trendingTopics}
           searchResultPagePath={searchResultPagePath}
@@ -38,6 +49,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         <IconButton
           iconType='search'
           dataTestId='open-search'
+          ariaLabel={openAriaLabel}
           onClick={() => setActive(true)}
         />
       )}

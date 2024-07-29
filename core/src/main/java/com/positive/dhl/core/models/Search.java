@@ -44,6 +44,12 @@ public class Search {
     @Inject
     private String showMoreResultsButtonTitle;
 
+    @Inject
+    private String searchButtonAriaLabel;
+
+    @Inject
+    private String searchInputAriaLabel;
+
     private String popularTopics;
 
     @PostConstruct

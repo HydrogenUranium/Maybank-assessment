@@ -935,6 +935,43 @@
                                                                     </signInLabel>
                                                                 </items>
                                                             </signIn>
+                                                            <ariaLabels
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    jcr:title="Aria Labels"
+                                                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <countrySelectorToggleAriaLabel
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldLabel="Country Selector Toggle Aria Label"
+                                                                            emptyText="Country Selector Toggle"
+                                                                            name="./header-countrySelectorToggleAriaLabel">
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./header-countrySelectorToggleAriaLabel"/>
+                                                                    </countrySelectorToggleAriaLabel>
+                                                                    <countryFilterInputAriaLabel
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldLabel="Country Filter Input Aria Label"
+                                                                            emptyText="Country Filter Input"
+                                                                            name="./header-countryFilterInputAriaLabel">
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./header-countryFilterInputAriaLabel"/>
+                                                                    </countryFilterInputAriaLabel>
+                                                                    <switchLanguageAriaLabel
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldLabel="Switch Language Aria Label"
+                                                                            emptyText="Switch Language to"
+                                                                            name="./header-switchLanguageAriaLabel">
+                                                                        <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-msm-lockable="./header-switchLanguageAriaLabel"/>
+                                                                    </switchLanguageAriaLabel>
+                                                                </items>
+                                                            </ariaLabels>
                                                             <categoryLinks
                                                                     jcr:primaryType="nt:unstructured"
                                                                     jcr:title="Category Links"
@@ -1046,6 +1083,46 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                                         <items jcr:primaryType="nt:unstructured">
+                                                            <openSearchAriaLabel
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Open Button Aria Label"
+                                                                    emptyText="Open Search Bar"
+                                                                    name="./searchBar-openAriaLabel">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./searchBar-openAriaLabel"/>
+                                                            </openSearchAriaLabel>
+                                                            <closeSearchAriaLabel
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Close Button Aria Label"
+                                                                    emptyText="Close Search Bar"
+                                                                    name="./searchBar-closeAriaLabel">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./searchBar-closeAriaLabel"/>
+                                                            </closeSearchAriaLabel>
+                                                            <searchInputAriaLabel
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Search Input Aria Label"
+                                                                    emptyText="Search Input Bar"
+                                                                    name="./searchBar-searchInputAriaLabel">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./searchBar-searchInputAriaLabel"/>
+                                                            </searchInputAriaLabel>
+                                                            <searchButtonAriaLabel
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Search Button Aria Label"
+                                                                    emptyText="Go to search result page"
+                                                                    name="./searchBar-searchButtonAriaLabel">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./searchBar-searchButtonAriaLabel"/>
+                                                            </searchButtonAriaLabel>
                                                             <recentSearchesTitle
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

@@ -20,11 +20,4 @@ public class Tab {
 
     @Inject
     private String body;
-
-    private String id;
-
-    @PostConstruct
-    private void init(){
-        id = title != null ? title.replaceAll("[^a-zA-Z0-9%]", "") : "";
-    }
 }

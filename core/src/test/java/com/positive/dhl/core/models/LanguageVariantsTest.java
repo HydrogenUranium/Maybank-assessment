@@ -79,8 +79,25 @@ class LanguageVariantsTest {
         assertEquals("/content/dhl/global/en-global", languageVariant.getHome());
         assertEquals("/content/dhl/global/en-global", languageVariant.getLink());
         assertEquals("en", languageVariant.getAcceptlanguages());
+        assertEquals("EN Global", languageVariant.getTitle());
         assertTrue(languageVariant.isCurrent());
         assertTrue(languageVariant.isDeflt());
         assertTrue(languageVariant.isExact());
+    }
+
+    @Test
+    void test_constructor() {
+        LanguageVariant variant = new LanguageVariant("name", "title", "/home", "link", "EN", false, false, false);
+        variant.setRegion("global");
+
+        assertEquals("name", variant.getName());
+        assertEquals("title", variant.getTitle());
+        assertEquals("global", variant.getRegion());
+        assertEquals("EN", variant.getAcceptlanguages());
+        assertEquals("/home", variant.getHome());
+        assertEquals("link", variant.getLink());
+        assertFalse(variant.isExact());
+        assertFalse(variant.isDeflt());
+        assertFalse(variant.isCurrent());
     }
 }

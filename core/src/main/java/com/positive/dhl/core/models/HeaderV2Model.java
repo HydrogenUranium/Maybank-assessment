@@ -44,6 +44,19 @@ public class HeaderV2Model {
     private String signInLabel;
 
     @InjectHomeProperty
+    @Named("header-countrySelectorToggleAriaLabel")
+    private String countrySelectorToggleAriaLabel;
+
+    @InjectHomeProperty
+    @Named("header-switchLanguageAriaLabel")
+    private String switchLanguageAriaLabel;
+
+    @InjectHomeProperty
+    @Named("header-countryFilterInputAriaLabel")
+    private String countryFilterInputAriaLabel;
+
+
+    @InjectHomeProperty
     @Named("header-categoryLinksLabel")
     private String categoryLinksLabel;
 
