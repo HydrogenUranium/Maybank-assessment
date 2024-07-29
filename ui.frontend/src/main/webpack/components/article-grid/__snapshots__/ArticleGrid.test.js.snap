@@ -95,40 +95,46 @@ exports[`ArticleGrid should render component "ArticleGrid" property 1`] = `
       </div>
     </div>
   </div>
-  <nav
-    aria-label="Article Grid"
+  <ol
+    aria-multiselectable="false"
+    className="articleGridCategories horizontal-scroll"
+    role="tablist"
   >
-    <div
-      className="articleGridCategories horizontal-scroll"
+    <li
+      aria-controls="article-grid-tabpanel-0"
+      aria-selected={true}
+      className="articleGridCategoriesCategory
+                        articleGridCategoriesCategorySelected
+                        horizontal-scroll__react-button"
+      id="article-grid-tab-0"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="tab"
+      tabIndex={0}
     >
-      <div
-        aria-selected={true}
-        className="articleGridCategoriesCategory
-                          articleGridCategoriesCategorySelected
-                          horizontal-scroll__react-button"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-      >
-        All
-      </div>
-      <div
-        aria-selected={false}
-        className="articleGridCategoriesCategory
-                          
-                          horizontal-scroll__react-button"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-        role="button"
-        tabIndex={0}
-      >
-        Logistics
-      </div>
-    </div>
-  </nav>
+      All
+    </li>
+    <li
+      aria-controls="article-grid-tabpanel-1"
+      aria-selected={false}
+      className="articleGridCategoriesCategory
+                        
+                        horizontal-scroll__react-button"
+      id="article-grid-tab-1"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      role="tab"
+      tabIndex={-1}
+    >
+      Logistics
+    </li>
+  </ol>
   <div
+    aria-labelledby="article-grid-tab-0"
     className="articleGridArticles"
+    id="article-grid-tabpanel-0"
+    role="tabpanel"
+    tabIndex={0}
   />
   <button
     className="articleGridShowMoreButton"

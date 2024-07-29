@@ -22,7 +22,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         title
     }
 }) => (
-    <div className={styles.articleCard}>
+    <article className={styles.articleCard}>
         <a tabIndex={-1}
             href={path}
             className={styles.articleCardImage}
@@ -39,5 +39,5 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
                 ))}
             </div>}
         </div>
-    </div>
+    </article>
 );

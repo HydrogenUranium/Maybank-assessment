@@ -10,6 +10,18 @@ exports[`Search should render component "Search" property 1`] = `
     <div
       className="searchFormInputWrapper"
     >
+      <input
+        aria-activedescendant={null}
+        aria-autocomplete="list"
+        aria-expanded={false}
+        data-testid="search-input"
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="combobox"
+        type="search"
+        value=""
+      />
       <button
         className="searchButton"
         data-testid="hendle-search"
@@ -19,14 +31,6 @@ exports[`Search should render component "Search" property 1`] = `
           className="searchButtonImage"
         />
       </button>
-      <input
-        aria-label="Search"
-        data-testid="search-input"
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        value=""
-      />
     </div>
     <h1
       className="searchFormTitle"

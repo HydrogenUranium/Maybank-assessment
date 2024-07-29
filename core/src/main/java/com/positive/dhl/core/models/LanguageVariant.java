@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,41 +12,39 @@ import org.apache.sling.models.annotations.Model;
  *
  */
 @Model(adaptables=Resource.class)
+@Getter
 public class LanguageVariant {
-	@Getter
 	@Setter
 	public String region;
 
 	@Inject
-	@Getter
 	public String name;
 
 	@Inject
-	@Getter
+	@Named("jcr:title")
+	public String title;
+
+	@Inject
 	public String home;
 
 	@Inject
-	@Getter
 	public String link;
 
 	@Inject
-	@Getter
 	public String acceptlanguages;
 
 	@Inject
-	@Getter
 	public boolean deflt;
 
 	@Inject
-	@Getter
 	public boolean current;
 
 	@Inject
-	@Getter
 	public boolean exact;
 
-	public LanguageVariant(String name, String home, String link, String acceptlanguages, boolean deflt, boolean current, boolean exact) {
+	public LanguageVariant(String name, String title, String home, String link, String acceptlanguages, boolean deflt, boolean current, boolean exact) {
 		this.home = home;
+		this.title = title;
 		this.link = link;
 		this.acceptlanguages = acceptlanguages;
 		this.name = name;

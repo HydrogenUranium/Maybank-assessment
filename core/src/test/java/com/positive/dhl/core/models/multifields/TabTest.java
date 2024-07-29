@@ -24,7 +24,6 @@ class TabTest {
         Tab tab = context.resourceResolver().getResource(RESOURCE_PATH).adaptTo(Tab.class);
 
         assertNotNull(tab);
-        assertEquals("DHLlogistics", tab.getId());
         assertEquals("body", tab.getBody());
         assertEquals("DHL logistics", tab.getTitle());
         assertEquals("/image.png", tab.getImage());

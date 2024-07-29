@@ -15,6 +15,8 @@ interface SearchProps {
   descriptionFormat: string;
   descriptionFormatNoResults: string;
   popularSearchesTitle: string;
+  submitButtonAriaLabel:string;
+  searchInputAriaLabel: string;
   sortByTitle: string;
   latestSortOptionTitle: string;
   showMoreResultsButtonTitle: string;
@@ -26,6 +28,8 @@ export const Search: React.FC<SearchProps> = ({
   descriptionFormat,
   descriptionFormatNoResults,
   popularSearchesTitle,
+  submitButtonAriaLabel,
+  searchInputAriaLabel,
   sortByTitle,
   latestSortOptionTitle,
   showMoreResultsButtonTitle,
@@ -179,18 +183,24 @@ export const Search: React.FC<SearchProps> = ({
       )}
       <div className={styles.searchForm}>
         <div ref={searchRef} className={styles.searchFormInputWrapper}>
-          <IconButton
-            dataTestId='hendle-search'
-            onClick={handleSearchClick}
-          />
           <input
-            aria-label='Search'
+            aria-label={searchInputAriaLabel}
+            role="combobox"
+            type="search"
+            aria-activedescendant={activeSuggestion >= 0 ? `search-suggestion-${activeSuggestion}` : null}
+            aria-autocomplete="list"
+            aria-expanded={!hiddenSuggestions}
             ref={inputRef}
             data-testid='search-input'
             onFocus={() => setHiddenSuggestions(false)}
             onChange={handleInputChange}
             value={inputValue}
             onKeyDown={handleKeyClick}
+          />
+          <IconButton
+            dataTestId='hendle-search'
+            ariaLabel={submitButtonAriaLabel}
+            onClick={handleSearchClick}
           />
           {!hiddenSuggestions && <Suggestions
             recentSearches={recentSearches}

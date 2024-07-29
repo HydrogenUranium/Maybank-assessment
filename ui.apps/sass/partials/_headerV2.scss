@@ -159,15 +159,18 @@
             }
 
             &__option {
-              cursor: pointer;
-              color: #323232;
-              display: block;
-              width: calc(100% + 20px);
-              padding: 4px 10px;
-              margin: 0 -10px;
-              &:hover {
-                background: #ccc;
+              a {
+                cursor: pointer;
+                color: #323232;
+                display: block;
+                width: calc(100% + 20px);
+                padding: 4px 10px;
+                margin: 0 -10px;
+                &:hover {
+                  background: #ccc;
+                }
               }
+
               label {
                 cursor: pointer;
                 margin: 0;
@@ -227,6 +230,8 @@
           }
 
           .headerV2__desktopCountry {
+            background: transparent;
+            border: none;
             display: flex;
             align-items: center;
             text-decoration: none;

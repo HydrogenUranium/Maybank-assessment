@@ -4,6 +4,17 @@ exports[`SearchPanel should render component "SearchPanel" property 1`] = `
 <div
   className="search"
 >
+  <input
+    aria-activedescendant={null}
+    aria-autocomplete="list"
+    aria-expanded="true"
+    data-testid="search-bar-input"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    role="combobox"
+    type="search"
+    value=""
+  />
   <button
     className="searchButton absoluteLeft"
     data-testid="handle-search"
@@ -13,17 +24,11 @@ exports[`SearchPanel should render component "SearchPanel" property 1`] = `
       className="searchButtonImage searchButtonImageSearch"
     />
   </button>
-  <input
-    aria-label="Search"
-    data-testid="search-bar-input"
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    value=""
-  />
   <div
     className="searchResult"
   >
     <div
+      aria-label="Trending Topics"
       className="searchSection"
     >
       <div
@@ -35,8 +40,11 @@ exports[`SearchPanel should render component "SearchPanel" property 1`] = `
         className="searchSectionItems"
       >
         <a
+          aria-label="Business"
           className="searchSectionItemsItem searchSectionItemsItemWithIcon"
           href="/search-result?searchfield=Business"
+          id="search-bar-suggestion-0"
+          tabIndex={-1}
         >
           <span
             className="icon iconTrending"
@@ -48,8 +56,11 @@ exports[`SearchPanel should render component "SearchPanel" property 1`] = `
           </span>
         </a>
         <a
+          aria-label="China"
           className="searchSectionItemsItem searchSectionItemsItemWithIcon"
           href="/search-result?searchfield=China"
+          id="search-bar-suggestion-1"
+          tabIndex={-1}
         >
           <span
             className="icon iconTrending"

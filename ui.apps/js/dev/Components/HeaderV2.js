@@ -73,12 +73,14 @@ class HeaderV2 {
     if (wt > pb) {
       $('.page-body').addClass('fixed');
       $(this.sel.component).addClass('fixed');
+      $(this.sel.selectedCountry).attr("aria-expanded", "false")
       $(this.sel.countryOptions).hide();
       if (wt > this.lastScrollTop) {
         $(this.sel.component).removeClass('in');
       } else {
         $(this.sel.component).addClass('in');
         if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
+          $(this.sel.selectedCountry).attr("aria-expanded", "true")
           $(this.sel.countryOptions).show();
         }
       }
@@ -86,6 +88,7 @@ class HeaderV2 {
       $('.page-body').removeClass('fixed');
       $(this.sel.component).removeClass('fixed');
       if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
+        $(this.sel.selectedCountry).attr("aria-expanded", "true")
         $(this.sel.countryOptions).show();
       }
     }
@@ -126,6 +129,7 @@ class HeaderV2 {
     }
 
     $(this.sel.countryOptions).addClass('header-countryList--open');
+    $(this.sel.selectedCountry).attr("aria-expanded", "true")
     $(this.sel.countryOptions).show();
 
     const clickListener = (event) => {
@@ -148,6 +152,7 @@ class HeaderV2 {
       $("#countrySearch").val("");
       $("#countrySearch").trigger("keyup");
       $(this.sel.countryOptions).removeClass('header-countryList--open');
+      $(this.sel.selectedCountry).attr("aria-expanded", "false")
       $(this.sel.countryOptions).hide();
       document.removeEventListener('click', clickListener);
       document.removeEventListener('click', keyupListener);
