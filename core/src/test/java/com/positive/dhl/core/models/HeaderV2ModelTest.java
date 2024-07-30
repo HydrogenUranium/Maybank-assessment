@@ -64,6 +64,9 @@ class HeaderV2ModelTest {
 
         HeaderV2Model headerV2Model = request.adaptTo(HeaderV2Model.class);
         assertEquals("Button Name", headerV2Model.getButtonName());
+        assertEquals("switch language", headerV2Model.getSwitchLanguageAriaLabel());
+        assertEquals("country filter input", headerV2Model.getCountryFilterInputAriaLabel());
+        assertEquals("country selector toggle", headerV2Model.getCountrySelectorToggleAriaLabel());
         assertEquals("/content/dhl/button", headerV2Model.getButtonLink());
         assertEquals("Sign In", headerV2Model.getSignInLabel());
         assertEquals("Categories", headerV2Model.getCategoryLinksLabel());

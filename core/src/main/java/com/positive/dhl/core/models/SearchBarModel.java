@@ -40,6 +40,22 @@ public class SearchBarModel {
     private String trendingTopicsTitle;
 
     @InjectHomeProperty
+    @Named("searchBar-searchButtonAriaLabel")
+    private String searchButtonAriaLabel;
+
+    @InjectHomeProperty
+    @Named("searchBar-openAriaLabel")
+    private String openAriaLabel;
+
+    @InjectHomeProperty
+    @Named("searchBar-closeAriaLabel")
+    private String closeAriaLabel;
+
+    @InjectHomeProperty
+    @Named("searchBar-searchInputAriaLabel")
+    private String searchInputAriaLabel;
+
+    @InjectHomeProperty
     @Named("searchBar-articlesTitle")
     private String articlesTitle;
 

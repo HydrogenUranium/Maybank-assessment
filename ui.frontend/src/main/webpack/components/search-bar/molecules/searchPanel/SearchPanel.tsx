@@ -13,6 +13,9 @@ import styles from './styles.module.scss';
 interface SearchPanelProps {
   recentSearchesTitle: string;
   trendingTopicsTitle: string;
+  searchButtonAriaLabel: string;
+  searchInputAriaLabel: string;
+  closeAriaLabel: string;
   articlesTitle: string;
   trendingTopics: string[];
   searchResultPagePath: string;
@@ -22,6 +25,9 @@ interface SearchPanelProps {
 export const SearchPanel: React.FC<SearchPanelProps> = ({
   recentSearchesTitle,
   trendingTopicsTitle,
+  searchButtonAriaLabel,
+  searchInputAriaLabel,
+  closeAriaLabel,
   articlesTitle,
   trendingTopics,
   searchResultPagePath,
@@ -128,9 +134,12 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
             items={suggestions}
             title=''
             renderItem={(suggestion, index) => (
-              <button
+              <a id={`search-bar-suggestion-${index}`}
+                tabIndex={-1}
+                aria-label={suggestion}
+                href={getSearchResultPagePath(suggestion)}
                 onClick={() => {
-                  handleSearchClick(suggestion)
+                  putRecentSearch(suggestion)
                 }}
                 className={classNames(
                   styles.searchSectionItemsItem,
@@ -147,7 +156,9 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
             thinTitle
             overflowHidden
             renderItem={(article) => (
-              <a href={`${article.path}`} className={styles.article} key={article.path} onClick={() => putRecentSearch(inputRef.current?.value)}>
+              <a href={`${article.path}`} className={styles.article} key={article.path}
+                tabIndex={-1}
+                onClick={() => putRecentSearch(inputRef.current?.value)}>
                 <div className={styles.articleImage} style={{ backgroundImage: `url(${article.listimage})` }}></div>
                 <div className={styles.articleInfo}>
                   <div className={styles.articleInfoTitle}>{article.title}</div>
@@ -172,12 +183,16 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
           items={recentSearches}
           title={recentSearchesTitle}
           renderItem={(search, index) => (
-            <a href={getSearchResultPagePath(search)} className={
-              classNames(
-                styles.searchSectionItemsItem,
-                styles.searchSectionItemsItemWithIcon,
-                {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
-              )} key={search}>
+            <a id={`search-bar-suggestion-${index}`}
+              tabIndex={-1}
+              aria-label={search}
+              href={getSearchResultPagePath(search)} 
+              className={
+                classNames(
+                  styles.searchSectionItemsItem,
+                  styles.searchSectionItemsItemWithIcon,
+                  {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
+                )} key={search}>
               <span className={classNames(styles.icon, styles.iconHistory)}></span>
               <span className={styles.searchSectionItemsItemText}>{search}</span>
             </a>
@@ -187,12 +202,16 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
           items={trendingTopics}
           title={trendingTopicsTitle}
           renderItem={(topic, index) => (
-            <a href={getSearchResultPagePath(topic)} className={
-              classNames(
-                styles.searchSectionItemsItem, 
-                styles.searchSectionItemsItemWithIcon,
-                {[styles.searchSectionItemsItemActive]: index === activeSuggestion - recentSearches.length}
-              )} key={topic}>
+            <a id={`search-bar-suggestion-${index + recentSearches.length}`}
+              tabIndex={-1}
+              aria-label={topic}
+              href={getSearchResultPagePath(topic)} 
+              className={
+                classNames(
+                  styles.searchSectionItemsItem, 
+                  styles.searchSectionItemsItemWithIcon,
+                  {[styles.searchSectionItemsItemActive]: index === activeSuggestion - recentSearches.length}
+                )} key={topic}>
               <span className={classNames(styles.icon, styles.iconTrending)}></span>
               <span className={styles.searchSectionItemsItemText}>{topic}</span>
             </a>
@@ -204,27 +223,33 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
 
   return (
     <div className={styles.search} ref={searchRef}>
-      <IconButton
-        iconType='search'
-        dataTestId='handle-search'
-        className={styles.absoluteLeft}
-        onClick={() => handleSearchClick()}
-      />
       <input
-        aria-label='Search'
+        aria-label={searchInputAriaLabel}
+        role="combobox"
+        type="search"
+        aria-activedescendant={activeSuggestion >= 0 ? `search-bar-suggestion-${activeSuggestion}` : null}
+        aria-autocomplete="list"
+        aria-expanded="true"
         data-testid='search-bar-input'
         onChange={handleInputChange}
         ref={inputRef}
         value={inputValue}
         onKeyDown={handleKeyClick}
       />
-
+      <IconButton
+        iconType='search'
+        dataTestId='handle-search'
+        ariaLabel={searchButtonAriaLabel}
+        className={styles.absoluteLeft}
+        onClick={() => handleSearchClick()}
+      />
       {suggestionQuery.length
         ? renderSearchResults()
         : renderDefaultSearchResults()}
       <IconButton
         iconType='close'
         dataTestId='close-search'
+        ariaLabel={closeAriaLabel}
         className={styles.absoluteRight}
         onClick={handleCloseSearch} />
     </div>

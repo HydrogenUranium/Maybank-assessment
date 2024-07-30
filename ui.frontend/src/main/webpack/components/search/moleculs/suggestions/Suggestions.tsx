@@ -28,12 +28,17 @@ export const Suggestions: React.FC<SuggestionsProps> = (
         <SearchSection
           items={recentSearches}
           renderItem={(search, index) => (
-            <button onClick={() => handleSearch(search)} className={
-              classNames(
-                styles.searchSectionItemsItem, 
-                styles.searchSectionItemsItemWithIcon,
-                {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
-              )} key={search}>
+            <button 
+              onClick={() => handleSearch(search)}
+              aria-label={search}
+              id={`search-suggestion-${index}`}
+              tabIndex={-1}
+              className={
+                classNames(
+                  styles.searchSectionItemsItem, 
+                  styles.searchSectionItemsItemWithIcon,
+                  {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
+                )} key={search}>
               <span className={classNames(styles.icon, styles.iconHistory)}></span>
               <span className={styles.searchSectionItemsItemText}>{search}</span>
             </button>
@@ -54,6 +59,9 @@ export const Suggestions: React.FC<SuggestionsProps> = (
         renderItem={(suggestion, index) => (
           <button
             onClick={() => handleSearch(suggestion)}
+            aria-label={suggestion}
+            id={`search-suggestion-${index}`}
+            tabIndex={-1}
             className={
               classNames(
                 styles.searchSectionItemsItem, 

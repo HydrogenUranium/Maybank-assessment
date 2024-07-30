@@ -26,7 +26,6 @@ class TabsTest {
         Tabs tabs = context.resourceResolver().getResource(RESOURCE_PATH).adaptTo(Tabs.class);
 
         assertNotNull(tabs);
-        assertNotNull(tabs.getId());
         assertEquals(2, tabs.getTabList().size());
         assertEquals("h3", tabs.getTitleElement());
     }

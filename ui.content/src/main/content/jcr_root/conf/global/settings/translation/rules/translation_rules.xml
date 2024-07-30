@@ -269,6 +269,9 @@
       <property inherit="true" name="showMoreResultsButtonTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="sortByTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
+
+      <property inherit="true" name="searchButtonAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchInputAriaLabel" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/error-banner">
       <property inherit="true" name="refreshPageButtonLabel" translate="true" updateDestinationLanguage="false"/>
@@ -346,6 +349,11 @@
       <property inherit="true" name="header-countrySelector-title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="header-countrySelector-searchPlaceholder" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="header-companyLinksLabel" translate="true" updateDestinationLanguage="false"/>
+
+      <property inherit="true" name="header-countrySelectorToggleAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-countryFilterInputAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-switchLanguageAriaLabel" translate="true" updateDestinationLanguage="false"/>
+
       <property inherit="true" name="linkName" translate="true" updateDestinationLanguage="false"/>
 
       <property inherit="true" name="ctaBanner-subscribeToOurNewsletter-title" translate="true" updateDestinationLanguage="false"/>
@@ -388,6 +396,11 @@
       <property inherit="true" name="searchBar-articlesTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="searchBar-recentSearchesTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="searchBar-trendingTopicsTitle" translate="true" updateDestinationLanguage="false"/>
+
+      <property inherit="true" name="searchBar-openAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-closeAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-searchInputAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-searchButtonAriaLabel" translate="true" updateDestinationLanguage="false"/>
 
       <property inherit="true" name="video-unsupportedMessage" translate="true" updateDestinationLanguage="false"/>
     </node>

@@ -17,11 +17,11 @@
 	<div class="container">
 		<div id="accordion-${ faqs.Id }" data-sly-list="${faqs.accordionitems}">
 			<div class="card">
-				<div class="card__header" id="heading-${ faqs.Id }-${item.index}" data-toggle="collapse" data-target="#collapse-${ faqs.Id }-${item.index}" aria-expanded="${((item.index == 1) ? 'true' : 'false')}" aria-controls="collapse-${ faqs.Id }-${item.index}">
+				<button class="card__header" id="heading-${ faqs.Id }-${item.index}" data-toggle="collapse" data-target="#collapse-${ faqs.Id }-${item.index}" aria-expanded="${((item.index == 1) ? 'true' : 'false')}" aria-controls="collapse-${ faqs.Id }-${item.index}">
 					<div class="btn__link">
 						<h3>${item.title}</h3>
 					</div>
-				</div>
+				</button>
 				<div id="collapse-${ faqs.Id }-${item.index}" class="${((item.index == 1) ? 'collapse show' : 'collapse')}" aria-labelledby="heading-${ faqs.Id }-${item.index}" data-parent="#accordion-${ faqs.Id }">
 					<div class="card__body">
 						${item.content @ context='html'}

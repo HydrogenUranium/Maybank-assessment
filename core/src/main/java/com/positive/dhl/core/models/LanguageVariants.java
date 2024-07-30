@@ -232,6 +232,7 @@ public class LanguageVariants {
             boolean hideInNav = homepageProperties.get("hideInNav", false);
             String region = homepageProperties.get("siteregion", "").trim();
             String language = homepageProperties.get("sitelanguage", "").trim();
+            String title = homepageProperties.get("jcr:title", "").trim();
             String acceptlanguages = homepageProperties.get("acceptlanguages", "*").trim();
 			if(acceptlanguages.equals("*")) {
 				acceptlanguages = homepageProperties.get("jcr:language", "*").trim();
@@ -256,7 +257,7 @@ public class LanguageVariants {
 				}
 			}
 
-			LanguageVariant newItem = new LanguageVariant(language, newHomepage, newExactPath, acceptlanguages, deflt, path.contains(homepage.getPath()), exactPathExists);
+			LanguageVariant newItem = new LanguageVariant(language, title, newHomepage, newExactPath, acceptlanguages, deflt, path.contains(homepage.getPath()), exactPathExists);
 			if (!variants.containsKey(region)) {
 				ArrayList<LanguageVariant> languages = new ArrayList<>();
 				variants.put(region, languages);

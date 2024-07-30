@@ -35,8 +35,10 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
   const articleListElement = useRef<HTMLDivElement>(null);
   const [selectedSortOpton, setSelectedSortOpton] = useState<any>(selectOptions[0]);
   const [selectedCategory, setCategory] = useState(categories.length ? categories[0].name : "");
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [showingLines, setShowingLines] = useState(2);
   const lineIncrement = useLineIncrement(windowSize);
+  const tabsRef = useRef([]);
 
   const categoryArticles = useCategoryArticles(categories, selectedCategory);
   const displayedArticles = useDisplayArticles(categoryArticles, showingLines, selectedSortOpton.value, windowSize);
@@ -47,6 +49,11 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
       setShowingLines(3);
     }
   }, [windowSize, showingLines]);
+
+  useEffect(() => {
+    const index = categories.findIndex(category => category.name === selectedCategory);
+    setSelectedCategoryIndex(index);
+  }, [selectedCategory, categories]);
 
   const handleShowMore = () => {
     setShowingLines(currentLimit => currentLimit + lineIncrement);
@@ -63,8 +70,19 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
   };
 
   const handleCategoryKeyPress = (categoryName: string, event) => {
-    if (event.key === 'Enter') {
+    const {key} = event;
+    if (key === 'Enter') {
       handleCategoryClick(categoryName, event);
+    }
+    if (key == 'ArrowRight') {
+      const nextIndex = (selectedCategoryIndex + 1) % categories.length;
+      handleCategoryClick(categories[nextIndex].name, event);
+      tabsRef.current[nextIndex].focus();
+    }
+    if (key == 'ArrowLeft') {
+      const nextIndex = (categories.length + selectedCategoryIndex - 1) % categories.length;
+      handleCategoryClick(categories[nextIndex].name, event);
+      tabsRef.current[nextIndex].focus();
     }
   };
 
@@ -80,29 +98,40 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
         />
       </div>
 
-      {/* Categories Navigation */}
-      <nav aria-label={title}>
-        <div className={`${styles.articleGridCategories} horizontal-scroll`}>
-          {categories.map((category) => (
-            <div
-              className={`${styles.articleGridCategoriesCategory}
-                          ${selectedCategory === category.name ? styles.articleGridCategoriesCategorySelected : ""}
-                          horizontal-scroll__react-button`}
-              tabIndex={0}
-              role="button"
-              aria-selected={selectedCategory === category.name}
-              key={category.name}
-              onClick={(event) => handleCategoryClick(category.name, event)}
-              onKeyDown={(event) => handleCategoryKeyPress(category.name, event)}>
-              {category.name}
-            </div>
-          ))}
-        </div>
-      </nav>
+      <ol role="tablist" aria-multiselectable="false" className={`${styles.articleGridCategories} horizontal-scroll`}>
+        {categories.map((category, index) => {
+          const isSelected = selectedCategory === category.name;
+          return (
+          <li
+            id={`article-grid-tab-${index}`}
+            className={`${styles.articleGridCategoriesCategory}
+                        ${isSelected ? styles.articleGridCategoriesCategorySelected : ""}
+                        horizontal-scroll__react-button`}
+            tabIndex={isSelected ? 0 : -1}
+            role="tab"
+            aria-selected={isSelected}
+            aria-controls={`article-grid-tabpanel-${index}`}
+            ref={(el) => (tabsRef.current[index] = el)}
+            key={category.name}
+            onClick={(event) => {
+              handleCategoryClick(category.name, event);
+              setSelectedCategoryIndex(index)
+            }}
+            onKeyDown={(event) => handleCategoryKeyPress(category.name, event)}>
+            {category.name}
+          </li>
+        )})}
+      </ol>
 
 
       {/* Articles Display */}
-      <div ref={articleListElement} className={styles.articleGridArticles}>
+      <div 
+        id={`article-grid-tabpanel-${selectedCategoryIndex}`}
+        tabIndex={0}
+        aria-labelledby={`article-grid-tab-${selectedCategoryIndex}`}
+        role="tabpanel" 
+        ref={articleListElement} 
+        className={styles.articleGridArticles}>
         {displayedArticles.map((article) => (
           <ArticleCard
             article={article} key={article.path}

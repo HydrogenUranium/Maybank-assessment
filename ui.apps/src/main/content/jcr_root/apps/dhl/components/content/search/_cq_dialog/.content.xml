@@ -48,6 +48,18 @@
                                               Please note the background information above."
                             useFixedInlineToolbar="{Boolean}true"
                             name="./descriptionFormatNoResults"/>
+                    <searchButtonAriaLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Search Button Aria Label"
+                            fieldDescription="Submit Search"
+                            name="./searchButtonAriaLabel"/>
+                    <searchInputAriaLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Search Input Aria Label"
+                            fieldDescription="Search Input"
+                            name="./searchInputAriaLabel"/>
                     <popularSearchesTitle
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

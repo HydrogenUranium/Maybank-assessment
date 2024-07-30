@@ -18,7 +18,8 @@ export const SearchSection: React.FC<SearchSectionProps<any>> = (
   }
 
   return (
-    <div className={classNames(styles.searchSection, { [styles.searchSectionOverflowHidden]: overflowHidden })}>
+    <div aria-label={title} 
+      className={classNames(styles.searchSection, { [styles.searchSectionOverflowHidden]: overflowHidden })}>
       {title &&
         <div className={classNames(styles.searchSectionTitle, { [styles.searchSectionTitleThin]: thinTitle })}>
           {title}

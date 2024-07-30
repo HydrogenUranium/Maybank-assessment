@@ -60,6 +60,9 @@ class SearchBarModelTest {
         mockInjectHomeProperty(context, "searchBar-recentSearchesTitle" ,"Recent Searches");
         mockInjectHomeProperty(context, "searchBar-trendingTopicsTitle" ,"Trending Topics");
         mockInjectHomeProperty(context, "searchBar-articlesTitle" ,"Articles");
+        mockInjectHomeProperty(context, "searchBar-searchButtonAriaLabel" ,"search");
+        mockInjectHomeProperty(context, "searchBar-openAriaLabel" ,"open");
+        mockInjectHomeProperty(context, "searchBar-closeAriaLabel" ,"close");
         mockInjectHomeProperty(context, "searchBar-searchResultPage" ,"/content/dhl/global/en-global/search-results");
 
         SearchBarModel searchBarModel = request.adaptTo(SearchBarModel.class);
@@ -67,6 +70,9 @@ class SearchBarModelTest {
 
         assertEquals("Recent Searches", searchBarModel.getRecentSearchesTitle());
         assertEquals("Trending Topics", searchBarModel.getTrendingTopicsTitle());
+        assertEquals("search", searchBarModel.getSearchButtonAriaLabel());
+        assertEquals("open", searchBarModel.getOpenAriaLabel());
+        assertEquals("close", searchBarModel.getCloseAriaLabel());
         assertEquals("Articles", searchBarModel.getArticlesTitle());
         assertEquals("[\"Business\",\"China\",\"small business\"]", searchBarModel.getTrendingTopics());
         assertEquals("/content/dhl/global/en-global/search-results", searchBarModel.getSearchResultPage());
