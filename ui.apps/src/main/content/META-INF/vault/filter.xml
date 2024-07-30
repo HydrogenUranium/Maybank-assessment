@@ -7,5 +7,6 @@
     <filter root="/apps/dhl/htl"/>
     <filter root="/apps/dhl/workflow"/>
     <filter root="/apps/msm" />
+    <filter root="/apps/aecu-scripts" />
     <filter root="/oak:index" mode="update"/>
 </workspaceFilter>
