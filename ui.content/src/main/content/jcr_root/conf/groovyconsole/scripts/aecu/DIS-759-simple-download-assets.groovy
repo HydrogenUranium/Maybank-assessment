@@ -1,18 +1,22 @@
-/* DIS-759 Convert Simple Download Asset component to Button
+/* DIS-759 Simple Download Asset - replace property names
 
 Steps:
 
 0)  INITIAL SETUP
     - define scope in the @Field contentScope
-    - define old Component Resource Type in the @Field oldComponentResType
-    - define new Component Resource Type in the @Field newComponentResType
+    - define Component Resource Type in the @Field componentResType
+    - define old Text Component Property name in the @Field oldTextPropertyName
+    - define new Text Component Property name in the @Field newTextPropertyName
+    - define old Link Component Property name in the @Field oldLinkPropertyName
+    - define new Link Component Property name in the @Field newLinkPropertyName
     - define backup version name and backup package name in the @Field versionAndPackageName
 
 1) AFFECTED ITEMS:
     - show a list of affected items
-    - add affected items to the '@Field affectedItemPaths'
     @Field dryRun = true
     @Field contentManipulation = false
+    @Field showTable = true // to show items in the table view of the Groovy Console
+    @Field showTable = false // to show items in the text format prepared for converting to the Excel file
 
 2) BACKUP:
     - create a backup items that will be affected
@@ -23,103 +27,121 @@ Steps:
 3)  MANIPULATION:
     @Field dryRun = false
     @Field contentManipulation = true
+3.1 @Field createNewProperties = true // to create new properties (before source code deployment)
+3.2 @Field createNewProperties = false // to remove old properties (after source code deployment)
 
 4)  CHECK:
-    - remove items from '@Field affectedPagePaths'
-    - check result (expected: 'Results: 0')
+4.1 - check result for 'createNewProperties = true' (expected: the new properties contain the same values as old ones)
+4.2 - check result for 'createNewProperties = false' (expected: only new properties contain values, old properties are empty)
     @Field dryRun = true
     @Field contentManipulation = false
+    @Field showTable = true // to show items in the table view of the Groovy Console
 */
 
 import groovy.transform.Field
 import java.text.SimpleDateFormat
 
-@Field dryRun = false
-@Field contentManipulation = true
-
-@Field affectedItemPaths = [
-
-]
+@Field dryRun = true
+@Field contentManipulation = false
+@Field createNewProperties = true // false - to remove old properties
+@Field showTable = true
 
 @Field contentScope = "/content/dhl"
-@Field oldComponentResType = "dhl/components/content/simpledownload"
-@Field newComponentResType = "dhl/components/content/button"
+@Field componentResType = "dhl/components/content/simpledownload"
+@Field oldTextPropertyName = "title"
+@Field newTextPropertyName = "jcr:title"
+@Field oldLinkPropertyName = "downloadurl"
+@Field newLinkPropertyName = "linkURL"
 
-@Field versionAndPackageName = "DIS-759-before-converting-simple-download-asset-to-button"
+@Field versionAndPackageName = "DIS-759-before-modifying-simple-download-asset"
 
 @Field packagesPath = "/etc/packages/my_packages"
 @Field packageDefinitionPath = "$packagesPath/${versionAndPackageName}.zip/jcr:content/vlt:definition"
 
-main()
+@Field data = []
 
-/* Methods */
+getPage(contentScope).recurse { page ->
+    if (page.path ==~ /^\/content\/dhl\/(language-masters|global|\w{2})(\/.*)?/) {
+        if (getResource(page.path + "/jcr:content")) {
+            getNode(page.path + "/jcr:content").recurse { node ->
+                if (node?.hasProperty('sling:resourceType')) {
+                    def resType = node.getProperty('sling:resourceType').getString()
+                    if (resType) {
+                        if (resType == componentResType) {
+                            def nodePath = node.path
+                            def currentOldTextPropertyValue = getProperty(node, oldTextPropertyName)
+                            def currentNewTextPropertyValue = getProperty(node, newTextPropertyName)
+                            def currentOldLinkPropertyValue = getProperty(node, oldLinkPropertyName)
+                            def currentNewLinkPropertyValue = getProperty(node, newLinkPropertyName)
 
-// main
-def main() {
-    affectedItemPaths = getAffectedItemPaths()
-    if (contentManipulation) {
-        def affectedPagePaths = getAffectedPagePaths(affectedItemPaths)
-        manipulations(affectedItemPaths)
-        publishingAffectedPages(affectedPagePaths)
-    } else {
-        if (dryRun) {
-            showAffectedItems(affectedItemPaths)
-        } else {
-            def affectedPagePaths = getAffectedPagePaths(affectedItemPaths)
-            createBackupPackage(affectedItemPaths)
-            setNewPageVersion(affectedPagePaths)
-        }
-    }
-}
+                            if (contentManipulation) {
+                                if (createNewProperties) {
+                                    aecu.contentUpgradeBuilder()
+                                            .forResources((String[]) [nodePath])
+                                            .filterByHasProperty(oldTextPropertyName)
+                                            .filterByNotHasProperty(newTextPropertyName)
+                                            .filterByNotProperty(newTextPropertyName, currentOldTextPropertyValue)
+                                            .doCopyPropertyToRelativePath(oldTextPropertyName, newTextPropertyName, "")
+                                            .run(dryRun)
 
-def getAffectedItemPaths() {
-    def paths = []
-    if (affectedItemPaths.size() == 0) {
-        getPage(contentScope).recurse { page ->
-            if (page.path ==~ /^\/content\/dhl\/(language-masters|global|\w{2})(\/.*)?/) {
-                if (getResource(page.path + "/jcr:content")) {
-                    getNode(page.path + "/jcr:content").recurse { node ->
-                        if (node?.hasProperty('sling:resourceType')) {
-                            def resType = node.getProperty('sling:resourceType').getString()
-                            if (resType && resType == oldComponentResType) {
-                                paths.add(node.path)
+                                    aecu.contentUpgradeBuilder()
+                                            .forResources((String[]) [nodePath])
+                                            .filterByHasProperty(oldLinkPropertyName)
+                                            .filterByNotHasProperty(newLinkPropertyName)
+                                            .filterByNotProperty(newLinkPropertyName, currentOldLinkPropertyValue)
+                                            .doCopyPropertyToRelativePath(oldLinkPropertyName, newLinkPropertyName, "")
+                                            .run(dryRun)
+                                } else {
+                                    aecu.contentUpgradeBuilder()
+                                            .forResources((String[]) [nodePath])
+                                            .filterByHasProperty(oldTextPropertyName)
+                                            .doDeleteProperty(oldTextPropertyName)
+                                            .run(dryRun)
+
+                                    aecu.contentUpgradeBuilder()
+                                            .forResources((String[]) [nodePath])
+                                            .filterByHasProperty(oldLinkPropertyName)
+                                            .doDeleteProperty(oldLinkPropertyName)
+                                            .run(dryRun)
+                                }
                             }
+
+                            data.add([
+                                    nodePath,
+                                    currentOldTextPropertyValue,
+                                    currentNewTextPropertyValue,
+                                    currentOldLinkPropertyValue,
+                                    currentNewLinkPropertyValue,
+                            ])
                         }
                     }
                 }
             }
         }
+    }
+}
 
-        return paths
+def getProperty(node, propertyName) {
+    return node.hasProperty("${propertyName}") ? node.getProperty("${propertyName}").getString() : ''
+}
+
+if (!contentManipulation) {
+    if (!dryRun) {
+        createBackupPackage(getAffectedItemPaths())
+        setNewPageVersion(getAffectedPagePaths())
     } else {
-        return affectedItemPaths
+        if (showTable) {
+            table {
+                columns("Component Path", "OLD Text Property Value", "NEW Text Property Value", "OLD Link Property Value", "NEW Link Property Value")
+                rows(data)
+            }
+        } else {
+            println "Component Path,OLD Text Property Value,NEW Text Property Value,OLD Link Property Value,NEW Link Property Value"
+            data.each({ println("""${it.join(',')}""") })
+        }
     }
-}
-
-def manipulations(affectedItemPaths) {
-    affectedItemPaths.each { itemPath ->
-        aecu.contentUpgradeBuilder()
-                .forResources((String[]) [itemPath])
-                .doReplaceValueInProperties(oldComponentResType, newComponentResType, (String[]) ["sling:resourceType"])
-                .run(dryRun)
-
-        aecu.contentUpgradeBuilder()
-                .forResources((String[]) [itemPath])
-                .filterByHasProperty("title")
-                .doCopyPropertyToRelativePath("title", "accessibilityLabel", "")
-                .doRenameProperty("title", "jcr:title")
-                .run(dryRun)
-
-        aecu.contentUpgradeBuilder()
-                .forResources((String[]) [itemPath])
-                .filterByHasProperty("downloadurl")
-                .doRenameProperty("downloadurl", "linkURL")
-                .run(dryRun)
-    }
-}
-
-def publishingAffectedPages(affectedPagePaths) {
-    affectedPagePaths.each { pagePath ->
+} else {
+    getAffectedPagePaths().each{ pagePath ->
         aecu.contentUpgradeBuilder()
                 .forResources((String[]) [pagePath + "/jcr:content"])
                 .filterByProperty("cq:lastReplicationAction", "Activate")
@@ -133,22 +155,22 @@ def publishingAffectedPages(affectedPagePaths) {
     }
 }
 
-def showAffectedItems(affectedItemPaths) {
-    println("Affected items: " + affectedItemPaths.size())
-    if (affectedItemPaths.size() > 0) {
-        affectedItemPaths.each({ println(""""$it",""") })
+def getAffectedItemPaths() {
+    def list = []
+    data.each{ item ->
+        list.add(item[0])
     }
+    return list
 }
 
-def getAffectedPagePaths(affectedItemPaths) {
-    def listPages = []
+def getAffectedPagePaths() {
+    def list = []
     def pageUtilService = getService("com.positive.dhl.core.services.PageUtilService")
 
-    affectedItemPaths.each { nodePath ->
-        listPages.add(pageUtilService.getPage(getResource(nodePath)).path)
+    data.each{ item ->
+        list.add(pageUtilService.getPage(getResource(item[0])).path)
     }
-
-    return listPages.unique();
+    return list.unique().sort()
 }
 
 def setNewPageVersion(listPages) {
@@ -237,7 +259,7 @@ def packageFilterNodes(definitionNode) {
     filterNode
 }
 
-def createBackupPackage(listItemPaths) {
+def createBackupPackage(listPages) {
     if (dryRun) {
         println "(!) DRY RUN mode"
     }
@@ -245,7 +267,7 @@ def createBackupPackage(listItemPaths) {
     def definitionNode = createOrUpdatePackage()
     def filterNode = packageFilterNodes(definitionNode)
 
-    listItemPaths.eachWithIndex {
+    listPages.eachWithIndex {
         path,
         i ->
             def f = filterNode.addNode("filter$i")
