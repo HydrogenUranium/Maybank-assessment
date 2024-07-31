@@ -2,6 +2,7 @@ package com.positive.dhl.core.servlets;
 
 import com.google.gson.JsonObject;
 import com.positive.dhl.core.helpers.ValidatedRequestEntry;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
@@ -39,7 +40,7 @@ public abstract class StandardFormInputServlet extends SlingAllMethodsServlet {
 
             } else {
                 responseJson.addProperty(STATUS, "OK");
-                responseJson.addProperty("email", entry.get("email").toString());
+                responseJson.addProperty("email", StringEscapeUtils.escapeHtml4(entry.get("email").toString()));
 
                 this.performActionAfterSave(entry);
             }

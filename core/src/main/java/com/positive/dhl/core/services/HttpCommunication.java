@@ -71,6 +71,8 @@ public interface HttpCommunication {
 	 */
 	boolean isValidUrl(String url);
 
+	boolean isValidAuthToken(String token);
+
 	/**
 	 * Builds a list of query parameters whose members are to be added to the request
 	 * @param clientId is a clientId, one of the values Marketo needs to authenticate the request

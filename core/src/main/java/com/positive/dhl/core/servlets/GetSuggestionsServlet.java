@@ -9,6 +9,7 @@ import com.positive.dhl.core.services.TagUtilService;
 import com.positive.dhl.core.utils.IndexUtils;
 import com.positive.dhl.core.utils.QueryManagerUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -88,11 +89,11 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
 
         var responseJson = new JsonObject();
         responseJson.addProperty("status", "ok");
-        responseJson.addProperty("term", query);
+        responseJson.addProperty("term", StringEscapeUtils.escapeHtml4(query));
 
         var results = new JsonArray();
         for (String s : uniqueSuggestions) {
-            results.add(new JsonPrimitive(s));
+            results.add(new JsonPrimitive(StringEscapeUtils.escapeHtml4(s)));
         }
         responseJson.add("results", results);
 

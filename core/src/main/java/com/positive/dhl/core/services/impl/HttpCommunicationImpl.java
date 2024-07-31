@@ -55,7 +55,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 				// add content type & authorization header (if not null)
 				httpPost.setHeader("Content-type", DiscoverConstants.APPLICATION_JSON);
-				if(null != authToken && !authToken.isEmpty()){
+				if(isValidAuthToken(authToken)){
 					httpPost.setHeader("Authorization", "Bearer " + authToken);
 				}
 
@@ -126,7 +126,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			httpGet.setURI(uri.build());
 			httpGet.setHeader(DiscoverConstants.CONTENT_TYPE, DiscoverConstants.APPLICATION_JSON);
 
-			if(null != authToken && !authToken.isEmpty()){
+			if(isValidAuthToken(authToken)){
 				httpGet.setHeader("Authorization", "Bearer " + authToken);
 			}
 
@@ -180,6 +180,11 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			log.error("Provided string {} does not appear to represent a valid URL: {}", url, e.getMessage());
 			return false;
 		}
+	}
+
+	@Override
+	public boolean isValidAuthToken(String authToken) {
+		return authToken != null && authToken.matches("^[A-Za-z0-9-_]+$");
 	}
 
 	@Override
