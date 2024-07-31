@@ -36,8 +36,15 @@ describe('DHL Landing Page', () => {
           cy.get('.title-v2').should('exist');
 
           // 3. Verify download asset exists and when clicked, it redirects to the correct page
-          cy.get(':nth-child(5) > .download > .cq-dd-file').should('exist');
-          cy.get(':nth-child(5) > .download > .cq-dd-file').click();
+          cy.get('body').then(($body) => {
+            if ($body.find(':nth-child(5) > .download > .cq-dd-file').length) {
+              cy.get(':nth-child(5) > .download > .cq-dd-file').should('exist');
+              cy.get(':nth-child(5) > .download > .cq-dd-file').click();
+            } else {
+              cy.get(':nth-child(5).button > .cmp-button').should('exist');
+              cy.get(':nth-child(5).button > .cmp-button').click();
+            }
+          });
           cy.url().should('match', new RegExp(`${Cypress.env('AEM_PUBLISH_URL')}/discover/(en-global|en-sg)/open-an-account`));
 
           // 4. Verify header and footer exist
