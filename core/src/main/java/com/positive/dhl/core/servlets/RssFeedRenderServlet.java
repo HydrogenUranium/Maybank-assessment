@@ -38,7 +38,7 @@ import static com.positive.dhl.core.rss.DiscoverRssFeed.SUB_REQUEST_LIMITATION;
 )
 @Designate(ocd = RssFeedRenderServlet.Configuration.class)
 public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
-    private int maxPages;
+    private volatile int maxPages;
 
     @Reference
     private PageContentExtractorService pageExtractor;

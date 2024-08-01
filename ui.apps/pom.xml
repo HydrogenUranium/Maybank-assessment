@@ -37,11 +37,7 @@
 
     <properties>
         <sonar.exclusions>src/main/content/jcr_root/apps/dhl/**/*</sonar.exclusions>
-        <url.scheme>http</url.scheme>
-        <aem.host>localhost</aem.host>
-        <aem.port>4502</aem.port>
-        <author.username>admin</author.username>
-        <author.password>admin</author.password>
+     
         <!--
             controls the frontend build process
             possible values: build / dev
