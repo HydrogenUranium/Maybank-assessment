@@ -223,6 +223,9 @@
     </node>
     <node resourceType="dhl/components/content/simpledownload">
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
+    <node resourceType="dhl/components/content/button">
+      <property inherit="true" name="text" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="accessibilityLabel" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/sitemap">
       <property inherit="true" name="text" translate="true" updateDestinationLanguage="false"/>
