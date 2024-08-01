@@ -37,6 +37,7 @@
 
     <properties>
         <sonar.exclusions>src/main/content/jcr_root/apps/dhl/**/*</sonar.exclusions>
+     
         <!--
             controls the frontend build process
             possible values: build / dev
