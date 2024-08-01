@@ -9,7 +9,6 @@ import com.positive.dhl.core.services.TagUtilService;
 import com.positive.dhl.core.utils.IndexUtils;
 import com.positive.dhl.core.utils.QueryManagerUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.text.StringEscapeUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -25,9 +24,8 @@ import javax.servlet.Servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.StringUtils.normalizeSpace;
 
@@ -42,6 +40,8 @@ import static org.apache.commons.lang3.StringUtils.normalizeSpace;
 public class GetSuggestionsServlet extends SlingAllMethodsServlet {
     private static final String SUGGEST = "suggest";
     private static final String SPELLCHECK = "spellcheck";
+
+    private static final int MAX_SUGGESTIONS = 5;
 
     @Reference
     private TagUtilService tagUtilService;
@@ -71,36 +71,36 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
         String query = request.getParameter("s");
         String homePagePath = request.getParameter("homepagepath");
         String indexName = getSuggestionIndexName(homePagePath);
+
         var queryManager = QueryManagerUtils.getQueryManager(request);
 
-        List<String> tags = getTagsByQuery(request, query, homePagePath);
-        List<String> suggestions = getSuggestionRows(query, SUGGEST, indexName, queryManager);
-        List<String> spellcheck = getSuggestionRows(query, SPELLCHECK, indexName, queryManager);
+        List<String> tags = getTagsNamesByQuery(request, query, homePagePath);
+        HashSet<String> allSuggestions = new LinkedHashSet<>(tags);
 
-        List<String> allSuggestions = new ArrayList<>();
-        allSuggestions.addAll(tags);
-        allSuggestions.addAll(suggestions);
-        allSuggestions.addAll(spellcheck);
+        if(allSuggestions.size() < MAX_SUGGESTIONS) {
+            List<String> suggestions = getSuggestionRows(query, SUGGEST, indexName, queryManager);
+            allSuggestions.addAll(suggestions);
+        }
 
-        Set<String> uniqueSuggestionsLowerCase = new HashSet<>();
-        List<String> uniqueSuggestions = allSuggestions.stream()
-                .filter(suggestion -> uniqueSuggestionsLowerCase.add(suggestion.toLowerCase()))
-                .collect(Collectors.toList());
+        if(allSuggestions.size() < MAX_SUGGESTIONS) {
+            List<String> spellcheck = getSuggestionRows(query, SPELLCHECK, indexName, queryManager);
+            allSuggestions.addAll(spellcheck);
+        }
 
         var responseJson = new JsonObject();
         responseJson.addProperty("status", "ok");
-        responseJson.addProperty("term", StringEscapeUtils.escapeHtml4(query));
+        responseJson.addProperty("term", query);
 
         var results = new JsonArray();
-        for (String s : uniqueSuggestions) {
-            results.add(new JsonPrimitive(StringEscapeUtils.escapeHtml4(s)));
+        for (String s : allSuggestions) {
+            results.add(new JsonPrimitive(s));
         }
         responseJson.add("results", results);
 
         return responseJson.toString();
     }
 
-    private List<String> getTagsByQuery(SlingHttpServletRequest request, String query, String homePagePath) {
+    private List<String> getTagsNamesByQuery(SlingHttpServletRequest request, String query, String homePagePath) {
         if(StringUtils.isBlank(query)) {
             return new ArrayList<>();
         }
@@ -108,12 +108,7 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
         var resolver = request.getResourceResolver();
         var locale = pageUtilService.getLocale(resolver.getResource(homePagePath));
 
-        return tagUtilService
-                .getTagsByLocalizedPrefix(resolver, query, "dhl:", locale)
-                .stream().map(tag -> tag.getTitle(locale).trim())
-                .filter(title -> !StringUtils.equalsIgnoreCase(query, title))
-                .sorted(String::compareTo)
-                .collect(Collectors.toList());
+        return tagUtilService.getTagLocalizedSuggestionsByQuery(resolver, query, "dhl:", locale, MAX_SUGGESTIONS);
     }
 
     private List<String> getSuggestionRows(String searchString, String mode, String indexName, QueryManager queryManager) throws RepositoryException {
