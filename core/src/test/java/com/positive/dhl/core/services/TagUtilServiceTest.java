@@ -116,16 +116,6 @@ class TagUtilServiceTest {
     }
 
     @Test
-    void getTagsByLocalizedPrefix_ShouldReturnTagWithLocalTranslation_WhenContainsNonEnglishTitle() {
-        Locale locale = Locale.forLanguageTag("uk-ua");
-
-        List<Tag> tags = tagUtilService.getTagsByLocalizedPrefix(resolver, "Глобальна","dhl:",  locale);
-
-        assertEquals(1, tags.size());
-        assertEquals("dhl:logistics", tags.get(0).getTagID());
-    }
-
-    @Test
     void test_getExternalTags() {
         assertNotNull(tagUtilService);
 
@@ -182,5 +172,15 @@ class TagUtilServiceTest {
         assertNotNull(tagUtilService);
         List<String> list = tagUtilService.getDefaultTrendingTopicsList(resource);
         assertEquals(List.of("Business", "China", "small business"), list);
+    }
+
+    @Test
+    void test_getTagLocalizedSuggestionsByQuery() {
+        Locale locale = Locale.forLanguageTag("uk-ua");
+
+        List<String> suggestion = tagUtilService.getTagLocalizedSuggestionsByQuery(resolver, "Глобальна","dhl:", locale, 5);
+
+        assertEquals(1, suggestion.size());
+        assertEquals("Глобальна логістика", suggestion.get(0));
     }
 }

@@ -55,13 +55,10 @@ class GetSuggestionsServletTest {
 
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
-        TagManager tagManager = resolver.adaptTo(TagManager.class);
-        Tag logistics = tagManager.createTag("dhl:logistics", "Global Logistics", "Logistics");
-        Tag business = tagManager.createTag("dhl:business", "Global Business", "Business");
-
-        when(tagUtilService.getTagsByLocalizedPrefix(any(), eq("global"), anyString(), any()))
-                .thenReturn(List.of(logistics, business));
-        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.ENGLISH);
+        when(tagUtilService.getTagLocalizedSuggestionsByQuery(any(), eq("global"), anyString(), any(), anyInt()))
+                .thenReturn(List.of("Global Logistics", "Global Business"));
+        context.build().resource("/content");
+        when(pageUtilService.getLocale((Resource) any())).thenReturn(Locale.ENGLISH);
 
         when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolverMock);
         when(resolverMock.findResources(anyString(), anyString())).thenAnswer(invocationOnMock ->
@@ -76,7 +73,7 @@ class GetSuggestionsServletTest {
 
         String responseBody = context.response().getOutputAsString();
 
-        String expected = "{\"status\":\"ok\",\"term\":\"global\",\"results\":[\"Global Business\",\"Global Logistics\"]}";
+        String expected = "{\"status\":\"ok\",\"term\":\"global\",\"results\":[\"Global Logistics\",\"Global Business\"]}";
         assertEquals(expected, responseBody);
     }
 
