@@ -8,7 +8,6 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.SftpException;
 import com.positive.dhl.core.exceptions.UnableToDeleteFileException;
 import com.positive.dhl.core.helpers.DatabaseHelpers;
-import com.positive.dhl.core.servlets.ShipNowServlet;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.osgi.framework.BundleContext;
@@ -128,7 +127,7 @@ public class EtlSyncComponent implements Runnable {
             return;
         }
 
-        BundleContext context = FrameworkUtil.getBundle(ShipNowServlet.class).getBundleContext();
+        BundleContext context = FrameworkUtil.getBundle(EtlSyncComponent.class).getBundleContext();
         if (context == null) {
             log.error("ETL Sync Scheduler has no valid context. Cannot continue.");
             return;
