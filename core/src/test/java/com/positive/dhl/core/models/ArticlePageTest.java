@@ -1,10 +1,8 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
 import com.positive.dhl.core.services.PageUtilService;
-import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -53,28 +51,18 @@ class ArticlePageTest {
 	@Mock
 	private TagUtilService tagUtilService;
 
-	@Mock
-	private PathUtilService pathUtilService;
-
-	@Mock
-	private EnvironmentConfiguration environmentConfiguration;
-
 	@InjectMocks
 	private HomePropertyInjector homePropertyInjector;
 
 	@BeforeEach
 	void setUp() {
 		context.registerService(Injector.class, homePropertyInjector);
-		context.registerService(EnvironmentConfiguration.class, environmentConfiguration);
 		context.registerService(PageUtilService.class, pageUtilService);
 		context.registerService(TagUtilService.class, tagUtilService);
-		context.registerService(PathUtilService.class, pathUtilService);
 		context.addModelsForClasses(ArticlePage.class);
 
 		context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
 
-		when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
-		when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
 		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
 		when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
 		when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
@@ -149,11 +137,7 @@ class ArticlePageTest {
 
 	private void testArticlePage(ArticlePage articlePage) {
 		assertNotNull(articlePage);
-		assertEquals("https://www.dhl.com/discover/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg", articlePage.getOgtagimage());
 		assertEquals("", articlePage.getCustomStyles());
-
-		articlePage.setOgtagimage("");
-		assertEquals("", articlePage.getOgtagimage());
 
 		articlePage.setCustomStyles("c");
 		assertEquals("c", articlePage.getCustomStyles());

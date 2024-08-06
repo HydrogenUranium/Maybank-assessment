@@ -39,13 +39,13 @@
     <meta property="og:url" content="${dhlpage.fullUrl}" />
     <meta property="og:title" content="${currentPage.pageTitle || currentPage.name}" />
     <meta property="og:description" content="${properties.jcr:description}" />
-    <meta property="og:image" content="https://${dhlpage.akamaiHostname}${path}/192.png" />
+    <meta property="og:image" content="${dhlpage.ogtagimage}"/>
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="${dhlpage.fullUrl}" />
     <meta name="twitter:title" content="${currentPage.pageTitle || currentPage.name}" />
     <meta name="twitter:description" content="${properties.jcr:description}" />
-    <meta name="twitter:image" content="https://${dhlpage.akamaiHostname}${path}/192.png" />
+    <meta name="twitter:image" content="${dhlpage.ogtagimage}"/>
 </template>
 
 <template data-sly-template.dhlResources="${ @ dhlpage, accountactions}">

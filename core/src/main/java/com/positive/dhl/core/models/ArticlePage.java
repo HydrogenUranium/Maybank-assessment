@@ -13,20 +13,19 @@ import javax.jcr.Session;
 
 import com.drew.lang.annotations.NotNull;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
-import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.*;
+import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 import com.day.cq.wcm.api.Page;
-import com.positive.dhl.core.components.EnvironmentConfiguration;
-
-import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
 
 /**
  *
@@ -35,12 +34,6 @@ import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
 public class ArticlePage {
 	public static final String VIEW_COUNT = "viewcount";
 
-	@OSGiService
-	private PathUtilService pathUtilService;
-
-	@Inject
-	private ResourceResolver resourceResolver;
-	
 	@Inject
 	private ResourceResolverFactory resolverFactory;
 	
@@ -83,15 +76,8 @@ public class ArticlePage {
 	@Named("multifields/socialNetwork")
 	private Resource socialNetwork;
 
-	@OSGiService
-	private EnvironmentConfiguration environmentConfiguration;
-
 	@Getter
 	private Article article;
-
-	@Getter
-	@Setter
-	private String ogtagimage;
 
 	@Getter
 	@Setter
@@ -99,16 +85,9 @@ public class ArticlePage {
 
 	@PostConstruct
     protected void init() {
-		String assetprefix = environmentConfiguration.getAssetPrefix();
-		String akamaiHostname = environmentConfiguration.getAkamaiHostname();
-
 		ValueMap properties = currentPage.getProperties();
 
 		if (!properties.isEmpty()) {
-			String customOgTagImage = properties.get("ogtagimage", "");
-			ogtagimage = customOgTagImage.trim().length() > 0
-					? (HTTPS_PREFIX + akamaiHostname + assetprefix).concat(customOgTagImage.trim())
-					: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png";
 			customStyles = properties.get("customstyles", "");
 			updateViewCount(properties);
 		}

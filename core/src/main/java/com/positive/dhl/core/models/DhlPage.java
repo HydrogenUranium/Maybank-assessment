@@ -6,6 +6,7 @@ import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ValueMap;
@@ -43,6 +44,7 @@ public class DhlPage {
 	private String amparticlepath;
 	private String assetprefix;
 	private String akamaiHostname;
+	private String ogtagimage;
 
 	@InjectHomeProperty
 	@Default(values = "")
@@ -88,6 +90,11 @@ public class DhlPage {
 
 		pageUtilService.getAncestorPageByPredicate(currentPage,
 				page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
+
+		String customOgTagImage = properties.get("ogtagimage", "");
+		ogtagimage = StringUtils.isNotBlank(customOgTagImage)
+				? (HTTPS_PREFIX + akamaiHostname + assetprefix).concat(customOgTagImage.trim())
+				: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png";
 	}
 
 	private String getRobotTags(Page page) {
