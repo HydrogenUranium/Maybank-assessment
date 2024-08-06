@@ -1,8 +1,12 @@
 package com.positive.dhl.core.services;
 
+import com.adobe.acs.commons.dam.RenditionPatternPicker;
 import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.api.DamConstants;
+import com.day.cq.dam.api.Rendition;
+import com.day.cq.dam.api.RenditionPicker;
+import com.day.cq.wcm.api.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -14,6 +18,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -23,6 +28,7 @@ import java.util.function.Function;
 public class AssetUtilService {
 
     public static final String DEFAULT_DELIVERY_QUALITY = "82";
+    public static final RenditionPicker THUMBNAIL_PICKER = new RenditionPatternPicker("cq5dam.thumbnail.140.100.png");
 
     @Reference
     protected MimeTypeService mimeTypeService;
@@ -54,8 +60,8 @@ public class AssetUtilService {
         }
 
         try(ResourceResolver resolver = resourceResolverHelper.getReadResourceResolver()) {
-            Resource imageResource = resolver.getResource(pathUtilService.decodePath(assetPath));
-            Asset asset = Optional.ofNullable(imageResource).map(resource -> resource.adaptTo(Asset.class)).orElse(null);
+            Resource imageResource = getAssetResource(assetPath, resolver);
+            Asset asset = adaptToAsset(imageResource);
             if(asset != null) {
                 Map<String, Object> defaultProps = getDefaultProperties(asset);
 
@@ -73,6 +79,32 @@ public class AssetUtilService {
         }
 
         return assetPath;
+    }
+
+    private Resource getAssetResource(String assetPath, ResourceResolver resolver) {
+        if(null == assetPath) {
+            return null;
+        }
+        return resolver.getResource(pathUtilService.decodePath(assetPath));
+    }
+
+    private Asset getAsset(String assetPath, ResourceResolver resolver) {
+        return adaptToAsset(getAssetResource(assetPath, resolver));
+    }
+
+    private Asset adaptToAsset(Resource imageResource) {
+        return Optional.ofNullable(imageResource).map(resource -> resource.adaptTo(Asset.class)).orElse(null);
+    }
+
+    public String getThumbnailLink(String assetPath) {
+        try(var resolver = resourceResolverHelper.getReadResourceResolver()) {
+            var asset = getAsset(assetPath, resolver);
+            if(asset == null) {
+                return "";
+            }
+            var rendition = asset.getRendition(THUMBNAIL_PICKER);
+            return pathUtilService.map(rendition.getPath());
+        }
     }
 
     private Map<String, Object> getDefaultProperties(Asset asset){

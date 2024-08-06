@@ -10,6 +10,7 @@ export type Article = {
     description: string,
     listimage: string,
     groupTag: string,
+    thumbnail: string,
     path: string,
     tagsToShow: string[],
     title: string,

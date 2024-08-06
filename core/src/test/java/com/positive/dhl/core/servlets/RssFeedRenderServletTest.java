@@ -28,8 +28,7 @@ import java.util.List;
 
 import static com.positive.dhl.junitUtils.AssertXml.assertXmlEquals;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class RssFeedRenderServletTest {
@@ -47,7 +46,7 @@ class RssFeedRenderServletTest {
     @Spy
     private PathUtilService pathUtilService;
 
-    @Spy
+    @Mock
     private AssetUtilService assetUtilService;
 
     @Spy
@@ -80,6 +79,8 @@ class RssFeedRenderServletTest {
         TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
         tagManager.createTag("dhl:tech-futures", "Tech Futures", "description");
         tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
+
+        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
     }
 
 

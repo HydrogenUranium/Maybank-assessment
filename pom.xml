@@ -816,6 +816,12 @@ Bundle-DocURL:
                 <version>3.4</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.adobe.acs</groupId>
+                <artifactId>acs-aem-commons-bundle</artifactId>
+                <version>6.6.2</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

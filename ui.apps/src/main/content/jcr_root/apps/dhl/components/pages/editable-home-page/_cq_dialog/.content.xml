@@ -1159,6 +1159,16 @@
                                                                         jcr:primaryType="nt:unstructured"
                                                                         cq-msm-lockable="./searchBar-articlesTitle"/>
                                                             </articlesTitle>
+                                                            <showThumbnail
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                                                    name="./searchBar-showThumbnail"
+                                                                    text="Show Thumbnail"
+                                                                    value="true">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./searchBar-showThumbnail"/>
+                                                            </showThumbnail>
                                                             <searchResultPage
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
