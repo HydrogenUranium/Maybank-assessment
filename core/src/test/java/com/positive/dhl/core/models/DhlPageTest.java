@@ -65,6 +65,7 @@ class DhlPageTest {
 		assertEquals("/discover", dhlPage.getPathprefix());
 		assertEquals("rtl", dhlPage.getDirection());
 		assertEquals("", dhlPage.getRobotsTags());
+		assertEquals("https://www.dhl.com/discover/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg", dhlPage.getOgtagimage());
 	}
 
 	@Test
@@ -76,5 +77,16 @@ class DhlPageTest {
 
 		assertNotNull(dhlPage);
 		assertEquals("noindex", dhlPage.getRobotsTags());
+	}
+
+	@Test
+	void test_defaultOgtagimage() {
+		when(pageUtilService.hasInheritedNoIndex(any())).thenReturn(true);
+		ctx.currentResource("/content/dhl/standardpage/The-Subscription-Economy");
+
+		DhlPage dhlPage = ctx.request().adaptTo(DhlPage.class);
+
+		assertNotNull(dhlPage);
+		assertEquals("https://www.dhl.com/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png", dhlPage.getOgtagimage());
 	}
 }
