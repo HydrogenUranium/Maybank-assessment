@@ -36,9 +36,8 @@ import static com.positive.dhl.core.rss.DiscoverRssFeed.SUB_REQUEST_LIMITATION;
         extensions = "xml",
         selectors = "rss"
 )
-@Designate(ocd = RssFeedRenderServlet.Configuration.class)
 public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
-    private volatile int maxPages;
+    private static final int MAX_PAGES = 50;
 
     @Reference
     private PageContentExtractorService pageExtractor;
@@ -48,12 +47,6 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
 
     @Reference
     protected ArticleService articleService;
-
-    @Activate
-    @Modified
-    public void activate(RssFeedRenderServlet.Configuration config) {
-        maxPages = config.maxPages();
-    }
 
     @Override
     protected void doGet(@NotNull SlingHttpServletRequest req, @NotNull SlingHttpServletResponse resp) throws ServletException {
@@ -74,7 +67,7 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
             feed.printHeader();
 
             String rootPath = req.getResource().getPath();
-            List<String> paths = articleService.getLatestArticles(rootPath, isAll ? SUB_REQUEST_LIMITATION : maxPages)
+            List<String> paths = articleService.getLatestArticles(rootPath, isAll ? SUB_REQUEST_LIMITATION : MAX_PAGES)
                     .stream().map(Article::getJcrPath).collect(Collectors.toList());
             feed.printEntries(paths, isFullBody);
 
@@ -83,16 +76,5 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
         } catch (Exception exception) {
             throw new ServletException("Error while rendering resource as rss feed: " + exception.getMessage(), exception);
         }
-    }
-    @ObjectClassDefinition
-    @interface Configuration {
-
-        @AttributeDefinition(
-                name = "Max pages",
-                description = "Max pages in RSS response",
-                type = AttributeType.INTEGER
-        )
-        int maxPages() default 50;
-
     }
 }

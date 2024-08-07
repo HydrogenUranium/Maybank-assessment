@@ -65,9 +65,6 @@ class RssFeedRenderServletTest {
     @Mock
     private RequestDispatcher dispatcher;
 
-    @Mock
-    private RssFeedRenderServlet.Configuration configuration;
-
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
         context.registerService(PageUtilService.class, pageUtilService);
@@ -91,7 +88,6 @@ class RssFeedRenderServletTest {
 
     @Test
     void doGet_ShouldReturnRSS_WhenConfigurationIsCorrect() throws ServletException {
-        when(configuration.maxPages()).thenReturn(1);
         List<Article> articles = new ArrayList<>();
         articles.add(request.getResourceResolver().getResource("/content/dhl/country/en-global/business/productivity/ai-science-fiction-it-is-not").adaptTo(Article.class));
         articles.add(request.getResourceResolver().getResource("/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales").adaptTo(Article.class));
@@ -114,7 +110,6 @@ class RssFeedRenderServletTest {
         context.requestPathInfo().setResourcePath(path);
         request.setRequestDispatcherFactory(dispatcherFactory);
 
-        servlet.activate(configuration);
         servlet.doGet(request, response);
 
         String responseBody = context.response().getOutputAsString()
