@@ -1162,6 +1162,7 @@
                                                             <showThumbnail
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                    fieldDescription="If checked, the thumbnail will be shown in search bar results."
                                                                     name="./searchBar-showThumbnail"
                                                                     text="Show Thumbnail"
                                                                     value="true">
