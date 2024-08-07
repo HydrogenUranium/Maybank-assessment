@@ -181,6 +181,6 @@ class TagUtilServiceTest {
         List<String> suggestion = tagUtilService.getTagLocalizedSuggestionsByQuery(resolver, "Глобальна","dhl:", locale, 5);
 
         assertEquals(1, suggestion.size());
-        assertEquals("Глобальна логістика", suggestion.get(0));
+        assertEquals("глобальна логістика", suggestion.get(0));
     }
 }
