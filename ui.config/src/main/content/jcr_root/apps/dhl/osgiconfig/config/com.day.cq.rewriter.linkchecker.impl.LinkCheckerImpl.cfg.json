@@ -1,3 +1,12 @@
 {
-    "service.check_override_patterns": "^system/|^.*blob\\.core\\.windows\\.net.*|^.*dhl\\.com.*|^.*dhl\\.dhl.*$|^/discover/"
+    "service.check_override_patterns": "^system/|^.*blob\\.core\\.windows\\.net.*|^.*dhl\\.com.*|^.*dhl\\.dhl.*$|^/discover/",
+    "service.special_link_prefix":[
+        "javascript:",
+        "data:",
+        "mailto:",
+        "#",
+        "<!--",
+        "${",
+        "tel:"
+    ]
 }
