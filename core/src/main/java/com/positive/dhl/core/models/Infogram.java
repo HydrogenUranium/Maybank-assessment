@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 @Model(adaptables=Resource.class)
 public class Infogram {
     private static final Pattern PATTERN =
-            Pattern.compile("\\[infogram\\s+id=\"([a-f0-9-]+)\"\\s+prefix=\"([a-zA-Z0-9]+)\"\\s+format=\"(interactive|static)\"\\s+title=\"([^\"]+)\"\\]");
+            Pattern.compile("\\[infogram\\s+id=\"([a-f0-9-]+)\"\\s+prefix=\"([a-zA-Z0-9]+)\"\\s+format=\"([^\"]+)\"\\s+title=\"([^\"]+)\"\\]");
 
     @Inject
     private String wordPressEmbedField;
