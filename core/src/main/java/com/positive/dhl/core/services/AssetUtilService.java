@@ -1,12 +1,10 @@
 package com.positive.dhl.core.services;
 
-import com.adobe.acs.commons.dam.RenditionPatternPicker;
 import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.api.DamConstants;
-import com.day.cq.dam.api.Rendition;
 import com.day.cq.dam.api.RenditionPicker;
-import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.dam.RenditionPatternPicker;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +16,6 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -59,9 +56,9 @@ public class AssetUtilService {
             return assetPath;
         }
 
-        try(ResourceResolver resolver = resourceResolverHelper.getReadResourceResolver()) {
-            Resource imageResource = getAssetResource(assetPath, resolver);
-            Asset asset = adaptToAsset(imageResource);
+        try(var resolver = resourceResolverHelper.getReadResourceResolver()) {
+            var imageResource = getAssetResource(assetPath, resolver);
+            var asset = adaptToAsset(imageResource);
             if(asset != null) {
                 Map<String, Object> defaultProps = getDefaultProperties(asset);
 
@@ -137,7 +134,7 @@ public class AssetUtilService {
     }
 
     private String getAssetInfo(String path, Function<Asset, String> func) {
-        try(ResourceResolver resourceResolver = resourceResolverHelper.getReadResourceResolver()) {
+        try(var resourceResolver = resourceResolverHelper.getReadResourceResolver()) {
             return Optional.ofNullable(resourceResolver)
                     .map(resolver -> resolver.getResource(path))
                     .map(resource -> resource.adaptTo(Asset.class))

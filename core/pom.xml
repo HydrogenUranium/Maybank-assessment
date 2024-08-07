@@ -265,11 +265,6 @@ Import-Package: javax.annotation;version=0.0.0,*
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.adobe.acs</groupId>
-            <artifactId>acs-aem-commons-bundle</artifactId>
-        </dependency>
-
     </dependencies>
 
     <profiles>
