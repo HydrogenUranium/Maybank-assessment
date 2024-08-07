@@ -40,7 +40,7 @@
     foundationRegistry.register('foundation.validation.validator', {
         selector: '[data-foundation-validation^=\'word-press-embed\']',
         validate: function(el) {
-            const pattern = /\[infogram\s+id="([a-f0-9-]+)"\s+prefix="([a-zA-Z0-9]+)"\s+format="(interactive|static)"\s+title="([^"]+)"\]/;
+            const pattern = /\[infogram\s+id="([a-f0-9-]+)"\s+prefix="([a-zA-Z0-9]+)"\s+format="([^"]+)"\s+title="([^"]+)"\]/;
 
             if (!pattern.test(el.value)) {
                 return 'WordPress embed value is not correct';
