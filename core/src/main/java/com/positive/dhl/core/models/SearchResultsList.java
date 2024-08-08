@@ -343,7 +343,7 @@ public class SearchResultsList {
             noSearchTerm = true;
             
         } else {
-            Page home = pageUtilService.getHomePage(currentPage);
+            var home = pageUtilService.getHomePage(currentPage);
             if (builder != null && home != null) {
                 Map<String, String> map = new HashMap<>();
                 map.put("path", home.getPath());
@@ -353,9 +353,9 @@ public class SearchResultsList {
                 map.put("1_group.p.or", "true");
                 String[] fields = { "jcr:content/jcr:title", "jcr:content/pageTitle", "jcr:content/navTitle", "jcr:content/cq:tags" };
                 String[] terms = searchTerm.trim().split("\\s");
-                for (int i = 0; i < fields.length; i++) {
+                for (var i = 0; i < fields.length; i++) {
                     map.put(String.format("1_group.%1$s_group.p.true", (i + 1)), "true");
-                    int termsCount = 0;
+                    var termsCount = 0;
                     for (int j = 0; j < terms.length; j++) {
                         String term = terms[j];
 
