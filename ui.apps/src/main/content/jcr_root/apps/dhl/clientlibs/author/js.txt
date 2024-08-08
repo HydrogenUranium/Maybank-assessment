@@ -1,3 +1,4 @@
 #base=js
 validators.js
 showhide.js
+paste.js

@@ -1,0 +1,13 @@
+<sly data-sly-use.infogram="com.positive.dhl.core.models.Infogram"
+    data-sly-set.isEmpty="${!infogram.valid}"></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+<sly data-sly-test="${!isEmpty}">
+  <div class="infogram-embed"
+       data-id="${infogram.id}"
+       data-type="${infogram.format}"
+       data-title="${infogram.title}">
+  </div>
+
+  <script>!function(e,n,i,s){var d="InfogramEmbeds";var o=e.getElementsByTagName(n)[0];if(window[d]&&window[d].initialized)window[d].process&&window[d].process();else if(!e.getElementById(i)){var r=e.createElement(n);r.async=1,r.id=i,r.src=s,o.parentNode.insertBefore(r,o)}}(document,"script","infogram-async","https://e.infogram.com/js/dist/embed-loader-min.js");</script>
+</sly>

@@ -918,7 +918,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Embed Component Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            allowedEmbeddables="[dhl/components/content/embed/embeddable/youtube]"
+                            allowedEmbeddables="[dhl/components/content/embed/embeddable/youtube,dhl/components/content/embed/embeddable/infogram]"
                             embeddablesDisabled="false"
                             htmlDisabled="false"
                             urlDisabled="false"
