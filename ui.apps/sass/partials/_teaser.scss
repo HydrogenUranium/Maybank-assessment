@@ -1,0 +1,36 @@
+.teaser {
+  .cmp-teaser {
+    @extend  %imageComponent;
+    border-bottom: none;
+    margin-bottom: 20px;
+
+    .cmp-teaser__title {
+      @include font("%T5");
+      display: block;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .cmp-teaser__pretitle {
+      @include font("%T5");
+      margin-bottom: 20px;
+    }
+  }
+
+  @include respond(lg) {
+    &.left .cmp-teaser {
+      float: left;
+      padding-right: 15px;
+    }
+
+    &.right {
+      float: right;
+      padding-left: 15px;
+      padding-right: 0px;
+
+      .cmp-teaser__description {
+        margin-left: -15px;
+      }
+    }
+  }
+}
