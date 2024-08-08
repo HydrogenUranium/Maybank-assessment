@@ -154,7 +154,7 @@ public class AkamaiFlush {
 	 * @return updated {@link String} that can be used to form Akamaized URL
 	 */
 	private String updatePath(String path){
-		String regex = "/content/dhl/(global|\\w{2})/(.*)";
+		var regex = "/content/dhl/(global|\\w{2})/(.*)";
 		return path.replaceAll(regex, "/$2");
 	}
 

@@ -35,14 +35,14 @@ public class DownloadAssetServlet extends SlingAllMethodsServlet {
 	 *
 	 */
 	public void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
-		String responseBody = "";
+		var responseBody = "";
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 		
 		String assetinfo = request.getParameter("assetinfo");
 		if (assetinfo != null && assetinfo.length() > 0) {
 
-			Base64 base64 = new Base64(true);
+			var base64 = new Base64(true);
 			byte[] decodedBytes = base64.decode(assetinfo.getBytes());
 
 			responseBody = "{ \"status\": \"ok\", \"href\": \"" + new String(decodedBytes) + "\" }";
