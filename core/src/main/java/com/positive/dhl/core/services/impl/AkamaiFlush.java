@@ -15,6 +15,7 @@ import com.positive.dhl.core.services.HttpCommunication;
 import com.positive.dhl.core.services.InitUtil;
 import com.positive.dhl.core.services.RepositoryChecks;
 import com.positive.dhl.core.services.ResourceResolverHelper;
+import com.positive.dhl.core.utils.LogUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -93,7 +94,7 @@ public class AkamaiFlush {
 				log.error("Akamai Flush: Null response from Akamai");
 			} else if (response.getHttpStatus() == 400) {
 				ErrorResponse errorResponse = initUtil.getObjectMapper().readValue(response.getJsonResponse(), ErrorResponse.class);
-				log.error("Akamai Flush: Error response from Akamai: {}", errorResponse);
+				log.error("Akamai Flush: Error response from Akamai: {}", LogUtils.encode(errorResponse.toString()));
 			} else {
 				log.info("Akamai Flush: Akamai response code '{}'", response.getHttpStatus());
 				return initUtil.getObjectMapper().readValue(response.getJsonResponse(),FlushResponse.class);
