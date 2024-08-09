@@ -75,7 +75,7 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                     name="./video"
                                     rootPath="/content/dam"
-                                    fieldLabel="Use video instead image"/>
+                                    fieldLabel="Video Path"/>
                         </items>
                     </videoConfig>
                     <keyTakeawaysFeature
