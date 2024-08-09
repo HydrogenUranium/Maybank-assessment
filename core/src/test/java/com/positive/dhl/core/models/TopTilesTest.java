@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
@@ -41,6 +42,9 @@ class TopTilesTest {
     @Mock
     private Style currentStyle;
 
+    @Mock
+    private AssetUtilService assetUtilService;
+
     @BeforeEach
     void setUp() throws Exception {
         context.addModelsForClasses(TopTiles.class);
@@ -49,12 +53,14 @@ class TopTilesTest {
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(AssetUtilService.class, assetUtilService);
 
         when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
         when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
+        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
         lenient().when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class)))
                 .thenAnswer(invocationOnMock -> createArticleModel(context.resourceResolver().getResource("/content/article_1")));
     }

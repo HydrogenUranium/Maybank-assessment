@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
@@ -53,11 +54,15 @@ class ArticleTeaserModelTest {
     @Mock
     private PathUtilService pathUtilService;
 
+    @Mock
+    private AssetUtilService assetUtilService;
+
     @BeforeEach
     void setUp() {
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(AssetUtilService.class, assetUtilService);
 
         context.addModelsForClasses(ArticleTeaserModel.class);
         resourceResolver = context.resourceResolver();
@@ -66,6 +71,7 @@ class ArticleTeaserModelTest {
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
+        lenient().when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
     }
 
     @Test

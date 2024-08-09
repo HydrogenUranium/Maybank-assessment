@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.designer.Style;
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
@@ -48,6 +49,9 @@ class RelatedPostsTest {
     @Mock
     private Style currentStyle;
 
+    @Mock
+    private AssetUtilService assetUtilService;
+
     @BeforeEach
     void setUp() throws Exception {
         context.load().json("/com/positive/dhl/core/models/RelatedPosts/content.json", "/content");
@@ -55,9 +59,11 @@ class RelatedPostsTest {
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(AssetUtilService.class, assetUtilService);
 
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
         when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
+        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");

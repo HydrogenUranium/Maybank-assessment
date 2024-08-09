@@ -2,6 +2,7 @@ package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.TagUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -31,6 +32,7 @@ import static com.positive.dhl.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static com.positive.dhl.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -54,15 +56,20 @@ class ArticlePageTest {
 	@InjectMocks
 	private HomePropertyInjector homePropertyInjector;
 
+	@Mock
+	private AssetUtilService assetUtilService;
+
 	@BeforeEach
 	void setUp() {
 		context.registerService(Injector.class, homePropertyInjector);
 		context.registerService(PageUtilService.class, pageUtilService);
 		context.registerService(TagUtilService.class, tagUtilService);
+		context.registerService(AssetUtilService.class, assetUtilService);
 		context.addModelsForClasses(ArticlePage.class);
 
 		context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
 
+		when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
 		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
 		when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
 		when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");

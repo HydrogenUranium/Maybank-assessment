@@ -68,6 +68,9 @@ class ArticleSideNavigationTest {
     @Mock
     private PathUtilService pathUtilService;
 
+    @Mock
+    private AssetUtilService assetUtilService;
+
     @BeforeEach
     void setUp() throws Exception {
         ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
@@ -79,8 +82,10 @@ class ArticleSideNavigationTest {
         ctx.registerService(PageUtilService.class, pageUtilService);
         ctx.registerService(TagUtilService.class, tagUtilService);
         ctx.registerService(PathUtilService.class, pathUtilService);
+        ctx.registerService(AssetUtilService.class, assetUtilService);
         ctx.addModelsForClasses(ArticleSideNavigation.class);
 
+        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
