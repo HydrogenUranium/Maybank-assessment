@@ -2,6 +2,7 @@ package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
+import com.positive.dhl.core.services.AssetUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -16,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static com.positive.dhl.junitUtils.InjectorMock.INJECT_SCRIPT_BINDINGS;
 import static com.positive.dhl.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -27,12 +29,16 @@ class HeroBannerTest {
     @Mock
     private Style currentStyle;
 
+    @Mock
+    private AssetUtilService assetUtilService;
+
     @BeforeEach
     void setUp() throws Exception {
         context.load().json("/com/positive/dhl/core/models/HeroBanner/content.json", "/content");
         mockInject(context, INJECT_SCRIPT_BINDINGS, "currentStyle", currentStyle);
         mockInject(context, "currentPage", resourceResolver.getResource("/content/article").adaptTo(Page.class));
         context.addModelsForClasses(HeroBanner.class);
+        context.registerService(AssetUtilService.class, assetUtilService);
 
         when(currentStyle.get("margin",false)).thenReturn(true);
         when(currentStyle.get("inheritImage", false)).thenReturn(true);
@@ -77,6 +83,24 @@ class HeroBannerTest {
         assertEquals("/desktop.jpg", heroBanner.getDesktopBackgroundImage());
         assertEquals("/tablet.jpg", heroBanner.getTabletBackgroundImage());
         assertEquals("/mobile.jpg", heroBanner.getMobileBackgroundImage());
+        assertTrue(heroBanner.isMargin());
+        assertFalse(heroBanner.isInheritImage());
+        assertFalse(heroBanner.isKeyTakeaways());
+        assertTrue(heroBanner.isRoundedCorners());
+    }
+
+    @Test
+    void init_shouldInitVideoProperties() {
+        when(currentStyle.get("inheritImage", false)).thenReturn(false);
+        when(currentStyle.get("keyTakeaways", false)).thenReturn(false);
+        when(assetUtilService.getMimeType(anyString())).thenReturn("mp4");
+        initRequest("/content/article/jcr:content/root/article_container/body/hero_banner_with_video_config");
+        HeroBanner heroBanner = request.adaptTo(HeroBanner.class);
+
+        assertNotNull(heroBanner);
+        assertTrue(heroBanner.isUseVideo());
+        assertEquals("/video.mp4", heroBanner.getVideo());
+        assertEquals("mp4", heroBanner.getVideoMimeType());
         assertTrue(heroBanner.isMargin());
         assertFalse(heroBanner.isInheritImage());
         assertFalse(heroBanner.isKeyTakeaways());
