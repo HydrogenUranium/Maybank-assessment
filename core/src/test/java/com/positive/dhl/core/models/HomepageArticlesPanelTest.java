@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
@@ -48,6 +49,9 @@ class HomepageArticlesPanelTest {
     @Mock
     private Query page1MockQuery;
 
+    @Mock
+    private AssetUtilService assetUtilService;
+
 	@BeforeEach
 	void setUp() throws Exception {
 	    ctx.load().json("/com/positive/dhl/core/models/SiteContent.json", "/content");
@@ -55,11 +59,13 @@ class HomepageArticlesPanelTest {
         ctx.registerService(PageUtilService.class, pageUtilService);
         ctx.registerService(TagUtilService.class, tagUtilService);
         ctx.registerService(PathUtilService.class, pathUtilService);
+        ctx.registerService(AssetUtilService.class, assetUtilService);
         ctx.addModelsForClasses(HomepageArticlesPanel.class, Article.class);
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
+        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
 	}
 
 	@Test

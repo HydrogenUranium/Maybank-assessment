@@ -44,6 +44,10 @@ public class SearchBarModel {
     private String searchButtonAriaLabel;
 
     @InjectHomeProperty
+    @Named("searchBar-showThumbnail")
+    private boolean showThumbnail;
+
+    @InjectHomeProperty
     @Named("searchBar-openAriaLabel")
     private String openAriaLabel;
 

@@ -16,6 +16,7 @@ interface SearchPanelProps {
   searchButtonAriaLabel: string;
   searchInputAriaLabel: string;
   closeAriaLabel: string;
+  showThumbnail: boolean;
   articlesTitle: string;
   trendingTopics: string[];
   searchResultPagePath: string;
@@ -27,6 +28,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   trendingTopicsTitle,
   searchButtonAriaLabel,
   searchInputAriaLabel,
+  showThumbnail,
   closeAriaLabel,
   articlesTitle,
   trendingTopics,
@@ -151,7 +153,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
             )}
           />
           <SearchSection
-            items={articles}
+            items={articles.slice(0, 15)}
             title={articlesTitle}
             thinTitle
             overflowHidden
@@ -159,7 +161,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
               <a href={`${article.path}`} className={styles.article} key={article.path}
                 tabIndex={-1}
                 onClick={() => putRecentSearch(inputRef.current?.value)}>
-                <div className={styles.articleImage} style={{ backgroundImage: `url(${article.listimage})` }}></div>
+                {showThumbnail && <div className={styles.articleImage} style={{ backgroundImage: `url(${article.thumbnail})` }}></div>}
                 <div className={styles.articleInfo}>
                   <div className={styles.articleInfoTitle}>{article.title}</div>
                   <div className={styles.articleInfoMetadata}>{article.createdfriendly}</div>

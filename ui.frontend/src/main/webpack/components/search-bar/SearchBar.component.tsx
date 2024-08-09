@@ -12,6 +12,7 @@ interface SearchBarProps {
   openAriaLabel: string;
   closeAriaLabel: string;
   searchButtonAriaLabel: string;
+  showThumbnail: boolean;
   searchInputAriaLabel: string;
   articlesTitle: string;
   trendingTopics: string[];
@@ -23,6 +24,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   trendingTopicsTitle,
   searchButtonAriaLabel,
   searchInputAriaLabel,
+  showThumbnail,
   openAriaLabel,
   closeAriaLabel,
   articlesTitle,
@@ -40,6 +42,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           closeAriaLabel={closeAriaLabel}
           searchButtonAriaLabel={searchButtonAriaLabel}
           searchInputAriaLabel={searchInputAriaLabel}
+          showThumbnail={showThumbnail}
           articlesTitle={articlesTitle}
           trendingTopics={trendingTopics}
           searchResultPagePath={searchResultPagePath}
