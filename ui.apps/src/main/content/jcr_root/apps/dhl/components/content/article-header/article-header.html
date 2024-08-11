@@ -8,14 +8,14 @@
 <h1 class="article-header_title">${article.pageTitle}</h1>
 
 <!--/* This Author-related part of the code will be finalised as part of DIS-372 */-->
-<div class="article-header_author">
+<div data-sly-test.articleAuthor="${article.author}" class="article-header_author">
   <img data-sly-test.authorimage="${article.authorimage}"
        class="article-header_author-image"
        src="${authorimage}"
-       alt="${article.author}">
+       alt="${articleAuthor}">
   <div class="article-header_author-description">
     <div>
-      <span class="article-header_author-description__name">${article.author}</span>
+      <span class="article-header_author-description__name">${articleAuthor}</span>
       <a data-sly-test.followLabel="${articlePage.followLabel}" class="article-header_author-description__follow" href="${articlePage.followPath}">
         <span>${followLabel}</span>
       </a>
