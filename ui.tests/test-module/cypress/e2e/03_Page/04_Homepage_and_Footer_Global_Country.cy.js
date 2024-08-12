@@ -31,37 +31,54 @@ describe('Global & Singapore HomePage & Footer', () => {
           cy.log(`Running tests for viewport at index ${vIndex}: ${viewport}`);
         });
 
-        it('All the test case', () => {
-          // HOMEPAGE
-          // 1. Verify top tiles is exist and should contain maximum 4 article
+        it('All the test cases', () => {
+          // -----HOMEPAGE----
+          // 1. Verify top tiles exist and should contain a maximum of 4 articles
           cy.get('.top-tiles-component').should('exist')
             .find('.article').should('have.length.at.most', 4);
 
-          // 2. Verify title v2 is exist with some title
+          // 2. Verify title v2 exists with some title
           cy.get('.cmp-title__text').should('exist')
             .invoke('text').should('not.be.empty');
 
-          // 3. Verify horizontal article showcase is exist and should contain maximum 4 article
+          // 3. Verify horizontal article showcase exists and should contain a maximum of 4 articles with images
           cy.get('.root > :nth-child(1) > :nth-child(2) > :nth-child(1) > :nth-child(3)').should('exist')
-            .find('.article').should('have.length.at.most', 4);
+            .find('.article').should('have.length.at.most', 4)
+            .each(($article, index) => {
+              if (index < 4) {
+                cy.wrap($article).within(() => {
+                  cy.get('.article-card__image-wrapper').should('exist').find('img').should('exist');
+                });
+              }
+            });
 
-          // 4. Verify vertical article showcase is exist
-          cy.get(':nth-child(4) > .home-page-container-component > .container > .container__body > .body-container > .aem-Grid > .article-showcase > .article-showcase-component').should('exist');
+          // 4. Verify vertical article showcase exists and all articles contain images
+          cy.get(':nth-child(4) > .home-page-container-component > .container > .container__body > .body-container > .aem-Grid > .article-showcase > .article-showcase-component').should('exist')
+            .each(($article, index) => {
+              if (index < 4) {
+                cy.wrap($article).find('.article__picture').should('exist');
+              }
+            });
 
-          // 5. Verify sign up to the discover exists
-          cy.get(':nth-child(1) > .cta-banner-with-points-component > .banner > .banner__body').should('exist')
-            .click({ force: true });
+          // 5. Verify the bottom link at vertical showcase is clickable
+          cy.get('.link').click({ force: true });
 
-          // 6. Verify CTA Banner with Points (apply for a business account) exists with the correct title
-          cy.get('.body-container > .aem-Grid > .cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body').should('exist')
-            .click();
+          if (viewport === 'macbook-15') {
+            // 6. Verify sign up to the discover exists
+            cy.get(':nth-child(3) > .cta-banner-with-points-component > .banner > .banner__body')
+              .click({ force: true });
+          }
 
-          // FOOTER
+          // 7. Verify CTA Banner with Points (apply for a business account) exists with the correct title
+          cy.get('.banner__body__button').should('exist')
+            .find('span').should('contain', 'Apply now');
+
+          // ---FOOTER---
           // 1. Verify the footer has a logo and three link groups
           cy.get('.logo__link > .logo__image').should('be.visible');
           cy.get('.links-group').should('have.length', 3);
 
-          // 2. Verify when click DHL logo, it redirects to correct url dhl.com
+          // 2. Verify when clicking the DHL logo, it redirects to the correct URL (dhl.com)
           cy.get('.logo__link > .logo__image').should('exist');
           cy.get('a.logo__link')
             .should('have.attr', 'href')
