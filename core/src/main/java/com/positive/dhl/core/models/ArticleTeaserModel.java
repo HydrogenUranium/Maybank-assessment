@@ -8,6 +8,7 @@ import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -15,6 +16,7 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Named;
 import java.util.Optional;
 
 import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
@@ -37,6 +39,7 @@ public class ArticleTeaserModel {
     private String linkURL;
 
     @ValueMapValue
+    @Default(values = "true")
     private String altValueFromPageImage;
 
     @ValueMapValue
@@ -44,6 +47,10 @@ public class ArticleTeaserModel {
 
     @ValueMapValue
     private String titleFromPage;
+
+    @ValueMapValue
+    @Named("jcr:title")
+    private String title;
 
     @Getter
     private boolean imageFromPage;
@@ -75,6 +82,7 @@ public class ArticleTeaserModel {
 
         if (article != null) {
             imageFromPage = Boolean.parseBoolean(imageFromPageImage) && !StringUtils.isBlank(linkURL);
+            titleFromLinkedPage = Boolean.parseBoolean(titleFromPage) ? article.getNavTitle() : StringUtils.EMPTY;
             if (imageFromPage) {
                 imagePathFromPage = Optional.ofNullable(linkURL)
                         .map(link -> pageUtilService.getPage(link, resourceResolver))
@@ -88,10 +96,9 @@ public class ArticleTeaserModel {
                         .map(resourceResolver::getResource)
                         .map(r -> r.adaptTo(Asset.class))
                         .map(a -> a.getMetadataValue(DC_DESCRIPTION))
-                        .orElse(StringUtils.EMPTY);
+                        .orElse(StringUtils.defaultIfBlank(titleFromLinkedPage, title));
             }
 
-            titleFromLinkedPage = Boolean.parseBoolean(titleFromPage) ? article.getNavTitle() : StringUtils.EMPTY;
             categoryTag = article.getGroupTag();
             author = article.getAuthor();
             publishDate = article.getCreated();
