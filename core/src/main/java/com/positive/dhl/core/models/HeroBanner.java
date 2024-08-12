@@ -111,6 +111,6 @@ public class HeroBanner {
     }
 
     public String getBackgroundImageAltText() {
-        return StringUtils.isNotBlank(backgroundImageAltText) ? backgroundImageAltText : summaryTitle;
+        return StringUtils.defaultIfBlank(backgroundImageAltText, summaryTitle);
     }
 }

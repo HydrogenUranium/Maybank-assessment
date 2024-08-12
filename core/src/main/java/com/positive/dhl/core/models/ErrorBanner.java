@@ -35,6 +35,6 @@ public class ErrorBanner {
     private String altText;
 
     public String getAltText() {
-        return StringUtils.isNotBlank(altText) ? altText : title;
+        return StringUtils.defaultIfBlank(altText,title);
     }
 }
