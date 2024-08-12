@@ -18,7 +18,7 @@
            aria-selected="${itemList.index == 0 ? 'true' : 'false'}">
           <div class="text-center" data-sly-test="${item.image}">
             <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
-                 data-sly-call="${template.picture @ image=item.image}"></sly>
+                 data-sly-call="${template.picture @ image=item.image, alt=item.imageAltText}"></sly>
           </div>
           <h4 class="nav-link__title text-center mb-0" data-sly-element="${model.titleElement}">${item.title}</h4>
         </a>

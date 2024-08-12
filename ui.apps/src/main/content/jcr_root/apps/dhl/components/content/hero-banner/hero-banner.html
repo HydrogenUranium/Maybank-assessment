@@ -12,7 +12,8 @@
                  desktop=model.desktopBackgroundImage,
                  useWebOptimized=model.enableAssetDelivery,
                  imgClass='hero-banner__image',
-                 priority='high'
+                 priority='high',
+                 alt=model.backgroundImageAltText
          }"></sly>
         <div data-sly-test="${model.useVideo}" class="hero-banner__video-wrapper">
             <video  data-sly-attribute.loop="true"

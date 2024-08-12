@@ -18,14 +18,14 @@
 </div>
 
 <!--/* This Author-related part of the code will be finalised as part of DIS-372 */-->
-<div class="article-header_author article-footer">
+<div data-sly-test.articleAuthor="${article.author}" class="article-header_author article-footer">
   <img data-sly-test="${(article.authorimage.length > 0)}"
        class="article-header_author-image"
        src="${article.authorimage}"
-       alt="${article.author}">
+       alt="${articleAuthor}">
   <div class="article-header_author-description">
     <div>
-      <span class="article-header_author-description__name">${article.author}</span>
+      <span class="article-header_author-description__name">${articleAuthor}</span>
       <a data-sly-test="${articlePage.followLabel}" class="article-header_author-description__follow" href="${articlePage.followPath}">
         <span>${articlePage.followLabel}</span>
       </a>

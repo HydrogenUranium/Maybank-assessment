@@ -99,6 +99,7 @@ public class Article {
     private String readtime;
     @Expose
     private String listimage;
+    private String listimageAltText;
 
     @Setter
     private String heroimagemob;
@@ -195,6 +196,7 @@ public class Article {
         }
 
         listimage = valueMap.get("jcr:content/listimage", "");
+        listimageAltText = valueMap.get("jcr:content/listimageAltText", title);
         heroimagemob = valueMap.get("jcr:content/heroimagemob", "");
         heroimagetab = valueMap.get("jcr:content/heroimagetab", "");
         heroimagedt = valueMap.get("jcr:content/heroimagedt", "");
