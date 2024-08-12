@@ -64,6 +64,7 @@ public class HeroBanner {
     private String video;
 
     private String videoMimeType;
+    private String title;
 
     private boolean inheritImage;
     private boolean keyTakeaways;
@@ -73,6 +74,7 @@ public class HeroBanner {
 
     @PostConstruct
     protected void init() {
+        title = StringUtils.defaultIfBlank(summaryTitle, currentPage.getTitle());
         initDesignProperties();
         if(keyTakeaways) {
             initTakeawaysFeature();
@@ -107,10 +109,10 @@ public class HeroBanner {
         mobileBackgroundImage = props.get("heroimagemob", "");
         tabletBackgroundImage = props.get("heroimagetab", "");
         desktopBackgroundImage = props.get("heroimagedt", "");
-        backgroundImageAltText = props.get("heroimageAltText", summaryTitle);
+        backgroundImageAltText = props.get("heroimageAltText", title);
     }
 
     public String getBackgroundImageAltText() {
-        return StringUtils.defaultIfBlank(backgroundImageAltText, summaryTitle);
+        return StringUtils.defaultIfBlank(backgroundImageAltText, title);
     }
 }

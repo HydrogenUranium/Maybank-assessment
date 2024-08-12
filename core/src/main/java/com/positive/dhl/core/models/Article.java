@@ -107,6 +107,7 @@ public class Article {
     private String heroimagetab;
     @Setter
     private String heroimagedt;
+    private String heroimageAltText;
 
     private String youtubeid;
     private boolean showshipnow;
@@ -200,6 +201,7 @@ public class Article {
         heroimagemob = valueMap.get("jcr:content/heroimagemob", "");
         heroimagetab = valueMap.get("jcr:content/heroimagetab", "");
         heroimagedt = valueMap.get("jcr:content/heroimagedt", "");
+        heroimageAltText = valueMap.get("jcr:content/heroimageAltText", title);
         authorimage = valueMap.get("jcr:content/authorimage", "");
         thumbnail = assetUtilService.getThumbnailLink(listimage);
 
