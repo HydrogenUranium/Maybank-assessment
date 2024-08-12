@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="cq:Component"
-    jcr:title="Homepage Carousel"
-    componentGroup="DHL Components"/>
+    jcr:title="(Deprecated) Homepage Carousel"
+    cq:deprecated="Obsolete component"
+    cq:deprecatedReason="The component is not used and should be decommissioned"
+    componentGroup=".hidden"/>
