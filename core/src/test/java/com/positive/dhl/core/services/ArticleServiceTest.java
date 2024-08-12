@@ -62,6 +62,9 @@ class ArticleServiceTest {
     @Mock
     private ResourceResolverHelper resolverHelper;
 
+    @Mock
+    private AssetUtilService assetUtilService;
+
     @InjectMocks
     private ArticleService articleService;
 
@@ -73,6 +76,7 @@ class ArticleServiceTest {
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(AssetUtilService.class, assetUtilService);
         context.addModelsForClasses(Article.class);
 
         when(builder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(query);
@@ -83,6 +87,7 @@ class ArticleServiceTest {
         resolver = spy(context.resourceResolver());
         lenient().doNothing().when(resolver).close();
         lenient().when(resolverHelper.getReadResourceResolver()).thenReturn(resolver);
+        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));

@@ -918,7 +918,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Embed Component Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            allowedEmbeddables="[dhl/components/content/embed/embeddable/youtube]"
+                            allowedEmbeddables="[dhl/components/content/embed/embeddable/youtube,dhl/components/content/embed/embeddable/infogram]"
                             embeddablesDisabled="false"
                             htmlDisabled="false"
                             urlDisabled="false"
@@ -971,6 +971,41 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_dhl_article-grid>
                 </article-grid>
+                <teaser jcr:primaryType="nt:unstructured">
+                    <teaser_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Teaser Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            actionsDisabled="true"
+                            allowedHeadingElements="[h1,h2,h3,h4,h5,h6]"
+                            showTitleType="false"
+                            titleType="h2">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Alignment"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="left"
+                                            cq:styleId="1723043113061"
+                                            cq:styleLabel="Left"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="right"
+                                            cq:styleId="1723043139831"
+                                            cq:styleLabel="Right"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="full"
+                                            cq:styleId="1723043149524"
+                                            cq:styleLabel="Full"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                        </cq:styleGroups>
+                    </teaser_policy>
+                </teaser>
             </content>
         </components>
     </dhl>

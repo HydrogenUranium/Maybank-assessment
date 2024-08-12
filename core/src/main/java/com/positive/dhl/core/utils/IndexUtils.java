@@ -28,18 +28,18 @@ public class IndexUtils {
         return absentValue;
     }
 
-    private static int getPatternGroup(String name, int group, int absentValue) {
-        String groupValue = getPatternGroup(name, group, String.valueOf(absentValue));
+    private static int getPatternGroup(String name, int group) {
+        String groupValue = getPatternGroup(name, group, "0");
         return Integer.parseInt(groupValue);
     }
 
 
     private static int getVersion(String name) {
-        return getPatternGroup(name, VERSION_GROUP, 0);
+        return getPatternGroup(name, VERSION_GROUP);
     }
 
     private static int getCustomVersion(String name) {
-        return getPatternGroup(name, CUSTOM_VERSION_GROUP, 0);
+        return getPatternGroup(name, CUSTOM_VERSION_GROUP);
     }
 
     private static String getBaseName(String name) {

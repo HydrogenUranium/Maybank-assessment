@@ -2,7 +2,9 @@ package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
+import com.positive.dhl.core.services.AssetUtilService;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -10,6 +12,7 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Required;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +24,11 @@ import java.util.List;
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 @Getter
 public class HeroBanner {
+
+    @OSGiService
+    @Required
+    private AssetUtilService assetUtilService;
+
     @Inject
     @Required
     private Page currentPage;
@@ -46,6 +54,18 @@ public class HeroBanner {
     @Inject
     private String desktopBackgroundImage;
 
+    @Inject
+    private String backgroundImageAltText;
+
+    @Inject
+    private boolean useVideo;
+
+    @Inject
+    private String video;
+
+    private String videoMimeType;
+    private String title;
+
     private boolean inheritImage;
     private boolean keyTakeaways;
     private boolean roundedCorners;
@@ -54,12 +74,16 @@ public class HeroBanner {
 
     @PostConstruct
     protected void init() {
+        title = StringUtils.defaultIfBlank(summaryTitle, currentPage.getTitle());
         initDesignProperties();
         if(keyTakeaways) {
             initTakeawaysFeature();
         }
         if(inheritImage) {
             initInheritedImage();
+        }
+        if(useVideo && StringUtils.isNotBlank(video)) {
+            videoMimeType = assetUtilService.getMimeType(video);
         }
     }
 
@@ -85,5 +109,10 @@ public class HeroBanner {
         mobileBackgroundImage = props.get("heroimagemob", "");
         tabletBackgroundImage = props.get("heroimagetab", "");
         desktopBackgroundImage = props.get("heroimagedt", "");
+        backgroundImageAltText = props.get("heroimageAltText", title);
+    }
+
+    public String getBackgroundImageAltText() {
+        return StringUtils.defaultIfBlank(backgroundImageAltText, title);
     }
 }

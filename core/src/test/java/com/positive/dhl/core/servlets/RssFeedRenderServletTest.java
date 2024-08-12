@@ -28,8 +28,7 @@ import java.util.List;
 
 import static com.positive.dhl.junitUtils.AssertXml.assertXmlEquals;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class RssFeedRenderServletTest {
@@ -47,7 +46,7 @@ class RssFeedRenderServletTest {
     @Spy
     private PathUtilService pathUtilService;
 
-    @Spy
+    @Mock
     private AssetUtilService assetUtilService;
 
     @Spy
@@ -65,9 +64,6 @@ class RssFeedRenderServletTest {
     @Mock
     private RequestDispatcher dispatcher;
 
-    @Mock
-    private RssFeedRenderServlet.Configuration configuration;
-
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
         context.registerService(PageUtilService.class, pageUtilService);
@@ -80,6 +76,8 @@ class RssFeedRenderServletTest {
         TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
         tagManager.createTag("dhl:tech-futures", "Tech Futures", "description");
         tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
+
+        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
     }
 
 
@@ -91,7 +89,6 @@ class RssFeedRenderServletTest {
 
     @Test
     void doGet_ShouldReturnRSS_WhenConfigurationIsCorrect() throws ServletException {
-        when(configuration.maxPages()).thenReturn(1);
         List<Article> articles = new ArrayList<>();
         articles.add(request.getResourceResolver().getResource("/content/dhl/country/en-global/business/productivity/ai-science-fiction-it-is-not").adaptTo(Article.class));
         articles.add(request.getResourceResolver().getResource("/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales").adaptTo(Article.class));
@@ -114,7 +111,6 @@ class RssFeedRenderServletTest {
         context.requestPathInfo().setResourcePath(path);
         request.setRequestDispatcherFactory(dispatcherFactory);
 
-        servlet.activate(configuration);
         servlet.doGet(request, response);
 
         String responseBody = context.response().getOutputAsString()

@@ -45,8 +45,46 @@
                                     name="./desktopBackgroundImage"
                                     rootPath="/content/dam"
                                     fieldLabel="Desktop Background Image"/>
+                            <backgroundImageAltText
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Hero Image Alt Text"
+                                    name="./backgroundImageAltText"
+                                    fieldDescription="Set Background image alt text for SEO"
+                                    emptyText="Background Image Alt Text Placeholder"/>
                         </items>
                     </customImage>
+
+                    <useVideo
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/switch"
+                            checked="{Boolean}false"
+                            name="./useVideo"
+                            fieldLabel="Video Banner"
+                            uncheckedValue="{Boolean}false"
+                            granite:class="cq-dialog-switch-showhide"
+                            value="{Boolean}true">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-switch-showhide-target=".video-config-showhide"/>
+                    </useVideo>
+                    <videoConfig
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="video-config-showhide"
+                            margin="{Boolean}false">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                show-if-switch="checked"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <video
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./video"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Video Path"/>
+                        </items>
+                    </videoConfig>
                     <keyTakeawaysFeature
                             jcr:primaryType="nt:unstructured"
                             granite:hide="${!cqDesign.keyTakeaways}"

@@ -5,15 +5,26 @@
 
 <div class="hero-banner-component ${model.margin ? 'hero-banner-component--with-margins' : ''}" data-sly-test="${!isEmpty}">
     <div class="hero-banner ${model.roundedCorners ? 'hero-banner--with-rounded-corners' : ''}">
-    <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
-         data-sly-call="${template.picture @
-             mobile=model.mobileBackgroundImage,
-             tablet=model.tabletBackgroundImage,
-             desktop=model.desktopBackgroundImage,
-             useWebOptimized=model.enableAssetDelivery,
-             imgClass='hero-banner__image',
-             priority='high'
-     }"></sly>
+        <sly data-sly-test="${!model.useVideo}" data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+             data-sly-call="${template.picture @
+                 mobile=model.mobileBackgroundImage,
+                 tablet=model.tabletBackgroundImage,
+                 desktop=model.desktopBackgroundImage,
+                 useWebOptimized=model.enableAssetDelivery,
+                 imgClass='hero-banner__image',
+                 priority='high',
+                 alt=model.backgroundImageAltText
+         }"></sly>
+        <div data-sly-test="${model.useVideo}" class="hero-banner__video-wrapper">
+            <video  data-sly-attribute.loop="true"
+                    data-sly-attribute.autoplay="true"
+                    data-sly-attribute.muted="true"
+                    data-sly-set.style = "width: 100%;"
+                    class="hero-banner__video"
+                    style="${style @ context='styleString'}">
+                <source src="${model.video}" type="${model.videoMimeType}">
+            </video>
+        </div>
     </div>
     <div class="summary" data-sly-test="${model.points.size > 1 && model.keyTakeaways}">
         <div class="summary__label">${model.summaryTitle}</div>

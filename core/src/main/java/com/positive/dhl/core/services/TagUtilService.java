@@ -50,6 +50,7 @@ public class TagUtilService {
     /**
      * Returns the {@link List} External Tags of the Article.
      * These external tags are used to display in the Article Tiles in the Article Grid component
+     *
      * @param pageResource is a {@link Resource} object of the Article page
      * @return a {@code List} representing the External Tags of the Article page
      * or {@code List.EMPTY} if the pageResource is {@code null} or Article doesn't contain External Tags
@@ -109,7 +110,7 @@ public class TagUtilService {
     }
 
     public List<Tag> getTagsContainingWords(ResourceResolver resolver, List<String> words, String rootTagID, Locale locale) {
-        if(words.isEmpty()) {
+        if (words.isEmpty()) {
             return new ArrayList<>();
         }
 
@@ -121,47 +122,38 @@ public class TagUtilService {
         return searchTagsByLocalizedTitlePredicate(predicate, rootTag, locale);
     }
 
-    private static List<String> generateSubstrings(String input) {
-        List<String> result = new ArrayList<>();
-        String normalizedInput = input.trim().toLowerCase().replaceAll("\\s+", " ");
-        String[] words = normalizedInput.split("\\s+");
-        var stringBuilder = new StringBuilder(normalizedInput);
-
-        for (String word : words) {
-            result.add(stringBuilder.toString());
-            stringBuilder.delete(0, word.length() + 1);
-        }
-
-        return result;
+    private static List<String> splitIntoWords(String string) {
+        return List.of(string.trim().toLowerCase().split("\\s+"));
     }
 
-    private List<String> getTagNamesByPrefixAndSortedMap(SortedMap<String, Tag> tagMap, String prefix) {
+    private List<String> getTagNamesByPrefix(SortedMap<String, Tag> tagMap, String prefix) {
         return tagMap.subMap(prefix + Character.MIN_VALUE, prefix + Character.MAX_VALUE)
                 .keySet().stream().sorted().collect(Collectors.toList());
     }
 
     public List<String> getTagLocalizedSuggestionsByQuery(ResourceResolver resolver, String query, String rootTagID, Locale locale, int limit) {
         List<String> suggestions = new ArrayList<>();
+        List<String> words = splitIntoWords(query);
+
+        if (words.isEmpty()) {
+            return suggestions;
+        }
+
         SortedMap<String, Tag> tagMap = getLocalizedTagMap(resolver, rootTagID, locale);
-        List<String> querySubstrings = generateSubstrings(query);
+        for (var i = 0; i < words.size() && suggestions.size() < limit; i++) {
+            var basePhrase = String.join(" ", words.subList(0, i));
+            var tagSearchQuery = String.join(" ", words.subList(i, words.size()));
 
-        querySubstrings.forEach(subQuery -> {
-            if(suggestions.size() >= limit) {
-                return;
-            }
+            List<String> tagNames = getTagNamesByPrefix(tagMap, tagSearchQuery);
 
-            List<String> tagNames = getTagNamesByPrefixAndSortedMap(tagMap, subQuery);
-            if(!subQuery.equals(query)) {
-                tagNames = tagNames.stream()
-                        .map(string -> string.replaceFirst(subQuery, query))
-                        .collect(Collectors.toList());
-            }
+            tagNames.forEach(tagName -> {
+                if (suggestions.size() < limit) {
+                    suggestions.add(basePhrase.isBlank() ? tagName : basePhrase + " " + tagName);
+                }
+            });
+        }
 
-            suggestions.addAll(tagNames);
-        });
-
-
-        return suggestions.size() > limit ? suggestions.subList(0, limit) : suggestions;
+        return suggestions;
     }
 
     public SortedMap<String, Tag> getLocalizedTagMap(ResourceResolver resolver, String rootTagId, Locale locale) {

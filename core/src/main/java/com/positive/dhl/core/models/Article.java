@@ -33,210 +33,232 @@ import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_LEVEL
  * It's a sling model of the 'article' piece of content
  */
 @Getter
-@Model(adaptables=Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class Article {
 
-	@Self
-	private Resource resource;
+    @Self
+    private Resource resource;
 
-	@OSGiService
-	private PageUtilService pageUtilService;
+    @OSGiService
+    private PageUtilService pageUtilService;
 
-	@OSGiService
-	private PathUtilService pathUtilService;
+    @OSGiService
+    private PathUtilService pathUtilService;
 
-	@OSGiService
-	private AssetUtilService assetUtilService;
+    @OSGiService
+    private AssetUtilService assetUtilService;
 
-	@OSGiService
-	private TagUtilService tagUtilService;
+    @OSGiService
+    private TagUtilService tagUtilService;
 
-	@OSGiService(
-			injectionStrategy = InjectionStrategy.OPTIONAL
-	)
-	protected AssetDelivery assetDelivery;
+    @OSGiService(
+            injectionStrategy = InjectionStrategy.OPTIONAL
+    )
+    protected AssetDelivery assetDelivery;
 
-	@Setter
-	private boolean valid;
+    @Setter
+    private boolean valid;
 
-	@Setter
-	private boolean current;
+    @Setter
+    private boolean current;
 
-	@Setter
-	private int index;
+    @Setter
+    private int index;
 
-	@Setter
-	private boolean third;
+    @Setter
+    private boolean third;
 
-	@Setter
-	private boolean fourth;
+    @Setter
+    private boolean fourth;
 
-	@Expose private String createdfriendly;
-	@Expose private String created;
+    @Expose
+    private String createdfriendly;
+    @Expose
+    private String created;
     private Date createdDate;
-	@Expose private long createdMilliseconds;
-	private String icon;
-	private String grouptitle;
-	@Expose private String groupTag;
-	private String grouppath;
-	private String title;
-	private String pageTitle;
-	@SerializedName("title")
-	@Expose private String navTitle;
-	@Expose private String description;
-	private String brief;
-	@Expose private String author;
-	private String authortitle;
-	private String authorimage;
-	@Expose private String readtime;
-	@Expose private String listimage;
+    @Expose
+    private long createdMilliseconds;
+    private String icon;
+    private String grouptitle;
+    @Expose
+    private String groupTag;
+    private String grouppath;
+    private String title;
+    private String pageTitle;
+    @SerializedName("title")
+    @Expose
+    private String navTitle;
+    @Expose
+    private String description;
+    private String brief;
+    @Expose
+    private String author;
+    private String authortitle;
+    private String authorimage;
+    @Expose
+    private String readtime;
+    @Expose
+    private String listimage;
+    private String listimageAltText;
 
-	@Setter
-	private String heroimagemob;
-	@Setter
-	private String heroimagetab;
-	@Setter
-	private String heroimagedt;
+    @Setter
+    private String heroimagemob;
+    @Setter
+    private String heroimagetab;
+    @Setter
+    private String heroimagedt;
+    private String heroimageAltText;
 
-	private String youtubeid;
-	private boolean showshipnow;
-	private List<TagWrapper> tags;
-	@Expose private List<String> tagsToShow = new ArrayList<>();
-	private List<String> highlights = new ArrayList<>();
-	private int counter;
-	private Locale locale;
-	@Expose protected String path;
-	private String jcrPath;
-	private ValueMap valueMap;
+    private String youtubeid;
+    private boolean showshipnow;
+    private List<TagWrapper> tags;
+    @Expose
+    private List<String> tagsToShow = new ArrayList<>();
+    private List<String> highlights = new ArrayList<>();
+    private int counter;
+    private Locale locale;
+    @Expose
+    protected String path;
+    private String jcrPath;
+    private ValueMap valueMap;
 
-	public String getMappedValue(String path, boolean enableAssetDelivery, Map<String, Object> props) {
-		return enableAssetDelivery ? assetUtilService.getMappedDeliveryUrl(path, props, assetDelivery) : pathUtilService.map(path);
-	}
+    @Expose
+    private String thumbnail;
 
-	public String getPageTitleWithBr() {
-		return pageTitle.replaceAll("(\r\n|\n)", "<br>");
-	}
+    public String getMappedValue(String path, boolean enableAssetDelivery, Map<String, Object> props) {
+        return enableAssetDelivery ? assetUtilService.getMappedDeliveryUrl(path, props, assetDelivery) : pathUtilService.map(path);
+    }
 
-	/**
-	 * This method updates all asset paths. If the article is used in HTL, all link transformations will
-	 * be processed by the link transformer, and link optimization will be processed in the HTL template. However,
-	 * if the article is used outside HTL, this method can transform and optimize links.
-	 * @param enableAssetDelivery enable dynamic media asset optimization
-	 * @param props dynamic media parameters
-	 */
-	public void initAssetDeliveryProperties(boolean enableAssetDelivery, Map<String, Object> props) {
-			listimage = getMappedValue(listimage, enableAssetDelivery, props);
-			heroimagemob = getMappedValue(heroimagemob, enableAssetDelivery, props);
-			heroimagetab = getMappedValue(heroimagetab, enableAssetDelivery, props);
-			heroimagedt = getMappedValue(heroimagedt, enableAssetDelivery, props);
-			authorimage = getMappedValue(authorimage, enableAssetDelivery, props);
-	}
+    public String getPageTitleWithBr() {
+        return pageTitle.replaceAll("(\r\n|\n)", "<br>");
+    }
 
-	public void initAssetDeliveryProperties(boolean enableAssetDelivery) {
-		initAssetDeliveryProperties(enableAssetDelivery, new HashMap<>());
-	}
+    /**
+     * This method updates all asset paths. If the article is used in HTL, all link transformations will
+     * be processed by the link transformer, and link optimization will be processed in the HTL template. However,
+     * if the article is used outside HTL, this method can transform and optimize links.
+     *
+     * @param enableAssetDelivery enable dynamic media asset optimization
+     * @param props               dynamic media parameters
+     */
+    public void initAssetDeliveryProperties(boolean enableAssetDelivery, Map<String, Object> props) {
+        listimage = getMappedValue(listimage, enableAssetDelivery, props);
+        heroimagemob = getMappedValue(heroimagemob, enableAssetDelivery, props);
+        heroimagetab = getMappedValue(heroimagetab, enableAssetDelivery, props);
+        heroimagedt = getMappedValue(heroimagedt, enableAssetDelivery, props);
+        authorimage = getMappedValue(authorimage, enableAssetDelivery, props);
+        thumbnail = pathUtilService.map(thumbnail);
+    }
 
-	public void initAssetDeliveryProperties(boolean enableAssetDelivery, String quality) {
-		if (quality == null) {
-			initAssetDeliveryProperties(enableAssetDelivery);
-		} else {
-			initAssetDeliveryProperties(enableAssetDelivery, Map.of("quality", quality));
-		}
+    public void initAssetDeliveryProperties(boolean enableAssetDelivery) {
+        initAssetDeliveryProperties(enableAssetDelivery, new HashMap<>());
+    }
 
-	}
+    public void initAssetDeliveryProperties(boolean enableAssetDelivery, String quality) {
+        if (quality == null) {
+            initAssetDeliveryProperties(enableAssetDelivery);
+        } else {
+            initAssetDeliveryProperties(enableAssetDelivery, Map.of("quality", quality));
+        }
 
-	/**
-	 * Returns the article category types
-	 * @return a {@link List} of {@code String}s where each element represents one category type
-	 */
-	public static List<String> getArticlePageTypes() {
-		return DiscoverConstants.getCategoryTypes();
-	}
+    }
+
+    /**
+     * Returns the article category types
+     *
+     * @return a {@link List} of {@code String}s where each element represents one category type
+     */
+    public static List<String> getArticlePageTypes() {
+        return DiscoverConstants.getCategoryTypes();
+    }
 
     @PostConstruct
-	protected void init() {
-    	valid = false;
-		valueMap = resource.getValueMap();
+    protected void init() {
+        valid = false;
+        valueMap = resource.getValueMap();
 
-		locale = pageUtilService.getLocale(resource);
-		createdDate = getPublishDate(valueMap);
-		createdMilliseconds = createdDate.getTime();
-		created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
-		createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, locale).format(createdDate);
-		icon = valueMap.get("jcr:content/mediatype", "");
-		grouptitle = getGroupTitle(resource);
-		grouppath = getGroupPath(resource);
-		groupTag = tagUtilService.transformToHashtag(grouptitle);
+        locale = pageUtilService.getLocale(resource);
+        createdDate = getPublishDate(valueMap);
+        createdMilliseconds = createdDate.getTime();
+        created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
+        createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, locale).format(createdDate);
+        icon = valueMap.get("jcr:content/mediatype", "");
+        grouptitle = getGroupTitle(resource);
+        grouppath = getGroupPath(resource);
+        groupTag = tagUtilService.transformToHashtag(grouptitle);
 
-		title = valueMap.get("jcr:content/jcr:title", "");
-		navTitle = valueMap.get("jcr:content/navTitle", title);
-		pageTitle = valueMap.get("jcr:content/pageTitle", title);
-		description = valueMap.get("jcr:content/jcr:description", "");
-		brief = valueMap.get("jcr:content/listbrief", "");
-		if (brief.length() > 120) {
-			brief = brief.substring(0, 120).concat("...");
-		}
+        title = valueMap.get("jcr:content/jcr:title", "");
+        navTitle = valueMap.get("jcr:content/navTitle", title);
+        pageTitle = valueMap.get("jcr:content/pageTitle", title);
+        description = valueMap.get("jcr:content/jcr:description", "");
+        brief = valueMap.get("jcr:content/listbrief", "");
+        if (brief.length() > 120) {
+            brief = brief.substring(0, 120).concat("...");
+        }
 
-		listimage = valueMap.get("jcr:content/listimage", "");
-		heroimagemob = valueMap.get("jcr:content/heroimagemob", "");
-		heroimagetab = valueMap.get("jcr:content/heroimagetab", "");
-		heroimagedt = valueMap.get("jcr:content/heroimagedt", "");
-		authorimage = valueMap.get("jcr:content/authorimage", "");
+        listimage = valueMap.get("jcr:content/listimage", "");
+        listimageAltText = valueMap.get("jcr:content/listimageAltText", title);
+        heroimagemob = valueMap.get("jcr:content/heroimagemob", "");
+        heroimagetab = valueMap.get("jcr:content/heroimagetab", "");
+        heroimagedt = valueMap.get("jcr:content/heroimagedt", "");
+        heroimageAltText = valueMap.get("jcr:content/heroimageAltText", title);
+        authorimage = valueMap.get("jcr:content/authorimage", "");
+        thumbnail = assetUtilService.getThumbnailLink(listimage);
 
-		youtubeid = valueMap.get("jcr:content/youtubeid", "");
-		readtime = valueMap.get("jcr:content/readtime", "");
-		author = valueMap.get("jcr:content/author", "");
-		authortitle = valueMap.get("jcr:content/authortitle", "");
+        youtubeid = valueMap.get("jcr:content/youtubeid", "");
+        readtime = valueMap.get("jcr:content/readtime", "");
+        author = valueMap.get("jcr:content/author", "");
+        authortitle = valueMap.get("jcr:content/authortitle", "");
 
-		showshipnow = valueMap.get("jcr:content/showshipnow", false);
+        showshipnow = valueMap.get("jcr:content/showshipnow", false);
 
-		counter = valueMap.get("jcr:content/counter", 0);
+        counter = valueMap.get("jcr:content/counter", 0);
 
-		tags = new ArrayList<>();
-		tagsToShow = tagUtilService.getExternalTags(resource);
-		highlights = tagUtilService.getHighlightsTags(resource);
+        tags = new ArrayList<>();
+        tagsToShow = tagUtilService.getExternalTags(resource);
+        highlights = tagUtilService.getHighlightsTags(resource);
 
-		jcrPath = resource.getPath();
-		path = resource.getResourceResolver().map(resource.getPath().concat(URL_EXTENSION));
+        jcrPath = resource.getPath();
+        path = resource.getResourceResolver().map(resource.getPath().concat(URL_EXTENSION));
 
-		valid = true;
-	}
+        valid = true;
+    }
 
-	public String getCreated(String pattern) {
-		return (new SimpleDateFormat(pattern)).format(createdDate);
-	}
+    public String getCreated(String pattern) {
+        return (new SimpleDateFormat(pattern)).format(createdDate);
+    }
 
     /**
-	 *
-	 */
+     *
+     */
     private String getGroupTitle(Resource self) {
-		return Optional.ofNullable(self)
-				.map(r -> r.adaptTo(Page.class))
-				.map(p -> p.getAbsoluteParent(CATEGORY_PAGE_LEVEL))
-				.map(Page::getProperties)
-				.map(properties -> properties.get(PN_NAV_TITLE, properties.get(PN_TITLE, "")))
-				.orElse("");
+        return Optional.ofNullable(self)
+                .map(r -> r.adaptTo(Page.class))
+                .map(p -> p.getAbsoluteParent(CATEGORY_PAGE_LEVEL))
+                .map(Page::getProperties)
+                .map(properties -> properties.get(PN_NAV_TITLE, properties.get(PN_TITLE, "")))
+                .orElse("");
     }
 
     /**
-	 *
-	 */
+     *
+     */
     private String getGroupPath(Resource self) {
-		return Optional.ofNullable(self)
-				.map(r -> r.adaptTo(Page.class))
-				.map(p -> p.getAbsoluteParent(CATEGORY_PAGE_LEVEL))
-				.map(Page::getPath)
-				.orElse("");
+        return Optional.ofNullable(self)
+                .map(r -> r.adaptTo(Page.class))
+                .map(p -> p.getAbsoluteParent(CATEGORY_PAGE_LEVEL))
+                .map(Page::getPath)
+                .orElse("");
     }
 
-	private Date getPublishDate(@NonNull ValueMap properties) {
-		Date customPublishDate = properties.get("jcr:content/custompublishdate", Date.class);
-		if (customPublishDate != null) {
-			return customPublishDate;
-		} else {
-			Date jcrCreated = properties.get(PN_CREATED, new Date());
-			Date cqLastModified = properties.get("jcr:content/" + PN_PAGE_LAST_MOD, jcrCreated);
-			return jcrCreated.after(cqLastModified) ? jcrCreated : cqLastModified;
-		}
-	}
+    private Date getPublishDate(@NonNull ValueMap properties) {
+        Date customPublishDate = properties.get("jcr:content/custompublishdate", Date.class);
+        if (customPublishDate != null) {
+            return customPublishDate;
+        } else {
+            Date jcrCreated = properties.get(PN_CREATED, new Date());
+            Date cqLastModified = properties.get("jcr:content/" + PN_PAGE_LAST_MOD, jcrCreated);
+            return jcrCreated.after(cqLastModified) ? jcrCreated : cqLastModified;
+        }
+    }
 }
