@@ -55,38 +55,67 @@
                                                 rootPath="/content/dhl"
                                                 required="{Boolean}false"/>
 
-                                            <heroimagemob
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Article 'Hero' Image (mobile)"
-                                                name="./heroimagemob"
-                                                rootPath="/content/dam"
-                                                required="{Boolean}true"/>
-                                            <heroimagetab
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Article 'Hero' Image (tablet)"
-                                                name="./heroimagetab"
-                                                rootPath="/content/dam"
-                                                required="{Boolean}true"/>
-                                            <heroimagedt
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Article 'Hero' Image (desktop)"
-                                                name="./heroimagedt"
-                                                rootPath="/content/dam"
-                                                required="{Boolean}true"/>
-                                            <listimage
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Article List Image"
-                                                name="./listimage"
-                                                rootPath="/content/dam"
-                                                required="{Boolean}true"/>
+                                            <heroImages
+                                                    jcr:primaryType="nt:unstructured"
+                                                    jcr:title="Hero Images"
+                                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <heroimagemob
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            fieldLabel="Article 'Hero' Image (mobile)"
+                                                            name="./heroimagemob"
+                                                            rootPath="/content/dam"
+                                                            required="{Boolean}true"/>
+                                                    <heroimagetab
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            fieldLabel="Article 'Hero' Image (tablet)"
+                                                            name="./heroimagetab"
+                                                            rootPath="/content/dam"
+                                                            required="{Boolean}true"/>
+                                                    <heroimagedt
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            fieldLabel="Article 'Hero' Image (desktop)"
+                                                            name="./heroimagedt"
+                                                            rootPath="/content/dam"
+                                                            required="{Boolean}true"/>
+                                                    <heroimageAltText
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Hero Image Alt Text"
+                                                            name="./heroimageAltText"
+                                                            fieldDescription="Set Hero image alt text for SEO"
+                                                            emptyText="Hero Image Alt Text Placeholder"/>
+                                                </items>
+                                            </heroImages>
+                                            <listImages
+                                                    jcr:primaryType="nt:unstructured"
+                                                    jcr:title="List Image"
+                                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <listimage
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            fieldLabel="Article List Image"
+                                                            name="./listimage"
+                                                            rootPath="/content/dam"
+                                                            required="{Boolean}true"/>
+                                                    <listimageAltText
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="List Image Alt Text"
+                                                            name="./listimageAltText"
+                                                            fieldDescription="Set List image alt text for SEO"
+                                                            emptyText="List Image Alt Text Placeholder"/>
+                                                </items>
+                                            </listImages>
+
                                             <description
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/foundation/form/textarea"

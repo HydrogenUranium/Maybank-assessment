@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -31,7 +32,9 @@ public class ErrorBanner {
     private String image;
 
     @ValueMapValue
-    @Default(values = "")
     private String altText;
 
+    public String getAltText() {
+        return StringUtils.defaultIfBlank(altText,title);
+    }
 }

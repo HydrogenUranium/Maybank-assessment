@@ -66,6 +66,11 @@
                                         name="./image"
                                         rootPath="/content/dam"
                                         fieldLabel="Image"/>
+                                <imageAltText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Image Alt Text"
+                                        name="./imageAltText"/>
                                 <title
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

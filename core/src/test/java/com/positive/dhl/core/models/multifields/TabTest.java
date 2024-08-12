@@ -27,6 +27,7 @@ class TabTest {
         assertEquals("body", tab.getBody());
         assertEquals("DHL logistics", tab.getTitle());
         assertEquals("/image.png", tab.getImage());
+        assertEquals("Image Alt Text", tab.getImageAltText());
     }
 
 }
