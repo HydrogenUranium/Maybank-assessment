@@ -7,6 +7,7 @@ import com.positive.dhl.core.dto.marketo.FormSubmissionResponse;
 import com.positive.dhl.core.dto.marketo.MarketoSubmissionResult;
 import com.positive.dhl.core.services.MarketoCommunication;
 import com.positive.dhl.core.services.InputParamHelper;
+import com.positive.dhl.core.utils.LogUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -105,7 +106,7 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 			List<FormSubmissionErrors> errors = formSubmissionResponse.getFormSubmissionErrors();
 			for (FormSubmissionErrors formSubmissionErrors : errors) {
 				log.error("Error has occurred when submitting Marketo form. Status code: {}, Message: {}",
-						formSubmissionErrors.getCode(), formSubmissionErrors.getMessage());
+						LogUtils.encode(formSubmissionErrors.getCode()), LogUtils.encode(formSubmissionErrors.getMessage()));
 			}
 			printWriter.write("KO");
 		}
