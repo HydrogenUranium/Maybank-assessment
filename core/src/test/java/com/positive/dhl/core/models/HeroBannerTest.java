@@ -66,6 +66,7 @@ class HeroBannerTest {
         assertEquals("/heroimagedt.jpg", heroBanner.getDesktopBackgroundImage());
         assertEquals("/heroimagetab.jpg", heroBanner.getTabletBackgroundImage());
         assertEquals("/heroimagemob.jpg", heroBanner.getMobileBackgroundImage());
+        assertEquals("Hero Image Alt Text", heroBanner.getBackgroundImageAltText());
         assertTrue(heroBanner.isMargin());
         assertTrue(heroBanner.isInheritImage());
         assertTrue(heroBanner.isKeyTakeaways());
@@ -83,6 +84,7 @@ class HeroBannerTest {
         assertEquals("/desktop.jpg", heroBanner.getDesktopBackgroundImage());
         assertEquals("/tablet.jpg", heroBanner.getTabletBackgroundImage());
         assertEquals("/mobile.jpg", heroBanner.getMobileBackgroundImage());
+        assertEquals("Key Takeaways", heroBanner.getBackgroundImageAltText());
         assertTrue(heroBanner.isMargin());
         assertFalse(heroBanner.isInheritImage());
         assertFalse(heroBanner.isKeyTakeaways());

@@ -45,6 +45,13 @@
                                     name="./desktopBackgroundImage"
                                     rootPath="/content/dam"
                                     fieldLabel="Desktop Background Image"/>
+                            <backgroundImageAltText
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Hero Image Alt Text"
+                                    name="./backgroundImageAltText"
+                                    fieldDescription="Set Background image alt text for SEO"
+                                    emptyText="Background Image Alt Text Placeholder"/>
                         </items>
                     </customImage>
 

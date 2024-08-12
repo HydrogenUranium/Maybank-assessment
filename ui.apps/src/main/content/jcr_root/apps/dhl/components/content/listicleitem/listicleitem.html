@@ -21,7 +21,8 @@
         <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
              data-sly-call="${template.picture @
                  image=properties.image,
-                 pictureClass='listicle__row__picture'
+                 pictureClass='listicle__row__picture',
+                 alt=properties.imageAltText || properties.title
              }"></sly>
         <div class="listicle__row__text listicle__row__text--${properties.colour}">
             <h2 class="listicle__row__text__title">${properties.title}</h2>

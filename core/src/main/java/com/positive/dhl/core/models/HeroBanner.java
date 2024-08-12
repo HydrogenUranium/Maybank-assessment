@@ -55,6 +55,9 @@ public class HeroBanner {
     private String desktopBackgroundImage;
 
     @Inject
+    private String backgroundImageAltText;
+
+    @Inject
     private boolean useVideo;
 
     @Inject
@@ -104,5 +107,10 @@ public class HeroBanner {
         mobileBackgroundImage = props.get("heroimagemob", "");
         tabletBackgroundImage = props.get("heroimagetab", "");
         desktopBackgroundImage = props.get("heroimagedt", "");
+        backgroundImageAltText = props.get("heroimageAltText", summaryTitle);
+    }
+
+    public String getBackgroundImageAltText() {
+        return StringUtils.defaultIfBlank(backgroundImageAltText, summaryTitle);
     }
 }

@@ -1,5 +1,6 @@
 {
   "image": "/image.png",
+  "imageAltText": "Image Alt Text",
   "body": "body",
   "title": "DHL logistics"
 }
