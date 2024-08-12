@@ -25,6 +25,6 @@ public class Tab {
     private String body;
 
     public String getImageAltText() {
-        return StringUtils.isNoneBlank(imageAltText) ? imageAltText : title;
+        return StringUtils.defaultIfBlank(imageAltText,title);
     }
 }

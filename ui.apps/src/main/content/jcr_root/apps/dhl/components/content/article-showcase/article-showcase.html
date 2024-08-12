@@ -22,7 +22,8 @@
                          data-sly-call="${template.picture @
                          image=item.listimage,
                          useWebOptimized=model.enableAssetDelivery,
-                         imgClass='article__picture__image'
+                         imgClass='article__picture__image',
+                         alt=item.listimageAltText
                      }"></sly>
                 </a>
                 <div class="article__info">
@@ -39,7 +40,8 @@
                              data-sly-call="${template.picture @
                              image=item.authorimage,
                              useWebOptimized=model.enableAssetDelivery,
-                             imgClass='article__info__author__avatar'
+                             imgClass='article__info__author__avatar',
+                             alt=item.author
                          }"></sly>
                         <div data-sly-test="${item.author}" class="article__info__author__name">${item.author}</div>
                     </div>
