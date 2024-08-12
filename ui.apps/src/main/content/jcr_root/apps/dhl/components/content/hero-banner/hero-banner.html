@@ -14,11 +14,12 @@
                  imgClass='hero-banner__image',
                  priority='high'
          }"></sly>
-        <div data-sly-test="${model.useVideo}" class="hero-banner__video">
+        <div data-sly-test="${model.useVideo}" class="hero-banner__video-wrapper">
             <video  data-sly-attribute.loop="true"
                     data-sly-attribute.autoplay="true"
                     data-sly-attribute.muted="true"
                     data-sly-set.style = "width: 100%;"
+                    class="hero-banner__video"
                     style="${style @ context='styleString'}">
                 <source src="${model.video}" type="${model.videoMimeType}">
             </video>
