@@ -13,7 +13,12 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<div class="accordion-component" data-sly-use.faqs="com.positive.dhl.core.models.FAQ">
+<sly data-sly-use.faqs="com.positive.dhl.core.models.FAQ"
+				data-sly-set.isEmpty=${faqs.accordionitems.empty}></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+
+<div class="accordion-component">
 	<div class="container">
 		<div id="accordion-${ faqs.Id }" data-sly-list="${faqs.accordionitems}">
 			<div class="card">

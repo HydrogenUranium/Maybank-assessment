@@ -13,8 +13,13 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
+<sly data-sly-use.gallery="com.positive.dhl.core.models.Gallery"
+		 data-sly-set.isEmpty=${gallery.slides.empty}></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+
 <sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
-<div class="figure-carousel" data-sly-use.gallery="com.positive.dhl.core.models.Gallery" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
+<div class="figure-carousel" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions">
 	<div id="carouselId" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner" data-sly-list="${gallery.slides}">
 			<div class="carousel-item ${((itemList.index == 0) ? 'active' : '')}" id="uniqueIdImageGallerySlide${itemList.index}">
