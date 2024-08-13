@@ -3,6 +3,7 @@ package com.positive.dhl.core.services;
 import com.day.cq.tagging.InvalidTagFormatException;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
+import com.day.cq.wcm.api.Page;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.ModifiableValueMap;
@@ -24,6 +25,8 @@ import java.util.Map;
 
 import static com.positive.dhl.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class TagUtilServiceTest {
@@ -48,7 +51,6 @@ class TagUtilServiceTest {
         resourceResolver = context.resourceResolver();
         context.load().json(NEW_CONTENT_STRUCTURE_JSON, PAGE_PATH);
         resource = resourceResolver.getResource(PAGE_PATH);
-        pageUtilService = new PageUtilService();
         TagManager tagManager = resolver.adaptTo(TagManager.class);
 
         tagManager.createTag("dhl-article-external:default/dhl_internationalshipping", "International Shipping", "International Shipping");
@@ -169,8 +171,12 @@ class TagUtilServiceTest {
 
     @Test
     void test_getDefaultTrendingTopicsList() {
+        Page homePage = context.resourceResolver().getResource("/content/dhl/language-masters/en-master").adaptTo(Page.class);
+        when(pageUtilService.getHomePage(any(Resource.class))).thenReturn(homePage);
+        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+
         assertNotNull(tagUtilService);
-        List<String> list = tagUtilService.getDefaultTrendingTopicsList(resource);
+        List<String> list = tagUtilService.getTrendingTopics(resource);
         assertEquals(List.of("Business", "China", "small business"), list);
     }
 

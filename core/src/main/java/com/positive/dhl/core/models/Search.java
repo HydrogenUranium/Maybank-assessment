@@ -54,6 +54,6 @@ public class Search {
 
     @PostConstruct
     private void init() {
-        popularTopics = new Gson().toJson(tagUtilService.getDefaultTrendingTopicsList(resource));
+        popularTopics = new Gson().toJson(tagUtilService.getTrendingTopics(resource));
     }
 }
