@@ -19,10 +19,11 @@
             <video  data-sly-attribute.loop="true"
                     data-sly-attribute.autoplay="true"
                     data-sly-attribute.muted="true"
+                    data-sly-attribute.playsinline="true"
                     data-sly-set.style = "width: 100%;"
+                    src="${model.video}"
                     class="hero-banner__video"
                     style="${style @ context='styleString'}">
-                <source src="${model.video}" type="${model.videoMimeType}">
             </video>
         </div>
     </div>
