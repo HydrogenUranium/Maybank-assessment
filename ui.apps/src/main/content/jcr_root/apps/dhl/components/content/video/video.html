@@ -14,8 +14,8 @@
             data-sly-set.widthStyle="width: 100%;"
             data-sly-set.style = "${model.maxHeight ? maxHeightStyle : 'max-height: 100%;'} ${model.maxWidth ? maxWidthStyle : 'max-width: 100%;'} ${model.fullWidth ? widthStyle : ''}"
             style="${style @ context='styleString'}"
+            src="${model.videoPath}"
             poster="${model.poster}">
-        <source src="${model.videoPath}" type="${model.mimeType}">
         ${model.unsupportedMessage}
     </video>
 </div>
