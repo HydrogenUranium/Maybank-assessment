@@ -45,6 +45,7 @@ public class DhlPage {
 	private String assetprefix;
 	private String akamaiHostname;
 	private String ogtagimage;
+	private String listimage;
 
 	@InjectHomeProperty
 	@Default(values = "")
@@ -79,6 +80,7 @@ public class DhlPage {
 		ValueMap properties = currentPage.getProperties();
 		fullarticlepath = properties.get("fullarticlepath", "");
 		amparticlepath = properties.get("amparticlepath", "");
+		listimage = properties.get("listimage", "");
 
 		String path = properties.get("redirectTarget", "");
 		if (!path.equals(currentPagePath) && !path.isEmpty() && isPublishRunmode) {
@@ -91,7 +93,7 @@ public class DhlPage {
 		pageUtilService.getAncestorPageByPredicate(currentPage,
 				page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
 
-		String customOgTagImage = properties.get("ogtagimage", "");
+		String customOgTagImage = properties.get("ogtagimage", listimage);
 		ogtagimage = StringUtils.isNotBlank(customOgTagImage)
 				? (HTTPS_PREFIX + akamaiHostname + assetprefix).concat(customOgTagImage.trim())
 				: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png";
