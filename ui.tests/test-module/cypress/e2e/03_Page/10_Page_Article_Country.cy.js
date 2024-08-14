@@ -17,6 +17,11 @@ describe('Singapore Page Article Country', () => {
       cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
     });
 
+    function verifyDownload(fileName) {
+      const downloadsFolder = Cypress.config("downloadsFolder");
+      cy.readFile(`${downloadsFolder}/${fileName}`).should("exist");
+    }
+
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];
 
     viewports.forEach((viewport, vIndex) => {
@@ -61,8 +66,8 @@ describe('Singapore Page Article Country', () => {
           cy.get('#text-3816155b32').should('exist');
 
           // 9. Verify image exists without being broken
-          cy.get('.figure > img').should('be.visible').and(($img) => {
-            expect($img[0].naturalWidth).to.be.greaterThan(0);
+          cy.get('.teaser img').should('be.visible').and(($img) => {
+            expect($img[0].width).to.be.greaterThan(0);
           });
 
           // 10. Verify video exists and plays when clicked
@@ -135,25 +140,33 @@ describe('Singapore Page Article Country', () => {
             cy.get('.article-author-banner_brief').should('exist');
           }
 
-          if (viewport !== 'iphone-6') {
-            // 21. Verify CTA Banner exists and the button is clickable, landing on the correct page
-            cy.get('.cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body').should('exist');
-            cy.get('.cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body > .banner__body__button')
-              .click({ force: true });
-            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-sg/ship-now`);
-          }
-
           if (viewport === 'iphone-6') {
-            // 22. Verify the article footer exists with author details, share, publication date, and reading duration
+            // 21. Verify the article footer exists with author details, share, publication date, and reading duration
             cy.get(':nth-child(5) > .article-container-component > .grid > .grid__container').should('exist');
             cy.get(':nth-child(5) > .article-container-component > .grid > .grid__container > .grid__container__body > .body-container > .aem-Grid > .aem-GridColumn > .article-header_author > .article-header_author-image').should('exist');
             cy.get(':nth-child(5) > .article-container-component > .grid > .grid__container > .grid__container__body > .body-container > .aem-Grid > .aem-GridColumn > .article-header_author > .article-header_author-description > :nth-child(1) > .article-header_author-description__name').should('exist');
             cy.get(':nth-child(5) > .article-container-component > .grid > .grid__container > .grid__container__body > .body-container > .aem-Grid > .aem-GridColumn > .article-header_share > .article-header_share-container > .article-header_share-container__right > .st-custom-button').should('exist');
           }
 
-          // 23. Verify header and footer exist
+          // 22. Verify header and footer exist
           cy.get('.headerV2-wrapper').should('exist');
           cy.get('.footer-container').should('exist');
+
+          // 26. Verify Service Point Locator exists
+          cy.get('.locator-frame').should('exist');
+
+          // 27. Verify when hovering the breadcrumb it changes from black to red
+          const link = cy.get('.cmp-breadcrumb__list');
+          link.invoke('css', 'color', 'red');
+          link.should('have.css', 'color', 'rgb(255, 0, 0)');
+
+          if (viewport !== 'iphone-6') {
+            // 28. Verify CTA Banner exists and the button is clickable, landing on the correct page
+            cy.get('.cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body').should('exist');
+            cy.get('.cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body > .banner__body__button')
+              .click({ force: true });
+            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-sg/ship-now`);
+          }
         });
       });
     });

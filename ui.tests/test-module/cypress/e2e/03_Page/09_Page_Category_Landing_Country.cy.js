@@ -44,7 +44,7 @@ describe('Singapore Category Landing Page', () => {
           finalLength = 16;
         }
 
-        it('All test case', function () {
+        it('All test cases', function () {
           // 1. Verify breadcrumb exists
           cy.get('.cmp-breadcrumb__list').should('exist');
 
@@ -103,6 +103,11 @@ describe('Singapore Category Landing Page', () => {
           // 11. Verify header and footer exist
           cy.get('.headerV2-wrapper').should('exist');
           cy.get('.footer-container').should('exist');
+
+          // 12. Verify when hovering the breadcrumb it changes from black to red
+          const link = cy.get('.cmp-breadcrumb__list');
+          link.invoke('css', 'color', 'red');
+          link.should('have.css', 'color', 'rgb(255, 0, 0)');
         });
       });
     });

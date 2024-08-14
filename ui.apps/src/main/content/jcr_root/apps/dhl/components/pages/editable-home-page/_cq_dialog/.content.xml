@@ -1145,10 +1145,18 @@
                                                             </trendingTopicsTitle>
                                                             <trendingTopicsList
                                                                     jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/alert"
-                                                                    jcr:title="Trending Topics List "
-                                                                    text="- comes from 'DHL Search Suggestions' tag namespace &lt;br&gt;
-                                                                    (/content/cq:tags/dhlsuggested)"/>
+                                                                    sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                                                    jcr:title="Trending Topics List"
+                                                                    name="./trendingTopics"
+                                                                    multiple="true"
+                                                                    autocreateTag="true"
+                                                                    allowBulkEdit="true"
+                                                                    fieldDescription="Trending topics for Search component and SearchBar component"
+                                                                    fieldLabel="Trending Topics">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./trendingTopics"/>
+                                                            </trendingTopicsList>
                                                             <articlesTitle
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
