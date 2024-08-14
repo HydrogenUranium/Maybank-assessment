@@ -10,6 +10,8 @@
         "create group author-language-copies",
         "create group author-language-master",
 
+        "create group dhl-tag-editor",
+
         "# *** Remove ACL is used to guarantee acess order (prevent potential problems of manual access changes) ***",
         "remove ACE for author-language-copies,author-language-master\ndeny jcr:all on /content/dhl restriction(rep:glob,/language-masters/en-master)\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
 
@@ -25,10 +27,10 @@
         "set ACL for author-language-master\nallow jcr:read,rep:write on /content/dhl restriction(rep:glob,/*/*)\nend",
         "set ACL for author-language-master\nallow jcr:read on home(author-language-master)\nend",
 
-        "create group discover-base-user",
+        "set properties on authorizable(dhl-tag-editor)/profile\n set givenName to \"DHL Tag Editor\"\n end",
+        "set ACL for dhl-tag-editor\nallow jcr:write on /content/cq:tags/dhl\nend",
 
-        "# *** Remove ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "remove ACE for discover-base-user\nallow jcr:read on /content\nallow jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/campaigns,/content/cq:graphql,/content/launches,/content/usergenerated,/content/outbound-marketing,/content/cq:tags,/content/dam\nend",
+        "create group discover-base-user",
 
         "set properties on authorizable(discover-base-user)/profile\n set givenName to \"Discover Base User\"\n set aboutMe to \"Common user group with basic access rights\"\n end",
         "add discover-base-user to group author-language-copies",
@@ -52,6 +54,8 @@
         "set ACL for discover-base-user\nallow jcr:read on /content restriction(rep:glob,/dhl/jcr:content)\nend",
         "set ACL for discover-base-user\ndeny rep:write on /content restriction(rep:ntNames,cq:meta)\nend",
         "set ACL for discover-base-user\nallow jcr:read on /content restriction(rep:ntNames,cq:meta)\nend",
+
+        "set ACL for discover-base-user\ndeny jcr:write on /content restriction(rep:glob,/cq:tags/dhl)\nend",
 
         "create group author-all-countries",
         "add author-all-countries to group discover-base-user",
