@@ -73,7 +73,7 @@ public class SearchBarModel {
 
     @PostConstruct
     private void init() {
-        trendingTopics = new Gson().toJson(tagUtilService.getDefaultTrendingTopicsList(currentPage.getContentResource()));
+        trendingTopics = new Gson().toJson(tagUtilService.getTrendingTopics(currentPage.getContentResource()));
         searchResultPage = StringUtils.isNoneBlank(searchResultPagePath) ? resourceResolver.map(searchResultPagePath) : StringUtils.EMPTY;
     }
 }
