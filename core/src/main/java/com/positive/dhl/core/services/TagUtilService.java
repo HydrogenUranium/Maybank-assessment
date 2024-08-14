@@ -12,6 +12,7 @@ import org.osgi.service.component.annotations.Reference;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.day.cq.commons.jcr.JcrConstants.JCR_CONTENT;
 
@@ -21,7 +22,7 @@ public class TagUtilService {
     public static final String DEFAULT_TAG_TITLE_LANGUAGE = "en";
 
     public static final String EXTERNAL_TAGS_NAMESPACE = "dhl-article-external";
-    public static final String TRENDING_TOPICS_TAGS_NAMESPACE = "dhlsuggested:";
+    public static final String TRENDING_TOPICS_FIELD = "trendingTopics";
     public static final String AUTHOR_HIGHLIGHTS_TAGS_NAMESPACE = "dhl-author-highlights";
 
     @Reference
@@ -68,25 +69,20 @@ public class TagUtilService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getDefaultTrendingTopicsList(Resource pageResource) {
+    public List<String> getTrendingTopics(Resource pageResource) {
         TagManager tagManager = pageResource.getResourceResolver().adaptTo(TagManager.class);
+        var homePage = pageUtilService.getHomePage(pageResource);
+        var locale = pageUtilService.getLocale(pageResource);
 
-        List<String> trendingTopicsList = new ArrayList<>();
-        if (tagManager != null) {
-            var trendingTopicsTagsNamespace = tagManager.resolve(TRENDING_TOPICS_TAGS_NAMESPACE);
-            if (null != trendingTopicsTagsNamespace) {
-                Iterator<Tag> trendingTopicsTags = trendingTopicsTagsNamespace.listChildren();
-                var locale = pageUtilService.getLocale(pageResource);
-                while (trendingTopicsTags.hasNext()) {
-                    var tag = trendingTopicsTags.next();
-                    String tagLocalizedTitle = tag.getLocalizedTitle(locale);
-                    trendingTopicsList.add(tagLocalizedTitle == null ? tag.getTitle() : tagLocalizedTitle);
-                }
-                trendingTopicsList.sort(String::compareTo);
-            }
+        if (tagManager == null || homePage == null) {
+            return new ArrayList<>();
         }
 
-        return trendingTopicsList;
+        return Stream.of(homePage.getProperties().get(TRENDING_TOPICS_FIELD, new String[]{}))
+                .map(tagManager::resolve)
+                .map(tag -> getLocalizedTitle(tag, locale))
+                .filter(title -> !title.isBlank())
+                .collect(Collectors.toList());
     }
 
     public String transformToHashtag(String tagTitle) {

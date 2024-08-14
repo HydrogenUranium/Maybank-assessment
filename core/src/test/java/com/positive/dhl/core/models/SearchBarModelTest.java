@@ -56,7 +56,7 @@ class SearchBarModelTest {
     void test_withValidSetup() {
         initRequest(ARTICLE_RESOURCE_PATH);
 
-        when(tagUtilService.getDefaultTrendingTopicsList(any(Resource.class))).thenReturn(List.of("Business", "China", "small business"));
+        when(tagUtilService.getTrendingTopics(any(Resource.class))).thenReturn(List.of("Business", "China", "small business"));
         mockInjectHomeProperty(context, "searchBar-recentSearchesTitle" ,"Recent Searches");
         mockInjectHomeProperty(context, "searchBar-trendingTopicsTitle" ,"Trending Topics");
         mockInjectHomeProperty(context, "searchBar-articlesTitle" ,"Articles");

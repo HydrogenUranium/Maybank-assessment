@@ -29,7 +29,8 @@
         "jcr:content": {
           "jcr:primaryType": "nt:unstructured",
           "sling:resourceType": "dhl/components/pages/editable-home-page",
-          "jcr:title": "EN Language Master Home page"
+          "jcr:title": "EN Language Master Home page",
+          "trendingTopics": ["dhlsuggested:Business", "dhlsuggested:China", "dhlsuggested:Small-business"]
         },
         "category-page": {
           "jcr:primaryType": "cq:Page",
