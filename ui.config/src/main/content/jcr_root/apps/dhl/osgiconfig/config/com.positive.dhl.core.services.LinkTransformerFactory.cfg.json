@@ -4,6 +4,7 @@
     "source:srcset",
     "source:src",
     "video:poster",
+    "video:src",
     "a:href"
   ],
   "whitelisted.links": [
