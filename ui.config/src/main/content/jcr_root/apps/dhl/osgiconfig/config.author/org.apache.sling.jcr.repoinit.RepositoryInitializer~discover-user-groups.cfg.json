@@ -3,6 +3,7 @@
         "create path /(rep:root)",
         "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/jcr:content(nt:unstructured)",
         "create path /etc(sling:Folder)/designs(nt:folder)",
+        "create path (rep:root)/content(sling:OrderedFolder)/cq:tags(sling:Folder)/dhl(cq:Tag)",
 
         "# *** deny access for gmt-tracking should be placed below all user groups and then allow access for gmt-tracking-id-editor ***",
         "create group gmt-tracking-id-editor",
