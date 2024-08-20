@@ -1006,6 +1006,17 @@
                         </cq:styleGroups>
                     </teaser_policy>
                 </teaser>
+                <article-teaser-container jcr:primaryType="nt:unstructured">
+                    <article_teaser_container_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Article Teaser Container Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </article_teaser_container_policy>
+                </article-teaser-container>
             </content>
         </components>
     </dhl>
