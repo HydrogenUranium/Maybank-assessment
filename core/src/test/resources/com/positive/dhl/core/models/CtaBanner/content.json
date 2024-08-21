@@ -52,7 +52,22 @@
                     "tabletBackgroundImage": "/content/dam/images/tablet.jpg",
                     "mobileBackgroundImage": "/content/dam/images/mobile.jpg",
                     "sling:resourceType": "dhl/components/content/cta-banner",
-                    "desktopBackgroundImage": "/content/dam/images/desktop.jpg"
+                    "desktopBackgroundImage": "/content/dam/images/desktop.jpg",
+                    "analytics": {
+                      "jcr:primaryType": "nt:unstructured",
+                      "trackedInteractions": "basic",
+                      "interactionType": "content",
+                      "name": "SUBSCRIBE TO OUR NEWSLETTER",
+                      "position": "position",
+                      "customAttributes": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "item0": {
+                          "jcr:primaryType": "nt:unstructured",
+                          "name": "topic",
+                          "value": "subscription"
+                        }
+                      }
+                    }
                   },
                   "cta_banner_subscribeNewsletter": {
                     "jcr:primaryType": "nt:unstructured",
