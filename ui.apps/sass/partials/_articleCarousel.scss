@@ -47,6 +47,10 @@
         width: 60%;
       }
 
+      .cmp-teaser {
+        margin: 0;
+      }
+
       .cmp-teaser__content {
         position: absolute;
         bottom: 63px;
@@ -90,6 +94,7 @@
         }
 
         .cmp-teaser__article-author {
+          display: none;
           font-size: 12px;
           line-height: 17px;
           opacity: 0.93;

@@ -1,0 +1,118 @@
+.article-teaser-container {
+  padding: 35px 0 !important;
+  margin: 0 -20px !important;
+  width: calc(100% + 40px) !important;
+
+  .cmp-container {
+    .article-teaser {
+      padding: 0 20px;
+
+      .cmp-teaser__link,
+      .cmp-teaser {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+
+        .cmp-image {
+          order: 1;
+          position: relative;
+
+          .cmp-image__image {
+            display: block;
+            width: 100%;
+            height: 191px;
+            border-radius: 2px;
+            object-fit: cover;
+            margin-bottom: 0;
+            background: {
+              size: cover;
+            }
+          }
+
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent linear-gradient(180deg, #dcdcdc 50%, #3a3a3a 80%, #0d0d0d 100%) 0 0 no-repeat padding-box;
+            border-radius: 2px;
+            mix-blend-mode: multiply;
+            opacity: 0.6;
+          }
+        }
+
+        .cmp-teaser__content {
+          order: 2;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          height: calc(100% - 191px);
+          padding: 15px;
+          border: 1px solid #E2E2E2;
+          border-top: none;
+          border-radius: 0px 0px 8px 8px;
+
+          .cmp-teaser__article-category-tag {
+            order: 1;
+            position: absolute;
+            top: -30px;
+            z-index: 1;
+            font-size: 12px;
+            line-height: 17px;
+            color: #FFFFFF;
+          }
+
+          .cmp-teaser__article-author {
+            order: 2;
+            font-size: 12px;
+            line-height: 17px;
+            color: #323232;
+            min-height: 17px;
+          }
+
+          .cmp-teaser__title {
+            order: 3;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 22px;
+            color: #323232;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            min-height: 44px;
+
+            &:hover {
+              color: #D40511;
+            }
+          }
+
+          .cmp-teaser__description {
+            order: 4;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            line-height: 14px;
+            color: #323232;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            min-height: 56px;
+
+            p {
+              font-size: inherit;
+              line-height: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}
