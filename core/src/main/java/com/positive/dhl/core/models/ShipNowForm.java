@@ -3,7 +3,7 @@ package com.positive.dhl.core.models;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import com.positive.dhl.core.helpers.RequestHelpers;
+import com.positive.dhl.core.utils.RequestUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
@@ -97,8 +97,8 @@ public class ShipNowForm {
 	 */
 	@PostConstruct
 	protected void init() {
-		source = RequestHelpers.GetRequestValue(request, "source");
-		leadOriginator = RequestHelpers.GetRequestValue(request, "lead_originator");
+		source = RequestUtils.getRequestValue(request, "source");
+		leadOriginator = RequestUtils.getRequestValue(request, "lead_originator");
 		
 		shipnowmessage = "";
 		shipnowurl = "";

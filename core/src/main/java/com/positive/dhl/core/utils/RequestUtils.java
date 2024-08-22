@@ -2,9 +2,11 @@ package com.positive.dhl.core.utils;
 
 import lombok.experimental.UtilityClass;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.resource.Resource;
 
 import javax.jcr.Session;
+import java.util.List;
 
 @UtilityClass
 public class RequestUtils {
@@ -30,5 +32,21 @@ public class RequestUtils {
 
     public static Session getSession(SlingHttpServletRequest request) {
         return request.getResourceResolver().adaptTo(Session.class);
+    }
+
+    public static String getRequestValue(SlingHttpServletRequest request, String name) {
+        return getRequestValue(request, name, "");
+    }
+
+    public static String getRequestValue(SlingHttpServletRequest request, String name, String defaultValue) {
+        if (request != null) {
+            List<RequestParameter> params = request.getRequestParameterList();
+            for (RequestParameter param : params) {
+                if (name.equals(param.getName())) {
+                    return param.getString();
+                }
+            }
+        }
+        return defaultValue;
     }
 }

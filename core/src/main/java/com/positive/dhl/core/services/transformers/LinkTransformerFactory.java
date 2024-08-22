@@ -1,5 +1,7 @@
-package com.positive.dhl.core.services;
+package com.positive.dhl.core.services.transformers;
 
+import com.positive.dhl.core.services.PathUtilService;
+import com.positive.dhl.core.services.ResourceResolverHelper;
 import org.apache.sling.rewriter.Transformer;
 import org.apache.sling.rewriter.TransformerFactory;
 import org.osgi.service.component.annotations.Activate;
@@ -12,8 +14,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 import java.util.*;
 
-import static com.positive.dhl.core.helpers.OSGiConfigHelper.arrayToEntrySetWithDelimiter;
-import static com.positive.dhl.core.helpers.OSGiConfigHelper.arrayToMapWithDelimiter;
+import static com.positive.dhl.core.utils.OSGiConfigUtils.arrayToEntrySetWithDelimiter;
 
 @Component(
         immediate = true,
@@ -26,9 +27,6 @@ import static com.positive.dhl.core.helpers.OSGiConfigHelper.arrayToMapWithDelim
 public class LinkTransformerFactory implements TransformerFactory {
 
     @Reference
-    ResourceResolverHelper resourceResolverHelper;
-
-    @Reference
     PathUtilService pathUtilService;
 
     private Set<Map.Entry<String, String>> rewriteElements = new HashSet<>();
@@ -36,7 +34,7 @@ public class LinkTransformerFactory implements TransformerFactory {
 
     @Override
     public Transformer createTransformer() {
-        return new LinkTransformer(resourceResolverHelper, pathUtilService, rewriteElements, whitelistedLinks);
+        return new LinkTransformer(pathUtilService, rewriteElements, whitelistedLinks);
     }
 
     @Activate
