@@ -106,6 +106,16 @@
                                     value="trending"/>
                         </items>
                     </source>
+                    <alert
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="/libs/granite/ui/components/coral/foundation/alert"
+                            variant="info"
+                            granite:class="vertical-content-type-showhide"
+                            text="Only 4 will be displayed on desktop view">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="horizontal"/>
+                    </alert>
                     <customPickOptions
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -116,7 +126,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <articles
                                     jcr:primaryType="nt:unstructured"
-                                    fieldLabel="Articles (Only 4 will be displayed on desktop view)"
+                                    fieldLabel="Articles"
                                     fieldDescription="Add articles to display. Only 4 articles will be displayed on desktop."
                                     composite="{Boolean}true"
                                     validation="multifield-quantity"
