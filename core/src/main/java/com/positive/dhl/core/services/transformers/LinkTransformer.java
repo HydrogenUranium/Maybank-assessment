@@ -1,5 +1,7 @@
-package com.positive.dhl.core.services;
+package com.positive.dhl.core.services.transformers;
 
+import com.positive.dhl.core.services.PathUtilService;
+import com.positive.dhl.core.services.ResourceResolverHelper;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.rewriter.DefaultTransformer;
@@ -17,7 +19,6 @@ import java.util.Set;
 
 @RequiredArgsConstructor
 public class LinkTransformer extends DefaultTransformer implements Transformer {
-    private final ResourceResolverHelper resourceResolverHelper;
     private final PathUtilService pathUtilService;
     private final Set<Map.Entry<String, String>> rewriteElements;
     private final List<String> whitelistedLinks;
@@ -28,11 +29,11 @@ public class LinkTransformer extends DefaultTransformer implements Transformer {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        super.startElement(uri, localName, qName, modifyAttributes(uri, qName, attributes));
+        super.startElement(uri, localName, qName, modifyAttributes(qName, attributes));
     }
 
-    private Attributes modifyAttributes(String uri, String qName, Attributes attributes) {
-        AttributesImpl modifiedAttributes = new AttributesImpl(attributes);
+    public Attributes modifyAttributes(String qName, Attributes attributes) {
+        var modifiedAttributes = new AttributesImpl(attributes);
         rewriteElements.stream()
                 .filter(entry -> StringUtils.equals(entry.getKey() ,qName.toLowerCase()))
                 .forEach(entry -> processEntry(entry, modifiedAttributes));

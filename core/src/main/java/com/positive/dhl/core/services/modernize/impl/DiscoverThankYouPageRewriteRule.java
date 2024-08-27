@@ -16,7 +16,7 @@ import javax.jcr.Session;
 import java.util.List;
 import java.util.Map;
 
-import static com.positive.dhl.core.helpers.JcrNodeHelper.addLiveRelationshipMixinType;
+import static com.positive.dhl.core.utils.JcrNodeUtils.addLiveRelationshipMixinType;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
 @Component(

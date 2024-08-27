@@ -16,7 +16,7 @@ import javax.jcr.Session;
 import java.util.Map;
 
 import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
-import static com.positive.dhl.core.helpers.JcrNodeHelper.addLiveSyncCancelledMixinType;
+import static com.positive.dhl.core.utils.JcrNodeUtils.addLiveSyncCancelledMixinType;
 
 @Component(
         service = {StructureRewriteRule.class},

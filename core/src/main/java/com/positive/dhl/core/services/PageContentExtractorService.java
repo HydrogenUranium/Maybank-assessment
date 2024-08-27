@@ -1,7 +1,7 @@
 package com.positive.dhl.core.services;
 
 import com.day.cq.wcm.api.Page;
-import com.positive.dhl.core.helpers.OSGiConfigHelper;
+import com.positive.dhl.core.utils.OSGiConfigUtils;
 import org.apache.jackrabbit.oak.commons.PathUtils;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Activate;
@@ -27,7 +27,7 @@ public class PageContentExtractorService {
     @Activate
     @Modified
     public void activate(Config config) {
-        componentsToExtract = OSGiConfigHelper
+        componentsToExtract = OSGiConfigUtils
                 .arrayToMapWithDelimiter(config.componentsWithProperties(), "::")
                 .entrySet().stream()
                 .collect(Collectors.toMap(

@@ -1,5 +1,6 @@
 package com.positive.dhl.core.services;
 
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.utils.RequestUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -8,10 +9,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
+import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +17,9 @@ import java.util.List;
 @Component(service = PathUtilService.class)
 @Slf4j
 public class PathUtilService {
+
+    @Reference
+    private EnvironmentConfiguration environmentConfiguration;
 
     @Reference
     private ResourceResolverHelper resourceResolverHelper;
@@ -71,5 +72,31 @@ public class PathUtilService {
             return null;
         }
         return RequestUtils.getUrlPrefix(request) + map(path);
+    }
+
+    public boolean isExternalLink(String link) {
+        try {
+            var url = new URL(link);
+
+            String host = url.getHost();
+
+            if (host == null || host.isEmpty()) {
+                return false;
+            }
+
+            host = removeWwwPrefix(host);
+            var envHostname = removeWwwPrefix(environmentConfiguration.getAkamaiHostname());
+
+            return !host.equals(envHostname);
+        } catch (MalformedURLException e) {
+            return false;
+        }
+    }
+
+    private static String removeWwwPrefix(String domain) {
+        if (domain.startsWith("www.")) {
+            return domain.substring(4);
+        }
+        return domain;
     }
 }

@@ -2,7 +2,7 @@ package com.positive.dhl.core.services.modernize.impl;
 
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.Revision;
-import com.positive.dhl.core.helpers.JcrNodeHelper;
+import com.positive.dhl.core.utils.JcrNodeUtils;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -146,8 +146,8 @@ class DiscoverPageRewriteRuleTest {
 
     @Test
     void applyTo_ShouldMigratePage_WhenConditionsIsTrue() throws Exception {
-        try (MockedStatic<JcrNodeHelper> mockedStatic = mockStatic(JcrNodeHelper.class)) {
-            mockedStatic.when(() -> JcrNodeHelper.addLiveRelationshipMixinType(any())).thenAnswer(Answers.RETURNS_DEFAULTS);
+        try (MockedStatic<JcrNodeUtils> mockedStatic = mockStatic(JcrNodeUtils.class)) {
+            mockedStatic.when(() -> JcrNodeUtils.addLiveRelationshipMixinType(any())).thenAnswer(Answers.RETURNS_DEFAULTS);
             ResourceResolver spyResourceResolver = spy(resourceResolver);
             PageManager spyPageManager = spy(context.pageManager());
             when(resourceResolverHelper.getResourceResolver(any(Session.class))).thenReturn(spyResourceResolver);
