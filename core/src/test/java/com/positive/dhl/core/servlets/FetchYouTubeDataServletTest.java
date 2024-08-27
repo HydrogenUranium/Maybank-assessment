@@ -1,6 +1,5 @@
 package com.positive.dhl.core.servlets;
 
-import com.positive.dhl.core.helpers.JcrNodeHelper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.http.Header;

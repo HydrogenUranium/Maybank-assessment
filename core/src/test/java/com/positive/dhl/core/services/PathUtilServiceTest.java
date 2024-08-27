@@ -1,6 +1,7 @@
 package com.positive.dhl.core.services;
 
 import com.day.cq.dam.api.Asset;
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.utils.RequestUtils;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -9,6 +10,8 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.commons.mime.MimeTypeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.platform.commons.util.StringUtils;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -33,9 +36,6 @@ class PathUtilServiceTest {
 
     AemContext context = new AemContext();
 
-    @InjectMocks
-    PathUtilService pathUtilService;
-
     @Mock
     ResourceResolverHelper resourceResolverHelper;
 
@@ -50,6 +50,12 @@ class PathUtilServiceTest {
 
     @Mock
     MimeTypeService mimeTypeService;
+
+    @Mock
+    EnvironmentConfiguration environmentConfiguration;
+
+    @InjectMocks
+    PathUtilService pathUtilService;
 
     @Test
     void test_encodeUnsupportedCharacters() {
@@ -92,5 +98,20 @@ class PathUtilServiceTest {
 
             assertEquals(MAPPED_ABSOLUTE_PATH, path);
         }
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "/content/page.html, false",
+            "https://www.dhl.com/some-page, false",
+            "#section, false",
+            "https://www.google.com, true",
+    })
+    void test_isExternalLink(String link, boolean isExternal) {
+        lenient().when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
+
+        boolean result = pathUtilService.isExternalLink(link);
+
+        assertEquals(isExternal, result);
     }
 }

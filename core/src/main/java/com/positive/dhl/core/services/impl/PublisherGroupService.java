@@ -1,6 +1,5 @@
 package com.positive.dhl.core.services.impl;
 
-import com.day.cq.workflow.WorkflowException;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.jackrabbit.api.security.user.Authorizable;
@@ -20,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static com.positive.dhl.core.helpers.OSGiConfigHelper.arrayToMapWithDelimiter;
+import static com.positive.dhl.core.utils.OSGiConfigUtils.arrayToMapWithDelimiter;
 
 @Component(service = PublisherGroupService.class)
 @Designate(ocd = PublisherGroupService.Configuration.class)

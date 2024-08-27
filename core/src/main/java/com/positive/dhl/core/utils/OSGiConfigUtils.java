@@ -1,14 +1,13 @@
-package com.positive.dhl.core.helpers;
+package com.positive.dhl.core.utils;
+
+import lombok.experimental.UtilityClass;
 
 import java.util.*;
 
-public class OSGiConfigHelper {
+@UtilityClass
+public class OSGiConfigUtils {
 
     public static final String DEFAULT_DELIMITER = ":";
-
-    private OSGiConfigHelper() {
-        throw new IllegalStateException("Utility class");
-    }
 
     public static Map<String, String> arrayToMapWithDelimiter(String[] array, String delimiterRegex) {
         Map<String, String> map = new HashMap<>();
