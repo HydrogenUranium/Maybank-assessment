@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+        xmlns:cq="http://www.day.com/jcr/cq/1.0"
+        xmlns:jcr="http://www.jcp.org/jcr/1.0"
+        jcr:primaryType="nt:unstructured">
+    <item_1 jcr:primaryType="nt:unstructured"
+            cq:panelTitle="Item Title 1"
+            sling:resourceType="dhl/components/content/text"
+            text="&lt;p>Item Text 1&lt;/p>"
+            textIsRich="true"/>
+    <item_2 jcr:primaryType="nt:unstructured"
+            cq:panelTitle="Item Title 2"
+            sling:resourceType="dhl/components/content/text"
+            text="&lt;p>Item Text 2&lt;/p>"
+            textIsRich="true"/>
+</jcr:root>
