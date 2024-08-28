@@ -127,7 +127,7 @@
                             <articles
                                     jcr:primaryType="nt:unstructured"
                                     fieldLabel="Articles"
-                                    fieldDescription="Add articles to display. Only 4 articles will be displayed on desktop."
+                                    fieldDescription="Add articles to display."
                                     composite="{Boolean}true"
                                     validation="multifield-quantity"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
