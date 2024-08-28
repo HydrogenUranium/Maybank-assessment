@@ -1,5 +1,6 @@
 package com.positive.dhl.core.helpers;
 
+import com.positive.dhl.core.utils.OSGiConfigUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ class OSGiConfigHelperTest {
                 "key3", "value3"
         );
 
-        Map<String, String> result = OSGiConfigHelper.arrayToMapWithDelimiter(array);
+        Map<String, String> result = OSGiConfigUtils.arrayToMapWithDelimiter(array);
 
         Assertions.assertEquals(expectedMap, result);
     }
@@ -36,7 +37,7 @@ class OSGiConfigHelperTest {
                 "key3", "value3"
         );
 
-        Map<String, String> result = OSGiConfigHelper.arrayToMapWithDelimiter(array, "\\|");
+        Map<String, String> result = OSGiConfigUtils.arrayToMapWithDelimiter(array, "\\|");
 
         Assertions.assertEquals(expectedMap, result);
     }

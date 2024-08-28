@@ -1,5 +1,6 @@
 package com.positive.dhl.core.helpers;
 
+import com.positive.dhl.core.utils.JcrNodeUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +25,7 @@ class JcrNodeHelperTest {
 
     @Test
     void addLiveRelationshipMixinType_shouldAddMixin_whenNodeCanAddMixin() throws RepositoryException {
-        JcrNodeHelper.addLiveRelationshipMixinType(mockNode);
+        JcrNodeUtils.addLiveRelationshipMixinType(mockNode);
 
         verify(mockNode).addMixin("cq:LiveRelationship");
     }
@@ -33,7 +34,7 @@ class JcrNodeHelperTest {
     void addLiveRelationshipMixinType_shouldNotAddMixin_whenNodeCannotAddMixin() throws RepositoryException {
         when(mockNode.canAddMixin("cq:LiveRelationship")).thenReturn(false);
 
-        JcrNodeHelper.addLiveRelationshipMixinType(mockNode);
+        JcrNodeUtils.addLiveRelationshipMixinType(mockNode);
 
         verify(mockNode, times(0)).addMixin("cq:LiveRelationship");
     }
@@ -42,7 +43,7 @@ class JcrNodeHelperTest {
     void addLiveSyncCancelledMixinType_shouldAddMixin_whenNodeCanAddMixin() throws RepositoryException {
         when(mockNode.canAddMixin("cq:LiveSyncCancelled")).thenReturn(true);
 
-        JcrNodeHelper.addLiveSyncCancelledMixinType(mockNode);
+        JcrNodeUtils.addLiveSyncCancelledMixinType(mockNode);
 
         verify(mockNode).addMixin("cq:LiveSyncCancelled");
     }
@@ -51,7 +52,7 @@ class JcrNodeHelperTest {
     void addLiveSyncCancelledMixinType_shouldNotAddMixin_whenNodeCannotAddMixin() throws RepositoryException {
         when(mockNode.canAddMixin("cq:LiveSyncCancelled")).thenReturn(false);
 
-        JcrNodeHelper.addLiveSyncCancelledMixinType(mockNode);
+        JcrNodeUtils.addLiveSyncCancelledMixinType(mockNode);
 
         verify(mockNode, times(0)).addMixin("cq:LiveSyncCancelled");
     }

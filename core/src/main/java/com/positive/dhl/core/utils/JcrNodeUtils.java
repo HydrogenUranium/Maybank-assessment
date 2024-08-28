@@ -1,12 +1,14 @@
-package com.positive.dhl.core.helpers;
+package com.positive.dhl.core.utils;
 
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
 @Slf4j
-public class JcrNodeHelper {
+@UtilityClass
+public class JcrNodeUtils {
 
     public static void addLiveRelationshipMixinType(Node node) throws RepositoryException {
         if(node.canAddMixin("cq:LiveRelationship")) {

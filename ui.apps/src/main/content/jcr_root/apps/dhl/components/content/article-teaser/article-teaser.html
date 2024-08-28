@@ -20,10 +20,12 @@
             <sly data-sly-test="${!titleFromLinkedPage}" data-sly-call="${titleTemplate.title @ teaser=teaser}"></sly>
             <sly data-sly-call="${descriptionTemplate.description @ teaser=teaser}"></sly>
             <sly data-sly-call="${actionsTemplate.actions @ teaser=teaser}"></sly>
-            <div data-sly-test.categoryTag="${articleTeaser.categoryTag}" class="cmp-teaser__article-category-tag">${categoryTag}</div>
-            <div data-sly-test.articleAuthor="${articleTeaser.author}" class="cmp-teaser__article-author">
+            <div class="cmp-teaser__article-category-tag">${articleTeaser.categoryTag}</div>
+            <div data-sly-set.articleAuthor="${articleTeaser.author}"
+                 data-sly-set.friendlyPublishDate="${articleTeaser.friendlyPublishDate}"
+                 class="cmp-teaser__article-author">
                 <span>${articleAuthor}</span>
-                <span data-sly-test.friendlyPublishDate="${articleTeaser.friendlyPublishDate}"> | </span>
+                <span data-sly-test="${articleAuthor && friendlyPublishDate}"> | </span>
                 <time datetime="${articleTeaser.publishDate}">${friendlyPublishDate}</time>
             </div>
         </div>
