@@ -56,7 +56,7 @@
         background: transparent linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
 
         [dir="rtl"] & {
-          background: transparent linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
+          background: transparent linear-gradient(270deg, #fff 30%, #000 50%, #000 100%);
         }
       }
     }
@@ -68,6 +68,10 @@
         padding: 30px 30px 30px 0px;
         margin-left: auto;
         width: 50%;
+        [dir="rtl"] & {
+          margin-right: auto;
+          margin-left: 0;
+        }
       }
 
       .banner__body__list,
