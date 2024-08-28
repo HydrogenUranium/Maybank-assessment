@@ -17,6 +17,8 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import java.util.Optional;
+
 import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
 import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
 
@@ -59,6 +61,15 @@ public class DhlPage {
 	@InjectHomeProperty
 	@Default(values = "ltr")
 	private String direction;
+	@org.apache.sling.models.annotations.Optional
+	@InjectHomeProperty
+	private String seoTitleExtensionEnabled;
+	@org.apache.sling.models.annotations.Optional
+	@InjectHomeProperty
+	private String seoTitleExtension;
+	@org.apache.sling.models.annotations.Optional
+	@InjectHomeProperty
+	private String siteregion;
 
 	private String robotsTags = "";
 
@@ -97,6 +108,11 @@ public class DhlPage {
 		ogtagimage = StringUtils.isNotBlank(customOgTagImage)
 				? (HTTPS_PREFIX + akamaiHostname + assetprefix).concat(customOgTagImage.trim())
 				: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png";
+
+		seoTitleExtension = Optional.ofNullable(seoTitleExtensionEnabled)
+				.filter("true"::equals)
+				.map(enabled -> StringUtils.isBlank(seoTitleExtension) ? "DHL " + siteregion : seoTitleExtension)
+				.orElse(StringUtils.EMPTY);
 	}
 
 	private String getRobotTags(Page page) {

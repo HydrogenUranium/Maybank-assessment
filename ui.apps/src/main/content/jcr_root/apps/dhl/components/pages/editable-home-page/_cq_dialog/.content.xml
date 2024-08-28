@@ -17,6 +17,39 @@
                                             jcr:title="DHL Homepage properties"
                                             sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
+                                            <seoTitle
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    jcr:title="SEO Title"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <seoTitleExtensionEnabled
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                            renderReadOnly="{Boolean}true"
+                                                            text="Show SEO Title Extension"
+                                                            fieldDescription="When this checkbox is checked, the &lt;title> meta tag on all pages in that branch is extended with SEO Title Extension separated by '|'"
+                                                            value="true"
+                                                            checked="true"
+                                                            unchecked="false"
+                                                            name="./seoTitleExtensionEnabled">
+                                                        <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                cq-msm-lockable="./seoTitleExtensionEnabled"/>
+                                                    </seoTitleExtensionEnabled>
+                                                    <seoTitleExtension
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="SEO Title Extension"
+                                                            fieldDescription="Default value is a country name with the 'DHL' prefix"
+                                                            emptyText="DHL {country name: Global, Australian, ...}"
+                                                            name="./seoTitleExtension">
+                                                        <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                cq-msm-lockable="./seoTitleExtension"/>
+                                                    </seoTitleExtension>
+                                                </items>
+                                            </seoTitle>
                                             <pathprefix
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
