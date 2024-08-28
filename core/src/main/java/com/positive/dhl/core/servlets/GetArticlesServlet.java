@@ -2,7 +2,7 @@ package com.positive.dhl.core.servlets;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
-import com.positive.dhl.core.models.Article;
+import com.positive.dhl.core.models.search.SearchResultEntry;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import com.positive.dhl.core.utils.IndexUtils;
@@ -25,7 +25,7 @@ import java.util.List;
 import static com.adobe.cq.dam.cfm.SemanticDataType.JSON;
 import static org.apache.commons.codec.CharEncoding.UTF_8;
 
-@Component(service = { Servlet.class })
+@Component(service = {Servlet.class})
 @SlingServletResourceTypes(
         resourceTypes = "wcm/foundation/components/responsivegrid",
         methods = HttpConstants.METHOD_GET,
@@ -52,21 +52,21 @@ public class GetArticlesServlet extends SlingSafeMethodsServlet {
         var fullTextSearch = hasFullTextIndex(searchScope);
 
         try (var resolver = resolverHelper.getReadResourceResolver()) {
-            List<Article> articles = StringUtils.isAnyBlank(searchTerm, searchScope)
+            List<SearchResultEntry> searchResultEntries = StringUtils.isAnyBlank(searchTerm, searchScope)
                     ? new ArrayList<>()
                     : articleService.findArticles(searchTerm, searchScope, resolver, fullTextSearch);
 
-            articles.forEach(article -> article.initAssetDeliveryProperties(useWebOptimized, imgQuality));
+            searchResultEntries.forEach(entry -> entry.getArticle().initAssetDeliveryProperties(useWebOptimized, imgQuality));
 
             var gson = new GsonBuilder()
                     .excludeFieldsWithoutExposeAnnotation()
                     .create();
-            response.getWriter().write(gson.toJson(articles));
+            response.getWriter().write(gson.toJson(searchResultEntries));
         }
     }
 
     private boolean hasFullTextIndex(String searchScope) {
-        try(var resolver = resolverHelper.getReadResourceResolver()) {
+        try (var resolver = resolverHelper.getReadResourceResolver()) {
             return IndexUtils.hasFullTextIndex(searchScope, resolver);
         }
     }

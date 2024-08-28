@@ -1,4 +1,4 @@
-import { Article } from "../../types/article";
+import { SearchResult } from "../../types/article";
 import { get } from "./httpRequest";
 
 export const getPathPrefix = (): string => {
@@ -16,25 +16,15 @@ export const getComponentPath = (): string => {
     return JSON.parse(componentConfig).currentPagePath + '/jcr:content/root';
 };
 
-
-const getUniqueArticlesByPath = (articles: Article[]): Article[] => {
-    const articlesMap = new Map<string, Article>();
-    articles.forEach(article => {
-        articlesMap.set(article.path, article);
-    });
-    return Array.from(articlesMap.values());
-};
-  
-
-export const getArticles = async (query: string): Promise<Article[]> => {
+export const getArticles = async (query: string): Promise<SearchResult> => {
     const prefix = getPathPrefix();
     const homePagePathSuffix = getHomePagePath();
     const componentPath = getComponentPath();
-    const articles = await get<Article[]>({ 
+    const searchResult = await get<SearchResult>({ 
         url: `${prefix}${componentPath}.searcharticlesuggest.json?s=${query}&homepagepath=${homePagePathSuffix}` 
     });
 
-    return getUniqueArticlesByPath(articles)
+    return searchResult;
 };
 
 export const getTags = async (query: string): Promise<any> => {
