@@ -5,6 +5,7 @@ import com.day.cq.wcm.api.WCMMode;
 import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.PageUtilService;
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -61,14 +62,19 @@ public class DhlPage {
 	@InjectHomeProperty
 	@Default(values = "ltr")
 	private String direction;
+
 	@org.apache.sling.models.annotations.Optional
 	@InjectHomeProperty
+	@Getter(AccessLevel.NONE)
 	private String seoTitleExtensionEnabled;
+
 	@org.apache.sling.models.annotations.Optional
 	@InjectHomeProperty
 	private String seoTitleExtension;
+
 	@org.apache.sling.models.annotations.Optional
 	@InjectHomeProperty
+	@Getter(AccessLevel.NONE)
 	private String siteregion;
 
 	private String robotsTags = "";
