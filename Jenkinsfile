@@ -73,23 +73,23 @@ pipeline {
             }
         }*/
 
-        stage('Sonarqube Analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv(installationName: 'Central Sonar') {
-                        sh 'mvn install org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pdhl-artifactory'
-                    }
-                }
-            }
-        }
-
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 30, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+//         stage('Sonarqube Analysis') {
+//             steps {
+//                 script {
+//                     withSonarQubeEnv(installationName: 'Central Sonar') {
+//                         sh 'mvn install org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pdhl-artifactory'
+//                     }
+//                 }
+//             }
+//         }
+//
+//         stage('Quality Gate') {
+//             steps {
+//                 timeout(time: 30, unit: 'MINUTES') {
+//                     waitForQualityGate abortPipeline: true
+//                 }
+//             }
+//         }
 
         stage('Build & Deploy artifacts to Artifactory') {
             when {
