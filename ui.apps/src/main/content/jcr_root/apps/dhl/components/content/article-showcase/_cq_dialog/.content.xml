@@ -111,7 +111,7 @@
                             sling:resourceType="/libs/granite/ui/components/coral/foundation/alert"
                             variant="info"
                             granite:class="vertical-content-type-showhide"
-                            text="Only 4 will be displayed on desktop view">
+                            text="Only 4 articles will be displayed on desktop view">
                         <granite:data
                                 jcr:primaryType="nt:unstructured"
                                 showhidetargetvalue="horizontal"/>
