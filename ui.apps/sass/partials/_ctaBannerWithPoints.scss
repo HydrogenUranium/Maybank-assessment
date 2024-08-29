@@ -69,6 +69,7 @@
         margin-left: auto;
         width: 50%;
         [dir="rtl"] & {
+          padding: 30px 0 30px 30px;
           margin-right: auto;
           margin-left: 0;
         }
