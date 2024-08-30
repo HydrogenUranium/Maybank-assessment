@@ -7,7 +7,7 @@ pipeline {
 
     tools {
         maven 'Maven 3.6.3'
-        jdk 'JDK11'
+        jdk 'JDK17'
     }   
 
     options {
@@ -46,13 +46,13 @@ pipeline {
         }*/
 
 
-        /*stage('Fortify ASG/Sonar Scan'){
+        /*stage('Fortify ASG'){
 			agent {
                  label 'fortify_agent'
             }
             steps {
                 script {
-					parallel(
+					
                         "ASG Scan": {
                             try {
 								sh '''
@@ -61,35 +61,28 @@ pipeline {
 							} catch (err) {
 								unstable(message: "${STAGE_NAME} is unstable; underlying error was... ${err}")
 							}
-                        },
-                        "Sonarqube Scan": {
-                            withSonarQubeEnv(installationName: 'Central Sonar') {
-								sh 'mvn install org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pdhl-artifactory'
-							}
                         }
-                    )
-
                 }
             }
         }*/
 
-//         stage('Sonarqube Analysis') {
-//             steps {
-//                 script {
-//                     withSonarQubeEnv(installationName: 'Central Sonar') {
-//                         sh 'mvn install org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pdhl-artifactory'
-//                     }
-//                 }
-//             }
-//         }
-//
-//         stage('Quality Gate') {
-//             steps {
-//                 timeout(time: 30, unit: 'MINUTES') {
-//                     waitForQualityGate abortPipeline: true
-//                 }
-//             }
-//         }
+         stage('Sonarqube Analysis') {
+            steps {
+                 script {
+                     withSonarQubeEnv(installationName: 'Central Sonar') {
+                         sh 'mvn install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 -Dmaven.compiler.release=17 org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pdhl-artifactory'
+                     }
+                 }
+             }
+         }
+
+         stage('Quality Gate') {
+             steps {
+                 timeout(time: 45, unit: 'MINUTES') {
+                     waitForQualityGate abortPipeline: true
+                 }
+             }
+         }
 
         stage('Build & Deploy artifacts to Artifactory') {
             when {

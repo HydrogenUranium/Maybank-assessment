@@ -39,6 +39,10 @@
                                     cq:policy="dhl/components/content/teaser/teaser_policy"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <image
+                                    cq:policy="dhl/components/content/image/image_v2_policy"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
                         </content>
                     </components>
                 </dhl>

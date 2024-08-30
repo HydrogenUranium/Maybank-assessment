@@ -47,6 +47,10 @@
                                             cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <image
+                                            cq:policy="dhl/components/content/image/image_v2_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -88,6 +92,10 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <article-teaser-container
                                             cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <image
+                                            cq:policy="dhl/components/content/image/image_v2_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>

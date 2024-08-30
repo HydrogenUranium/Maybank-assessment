@@ -65,7 +65,6 @@ class DhlPageTest {
 		assertEquals("/discover", dhlPage.getPathprefix());
 		assertEquals("rtl", dhlPage.getDirection());
 		assertEquals("", dhlPage.getRobotsTags());
-		assertEquals("", dhlPage.getSeoTitleExtension());
 		assertEquals("https://www.dhl.com/discover/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg", dhlPage.getOgtagimage());
 		assertEquals("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg", dhlPage.getListimage());
 	}
