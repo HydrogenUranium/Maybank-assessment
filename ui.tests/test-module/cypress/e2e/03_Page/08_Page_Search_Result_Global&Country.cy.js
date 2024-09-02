@@ -68,7 +68,7 @@ describe('Global & Singapore Search Result Page', () => {
 
           // 7. Verify search results should be shown even for incorrectly spelled queries if we have suggestions for correction
           cy.get('[data-testid="search-input"]').clear().type('lokistics');
-          cy.get('[data-testid="hendle-search"]').click();
+          cy.get('[data-testid="handle-search"]').click();
           cy.get('.searchResult__usgPF').should('be.visible');
 
           // 8. Verify when the user starts typing in the search box, auto-complete suggestions should appear
@@ -102,7 +102,7 @@ describe('Global & Singapore Search Result Page', () => {
 
           // 10. Verify it should include tags in search results when searching by tag and shown in the result
           cy.get('[data-testid="search-input"]').clear().type('Test1 Amni');
-          cy.get('[data-testid="hendle-search"]').click();
+          cy.get('[data-testid="handle-search"]').click();
           cy.get('.searchResult__usgPF')
             .should('contain', 'How one entrepreneur leapt into the global marketplace');
         });

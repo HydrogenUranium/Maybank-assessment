@@ -24,7 +24,7 @@ exports[`Search should render component "Search" property 1`] = `
       />
       <button
         className="searchButton"
-        data-testid="hendle-search"
+        data-testid="handle-search"
         onClick={[Function]}
       >
         <span
