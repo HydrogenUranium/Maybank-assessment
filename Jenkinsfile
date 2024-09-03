@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh 'mvn -ntp -DskipTests com.fortify.sca.plugins.maven:sca-maven-plugin:clean com.fortify.sca.plugins.maven:sca-maven-plugin:translate com.fortify.sca.plugins.maven:sca-maven-plugin:scan'
                 
-                script {
+                /*script {
                     try {
                         sh '''
                             /home/ci/FortifyASG.sh 375582152
@@ -41,18 +41,18 @@ pipeline {
                     } catch (err) {
                         unstable(message: "${STAGE_NAME} is unstable; underlying error was... ${err}")
                     }
-                }
+                }*/
             }
         }*/
 
 
-        /*stage('Fortify ASG'){
+         stage('Fortify ASG/Sonar Scan'){
 			agent {
                  label 'fortify_agent'
             }
             steps {
                 script {
-					
+					parallel(
                         "ASG Scan": {
                             try {
 								sh '''
@@ -61,12 +61,19 @@ pipeline {
 							} catch (err) {
 								unstable(message: "${STAGE_NAME} is unstable; underlying error was... ${err}")
 							}
+                        },
+                        "Sonarqube Scan": {
+                            withSonarQubeEnv(installationName: 'Central Sonar') {
+								sh 'mvn install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 -Dmaven.compiler.release=17 org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pdhl-artifactory'
+							}
                         }
+                    )
+
                 }
             }
-        }*/
+        }
 
-         stage('Sonarqube Analysis') {
+         /*stage('Sonarqube Analysis') {
             steps {
                  script {
                      withSonarQubeEnv(installationName: 'Central Sonar') {
@@ -74,11 +81,11 @@ pipeline {
                      }
                  }
              }
-         }
+         }*/
 
          stage('Quality Gate') {
              steps {
-                 timeout(time: 45, unit: 'MINUTES') {
+                 timeout(time: 30, unit: 'MINUTES') {
                      waitForQualityGate abortPipeline: true
                  }
              }
