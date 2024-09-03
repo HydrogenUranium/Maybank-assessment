@@ -1,1 +1,1 @@
-export type SortByOptions = 'latest' | 'recommended'
+export type SortByOptions = 'latest' | 'recommended' | 'default'

@@ -112,31 +112,14 @@
       }
       .sorting {
         margin: 20px 0;
-        flex-shrink: 0;
-        text-align: right;
         margin-left: auto;
-
-        &Label {
-          margin-bottom: 0px;
-          margin-right: 20px;
-
-          &:after {
-            content: ":";
-          }
-        }
-
-        &Select {
-          border: 1px solid #CECECE;
-          border-radius: 3px;
-          display: inline;
-          padding: 7px;
-        }
       }
 
       .trending {
         margin: 20px 0;
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
         gap: 10px;
 
         &Title {}

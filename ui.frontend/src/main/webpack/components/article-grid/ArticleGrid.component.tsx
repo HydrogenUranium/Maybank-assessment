@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 
 import { registerComponent } from '../../react-core';
-import { ArticleCard, SortSelect } from './molecules';
+import { ArticleCard } from './molecules';
 import { ArticleCategory } from '../../types/article';
 import { useCategoryArticles, useDisplayArticles, useLineIncrement } from './hooks';
+import { SortSelect } from '../common/atoms';
 
 import styles from './styles.module.scss';
 
@@ -88,7 +89,6 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
 
   return (
     <div className={styles.articleGrid}>
-      {/* Title and sorting */}
       <div className={styles.articleGridHeader}>
         <div className={styles.articleGridHeaderTitle}>{title}</div>
         <SortSelect
@@ -123,8 +123,6 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
         )})}
       </ol>
 
-
-      {/* Articles Display */}
       <div 
         id={`article-grid-tabpanel-${selectedCategoryIndex}`}
         tabIndex={0}
@@ -140,7 +138,6 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
         ))}
       </div>
 
-      {/* Show More Button */}
       {displayedArticles.length < categoryArticles.length && (
         <button className={styles.articleGridShowMoreButton} onClick={handleShowMore}>{showMoreResultsButtonTitle}</button>
       )}
