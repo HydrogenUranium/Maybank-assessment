@@ -61,7 +61,7 @@ pipeline {
                         },
                         "Sonarqube Scan": {
                             withSonarQubeEnv(installationName: 'Central Sonar') {
-								sh 'mvn install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 -Dmaven.compiler.release=17 org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pdhl-artifactory'
+								sh 'mvn install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 -Dmaven.compiler.release=17 org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar -ntp -Pdhl-artifactory'
 							}
                         }
                     )
