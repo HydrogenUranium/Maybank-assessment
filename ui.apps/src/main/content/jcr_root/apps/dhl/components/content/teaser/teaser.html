@@ -13,13 +13,14 @@
        data-sly-attribute="${teaser.link.htmlAttributes}"
        data-sly-unwrap="${!teaser.link.valid || !teaser.actions.empty}"
        data-cmp-clickable="${teaser.data ? true : false}">
-        <sly data-sly-call="${imageTemplate.image @ teaser=teaser}"></sly>
-        <div class="cmp-teaser__content">
-            <sly data-sly-call="${titleTemplate.title @ teaser=teaser}"></sly>
-            <sly data-sly-call="${pretitleTemplate.pretitle @ teaser=teaser}"></sly>
-            <sly data-sly-call="${descriptionTemplate.description @ teaser=teaser}"></sly>
-            <sly data-sly-call="${actionsTemplate.actions @ teaser=teaser}"></sly>
+        <div class="cmp-teaser__image-wrapper">
+          <sly data-sly-call="${imageTemplate.image @ teaser=teaser}"></sly>
+          <div class="cmp-teaser__content">
+                <sly data-sly-call="${titleTemplate.title @ teaser=teaser}"></sly>
+                <sly data-sly-call="${pretitleTemplate.pretitle @ teaser=teaser}"></sly>
+          </div>
         </div>
+        <sly data-sly-call="${descriptionTemplate.description @ teaser=teaser}"></sly>
     </a>
 </div>
 <sly data-sly-call="${templates.placeholder @ isEmpty=!hasContent, classAppend='cmp-teaser'}"></sly>

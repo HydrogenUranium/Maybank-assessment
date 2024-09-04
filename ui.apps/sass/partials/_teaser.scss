@@ -1,36 +1,57 @@
 .teaser {
-  .cmp-teaser {
-    @extend  %imageComponent;
-    border-bottom: none;
-    margin-bottom: 20px;
 
-    .cmp-teaser__title {
-      @include font("%T5");
-      display: block;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .cmp-teaser__pretitle {
-      @include font("%T5");
-      margin-bottom: 20px;
-    }
-  }
+  @extend  %imageComponent;
+  border-bottom: none;
+  margin-bottom: 20px;
 
   @include respond(lg) {
-    &.left .cmp-teaser {
-      float: left;
-      padding-right: 15px;
+
+    &.left,
+    &.right {
+      .cmp-teaser__image-wrapper {
+        float: left;
+        display: table;
+        margin-right: 15px;
+
+        .cmp-teaser__content {
+          display: table-caption;
+          caption-side: bottom;
+        }
+
+        .cmp-teaser__pretitle {
+          margin-bottom: 20px;
+        }
+      }
     }
 
     &.right {
-      float: right;
-      padding-left: 15px;
-      padding-right: 0px;
-
-      .cmp-teaser__description {
-        margin-left: -15px;
+      .cmp-teaser__image-wrapper {
+        float: right;
+        margin-left: 15px;
+        margin-right: 0px;
       }
     }
+  }
+
+  .cmp-image__image {
+      width: revert-layer;
+  }
+
+	.cmp-teaser__title {
+    @include font("%T5");
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .cmp-teaser__pretitle {
+    @include font("%T5");
+    margin-bottom: 20px;
+  }
+
+  .cmp-teaser {
+    border-top: 0 !important;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
   }
 }
