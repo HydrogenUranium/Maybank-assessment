@@ -23,7 +23,7 @@ pipeline {
 
         }
 
-		/*stage('Fortify Scan') {
+		stage('Fortify ASG Scan') {
 	        agent {
                  label 'fortify_agent'
             }
@@ -33,14 +33,14 @@ pipeline {
                 script {
                     try {
                         sh '''
-                            /home/ci/FortifyASG.sh 375582152
+                            /home/ci/FortifyASG.sh 386204268
                         '''
                     } catch (err) {
                         unstable(message: "${STAGE_NAME} is unstable; underlying error was... ${err}")
                     }
                 }
             }
-        }*/
+        }
 
 
          /*stage('Fortify ASG, Sonar Scan'){
