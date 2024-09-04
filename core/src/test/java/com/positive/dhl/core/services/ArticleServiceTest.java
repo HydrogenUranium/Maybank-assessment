@@ -123,19 +123,19 @@ class ArticleServiceTest {
 
     @Test
     void findArticlesByPageProperties_ShouldReturnArticles_WhenArticlesAreFound() {
-        var articles = articleService.findArticlesByPageProperties("dhl", "/content/home", resolver);
+        var entries = articleService.findArticlesByPageProperties("dhl", "/content/home", resolver);
 
-        assertEquals(2, articles.size());
-        assertEquals("/content/home/article_1.html", articles.get(0).getPath());
-        assertEquals("/content/home/article_2.html", articles.get(1).getPath());
+        assertEquals(2, entries.size());
+        assertEquals("/content/home/article_1.html", entries.get(0).getArticle().getPath());
+        assertEquals("/content/home/article_2.html", entries.get(1).getArticle().getPath());
     }
 
     @Test
     void findArticlesByFullText_ShouldReturnArticles_WhenArticlesAreFound() {
-        var articles = articleService.findArticlesByFullText("business advice", "/content/home", resolver);
+        var entries = articleService.findArticlesByFullText("business advice", "/content/home", resolver);
 
-        assertEquals(2, articles.size());
-        assertEquals("/content/home/article_1.html", articles.get(0).getPath());
-        assertEquals("/content/home/article_2.html", articles.get(1).getPath());
+        assertEquals(2, entries.size());
+        assertEquals("/content/home/article_1.html", entries.get(0).getArticle().getPath());
+        assertEquals("/content/home/article_2.html", entries.get(1).getArticle().getPath());
     }
 }

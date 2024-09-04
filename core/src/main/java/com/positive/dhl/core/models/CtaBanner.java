@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.positive.dhl.core.injectors.InjectHomeProperty;
+import com.positive.dhl.core.models.common.TrackableAbstract;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -14,7 +15,7 @@ import javax.inject.Named;
 import java.util.UUID;
 
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
-public class CtaBanner {
+public class CtaBanner extends TrackableAbstract {
 
     @Inject
     @Default(values = "custom")

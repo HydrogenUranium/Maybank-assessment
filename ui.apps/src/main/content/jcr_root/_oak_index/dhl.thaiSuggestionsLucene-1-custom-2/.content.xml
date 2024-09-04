@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:oak="http://jackrabbit.apache.org/oak/ns/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+          jcr:primaryType="oak:QueryIndexDefinition"
+          async="[async]"
+          compatVersion="{Long}2"
+          evaluatePathRestrictions="{Boolean}false"
+          fullTextEnabled="{Boolean}false"
+          includedPaths="[/content/dhl/th/th-th]"
+          queryPaths="[/content/dhl/suggest]"
+          reindex="{Boolean}false"
+          reindexCount="{Long}1"
+          seed="{Long}4408017841139830178"
+          dhlSuggestions="{Boolean}true"
+          suggestAnalyzed="{Boolean}true"
+          type="lucene">
+    <analyzers jcr:primaryType="nt:unstructured">
+        <default jcr:primaryType="nt:unstructured">
+            <charFilters jcr:primaryType="nt:unstructured">
+                <HTMLStrip jcr:primaryType="nt:unstructured"/>
+                <Mapping jcr:primaryType="nt:unstructured"/>
+                <PatternReplace
+                        jcr:primaryType="nt:unstructured"
+                        class="org.apache.lucene.analysis.pattern.PatternReplaceCharFilterFactory"
+                        pattern="/content/[^\\s]+"
+                        replacement=""
+                />
+                <patternreplace
+                        jcr:primaryType="nt:unstructured"
+                        class="org.apache.lucene.analysis.pattern.PatternReplaceCharFilterFactory"
+                        pattern="\\d+"
+                        replacement=""
+                />
+            </charFilters>
+            <tokenizer
+                    jcr:primaryType="nt:unstructured"
+                    name="Standard"/>
+            <filters jcr:primaryType="nt:unstructured">
+                <ThaiWord jcr:primaryType="nt:unstructured"/>
+            </filters>
+        </default>
+    </analyzers>
+    <indexRules jcr:primaryType="nt:unstructured">
+        <nt:unstructured
+                jcr:primaryType="nt:unstructured"
+                includePropertyTypes="all">
+            <properties jcr:primaryType="nt:unstructured">
+                <jcrTitle
+                        jcr:primaryType="nt:unstructured"
+                        analyzed="{Boolean}true"
+                        isRegexp="{Boolean}false"
+                        name="jcr:title"
+                        nodeScopeIndex="{Boolean}true"
+                        ordered="{Boolean}true"
+                        propertyIndex="{Boolean}true"
+                        type="String"
+                        useInSpellcheck="{Boolean}true"
+                        useInSuggest="{Boolean}true"/>
+                <navTitle
+                        jcr:primaryType="nt:unstructured"
+                        analyzed="{Boolean}true"
+                        isRegexp="{Boolean}false"
+                        name="navTitle"
+                        nodeScopeIndex="{Boolean}true"
+                        ordered="{Boolean}true"
+                        propertyIndex="{Boolean}true"
+                        type="String"
+                        useInSpellcheck="{Boolean}true"
+                        useInSuggest="{Boolean}true"/>
+                <pageTitle
+                        jcr:primaryType="nt:unstructured"
+                        analyzed="{Boolean}true"
+                        isRegexp="{Boolean}false"
+                        name="pageTitle"
+                        nodeScopeIndex="{Boolean}true"
+                        ordered="{Boolean}true"
+                        propertyIndex="{Boolean}true"
+                        type="String"
+                        useInSpellcheck="{Boolean}true"
+                        useInSuggest="{Boolean}true"/>
+                <jcrDescription
+                        jcr:primaryType="nt:unstructured"
+                        analyzed="{Boolean}true"
+                        isRegexp="{Boolean}false"
+                        name="jcr:description"
+                        nodeScopeIndex="{Boolean}true"
+                        ordered="{Boolean}true"
+                        propertyIndex="{Boolean}true"
+                        type="String"
+                        useInSpellcheck="{Boolean}true"
+                        useInSuggest="{Boolean}true"/>
+                <text
+                        jcr:primaryType="nt:unstructured"
+                        analyzed="{Boolean}true"
+                        isRegexp="{Boolean}false"
+                        name="text"
+                        nodeScopeIndex="{Boolean}true"
+                        ordered="{Boolean}true"
+                        propertyIndex="{Boolean}true"
+                        type="String"
+                        useInSpellcheck="{Boolean}true"
+                        useInSuggest="{Boolean}true"/>
+                <title
+                        jcr:primaryType="nt:unstructured"
+                        analyzed="{Boolean}true"
+                        isRegexp="{Boolean}false"
+                        name="title"
+                        nodeScopeIndex="{Boolean}true"
+                        ordered="{Boolean}true"
+                        propertyIndex="{Boolean}true"
+                        type="String"
+                        useInSpellcheck="{Boolean}true"
+                        useInSuggest="{Boolean}true"/>
+            </properties>
+        </nt:unstructured>
+    </indexRules>
+    <suggest
+            jcr:primaryType="nt:unstructured"
+            suggestAnalyzed="{Boolean}true"
+            suggestUpdateFrequencyMinutes="{Long}20"/>
+</jcr:root>

@@ -7,7 +7,7 @@
         <div class="banner__body">
             <div class="banner__body__top-title">${model.topTitle}</div>
             <div class="banner__body__title">${model.title}</div>
-            <a href="${model.buttonLink}" class="banner__body__button">${model.buttonName}</a>
+            <a data-sly-attribute.data-analytics="${model.analyticsConfigJson}" href="${model.buttonLink}" class="banner__body__button">${model.buttonName}</a>
         </div>
         <div class="banner__image" id="${model.id}">
             <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"

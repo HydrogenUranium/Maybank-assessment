@@ -1,0 +1,28 @@
+{
+  "cta_banner": {
+    "jcr:primaryType": "nt:unstructured",
+    "topTitle": "Stay In The Loop!",
+    "title": "SUBSCRIBE TO OUR NEWSLETTER",
+    "buttonName": "Subscribe",
+    "position": "test",
+    "tabletBackgroundImage": "/content/dam/test/pexels-souvenirpixels-417074.jpg",
+    "mobileBackgroundImage": "/content/dam/test/pexels-souvenirpixels-417074.jpg",
+    "sling:resourceType": "dhl/components/content/cta-banner",
+    "desktopBackgroundImage": "/content/dam/test/pexels-souvenirpixels-417074.jpg",
+    "analytics": {
+      "jcr:primaryType": "nt:unstructured",
+      "trackedInteractions": "basic",
+      "interactionType": "content",
+      "name": "SUBSCRIBE TO OUR NEWSLETTER",
+      "position": "position",
+      "customAttributes": {
+        "jcr:primaryType": "nt:unstructured",
+        "item0": {
+          "jcr:primaryType": "nt:unstructured",
+          "name": "topic",
+          "value": "subscription"
+        }
+      }
+    }
+  }
+}

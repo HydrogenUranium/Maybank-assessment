@@ -2,6 +2,7 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/dhl/clientlibs"/>
     <filter root="/apps/dhl/components"/>
+    <filter root="/apps/dhl/dialog-fragments"/>
     <filter root="/apps/dhl/config"/>
     <filter root="/apps/dhl/i18n"/>
     <filter root="/apps/dhl/htl"/>

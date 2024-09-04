@@ -99,6 +99,7 @@ node/
 ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover/css
 ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover/js
 ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover-*
+!ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover-analytics
 !ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages*
 ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages/css
 ui.apps/src/main/content/jcr_root/apps/dhl/clientlibs/discover-animatedpages/js
