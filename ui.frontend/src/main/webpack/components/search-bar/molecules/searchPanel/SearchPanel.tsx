@@ -158,6 +158,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                         tabIndex={-1}
                         onClick={() => {
                           setInputValue(suggestion);
+                          setArticlesQuery(suggestion);
                           focusInput();
                         }}
                         className={styles.refreshButton}>
