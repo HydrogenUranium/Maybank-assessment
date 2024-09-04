@@ -125,7 +125,7 @@ public class Article {
     @Expose
     private String thumbnail;
 
-    public String getMappedValue(String path, boolean enableAssetDelivery, Map<String, Object> props) {
+    private String getMappedValue(String path, boolean enableAssetDelivery, Map<String, Object> props) {
         return enableAssetDelivery ? assetUtilService.getMappedDeliveryUrl(path, props, assetDelivery) : pathUtilService.map(path);
     }
 
