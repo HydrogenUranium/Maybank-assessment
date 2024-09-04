@@ -1017,6 +1017,19 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </article_teaser_container_policy>
                 </article-teaser-container>
+                <image jcr:primaryType="nt:unstructured">
+                    <image_v2_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Image v2 Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            disableLazyLoading="false"
+                            displayPopupTitle="true"
+                            enableAssetDelivery="true"
+                            isDecorative="false"
+                            titleValueFromDAM="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </image_v2_policy>
+                </image>
             </content>
         </components>
     </dhl>
