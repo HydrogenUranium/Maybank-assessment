@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { format } from 'react-string-format';
 
-import { SearchRow, IconButton } from './atoms';
+import { SearchRow } from './atoms';
 import { Suggestions } from './moleculs';
+import { decodeHtmlEntities } from '../../utils';
 import { getRecentSearches, putRecentSearch } from '../../services/local-storage';
 import { useDataFetching, useSortedSearchResult } from '../../hooks';
 import { getArticles, getTagSuggestions } from '../../services/api/search';
@@ -56,6 +57,8 @@ export const Search: React.FC<SearchProps> = ({
   const blurInput = useCallback((): void => {
     inputRef.current?.blur();
   }, [inputRef]);
+
+  const focusInput = (): void => inputRef.current?.focus();
 
   const handleCloseSearch = useCallback(() => {
     blurInput();
@@ -169,7 +172,7 @@ export const Search: React.FC<SearchProps> = ({
       return '';
     }
   
-    const descriptionFormatToUse = sortedSearchRows.length > 0 
+    const descriptionFormatToUse = sortedSearchRows.length > 0
       ? descriptionFormat 
       : descriptionFormatNoResults || descriptionFormat;
   
@@ -194,20 +197,25 @@ export const Search: React.FC<SearchProps> = ({
             data-testid='search-input'
             onFocus={() => setHiddenSuggestions(false)}
             onChange={handleInputChange}
-            value={inputValue}
+            value={decodeHtmlEntities(inputValue)}
             onKeyDown={handleKeyClick}
           />
-          <IconButton
-            dataTestId='hendle-search'
-            ariaLabel={submitButtonAriaLabel}
+          <button
+            data-testid='handle-search'
+            aria-label={submitButtonAriaLabel}
             onClick={handleSearchClick}
-          />
-          {!hiddenSuggestions && <Suggestions
+            className={styles.searchButton}>
+            <span className={styles.searchButtonImage}></span>
+          </button>
+          {!hiddenSuggestions &&
+          <Suggestions
             recentSearches={recentSearches}
             activeSuggestion={activeSuggestion}
+            focusInput={focusInput}
             suggestionsQuery={suggestionQuery}
             suggestions={suggestions}
             handleSearch={handleSearch}
+            setInputValue={setInputValue}
           />}
         </div>
         <h1 className={styles.searchFormTitle}>{title}</h1>
@@ -220,14 +228,14 @@ export const Search: React.FC<SearchProps> = ({
           <div className={styles.trending}>
             <div className={styles.trendingTitle}>{popularSearchesTitle}:</div>
             {popularSearches.map((topic) =>
-              <div
-                key={topic}
-                role="button"
-                tabIndex={0}
-                className={styles.trendingItem}
-                onClick={() => handleSearch(topic)}>
-                {topic}
-              </div>
+                <div
+                  key={topic}
+                  role="button"
+                  tabIndex={0}
+                  className={styles.trendingItem}
+                  onClick={() => handleSearch(topic)}>
+                  {topic}
+                </div>
             )}
           </div>
           {!!sortedSearchRows.length &&
