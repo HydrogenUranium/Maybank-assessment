@@ -1,6 +1,7 @@
 package com.positive.dhl.core.servlets;
 
 import com.positive.dhl.core.models.Article;
+import com.positive.dhl.core.models.search.SearchResultEntry;
 import com.positive.dhl.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -79,7 +80,7 @@ class GetArticlesServletTest {
         Article article1 = createArticleModel(context.resourceResolver().getResource("/content/home/article_1"));
         Article article2 = createArticleModel(context.resourceResolver().getResource("/content/home/article_2"));
         lenient().when(articleService.findArticles(anyString(), anyString(), any(ResourceResolver.class), anyBoolean()))
-                .thenReturn(List.of(article1, article2));
+                .thenReturn(List.of(new SearchResultEntry(article1), new SearchResultEntry(article2)));
 
         when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolverMock);
         when(resolverMock.findResources(anyString(), anyString())).thenAnswer(invocationOnMock ->
@@ -103,34 +104,41 @@ class GetArticlesServletTest {
         request.setParameterMap(Map.of("s", "searchTerm", "homepagepath", "/content"));
         servlet.doGet(request, response);
         String responseBody = context.response().getOutputAsString();
+
         String expected = "[" +
                 "{" +
-                    "\"createdfriendly\":\"August 3, 2023\"," +
-                    "\"created\":\"2023-08-03\"," +
-                    "\"createdMilliseconds\":1691046000000," +
-                    "\"groupTag\":\"#CategoryPage\"," +
-                    "\"title\":\"What paperwork do I need for international shipping?\"," +
-                    "\"description\":\"What paperwork do I need for international shipping?\"," +
-                    "\"author\":\"Anna Thompson\"," +
-                    "\"readtime\":\"4 min read\"," +
-                    "\"listimage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
-                    "\"tagsToShow\":[\"#CategoryPage\"]," +
-                    "\"path\":\"/content/home/article_1.html\"," +
-                    "\"thumbnail\":\"/discover/thumbnail.png\"" +
+                    "\"article\":{" +
+                        "\"createdfriendly\":\"August 3, 2023\"," +
+                        "\"created\":\"2023-08-03\"," +
+                        "\"createdMilliseconds\":1691046000000," +
+                        "\"groupTag\":\"#CategoryPage\"," +
+                        "\"title\":\"What paperwork do I need for international shipping?\"," +
+                        "\"description\":\"What paperwork do I need for international shipping?\"," +
+                        "\"author\":\"Anna Thompson\"," +
+                        "\"readtime\":\"4 min read\"," +
+                        "\"listimage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
+                        "\"tagsToShow\":[\"#CategoryPage\"]," +
+                        "\"path\":\"/content/home/article_1.html\"," +
+                        "\"thumbnail\":\"/discover/thumbnail.png\"" +
+                    "}," +
+                    "\"excerpt\":\"\"" +
                 "}," +
                 "{" +
-                    "\"createdfriendly\":\"August 4, 2023\"," +
-                    "\"created\":\"2023-08-04\"," +
-                    "\"createdMilliseconds\":1691132400000," +
-                    "\"groupTag\":\"#CategoryPage\"," +
-                    "\"title\":\"What paperwork do I need for international shipping?\"," +
-                    "\"description\":\"What paperwork do I need for international shipping?\"," +
-                    "\"author\":\"Anna Thompson\"," +
-                    "\"readtime\":\"4 min read\"," +
-                    "\"listimage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
-                    "\"tagsToShow\":[\"#CategoryPage\"]," +
-                    "\"path\":\"/content/home/article_2.html\"," +
-                    "\"thumbnail\":\"/discover/thumbnail.png\"" +
+                    "\"article\":{" +
+                        "\"createdfriendly\":\"August 4, 2023\"," +
+                        "\"created\":\"2023-08-04\"," +
+                        "\"createdMilliseconds\":1691132400000," +
+                        "\"groupTag\":\"#CategoryPage\"," +
+                        "\"title\":\"What paperwork do I need for international shipping?\"," +
+                        "\"description\":\"What paperwork do I need for international shipping?\"," +
+                        "\"author\":\"Anna Thompson\"," +
+                        "\"readtime\":\"4 min read\"," +
+                        "\"listimage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
+                        "\"tagsToShow\":[\"#CategoryPage\"]," +
+                        "\"path\":\"/content/home/article_2.html\"," +
+                        "\"thumbnail\":\"/discover/thumbnail.png\"" +
+                    "}," +
+                    "\"excerpt\":\"\"" +
                 "}" +
         "]";
         assertEquals(expected, responseBody);
