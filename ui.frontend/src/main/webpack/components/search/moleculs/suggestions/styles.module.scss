@@ -16,6 +16,9 @@
     overflow: hidden;
     &Items {
         &Item {
+            &Wrapper {
+                position: relative;
+            }
             font-size: 16px;
             line-height: 25px;
             @media screen and (min-width: 768px) {
@@ -77,3 +80,28 @@
         background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/time-forward.svg');
     }
 }
+
+.refreshButton {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    max-height: 100px;
+    height: 100%;
+    aspect-ratio: 1/1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    [dir="rtl"] & {
+      right: unset;
+      left: 0;
+    }
+    &Image {
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        width: 60%;
+        height: 60%;
+        display: inline-block;
+        background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/arrow-up-left.svg');
+    }
+  }

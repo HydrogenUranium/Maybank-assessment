@@ -39,38 +39,46 @@ exports[`SearchPanel should render component "SearchPanel" property 1`] = `
       <div
         className="searchSectionItems"
       >
-        <a
-          aria-label="Business"
-          className="searchSectionItemsItem searchSectionItemsItemWithIcon"
-          href="/search-result?searchfield=Business"
-          id="search-bar-suggestion-0"
-          tabIndex={-1}
+        <div
+          className="searchSectionItemsItemWrapper"
         >
-          <span
-            className="icon iconTrending"
-          />
-          <span
-            className="searchSectionItemsItemText"
+          <a
+            aria-label="Business"
+            className="searchSectionItemsItem searchSectionItemsItemWithIcon"
+            href="/search-result?searchfield=Business"
+            id="search-bar-suggestion-0"
+            tabIndex={-1}
           >
-            Business
-          </span>
-        </a>
-        <a
-          aria-label="China"
-          className="searchSectionItemsItem searchSectionItemsItemWithIcon"
-          href="/search-result?searchfield=China"
-          id="search-bar-suggestion-1"
-          tabIndex={-1}
+            <span
+              className="icon iconTrending"
+            />
+            <span
+              className="searchSectionItemsItemText"
+            >
+              Business
+            </span>
+          </a>
+        </div>
+        <div
+          className="searchSectionItemsItemWrapper"
         >
-          <span
-            className="icon iconTrending"
-          />
-          <span
-            className="searchSectionItemsItemText"
+          <a
+            aria-label="China"
+            className="searchSectionItemsItem searchSectionItemsItemWithIcon"
+            href="/search-result?searchfield=China"
+            id="search-bar-suggestion-1"
+            tabIndex={-1}
           >
-            China
-          </span>
-        </a>
+            <span
+              className="icon iconTrending"
+            />
+            <span
+              className="searchSectionItemsItemText"
+            >
+              China
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
