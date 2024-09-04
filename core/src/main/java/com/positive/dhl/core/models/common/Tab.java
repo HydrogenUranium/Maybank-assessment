@@ -1,4 +1,4 @@
-package com.positive.dhl.core.models.multifields;
+package com.positive.dhl.core.models.common;
 
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;

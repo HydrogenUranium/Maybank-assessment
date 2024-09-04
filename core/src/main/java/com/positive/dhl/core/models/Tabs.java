@@ -1,6 +1,6 @@
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.models.multifields.Tab;
+import com.positive.dhl.core.models.common.Tab;
 import lombok.Getter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;

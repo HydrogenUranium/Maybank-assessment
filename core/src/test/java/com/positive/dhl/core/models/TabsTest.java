@@ -1,6 +1,6 @@
 package com.positive.dhl.core.models;
 
-import com.positive.dhl.core.models.multifields.Tab;
+import com.positive.dhl.core.models.common.Tab;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.junit.jupiter.api.BeforeEach;
