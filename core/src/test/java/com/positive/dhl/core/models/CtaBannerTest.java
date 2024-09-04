@@ -1,7 +1,9 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.components.Component;
 import com.positive.dhl.core.injectors.HomePropertyInjector;
+import com.positive.dhl.core.models.common.AnalyticsConfig;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -18,8 +20,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.positive.dhl.junitUtils.InjectorMock.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -38,16 +40,18 @@ class CtaBannerTest {
     @Mock
     private PageUtilService pageUtils;
 
+    @Mock
+    private Component component;
+
     @InjectMocks
     private HomePropertyInjector homePropertyInjector;
-
 
     @BeforeEach
     void setUp() throws Exception {
         context.load().json("/com/positive/dhl/core/models/CtaBanner/content.json", "/content");
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(Injector.class, homePropertyInjector);
-        context.addModelsForClasses(CtaBannerWithPoints.class);
+        context.addModelsForClasses(AnalyticsConfig.class);
     }
 
     private void mockHomePage() {
@@ -66,6 +70,7 @@ class CtaBannerTest {
 
         CtaBanner ctaBanner = request.adaptTo(CtaBanner.class);
 
+        assertNotNull(ctaBanner);
         assertEquals("Subscribe To Our Newsletter", ctaBanner.getTitle());
         assertEquals("Stay In The Loop!", ctaBanner.getTopTitle());
         assertEquals("/content/dhl/openBusinessAccount", ctaBanner.getButtonLink());
@@ -73,15 +78,20 @@ class CtaBannerTest {
         assertEquals("/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
         assertEquals("/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
         assertEquals("/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
+        assertNull(ctaBanner.getAnalyticsConfigJson());
         assertTrue(ctaBanner.isDisabled());
     }
 
     @Test
     void init_ShouldInitPropertiesFromHomePage_WhenTypeIsCustom() {
+        when(component.getName()).thenReturn("CTA Banner");
         Resource resource = context.resourceResolver().getResource(COMPONENT_LOCATION + "/cta_banner_custom");
+        mockInjectHomeProperty(context, "eventTrackingComponents-enableAnalytics", true);
+        mockInject(context, INJECT_SCRIPT_BINDINGS, "component", component);
 
         CtaBanner ctaBanner = resource.adaptTo(CtaBanner.class);
 
+        assertNotNull(ctaBanner);
         assertEquals("CTA BANNER", ctaBanner.getTitle());
         assertEquals("Custom Top Title", ctaBanner.getTopTitle());
         assertEquals("/content/test", ctaBanner.getButtonLink());
@@ -89,5 +99,6 @@ class CtaBannerTest {
         assertEquals("/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
         assertEquals("/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
         assertEquals("/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
+        assertEquals("{\"content\":{\"attributes\":{\"topic\":\"subscription\"},\"name\":\"SUBSCRIBE TO OUR NEWSLETTER\",\"type\":\"CTA Banner\",\"interaction\":\"Click\",\"position\":\"position\"},\"trackedInteractions\":\"basic\",\"interactionType\":\"dhl_utf_contentInteraction\"}", ctaBanner.getAnalyticsConfigJson());
     }
 }

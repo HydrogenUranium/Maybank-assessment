@@ -17,3 +17,17 @@ export type Article = {
     readtime: string,
     highlights: string[]
 }
+
+export type SearchRow = {
+    article: Article,
+    excerpt: string
+}
+
+export type SearchResult = SearchRow[]
+
+export type SearchRow = {
+    article: Article,
+    excerpt: string
+}
+
+export type SearchResult = SearchRow[]
