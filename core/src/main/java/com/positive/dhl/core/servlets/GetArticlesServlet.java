@@ -1,7 +1,6 @@
 package com.positive.dhl.core.servlets;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.SerializedName;
 import com.positive.dhl.core.models.search.SearchResultEntry;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.ResourceResolverHelper;
@@ -19,7 +18,6 @@ import org.osgi.service.component.annotations.Reference;
 import javax.servlet.Servlet;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static com.adobe.cq.dam.cfm.SemanticDataType.JSON;
