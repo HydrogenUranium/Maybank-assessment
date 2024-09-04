@@ -2,5 +2,5 @@
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
     jcr:primaryType="cq:ClientLibraryFolder"
     categories="[dhl.site]"
-    embed="[dhl.analytics,core.wcm.components.carousel.v1,core.wcm.components.image.v3,wcm.foundation.components.page.responsive,core.wcm.components.embed.v1]"
+    embed="[dhl.analytics,core.wcm.components.carousel.v1,core.wcm.components.image.v3,wcm.foundation.components.page.responsive,core.wcm.components.embed.v1,core.wcm.components.accordion.v1]"
     allowProxy="{Boolean}true" />
