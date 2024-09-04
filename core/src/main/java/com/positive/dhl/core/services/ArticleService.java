@@ -9,6 +9,7 @@ import com.day.cq.tagging.Tag;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.helpers.FullTextSearchHelper;
 import com.positive.dhl.core.models.Article;
+import com.positive.dhl.core.models.search.SearchResultEntry;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -18,6 +19,8 @@ import org.osgi.service.component.annotations.Reference;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 
@@ -58,6 +61,11 @@ public class ArticleService {
         return result;
     }
 
+    private List<Article> getArticlesFromSearchResultEntries(List<SearchResultEntry> searchResultEntries) {
+        return searchResultEntries.stream().map(SearchResultEntry::getArticle)
+                .collect(Collectors.toList());
+    }
+
     private List<Article> getArticles(Map<String, String> customProps) {
         try (var resolver = resolverHelper.getReadResourceResolver()) {
             Map<String, String> props = new HashMap<>();
@@ -70,7 +78,7 @@ public class ArticleService {
             props.put("group.3_property.value", "/conf/dhl/settings/wcm/templates/animated-page");
             props.putAll(customProps);
 
-            return searchArticles(props, resolver);
+            return getArticlesFromSearchResultEntries(searchArticles(props, resolver));
         }
     }
 
@@ -101,47 +109,48 @@ public class ArticleService {
 
         Map<String, Article> uniqueArticlesMap = new HashMap<>();
 
-        getArticles(customPublishProp).forEach(article -> uniqueArticlesMap.put(article.getPath(), article));
-        getArticles(createdProp).forEach(article -> uniqueArticlesMap.put(article.getPath(), article));
-        getArticles(lastModifiedProp).forEach(article -> uniqueArticlesMap.put(article.getPath(), article));
+        Consumer<Article> addUniqueArticle = article -> uniqueArticlesMap.put(article.getPath(), article);
+        getArticles(customPublishProp).forEach(addUniqueArticle);
+        getArticles(createdProp).forEach(addUniqueArticle);
+        getArticles(lastModifiedProp).forEach(addUniqueArticle);
 
         List<Article> articles = new ArrayList<>(uniqueArticlesMap.values());
         articles.sort((o1, o2) -> o2.getCreatedDate().compareTo(o1.getCreatedDate()));
         return articles.subList(0, Math.min(limit, articles.size()));
     }
 
-    public List<Article> findArticles(String searchQuery, String searchScope, ResourceResolver resourceResolver, boolean fulltextSearch) {
+    public List<SearchResultEntry> findArticles(String searchQuery, String searchScope, ResourceResolver resourceResolver, boolean fulltextSearch) {
         return fulltextSearch
                 ? findArticlesByFullText(searchQuery, searchScope, resourceResolver)
                 : findArticlesByPageProperties(searchQuery, searchScope, resourceResolver);
 
     }
 
-    public List<Article> findArticlesByFullText(String searchQuery, String searchScope, ResourceResolver resourceResolver) {
+    public List<SearchResultEntry> findArticlesByFullText(String searchQuery, String searchScope, ResourceResolver resourceResolver) {
         List<List<String>> termGroups = FullTextSearchHelper.getFullTextSpellcheckedSearchTerms(searchQuery, searchScope, resourceResolver);
         var locale = pageUtilService.getLocale(searchScope, resourceResolver);
         Map<String, Tag> tagMap = tagUtilService.getLocalizedTagMap(resourceResolver, "dhl:", locale);
 
         Set<String> uniquePaths = new HashSet<>();
-        List<Article> uniqueArticles = new ArrayList<>();
+        List<SearchResultEntry> uniqueSearchResultEntries = new ArrayList<>();
 
         for (List<String> terms : termGroups) {
-            if (uniqueArticles.size() >= MAX_RESULTS) {
+            if (uniqueSearchResultEntries.size() >= MAX_RESULTS) {
                 break;
             }
 
-            List<Article> articles = findArticlesByFullText(terms, searchScope, tagMap, resourceResolver);
-            for (Article article : articles) {
-                if (uniqueArticles.size() < MAX_RESULTS && uniquePaths.add(article.getPath())) {
-                    uniqueArticles.add(article);
+            List<SearchResultEntry> entries = findArticlesByFullText(terms, searchScope, tagMap, resourceResolver);
+            for (SearchResultEntry entry : entries) {
+                if (uniqueSearchResultEntries.size() < MAX_RESULTS && uniquePaths.add(entry.getArticle().getPath())) {
+                    uniqueSearchResultEntries.add(entry);
                 }
             }
         }
 
-        return uniqueArticles;
+        return uniqueSearchResultEntries;
     }
 
-    public List<Article> findArticlesByFullText(List<String> terms, String searchScope, Map<String, Tag> tagMap, ResourceResolver resourceResolver) {
+    public List<SearchResultEntry> findArticlesByFullText(List<String> terms, String searchScope, Map<String, Tag> tagMap, ResourceResolver resourceResolver) {
         Map<String, String> map = new HashMap<>();
         map.put("path", searchScope);
         map.put("type", NT_PAGE);
@@ -190,7 +199,7 @@ public class ArticleService {
         }
     }
 
-    public List<Article> findArticlesByPageProperties(String searchTerm, String searchScope, ResourceResolver resourceResolver) {
+    public List<SearchResultEntry> findArticlesByPageProperties(String searchTerm, String searchScope, ResourceResolver resourceResolver) {
         String[] propertiesToLook = {"jcr:content/jcr:title", "jcr:content/pageTitle", "jcr:content/navTitle"};
         String[] terms = getTermsByLength(searchTerm);
 
@@ -269,23 +278,24 @@ public class ArticleService {
         return map;
     }
 
-    private List<Article> searchArticles(Map<String, String> props, ResourceResolver resolver) {
+    private List<SearchResultEntry> searchArticles(Map<String, String> props, ResourceResolver resolver) {
         Session session = resolver.adaptTo(Session.class);
         return java.util.Optional.ofNullable(builder)
                 .map(queryBuilder -> queryBuilder.createQuery(PredicateGroup.create(props), session))
                 .map(Query::getResult)
                 .map(SearchResult::getHits)
-                .map(hits -> getArticlesFromHits(hits, resolver))
+                .map(hits -> getSearchResultEntriesFromHits(hits, resolver))
                 .orElse(new ArrayList<>());
     }
 
-    private List<Article> getArticlesFromHits(List<Hit> hits, ResourceResolver resourceResolver) {
-        List<Article> resources = new ArrayList<>();
+    private List<SearchResultEntry> getSearchResultEntriesFromHits(List<Hit> hits, ResourceResolver resourceResolver) {
+        List<SearchResultEntry> resources = new ArrayList<>();
         hits.forEach(hit -> {
             try {
                 var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+                var excerpt = "... " + hit.getExcerpt();
                 if (article != null && article.isValid()) {
-                    resources.add(article);
+                    resources.add(new SearchResultEntry(article, excerpt));
                 }
             } catch (RepositoryException exception) {
                 log.warn("Failed to get path from sql response", exception);

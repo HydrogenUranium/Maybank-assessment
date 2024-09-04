@@ -40,7 +40,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const [articlesQuery, setArticlesQuery] = useState('');
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
   const [suggestions] = useDataFetching(suggestionQuery, getTagSuggestions);
-  const [articles] = useDataFetching(articlesQuery, getArticles);
+  const [searchRows] = useDataFetching(articlesQuery, getArticles);
   const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -129,7 +129,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const focusInput = (): void => inputRef.current?.focus();
 
   const renderSearchResults = () => {
-    return (!!(suggestions.length || articles.length) &&
+    return (!!(suggestions.length || searchRows.length) &&
       <StrictMode>
         <div className={styles.searchResult}>
           <SearchSection
@@ -153,11 +153,11 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
             )}
           />
           <SearchSection
-            items={articles.slice(0, 15)}
+            items={searchRows.slice(0, 15)}
             title={articlesTitle}
             thinTitle
             overflowHidden
-            renderItem={(article) => (
+            renderItem={({ article }) => (
               <a href={`${article.path}`} className={styles.article} key={article.path}
                 tabIndex={-1}
                 onClick={() => putRecentSearch(inputRef.current?.value)}>
