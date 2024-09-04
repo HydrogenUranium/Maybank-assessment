@@ -23,16 +23,13 @@ pipeline {
 
         }
 
-        /*
-		-------commented temporary to make build success--
-		
-		stage('Fortify RUN, ASG scan') {
+		/*stage('Fortify Scan') {
 	        agent {
                  label 'fortify_agent'
             }
             steps {
                 sh 'mvn -ntp -DskipTests com.fortify.sca.plugins.maven:sca-maven-plugin:clean com.fortify.sca.plugins.maven:sca-maven-plugin:translate com.fortify.sca.plugins.maven:sca-maven-plugin:scan'
-                
+
                 script {
                     try {
                         sh '''
@@ -46,13 +43,13 @@ pipeline {
         }*/
 
 
-        /*stage('Fortify ASG'){
+         /*stage('Fortify ASG, Sonar Scan'){
 			agent {
                  label 'fortify_agent'
             }
             steps {
                 script {
-					
+					parallel(
                         "ASG Scan": {
                             try {
 								sh '''
@@ -61,7 +58,14 @@ pipeline {
 							} catch (err) {
 								unstable(message: "${STAGE_NAME} is unstable; underlying error was... ${err}")
 							}
+                        },
+                        "Sonarqube Scan": {
+                            withSonarQubeEnv(installationName: 'Central Sonar') {
+								sh 'mvn install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 -Dmaven.compiler.release=17 org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar -ntp -Pdhl-artifactory'
+							}
                         }
+                    )
+
                 }
             }
         }*/
@@ -70,7 +74,7 @@ pipeline {
             steps {
                  script {
                      withSonarQubeEnv(installationName: 'Central Sonar') {
-                         sh 'mvn install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 -Dmaven.compiler.release=17 org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -ntp -Pdhl-artifactory'
+                         sh 'mvn install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 -Dmaven.compiler.release=17 org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar -ntp -Pdhl-artifactory'
                      }
                  }
              }
@@ -78,7 +82,7 @@ pipeline {
 
          stage('Quality Gate') {
              steps {
-                 timeout(time: 45, unit: 'MINUTES') {
+                 timeout(time: 30, unit: 'MINUTES') {
                      waitForQualityGate abortPipeline: true
                  }
              }

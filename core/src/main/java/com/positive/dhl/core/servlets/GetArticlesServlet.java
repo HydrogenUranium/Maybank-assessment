@@ -1,6 +1,7 @@
 package com.positive.dhl.core.servlets;
 
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
 import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.services.ArticleService;
 import com.positive.dhl.core.services.ResourceResolverHelper;
@@ -17,6 +18,7 @@ import org.osgi.service.component.annotations.Reference;
 
 import javax.servlet.Servlet;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class GetArticlesServlet extends SlingSafeMethodsServlet {
 
         try (var resolver = resolverHelper.getReadResourceResolver()) {
             List<Article> articles = StringUtils.isAnyBlank(searchTerm, searchScope)
-                    ? Collections.emptyList()
+                    ? new ArrayList<>()
                     : articleService.findArticles(searchTerm, searchScope, resolver, fullTextSearch);
 
             articles.forEach(article -> article.initAssetDeliveryProperties(useWebOptimized, imgQuality));
