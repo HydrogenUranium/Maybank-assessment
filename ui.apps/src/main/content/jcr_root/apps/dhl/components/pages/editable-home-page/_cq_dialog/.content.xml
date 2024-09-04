@@ -1689,6 +1689,24 @@
                                                             </unsupportedMessage>
                                                         </items>
                                                     </video>
+                                                    <eventTrackingComponents
+                                                            jcr:title="All event-tracking components"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <enableAnalytics
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                    fieldDescription="Enable Analytics"
+                                                                    name="./eventTrackingComponents-enableAnalytics"
+                                                                    text="Enable Analytics"
+                                                                    value="{Boolean}true">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./eventTrackingComponents-enableAnalytics"/>
+                                                            </enableAnalytics>
+                                                        </items>
+                                                    </eventTrackingComponents>
                                                 </items>
                                             </accordion>
                                         </items>

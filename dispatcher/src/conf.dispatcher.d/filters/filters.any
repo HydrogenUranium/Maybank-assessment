@@ -44,5 +44,5 @@ $include "./default_filters.any"
 }
 
 # Allow WEBP images
-/3100 { /type "allow" /method "GET" /extension '(webp)' /path "/content/dam/*" }
+/3100 { /type "allow" /method "GET" /extension '(webp)' /path "/content/*" }
 /3101 { /type "allow" /method "GET" /url "/adobe/dynamicmedia/*" }

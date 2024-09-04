@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { format } from 'react-string-format';
 
-import { Article, IconButton } from './atoms';
+import { SearchRow, IconButton } from './atoms';
 import { Suggestions } from './moleculs';
 import { getRecentSearches, putRecentSearch } from '../../services/local-storage';
-import { useDataFetching, useSortedArticles } from '../../hooks';
+import { useDataFetching, useSortedSearchResult } from '../../hooks';
 import { getArticles, getTagSuggestions } from '../../services/api/search';
 import { registerComponent } from '../../react-core';
 
@@ -50,8 +50,8 @@ export const Search: React.FC<SearchProps> = ({
   const recentSearches = useMemo(() => getRecentSearches(), [articlesQuery]);
 
   const [suggestions] = useDataFetching(suggestionQuery, getTagSuggestions);
-  const [articles, loading] = useDataFetching(articlesQuery, getArticles);
-  const sortedArticles = useSortedArticles(articles);
+  const [searchRows, loading] = useDataFetching(articlesQuery, getArticles);
+  const sortedSearchRows = useSortedSearchResult(searchRows);
 
   const blurInput = useCallback((): void => {
     inputRef.current?.blur();
@@ -103,8 +103,8 @@ export const Search: React.FC<SearchProps> = ({
   }, [activeSuggestion]);
 
   useEffect(() => {
-    setLimit(Math.min(10, sortedArticles.length));
-  },[sortedArticles]);
+    setLimit(Math.min(10, sortedSearchRows.length));
+  },[sortedSearchRows]);
 
   const stopPropagation = (event: Event): void => event.stopPropagation();
 
@@ -161,7 +161,7 @@ export const Search: React.FC<SearchProps> = ({
   };
 
   const handleShowMore = () => {
-    setLimit(currentLimit => Math.min(currentLimit + 10, sortedArticles.length));
+    setLimit(currentLimit => Math.min(currentLimit + 10, sortedSearchRows.length));
   };
 
   const getSearchDetails = (): string => {
@@ -169,11 +169,11 @@ export const Search: React.FC<SearchProps> = ({
       return '';
     }
   
-    const descriptionFormatToUse = sortedArticles.length > 0 
+    const descriptionFormatToUse = sortedSearchRows.length > 0 
       ? descriptionFormat 
       : descriptionFormatNoResults || descriptionFormat;
   
-    return format(descriptionFormatToUse, articlesQuery, limit, sortedArticles.length);
+    return format(descriptionFormatToUse, articlesQuery, limit, sortedSearchRows.length);
   };
 
   return (
@@ -230,7 +230,7 @@ export const Search: React.FC<SearchProps> = ({
               </div>
             )}
           </div>
-          {!!articles.length &&
+          {!!sortedSearchRows.length &&
             <div className={styles.sorting}>
               <label htmlFor='sort-by' className={styles.sortingLabel}>{sortByTitle}</label>
               <div id="sort-by" className={styles.sortingSelect}>
@@ -241,15 +241,15 @@ export const Search: React.FC<SearchProps> = ({
         </div>
         <div className={styles.searchResultItems}>
           {
-            sortedArticles.slice(0, limit).map((item) => (
-              <Article
-                key={item.path}
-                article={item}
+            sortedSearchRows.slice(0, limit).map((searchRow) => (
+              <SearchRow
+                key={searchRow.article.path}
+                searchRow={searchRow}
                 highlightedWords={articlesQuery.split(" ")}
               />
             ))
           }
-          {limit < sortedArticles.length && (
+          {limit < sortedSearchRows.length && (
             <button className={styles.searchResultButton} onClick={handleShowMore}>{showMoreResultsButtonTitle}</button>
           )}
         </div>

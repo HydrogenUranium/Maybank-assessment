@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Properties"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <dialog
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Analytics &amp; Reporting"
+            sling:resourceType="granite/ui/components/coral/foundation/container"
+            margin="{Boolean}true">
+        <items jcr:primaryType="nt:unstructured">
+            <trackedInteractions
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                    fieldLabel="Tracked Interactions"
+                    granite:class="cq-dialog-dropdown-multiple-showhide"
+                    name="./trackedInteractions">
+                <granite:data
+                        jcr:primaryType="nt:unstructured"
+                        cq-dialog-dropdown-showhide-target=".tracked-interactions-showhide"/>
+                <items
+                        jcr:primaryType="nt:unstructured">
+                    <off
+                            jcr:primaryType="nt:unstructured"
+                            text="Off"
+                            value="off"/>
+                    <basic
+                            jcr:primaryType="nt:unstructured"
+                            text="Basic"
+                            value="basic"/>
+                    <advanced
+                            jcr:primaryType="nt:unstructured"
+                            text="Advanced"
+                            value="advanced">
+                        <granite:rendercondition
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/renderconditions/simple"
+                                expression="${cqDesign.enableAdvancedTrackedInteractions == 'true'}"/>
+                    </advanced>
+                </items>
+            </trackedInteractions>
+            <trackedInteractionsOptions
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                    granite:class="tracked-interactions-showhide">
+                <granite:data
+                        jcr:primaryType="nt:unstructured"
+                        showhidetargetvalue="basic,advanced"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <interactionType
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Interaction Type"
+                            name="./interactionType">
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <content
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Content"
+                                    value="content"/>
+                            <engagement
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Engagement"
+                                    value="engagement">
+                                <granite:rendercondition
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/renderconditions/simple"
+                                        expression="${cqDesign.enableEngagementInteractionType == 'true'}"/>
+                            </engagement>
+                            <conversion
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Conversion"
+                                    value="conversion">
+                                <granite:rendercondition
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/renderconditions/simple"
+                                        expression="${cqDesign.enableConversionInteractionType == 'true'}"/>
+                            </conversion>
+                        </items>
+                    </interactionType>
+                    <name
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            required="true"
+                            fieldLabel="Name"
+                            name="./name"/>
+                    <position
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Position"
+                            name="./position"/>
+                    <customAttributes
+                            jcr:primaryType="nt:unstructured"
+                            fieldLabel="Custom Attributes"
+                            composite="{Boolean}true"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                        <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                               jcr:primaryType="nt:unstructured"
+                               name="./customAttributes">
+                            <items jcr:primaryType="nt:unstructured">
+                                <name
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Name"
+                                        required="true"
+                                        name="./name"/>
+                                <value
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Value"
+                                        required="true"
+                                        name="./value"/>
+                            </items>
+                        </field>
+                    </customAttributes>
+                </items>
+            </trackedInteractionsOptions>
+        </items>
+    </dialog>
+    <designDialog
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Analytics &amp; Reporting"
+            sling:resourceType="granite/ui/components/coral/foundation/container"
+            margin="{Boolean}true">
+        <items jcr:primaryType="nt:unstructured">
+            <enableAdvancedTrackedInteractions
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                    name="./enableAdvancedTrackedInteractions"
+                    text="Enable Advanced Tracked Interactions"
+                    uncheckedValue="false"
+                    value="{Boolean}true">
+            </enableAdvancedTrackedInteractions>
+            <enableEngagementInteractionType
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                    name="./enableEngagementInteractionType"
+                    text="Enable Engagement Interaction Type"
+                    uncheckedValue="false"
+                    value="{Boolean}true">
+            </enableEngagementInteractionType>
+            <enableConversionInteractionType
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                    name="./enableConversionInteractionType"
+                    text="Enable Conversion Interaction Type"
+                    uncheckedValue="false"
+                    value="{Boolean}true">
+            </enableConversionInteractionType>
+        </items>
+    </designDialog>
+</jcr:root>
