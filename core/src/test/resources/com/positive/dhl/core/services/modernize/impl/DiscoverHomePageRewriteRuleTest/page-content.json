@@ -80,8 +80,6 @@
           "jcr:lastModifiedBy": "david.akara@dhl.com",
           "cq:lastRolledout": "Fri Aug 25 2023 19:52:13 GMT+0300",
           "jcr:lastModified": "Fri Aug 25 2023 19:52:13 GMT+0300",
-          "applyForAccountCta": "Speak to a specialist",
-          "applyForAccountUrl": "/content/dhl/global/en-global/open-an-account/open-a-dhl-account",
           "sling:resourceType": "dhl/components/content/articlegrid",
           "category0": "/content/dhl/global/en-global/small-business-advice",
           "category1": "/content/dhl/global/en-global/e-commerce-advice",
