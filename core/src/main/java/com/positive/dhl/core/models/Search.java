@@ -42,6 +42,9 @@ public class Search {
     private String latestSortOptionTitle;
 
     @Inject
+    private String relevanceSortOptionTitle;
+
+    @Inject
     private String showMoreResultsButtonTitle;
 
     @Inject
