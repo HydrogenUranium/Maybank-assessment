@@ -8,6 +8,7 @@ import { getRecentSearches, putRecentSearch } from '../../services/local-storage
 import { useDataFetching, useSortedSearchResult } from '../../hooks';
 import { getArticles, getTagSuggestions } from '../../services/api/search';
 import { registerComponent } from '../../react-core';
+import { SortSelect } from '../common/atoms';
 
 import styles from './styles.module.scss';
 
@@ -20,6 +21,7 @@ interface SearchProps {
   searchInputAriaLabel: string;
   sortByTitle: string;
   latestSortOptionTitle: string;
+  relevanceSortOptionTitle: string;
   showMoreResultsButtonTitle: string;
   popularSearches: string[];
 }
@@ -33,13 +35,19 @@ export const Search: React.FC<SearchProps> = ({
   searchInputAriaLabel,
   sortByTitle,
   latestSortOptionTitle,
+  relevanceSortOptionTitle,
   showMoreResultsButtonTitle,
   popularSearches,
 }) => {
   const url = new URL(window.location.href);
   const params = new URLSearchParams(url.search);
   const searchfield = params.get('searchfield') || '';
+  const selectOptions = [
+    { value: 'default', label: relevanceSortOptionTitle },
+    { value: 'latest', label: latestSortOptionTitle },
+  ];
 
+  const [selectedSortOption, setSelectedSortOption] = useState<any>(selectOptions[0]);
   const [inputValue, setInputValue] = useState(searchfield);
   const [articlesQuery, setArticlesQuery] = useState(searchfield);
   const [suggestionQuery, setSuggestionQuery] = useState(inputValue);
@@ -52,7 +60,7 @@ export const Search: React.FC<SearchProps> = ({
 
   const [suggestions] = useDataFetching(suggestionQuery, getTagSuggestions);
   const [searchRows, loading] = useDataFetching(articlesQuery, getArticles);
-  const sortedSearchRows = useSortedSearchResult(searchRows);
+  const sortedSearchRows = useSortedSearchResult(searchRows, selectedSortOption.value);
 
   const blurInput = useCallback((): void => {
     inputRef.current?.blur();
@@ -240,10 +248,11 @@ export const Search: React.FC<SearchProps> = ({
           </div>
           {!!sortedSearchRows.length &&
             <div className={styles.sorting}>
-              <label htmlFor='sort-by' className={styles.sortingLabel}>{sortByTitle}</label>
-              <div id="sort-by" className={styles.sortingSelect}>
-                {latestSortOptionTitle}
-              </div>
+              <SortSelect
+                onChange={setSelectedSortOption}
+                options={selectOptions}
+                sortingTitle={sortByTitle}
+              />
             </div>
           }
         </div>
