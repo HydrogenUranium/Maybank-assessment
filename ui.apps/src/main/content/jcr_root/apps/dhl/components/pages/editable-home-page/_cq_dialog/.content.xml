@@ -97,45 +97,6 @@
                                                     rootPath="/content/dhl"
                                                     required="{Boolean}true"/>
 
-                                            <welcomemessage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                                    useFixedInlineToolbar="{Boolean}true"
-                                                    features="*"
-                                                    fieldLabel="Welcome message on meganav"
-                                                    name="./welcomemessage">
-
-                                                <rtePlugins jcr:primaryType="nt:unstructured">
-                                                    <paraformat jcr:primaryType="nt:unstructured" features="*">
-                                                        <formats jcr:primaryType="cq:WidgetCollection">
-                                                            <h2 jcr:primaryType="nt:unstructured" description="Heading 2" tag="h2"/>
-                                                            <p jcr:primaryType="nt:unstructured" description="Paragraph" tag="p"/>
-                                                        </formats>
-                                                    </paraformat>
-                                                </rtePlugins>
-                                                <uiSettings jcr:primaryType="nt:unstructured">
-                                                    <cui jcr:primaryType="nt:unstructured">
-                                                        <inline
-                                                                jcr:primaryType="nt:unstructured"
-                                                                toolbar="[#paraformat]">
-                                                            <popovers jcr:primaryType="nt:unstructured">
-                                                                <paraformat
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        items="paraformat:getFormats:paraformat-pulldown"
-                                                                        ref="paraformat"/>
-                                                            </popovers>
-                                                        </inline>
-                                                    </cui>
-                                                </uiSettings>
-                                            </welcomemessage>
-
-                                            <loginmessage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                                    useFixedInlineToolbar="{Boolean}true"
-                                                    fieldLabel="Login overlay message"
-                                                    name="./loginmessage"/>
-
                                             <signupmessage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"
@@ -163,34 +124,6 @@
                                                     useFixedInlineToolbar="{Boolean}true"
                                                     fieldLabel="Sign-up 'terms and conditions' message"
                                                     name="./signuptcmessage"/>
-
-                                            <registerthanksmessage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                                    useFixedInlineToolbar="{Boolean}true"
-                                                    fieldLabel="Sign-up 'thanks' message"
-                                                    name="./registerthanksmessage"/>
-
-                                            <createpasswordmessage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                                    useFixedInlineToolbar="{Boolean}true"
-                                                    fieldLabel="Create password message"
-                                                    name="./createpasswordmessage"/>
-
-                                            <createpasswordprivacymessage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                                    useFixedInlineToolbar="{Boolean}true"
-                                                    fieldLabel="Create password 'privacy' message"
-                                                    name="./createpasswordprivacymessage"/>
-
-                                            <createpasswordthanksmessage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                                    useFixedInlineToolbar="{Boolean}true"
-                                                    fieldLabel="Create password 'thanks' message"
-                                                    name="./createpasswordthanksmessage"/>
 
                                             <shipnowmessage
                                                     jcr:primaryType="nt:unstructured"
@@ -289,22 +222,6 @@
                                             jcr:title="Special Page Settings"
                                             sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <loginpage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="'Login' page"
-                                                    name="./loginpage"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-                                            <registerpage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="'Register' page"
-                                                    name="./registerpage"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
                                             <shipnowpage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
@@ -321,31 +238,6 @@
                                                     name="./editdetailspage"
                                                     rootPath="/content/dhl"
                                                     required="{Boolean}true"/>
-                                            <passwordreminderpage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="'Password Reminder' page"
-                                                    name="./passwordreminderpage"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-                                            <deleteaccountpage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="'Delete Account' page"
-                                                    name="./deleteaccountpage"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-                                            <deleteaccountcompletepage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="'Delete Account Complete' page"
-                                                    name="./deleteaccountcompletepage"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-
                                             <searchresultspage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
@@ -1689,6 +1581,24 @@
                                                             </unsupportedMessage>
                                                         </items>
                                                     </video>
+                                                    <eventTrackingComponents
+                                                            jcr:title="All event-tracking components"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <enableAnalytics
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                    fieldDescription="Enable Analytics"
+                                                                    name="./eventTrackingComponents-enableAnalytics"
+                                                                    text="Enable Analytics"
+                                                                    value="{Boolean}true">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./eventTrackingComponents-enableAnalytics"/>
+                                                            </enableAnalytics>
+                                                        </items>
+                                                    </eventTrackingComponents>
                                                 </items>
                                             </accordion>
                                         </items>

@@ -70,6 +70,11 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="'Sort By' Title"
                             name="./sortByTitle"/>
+                    <relevanceSortOptionTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="'Relevance' Sort Option Title"
+                            name="./relevanceSortOptionTitle"/>
                     <latestSortOptionTitle
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

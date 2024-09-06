@@ -1,12 +1,13 @@
 import React, { useRef, useState, useEffect, useMemo, StrictMode } from 'react';
 import classNames from 'classnames';
 
+import { isTouchDevice } from 'src/main/webpack/constants/device';
 import { getRecentSearches, putRecentSearch } from 'src/main/webpack/services/local-storage/recentSearch';
 import { getArticles, getTagSuggestions } from 'src/main/webpack/services/api/search';
 import { IconButton } from '../../atoms/iconButton/IconButton';
 import { useDataFetching } from '../../../../hooks/useDataFetching';
 import { SearchSection } from '../../../common/atoms/searchSection/SearchSection';
-import { getCommonPrefix, highlightMatches } from 'src/main/webpack/utils';
+import { decodeHtmlEntities, getCommonPrefix, highlightMatches } from 'src/main/webpack/utils';
 
 import styles from './styles.module.scss';
 
@@ -40,7 +41,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const [articlesQuery, setArticlesQuery] = useState('');
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
   const [suggestions] = useDataFetching(suggestionQuery, getTagSuggestions);
-  const [articles] = useDataFetching(articlesQuery, getArticles);
+  const [searchRows] = useDataFetching(articlesQuery, getArticles);
   const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -129,35 +130,50 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const focusInput = (): void => inputRef.current?.focus();
 
   const renderSearchResults = () => {
-    return (!!(suggestions.length || articles.length) &&
+    return (!!(suggestions.length || searchRows.length) &&
       <StrictMode>
         <div className={styles.searchResult}>
           <SearchSection
             items={suggestions}
             title=''
             renderItem={(suggestion, index) => (
-              <a id={`search-bar-suggestion-${index}`}
-                tabIndex={-1}
-                aria-label={suggestion}
-                href={getSearchResultPagePath(suggestion)}
-                onClick={() => {
-                  putRecentSearch(suggestion)
-                }}
-                className={classNames(
-                  styles.searchSectionItemsItem,
-                  styles.searchSectionItemsItemText,
-                  {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
-                )}
-                dangerouslySetInnerHTML={{ __html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionQuery.trim(), true) + ").*", "gi") }}
-                key={suggestion} />
+              <div className={styles.searchSectionItemsItemWrapper}>
+                <a id={`search-bar-suggestion-${index}`}
+                  tabIndex={-1}
+                  aria-label={suggestion}
+                  href={getSearchResultPagePath(suggestion)}
+                  onClick={() => {
+                    putRecentSearch(suggestion)
+                  }}
+                  className={classNames(
+                    styles.searchSectionItemsItem,
+                    styles.searchSectionItemsItemText,
+                    {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
+                  )}
+                  dangerouslySetInnerHTML={{ __html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionQuery.trim(), true) + ").*", "gi") }}
+                  key={suggestion} />
+                  { isTouchDevice &&
+                    <button
+                        data-testid={`refresh-input-${index}`}
+                        tabIndex={-1}
+                        onClick={() => {
+                          setInputValue(suggestion);
+                          setArticlesQuery(suggestion);
+                          focusInput();
+                        }}
+                        className={styles.refreshButton}>
+                        <span className={styles.refreshButtonImage}></span>
+                    </button>
+                  }
+              </div>
             )}
           />
           <SearchSection
-            items={articles.slice(0, 15)}
+            items={searchRows.slice(0, 15)}
             title={articlesTitle}
             thinTitle
             overflowHidden
-            renderItem={(article) => (
+            renderItem={({ article }) => (
               <a href={`${article.path}`} className={styles.article} key={article.path}
                 tabIndex={-1}
                 onClick={() => putRecentSearch(inputRef.current?.value)}>
@@ -185,38 +201,66 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
           items={recentSearches}
           title={recentSearchesTitle}
           renderItem={(search, index) => (
-            <a id={`search-bar-suggestion-${index}`}
-              tabIndex={-1}
-              aria-label={search}
-              href={getSearchResultPagePath(search)} 
-              className={
-                classNames(
-                  styles.searchSectionItemsItem,
-                  styles.searchSectionItemsItemWithIcon,
-                  {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
-                )} key={search}>
-              <span className={classNames(styles.icon, styles.iconHistory)}></span>
-              <span className={styles.searchSectionItemsItemText}>{search}</span>
-            </a>
+            <div className={styles.searchSectionItemsItemWrapper}>
+              <a id={`search-bar-suggestion-${index}`}
+                tabIndex={-1}
+                aria-label={search}
+                href={getSearchResultPagePath(search)} 
+                className={
+                  classNames(
+                    styles.searchSectionItemsItem,
+                    styles.searchSectionItemsItemWithIcon,
+                    {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
+                  )} key={search}>
+                <span className={classNames(styles.icon, styles.iconHistory)}></span>
+                <span className={styles.searchSectionItemsItemText}>{search}</span>
+              </a>
+              { isTouchDevice &&
+                <button
+                    data-testid={`refresh-input-${index}`}
+                    tabIndex={-1}
+                    onClick={() => {
+                      setInputValue(search);
+                      focusInput();
+                    }}
+                    className={styles.refreshButton}>
+                    <span className={styles.refreshButtonImage}></span>
+                </button>
+              }
+            </div>
           )}
         />
         <SearchSection
           items={trendingTopics}
           title={trendingTopicsTitle}
           renderItem={(topic, index) => (
-            <a id={`search-bar-suggestion-${index + recentSearches.length}`}
-              tabIndex={-1}
-              aria-label={topic}
-              href={getSearchResultPagePath(topic)} 
-              className={
-                classNames(
-                  styles.searchSectionItemsItem, 
-                  styles.searchSectionItemsItemWithIcon,
-                  {[styles.searchSectionItemsItemActive]: index === activeSuggestion - recentSearches.length}
-                )} key={topic}>
-              <span className={classNames(styles.icon, styles.iconTrending)}></span>
-              <span className={styles.searchSectionItemsItemText}>{topic}</span>
-            </a>
+            <div className={styles.searchSectionItemsItemWrapper}>
+              <a id={`search-bar-suggestion-${index + recentSearches.length}`}
+                tabIndex={-1}
+                aria-label={topic}
+                href={getSearchResultPagePath(topic)} 
+                className={
+                  classNames(
+                    styles.searchSectionItemsItem, 
+                    styles.searchSectionItemsItemWithIcon,
+                    {[styles.searchSectionItemsItemActive]: index === activeSuggestion - recentSearches.length}
+                  )} key={topic}>
+                <span className={classNames(styles.icon, styles.iconTrending)}></span>
+                <span className={styles.searchSectionItemsItemText}>{topic}</span>
+              </a>
+              { isTouchDevice &&
+                <button
+                    data-testid={`refresh-input-${index}`}
+                    tabIndex={-1}
+                    onClick={() => {
+                      setInputValue(topic);
+                      focusInput();
+                    }}
+                    className={styles.refreshButton}>
+                    <span className={styles.refreshButtonImage}></span>
+                </button>
+              }
+            </div>
           )}
         />
       </div>
@@ -235,7 +279,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
         data-testid='search-bar-input'
         onChange={handleInputChange}
         ref={inputRef}
-        value={inputValue}
+        value={decodeHtmlEntities(inputValue)}
         onKeyDown={handleKeyClick}
       />
       <IconButton

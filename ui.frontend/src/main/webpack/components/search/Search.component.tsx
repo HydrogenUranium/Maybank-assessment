@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { format } from 'react-string-format';
 
-import { Article, IconButton } from './atoms';
+import { SearchRow } from './atoms';
 import { Suggestions } from './moleculs';
+import { decodeHtmlEntities } from '../../utils';
 import { getRecentSearches, putRecentSearch } from '../../services/local-storage';
-import { useDataFetching, useSortedArticles } from '../../hooks';
+import { useDataFetching, useSortedSearchResult } from '../../hooks';
 import { getArticles, getTagSuggestions } from '../../services/api/search';
 import { registerComponent } from '../../react-core';
+import { SortSelect } from '../common/atoms';
 
 import styles from './styles.module.scss';
 
@@ -19,6 +21,7 @@ interface SearchProps {
   searchInputAriaLabel: string;
   sortByTitle: string;
   latestSortOptionTitle: string;
+  relevanceSortOptionTitle: string;
   showMoreResultsButtonTitle: string;
   popularSearches: string[];
 }
@@ -32,13 +35,19 @@ export const Search: React.FC<SearchProps> = ({
   searchInputAriaLabel,
   sortByTitle,
   latestSortOptionTitle,
+  relevanceSortOptionTitle,
   showMoreResultsButtonTitle,
   popularSearches,
 }) => {
   const url = new URL(window.location.href);
   const params = new URLSearchParams(url.search);
   const searchfield = params.get('searchfield') || '';
+  const selectOptions = [
+    { value: 'default', label: relevanceSortOptionTitle },
+    { value: 'latest', label: latestSortOptionTitle },
+  ];
 
+  const [selectedSortOption, setSelectedSortOption] = useState<any>(selectOptions[0]);
   const [inputValue, setInputValue] = useState(searchfield);
   const [articlesQuery, setArticlesQuery] = useState(searchfield);
   const [suggestionQuery, setSuggestionQuery] = useState(inputValue);
@@ -50,12 +59,14 @@ export const Search: React.FC<SearchProps> = ({
   const recentSearches = useMemo(() => getRecentSearches(), [articlesQuery]);
 
   const [suggestions] = useDataFetching(suggestionQuery, getTagSuggestions);
-  const [articles, loading] = useDataFetching(articlesQuery, getArticles);
-  const sortedArticles = useSortedArticles(articles);
+  const [searchRows, loading] = useDataFetching(articlesQuery, getArticles);
+  const sortedSearchRows = useSortedSearchResult(searchRows, selectedSortOption.value);
 
   const blurInput = useCallback((): void => {
     inputRef.current?.blur();
   }, [inputRef]);
+
+  const focusInput = (): void => inputRef.current?.focus();
 
   const handleCloseSearch = useCallback(() => {
     blurInput();
@@ -103,8 +114,8 @@ export const Search: React.FC<SearchProps> = ({
   }, [activeSuggestion]);
 
   useEffect(() => {
-    setLimit(Math.min(10, sortedArticles.length));
-  },[sortedArticles]);
+    setLimit(Math.min(10, sortedSearchRows.length));
+  },[sortedSearchRows]);
 
   const stopPropagation = (event: Event): void => event.stopPropagation();
 
@@ -161,7 +172,7 @@ export const Search: React.FC<SearchProps> = ({
   };
 
   const handleShowMore = () => {
-    setLimit(currentLimit => Math.min(currentLimit + 10, sortedArticles.length));
+    setLimit(currentLimit => Math.min(currentLimit + 10, sortedSearchRows.length));
   };
 
   const getSearchDetails = (): string => {
@@ -169,11 +180,11 @@ export const Search: React.FC<SearchProps> = ({
       return '';
     }
   
-    const descriptionFormatToUse = sortedArticles.length > 0 
+    const descriptionFormatToUse = sortedSearchRows.length > 0
       ? descriptionFormat 
       : descriptionFormatNoResults || descriptionFormat;
   
-    return format(descriptionFormatToUse, articlesQuery, limit, sortedArticles.length);
+    return format(descriptionFormatToUse, articlesQuery, limit, sortedSearchRows.length);
   };
 
   return (
@@ -194,20 +205,25 @@ export const Search: React.FC<SearchProps> = ({
             data-testid='search-input'
             onFocus={() => setHiddenSuggestions(false)}
             onChange={handleInputChange}
-            value={inputValue}
+            value={decodeHtmlEntities(inputValue)}
             onKeyDown={handleKeyClick}
           />
-          <IconButton
-            dataTestId='hendle-search'
-            ariaLabel={submitButtonAriaLabel}
+          <button
+            data-testid='handle-search'
+            aria-label={submitButtonAriaLabel}
             onClick={handleSearchClick}
-          />
-          {!hiddenSuggestions && <Suggestions
+            className={styles.searchButton}>
+            <span className={styles.searchButtonImage}></span>
+          </button>
+          {!hiddenSuggestions &&
+          <Suggestions
             recentSearches={recentSearches}
             activeSuggestion={activeSuggestion}
+            focusInput={focusInput}
             suggestionsQuery={suggestionQuery}
             suggestions={suggestions}
             handleSearch={handleSearch}
+            setInputValue={setInputValue}
           />}
         </div>
         <h1 className={styles.searchFormTitle}>{title}</h1>
@@ -220,36 +236,37 @@ export const Search: React.FC<SearchProps> = ({
           <div className={styles.trending}>
             <div className={styles.trendingTitle}>{popularSearchesTitle}:</div>
             {popularSearches.map((topic) =>
-              <div
-                key={topic}
-                role="button"
-                tabIndex={0}
-                className={styles.trendingItem}
-                onClick={() => handleSearch(topic)}>
-                {topic}
-              </div>
+                <div
+                  key={topic}
+                  role="button"
+                  tabIndex={0}
+                  className={styles.trendingItem}
+                  onClick={() => handleSearch(topic)}>
+                  {topic}
+                </div>
             )}
           </div>
-          {!!articles.length &&
+          {!!sortedSearchRows.length &&
             <div className={styles.sorting}>
-              <label htmlFor='sort-by' className={styles.sortingLabel}>{sortByTitle}</label>
-              <div id="sort-by" className={styles.sortingSelect}>
-                {latestSortOptionTitle}
-              </div>
+              <SortSelect
+                onChange={setSelectedSortOption}
+                options={selectOptions}
+                sortingTitle={sortByTitle}
+              />
             </div>
           }
         </div>
         <div className={styles.searchResultItems}>
           {
-            sortedArticles.slice(0, limit).map((item) => (
-              <Article
-                key={item.path}
-                article={item}
+            sortedSearchRows.slice(0, limit).map((searchRow) => (
+              <SearchRow
+                key={searchRow.article.path}
+                searchRow={searchRow}
                 highlightedWords={articlesQuery.split(" ")}
               />
             ))
           }
-          {limit < sortedArticles.length && (
+          {limit < sortedSearchRows.length && (
             <button className={styles.searchResultButton} onClick={handleShowMore}>{showMoreResultsButtonTitle}</button>
           )}
         </div>

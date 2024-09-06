@@ -20,3 +20,9 @@ export function getCommonPrefix(str1, str2, caseInsensitive = false) {
     }
     return origin.slice(0, i);
 }
+
+export function decodeHtmlEntities(text) {
+    const parser = new DOMParser();
+    const decodedString = parser.parseFromString(text, 'text/html').body.textContent;
+    return decodedString;
+  }

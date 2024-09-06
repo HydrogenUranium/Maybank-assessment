@@ -1,13 +1,39 @@
 import { useState, useEffect } from 'react';
-import { Article } from '../types/article';
+import { SearchResult, SearchRow, Article } from '../types/article';
 import { SortByOptions } from '../types';
 
-/**
- * Custom hook for sorting articles.
- * @param {Array} articles - The array of article objects to sort.
- * @param {String} sortBy - The property to sort the articles by.
- * @returns {Array} The sorted array of articles.
- */
+export const useSortedSearchResult = (searchResult: SearchResult, sortBy?: SortByOptions): SearchResult => {
+  const [sortedSearchResult, setSortedSearchResult] = useState([]);
+
+  const sortByDate = (a: SearchRow, b: SearchRow) => b.article.createdMilliseconds - a.article.createdMilliseconds;
+
+  const sortByRecommended = (a: SearchRow, b: SearchRow) => {
+    const aRecommended = a.article.highlights.includes("recommended");
+    const bRecommended = b.article.highlights.includes("recommended");
+    return Number(bRecommended) - Number(aRecommended);
+  };
+
+
+  useEffect(() => {
+    let sorted;
+
+    switch (sortBy) {
+      case 'latest':
+        sorted = [...searchResult].sort(sortByDate);
+        break;
+      case 'recommended':
+        sorted = [...searchResult].sort(sortByDate).sort(sortByRecommended);
+        break;
+      default:
+        sorted = [...searchResult];
+    }
+
+    setSortedSearchResult(sorted);
+  }, [searchResult, sortBy]);
+
+  return sortedSearchResult;
+};
+
 export const useSortedArticles = (articles: Article[], sortBy?: SortByOptions): Article[] => {
   const [sortedArticles, setSortedArticles] = useState([]);
 
@@ -39,3 +65,4 @@ export const useSortedArticles = (articles: Article[], sortBy?: SortByOptions): 
 
   return sortedArticles;
 };
+
