@@ -1,5 +1,18 @@
 .listicle-component {
   margin-bottom: 20px;
+  overflow: hidden;
+
+  &.listicle__row__text--yellow {
+    background-color: map-get($map: $palette, $key: sunflower-yellow);
+  }
+
+  &.listicle__row__text--white {
+    background-color: map-get($map: $palette, $key: true-white);
+  }
+
+  &.listicle__row__text--grey {
+    background-color: map-get($map: $palette, $key: white-two);
+  }
 
   .listicle__row {
     margin-bottom: 20px;
@@ -14,6 +27,7 @@
         width: 50%;
         float: left;
         padding-right: 15px;
+        padding-left: 0;
       }
       img {
         @extend %listicle-block;
@@ -32,6 +46,8 @@
     }
 
     &__text {
+      padding: 15px;
+
       @include respond(md) {
         width: 50%
       }
@@ -43,21 +59,6 @@
         margin-bottom: .5rem !important;
       }
 
-      &--yellow {
-        @extend %listicle-text-block;
-        background-color: map-get($map: $palette, $key: sunflower-yellow);
-      }
-
-      &--white {
-        @extend %listicle-text-block;
-        background-color: map-get($map: $palette, $key: true-white);
-      }
-
-      &--grey {
-        @extend %listicle-text-block;
-        background-color: map-get($map: $palette, $key: white-two);
-      }
-
       &__body {
         @include font("%T4");
         margin: 10px 0;
@@ -67,6 +68,8 @@
     &--text {
       &-left .listicle__row__picture {
         float: right;
+        padding-left: 15px;
+        padding-right: 0;
       }
 
       @include respond(md) {
