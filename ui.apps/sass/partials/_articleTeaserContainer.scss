@@ -70,7 +70,7 @@
             font-size: 12px;
             line-height: 17px;
             color: #323232;
-            min-height: 17px;
+            min-height: 34px;
           }
 
           .cmp-teaser__title {
@@ -89,6 +89,7 @@
 
             &:hover {
               color: #D40511;
+              display: block;
             }
           }
 
