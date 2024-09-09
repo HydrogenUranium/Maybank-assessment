@@ -87,11 +87,6 @@
                             <target>/apps/dhl-vendor-packages/install</target>
                         </embedded>
                         <embedded>
-                            <groupId>mysql</groupId>
-                            <artifactId>mysql-connector-java</artifactId>
-                            <target>/apps/dhl-vendor-packages/install</target>
-                        </embedded>
-                        <embedded>
                             <groupId>com.dhl.aem</groupId>
                             <artifactId>akamai.core</artifactId>
                             <target>/apps/dhl-vendor-packages/install</target>
@@ -238,11 +233,6 @@
             <artifactId>dhl.ui.content</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
         <dependency>

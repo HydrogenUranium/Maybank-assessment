@@ -12,7 +12,6 @@ import Social from './Components/Social';
 import Hero from './Components/Hero';
 import ShipNowForm from './Components/ShipNowForm';
 import ShipNowTwoStepForm from './Components/ShipNowTwoStepForm';
-import CompetitionForm from './Components/CompetitionForm';
 import ServiceWorker from './Components/ServiceWorker';
 import MarketoForm from './Components/MarketoForm';
 import LanguageDetect from './Components/LanguageDetect';
@@ -40,7 +39,6 @@ $(document).ready(() => {
   ShipForm.init();
   Social.init();
   Hero.init();
-  CompetitionForm.init();
   ShipNowForm.init();
   ShipNowTwoStepForm.init();
   ServiceWorker.init();
