@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Image"
+          sling:resourceType="cq/gui/components/authoring/dialog"
+          extraClientlibs="[core.wcm.components.image.v3.editor,core.wcm.components.commons.editor.dialog.pageimagethumbnail.v1]"
+          helpPath="https://www.adobe.com/go/aem_cmp_image_v3"
+          trackingFeature="core-components:image:v3">
+<content
+        granite:class="cmp-image__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+        <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+            <items jcr:primaryType="nt:unstructured">
+                <content
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Content"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                    <items jcr:primaryType="nt:unstructured">
+                        <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                            <items jcr:primaryType="nt:unstructured">
+                                <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <backgroundColour
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Background Colour"
+                                                name="./backgroundColour">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <yellow
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Yellow"
+                                                        value="yellow"/>
+                                                <lightGray
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Light Gray"
+                                                        value="light-gray"/>
+                                            </items>
+                                        </backgroundColour>
+                                        <imageWidth
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Image Width"
+                                                name="./imageWidth">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <small
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="40%"
+                                                        value="40"/>
+                                                <medium
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="50%"
+                                                        value="50"/>
+                                                <large
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="60%"
+                                                        value="60"/>
+                                            </items>
+                                        </imageWidth>
+                                        <alignment
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Alignment of Text and Image"
+                                                name="./alignment">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <left
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Left"
+                                                        value="left"/>
+                                                <right
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Right"
+                                                        value="right"/>
+                                            </items>
+                                        </alignment>
+                                        <title
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                useFixedInlineToolbar="{Boolean}true"
+                                                field-style="dhl-highlight-banner-title"
+                                                features="*"
+                                                fieldLabel="Title"
+                                                name="./title">
+                                            <rtePlugins jcr:primaryType="nt:unstructured">
+                                                <styles jcr:primaryType="nt:unstructured" features="*">
+                                                    <styles jcr:primaryType="cq:WidgetCollection">
+                                                        <large jcr:primaryType="nt:unstructured" cssName="large" text="Large"/>
+                                                    </styles>
+                                                </styles>
+                                            </rtePlugins>
+                                            <uiSettings jcr:primaryType="nt:unstructured">
+                                                <cui jcr:primaryType="nt:unstructured">
+                                                    <inline
+                                                            jcr:primaryType="nt:unstructured"
+                                                            toolbar="[#styles]">
+                                                        <popovers
+                                                                jcr:primaryType="nt:unstructured">
+                                                            <styles jcr:primaryType="nt:unstructured"
+                                                                    items="styles:getStyles:styles-pulldown"
+                                                                    ref="styles"/>
+                                                        </popovers>
+                                                    </inline>
+                                                    <dialogFullScreen
+                                                            jcr:primaryType="nt:unstructured"
+                                                            toolbar="[#styles]">
+                                                        <popovers
+                                                                jcr:primaryType="nt:unstructured">
+                                                            <styles jcr:primaryType="nt:unstructured"
+                                                                    items="styles:getStyles:styles-pulldown"
+                                                                    ref="styles"/>
+                                                        </popovers>
+                                                    </dialogFullScreen>
+                                                </cui>
+                                            </uiSettings>
+                                        </title>
+                                        <text
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/foundation/form/textarea"
+                                                useFixedInlineToolbar="{Boolean}true"
+                                                fieldLabel="Text"
+                                                name="./text"/>
+                                    </items>
+                                </column>
+                            </items>
+                        </columns>
+                    </items>
+                </content>
+                <asset jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/container"/>
+                <metadata jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/container"/>
+            </items>
+        </tabs>
+    </items>
+</content>
+</jcr:root>
