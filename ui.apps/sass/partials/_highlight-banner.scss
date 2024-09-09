@@ -1,0 +1,111 @@
+.statistics-banner-component {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+  @include respond(md) {
+    flex-direction: row;
+  }
+
+  &_yellow-color {
+    background-color: #FFCB00;
+  }
+
+  &_light-gray-color {
+    background-color: #F2F2F2;
+  }
+
+  .image-wrapper {
+    @include respond(md) {
+      position: relative;
+      width: 40%;
+      min-width: 40%;
+    }
+    &_width-50 {
+      @include respond(md) {
+        position: relative;
+        width: 50%;
+        min-width: 50%;
+      }
+    }
+
+    &_width-60 {
+      @include respond(md) {
+        position: relative;
+        width: 60%;
+        min-width: 60%;
+      }
+    }
+
+    img {
+      object-fit: cover;
+      max-height: 300px;
+      height: 100%;
+      margin: 0;
+
+      @include respond(md) {
+        max-height: unset;
+        position: absolute;
+        height: 100%;
+      }
+    }
+  }
+  .content {
+    margin: 40px 20px;
+    padding: 0 20px;
+    border-left: 4px solid #d40511;
+
+    &__text {
+      font-weight: 900;
+
+      @include respond(xl) {
+        font-size: 20px;
+      }
+    }
+
+    [dir="rtl"] & {
+      border-left: unset;
+      border-right: 4px solid #d40511;
+    }
+
+    &__heading {
+      p {
+        color: #d40511;
+        font-size: 20px;
+        font-weight: 900;
+        padding: 0;
+        margin: 0;
+
+        @include respond(xl) {
+          font-size: 24px;
+        }
+
+        .large {
+          font-size: 40px;
+          line-height: 1;
+          @include respond(xl) {
+            font-size: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.statistics-banner-component_right-alignment {
+  @include respond(md) {
+    flex-direction: row-reverse;
+  }
+
+  .content {
+    @include respond(md) {
+      border-left: unset;
+      border-right: 4px solid #d40511;
+
+      [dir="rtl"] & {
+        border-right: unset;
+        border-left: 4px solid #d40511;
+      }
+    }
+  }
+}
