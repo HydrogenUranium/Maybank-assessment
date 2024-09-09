@@ -9,6 +9,7 @@ import com.positive.dhl.core.services.PageContentExtractorService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.utils.RequestUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -39,6 +40,7 @@ public class DiscoverRssFeed {
     private final String tags;
     private final String language;
     private final String region;
+    private final String urlPrefix;
     private final String publishedDate;
     private final String resourcePath;
     private final String thumbnailImageUrl;
@@ -65,8 +67,8 @@ public class DiscoverRssFeed {
         title = article.getNavTitle();
         description = article.getDescription();
         publishedDate = article.getCreated();
-        var urlPrefix = RequestUtils.getUrlPrefix(request);
-        thumbnailImageUrl = urlPrefix.concat(request.getResourceResolver().map(article.getListimage()));
+        urlPrefix = RequestUtils.getUrlPrefix(request);
+        thumbnailImageUrl = getThumbnailImageUrl(article);
         link = article.getPath();
         region = Optional.ofNullable(getLanguageRoot(resource))
                 .map(Page::getProperties)
@@ -76,6 +78,16 @@ public class DiscoverRssFeed {
 
         tags = getTagNames(article.getValueMap().get("jcr:content/cq:tags", new String[0]), locale);
         xml = new SimpleXml(response.getWriter());
+    }
+
+    private String getThumbnailImageUrl(Article article) {
+        String image = article.getListimage();
+        if(StringUtils.isBlank(image)) {
+            return null;
+        }
+        String resolvedImagePath = request.getResourceResolver().map(image);
+
+        return urlPrefix.concat(resolvedImagePath);
     }
 
     private Page getLanguageRoot(Resource resource) {

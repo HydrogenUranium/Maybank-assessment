@@ -86,7 +86,7 @@ class DiscoverRssFeedTest {
         String expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n" +
                 "<channel>\n" +
-                "<link>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
                 "<title>The future of cyber sales</title>\n" +
                 "<description>description</description>\n" +
                 "<language>en</language>\n" +
@@ -109,7 +109,7 @@ class DiscoverRssFeedTest {
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
         String expected = "<item>\n" +
-                "<link>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
                 "<title>The future of cyber sales</title>\n" +
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
@@ -117,7 +117,7 @@ class DiscoverRssFeedTest {
                 "<language>en</language>\n" +
                 "<pubDate/>\n" +
                 "<tags>Tech Futures,Culture Hype</tags>\n" +
-                "<thumbnail>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
+                "<thumbnail/>\n" +
                 "</item>\n";
 
         assertXmlEquals(expected, responseBody);
@@ -135,7 +135,7 @@ class DiscoverRssFeedTest {
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
         String expected = "<item>\n" +
-                "<link>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
                 "<title>The future of cyber sales</title>\n" +
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<div>full body</div>]]></articleBody>\n" +
@@ -143,7 +143,7 @@ class DiscoverRssFeedTest {
                 "<language>en</language>\n" +
                 "<pubDate/>\n" +
                 "<tags>Tech Futures,Culture Hype</tags>\n" +
-                "<thumbnail>http://localhost/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
+                "<thumbnail/>\n" +
                 "</item>\n";
 
         assertXmlEquals(expected, responseBody);
@@ -161,7 +161,7 @@ class DiscoverRssFeedTest {
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
         String expected = "<item>" +
-                "<link>http://localhost:4503/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
                 "<title>The future of cyber sales</title>\n" +
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
@@ -169,7 +169,7 @@ class DiscoverRssFeedTest {
                 "<language>en</language>\n" +
                 "<pubDate/>\n" +
                 "<tags>Tech Futures,Culture Hype</tags>\n" +
-                "<thumbnail>http://localhost:4503/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
+                "<thumbnail/>\n" +
                 "</item>\n";
 
         assertXmlEquals(expected, responseBody);
