@@ -92,7 +92,9 @@ describe('Singapore Category Landing Page', () => {
           cy.get('.articleCard__Y5mno').should('have.length', finalLength);
 
           // 9. Verify Recommended sort order is the default option
-          cy.get('.sort__Bvp05').should('contain', 'Recommended');
+          cy.get('#sort-by')
+            .parent()
+            .should('contain', 'Recommended');
 
           // 10. Verify CTA Banner exists and the button is clickable. When clicked, it lands on the correct page
           cy.get('.cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body').should('exist');
