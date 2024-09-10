@@ -1,6 +1,5 @@
 <sly data-sly-use.dhlpage="com.positive.dhl.core.models.DhlPage">
   <sly data-sly-test="${(currentSession.userID == null || currentSession.userID == 'anonymous')}" data-sly-unwrap>
-    <script src="//assets.adobedtm.com/cd52279ef3fa/3cec625096bb/launch-${dhlpage.trackingid}.min.js" async></script>
     <sly data-sly-test="${(dhlpage.gtmtrackingid != '')}" data-sly-unwrap>
       <!-- Google Tag Manager -->
       <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
