@@ -47,6 +47,10 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             text="Bottom Left Underline"
                                                             value="bottomLeftUnderline"/>
+                                                    <leftLine
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Left Line"
+                                                            value="leftLine"/>
                                                 </items>
                                             </designMode>
                                         </items>
