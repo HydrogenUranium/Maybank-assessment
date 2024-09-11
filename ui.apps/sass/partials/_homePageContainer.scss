@@ -34,7 +34,7 @@
 
       .container {
         &__body {
-          @include flat-top-first;
+          @include ignore-top-child-margin-deep;
           @include respond(md) {
             grid-area: body;
           }
@@ -42,7 +42,7 @@
 
         &__sidebar {
           display: none;
-          @include flat-top-first;
+          @include ignore-top-child-margin-deep;
           @include respond(md) {
             display: block;
             grid-area: sidebar;
