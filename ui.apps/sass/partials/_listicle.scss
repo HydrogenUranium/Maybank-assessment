@@ -26,8 +26,10 @@
       @include respond(md) {
         width: 50%;
         float: left;
-        padding-right: 15px;
+        padding-right: 30px;
         padding-left: 0;
+        margin-left: 0;
+        padding-bottom: 15px;
       }
       img {
         @extend %listicle-block;
@@ -46,7 +48,7 @@
     }
 
     &__text {
-      padding: 15px;
+      padding: 30px;
 
       @include respond(md) {
         width: 50%
@@ -63,13 +65,27 @@
         @include font("%T4");
         margin: 10px 0;
       }
+
+      ol, ul {
+        list-style: revert;
+        padding-left: 0;
+        padding-right: 15px;
+        position: relative;
+        left: 15px;
+
+        [dir="rtl"] & {
+          right: 0;
+        }
+      }
     }
 
     &--text {
       &-left .listicle__row__picture {
         float: right;
-        padding-left: 15px;
+        padding-left: 30px;
         padding-right: 0;
+        margin-left: 15px;
+        margin-right: 0;
       }
 
       @include respond(md) {
