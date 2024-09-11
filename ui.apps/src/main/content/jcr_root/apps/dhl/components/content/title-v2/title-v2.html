@@ -1,11 +1,13 @@
 <sly data-sly-set.designMode="${properties.designMode || 'topLeftAndBottomRightStrips'}"
      data-sly-set.isStrips="${designMode == 'topLeftAndBottomRightStrips'}"
      data-sly-set.isUnderline="${designMode == 'bottomLeftUnderline'}"
+     data-sly-set.isLeftLine="${designMode == 'leftLine'}"
 ></sly>
 
 <div class="title-component
-    ${isStrips ? 'title-component--strips' : ''}
-    ${isUnderline ? 'title-component--underline' : ''}">
+    ${isStrips ? 'title-component_strips' : ''}
+    ${isUnderline ? 'title-component_underline' : ''}
+    ${isLeftLine ? 'title-component_leftLine' : ''}">
     <svg data-sly-test="${isStrips}" class="svg svg_top-left" width="308" height="38"
          xmlns="http://www.w3.org/2000/svg">
         <polygon points="0,0 308,0 294,8 0,8" fill="#e2e2e2"/>

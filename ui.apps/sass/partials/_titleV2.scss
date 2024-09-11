@@ -4,7 +4,7 @@
   line-height: 32px;
   max-width: 1640px;
 
-  &--underline {
+  &_underline {
     margin: 30px auto 0;
     line-height: 29px;
     font-size: 20px;
@@ -31,7 +31,21 @@
     }
   }
 
-  &--strips {
+  &_leftLine {
+    margin: 30px auto 0;
+    line-height: 29px;
+    font-size: 20px;
+    border-left: 2px solid #d40511;
+    color: #323232;
+    padding: 0 10px;
+    @include respond(xl) {
+      margin-top: 50px;
+      line-height: 72px;
+      font-size: 50px;
+    }
+  }
+
+  &_strips {
     position: relative;
     margin: 0px auto 0px auto;
     background-color: #040404;

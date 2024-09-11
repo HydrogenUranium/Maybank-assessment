@@ -46,6 +46,12 @@
                 <responsivegrid
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
+                    <responsivegrid_top
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid"
+                            editable="{Boolean}true">
+                        <cq:responsive jcr:primaryType="nt:unstructured"/>
+                    </responsivegrid_top>
                     <article_grid
                             jcr:created="{Date}2023-10-25T17:19:48.794+03:00"
                             jcr:createdBy="admin"
@@ -53,6 +59,12 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="dhl/components/content/article-grid"/>
+                    <responsivegrid_middle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid"
+                            editable="{Boolean}true">
+                        <cq:responsive jcr:primaryType="nt:unstructured"/>
+                    </responsivegrid_middle>
                     <cta_banner_with_poin
                             jcr:created="{Date}2023-10-25T16:52:05.515+03:00"
                             jcr:createdBy="admin"
@@ -61,6 +73,12 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="dhl/components/content/cta-banner-with-points"
                             type="subscribeNewsletter"/>
+                    <responsivegrid_bottom
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid"
+                            editable="{Boolean}true">
+                        <cq:responsive jcr:primaryType="nt:unstructured"/>
+                    </responsivegrid_bottom>
                 </responsivegrid>
             </category_container>
             <footerv2
