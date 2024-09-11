@@ -119,13 +119,13 @@ class RssFeedRenderServletTest {
         String expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n" +
                 "<channel>\n" +
-                "<link>http://localhost/dhl/country/en-global.html</link>\n" +
+                "<link>/dhl/country/en-global.html</link>\n" +
                 "<title>E-commerce business &amp; global logistics advice | Discover DHL</title>\n" +
                 "<description/>\n" +
                 "<language>en</language>\n" +
                 "<region>Global</region>\n" +
                 "<pubDate/><item>\n" +
-                "<link>http://localhost/dhl/country/en-global/business/productivity/ai-science-fiction-it-is-not.html</link>\n" +
+                "<link>/dhl/country/en-global/business/productivity/ai-science-fiction-it-is-not.html</link>\n" +
                 "<title>AI science fiction it is not</title>\n" +
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<h2>Article Body ai-science-fiction-it-is-not</h2>]]></articleBody>\n" +
@@ -135,7 +135,7 @@ class RssFeedRenderServletTest {
                 "<tags/>\n" +
                 "<thumbnail/>\n" +
                 "</item><item>\n" +
-                "<link>http://localhost/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<link>/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
                 "<title>The future of cyber sales</title>\n" +
                 "<description>description</description>\n" +
                 "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
@@ -143,7 +143,7 @@ class RssFeedRenderServletTest {
                 "<language>en</language>\n" +
                 "<pubDate/>\n" +
                 "<tags>Tech Futures,Culture Hype</tags>\n" +
-                "<thumbnail>http://localhost/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.thumb.319.319.png</thumbnail>\n" +
+                "<thumbnail/>\n" +
                 "</item>\n" +
                 "</channel>\n" +
                 "</rss>\n";
