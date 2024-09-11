@@ -28,14 +28,14 @@ Steps:
 import groovy.transform.Field
 import java.text.SimpleDateFormat
 
-@Field dryRun = false
-@Field contentManipulation = true
+@Field dryRun = true
+@Field contentManipulation = false
 
 @Field affectedItemPaths = [
 
 ]
 
-@Field contentScope = "/content/dhl/global/en-global/discover/news-and-insights/success-stories/women-in-business-how-they-did-it"
+@Field contentScope = "/content/dhl"
 @Field oldComponentResType = "dhl/components/content/accordion"
 @Field newComponentResType = "dhl/components/content/accordion-v2"
 
