@@ -9,6 +9,7 @@ import com.positive.dhl.core.services.PageContentExtractorService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.utils.RequestUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -39,10 +40,9 @@ public class DiscoverRssFeed {
     private final String tags;
     private final String language;
     private final String region;
+    private final String urlPrefix;
     private final String publishedDate;
     private final String resourcePath;
-    private final String mappedResourcePath;
-    private final String urlPrefix;
     private final String thumbnailImageUrl;
     private final String link;
 
@@ -63,14 +63,13 @@ public class DiscoverRssFeed {
         }
 
         resourcePath = article.getJcrPath();
-        mappedResourcePath =  article.getPath();
 
         title = article.getNavTitle();
         description = article.getDescription();
         publishedDate = article.getCreated();
         urlPrefix = RequestUtils.getUrlPrefix(request);
-        thumbnailImageUrl = getThumbnailImageUrl();
-        link = getHtmlLink();
+        thumbnailImageUrl = getThumbnailImageUrl(article);
+        link = article.getPath();
         region = Optional.ofNullable(getLanguageRoot(resource))
                 .map(Page::getProperties)
                 .map(valueMap -> valueMap.get("siteregion", "")).orElse("");
@@ -81,6 +80,16 @@ public class DiscoverRssFeed {
         xml = new SimpleXml(response.getWriter());
     }
 
+    private String getThumbnailImageUrl(Article article) {
+        String image = article.getListimage();
+        if(StringUtils.isBlank(image)) {
+            return null;
+        }
+        String resolvedImagePath = request.getResourceResolver().map(image);
+
+        return urlPrefix.concat(resolvedImagePath);
+    }
+
     private Page getLanguageRoot(Resource resource) {
         Page page = resource.adaptTo(Page.class);
         return page == null ? null : pageUtilService.getHomePage(page);
@@ -89,19 +98,6 @@ public class DiscoverRssFeed {
     private Resource getChildResource(String relativePath) {
         return request.getResourceResolver().getResource(resourcePath + relativePath);
     }
-
-    private String getThumbnailImageUrl() {
-        var image = getChildResource("/jcr:content/image");
-        if (image == null) {
-            return "";
-        }
-        return urlPrefix + mappedResourcePath.replace(".html","") + ".thumb.319.319.png";
-    }
-
-    private String getHtmlLink() {
-        return urlPrefix + mappedResourcePath;
-    }
-
 
     private String getArticleIntroduction() {
         var par = getChildResource("/jcr:content/root/article_container/body/responsivegrid");
@@ -157,7 +153,7 @@ public class DiscoverRssFeed {
         xml.openDocument();
         xml.open("rss").attr("version", "2.0").attr("xmlns:atom", "http://www.w3.org/2005/Atom")
                 .open("channel")
-                .open("link", getHtmlLink(), false).close()
+                .open("link", link, false).close()
                 .open("title", title, false).close()
                 .open("description", description, false).close()
                 .open("language", language, false).close()
