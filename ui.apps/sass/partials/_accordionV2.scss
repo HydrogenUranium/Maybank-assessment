@@ -6,6 +6,17 @@
 		padding-left: 0;
 		padding-right: 0;
 
+		&__panel {
+		  @include ignore-top-child-margin-deep;
+		  @include ignore-bottom-child-margin-deep;
+		  padding-top: 18px;
+		  padding-bottom: 16px;
+		}
+
+		&__header {
+		  margin: 0;
+		}
+
 		.cmp-accordion__item {
 			background-color: map-get($palette, white-two);
 			padding: 21px 15px 20px 15px;
@@ -50,14 +61,13 @@
 			}
 		}
 
-		.cmp-accordion__icon.cmp-accordion__button--expanded {
+		.cmp-accordion__button--expanded .cmp-accordion__icon {
 			transform: rotate(-180deg)
 		}
 
 		.cmp-accordion__panel .text > .cmp-text {
 			@include font($style: "%T5");
-			padding: 0;
-			padding-top: 18px;
 		}
 	}
 }
+
