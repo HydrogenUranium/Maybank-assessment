@@ -92,6 +92,7 @@
     <property inherit="true" name="firstDescriptionPart" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="secondDescriptionPart" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="secondTitle" translate="true" updateDestinationLanguage="false"/>
+    <property inherit="true" name="seoTitle" translate="true" updateDestinationLanguage="false"/>
 
     <node resourceType="dhl/components/animated-content/stats-panel">
       <property inherit="true" name="leftBlockTitle" translate="true" updateDestinationLanguage="false"/>
