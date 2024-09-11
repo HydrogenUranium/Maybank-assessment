@@ -23,12 +23,6 @@
                                                     fieldLabel="URL Path Prefix (i.e. /discover for live)"
                                                     name="./pathprefix"/>
 
-                                            <trackingid
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                    fieldLabel="Adobe Tracking ID (i.e. '8022e0cc7c33-staging' or 'f5a07920ff7f')"
-                                                    name="./trackingid"/>
-
                                             <gtmtrackingid
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/foundation/form/textfield"

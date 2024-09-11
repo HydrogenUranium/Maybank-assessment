@@ -15,7 +15,7 @@
                     <analytics
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Analytics &amp; Reporting"
-                            sling:resourceType="acs-commons/granite/ui/components/include"
+                            sling:resourceType="granite/ui/components/foundation/include"
                             path="/apps/dhl/dialog-fragments/analytics/designDialog"/>
                 </items>
             </tabs>

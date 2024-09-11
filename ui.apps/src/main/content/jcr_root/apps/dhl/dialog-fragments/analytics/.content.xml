@@ -16,7 +16,7 @@
                     sling:resourceType="granite/ui/components/coral/foundation/form/select"
                     fieldLabel="Tracked Interactions"
                     granite:class="cq-dialog-dropdown-multiple-showhide"
-                    name="./trackedInteractions">
+                    name="./analytics/trackedInteractions">
                 <granite:data
                         jcr:primaryType="nt:unstructured"
                         cq-dialog-dropdown-showhide-target=".tracked-interactions-showhide"/>
@@ -53,7 +53,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             fieldLabel="Interaction Type"
-                            name="./interactionType">
+                            name="./analytics/interactionType">
                         <items
                                 jcr:primaryType="nt:unstructured">
                             <content
@@ -85,12 +85,12 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             required="true"
                             fieldLabel="Name"
-                            name="./name"/>
+                            name="./analytics/name"/>
                     <position
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Position"
-                            name="./position"/>
+                            name="./analytics/position"/>
                     <customAttributes
                             jcr:primaryType="nt:unstructured"
                             fieldLabel="Custom Attributes"
@@ -98,7 +98,7 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
                         <field sling:resourceType="granite/ui/components/coral/foundation/container"
                                jcr:primaryType="nt:unstructured"
-                               name="./customAttributes">
+                               name="./analytics/customAttributes">
                             <items jcr:primaryType="nt:unstructured">
                                 <name
                                         jcr:primaryType="nt:unstructured"

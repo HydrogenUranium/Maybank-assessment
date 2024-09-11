@@ -39,7 +39,6 @@ class DhlPageTest {
 		ctx.registerService(PageUtilService.class, pageUtilService);
 	    ctx.addModelsForClasses(DhlPage.class);
 		mockInjectHomeProperty(ctx, Map.of(
-				"trackingid", "tracking-id",
 				"gtmtrackingid", "gmt-tracking-id",
 				"pathprefix", "/discover",
 				"direction", "rtl"
@@ -61,7 +60,6 @@ class DhlPageTest {
 		assertEquals("/content/dhl/business/finding-new-customers/The-subscription-economy/The-Subscription-Economy", dhlPage.getAmparticlepath());
 		assertEquals("", dhlPage.getFullarticlepath());
 		assertEquals("gmt-tracking-id", dhlPage.getGtmtrackingid());
-		assertEquals("tracking-id", dhlPage.getTrackingid());
 		assertEquals("/discover", dhlPage.getPathprefix());
 		assertEquals("rtl", dhlPage.getDirection());
 		assertEquals("", dhlPage.getRobotsTags());

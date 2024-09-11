@@ -1,5 +1,6 @@
 {
   "assetPrefix": "",
   "akamaiHostname": "$[env:AKAMAI_HOSTNAME]",
-  "countryInfoLocation": "/conf/dhl/appdata/countries"
+  "countryInfoLocation": "/conf/dhl/appdata/countries",
+  "adobeDtmLink": "$[env:DTM_SCRIPT_LINK]"
 }

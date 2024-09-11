@@ -64,4 +64,11 @@ public @interface EnvironmentConfigurationData {
         type = AttributeType.STRING
     )
     String marketoDefaultHiddenFormId();
+
+    @AttributeDefinition(
+            name = "Adobe DTM",
+            defaultValue = "https://assets.adobedtm.com/cd52279ef3fa/6b1d49db70e9/launch-f5fe1ed8f4b2-staging.min.js",
+            type = AttributeType.STRING
+    )
+    String adobeDtmLink();
 }

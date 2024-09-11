@@ -28,6 +28,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     private String akamaiHostname;
     private String defaultMarketoFormId;
     private String defaultMarketoHiddenFormId;
+    private String adobeDtmLink;
 
     /**
      *
@@ -40,6 +41,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
         akamaiHostname = PropertiesUtil.toString(environmentConfigurationData.akamaiHostname(), "www.dhl.com");
         defaultMarketoFormId = PropertiesUtil.toString(environmentConfigurationData.marketoDefaultFormId(),"1795");
         defaultMarketoHiddenFormId = PropertiesUtil.toString(environmentConfigurationData.marketoDefaultHiddenFormId(),"1756");
+        adobeDtmLink = PropertiesUtil.toString(environmentConfigurationData.adobeDtmLink(), "https://assets.adobedtm.com/cd52279ef3fa/6b1d49db70e9/launch-f5fe1ed8f4b2-staging.min.js");
     }
 
     @Override
@@ -65,5 +67,10 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     @Override
     public String getDefaultMarketoHiddenFormId() {
         return defaultMarketoHiddenFormId;
+    }
+
+    @Override
+    public String getAdobeDtmLink() {
+        return adobeDtmLink;
     }
 }
