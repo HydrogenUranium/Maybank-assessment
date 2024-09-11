@@ -46,6 +46,8 @@ public class DhlPage {
 	private String akamaiHostname;
 	private String ogtagimage;
 	private String listimage;
+	private String seoTitle;
+	private String adobeDtmLink;
 
 	@InjectHomeProperty
 	@Default(values = "")
@@ -64,6 +66,7 @@ public class DhlPage {
 
 	@PostConstruct
     protected void init() {
+		adobeDtmLink = environmentConfiguration.getAdobeDtmLink();
 		assetprefix = environmentConfiguration.getAssetPrefix();
 		akamaiHostname = environmentConfiguration.getAkamaiHostname();
 
@@ -81,6 +84,7 @@ public class DhlPage {
 		fullarticlepath = properties.get("fullarticlepath", "");
 		amparticlepath = properties.get("amparticlepath", "");
 		listimage = properties.get("listimage", "");
+		seoTitle = properties.get("seoTitle", "");
 
 		String path = properties.get("redirectTarget", "");
 		if (!path.equals(currentPagePath) && !path.isEmpty() && isPublishRunmode) {

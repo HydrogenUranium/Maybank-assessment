@@ -89,6 +89,20 @@
                         jcr:title="More Titles and Description"
                         sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
                     <items jcr:primaryType="nt:unstructured">
+                        <seoTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Defines the page meta title for SEO"
+                                fieldLabel="SEO Title"
+                                name="./seoTitle"
+                                renderReadOnly="{Boolean}true"
+                                maxlength="60"
+                                validation="text-length max-60"
+                                required="{Boolean}false">
+                            <granite:data
+                                    jcr:primaryType="nt:unstructured"
+                                    cq-msm-lockable="seoTitle"/>
+                        </seoTitle>
                         <pagetitle
                                 cq:showOnCreate="{Boolean}true"
                                 jcr:primaryType="nt:unstructured"

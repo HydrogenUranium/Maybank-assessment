@@ -2,7 +2,11 @@
           data-sly-use.headlibRenderer="headlibs.html"
           data-sly-use.headResources="head.resources.html">
     <meta charset="UTF-8">
-    <title>${page.title}${page.brandSlug ? ' | ' : ''}${page.brandSlug}</title>
+    <title>${dhlpage.seoTitle || page.title}${page.brandSlug ? ' | ' : ''}${page.brandSlug}</title>
+    <script type="text/javascript">
+        window.dataLayer=window.dataLayer||[],window.DHLTrackingHelper=window.DHLTrackingHelper||{},DHLTrackingHelper.pushUtfEvent=function(e,n){n.event=e,dataLayer.push(n)},DHLTrackingHelper.addUtfEventListener=function(e,n){e.addEventListener(n,function(e){DHLTrackingHelper.pushUtfEvent(n,e.detail)})},DHLTrackingHelper.addUtfEventListener(window,"dhl_utf_contentInteraction"),DHLTrackingHelper.addUtfEventListener(window,"dhl_utf_engagementInteraction"),DHLTrackingHelper.addUtfEventListener(window,"dhl_utf_conversionInteraction");
+    </script>
+    <script src="${dhlpage.adobeDtmLink}" async></script>
     <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}"/>
     <meta data-sly-test.description="${page.description || properties['jcr:description']}" name="description" content="${description}"/>
     <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
