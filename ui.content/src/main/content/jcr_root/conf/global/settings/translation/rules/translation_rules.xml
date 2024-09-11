@@ -266,6 +266,7 @@
       <property inherit="true" name="descriptionFormat" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="descriptionFormatNoResults" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="latestSortOptionTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="relevanceSortOptionTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="popularSearchesTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="showMoreResultsButtonTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="sortByTitle" translate="true" updateDestinationLanguage="false"/>
