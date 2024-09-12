@@ -15,7 +15,11 @@ describe('Singapore Open An Account page', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
+      cy.get('body').then(($body) => {
+        if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
+          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+        }
+      });
     });
 
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];

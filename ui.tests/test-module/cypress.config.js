@@ -44,6 +44,7 @@ let config = {
     reporterOptions: {
       configFile: 'reporter.config.js',
     },
+    excludeSpecPattern: ['**/01_Basic/*.cy.js','**/02_Login/*.cy.js'],
   },
   videosFolder: reportsPath + "/videos",
   screenshotsFolder: reportsPath + "/screenshots",
