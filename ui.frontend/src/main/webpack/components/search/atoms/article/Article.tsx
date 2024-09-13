@@ -3,7 +3,7 @@ import React from 'react';
 import { SearchRow as SearchRowType } from 'src/main/webpack/types/article';
 
 import styles from './styles.module.scss';
-import { highlightMatches } from 'src/main/webpack/utils';
+import { highlightMatches, sanitizeHtml } from 'src/main/webpack/utils';
 
 
 type SearchRowProps = {
@@ -31,7 +31,7 @@ export const SearchRow: React.FC<SearchRowProps> = ({ searchRow: { article, exce
         <div
           className={styles.articleInfoDescription}
           dangerouslySetInnerHTML={{
-            __html: description
+            __html: sanitizeHtml(description)
           }}
         />
       </div>
