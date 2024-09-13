@@ -29,7 +29,7 @@ class SearchTest {
     void setUp() throws InvalidTagFormatException {
         context.addModelsForClasses(Search.class);
         context.registerService(TagUtilService.class, tagUtilService);
-        context.load().json("/com/positive/dhl/core/models/Search/content.json", "/content/home/search/jcr:content");
+        context.load().json("/com/positive/dhl/core/models/SearchComponent/content.json", "/content/home/search/jcr:content");
     }
 
     @Test
