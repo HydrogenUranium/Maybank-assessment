@@ -87,6 +87,24 @@ class HttpCommunicationImplTest {
 	}
 
 	@ParameterizedTest
+	@ValueSource(strings = {
+			"akab-82lix7jafsetijxg-4kmrfvzb5ahzyq2t",
+			"test-test_test:dd"
+	})
+	void isValidAuthToken_shouldReturnTrue(String token){
+		assertTrue(underTest.isValidAuthToken(token));
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {
+			"sdfa 34dfs",
+			"akab-82lix7jafsetijxg-4kmrfvzb5ahzyq2t\nSet-Cookie: session=malicious-value"
+	})
+	void isValidAuthToken_shouldReturnFalse(String token){
+		assertFalse(underTest.isValidAuthToken(token));
+	}
+
+	@ParameterizedTest
 	@NullSource
 	@ValueSource(strings = {"authorization-token", ""})
 	void postWithAuthToken(String authTokenInput) throws HttpRequestException, IOException {
