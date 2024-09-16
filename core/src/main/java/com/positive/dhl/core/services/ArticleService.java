@@ -275,6 +275,17 @@ public class ArticleService {
         map.put("orderby.sort", "desc");
         map.put(P_LIMIT, "" + MAX_RESULTS);
         map.put("p.guessTotal", "true");
+
+        /*DIS-792 - No-Index jcr filter placed*/
+        map.put("group.p.or", "true");
+        map.put("group.1_property", "@jcr:content/cq:tags");
+
+        map.put("1_group.p.and", "true");
+        map.put("1_group.2_group.p.not", "true");
+
+        map.put("1_group.2_group.property", "jcr:content/cq:robotsTags");
+        map.put("1_group.2_group.property.operation", "notIn");
+        map.put("1_group.2_group.property.value", "noindex");
         return map;
     }
 
