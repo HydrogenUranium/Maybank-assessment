@@ -23,7 +23,6 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             fieldDescription="Select a color for separator"
                             fieldLabel="Color"
-                            granite:class="cq-dialog-dropdown-showhide"
                             name="./color">
                         <items jcr:primaryType="nt:unstructured">
                             <red
