@@ -1,0 +1,20 @@
+.cmp-separator {
+  padding: 10px 0; //top and bottom padding
+
+  .cmp-separator__horizontal-rule {
+    width: 100%;
+    border: 0;
+
+    &.red {
+      border-top: 1px solid red;
+    }
+
+    &.yellow {
+      border-top: 1px solid #FFCC00;
+    }
+
+    &.grey {
+      border-top: 1px solid grey;
+    }
+  }
+}
