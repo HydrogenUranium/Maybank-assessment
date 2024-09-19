@@ -1,10 +1,10 @@
-<sly data-sly-set.isEmpty="${!properties.text && !properties.title && !properties.fileReference}"></sly>
+<sly data-sly-set.isEmpty="${!properties.text && !properties.title && !properties.fileReference && !properties.fileName}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
 <article data-sly-test="${!isEmpty}"
         class="statistics-banner-component statistics-banner-component_${properties.alignment}-alignment statistics-banner-component_${properties.backgroundColour}-color">
-  <div class="image-wrapper image-wrapper_width-${properties.imageWidth}" data-sly-test="${properties.fileReference}">
+  <div class="image-wrapper image-wrapper_width-${properties.imageWidth}" data-sly-test="${properties.fileReference || properties.fileName}">
       <sly data-sly-include="image.html"></sly>
   </div>
   <div class="content">

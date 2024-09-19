@@ -14,7 +14,11 @@ describe('Singapore Page Article Country', () => {
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
       cy.wait(2000);
-      cy.get("button#onetrust-accept-btn-handler").contains("Accept All").click();
+      cy.get('body').then(($body) => {
+        if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
+          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+        }
+      });
     });
 
     function verifyDownload(fileName) {
@@ -74,9 +78,9 @@ describe('Singapore Page Article Country', () => {
           cy.get('video').should('be.visible').click();
 
           // 11. Verify accordion exists and clicking links redirects correctly
-          cy.get('.card').should('exist');
-          cy.get('.card__body p:first-child a').should('be.visible');
-          cy.get('.card__body p:first-child a')
+          cy.get('.cmp-accordion__item').should('exist');
+          cy.get('.cmp-accordion__panel .cmp-text p:first-child a').should('not.be.visible');
+          cy.get('.cmp-accordion__panel .cmp-text p:first-child a')
             .should('have.attr', 'href')
             .and('include', 'https://globalpeoservices.com/top-15-countries-by-gdp-in-2022/');
 
