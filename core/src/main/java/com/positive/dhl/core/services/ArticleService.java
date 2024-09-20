@@ -180,11 +180,11 @@ public class ArticleService {
     }
 
     private void addFullTextTermsToParams(List<String> terms, Map<String, String> searchParams) {
-        searchParams.put("group.p.or", "true");
+        searchParams.put("1_group.1_group.p.or", "true");
         for (var i = 0; i < terms.size(); i++) {
             String term = terms.get(i);
             String wrappedTerm = term.contains(" ") ? StringUtils.wrap(term, "\"") : term;
-            searchParams.put("group." + (i + 1) + "_fulltext", wrappedTerm);
+            searchParams.put("1_group.1_group." + (i + 1) + "_fulltext", wrappedTerm);
         }
     }
 
@@ -193,9 +193,9 @@ public class ArticleService {
             return;
         }
         int tagIndex = termCount + 1;
-        searchParams.put("group." + tagIndex + "_property", "@jcr:content/cq:tags");
+        searchParams.put("1_group.1_group." + tagIndex + "_property", "@jcr:content/cq:tags");
         for (var i = 0; i < tagIds.size(); i++) {
-            searchParams.put("group." + tagIndex + "_property." + (i + 1) + "_value", tagIds.get(i));
+            searchParams.put("1_group.1_group." + tagIndex + "_property." + (i + 1) + "_value", tagIds.get(i));
         }
     }
 
@@ -275,6 +275,14 @@ public class ArticleService {
         map.put("orderby.sort", "desc");
         map.put(P_LIMIT, "" + MAX_RESULTS);
         map.put("p.guessTotal", "true");
+
+        /*DIS-792 - No-Index jcr filter placed*/
+        map.put("1_group.p.and", "true");
+        map.put("1_group.2_group.p.not", "true");
+
+        map.put("1_group.2_group.property", "jcr:content/cq:robotsTags");
+        map.put("1_group.2_group.property.operation", "like");
+        map.put("1_group.2_group.property.value", "noindex");
         return map;
     }
 
