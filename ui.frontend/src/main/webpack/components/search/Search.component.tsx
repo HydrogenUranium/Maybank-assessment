@@ -9,6 +9,7 @@ import { useDataFetching, useSortedSearchResult } from '../../hooks';
 import { getArticles, getTagSuggestions } from '../../services/api/search';
 import { registerComponent } from '../../react-core';
 import { SortSelect } from '../common/atoms';
+import { removeHtmlTags } from '../../utils';
 
 import styles from './styles.module.scss';
 
@@ -183,8 +184,10 @@ export const Search: React.FC<SearchProps> = ({
     const descriptionFormatToUse = sortedSearchRows.length > 0
       ? descriptionFormat 
       : descriptionFormatNoResults || descriptionFormat;
-  
-    return format(descriptionFormatToUse, articlesQuery, limit, sortedSearchRows.length);
+
+    const safeQuery = removeHtmlTags(articlesQuery);
+
+    return format(descriptionFormatToUse, safeQuery, limit, sortedSearchRows.length);
   };
 
   return (
