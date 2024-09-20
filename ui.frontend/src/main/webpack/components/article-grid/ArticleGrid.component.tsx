@@ -34,6 +34,7 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
   ];
 
   const filteredCategories = categories.filter(category => category.articles.length)
+  
   const windowSize = useWindowSize();
   const articleListElement = useRef<HTMLDivElement>(null);
   const [selectedSortOpton, setSelectedSortOpton] = useState<any>(selectOptions[0]);
