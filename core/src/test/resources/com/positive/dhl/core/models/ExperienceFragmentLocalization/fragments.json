@@ -1,0 +1,95 @@
+{
+  "jcr:primaryType": "sling:OrderedFolder",
+  "jcr:createdBy": "admin",
+  "jcr:title": "dhl",
+  "jcr:created": "Thu Sep 19 2024 21:28:26 GMT+0300",
+  "global": {
+    "jcr:primaryType": "sling:OrderedFolder",
+    "jcr:createdBy": "admin",
+    "jcr:title": "global",
+    "jcr:created": "Thu Sep 19 2024 21:28:26 GMT+0300",
+    "en-global": {
+      "jcr:primaryType": "sling:OrderedFolder",
+      "jcr:createdBy": "admin",
+      "jcr:title": "en-global",
+      "jcr:created": "Thu Sep 19 2024 21:28:26 GMT+0300",
+      "jcr:content": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:mixinTypes": [
+          "cq:LiveRelationship"
+        ],
+        "cq:LiveSyncConfig": {
+          "jcr:primaryType": "cq:LiveCopy",
+          "cq:rolloutConfigs": [
+            "/libs/msm/wcm/rolloutconfigs/default"
+          ],
+          "cq:isDeep": true,
+          "cq:master": "/content/experience-fragments/dhl/language-masters/en-master"
+        }
+      },
+      "banners": {
+        "jcr:primaryType": "sling:OrderedFolder",
+        "jcr:createdBy": "admin",
+        "jcr:title": "Banners",
+        "jcr:created": "Thu Sep 19 2024 21:28:26 GMT+0300",
+        "newsletter-subscription": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Thu Sep 19 2024 21:28:26 GMT+0300",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:mixinTypes": [
+              "mix:versionable",
+              "cq:LiveRelationship"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "Newsletter Subscription",
+            "jcr:versionHistory": "fce9cfce-57d8-41e5-bcd5-ec185d06f45a",
+            "cq:template": "/libs/cq/experience-fragments/components/experiencefragment/template",
+            "jcr:predecessors": [
+              "627ee822-85cc-43d5-9f18-958503a9c898"
+            ],
+            "jcr:created": "Thu Sep 19 2024 21:28:26 GMT+0300",
+            "cq:lastModified": "Thu Sep 19 2024 21:28:26 GMT+0300",
+            "jcr:baseVersion": "627ee822-85cc-43d5-9f18-958503a9c898",
+            "jcr:isCheckedOut": true,
+            "jcr:uuid": "3e37ff72-c2cc-4e0a-9764-ea32e7393d08",
+            "sling:resourceType": "cq/experience-fragments/components/experiencefragment",
+            "cq:lastModifiedBy": "admin"
+          },
+          "master": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Thu Sep 19 2024 21:28:26 GMT+0300",
+            "jcr:content": {
+              "jcr:primaryType": "cq:PageContent",
+              "jcr:mixinTypes": [
+                "mix:versionable",
+                "cq:LiveRelationship"
+              ],
+              "jcr:createdBy": "admin",
+              "jcr:title": "Adaptive Banner",
+              "jcr:versionHistory": "51d7bb23-4b76-4266-97ca-008dfaaf077b",
+              "cq:template": "/conf/dhl/settings/wcm/templates/experience-fragment-web-variation-template",
+              "cq:xfMasterVariation": true,
+              "jcr:predecessors": [
+                "7b338824-cded-45d8-a8a3-031a00f71caa"
+              ],
+              "jcr:created": "Thu Sep 19 2024 21:28:26 GMT+0300",
+              "cq:lastModified": "Thu Sep 19 2024 21:28:26 GMT+0300",
+              "cq:xfVariantType": "web",
+              "jcr:baseVersion": "7b338824-cded-45d8-a8a3-031a00f71caa",
+              "jcr:isCheckedOut": true,
+              "cq:tags": [
+                "experience-fragments:variation/web"
+              ],
+              "jcr:uuid": "1596ea77-a5dd-4c50-80fc-6c71ccfa0627",
+              "sling:resourceType": "dhl/components/pages/xfpage",
+              "cq:lastModifiedBy": "admin"
+            }
+          }
+        }
+      }
+    }
+  }
+}
