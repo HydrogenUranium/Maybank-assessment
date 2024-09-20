@@ -24,10 +24,3 @@ export type SearchRow = {
 }
 
 export type SearchResult = SearchRow[]
-
-export type SearchRow = {
-    article: Article,
-    excerpt: string
-}
-
-export type SearchResult = SearchRow[]
