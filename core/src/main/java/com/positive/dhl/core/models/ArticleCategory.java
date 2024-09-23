@@ -3,106 +3,45 @@ package com.positive.dhl.core.models;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import com.positive.dhl.core.services.AssetUtilService;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
  *
  */
+@Getter
+@Setter
 @Model(adaptables=Resource.class)
 public class ArticleCategory {
+	@OSGiService
+	private AssetUtilService assetUtilService;
+
 	@Inject
+	@Getter(AccessLevel.NONE)
 	private ResourceResolver resourceResolver;
 	
     @Inject
-    public String path;
+	@Getter(AccessLevel.NONE)
+	public String path;
 	
     private Boolean current;
     private int index;
 	private String title;
-	private String listimage;
+	private String listimage; // Deprecated
+	private String pageImage;
 	private Boolean external;
-	
-    /**
-	 * 
-	 */
-	public Boolean getCurrent() {
-		return current;
+
+	public ArticleCategory() {
 	}
 
-    /**
-	 * 
-	 */
-	public void setCurrent(Boolean current) {
-		this.current = current;
-	}
-
-    /**
-	 * 
-	 */
-	public int getIndex() {
-		return index;
-	}
-
-    /**
-	 * 
-	 */
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
-    /**
-	 * 
-	 */
-	public String getTitle() {
-		return title;
-	}
-
-    /**
-	 * 
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-    /**
-	 * 
-	 */
-	public String getListimage() {
-		return listimage;
-	}
-
-    /**
-	 * 
-	 */
-	public void setListimage(String listimage) {
-		this.listimage = listimage;
-	}
-
-    /**
-	 * 
-	 */
-	public Boolean getExternal() {
-		return external;
-	}
-
-    /**
-	 * 
-	 */
-	public void setExternal(Boolean external) {
-		this.external = external;
-	}
-
-    /**
-	 * 
-	 */
-	public ArticleCategory() { }
-	
-    /**
-	 * 
-	 */
 	public ArticleCategory(String path, ResourceResolver resourceResolver) {
 		this.resourceResolver = resourceResolver;
 		this.path = path;
@@ -110,23 +49,21 @@ public class ArticleCategory {
 		this.init();
 	}
     
-    /**
-	 * 
-	 */
     @PostConstruct
 	protected void init() {
-		Resource resource = resourceResolver.getResource(path);
+		var resource = resourceResolver.getResource(path);
 		if (resource != null) {
 	    		ValueMap properties = resource.adaptTo(ValueMap.class);
 	    		if (properties != null) {
 	    			String fullTitle = properties.get("jcr:content/jcr:title", "");
 	    			title = properties.get("jcr:content/navTitle", "");
-	    			if ((title == null) || (title.trim().length() == 0)) {
+	    			if (StringUtils.isBlank(title)) {
 	    				title = fullTitle;
 	    			}
 
-	    			listimage = properties.get("jcr:content/listimage", "");
-	    		}
+	    			listimage = properties.get("jcr:content/listimage", ""); // Deprecated
+					pageImage = assetUtilService.getPageImagePath(resource);
+				}
 		}
 	}
 }

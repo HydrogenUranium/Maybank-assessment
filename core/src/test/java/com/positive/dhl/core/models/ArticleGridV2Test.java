@@ -132,6 +132,6 @@ class ArticleGridV2Test {
         JsonNode article = allCategory.get("articles").get(0);
         assertEquals("What paperwork do I need for international shipping?", article.get("title").asText());
         assertEquals("/content/home/e-commerce-advice/article.html", article.get("path").asText());
-        assertEquals("/discover/content/dam/image.jpg", article.get("listimage").asText());
+        assertEquals("/discover/content/dam/image.jpg", article.get("pageImage").asText());
     }
 }

@@ -152,7 +152,7 @@ class ArticleSideNavigationTest {
         articleSourceProperties.put("jcr:title", "article-title");
         articleSourceProperties.put("navTitle", "Article Title");
         articleSourceProperties.put("listbrief", "Hacks and shortcuts to setting up a viable small business.");
-        articleSourceProperties.put("listimage", "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping" +
+        articleSourceProperties.put("pageImage", "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping" +
                 ".jpg");
         articleSourceProperties.put("heroimagemob", "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile " +
                 "AMP_bootstrapping.jpg");

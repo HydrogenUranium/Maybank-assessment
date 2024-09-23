@@ -178,7 +178,7 @@ class ArticlePageTest {
 		assertEquals("Senior Content Writer, Discover", article.getAuthortitle());
 		assertEquals("/content/dam/dhl/site-image/roundels/laptop.png", article.getAuthorimage());
 		assertEquals("6 min read", article.getReadtime());
-		assertEquals("/content/dam/dhl/listimage.jpg", article.getListimage());
+		assertEquals("/content/dam/dhl/listimage.jpg", article.getPageImage());
 		assertEquals("/content/dam/dhl/heroimagemob.jpg", article.getHeroimagemob());
 		assertEquals("/content/dam/dhl/heroimagetab.jpg", article.getHeroimagetab());
 		assertEquals("/content/dam/dhl/heroimagedt.jpg", article.getHeroimagedt());

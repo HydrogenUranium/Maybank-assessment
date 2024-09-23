@@ -11,7 +11,11 @@ import org.apache.sling.models.annotations.Model;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
@@ -190,7 +194,7 @@ public class MeganavPanel {
 				    				articleCategory.setTitle(fullTitle);
 				    			}
 
-				    			articleCategory.setListimage(properties.get("jcr:content/listimage", ""));
+				    			articleCategory.setListimage(properties.get("jcr:content/listimage", "")); // Deprecated
 			    				
 								articleCategories.add(articleCategory);
 			    			}

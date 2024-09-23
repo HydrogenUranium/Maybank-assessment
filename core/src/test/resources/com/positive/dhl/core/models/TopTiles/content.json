@@ -32,7 +32,7 @@
       "author": "Anna Thompson",
       "cq:template": "/conf/dhl/settings/wcm/templates/article",
       "listbrief": "News and advice from around the web this week.",
-      "listimage": "/content/dam/list.jpg",
+      "pageImage": "/content/dam/list.jpg",
       "heroimagemob": "/content/dam/mob.jpg",
       "heroimagetab": "/content/dam/tab.jpg",
       "heroimagedt": "/content/dam/dt.jpg",

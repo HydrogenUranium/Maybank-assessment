@@ -23,7 +23,13 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import javax.annotation.PostConstruct;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 
 import static com.day.cq.wcm.api.constants.NameConstants.*;
 import static com.day.cq.wcm.foundation.List.URL_EXTENSION;
@@ -97,9 +103,11 @@ public class Article {
     private String authorimage;
     @Expose
     private String readtime;
+    private String listimage; // Deprecated
+    private String listimageAltText; // Deprecated
     @Expose
-    private String listimage;
-    private String listimageAltText;
+    private String pageImage;
+    private String pageImageAltText;
 
     @Setter
     private String heroimagemob;
@@ -142,7 +150,7 @@ public class Article {
      * @param props               dynamic media parameters
      */
     public void initAssetDeliveryProperties(boolean enableAssetDelivery, Map<String, Object> props) {
-        listimage = getMappedValue(listimage, enableAssetDelivery, props);
+        pageImage = getMappedValue(pageImage, enableAssetDelivery, props);
         heroimagemob = getMappedValue(heroimagemob, enableAssetDelivery, props);
         heroimagetab = getMappedValue(heroimagetab, enableAssetDelivery, props);
         heroimagedt = getMappedValue(heroimagedt, enableAssetDelivery, props);
@@ -196,8 +204,10 @@ public class Article {
             brief = brief.substring(0, 120).concat("...");
         }
 
-        listimage = valueMap.get("jcr:content/listimage", "");
-        listimageAltText = valueMap.get("jcr:content/listimageAltText", title);
+        listimage = valueMap.get("jcr:content/listimage", ""); // Deprecated
+        listimageAltText = valueMap.get("jcr:content/listimageAltText", title); // Deprecated
+        pageImage = assetUtilService.getPageImagePath(resource);
+        pageImageAltText = assetUtilService.getPageImageAltText(resource);
         heroimagemob = valueMap.get("jcr:content/heroimagemob", "");
         heroimagetab = valueMap.get("jcr:content/heroimagetab", "");
         heroimagedt = valueMap.get("jcr:content/heroimagedt", "");

@@ -12,10 +12,10 @@
             <a href="${item.path}" tabindex="-1" class="article-container__article__image-wrapper">
                 <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
                      data-sly-call="${template.picture @
-                     image=item.listimage,
+                     image=item.pageImage,
                      useWebOptimized=model.enableAssetDelivery,
                      imgClass='article-container__article__image-wrapper__image',
-                     alt=item.listimageAltText
+                     alt=item.pageImageAltText
                 }"></sly>
             </a>
             <div class="article-container__article__info">

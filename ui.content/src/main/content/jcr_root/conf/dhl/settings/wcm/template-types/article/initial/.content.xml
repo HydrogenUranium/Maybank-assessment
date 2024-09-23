@@ -9,7 +9,6 @@
             heroimagemob="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage.jpg"
             heroimagetab="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-tab.jpg"
             listbrief="Lorem ipsum dolor sit amet consectetur adipiscing elit diam nonummy"
-            listimage="/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg"
             mediatype="infographic"
             cq:template="/conf/dhl/settings/wcm/templates/article">
         <root
