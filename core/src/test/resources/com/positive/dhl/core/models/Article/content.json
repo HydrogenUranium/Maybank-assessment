@@ -30,7 +30,7 @@
           "author": "Anna Thompson",
           "cq:template": "/apps/dhl/templates/dhl-article-page",
           "listbrief": "From Waybills to Export Licenses, this guide breaks down the jargon to help you navigate customs seamlessly. ",
-          "pageImage": "/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg",
+          "listimage": "/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg",
           "listimageAltText": "List Image Alt Text",
           "heroimagemob": "/content/dam/mobile.jpg",
           "heroimagetab": "/content/dam/tablet.jpg",

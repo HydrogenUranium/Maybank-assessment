@@ -45,18 +45,18 @@ class ArticleCategoryTest {
         assertEquals(0, articleCategory.getIndex());
 
         assertEquals("Business", articleCategory.getTitle());
-        assertEquals("/content/dam/dhl/site-image/category-nav/business.jpg", articleCategory.getPageImage());
+        assertEquals("/content/dam/dhl/site-image/category-nav/business.jpg", articleCategory.getListimage());
         
         articleCategory.setCurrent(true);
         articleCategory.setExternal(true);
         articleCategory.setIndex(1);
         articleCategory.setTitle("");
-        articleCategory.setPageImage("");
+        articleCategory.setListimage("");
         
         assertEquals(true, articleCategory.getExternal());
         assertEquals(true, articleCategory.getCurrent());
         assertEquals(1, articleCategory.getIndex());
         assertEquals("", articleCategory.getTitle());
-        assertEquals("", articleCategory.getPageImage());
+        assertEquals("", articleCategory.getListimage());
 	}
 }

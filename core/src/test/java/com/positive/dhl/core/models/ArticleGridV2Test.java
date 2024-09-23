@@ -81,6 +81,7 @@ class ArticleGridV2Test {
         when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
+        when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
     }
 
     private Article getArticle(String path) {

@@ -63,6 +63,7 @@ class ArticleTest {
         when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
+        when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
     }
 
     @Test
@@ -108,7 +109,8 @@ class ArticleTest {
         assertEquals("4 min read", article.getReadtime());
         assertEquals("en", article.getLocale().toString());
         assertEquals("/content/dhl/global/home/small-business-advice/article.html", article.getPath());
-        assertEquals("List Image Alt Text", article.getPageImage());
+        assertEquals("/content/dam/image.jpg", article.getPageImage());
+        assertEquals("List Image Alt Text", article.getListimageAltText());
 
         checkGettersAndSetters(article);
     }
