@@ -1,20 +1,18 @@
-.cmp-separator {
-  padding: 10px 0; //top and bottom padding
-
+.separator {
   .cmp-separator__horizontal-rule {
-    width: 100%;
-    border: 0;
+    margin: 10px 0;
+    border-top: 1px solid map-get($palette, red);
+  }
 
-    &.red {
-      border-top: 1px solid #d40511;
-    }
+  &.red .cmp-separator__horizontal-rule {
+    border-top: 1px solid map-get($palette, red);
+  }
 
-    &.yellow {
-      border-top: 1px solid #FFCC00;
-    }
+  &.yellow .cmp-separator__horizontal-rule {
+    border-top: 1px solid map-get($palette, sunflower-yellow);
+  }
 
-    &.grey {
-      border-top: 1px solid #ccc;
-    }
+  &.grey .cmp-separator__horizontal-rule {
+    border-top: 1px solid map-get($palette, brownish-grey);
   }
 }
