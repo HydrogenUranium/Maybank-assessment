@@ -184,7 +184,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 	@Override
 	public boolean isValidAuthToken(String authToken) {
-		return authToken != null && authToken.matches("^[A-Za-z0-9-_]+$");
+		return authToken != null && authToken.matches("^[A-Za-z0-9-_\\.:]+$");
 	}
 
 	@Override

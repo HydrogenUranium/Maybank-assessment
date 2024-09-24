@@ -26,3 +26,7 @@ export function decodeHtmlEntities(text) {
     const decodedString = parser.parseFromString(text, 'text/html').body.textContent;
     return decodedString;
   }
+
+export function removeHtmlTags(input) {
+    return input.replace(/<\/?[^>]+(>|$)/g, "");
+}

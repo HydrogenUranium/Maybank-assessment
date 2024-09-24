@@ -1233,6 +1233,15 @@
                             components="[group:DHL Animated Components,group:DHL Components]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_2171260242775700>
+                    <policy_dhl-experience-fragments
+                            jcr:lastModified="{Date}2024-09-16T17:28:48.128+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Experience Fragment"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="group:DHL Components">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_dhl-experience-fragments>
                 </responsivegrid>
             </components>
         </foundation>
