@@ -1,5 +1,6 @@
 package com.positive.dhl.core.models;
 
+import com.google.common.collect.Maps;
 import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Map;
 
 import static com.positive.dhl.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,6 +53,10 @@ class LanguageVariantsTest {
         assertEquals(1, languageVariants.getAllLanguageVariantsGrouped().size());
         assertEquals("us", languageVariants.getCurrentRegionCode());
         assertEquals("Global", languageVariants.getCountries().get("aa").getRegion());
+        assertTrue(Maps.difference(
+                Map.of("tw","Taiwan","hk","Hong Kong","mo", "Macau"),
+                languageVariants.getSpecificCountries())
+                .areEqual());
     }
 
     @Test
