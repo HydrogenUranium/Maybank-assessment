@@ -9,6 +9,7 @@ import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import com.positive.dhl.core.services.TagUtilService;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -52,6 +53,7 @@ public class Article {
     private PathUtilService pathUtilService;
 
     @OSGiService
+    @Getter(AccessLevel.NONE)
     private AssetUtilService assetUtilService;
 
     @OSGiService

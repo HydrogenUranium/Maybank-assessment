@@ -6,6 +6,7 @@ import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -25,6 +26,7 @@ import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
 @Model(adaptables=SlingHttpServletRequest.class)
 public class DhlPage {
 	@OSGiService
+	@Getter(AccessLevel.NONE)
 	private AssetUtilService assetUtilService;
 
 	@Inject

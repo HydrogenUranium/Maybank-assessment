@@ -64,6 +64,7 @@ class ArticleTest {
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
         when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
+        when(assetUtilService.getPageImageAltText(any(Resource.class))).thenReturn("Page Image Alt Text");
     }
 
     @Test
@@ -83,7 +84,7 @@ class ArticleTest {
     }
 
     @Test
-    void init_ShouldInitArticle() throws ParseException {
+    void init_ShouldInitArticle_1() throws ParseException {
         Article article = createModel(getResource(ARTICLE_PAGE_PATH));
         checkModel(article);
 
@@ -95,6 +96,13 @@ class ArticleTest {
         assertEquals("Discover content team", article.getAuthortitle());
         assertEquals("2023-08-04", article.getCreated());
         assertEquals("August 4, 2023", article.getCreatedfriendly());
+    }
+
+    @Test
+    void init_ShouldInitArticle_2() throws ParseException {
+        Article article = createModel(getResource(ARTICLE_PAGE_PATH));
+        checkModel(article);
+
         assertEquals("What paperwork do I need for international shipping?", article.getTitle());
         assertEquals("What paperwork do I need for international shipping? \n Discover DHL", article.getPageTitle());
         assertEquals("What paperwork do I need for international shipping? <br> Discover DHL", article.getPageTitleWithBr());
@@ -109,8 +117,10 @@ class ArticleTest {
         assertEquals("4 min read", article.getReadtime());
         assertEquals("en", article.getLocale().toString());
         assertEquals("/content/dhl/global/home/small-business-advice/article.html", article.getPath());
-        assertEquals("/content/dam/image.jpg", article.getPageImage());
+        assertEquals("/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg", article.getListimage());
         assertEquals("List Image Alt Text", article.getListimageAltText());
+        assertEquals("/content/dam/image.jpg", article.getPageImage());
+        assertEquals("Page Image Alt Text", article.getPageImageAltText());
 
         checkGettersAndSetters(article);
     }

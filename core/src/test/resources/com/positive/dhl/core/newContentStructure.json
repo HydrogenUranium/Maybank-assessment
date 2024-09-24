@@ -100,6 +100,8 @@
           "articleHeader-smartShareButtonsLabel": "Share",
           "articleHeader-smartShareButtonsIconPath": "/content/dam/dhl-discover/common/icons/icons8-share (1).svg",
           "authorBanner-title": "About the Author",
+          "listimage": "/content/dam/dhl/listimage.jpg",
+          "listimageAltText": "List Image Alt Text",
           "multifields": {
             "jcr:primaryType": "nt:unstructured",
             "socialNetwork": {
@@ -120,6 +122,13 @@
                 "socialNetworkIconPath": "/content/dam/dhl-discover/common/icons/icon-sc-linkedIn.svg"
               }
             }
+          },
+          "cq:featuredimage": {
+            "jcr:primaryType": "nt:unstructured",
+            "fileReference": "/content/dam/apec/starter-hub/starter_hub_masthead.jpg",
+            "alt": "Featured Image Alt Text",
+            "sling:resourceType": "core/wcm/components/image/v3/image",
+            "altValueFromDAM": "false"
           }
         },
         "category-page": {
