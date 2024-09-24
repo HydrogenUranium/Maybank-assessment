@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:tags="[experience-fragments:variation/web]"
+        cq:template="/conf/dhl/settings/wcm/templates/experience-fragment-web-variation-template"
+        cq:xfVariantType="web"
+        jcr:primaryType="cq:PageContent"
+        sling:resourceType="dhl/components/pages/xfpage">
+        <root
+            jcr:lastModified="{Date}2024-09-16T17:29:01.112+03:00"
+            jcr:lastModifiedBy="admin"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid"
+            layout="responsiveGrid"/>
+    </jcr:content>
+</jcr:root>

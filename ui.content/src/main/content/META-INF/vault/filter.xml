@@ -14,6 +14,7 @@
     <filter root="/var/workflow/models/request_to_complete_move_operation"/>
 
     <filter root="/content/cq:tags" mode="update"/>
+    <filter root="/content/experience-fragments" mode="update"/>
 
     <filter root="/etc/map.publish" />
     <filter root="/conf/groovyconsole/scripts"/>
@@ -33,4 +34,5 @@
     <filter root="/conf/dhl/settings/wcm/templates/landing-page-two-columns"/>
     <filter root="/conf/dhl/settings/wcm/templates/search-result-page"/>
     <filter root="/conf/dhl/settings/wcm/templates/animated-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/experience-fragment-web-variation-template"/>
 </workspaceFilter>

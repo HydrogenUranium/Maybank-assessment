@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    cq:adobeTargetExportFormat="html"
+    cq:allowedTemplates="/conf/dhl/settings/wcm/templates/experience-fragment(.*)?"
+    cq:conf="/conf/dhl"
+    jcr:primaryType="sling:OrderedFolder"
+    jcr:title="DHL Experience Fragments"
+    sling:configRef="/conf/dhl">
+    <jcr:content jcr:primaryType="nt:unstructured"/>
+    <language-masters/>
+</jcr:root>

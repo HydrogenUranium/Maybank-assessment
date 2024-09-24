@@ -114,20 +114,6 @@ exports[`ArticleGrid should render component "ArticleGrid" property 1`] = `
     >
       All
     </li>
-    <li
-      aria-controls="article-grid-tabpanel-1"
-      aria-selected={false}
-      className="articleGridCategoriesCategory
-                        
-                        horizontal-scroll__react-button"
-      id="article-grid-tab-1"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="tab"
-      tabIndex={-1}
-    >
-      Logistics
-    </li>
   </ol>
   <div
     aria-labelledby="article-grid-tab-0"
