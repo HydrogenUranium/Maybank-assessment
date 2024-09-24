@@ -1030,6 +1030,38 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </image_v2_policy>
                 </image>
+                <separator jcr:primaryType="nt:unstructured">
+                    <separator_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Separator Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            isDecorative="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Colors"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="red"
+                                            cq:styleId="1726652742986"
+                                            cq:styleLabel="Red"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="yellow"
+                                            cq:styleId="1726652761465"
+                                            cq:styleLabel="Yellow"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="grey"
+                                            cq:styleId="1726652772263"
+                                            cq:styleLabel="Grey"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                        </cq:styleGroups>
+                    </separator_policy>
+                </separator>
             </content>
         </components>
     </dhl>
