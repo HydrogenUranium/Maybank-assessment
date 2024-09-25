@@ -14,6 +14,7 @@ describe('Global & Singapore HomePage & Footer', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
+      cy.wait(2000);
       cy.get('body').then(($body) => {
         if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
           cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
