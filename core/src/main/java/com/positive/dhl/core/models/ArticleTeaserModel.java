@@ -2,6 +2,7 @@ package com.positive.dhl.core.models;
 
 import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
@@ -19,12 +20,16 @@ import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import java.util.Optional;
 
+import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
 import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
 
 @Model(adaptables= Resource.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class ArticleTeaserModel {
     @SlingObject
     private ResourceResolver resourceResolver;
+
+    @OSGiService
+    protected AssetUtilService assetUtilService;
 
     @OSGiService
     private PageUtilService pageUtilService;
@@ -49,7 +54,7 @@ public class ArticleTeaserModel {
     private String titleFromPage;
 
     @ValueMapValue
-    @Named("jcr:title")
+    @Named(JCR_TITLE)
     private String title;
 
     @Getter
@@ -78,7 +83,7 @@ public class ArticleTeaserModel {
 
     @PostConstruct
     protected void init() {
-        Article article = pageUtilService.getArticle(linkURL, resourceResolver);
+        var article = pageUtilService.getArticle(linkURL, resourceResolver);
 
         if (article != null) {
             imageFromPage = Boolean.parseBoolean(imageFromPageImage) && !StringUtils.isBlank(linkURL);
@@ -86,8 +91,8 @@ public class ArticleTeaserModel {
             if (imageFromPage) {
                 imagePathFromPage = Optional.ofNullable(linkURL)
                         .map(link -> pageUtilService.getPage(link, resourceResolver))
-                        .map(Page::getProperties)
-                        .map(props -> props.get("listimage", StringUtils.EMPTY))
+                        .map(Page::getContentResource)
+                        .map(res -> assetUtilService.getPageImagePath(res))
                         .orElse(StringUtils.EMPTY);
 
                 altTextFromPageImage = !Boolean.parseBoolean(altValueFromPageImage)

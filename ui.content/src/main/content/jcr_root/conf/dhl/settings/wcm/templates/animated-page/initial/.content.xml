@@ -4,7 +4,6 @@
     <jcr:content
         cq:template="/conf/dhl/settings/wcm/templates/ap12313"
         jcr:primaryType="cq:PageContent"
-        listimage="/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg"
         sling:resourceType="dhl/components/pages/editable-animated-page">
         <root
             jcr:primaryType="nt:unstructured"
