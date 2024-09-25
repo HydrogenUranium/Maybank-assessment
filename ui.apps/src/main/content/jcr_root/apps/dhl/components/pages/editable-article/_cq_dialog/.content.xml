@@ -95,21 +95,21 @@
                                             </heroImages>
                                             <listImages
                                                     jcr:primaryType="nt:unstructured"
-                                                    jcr:title="List Image"
-                                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                                    jcr:title="(DEPRECATED) List Image"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/hidden">
                                                 <items jcr:primaryType="nt:unstructured">
                                                     <listimage
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                             allowBulkEdit="{Boolean}true"
-                                                            fieldLabel="Article List Image"
+                                                            fieldLabel="(DEPRECATED) Article List Image"
                                                             name="./listimage"
                                                             rootPath="/content/dam"
                                                             required="{Boolean}true"/>
                                                     <listimageAltText
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                            fieldLabel="List Image Alt Text"
+                                                            fieldLabel="(DEPRECATED) List Image Alt Text"
                                                             name="./listimageAltText"
                                                             fieldDescription="Set List image alt text for SEO"
                                                             emptyText="List Image Alt Text Placeholder"/>
