@@ -5,9 +5,12 @@ import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.api.DamConstants;
 import com.day.cq.dam.api.Rendition;
 import com.day.cq.dam.api.RenditionPicker;
+import com.day.cq.wcm.api.Page;
+import io.wcm.testing.mock.aem.junit5.AemContext;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.commons.mime.MimeTypeService;
+import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +21,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.HashMap;
 
+import static com.adobe.cq.wcm.core.components.models.Page.NN_PAGE_FEATURED_IMAGE;
+import static com.positive.dhl.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.lenient;
@@ -25,6 +30,14 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class AssetUtilServiceTest {
+
+    public static final String PAGE_PATH = "/content";
+    public static final String EN_GLOBAL_HOME_PAGE_PATH = "/content/dhl/global/en-global";
+
+    AemContext context = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
+
+    private ResourceResolver resourceResolver;
+    private Resource res;
 
     @Mock
     private ResourceResolverHelper resourceResolverHelper;
@@ -50,11 +63,21 @@ class AssetUtilServiceTest {
     @Mock
     private Rendition rendition;
 
+    @Mock
+    private PageUtilService pageUtilService;
+
+    @Mock
+    private Page page;
+
     @InjectMocks
     private AssetUtilService service;
 
     @BeforeEach
     void init() {
+        resourceResolver = context.resourceResolver();
+        context.load().json(NEW_CONTENT_STRUCTURE_JSON, PAGE_PATH);
+        res = resourceResolver.getResource(EN_GLOBAL_HOME_PAGE_PATH);
+
         lenient().when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
     }
 
@@ -207,5 +230,30 @@ class AssetUtilServiceTest {
         String thumbnail = service.getThumbnailLink("/content/dam/image.png");
 
         assertEquals("/content/dam/image.png/jcr:content/rendition.cq5dam.thumbnail.140.100.png", thumbnail);
+    }
+
+    @Test
+    void test_getFeaturedPageImage(){
+        when(pageUtilService.getPage(any(Resource.class))).thenReturn(page);
+        when(page.getContentResource(	NN_PAGE_FEATURED_IMAGE)).thenReturn(res.getChild("jcr:content").getChild("cq:featuredimage"));
+
+        String pageImagePath = service.getPageImagePath(res);
+        assertEquals("/content/dam/apec/starter-hub/starter_hub_masthead.jpg", pageImagePath);
+
+        String pageImageAltText = service.getPageImageAltText(res);
+        assertEquals("Featured Image Alt Text", pageImageAltText);
+    }
+
+    @Test
+    void test_getPageListimage(){
+        when(pageUtilService.getPage(any(Resource.class))).thenReturn(page);
+        when(page.getContentResource(	NN_PAGE_FEATURED_IMAGE)).thenReturn(res.getChild("jcr:content"));
+        when(page.getProperties(	)).thenReturn(res.getChild("jcr:content").getValueMap());
+
+        String pageImagePath = service.getPageImagePath(res);
+        assertEquals("/content/dam/dhl/listimage.jpg", pageImagePath);
+
+        String pageImageAltText = service.getPageImageAltText(res);
+        assertEquals("List Image Alt Text", pageImageAltText);
     }
 }

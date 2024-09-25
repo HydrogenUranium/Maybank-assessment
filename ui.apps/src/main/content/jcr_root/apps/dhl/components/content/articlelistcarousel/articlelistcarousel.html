@@ -17,9 +17,9 @@
 <div id="uniqueIdCategoryCarousel" class="carousel slide" data-ride="carousel" data-sly-use.pages="com.positive.dhl.core.models.ArticleList">
 	<div class="carousel-inner" data-sly-list="${pages.articles}">
 		<article id="uniqueIdSlide${item.index}" class="carousel-item${(item.index == 0 ? ' active' : '')}">
-			<style type="text/css">@media screen and (max-width: 768px) { #uniqueIdSlide${item.index @context='styleToken'} .categoryCarousel__image.hidden-lg-up { background-image: url('${item.listimage @ context='uri'}') !important; } }</style>
+			<style type="text/css">@media screen and (max-width: 768px) { #uniqueIdSlide${item.index @context='styleToken'} .categoryCarousel__image.hidden-lg-up { background-image: url('${item.pageImage @ context='uri'}') !important; } }</style>
 			<div data-href="${item.path}" class="categoryHero__link">
-				<div style="background-image: url('${item.listimage @ context='uri'}');" class="categoryHero__image"></div>
+				<div style="background-image: url('${item.pageImage @ context='uri'}');" class="categoryHero__image"></div>
 				<div class="categoryHero__text">
 					<span class="categoryHero__metadata">
 						<span class="categoryHero__category">${item.grouptitle}</span>
