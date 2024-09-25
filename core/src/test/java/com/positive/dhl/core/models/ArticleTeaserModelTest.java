@@ -72,17 +72,21 @@ class ArticleTeaserModelTest {
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
         lenient().when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
+        lenient().when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/dhl/listimage.jpg");
     }
 
     @Test
     void test_articleTeaserFromLinkedArticlePage() {
         Article article = createModel(getResource(ARTICLE_PAGE_RESOURCE_PATH));
         when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
-        lenient().when(pageUtilService.getPage(any(), any())).thenReturn(getPage(ARTICLE_PAGE_RESOURCE_PATH));
+        when(pageUtilService.getPage(any(), any())).thenReturn(getPage(ARTICLE_PAGE_RESOURCE_PATH));
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_FROM_LINKED_ARTICLE_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
 
+        assertTrue(articleTeaserModel.isImageFromPage());
+        assertEquals("/content/dam/dhl/listimage.jpg", articleTeaserModel.getImagePathFromPage());
+        assertEquals("Alt text", articleTeaserModel.getAltTextFromPageImage());
         assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
         assertEquals("Sansa Stark", articleTeaserModel.getAuthor());
         assertEquals("2023-10-11", articleTeaserModel.getPublishDate());
@@ -94,11 +98,14 @@ class ArticleTeaserModelTest {
     void test_articleTeaserFromLinkedCategoryPage() {
         Article article = createModel(getResource(SUBCATEGORY_PAGE_RESOURCE_PATH));
         when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
-        lenient().when(pageUtilService.getPage(any(), any())).thenReturn(getPage(SUBCATEGORY_PAGE_RESOURCE_PATH));
+        when(pageUtilService.getPage(any(), any())).thenReturn(getPage(SUBCATEGORY_PAGE_RESOURCE_PATH));
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_FROM_LINKED_SUBCATEGORY_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
 
+        assertTrue(articleTeaserModel.isImageFromPage());
+        assertEquals("/content/dam/dhl/listimage.jpg", articleTeaserModel.getImagePathFromPage());
+        assertEquals("Alt text", articleTeaserModel.getAltTextFromPageImage());
         assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
         assertEquals("", articleTeaserModel.getAuthor());
         assertEquals("2023-10-26", articleTeaserModel.getPublishDate());
@@ -110,11 +117,14 @@ class ArticleTeaserModelTest {
     void test_articleTeaserFromLinkedHomePage() {
         Article article = createModel(getResource(HOME_PAGE_RESOURCE_PATH));
         when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
-        lenient().when(pageUtilService.getPage(any(), any())).thenReturn(getPage(HOME_PAGE_RESOURCE_PATH));
+        when(pageUtilService.getPage(any(), any())).thenReturn(getPage(HOME_PAGE_RESOURCE_PATH));
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_FROM_LINKED_HOME_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
 
+        assertTrue(articleTeaserModel.isImageFromPage());
+        assertEquals("/content/dam/dhl/listimage.jpg", articleTeaserModel.getImagePathFromPage());
+        assertNull(articleTeaserModel.getAltTextFromPageImage());
         assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
         assertEquals("", articleTeaserModel.getAuthor());
         assertEquals("2023-10-20", articleTeaserModel.getPublishDate());
@@ -130,6 +140,9 @@ class ArticleTeaserModelTest {
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_WITH_CUSTOM_SETUP_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
 
+        assertFalse(articleTeaserModel.isImageFromPage());
+        assertNull(articleTeaserModel.getImagePathFromPage());
+        assertNull(articleTeaserModel.getAltTextFromPageImage());
         assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
         assertEquals("Sansa Stark", articleTeaserModel.getAuthor());
         assertEquals("2023-10-11", articleTeaserModel.getPublishDate());
@@ -144,6 +157,9 @@ class ArticleTeaserModelTest {
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_EMPTY_SETUP_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
 
+        assertFalse(articleTeaserModel.isImageFromPage());
+        assertNull(articleTeaserModel.getImagePathFromPage());
+        assertNull(articleTeaserModel.getAltTextFromPageImage());
         assertNull(articleTeaserModel.getCategoryTag());
         assertNull(articleTeaserModel.getAuthor());
         assertNull(articleTeaserModel.getPublishDate());

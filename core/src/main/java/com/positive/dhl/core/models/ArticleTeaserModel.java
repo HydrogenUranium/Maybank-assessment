@@ -1,5 +1,8 @@
 package com.positive.dhl.core.models;
 
+import com.day.cq.dam.api.Asset;
+import com.day.cq.wcm.api.Page;
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
 import lombok.Getter;
@@ -15,13 +18,18 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
+import java.util.Optional;
 
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
+import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
 
 @Model(adaptables= Resource.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class ArticleTeaserModel {
     @SlingObject
     private ResourceResolver resourceResolver;
+
+    @OSGiService
+    protected AssetUtilService assetUtilService;
 
     @OSGiService
     private PageUtilService pageUtilService;
@@ -50,6 +58,15 @@ public class ArticleTeaserModel {
     private String title;
 
     @Getter
+    private boolean imageFromPage;
+
+    @Getter
+    private String imagePathFromPage;
+
+    @Getter
+    private String altTextFromPageImage;
+
+    @Getter
     private String categoryTag;
 
     @Getter
@@ -69,7 +86,24 @@ public class ArticleTeaserModel {
         var article = pageUtilService.getArticle(linkURL, resourceResolver);
 
         if (article != null) {
+            imageFromPage = Boolean.parseBoolean(imageFromPageImage) && !StringUtils.isBlank(linkURL);
             titleFromLinkedPage = Boolean.parseBoolean(titleFromPage) ? article.getNavTitle() : StringUtils.EMPTY;
+            if (imageFromPage) {
+                imagePathFromPage = Optional.ofNullable(linkURL)
+                        .map(link -> pageUtilService.getPage(link, resourceResolver))
+                        .map(Page::getContentResource)
+                        .map(res -> assetUtilService.getPageImagePath(res))
+                        .orElse(StringUtils.EMPTY);
+
+                altTextFromPageImage = !Boolean.parseBoolean(altValueFromPageImage)
+                        ? alt
+                        : Optional.of(imagePathFromPage)
+                        .map(resourceResolver::getResource)
+                        .map(r -> r.adaptTo(Asset.class))
+                        .map(a -> a.getMetadataValue(DC_DESCRIPTION))
+                        .orElse(StringUtils.defaultIfBlank(titleFromLinkedPage, title));
+            }
+
             categoryTag = article.getGroupTag();
             author = article.getAuthor();
             publishDate = article.getCreated();
