@@ -1,6 +1,9 @@
-.listicle-component {
+.listicleitem .listicle-component {
   margin-bottom: 20px;
   overflow: hidden;
+
+  font-size: unset;
+  line-height: unset;
 
   &.listicle__row__text--yellow {
     background-color: map-get($map: $palette, $key: sunflower-yellow);
