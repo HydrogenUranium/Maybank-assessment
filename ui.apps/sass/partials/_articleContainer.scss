@@ -1,5 +1,9 @@
 .article-container-component {
-  margin: 0 35px;
+  margin: 0 21px;
+
+  @include respond(md) {
+    margin: 0 35px;
+  }
   .grid {
     margin: 0 auto;
     max-width: 1600px;
@@ -15,7 +19,7 @@
       @include respond(xl) {
         display: grid;
         grid-template-columns: minmax(auto, 1080px) 300px;
-        grid-template-areas:"body sidebar";
+        grid-template-areas: "body sidebar";
       }
 
       &__body {
