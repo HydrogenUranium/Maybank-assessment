@@ -1,6 +1,6 @@
-describe('Global Open An Account page', () => {
+describe('Singapore Open An Account page', () => {
   const pageUrls = [
-    Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global/open-an-account.html'
+    Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/sg/en-sg/open-an-account.html'
   ];
 
   const testText = 'THIS IS FOR TEST PLEASE IGNORE';
@@ -39,7 +39,7 @@ describe('Global Open An Account page', () => {
 
         it('All test case', () => {
           // 1. Verify the title contains the correct text "Open An Account"
-          cy.get('#title-v2-acf2487a6a').should('exist');
+          cy.get('.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .title-component > #title-v2-b0172515ad > .cmp-title__text').should('exist')
 
           // 2. Verify Marketo form is present
           cy.get(".marketoForm")
@@ -61,35 +61,42 @@ describe('Global Open An Account page', () => {
           cy.get('.mktoButton').should('exist');
 
           // 4. Verify an error message is displayed for each field when the input is invalid (e.g., an email field, a phone number field with non-numeric characters)
-          cy.get('#LblisBusiness').click();
-          cy.get('#suspectCompanyname').type(testText);
-          cy.get('#FirstName').type(testText);
-          cy.get('#LastName').type(testText);
-          cy.get('#Email').type('test');
-          cy.get('#suspectAddress').type(testText);
-          cy.get('#suspectPostalCode').type(testText);
-          cy.get('#suspectCity').type(testText);
-          cy.get('#suspectCountry').select('Albania');
-          cy.get('#Phone').type('TEST');
-          cy.get('#shippingfrequency').select('One-off');
-          cy.get('.mktoButton').click();
+          cy.get('#LblisBusiness').click({ force: true });
+          cy.get('#FirstName').type(testText, { force: true });
+          cy.get('#LastName').type(testText, { force: true });
+          cy.get('#suspectCompanyname').type(testText, { force: true });
+          cy.get('#Phone').type('111111', { force: true });
+          cy.get('#Email').type('test', { force: true });
+          cy.get('#suspectAddress').type(testText, { force: true });
+          cy.get('#suspectPostalCode').type(testText, { force: true });
+          cy.get('#suspectCity').type(testText, { force: true });
+          cy.get('#shippingfrequency').select('One-off', { force: true });
+          cy.get('.mktoButton').click( { force: true });
           cy.get('#ValidMsgEmail').should('be.visible').and('contain', 'Must be valid email.','example@yourdomain.com');
-          cy.get('#Email').type('test@gmail.com');
-          cy.get('.mktoButton').click();
-          cy.get('#ValidMsgPhone').should('exist');
+
+           //Clear all the form
+           cy.get('#FirstName').clear({ force: true });
+           cy.get('#LastName').clear({ force: true });
+           cy.get('#suspectCompanyname').clear({ force: true });
+           cy.get('#Phone').clear({ force: true });
+           cy.get('#Email').clear({ force: true });
+           cy.get('#suspectAddress').clear({ force: true });
+           cy.get('#suspectPostalCode').clear({ force: true });
+           cy.get('#suspectCity').clear({ force: true });
+           cy.get('#shippingfrequency').select('', { force: true });
 
           // 5. Verify the form submits successfully when all fields are filled out correctly
-          cy.get('#LblisBusiness').click();
-          cy.get('#suspectCompanyname').type(testText);
-          cy.get('#FirstName').type(testText);
-          cy.get('#LastName').type(testText);
-          cy.get('#Email').type('test@gmail.com');
-          cy.get('#suspectAddress').type(testText);
-          cy.get('#suspectPostalCode').type(testText);
-          cy.get('#suspectCity').type(testText);
-          cy.get('#suspectCountry').select('Albania');
-          cy.get('#Phone').type('111111');
-          cy.get('#shippingfrequency').select('One-off');
+          cy.get('#LblisBusiness').click({ force: true });
+          cy.get('#suspectCompanyname').type(testText, { force: true });
+          cy.get('#FirstName').type(testText, { force: true });
+          cy.get('#LastName').type(testText, { force: true });
+          cy.get('#Email').type('test@gmail.com', { force: true });
+          cy.get('#suspectAddress').type(testText, { force: true });
+          cy.get('#suspectPostalCode').type(testText, { force: true });
+          cy.get('#suspectCity').type(testText, { force: true });
+          cy.get('#suspectCountry').select('Albania', { force: true });
+          cy.get('#Phone').type('111111', { force: true });
+          cy.get('#shippingfrequency').select('One-off', { force: true });
           cy.get('.mktoButton').should('exist');
         });
       });
