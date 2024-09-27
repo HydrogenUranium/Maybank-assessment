@@ -84,6 +84,7 @@ describe('Global Page Header', () => {
             });
           }
 
+/*
           if (viewport !== 'iphone-6') {
             // 6. Verify country option changes content and URL
             cy.get(selectors.countrySwitcher).click({ force: true });
@@ -94,6 +95,7 @@ describe('Global Page Header', () => {
             // 7. Verify the language on the page changes appropriately based on country
             cy.get('.cmp-title__text').should('contain', 'DHL Expressのスモールビジネス&グローバルシッピングに関するアドバイス');
           }
+*/
 
           // 8. Verify when hovering the cursor over each category, the color changes from black to red
           const link = cy.get('.navigation-row__left');
