@@ -88,7 +88,7 @@ describe('Global Page Header', () => {
             // 6. Verify country option changes content and URL
             cy.get(selectors.countrySwitcher).click({ force: true });
             cy.get(selectors.countryList).should('be.visible');
-            cy.get(':nth-child(15) > a').contains('Japan').click({ force: true });
+            cy.get('.header-countryList__option label[for="country-jp"]').contains('Japan').click({ force: true });
             cy.url().should('include', '/ja-jp');
 
             // 7. Verify the language on the page changes appropriately based on country
