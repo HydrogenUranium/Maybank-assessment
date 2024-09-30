@@ -1,8 +1,5 @@
 package com.positive.dhl.core.servlets;
 
-import com.day.cq.tagging.InvalidTagFormatException;
-import com.day.cq.tagging.Tag;
-import com.day.cq.tagging.TagManager;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.ResourceResolverHelper;
 import com.positive.dhl.core.services.TagUtilService;
@@ -54,7 +51,7 @@ class GetSuggestionsServletTest {
     private ResourceResolver resolverMock;
 
     @BeforeEach
-    void setUp() throws InvalidTagFormatException {
+    void setUp() {
         when(tagUtilService.getTagLocalizedSuggestionsByQuery(any(), eq("global"), anyString(), any(), anyInt()))
                 .thenReturn(List.of("Global Logistics", "Global Business"));
         context.build().resource("/content");
