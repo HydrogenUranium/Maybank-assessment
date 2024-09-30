@@ -70,6 +70,7 @@ class ArticlePageTest {
 		context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
 
 		when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
+		when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
 		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
 		when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
 		when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
@@ -178,7 +179,7 @@ class ArticlePageTest {
 		assertEquals("Senior Content Writer, Discover", article.getAuthortitle());
 		assertEquals("/content/dam/dhl/site-image/roundels/laptop.png", article.getAuthorimage());
 		assertEquals("6 min read", article.getReadtime());
-		assertEquals("/content/dam/dhl/listimage.jpg", article.getListimage());
+		assertEquals("/content/dam/image.jpg", article.getPageImage());
 		assertEquals("/content/dam/dhl/heroimagemob.jpg", article.getHeroimagemob());
 		assertEquals("/content/dam/dhl/heroimagetab.jpg", article.getHeroimagetab());
 		assertEquals("/content/dam/dhl/heroimagedt.jpg", article.getHeroimagedt());

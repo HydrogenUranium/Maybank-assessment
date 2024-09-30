@@ -62,7 +62,7 @@ public class TopTiles {
                 var article = pageUtilService.getArticle(path, resourceResolver);
                 if (article != null) {
                     articles.add(article);
-                    log.debug("Article Listed Image: {}", article.getListimage());
+                    log.debug("Article Page Image: {}", article.getPageImage());
 
                     if(!desktopImage.isBlank()) {
                         article.setHeroimagedt(desktopImage);
@@ -74,7 +74,7 @@ public class TopTiles {
                     if(!mobileImage.isBlank()) {
                         article.setHeroimagemob(mobileImage);
                     }
-                    log.debug("Article Listed Image after initialization of asset delivery: {}", article.getListimage());
+                    log.debug("Article Page Image after initialization of asset delivery: {}", article.getPageImage());
                 }
             }
         }

@@ -8,7 +8,7 @@ export type Article = {
     createdfriendly: string,
     createdMilliseconds: number,
     description: string,
-    listimage: string,
+    pageImage: string,
     groupTag: string,
     thumbnail: string,
     path: string,

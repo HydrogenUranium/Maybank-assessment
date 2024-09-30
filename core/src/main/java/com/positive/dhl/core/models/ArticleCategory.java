@@ -24,84 +24,84 @@ public class ArticleCategory {
 	private String title;
 	private String listimage;
 	private Boolean external;
-	
+
     /**
-	 * 
+	 *
 	 */
 	public Boolean getCurrent() {
 		return current;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setCurrent(Boolean current) {
 		this.current = current;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public int getIndex() {
 		return index;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setIndex(int index) {
 		this.index = index;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public String getTitle() {
 		return title;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public String getListimage() {
 		return listimage;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setListimage(String listimage) {
 		this.listimage = listimage;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public Boolean getExternal() {
 		return external;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public void setExternal(Boolean external) {
 		this.external = external;
 	}
 
     /**
-	 * 
+	 *
 	 */
 	public ArticleCategory() { }
-	
+
     /**
-	 * 
+	 *
 	 */
 	public ArticleCategory(String path, ResourceResolver resourceResolver) {
 		this.resourceResolver = resourceResolver;
@@ -111,7 +111,7 @@ public class ArticleCategory {
 	}
     
     /**
-	 * 
+	 *
 	 */
     @PostConstruct
 	protected void init() {

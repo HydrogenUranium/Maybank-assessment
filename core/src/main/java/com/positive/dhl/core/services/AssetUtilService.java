@@ -4,6 +4,7 @@ import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.api.DamConstants;
 import com.day.cq.dam.api.RenditionPicker;
+import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.dam.RenditionPatternPicker;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
@@ -11,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.oak.commons.PropertiesUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.commons.mime.MimeTypeService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -19,6 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
+
+import static com.adobe.cq.wcm.core.components.models.Page.NN_PAGE_FEATURED_IMAGE;
+import static com.day.cq.commons.DownloadResource.PN_REFERENCE;
+import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
 
 @Component(service = AssetUtilService.class)
 @Slf4j
@@ -32,6 +38,9 @@ public class AssetUtilService {
 
     @Reference
     protected PathUtilService pathUtilService;
+
+    @Reference
+    protected PageUtilService pageUtilService;
 
     @Reference
     private ResourceResolverHelper resourceResolverHelper;
@@ -141,5 +150,55 @@ public class AssetUtilService {
                     .map(func)
                     .orElse("");
         }
+    }
+
+    private String getListImage(Resource resource) {
+        return Optional.ofNullable(resource)
+                .map(res -> pageUtilService.getPage(res))
+                .map(Page::getProperties)
+                .map(properties -> properties.get("listimage", String.class))
+                .orElse(StringUtils.EMPTY);
+    }
+
+    private String getListImageAltText(Resource resource) {
+        return Optional.ofNullable(resource)
+                .map(res -> pageUtilService.getPage(res))
+                .map(Page::getProperties)
+                .map(properties -> properties.get("listimageAltText", String.class))
+                .orElse(StringUtils.EMPTY);
+    }
+
+    private String getPageFeaturedImage(Resource resource) {
+        return Optional.ofNullable(resource)
+                .map(res -> pageUtilService.getPage(res))
+                .map(page -> page.getContentResource(	NN_PAGE_FEATURED_IMAGE))
+                .map(featuredImageResource -> featuredImageResource.adaptTo(ValueMap.class))
+                .map(properties -> properties.get(PN_REFERENCE, String.class))
+                .orElse(StringUtils.EMPTY);
+    }
+
+    private String getPageFeaturedImageAltText(Resource resource) {
+        return Optional.ofNullable(resource)
+                .map(res -> pageUtilService.getPage(res))
+                .map(page -> page.getContentResource(	NN_PAGE_FEATURED_IMAGE))
+                .map(featuredImageResource -> featuredImageResource.adaptTo(ValueMap.class))
+                .map(properties -> !Boolean.parseBoolean(properties.get("altValueFromDAM", StringUtils.EMPTY))
+                            ? properties.get("alt", StringUtils.EMPTY)
+                            : Optional.ofNullable(properties.get(PN_REFERENCE, String.class))
+                            .map(imagePath -> getAssetResource(imagePath, resource.getResourceResolver()))
+                            .map(this::adaptToAsset)
+                            .map(a -> a.getMetadataValue(DC_DESCRIPTION))
+                            .orElse(StringUtils.EMPTY))
+                .orElse(StringUtils.EMPTY);
+    }
+
+    public String getPageImagePath(Resource resource) {
+        String pageFeaturedImage = getPageFeaturedImage(resource);
+        String listImage = getListImage(resource);
+        return StringUtils.defaultIfBlank(pageFeaturedImage, listImage);
+    }
+
+    public String getPageImageAltText(Resource resource) {
+        return StringUtils.isNotBlank(getPageFeaturedImage(resource)) ? getPageFeaturedImageAltText(resource) : getListImageAltText(resource);
     }
 }
