@@ -1,4 +1,4 @@
-/* DIS-809 Switching from 'List Image' to 'Featured Image' properties
+/* DIS-809 Create 'Featured Image' properties
 Steps:
 0)  INITIAL SETUP
     - define scope in the @Field contentScope
@@ -57,7 +57,8 @@ def getAffectedItemPaths() {
         getPage(contentScope).recurse { page ->
             def content = page.node
             if (content && content.get("listimage") && page.path ==~ /^\/content\/dhl\/(language-masters|global|\w{2})(\/.*)?/) {
-                if (content.get("cq:featuredimage/fileReference") != content.get("listimage")) {
+                def featuredImage = getResource(content.path + "/cq:featuredimage") ? getNode(content.path + "/cq:featuredimage").get("fileReference") : ""
+                if (!featuredImage || (featuredImage != content.get("listimage"))) {
                     paths.add(page.path)
                 }
             }
@@ -86,7 +87,6 @@ def manipulations(affectedItemPaths) {
         aecu.contentUpgradeBuilder()
                 .forResources((String[]) [itemPath + '/jcr:content/cq:featuredimage'])
                 .doSetProperty("fileReference", listimage)
-                .doActivateResource()
                 .run(dryRun)
     }
 }
