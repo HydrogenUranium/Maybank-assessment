@@ -25,6 +25,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -52,10 +53,10 @@ class GetSuggestionsServletTest {
 
     @BeforeEach
     void setUp() {
-        when(tagUtilService.getTagLocalizedSuggestionsByQuery(any(), eq("global"), anyString(), any(), anyInt()))
+        lenient().when(tagUtilService.getTagLocalizedSuggestionsByQuery(any(), anyString(), anyString(), any(), anyInt()))
                 .thenReturn(List.of("Global Logistics", "Global Business"));
         context.build().resource("/content");
-        when(pageUtilService.getLocale((Resource) any())).thenReturn(Locale.ENGLISH);
+        lenient().when(pageUtilService.getLocale((Resource) any())).thenReturn(Locale.ENGLISH);
 
         when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolverMock);
         when(resolverMock.findResources(anyString(), anyString())).thenAnswer(invocationOnMock ->
@@ -63,7 +64,7 @@ class GetSuggestionsServletTest {
     }
 
     @Test
-    void test() throws IOException {
+    void test_withValidRequestParameter() throws IOException {
         request.setParameterMap(Map.of("s", "global", "homepagepath", "/content"));
 
         servlet.doGet(request, response);
@@ -74,4 +75,15 @@ class GetSuggestionsServletTest {
         assertEquals(expected, responseBody);
     }
 
+    @Test
+    void test_withInvalidRequestParameter() throws IOException {
+        request.setParameterMap(Map.of("s", "<XSS-injection>", "homepagepath", "/content"));
+
+        servlet.doGet(request, response);
+
+        String responseBody = context.response().getOutputAsString();
+
+        String expected = "{\"status\":\"ok\",\"term\":\"\",\"results\":[]}";
+        assertEquals(expected, responseBody);
+    }
 }
