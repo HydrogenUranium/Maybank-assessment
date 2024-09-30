@@ -1,6 +1,6 @@
-describe('Singapore Subscribe newsletter page', () => {
+describe('Global Download Marketo page', () => {
   const pageUrls = [
-    Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/sg/en-sg/newsletter-sign-up.html'
+    Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global/automation-testing/Page-Download.html'
   ];
 
   pageUrls.forEach((pageUrl, index) => {
@@ -36,36 +36,40 @@ describe('Singapore Subscribe newsletter page', () => {
         });
 
         it('All test case', () => {
-          // 1. Verify the title contains the correct text "Subscribe for the latest insights"
-          cy.get('.cmp-title__text').should('exist');
+          // 1. Verify the download asset component is exist"
+          cy.get('#download').should('exist');
+
           cy.wait(2000);
 
           // 2. Verify if all fields are present
-          cy.get('.cmp-title__text').should('exist');
-          cy.get('.landing-points-component').should('exist');
-          cy.get('#FirstName').should('exist');
-          cy.get('#LastName').should('exist');
+          cy.get('.DHLdownload__title').should('exist');
+          cy.get('#download').should('exist');
           cy.get('#Email').should('exist');
+          cy.get(':nth-child(11) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel').should('exist');
           cy.get('#suspectCountry').should('exist');
           cy.get('.mktoButton').should('exist');
 
           // 3. Verify the form submits successfully when all fields are filled out correctly
-          cy.get('#FirstName').type('testing purpose');
-          cy.get('#LastName').type('testing purpose');
-          cy.get('#Email').type('test@gmail.com');
-          cy.get('#suspectCountry').select('Afghanistan');
-          cy.get('.mktoButton').should('exist');
+          cy.get('#Email').type('test@gmail.com', { force: true });
+          cy.get('#suspectCountry').select('Afghanistan', { force: true });
+          cy.get('.mktoButton').should('be.visible');
+
 
           // 4. Verify that an error message "This field is required" is displayed when a required field is left blank
-          cy.get('#LastName').type('testing purpose');
-          cy.get('#Email').type('test@gmail.com');
-          cy.get('.mktoButton').should('exist');
+          cy.get('#Email').clear({ force: true });
+          cy.get('#suspectCountry').select('', { force: true });
+          cy.get('#Email').type('test@gmail.com', { force: true });
+          cy.get('.mktoButton').click({ force: true });
+          cy.get('#ValidMsgsuspectCountry').should('exist', { force: true });
 
           // 5. Verify an error message is displayed for each field when the input is invalid (e.g., an email field without an @)
-          cy.get('#FirstName').type('testing purpose');
-          cy.get('#LastName').type('testing purpose');
-          cy.get('#Email').type('test');
-          cy.get('.mktoButton').should('exist');
+          cy.get('#Email').clear({ force: true });
+          cy.get('#suspectCountry').select('', { force: true });
+          cy.get('#Email').type('test', { force: true });
+          cy.get('#suspectCountry').select('Afghanistan', { force: true });
+          cy.get('.mktoButton').click({ force: true });
+          cy.get('#ValidMsgEmail').should('be.visible').and('contain', 'Must be valid email.','example@yourdomain.com');
+
         });
       });
     });
