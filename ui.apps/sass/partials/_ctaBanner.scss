@@ -1,6 +1,14 @@
 .cta-banner-component {
   margin-top: 40px;
   max-width: 1200px;
+  margin-left: -21px;
+  margin-right: -21px;
+
+  @include respond(md) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .banner {
     min-height: 300px;
     padding: 20px;
@@ -132,7 +140,10 @@
     }
 
     &__image {
-      border-radius: 4px;
+      border-radius: 0;
+      @include respond(md) {
+        border-radius: 6px;
+      }
       position: absolute;
       top: 0px;
       left: 0px;
