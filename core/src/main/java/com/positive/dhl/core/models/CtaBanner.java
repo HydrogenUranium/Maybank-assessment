@@ -8,24 +8,24 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.UUID;
 
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class CtaBanner extends TrackableAbstract {
 
-    @Inject
+    @ValueMapValue
     @Default(values = "custom")
     private String type;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String title;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String topTitle;
 
@@ -45,7 +45,7 @@ public class CtaBanner extends TrackableAbstract {
     @Named("ctaBanner-article-subscribeToOurNewsletter-topTitle")
     private String topTitleGlobal;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String mobileBackgroundImage;
 
@@ -53,7 +53,7 @@ public class CtaBanner extends TrackableAbstract {
     @Named("ctaBanner-article-subscribeToOurNewsletter-mobileBackgroundImage")
     private String mobileBackgroundImageGlobal;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String tabletBackgroundImage;
 
@@ -61,7 +61,7 @@ public class CtaBanner extends TrackableAbstract {
     @Named("ctaBanner-article-subscribeToOurNewsletter-tabletBackgroundImage")
     private String tabletBackgroundImageGlobal;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String desktopBackgroundImage;
 
@@ -69,7 +69,7 @@ public class CtaBanner extends TrackableAbstract {
     @Named("ctaBanner-article-subscribeToOurNewsletter-desktopBackgroundImage")
     private String desktopBackgroundImageGlobal;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String buttonName;
 
@@ -77,7 +77,7 @@ public class CtaBanner extends TrackableAbstract {
     @Named("ctaBanner-article-subscribeToOurNewsletter-buttonName")
     private String buttonNameGlobal;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String buttonLink;
 

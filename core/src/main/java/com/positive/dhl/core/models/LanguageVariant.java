@@ -1,45 +1,47 @@
 package com.positive.dhl.core.models;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  *
  */
 @Model(adaptables=Resource.class)
 @Getter
+@AllArgsConstructor
 public class LanguageVariant {
 	@Setter
 	public String region;
 
-	@Inject
+	@ValueMapValue
 	public String name;
 
-	@Inject
+	@ValueMapValue
 	@Named("jcr:title")
 	public String title;
 
-	@Inject
+	@ValueMapValue
 	public String home;
 
-	@Inject
+	@ValueMapValue
 	public String link;
 
-	@Inject
+	@ValueMapValue
 	public String acceptlanguages;
 
-	@Inject
+	@ValueMapValue
 	public boolean deflt;
 
-	@Inject
+	@ValueMapValue
 	public boolean current;
 
-	@Inject
+	@ValueMapValue
 	public boolean exact;
 
 	public LanguageVariant(String name, String title, String home, String link, String acceptlanguages, boolean deflt, boolean current, boolean exact) {

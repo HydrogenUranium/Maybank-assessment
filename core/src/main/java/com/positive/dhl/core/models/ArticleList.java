@@ -5,22 +5,24 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 
+import lombok.experimental.UtilityClass;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  *
  */
 @Model(adaptables=Resource.class)
+@UtilityClass
 public class ArticleList {
-	@Inject
+	@ValueMapValue
 	@Named("items")
 	@Optional
-	private Resource linksResource;
+	private static Resource linksResource;
 
 	private static List<Article> articles;
 	
@@ -28,22 +30,22 @@ public class ArticleList {
 	 * 
 	 */
 	public static List<Article> getArticles() {
-		return new ArrayList<Article>(articles);
+		return new ArrayList<>(articles);
 	}
 
     /**
 	 * 
 	 */
 	public static void setArticles(List<Article> articles) {
-		ArticleList.articles = new ArrayList<Article>(articles);
+		ArticleList.articles = new ArrayList<>(articles);
 	}
 
     /**
 	 * 
 	 */
 	@PostConstruct
-	protected void init() {
-		articles = new ArrayList<Article>();
+	protected static void  init() {
+		articles = new ArrayList<>();
 		if (linksResource != null) {
 			int count = 0;
 			Iterator<Resource> linkResources = linksResource.listChildren();

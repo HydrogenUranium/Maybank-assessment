@@ -8,6 +8,7 @@ import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -19,19 +20,19 @@ import java.util.List;
 @Getter
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class LandingPoints {
-	@Inject
+	@ValueMapValue
 	@Named("items")
 	@ChildResource
 	private Resource linksResource;
 
-	@Inject
+	@ValueMapValue
 	private String image;
 
-	@Inject
+	@ValueMapValue
 	@Default(values = "icon")
 	private String pointType;
 
-	@Inject
+	@ValueMapValue
 	@Default(values = "")
 	private String altText;
 

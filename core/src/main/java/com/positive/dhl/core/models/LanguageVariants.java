@@ -12,22 +12,28 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
-
+import java.util.LinkedHashMap;
+import java.util.Collections;
+import java.util.Comparator;
 /**
  *
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class LanguageVariants {
-	@Inject
+	@ValueMapValue
 	private Page currentPage;
 
-	@Inject
+	@ValueMapValue
 	private ResourceResolver resourceResolver;
 
 	@OSGiService
@@ -257,7 +263,7 @@ public class LanguageVariants {
 				}
 			}
 
-			LanguageVariant newItem = new LanguageVariant(language, title, newHomepage, newExactPath, acceptlanguages, deflt, path.contains(homepage.getPath()), exactPathExists);
+			var newItem = new LanguageVariant(language, title, newHomepage, newExactPath, acceptlanguages, deflt, path.contains(homepage.getPath()), exactPathExists);
 			if (!variants.containsKey(region)) {
 				ArrayList<LanguageVariant> languages = new ArrayList<>();
 				variants.put(region, languages);

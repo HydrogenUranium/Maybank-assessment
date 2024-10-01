@@ -1,6 +1,6 @@
 package com.positive.dhl.core.models;
 
-import java.util.*;
+
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -19,6 +19,12 @@ import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Optional;
 import static com.day.cq.wcm.api.constants.NameConstants.*;
 
 @Model(adaptables = Resource.class)

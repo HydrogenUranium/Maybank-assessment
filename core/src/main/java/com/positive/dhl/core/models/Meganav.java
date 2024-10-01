@@ -5,11 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 
 import com.positive.dhl.core.services.PageUtilService;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -19,18 +17,19 @@ import org.apache.sling.models.annotations.Model;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
 
 @Model(adaptables=SlingHttpServletRequest.class)
 public class Meganav {
-    @Inject
+    @ValueMapValue
     private QueryBuilder builder;
 
-	@Inject
+	@ValueMapValue
 	private ResourceResolver resourceResolver;
     
-	@Inject
+	@ValueMapValue
 	private Page currentPage;
 
 	@OSGiService

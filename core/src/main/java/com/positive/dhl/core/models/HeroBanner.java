@@ -14,9 +14,9 @@ import org.apache.sling.models.annotations.Required;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,14 +29,14 @@ public class HeroBanner {
     @Required
     private AssetUtilService assetUtilService;
 
-    @Inject
+    @ValueMapValue
     @Required
     private Page currentPage;
 
     @ScriptVariable
     protected Style currentStyle;
 
-    @Inject
+    @ValueMapValue
     private String summaryTitle;
 
     @ChildResource
@@ -45,22 +45,22 @@ public class HeroBanner {
 
     private final List<String> points = new ArrayList<>();
 
-    @Inject
+    @ValueMapValue
     private String mobileBackgroundImage;
 
-    @Inject
+    @ValueMapValue
     private String tabletBackgroundImage;
 
-    @Inject
+    @ValueMapValue
     private String desktopBackgroundImage;
 
-    @Inject
+    @ValueMapValue
     private String backgroundImageAltText;
 
-    @Inject
+    @ValueMapValue
     private boolean useVideo;
 
-    @Inject
+    @ValueMapValue
     private String video;
 
     private String videoMimeType;
