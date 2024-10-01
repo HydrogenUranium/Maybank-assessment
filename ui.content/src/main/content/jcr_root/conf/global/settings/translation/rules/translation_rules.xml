@@ -317,13 +317,6 @@
       <property inherit="true" name="contentbanner2title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="contentbanner2urltitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="cookiemessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannerpoint1" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannerpoint2" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannerpoint3" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannerpoint4" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannersubtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannertitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannerurltitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="shipnowmessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signupemailprivacymessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signupmessage" translate="true" updateDestinationLanguage="false"/>
