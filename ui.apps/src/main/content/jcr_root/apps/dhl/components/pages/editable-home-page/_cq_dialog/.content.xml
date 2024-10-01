@@ -29,47 +29,6 @@
                                                     fieldLabel="GTM Tracking ID (i.e. 'GTM-PZ5NFTR', etc)"
                                                     name="./gtmtrackingid"/>
 
-                                            <socials
-                                                    jcr:primaryType="nt:unstructured"
-                                                    name="./socials"
-                                                    fieldLabel="Social Channels"
-                                                    fieldDescription="Click + to add new item"
-                                                    composite="{Boolean}true"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
-
-                                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                       jcr:primaryType="nt:unstructured"
-                                                       name="./items">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <title
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Title"
-                                                                name="./title"/>
-                                                        <url
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Url"
-                                                                name="./url"/>
-                                                        <category
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/select"
-                                                                allowBulkEdit="{Boolean}true"
-                                                                fieldLabel="Platform"
-                                                                name="./category"
-                                                                required="{Boolean}true">
-                                                            <items jcr:primaryType="nt:unstructured">
-                                                                <facebook jcr:primaryType="nt:unstructured" text="facebook" value="facebook" />
-                                                                <youtube jcr:primaryType="nt:unstructured" text="youtube" value="youtube" />
-                                                                <instagram jcr:primaryType="nt:unstructured" text="instagram" value="instagram" />
-                                                                <linkedin jcr:primaryType="nt:unstructured" text="linkedin" value="linkedin" />
-                                                                <twitter jcr:primaryType="nt:unstructured" text="twitter" value="twitter" />
-                                                            </items>
-                                                        </category>
-                                                    </items>
-                                                </field>
-                                            </socials>
-
                                             <usethirdpartycookie
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/foundation/form/checkbox"
