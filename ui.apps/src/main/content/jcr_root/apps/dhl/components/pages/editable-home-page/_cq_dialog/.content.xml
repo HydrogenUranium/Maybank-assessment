@@ -22,15 +22,6 @@
                                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                     fieldLabel="GTM Tracking ID (i.e. 'GTM-PZ5NFTR', etc)"
                                                     name="./gtmtrackingid"/>
-                                            <cookielearnmore
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Global Cookie warning 'Learn more' page"
-                                                    name="./cookielearnmore"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-
                                             <signupmessage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"
