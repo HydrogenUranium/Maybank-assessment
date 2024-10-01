@@ -302,7 +302,6 @@
       <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="cookiemessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="shipnowmessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signupemailprivacymessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signupmessage" translate="true" updateDestinationLanguage="false"/>

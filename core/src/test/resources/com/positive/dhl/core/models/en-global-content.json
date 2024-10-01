@@ -57,7 +57,6 @@
       "dhl:business-matters"
     ],
     "jcr:uuid": "9f5e811a-a9fc-485e-b8d7-f80dc050fe81",
-    "cookiemessage": "<p>We use cookies on our website to improve your experience. View our <a title=\"Terms of Use\" href=\"/content/dhl/en-global/terms-of-use.html\" target=\"_blank\">Cookie Policy</a>.</p>\r\n",
     "siteregion": "Global",
     "sling:resourceType": "dhl/components/pages/editable-home-page",
     "cq:contextHubPath": "/etc/cloudsettings/default/contexthub",
