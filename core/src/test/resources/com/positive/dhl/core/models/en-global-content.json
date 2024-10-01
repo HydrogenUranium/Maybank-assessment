@@ -23,7 +23,6 @@
     "signupprivacymessage": "<p>Don't worry. We'll never post on your behalf. To learn more about how we protect your privacy, please read our <a href=\"/content/dhl/en-global/privacy.html\" target=\"_self\">Privacy Notice.</a></p>\r\n",
     "loginpage": "/content/dhl/en-global/login",
     "registerpage": "/content/dhl/en-global/register",
-    "signupmessage": "<p><a></a><a>Sign up for your Discover DHL account and get a regular downloadable hit of insider articles, white papers, industry expertise and more from all around the world.</a></p>\r\n",
     "cq:lastReplicationAction": "Activate",
     "sitedefault": "true",
     "jcr:versionHistory": "fca2804b-07d5-401c-9a4b-72671183c5e8",
