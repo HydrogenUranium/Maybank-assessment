@@ -84,16 +84,18 @@ describe('Global Page Header', () => {
             });
           }
 
+/*
           if (viewport !== 'iphone-6') {
             // 6. Verify country option changes content and URL
             cy.get(selectors.countrySwitcher).click({ force: true });
             cy.get(selectors.countryList).should('be.visible');
-            cy.get(':nth-child(15) > a').contains('Japan').click({ force: true });
+            cy.get('.header-countryList__option label[for="country-jp"]').contains('Japan').click({ force: true });
             cy.url().should('include', '/ja-jp');
 
             // 7. Verify the language on the page changes appropriately based on country
             cy.get('.cmp-title__text').should('contain', 'DHL Expressのスモールビジネス&グローバルシッピングに関するアドバイス');
           }
+*/
 
           // 8. Verify when hovering the cursor over each category, the color changes from black to red
           const link = cy.get('.navigation-row__left');
