@@ -17,21 +17,6 @@
                                         jcr:title="DHL Article properties"
                                         sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <contentbanner
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/select"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Content Banner"
-                                                name="./contentbanner"
-                                                required="{Boolean}true">
-
-                                                <items jcr:primaryType="nt:unstructured">
-                                                    <banner0 jcr:primaryType="nt:unstructured" text="No banner" value="0" />
-                                                    <banner1 jcr:primaryType="nt:unstructured" text="Banner 1" value="1" />
-                                                    <banner2 jcr:primaryType="nt:unstructured" text="Banner 2" value="2" />
-                                                </items>
-                                            </contentbanner>
-
                                             <amparticlepath
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"

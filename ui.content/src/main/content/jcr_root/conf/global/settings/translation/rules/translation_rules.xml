@@ -302,20 +302,6 @@
       <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1point1" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1point2" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1point3" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1point4" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1urltitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2point1" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2point2" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2point3" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2point4" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2urltitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="cookiemessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="shipnowmessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signupemailprivacymessage" translate="true" updateDestinationLanguage="false"/>
