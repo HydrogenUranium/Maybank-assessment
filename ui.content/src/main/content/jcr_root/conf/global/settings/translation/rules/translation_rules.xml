@@ -329,12 +329,6 @@
       <property inherit="true" name="signupmessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signupprivacymessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signuptcmessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner1subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner1title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner1urltitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner2subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner2title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner2urltitle" translate="true" updateDestinationLanguage="false"/>
 
       <property inherit="true" name="header-buttonName" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="header-signInLabel" translate="true" updateDestinationLanguage="false"/>
