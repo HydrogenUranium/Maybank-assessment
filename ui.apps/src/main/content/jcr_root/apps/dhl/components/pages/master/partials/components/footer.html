@@ -1,3 +1,4 @@
+<!--/* Deprecated */-->
 <template data-sly-template.data="${@accountactions}">
 <footer class="footer">
 	<a class="footer__backToTop d-lg-none" href="#top">
@@ -73,7 +74,7 @@
 						<sly data-sly-list.link="${footerAbsolute.rightLinks}" data-sly-unwrap>
 						<li class="footer__linkItem"><a class="footer__link" href="${link.link}" title="${link.name}">${link.name}</a></li>
 						</sly>
-						<li class="footer__linkItem" data-sly-test="${accountactions.usethirdpartycookie}">
+						<li class="footer__linkItem">
 							<!-- OneTrust Cookies Settings button start --> 
 							<button id="onetrust-pc-btn-handler" data-document-language="true" class="link ot-sdk-show-settings footer__link" data-di-id="#onetrust-pc-btn-handler">${ 'Cookies Settings' @ i18n, context='html' }</button>
 							<!-- OneTrust Cookies Settings button end -->

@@ -22,13 +22,6 @@
                                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                     fieldLabel="GTM Tracking ID (i.e. 'GTM-PZ5NFTR', etc)"
                                                     name="./gtmtrackingid"/>
-
-                                            <usethirdpartycookie
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                    name="./usethirdpartycookie"
-                                                    text="'Use 'OneTrust' Cookies (leave unchecked to use custom cookie implementation)"
-                                                    value="true"/>
                                             <cookiemessage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"

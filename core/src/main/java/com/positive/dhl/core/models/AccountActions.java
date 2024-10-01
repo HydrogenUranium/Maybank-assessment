@@ -61,7 +61,6 @@ public class AccountActions {
 	private String signupTCMessage;
 	private String shipNowMessage;
 	private String contactEmail;
-	private Boolean usethirdpartycookie;
 	private Boolean shipnowmarketo;
 	private Boolean newslettermarketo;
 	private Boolean downloadmarketo;
@@ -90,7 +89,6 @@ public class AccountActions {
 				shipnowmarketo = properties.get("shipnowmarketo", false);
 				newslettermarketo = properties.get("newslettermarketo", false);
 				downloadmarketo = properties.get("downloadmarketo", false);
-				usethirdpartycookie = properties.get("usethirdpartycookie", false);
 
 				contactEmail = "discover@dhl-news.com";
 
