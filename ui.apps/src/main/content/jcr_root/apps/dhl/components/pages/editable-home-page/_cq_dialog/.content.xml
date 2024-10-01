@@ -17,12 +17,6 @@
                                             jcr:title="DHL Homepage properties"
                                             sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <pathprefix
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                    fieldLabel="URL Path Prefix (i.e. /discover for live)"
-                                                    name="./pathprefix"/>
-
                                             <gtmtrackingid
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/foundation/form/textfield"

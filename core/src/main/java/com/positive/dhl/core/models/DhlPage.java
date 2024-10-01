@@ -62,9 +62,6 @@ public class DhlPage {
 	@Default(values = "")
 	private String gtmtrackingid;
 	@InjectHomeProperty
-	@Default(values = "")
-	private String pathprefix;
-	@InjectHomeProperty
 	@Default(values = "ltr")
 	private String direction;
 
