@@ -58,8 +58,6 @@ public class AccountActions {
 	private String signupTCMessage;
 	private String shipNowMessage;
 	private String contactEmail;
-	private Boolean shipnowmarketo;
-	private Boolean newslettermarketo;
 	private Boolean downloadmarketo;
 	private String assetprefix;
 
@@ -81,8 +79,6 @@ public class AccountActions {
 
 				shipNowMessage = properties.get("shipnowmessage", "");
 
-				shipnowmarketo = properties.get("shipnowmarketo", false);
-				newslettermarketo = properties.get("newslettermarketo", false);
 				downloadmarketo = properties.get("downloadmarketo", false);
 
 				contactEmail = "discover@dhl-news.com";
