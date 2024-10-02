@@ -17,15 +17,6 @@
                                         jcr:title="DHL Article properties"
                                         sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <amparticlepath
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="AMP article location"
-                                                name="./amparticlepath"
-                                                rootPath="/content/dhl"
-                                                required="{Boolean}false"/>
-
                                             <heroImages
                                                     jcr:primaryType="nt:unstructured"
                                                     jcr:title="Hero Images"
