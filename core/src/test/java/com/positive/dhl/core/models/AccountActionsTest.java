@@ -63,7 +63,6 @@ class AccountActionsTest {
 
         assertEquals("/content/dhl/country/en", accountActions.getBackUrl());
         assertEquals("/content/dhl/country/en/culture/dhl-mo-salah.html", accountActions.getBackUrlSelf());
-        assertEquals("/content/dhl/ship-now.html", accountActions.getShipNowUrl());
         assertEquals("/content/dhl/your-account.html", accountActions.getEditDetailsUrl());
         assertEquals("<p>Please read our <a href=\"/content/dhl/privacy.html\" target=\"_blank\" title=\"Privacy Notice\">Privacy Notice</a> to find out how your email will be used.<br />\r\n" +
         		"</p>\r\n" + 
@@ -76,7 +75,6 @@ class AccountActionsTest {
 
 		accountActions.setBackUrl("");
 		accountActions.setBackUrlSelf("");
-		accountActions.setShipNowUrl("");
 		accountActions.setEditDetailsUrl("");
 		accountActions.setSignupEmailPrivacyMessage("");
 		accountActions.setSignupTCMessage("");
@@ -85,7 +83,6 @@ class AccountActionsTest {
 
         assertEquals("", accountActions.getBackUrl());
         assertEquals("", accountActions.getBackUrlSelf());
-        assertEquals("", accountActions.getShipNowUrl());
         assertEquals("", accountActions.getEditDetailsUrl());
         assertEquals("", accountActions.getSignupEmailPrivacyMessage());
         assertEquals("", accountActions.getSignupTCMessage());

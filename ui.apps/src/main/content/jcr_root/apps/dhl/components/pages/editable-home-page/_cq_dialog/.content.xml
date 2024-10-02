@@ -58,14 +58,6 @@
                                             jcr:title="Special Page Settings"
                                             sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <shipnowpage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="'Ship Now' page"
-                                                    name="./shipnowpage"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
                                             <editdetailspage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"

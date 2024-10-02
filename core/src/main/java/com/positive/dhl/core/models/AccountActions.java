@@ -53,7 +53,6 @@ public class AccountActions {
 	private String homeUrl;
 	private String backUrl;
 	private String backUrlSelf;
-	private String shipNowUrl;
 	private String editDetailsUrl;
 	private String signupEmailPrivacyMessage;
 	private String signupTCMessage;
@@ -89,7 +88,6 @@ public class AccountActions {
 				contactEmail = "discover@dhl-news.com";
 
 				homeUrl = home.getPath();
-		        shipNowUrl = properties.get("shipnowpage", "/content/dhl/ship-now").concat(HTML_EXTENSION);
 		        editDetailsUrl = properties.get("editdetailspage", "/content/dhl/your-account").concat(HTML_EXTENSION);
 
 		        // url handling if we've bypassed dispatcher - checking QS params
