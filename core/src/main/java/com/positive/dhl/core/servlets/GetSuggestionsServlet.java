@@ -69,7 +69,7 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
     }
 
     private String processRequest(SlingHttpServletRequest request) throws RepositoryException {
-        String query = request.getParameter("s");
+        String query = isValid(request.getParameter("s"));
         String homePagePath = request.getParameter("homepagepath");
         String indexName = getSuggestionIndexName(homePagePath);
 
@@ -147,5 +147,9 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
 
     private String getLastWord(String query){
         return normalizeSpace(query).replaceAll("^.*\\s+", "");
+    }
+
+    private String isValid(String input) {
+        return input.matches("^[a-zA-Z0-9]+$") ? input : "";
     }
 }
