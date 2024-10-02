@@ -22,13 +22,6 @@
                                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                     fieldLabel="GTM Tracking ID (i.e. 'GTM-PZ5NFTR', etc)"
                                                     name="./gtmtrackingid"/>
-                                            <signupprivacymessage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                                    useFixedInlineToolbar="{Boolean}true"
-                                                    fieldLabel="Sign-up 'privacy' message"
-                                                    name="./signupprivacymessage"/>
-
                                             <signupemailprivacymessage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"

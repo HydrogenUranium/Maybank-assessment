@@ -55,7 +55,6 @@ public class AccountActions {
 	private String backUrlSelf;
 	private String shipNowUrl;
 	private String editDetailsUrl;
-	private String signupPrivacyMessage;
 	private String signupEmailPrivacyMessage;
 	private String signupTCMessage;
 	private String shipNowMessage;
@@ -78,7 +77,6 @@ public class AccountActions {
 			ValueMap properties = pageUtilServiceImpl.getPageProperties(home);
 
 			if (!properties.isEmpty()) {
-				signupPrivacyMessage = properties.get("signupprivacymessage", "");
 				signupEmailPrivacyMessage = properties.get("signupemailprivacymessage", "");
 				signupTCMessage = properties.get("signuptcmessage", "");
 
