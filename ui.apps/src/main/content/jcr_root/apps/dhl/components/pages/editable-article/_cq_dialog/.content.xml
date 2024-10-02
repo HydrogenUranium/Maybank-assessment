@@ -171,13 +171,6 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
                                                 fieldLabel="'Custom' Publish Date"
                                                 name="./custompublishdate"/>
-                                            <customstyles
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/textarea"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Custom style(s)"
-                                                name="./customstyles"
-                                                required="{Boolean}false"/>
                                         </items>
                                     </dhl>
                                     <dhlsocial

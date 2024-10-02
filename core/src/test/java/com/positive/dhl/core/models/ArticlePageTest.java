@@ -145,10 +145,6 @@ class ArticlePageTest {
 
 	private void testArticlePage(ArticlePage articlePage) {
 		assertNotNull(articlePage);
-		assertEquals("", articlePage.getCustomStyles());
-
-		articlePage.setCustomStyles("c");
-		assertEquals("c", articlePage.getCustomStyles());
 
 		assertEquals("Share on", articlePage.getShareOn());
 		assertEquals("Share", articlePage.getSmartShareButtonsLabel());
