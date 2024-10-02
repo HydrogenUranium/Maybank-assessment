@@ -16,6 +16,10 @@ import java.util.List;
 
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
 
+/**
+ * @deprecated (will be removed together with old footer)
+ */
+@Deprecated
 @Model(adaptables=SlingHttpServletRequest.class)
 public class Footer {
 	@Inject

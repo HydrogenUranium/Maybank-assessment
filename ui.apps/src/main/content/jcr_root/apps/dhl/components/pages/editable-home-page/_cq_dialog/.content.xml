@@ -28,73 +28,18 @@
                                                     useFixedInlineToolbar="{Boolean}true"
                                                     fieldLabel="Sign-up email-address 'privacy/usage' message"
                                                     name="./signupemailprivacymessage"/>
-
                                             <signuptcmessage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                     useFixedInlineToolbar="{Boolean}true"
                                                     fieldLabel="Sign-up 'terms and conditions' message"
                                                     name="./signuptcmessage"/>
-
                                             <shipnowmessage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                     useFixedInlineToolbar="{Boolean}true"
                                                     fieldLabel="'Ship now' overlay message"
                                                     name="./shipnowmessage"/>
-
-                                            <absolutefooterleft
-                                                    jcr:primaryType="nt:unstructured"
-                                                    name="./absolutefooterleft"
-                                                    fieldLabel="Absolute footer (left)"
-                                                    fieldDescription="Click + to add new item"
-                                                    composite="{Boolean}true"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
-
-                                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                       jcr:primaryType="nt:unstructured"
-                                                       name="./absolutefooterleftitems">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <title
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Title"
-                                                                name="./title"/>
-                                                        <url
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Url"
-                                                                name="./url"/>
-                                                    </items>
-                                                </field>
-                                            </absolutefooterleft>
-
-                                            <absolutefooterright
-                                                    jcr:primaryType="nt:unstructured"
-                                                    name="./absolutefooterright"
-                                                    fieldLabel="Absolute footer (right)"
-                                                    fieldDescription="Click + to add new item"
-                                                    composite="{Boolean}true"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
-
-                                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                       jcr:primaryType="nt:unstructured"
-                                                       name="./absolutefooterrightitems">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <title
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Title"
-                                                                name="./title"/>
-                                                        <url
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Url"
-                                                                name="./url"/>
-                                                    </items>
-                                                </field>
-                                            </absolutefooterright>
-
                                             <interestchannels
                                                     jcr:primaryType="nt:unstructured"
                                                     name="./interestchannels"

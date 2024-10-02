@@ -18,9 +18,9 @@ import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 
 /**
- *
+ * @deprecated (will be removed together with old footer)
  */
-@Model(adaptables=SlingHttpServletRequest.class)
+@Deprecated@Model(adaptables=SlingHttpServletRequest.class)
 public class FooterAbsolute {
 	@Inject
 	private Page currentPage;
