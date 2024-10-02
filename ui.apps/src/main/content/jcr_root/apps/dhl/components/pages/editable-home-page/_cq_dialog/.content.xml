@@ -12,6 +12,24 @@
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
+                                    <dhlcommon
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="DHL Common Page Properties"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <hideNavigationMenu
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="If checked the nav bar will be hidden."
+                                                    text="Hide Navigation Menu"
+                                                    value="true"
+                                                    name="./hideNavigationMenu">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cq-msm-lockable="./hideNavigationMenu"/>
+                                            </hideNavigationMenu>
+                                        </items>
+                                    </dhlcommon>
                                     <dhl
                                             jcr:primaryType="nt:unstructured"
                                             jcr:title="DHL Homepage properties"
@@ -42,17 +60,6 @@
                                                     name="./shipnowmessage"/>
                                         </items>
                                     </dhl>
-                                </items>
-                            </column>
-                        </items>
-                    </dhl>
-                    <dhlpages jcr:primaryType="nt:unstructured" jcr:title="DHL Special Page Settings" sling:resourceType="granite/ui/components/foundation/section">
-                        <layout jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" margin="{Boolean}false"/>
-                        <items jcr:primaryType="nt:unstructured">
-                            <column
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/container">
-                                <items jcr:primaryType="nt:unstructured">
                                     <dhlpagesettings
                                             jcr:primaryType="nt:unstructured"
                                             jcr:title="Special Page Settings"
@@ -68,10 +75,23 @@
                                                     required="{Boolean}true"/>
                                         </items>
                                     </dhlpagesettings>
+                                    <dhlcrmsettings
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="CRM Preferences"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <downloadmarketo
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                                    name="./downloadmarketo"
+                                                    text="'Gated download' forms submit to Marketo"
+                                                    value="true"/>
+                                        </items>
+                                    </dhlcrmsettings>
                                 </items>
                             </column>
                         </items>
-                    </dhlpages>
+                    </dhl>
                     <dhllanguages jcr:primaryType="nt:unstructured" jcr:title="DHL Site Regions" sling:resourceType="granite/ui/components/foundation/section">
                         <layout jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" margin="{Boolean}false"/>
                         <items jcr:primaryType="nt:unstructured">
@@ -175,31 +195,7 @@
                             </column>
                         </items>
                     </dhllanguages>
-                    <dhlcrm jcr:primaryType="nt:unstructured" jcr:title="DHL CRM Settings" sling:resourceType="granite/ui/components/foundation/section">
-                        <layout jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" margin="{Boolean}false"/>
-                        <items jcr:primaryType="nt:unstructured">
-                            <column
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/container">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <dhlcrmsettings
-                                            jcr:primaryType="nt:unstructured"
-                                            jcr:title="CRM Preferences"
-                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <downloadmarketo
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                    name="./downloadmarketo"
-                                                    text="'Gated download' forms submit to Marketo"
-                                                    value="true"/>
-                                        </items>
-                                    </dhlcrmsettings>
-                                </items>
-                            </column>
-                        </items>
-                    </dhlcrm>
-                    <components jcr:primaryType="nt:unstructured" jcr:title="Common Components Configuration"
+                    <components jcr:primaryType="nt:unstructured" jcr:title="DHL Common Components Configuration"
                                 sling:resourceType="granite/ui/components/foundation/section">
                         <layout jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
