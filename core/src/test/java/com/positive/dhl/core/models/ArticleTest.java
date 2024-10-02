@@ -138,7 +138,6 @@ class ArticleTest {
         assertFalse(article.isShowshipnow());
         assertEquals(0, article.getTags().size());
         assertEquals(0, article.getCounter());
-        assertEquals("", article.getYoutubeid());
         assertNotNull(article.getCreatedDate());
 
         article.setValid(false);

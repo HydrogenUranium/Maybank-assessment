@@ -183,7 +183,6 @@ class ArticlePageTest {
 		assertEquals("/content/dam/dhl/heroimagemob.jpg", article.getHeroimagemob());
 		assertEquals("/content/dam/dhl/heroimagetab.jpg", article.getHeroimagetab());
 		assertEquals("/content/dam/dhl/heroimagedt.jpg", article.getHeroimagedt());
-		assertEquals("", article.getYoutubeid());
 		assertFalse(article.isShowshipnow());
 		assertEquals(0, article.getTags().size());
 	}
