@@ -135,7 +135,6 @@ class ArticleTest {
 
     private void checkGettersAndSetters(Article article) {
         assertTrue(article.isValid());
-        assertFalse(article.isShowshipnow());
         assertEquals(0, article.getTags().size());
         assertEquals(0, article.getCounter());
         assertNotNull(article.getCreatedDate());

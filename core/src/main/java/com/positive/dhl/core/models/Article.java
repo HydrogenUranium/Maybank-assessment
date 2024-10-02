@@ -119,7 +119,6 @@ public class Article {
     private String heroimagedt;
     private String heroimageAltText;
 
-    private boolean showshipnow;
     private List<TagWrapper> tags;
     @Expose
     private List<String> tagsToShow = new ArrayList<>();
@@ -219,8 +218,6 @@ public class Article {
         readtime = valueMap.get("jcr:content/readtime", "");
         author = valueMap.get("jcr:content/author", "");
         authortitle = valueMap.get("jcr:content/authortitle", "");
-
-        showshipnow = valueMap.get("jcr:content/showshipnow", false);
 
         counter = valueMap.get("jcr:content/counter", 0);
 
