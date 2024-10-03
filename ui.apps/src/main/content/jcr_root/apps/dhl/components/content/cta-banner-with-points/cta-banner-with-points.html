@@ -1,4 +1,5 @@
 <sly data-sly-use.model="com.positive.dhl.core.models.CtaBannerWithPoints"
+     data-sly-use.analytics="com.positive.dhl.core.models.TrackableComponent"
      data-sly-test.isEmpty=${model.points.empty}></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
@@ -20,7 +21,7 @@
             <ul class="banner__body__list ${model.points.size > 2 ? 'banner__body__list--columns' : ''}">
                 <li class="banner__body__list__item" data-sly-repeat="${model.points}">${item}</li>
             </ul>
-            <a class="banner__body__button" href="${model.buttonLink}" title="${model.buttonName}">
+            <a class="banner__body__button" data-sly-attribute.data-analytics="${analytics.json}" href="${model.buttonLink}" title="${model.buttonName}">
                 <span>${model.buttonName}</span>
             </a>
         </div>
