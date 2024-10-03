@@ -20,7 +20,8 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 /**
  * @deprecated (will be removed together with old footer)
  */
-@Deprecated@Model(adaptables=SlingHttpServletRequest.class)
+@Deprecated(since = "2.1", forRemoval = true)
+@Model(adaptables=SlingHttpServletRequest.class)
 public class FooterAbsolute {
 	@Inject
 	private Page currentPage;

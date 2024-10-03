@@ -19,7 +19,7 @@ import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAM
 /**
  * @deprecated (will be removed together with old footer)
  */
-@Deprecated
+@Deprecated(since = "2.1", forRemoval = true)
 @Model(adaptables=SlingHttpServletRequest.class)
 public class Footer {
 	@Inject

@@ -14,7 +14,7 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 /**
  * @deprecated (will be removed together with old header)
  */
-@Deprecated
+@Deprecated(since = "2.1", forRemoval = true)
 @Model(adaptables=SlingHttpServletRequest.class)
 public class MeganavBanner {
 	@Inject
