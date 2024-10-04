@@ -18,6 +18,18 @@
       font-size: 28px;
       line-height: 35px;
     }
+    p, li {
+      font-size: 20px;
+      line-height: 25px;
+      @include respond(md) {
+        font-size: 25px;
+        line-height: 30px;
+      }
+      @include respond(xl) {
+        font-size: 28px;
+        line-height: 35px;
+      }
+    }
   }
 
   &_medium-text {
@@ -33,6 +45,20 @@
       font-size: 20px;
       line-height: 25px;
     }
+     p, li {
+      font-size: 18px;
+      line-height: 22px;
+
+      @include respond(md) {
+        font-size: 20px;
+        line-height: 25px;
+      }
+
+      @include respond(xl) {
+        font-size: 20px;
+        line-height: 25px;
+      }
+    }
   }
 
   .callout-box-body {
@@ -40,6 +66,10 @@
     position: relative;
     font-weight: bold;
     color: black;
+
+    p, li {
+     font-weight: bold;
+    }
 
     &__text {
       position: relative;
