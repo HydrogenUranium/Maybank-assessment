@@ -108,6 +108,7 @@ public class DhlPage {
 		ogtagimage = StringUtils.isNotBlank(customOgTagImage)
 				? (HTTPS_PREFIX + akamaiHostname + assetprefix).concat(customOgTagImage.trim())
 				: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
+
 	}
 
 	private String getRobotTags(Page page) {
