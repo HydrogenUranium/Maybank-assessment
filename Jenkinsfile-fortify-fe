@@ -1,0 +1,54 @@
+pipeline {
+    agent {
+        node {
+            label 'fortify_agent'
+        }
+    }
+
+    environment {
+        ARTIFACTORY = credentials('discover_artifactory_user')
+    }
+
+    tools {
+        maven 'Maven 3.6.3'
+        jdk 'JDK11'
+    }
+
+    options {
+        disableConcurrentBuilds()
+        timestamps()
+        ansiColor('xterm')
+    }
+
+    stages {
+        stage('SCM Checkout') {
+            steps{
+                checkout scm
+            }
+        }
+
+        stage('Fortify Full ASG Scan'){
+            steps {
+                script {
+                    try {
+                        sh '''
+                            export EXCLUDE=file1:**/*.java
+                            /home/ci/FortifyScan.sh
+                            /home/ci/FortifyASG.sh 391702056
+                        '''
+                    } catch (err) {
+                        unstable(message: "${STAGE_NAME} is unstable; underlying error was... ${err}")
+                    }
+                }
+            }
+        }
+
+        stage('Archive artifacts'){
+            steps {
+                script {
+                    archiveArtifacts artifacts: 'issue.txt,issue.csv', allowEmptyArchive: true
+                }
+            }
+        }
+    }
+}
