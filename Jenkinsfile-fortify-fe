@@ -32,7 +32,7 @@ pipeline {
                 script {
                     try {
                         sh '''
-                            export EXCLUDE=file1:**/*.java
+                            export EXCLUDE=file1:**/*.java:**/*.xml
                             /home/ci/FortifyScan.sh
                             /home/ci/FortifyASG.sh 391702056
                         '''
