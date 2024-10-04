@@ -107,6 +107,7 @@ public class DhlPage {
 		String customOgTagImage = properties.get("ogtagimage", pageImage);
 		ogtagimage = StringUtils.isNotBlank(customOgTagImage)
 				? (HTTPS_PREFIX + akamaiHostname + assetprefix).concat(customOgTagImage.trim())
+
 				: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
 	}
 
