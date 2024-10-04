@@ -50,6 +50,7 @@ class HeroBannerTest {
     private void initRequest(String path) {
         request.setPathInfo(path);
         request.setResource(resourceResolver.getResource(path));
+        context.currentResource(resourceResolver.getResource(path));
     }
 
     @Test
@@ -71,6 +72,8 @@ class HeroBannerTest {
         assertTrue(heroBanner.isInheritImage());
         assertTrue(heroBanner.isKeyTakeaways());
         assertTrue(heroBanner.isRoundedCorners());
+        assertEquals("Key Takeaways", heroBanner.getTitle());
+        assertTrue(heroBanner.isEnableAssetDelivery());
     }
 
     @Test

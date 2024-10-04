@@ -3,6 +3,7 @@ package com.positive.dhl.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 import com.positive.dhl.core.services.AssetUtilService;
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -27,13 +28,16 @@ public class HeroBanner {
 
     @OSGiService
     @Required
+    @Getter(AccessLevel.NONE)
     private AssetUtilService assetUtilService;
 
-    @ValueMapValue
+    @ScriptVariable
     @Required
+    @Getter(AccessLevel.NONE)
     private Page currentPage;
 
     @ScriptVariable
+    @Getter(AccessLevel.NONE)
     protected Style currentStyle;
 
     @ValueMapValue
@@ -41,6 +45,7 @@ public class HeroBanner {
 
     @ChildResource
     @Named("summaryPoints")
+    @Getter(AccessLevel.NONE)
     private Resource pointsMultifield;
 
     private final List<String> points = new ArrayList<>();
