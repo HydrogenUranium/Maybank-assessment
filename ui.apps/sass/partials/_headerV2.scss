@@ -128,7 +128,7 @@
             padding: 0 10px 5px;
             z-index: 22;
             right: 0;
-            width: 212px;
+            width: 205px;
             max-height: 0;
             overflow-y: auto;
             overflow-x: hidden;
@@ -138,6 +138,7 @@
             transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
 
             @include respond(md) {
+              width: 212px;
               transition: none;
             }
 
