@@ -1,9 +1,12 @@
-.callout-box-component {
+.callout-box {
   margin-top: 30px;
-  overflow: hidden;
   @include respond(xl) {
     margin-top: 50px;
   }
+}
+
+.cmp-callout-box {
+  overflow: hidden;
   &_large-text {
     font-size: 20px;
     line-height: 25px;
@@ -32,7 +35,7 @@
     }
   }
 
-  .callout-box {
+  .callout-box-body {
     z-index: 1;
     position: relative;
     font-weight: bold;

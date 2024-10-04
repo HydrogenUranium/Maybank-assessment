@@ -124,3 +124,66 @@
   margin: 0 0 40px 0;
   border-bottom: 1px solid map-get($map: $palette, $key: border-grey);
 }
+
+:root {
+  /* Mobile Margins */
+  --margin-zero: 0;
+  --margin-small: 1rem;   /* 16px */
+  --margin-medium: 1rem;    /* 16px */
+  --margin-large: 1.5rem;   /* 24px */
+}
+
+@include respond(md) {
+  /* Tablet Margins */
+  :root {
+    --margin-medium: 1.5rem;  /* 24px */
+    --margin-large: 2rem;     /* 32px */
+  }
+}
+
+@include respond(xl) {
+  /* Desktop Margins */
+  :root {
+    --margin-small: 1.5rem;     /* 24px */
+    --margin-medium: 2rem;    /* 32px */
+    --margin-large: 3rem;     /* 48px */
+  }
+}
+
+/* Top Margins */
+.aem-GridColumn .mt {
+  &-zero {
+    margin-top: var(--margin-zero);
+  }
+
+  &-small {
+    margin-top: var(--margin-small);
+  }
+
+  &-medium {
+    margin-top: var(--margin-medium);
+  }
+
+  &-large {
+    margin-top: var(--margin-large);
+  }
+}
+
+/* Bottom Margins */
+.aem-GridColumn .mb {
+  &-zero {
+    margin-bottom: var(--margin-zero);
+  }
+
+  &-small {
+    margin-bottom: var(--margin-small);
+  }
+
+  &-medium {
+     margin-bottom: var(--margin-medium);
+  }
+
+  &-large {
+    margin-bottom: var(--margin-large);
+  }
+}
