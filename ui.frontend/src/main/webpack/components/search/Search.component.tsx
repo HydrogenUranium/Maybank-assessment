@@ -186,7 +186,6 @@ export const Search: React.FC<SearchProps> = ({
       : descriptionFormatNoResults || descriptionFormat;
   
     const sanitizedQuery = DOMPurify.sanitize(articlesQuery);
-
     return format(descriptionFormatToUse, sanitizedQuery, limit, sortedSearchRows.length);
   };
 
