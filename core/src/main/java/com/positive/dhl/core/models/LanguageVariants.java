@@ -165,30 +165,39 @@ public class LanguageVariants {
 	public List<LinkVariant> getAllLanguageVariants() {
 		if (allLanguageVariants == null) {
 			allLanguageVariants = new ArrayList<>();
-	
+
 			for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
-				var found = false;
-				LanguageVariant first = null;
-				for (LanguageVariant variant: entry.getValue()) {
-					if (variant.isDeflt()) {
-						found = true;
-						allLanguageVariants.add(new LinkVariant(entry.getKey(), variant.getLink(), variant.getHome()));
-						break;
-					}
-					
-					if (first == null) {
-						first = variant;
-					}
-				}
-				
-				if ((!found) && (first != null)) {
-					allLanguageVariants.add(new LinkVariant(entry.getKey(), first.getLink(), first.getHome()));
-				}
+				includeAllLanguageVariants(entry, allLanguageVariants);
 			}
 		}
-		
+
 		allLanguageVariants.sort(new LanguageVariantNameSorter());
 		return new ArrayList<>(allLanguageVariants);
+	}
+
+	/**
+	 * changed to reduce its Cognitive Complexity from 18 to the 15 allowed - DIS-883
+	 * @param entry
+	 * @param allLanguageVariants
+	 */
+	private void includeAllLanguageVariants(Entry<String, ArrayList<LanguageVariant>> entry, List<LinkVariant> allLanguageVariants) {
+		boolean found = false;
+		LanguageVariant first = null;
+		for (LanguageVariant variant: entry.getValue()) {
+			if (variant.isDeflt()) {
+				found = true;
+				allLanguageVariants.add(new LinkVariant(entry.getKey(), variant.getLink(), variant.getHome()));
+				break;
+			}
+
+			if (first == null) {
+				first = variant;
+			}
+		}
+
+		if ((!found) && (first != null)) {
+			allLanguageVariants.add(new LinkVariant(entry.getKey(), first.getLink(), first.getHome()));
+		}
 	}
 	
 	/**
