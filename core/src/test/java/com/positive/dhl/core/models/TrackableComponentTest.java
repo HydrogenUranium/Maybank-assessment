@@ -17,7 +17,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class TrackableComponentTest {
-
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
     @Mock
