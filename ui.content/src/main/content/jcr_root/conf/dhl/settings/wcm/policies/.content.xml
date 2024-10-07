@@ -1210,17 +1210,17 @@
                                     <item0
                                             cq:styleClasses="justify-start"
                                             cq:styleId="1728294310705"
-                                            cq:styleLabel="left"
+                                            cq:styleLabel="Left"
                                             jcr:primaryType="nt:unstructured"/>
                                     <item1
                                             cq:styleClasses="justify-center"
                                             cq:styleId="1728294318486"
-                                            cq:styleLabel="center"
+                                            cq:styleLabel="Center"
                                             jcr:primaryType="nt:unstructured"/>
                                     <item2
                                             cq:styleClasses="justify-end"
                                             cq:styleId="1728294322297"
-                                            cq:styleLabel="right"
+                                            cq:styleLabel="Right"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
                             </item0>
