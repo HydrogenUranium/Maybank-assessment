@@ -298,4 +298,11 @@ public class LanguageVariants {
 			currentRegionCode = countryCode;
 		}
 	}
+
+	public Map<String, String> getSpecificCountries() {
+		return Map.of(
+				"tw","Taiwan",
+				"hk","Hong Kong",
+				"mo", "Macau");
+	}
 }

@@ -15,7 +15,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         author,
         createdfriendly,
         description,
-        listimage,
+        pageImage,
         groupTag,
         path,
         tagsToShow,
@@ -26,7 +26,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         <a tabIndex={-1}
             href={path}
             className={styles.articleCardImage}
-            style={{ backgroundImage: `url(${listimage})` }}>
+            style={{ backgroundImage: `url(${pageImage})` }}>
             <div className={styles.articleCardImageGroupTag}>{groupTag}</div>
         </a>
         <div className={styles.articleCardInfo}>

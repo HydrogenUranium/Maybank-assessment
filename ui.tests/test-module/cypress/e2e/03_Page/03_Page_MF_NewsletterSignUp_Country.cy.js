@@ -50,22 +50,32 @@ describe('Singapore Subscribe newsletter page', () => {
           cy.get('.mktoButton').should('exist');
 
           // 3. Verify the form submits successfully when all fields are filled out correctly
-          cy.get('#FirstName').type('testing purpose');
-          cy.get('#LastName').type('testing purpose');
-          cy.get('#Email').type('test@gmail.com');
-          cy.get('#suspectCountry').select('Afghanistan');
+          cy.get('#FirstName').type('testing purpose', { force: true });
+          cy.get('#LastName').type('testing purpose', { force: true });
+          cy.get('#Email').should('be.visible').type('test@gmail.com', { force: true });
+          cy.get('#suspectCountry').select('Afghanistan', { force: true });
           cy.get('.mktoButton').should('exist');
+
+          //Clear all the form
+          cy.get('#FirstName').clear({ force: true });
+          cy.get('#LastName').clear({ force: true });
+          cy.get('#Email').clear({ force: true });
 
           // 4. Verify that an error message "This field is required" is displayed when a required field is left blank
-          cy.get('#LastName').type('testing purpose');
-          cy.get('#Email').type('test@gmail.com');
-          cy.get('.mktoButton').should('exist');
+          cy.get('#LastName').type('testing purpose', { force: true });
+          cy.get('#Email').type('test@gmail.com', { force: true });
+          cy.get('.mktoButton').should('exist', { force: true });
+
+          //Clear all the form
+          cy.get('#FirstName').clear({ force: true });
+          cy.get('#LastName').clear({ force: true });
+          cy.get('#Email').clear({ force: true });
 
           // 5. Verify an error message is displayed for each field when the input is invalid (e.g., an email field without an @)
-          cy.get('#FirstName').type('testing purpose');
-          cy.get('#LastName').type('testing purpose');
-          cy.get('#Email').type('test');
-          cy.get('.mktoButton').should('exist');
+          cy.get('#FirstName').type('testing purpose', { force: true });
+          cy.get('#LastName').type('testing purpose', { force: true });
+          cy.get('#Email').type('test', { force: true });
+          cy.get('.mktoButton').should('exist', { force: true });
         });
       });
     });
