@@ -23,7 +23,7 @@ pipeline {
 
         }
 
-		/*stage('Fortify ASG Scan') {
+		stage('Fortify ASG Scan') {
 	        agent {
                  label 'fortify_agent'
             }
@@ -40,7 +40,7 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
 
 
          /*stage('Fortify ASG, Sonar Scan'){
