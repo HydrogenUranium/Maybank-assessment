@@ -9,14 +9,16 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
-<div class="cmp-callout-box cmp-callout-box_${textSize}-text" data-sly-test="${!isEmpty}">
+<div id="${properties.id}" class="cmp-callout-box cmp-callout-box_${textSize}-text" data-sly-test="${!isEmpty}">
   <div class="callout-box-body callout-box-body_rounded callout-box-body_rounded_${roundedColor}"
        data-sly-test="${style == 'rounded'}">
     <div class="top-right-border"></div>
     <div class="bottom-left-border"></div>
     <div class="background"></div>
     <div class="callout-border"></div>
-    <div class="callout-box-body__text">${text}</div>
+    <div class="callout-box-body__text">
+      ${text @ context ='html'}
+    </div>
   </div>
   <div class="callout-box-body callout-box-body_spiked callout-box-body_spiked_${spikedColor}"
        data-sly-test="${style == 'spiked'}">
@@ -26,6 +28,8 @@
     <div class="bottom-short-line"></div>
     <div class="right-bottom-circle"></div>
     <div class="background"></div>
-    <div class="callout-box-body__text">${text}</div>
+    <div class="callout-box-body__text">
+      ${text @ context ='html'}
+    </div>
   </div>
 </div>
