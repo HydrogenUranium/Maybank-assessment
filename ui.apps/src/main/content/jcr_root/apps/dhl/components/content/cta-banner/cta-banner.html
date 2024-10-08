@@ -1,4 +1,5 @@
 <sly data-sly-use.model="com.positive.dhl.core.models.CtaBanner"
+     data-sly-use.analytics="com.positive.dhl.core.models.TrackableComponent"
      data-sly-set.isEmpty="${!model.title || model.disabled}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
@@ -7,7 +8,7 @@
         <div class="banner__body">
             <div class="banner__body__top-title">${model.topTitle}</div>
             <div class="banner__body__title">${model.title}</div>
-            <a data-sly-attribute.data-analytics="${model.analyticsConfigJson}" href="${model.buttonLink}" class="banner__body__button">${model.buttonName}</a>
+            <a data-sly-attribute.data-analytics="${analytics.json}" href="${model.buttonLink}" class="banner__body__button">${model.buttonName}</a>
         </div>
         <div class="banner__image" id="${model.id}">
             <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
