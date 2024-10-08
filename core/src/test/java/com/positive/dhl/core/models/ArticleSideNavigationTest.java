@@ -161,7 +161,6 @@ class ArticleSideNavigationTest {
         articleSourceProperties.put("heroimagedt", "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Desktop_1920x918.jpg");
         articleSourceProperties.put("readtime", "10 min read");
         articleSourceProperties.put("author", "Tomas H.");
-        articleSourceProperties.put("showshipnow", false);
 
         Page articlePage = ctx.pageManager().getPage("/content/dhl/en-global/business/entrepreneurship/the-ten-minute-startup-guide");
         if (null == articlePage) {
