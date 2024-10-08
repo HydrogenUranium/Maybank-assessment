@@ -1071,10 +1071,31 @@
                         <rtePlugins jcr:primaryType="nt:unstructured">
                             <paraformat
                                     jcr:primaryType="nt:unstructured"
-                                    features="-">
+                                    features="*">
                                 <formats
                                         jcr:primaryType="nt:unstructured"
-                                        override="true"/>
+                                        override="true">
+                                    <item0
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Paragraph"
+                                            tag="p"/>
+                                    <item1
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 1"
+                                            tag="h1"/>
+                                    <item2
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 2"
+                                            tag="h2"/>
+                                    <item3
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 3"
+                                            tag="h3"/>
+                                    <item4
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 4"
+                                            tag="h4"/>
+                                </formats>
                             </paraformat>
                             <misctools
                                     jcr:primaryType="nt:unstructured"
@@ -1108,10 +1129,10 @@
                                     features="*"/>
                             <justify
                                     jcr:primaryType="nt:unstructured"
-                                    features="-"/>
+                                    features="*"/>
                             <format
                                     jcr:primaryType="nt:unstructured"
-                                    features="bold,italic"/>
+                                    features="bold,italic,underline"/>
                             <links
                                     jcr:primaryType="nt:unstructured"
                                     features="modifylink,unlink,anchor"/>
