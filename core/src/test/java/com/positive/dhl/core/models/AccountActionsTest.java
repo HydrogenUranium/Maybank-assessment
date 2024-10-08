@@ -63,13 +63,8 @@ class AccountActionsTest {
 
         assertEquals("/content/dhl/country/en", accountActions.getBackUrl());
         assertEquals("/content/dhl/country/en/culture/dhl-mo-salah.html", accountActions.getBackUrlSelf());
-        assertEquals("/content/dhl/ship-now.html", accountActions.getShipNowUrl());
         assertEquals("/content/dhl/your-account.html", accountActions.getEditDetailsUrl());
-        assertEquals("<p><a></a><a>Sign up for your Discover DHL account and get a regular downloadable hit of insider articles, white papers, industry expertise and more from all around the world.</a></p>\r\n" +
-        		"", accountActions.getSignupMessage());
-        assertEquals("<p>Don't worry. We'll never post on your behalf. To learn more about how we protect your privacy, please read our <a href=\"/content/dhl/privacy.html\" target=\"_self\">Privacy Notice.</a></p>\r\n" + 
-        		"", accountActions.getSignupPrivacyMessage());
-        assertEquals("<p>Please read our <a href=\"/content/dhl/privacy.html\" target=\"_blank\" title=\"Privacy Notice\">Privacy Notice</a> to find out how your email will be used.<br />\r\n" + 
+        assertEquals("<p>Please read our <a href=\"/content/dhl/privacy.html\" target=\"_blank\" title=\"Privacy Notice\">Privacy Notice</a> to find out how your email will be used.<br />\r\n" +
         		"</p>\r\n" + 
         		"", accountActions.getSignupEmailPrivacyMessage());
         assertEquals("<p>Yes, I would like to receive emails with information and offers from DHL, and can withdraw this consent at any time. </p>\r\n" + 
@@ -80,10 +75,7 @@ class AccountActionsTest {
 
 		accountActions.setBackUrl("");
 		accountActions.setBackUrlSelf("");
-		accountActions.setShipNowUrl("");
 		accountActions.setEditDetailsUrl("");
-		accountActions.setSignupMessage("");
-		accountActions.setSignupPrivacyMessage("");
 		accountActions.setSignupEmailPrivacyMessage("");
 		accountActions.setSignupTCMessage("");
 		accountActions.setShipNowMessage("");
@@ -91,10 +83,7 @@ class AccountActionsTest {
 
         assertEquals("", accountActions.getBackUrl());
         assertEquals("", accountActions.getBackUrlSelf());
-        assertEquals("", accountActions.getShipNowUrl());
         assertEquals("", accountActions.getEditDetailsUrl());
-        assertEquals("", accountActions.getSignupMessage());
-        assertEquals("", accountActions.getSignupPrivacyMessage());
         assertEquals("", accountActions.getSignupEmailPrivacyMessage());
         assertEquals("", accountActions.getSignupTCMessage());
         assertEquals("", accountActions.getShipNowMessage());
