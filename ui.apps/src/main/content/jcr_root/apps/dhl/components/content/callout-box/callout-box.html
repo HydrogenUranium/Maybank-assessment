@@ -9,16 +9,16 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
-<div class="callout-box-component callout-box-component_${textSize}-text" data-sly-test="${!isEmpty}">
-  <div class="callout-box callout-box_rounded callout-box_rounded_${roundedColor}"
+<div class="cmp-callout-box cmp-callout-box_${textSize}-text" data-sly-test="${!isEmpty}">
+  <div class="callout-box-body callout-box-body_rounded callout-box-body_rounded_${roundedColor}"
        data-sly-test="${style == 'rounded'}">
     <div class="top-right-border"></div>
     <div class="bottom-left-border"></div>
     <div class="background"></div>
     <div class="callout-border"></div>
-    <div class="callout-box__text">${text}</div>
+    <div class="callout-box-body__text">${text}</div>
   </div>
-  <div class="callout-box callout-box_spiked callout-box_spiked_${spikedColor}"
+  <div class="callout-box-body callout-box-body_spiked callout-box-body_spiked_${spikedColor}"
        data-sly-test="${style == 'spiked'}">
     <div class="top-left-line"></div>
     <div class="left-curve"></div>
@@ -26,6 +26,6 @@
     <div class="bottom-short-line"></div>
     <div class="right-bottom-circle"></div>
     <div class="background"></div>
-    <div class="callout-box__text">${text}</div>
+    <div class="callout-box-body__text">${text}</div>
   </div>
 </div>
