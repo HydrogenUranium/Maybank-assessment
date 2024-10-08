@@ -41,7 +41,7 @@ public class InjectorMock {
 
         lenient().when(injector.getValue(any(), anyString(), any(), any(), any())).thenReturn(null);
         when(injector.getName()).thenReturn(injectorName);
-        map.forEach((name, value) -> when(injector.getValue(any(), eq(name), any(), any(), any())).thenReturn(value));
+        map.forEach((name, value) -> lenient().when(injector.getValue(any(), eq(name), any(), any(), any())).thenReturn(value));
         context.registerService(Injector.class, injector);
     }
 }

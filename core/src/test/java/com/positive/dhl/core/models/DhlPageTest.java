@@ -46,7 +46,7 @@ class DhlPageTest {
 	    ctx.addModelsForClasses(DhlPage.class);
 		mockInjectHomeProperty(ctx, Map.of(
 				"gtmtrackingid", "gmt-tracking-id",
-				"pathprefix", "/discover",
+				"assetprefix", "/discover",
 				"direction", "rtl"
 		));
 
@@ -67,7 +67,7 @@ class DhlPageTest {
 		assertEquals("/content/dhl/business/finding-new-customers/The-subscription-economy/The-Subscription-Economy", dhlPage.getAmparticlepath());
 		assertEquals("", dhlPage.getFullarticlepath());
 		assertEquals("gmt-tracking-id", dhlPage.getGtmtrackingid());
-		assertEquals("/discover", dhlPage.getPathprefix());
+		assertEquals("/discover", dhlPage.getAssetprefix());
 		assertEquals("rtl", dhlPage.getDirection());
 		assertEquals("", dhlPage.getRobotsTags());
 		assertEquals("https://www.dhl.com/discover/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg", dhlPage.getOgtagimage());
