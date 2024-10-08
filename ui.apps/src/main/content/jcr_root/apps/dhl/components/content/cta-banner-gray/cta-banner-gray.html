@@ -1,4 +1,5 @@
 <sly data-sly-use.model="com.positive.dhl.core.models.CtaBannerGray"
+     data-sly-use.analytics="com.positive.dhl.core.models.TrackableComponent"
         data-sly-set.isEmpty="${!model.buttonLabel || !model.description || !model.title}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
@@ -7,7 +8,7 @@
     <b class="title">${model.title}</b>
     <p class="description">${model.description}</p>
     <div class="cta">
-        <a class="cta__button" href="${model.buttonLink}" title="${model.buttonLabel}" target="${model.linkTarget}">
+        <a class="cta__button" data-sly-attribute.data-analytics="${analytics.json}" href="${model.buttonLink}" title="${model.buttonLabel}" target="${model.linkTarget}">
             <span>${model.buttonLabel}</span>
         </a>
     </div>

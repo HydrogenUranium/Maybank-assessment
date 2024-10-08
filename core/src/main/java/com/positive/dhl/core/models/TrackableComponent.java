@@ -1,20 +1,21 @@
-package com.positive.dhl.core.models.common;
+package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.components.Component;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
+import com.positive.dhl.core.models.common.AnalyticsConfig;
 import lombok.Getter;
-import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
-/**
- *   The model that extends TrackableAbstract should be adaptable from Resource and SlingHttpServletRequest.
- *   Model(adaptables = {Resource.class, SlingHttpServletRequest.class})
- */
-public abstract class TrackableAbstract {
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
+public class TrackableComponent {
 
     @InjectHomeProperty
     @Named("eventTrackingComponents-enableAnalytics")
@@ -24,11 +25,10 @@ public abstract class TrackableAbstract {
     private Component component;
 
     @ChildResource
-    @Optional
     @Getter
     private AnalyticsConfig analytics;
 
-    public String getAnalyticsConfigJson() {
+    public String getJson() {
         return analytics == null ? null : analytics.getJson();
     }
 
