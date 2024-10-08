@@ -187,3 +187,18 @@
     margin-bottom: var(--margin-large);
   }
 }
+
+.justify-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.justify-start {
+  display: flex;
+  justify-content: flex-start;
+}

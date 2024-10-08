@@ -1196,6 +1196,37 @@
                         </cq:styleGroups>
                     </policy_callout-box>
                 </callout-box>
+                <button jcr:primaryType="nt:unstructured">
+                    <policy_button
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Button Policy"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Alignment"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="justify-start"
+                                            cq:styleId="1728294310705"
+                                            cq:styleLabel="Left"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="justify-center"
+                                            cq:styleId="1728294318486"
+                                            cq:styleLabel="Center"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="justify-end"
+                                            cq:styleId="1728294322297"
+                                            cq:styleLabel="Right"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                        </cq:styleGroups>
+                    </policy_button>
+                </button>
             </content>
         </components>
     </dhl>
