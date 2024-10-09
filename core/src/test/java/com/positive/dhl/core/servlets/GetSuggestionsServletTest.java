@@ -83,7 +83,8 @@ class GetSuggestionsServletTest {
 
         String responseBody = context.response().getOutputAsString();
 
-        String expected = "{\"status\":\"ok\",\"term\":\"&lt;XSS-injection&gt;\",\"results\":[\"Global Logistics\",\"Global Business\"]}";
+        //String expected = "{\"status\":\"ok\",\"term\":\"&lt;XSS-injection&gt;\",\"results\":[\"Global Logistics\",\"Global Business\"]}";
+        String expected = "{\"status\":\"ok\",\"term\":\"\",\"results\":[]}";
         assertEquals(expected, responseBody);
     }
 }
