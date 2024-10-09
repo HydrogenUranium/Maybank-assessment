@@ -302,39 +302,9 @@
       <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1point1" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1point2" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1point3" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1point4" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner1urltitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2point1" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2point2" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2point3" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2point4" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="contentbanner2urltitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="cookiemessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannerpoint1" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannerpoint2" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannerpoint3" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannerpoint4" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannersubtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannertitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="meganavbannerurltitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="shipnowmessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signupemailprivacymessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="signupmessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="signupprivacymessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signuptcmessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner1subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner1title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner1urltitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner2subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner2title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="topbanner2urltitle" translate="true" updateDestinationLanguage="false"/>
 
       <property inherit="true" name="header-buttonName" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="header-signInLabel" translate="true" updateDestinationLanguage="false"/>

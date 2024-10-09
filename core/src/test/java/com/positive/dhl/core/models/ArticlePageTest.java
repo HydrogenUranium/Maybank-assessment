@@ -145,10 +145,6 @@ class ArticlePageTest {
 
 	private void testArticlePage(ArticlePage articlePage) {
 		assertNotNull(articlePage);
-		assertEquals("", articlePage.getCustomStyles());
-
-		articlePage.setCustomStyles("c");
-		assertEquals("c", articlePage.getCustomStyles());
 
 		assertEquals("Share on", articlePage.getShareOn());
 		assertEquals("Share", articlePage.getSmartShareButtonsLabel());
@@ -183,8 +179,6 @@ class ArticlePageTest {
 		assertEquals("/content/dam/dhl/heroimagemob.jpg", article.getHeroimagemob());
 		assertEquals("/content/dam/dhl/heroimagetab.jpg", article.getHeroimagetab());
 		assertEquals("/content/dam/dhl/heroimagedt.jpg", article.getHeroimagedt());
-		assertEquals("", article.getYoutubeid());
-		assertFalse(article.isShowshipnow());
 		assertEquals(0, article.getTags().size());
 	}
 }

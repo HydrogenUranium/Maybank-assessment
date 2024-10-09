@@ -119,8 +119,6 @@ public class Article {
     private String heroimagedt;
     private String heroimageAltText;
 
-    private String youtubeid;
-    private boolean showshipnow;
     private List<TagWrapper> tags;
     @Expose
     private List<String> tagsToShow = new ArrayList<>();
@@ -217,12 +215,9 @@ public class Article {
         authorimage = valueMap.get("jcr:content/authorimage", "");
         thumbnail = assetUtilService.getThumbnailLink(listimage);
 
-        youtubeid = valueMap.get("jcr:content/youtubeid", "");
         readtime = valueMap.get("jcr:content/readtime", "");
         author = valueMap.get("jcr:content/author", "");
         authortitle = valueMap.get("jcr:content/authortitle", "");
-
-        showshipnow = valueMap.get("jcr:content/showshipnow", false);
 
         counter = valueMap.get("jcr:content/counter", 0);
 
