@@ -57,7 +57,7 @@ public class PageUtilService {
     public String getHomePagePath(String pagePath) {
         return Optional.ofNullable(pagePath)
                 .map(path -> path.startsWith("/content/dhl/language-masters") ?
-                        Pattern.compile("^(/content/dhl/language-masters/(en-master|\\w{2}[_]?(\\w{2})?))").matcher(path) :
+                        Pattern.compile("^(/content/dhl/language-masters/(en-master|\\w{2}_?(\\w{2})?))").matcher(path) :
                         Pattern.compile("^(/content/dhl/(global|\\w{2})/(\\w{2})-(global|\\w{2}))").matcher(path))
                 .filter(Matcher::find)
                 .map(m -> m.group(1))
