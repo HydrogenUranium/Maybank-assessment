@@ -12,7 +12,12 @@ import org.apache.sling.api.resource.ValueMap;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.service.component.annotations.Component;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,7 +56,9 @@ public class PageUtilService {
 
     public String getHomePagePath(String pagePath) {
         return Optional.ofNullable(pagePath)
-                .map(path -> Pattern.compile("^(/content/dhl/(global|\\w{2})/(\\w{2})-(global|\\w{2}))").matcher(path))
+                .map(path -> path.startsWith("/content/dhl/language-masters") ?
+                        Pattern.compile("^(/content/dhl/language-masters/(en-master|\\w{2}_?(\\w{2})?))").matcher(path) :
+                        Pattern.compile("^(/content/dhl/(global|\\w{2})/(\\w{2})-(global|\\w{2}))").matcher(path))
                 .filter(Matcher::find)
                 .map(m -> m.group(1))
                 .orElse(StringUtils.EMPTY);
@@ -76,7 +83,7 @@ public class PageUtilService {
     }
 
     public boolean hasInheritedNoIndex(Page currentPage) {
-        Page ancestor = getAncestorPageByPredicate(currentPage,
+        var ancestor = getAncestorPageByPredicate(currentPage,
                 page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
 
         return hasNoIndex(ancestor);
