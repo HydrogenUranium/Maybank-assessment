@@ -42,7 +42,7 @@ class HeaderV2 {
       $("#countrySearch").on("keyup", function() {
         const value = $(this).val().toLowerCase();
         $("#countryList-widget .header-countryList__option").filter(function() {
-          $(this).toggle($(this).find(".country-name").text().toLowerCase().startsWith(value))
+          $(this).toggle($(this).find(".country-name").text().toLowerCase().trim().startsWith(value))
         });
       });
     });

@@ -1062,6 +1062,171 @@
                         </cq:styleGroups>
                     </separator_policy>
                 </separator>
+                <callout-box jcr:primaryType="nt:unstructured">
+                    <policy_callout-box
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Callout Box"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <rtePlugins jcr:primaryType="nt:unstructured">
+                            <paraformat
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*">
+                                <formats
+                                        jcr:primaryType="nt:unstructured"
+                                        override="true">
+                                    <item0
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Paragraph"
+                                            tag="p"/>
+                                    <item1
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 1"
+                                            tag="h1"/>
+                                    <item2
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 2"
+                                            tag="h2"/>
+                                    <item3
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 3"
+                                            tag="h3"/>
+                                    <item4
+                                            jcr:primaryType="nt:unstructured"
+                                            description="Heading 4"
+                                            tag="h4"/>
+                                </formats>
+                            </paraformat>
+                            <misctools
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-">
+                                <specialCharsConfig jcr:primaryType="nt:unstructured">
+                                    <chars
+                                            jcr:primaryType="nt:unstructured"
+                                            override="true"/>
+                                </specialCharsConfig>
+                            </misctools>
+                            <edit
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <findreplace
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <undo
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <spellcheck
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <image
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <table
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                            <lists
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <justify
+                                    jcr:primaryType="nt:unstructured"
+                                    features="*"/>
+                            <format
+                                    jcr:primaryType="nt:unstructured"
+                                    features="bold,italic,underline"/>
+                            <links
+                                    jcr:primaryType="nt:unstructured"
+                                    features="modifylink,unlink,anchor"/>
+                            <subsuperscript
+                                    jcr:primaryType="nt:unstructured"
+                                    features="-"/>
+                        </rtePlugins>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1728050127098"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1728050135393"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1728050139058"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1728050142211"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1728050151859"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1728050152567"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1728050153125"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1728050154104"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_callout-box>
+                </callout-box>
+                <button jcr:primaryType="nt:unstructured">
+                    <policy_button
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Button Policy"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Alignment"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="justify-start"
+                                            cq:styleId="1728294310705"
+                                            cq:styleLabel="Left"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="justify-center"
+                                            cq:styleId="1728294318486"
+                                            cq:styleLabel="Center"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="justify-end"
+                                            cq:styleId="1728294322297"
+                                            cq:styleLabel="Right"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                        </cq:styleGroups>
+                    </policy_button>
+                </button>
             </content>
         </components>
     </dhl>
