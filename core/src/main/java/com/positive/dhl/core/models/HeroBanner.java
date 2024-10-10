@@ -25,12 +25,13 @@ import java.util.List;
 @Getter
 public class HeroBanner {
 
-    @OSGiService
     @Required
+    @OSGiService
     private AssetUtilService assetUtilService;
 
-    @ValueMapValue
+
     @Required
+    @ScriptVariable
     private Page currentPage;
 
     @ScriptVariable

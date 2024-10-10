@@ -12,24 +12,26 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
 
-@Model(adaptables=SlingHttpServletRequest.class)
+@Model(adaptables=SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class Meganav {
-    @ValueMapValue
+    @OSGiService
     private QueryBuilder builder;
 
-	@ValueMapValue
+	@SlingObject
 	private ResourceResolver resourceResolver;
     
-	@ValueMapValue
+	@ScriptVariable
 	private Page currentPage;
 
 	@OSGiService

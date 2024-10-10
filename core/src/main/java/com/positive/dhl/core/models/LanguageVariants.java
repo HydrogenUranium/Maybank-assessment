@@ -12,7 +12,8 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
 
@@ -30,10 +31,10 @@ import java.util.Comparator;
  */
 @Model(adaptables=SlingHttpServletRequest.class)
 public class LanguageVariants {
-	@ValueMapValue
+	@ScriptVariable
 	private Page currentPage;
 
-	@ValueMapValue
+	@SlingObject
 	private ResourceResolver resourceResolver;
 
 	@OSGiService

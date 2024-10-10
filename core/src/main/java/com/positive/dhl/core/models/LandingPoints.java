@@ -20,7 +20,6 @@ import java.util.List;
 @Getter
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class LandingPoints {
-	@ValueMapValue
 	@Named("items")
 	@ChildResource
 	private Resource linksResource;
