@@ -1,8 +1,10 @@
 .hero-banner-component {
-
   &--with-margins {
-    margin-bottom: 30px;
-    margin-top: 30px;
+    margin: 30px -21px;
+
+    @include respond(md) {
+      margin: 30px 0;
+    }
 
     @include respond(xl) {
       margin-top: 50px;
@@ -55,12 +57,17 @@
       height: 100%;
       mix-blend-mode: multiply;
       opacity: 0.4;
-      background: transparent linear-gradient(180deg, #FFFFFF 50%, #131313 100%) 0% 0% no-repeat padding-box;
+      background: transparent linear-gradient(180deg, #ffffff 50%, #131313 100%)
+        0% 0% no-repeat padding-box;
     }
 
     &--with-rounded-corners {
       .hero-banner__image {
-        border-radius: 6px;
+        border-radius: 0;
+
+        @include respond(md) {
+          border-radius: 6px;
+        }
       }
 
       .hero-banner__video-wrapper {
@@ -79,7 +86,7 @@
     position: relative;
     background-color: white;
     border-radius: 6px;
-    border: 1px solid #E2E2E2;
+    border: 1px solid #e2e2e2;
     margin: -25px 15px 0;
     padding: 20px 10px;
     z-index: 2;

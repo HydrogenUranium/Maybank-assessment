@@ -62,9 +62,6 @@ public class DhlPage {
 	@Default(values = "")
 	private String gtmtrackingid;
 	@InjectHomeProperty
-	@Default(values = "")
-	private String pathprefix;
-	@InjectHomeProperty
 	@Default(values = "ltr")
 	private String direction;
 
@@ -107,7 +104,8 @@ public class DhlPage {
 		String customOgTagImage = properties.get("ogtagimage", pageImage);
 		ogtagimage = StringUtils.isNotBlank(customOgTagImage)
 				? (HTTPS_PREFIX + akamaiHostname + assetprefix).concat(customOgTagImage.trim())
-				: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png";
+				: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
+
 	}
 
 	private String getRobotTags(Page page) {

@@ -1,31 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured">
     <content jcr:primaryType="nt:unstructured">
         <items jcr:primaryType="nt:unstructured">
             <tabs jcr:primaryType="nt:unstructured">
                 <items jcr:primaryType="nt:unstructured" sling:hideChildren="permissions">
-                    <dhl jcr:primaryType="nt:unstructured" jcr:title="DHL Properties" sling:resourceType="granite/ui/components/foundation/section">
+                    <dhl
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Properties"
+                            cq:showOnCreate="{Boolean}false"
+                            sling:resourceType="granite/ui/components/foundation/section">
                         <layout jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" margin="{Boolean}false"/>
                         <items jcr:primaryType="nt:unstructured">
                             <column
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
+                                    <dhlcommon
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="DHL Common Page Properties"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <hideNavigationMenu
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="If checked the nav bar will be hidden."
+                                                    text="Hide Navigation Menu"
+                                                    value="true"
+                                                    name="./hideNavigationMenu">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cq-msm-lockable="./hideNavigationMenu"/>
+                                            </hideNavigationMenu>
+                                        </items>
+                                    </dhlcommon>
                                     <dhl
                                         jcr:primaryType="nt:unstructured"
                                         jcr:title="DHL Article properties"
                                         sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <listimage
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="(DEPRECATED) Meganav Image"
-                                                name="./listimage"
-                                                rootPath="/content/dam"
-                                                required="{Boolean}true"/>
-
                                             <showinmeganav
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/foundation/form/checkbox"

@@ -13,33 +13,39 @@
 @mixin copyLists() {
     ul, ol {
         list-style: none;
-        padding-left: 20px;
 
         li {
-            p {
-                vertical-align: top;
-            }
+          margin-left: 1.1em;
+
+          [dir="rtl"] & {
+            margin-left: unset;
+            margin-right: 1.1em;
+          }
+        }
+
+        p {
+            vertical-align: top;
         }
     }
 
     ul {
-        li {
-        position: relative;
+      li {
+          position: relative;
 
-        &:before {
-            content: '•';
-            vertical-align: top;
-            position: absolute;
-            top: -5px;
-            left: -15px;
-            font-size: 20px;
+          &:before {
+              content: '•';
+              vertical-align: top;
+              position: absolute;
+              font-weight: 900;
+              left: -1em;
+              top: 0.05em;
 
-            [dir="rtl"] & {
-              left: unset;
-              right: -15px;
-            }
-        }
-        }
+              [dir="rtl"] & {
+                left: unset;
+                right: -1em;
+              }
+          }
+      }
     }
 
     ol {
