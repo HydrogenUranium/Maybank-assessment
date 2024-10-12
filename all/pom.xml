@@ -98,12 +98,6 @@
                             <type>zip</type>
                             <target>/apps/dhl-vendor-packages/install</target>
                         </embedded>
-                        <embedded>
-                            <groupId>com.adobe.aem</groupId>
-                            <artifactId>aem-modernize-tools.all</artifactId>
-                            <type>zip</type>
-                            <target>/apps/dhl-packages/application/install</target>
-                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
