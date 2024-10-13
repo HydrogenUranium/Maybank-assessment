@@ -53,17 +53,11 @@ public class AccountActions {
 	private String homeUrl;
 	private String backUrl;
 	private String backUrlSelf;
-	private String shipNowUrl;
 	private String editDetailsUrl;
-	private String signupMessage;
-	private String signupPrivacyMessage;
 	private String signupEmailPrivacyMessage;
 	private String signupTCMessage;
 	private String shipNowMessage;
 	private String contactEmail;
-	private Boolean usethirdpartycookie;
-	private Boolean shipnowmarketo;
-	private Boolean newslettermarketo;
 	private Boolean downloadmarketo;
 	private String assetprefix;
 
@@ -80,22 +74,16 @@ public class AccountActions {
 			ValueMap properties = pageUtilServiceImpl.getPageProperties(home);
 
 			if (!properties.isEmpty()) {
-				signupMessage = properties.get("signupmessage", "");
-				signupPrivacyMessage = properties.get("signupprivacymessage", "");
 				signupEmailPrivacyMessage = properties.get("signupemailprivacymessage", "");
 				signupTCMessage = properties.get("signuptcmessage", "");
 
 				shipNowMessage = properties.get("shipnowmessage", "");
 
-				shipnowmarketo = properties.get("shipnowmarketo", false);
-				newslettermarketo = properties.get("newslettermarketo", false);
 				downloadmarketo = properties.get("downloadmarketo", false);
-				usethirdpartycookie = properties.get("usethirdpartycookie", false);
 
 				contactEmail = "discover@dhl-news.com";
 
 				homeUrl = home.getPath();
-		        shipNowUrl = properties.get("shipnowpage", "/content/dhl/ship-now").concat(HTML_EXTENSION);
 		        editDetailsUrl = properties.get("editdetailspage", "/content/dhl/your-account").concat(HTML_EXTENSION);
 
 		        // url handling if we've bypassed dispatcher - checking QS params

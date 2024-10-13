@@ -137,7 +137,6 @@
     }
 
     &Button {
-      margin-top: 20px;
       cursor: pointer;
       text-decoration: none;
       text-align: center;
@@ -145,7 +144,6 @@
       background: #D40511 0% 0% no-repeat padding-box;
       border-radius: 4px;
       padding: 15px 0px;
-      display: inline-block;
       font-weight: bold;
       width: 100%;
       line-height: 14px;
@@ -184,6 +182,7 @@
   border: none;
   max-height: 100px;
   height: 100%;
+  padding: 0;
   aspect-ratio: 1/1;
   position: absolute;
   left: 0;
@@ -192,12 +191,21 @@
     right: 0;
   }
   &Image {
-      background-size: contain;
-      background-position: center center;
-      background-repeat: no-repeat;
-      width: 50%;
-      height: 50%;
+      width: 100%;
+      height: 100%;
       display: inline-block;
-      background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/searchicon.svg');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:before {
+        width: 50%;
+        height: 50%;
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        content: " ";
+        display: inline-block;
+        background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/searchicon.svg');
+      }
   }
 }
