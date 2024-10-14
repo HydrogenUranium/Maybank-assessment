@@ -79,16 +79,11 @@ public class ArticlePage {
 	@Getter
 	private Article article;
 
-	@Getter
-	@Setter
-	private String customStyles;
-
 	@PostConstruct
     protected void init() {
 		ValueMap properties = currentPage.getProperties();
 
 		if (!properties.isEmpty()) {
-			customStyles = properties.get("customstyles", "");
 			updateViewCount(properties);
 		}
 		article = currentPage.adaptTo(Article.class);

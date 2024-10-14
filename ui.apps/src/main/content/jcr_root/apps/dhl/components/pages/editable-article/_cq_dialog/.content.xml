@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured">
     <content jcr:primaryType="nt:unstructured">
         <items jcr:primaryType="nt:unstructured">
@@ -12,54 +12,39 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
+                                    <dhlcommon
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="DHL Common Page Properties"
+                                            cq:showOnCreate="{Boolean}false"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <hideNavigationMenu
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="If checked the nav bar will be hidden."
+                                                    text="Hide Navigation Menu"
+                                                    value="true"
+                                                    name="./hideNavigationMenu">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cq-msm-lockable="./hideNavigationMenu"/>
+                                            </hideNavigationMenu>
+                                        </items>
+                                    </dhlcommon>
                                     <dhl
                                         jcr:primaryType="nt:unstructured"
                                         jcr:title="DHL Article properties"
                                         sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <topbanner
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/select"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Top Banner"
-                                                name="./topbanner"
-                                                required="{Boolean}true">
-
-                                                <items jcr:primaryType="nt:unstructured">
-                                                    <banner0 jcr:primaryType="nt:unstructured" text="No banner" value="0" />
-                                                    <banner1 jcr:primaryType="nt:unstructured" text="Banner 1" value="1" />
-                                                    <banner2 jcr:primaryType="nt:unstructured" text="Banner 2" value="2" />
-                                                </items>
-                                            </topbanner>
-                                            <contentbanner
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/select"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Content Banner"
-                                                name="./contentbanner"
-                                                required="{Boolean}true">
-
-                                                <items jcr:primaryType="nt:unstructured">
-                                                    <banner0 jcr:primaryType="nt:unstructured" text="No banner" value="0" />
-                                                    <banner1 jcr:primaryType="nt:unstructured" text="Banner 1" value="1" />
-                                                    <banner2 jcr:primaryType="nt:unstructured" text="Banner 2" value="2" />
-                                                </items>
-                                            </contentbanner>
-
-                                            <amparticlepath
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="AMP article location"
-                                                name="./amparticlepath"
-                                                rootPath="/content/dhl"
-                                                required="{Boolean}false"/>
-
                                             <heroImages
                                                     jcr:primaryType="nt:unstructured"
                                                     jcr:title="Hero Images"
                                                     sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                                 <items jcr:primaryType="nt:unstructured">
+                                                    <note
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                                                            text="Hero images are only used in Top Tiles and Hero Banner components"/>
                                                     <heroimagemob
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
@@ -93,29 +78,6 @@
                                                             emptyText="Hero Image Alt Text Placeholder"/>
                                                 </items>
                                             </heroImages>
-                                            <listImages
-                                                    jcr:primaryType="nt:unstructured"
-                                                    jcr:title="(DEPRECATED) List Image"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/hidden">
-                                                <items jcr:primaryType="nt:unstructured">
-                                                    <listimage
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                            allowBulkEdit="{Boolean}true"
-                                                            fieldLabel="(DEPRECATED) Article List Image"
-                                                            name="./listimage"
-                                                            rootPath="/content/dam"
-                                                            required="{Boolean}true"/>
-                                                    <listimageAltText
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                            fieldLabel="(DEPRECATED) List Image Alt Text"
-                                                            name="./listimageAltText"
-                                                            fieldDescription="Set List image alt text for SEO"
-                                                            emptyText="List Image Alt Text Placeholder"/>
-                                                </items>
-                                            </listImages>
-
                                             <description
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/foundation/form/textarea"
@@ -179,14 +141,6 @@
                                                     <interactive jcr:primaryType="nt:unstructured" text="interactive" value="interactive" />
                                                 </items>
                                             </mediatype>
-                                            <youtubeid
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Youtube Video ID (if applicable)"
-                                                name="./youtubeid"
-                                                required="{Boolean}false"/>
-
                                             <relatedarticles
                                                 jcr:primaryType="nt:unstructured"
                                                 name="./relatedarticles"
@@ -213,26 +167,12 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
                                                 fieldLabel="'Custom' Publish Date"
                                                 name="./custompublishdate"/>
-
-                                            <showshipnow
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                name="./showshipnow"
-                                                text="Show 'Ship Now' overlay"
-                                                value="true"/>
-
-                                            <customstyles
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/textarea"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Custom style(s)"
-                                                name="./customstyles"
-                                                required="{Boolean}false"/>
                                         </items>
                                     </dhl>
                                     <dhlsocial
                                         jcr:primaryType="nt:unstructured"
                                         jcr:title="DHL Social/Sharing properties"
+                                        cq:showOnCreate="{Boolean}false"
                                         sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
                                             <ogtagimage

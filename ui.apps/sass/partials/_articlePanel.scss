@@ -1,10 +1,18 @@
-.articlePanel {
+.articlepanel {
   @extend .clearfix;
   padding-bottom: 20px;
   transition: transform 150ms ease, opacity 150ms ease;
 
   > * {
     transition: opacity 150ms ease;
+  }
+
+  > .nextSteps > .container {
+    padding: 0;
+
+    @include respond(md) {
+      padding: 0 35px;
+    }
   }
 
   @include respond(lg) {
@@ -93,7 +101,6 @@
     margin: 0;
 
     a {
-
       &:hover {
         text-decoration: underline;
       }
@@ -101,7 +108,6 @@
       &.noUnderline:hover {
         text-decoration: none;
       }
-
     }
 
     @include respond(lg) {
@@ -120,12 +126,11 @@
   }
 
   &--video {
-
     #{$block}__image {
       position: relative;
 
       &:before {
-        content: ' ';
+        content: " ";
         display: block;
         width: 30px;
         height: 30px;
@@ -147,7 +152,7 @@
       }
 
       &:after {
-        content: ' ';
+        content: " ";
         display: block;
         position: absolute;
         top: 50%;
@@ -168,13 +173,10 @@
           margin-left: -8px;
         }
       }
-
     }
-
   }
 
   &--large {
-
     @include respond(md) {
       padding-bottom: 26px;
 
@@ -224,9 +226,7 @@
       #{$block}__description {
         display: block;
       }
-
     }
-
   }
 
   &--deletable {
@@ -247,12 +247,13 @@
     }
 
     &:before {
-      content: ' ';
+      content: " ";
       display: block;
       width: 20px;
       height: 20px;
-      background-image: url('__prefix__/discover/resources/img/redcloseicon.png');
-      background-image: none, url('__prefix__/discover/resources/img/redcloseicon.svg');
+      background-image: url("__prefix__/discover/resources/img/redcloseicon.png");
+      background-image: none,
+        url("__prefix__/discover/resources/img/redcloseicon.svg");
       background-size: 20px 20px;
       background-position: center center;
       background-repeat: no-repeat;
@@ -273,17 +274,12 @@
     }
 
     &:hover {
-
       @include respond(lg) {
-
         &:before {
           border-bottom: 3px solid map-get($palette, scarlet);
         }
-
       }
-
     }
-
   }
 
   &--search {
