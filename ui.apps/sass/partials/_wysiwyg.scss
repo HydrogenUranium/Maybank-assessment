@@ -29,13 +29,8 @@
         margin-bottom: 16px;
     }
 
-    ul,
-    ol {
-
-      li {
-        @include font("%T4", map-get($palette, black));
-      }
-
+    li {
+      @include font("%T4", map-get($palette, black));
     }
 
     p a,

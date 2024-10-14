@@ -18,7 +18,11 @@ import org.apache.sling.api.resource.ResourceUtil;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -81,7 +85,7 @@ public class DiscoverRssFeed {
     }
 
     private String getThumbnailImageUrl(Article article) {
-        String image = article.getListimage();
+        String image = article.getPageImage();
         if(StringUtils.isBlank(image)) {
             return null;
         }

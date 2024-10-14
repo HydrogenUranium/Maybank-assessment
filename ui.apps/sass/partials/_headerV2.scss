@@ -2,22 +2,42 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0 35px;
+  padding: 0 21px;
   z-index: 20;
-  background: transparent linear-gradient(to right, map-get($palette, sunflower-yellow) 0%, map-get($palette, sunflower-yellow) 30%, #FFE57F 79%, #FFF0B2 100%) 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 4px #0000001A;
+  background: transparent
+    linear-gradient(
+      to right,
+      map-get($palette, sunflower-yellow) 0%,
+      map-get($palette, sunflower-yellow) 30%,
+      #ffe57f 79%,
+      #fff0b2 100%
+    )
+    0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 4px #0000001a;
   min-height: 64px;
   width: 100%;
   transition: width 0.3s ease;
 
   [dir="rtl"] & {
-    background: transparent linear-gradient(to left, map-get($palette, sunflower-yellow) 0%, map-get($palette, sunflower-yellow) 30%, #FFE57F 79%, #FFF0B2 100%) 0% 0% no-repeat padding-box;
+    background: transparent
+      linear-gradient(
+        to left,
+        map-get($palette, sunflower-yellow) 0%,
+        map-get($palette, sunflower-yellow) 30%,
+        #ffe57f 79%,
+        #fff0b2 100%
+      )
+      0% 0% no-repeat padding-box;
   }
 
   &.headerV2__navigation--open {
     @include respond(md) {
       width: 390px;
     }
+  }
+
+  @include respond(md) {
+    padding: 0 35px;
   }
 
   @include respond(xl) {
@@ -63,7 +83,8 @@
             width: 100%;
             height: 0px;
             padding-bottom: 37.32%;
-            background-image: none, url('__prefix__/discover/resources/img/new-logo.svg');
+            background-image: none,
+              url("__prefix__/discover/resources/img/new-logo.svg");
             @include backgroundImage(contain);
           }
         }
@@ -90,7 +111,7 @@
           }
 
           .header__desktopLinkItem--open {
-              background-color: transparent;
+            background-color: transparent;
           }
 
           .header__desktopSearch {
@@ -101,28 +122,30 @@
 
             .icon {
               display: inline-block;
-              background-image: url('__prefix__/discover/resources/img/searchicon.png');
-              background-image: none, url('__prefix__/discover/resources/img/searchicon.svg');
+              background-image: url("__prefix__/discover/resources/img/searchicon.png");
+              background-image: none,
+                url("__prefix__/discover/resources/img/searchicon.svg");
               @include backgroundImage(contain);
               width: 20px;
               height: 26px;
 
               margin: 0;
               position: unset;
-
             }
 
             &--close {
               .icon {
-                background-image: url('__prefix__/discover/resources/img/searchcloseicon.png');
-                background-image: none, url('__prefix__/discover/resources/img/searchcloseicon.svg');
+                background-image: url("__prefix__/discover/resources/img/searchcloseicon.png");
+                background-image: none,
+                  url("__prefix__/discover/resources/img/searchcloseicon.svg");
               }
             }
           }
 
           .header-countryList {
             position: absolute;
-            background: map-get($palette, true-white) 0% 0% no-repeat padding-box;
+            background: map-get($palette, true-white) 0% 0% no-repeat
+              padding-box;
             border: 1px solid map-get($palette, true-black);
             border-radius: 4px;
             padding: 0 10px 5px;
@@ -158,7 +181,7 @@
 
             &::-webkit-scrollbar-thumb {
               border-radius: 10px;
-              -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+              -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
               background-color: #777;
             }
 
@@ -223,8 +246,9 @@
               }
 
               .fi-aa {
-                background-image: url('__prefix__/discover/resources/img/globe.png');
-                background-image: none, url('__prefix__/discover/resources/img/globe.svg');
+                background-image: url("__prefix__/discover/resources/img/globe.png");
+                background-image: none,
+                  url("__prefix__/discover/resources/img/globe.svg");
               }
 
               .country-name {
@@ -251,8 +275,9 @@
 
             .global-icon {
               display: block;
-              background-image: url('__prefix__/discover/resources/img/globe.png');
-              background-image: none, url('__prefix__/discover/resources/img/globe.svg');
+              background-image: url("__prefix__/discover/resources/img/globe.png");
+              background-image: none,
+                url("__prefix__/discover/resources/img/globe.svg");
               @include backgroundImage(contain);
 
               width: 20px;
@@ -315,7 +340,7 @@
             margin-left: 10px;
 
             &:before {
-              content: ' ';
+              content: " ";
               display: block;
               position: absolute;
               top: -6px;
@@ -327,7 +352,7 @@
             }
 
             &:after {
-              content: ' ';
+              content: " ";
               display: block;
               position: absolute;
               bottom: -6px;
@@ -385,23 +410,23 @@
           text-decoration: none;
           text-align: center;
           display: block;
-          color: #FFFFFF;
+          color: #ffffff;
           font-size: 14px;
           font-weight: bold;
           white-space: nowrap;
-          background: #D40511 0% 0% no-repeat padding-box;
+          background: #d40511 0% 0% no-repeat padding-box;
           border-radius: 4px;
           padding: 10px;
           margin-bottom: 3px;
 
           &:hover {
-            color: #FFFFFF;
+            color: #ffffff;
             background-color: #eb131e;
             text-decoration: none;
           }
 
           &:active {
-            background-color: #9A0000;
+            background-color: #9a0000;
             text-decoration: none;
           }
         }
@@ -414,7 +439,7 @@
     border-bottom: 1px solid map-get($palette, white);
     padding: 20px 0 8px;
     font-size: 16px;
-    color: #000000E6;
+    color: #000000e6;
 
     &:last-child {
       border-bottom: unset;
@@ -450,12 +475,13 @@
       cursor: pointer;
 
       &:after {
-        content: ' ';
+        content: " ";
         display: inline-block;
         width: 6px;
         height: 14px;
-        background-image: url('__prefix__/discover/resources/img/linkarrow.png');
-        background-image: none, url('__prefix__/discover/resources/img/linkarrow.png');
+        background-image: url("__prefix__/discover/resources/img/linkarrow.png");
+        background-image: none,
+          url("__prefix__/discover/resources/img/linkarrow.png");
         background-size: contain;
         background-position: center center;
         background-repeat: no-repeat;
@@ -505,7 +531,6 @@
           &:last-child {
             padding-bottom: 0;
           }
-
 
           a {
             display: block;

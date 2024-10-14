@@ -3,11 +3,11 @@
         <a tabindex="-1" href="${article.path}" class="article-card__image-wrapper">
             <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
                  data-sly-call="${template.picture @
-                 image=article.listimage,
+                 image=article.pageImage,
                  useWebOptimized=enableAssetDelivery,
                  imgClass='article-card__image-wrapper__image',
                  priority='high',
-                 alt=article.listimageAltText
+                 alt=article.pageImageAltText
              }"></sly>
             <div class="article-card__image-wrapper__image__group-tag">${article.groupTag}</div>
         </a>

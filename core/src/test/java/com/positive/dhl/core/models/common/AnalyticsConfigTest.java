@@ -18,7 +18,8 @@ class AnalyticsConfigTest {
     private final AemContext context = new AemContext();
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
+        context.addModelsForClasses(AnalyticsConfig.class);
         context.load().json("/com/positive/dhl/core/models/common/AnalyticsConfig/content.json", "/content");
     }
 
