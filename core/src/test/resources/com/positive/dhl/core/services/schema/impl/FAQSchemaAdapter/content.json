@@ -1,0 +1,51 @@
+{
+  "accordion_v2": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:createdBy": "admin",
+    "jcr:lastModifiedBy": "admin",
+    "jcr:created": "Mon Oct 14 2024 16:22:27 GMT+0300",
+    "isFAQ": "true",
+    "jcr:lastModified": "Tue Oct 15 2024 11:13:51 GMT+0300",
+    "singleExpansion": "false",
+    "sling:resourceType": "dhl/components/content/accordion-v2",
+    "item_1": {
+      "jcr:primaryType": "nt:unstructured",
+      "cq:panelTitle": "How do I obtain a quotation for my shipment?",
+      "jcr:lastModifiedBy": "admin",
+      "text": "<p>You can get a one-time quotation on MyDHL+. Non-account holders may also generate quotations.</p>\r\n",
+      "jcr:lastModified": "Tue Oct 15 2024 11:14:06 GMT+0300",
+      "sling:resourceType": "dhl/components/content/text",
+      "textIsRich": "true"
+    },
+    "container": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:createdBy": "admin",
+      "cq:panelTitle": "How can I pay for my DHL Express shipments?",
+      "jcr:lastModifiedBy": "admin",
+      "jcr:created": "Mon Oct 14 2024 16:26:51 GMT+0300",
+      "jcr:lastModified": "Mon Oct 14 2024 16:26:51 GMT+0300",
+      "sling:resourceType": "dhl/components/content/container",
+      "title": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:title": "Answer",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Tue Oct 15 2024 10:35:12 GMT+0300",
+        "type": "h1",
+        "linkTarget": "_self",
+        "jcr:lastModified": "Tue Oct 15 2024 11:14:17 GMT+0300",
+        "sling:resourceType": "dhl/components/content/title"
+      },
+      "text": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Mon Oct 14 2024 16:27:02 GMT+0300",
+        "text": "<p>If you are a non-account customer, you have the option of paying by credit card or debit card when you arrange for a shipment with MyDHL+ or when contacting our customer service.</p>\r\n",
+        "jcr:lastModified": "Tue Oct 15 2024 11:14:32 GMT+0300",
+        "sling:resourceType": "dhl/components/content/text",
+        "textIsRich": "true"
+      }
+    }
+  }
+}
