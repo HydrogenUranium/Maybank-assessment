@@ -7,7 +7,6 @@ import com.positive.dhl.core.services.PageUtilService;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
@@ -16,16 +15,19 @@ import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
-
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
-import java.util.LinkedHashMap;
-import java.util.Collections;
-import java.util.Comparator;
+
+import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
+import static org.apache.jackrabbit.JcrConstants.JCR_LANGUAGE;
+
 /**
  *
  */
@@ -57,7 +59,7 @@ public class LanguageVariants {
 	 *
 	 */
 	public boolean hasMultipleLanguageVariants() {
-		int count = 0;
+		var count = 0;
 		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 			count += entry.getValue().size();
 			if (count > 1) {
@@ -141,11 +143,11 @@ public class LanguageVariants {
 	 *
 	 */
 	public String getAllLanguagesJSON() {
-		JsonObject json = new JsonObject();
-		JsonArray jsonVariants = new JsonArray();
+		var json = new JsonObject();
+		var jsonVariants = new JsonArray();
 		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 			for (LanguageVariant variant: entry.getValue()) {
-				JsonObject v = new JsonObject();
+				var v = new JsonObject();
 				v.addProperty("path", variant.getLink());
 				v.addProperty("languages", variant.getAcceptlanguages());
 				
@@ -163,30 +165,39 @@ public class LanguageVariants {
 	public List<LinkVariant> getAllLanguageVariants() {
 		if (allLanguageVariants == null) {
 			allLanguageVariants = new ArrayList<>();
-	
+
 			for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
-				boolean found = false;
-				LanguageVariant first = null;
-				for (LanguageVariant variant: entry.getValue()) {
-					if (variant.isDeflt()) {
-						found = true;
-						allLanguageVariants.add(new LinkVariant(entry.getKey(), variant.getLink(), variant.getHome()));
-						break;
-					}
-					
-					if (first == null) {
-						first = variant;
-					}
-				}
-				
-				if ((!found) && (first != null)) {
-					allLanguageVariants.add(new LinkVariant(entry.getKey(), first.getLink(), first.getHome()));
-				}
+				includeAllLanguageVariants(entry, allLanguageVariants);
 			}
 		}
-		
+
 		allLanguageVariants.sort(new LanguageVariantNameSorter());
 		return new ArrayList<>(allLanguageVariants);
+	}
+
+	/**
+	 * changed to reduce its Cognitive Complexity from 18 to the 15 allowed - DIS-883
+	 * @param entry
+	 * @param allLanguageVariants
+	 */
+	private void includeAllLanguageVariants(Entry<String, ArrayList<LanguageVariant>> entry, List<LinkVariant> allLanguageVariants) {
+		boolean found = false;
+		LanguageVariant first = null;
+		for (LanguageVariant variant: entry.getValue()) {
+			if (variant.isDeflt()) {
+				found = true;
+				allLanguageVariants.add(new LinkVariant(entry.getKey(), variant.getLink(), variant.getHome()));
+				break;
+			}
+
+			if (first == null) {
+				first = variant;
+			}
+		}
+
+		if ((!found) && (first != null)) {
+			allLanguageVariants.add(new LinkVariant(entry.getKey(), first.getLink(), first.getHome()));
+		}
 	}
 	
 	/**
@@ -223,8 +234,8 @@ public class LanguageVariants {
 		variants = new HashMap<>();
 		countries = new HashMap<>();
 
-		Page root = currentPage.getAbsoluteParent(1);
-        Page currentHome = pageUtilService.getHomePage(currentPage);
+		var root = currentPage.getAbsoluteParent(1);
+        var currentHome = pageUtilService.getHomePage(currentPage);
         String currentCountryCode = pageUtilService.getCountryCodeByPagePath(currentPage);
 		String currentHomePath = currentHome != null ? currentHome.getPath() : StringUtils.EMPTY;
 		String path = currentPage.getPath();
@@ -239,24 +250,24 @@ public class LanguageVariants {
             boolean hideInNav = homepageProperties.get("hideInNav", false);
             String region = homepageProperties.get("siteregion", "").trim();
             String language = homepageProperties.get("sitelanguage", "").trim();
-            String title = homepageProperties.get("jcr:title", "").trim();
+            String title = homepageProperties.get(JCR_TITLE, "").trim();
             String acceptlanguages = homepageProperties.get("acceptlanguages", "*").trim();
 			if(acceptlanguages.equals("*")) {
-				acceptlanguages = homepageProperties.get("jcr:language", "*").trim();
+				acceptlanguages = homepageProperties.get(JCR_LANGUAGE, "*").trim();
 			}
             boolean enabled = homepageProperties.get("siteenabled", false);
             boolean deflt = homepageProperties.get("sitedefault", false);
-            if (hideInNav || !enabled || region.equals("")) {
+            if (hideInNav || !enabled || region.isEmpty()) {
                 continue;
             }
 
             String newHomepage = homepage.getPath();
             String newExactPath = homepage.getPath();
-            boolean exactPathExists = true;
+            var exactPathExists = true;
 
 			if (!StringUtils.isBlank(currentHomePath)) {
 				newExactPath = path.replace(currentHomePath, newHomepage);
-				Resource resource = resourceResolver.getResource(newExactPath);
+				var resource = resourceResolver.getResource(newExactPath);
 				exactPathExists = (resource != null);
 
 				if (!exactPathExists) {

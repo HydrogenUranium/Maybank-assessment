@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.positive.dhl.core.injectors.InjectHomeProperty;
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -11,7 +12,6 @@ import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,6 +22,7 @@ import java.util.List;
 public class LandingPoints {
 	@Named("items")
 	@ChildResource
+	@Getter(AccessLevel.NONE)
 	private Resource linksResource;
 
 	@ValueMapValue
