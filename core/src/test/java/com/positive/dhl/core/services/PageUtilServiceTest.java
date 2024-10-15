@@ -261,7 +261,10 @@ class PageUtilServiceTest {
 
     @Test
     void test_getHomePagesByPath()  {
-        assertEquals("", pageUtilService.getHomePagePath("/content/dhl/language-masters/pt_br/news-and-insights1/dhl-stories"));
+        assertEquals("/content/dhl/language-masters/pt_br", pageUtilService.getHomePagePath("/content/dhl/language-masters/pt_br/news-and-insights1/dhl-stories"));
+        assertEquals("/content/dhl/language-masters/pt_br", pageUtilService.getHomePagePath("/content/dhl/language-masters/pt_br"));
+        assertEquals("/content/dhl/language-masters/pt", pageUtilService.getHomePagePath("/content/dhl/language-masters/pt/news-and-insights1/dhl-stories"));
+        assertEquals("/content/dhl/language-masters/en-master", pageUtilService.getHomePagePath("/content/dhl/language-masters/en-master/news-and-insights1/dhl-stories"));
         assertEquals("", pageUtilService.getHomePagePath("/content/dhl/Archive/master-backup/old-ship-now/thanks-sn"));
         assertEquals("", pageUtilService.getHomePagePath("/content/dhl/au"));
         assertEquals("/content/dhl/au/en-au", pageUtilService.getHomePagePath("/content/dhl/au/en-au"));

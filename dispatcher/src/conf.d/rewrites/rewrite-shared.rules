@@ -17,7 +17,6 @@ RewriteRule ^(/discover)?/sureroute-test-object\.txt$ /etc.clientlibs/dhl/client
 RewriteRule ^/discover/sitemap-index\.xml$ /content/dhl.sitemap-index.xml [PT,L,NC]
 RewriteRule ^/discover/sitemap\.xml$ /content/dhl.sitemap.xml [PT,L,NC]
 RewriteRule ^/discover/(\w{2})-(global|\w{2})/sitemap\.xml$ /content/dhl.sitemap.$2-$1-$2-sitemap.xml [PT,L,NC]
-RewriteRule ^(/discover)?/robots\.txt$ /apps/dhl/discoverdhlapi/robots.txt [PT,L,NC]
 RewriteRule ^(/discover)?/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/discover/resources/favicon.ico [PT,L,NC]
 RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/token.json [PT,L,NC]
 

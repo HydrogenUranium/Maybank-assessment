@@ -42,7 +42,7 @@ class HeaderV2 {
       $("#countrySearch").on("keyup", function() {
         const value = $(this).val().toLowerCase();
         $("#countryList-widget .header-countryList__option").filter(function() {
-          $(this).toggle($(this).find(".country-name").text().toLowerCase().startsWith(value))
+          $(this).toggle($(this).find(".country-name").text().toLowerCase().trim().startsWith(value))
         });
       });
     });
@@ -130,7 +130,6 @@ class HeaderV2 {
 
     $(this.sel.countryOptions).addClass('header-countryList--open');
     $(this.sel.selectedCountry).attr("aria-expanded", "true")
-    $(this.sel.countryOptions).show();
 
     const clickListener = (event) => {
       const $target = $(event.target);
@@ -153,7 +152,6 @@ class HeaderV2 {
       $("#countrySearch").trigger("keyup");
       $(this.sel.countryOptions).removeClass('header-countryList--open');
       $(this.sel.selectedCountry).attr("aria-expanded", "false")
-      $(this.sel.countryOptions).hide();
       document.removeEventListener('click', clickListener);
       document.removeEventListener('click', keyupListener);
     }

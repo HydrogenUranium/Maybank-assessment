@@ -1,60 +1,123 @@
 package com.positive.dhl.core.models;
 
-import javax.inject.Named;
-
-import lombok.AllArgsConstructor;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.designer.Style;
+import com.positive.dhl.core.services.AssetUtilService;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Required;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-/**
- *
- */
-@Model(adaptables=Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+import javax.annotation.PostConstruct;
+import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
+
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
-public class LanguageVariant {
-	@Setter
-	public String region;
+public class HeroBanner {
 
-	@ValueMapValue
-	public String name;
+    @OSGiService
+    @Required
+    @Getter(AccessLevel.NONE)
+    private AssetUtilService assetUtilService;
 
-	@ValueMapValue
-	@Named("jcr:title")
-	public String title;
+    @ScriptVariable
+    @Required
+    @Getter(AccessLevel.NONE)
+    private Page currentPage;
 
-	@ValueMapValue
-	public String home;
+    @ScriptVariable
+    @Getter(AccessLevel.NONE)
+    protected Style currentStyle;
 
-	@ValueMapValue
-	public String link;
+    @ValueMapValue
+    private String summaryTitle;
 
-	@ValueMapValue
-	public String acceptlanguages;
+    @ChildResource
+    @Named("summaryPoints")
+    @Getter(AccessLevel.NONE)
+    private Resource pointsMultifield;
 
-	@ValueMapValue
-	public boolean deflt;
+    private final List<String> points = new ArrayList<>();
 
-	@ValueMapValue
-	public boolean current;
+    @ValueMapValue
+    private String mobileBackgroundImage;
 
-	@ValueMapValue
-	public boolean exact;
+    @ValueMapValue
+    private String tabletBackgroundImage;
 
-	public LanguageVariant(String name, String title, String home, String link, String acceptlanguages, boolean deflt, boolean current, boolean exact) {
-		this.home = home;
-		this.title = title;
-		this.link = link;
-		this.acceptlanguages = acceptlanguages;
-		this.name = name;
-		this.deflt = deflt;
-		this.current = current;
-		this.exact = exact;
-	}
+    @ValueMapValue
+    private String desktopBackgroundImage;
+
+    @ValueMapValue
+    private String backgroundImageAltText;
+
+    @ValueMapValue
+    private boolean useVideo;
+
+    @ValueMapValue
+    private String video;
+
+    private String videoMimeType;
+    private String title;
+
+    private boolean inheritImage;
+    private boolean keyTakeaways;
+    private boolean roundedCorners;
+    private boolean margin;
+    private boolean enableAssetDelivery;
+
+    @PostConstruct
+    protected void init() {
+        title = StringUtils.defaultIfBlank(summaryTitle, currentPage.getTitle());
+        initDesignProperties();
+        if(keyTakeaways) {
+            initTakeawaysFeature();
+        }
+        if(inheritImage) {
+            initInheritedImage();
+        }
+        if(useVideo && StringUtils.isNotBlank(video)) {
+            videoMimeType = assetUtilService.getMimeType(video);
+        }
+    }
+
+    private void initDesignProperties() {
+        margin = currentStyle.get("margin", false);
+        inheritImage = currentStyle.get("inheritImage", false);
+        keyTakeaways = currentStyle.get("keyTakeaways", false);
+        roundedCorners = currentStyle.get("roundedCorners", false);
+        enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
+    }
+
+    private void initTakeawaysFeature() {
+        if (pointsMultifield != null) {
+            pointsMultifield.listChildren().forEachRemaining(item ->
+                    points.add(item.getValueMap().get("text", ""))
+            );
+        }
+    }
+
+    private void initInheritedImage() {
+        ValueMap props = currentPage.getProperties();
+
+        mobileBackgroundImage = props.get("heroimagemob", "");
+        tabletBackgroundImage = props.get("heroimagetab", "");
+        desktopBackgroundImage = props.get("heroimagedt", "");
+        backgroundImageAltText = props.get("heroimageAltText", title);
+    }
+
+    public String getBackgroundImageAltText() {
+        return StringUtils.defaultIfBlank(backgroundImageAltText, title);
+    }
 }
