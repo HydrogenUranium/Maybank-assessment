@@ -37,9 +37,9 @@ import java.text.SimpleDateFormat
 
 @Field contentScope = "/content/dhl"
 @Field oldComponentResType = "dhl/components/animated-content/form"
-@Field newComponentResType = "dhl/components/content/cta-banner-with-points"
+@Field newComponentResType = "dhl/components/content/cta-banner"
 
-@Field versionAndPackageName = "DIS-832-before-converting-animated-form-to-cta-banner"
+@Field versionAndPackageName = "DIS-832-before-converting-animated-forms-to-cta-banner"
 
 @Field packagesPath = "/etc/packages/my_packages"
 @Field packageDefinitionPath = "$packagesPath/${versionAndPackageName}.zip/jcr:content/vlt:definition"
@@ -95,24 +95,33 @@ def manipulations(affectedItemPaths) {
         def homePagePath = getService("com.positive.dhl.core.services.PageUtilService").getHomePagePath(itemPath)
         def homePageProperties = getPage(homePagePath)?.node
 
-        def buttonLinkValue, buttonNameValue, desktopBackgroundImageValue, tabletBackgroundImageValue, mobileBackgroundImageValue = ""
+        def buttonLinkValue = ""
+        def buttonNameValue = ""
+        def desktopBackgroundImageValue = ""
+        def tabletBackgroundImageValue = ""
+        def mobileBackgroundImageValue = ""
+
         if (homePageProperties) {
-            buttonLinkValue = homePageProperties.getProperty("ctaBanner-openBusinessAccount-buttonLink")?.getString()
-            buttonNameValue = homePageProperties.getProperty("ctaBanner-openBusinessAccount-buttonName")?.getString()
-            desktopBackgroundImageValue = homePageProperties.getProperty("ctaBanner-openBusinessAccount-desktopBackgroundImage")?.getString()
-            tabletBackgroundImageValue = homePageProperties.getProperty("ctaBanner-openBusinessAccount-tabletBackgroundImage")?.getString()
-            mobileBackgroundImageValue = homePageProperties.getProperty("ctaBanner-openBusinessAccount-mobileBackgroundImage")?.getString()
+            buttonLinkValue = homePageProperties.hasProperty("ctaBanner-openBusinessAccount-buttonLink") ? homePageProperties.getProperty("ctaBanner-openBusinessAccount-buttonLink").getString() : ""
+            buttonNameValue = homePageProperties.hasProperty("ctaBanner-openBusinessAccount-buttonName") ? homePageProperties.getProperty("ctaBanner-openBusinessAccount-buttonName").getString() : ""
+            desktopBackgroundImageValue = homePageProperties.hasProperty("ctaBanner-openBusinessAccount-desktopBackgroundImage") ? homePageProperties.getProperty("ctaBanner-openBusinessAccount-desktopBackgroundImage").getString() : ""
+            tabletBackgroundImageValue = homePageProperties.hasProperty("ctaBanner-openBusinessAccount-tabletBackgroundImage") ? homePageProperties.getProperty("ctaBanner-openBusinessAccount-tabletBackgroundImage").getString() : ""
+            mobileBackgroundImageValue = homePageProperties.hasProperty("ctaBanner-openBusinessAccount-mobileBackgroundImage") ? homePageProperties.getProperty("ctaBanner-openBusinessAccount-mobileBackgroundImage").getString() : ""
         }
 
-        def ctaBannerPointItem = [
-                "text": getNode(itemPath).get('description')?.toString()
+        def ctaBannerAnalyticsNodeProperty = [
+                "interactionType": "content",
+                "trackedInteractions": "off"
         ]
 
         aecu.contentUpgradeBuilder()
                 .forResources((String[]) [itemPath])
                 .doReplaceValueInProperties(oldComponentResType, newComponentResType, (String[]) ["sling:resourceType"])
-                .doCreateResource("points", "nt:unstructured")
-                .doCreateResource("item0", "nt:unstructured", ctaBannerPointItem, "points")
+                .doDeleteResource("analytics")
+                .doCreateResource("analytics", "nt:unstructured", ctaBannerAnalyticsNodeProperty)
+                .doRenameProperty("title", "topTitle")
+                .doRenameProperty("description", "title")
+                .doSetProperty("type", "custom")
                 .doSetProperty("buttonLink", buttonLinkValue)
                 .doSetProperty("buttonName", buttonNameValue)
                 .doSetProperty("desktopBackgroundImage", desktopBackgroundImageValue)
@@ -164,7 +173,7 @@ def publishingAffectedPages(affectedPagePaths) {
 
 def showAffectedItems(affectedItemPaths) {
     println("Affected items: " + affectedItemPaths.size())
-    if (affectedItemPaths.size() > 0) {
+    if (affectedItemPaths.size() > 0 && affectedItemPaths.size() < 1000) {
         affectedItemPaths.each({ println(""""$it",""") })
     }
 }
