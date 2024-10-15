@@ -68,6 +68,12 @@
                     <styletab
                         jcr:primaryType="nt:unstructured"
                         sling:hideResource="{Boolean}true"/>
+                    <analytics
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Analytics &amp; Reporting"
+                            sling:resourceType="granite/ui/components/foundation/include"
+                            path="/apps/dhl/dialog-fragments/analytics/dialog"
+                            namespace="analytics"/>
                 </items>
             </tabs>
         </items>
