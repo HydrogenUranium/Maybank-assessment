@@ -1,123 +1,59 @@
 package com.positive.dhl.core.models;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.designer.Style;
-import com.positive.dhl.core.services.AssetUtilService;
-import lombok.AccessLevel;
+import javax.inject.Named;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.SlingHttpServletRequest;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Required;
-import org.apache.sling.models.annotations.injectorspecific.ChildResource;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.List;
-
-@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
+/**
+ *
+ */
+@Model(adaptables=Resource.class)
 @Getter
-public class HeroBanner {
-
-    @OSGiService
-    @Required
-    @Getter(AccessLevel.NONE)
-    private AssetUtilService assetUtilService;
-
-    @ScriptVariable
-    @Required
-    @Getter(AccessLevel.NONE)
-    private Page currentPage;
-
-    @ScriptVariable
-    @Getter(AccessLevel.NONE)
-    protected Style currentStyle;
+@AllArgsConstructor
+@NoArgsConstructor
+public class LanguageVariant {
+    @Setter
+    public String region;
 
     @ValueMapValue
-    private String summaryTitle;
-
-    @ChildResource
-    @Named("summaryPoints")
-    @Getter(AccessLevel.NONE)
-    private Resource pointsMultifield;
-
-    private final List<String> points = new ArrayList<>();
+    public String name;
 
     @ValueMapValue
-    private String mobileBackgroundImage;
+    @Named("jcr:title")
+    public String title;
 
     @ValueMapValue
-    private String tabletBackgroundImage;
+    public String home;
 
     @ValueMapValue
-    private String desktopBackgroundImage;
+    public String link;
 
     @ValueMapValue
-    private String backgroundImageAltText;
+    public String acceptlanguages;
 
     @ValueMapValue
-    private boolean useVideo;
+    public boolean deflt;
 
     @ValueMapValue
-    private String video;
+    public boolean current;
 
-    private String videoMimeType;
-    private String title;
+    @ValueMapValue
+    public boolean exact;
 
-    private boolean inheritImage;
-    private boolean keyTakeaways;
-    private boolean roundedCorners;
-    private boolean margin;
-    private boolean enableAssetDelivery;
-
-    @PostConstruct
-    protected void init() {
-        title = StringUtils.defaultIfBlank(summaryTitle, currentPage.getTitle());
-        initDesignProperties();
-        if(keyTakeaways) {
-            initTakeawaysFeature();
-        }
-        if(inheritImage) {
-            initInheritedImage();
-        }
-        if(useVideo && StringUtils.isNotBlank(video)) {
-            videoMimeType = assetUtilService.getMimeType(video);
-        }
-    }
-
-    private void initDesignProperties() {
-        margin = currentStyle.get("margin", false);
-        inheritImage = currentStyle.get("inheritImage", false);
-        keyTakeaways = currentStyle.get("keyTakeaways", false);
-        roundedCorners = currentStyle.get("roundedCorners", false);
-        enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
-    }
-
-    private void initTakeawaysFeature() {
-        if (pointsMultifield != null) {
-            pointsMultifield.listChildren().forEachRemaining(item ->
-                    points.add(item.getValueMap().get("text", ""))
-            );
-        }
-    }
-
-    private void initInheritedImage() {
-        ValueMap props = currentPage.getProperties();
-
-        mobileBackgroundImage = props.get("heroimagemob", "");
-        tabletBackgroundImage = props.get("heroimagetab", "");
-        desktopBackgroundImage = props.get("heroimagedt", "");
-        backgroundImageAltText = props.get("heroimageAltText", title);
-    }
-
-    public String getBackgroundImageAltText() {
-        return StringUtils.defaultIfBlank(backgroundImageAltText, title);
+    public LanguageVariant(String name, String title, String home, String link, String acceptlanguages, boolean deflt, boolean current, boolean exact) {
+        this.home = home;
+        this.title = title;
+        this.link = link;
+        this.acceptlanguages = acceptlanguages;
+        this.name = name;
+        this.deflt = deflt;
+        this.current = current;
+        this.exact = exact;
     }
 }
