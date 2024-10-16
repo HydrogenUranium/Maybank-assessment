@@ -22,9 +22,12 @@ export function getCommonPrefix(str1, str2, caseInsensitive = false) {
 }
 
 export function decodeHtmlEntities(text) {
-    const parser = new DOMParser();
-    const decodedString = parser.parseFromString(text, 'text/html').body.textContent;
-    return decodedString;
+    const element = document.createElement('div');
+    element.textContent = text;
+    return element.innerHTML;
+    //const parser = new DOMParser();
+    //const decodedString = parser.parseFromString(text, 'text/html').body.textContent;
+    //return decodedString;
   }
 
 export function removeHtmlTags(input) {
