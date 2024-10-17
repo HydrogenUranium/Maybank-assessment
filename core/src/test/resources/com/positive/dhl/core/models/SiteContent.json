@@ -871,10 +871,12 @@
 						"jcr:versionHistory": "f0c44fdf-4949-4a31-8e65-13431642bafe",
 						"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 						"cq:lastReplicatedBy": "admin",
-						"listimage": "/content/dam/dhl/site-image/category-nav/business.jpg",
-						"jcr:predecessors": [
-							"5c746ada-2a61-40de-8df4-dfe94d488976"
-						],
+						"cq:featuredimage": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+							"sling:resourceType": "core/wcm/components/image/v3/image",
+							"altValueFromDAM": "true"
+						},
 						"cq:contextHubSegmentsPath": "/etc/segmentation/contexthub",
 						"jcr:created": "Sat Sep 26 2020 04:01:11 GMT+0000",
 						"cq:lastReplicated": "Tue Sep 29 2020 22:49:49 GMT+0000",
@@ -923,7 +925,13 @@
 							"jcr:versionHistory": "59b4ef26-30d2-4435-8159-0c4d885339ab",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/entrepreneurship.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/entrepreneurship.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
+
 							"jcr:predecessors": [
 								"59448b81-91cf-43bf-8c45-033a68716be6"
 							],
@@ -1097,7 +1105,12 @@
 							"jcr:versionHistory": "c1b24857-83c9-4ed3-83f0-1cec684d6fb8",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/Productivity.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/Productivity.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"2f43790a-e830-4571-a792-84ff6f8c2529"
 							],
@@ -1302,7 +1315,13 @@
 							"jcr:versionHistory": "15fcd35c-88e0-4c4c-a7d6-a9aa6e4cc31b",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/go-to-market.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/go-to-market.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
+
 							"jcr:predecessors": [
 								"afa68b75-add6-49b1-9a62-71440d74ccdc"
 							],
@@ -1403,7 +1422,13 @@
 							"jcr:versionHistory": "5da6f297-a237-4a89-aa7d-8886fe4219ba",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/FINDING-CUSTOMERS.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/FINDING-CUSTOMERS.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
+
 							"jcr:predecessors": [
 								"a0e28060-ef4a-4ca6-ae5d-d9e3658481ea"
 							],
@@ -1484,7 +1509,12 @@
 							"jcr:versionHistory": "e5175266-3a59-4a73-baae-56c32e6c4554",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/ETHICS.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/ETHICS.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"9b802db2-7f01-4c35-a477-d3da7c16788a"
 							],
@@ -1599,7 +1629,12 @@
 							"jcr:versionHistory": "10a19391-85bc-493b-b6aa-0e9f095100c0",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/Nav-market-intelligence-AOB-page.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/Nav-market-intelligence-AOB-page.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"789e31b7-7203-4e3f-a665-f6165d1a9be0"
 							],
@@ -1744,7 +1779,12 @@
 							"jcr:versionHistory": "49a01274-c734-45f0-be23-95db4ba42392",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/MANAGING-YOUR-BUSINESS.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/MANAGING-YOUR-BUSINESS.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"a4808dde-354c-4fc3-abd2-d064d8ce2188"
 							],
@@ -1877,7 +1917,12 @@
 							"cq:template": "/apps/dhl/templates/dhl-article-page",
 							"cq:lastReplicatedBy": "admin",
 							"listbrief": "Newsletter Subscriber Survey: Tell us what you're interested in",
-							"listimage": "/content/dam/dhl/business-matters/3_getting-to-market/gavin-conboy/Mobile_Tablet_991x558_B.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/business-matters/3_getting-to-market/gavin-conboy/Mobile_Tablet_991x558_B.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"heroimagemob": "/content/dam/dhl/business-matters/3_getting-to-market/gavin-conboy/Mobile_Tablet_991x558_B.jpg",
 							"heroimagetab": "/content/dam/dhl/business-matters/3_getting-to-market/gavin-conboy/Mobile_Tablet_991x558_B.jpg",
 							"jcr:predecessors": [
@@ -1918,7 +1963,12 @@
 						"jcr:versionHistory": "36430b5b-fd95-4162-bd60-c0d625f49364",
 						"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 						"cq:lastReplicatedBy": "admin",
-						"listimage": "/content/dam/dhl/site-image/category-nav/e-commerce.jpg",
+						"cq:featuredimage": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/dhl/site-image/category-nav/e-commerce.jpg",
+							"sling:resourceType": "core/wcm/components/image/v3/image",
+							"altValueFromDAM": "true"
+						},
 						"jcr:predecessors": [
 							"9398977d-8b24-4276-874d-f4413f8a5603"
 						],
@@ -1970,7 +2020,12 @@
 							"jcr:versionHistory": "0b93d9ea-e97c-4cb0-8830-fe18a868f1a9",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/E-COMMERCE-ADVICE.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/E-COMMERCE-ADVICE.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"4330176e-614c-4b32-9d8d-ac167d33aef3"
 							],
@@ -2235,7 +2290,12 @@
 							"jcr:versionHistory": "2a95eead-e1e9-4f82-b8d3-708fb6e0a47f",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/COUNTRY-GUIDES.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/COUNTRY-GUIDES.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"8d225972-39c6-465b-8031-0de95dc13c64"
 							],
@@ -2295,7 +2355,12 @@
 							"jcr:versionHistory": "eb858c20-311e-45f9-9225-fa2c9a1a0449",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/CONVERSION-RATE-OPTIMIZATION.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/CONVERSION-RATE-OPTIMIZATION.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"ae862ed5-cf95-4a0e-b406-64dd04f34753"
 							],
@@ -2380,7 +2445,12 @@
 							"jcr:versionHistory": "ea0e5a29-c279-4ec9-867d-d385584b61b6",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/CUSTOMER_SERVICE.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/CUSTOMER_SERVICE.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"b1ac192a-f772-4d7c-a086-00e0579b2820"
 							],
@@ -2466,7 +2536,12 @@
 						"jcr:versionHistory": "de8bf741-a02e-408e-a8b4-517bdffe24f8",
 						"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 						"cq:lastReplicatedBy": "admin",
-						"listimage": "/content/dam/dhl/site-image/category-nav/culture.jpg",
+						"cq:featuredimage": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/dhl/site-image/category-nav/culture.jpg",
+							"sling:resourceType": "core/wcm/components/image/v3/image",
+							"altValueFromDAM": "true"
+						},
 						"jcr:predecessors": [
 							"6ed667fb-6b3d-4376-8ab2-e56e60807fee"
 						],
@@ -2518,7 +2593,12 @@
 							"jcr:versionHistory": "e895f4d7-3145-433d-92dc-f646087978a9",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/ADVENTURE.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/ADVENTURE.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"0e5ca6a9-6cde-4bf2-a7d6-1419499589db"
 							],
@@ -2628,7 +2708,12 @@
 							"jcr:versionHistory": "5e51a946-82ae-45e8-a2e5-89ed06fa965d",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/TRAVEL.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/TRAVEL.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"dcecd00f-5816-4acd-885e-0dd11eef87d2"
 							],
@@ -2683,7 +2768,12 @@
 							"jcr:versionHistory": "bc4b39d8-1387-447a-bb18-53e016b535ed",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/FASHION.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/FASHION.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"eb847b72-9eea-4357-9056-bd1940abb93b"
 							],
@@ -2748,7 +2838,12 @@
 							"jcr:versionHistory": "284cda5c-c27d-4377-8952-3f85c0bb9694",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/MUSIC.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/MUSIC.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"84c0f631-a848-4e33-a8cc-aa025d9164db"
 							],
@@ -2788,7 +2883,12 @@
 							"jcr:versionHistory": "0c0b7c9d-a482-46b8-b093-52792545862b",
 							"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 							"cq:lastReplicatedBy": "admin",
-							"listimage": "/content/dam/dhl/site-image/category-nav/CUSTOMER_SERVICE.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/site-image/category-nav/CUSTOMER_SERVICE.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"jcr:predecessors": [
 								"b31b155d-3ca6-4cd9-a464-f3465de3c846"
 							],
@@ -2857,7 +2957,12 @@
 							"cq:template": "/apps/dhl/templates/dhl-article-page",
 							"cq:lastReplicatedBy": "admin",
 							"listbrief": "DHL Mohamed Salah with the right support we can all be stars",
-							"listimage": "/content/dam/dhl/culture-hype/mo-salah/new/new_mobile_MoSalah_Header_Desktop_1920x918.jpg",
+							"cq:featuredimage": {
+								"jcr:primaryType": "nt:unstructured",
+								"fileReference": "/content/dam/dhl/culture-hype/mo-salah/new/new_mobile_MoSalah_Header_Desktop_1920x918.jpg",
+								"sling:resourceType": "core/wcm/components/image/v3/image",
+								"altValueFromDAM": "true"
+							},
 							"heroimagemob": "/content/dam/dhl/culture-hype/mo-salah/new/new_mobile_MoSalah_Header_Desktop_1920x918.jpg",
 							"heroimagetab": "/content/dam/dhl/culture-hype/mo-salah/new/new_mobile_MoSalah_Header_Desktop_1920x918.jpg",
 							"jcr:predecessors": [
@@ -2903,7 +3008,12 @@
 						"jcr:versionHistory": "39ef4514-be6c-4d3f-b91a-2cab944a0c20",
 						"cq:template": "/apps/dhl/templates/dhl-article-group-page",
 						"cq:lastReplicatedBy": "admin",
-						"listimage": "/content/dam/dhl/culture-hype/dis514-susie-goodall-landing-page/Mobile_Tablet_991x558_A.jpg",
+						"cq:featuredimage": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/dhl/culture-hype/dis514-susie-goodall-landing-page/Mobile_Tablet_991x558_A.jpg",
+							"sling:resourceType": "core/wcm/components/image/v3/image",
+							"altValueFromDAM": "true"
+						},
 						"jcr:predecessors": [
 							"851802c1-0449-41b1-b8ce-ab5f4bb3e6d1"
 						],

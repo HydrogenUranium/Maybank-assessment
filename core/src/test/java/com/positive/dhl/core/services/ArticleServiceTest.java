@@ -87,7 +87,7 @@ class ArticleServiceTest {
         resolver = spy(context.resourceResolver());
         lenient().doNothing().when(resolver).close();
         lenient().when(resolverHelper.getReadResourceResolver()).thenReturn(resolver);
-        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
+        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
