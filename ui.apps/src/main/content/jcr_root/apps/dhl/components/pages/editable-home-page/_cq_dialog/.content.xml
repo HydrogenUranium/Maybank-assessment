@@ -205,7 +205,7 @@
                     </dhllanguages>
                     <components
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="DHL Common Components Configuration"
+                            jcr:title="DHL Components Configuration"
                             cq:showOnCreate="{Boolean}false"
                             sling:resourceType="granite/ui/components/foundation/section">
                         <layout jcr:primaryType="nt:unstructured"
