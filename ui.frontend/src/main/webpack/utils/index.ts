@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 export const unique = <T, >(array: T[]): T[] => Array.from(new Set(array));
 
 export const  highlightMatches = (text, regex, flags = "g") => {
@@ -24,9 +26,16 @@ export function getCommonPrefix(str1, str2, caseInsensitive = false) {
 export function decodeHtmlEntities(text) {
     const parser = new DOMParser();
     const decodedString = parser.parseFromString(text, 'text/html').body.textContent;
-    return decodedString;
-  }
-
-export function removeHtmlTags(input) {
-    return input.replace(/<\/?[^>]+(>|$)/g, "");
+    return sanitizeHtml(decodedString);
 }
+
+export function sanitizeHtml(html) {
+    const allowedTags = [
+        'b', 'strong', 'i', 'em', 'u', 's', 'mark', 'small', 'sub', 'sup',
+        'br', 'span', 'blockquote', 'code', 'pre', 'del', 'ins',
+        'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+        'hr', 'table', 'thead', 'tbody', 'tr', 'th', 'td'
+      ];
+
+    return DOMPurify.sanitize(html, { ALLOWED_TAGS: allowedTags });
+  }
