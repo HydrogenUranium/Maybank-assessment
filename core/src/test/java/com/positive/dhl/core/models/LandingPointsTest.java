@@ -41,6 +41,7 @@ class LandingPointsTest {
         assertEquals("/content/dam/images/image.svg", landingPoints.getImage());
         assertEquals("/defaultIcon.png", landingPoints.getDefaultIcon());
         assertEquals("alt text", landingPoints.getAltText());
+        assertEquals("icon", landingPoints.getPointType());
     }
 
 }

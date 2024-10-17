@@ -14,6 +14,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Objects;
+
 import static com.positive.dhl.junitUtils.InjectorMock.INJECT_SCRIPT_BINDINGS;
 import static com.positive.dhl.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,7 +38,9 @@ class HeroBannerTest {
     void setUp() throws Exception {
         context.load().json("/com/positive/dhl/core/models/HeroBanner/content.json", "/content");
         mockInject(context, INJECT_SCRIPT_BINDINGS, "currentStyle", currentStyle);
-        mockInject(context, "currentPage", resourceResolver.getResource("/content/article").adaptTo(Page.class));
+
+        Page currentPage = Objects.requireNonNull(resourceResolver.getResource("/content/article")).adaptTo(Page.class);
+        context.currentPage(currentPage);
         context.addModelsForClasses(HeroBanner.class);
         context.registerService(AssetUtilService.class, assetUtilService);
 
@@ -50,6 +54,7 @@ class HeroBannerTest {
     private void initRequest(String path) {
         request.setPathInfo(path);
         request.setResource(resourceResolver.getResource(path));
+        context.currentResource(resourceResolver.getResource(path));
     }
 
     @Test
@@ -71,6 +76,8 @@ class HeroBannerTest {
         assertTrue(heroBanner.isInheritImage());
         assertTrue(heroBanner.isKeyTakeaways());
         assertTrue(heroBanner.isRoundedCorners());
+        assertEquals("Key Takeaways", heroBanner.getTitle());
+        assertTrue(heroBanner.isEnableAssetDelivery());
     }
 
     @Test

@@ -27,7 +27,7 @@ export function decodeHtmlEntities(text) {
     const parser = new DOMParser();
     const decodedString = parser.parseFromString(text, 'text/html').body.textContent;
     return sanitizeHtml(decodedString);
-}
+  }
 
 export function sanitizeHtml(html) {
     const allowedTags = [
@@ -38,4 +38,4 @@ export function sanitizeHtml(html) {
       ];
 
     return DOMPurify.sanitize(html, { ALLOWED_TAGS: allowedTags });
-  }
+}
