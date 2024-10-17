@@ -32,16 +32,19 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
     { value: 'recommended', label: recommendedOptionTitle },
     { value: 'latest', label: latestOptionTitle },
   ];
+
+  const filteredCategories = categories.filter(category => category.articles.length)
+  
   const windowSize = useWindowSize();
   const articleListElement = useRef<HTMLDivElement>(null);
   const [selectedSortOpton, setSelectedSortOpton] = useState<any>(selectOptions[0]);
-  const [selectedCategory, setCategory] = useState(categories.length ? categories[0].name : "");
+  const [selectedCategory, setCategory] = useState(filteredCategories.length ? filteredCategories[0].name : "");
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [showingLines, setShowingLines] = useState(2);
   const lineIncrement = useLineIncrement(windowSize);
   const tabsRef = useRef([]);
 
-  const categoryArticles = useCategoryArticles(categories, selectedCategory);
+  const categoryArticles = useCategoryArticles(filteredCategories, selectedCategory);
   const displayedArticles = useDisplayArticles(categoryArticles, showingLines, selectedSortOpton.value, windowSize);
 
 
@@ -52,9 +55,9 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
   }, [windowSize, showingLines]);
 
   useEffect(() => {
-    const index = categories.findIndex(category => category.name === selectedCategory);
+    const index = filteredCategories.findIndex(category => category.name === selectedCategory);
     setSelectedCategoryIndex(index);
-  }, [selectedCategory, categories]);
+  }, [selectedCategory, filteredCategories]);
 
   const handleShowMore = () => {
     setShowingLines(currentLimit => currentLimit + lineIncrement);
@@ -76,13 +79,13 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
       handleCategoryClick(categoryName, event);
     }
     if (key == 'ArrowRight') {
-      const nextIndex = (selectedCategoryIndex + 1) % categories.length;
-      handleCategoryClick(categories[nextIndex].name, event);
+      const nextIndex = (selectedCategoryIndex + 1) % filteredCategories.length;
+      handleCategoryClick(filteredCategories[nextIndex].name, event);
       tabsRef.current[nextIndex].focus();
     }
     if (key == 'ArrowLeft') {
-      const nextIndex = (categories.length + selectedCategoryIndex - 1) % categories.length;
-      handleCategoryClick(categories[nextIndex].name, event);
+      const nextIndex = (filteredCategories.length + selectedCategoryIndex - 1) % filteredCategories.length;
+      handleCategoryClick(filteredCategories[nextIndex].name, event);
       tabsRef.current[nextIndex].focus();
     }
   };
@@ -99,7 +102,7 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
       </div>
 
       <ol role="tablist" aria-multiselectable="false" className={`${styles.articleGridCategories} horizontal-scroll`}>
-        {categories.map((category, index) => {
+        {filteredCategories.map((category, index) => {
           const isSelected = selectedCategory === category.name;
           return (
           <li

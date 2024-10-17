@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          jcr:primaryType="cq:Page">
+    <jcr:content
+            cq:lastModified="{Date}2024-10-04T18:01:21.636+03:00"
+            cq:lastModifiedBy="admin"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/core/components/policies/mappings">
+        <root
+                cq:policy="wcm/foundation/components/responsivegrid/policy_dhl-experience-fragments"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/core/components/policies/mapping">
+            <dhl jcr:primaryType="nt:unstructured">
+                <components jcr:primaryType="nt:unstructured">
+                    <content jcr:primaryType="nt:unstructured">
+                        <title
+                                cq:policy="dhl/components/content/title/title_policy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <text
+                                cq:policy="dhl/components/content/text/policy_1692606883425"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <embed
+                                cq:policy="dhl/components/content/embed/article_embed_component_policy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <top-tiles
+                                cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <related-posts
+                                cq:policy="dhl/components/content/related-posts/policy_dhl_related-posts"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <article-showcase
+                                cq:policy="dhl/components/content/article-showcase/policy_dhl_showcase"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <teaser
+                                cq:policy="dhl/components/content/teaser/teaser_policy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <article-teaser-container
+                                cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <image
+                                cq:policy="dhl/components/content/image/image_v2_policy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <separator
+                                cq:policy="dhl/components/content/separator/separator_policy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <callout-box
+                                cq:policy="dhl/components/content/callout-box/policy_callout-box"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                    </content>
+                </components>
+            </dhl>
+        </root>
+    </jcr:content>
+</jcr:root>

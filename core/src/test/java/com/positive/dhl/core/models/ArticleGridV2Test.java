@@ -81,6 +81,7 @@ class ArticleGridV2Test {
         when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
+        when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
     }
 
     private Article getArticle(String path) {
@@ -132,6 +133,6 @@ class ArticleGridV2Test {
         JsonNode article = allCategory.get("articles").get(0);
         assertEquals("What paperwork do I need for international shipping?", article.get("title").asText());
         assertEquals("/content/home/e-commerce-advice/article.html", article.get("path").asText());
-        assertEquals("/discover/content/dam/image.jpg", article.get("listimage").asText());
+        assertEquals("/discover/content/dam/image.jpg", article.get("pageImage").asText());
     }
 }

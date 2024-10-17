@@ -38,4 +38,4 @@ export function sanitizeHtml(html) {
       ];
 
     return DOMPurify.sanitize(html, { ALLOWED_TAGS: allowedTags });
-}
+  }

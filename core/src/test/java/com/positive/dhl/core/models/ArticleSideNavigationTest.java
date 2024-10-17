@@ -152,7 +152,7 @@ class ArticleSideNavigationTest {
         articleSourceProperties.put("jcr:title", "article-title");
         articleSourceProperties.put("navTitle", "Article Title");
         articleSourceProperties.put("listbrief", "Hacks and shortcuts to setting up a viable small business.");
-        articleSourceProperties.put("listimage", "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping" +
+        articleSourceProperties.put("pageImage", "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping" +
                 ".jpg");
         articleSourceProperties.put("heroimagemob", "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile " +
                 "AMP_bootstrapping.jpg");
@@ -161,7 +161,6 @@ class ArticleSideNavigationTest {
         articleSourceProperties.put("heroimagedt", "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Desktop_1920x918.jpg");
         articleSourceProperties.put("readtime", "10 min read");
         articleSourceProperties.put("author", "Tomas H.");
-        articleSourceProperties.put("showshipnow", false);
 
         Page articlePage = ctx.pageManager().getPage("/content/dhl/en-global/business/entrepreneurship/the-ten-minute-startup-guide");
         if (null == articlePage) {

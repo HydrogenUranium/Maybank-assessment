@@ -10,6 +10,7 @@ import { useDataFetching, useSortedSearchResult } from '../../hooks';
 import { getArticles, getTagSuggestions } from '../../services/api/search';
 import { registerComponent } from '../../react-core';
 import { SortSelect } from '../common/atoms';
+import { removeHtmlTags } from '../../utils';
 
 import styles from './styles.module.scss';
 
@@ -184,6 +185,7 @@ export const Search: React.FC<SearchProps> = ({
     const descriptionFormatToUse = sortedSearchRows.length > 0
       ? descriptionFormat 
       : descriptionFormatNoResults || descriptionFormat;
+
   
     const sanitizedQuery = DOMPurify.sanitize(articlesQuery);
     return format(descriptionFormatToUse, sanitizedQuery, limit, sortedSearchRows.length);

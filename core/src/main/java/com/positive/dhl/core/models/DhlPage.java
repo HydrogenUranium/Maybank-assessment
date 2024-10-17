@@ -4,7 +4,9 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
 import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -23,6 +25,9 @@ import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
 @Getter
 @Model(adaptables=SlingHttpServletRequest.class)
 public class DhlPage {
+	@OSGiService
+	@Getter(AccessLevel.NONE)
+	private AssetUtilService assetUtilService;
 
 	@Inject
 	private SlingHttpServletRequest request;
@@ -45,7 +50,8 @@ public class DhlPage {
 	private String assetprefix;
 	private String akamaiHostname;
 	private String ogtagimage;
-	private String listimage;
+	private String listimage; // Deprecated
+	private String pageImage;
 	private String seoTitle;
 	private String adobeDtmLink;
 
@@ -55,9 +61,6 @@ public class DhlPage {
 	@InjectHomeProperty
 	@Default(values = "")
 	private String gtmtrackingid;
-	@InjectHomeProperty
-	@Default(values = "")
-	private String pathprefix;
 	@InjectHomeProperty
 	@Default(values = "ltr")
 	private String direction;
@@ -83,7 +86,8 @@ public class DhlPage {
 		ValueMap properties = currentPage.getProperties();
 		fullarticlepath = properties.get("fullarticlepath", "");
 		amparticlepath = properties.get("amparticlepath", "");
-		listimage = properties.get("listimage", "");
+		listimage = properties.get("listimage", ""); // Deprecated
+		pageImage = assetUtilService.getPageImagePath(currentPage.getContentResource());
 		seoTitle = properties.get("seoTitle", "");
 
 		String path = properties.get("redirectTarget", "");
@@ -97,10 +101,11 @@ public class DhlPage {
 		pageUtilService.getAncestorPageByPredicate(currentPage,
 				page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
 
-		String customOgTagImage = properties.get("ogtagimage", listimage);
+		String customOgTagImage = properties.get("ogtagimage", pageImage);
 		ogtagimage = StringUtils.isNotBlank(customOgTagImage)
 				? (HTTPS_PREFIX + akamaiHostname + assetprefix).concat(customOgTagImage.trim())
-				: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/192.png";
+				: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
+
 	}
 
 	private String getRobotTags(Page page) {

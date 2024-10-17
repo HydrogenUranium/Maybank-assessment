@@ -1,0 +1,18 @@
+.separator {
+  .cmp-separator__horizontal-rule {
+    margin: 10px 0;
+    border-top: 1px solid map-get($palette, red);
+  }
+
+  &.red .cmp-separator__horizontal-rule {
+    border-top: 1px solid map-get($palette, red);
+  }
+
+  &.yellow .cmp-separator__horizontal-rule {
+    border-top: 1px solid map-get($palette, sunflower-yellow);
+  }
+
+  &.grey .cmp-separator__horizontal-rule {
+    border-top: 1px solid map-get($palette, brownish-grey);
+  }
+}

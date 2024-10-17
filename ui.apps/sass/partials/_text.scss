@@ -1,4 +1,4 @@
-.text {
+.text, .listicle-component {
   margin-top: 10px;
   font-size: 14px;
   line-height: 22px;
@@ -35,6 +35,10 @@
     max-width: 260px;
     border-style: none;
     margin-top: 20px;
+  }
+
+  i {
+      font-style: italic;
   }
 
   @include respond(md) {

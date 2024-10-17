@@ -8,7 +8,7 @@ export type Article = {
     createdfriendly: string,
     createdMilliseconds: number,
     description: string,
-    listimage: string,
+    pageImage: string,
     groupTag: string,
     thumbnail: string,
     path: string,
@@ -17,13 +17,6 @@ export type Article = {
     readtime: string,
     highlights: string[]
 }
-
-export type SearchRow = {
-    article: Article,
-    excerpt: string
-}
-
-export type SearchResult = SearchRow[]
 
 export type SearchRow = {
     article: Article,

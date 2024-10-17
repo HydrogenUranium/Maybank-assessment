@@ -1,8 +1,0 @@
-{
-  "id": "home",
-  "editableTemplate":"/conf/dhl/settings/wcm/templates/home-page",
-  "staticTemplate":"",
-  "containerMappings":["par:root/responsivegrid"],
-  "slingResourceType":"dhl/components/pages/home",
-  "enabled": false
-}

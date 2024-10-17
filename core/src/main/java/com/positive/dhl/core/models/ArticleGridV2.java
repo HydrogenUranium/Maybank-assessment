@@ -132,7 +132,7 @@ public class ArticleGridV2 {
                         .add(PAGE_TITLE_PARAM, article.getNavTitle())
                         .add("path", article.getPath())
                         .add("description", article.getDescription())
-                        .add("listimage", article.getListimage())
+                        .add("pageImage", article.getPageImage())
                         .add("createdfriendly", article.getCreatedfriendly())
                         .add("createdMilliseconds", article.getCreatedMilliseconds())
                         .add("author", article.getAuthor())

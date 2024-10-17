@@ -1,6 +1,13 @@
 .cta-banner-component {
   margin-top: 40px;
-  max-width: 1200px;
+  margin-left: -21px;
+  margin-right: -21px;
+
+  @include respond(md) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .banner {
     min-height: 300px;
     padding: 20px;
@@ -11,7 +18,7 @@
     position: relative;
     mix-blend-mode: multiply;
     border-radius: 6px;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 17px;
     line-height: 24px;
 
@@ -26,29 +33,36 @@
       mix-blend-mode: multiply;
       opacity: 0.3;
       z-index: -1;
-      background: transparent linear-gradient(270deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%);
+      background: transparent
+        linear-gradient(270deg, #ffffff91 0%, #686868 46%, #131313de 100%);
       [dir="rtl"] & {
-        background: transparent linear-gradient(90deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%);
+        background: transparent
+          linear-gradient(90deg, #ffffff91 0%, #686868 46%, #131313de 100%);
       }
       @include respond(md) {
-        background: transparent linear-gradient(90deg,#fff 30%,#000 50%,#000 100%);
+        background: transparent
+          linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
         opacity: 1;
 
         [dir="rtl"] & {
-          background: transparent linear-gradient(270deg,#fff 30%,#000 50%,#000 100%);
+          background: transparent
+            linear-gradient(270deg, #fff 30%, #000 50%, #000 100%);
         }
       }
       @include respond(xl) {
-        background: transparent linear-gradient(270deg,#fff 30%,#000 50%,#000 100%);
+        background: transparent
+          linear-gradient(270deg, #fff 30%, #000 50%, #000 100%);
 
         [dir="rtl"] & {
-          background: transparent linear-gradient(90deg,#fff 30%,#000 50%,#000 100%);
+          background: transparent
+            linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
         }
       }
     }
 
     &__body {
       margin-top: auto;
+      padding: 0 15px;
       @include respond(md) {
         width: 50%;
         margin: auto 0 auto auto;
@@ -61,15 +75,22 @@
         margin: auto;
       }
       &__top-title {
-        line-height: 42px;
+        line-height: 25px;
         opacity: 0.7;
         font-size: 20px;
+        margin-bottom: 12px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.8);
+
+        @include respond(md) {
+          line-height: 42px;
+          opacity: 0.7;
+          margin-bottom: unset;
+          text-shadow: none;
+        }
       }
 
       &__title {
-        text-shadow:
-          0 0 20px #131313,
-          0 0 25px #131313;
+        text-shadow: 0 0 20px #131313, 0 0 25px #131313;
         font-weight: bold;
         letter-spacing: 0px;
         font-size: 16px;
@@ -89,8 +110,8 @@
         cursor: pointer;
         text-decoration: none;
         text-align: center;
-        color: #FFFFFF;
-        background: #D40511 0% 0% no-repeat padding-box;
+        color: #ffffff;
+        background: #d40511 0% 0% no-repeat padding-box;
         border-radius: 4px;
         padding: 15px 0px;
         display: inline-block;
@@ -99,12 +120,12 @@
         line-height: 14px;
         font-size: 15px;
         &:hover {
-           color: #FFFFFF;
-           background-color: #eb131e;
-           text-decoration: none;
+          color: #ffffff;
+          background-color: #eb131e;
+          text-decoration: none;
         }
         &:active {
-          background-color: #9A0000;
+          background-color: #9a0000;
           text-decoration: none;
         }
         @include respond(md) {
@@ -119,7 +140,10 @@
     }
 
     &__image {
-      border-radius: 4px;
+      border-radius: 0;
+      @include respond(md) {
+        border-radius: 6px;
+      }
       position: absolute;
       top: 0px;
       left: 0px;
@@ -155,10 +179,12 @@
     .banner {
       padding: 20px;
       &:after {
-        background: transparent linear-gradient(270deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%);
+        background: transparent
+          linear-gradient(270deg, #ffffff91 0%, #686868 46%, #131313de 100%);
 
         [dir="rtl"] & {
-          background: transparent linear-gradient(90deg, #FFFFFF91 0%, #686868 46%, #131313DE 100%);
+          background: transparent
+            linear-gradient(90deg, #ffffff91 0%, #686868 46%, #131313de 100%);
         }
       }
       &__body {
@@ -170,10 +196,10 @@
           line-height: 19px;
         }
         &__button {
-         padding: 15px 0px;
-         width: 100%;
-         line-height: 14px;
-         font-size: 15px;
+          padding: 15px 0px;
+          width: 100%;
+          line-height: 14px;
+          font-size: 15px;
         }
       }
       &__image {

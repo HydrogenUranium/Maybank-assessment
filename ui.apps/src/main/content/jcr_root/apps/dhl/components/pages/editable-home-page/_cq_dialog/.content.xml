@@ -5,233 +5,70 @@
         <items jcr:primaryType="nt:unstructured">
             <tabs jcr:primaryType="nt:unstructured">
                 <items jcr:primaryType="nt:unstructured" sling:hideChildren="permissions">
-                    <dhl jcr:primaryType="nt:unstructured" jcr:title="DHL Properties" sling:resourceType="granite/ui/components/foundation/section">
+                    <dhl
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Properties"
+                            cq:showOnCreate="{Boolean}false"
+                            sling:resourceType="granite/ui/components/foundation/section">
                         <layout jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" margin="{Boolean}false"/>
                         <items jcr:primaryType="nt:unstructured">
                             <column
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
+                                    <dhlcommon
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="DHL Common Page Properties"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <hideNavigationMenu
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="If checked the nav bar will be hidden."
+                                                    text="Hide Navigation Menu"
+                                                    value="true"
+                                                    name="./hideNavigationMenu">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cq-msm-lockable="./hideNavigationMenu"/>
+                                            </hideNavigationMenu>
+                                        </items>
+                                    </dhlcommon>
                                     <dhl
                                             jcr:primaryType="nt:unstructured"
                                             jcr:title="DHL Homepage properties"
                                             sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <pathprefix
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                    fieldLabel="URL Path Prefix (i.e. /discover for live)"
-                                                    name="./pathprefix"/>
-
                                             <gtmtrackingid
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                                     fieldLabel="GTM Tracking ID (i.e. 'GTM-PZ5NFTR', etc)"
                                                     name="./gtmtrackingid"/>
-
-                                            <socials
-                                                    jcr:primaryType="nt:unstructured"
-                                                    name="./socials"
-                                                    fieldLabel="Social Channels"
-                                                    fieldDescription="Click + to add new item"
-                                                    composite="{Boolean}true"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
-
-                                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                       jcr:primaryType="nt:unstructured"
-                                                       name="./items">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <title
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Title"
-                                                                name="./title"/>
-                                                        <url
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Url"
-                                                                name="./url"/>
-                                                        <category
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/select"
-                                                                allowBulkEdit="{Boolean}true"
-                                                                fieldLabel="Platform"
-                                                                name="./category"
-                                                                required="{Boolean}true">
-                                                            <items jcr:primaryType="nt:unstructured">
-                                                                <facebook jcr:primaryType="nt:unstructured" text="facebook" value="facebook" />
-                                                                <youtube jcr:primaryType="nt:unstructured" text="youtube" value="youtube" />
-                                                                <instagram jcr:primaryType="nt:unstructured" text="instagram" value="instagram" />
-                                                                <linkedin jcr:primaryType="nt:unstructured" text="linkedin" value="linkedin" />
-                                                                <twitter jcr:primaryType="nt:unstructured" text="twitter" value="twitter" />
-                                                            </items>
-                                                        </category>
-                                                    </items>
-                                                </field>
-                                            </socials>
-
-                                            <usethirdpartycookie
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                    name="./usethirdpartycookie"
-                                                    text="'Use 'OneTrust' Cookies (leave unchecked to use custom cookie implementation)"
-                                                    value="true"/>
-                                            <cookiemessage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                                    useFixedInlineToolbar="{Boolean}true"
-                                                    fieldLabel="Cookie message"
-                                                    name="./cookiemessage"/>
-                                            <cookielearnmore
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Global Cookie warning 'Learn more' page"
-                                                    name="./cookielearnmore"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-
-                                            <signupmessage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                                    useFixedInlineToolbar="{Boolean}true"
-                                                    fieldLabel="Sign-up message"
-                                                    name="./signupmessage"/>
-
-                                            <signupprivacymessage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                                    useFixedInlineToolbar="{Boolean}true"
-                                                    fieldLabel="Sign-up 'privacy' message"
-                                                    name="./signupprivacymessage"/>
-
                                             <signupemailprivacymessage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                     useFixedInlineToolbar="{Boolean}true"
                                                     fieldLabel="Sign-up email-address 'privacy/usage' message"
                                                     name="./signupemailprivacymessage"/>
-
                                             <signuptcmessage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                     useFixedInlineToolbar="{Boolean}true"
                                                     fieldLabel="Sign-up 'terms and conditions' message"
                                                     name="./signuptcmessage"/>
-
                                             <shipnowmessage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                                     useFixedInlineToolbar="{Boolean}true"
                                                     fieldLabel="'Ship now' overlay message"
                                                     name="./shipnowmessage"/>
-
-                                            <absolutefooterleft
-                                                    jcr:primaryType="nt:unstructured"
-                                                    name="./absolutefooterleft"
-                                                    fieldLabel="Absolute footer (left)"
-                                                    fieldDescription="Click + to add new item"
-                                                    composite="{Boolean}true"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
-
-                                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                       jcr:primaryType="nt:unstructured"
-                                                       name="./absolutefooterleftitems">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <title
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Title"
-                                                                name="./title"/>
-                                                        <url
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Url"
-                                                                name="./url"/>
-                                                    </items>
-                                                </field>
-                                            </absolutefooterleft>
-
-                                            <absolutefooterright
-                                                    jcr:primaryType="nt:unstructured"
-                                                    name="./absolutefooterright"
-                                                    fieldLabel="Absolute footer (right)"
-                                                    fieldDescription="Click + to add new item"
-                                                    composite="{Boolean}true"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
-
-                                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                       jcr:primaryType="nt:unstructured"
-                                                       name="./absolutefooterrightitems">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <title
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Title"
-                                                                name="./title"/>
-                                                        <url
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Url"
-                                                                name="./url"/>
-                                                    </items>
-                                                </field>
-                                            </absolutefooterright>
-
-                                            <interestchannels
-                                                    jcr:primaryType="nt:unstructured"
-                                                    name="./interestchannels"
-                                                    fieldLabel="Interest Channels"
-                                                    fieldDescription="Click + to add new item"
-                                                    composite="{Boolean}true"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
-
-                                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                       jcr:primaryType="nt:unstructured"
-                                                       name="./interestitems">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <title
-                                                                jcr:primaryType="nt:unstructured"
-                                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                                fieldLabel="Title"
-                                                                name="./title"/>
-                                                    </items>
-                                                </field>
-                                            </interestchannels>
                                         </items>
                                     </dhl>
-                                </items>
-                            </column>
-                        </items>
-                    </dhl>
-                    <dhlpages jcr:primaryType="nt:unstructured" jcr:title="DHL Special Page Settings" sling:resourceType="granite/ui/components/foundation/section">
-                        <layout jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" margin="{Boolean}false"/>
-                        <items jcr:primaryType="nt:unstructured">
-                            <column
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/container">
-                                <items jcr:primaryType="nt:unstructured">
                                     <dhlpagesettings
                                             jcr:primaryType="nt:unstructured"
                                             jcr:title="Special Page Settings"
                                             sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <shipnowpage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="'Ship Now' page"
-                                                    name="./shipnowpage"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-                                            <editdetailspage
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="'Edit Details' page"
-                                                    name="./editdetailspage"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
                                             <searchresultspage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
@@ -242,11 +79,28 @@
                                                     required="{Boolean}true"/>
                                         </items>
                                     </dhlpagesettings>
+                                    <dhlcrmsettings
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="CRM Preferences"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <downloadmarketo
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
+                                                    name="./downloadmarketo"
+                                                    text="'Gated download' forms submit to Marketo"
+                                                    value="true"/>
+                                        </items>
+                                    </dhlcrmsettings>
                                 </items>
                             </column>
                         </items>
-                    </dhlpages>
-                    <dhllanguages jcr:primaryType="nt:unstructured" jcr:title="DHL Site Regions" sling:resourceType="granite/ui/components/foundation/section">
+                    </dhl>
+                    <dhllanguages
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Site Regions"
+                            cq:showOnCreate="{Boolean}false"
+                            sling:resourceType="granite/ui/components/foundation/section">
                         <layout jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" margin="{Boolean}false"/>
                         <items jcr:primaryType="nt:unstructured">
                             <column
@@ -349,381 +203,11 @@
                             </column>
                         </items>
                     </dhllanguages>
-                    <dhlcrm jcr:primaryType="nt:unstructured" jcr:title="DHL CRM Settings" sling:resourceType="granite/ui/components/foundation/section">
-                        <layout jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" margin="{Boolean}false"/>
-                        <items jcr:primaryType="nt:unstructured">
-                            <column
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/container">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <dhlcrmsettings
-                                            jcr:primaryType="nt:unstructured"
-                                            jcr:title="CRM Preferences"
-                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <shipnowmarketo
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                    name="./shipnowmarketo"
-                                                    text="'Ship Now'/'Open account' forms submit to Marketo"
-                                                    value="true"/>
-                                            <newslettermarketo
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                    name="./newslettermarketo"
-                                                    text="'Newsletter subscribe' forms submit to Marketo"
-                                                    value="true"/>
-                                            <downloadmarketo
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                    name="./downloadmarketo"
-                                                    text="'Gated download' forms submit to Marketo"
-                                                    value="true"/>
-                                        </items>
-                                    </dhlcrmsettings>
-                                </items>
-                            </column>
-                        </items>
-                    </dhlcrm>
-                    <banners jcr:primaryType="nt:unstructured" jcr:title="DHL Banners" sling:resourceType="granite/ui/components/foundation/section">
-                        <layout jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns" margin="{Boolean}false"/>
-                        <items jcr:primaryType="nt:unstructured">
-                            <column
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/container">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <dhlmeganavbanner
-                                            jcr:primaryType="nt:unstructured"
-                                            jcr:title="DHL Meganav Banner"
-                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <title
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Title"
-                                                    name="./meganavbannertitle"
-                                                    required="{Boolean}true"/>
-                                            <subtitle
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Sub-title"
-                                                    name="./meganavbannersubtitle"
-                                                    required="{Boolean}true"/>
-
-                                            <point1
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 1"
-                                                    name="./meganavbannerpoint1"
-                                                    required="{Boolean}true"/>
-                                            <point2
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 2"
-                                                    name="./meganavbannerpoint2"
-                                                    required="{Boolean}true"/>
-                                            <point3
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 3"
-                                                    name="./meganavbannerpoint3"
-                                                    required="{Boolean}true"/>
-                                            <point4
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 4"
-                                                    name="./meganavbannerpoint4"
-                                                    required="{Boolean}true"/>
-
-                                            <urltitle
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="CTA Label"
-                                                    name="./meganavbannerurltitle"
-                                                    required="{Boolean}true"/>
-                                            <url
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="CTA Url"
-                                                    name="./meganavbannerurl"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-                                        </items>
-                                    </dhlmeganavbanner>
-
-                                    <dhltopbanner1
-                                            jcr:primaryType="nt:unstructured"
-                                            jcr:title="DHL Top Banner 1"
-                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <top1title
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Title"
-                                                    name="./topbanner1title"
-                                                    required="{Boolean}true"/>
-                                            <top1subtitle
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Sub-title"
-                                                    name="./topbanner1subtitle"
-                                                    required="{Boolean}true"/>
-                                            <top1img
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Background image"
-                                                    name="./topbanner1img"
-                                                    rootPath="/content/dam/dhl"
-                                                    required="{Boolean}true"/>
-
-
-                                            <top1urltitle
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="CTA Label"
-                                                    name="./topbanner1urltitle"
-                                                    required="{Boolean}true"/>
-                                            <top1url
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="CTA Url"
-                                                    name="./topbanner1url"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-                                        </items>
-                                    </dhltopbanner1>
-
-                                    <dhltopbanner2
-                                            jcr:primaryType="nt:unstructured"
-                                            jcr:title="DHL Top Banner 2"
-                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <top2title
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Title"
-                                                    name="./topbanner2title"
-                                                    required="{Boolean}true"/>
-                                            <top2subtitle
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Sub-title"
-                                                    name="./topbanner2subtitle"
-                                                    required="{Boolean}true"/>
-                                            <top2img
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Background image"
-                                                    name="./topbanner2img"
-                                                    rootPath="/content/dam/dhl"
-                                                    required="{Boolean}true"/>
-
-
-                                            <top2urltitle
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="CTA Label"
-                                                    name="./topbanner2urltitle"
-                                                    required="{Boolean}true"/>
-                                            <top2url
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="CTA Url"
-                                                    name="./topbanner2url"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-                                        </items>
-                                    </dhltopbanner2>
-
-                                    <dhlcontentbanner1
-                                            jcr:primaryType="nt:unstructured"
-                                            jcr:title="DHL Content Banner 1"
-                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <content1title
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Title"
-                                                    name="./contentbanner1title"
-                                                    required="{Boolean}true"/>
-                                            <content1subtitle
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Sub-title"
-                                                    name="./contentbanner1subtitle"
-                                                    required="{Boolean}true"/>
-                                            <content1img
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Background image"
-                                                    name="./contentbanner1img"
-                                                    rootPath="/content/dam/dhl"
-                                                    required="{Boolean}true"/>
-                                            <content1imgmob
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Background image (mobile)"
-                                                    name="./contentbanner1imgmob"
-                                                    rootPath="/content/dam/dhl"
-                                                    required="{Boolean}true"/>
-
-                                            <content1point1
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 1"
-                                                    name="./contentbanner1point1"
-                                                    required="{Boolean}true"/>
-                                            <content1point2
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 2"
-                                                    name="./contentbanner1point2"
-                                                    required="{Boolean}true"/>
-                                            <content1point3
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 3"
-                                                    name="./contentbanner1point3"
-                                                    required="{Boolean}true"/>
-                                            <content1point4
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 4"
-                                                    name="./contentbanner1point4"
-                                                    required="{Boolean}true"/>
-
-                                            <content1urltitle
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="CTA Label"
-                                                    name="./contentbanner1urltitle"
-                                                    required="{Boolean}true"/>
-                                            <content1url
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="CTA Url"
-                                                    name="./contentbanner1url"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-                                        </items>
-                                    </dhlcontentbanner1>
-
-                                    <dhlcontentbanner2
-                                            jcr:primaryType="nt:unstructured"
-                                            jcr:title="DHL Content Banner 2"
-                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <content2title
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Title"
-                                                    name="./contentbanner2title"
-                                                    required="{Boolean}true"/>
-                                            <content2subtitle
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Sub-title"
-                                                    name="./contentbanner2subtitle"
-                                                    required="{Boolean}true"/>
-                                            <content2img
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Background image"
-                                                    name="./contentbanner2img"
-                                                    rootPath="/content/dam/dhl"
-                                                    required="{Boolean}true"/>
-                                            <content2imgmob
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Background image (mobile)"
-                                                    name="./contentbanner2imgmob"
-                                                    rootPath="/content/dam/dhl"
-                                                    required="{Boolean}true"/>
-
-                                            <content2point1
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 1"
-                                                    name="./contentbanner2point1"
-                                                    required="{Boolean}true"/>
-                                            <content2point2
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 2"
-                                                    name="./contentbanner2point2"
-                                                    required="{Boolean}true"/>
-                                            <content2point3
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 3"
-                                                    name="./contentbanner2point3"
-                                                    required="{Boolean}true"/>
-                                            <content2point4
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="Point 4"
-                                                    name="./contentbanner2point4"
-                                                    required="{Boolean}true"/>
-
-                                            <content2urltitle
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="CTA Label"
-                                                    name="./contentbanner2urltitle"
-                                                    required="{Boolean}true"/>
-                                            <content2url
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    fieldLabel="CTA Url"
-                                                    name="./contentbanner2url"
-                                                    rootPath="/content/dhl"
-                                                    required="{Boolean}true"/>
-                                        </items>
-                                    </dhlcontentbanner2>
-                                </items>
-                            </column>
-                        </items>
-                    </banners>
-                    <components jcr:primaryType="nt:unstructured" jcr:title="Common Components Configuration"
-                                sling:resourceType="granite/ui/components/foundation/section">
+                    <components
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Common Components Configuration"
+                            cq:showOnCreate="{Boolean}false"
+                            sling:resourceType="granite/ui/components/foundation/section">
                         <layout jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"
                                 margin="{Boolean}false"/>

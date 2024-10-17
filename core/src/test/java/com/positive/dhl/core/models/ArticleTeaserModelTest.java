@@ -72,6 +72,7 @@ class ArticleTeaserModelTest {
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
         lenient().when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
+        lenient().when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/dhl/listimage.jpg");
     }
 
     @Test
@@ -122,7 +123,7 @@ class ArticleTeaserModelTest {
         assertNotNull(articleTeaserModel);
 
         assertTrue(articleTeaserModel.isImageFromPage());
-        assertEquals("", articleTeaserModel.getImagePathFromPage());
+        assertEquals("/content/dam/dhl/listimage.jpg", articleTeaserModel.getImagePathFromPage());
         assertNull(articleTeaserModel.getAltTextFromPageImage());
         assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
         assertEquals("", articleTeaserModel.getAuthor());

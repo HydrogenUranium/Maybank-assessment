@@ -6,7 +6,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
+import com.positive.dhl.core.services.AssetUtilService;
 import com.positive.dhl.core.services.PageUtilService;
+import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,20 +34,25 @@ class DhlPageTest {
 	@Mock
 	private PageUtilService pageUtilService;
 
+	@Mock
+	private AssetUtilService assetUtilService;
+
 	@BeforeEach
 	void setUp() throws Exception {
 		ctx.load().json("/com/positive/dhl/core/models/StandardAemPage.json", "/content/dhl");
 		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
 		ctx.registerService(PageUtilService.class, pageUtilService);
+		ctx.registerService(AssetUtilService.class, assetUtilService);
 	    ctx.addModelsForClasses(DhlPage.class);
 		mockInjectHomeProperty(ctx, Map.of(
 				"gtmtrackingid", "gmt-tracking-id",
-				"pathprefix", "/discover",
+				"assetprefix", "/discover",
 				"direction", "rtl"
 		));
 
 		when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
 		lenient().when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
+		when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg");
 	}
 
 	@Test
@@ -60,11 +67,12 @@ class DhlPageTest {
 		assertEquals("/content/dhl/business/finding-new-customers/The-subscription-economy/The-Subscription-Economy", dhlPage.getAmparticlepath());
 		assertEquals("", dhlPage.getFullarticlepath());
 		assertEquals("gmt-tracking-id", dhlPage.getGtmtrackingid());
-		assertEquals("/discover", dhlPage.getPathprefix());
+		assertEquals("/discover", dhlPage.getAssetprefix());
 		assertEquals("rtl", dhlPage.getDirection());
 		assertEquals("", dhlPage.getRobotsTags());
 		assertEquals("https://www.dhl.com/discover/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg", dhlPage.getOgtagimage());
 		assertEquals("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg", dhlPage.getListimage());
+		assertEquals("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg", dhlPage.getPageImage());
 		assertEquals("", dhlPage.getSeoTitle());
 	}
 

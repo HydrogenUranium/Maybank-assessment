@@ -19,7 +19,7 @@ export const SearchRow: React.FC<SearchRowProps> = ({ searchRow: { article, exce
   return (
     <div className={styles.article}>
       <a tabIndex={-1} href={`${article.path}`} className={styles.articleImage}
-        style={{ backgroundImage: `url(${article.listimage})` }}></a>
+        style={{ backgroundImage: `url(${article.pageImage})` }}></a>
       <div className={styles.articleInfo}>
         <div className={styles.articleInfoGroupTag}>{article.groupTag}</div>
         <a href={`${article.path}`} className={styles.articleInfoTitle}>
