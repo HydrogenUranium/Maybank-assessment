@@ -8,9 +8,9 @@ import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,12 +35,12 @@ public class CtaBannerWithPoints {
     @Optional
     private Resource pointsMultifieldOpenBusinessAccount;
 
-    @Inject
+    @ValueMapValue
     @Optional
     @Default(values = "custom")
     private String type;
 
-    @Inject
+    @ValueMapValue
     @Optional
     @Getter
     private String title;
@@ -55,7 +55,7 @@ public class CtaBannerWithPoints {
     @Optional
     private String titleOpenBusinessAccount;
 
-    @Inject
+    @ValueMapValue
     @Getter
     @Optional
     private String mobileBackgroundImage;
@@ -70,7 +70,7 @@ public class CtaBannerWithPoints {
     @Optional
     private String mobileBackgroundImageOpenBusinessAccount;
 
-    @Inject
+    @ValueMapValue
     @Getter
     @Optional
     private String tabletBackgroundImage;
@@ -85,7 +85,7 @@ public class CtaBannerWithPoints {
     @Optional
     private String tabletBackgroundImageOpenBusinessAccount;
 
-    @Inject
+    @ValueMapValue
     @Getter
     @Optional
     private String desktopBackgroundImage;
@@ -100,7 +100,7 @@ public class CtaBannerWithPoints {
     @Optional
     private String desktopBackgroundImageOpenBusinessAccount;
 
-    @Inject
+    @ValueMapValue
     @Getter
     @Optional
     private String buttonName;
@@ -115,7 +115,7 @@ public class CtaBannerWithPoints {
     @Optional
     private String buttonNameOpenBusinessAccount;
 
-    @Inject
+    @ValueMapValue
     @Getter
     @Optional
     private String buttonLink;

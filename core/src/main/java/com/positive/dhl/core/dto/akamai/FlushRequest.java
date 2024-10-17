@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.jackson.Jacksonized;
 
-import java.util.*;
+import java.util.Set;
 
 /**
  * Encapsulation of Akamai flush request

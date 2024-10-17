@@ -25,6 +25,7 @@ public class LinkTransformer extends DefaultTransformer implements Transformer {
 
     @Override
     public void init(ProcessingContext context, ProcessingComponentConfiguration configuration) throws IOException {
+        //default implementation ignored
     }
 
     @Override
