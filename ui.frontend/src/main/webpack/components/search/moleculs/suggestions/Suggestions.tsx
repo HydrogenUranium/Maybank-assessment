@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { isTouchDevice } from 'src/main/webpack/constants/device';
 import { SearchSection } from '../../../common/atoms';
-import { getCommonPrefix, highlightMatches, sanitizeHtml } from 'src/main/webpack/utils';
+import { getCommonPrefix, highlightMatches } from 'src/main/webpack/utils';
 
 import styles from './styles.module.scss';
 
@@ -88,7 +88,7 @@ export const Suggestions: React.FC<SuggestionsProps> = (
                   styles.searchSectionItemsItemText,
                   {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
                 )}
-              dangerouslySetInnerHTML={{ __html: sanitizeHtml(highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionsQuery.trim(), true) + ").*", "gi")) }}
+              dangerouslySetInnerHTML={{ __html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionsQuery.trim(), true) + ").*", "gi") }}
               key={suggestion}>
             </button>
             { isTouchDevice &&
