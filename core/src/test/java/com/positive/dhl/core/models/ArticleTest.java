@@ -117,8 +117,6 @@ class ArticleTest {
         assertEquals("4 min read", article.getReadtime());
         assertEquals("en", article.getLocale().toString());
         assertEquals("/content/dhl/global/home/small-business-advice/article.html", article.getPath());
-        assertEquals("/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg", article.getListimage());
-        assertEquals("List Image Alt Text", article.getListimageAltText());
         assertEquals("/content/dam/image.jpg", article.getPageImage());
         assertEquals("Page Image Alt Text", article.getPageImageAltText());
 

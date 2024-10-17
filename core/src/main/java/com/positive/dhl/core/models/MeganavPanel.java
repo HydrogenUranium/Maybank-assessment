@@ -194,7 +194,7 @@ public class MeganavPanel {
 				    				articleCategory.setTitle(fullTitle);
 				    			}
 
-				    			articleCategory.setListimage(properties.get("jcr:content/listimage", ""));
+				    			articleCategory.setPageImage(properties.get("jcr:content/cq:featuredimage/fileReference", ""));
 			    				
 								articleCategories.add(articleCategory);
 			    			}
