@@ -4,9 +4,9 @@ import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import java.util.regex.Pattern;
 
 @Getter
@@ -15,7 +15,7 @@ public class Infogram {
     private static final Pattern PATTERN =
             Pattern.compile("\\[infogram\\s+id=\"([a-f0-9-]+)\"\\s+prefix=\"([a-zA-Z0-9]+)\"\\s+format=\"([^\"]+)\"\\s+title=\"([^\"]+)\"\\]");
 
-    @Inject
+    @ValueMapValue
     private String wordPressEmbedField;
 
     private String id;

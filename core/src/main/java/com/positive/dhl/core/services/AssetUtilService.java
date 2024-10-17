@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.oak.commons.PropertiesUtil;
+import org.apache.poi.util.StringUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -152,22 +153,6 @@ public class AssetUtilService {
         }
     }
 
-    private String getListImage(Resource resource) {
-        return Optional.ofNullable(resource)
-                .map(res -> pageUtilService.getPage(res))
-                .map(Page::getProperties)
-                .map(properties -> properties.get("listimage", String.class))
-                .orElse(StringUtils.EMPTY);
-    }
-
-    private String getListImageAltText(Resource resource) {
-        return Optional.ofNullable(resource)
-                .map(res -> pageUtilService.getPage(res))
-                .map(Page::getProperties)
-                .map(properties -> properties.get("listimageAltText", String.class))
-                .orElse(StringUtils.EMPTY);
-    }
-
     private String getPageFeaturedImage(Resource resource) {
         return Optional.ofNullable(resource)
                 .map(res -> pageUtilService.getPage(res))
@@ -193,12 +178,10 @@ public class AssetUtilService {
     }
 
     public String getPageImagePath(Resource resource) {
-        String pageFeaturedImage = getPageFeaturedImage(resource);
-        String listImage = getListImage(resource);
-        return StringUtils.defaultIfBlank(pageFeaturedImage, listImage);
+        return getPageFeaturedImage(resource);
     }
 
     public String getPageImageAltText(Resource resource) {
-        return StringUtils.isNotBlank(getPageFeaturedImage(resource)) ? getPageFeaturedImageAltText(resource) : getListImageAltText(resource);
+        return getPageFeaturedImageAltText(resource);
     }
 }

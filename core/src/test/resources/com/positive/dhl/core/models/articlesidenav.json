@@ -17,7 +17,12 @@
     "cq:template": "/apps/dhl/templates/dhl-article-page",
     "cq:lastReplicatedBy": "rosemary",
     "listbrief": "Hacks and shortcuts to setting up a viable small business.",
-    "listimage": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+    "cq:featuredimage": {
+      "jcr:primaryType": "nt:unstructured",
+      "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+      "sling:resourceType": "core/wcm/components/image/v3/image",
+      "altValueFromDAM": "true"
+    },
     "heroimagemob": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
     "heroimagetab": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
     "readtime": "10 min read",
@@ -235,7 +240,12 @@
       "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
       "cq:lastReplicatedBy": "Lauren",
       "listbrief": "Hacks and shortcuts to setting up a viable small business.",
-      "listimage": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
       "heroimagemob": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
       "readtime": "10 min read",

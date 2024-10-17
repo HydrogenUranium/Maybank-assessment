@@ -86,9 +86,29 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const getSearchResultPagePath = (query: string) => { return `${searchResultPagePath}?searchfield=${query}`; };
 
   const handleSearchClick = (value = inputValue): void => {
+    // Validate the value before using it in a redirection
+    if (!isValidSearchTerm(value)) {
+      console.error('Invalid search term:', value);
+      return;
+    }
     putRecentSearch(value);
     window.location.href = getSearchResultPagePath(value);
   };
+
+  function isValidSearchTerm(value: string): boolean {
+    // Check that the value is a non-empty string
+    if (typeof value !== 'string' || value.trim() === '') {
+      return false;
+    }
+
+    // Check that the value does not contain any unsafe characters or sequences
+    // This is a very basic check and might not cover all possible cases
+    if (/[\s<>]/.test(value)) {
+      return false;
+    }
+
+    return true;
+  }
 
   const handleArrowDown = () => {
     setActiveSuggestion((prevSelected) => {

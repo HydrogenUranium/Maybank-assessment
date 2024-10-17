@@ -19,6 +19,7 @@ public class NoFollowExternalLinkTransformer extends DefaultTransformer implemen
 
     @Override
     public void init(ProcessingContext context, ProcessingComponentConfiguration configuration) throws IOException {
+        //default implementation ignored
     }
 
     @Override

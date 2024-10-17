@@ -5,47 +5,31 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 
-/**
- *
- */
 @Model(adaptables=Resource.class)
 public class ArticleList {
-	@Inject
+	@ChildResource
 	@Named("items")
 	@Optional
 	private Resource linksResource;
 
-	private static List<Article> articles;
-	
-    /**
-	 * 
-	 */
-	public static List<Article> getArticles() {
-		return new ArrayList<Article>(articles);
-	}
+	@Setter
+	@Getter
+	private List<Article> articles;
 
-    /**
-	 * 
-	 */
-	public static void setArticles(List<Article> articles) {
-		ArticleList.articles = new ArrayList<Article>(articles);
-	}
-
-    /**
-	 * 
-	 */
 	@PostConstruct
-	protected void init() {
-		articles = new ArrayList<Article>();
+	protected void  init() {
+		articles = new ArrayList<>();
 		if (linksResource != null) {
-			int count = 0;
+			var count = 0;
 			Iterator<Resource> linkResources = linksResource.listChildren();
 			while (linkResources.hasNext()) {
 				Article link = linkResources.next().adaptTo(Article.class);

@@ -22,7 +22,7 @@ public class ArticleCategory {
     private Boolean current;
     private int index;
 	private String title;
-	private String listimage;
+	private String pageImage;
 	private Boolean external;
 
     /**
@@ -70,15 +70,15 @@ public class ArticleCategory {
     /**
 	 *
 	 */
-	public String getListimage() {
-		return listimage;
+	public String getPageImage() {
+		return pageImage;
 	}
 
     /**
 	 *
 	 */
-	public void setListimage(String listimage) {
-		this.listimage = listimage;
+	public void setPageImage(String pageImage) {
+		this.pageImage = pageImage;
 	}
 
     /**
@@ -115,17 +115,14 @@ public class ArticleCategory {
 	 */
     @PostConstruct
 	protected void init() {
-		Resource resource = resourceResolver.getResource(path);
+		var resource = resourceResolver.getResource(path);
 		if (resource != null) {
 	    		ValueMap properties = resource.adaptTo(ValueMap.class);
 	    		if (properties != null) {
 	    			String fullTitle = properties.get("jcr:content/jcr:title", "");
-	    			title = properties.get("jcr:content/navTitle", "");
-	    			if ((title == null) || (title.trim().length() == 0)) {
-	    				title = fullTitle;
-	    			}
+	    			title = properties.get("jcr:content/navTitle", fullTitle);
 
-	    			listimage = properties.get("jcr:content/listimage", "");
+	    			pageImage = properties.get("jcr:content/cq:featuredimage/fileReference", "");
 	    		}
 		}
 	}
