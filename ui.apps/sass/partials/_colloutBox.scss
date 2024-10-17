@@ -315,6 +315,10 @@
 
       &_black {
         color: white;
+
+        p, li {
+         color: white;
+        }
         .background {
           background-color: #001C20;
         }

@@ -7,7 +7,10 @@ public enum SchemaMarkupType {
     BLOG_POSTING("BlogPosting"),
     ORGANIZATION("Organization"),
     SEARCH_ACTION("SearchAction"),
-    IMAGE_OBJECT("ImageObject");
+    IMAGE_OBJECT("ImageObject"),
+    FAQ_PAGE("FAQPage"),
+    QUESTION("Question"),
+    ANSWER("Answer");
 
     private final String value;
 

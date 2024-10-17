@@ -1,7 +1,6 @@
 package com.positive.dhl.core.services.transformers;
 
 import com.positive.dhl.core.services.PathUtilService;
-import com.positive.dhl.core.services.ResourceResolverHelper;
 import org.apache.sling.rewriter.Transformer;
 import org.apache.sling.rewriter.TransformerFactory;
 import org.osgi.service.component.annotations.Activate;
@@ -12,8 +11,12 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
-import java.util.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.List;
 import static com.positive.dhl.core.utils.OSGiConfigUtils.arrayToEntrySetWithDelimiter;
 
 @Component(

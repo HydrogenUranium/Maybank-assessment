@@ -12,17 +12,24 @@ import org.apache.sling.api.resource.ValueMap;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.service.component.annotations.Component;
 
-import java.util.*;
+import java.io.Serializable;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.List;
+import java.util.Locale;
 
 import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
 import static org.apache.jackrabbit.JcrConstants.JCR_LANGUAGE;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
 @Component(service = PageUtilService.class)
-public class PageUtilService {
+public class PageUtilService implements Serializable {
 
     public static final int HOME_PAGE_LEVEL = 3;
     public static final int CATEGORY_PAGE_LEVEL = HOME_PAGE_LEVEL + 1;
@@ -51,7 +58,9 @@ public class PageUtilService {
 
     public String getHomePagePath(String pagePath) {
         return Optional.ofNullable(pagePath)
-                .map(path -> Pattern.compile("^(/content/dhl/(global|\\w{2})/(\\w{2})-(global|\\w{2}))").matcher(path))
+                .map(path -> path.startsWith("/content/dhl/language-masters") ?
+                        Pattern.compile("^(/content/dhl/language-masters/(en-master|\\w{2}_?(\\w{2})?))").matcher(path) :
+                        Pattern.compile("^(/content/dhl/(global|\\w{2})/(\\w{2})-(global|\\w{2}))").matcher(path))
                 .filter(Matcher::find)
                 .map(m -> m.group(1))
                 .orElse(StringUtils.EMPTY);
@@ -76,7 +85,7 @@ public class PageUtilService {
     }
 
     public boolean hasInheritedNoIndex(Page currentPage) {
-        Page ancestor = getAncestorPageByPredicate(currentPage,
+        var ancestor = getAncestorPageByPredicate(currentPage,
                 page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
 
         return hasNoIndex(ancestor);

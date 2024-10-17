@@ -143,7 +143,6 @@
           }
 
           .header-countryList {
-            display: none;
             position: absolute;
             background: map-get($palette, true-white) 0% 0% no-repeat
               padding-box;
@@ -152,12 +151,23 @@
             padding: 0 10px 5px;
             z-index: 22;
             right: 0;
-            width: 212px;
-            max-height: 195px;
+            width: 205px;
+            max-height: 0;
             overflow-y: auto;
             overflow-x: hidden;
             font-size: 16px;
             line-height: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+
+            @include respond(md) {
+              width: 212px;
+            }
+
+            &--open {
+              max-height: 195px;
+              opacity: 1;
+            }
 
             &::-webkit-scrollbar-track {
               -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);

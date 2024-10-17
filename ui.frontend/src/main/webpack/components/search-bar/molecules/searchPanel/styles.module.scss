@@ -164,6 +164,7 @@
     height: 100%;
     aspect-ratio: 1/1;
     position: absolute;
+    padding: 0;
     right: 0;
     top: 0;
     [dir="rtl"] & {
@@ -171,13 +172,22 @@
       left: 0;
     }
     &Image {
-        background-size: contain;
-        background-position: center center;
-        background-repeat: no-repeat;
-        width: 60%;
-        height: 60%;
+        width: 100%;
+        height: 100%;
         display: inline-block;
-        background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/arrow-up-left.svg');
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:before {
+          width: 40%;
+          height: 40%;
+          background-size: contain;
+          background-position: center center;
+          background-repeat: no-repeat;
+          content: " ";
+          display: inline-block;
+          background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/arrow-up-left.svg');
+        }
     }
   }
 

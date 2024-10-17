@@ -2,12 +2,10 @@
 <workspaceFilter version="1.0">
     <filter root="/conf/global/settings/cloudconfigs"/>
     <filter root="/conf/global/settings/translation/rules"/>
-    <filter root="/conf/global/settings/workflow/models/aem-modernize-tools-rollback"/>
     <filter root="/conf/global/settings/workflow/models/request_for_activation"/>
     <filter root="/conf/global/settings/workflow/models/request_for_deletion"/>
     <filter root="/conf/global/settings/workflow/models/request_for_deactivation"/>
     <filter root="/conf/global/settings/workflow/models/request_to_complete_move_operation"/>
-    <filter root="/var/workflow/models/aem-modernize-tools-rollback"/>
     <filter root="/var/workflow/models/request_for_activation"/>
     <filter root="/var/workflow/models/request_for_deletion"/>
     <filter root="/var/workflow/models/request_for_deactivation"/>
