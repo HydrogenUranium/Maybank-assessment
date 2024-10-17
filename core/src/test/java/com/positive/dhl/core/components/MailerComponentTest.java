@@ -11,35 +11,35 @@ class MailerComponentTest {
     @Test
     void executeWelcome() {
         assertThrows(UnsupportedOperationException.class, () -> {
-           mailer.ExecuteWelcome("", "");
+           mailer.executeWelcome("", "");
         });
     }
 
     @Test
     void executeShipNowWelcome() {
         assertThrows(UnsupportedOperationException.class, () -> {
-            mailer.ExecuteShipNowWelcome("", "");
+            mailer.executeShipNowWelcome("", "");
         });
     }
 
     @Test
     void executePasswordReset() {
         assertThrows(UnsupportedOperationException.class, () -> {
-            mailer.ExecutePasswordReset("", "", "", "");
+            mailer.executePasswordReset("", "", "", "");
         });
     }
 
     @Test
     void executePasswordResetConfirm() {
         assertThrows(UnsupportedOperationException.class, () -> {
-            mailer.ExecutePasswordResetConfirm("", "");
+            mailer.executePasswordResetConfirm("", "");
         });
     }
 
     @Test
     void executeDeleteAccount() {
         assertThrows(UnsupportedOperationException.class, () -> {
-            mailer.ExecuteDeleteAccount("", "");
+            mailer.executeDeleteAccount("", "");
         });
     }
 }

@@ -5,20 +5,20 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  *
  */
 @Model(adaptables=Resource.class)
 public class HomepageCarousel {
-	@Inject
+	@ValueMapValue
 	@Named("items")
-	private Resource linksResource;
+	private static Resource linksResource;
 
 	private static List<HomepageCarouselItem> carouselitems;
 	
@@ -40,7 +40,7 @@ public class HomepageCarousel {
 	 * 
 	 */
 	@PostConstruct
-	protected void init() {
+	protected static void init() {
 		carouselitems = new ArrayList<HomepageCarouselItem>();
 		if (linksResource != null) {
 			int count = 0;

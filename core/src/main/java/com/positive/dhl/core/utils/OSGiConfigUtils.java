@@ -2,7 +2,11 @@ package com.positive.dhl.core.utils;
 
 import lombok.experimental.UtilityClass;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.AbstractMap;
 
 @UtilityClass
 public class OSGiConfigUtils {

@@ -1,16 +1,18 @@
 package com.positive.dhl.core.utils;
 
 import lombok.experimental.UtilityClass;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 
 import javax.jcr.query.Query;
-import java.util.*;
-import java.util.regex.Matcher;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.regex.Pattern;
-
-import static java.lang.Integer.parseInt;
 
 @UtilityClass
 public class IndexUtils {
