@@ -28,7 +28,13 @@
           "author": "Anna Thompson",
           "cq:template": "/apps/dhl/templates/dhl-article-page",
           "listbrief": "From Waybills to Export Licenses, this guide breaks down the jargon to help you navigate customs seamlessly. ",
-          "listimage": "/content/dam/image.jpg",
+          "cq:featuredimage": {
+            "jcr:primaryType": "nt:unstructured",
+            "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+            "sling:resourceType": "core/wcm/components/image/v3/image",
+            "altValueFromDAM": "true"
+          },
+
           "heroimagemob": "/content/dam/mobile.jpg",
           "heroimagetab": "/content/dam/tablet.jpg",
           "cq:lastRolledout": "Thu Aug 17 2023 08:20:47 GMT+0000",
@@ -76,7 +82,13 @@
           "author": "Anna Thompson",
           "cq:template": "/apps/dhl/templates/dhl-article-page",
           "listbrief": "From Waybills to Export Licenses, this guide breaks down the jargon to help you navigate customs seamlessly. ",
-          "listimage": "/content/dam/image.jpg",
+          "cq:featuredimage": {
+            "jcr:primaryType": "nt:unstructured",
+            "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+            "sling:resourceType": "core/wcm/components/image/v3/image",
+            "altValueFromDAM": "true"
+          },
+
           "heroimagemob": "/content/dam/mobile.jpg",
           "heroimagetab": "/content/dam/tablet.jpg",
           "cq:lastRolledout": "Thu Aug 17 2023 08:20:47 GMT+0000",

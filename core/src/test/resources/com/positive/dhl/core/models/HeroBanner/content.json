@@ -6,7 +6,13 @@
       "jcr:title": "The ultimate guide to designing a business plan",
       "cq:template": "/conf/dhl/settings/wcm/templates/article",
       "listbrief": "If you plan to start a business, you need to start a business plan. All good companies have one and, if you are wise, it's the first thing you'll think about writing.",
-      "listimage": "/content/dam/global-master/1-business-advice/starting-a-business/the-ultimate-guide-to-designing-a-business-plan/mobile_business_plan.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/heroimagemob.jpg",
       "heroimagetab": "/heroimagetab.jpg",
       "heroimageAltText": "Hero Image Alt Text",

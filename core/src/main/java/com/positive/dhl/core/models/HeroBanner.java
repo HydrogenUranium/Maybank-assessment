@@ -3,6 +3,7 @@ package com.positive.dhl.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 import com.positive.dhl.core.services.AssetUtilService;
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -14,9 +15,9 @@ import org.apache.sling.models.annotations.Required;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,40 +28,44 @@ public class HeroBanner {
 
     @OSGiService
     @Required
+    @Getter(AccessLevel.NONE)
     private AssetUtilService assetUtilService;
 
-    @Inject
+    @ScriptVariable
     @Required
+    @Getter(AccessLevel.NONE)
     private Page currentPage;
 
     @ScriptVariable
+    @Getter(AccessLevel.NONE)
     protected Style currentStyle;
 
-    @Inject
+    @ValueMapValue
     private String summaryTitle;
 
     @ChildResource
     @Named("summaryPoints")
+    @Getter(AccessLevel.NONE)
     private Resource pointsMultifield;
 
     private final List<String> points = new ArrayList<>();
 
-    @Inject
+    @ValueMapValue
     private String mobileBackgroundImage;
 
-    @Inject
+    @ValueMapValue
     private String tabletBackgroundImage;
 
-    @Inject
+    @ValueMapValue
     private String desktopBackgroundImage;
 
-    @Inject
+    @ValueMapValue
     private String backgroundImageAltText;
 
-    @Inject
+    @ValueMapValue
     private boolean useVideo;
 
-    @Inject
+    @ValueMapValue
     private String video;
 
     private String videoMimeType;

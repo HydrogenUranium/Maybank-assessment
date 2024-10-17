@@ -245,15 +245,15 @@ class AssetUtilServiceTest {
     }
 
     @Test
-    void test_getPageListimage(){
+    void test_getPageImage(){
         when(pageUtilService.getPage(any(Resource.class))).thenReturn(page);
-        when(page.getContentResource(	NN_PAGE_FEATURED_IMAGE)).thenReturn(res.getChild("jcr:content"));
-        when(page.getProperties(	)).thenReturn(res.getChild("jcr:content").getValueMap());
+        when(page.getContentResource(	NN_PAGE_FEATURED_IMAGE)).thenReturn(res.getChild("jcr:content").getChild(NN_PAGE_FEATURED_IMAGE));
+        lenient().when(page.getProperties(	)).thenReturn(res.getChild("jcr:content").getValueMap());
 
         String pageImagePath = service.getPageImagePath(res);
-        assertEquals("/content/dam/dhl/listimage.jpg", pageImagePath);
+        assertEquals("/content/dam/apec/starter-hub/starter_hub_masthead.jpg", pageImagePath);
 
         String pageImageAltText = service.getPageImageAltText(res);
-        assertEquals("List Image Alt Text", pageImageAltText);
+        assertEquals("Featured Image Alt Text", pageImageAltText);
     }
 }

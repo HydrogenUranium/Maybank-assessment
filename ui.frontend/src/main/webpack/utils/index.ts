@@ -1,3 +1,5 @@
+import DOMPurify from 'dompurify';
+
 export const unique = <T, >(array: T[]): T[] => Array.from(new Set(array));
 
 export const  highlightMatches = (text, regex, flags = "g") => {

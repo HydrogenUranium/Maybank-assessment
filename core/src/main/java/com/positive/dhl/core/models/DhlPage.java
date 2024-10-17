@@ -50,7 +50,6 @@ public class DhlPage {
 	private String assetprefix;
 	private String akamaiHostname;
 	private String ogtagimage;
-	private String listimage; // Deprecated
 	private String pageImage;
 	private String seoTitle;
 	private String adobeDtmLink;
@@ -86,7 +85,6 @@ public class DhlPage {
 		ValueMap properties = currentPage.getProperties();
 		fullarticlepath = properties.get("fullarticlepath", "");
 		amparticlepath = properties.get("amparticlepath", "");
-		listimage = properties.get("listimage", ""); // Deprecated
 		pageImage = assetUtilService.getPageImagePath(currentPage.getContentResource());
 		seoTitle = properties.get("seoTitle", "");
 

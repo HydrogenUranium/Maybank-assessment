@@ -71,6 +71,7 @@
                 <sly data-sly-list="${meganav.panels}">
                     <a class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }"
                        data-sly-attribute.aria-current="${currentPagePath == item.url ? 'page' : ''}"
+                       data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;${item.navigationTitle}&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}"
                        href="${item.url}">
                         <span>${item.navigationTitle}</span></a>
                 </sly>
@@ -78,10 +79,14 @@
             </nav>
             <div class="navigation-row__right">
                 <span class="navigation-item navigation-item_more-less more">${headerV2.moreLinkLabel}</span>
-                <a data-sly-test="${headerV2.buttonName}" class="button" href="${headerV2.buttonLink}" title="${headerV2.buttonName}">
+                <a data-sly-test="${headerV2.buttonName}" class="button" href="${headerV2.buttonLink}" title="${headerV2.buttonName}"
+                   data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;${headerV2.buttonName}&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}">
                     <span>${headerV2.buttonName}</span>
                 </a>
-                <a class="navigation-item" data-sly-repeat="${headerV2.companyLinks}" href="${item.linkPath}"><span>${item.linkName}</span></a>
+                <a class="navigation-item" data-sly-repeat="${headerV2.companyLinks}" href="${item.linkPath}"
+                   data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;${headerV2.linkName}&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}">
+                    <span>${item.linkName}</span>
+                </a>
             </div>
         </div>
     </div>
