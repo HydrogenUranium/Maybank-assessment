@@ -7,7 +7,7 @@ import { getArticles, getTagSuggestions } from 'src/main/webpack/services/api/se
 import { IconButton } from '../../atoms/iconButton/IconButton';
 import { useDataFetching } from '../../../../hooks/useDataFetching';
 import { SearchSection } from '../../../common/atoms/searchSection/SearchSection';
-import { decodeHtmlEntities, getCommonPrefix, highlightMatches } from 'src/main/webpack/utils';
+import { decodeHtmlEntities, getCommonPrefix, highlightMatches, sanitizeHtml } from 'src/main/webpack/utils';
 
 import styles from './styles.module.scss';
 
@@ -150,7 +150,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                     styles.searchSectionItemsItemText,
                     {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
                   )}
-                  dangerouslySetInnerHTML={{ __html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionQuery.trim(), true) + ").*", "gi") }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionQuery.trim(), true) + ").*", "gi")) }}
                   key={suggestion} />
                   { isTouchDevice &&
                     <button
