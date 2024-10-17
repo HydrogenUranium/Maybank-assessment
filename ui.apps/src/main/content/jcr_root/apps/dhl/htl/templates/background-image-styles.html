@@ -10,12 +10,12 @@
         }
         @media screen and (min-width: 768px) {
             #${id @ context='styleToken'} {
-                background-image: url('${model.desktopImage @ context='uri'}');
+                background-image: url('${model.tabletImage @ context='uri'}');
             }
         }
         @media screen and (min-width: 1200px) {
             #${id @ context='styleToken'} {
-                background-image: url('${model.tabletImage @ context='uri'}');
+                background-image: url('${model.desktopImage @ context='uri'}');
             }
         }
     </style>
