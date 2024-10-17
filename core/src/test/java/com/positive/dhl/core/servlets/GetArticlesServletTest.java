@@ -75,7 +75,7 @@ class GetArticlesServletTest {
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
-        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
+        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
         when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg");
 
         Article article1 = createArticleModel(context.resourceResolver().getResource("/content/home/article_1"));

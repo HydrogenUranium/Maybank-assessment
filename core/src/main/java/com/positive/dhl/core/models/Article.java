@@ -105,8 +105,6 @@ public class Article {
     private String authorimage;
     @Expose
     private String readtime;
-    private String listimage; // Deprecated
-    private String listimageAltText; // Deprecated
     @Expose
     private String pageImage;
     private String pageImageAltText;
@@ -204,8 +202,6 @@ public class Article {
             brief = brief.substring(0, 120).concat("...");
         }
 
-        listimage = valueMap.get("jcr:content/listimage", ""); // Deprecated
-        listimageAltText = valueMap.get("jcr:content/listimageAltText", title); // Deprecated
         pageImage = assetUtilService.getPageImagePath(resource);
         pageImageAltText = assetUtilService.getPageImageAltText(resource);
         heroimagemob = valueMap.get("jcr:content/heroimagemob", "");
@@ -213,7 +209,7 @@ public class Article {
         heroimagedt = valueMap.get("jcr:content/heroimagedt", "");
         heroimageAltText = valueMap.get("jcr:content/heroimageAltText", title);
         authorimage = valueMap.get("jcr:content/authorimage", "");
-        thumbnail = assetUtilService.getThumbnailLink(listimage);
+        thumbnail = assetUtilService.getThumbnailLink(pageImage);
 
         readtime = valueMap.get("jcr:content/readtime", "");
         author = valueMap.get("jcr:content/author", "");

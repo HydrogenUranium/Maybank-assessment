@@ -77,7 +77,7 @@ class RssFeedRenderServletTest {
         tagManager.createTag("dhl:tech-futures", "Tech Futures", "description");
         tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
 
-        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
+        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
     }
 
 

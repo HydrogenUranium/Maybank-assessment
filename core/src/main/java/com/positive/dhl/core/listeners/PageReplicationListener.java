@@ -54,13 +54,13 @@ public class PageReplicationListener implements EventHandler, JobConsumer {
 
     @Override
     public void handleEvent(Event event) {
-        ReplicationAction action = ReplicationAction.fromEvent(event);
+        var action = ReplicationAction.fromEvent(event);
         jobManager.addJob(JOB_TOPIC, Collections.singletonMap(KEY_REPLICATION_ACTION, action));
     }
 
     @Override
     public JobResult process(Job job) {
-        ReplicationAction action = job.getProperty(KEY_REPLICATION_ACTION, ReplicationAction.class);
+        var action = job.getProperty(KEY_REPLICATION_ACTION, ReplicationAction.class);
         for (String resourcePath : action.getPaths()) {
             processResource(resourcePath, action.getType());
         }

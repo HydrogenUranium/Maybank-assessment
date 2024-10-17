@@ -7,7 +7,7 @@ import { getArticles, getTagSuggestions } from 'src/main/webpack/services/api/se
 import { IconButton } from '../../atoms/iconButton/IconButton';
 import { useDataFetching } from '../../../../hooks/useDataFetching';
 import { SearchSection } from '../../../common/atoms/searchSection/SearchSection';
-import { decodeHtmlEntities, getCommonPrefix, highlightMatches, sanitizeHtml } from 'src/main/webpack/utils';
+import { decodeHtmlEntities, getCommonPrefix, highlightMatches } from 'src/main/webpack/utils';
 
 import styles from './styles.module.scss';
 
@@ -86,9 +86,29 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const getSearchResultPagePath = (query: string) => { return `${searchResultPagePath}?searchfield=${query}`; };
 
   const handleSearchClick = (value = inputValue): void => {
+    // Validate the value before using it in a redirection
+    if (!isValidSearchTerm(value)) {
+      console.error('Invalid search term:', value);
+      return;
+    }
     putRecentSearch(value);
     window.location.href = getSearchResultPagePath(value);
   };
+
+  function isValidSearchTerm(value: string): boolean {
+    // Check that the value is a non-empty string
+    if (typeof value !== 'string' || value.trim() === '') {
+      return false;
+    }
+
+    // Check that the value does not contain any unsafe characters or sequences
+    // This is a very basic check and might not cover all possible cases
+    if (/[\s<>]/.test(value)) {
+      return false;
+    }
+
+    return true;
+  }
 
   const handleArrowDown = () => {
     setActiveSuggestion((prevSelected) => {
@@ -150,7 +170,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                     styles.searchSectionItemsItemText,
                     {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
                   )}
-                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionQuery.trim(), true) + ").*", "gi")) }}
+                  dangerouslySetInnerHTML={{ __html: highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionQuery.trim(), true) + ").*", "gi") }}
                   key={suggestion} />
                   { isTouchDevice &&
                     <button
