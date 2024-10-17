@@ -6,8 +6,8 @@
 <article class="cta-banner-component" data-sly-test="${!isEmpty}">
     <div class="banner">
         <div class="banner__body">
-            <div class="banner__body__top-title">${model.topTitle}</div>
-            <div class="banner__body__title">${model.title}</div>
+            <div class="banner__body__top-title">${model.topTitle @ context = 'html'}</div>
+            <div class="banner__body__title">${model.title @ context = 'html'}</div>
             <a data-sly-attribute.data-analytics="${analytics.json}" href="${model.buttonLink}" class="banner__body__button">${model.buttonName}</a>
         </div>
         <div class="banner__image" id="${model.id}">
