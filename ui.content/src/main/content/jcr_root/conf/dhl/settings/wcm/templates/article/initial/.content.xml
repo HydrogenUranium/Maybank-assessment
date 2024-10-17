@@ -9,9 +9,15 @@
             heroimagemob="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage.jpg"
             heroimagetab="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-tab.jpg"
             listbrief="Lorem ipsum dolor sit amet consectetur adipiscing elit diam nonummy"
-            listimage="/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg"
             mediatype="infographic"
             cq:template="/conf/dhl/settings/wcm/templates/article">
+        <cq:featuredimage
+                jcr:primaryType="nt:unstructured"
+                cq:isDelivered="{Boolean}false"
+                fileReference="/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg"
+                sling:resourceType="core/wcm/components/image/v3/image"
+                altValueFromDAM="false"
+                alt="Default Article Image"/>
         <root
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid"

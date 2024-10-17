@@ -100,8 +100,6 @@
           "articleHeader-smartShareButtonsLabel": "Share",
           "articleHeader-smartShareButtonsIconPath": "/content/dam/dhl-discover/common/icons/icons8-share (1).svg",
           "authorBanner-title": "About the Author",
-          "listimage": "/content/dam/dhl/listimage.jpg",
-          "listimageAltText": "List Image Alt Text",
           "multifields": {
             "jcr:primaryType": "nt:unstructured",
             "socialNetwork": {
@@ -248,7 +246,12 @@
               "ogtagimage": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg",
               "mediatype": "article",
               "listbrief": "How subscription models are changing e-commerce habits",
-              "listimage": "/content/dam/dhl/listimage.jpg",
+              "cq:featuredimage": {
+                "jcr:primaryType": "nt:unstructured",
+                "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+                "sling:resourceType": "core/wcm/components/image/v3/image",
+                "altValueFromDAM": "true"
+              },
               "heroimagemob": "/content/dam/dhl/heroimagemob.jpg",
               "heroimagetab": "/content/dam/dhl/heroimagetab.jpg",
               "heroimagedt": "/content/dam/dhl/heroimagedt.jpg",
@@ -297,7 +300,12 @@
               "jcr:primaryType": "cq:PageContent",
               "jcr:title": "SUB CATEGORY PAGE Title",
               "cq:template": "/conf/dhl/settings/wcm/templates/category-page",
-              "listimage": "/content/dam/dhl/listimage.jpg",
+              "cq:featuredimage": {
+                "jcr:primaryType": "nt:unstructured",
+                "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+                "sling:resourceType": "core/wcm/components/image/v3/image",
+                "altValueFromDAM": "true"
+              },
               "pageTitle": "SUB CATEGORY PAGE Page Title",
               "sling:resourceType": "dhl/components/pages/editable-category-page",
               "navTitle": "SUB CATEGORY PAGE Navigation Title",
