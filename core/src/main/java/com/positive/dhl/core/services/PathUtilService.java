@@ -9,7 +9,12 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import java.io.UnsupportedEncodingException;
-import java.net.*;
+import java.net.URI;
+import java.net.URL;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;

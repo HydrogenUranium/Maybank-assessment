@@ -1,39 +1,39 @@
 package com.positive.dhl.core.models;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  *
  */
 @Model(adaptables=Resource.class)
 public class GalleryItem {
-    @Inject
+    @ValueMapValue
     @Named("title")
     @Optional
     public String title;
 	
-    @Inject
+    @ValueMapValue
     @Named("brief")
     @Optional
     public String brief;
 	
-    @Inject
+    @ValueMapValue
     @Named("imagemob")
     @Optional
     public String imagemob;
 	
-    @Inject
+    @ValueMapValue
     @Named("imagetab")
     @Optional
     public String imagetab;
 	
-    @Inject
+    @ValueMapValue
     @Named("imagedt")
     @Optional
     public String imagedt;
@@ -59,6 +59,6 @@ public class GalleryItem {
 	 */
 	@PostConstruct
 	protected void init() {
-    	
+    	//no initialization required at the moment
 	}
 }

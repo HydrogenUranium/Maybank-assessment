@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jcr.Session;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ import java.util.Map;
 @Component(
 		service = ResourceResolverHelper.class
 )
-public class ResourceResolverHelper {
+public class ResourceResolverHelper implements Serializable {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ResourceResolverHelper.class);
 
@@ -29,7 +30,7 @@ public class ResourceResolverHelper {
 	ResourceResolverFactory resourceResolverFactory;
 
 	public ResourceResolver getUserManagerResourceResolver(){
-		return getResourceResolver(DiscoverConstants.DISCOVER_USER_MANAGER_Service);
+		return getResourceResolver(DiscoverConstants.DISCOVER_USER_MANAGER_SERVICE);
 	}
 
 	/**

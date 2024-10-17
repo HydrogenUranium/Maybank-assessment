@@ -12,22 +12,24 @@ import org.apache.sling.api.resource.ValueMap;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.service.component.annotations.Component;
 
+import java.io.Serializable;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.List;
+import java.util.Locale;
 
 import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
 import static org.apache.jackrabbit.JcrConstants.JCR_LANGUAGE;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
 @Component(service = PageUtilService.class)
-public class PageUtilService {
+public class PageUtilService implements Serializable {
 
     public static final int HOME_PAGE_LEVEL = 3;
     public static final int CATEGORY_PAGE_LEVEL = HOME_PAGE_LEVEL + 1;
