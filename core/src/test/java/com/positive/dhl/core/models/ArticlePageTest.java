@@ -69,7 +69,7 @@ class ArticlePageTest {
 
 		context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
 
-		when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
+		when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
 		when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
 		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
 		when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));

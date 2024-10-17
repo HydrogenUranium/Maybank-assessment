@@ -63,7 +63,7 @@ class RelatedPostsTest {
 
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
         when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
-        when(assetUtilService.getThumbnailLink(anyString())).thenReturn("/thumbnail.png");
+        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");

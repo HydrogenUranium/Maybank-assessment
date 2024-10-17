@@ -33,7 +33,13 @@
 			"cq:template": "/apps/dhl/templates/dhl-article-page",
 			"cq:lastReplicatedBy": "admin",
 			"listbrief": "How subscription models are changing e-commerce habits",
-			"listimage": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+			"cq:featuredimage": {
+				"jcr:primaryType": "nt:unstructured",
+				"fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+				"sling:resourceType": "core/wcm/components/image/v3/image",
+				"altValueFromDAM": "true"
+			},
+
 			"heroimagemob": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
 			"heroimagetab": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
 			"readtime": "4 min read",
@@ -457,7 +463,13 @@
 				"cq:template": "/apps/dhl/templates/dhl-amp-article-page",
 				"cq:lastReplicatedBy": "admin",
 				"listbrief": "How subscription models are changing e-commerce habits",
-				"listimage": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+				"cq:featuredimage": {
+					"jcr:primaryType": "nt:unstructured",
+					"fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+					"sling:resourceType": "core/wcm/components/image/v3/image",
+					"altValueFromDAM": "true"
+				},
+
 				"heroimagemob": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
 				"heroimagetab": "/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
 				"readtime": "4 min read",

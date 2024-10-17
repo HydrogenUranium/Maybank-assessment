@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { format } from 'react-string-format';
-import DOMPurify from 'dompurify';
 
 import { SearchRow } from './atoms';
 import { Suggestions } from './moleculs';
-import { decodeHtmlEntities, sanitizeHtml } from '../../utils';
+import { decodeHtmlEntities } from '../../utils';
 import { getRecentSearches, putRecentSearch } from '../../services/local-storage';
 import { useDataFetching, useSortedSearchResult } from '../../hooks';
 import { getArticles, getTagSuggestions } from '../../services/api/search';
@@ -186,9 +185,9 @@ export const Search: React.FC<SearchProps> = ({
       ? descriptionFormat 
       : descriptionFormatNoResults || descriptionFormat;
 
-  
-    const sanitizedQuery = DOMPurify.sanitize(articlesQuery);
-    return format(descriptionFormatToUse, sanitizedQuery, limit, sortedSearchRows.length);
+    const safeQuery = removeHtmlTags(articlesQuery);
+
+    return format(descriptionFormatToUse, safeQuery, limit, sortedSearchRows.length);
   };
 
   return (
@@ -232,7 +231,7 @@ export const Search: React.FC<SearchProps> = ({
         </div>
         <h1 className={styles.searchFormTitle}>{title}</h1>
         <div className={styles.searchFormDetails}
-          dangerouslySetInnerHTML={{ __html: sanitizeHtml(getSearchDetails()) }}
+          dangerouslySetInnerHTML={{ __html: getSearchDetails() }}
         />
       </div>
       <div className={styles.searchResult}>

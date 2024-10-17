@@ -13,7 +13,13 @@
     "jcr:versionHistory": "758d8017-f3a8-403e-8538-7e0f4a8cd8eb",
     "cq:template": "/apps/dhl/templates/dhl-article-group-page",
     "cq:lastReplicatedBy": "dhl-user",
-    "listimage": "/content/dam/dhl/site-image/category-nav/entrepreneurship.jpg",
+    "cq:featuredimage": {
+      "jcr:primaryType": "nt:unstructured",
+      "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+      "sling:resourceType": "core/wcm/components/image/v3/image",
+      "altValueFromDAM": "true"
+    },
+
     "jcr:predecessors": [
       "35d384d5-4c86-4c96-aa48-2433849aa873"
     ],
@@ -101,7 +107,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "Tom-L",
       "listbrief": "How a hot new swimwear brand successfully bootstrapped their new business with DHL Express.\r\n",
-      "listimage": "/content/dam/dhl/business-matters/kulani-kinis/Mobile_800x450_Kulani Kinis.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/dhl/business-matters/kulani-kinis/new/resized/Tablet_Kulani_Kinis_1536x864_A.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/kulani-kinis/new/resized/Tablet_Kulani_Kinis_1536x864_A.jpg",
       "cq:lastReplicationAction_publish": "Activate",
@@ -193,7 +205,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "rosemary",
         "listbrief": "How a hot new swimwear brand successfully bootstrapped their new business with DHL Express.",
-        "listimage": "/content/dam/dhl/business-matters/kulani-kinis/new/Tablet_Kulani_Kinis_1536x864_A.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/dhl/business-matters/kulani-kinis/new/resized/Tablet_Kulani_Kinis_1536x864_A.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/kulani-kinis/new/resized/Tablet_Kulani_Kinis_1536x864_A.jpg",
         "readtime": "5 min read",
@@ -240,7 +258,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "Hacks and shortcuts to setting up a viable small business.",
-      "listimage": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
       "readtime": "10 min read",
@@ -307,7 +331,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "Hacks and shortcuts to setting up a viable small business.",
-        "listimage": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/new-launching-a-succesful-business-in-10-minutes-a-day-/Inline_370x209_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
         "readtime": "10 min read",
@@ -356,7 +386,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "Jade",
       "listbrief": "Swimma, the South African SME that makes swimming caps for people with long or big hair. ",
-      "listimage": "/content/dam/dhl/business-matters/swimma-big-hair-swimming-cap-sme-business-/new/Mobile_640x360_Small enterprise for people with big hair_Enterprise.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/dhl/business-matters/swimma-big-hair-swimming-cap-sme-business-/new/Mobile_640x360_Small enterprise for people with big hair_Enterprise.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/swimma-big-hair-swimming-cap-sme-business-/new/Mobile_640x360_Small enterprise for people with big hair_Enterprise.jpg",
       "readtime": "4 min read",
@@ -420,7 +456,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Jade",
         "listbrief": "Swimma, the South African SME that makes swimming caps for people with long or big hair. ",
-        "listimage": "/content/dam/dhl/business-matters/swimma-big-hair-swimming-cap-sme-business-/new/Mobile_640x360_Small enterprise for people with big hair_Enterprise.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/dhl/business-matters/swimma-big-hair-swimming-cap-sme-business-/new/Mobile_640x360_Small enterprise for people with big hair_Enterprise.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/swimma-big-hair-swimming-cap-sme-business-/new/tablet_swimma.jpg",
         "readtime": "4 min read",
@@ -471,8 +513,14 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "Jade",
       "listbrief": "Meet the SME that's changing the face of men's gifts.",
-      "listimage": "/content/dam/dhl/versions/nav/Nav_mens_society.jpg",
       "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/mens-society--bringing-beards-to-life/Mobile_Men_s-society_V3.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/mens-society--bringing-beards-to-life/Tablet_Mens_society_V3.jpg",
       "onTime": "Mon Sep 25 2017 03:48:00 GMT+0100",
       "readtime": "5 min read",
@@ -538,7 +586,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Jade",
         "listbrief": "Meet the SME that's changing the face of men's gifts.",
-        "listimage": "/content/dam/dhl/versions/nav/Nav_mens_society.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/mens-society--bringing-beards-to-life/Mobile_Men_s-society_V3.jpg",
         "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/mens-society--bringing-beards-to-life/Tablet_Mens_society_V3.jpg",
         "readtime": "5 min read",
@@ -586,7 +640,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "The online vintage fashion boutique doing things differently.",
-      "listimage": "/content/dam/dhl/business-matters/open-for-vintage/Nav-Open-for-vintage.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/a-new-business-for-vintage-fashion/mobile2_Open-for-vintage.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/open-for-vintage/new/resized/tablet2_Open-for-vintage.jpg",
       "jcr:language": "en_gb",
@@ -651,7 +711,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "rosemary",
         "listbrief": "The online vintage fashion boutique doing things differently.",
-        "listimage": "/content/dam/dhl/business-matters/open-for-vintage/new/nav2_Open-for-vintage.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/a-new-business-for-vintage-fashion/mobile2_Open-for-vintage.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/open-for-vintage/new/resized/tablet2_Open-for-vintage.jpg",
         "readtime": "5 min read",
@@ -707,7 +773,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "Jade",
       "listbrief": "Meet the small business idea that created a global market for pre-loved designer items.",
-      "listimage": "/content/dam/dhl/versions/nav/Nav_Luxury Closet.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/dhl/business-matters/luxury-closet/new/Header_Luxury_Closet_1_1920x670_6572_B.jpg",
       "heroimagetab": "/content/dam/dhl/versions/tablet/Tablet_SME_Hero_Luxury_Closet_768x439_6572.jpg",
       "readtime": "4 min read",
@@ -803,7 +875,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "Meet the small business idea that created a global market for pre-loved designer items.",
-        "listimage": "/content/dam/dhl/versions/nav/Nav_Luxury Closet.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/dhl/business-matters/luxury-closet/Header-Luxury-Closet-1-1920x670-6572-B.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/luxury-closet/Header-Luxury-Closet-1-1920x670-6572-B.jpg",
         "readtime": "4 min read",
@@ -851,7 +929,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "How a Toronto-based manufacturer of traditional spinning tops found a large global market.",
-      "listimage": "/content/dam/dhl/versions/nav/Nav_ForeverSpin.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/dhl/business-matters/forever-spin/Mobile_SME_Hero_Forever_Spin_320x186_6572.jpg",
       "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/foreverspin--a-fresh-spin-on-topping-the-market/Tablet_SME_Hero_Forever_Spin_768x439_6572.jpg",
       "readtime": "4 min read",
@@ -917,7 +1001,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "How a Toronto-based manufacturer of traditional spinning tops found a large global market.",
-        "listimage": "/content/dam/dhl/versions/nav/Nav_ForeverSpin.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/dhl/business-matters/forever-spin/Mobile_320x186_ForeverSpin Company Profile AMP_ecommerce.jpg",
         "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/foreverspin--a-fresh-spin-on-topping-the-market/Tablet_SME_Hero_Forever_Spin_768x439_6572.jpg",
         "readtime": "4 min read",
@@ -968,7 +1058,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "From Uber to Airbnb, Ebay to Spotify, we look at the risks and rewards of setting up business in the gig economy.",
-      "listimage": "/content/dam/dhl/business-matters/sharing-economy/Inline_800x450_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/dhl/business-matters/sharing-economy/Mobile_640 x 360_Sharing Economy_Economy.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/sharing-economy/tablet2-sharing-economy.jpg",
       "onTime": "Mon Sep 25 2017 00:00:00 GMT+0100",
@@ -1032,7 +1128,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "From Uber to Airbnb, Ebay to Spotify, we look at the risks and rewards of setting up business in the gig economy.",
-        "listimage": "/content/dam/dhl/business-matters/sharing-economy/Inline_800x450_Kulani Kinis Company Profile AMP_bootstrapping.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/dhl/business-matters/sharing-economy/Mobile_640 x 360_Sharing Economy_Economy.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/sharing-economy/tablet2-sharing-economy.jpg",
         "readtime": "4 min read",
@@ -1090,7 +1192,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "How best to prepare and plan for the huge business of Christmas as an SME.",
-      "listimage": "/content/dam/dhl/business-matters/christmas-as-a-business/Inline_800x450_business_of_christmas.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/preparing-your-sme-for-the-business-of-christmas/preparing-your-sme-for-the-business-of-christmas/Mobile_640x360_business_of_christmas.jpg",
       "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/preparing-your-sme-for-the-business-of-christmas/preparing-your-sme-for-the-business-of-christmas/Mobile_640x360_business_of_christmas.jpg",
       "readtime": "4 min read",
@@ -1187,7 +1295,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "How best to prepare and plan for the huge business of Christmas as an SME.",
-        "listimage": "/content/dam/malaysia/business/entrepreneurship/preparing-your-sme-for-the-business-of-christmas/preparing-your-sme-for-the-business-of-christmas/Mobile_640x360_business_of_christmas.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/preparing-your-sme-for-the-business-of-christmas/preparing-your-sme-for-the-business-of-christmas/Mobile_640x360_business_of_christmas.jpg",
         "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/preparing-your-sme-for-the-business-of-christmas/tablet_business_of_christmas.jpg",
         "jcr:predecessors": [
@@ -1233,7 +1347,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "Lauren",
       "listbrief": "Before you start your business, read this.",
-      "listimage": "/content/dam/dhl/downloads/business-plan/nav_business_plan.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/the-ultimate-guide-to-designing-a-business-plan/mobile_business_plan.jpg",
       "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/the-ultimate-guide-to-designing-a-business-plan/tablet_business_plan.jpg",
       "readtime": "10 min read",
@@ -1298,7 +1418,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "Before you start your business, read this.",
-        "listimage": "/content/dam/dhl/downloads/business-plan/nav_business_plan.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/the-ultimate-guide-to-designing-a-business-plan/mobile_business_plan.jpg",
         "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/the-ultimate-guide-to-designing-a-business-plan/tablet_business_plan.jpg",
         "readtime": "10 min read",
@@ -1346,7 +1472,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "Successful SMEs that are all about seasonal celebrations.\r\n",
-      "listimage": "/content/dam/dhl/business-matters/christmas-party-planners/nav_christmas_planners.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/the-christmas-party-planners/mobile_christmas_planners.jpg",
       "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/the-christmas-party-planners/tablet_christmas_planners.jpg",
       "readtime": "5 min read",
@@ -1407,7 +1539,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "rosemary",
         "listbrief": "Successful SMEs that are all about seasonal celebrations.",
-        "listimage": "/content/dam/dhl/business-matters/christmas-party-planners/nav_christmas_planners.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/the-christmas-party-planners/mobile_christmas_planners.jpg",
         "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/the-christmas-party-planners/tablet_christmas_planners.jpg",
         "readtime": "5 min read",
@@ -1455,7 +1593,13 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "10 efficient ways bootstrapping entrepreneurs can get the ball rolling.",
-      "listimage": "/content/dam/dhl/downloads/bootstrapping-entrepreneurs/nav_bootstrapping.jpg",
+      "cq:featuredimage": {
+        "jcr:primaryType": "nt:unstructured",
+        "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+        "sling:resourceType": "core/wcm/components/image/v3/image",
+        "altValueFromDAM": "true"
+      },
+
       "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/think-you-need-money-to-start-a-business-/mobile_bootstrapping.jpg",
       "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/think-you-need-money-to-start-a-business-/tablet_bootstrapping.jpg",
       "readtime": "7 min read",
@@ -1521,7 +1665,13 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "10 efficient ways bootstrapping entrepreneurs can get the ball rolling.",
-        "listimage": "/content/dam/dhl/downloads/bootstrapping-entrepreneurs/nav_bootstrapping.jpg",
+        "cq:featuredimage": {
+          "jcr:primaryType": "nt:unstructured",
+          "fileReference": "/content/dam/dhl/site-image/category-nav/business.jpg",
+          "sling:resourceType": "core/wcm/components/image/v3/image",
+          "altValueFromDAM": "true"
+        },
+
         "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/think-you-need-money-to-start-a-business-/mobile_bootstrapping.jpg",
         "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/think-you-need-money-to-start-a-business-/tablet_bootstrapping.jpg",
         "readtime": "7 min read",
@@ -1572,7 +1722,6 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "Jade",
       "listbrief": "How to get your business off the ground in just 10 minutes a day.",
-      "listimage": "/content/dam/dhl/business-matters/spare-time-startups/refreshed-content/Mobile_991x558_V01.jpg",
       "heroimagemob": "/content/dam/dhl/business-matters/spare-time-startups/refreshed-content/Mobile_991x558_V01.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/spare-time-startups/refreshed-content/Mobile_991x558_V01.jpg",
       "readtime": "15 min read",
@@ -1641,7 +1790,6 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Jade",
         "listbrief": "Work smarter, not harder: tips and tricks to help you succeed in business. ",
-        "listimage": "/content/dam/dhl/business-matters/spare-time-startups/refreshed-content/Mobile_991x558_V01.jpg",
         "heroimagemob": "/content/dam/dhl/business-matters/spare-time-startups/refreshed-content/Mobile_991x558_V01.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/spare-time-startups/refreshed-content/Desktop_1920x918_V01.jpg",
         "readtime": "15 min read",
@@ -1698,7 +1846,6 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "Tom-L",
       "listbrief": "How DHL Express is helping golfers hit a perfect round. \r\n",
-      "listimage": "/content/dam/dhl/business-matters/new-shipsticks/Nav_370x209_ship_sticks.jpg",
       "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/ship-sticks--company-profile/Mobile_Tablet_991x558.jpg",
       "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/ship-sticks--company-profile/Mobile_Tablet_991x558.jpg",
       "cq:lastRolledout": "Wed Jun 06 2018 17:08:20 GMT+0200",
@@ -1791,7 +1938,6 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "A company profile on Ship Sticks, a golf club door-to-door delivery service.",
-        "listimage": "/content/dam/malaysia/business/entrepreneurship/ship-sticks--company-profile/Inline_275x275_Ship_Sticks_Company_Profile_courier.jpg",
         "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/ship-sticks--company-profile/Mobile_Tablet_991x558.jpg",
         "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/ship-sticks--company-profile/Mobile_Tablet_991x558.jpg",
         "readtime": "6 min read",
@@ -1838,7 +1984,6 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "By Roger Bowie, entrepreneur and former Global Services Director, DHL Express. ",
-      "listimage": "/content/dam/dhl/business-matters/roger-bowie/Inline_800x450_Roger_Bowie.jpg",
       "heroimagemob": "/content/dam/dhl/business-matters/roger-bowie/Mobile_640x360_Hope, Horror and the Future of Business AMP.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/roger-bowie/Mobile_640x360_Hope, Horror and the Future of Business AMP.jpg",
       "readtime": "7 min read",
@@ -1905,7 +2050,6 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "By Roger Bowie, entrepreneur and former Global Services Director, DHL Express. ",
-        "listimage": "/content/dam/dhl/business-matters/roger-bowie/Inline_800x450_Roger_Bowie.jpg",
         "heroimagemob": "/content/dam/dhl/business-matters/roger-bowie/Mobile_640x360_Hope, Horror and the Future of Business AMP.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/roger-bowie/Tablet_1536x864_A.jpg",
         "readtime": "7 min read",
@@ -1956,7 +2100,6 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "Jade",
       "listbrief": "Work smarter, not harder: tips and tricks to help you succeed in business. ",
-      "listimage": "/content/dam/dhl/business-matters/effective-entrepreneur/new-header/Mobile_991x558_V03.jpg",
       "heroimagemob": "/content/dam/dhl/business-matters/effective-entrepreneur/new-header/Mobile_991x558_V03.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/effective-entrepreneur/new-header/Mobile_991x558_V03.jpg",
       "readtime": "4 min read",
@@ -2022,7 +2165,6 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Jade",
         "listbrief": "Work smarter, not harder: tips and tricks to help you succeed in business.",
-        "listimage": "/content/dam/dhl/business-matters/effective-entrepreneur/new-header/Mobile_991x558_V03.jpg",
         "heroimagemob": "/content/dam/dhl/business-matters/effective-entrepreneur/new-header/Mobile_991x558_V03.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/effective-entrepreneur/new-header/Mobile_991x558_V03.jpg",
         "readtime": "4 min read",
@@ -2080,7 +2222,6 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "Find out how a small Australian fashion label has reached across the globe. ",
-      "listimage": "/content/dam/dhl/business-matters/zanerobe/Nav_800x450_zanerobe_case_study.jpg",
       "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/how-dhl-express-helped-zanerobe-grow-fast/Mobile_640x360_B.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/zanerobe/Tablet_1536x864_B.jpg",
       "cq:lastRolledout": "Mon Jun 04 2018 16:55:13 GMT+0200",
@@ -2172,7 +2313,6 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "Find out how a small Australian fashion label has reached across the globe. ",
-        "listimage": "/content/dam/dhl/business-matters/zanerobe/Nav_800x450_zanerobe_case_study.jpg",
         "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/how-dhl-express-helped-zanerobe-grow-fast/Mobile_640x360_B.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/zanerobe/Tablet_1536x864_B.jpg",
         "readtime": "5 min read",
@@ -2219,7 +2359,6 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "From candy and meal kits to shavers and socks, is there any space left in this sector for new players?",
-      "listimage": "/content/dam/dhl/business-matters/1_entrepreneurship/dis696---subscription-marketing/Banner_375x210_Subscription Marketing_marketing.jpg",
       "heroimagemob": "/content/dam/dhl/business-matters/1_entrepreneurship/dis696---subscription-marketing/Desktop_1920x918Subscription.jpg",
       "heroimagetab": "/content/dam/dhl/business-matters/1_entrepreneurship/dis696---subscription-marketing/Desktop_1920x918Subscription.jpg",
       "readtime": "5 min read",
@@ -2282,7 +2421,6 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "rosemary",
         "listbrief": "From candy and meal kits to shavers and socks, is there any space left in this sector for new players?",
-        "listimage": "/content/dam/dhl/business-matters/1_entrepreneurship/dis696---subscription-marketing/Banner_375x210_Subscription Marketing_marketing.jpg",
         "heroimagemob": "/content/dam/dhl/business-matters/1_entrepreneurship/dis696---subscription-marketing/Banner_375x210_Subscription Marketing_marketing.jpg",
         "heroimagetab": "/content/dam/dhl/business-matters/1_entrepreneurship/dis696---subscription-marketing/Banner_375x210_Subscription Marketing_marketing.jpg",
         "readtime": "5 min read",
@@ -2330,7 +2468,6 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "rosemary",
       "listbrief": "Beneficial for young businesses, getting accepted could pave your accelerated path to success.",
-      "listimage": "/content/dam/malaysia/business/entrepreneurship/business-incubators--what-they-are-and-how-to-join-one/business-incubators--what-they-are-and-how-to-join-one/Mobile_991x558_Business Incubators- What are they-_Business incubators.jpg",
       "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/business-incubators--what-they-are-and-how-to-join-one/business-incubators--what-they-are-and-how-to-join-one/Mobile_991x558_Business Incubators- What are they-_Business incubators.jpg",
       "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/business-incubators--what-they-are-and-how-to-join-one/business-incubators--what-they-are-and-how-to-join-one/Mobile_991x558_Business Incubators- What are they-_Business incubators.jpg",
       "readtime": "4 min read",
@@ -2394,7 +2531,6 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Lauren",
         "listbrief": "Beneficial for young businesses, getting accepted could pave your accelerated path to success.",
-        "listimage": "/content/dam/malaysia/business/entrepreneurship/business-incubators--what-they-are-and-how-to-join-one/business-incubators--what-they-are-and-how-to-join-one/Mobile_991x558_Business Incubators- What are they-_Business incubators.jpg",
         "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/business-incubators--what-they-are-and-how-to-join-one/business-incubators--what-they-are-and-how-to-join-one/Mobile_991x558_Business Incubators- What are they-_Business incubators.jpg",
         "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/business-incubators--what-they-are-and-how-to-join-one/business-incubators--what-they-are-and-how-to-join-one/Mobile_991x558_Business Incubators- What are they-_Business incubators.jpg",
         "readtime": "4 min read",
@@ -2443,7 +2579,6 @@
       "cq:template": "/apps/dhl/templates/dhl-article-page",
       "cq:lastReplicatedBy": "Jade",
       "listbrief": "What you need to know about getting your product to where it needs to be.",
-      "listimage": "/content/dam/malaysia/business/entrepreneurship/startup-logistics-advice-for-2020/Mobile_Tablet_991x558DIS532logistics.jpg",
       "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/startup-logistics-advice-for-2020/Mobile_Tablet_991x558DIS532logistics.jpg",
       "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/startup-logistics-advice-for-2020/Mobile_Tablet_991x558DIS532logistics.jpg",
       "readtime": "4 min read",
@@ -2509,7 +2644,6 @@
         "cq:template": "/apps/dhl/templates/dhl-amp-article-page",
         "cq:lastReplicatedBy": "Jade",
         "listbrief": "What you need to know about getting your product to where it needs to be.",
-        "listimage": "/content/dam/malaysia/business/entrepreneurship/startup-logistics-advice-for-2020/Mobile_Tablet_991x558DIS532logistics.jpg",
         "heroimagemob": "/content/dam/malaysia/business/entrepreneurship/startup-logistics-advice-for-2020/Mobile_Tablet_991x558DIS532logistics.jpg",
         "heroimagetab": "/content/dam/malaysia/business/entrepreneurship/startup-logistics-advice-for-2020/Mobile_Tablet_991x558DIS532logistics.jpg",
         "readtime": "4 min read",
