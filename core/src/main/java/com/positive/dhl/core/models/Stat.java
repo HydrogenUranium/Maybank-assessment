@@ -38,6 +38,6 @@ public class Stat {
 	 */
     @PostConstruct
 	protected void init() {
-    	
+    	//default initialization
 	}
 }

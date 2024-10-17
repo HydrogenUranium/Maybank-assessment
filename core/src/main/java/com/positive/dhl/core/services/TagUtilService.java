@@ -9,6 +9,7 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -18,7 +19,8 @@ import static com.day.cq.commons.jcr.JcrConstants.JCR_CONTENT;
 
 @Component(service = TagUtilService.class)
 @Slf4j
-public class TagUtilService {
+
+public class TagUtilService implements Serializable {
     public static final String DEFAULT_TAG_TITLE_LANGUAGE = "en";
 
     public static final String EXTERNAL_TAGS_NAMESPACE = "dhl-article-external";

@@ -5,11 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 
 import com.positive.dhl.core.services.PageUtilService;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -19,18 +17,20 @@ import org.apache.sling.models.annotations.Model;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import static com.positive.dhl.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
 
 @Model(adaptables=SlingHttpServletRequest.class)
 public class Meganav {
-    @Inject
+	@OSGiService
     private QueryBuilder builder;
 
-	@Inject
+	@SlingObject
 	private ResourceResolver resourceResolver;
-    
-	@Inject
+
+	@ScriptVariable
 	private Page currentPage;
 
 	@OSGiService
@@ -108,7 +108,7 @@ public class Meganav {
 		panels = new ArrayList<>();
 		linksSocial = new ArrayList<>();
 		
-		Page home = pageUtilService.getHomePage(currentPage);
+		var home = pageUtilService.getHomePage(currentPage);
 		if (home == null) {
 			return;
 		}
@@ -120,7 +120,7 @@ public class Meganav {
 		
 		homeUrl = home.getPath() + ".html";
 
-		Resource socialItems = home.getContentResource("items");
+		var socialItems = home.getContentResource("items");
 		if (socialItems != null) {
 			Iterator<Resource> socialsIterator = socialItems.listChildren();
 			while (socialsIterator.hasNext()) {
@@ -134,10 +134,10 @@ public class Meganav {
 			}
 		}
 		
-		Page topLevelCategory = currentPage.getAbsoluteParent(pageUtilService.getHomePageLevel() + 1);
+		var topLevelCategory = currentPage.getAbsoluteParent(pageUtilService.getHomePageLevel() + 1);
 		siteTitle = home.getPageTitle();
 
-		int count = 0;
+		var count = 0;
 		Iterator<Page> children = home.listChildren();
 		while (children.hasNext()) {
 			Page child = children.next();

@@ -39,19 +39,20 @@ import static org.apache.commons.lang3.StringUtils.normalizeSpace;
         }
 )
 public class GetSuggestionsServlet extends SlingAllMethodsServlet {
+    private static final long serialVersionUID = 1L;
     private static final String SUGGEST = "suggest";
     private static final String SPELLCHECK = "spellcheck";
 
     private static final int MAX_SUGGESTIONS = 5;
 
     @Reference
-    private TagUtilService tagUtilService;
+    private transient TagUtilService tagUtilService;
 
     @Reference
-    private PageUtilService pageUtilService;
+    private transient PageUtilService pageUtilService;
 
     @Reference
-    private ResourceResolverHelper resolverHelper;
+    private transient ResourceResolverHelper resolverHelper;
 
     @Override
     public void doGet(@NotNull SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
@@ -69,7 +70,7 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
     }
 
     private String processRequest(SlingHttpServletRequest request) throws RepositoryException {
-        String query = request.getParameter("s");
+        String query = isValid(request.getParameter("s"));
         String homePagePath = request.getParameter("homepagepath");
         String indexName = getSuggestionIndexName(homePagePath);
 
@@ -147,5 +148,9 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
 
     private String getLastWord(String query){
         return normalizeSpace(query).replaceAll("^.*\\s+", "");
+    }
+
+    private String isValid(String input) {
+        return input.matches("^(?!.*[<>&])[a-zA-Z0-9\\s\\u00C0-\\u017F!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]+$") ? input : "";
     }
 }

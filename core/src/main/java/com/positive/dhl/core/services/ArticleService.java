@@ -36,6 +36,15 @@ public class ArticleService {
     public static final String JCR_CONTENT_CQ_TEMPLATE = "jcr:content/cq:template";
     public static final String P_LIMIT = "p.limit";
 
+    public static final String GROUP_ONE_PROPERTY = "group.1_property";
+
+    public static final String GROUP_ONE_PROPERTY_VALUE = "group.1_property.value";
+
+    public static final String GROUP_THREE_PROPERTY = "group.3_property";
+
+    public static final String GROUP_THREE_PROPERTY_VALUE = "group.3_property.value";
+
+    public static final String ONE_GROUP_ONE_GROUP = "1_group.1_group.";
     @Reference
     protected ResourceResolverHelper resolverHelper;
 
@@ -72,10 +81,10 @@ public class ArticleService {
             props.put("type", NT_PAGE);
             props.put("p.excerpt", "true");
             props.put("group.p.or", "true");
-            props.put("group.1_property", JCR_CONTENT_CQ_TEMPLATE);
-            props.put("group.1_property.value", "/conf/dhl/settings/wcm/templates/article");
-            props.put("group.3_property", JCR_CONTENT_CQ_TEMPLATE);
-            props.put("group.3_property.value", "/conf/dhl/settings/wcm/templates/animated-page");
+            props.put(GROUP_ONE_PROPERTY, JCR_CONTENT_CQ_TEMPLATE);
+            props.put(GROUP_ONE_PROPERTY_VALUE, "/conf/dhl/settings/wcm/templates/article");
+            props.put(GROUP_THREE_PROPERTY, JCR_CONTENT_CQ_TEMPLATE);
+            props.put(GROUP_THREE_PROPERTY_VALUE, "/conf/dhl/settings/wcm/templates/animated-page");
             props.putAll(customProps);
 
             return getArticlesFromSearchResultEntries(searchArticles(props, resolver));
@@ -184,7 +193,7 @@ public class ArticleService {
         for (var i = 0; i < terms.size(); i++) {
             String term = terms.get(i);
             String wrappedTerm = term.contains(" ") ? StringUtils.wrap(term, "\"") : term;
-            searchParams.put("1_group.1_group." + (i + 1) + "_fulltext", wrappedTerm);
+            searchParams.put(ONE_GROUP_ONE_GROUP + (i + 1) + "_fulltext", wrappedTerm);
         }
     }
 
@@ -193,9 +202,9 @@ public class ArticleService {
             return;
         }
         int tagIndex = termCount + 1;
-        searchParams.put("1_group.1_group." + tagIndex + "_property", "@jcr:content/cq:tags");
+        searchParams.put(ONE_GROUP_ONE_GROUP + tagIndex + "_property", "@jcr:content/cq:tags");
         for (var i = 0; i < tagIds.size(); i++) {
-            searchParams.put("1_group.1_group." + tagIndex + "_property." + (i + 1) + "_value", tagIds.get(i));
+            searchParams.put(ONE_GROUP_ONE_GROUP + tagIndex + "_property." + (i + 1) + "_value", tagIds.get(i));
         }
     }
 
