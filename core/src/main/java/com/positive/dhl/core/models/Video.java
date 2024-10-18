@@ -11,9 +11,9 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Required;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -28,40 +28,40 @@ public class Video {
     @Required
     private AssetUtilService assetUtilService;
 
-    @Inject
+    @ValueMapValue
     private String videoPath;
 
     private String mimeType;
 
-    @Inject
+    @ValueMapValue
     private String poster;
 
-    @Inject
+    @ValueMapValue
     private int maxWidth;
 
-    @Inject
+    @ValueMapValue
     private int maxHeight;
 
-    @Inject
+    @ValueMapValue
     private String align;
 
-    @Inject
+    @ValueMapValue
     @Default(booleanValues = false)
     private boolean controls;
 
-    @Inject
+    @ValueMapValue
     @Default(booleanValues = false)
     private boolean autoplay;
 
-    @Inject
+    @ValueMapValue
     @Default(booleanValues = false)
     private boolean loop;
 
-    @Inject
+    @ValueMapValue
     @Default(booleanValues = false)
     private boolean muted;
 
-    @Inject
+    @ValueMapValue
     @Default(booleanValues = false)
     private boolean fullWidth;
 

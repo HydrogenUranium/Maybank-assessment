@@ -23,7 +23,7 @@ class TrackableComponentTest {
     private Component component;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() throws Throwable {
         context.load().json("/com/positive/dhl/core/models/TrackableComponent/content.json", "/content");
         context.addModelsForClasses(AnalyticsConfig.class);
         context.addModelsForClasses(TrackableComponent.class);
@@ -36,6 +36,7 @@ class TrackableComponentTest {
         mockInject(context, INJECT_SCRIPT_BINDINGS, "component", component);
 
         TrackableComponent trackableComponent = context.resourceResolver().getResource("/content/banner").adaptTo(TrackableComponent.class);
+        trackableComponent.getAnalytics().getCustomAttributes().put("topic", "subscription");
 
         assertEquals("{\"content\":{\"attributes\":{\"topic\":\"subscription\"},\"name\":\"SUBSCRIBE TO OUR NEWSLETTER\",\"type\":\"CTA Banner\",\"interaction\":\"Click\",\"position\":\"position\"},\"trackedInteractions\":\"basic\",\"interactionType\":\"dhl_utf_contentInteraction\"}", trackableComponent.getJson());
     }

@@ -1,6 +1,5 @@
 package com.positive.dhl.core.models;
 
-import com.day.cq.tagging.InvalidTagFormatException;
 import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.services.TagUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -17,7 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static com.positive.dhl.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
-import static com.positive.dhl.junitUtils.InjectorMock.mockInject;
 import static com.positive.dhl.junitUtils.InjectorMock.mockInjectHomeProperty;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -36,7 +34,7 @@ class SearchBarModelTest {
     private TagUtilService tagUtilService;
 
     @BeforeEach
-    void setUp() throws InvalidTagFormatException {
+    void setUp() throws Throwable {
         context.addModelsForClasses(SearchBarModel.class);
         context.registerService(TagUtilService.class, tagUtilService);
         context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
@@ -49,7 +47,7 @@ class SearchBarModelTest {
         request.setResource(currentResource);
 
         Page currentPage = currentResource.adaptTo(Page.class);
-        mockInject(context, "currentPage", currentPage);
+        context.currentPage(currentPage);
     }
 
     @Test
