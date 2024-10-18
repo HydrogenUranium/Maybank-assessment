@@ -9,9 +9,9 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 @Getter
 @Model(adaptables = Resource.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
@@ -23,34 +23,34 @@ public class Search {
     @OSGiService
     private TagUtilService tagUtilService;
 
-    @Inject
+    @ValueMapValue
     private String title;
 
-    @Inject
+    @ValueMapValue
     private String descriptionFormat;
 
-    @Inject
+    @ValueMapValue
     private String descriptionFormatNoResults;
 
-    @Inject
+    @ValueMapValue
     private String popularSearchesTitle;
 
-    @Inject
+    @ValueMapValue
     private String sortByTitle;
 
-    @Inject
+    @ValueMapValue
     private String latestSortOptionTitle;
 
-    @Inject
+    @ValueMapValue
     private String relevanceSortOptionTitle;
 
-    @Inject
+    @ValueMapValue
     private String showMoreResultsButtonTitle;
 
-    @Inject
+    @ValueMapValue
     private String searchButtonAriaLabel;
 
-    @Inject
+    @ValueMapValue
     private String searchInputAriaLabel;
 
     private String popularTopics;

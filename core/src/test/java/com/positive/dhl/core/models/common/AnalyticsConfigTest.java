@@ -29,6 +29,7 @@ class AnalyticsConfigTest {
 
         AnalyticsConfig config = resource.adaptTo(AnalyticsConfig.class);
         config.setEnable(true);
+        config.getCustomAttributes().put("topic", "subscription");
 
         assertNotNull(config);
         assertEquals("SUBSCRIBE TO OUR NEWSLETTER", config.getName());
