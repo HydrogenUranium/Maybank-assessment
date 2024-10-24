@@ -37,7 +37,6 @@
     ],
     "siteenabled": "true",
     "shipnowpage": "/content/dhl/en-global/open-an-account",
-    "downloadmarketo": "true",
     "cq:contextHubSegmentsPath": "/etc/segmentation/contexthub",
     "cq:lastReplicated": "Mon Oct 17 2022 09:58:44 GMT+0000",
     "cq:lastModified": "Thu Nov 03 2022 10:54:33 GMT+0100",
