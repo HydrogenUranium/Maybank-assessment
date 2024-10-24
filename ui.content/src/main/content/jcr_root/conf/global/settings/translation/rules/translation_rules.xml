@@ -170,8 +170,6 @@
     <node resourceType="dhl/components/content/download">
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctatitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctatitlesample" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/figure">
       <property inherit="true" name="caption1" translate="true" updateDestinationLanguage="false"/>
