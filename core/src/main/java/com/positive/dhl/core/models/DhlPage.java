@@ -66,6 +66,9 @@ public class DhlPage {
 
 	private String robotsTags = "";
 
+	private final String defaultPageImage = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
+	private final String defaultOgImage ="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
+
 	@PostConstruct
     protected void init() {
 		adobeDtmLink = environmentConfiguration.getAdobeDtmLink();
@@ -100,9 +103,14 @@ public class DhlPage {
 				page -> page.getProperties().get("noIndexRobotsTagsInherit", false));
 
 		String customOgTagImage = properties.get("ogtagimage", pageImage);
+
+		String basePrefix = customOgTagImage.contains(defaultPageImage)
+				? HTTPS_PREFIX + akamaiHostname
+				: HTTPS_PREFIX + akamaiHostname + assetprefix;
+
 		ogtagimage = StringUtils.isNotBlank(customOgTagImage)
-				? (HTTPS_PREFIX + akamaiHostname + assetprefix).concat(customOgTagImage.trim())
-				: HTTPS_PREFIX + akamaiHostname + "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
+				? basePrefix.concat(customOgTagImage.trim())
+				: HTTPS_PREFIX + akamaiHostname + defaultOgImage;
 
 	}
 
