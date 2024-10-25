@@ -66,8 +66,8 @@ public class DhlPage {
 
 	private String robotsTags = "";
 
-	private final String defaultPageImage = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
-	private final String defaultOgImage ="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
+	private final static String defaultPageImage = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
+	private final static String defaultOgImage ="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
 
 	@PostConstruct
     protected void init() {
