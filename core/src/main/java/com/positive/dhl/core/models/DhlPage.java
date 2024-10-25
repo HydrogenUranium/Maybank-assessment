@@ -105,7 +105,7 @@ public class DhlPage {
 
 		String customOgTagImage = properties.get("ogtagimage", pageImage);
 
-		String basePrefix = customOgTagImage.contains(DEFAULT_PAGE_IMAGE)
+		String basePrefix = DEFAULT_PAGE_IMAGE.equals(customOgTagImage)
 				? HTTPS_PREFIX + akamaiHostname
 				: HTTPS_PREFIX + akamaiHostname + assetprefix;
 
