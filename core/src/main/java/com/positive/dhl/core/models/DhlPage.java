@@ -66,8 +66,9 @@ public class DhlPage {
 
 	private String robotsTags = "";
 
-	private final static String defaultPageImage = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
-	private final static String defaultOgImage ="/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
+	private static final String DEFAULT_PAGE_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
+	private static final String DEFAULT_OG_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
+
 
 	@PostConstruct
     protected void init() {
@@ -104,13 +105,13 @@ public class DhlPage {
 
 		String customOgTagImage = properties.get("ogtagimage", pageImage);
 
-		String basePrefix = customOgTagImage.contains(defaultPageImage)
+		String basePrefix = customOgTagImage.contains(DEFAULT_PAGE_IMAGE)
 				? HTTPS_PREFIX + akamaiHostname
 				: HTTPS_PREFIX + akamaiHostname + assetprefix;
 
 		ogtagimage = StringUtils.isNotBlank(customOgTagImage)
 				? basePrefix.concat(customOgTagImage.trim())
-				: HTTPS_PREFIX + akamaiHostname + defaultOgImage;
+				: HTTPS_PREFIX + akamaiHostname + DEFAULT_OG_IMAGE;
 
 	}
 
