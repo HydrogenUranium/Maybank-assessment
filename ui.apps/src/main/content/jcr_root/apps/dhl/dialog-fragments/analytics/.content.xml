@@ -64,19 +64,11 @@
                                     jcr:primaryType="nt:unstructured"
                                     text="Engagement"
                                     value="engagement">
-                                <granite:rendercondition
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/renderconditions/simple"
-                                        expression="${cqDesign.enableEngagementInteractionType == 'true'}"/>
                             </engagement>
                             <conversion
                                     jcr:primaryType="nt:unstructured"
                                     text="Conversion"
                                     value="conversion">
-                                <granite:rendercondition
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/renderconditions/simple"
-                                        expression="${cqDesign.enableConversionInteractionType == 'true'}"/>
                             </conversion>
                         </items>
                     </interactionType>
@@ -133,22 +125,6 @@
                     uncheckedValue="false"
                     value="{Boolean}true">
             </enableAdvancedTrackedInteractions>
-            <enableEngagementInteractionType
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                    name="./enableEngagementInteractionType"
-                    text="Enable Engagement Interaction Type"
-                    uncheckedValue="false"
-                    value="{Boolean}true">
-            </enableEngagementInteractionType>
-            <enableConversionInteractionType
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                    name="./enableConversionInteractionType"
-                    text="Enable Conversion Interaction Type"
-                    uncheckedValue="false"
-                    value="{Boolean}true">
-            </enableConversionInteractionType>
         </items>
     </designDialog>
 </jcr:root>
