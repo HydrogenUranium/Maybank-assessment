@@ -1,7 +1,6 @@
 package com.positive.dhl.core.models;
 
 import com.day.cq.wcm.api.components.Component;
-import com.positive.dhl.core.injectors.InjectHomeProperty;
 import com.positive.dhl.core.models.common.AnalyticsConfig;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -12,14 +11,9 @@ import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Named;
 
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class TrackableComponent {
-
-    @InjectHomeProperty
-    @Named("eventTrackingComponents-enableAnalytics")
-    private boolean enable;
 
     @ScriptVariable
     private Component component;
@@ -36,7 +30,6 @@ public class TrackableComponent {
     private void initAnalytics() {
         if(analytics != null) {
             analytics.setType(component.getName());
-            analytics.setEnable(enable);
         }
     }
 }
