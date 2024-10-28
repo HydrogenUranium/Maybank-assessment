@@ -79,19 +79,6 @@
                                                     required="{Boolean}true"/>
                                         </items>
                                     </dhlpagesettings>
-                                    <dhlcrmsettings
-                                            jcr:primaryType="nt:unstructured"
-                                            jcr:title="CRM Preferences"
-                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <downloadmarketo
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                    name="./downloadmarketo"
-                                                    text="'Gated download' forms submit to Marketo"
-                                                    value="true"/>
-                                        </items>
-                                    </dhlcrmsettings>
                                 </items>
                             </column>
                         </items>
