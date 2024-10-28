@@ -36,30 +36,6 @@
                                     fieldLabel="Asset Image"
                                     rootPath="/content/dam"
                                     name="./assetimage"/>
-
-                            <ctatitle
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="CTA Title - (non-Marketo form only)"
-                                    name="./ctatitle"/>
-                            <ctatitlesample
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="CTA Title (sample) - (non-Marketo form only)"
-                                    name="./ctatitlesample"/>
-
-                            <assetpath
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                    fieldLabel="Asset Path - (non-Marketo form only)"
-                                    rootPath="/content/dam"
-                                    name="./assetpath"/>
-                            <assetpathsample
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                    fieldLabel="Asset Path (sample) - (non-Marketo form only)"
-                                    rootPath="/content/dam"
-                                    name="./assetpathsample"/>
                         </items>
                     </column>
                 </items>

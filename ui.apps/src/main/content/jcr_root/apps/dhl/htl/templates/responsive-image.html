@@ -11,6 +11,6 @@
       <source data-sly-repeat="${model.tabletImages}" data-sly-test="${model.tabletImages}" srcset="${item.key}" type="${item.value}" media="(min-width: 768px) and (max-width: 1200px)" />
       <source data-sly-repeat="${model.desktopImages}" data-sly-test="${model.desktopImages}" srcset="${item.key}" type="${item.value}" media="(min-width: 1200px)" />
       <source data-sly-repeat="${model.images}" data-sly-test="${model.images}" srcset="${item.key}" type="${item.value}" />
-      <img src="${model.image}" alt="${model.alt || alt}" class="${imgClass}" fetchpriority="${priority}"/>
+      <img src="${model.image}" alt="${alt || model.alt}" class="${imgClass}" fetchpriority="${priority}"/>
     </picture>
 </template>
