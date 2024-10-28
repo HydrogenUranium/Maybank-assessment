@@ -174,8 +174,8 @@
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>${frontend-maven-plugin.version}</version>
                     <configuration>
-                        <nodeVersion>v16.17.0</nodeVersion>
-                        <npmVersion>8.15.0</npmVersion>
+                        <nodeVersion>v16.20.0</nodeVersion>
+                        <npmVersion>8.19.4</npmVersion>
                     </configuration>
                     <executions>
                         <execution>
@@ -410,7 +410,7 @@ Bundle-DocURL:
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore/>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
@@ -430,7 +430,7 @@ Bundle-DocURL:
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore/>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
@@ -451,7 +451,7 @@ Bundle-DocURL:
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore/>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
@@ -528,9 +528,7 @@ Bundle-DocURL:
                                     <goal>npm</goal>
                                 </goals>
                                 <configuration>
-                                    <arguments>config set registry
-                                        https://artifactory.dhl.com/artifactory/api/npm/npmjs/
-                                    </arguments>
+                                    <arguments>config set registry https://artifactory.dhl.com/artifactory/api/npm/npmjs/</arguments>
                                 </configuration>
                             </execution>
                         </executions>
@@ -547,7 +545,7 @@ Bundle-DocURL:
                     <url>https://artifactory.dhl.com/maven-release</url>
                 </pluginRepository>
                 <pluginRepository>
-                    <snapshots/>
+                    <snapshots />
                     <id>snapshots</id>
                     <name>maven-snapshot</name>
                     <url>https://artifactory.dhl.com/maven-snapshot</url>
@@ -625,9 +623,7 @@ Bundle-DocURL:
                                         <goal>install</goal>
                                     </goals>
                                     <configuration>
-                                        <targetURL>
-                                            http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp
-                                        </targetURL>
+                                        <targetURL>http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp</targetURL>
                                     </configuration>
                                 </execution>
                             </executions>
@@ -818,7 +814,7 @@ Bundle-DocURL:
                 <version>${akamai.version}</version>
             </dependency>
 
-            <!--            Sling sitemap implementation-->
+<!--            Sling sitemap implementation-->
             <dependency>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.sitemap</artifactId>
