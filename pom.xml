@@ -14,7 +14,8 @@
  |  See the License for the specific language governing permissions and
  |  limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.positive</groupId>
@@ -68,7 +69,8 @@
         <maven.compiler.target>11</maven.compiler.target>
         <jacoco.version>0.8.7</jacoco.version>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
         <sonar.javascript.lcov.reportPaths>${project.basedir}/coverage/lcov.info</sonar.javascript.lcov.reportPaths>
         <sonar.junit.reportsPath>${project.basedir}/target/surefire-reports</sonar.junit.reportsPath>
         <baseline.skip>false</baseline.skip>
@@ -101,7 +103,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <scmCommentPrefix>[maven-scm] </scmCommentPrefix>
+                    <scmCommentPrefix>[maven-scm]</scmCommentPrefix>
                     <preparationGoals>clean install</preparationGoals>
                     <goals>install</goals>
                     <releaseProfiles>release</releaseProfiles>
@@ -172,9 +174,26 @@
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>${frontend-maven-plugin.version}</version>
                     <configuration>
-                        <nodeVersion>v16.20.0</nodeVersion>
-                        <npmVersion>8.19.4</npmVersion>
+                        <nodeVersion>v16.17.0</nodeVersion>
+                        <npmVersion>8.15.0</npmVersion>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <id>install node and npm</id>
+                            <goals>
+                                <goal>install-node-and-npm</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>npm ci</id>
+                            <goals>
+                                <goal>npm</goal>
+                            </goals>
+                            <configuration>
+                                <arguments>ci</arguments>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.jacoco</groupId>
@@ -391,7 +410,7 @@ Bundle-DocURL:
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
@@ -411,7 +430,7 @@ Bundle-DocURL:
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                                 <pluginExecution>
@@ -432,7 +451,7 @@ Bundle-DocURL:
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
@@ -509,7 +528,9 @@ Bundle-DocURL:
                                     <goal>npm</goal>
                                 </goals>
                                 <configuration>
-                                    <arguments>config set registry https://artifactory.dhl.com/artifactory/api/npm/npmjs/</arguments>
+                                    <arguments>config set registry
+                                        https://artifactory.dhl.com/artifactory/api/npm/npmjs/
+                                    </arguments>
                                 </configuration>
                             </execution>
                         </executions>
@@ -526,7 +547,7 @@ Bundle-DocURL:
                     <url>https://artifactory.dhl.com/maven-release</url>
                 </pluginRepository>
                 <pluginRepository>
-                    <snapshots />
+                    <snapshots/>
                     <id>snapshots</id>
                     <name>maven-snapshot</name>
                     <url>https://artifactory.dhl.com/maven-snapshot</url>
@@ -604,7 +625,9 @@ Bundle-DocURL:
                                         <goal>install</goal>
                                     </goals>
                                     <configuration>
-                                        <targetURL>http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp</targetURL>
+                                        <targetURL>
+                                            http://${aem.publish.host}:${aem.publish.port}/crx/packmgr/service.jsp
+                                        </targetURL>
                                     </configuration>
                                 </execution>
                             </executions>
@@ -795,7 +818,7 @@ Bundle-DocURL:
                 <version>${akamai.version}</version>
             </dependency>
 
-<!--            Sling sitemap implementation-->
+            <!--            Sling sitemap implementation-->
             <dependency>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>org.apache.sling.sitemap</artifactId>
