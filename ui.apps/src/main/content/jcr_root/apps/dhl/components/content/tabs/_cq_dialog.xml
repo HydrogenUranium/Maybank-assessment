@@ -40,14 +40,6 @@
                                     jcr:primaryType="nt:unstructured"
                                     text="H4"
                                     value="h4"/>
-                            <h5
-                                    jcr:primaryType="nt:unstructured"
-                                    text="H5"
-                                    value="h5"/>
-                            <h6
-                                    jcr:primaryType="nt:unstructured"
-                                    text="H6"
-                                    value="h6"/>
                         </items>
                     </type>
                     <tabs
