@@ -18,19 +18,14 @@ ENV APP_PATH /usr/src/app
 RUN apt -qqy update \
     # Generic dependencies
     && apt -qqy --no-install-recommends install \
-    python \
     curl \
-    build-essential \
-    # Create a non-root user
-    && groupadd -r nonroot && useradd -r -g nonroot nonroot
+    build-essential
 # <<< End EAAS Convention \
 
 # Set Application Environment
 WORKDIR ${APP_PATH}
 COPY ./test-module ./
 RUN npm install
-# Switch to non-root user
-USER nonroot
 # no need to wait for selenium
 ENTRYPOINT ["bash","run.sh"]
 
