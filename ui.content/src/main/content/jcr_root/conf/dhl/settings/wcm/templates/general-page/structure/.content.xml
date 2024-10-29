@@ -14,10 +14,17 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="dhl/components/content/headerV2">
                 <cta_banner_with_poin
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/cta-banner-with-points"
-                    style="sidebar"
-                    type="businessAccount"/>
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/content/cta-banner-with-points"
+                        style="sidebar"
+                        type="businessAccount">
+                    <analytics
+                            jcr:primaryType="nt:unstructured"
+                            interactionType="content"
+                            name="'Open a Business Account' Banner"
+                            position="Banner in the mobile header menu"
+                            trackedInteractions="basic"/>
+                </cta_banner_with_poin>
             </headerv2>
             <hero_banner
                     jcr:primaryType="nt:unstructured"
