@@ -32,7 +32,6 @@ class TrackableComponentTest {
     @Test
     void test() {
         when(component.getName()).thenReturn("CTA Banner");
-        mockInjectHomeProperty(context, "eventTrackingComponents-enableAnalytics", true);
         mockInject(context, INJECT_SCRIPT_BINDINGS, "component", component);
 
         TrackableComponent trackableComponent = context.resourceResolver().getResource("/content/banner").adaptTo(TrackableComponent.class);

@@ -18,9 +18,6 @@ import java.util.Map;
 @Getter
 public class AnalyticsConfig {
 
-    @Setter
-    private boolean enable;
-
     @ValueMapValue
     private String trackedInteractions;
 
@@ -55,10 +52,6 @@ public class AnalyticsConfig {
     }
 
     public String getJson() {
-        if(!enable || "off".equals(trackedInteractions)) {
-            return null;
-        }
-
         var json = new JsonObject();
         var content = new JsonObject();
         var attributes = new JsonObject();
