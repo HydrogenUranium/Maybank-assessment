@@ -101,7 +101,9 @@
                     <div class="menuNav-title">${headerV2.categoryLinksLabel}</div>
                     <ul>
                         <li>
-                            <a data-sly-repeat="${meganav.panels}" class="navigation-item"  href="${item.url}"><span>${item.navigationTitle}</span></a>
+                            <a data-sly-repeat="${meganav.panels}" class="navigation-item"  href="${item.url}"
+                               data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;${item.navigationTitle}&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}">
+                                <span>${item.navigationTitle}</span></a>
                         </li>
                     </ul>
                 </li>
@@ -109,7 +111,9 @@
                     <div class="menuNav-title">${headerV2.companyLinksLabel}</div>
                     <ul>
                         <li>
-                            <a data-sly-repeat="${headerV2.companyLinks}" class="navigation-item" href="${item.linkPath}"><span>${item.linkName}</span></a>
+                            <a data-sly-repeat="${headerV2.companyLinks}" class="navigation-item" href="${item.linkPath}"
+                               data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;${item.linkName}&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}">
+                                <span>${item.linkName}</span></a>
                         </li>
                     </ul>
                 </li>

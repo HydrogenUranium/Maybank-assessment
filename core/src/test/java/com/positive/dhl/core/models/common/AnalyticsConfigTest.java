@@ -28,7 +28,6 @@ class AnalyticsConfigTest {
         Resource resource = context.resourceResolver().getResource("/content/cta_banner/analytics");
 
         AnalyticsConfig config = resource.adaptTo(AnalyticsConfig.class);
-        config.setEnable(true);
         config.getCustomAttributes().put("topic", "subscription");
 
         assertNotNull(config);
