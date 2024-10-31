@@ -74,14 +74,12 @@ class HeaderV2 {
       $('.page-body').addClass('fixed');
       $(this.sel.component).addClass('fixed');
       $(this.sel.selectedCountry).attr("aria-expanded", "false")
-      $(this.sel.countryOptions).hide();
       if (wt > this.lastScrollTop) {
         $(this.sel.component).removeClass('in');
       } else {
         $(this.sel.component).addClass('in');
         if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
           $(this.sel.selectedCountry).attr("aria-expanded", "true")
-          $(this.sel.countryOptions).show();
         }
       }
     } else {
@@ -89,7 +87,6 @@ class HeaderV2 {
       $(this.sel.component).removeClass('fixed');
       if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
         $(this.sel.selectedCountry).attr("aria-expanded", "true")
-        $(this.sel.countryOptions).show();
       }
     }
 
