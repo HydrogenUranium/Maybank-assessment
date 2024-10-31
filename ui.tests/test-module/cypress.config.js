@@ -45,6 +45,7 @@ let config = {
       configFile: 'reporter.config.js',
     },
     excludeSpecPattern: ['**/01_Basic/*.cy.js','**/02_Login/*.cy.js'],
+    chromeWebSecurity: false,
   },
   videosFolder: reportsPath + "/videos",
   screenshotsFolder: reportsPath + "/screenshots",
