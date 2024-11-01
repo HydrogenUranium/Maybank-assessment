@@ -15,7 +15,7 @@ describe('DHL Landing Page', () => {
       cy.visit(pageUrl);
       cy.get('body').then(($body) => {
         if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
-          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+          cy.get('button#onetrust-accept-btn-handler', { timeout: 2000 }).contains('Accept All').click();
         }
       });
     });
