@@ -34,7 +34,7 @@ Cypress.Commands.add('AEMLogin', function (username, password) {
     cy.get('#login').should('have.attr', 'action', '/libs/granite/core/content/login.html/j_security_check')
 
     cy.get('#username').type(username)
-    cy.get('#password').type(password, {log: false})
+    cy.get('#password').type(password, { log: false, parseSpecialCharSequences: false })
 
     cy.get('#submit-button').click()
     cy.get('coral-shell-content', {timeout: 5000}).should('exist')
@@ -64,8 +64,8 @@ Cypress.Commands.add('AEMDeleteAsset', function (assetPath) {
         const form = new FormData();
         form.append('cmd', 'deletePage');
         form.append('path', assetPath);
-        form.append('force', 'true'),
-            form.append('_charset_', 'utf-8');
+        form.append('force', 'true');
+        form.append('_charset_', 'utf-8');
 
         const body = {
             cmd: 'deletePage',
