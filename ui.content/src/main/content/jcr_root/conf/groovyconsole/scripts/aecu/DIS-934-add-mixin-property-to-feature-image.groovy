@@ -67,7 +67,7 @@ def getAffectedItemPaths() {
             if (content && getResource(content.path + "/cq:featuredimage") && page.path ==~ /^\/content\/dhl\/(language-masters|global|\w{2})(\/.*)?/) {
                 def hasCancelledForChildren = getResource(content.path + "/cq:featuredimage") ? getNode(content.path + "/cq:featuredimage").get("cq:isCancelledForChildren") : ""
                 if (!hasCancelledForChildren) {
-                    paths.add(page.path)
+                    paths.add(content.path + "/cq:featuredimage")
                 }
             }
         }
@@ -194,7 +194,7 @@ def packageFilterNodes(definitionNode) {
 }
 
 def createBackupPackage(listItemPaths) {
-    if (listItemPaths.size() > 1000) {
+    if (listPages.size() > 1000) {
         println(">>> WARN >>> Too many items: Package will NOT BE CREATED!")
         return
     }
