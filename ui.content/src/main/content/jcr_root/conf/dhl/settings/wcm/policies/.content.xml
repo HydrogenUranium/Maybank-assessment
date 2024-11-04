@@ -515,21 +515,13 @@
                                             tag="h4"/>
                                     <item5
                                             jcr:primaryType="nt:unstructured"
-                                            description="Heading 5"
-                                            tag="h5"/>
-                                    <item6
-                                            jcr:primaryType="nt:unstructured"
-                                            description="Heading 6"
-                                            tag="h6"/>
-                                    <item7
-                                            jcr:primaryType="nt:unstructured"
                                             description="Quote"
                                             tag="blockquote"/>
-                                    <item8
+                                    <item6
                                             jcr:primaryType="nt:unstructured"
                                             description="Horizontal Rule (visual line break)"
                                             tag="hr"/>
-                                    <item9
+                                    <item7
                                             jcr:primaryType="nt:unstructured"
                                             description="Preformatted"
                                             tag="pre"/>
@@ -701,21 +693,13 @@
                                             tag="h4"/>
                                     <item5
                                             jcr:primaryType="nt:unstructured"
-                                            description="Heading 5"
-                                            tag="h5"/>
-                                    <item6
-                                            jcr:primaryType="nt:unstructured"
-                                            description="Heading 6"
-                                            tag="h6"/>
-                                    <item7
-                                            jcr:primaryType="nt:unstructured"
                                             description="Quote"
                                             tag="blockquote"/>
-                                    <item8
+                                    <item6
                                             jcr:primaryType="nt:unstructured"
                                             description="Horizontal Rule (visual line break)"
                                             tag="hr"/>
-                                    <item9
+                                    <item7
                                             jcr:primaryType="nt:unstructured"
                                             description="Preformatted"
                                             tag="pre"/>
@@ -887,7 +871,7 @@
                         jcr:title="Article Teaser Policy"
                         sling:resourceType="wcm/core/components/policy/policy"
                         actionsDisabled="true"
-                        allowedHeadingElements="[h1,h2,h3,h4,h5,h6]"
+                        allowedHeadingElements="[h1,h2,h3,h4]"
                         descriptionHidden="true"
                         pretitleHidden="true"
                         showTitleType="false"
@@ -977,7 +961,7 @@
                             jcr:title="Teaser Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
                             actionsDisabled="true"
-                            allowedHeadingElements="[h1,h2,h3,h4,h5,h6]"
+                            allowedHeadingElements="[h1,h2,h3,h4]"
                             showTitleType="false"
                             titleType="h2">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -1279,6 +1263,18 @@
                         </cq:styleGroups>
                     </policy_button>
                 </button>
+                <title-v2 jcr:primaryType="nt:unstructured">
+                    <policy_title_v2
+                            jcr:description="Exclude H5 and H6 size for authors "
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Title V2"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            allowedTypes="[h1,h2,h3,h4]"
+                            linkDisabled="false"
+                            type="h1">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_title_v2>
+                </title-v2>
             </content>
         </components>
     </dhl>
