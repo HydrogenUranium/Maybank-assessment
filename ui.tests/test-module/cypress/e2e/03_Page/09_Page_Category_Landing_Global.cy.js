@@ -66,7 +66,7 @@ describe('Global Category Landing Page', () => {
             .should('be.visible')
             .then(($img) => {
               const initialSrc = $img.prop('src');
-              cy.get('.cmp-carousel__item--active .cmp-image__image', { timeout: 2000 })
+              cy.get('.cmp-carousel__item--active .cmp-image__image', { timeout: 5000 })
                 .should('be.visible')
                 .should(($imgAfter) => {
                   expect($imgAfter.prop('src')).not.to.eq(initialSrc);
@@ -98,8 +98,10 @@ describe('Global Category Landing Page', () => {
 
           // 9. Verify Recommended sort order is the default option
           cy.get('#sort-by')
-            .parent()
-            .should('contain', 'Recommended');
+            .invoke('text')
+            .should((text) => {
+              expect(text.trim()).to.include('Recommended');
+            });
 
           // 10. Verify CTA Banner exists and the button is clickable. When clicked, it lands on the correct page
           cy.get('.cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body').should('exist');

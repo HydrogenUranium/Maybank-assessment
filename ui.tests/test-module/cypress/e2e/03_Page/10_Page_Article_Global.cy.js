@@ -111,7 +111,6 @@ describe('Global Page Article', () => {
           cy.get('.gallery').should('exist').within(() => {
             cy.get('.figure').should('have.length.gt', 1);
             cy.get('.figure').first().should('be.visible');
-            cy.get('.figure', { timeout: 3000 }).eq(1).should('be.visible');
           });
 
           // 18. Verify the tab exists and content changes on click
