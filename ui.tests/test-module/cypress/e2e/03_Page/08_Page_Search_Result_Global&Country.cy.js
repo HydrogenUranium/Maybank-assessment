@@ -107,8 +107,12 @@ describe('Global & Singapore Search Result Page', () => {
           cy.get('[data-testid="search-input"]').clear();
           cy.get('[data-testid="search-input"]').type('Test1 Amni');
           cy.get('[data-testid="handle-search"]').click();
+
           cy.get('.searchResult__usgPF')
-            .should('contain', 'How one entrepreneur leapt into the global marketplace');
+                      .invoke('text')
+                      .should((text) => {
+                        expect(text.trim()).to.include('How one entrepreneur leapt into the global marketplace');
+                      });
         });
       });
     });
