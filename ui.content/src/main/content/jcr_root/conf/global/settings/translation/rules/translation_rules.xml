@@ -188,6 +188,7 @@
     <node resourceType="dhl/components/content/cta-banner-with-points">
       <property inherit="true" name="buttonName" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="points" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/hero-banner">
       <property inherit="true" name="summaryTitle" translate="true" updateDestinationLanguage="false"/>
