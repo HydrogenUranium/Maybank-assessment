@@ -26,7 +26,6 @@ class MarketForm {
     return true;
   }
 
-
   /**
    * Simple function that determines whether we should submit the lead to hidden form via AEM and REST API or not
    * @param {Element} baseElement is the base element present in html stream, that is supposed to contain
