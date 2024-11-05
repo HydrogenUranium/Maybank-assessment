@@ -27,7 +27,6 @@ def getJcrContent(path) {
 }
 
 def isPublished(path) {
-    println path
     def resource = getJcrContent(path)
     def valueMap = resource.getValueMap()
     def status = valueMap.get('cq:lastReplicationAction_publish', valueMap.get('cq:lastReplicationAction', ''))
