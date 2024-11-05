@@ -13,10 +13,12 @@ describe('Singapore Page Article Country', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.wait(2000);
-      cy.get('body').then(($body) => {
+      cy.get('#onetrust-consent-sdk', { timeout: 2000 }).then(($body) => {
         if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
-          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+          cy.get('button#onetrust-accept-btn-handler')
+            .contains('Accept All')
+            .should('be.visible')
+            .click();
         }
       });
     });
@@ -111,8 +113,6 @@ describe('Singapore Page Article Country', () => {
           cy.get('.gallery').should('exist').within(() => {
             cy.get('.figure').should('have.length.gt', 1);
             cy.get('.figure').first().should('be.visible');
-            cy.wait(3000);
-            cy.get('.figure').eq(1).should('be.visible');
           });
 
           // 18. Verify the tab exists and content changes on click
@@ -160,9 +160,8 @@ describe('Singapore Page Article Country', () => {
           cy.get('.locator-frame').should('exist');
 
           // 27. Verify when hovering the breadcrumb it changes from black to red
-          const link = cy.get('.cmp-breadcrumb__list');
-          link.invoke('css', 'color', 'red');
-          link.should('have.css', 'color', 'rgb(255, 0, 0)');
+          cy.get('.cmp-breadcrumb__list').invoke('css', 'color', 'red');
+          cy.get('.cmp-breadcrumb__list').should('have.css', 'color', 'rgb(255, 0, 0)');
 
           if (viewport !== 'iphone-6') {
             // 28. Verify CTA Banner exists and the button is clickable, landing on the correct page

@@ -98,4 +98,15 @@ class DhlPageTest {
 				"https://www.dhl.com/discover/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
 				dhlPage.getOgtagimage());
 	}
+	@Test
+	void test_defaultPageImage() {
+		when(pageUtilService.hasInheritedNoIndex(any())).thenReturn(true);
+		ctx.currentResource("/content/dhl/standardpage/The-Subscription-Economy");
+		DhlPage basePrefix = ctx.request().adaptTo(DhlPage.class);
+
+		assertNotNull(basePrefix);
+		assertEquals(
+				"https://www.dhl.com/discover/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
+				basePrefix.getOgtagimage());
+	}
 }

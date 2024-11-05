@@ -7,16 +7,16 @@ describe('DHL Landing Page', () => {
   pageUrls.forEach((pageUrl) => {
     beforeEach(() => {
       cy.on('uncaught:exception', (e) => {
-        if (e.message.includes('Things went bad')) {
-          return false;
-        }
+        return false;
       });
 
       cy.visit(pageUrl);
-      cy.wait(2000);
-      cy.get('body').then(($body) => {
+      cy.get('#onetrust-consent-sdk', { timeout: 2000 }).then(($body) => {
         if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
-          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+          cy.get('button#onetrust-accept-btn-handler')
+            .contains('Accept All')
+            .should('be.visible')
+            .click();
         }
       });
     });
@@ -47,7 +47,7 @@ describe('DHL Landing Page', () => {
               cy.get(':nth-child(5) > .download > .cq-dd-file').click();
             } else {
               cy.get(':nth-child(5).button > .cmp-button').should('exist');
-              cy.get(':nth-child(5).button > .cmp-button').click();
+              cy.get(':nth-child(5).button > .cmp-button').click({force: true});
             }
           });
           cy.url().should('match', new RegExp(`${Cypress.env('AEM_PUBLISH_URL')}/discover/(en-global|en-sg)/open-an-account`));

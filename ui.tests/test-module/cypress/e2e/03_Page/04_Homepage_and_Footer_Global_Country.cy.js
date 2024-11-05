@@ -14,10 +14,12 @@ describe('Global & Singapore HomePage & Footer', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.wait(2000);
-      cy.get('body').then(($body) => {
+      cy.get('#onetrust-consent-sdk', { timeout: 2000 }).then(($body) => {
         if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
-          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+          cy.get('button#onetrust-accept-btn-handler')
+            .contains('Accept All')
+            .should('be.visible')
+            .click();
         }
       });
     });
@@ -70,13 +72,12 @@ describe('Global & Singapore HomePage & Footer', () => {
 
           if (viewport === 'macbook-15') {
             // 6. Verify sign up to the discover exists
-            cy.get(':nth-child(3) > .cta-banner-with-points-component > .banner > .banner__body')
-              .click({ force: true });
+            cy.get(':nth-child(3) > .cta-banner-with-points-component > .banner > .banner__body').click({ force: true });
           }
 
           // 7. Verify CTA Banner with Points (apply for a business account) exists with the correct title
-          cy.get('.banner__body__button').should('exist')
-            .find('span').should('contain', 'Apply now');
+          cy.get('.banner__body__button').should('exist');
+          cy.get('.banner__body__button').find('span').should('contain', 'Apply now');
 
           // ---FOOTER---
           // 1. Verify the footer has a logo and three link groups
@@ -98,13 +99,13 @@ describe('Global & Singapore HomePage & Footer', () => {
           // 4. Verify that each hyperlink in the footer is accessible via keyboard navigation
           cy.get('.links-group__item')
             .each(($link) => {
-              cy.wrap($link).focus().should('have.focus');
+              cy.wrap($link).focus();
+              cy.wrap($link).should('have.focus');
             });
 
           // 5. Verify hover changes hyperlink color from black to red in the footer
-          const link = cy.get('.links-group__item');
-          link.invoke('css', 'color', 'red');
-          link.should('have.css', 'color', 'rgb(255, 0, 0)');
+          cy.get('.links-group__item').invoke('css', 'color', 'red');
+          cy.get('.links-group__item').should('have.css', 'color', 'rgb(255, 0, 0)');
         });
       });
     });
