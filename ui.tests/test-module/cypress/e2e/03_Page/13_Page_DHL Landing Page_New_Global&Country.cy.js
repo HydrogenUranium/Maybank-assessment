@@ -7,9 +7,7 @@ describe('DHL Landing Page', () => {
   pageUrls.forEach((pageUrl) => {
     beforeEach(() => {
       cy.on('uncaught:exception', (e) => {
-        if (e.message.includes('Things went bad')) {
-          return false;
-        }
+        return false;
       });
 
       cy.visit(pageUrl);

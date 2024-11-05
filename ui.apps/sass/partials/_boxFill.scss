@@ -186,67 +186,67 @@
   &--show {
 
     #{$block}__fill {
-      height: ((((100 - 32.4) / 100) * 95) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 95) + 32.4%);
       transition: height 4300ms ease-out;
     }
 
      #{$block}__fillstat2 {
-      height: ((((100 - 32.4%) / 100) * 50) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 50) + 32.4%);
       transition: height 3500ms ease-out;
     }
 
     #{$block}__fillstat3 {
-      height: ((((100 - 32.4%) / 100) * 35) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 35) + 32.4%);
       transition: height 2700ms ease-out;
     }
 
     #{$block}__fillstat4 {
-      height: ((((100 - 32.4%) / 100) * 47) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 47) + 32.4%);
       transition: height 4000ms ease-out;
     }
 
     #{$block}__fillstat5 {
-      height: ((((100 - 32.4%) / 100) * 35) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 35) + 32.4%);
       transition: height 4200ms ease-out;
     }
 
     #{$block}__fillstat6 {
-      height: ((((100 - 32.4%) / 100) * 25) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 25) + 32.4%);
       transition: height 2800ms ease-out;
     }
 
     #{$block}__fillstat7 {
-      height: ((((100 - 32.4%) / 100) * 66) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 66) + 32.4%);
       transition: height 4000ms ease-out;
     }
 
     #{$block}__fillstat8 {
-      height: ((((100 - 32.4%) / 100) * 40) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 40) + 32.4%);
       transition: height 2700ms ease-out;
     }
 
     #{$block}__fillstat9 {
-      height: ((((100 - 32.4%) / 100) * 30) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 30) + 32.4%);
       transition: height 2700ms ease-out;
     }
 
     #{$block}__fillstat10 {
-      height: ((((100 - 32.4%) / 100) * 50) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 50) + 32.4%);
       transition: height 4300ms ease-out;
     }
 
     #{$block}__fillstat11 {
-      height: ((((100 - 32.4%) / 100) * 75) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 75) + 32.4%);
       transition: height 4300ms ease-out;
     }
 
     #{$block}__fillstat12 {
-      height: ((((100 - 32.4%) / 100) * 63) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 63) + 32.4%);
       transition: height 3000ms ease-out;
     }
 
     #{$block}__fillstat13 {
-      height: ((((100 - 32.4%) / 100) * 47) + 32.4%);
+      height: ((calc((100 - 32.4) / 100) * 47) + 32.4%);
       transition: height 3500ms ease-out;
     }
   }
