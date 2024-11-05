@@ -58,6 +58,12 @@ import groovy.transform.Field
     return ""
 }
 
+@Field getProperty = { name, defaultValue ->
+    return { node ->
+        return node.hasProperty(name) ? node.getProperty(name).getString() : defaultValue;
+    }
+}
+
 @Field COMPONENTS = [
         "dhl/components/content/cta-banner": [
                 "interactionType": "content",
@@ -78,17 +84,57 @@ import groovy.transform.Field
                 "interactionType": "content",
                 "trackedInteractions": "basic",
                 "name": getCtaGrayBannerName],
+                
+        "dhl/components/content/marketoForm": [
+                "interactionType": "content",
+                "trackedInteractions": "basic",
+                "name": "Marketo Form",
+                "/customAttributes/item0/name": "Title",
+                "/customAttributes/item0/value": getProperty("formTitle", "null"),
+                "/customAttributes/item1/name": "Element ID",
+                "/customAttributes/item1/value": getProperty("marketoid", "null"),
+                "/customAttributes/item2/name": "Form ID",
+                "/customAttributes/item2/value": getProperty("marketoformid", "null"),
+                "/customAttributes/item3/name": "Hidden Form ID",
+                "/customAttributes/item3/value": getProperty("marketohiddenformid", "null"),
+                "/customAttributes/item4/name": "Hostname",
+                "/customAttributes/item4/value": getProperty("marketohost", "null"),
+                ],
 ]
 
-def setAnalyticsProperty(analyticsNode, property, value) {
-    if (value instanceof Closure) {
-        def extractedValue = value(analyticsNode.getParent())
-        println "set ${property}: ${extractedValue}"
-        analyticsNode.setProperty(property, extractedValue)
-    } else if (value instanceof String) {
-        println "set ${property}: ${value}"
-        analyticsNode.setProperty(property, value)
+def getOrCreateChildNode(node, childNodeName) {
+    return node.hasNode(childNodeName) ? node.getNode(childNodeName) : node.addNode(childNodeName);
+}
+
+def getPropertyName(propertyPath) {
+    return propertyPath.tokenize('/').last()
+}
+
+def getValue(componentNode, valueProvider) {
+    return valueProvider instanceof Closure ? valueProvider(componentNode) : valueProvider
+}
+
+def getPropertyHolderNode(analyticsNode, propertyPath) {
+    def pathParts = propertyPath.tokenize('/');
+    def nodeList = pathParts.isEmpty() ? [] : pathParts.subList(0, pathParts.size() - 1);
+    
+    def node = analyticsNode;
+    nodeList.each{
+        node = getOrCreateChildNode(node, it);
     }
+    
+    return node;
+}
+
+def setAnalyticsProperty(analyticsNode, propertyPath, valueProvider) {
+    def componentNode = analyticsNode.getParent();
+    def propertyHolderNode = getPropertyHolderNode(analyticsNode, propertyPath);
+    def property = getPropertyName(propertyPath);
+    def value = getValue(componentNode, valueProvider);
+    
+
+    println "set ${propertyPath}: ${value}"
+    propertyHolderNode.setProperty(property, value)
 }
 
 def isAnalyticsConfigured(analyticsNode) {
@@ -96,7 +142,7 @@ def isAnalyticsConfigured(analyticsNode) {
 }
 
 def addAnalytics(node, config) {
-    def analyticsNode = node.hasNode("analytics") ? node.getNode("analytics") : node.addNode("analytics");
+    def analyticsNode = getOrCreateChildNode(node, "analytics");
 
     if(isAnalyticsConfigured(analyticsNode)) {
         println "Analytics configuration is skipped because it already configured."
@@ -141,5 +187,3 @@ def updateAnalyticsUnderPath(path) {
 getHomePages().each{
     updateAnalyticsUnderPath(it.getPath())
 }
-
-
