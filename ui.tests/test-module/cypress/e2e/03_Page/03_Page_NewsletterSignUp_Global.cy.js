@@ -13,10 +13,12 @@ describe('Global Subscribe newsletter page', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.wait(2000);
-      cy.get('body').then(($body) => {
+      cy.get('#onetrust-consent-sdk', { timeout: 2000 }).then(($body) => {
         if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
-          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+          cy.get('button#onetrust-accept-btn-handler')
+            .contains('Accept All')
+            .should('be.visible')
+            .click();
         }
       });
     });
@@ -38,10 +40,9 @@ describe('Global Subscribe newsletter page', () => {
         it('All test case', () => {
           // 1. Verify the title contains the correct text "Subscribe for the latest insights"
           cy.get('.cmp-title__text').should('exist');
-          cy.wait(2000);
 
           // 2. Verify if all fields are present
-          cy.get('.cmp-title__text').should('exist');
+          cy.get('.cmp-title__text', { timeout: 2000 }).should('exist');
           cy.get('.landing-points-component').should('exist');
           cy.get('#Email').should('exist');
           cy.get('#suspectCountry').should('exist');
@@ -49,7 +50,7 @@ describe('Global Subscribe newsletter page', () => {
 
           // 3. Verify the form submits successfully when all fields are filled out correctly
           cy.get('#Email').type('test@gmail.com');
-          cy.get('#suspectCountry').select('Afghanistan');
+          cy.get('#suspectCountry').select('Afghanistan', {force: true});
           cy.get('.mktoButton').should('exist');
 
           // 4. Verify that an error message "This field is required" is displayed when a required field is left blank

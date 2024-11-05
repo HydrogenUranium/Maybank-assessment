@@ -14,10 +14,13 @@ describe('Global & Singapore Search Result Page', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.wait(2000);
-      cy.get('body').then(($body) => {
+
+      cy.get('#onetrust-consent-sdk', { timeout: 2000 }).then(($body) => {
         if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
-          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+          cy.get('button#onetrust-accept-btn-handler')
+            .contains('Accept All')
+            .should('be.visible')
+            .click();
         }
       });
     });
@@ -41,16 +44,15 @@ describe('Global & Singapore Search Result Page', () => {
           cy.get('.searchFormTitle__QAA_R').should('contain', 'Search Results');
 
           // 2. Verify that search functionality works correctly, meaning it returns relevant results based on the provided search term
-          cy.get('[data-testid="search-input"]').clear()
-            .type('Covid')
-            .type('{enter}');
-          cy.get('.searchFormDetails__Id4pi > b')
-            .should('contain', 'Covid');
+          cy.get('[data-testid="search-input"]', {force: true}).clear();
+          cy.get('[data-testid="search-input"]', {force: true}).type('Covid');
+          cy.get('[data-testid="search-input"]').type('{enter}');
+          cy.get('.searchFormDetails__Id4pi > b').should('contain', 'Covid');
 
           // 3. Verify that when a search term does not match any items, the page displays "No result found"
-          cy.get('[data-testid="search-input"]').clear()
-            .type('yhs')
-            .type('{enter}');
+          cy.get('[data-testid="search-input"]').clear();
+          cy.get('[data-testid="search-input"]').type('yhs');
+          cy.get('[data-testid="search-input"]').type('{enter}');
           cy.get('.searchResult__usgPF > :nth-child(2) > :nth-child(1)').should('exist');
 
           // 4. Verify when clicking one of the popular searches (yellow tags), it displays the articles
@@ -71,44 +73,46 @@ describe('Global & Singapore Search Result Page', () => {
           cy.get('.footer-container').should('exist');
 
           // 7. Verify search results should be shown even for incorrectly spelled queries if we have suggestions for correction
-          cy.get('[data-testid="search-input"]').clear().type('lokistics');
+          cy.get('[data-testid="search-input"]').clear();
+          cy.get('[data-testid="search-input"]').type('lokistics');
           cy.get('[data-testid="handle-search"]').click();
           cy.get('.searchResult__usgPF').should('be.visible');
 
           // 8. Verify when the user starts typing in the search box, auto-complete suggestions should appear
-          cy.get('[data-testid="search-input"]').clear().type('log');
+          cy.get('[data-testid="search-input"]').clear();
+          cy.get('[data-testid="search-input"]').type('log');
           cy.get('.searchSection__qMyFf').should('be.visible');
 
           // 9. Verify it should allow navigation through drop-down menus with "up" and "down" arrow keys
-          cy.get('[data-testid="search-input"]').clear().type('log');
-          cy.wait(1000);
-          cy.get('[data-testid="search-input"]').should('be.visible').focus();
+          cy.get('[data-testid="search-input"]').clear();
+          cy.get('[data-testid="search-input"]').type('log');
+          cy.get('[data-testid="search-input"]', { timeout: 2000 }).should('be.visible').focus();
 
           cy.get('[data-testid="search-input"]').type('{downarrow}'); // Move to the first suggestion
-          cy.wait(1000);
-          cy.get('#search-suggestion-1').should('be.visible');
+          cy.get('#search-suggestion-1', { timeout: 2000 }).should('be.visible');
 
           cy.get('[data-testid="search-input"]').type('{downarrow}'); // Move to the second suggestion
-          cy.wait(1000);
-          cy.get('#search-suggestion-2').should('be.visible');
+          cy.get('#search-suggestion-2', { timeout: 2000 }).should('be.visible');
 
           cy.get('[data-testid="search-input"]').type('{downarrow}'); // Move to the third suggestion
-          cy.wait(1000);
-          cy.get('#search-suggestion-3').should('be.visible');
+          cy.get('#search-suggestion-3', { timeout: 2000 }).should('be.visible');
 
           cy.get('[data-testid="search-input"]').type('{uparrow}'); // Move back to the second suggestion
-          cy.wait(1000);
-          cy.get('#search-suggestion-2').should('be.visible');
+          cy.get('#search-suggestion-2', { timeout: 2000 }).should('be.visible');
 
           cy.get('[data-testid="search-input"]').type('{uparrow}'); // Move back to the first suggestion
-          cy.wait(1000);
-          cy.get('#search-suggestion-1').should('be.visible');
+          cy.get('#search-suggestion-1', { timeout: 2000 }).should('be.visible');
 
           // 10. Verify it should include tags in search results when searching by tag and shown in the result
-          cy.get('[data-testid="search-input"]').clear().type('Test1 Amni');
+          cy.get('[data-testid="search-input"]').clear();
+          cy.get('[data-testid="search-input"]').type('Test1 Amni');
           cy.get('[data-testid="handle-search"]').click();
+
           cy.get('.searchResult__usgPF')
-            .should('contain', 'How one entrepreneur leapt into the global marketplace');
+                      .invoke('text')
+                      .should((text) => {
+                        expect(text.trim()).to.include('How one entrepreneur leapt into the global marketplace');
+                      });
         });
       });
     });

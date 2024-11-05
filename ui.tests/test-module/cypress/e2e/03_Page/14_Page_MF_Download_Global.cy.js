@@ -13,10 +13,12 @@ describe('Global Download Marketo page', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.wait(2000);
-      cy.get('body').then(($body) => {
+      cy.get('#onetrust-consent-sdk', { timeout: 2000 }).then(($body) => {
         if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
-          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+          cy.get('button#onetrust-accept-btn-handler')
+            .contains('Accept All')
+            .should('be.visible')
+            .click();
         }
       });
     });
@@ -39,10 +41,8 @@ describe('Global Download Marketo page', () => {
           // 1. Verify the download asset component is exist"
           cy.get('#download').should('exist');
 
-          cy.wait(2000);
-
           // 2. Verify if all fields are present
-          cy.get('.DHLdownload__title').should('exist');
+          cy.get('.DHLdownload__title', { timeout: 2000 }).should('exist');
           cy.get('#download').should('exist');
           cy.get('#Email').should('exist');
           cy.get(':nth-child(11) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel').should('exist');

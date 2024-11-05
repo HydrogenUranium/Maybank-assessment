@@ -13,10 +13,12 @@ describe('Global Thank You Page Open An Account', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.wait(2000);
-      cy.get('body').then(($body) => {
+      cy.get('#onetrust-consent-sdk', { timeout: 2000 }).then(($body) => {
         if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
-          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+          cy.get('button#onetrust-accept-btn-handler')
+            .contains('Accept All')
+            .should('be.visible')
+            .click();
         }
       });
     });
@@ -57,14 +59,10 @@ describe('Global Thank You Page Open An Account', () => {
 
           // 6. Verify all the social media icon is clickable (Facebook, Youtube, Instagram, LinkedIn, Twitter)
           cy.get('.followUs__items > [href="https://www.facebook.com/DHLexpress/"]').should('have.attr', 'href');
-          cy.wait(2000);
-          cy.get('.followUs__items > [href="https://www.youtube.com/user/dhl"]').should('have.attr', 'href');
-          cy.wait(2000);
-          cy.get('.followUs__items > [href="https://www.instagram.com/discoverbydhl/"]').should('have.attr', 'href');
-          cy.wait(2000);
-          cy.get('.followUs__items > [href="https://www.linkedin.com/showcase/discover-dhl-for-business/"]').should('have.attr', 'href');
-          cy.wait(2000);
-          cy.get('.followUs__items > [href="https://twitter.com/DHLexpress"]').should('have.attr', 'href');
+          cy.get('.followUs__items > [href="https://www.youtube.com/user/dhl"]', { timeout: 2000 }).should('have.attr', 'href');
+          cy.get('.followUs__items > [href="https://www.instagram.com/discoverbydhl/"]', { timeout: 2000 }).should('have.attr', 'href');
+          cy.get('.followUs__items > [href="https://www.linkedin.com/showcase/discover-dhl-for-business/"]', { timeout: 2000 }).should('have.attr', 'href');
+          cy.get('.followUs__items > [href="https://twitter.com/DHLexpress"]', { timeout: 2000 }).should('have.attr', 'href');
         });
       });
     });

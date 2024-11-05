@@ -13,10 +13,12 @@ describe('Global Subscribe newsletter page', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.wait(2000);
-      cy.get('body').then(($body) => {
+      cy.get('#onetrust-consent-sdk', { timeout: 2000 }).then(($body) => {
         if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
-          cy.get('button#onetrust-accept-btn-handler').contains('Accept All').click();
+          cy.get('button#onetrust-accept-btn-handler')
+            .contains('Accept All')
+            .should('be.visible')
+            .click();
         }
       });
     });
@@ -40,10 +42,9 @@ describe('Global Subscribe newsletter page', () => {
           cy.get('.marketoForm__container')
             .should("not.be.empty")
             .should("be.visible");
-             cy.wait(2000);
 
           // 2. Verify if all fields are present
-          cy.get('.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .title-component > #title-v2-b4a322772c > .cmp-title__text').should('exist');
+          cy.get('.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .title-component > #title-v2-b4a322772c > .cmp-title__text', { timeout: 2000 }).should('exist');
           cy.get('#Email').should('exist');
           cy.get('#suspectCountry').should('exist');
           cy.get('.mktoButton').should('exist');
