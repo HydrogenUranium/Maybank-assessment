@@ -11,6 +11,7 @@ def notPublished = []
         "dhl/components/content/cta-banner-with-points",
         "dhl/components/content/button",
         "dhl/components/content/cta-banner-gray",
+        "dhl/components/content/marketoForm",
 ]
 
 def getHomePages() {
