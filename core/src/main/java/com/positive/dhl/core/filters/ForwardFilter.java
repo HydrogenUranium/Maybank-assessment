@@ -1,12 +1,14 @@
 /* 9fbef606107a605d69c0edbcd8029e5d */
 package com.positive.dhl.core.filters;
 
+import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.constants.DiscoverConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.engine.EngineConstants;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 
@@ -34,6 +36,9 @@ import java.io.IOException;
 		}
 )
 public class ForwardFilter implements Filter {
+
+	@OSGiService
+	private EnvironmentConfiguration environmentConfiguration;
 
 	/**
 	 * Main method of this filter. Its job is relatively simple: check if the incoming request contains the parameter {@link DiscoverConstants#FORM_START_PARAM}
@@ -69,14 +74,14 @@ public class ForwardFilter implements Filter {
 	 * @return a {@code Resource} related to the value of request parameter 'formStart' or {@code null} if the resource could not be found
 	 */
 	private Resource getResource(SlingHttpServletRequest request){
-			var target = request.getRequestParameter("formStart");
-			if(null != target){
-				var targetString = target.getString();
-				targetString = removeDiscoverContext(targetString);
-				targetString = targetString.split("\\.")[0];
-				log.debug("Acquired request destination : {} - request will be forwarded there, if this resource exists in the repository", targetString);
-				return request.getResourceResolver().getResource(targetString);
-			}
+		var target = request.getRequestParameter("formStart");
+		if(null != target){
+			var targetString = target.getString();
+			targetString = removeDiscoverContext(targetString);
+			targetString = targetString.split("\\.")[0];
+			log.debug("Acquired request destination : {} - request will be forwarded there, if this resource exists in the repository", targetString);
+			return request.getResourceResolver().getResource(targetString);
+		}
 		return null;
 	}
 
@@ -86,19 +91,18 @@ public class ForwardFilter implements Filter {
 	 * @return new string with {@link DiscoverConstants#DISCOVER_CONTEXT} removed or original String if it was not present in the first place
 	 */
 	private String removeDiscoverContext(String originalString){
-		if(originalString.startsWith(DiscoverConstants.DISCOVER_CONTEXT)){
-			return originalString.replaceFirst(DiscoverConstants.DISCOVER_CONTEXT, "");
-		}
-		return originalString;
+		var assetprefix = environmentConfiguration.getAssetPrefix();
+		return originalString.startsWith(assetprefix)
+				? originalString.replaceFirst(DiscoverConstants.DISCOVER_CONTEXT, "") : originalString;
 	}
 
-	@Override
-	public void destroy() {
-		// not implemented
-	}
+    @Override
+    public void destroy() {
+		// Left blank intentionally
+    }
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// not implemented
-	}
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+		// Left blank intentionally
+    }
 }
