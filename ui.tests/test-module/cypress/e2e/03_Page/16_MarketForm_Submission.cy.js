@@ -29,13 +29,14 @@ describe('Global Subscribe Newsletter Page', () => {
 
           // Visit the page and handle the cookie consent banner
           cy.visit(pageUrl);
-          cy.get('button#onetrust-accept-btn-handler:contains("Accept All")', { timeout: 5000 })
-            .then(($btn) => {
-              if ($btn.length) {
-                // Use a separate command to click the button
-                cy.get('button#onetrust-accept-btn-handler', { timeout: 2000 }).contains('Accept All').click();
-              }
-            });
+          cy.get('body', { timeout: 2000 }).then(($body) => {
+            if ($body.find('#onetrust-consent-sdk').length > 0) {
+                cy.get('button#onetrust-accept-btn-handler')
+                  .contains('Accept All')
+                  .should('be.visible')
+                  .click();
+            }
+          });
         });
 
         it('should verify the presence of the Marketo form and successful form submission', () => {
