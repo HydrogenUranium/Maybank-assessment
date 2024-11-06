@@ -136,8 +136,10 @@ class MarketForm {
             }
             this.handleRedirect(baseElement, thankYouUrl);
           });
-          return false;
+        } else {
+          this.handleRedirect(baseElement, thankYouUrl);
         }
+        return false;
       });
     });
   }
