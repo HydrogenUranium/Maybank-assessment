@@ -8,9 +8,9 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.engine.EngineConstants;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -37,7 +37,7 @@ import java.io.IOException;
 )
 public class ForwardFilter implements Filter {
 
-	@OSGiService
+	@Reference
 	private EnvironmentConfiguration environmentConfiguration;
 
 	/**
