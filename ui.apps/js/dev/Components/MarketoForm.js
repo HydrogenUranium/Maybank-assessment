@@ -26,7 +26,6 @@ class MarketForm {
     return true;
   }
 
-
   /**
    * Simple function that determines whether we should submit the lead to hidden form via AEM and REST API or not
    * @param {Element} baseElement is the base element present in html stream, that is supposed to contain
@@ -135,12 +134,39 @@ class MarketForm {
             if (response.status == 202) {
               console.log('Second submission was a success');
             }
-            window.location.replace(thankYouUrl);
+            this.handleRedirect(baseElement, thankYouUrl);
           });
-          return false;
+        } else {
+          this.handleRedirect(baseElement, thankYouUrl);
         }
+        return false;
       });
     });
+  }
+
+  /**
+    * Method that handles the redirect to the 'thank you' page. It is a simple function that creates a virtual
+    * link, sets its attributes and clicks it. It can be used to trigger analytics events, for example.
+    * @param {Element} baseElement is the main element in the HTML that contains (or, should contain) the
+    * information we need to figure out the potential munchkin & form id of the 'hidden' instance.
+    * @param {string} url is the URL to which we want to redirect the user
+    * @return {undefined} does not return anything
+    */
+
+  handleRedirect(baseElement, url) {
+    const virtualLink = document.createElement('a');
+    virtualLink.href = url;
+    virtualLink.target = '_self';
+    virtualLink.style.display = 'none';
+
+    const attributes = baseElement.getAttributeNames();
+    attributes.forEach(attr => {
+        virtualLink.setAttribute(attr, baseElement.getAttribute(attr));
+    });
+
+    document.body.appendChild(virtualLink);
+
+    virtualLink.click();
   }
 
 
