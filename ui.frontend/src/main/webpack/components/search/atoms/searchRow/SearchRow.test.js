@@ -1,6 +1,6 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import { SearchRow } from './Article';
+import { SearchRow } from './SearchRow';
 
 describe('Article', () => {
   it('should render "Article" component property', () => {

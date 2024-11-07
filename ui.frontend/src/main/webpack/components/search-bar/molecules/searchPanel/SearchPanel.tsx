@@ -157,7 +157,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
             items={suggestions}
             title=''
             renderItem={(suggestion, index) => (
-              <div className={styles.searchSectionItemsItemWrapper}>
+              <div key={suggestion} className={styles.searchSectionItemsItemWrapper}>
                 <a id={`search-bar-suggestion-${index}`}
                   tabIndex={-1}
                   aria-label={suggestion}
