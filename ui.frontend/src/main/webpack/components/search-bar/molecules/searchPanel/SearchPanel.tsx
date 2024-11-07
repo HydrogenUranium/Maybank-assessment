@@ -103,7 +103,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
 
     // Check that the value does not contain any unsafe characters or sequences
     // This is a very basic check and might not cover all possible cases
-    if (/[\s<>]/.test(value)) {
+    if (/[<>]/.test(value)) {
       return false;
     }
 
