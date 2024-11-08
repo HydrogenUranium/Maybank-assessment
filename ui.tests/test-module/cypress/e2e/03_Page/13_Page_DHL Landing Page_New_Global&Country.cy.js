@@ -11,13 +11,15 @@ describe('DHL Landing Page', () => {
       });
 
       cy.visit(pageUrl);
-      cy.get('#onetrust-consent-sdk', { timeout: 2000 }).then(($body) => {
-        if ($body.find('button#onetrust-accept-btn-handler:contains("Accept All")').length > 0) {
-          cy.get('button#onetrust-accept-btn-handler')
-            .contains('Accept All')
-            .should('be.visible')
-            .click();
-        }
+      cy.get('body', { timeout: 2000 }).then(($body) => {
+        cy.get('#onetrust-consent-sdk', { timeout: 5000 }).then(($onetrust) => {
+          if ($onetrust.find('button#onetrust-accept-btn-handler', { timeout: 5000 }).length > 0) {
+              cy.get('button#onetrust-accept-btn-handler')
+                .contains('Accept All')
+                .should('be.visible')
+                .click();
+          }
+        });
       });
     });
 
