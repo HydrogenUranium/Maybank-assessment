@@ -27,6 +27,7 @@
     <property inherit="true" name="enforceEnumMessage" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="enumNames" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="fieldLabel" translate="true" updateDestinationLanguage="false"/>
+    <property inherit="true" name="firstDescriptionPart" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="formatMessage" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="greetingLabel" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="heading" translate="true" updateDestinationLanguage="false"/>
@@ -61,6 +62,9 @@
     <property inherit="true" name="pretitle" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="requiredMessage" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="resetTitle" translate="true" updateDestinationLanguage="false"/>
+    <property inherit="true" name="secondDescriptionPart" translate="true" updateDestinationLanguage="false"/>
+    <property inherit="true" name="secondTitle" translate="true" updateDestinationLanguage="false"/>
+    <property inherit="true" name="seoTitle" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="shortDescription" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="signInLabel" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="signOutLabel" translate="true" updateDestinationLanguage="false"/>
@@ -88,156 +92,88 @@
     <property inherit="true" name="value" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="xAxisTitle" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="yAxisTitle" translate="true" updateDestinationLanguage="false"/>
-
-    <property inherit="true" name="firstDescriptionPart" translate="true" updateDestinationLanguage="false"/>
-    <property inherit="true" name="secondDescriptionPart" translate="true" updateDestinationLanguage="false"/>
-    <property inherit="true" name="secondTitle" translate="true" updateDestinationLanguage="false"/>
-    <property inherit="true" name="seoTitle" translate="true" updateDestinationLanguage="false"/>
-
     <node resourceType="dhl/components/animated-content/stats-panel">
       <property inherit="true" name="leftBlockTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="rightBlockTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
-
     <node resourceType="dhl/components/animated-content/showcase-panel">
-      <property inherit="true" name="firstCardTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="firstCardDescription" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="secondCardTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="secondCardDescription" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="thirdCardTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="thirdCardDescription" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="forthCardTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="firstCardTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="forthCardDescription" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="forthCardTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="secondCardDescription" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="secondCardTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="thirdCardDescription" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="thirdCardTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
-
     <node resourceType="dhl/components/animated-content/form">
-      <property inherit="true" name="linkText" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="formTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="firstNamePlaceholder" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="firstNameMessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="lastNamePlaceholder" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="lastNameMessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="emailPlaceholder" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="emailMessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="companyNamePlaceholder" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="companyNameMessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="phoneNumberPlaceholder" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="phoneNumberMessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="addressPlaceholder" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="addressMessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="zipOrPostcodePlaceholder" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="zipOrPostcodeMessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="cityPlaceholder" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="cityMessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="countryPlaceholder" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="countryMessage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="nextButtonTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="addressPlaceholder" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="applyNowTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="cityMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="cityPlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="companyNameMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="companyNamePlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="countryMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="countryPlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="emailMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="emailPlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="firstNameMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="firstNamePlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="formTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="lastNameMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="lastNamePlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="linkText" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="nextButtonTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="phoneNumberMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="phoneNumberPlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="zipOrPostcodeMessage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="zipOrPostcodePlaceholder" translate="true" updateDestinationLanguage="false"/>
     </node>
-
     <node resourceType="dhl/components/animated-content/carousel-row">
-      <property inherit="true" name="previousTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="nextTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="firstItemTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="nextTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="previousTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="secondItemTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="thirdItemTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
-
-    <node resourceType="dhl/components/content/accordion">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="content" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/articlelistcarousel">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/articlelistcategoryexplore">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/articlelistcategorytrending">
-      <property inherit="true" name="text" translate="true" updateDestinationLanguage="false"/>
-    </node>
     <node resourceType="dhl/components/content/articlepanel">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="guidance" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="ctatitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/ctapanelrow">
+      <property inherit="true" name="guidance" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="content" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctatitle" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/download">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/figure">
-      <property inherit="true" name="caption1" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="caption2" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="content" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctatitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctatitlesample" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/gallery">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/homepagecarousel">
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctatext" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/inlineshipnowmarketo">
-      <property inherit="true" name="formtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="shipnowtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="shipnowcontent" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/inlineshipnowmarketoconfigurable">
       <property inherit="true" name="formtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="shipnowtitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="shipnowcontent" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/inlineshipnowtwo">
-      <property inherit="true" name="formtitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="shipnowtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="shipnowcontent" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/landingpoints">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="content" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/listicleitem">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="content" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/pagenotfound">
-      <property inherit="true" name="text" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imageAltText" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/savedarticles">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/simpledownload">
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/button">
-      <property inherit="true" name="text" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="accessibilityLabel" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/sitemap">
       <property inherit="true" name="text" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/statpanel">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="statvalue" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="content" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/stats">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="content" translate="true" updateDestinationLanguage="false"/>
-    </node>
-    <node resourceType="dhl/components/content/taglist">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/text">
       <property inherit="true" name="text" translate="true" updateDestinationLanguage="false"/>
@@ -246,131 +182,134 @@
       <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/article-showcase">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="linkName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/cta-banner-with-points">
-      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="buttonName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="points" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/hero-banner">
       <property inherit="true" name="summaryTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="backgroundImageAltText" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/cta-banner">
-      <property inherit="true" name="topTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="buttonName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="topTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/search">
       <property inherit="true" name="descriptionFormat" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="descriptionFormatNoResults" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="latestSortOptionTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="relevanceSortOptionTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="popularSearchesTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="relevanceSortOptionTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchButtonAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchInputAriaLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="showMoreResultsButtonTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="sortByTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="title" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="searchButtonAriaLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="searchInputAriaLabel" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/error-banner">
       <property inherit="true" name="refreshPageButtonLabel" translate="true" updateDestinationLanguage="false"/>
     </node>
-    <node resourceType="dhl/components/pages/blank">
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-    </node>
     <node resourceType="dhl/components/pages/editable-article">
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="authorBriefDescription" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="authortitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="listbrief" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="authortitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="authorBriefDescription" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="test" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/pages/editable-home-page">
-      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleGrid-ShowMoreButtonTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleGrid-allTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleGrid-latestOptionTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleGrid-recommendedOptionTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleGrid-sortTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleGrid-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleHeader-followLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleHeader-shareOn" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="articleHeader-smartShareButtonsLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="authorBanner-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBanner-article-subscribeToOurNewsletter-buttonName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBanner-article-subscribeToOurNewsletter-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBanner-article-subscribeToOurNewsletter-topTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBanner-openBusinessAccount-buttonName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBanner-openBusinessAccount-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBanner-subscribeToOurNewsletter-buttonName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBanner-subscribeToOurNewsletter-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBannerGray-individualShipper-buttonLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBannerGray-individualShipper-description" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="ctaBannerGray-individualShipper-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="footer-categoryLinksLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="footer-companyLinksLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="footer-invitation-text" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="footer-invitation-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="footer-logoAltText" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="footer-logoTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="footer-promo-text" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="footer-socialLinksLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-buttonName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-categoryLinksLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-companyLinksLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-countryFilterInputAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-countrySelector-searchPlaceholder" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-countrySelector-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-countrySelectorToggleAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-homePageLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-lessLinkLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-moreLinkLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-signInLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="header-switchLanguageAriaLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="jcr:description" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="jcr:title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="linkName" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="navTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="pageTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="relatedPosts-title" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-articlesTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-closeAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-openAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-recentSearchesTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-searchButtonAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-searchInputAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="searchBar-trendingTopicsTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="shipnowmessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signupemailprivacymessage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="signuptcmessage" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="header-buttonName" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="header-signInLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="header-categoryLinksLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="header-homePageLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="header-moreLinkLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="header-lessLinkLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="header-countrySelector-title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="header-countrySelector-searchPlaceholder" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="header-companyLinksLabel" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="header-countrySelectorToggleAriaLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="header-countryFilterInputAriaLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="header-switchLanguageAriaLabel" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="linkName" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="ctaBanner-subscribeToOurNewsletter-title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctaBanner-subscribeToOurNewsletter-buttonName" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="ctaBanner-openBusinessAccount-title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctaBanner-openBusinessAccount-buttonName" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="footer-logoTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="footer-logoAltText" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="footer-invitation-title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="footer-invitation-text" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="footer-promo-text" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="footer-categoryLinksLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="footer-companyLinksLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="footer-socialLinksLabel" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="relatedPosts-title" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="articleHeader-shareOn" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="articleHeader-smartShareButtonsLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="articleHeader-followLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="authorBanner-title" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="ctaBanner-article-subscribeToOurNewsletter-topTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctaBanner-article-subscribeToOurNewsletter-title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctaBanner-article-subscribeToOurNewsletter-buttonName" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="articleGrid-title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="articleGrid-allTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="articleGrid-sortTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="articleGrid-latestOptionTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="articleGrid-recommendedOptionTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="articleGrid-ShowMoreButtonTitle" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="ctaBannerGray-individualShipper-title" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctaBannerGray-individualShipper-description" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="ctaBannerGray-individualShipper-buttonLabel" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="searchBar-articlesTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="searchBar-recentSearchesTitle" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="searchBar-trendingTopicsTitle" translate="true" updateDestinationLanguage="false"/>
-
-      <property inherit="true" name="searchBar-openAriaLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="searchBar-closeAriaLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="searchBar-searchInputAriaLabel" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="searchBar-searchButtonAriaLabel" translate="true" updateDestinationLanguage="false"/>
-
+      <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="video-unsupportedMessage" translate="true" updateDestinationLanguage="false"/>
     </node>
+    <node resourceType="dhl/components/content/container">
+      <property inherit="true" name="accessibilityLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="roleAttribute" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="dhl/components/content/embed">
+      <property inherit="true" name="accessibilityLabel" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="dhl/components/content/image">
+      <property inherit="true" name="altValueFromPageImage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="altValueFromDAM" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="dhl/components/content/marketoForm">
+      <property inherit="true" name="formTitle" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="dhl/components/content/tabs">
+      <property inherit="true" name="imageAltText" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="body" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="/dhl/components/content/teaser">
+      <property inherit="true" name="titleFromPage" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="descriptionFromPage" translate="true" updateDestinationLanguage="false"/>
+    </node>
     <filter/>
-    <node pathContains="&quot;&amp;#34;&amp;amp;#34;&amp;amp;amp;#34;/cq:annotations&amp;amp;amp;#34;&amp;amp;#34;&amp;#34;&quot;">
-      <property name="&quot;&amp;#34;&amp;amp;#34;&amp;amp;amp;#34;text&amp;amp;amp;#34;&amp;amp;#34;&amp;#34;&quot;" translate="false"/>
+    <node pathContains="&amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;/cq:annotations&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;#34;">
+      <property name="&amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;text&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;#34;" translate="false"/>
     </node>
   </node>
   <node path="/content/forms">
@@ -406,26 +345,26 @@
     <property name="plaintext"/>
     <property name="preheader"/>
   </node>
-  <assetNode assetReferenceAttribute="fragmentPath" checkInChildNodes="false" resourceType="cq/experience-fragments/editor/components/experiencefragment"/>
-  <assetNode assetReferenceAttribute="fragmentVariationPath" checkInChildNodes="false" resourceType="core/wcm/components/experiencefragment/v1/experiencefragment"/>
-  <assetNode assetReferenceAttribute="fragmentVariationPath" checkInChildNodes="false" resourceType="core/wcm/components/experiencefragment/v2/experiencefragment"/>
-  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" resourceType="dam/cfm/components/contentfragment"/>
-  <assetNode assetReferenceAttribute="asset" checkInChildNodes="false" resourceType="docs/components/download"/>
-  <assetNode assetReferenceAttribute="asset" checkInChildNodes="false" resourceType="docs/components/image"/>
-  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" resourceType="foundation/components/image"/>
-  <assetNode assetReferenceAttribute="asset" checkInChildNodes="false" resourceType="foundation/components/video"/>
-  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" resourceType="foundation/components/download"/>
-  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" resourceType="core/wcm/components/download/v1/download"/>
-  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" resourceType="wcm/foundation/components/image"/>
-  <assetNode assetReferenceAttribute="fragmentPath" checkInChildNodes="false" resourceType="core/wcm/components/contentfragment/v1/contentfragment"/>
-  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" resourceType="core/wcm/components/image/v2/image"/>
-  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" resourceType="core/wcm/components/image/v3/image"/>
-  <assetNode assetReferenceAttribute="linkURL" checkInChildNodes="false" resourceType="core/wcm/components/image/v3/image"/>
-  <assetNode assetReferenceAttribute="parentPage" checkInChildNodes="false" resourceType="core/wcm/components/list/v2/list"/>
-  <assetNode assetReferenceAttribute="link" checkInChildNodes="false" resourceType="core/wcm/components/button/v1/button"/>
-  <assetNode assetReferenceAttribute="linkURL" checkInChildNodes="false" resourceType="core/wcm/components/button/v2/button"/>
-  <assetNode assetReferenceAttribute="linkURL" checkInChildNodes="false" resourceType="core/wcm/components/teaser/v2/teaser"/>
-  <assetNode assetReferenceAttribute="link" checkInChildNodes="true" resourceType="core/wcm/components/teaser/v2/teaser"/>
-  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" resourceType="core/wcm/components/teaser/v2/teaser"/>
-  <assetNode assetReferenceAttribute="parentPage" checkInChildNodes="false" resourceType="core/wcm/components/list/v3/list"/>
+  <assetNode assetReferenceAttribute="fragmentPath" checkInChildNodes="false" createLangCopy="true" resourceType="cq/experience-fragments/editor/components/experiencefragment"/>
+  <assetNode assetReferenceAttribute="fragmentVariationPath" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/experiencefragment/v1/experiencefragment"/>
+  <assetNode assetReferenceAttribute="fragmentVariationPath" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/experiencefragment/v2/experiencefragment"/>
+  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" createLangCopy="true" resourceType="dam/cfm/components/contentfragment"/>
+  <assetNode assetReferenceAttribute="asset" checkInChildNodes="false" createLangCopy="true" resourceType="docs/components/download"/>
+  <assetNode assetReferenceAttribute="asset" checkInChildNodes="false" createLangCopy="true" resourceType="docs/components/image"/>
+  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" createLangCopy="true" resourceType="foundation/components/image"/>
+  <assetNode assetReferenceAttribute="asset" checkInChildNodes="false" createLangCopy="true" resourceType="foundation/components/video"/>
+  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" createLangCopy="true" resourceType="foundation/components/download"/>
+  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/download/v1/download"/>
+  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" createLangCopy="true" resourceType="wcm/foundation/components/image"/>
+  <assetNode assetReferenceAttribute="fragmentPath" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/contentfragment/v1/contentfragment"/>
+  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/image/v2/image"/>
+  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/image/v3/image"/>
+  <assetNode assetReferenceAttribute="linkURL" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/image/v3/image"/>
+  <assetNode assetReferenceAttribute="parentPage" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/list/v2/list"/>
+  <assetNode assetReferenceAttribute="link" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/button/v1/button"/>
+  <assetNode assetReferenceAttribute="linkURL" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/button/v2/button"/>
+  <assetNode assetReferenceAttribute="linkURL" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/teaser/v2/teaser"/>
+  <assetNode assetReferenceAttribute="link" checkInChildNodes="true" createLangCopy="true" resourceType="core/wcm/components/teaser/v2/teaser"/>
+  <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/teaser/v2/teaser"/>
+  <assetNode assetReferenceAttribute="parentPage" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/list/v3/list"/>
 </nodelist>
