@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-    jcr:mixinTypes="[rep:AccessControllable]"
-    jcr:primaryType="cq:Page">
+          jcr:mixinTypes="[rep:AccessControllable]"
+          jcr:primaryType="cq:Page">
     <jcr:content
-        cq:policy="dhl/components/pages/editable-category-page/category_page_policy"
-        jcr:primaryType="nt:unstructured"
-        sling:resourceType="wcm/core/components/policies/mappings">
-        <root
-            cq:policy="wcm/foundation/components/responsivegrid/policy_593144368255000"
+            cq:policy="dhl/components/pages/editable-category-page/category_page_policy"
             jcr:primaryType="nt:unstructured"
-            sling:resourceType="wcm/core/components/policies/mapping">
-            <responsivegrid
-                cq:policy="wcm/foundation/components/responsivegrid/category_page_root_policy"
+            sling:resourceType="wcm/core/components/policies/mappings">
+        <root
+                cq:policy="wcm/foundation/components/responsivegrid/policy_593144368255000"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/core/components/policies/mapping">
+            <responsivegrid
+                    cq:policy="wcm/foundation/components/responsivegrid/category_page_root_policy"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/core/components/policies/mapping">
                 <dhl jcr:primaryType="nt:unstructured">
                     <components jcr:primaryType="nt:unstructured">
                         <content jcr:primaryType="nt:unstructured">
@@ -22,26 +22,22 @@
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
                             <article-teaser
-                                cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping">
+                                    cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping">
                                 <image
-                                    cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                                        cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="wcm/core/components/policies/mapping"/>
                             </article-teaser>
-                            <teaser
-                                    cq:policy="dhl/components/content/teaser/teaser_policy"
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="wcm/core/components/policies/mapping"/>
                             <article-teaser-container
                                     cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
                             <article-carousel
-                                cq:policy="dhl/components/content/article-carousel/article_carousel_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    cq:policy="dhl/components/content/article-carousel/article_carousel_policy"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
                             <top-tiles
                                     cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
                                     jcr:primaryType="nt:unstructured"
@@ -55,11 +51,7 @@
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
                             <text
-                                cq:policy="dhl/components/content/text/text_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
-                            <teaser
-                                    cq:policy="dhl/components/content/teaser/teaser_policy"
+                                    cq:policy="dhl/components/content/text/text_policy"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
                             <image
@@ -80,6 +72,10 @@
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
                             <title-v2
                                     cq:policy="dhl/components/content/title-v2/policy_title_v2"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <embed
+                                    cq:policy="dhl/components/content/embed/article_embed_component_policy"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
                         </content>
@@ -123,6 +119,19 @@
                                             cq:policy="dhl/components/content/title-v2/policy_title_v2"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-teaser
+                                            cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping">
+                                        <image
+                                                cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    </article-teaser>
+                                    <article-teaser-container
+                                            cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -158,6 +167,19 @@
                                             cq:policy="dhl/components/content/title-v2/policy_title_v2"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-teaser
+                                            cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping">
+                                        <image
+                                                cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    </article-teaser>
+                                    <article-teaser-container
+                                            cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -191,6 +213,19 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <title-v2
                                             cq:policy="dhl/components/content/title-v2/policy_title_v2"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-teaser
+                                            cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping">
+                                        <image
+                                                cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    </article-teaser>
+                                    <article-teaser-container
+                                            cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>

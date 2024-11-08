@@ -33,7 +33,7 @@ export const Suggestions: React.FC<SuggestionsProps> = (
         <SearchSection
           items={recentSearches}
           renderItem={(search, index) => (
-            <div className={styles.searchSectionItemsItemWrapper}>
+            <div key={search} className={styles.searchSectionItemsItemWrapper}>
               <button 
                 onClick={() => handleSearch(search)}
                 aria-label={search}

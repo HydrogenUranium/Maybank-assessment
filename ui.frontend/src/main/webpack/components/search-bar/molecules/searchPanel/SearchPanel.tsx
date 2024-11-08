@@ -103,7 +103,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
 
     // Check that the value does not contain any unsafe characters or sequences
     // This is a very basic check and might not cover all possible cases
-    if (/[\s<>]/.test(value)) {
+    if (/[<>]/.test(value)) {
       return false;
     }
 
@@ -157,7 +157,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
             items={suggestions}
             title=''
             renderItem={(suggestion, index) => (
-              <div className={styles.searchSectionItemsItemWrapper}>
+              <div key={suggestion} className={styles.searchSectionItemsItemWrapper}>
                 <a id={`search-bar-suggestion-${index}`}
                   tabIndex={-1}
                   aria-label={suggestion}
