@@ -1,1 +1,1 @@
-export * from './article/Article';
+export * from './searchRow/SearchRow';
