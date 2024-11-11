@@ -22,7 +22,7 @@
         <version>2.00.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>dhl.core</artifactId>
+    <artifactId>discover.core</artifactId>
     <name>Deutsche Post AG Discover - Core</name>
     <description>Core bundle for Deutsche Post AG Discover</description>
     <build>
@@ -294,4 +294,16 @@ Import-Package: javax.annotation;version=0.0.0,*
             </build>
         </profile>
     </profiles>
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>Artifactory PRG-releases</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Artifactory PRG-snapshots</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
