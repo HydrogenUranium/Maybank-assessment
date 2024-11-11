@@ -10,7 +10,6 @@ import { useDataFetching, useSortedSearchResult } from '../../hooks';
 import { getArticles, getTagSuggestions } from '../../services/api/search';
 import { registerComponent } from '../../react-core';
 import { SortSelect } from '../common/atoms';
-import { removeHtmlTags } from '../../utils';
 
 import styles from './styles.module.scss';
 
