@@ -1,5 +1,5 @@
-<sly data-sly-use.model="com.positive.dhl.core.models.CtaBannerWithPoints"
-     data-sly-use.analytics="com.positive.dhl.core.models.TrackableComponent"
+<sly data-sly-use.model="com.dhl.discover.core.models.CtaBannerWithPoints"
+     data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"
      data-sly-test.isEmpty=${model.points.empty}></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
@@ -8,7 +8,7 @@
         <div class="banner__image" id="${model.id}">
             <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
                  data-sly-call="${template.adaptiveBackground @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>
-            <style type="text/css" data-sly-use.backgroundImage="${'com.positive.dhl.core.models.Picture' @ image = model.mobileBackgroundImage, forceMap = true}">
+            <style type="text/css" data-sly-use.backgroundImage="${'com.dhl.discover.core.models.Picture' @ image = model.mobileBackgroundImage, forceMap = true}">
                 .short-banners {
                     #${model.id @ context='styleToken'} {
                         background-image: url('${backgroundImage.image @ context='uri'}');

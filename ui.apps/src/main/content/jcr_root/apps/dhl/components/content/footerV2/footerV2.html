@@ -1,5 +1,5 @@
 <footer class="footerV2-wrapper">
-    <div class="footer-container" data-sly-use.footerV2="com.positive.dhl.core.models.FooterV2Model">
+    <div class="footer-container" data-sly-use.footerV2="com.dhl.discover.core.models.FooterV2Model">
         <div class="promo">
             <div class="promo-logo">
                 <a class="logo__link" href="${footerV2.logoLink}">
@@ -16,7 +16,7 @@
             <div class="invitation__text">${footerV2.invitationText}</div>
         </div>
         <div class="links">
-            <div class="links-group" data-sly-use.meganav="com.positive.dhl.core.models.Meganav">
+            <div class="links-group" data-sly-use.meganav="com.dhl.discover.core.models.Meganav">
                 <div class="links-group__title">${footerV2.categoryLinksLabel}</div>
                 <sly data-sly-list="${meganav.panels}">
                     <a class="links-group__item" href="${item.url}"><span>${item.navigationTitle}</span></a>
