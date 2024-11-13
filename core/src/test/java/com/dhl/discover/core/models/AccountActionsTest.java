@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.dhl.discover.core.components.EnvironmentConfiguration;
 import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.LaunchService;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +45,8 @@ class AccountActionsTest {
 		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
         ctx.registerService(ConfigurationAdmin.class, mockConfigurationAdmin);
-        ctx.registerService(PageUtilService.class, new PageUtilService());
+        var launchService = ctx.registerService(LaunchService.class, new LaunchService());
+        ctx.registerInjectActivateService(PageUtilService.class, "launchService", launchService);
 	    ctx.addModelsForClasses(AccountActions.class);
 	}
 

@@ -54,10 +54,7 @@ public class LanguageVariants {
 	private List<LanguageVariant> languageVariantsList;
 	private List<LinkVariant> allLanguageVariants;
 	private List<List<LinkVariant>> allLanguageVariantsGrouped;
-	
-	/**
-	 *
-	 */
+
 	public boolean hasMultipleLanguageVariants() {
 		var count = 0;
 		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
@@ -68,10 +65,7 @@ public class LanguageVariants {
 		}
 		return false;
 	}
-	
-	/**
-	 *
-	 */
+
 	public String getCurrentRegion() {
 		if (currentRegion != null) {
 			return currentRegion;
@@ -95,10 +89,7 @@ public class LanguageVariants {
 		
 		return "";
 	}
-	
-	/**
-	 *
-	 */
+
 	public String getCurrentLanguage() {
 		if (currentLanguage != null) {
 			return currentLanguage;
@@ -118,10 +109,7 @@ public class LanguageVariants {
 		
 		return "en";
 	}
-	
-	/**
-	 *
-	 */
+
 	public List<LanguageVariant> getLanguageVariants() {
 		if (languageVariantsList == null) {
 			languageVariantsList = new ArrayList<>();
@@ -138,10 +126,7 @@ public class LanguageVariants {
 		}
 		return new ArrayList<>(languageVariantsList);
 	}
-	
-	/**
-	 *
-	 */
+
 	public String getAllLanguagesJSON() {
 		var json = new JsonObject();
 		var jsonVariants = new JsonArray();
@@ -158,10 +143,7 @@ public class LanguageVariants {
 		json.add("variants", jsonVariants);
 		return json.toString();
 	}
-	
-	/**
-	 *
-	 */
+
 	public List<LinkVariant> getAllLanguageVariants() {
 		if (allLanguageVariants == null) {
 			allLanguageVariants = new ArrayList<>();
@@ -175,11 +157,6 @@ public class LanguageVariants {
 		return new ArrayList<>(allLanguageVariants);
 	}
 
-	/**
-	 * changed to reduce its Cognitive Complexity from 18 to the 15 allowed - DIS-883
-	 * @param entry
-	 * @param allLanguageVariants
-	 */
 	private void includeAllLanguageVariants(Entry<String, ArrayList<LanguageVariant>> entry, List<LinkVariant> allLanguageVariants) {
 		boolean found = false;
 		LanguageVariant first = null;
@@ -199,10 +176,7 @@ public class LanguageVariants {
 			allLanguageVariants.add(new LinkVariant(entry.getKey(), first.getLink(), first.getHome()));
 		}
 	}
-	
-	/**
-	 *
-	 */
+
 	public List<List<LinkVariant>> getAllLanguageVariantsGrouped() {
 		if (allLanguageVariantsGrouped == null) {
 			allLanguageVariantsGrouped = new ArrayList<>();
@@ -226,25 +200,17 @@ public class LanguageVariants {
 		return new ArrayList<>(allLanguageVariantsGrouped);
 	}
 
-    /**
-	 * 
-	 */
 	@PostConstruct
     protected void init() {
 		variants = new HashMap<>();
 		countries = new HashMap<>();
 
-		var root = currentPage.getAbsoluteParent(1);
         var currentHome = pageUtilService.getHomePage(currentPage);
         String currentCountryCode = pageUtilService.getCountryCodeByPagePath(currentPage);
 		String currentHomePath = currentHome != null ? currentHome.getPath() : StringUtils.EMPTY;
 		String path = currentPage.getPath();
 
-		if (root == null) {
-			return;
-		}
-
-        List<Page> homePages = pageUtilService.getAllHomePages(root);
+        List<Page> homePages = pageUtilService.getAllHomePages(resourceResolver);
         for (Page homepage : homePages) {
             ValueMap homepageProperties = homepage.getProperties();
             boolean hideInNav = homepageProperties.get("hideInNav", false);

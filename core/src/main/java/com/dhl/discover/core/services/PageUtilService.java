@@ -11,6 +11,7 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import java.io.Serializable;
 
@@ -40,6 +41,9 @@ public class PageUtilService implements Serializable {
     public static final String HOME_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-home-page";
     public static final String CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE = "dhl/components/pages/editable-category-page";
 
+    @Reference
+    private transient LaunchService launchService;
+
     public int getHomePageLevel() {
         return HOME_PAGE_LEVEL;
     }
@@ -53,6 +57,7 @@ public class PageUtilService implements Serializable {
     public Page getHomePage(Page page) {
         return Optional.ofNullable(page)
                 .map(p -> p.getAbsoluteParent(getHomePageLevel()))
+                .map(launchService::resolveOutOfScopeLaunchPage)
                 .orElse(null);
     }
 
@@ -117,6 +122,10 @@ public class PageUtilService implements Serializable {
         return rootPage == null || rootPage.getDepth() > HOME_PAGE_DEPTH
                 ? null
                 : getAllHomePages(rootPage, new LinkedList<>());
+    }
+
+    public List<Page> getAllHomePages(ResourceResolver resolver) {
+        return getAllHomePages(getPage(ROOT_PAGE_PATH, resolver));
     }
 
     public boolean isHomePage(Page page) {

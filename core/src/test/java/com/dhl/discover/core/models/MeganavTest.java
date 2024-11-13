@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.jcr.Session;
 
 import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.LaunchService;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,8 @@ class MeganavTest {
 	void setUp() throws Exception {
 	    ctx.load().json("/com/dhl/discover/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
-		ctx.registerService(PageUtilService.class, new PageUtilService());
+		var launchService = ctx.registerService(LaunchService.class, new LaunchService());
+		ctx.registerInjectActivateService(PageUtilService.class, "launchService", launchService);
 	    ctx.addModelsForClasses(Meganav.class, MeganavPanel.class);
 	}
 
