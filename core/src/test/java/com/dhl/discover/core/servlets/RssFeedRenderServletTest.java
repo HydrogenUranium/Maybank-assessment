@@ -1,0 +1,153 @@
+package com.dhl.discover.core.servlets;
+
+import com.day.cq.tagging.InvalidTagFormatException;
+import com.day.cq.tagging.TagManager;
+import com.dhl.discover.core.models.Article;
+import com.dhl.discover.core.services.*;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.testing.mock.sling.ResourceResolverType;
+import org.apache.sling.testing.mock.sling.servlet.MockRequestDispatcherFactory;
+import org.apache.sling.testing.mock.sling.servlet.MockRequestPathInfo;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.dhl.discover.junitUtils.AssertXml.assertXmlEquals;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
+@ExtendWith({AemContextExtension.class, MockitoExtension.class})
+class RssFeedRenderServletTest {
+    private final AemContext context = new AemContext(ResourceResolverType.JCR_OAK);
+
+    private final MockSlingHttpServletRequest request = context.request();
+    private final MockSlingHttpServletResponse response = context.response();
+
+    @Spy
+    private PageContentExtractorService pageExtractor;
+
+    @Spy
+    private PageUtilService pageUtilService;
+
+    @Spy
+    private PathUtilService pathUtilService;
+
+    @Mock
+    private AssetUtilService assetUtilService;
+
+    @Spy
+    private TagUtilService tagUtilService;
+
+    @Mock
+    private ArticleService articleService;
+
+    @InjectMocks
+    private RssFeedRenderServlet servlet;
+
+    @Mock
+    private MockRequestDispatcherFactory dispatcherFactory;
+
+    @Mock
+    private RequestDispatcher dispatcher;
+
+    @BeforeEach
+    void setUp() throws InvalidTagFormatException {
+        context.registerService(PageUtilService.class, pageUtilService);
+        context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(AssetUtilService.class, assetUtilService);
+        context.registerService(TagUtilService.class, tagUtilService);
+        context.registerService(ArticleService.class, articleService);
+
+        context.load().json("/com/dhl/discover/core/servlets/RssFeedRenderServlet/repository.json", "/content/dhl");
+        TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
+        tagManager.createTag("dhl:tech-futures", "Tech Futures", "description");
+        tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
+
+        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
+    }
+
+
+    private MockSlingHttpServletRequest getRequest(String path) {
+        MockSlingHttpServletRequest mockRequest = new MockSlingHttpServletRequest(context.resourceResolver(), context.bundleContext());
+        mockRequest.setResource(context.resourceResolver().getResource(path));
+        return mockRequest;
+    }
+
+    @Test
+    void doGet_ShouldReturnRSS_WhenConfigurationIsCorrect() throws ServletException {
+        List<Article> articles = new ArrayList<>();
+        articles.add(request.getResourceResolver().getResource("/content/dhl/country/en-global/business/productivity/ai-science-fiction-it-is-not").adaptTo(Article.class));
+        articles.add(request.getResourceResolver().getResource("/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales").adaptTo(Article.class));
+        when(articleService.getLatestArticles(any(String.class), anyInt())).thenReturn(articles);
+
+        when(dispatcherFactory.getRequestDispatcher(any(String.class), any())).thenAnswer(getRequestDispatcherInvocation -> {
+            String pathWithExtension = getRequestDispatcherInvocation.getArgument(0, String.class);
+            String path = pathWithExtension.replace(".rss.entry.xml", "");
+            MockSlingHttpServletRequest mockRequest = getRequest(path);
+            ((MockRequestPathInfo) mockRequest.getRequestPathInfo()).setSelectorString("rss.entry");
+            doAnswer(includeInvocation -> {
+                servlet.doGet(mockRequest, includeInvocation.getArgument(1, SlingHttpServletResponse.class));
+                return null;
+            }).when(dispatcher).include(any(), any(SlingHttpServletResponse.class));
+            return dispatcher;
+        });
+        String path = "/content/dhl/country/en-global";
+        ((MockRequestPathInfo) request.getRequestPathInfo()).setSelectorString("rss.all");
+        request.setResource(context.resourceResolver().getResource(path));
+        context.requestPathInfo().setResourcePath(path);
+        request.setRequestDispatcherFactory(dispatcherFactory);
+
+        servlet.doGet(request, response);
+
+        String responseBody = context.response().getOutputAsString()
+                .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
+
+        String expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n" +
+                "<channel>\n" +
+                "<link>/dhl/country/en-global.html</link>\n" +
+                "<title>E-commerce business &amp; global logistics advice | Discover DHL</title>\n" +
+                "<description/>\n" +
+                "<language>en</language>\n" +
+                "<region>Global</region>\n" +
+                "<pubDate/><item>\n" +
+                "<link>/dhl/country/en-global/business/productivity/ai-science-fiction-it-is-not.html</link>\n" +
+                "<title>AI science fiction it is not</title>\n" +
+                "<description>description</description>\n" +
+                "<articleBody><![CDATA[<h2>Article Body ai-science-fiction-it-is-not</h2>]]></articleBody>\n" +
+                "<region>Global</region>\n" +
+                "<language>en</language>\n" +
+                "<pubDate/>\n" +
+                "<tags/>\n" +
+                "<thumbnail/>\n" +
+                "</item><item>\n" +
+                "<link>/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
+                "<title>The future of cyber sales</title>\n" +
+                "<description>description</description>\n" +
+                "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
+                "<region>Global</region>\n" +
+                "<language>en</language>\n" +
+                "<pubDate/>\n" +
+                "<tags>Tech Futures,Culture Hype</tags>\n" +
+                "<thumbnail/>\n" +
+                "</item>\n" +
+                "</channel>\n" +
+                "</rss>\n";
+
+        assertXmlEquals(expected, responseBody);
+    }
+}

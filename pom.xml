@@ -17,8 +17,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.positive</groupId>
-    <artifactId>dhl</artifactId>
+    <groupId>com.dhl</groupId>
+    <artifactId>discover</artifactId>
     <packaging>pom</packaging>
     <version>2.00.0-SNAPSHOT</version>
     <name>Deutsche Post AG Discover</name>
@@ -369,6 +369,7 @@ Bundle-DocURL:
                         <failOnError>true</failOnError>
                         <userId>${vault.user}</userId>
                         <password>${vault.password}</password>
+                        <useProxy>false</useProxy>
                     </configuration>
                 </plugin>
                 <!-- Maven Enforcer Plugin -->

@@ -21,8 +21,8 @@
     <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
     <!-- ====================================================================== -->
     <parent>
-        <groupId>com.positive</groupId>
-        <artifactId>dhl</artifactId>
+        <groupId>com.dhl</groupId>
+        <artifactId>discover</artifactId>
         <version>2.00.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -37,7 +37,7 @@
 
     <properties>
         <sonar.exclusions>src/main/content/jcr_root/apps/dhl/**/*</sonar.exclusions>
-     
+
         <!--
             controls the frontend build process
             possible values: build / dev
@@ -72,13 +72,13 @@
                         </jackrabbit-filter>
                     </validatorsSettings>
                     <allowIndexDefinitions>true</allowIndexDefinitions>
-                    <group>com.positive</group>
-                    <name>dhl.ui.apps</name>
+                    <group>com.dhl</group>
+                    <name>discover.ui.apps</name>
                     <packageType>application</packageType>
                     <repositoryStructurePackages>
                         <repositoryStructurePackage>
-                            <groupId>com.positive</groupId>
-                            <artifactId>dhl.ui.apps.structure</artifactId>
+                            <groupId>com.dhl</groupId>
+                            <artifactId>discover.ui.apps.structure</artifactId>
                         </repositoryStructurePackage>
                     </repositoryStructurePackages>
                     <dependencies>
@@ -226,22 +226,23 @@
     <!-- D E P E N D E N C I E S                                                -->
     <!-- ====================================================================== -->
     <dependencies>
+
         <dependency>
-            <groupId>com.positive</groupId>
-            <artifactId>dhl.core</artifactId>
+            <groupId>com.dhl</groupId>
+            <artifactId>discover.core</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.positive</groupId>
-            <artifactId>dhl.ui.frontend</artifactId>
+            <groupId>com.dhl</groupId>
+            <artifactId>discover.ui.frontend</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
 
         <dependency>
-            <groupId>com.positive</groupId>
-            <artifactId>dhl.ui.apps.structure</artifactId>
+            <groupId>com.dhl</groupId>
+            <artifactId>discover.ui.apps.structure</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
