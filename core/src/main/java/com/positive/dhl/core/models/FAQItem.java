@@ -24,9 +24,9 @@ import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
- * Simple Sling Model that represents a single FAQ item. It's used to populate the FAQ component.
-
+ * @deprecated (will be removed together with accordion )
  */
+@Deprecated(since = "2.1", forRemoval = true)
 @Model(
 		adaptables=Resource.class,
 		defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
