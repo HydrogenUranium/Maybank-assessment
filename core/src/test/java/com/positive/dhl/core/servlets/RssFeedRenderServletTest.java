@@ -38,19 +38,6 @@ class RssFeedRenderServletTest {
     private final MockSlingHttpServletRequest request = context.request();
     private final MockSlingHttpServletResponse response = context.response();
 
-    @Spy
-    private PageContentExtractorService pageExtractor;
-
-    @Mock
-    private LaunchService launchService;
-
-    @Spy
-    @InjectMocks
-    private PageUtilService pageUtilService;
-
-    @Spy
-    private PathUtilService pathUtilService;
-
     @Mock
     private AssetUtilService assetUtilService;
 
@@ -60,7 +47,6 @@ class RssFeedRenderServletTest {
     @Mock
     private ArticleService articleService;
 
-    @InjectMocks
     private RssFeedRenderServlet servlet;
 
     @Mock
@@ -71,11 +57,19 @@ class RssFeedRenderServletTest {
 
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
-        context.registerService(PageUtilService.class, pageUtilService);
-        context.registerService(PathUtilService.class, pathUtilService);
+        var launch = context.registerService(new LaunchService());
+        var pageUtilService = context.registerInjectActivateService(PageUtilService.class, "launchService", launch);
+        var pageExtractor = context.registerService(PageContentExtractorService.class, new PageContentExtractorService());
         context.registerService(AssetUtilService.class, assetUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(ArticleService.class, articleService);
+
+        servlet = context.registerInjectActivateService(RssFeedRenderServlet.class,
+                "pageExtractor", pageExtractor,
+                "pageUtilService", pageUtilService,
+                "articleService", articleService
+
+        );
 
         context.load().json("/com/positive/dhl/core/servlets/RssFeedRenderServlet/repository.json", "/content/dhl");
         TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
@@ -83,7 +77,6 @@ class RssFeedRenderServletTest {
         tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
 
         when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
-        lenient().when(launchService.resolveOutOfScopeLaunchPage(any(Page.class))).thenAnswer(invocation -> invocation.getArgument(0));
     }
 
 
