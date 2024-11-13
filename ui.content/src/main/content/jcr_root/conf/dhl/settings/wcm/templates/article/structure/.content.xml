@@ -60,6 +60,7 @@
                     sling:resourceType="dhl/components/content/article-container"
                     designMode="new"
                     showSidebar="true"
+                    useArticleClarityRegion="true"
                     useArticleStyles="true">
                 <body
                         jcr:primaryType="nt:unstructured"
