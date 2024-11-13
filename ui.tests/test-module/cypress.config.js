@@ -48,6 +48,8 @@ let config = {
     chromeWebSecurity: false,
   },
   videosFolder: reportsPath + "/videos",
+  video: true,
+  videoCompression: true,
   screenshotsFolder: reportsPath + "/screenshots",
 }
 
