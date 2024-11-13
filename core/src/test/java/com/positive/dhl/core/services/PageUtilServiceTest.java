@@ -40,15 +40,16 @@ class PageUtilServiceTest {
 
     private ResourceResolver resourceResolver;
     private Resource resource;
-
-    @InjectMocks
     private PageUtilService pageUtilService;
 
     @BeforeEach
     void setUp() {
-        resourceResolver = context.resourceResolver();
         context.load().json(NEW_CONTENT_STRUCTURE_JSON, PAGE_PATH);
+
+        resourceResolver = context.resourceResolver();
         resource = resourceResolver.getResource(PAGE_PATH);
+        var launchService = context.registerService(LaunchService.class, new LaunchService());
+        pageUtilService = context.registerInjectActivateService(PageUtilService.class, "launchService", launchService);
     }
 
     @Test
@@ -63,7 +64,7 @@ class PageUtilServiceTest {
     @Test
     void test_forNull()  {
         assertNull(pageUtilService.getHomePage((Page) null));
-        assertNull(pageUtilService.getAllHomePages(null));
+        assertNull(pageUtilService.getAllHomePages((Page) null));
         assertEquals(ValueMap.EMPTY, pageUtilService.getPageProperties(null));
         assertEquals(ValueMap.EMPTY, pageUtilService.getHomePageProperties(null));
         assertEquals(StringUtils.EMPTY, pageUtilService.getCountryCodeByPagePath(null));

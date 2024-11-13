@@ -2,6 +2,7 @@ package com.positive.dhl.core.rss;
 
 import com.day.cq.tagging.InvalidTagFormatException;
 import com.day.cq.tagging.TagManager;
+import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -14,6 +15,7 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -38,11 +40,16 @@ class DiscoverRssFeedTest {
     @Spy
     private PageContentExtractorService pageExtractor;
 
+    @Mock
+    private LaunchService launchService;
+
     @Spy
+    @InjectMocks
     private PageUtilService pageUtilService;
 
     @Spy
     private PathUtilService pathUtilService;
+
 
     @Mock
     private AssetUtilService assetUtilService;
@@ -70,6 +77,8 @@ class DiscoverRssFeedTest {
         tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
 
         when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
+        lenient().when(launchService.resolveOutOfScopeLaunchPage(any(Page.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
     }
 
     @Test

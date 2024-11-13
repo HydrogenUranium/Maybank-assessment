@@ -1,6 +1,7 @@
 package com.positive.dhl.core.models;
 
 import com.google.common.collect.Maps;
+import com.positive.dhl.core.services.LaunchService;
 import com.positive.dhl.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -9,8 +10,10 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.positive.dhl.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
@@ -22,13 +25,15 @@ class LanguageVariantsTest {
     public static final String EN_US_CURRENT_RESOURCE_PATH = "/content/dhl/us/en-us/category-page/article-page";
     public static final String GLOBAL_CURRENT_RESOURCE_PATH = "/content/dhl/global/en-global";
 
-    private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
+    private final AemContext context = new AemContext();
 
     @BeforeEach
     void setUp() throws Exception {
         context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
 
-        context.registerService(PageUtilService.class, new PageUtilService());
+        var launchService = context.registerService(LaunchService.class, new LaunchService());
+        context.registerInjectActivateService(new PageUtilService(), "launchService", launchService);
+
         context.addModelsForClasses(LanguageVariants.class);
     }
 

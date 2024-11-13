@@ -2,6 +2,7 @@ package com.positive.dhl.core.servlets;
 
 import com.day.cq.tagging.InvalidTagFormatException;
 import com.day.cq.tagging.TagManager;
+import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -37,15 +38,6 @@ class RssFeedRenderServletTest {
     private final MockSlingHttpServletRequest request = context.request();
     private final MockSlingHttpServletResponse response = context.response();
 
-    @Spy
-    private PageContentExtractorService pageExtractor;
-
-    @Spy
-    private PageUtilService pageUtilService;
-
-    @Spy
-    private PathUtilService pathUtilService;
-
     @Mock
     private AssetUtilService assetUtilService;
 
@@ -55,7 +47,6 @@ class RssFeedRenderServletTest {
     @Mock
     private ArticleService articleService;
 
-    @InjectMocks
     private RssFeedRenderServlet servlet;
 
     @Mock
@@ -66,11 +57,19 @@ class RssFeedRenderServletTest {
 
     @BeforeEach
     void setUp() throws InvalidTagFormatException {
-        context.registerService(PageUtilService.class, pageUtilService);
-        context.registerService(PathUtilService.class, pathUtilService);
+        var launch = context.registerService(new LaunchService());
+        var pageUtilService = context.registerInjectActivateService(PageUtilService.class, "launchService", launch);
+        var pageExtractor = context.registerService(PageContentExtractorService.class, new PageContentExtractorService());
         context.registerService(AssetUtilService.class, assetUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(ArticleService.class, articleService);
+
+        servlet = context.registerInjectActivateService(RssFeedRenderServlet.class,
+                "pageExtractor", pageExtractor,
+                "pageUtilService", pageUtilService,
+                "articleService", articleService
+
+        );
 
         context.load().json("/com/positive/dhl/core/servlets/RssFeedRenderServlet/repository.json", "/content/dhl");
         TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
