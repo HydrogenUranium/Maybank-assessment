@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.positive.dhl.core.components.EnvironmentConfiguration;
+import com.positive.dhl.core.services.LaunchService;
 import com.positive.dhl.core.services.PageUtilService;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -44,7 +45,8 @@ class AccountActionsTest {
 		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
         ctx.registerService(ConfigurationAdmin.class, mockConfigurationAdmin);
-        ctx.registerService(PageUtilService.class, new PageUtilService());
+        var launchService = ctx.registerService(LaunchService.class, new LaunchService());
+        ctx.registerInjectActivateService(PageUtilService.class, "launchService", launchService);
 	    ctx.addModelsForClasses(AccountActions.class);
 	}
 

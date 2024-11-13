@@ -2,6 +2,7 @@ package com.positive.dhl.core.servlets;
 
 import com.day.cq.tagging.InvalidTagFormatException;
 import com.day.cq.tagging.TagManager;
+import com.day.cq.wcm.api.Page;
 import com.positive.dhl.core.models.Article;
 import com.positive.dhl.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -40,7 +41,11 @@ class RssFeedRenderServletTest {
     @Spy
     private PageContentExtractorService pageExtractor;
 
+    @Mock
+    private LaunchService launchService;
+
     @Spy
+    @InjectMocks
     private PageUtilService pageUtilService;
 
     @Spy
@@ -78,6 +83,7 @@ class RssFeedRenderServletTest {
         tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
 
         when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
+        lenient().when(launchService.resolveOutOfScopeLaunchPage(any(Page.class))).thenAnswer(invocation -> invocation.getArgument(0));
     }
 
 
