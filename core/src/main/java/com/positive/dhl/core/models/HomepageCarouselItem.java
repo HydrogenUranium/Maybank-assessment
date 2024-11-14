@@ -11,8 +11,9 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 
 /**
- *
+ * @deprecated (will be removed together with homepagecarousel )
  */
+@Deprecated(since = "2.1", forRemoval = true)
 @Model(adaptables=Resource.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class HomepageCarouselItem {
     @Inject
