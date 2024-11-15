@@ -11,10 +11,8 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-/**
- * @deprecated (will be removed together with homepagecarousel )
- */
-@Deprecated(since = "2.1", forRemoval = true)
+
+//@Deprecated(since = "2.1", forRemoval = true)
 @Model(adaptables=Resource.class)
 public class HomepageCarousel {
 	@ValueMapValue

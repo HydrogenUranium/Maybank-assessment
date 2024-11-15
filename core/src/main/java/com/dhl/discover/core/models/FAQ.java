@@ -13,10 +13,8 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
-/**
- * @deprecated (will be removed together with accordion )
- */
-@Deprecated(since = "2.1", forRemoval = true)
+
+//@Deprecated(since = "2.1", forRemoval = true)
 @Model(adaptables=Resource.class)
 public class FAQ {
     @SlingObject

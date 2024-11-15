@@ -24,9 +24,9 @@ import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
- * @deprecated (will be removed together with accordion )
+ * (will be removed together with accordion )
  */
-@Deprecated(since = "2.1", forRemoval = true)
+//@Deprecated(since = "2.1", forRemoval = true)
 @Model(
 		adaptables=Resource.class,
 		defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
