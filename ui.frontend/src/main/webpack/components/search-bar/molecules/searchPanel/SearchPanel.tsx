@@ -221,7 +221,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
           items={recentSearches}
           title={recentSearchesTitle}
           renderItem={(search, index) => (
-            <div className={styles.searchSectionItemsItemWrapper}>
+            <div key={search} className={styles.searchSectionItemsItemWrapper}>
               <a id={`search-bar-suggestion-${index}`}
                 tabIndex={-1}
                 aria-label={search}
@@ -254,7 +254,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
           items={trendingTopics}
           title={trendingTopicsTitle}
           renderItem={(topic, index) => (
-            <div className={styles.searchSectionItemsItemWrapper}>
+            <div key={topic} className={styles.searchSectionItemsItemWrapper}>
               <a id={`search-bar-suggestion-${index + recentSearches.length}`}
                 tabIndex={-1}
                 aria-label={topic}
