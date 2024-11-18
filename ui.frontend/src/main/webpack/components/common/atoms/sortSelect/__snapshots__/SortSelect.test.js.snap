@@ -15,7 +15,7 @@ exports[`SortSelect should render component "SortSelect" property 1`] = `
     id="sort-by"
   >
     <div
-      className=" css-b62m3t-container"
+      className="css-b62m3t-container"
       onKeyDown={[Function]}
     >
       <span
@@ -30,15 +30,15 @@ exports[`SortSelect should render component "SortSelect" property 1`] = `
         role="log"
       />
       <div
-        className=" css-18se5j3-control"
+        className="css-18se5j3-control"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
       >
         <div
-          className=" css-1fdsijx-ValueContainer"
+          className="css-hlgwow"
         >
           <div
-            className=" css-1dimb5e-singleValue"
+            className="css-1dimb5e-singleValue"
           >
             Recommended
           </div>
@@ -48,7 +48,7 @@ exports[`SortSelect should render component "SortSelect" property 1`] = `
             aria-expanded={false}
             aria-haspopup={true}
             aria-readonly={true}
-            className="css-mohuvp-dummyInput-DummyInput"
+            className="css-1s80ejz-dummyInput-DummyInput"
             disabled={false}
             id="react-select-2-input"
             inputMode="none"
@@ -61,11 +61,11 @@ exports[`SortSelect should render component "SortSelect" property 1`] = `
           />
         </div>
         <div
-          className=" css-1hb7zxy-IndicatorsContainer"
+          className="css-1wy0on6"
         >
           <div
             aria-hidden="true"
-            className=" css-1xc3v61-indicatorContainer"
+            className="css-1xc3v61-indicatorContainer"
             onMouseDown={[Function]}
             onTouchEnd={[Function]}
           >
