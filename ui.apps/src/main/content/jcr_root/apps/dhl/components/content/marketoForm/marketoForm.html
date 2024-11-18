@@ -6,7 +6,7 @@
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
 <div class="ship-now-group" data-sly-test="${!isEmpty}">
-    <div class="forms marketoForm marketoForm--white"
+    <div class="forms cmp-marketoForm"
          formId="${cmf.marketoformid @ context='attribute'}"
          munchkinId="${cmf.marketoid @ context='attribute'}"
          formHost="${cmf.getVisibleFormHost @ context='attribute'}"
@@ -16,8 +16,8 @@
          source="conf"
          data-sly-attribute.data-analytics="${analytics.json}"
          data-marketo-form>
-      <div class="marketoForm__container">
-        <h3 class="marketoForm__title" data-sly-test.formTitle="${properties.formTitle}">${formTitle}</h3>
+      <div class="cmp-marketoForm__container">
+        <h3 class="cmp-marketoForm__title" data-sly-test.formTitle="${properties.formTitle}">${formTitle}</h3>
         <div data-marketo-visible-form>
           <form id="mktoForm_${cmf.marketoformid}"></form>
           <script src="${cmf.getVisibleFormHost}/js/forms2/js/forms2.min.js"></script>
