@@ -5,7 +5,11 @@ import com.day.cq.wcm.api.constants.NameConstants;
 import org.apache.sling.jcr.resource.api.JcrResourceConstants;
 
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Collections;
+import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Class holding immutable 'configuration' (and other) values
