@@ -18,7 +18,14 @@ import org.osgi.service.component.annotations.Reference;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 

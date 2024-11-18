@@ -1,6 +1,10 @@
 package com.positive.dhl.core.models;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
