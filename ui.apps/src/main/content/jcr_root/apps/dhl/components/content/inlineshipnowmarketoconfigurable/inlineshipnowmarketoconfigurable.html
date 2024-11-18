@@ -17,7 +17,7 @@
 	 data-sly-use.cmf="com.positive.dhl.core.models.ConfigurableMarketoForm">
 	<div class="mb-5">
 
-		<div class="forms marketoForm marketoForm--yellow"
+		<div class="forms cmp-marketoForm"
 			 formId="${cmf.marketoformid || '6412' @ context='attribute' }"
 			 munchkinId="${cmf.marketoid || '903-EZK-832'@ context='attribute' }"
 			 formHost="${cmf.getVisibleFormHost || 'https://express-resource.dhl.com' @ context='attribute' }"
@@ -27,8 +27,8 @@
 			 source="conf"
              apiSubmit="true"
 			 data-marketo-form>
-		  <div class="marketoForm__container">
-			<h3 class="marketoForm__title">${ 'Apply for a business account today' @ i18n, context='html' }</h3>
+		  <div class="cmp-marketoForm__container">
+			<h3 class="cmp-marketoForm__title">${ 'Apply for a business account today' @ i18n, context='html' }</h3>
 			  <sly data-sly-test="${(cmf.marketoformid != null && cmf.marketoid.length != 0)}" data-sly-unwrap>
 				<div data-marketo-visible-form>
 				  <form id="mktoForm_${ cmf.marketoformid @ context = 'unsafe' }"></form>
