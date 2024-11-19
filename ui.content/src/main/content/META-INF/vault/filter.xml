@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/conf/global/settings/cloudconfigs"/>
-    <filter root="/conf/global/settings/translation/rules"/>
-    <filter root="/conf/global/settings/workflow/models/request_for_activation"/>
-    <filter root="/conf/global/settings/workflow/models/request_for_deletion"/>
-    <filter root="/conf/global/settings/workflow/models/request_for_deactivation"/>
-    <filter root="/conf/global/settings/workflow/models/request_to_complete_move_operation"/>
+    <filter root="/conf/global/settings" mode="update"/>
     <filter root="/var/workflow/models" mode="update"/>
 
     <filter root="/content/cq:tags" mode="update"/>
