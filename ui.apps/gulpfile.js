@@ -10,7 +10,7 @@ const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
-const merge = require('merge-stream');
+const ordered = require('ordered-read-streams'); 
 const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
 const eslint = require('gulp-eslint-new');
@@ -137,7 +137,7 @@ gulp.task('javascript', () => {
     })))
     .pipe(gulp.dest(scriptDestAnimated));
 
-  return merge(vendor, app, animatedApp);
+  return ordered([vendor, app, animatedApp]);
 });
 
 gulp.task('copyFlagIcons', () => {
