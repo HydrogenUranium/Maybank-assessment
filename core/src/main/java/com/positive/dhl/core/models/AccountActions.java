@@ -2,7 +2,6 @@ package com.positive.dhl.core.models;
 
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import com.positive.dhl.core.components.EnvironmentConfiguration;
 import com.positive.dhl.core.services.PageUtilService;
@@ -18,6 +17,8 @@ import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 /**
  * Utility model that acts as a 'middle-man' between the component on a particular AEM page
@@ -29,15 +30,15 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 public class AccountActions {
 	protected static final String HTML_EXTENSION = ".html";
 
-	@Inject
+	@ScriptVariable
 	@Getter(AccessLevel.NONE)
 	private SlingHttpServletRequest request;
 
-	@Inject
+	@SlingObject
 	@Getter(AccessLevel.NONE)
 	private ResourceResolver resourceResolver;
 
-	@Inject
+	@ScriptVariable
 	@Getter(AccessLevel.NONE)
 	private Page currentPage;
 

@@ -166,6 +166,7 @@ class ArticleSideNavigationTest {
         if (null == articlePage) {
             return ctx.create().page("/content/dhl/en-global/business/entrepreneurship/the-ten-minute-startup-guide", "/apps/dhl/templates/dhl-article-page", articleSourceProperties);
         }
+        ctx.currentPage(articlePage);
         return articlePage;
     }
 

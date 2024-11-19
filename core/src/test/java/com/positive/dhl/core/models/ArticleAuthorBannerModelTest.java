@@ -42,6 +42,9 @@ class ArticleAuthorBannerModelTest {
     @InjectMocks
     private HomePropertyInjector homePropertyInjector;
 
+    @Mock
+    private Resource resource;
+
     @BeforeEach
     void setUp() {
         context.registerService(Injector.class, homePropertyInjector);
@@ -57,7 +60,7 @@ class ArticleAuthorBannerModelTest {
         request.setResource(currentResource);
 
         Page currentPage = Objects.requireNonNull(currentResource).adaptTo(Page.class);
-        mockInject(context, "currentPage", currentPage);
+        context.currentPage(currentPage);
     }
 
     private void mockHomePage(String initRequestPath) {

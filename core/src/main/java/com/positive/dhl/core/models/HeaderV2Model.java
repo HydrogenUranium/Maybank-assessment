@@ -12,9 +12,9 @@ import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class HeaderV2Model {
     @Getter(AccessLevel.NONE)
     private PageUtilService pageUtilService;
 
-    @Inject
+    @ScriptVariable
     @Getter(AccessLevel.NONE)
     private Page currentPage;
 

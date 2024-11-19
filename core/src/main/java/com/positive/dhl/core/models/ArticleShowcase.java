@@ -10,14 +10,12 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
-import org.apache.sling.models.annotations.injectorspecific.ChildResource;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.*;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -25,7 +23,7 @@ import java.util.List;
 
 @Getter
 @Slf4j
-@Model(adaptables = { Resource.class, SlingHttpServletRequest.class })
+@Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ArticleShowcase {
 
     @OSGiService
@@ -37,33 +35,33 @@ public class ArticleShowcase {
     @OSGiService
     private ArticleService articleService;
 
-    @Inject
+    @ScriptVariable
     private Page currentPage;
 
-    @Inject
+    @SlingObject
     private ResourceResolver resourceResolver;
 
-    @Inject
+    @ValueMapValue
     @Optional
     private String title;
 
-    @Inject
+    @ValueMapValue
     @Optional
     private String designMode;
 
-    @Inject
+    @ValueMapValue
     @Optional
     private String linkName;
 
-    @Inject
+    @ValueMapValue
     @Optional
     private String linkPath;
 
-    @Inject
+    @ValueMapValue
     @Optional
     private String showTags;
 
-    @Inject
+    @ValueMapValue
     @Optional
     @Default(values = "customPick")
     private String source;

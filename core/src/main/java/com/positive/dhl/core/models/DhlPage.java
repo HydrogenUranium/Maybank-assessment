@@ -15,9 +15,10 @@ import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
 import static com.positive.dhl.core.constants.DiscoverConstants.HTTPS_PREFIX;
@@ -29,13 +30,13 @@ public class DhlPage {
 	@Getter(AccessLevel.NONE)
 	private AssetUtilService assetUtilService;
 
-	@Inject
+	@SlingObject
 	private SlingHttpServletRequest request;
 	
-	@Inject
+	@SlingObject
 	private SlingHttpServletResponse response;
 	
-	@Inject
+	@ScriptVariable
 	private Page currentPage;
 
 	@OSGiService
