@@ -78,6 +78,10 @@
                                     cq:policy="dhl/components/content/embed/article_embed_component_policy"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <marketoForm
+                                    cq:policy="dhl/components/content/marketoForm/policy_marketoForm"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
                         </content>
                     </components>
                 </dhl>
@@ -132,6 +136,10 @@
                                             cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <marketoForm
+                                            cq:policy="dhl/components/content/marketoForm/policy_marketoForm"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -180,6 +188,10 @@
                                             cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <marketoForm
+                                            cq:policy="dhl/components/content/marketoForm/policy_marketoForm"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -226,6 +238,10 @@
                                     </article-teaser>
                                     <article-teaser-container
                                             cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <marketoForm
+                                            cq:policy="dhl/components/content/marketoForm/policy_marketoForm"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>

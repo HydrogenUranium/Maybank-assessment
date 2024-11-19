@@ -41,6 +41,9 @@
               gap: 5px;
               align-items: center;
             }
+            &WithRefreshButton {
+              padding-right: 50px;
+            }
 
             [dir="rtl"] & {
               margin-left: 0px;
