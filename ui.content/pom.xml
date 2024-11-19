@@ -57,7 +57,22 @@
                     <validatorsSettings>
                         <jackrabbit-filter>
                             <options>
-                                <validRoots>/conf/groovyconsole,/conf/global/settings/cloudconfigs,/conf/global/settings/workflow/models,/conf/dhl/settings,/var/workflow/models,/etc,/content/cq:tags</validRoots>
+                                <validRoots>
+                                    /conf,
+                                    /conf/groovyconsole,
+                                    /conf/global/settings,
+                                    /conf/global/settings/cloudconfigs,
+                                    /conf/global/settings/workflow/models,
+                                    /conf/global/settings/translation,
+                                    /conf/dhl/settings,
+                                    /conf/dhl/settings/wcm,
+                                    /conf/dhl/settings/wcm/templates,
+                                    /var/workflow,
+                                    /var/workflow/models,
+                                    /etc,
+                                    /content,
+                                    /content/cq:tags
+                                </validRoots>
                             </options>
                         </jackrabbit-filter>
                     </validatorsSettings>

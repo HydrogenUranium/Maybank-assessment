@@ -1387,16 +1387,7 @@
                             jcr:title="Editable Article  - policy"
                             sling:resourceType="wcm/core/components/policy/policy"
                             components="[group:DHL Components,/apps/dhl/components/content/articlegrid]">
-                        <jcr:content
-                                cq:isDelivered="{Boolean}false"
-                                cq:lastReplicated="{Date}2023-09-18T12:12:00.044+03:00"
-                                cq:lastReplicated_publish="{Date}2023-09-18T12:12:00.044+03:00"
-                                cq:lastReplicatedBy="admin"
-                                cq:lastReplicatedBy_publish="admin"
-                                cq:lastReplicationAction="Activate"
-                                cq:lastReplicationAction_publish="Activate"
-                                jcr:mixinTypes="[cq:ReplicationStatus,cq:ReplicationStatus2]"
-                                jcr:primaryType="nt:unstructured"/>
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_355443549935000>
                     <policy_593144368255000
                             jcr:lastModified="{Date}2023-10-25T16:51:32.213+03:00"
@@ -1430,16 +1421,7 @@
                             jcr:title="Right Aligned Marketo Form"
                             sling:resourceType="wcm/core/components/policy/policy"
                             components="[/libs/wcm/foundation/components/responsivegrid,group:DHL Components,group:DHL Home Page structure,group:DHL Template structure]">
-                        <jcr:content
-                                cq:isDelivered="{Boolean}false"
-                                cq:lastReplicated="{Date}2023-09-18T18:30:34.114+03:00"
-                                cq:lastReplicated_publish="{Date}2023-09-18T18:30:34.114+03:00"
-                                cq:lastReplicatedBy="admin"
-                                cq:lastReplicatedBy_publish="admin"
-                                cq:lastReplicationAction="Activate"
-                                cq:lastReplicationAction_publish="Activate"
-                                jcr:mixinTypes="[cq:ReplicationStatus,cq:ReplicationStatus2]"
-                                jcr:primaryType="nt:unstructured"/>
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_right_aligned_marketo_form>
                     <disclaimer-text
                             cq:styleDefaultClasses="disclaimer-text"
