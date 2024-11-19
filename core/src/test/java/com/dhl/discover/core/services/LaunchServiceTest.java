@@ -22,7 +22,7 @@ class LaunchServiceTest {
 
     @BeforeEach
     public void setUp() {
-        context.load().json("/com/positive/dhl/core/services/LaunchService/content.json", "/content");
+        context.load().json("/com/dhl/discover/core/services/LaunchService/content.json", "/content");
         article = context.resourceResolver().getResource(ARTICLE_PATH).adaptTo(Page.class);
         launchArticle = context.resourceResolver().getResource(LAUNCH_PATH).adaptTo(Page.class);
     }
