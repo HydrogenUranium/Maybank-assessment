@@ -292,10 +292,6 @@
     <node resourceType="dhl/components/content/embed">
       <property inherit="true" name="accessibilityLabel" translate="true" updateDestinationLanguage="false"/>
     </node>
-    <node resourceType="dhl/components/content/image">
-      <property inherit="true" name="altValueFromPageImage" translate="true" updateDestinationLanguage="false"/>
-      <property inherit="true" name="altValueFromDAM" translate="true" updateDestinationLanguage="false"/>
-    </node>
     <node resourceType="dhl/components/content/marketoForm">
       <property inherit="true" name="formTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
