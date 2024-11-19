@@ -43,6 +43,7 @@ export const Suggestions: React.FC<SuggestionsProps> = (
                   classNames(
                     styles.searchSectionItemsItem, 
                     styles.searchSectionItemsItemWithIcon,
+                    {[styles.searchSectionItemsItemWithRefreshButton]: isTouchDevice},
                     {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
                   )} key={search}>
                 <span className={classNames(styles.icon, styles.iconHistory)}></span>
@@ -84,12 +85,14 @@ export const Suggestions: React.FC<SuggestionsProps> = (
               tabIndex={-1}
               className={
                 classNames(
-                  styles.searchSectionItemsItem, 
-                  styles.searchSectionItemsItemText,
+                  styles.searchSectionItemsItem,
+                  {[styles.searchSectionItemsItemWithRefreshButton]: isTouchDevice},
                   {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
                 )}
-              dangerouslySetInnerHTML={{ __html: sanitizeHtml(highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionsQuery.trim(), true) + ").*", "gi")) }}
               key={suggestion}>
+                <span className={styles.searchSectionItemsItemText}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionsQuery.trim(), true) + ").*", "gi")) }}
+                />
             </button>
             { isTouchDevice &&
               <button
