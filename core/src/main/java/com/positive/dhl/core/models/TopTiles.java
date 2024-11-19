@@ -3,25 +3,30 @@ package com.positive.dhl.core.models;
 import com.day.cq.wcm.api.designer.Style;
 import com.positive.dhl.core.services.PageUtilService;
 import com.positive.dhl.core.services.PathUtilService;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 @Slf4j
-@Model(adaptables = { Resource.class, SlingHttpServletRequest.class })
+@Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@AllArgsConstructor
+@NoArgsConstructor
 public class TopTiles {
 
     @OSGiService
@@ -30,13 +35,13 @@ public class TopTiles {
     @OSGiService
     private PathUtilService pathUtilService;
 
-    @Inject
+    @SlingObject
     private ResourceResolver resourceResolver;
 
     @ScriptVariable
     protected Style currentStyle;
 
-    @Inject
+    @SlingObject
     @Named("articles")
     @ChildResource
     private Resource articleMultifield;

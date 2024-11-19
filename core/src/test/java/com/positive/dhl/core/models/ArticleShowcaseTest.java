@@ -56,7 +56,7 @@ class ArticleShowcaseTest {
         context.registerService(ArticleService.class, articleService);
         context.registerService(PathUtilService.class, pathUtilService);
         context.addModelsForClasses(ArticleShowcase.class);
-        mockInject(context, "currentPage", page);
+        context.currentPage(page);
         context.load().json("/com/positive/dhl/core/models/ArticleShowcase/content.json", "/content");
         lenient().when(pageUtils.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
         mockInject(context, "script-bindings", "currentStyle", currentStyle);

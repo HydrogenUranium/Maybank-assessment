@@ -7,19 +7,19 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class CtaBannerGray {
 
-    @Inject
+    @ValueMapValue
     @Default(values = "custom")
     private String type;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String title;
 
@@ -27,7 +27,7 @@ public class CtaBannerGray {
     @Named("ctaBannerGray-individualShipper-title")
     private String titleGlobal;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String description;
 
@@ -35,7 +35,7 @@ public class CtaBannerGray {
     @Named("ctaBannerGray-individualShipper-description")
     private String descriptionGlobal;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String buttonLink;
 
@@ -43,7 +43,7 @@ public class CtaBannerGray {
     @Named("ctaBannerGray-individualShipper-buttonLink")
     private String buttonLinkGlobal;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String buttonLabel;
 
@@ -51,7 +51,7 @@ public class CtaBannerGray {
     @Named("ctaBannerGray-individualShipper-buttonLabel")
     private String buttonLabelGlobal;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String linkTarget;
 

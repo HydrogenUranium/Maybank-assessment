@@ -55,7 +55,7 @@ class HeaderV2ModelTest {
 
         Resource resource = resolver.getResource(PAGE_LOCATION);
         Page page = resource.adaptTo(Page.class);
-        mockInject(context, "currentPage", page);
+        context.currentPage(page);
     }
 
     @Test

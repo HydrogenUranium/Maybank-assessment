@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -14,7 +13,6 @@ import javax.jcr.Session;
 import com.drew.lang.annotations.NotNull;
 import com.positive.dhl.core.injectors.InjectHomeProperty;
 import lombok.Getter;
-import lombok.Setter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
@@ -22,22 +20,24 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 /**
  *
  */
-@Model(adaptables=SlingHttpServletRequest.class)
+@Model(adaptables=SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ArticlePage {
 	public static final String VIEW_COUNT = "viewcount";
 
-	@Inject
+	@ScriptVariable
 	private ResourceResolverFactory resolverFactory;
 	
-	@Inject
+	@ScriptVariable
 	private Page currentPage;
 
 	@Optional

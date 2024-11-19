@@ -9,10 +9,10 @@ import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import java.text.MessageFormat;
 
 /**
@@ -28,10 +28,10 @@ public class MarketoConfiguration {
 	@OSGiService
 	private PageUtilService pageUtilService;
 
-	@Inject
+	@ScriptVariable
 	private Page currentPage;
 
-	@Inject
+	@ValueMapValue
 	private String marketoSourceType;
 
 	/**
