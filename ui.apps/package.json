@@ -48,6 +48,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "merge-stream": "^2.0.0",
     "minimist": "^1.2.8",
+    "ordered-read-streams": "^2.0.0",
     "sass": "^1.69.2",
     "sync-pom-version-to-package": "^1.6.1",
     "vinyl-buffer": "^1.0.1",
