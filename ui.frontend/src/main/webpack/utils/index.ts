@@ -29,13 +29,13 @@ export function decodeHtmlEntities(text) {
     return sanitizeHtml(decodedString);
   }
 
-export function sanitizeHtml(html) {
-    const allowedTags = [
-        'b', 'strong', 'i', 'em', 'u', 's', 'mark', 'small', 'sub', 'sup',
-        'br', 'span', 'blockquote', 'code', 'pre', 'del', 'ins',
-        'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-        'hr', 'table', 'thead', 'tbody', 'tr', 'th', 'td'
-      ];
+const defaultAllowedTags = [
+    'b', 'strong', 'i', 'em', 'u', 's', 'mark', 'small', 'sub', 'sup',
+    'br', 'span', 'blockquote', 'code', 'pre', 'del', 'ins',
+    'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    'hr', 'table', 'thead', 'tbody', 'tr', 'th', 'td'
+];
 
+export function sanitizeHtml(html, allowedTags = defaultAllowedTags) {
     return DOMPurify.sanitize(html, { ALLOWED_TAGS: allowedTags });
 }
