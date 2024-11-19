@@ -119,8 +119,8 @@
                                     <goal>install-node-and-npm</goal>
                                 </goals>
                                 <configuration>
-                                    <nodeVersion>v21.7.3</nodeVersion>
-                                    <npmVersion>10.5.0</npmVersion>
+                                    <nodeVersion>v22.11.0</nodeVersion>
+									<npmVersion>10.5.0</npmVersion>
                                     <installDirectory>test-module</installDirectory>
                                 </configuration>
                             </execution>
