@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/conf/global/settings" mode="update"/>
+    <filter root="/conf/global/settings/cloudconfigs"/>
+    <filter root="/conf/global/settings/translation/rules"/>
+    <filter root="/conf/global/settings/workflow/models/request_for_activation"/>
+    <filter root="/conf/global/settings/workflow/models/request_for_deletion"/>
+    <filter root="/conf/global/settings/workflow/models/request_for_deactivation"/>
+    <filter root="/conf/global/settings/workflow/models/request_to_complete_move_operation"/>
     <filter root="/var/workflow/models" mode="update"/>
+    <filter root="/var/workflow/models/request_for_activation"/>
+    <filter root="/var/workflow/models/request_for_deletion"/>
+    <filter root="/var/workflow/models/request_for_deactivation"/>
+    <filter root="/var/workflow/models/request_to_complete_move_operation"/>
 
     <filter root="/content/cq:tags" mode="update"/>
     <filter root="/content/experience-fragments" mode="update"/>
@@ -9,5 +18,20 @@
     <filter root="/etc/map.publish" />
     <filter root="/conf/groovyconsole/scripts"/>
 
-    <filter root="/conf/dhl/settings/wcm" mode="update"/>
+    <filter root="/conf/dhl/settings/wcm/template-types"/>
+    <filter root="/conf/dhl/settings/wcm/policies"/>
+    <filter root="/conf/dhl/settings/wcm/templates/article"/>
+    <filter root="/conf/dhl/settings/wcm/templates/home-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/category-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/thank-you-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/right-aligned-marketo-form"/>
+    <filter root="/conf/dhl/settings/wcm/templates/error-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/landing-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/blank-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/general-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/register-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/landing-page-two-columns"/>
+    <filter root="/conf/dhl/settings/wcm/templates/search-result-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/animated-page"/>
+    <filter root="/conf/dhl/settings/wcm/templates/experience-fragment-web-variation-template"/>
 </workspaceFilter>
