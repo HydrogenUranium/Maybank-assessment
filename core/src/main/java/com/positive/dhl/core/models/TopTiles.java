@@ -25,8 +25,6 @@ import java.util.List;
 
 @Slf4j
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-@AllArgsConstructor
-@NoArgsConstructor
 public class TopTiles {
 
     @OSGiService
@@ -41,7 +39,6 @@ public class TopTiles {
     @ScriptVariable
     protected Style currentStyle;
 
-    @SlingObject
     @Named("articles")
     @ChildResource
     private Resource articleMultifield;
