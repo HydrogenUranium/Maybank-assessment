@@ -7,7 +7,6 @@
             cq:lastModifiedBy="admin"
             cq:template="/conf/dhl/settings/wcm/templates/right-aligned-marketo-form"
             jcr:isCheckedOut="{Boolean}true"
-            jcr:mixinTypes="[cq:ReplicationStatus2,mix:versionable]"
             jcr:primaryType="cq:PageContent"
             sling:resourceType="dhl/components/pages/editable-two-column-page">
         <root
