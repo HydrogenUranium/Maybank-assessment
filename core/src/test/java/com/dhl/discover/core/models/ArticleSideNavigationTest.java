@@ -115,7 +115,6 @@ class ArticleSideNavigationTest {
         when(valueMap.get(eq("hideInNav"), anyBoolean())).thenReturn(false);
         // following when-then gymnastics is related to Article model class,that's called from ArticleSideNavigation
         Page articlePage = setUpArticlePage();
-        ctx.currentPage(articlePage);
         Article article = createArticleModel(ctx.resourceResolver().getResource(articlePage.getPath()));
         when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
