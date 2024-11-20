@@ -87,7 +87,7 @@ body {
   }
 
   h4 {
-    @include font($style: "%T2Left");
+    @include font($style: "%H4");
     margin: 0px 0px 15px;
   }
 
