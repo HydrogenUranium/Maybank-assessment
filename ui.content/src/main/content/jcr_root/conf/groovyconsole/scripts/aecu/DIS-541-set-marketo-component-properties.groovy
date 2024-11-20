@@ -140,7 +140,7 @@ def setMarketoComponentProperty(market, marketoComponent, marketoComponentProper
 }
 def getListAffectedPages(market, marketoComponent, useFilters, filters) {
     def listPages = []
-    def pageUtilService = getService("com.positive.dhl.core.services.PageUtilService")
+    def pageUtilService = getService("com.dhl.discover.core.services.PageUtilService")
 
     getComponents(market, marketoComponent.resType, useFilters, filters).each { node ->
         listPages.add(pageUtilService.getPage(getResource(node.path)).path)

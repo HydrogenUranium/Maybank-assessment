@@ -21,8 +21,8 @@
     <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
     <!-- ====================================================================== -->
     <parent>
-        <groupId>com.positive</groupId>
-        <artifactId>dhl</artifactId>
+        <groupId>com.dhl</groupId>
+        <artifactId>discover</artifactId>
         <version>2.00.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -30,7 +30,7 @@
     <!-- ====================================================================== -->
     <!-- P R O J E C T  D E S C R I P T I O N                                   -->
     <!-- ====================================================================== -->
-    <artifactId>dhl.ui.content</artifactId>
+    <artifactId>discover.ui.content</artifactId>
     <packaging>content-package</packaging>
     <name>Deutsche Post AG Discover - UI content</name>
     <description>UI config package for Deutsche Post AG Discover</description>
@@ -50,21 +50,36 @@
                     <properties>
                         <cloudManagerTarget>none</cloudManagerTarget>
                     </properties>
-                    <group>com.positive</group>
-                    <name>dhl.ui.content</name>
+                    <group>com.dhl</group>
+                    <name>discover.ui.content</name>
                     <packageType>content</packageType>
                     <accessControlHandling>merge</accessControlHandling>
                     <validatorsSettings>
                         <jackrabbit-filter>
                             <options>
-                                <validRoots>/conf/groovyconsole,/conf/global/settings/cloudconfigs,/conf/global/settings/workflow/models,/conf/dhl/settings,/var/workflow/models,/etc,/content/cq:tags</validRoots>
+                                <validRoots>
+                                    /conf,
+                                    /conf/groovyconsole,
+                                    /conf/global/settings,
+                                    /conf/global/settings/cloudconfigs,
+                                    /conf/global/settings/workflow/models,
+                                    /conf/global/settings/translation,
+                                    /conf/dhl/settings,
+                                    /conf/dhl/settings/wcm,
+                                    /conf/dhl/settings/wcm/templates,
+                                    /var/workflow,
+                                    /var/workflow/models,
+                                    /etc,
+                                    /content,
+                                    /content/cq:tags
+                                </validRoots>
                             </options>
                         </jackrabbit-filter>
                     </validatorsSettings>
                     <dependencies>
                         <dependency>
-                            <groupId>com.positive</groupId>
-                            <artifactId>dhl.ui.apps</artifactId>
+                            <groupId>com.dhl</groupId>
+                            <artifactId>discover.ui.apps</artifactId>
                             <version>${project.version}</version>
                         </dependency>
                     </dependencies>
@@ -153,13 +168,13 @@
     <!-- ====================================================================== -->
     <dependencies>
         <dependency>
-            <groupId>com.positive</groupId>
-            <artifactId>dhl.core</artifactId>
+            <groupId>com.dhl</groupId>
+            <artifactId>discover.core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.positive</groupId>
-            <artifactId>dhl.ui.apps</artifactId>
+            <groupId>com.dhl</groupId>
+            <artifactId>discover.ui.apps</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
@@ -168,4 +183,16 @@
             <artifactId>aem-sdk-api</artifactId>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>Artifactory PRG-releases</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Artifactory PRG-snapshots</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

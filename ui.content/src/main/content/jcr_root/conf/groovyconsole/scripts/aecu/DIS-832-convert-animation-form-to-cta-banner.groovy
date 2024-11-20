@@ -92,7 +92,7 @@ def getAffectedItemPaths() {
 def manipulations(affectedItemPaths) {
 
     affectedItemPaths.each { itemPath ->
-        def homePagePath = getService("com.positive.dhl.core.services.PageUtilService").getHomePagePath(itemPath)
+        def homePagePath = getService("com.dhl.discover.core.services.PageUtilService").getHomePagePath(itemPath)
         def homePageProperties = getPage(homePagePath)?.node
 
         def buttonLinkValue = ""
@@ -180,7 +180,7 @@ def showAffectedItems(affectedItemPaths) {
 
 def getAffectedPagePaths(affectedItemPaths) {
     def listPages = []
-    def pageUtilService = getService("com.positive.dhl.core.services.PageUtilService")
+    def pageUtilService = getService("services.com.dhl.discover.core.PageUtilService")
 
     affectedItemPaths.each { nodePath ->
         listPages.add(pageUtilService.getPage(getResource(nodePath)).path)

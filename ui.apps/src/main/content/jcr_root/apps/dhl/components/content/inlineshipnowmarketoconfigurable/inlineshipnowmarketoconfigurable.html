@@ -13,8 +13,8 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<div class="ship-now-group" data-sly-use.accountactions="com.positive.dhl.core.models.AccountActions"
-	 data-sly-use.cmf="com.positive.dhl.core.models.ConfigurableMarketoForm">
+<div class="ship-now-group" data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions"
+	 data-sly-use.cmf="com.dhl.discover.core.models.ConfigurableMarketoForm">
 	<div class="mb-5">
 
 		<div class="forms cmp-marketoForm"
@@ -43,7 +43,7 @@
 		<p>${ 'or' @ i18n, context='html' }</p>
 	</div>
 
-	<div class="ship-now-now" data-sly-use.landingPage="com.positive.dhl.core.models.LandingPageTwoColumn">
+	<div class="ship-now-now" data-sly-use.landingPage="com.dhl.discover.core.models.LandingPageTwoColumn">
 		<h3>${cmf.shipnowtitle}</h3>
 		${cmf.shipnowcontent @context='html'}
 		<a href="${landingPage.shipNowUrl}" rel="external" target="_blank" title="Ship now"><span>${ 'Ship now' @ i18n, context='html' }</span></a>

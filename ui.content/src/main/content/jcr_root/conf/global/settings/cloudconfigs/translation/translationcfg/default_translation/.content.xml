@@ -6,7 +6,6 @@
         cq:isDelivered="{Boolean}true"
         cq:template="/libs/cq/translation/templates/mt-servicepage"
         jcr:isCheckedOut="{Boolean}true"
-        jcr:mixinTypes="[cq:ReplicationStatus2,mix:versionable]"
         jcr:primaryType="cq:PageContent"
         jcr:title="Default configuration"
         sling:resourceType="cq/translation/components/mt-cloudconfig"

@@ -95,7 +95,7 @@ def getAffectedNodePaths() {
 def getAffectedPagePaths(affectedNodePaths) {
     def affectedPagePaths = []
 
-    def pageUtilService = getService("com.positive.dhl.core.services.PageUtilService")
+    def pageUtilService = getService("com.dhl.discover.core.services.PageUtilService")
 
     affectedNodePaths.each { nodePath ->
         affectedPagePaths.add(pageUtilService.getPage(getResource(nodePath)).path)
