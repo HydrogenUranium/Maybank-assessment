@@ -140,7 +140,7 @@ def getAffectedItemPaths() {
 
 def getAffectedPagePaths() {
     def list = []
-    def pageUtilService = getService("com.positive.dhl.core.services.PageUtilService")
+    def pageUtilService = getService("com.dhl.discover.core.services.PageUtilService")
 
     data.each{ item ->
         list.add(pageUtilService.getPage(getResource(item[0])).path)

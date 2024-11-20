@@ -22,8 +22,8 @@
     <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
     <!-- ====================================================================== -->
     <parent>
-        <groupId>com.positive</groupId>
-        <artifactId>dhl</artifactId>
+        <groupId>com.dhl</groupId>
+        <artifactId>discover</artifactId>
         <version>2.00.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -31,7 +31,7 @@
     <!-- ====================================================================== -->
     <!-- P R O J E C T  D E S C R I P T I O N                                   -->
     <!-- ====================================================================== -->
-    <artifactId>dhl.ui.tests</artifactId>
+    <artifactId>discover.ui.tests</artifactId>
     <packaging>pom</packaging>
     <name>Deutsche Post AG Discover - UI Tests</name>
 
@@ -134,6 +134,7 @@
                                     <arguments>run lint</arguments>
                                 </configuration>
                             </execution>
+
                         </executions>
                         <configuration>
                             <workingDirectory>test-module</workingDirectory>
@@ -233,5 +234,16 @@
             </build>
         </profile>
     </profiles>
-
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>Artifactory PRG-releases</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Artifactory PRG-snapshots</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

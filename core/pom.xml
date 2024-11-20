@@ -17,12 +17,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.positive</groupId>
-        <artifactId>dhl</artifactId>
+        <groupId>com.dhl</groupId>
+        <artifactId>discover</artifactId>
         <version>2.00.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>dhl.core</artifactId>
+    <artifactId>discover.core</artifactId>
     <name>Deutsche Post AG Discover - Core</name>
     <description>Core bundle for Deutsche Post AG Discover</description>
     <build>
@@ -43,12 +43,12 @@
                         <configuration>
                             <bnd><![CDATA[
 Export-Package: \
-    com.positive.dhl.core.helpers, \
-    com.positive.dhl.core.constants, \
-    com.positive.dhl.core.models, \
-    com.positive.dhl.core.services, \
-    com.positive.dhl.core.dto.general, \
-    com.positive.dhl.core.dto.marketo, \
+    com.dhl.discover.core.helpers, \
+    com.dhl.discover.core.constants, \
+    com.dhl.discover.core.models, \
+    com.dhl.discover.core.services, \
+    com.dhl.discover.core.dto.general, \
+    com.dhl.discover.core.dto.marketo, \
     com.akamai.edgegrid.signer, \
     com.akamai.edgegrid.signer.exceptions
 
@@ -294,4 +294,16 @@ Import-Package: javax.annotation;version=0.0.0,*
             </build>
         </profile>
     </profiles>
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>Artifactory PRG-releases</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Artifactory PRG-snapshots</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

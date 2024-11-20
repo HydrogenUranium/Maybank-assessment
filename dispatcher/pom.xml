@@ -5,13 +5,13 @@
     <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
     <!-- ====================================================================== -->
     <parent>
-        <groupId>com.positive</groupId>
-        <artifactId>dhl</artifactId>
+        <groupId>com.dhl</groupId>
+        <artifactId>discover</artifactId>
         <version>2.00.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>dhl.dispatcher.cloud</artifactId>
+    <artifactId>discover.dispatcher.cloud</artifactId>
     <packaging>pom</packaging>
     <name>Deutsche Post AG Discover - Dispatcher</name>
     <description>HTTP &amp; Dispatcher configurations for Deutsche Post AG Discover</description>
@@ -128,5 +128,16 @@
             </plugin>
         </plugins>
     </build>
-
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>Artifactory PRG-releases</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Artifactory PRG-snapshots</name>
+            <url>https://artifactory.dhl.com/artifactory/discover-proj-prg-release</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

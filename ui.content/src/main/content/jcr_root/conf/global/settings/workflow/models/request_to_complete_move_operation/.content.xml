@@ -36,7 +36,7 @@
                     sling:resourceType="cq/workflow/components/model/process">
                 <metaData
                         jcr:primaryType="nt:unstructured"
-                        PROCESS="com.positive.dhl.core.services.impl.PublisherPageMovingNotification"
+                        PROCESS="com.dhl.discover.core.services.impl.PublisherPageMovingNotification"
                         PROCESS_AUTO_ADVANCE="true"/>
             </process_1366058786>
         </flow>

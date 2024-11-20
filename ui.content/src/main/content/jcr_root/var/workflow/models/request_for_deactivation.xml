@@ -28,7 +28,7 @@
             <metaData
                 jcr:primaryType="nt:unstructured"
                 DO_NOTIFY="true"
-                DYNAMIC_PARTICIPANT="com.positive.dhl.core.services.impl.ParticipantStepChooserForPublishReview"/>
+                DYNAMIC_PARTICIPANT="com.dhl.discover.core.services.impl.ParticipantStepChooserForPublishReview"/>
         </node1>
         <node2
             jcr:primaryType="cq:WorkflowNode"

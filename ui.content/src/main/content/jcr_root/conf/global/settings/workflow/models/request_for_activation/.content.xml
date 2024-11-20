@@ -56,7 +56,7 @@
                         <metaData
                                 jcr:primaryType="nt:unstructured"
                                 DO_NOTIFY="true"
-                                DYNAMIC_PARTICIPANT="com.positive.dhl.core.services.impl.ParticipantStepChooserForPublishReview"/>
+                                DYNAMIC_PARTICIPANT="com.dhl.discover.core.services.impl.ParticipantStepChooserForPublishReview"/>
                     </dynamic_participant>
                     <or_1130472575
                             jcr:lastModified="{Date}2024-05-10T18:43:30.872+03:00"
