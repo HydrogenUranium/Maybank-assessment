@@ -1,0 +1,76 @@
+package com.dhl.discover.core.services.impl;
+
+import com.day.cq.mailer.MessageGateway;
+import com.day.cq.mailer.MessageGatewayService;
+import com.day.cq.workflow.WorkflowException;
+import com.day.cq.workflow.exec.WorkItem;
+import com.day.cq.workflow.exec.Workflow;
+import com.day.cq.workflow.exec.WorkflowData;
+import com.day.cq.workflow.metadata.MetaDataMap;
+import org.apache.commons.mail.HtmlEmail;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import javax.jcr.RepositoryException;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+class PublisherPageMovingNotificationTest {
+
+    @Mock
+    private MessageGatewayService messageGatewayService;
+
+    @Mock
+    private PublisherGroupService publisherGroupService;
+
+    @Mock
+    private WorkItem item;
+
+    @Mock
+    private MetaDataMap metaDataMap;
+
+    @Mock
+    private WorkflowData workflowData;
+
+    @Mock
+    private Workflow workflow;
+
+    @InjectMocks
+    private PublisherPageMovingNotification service;
+
+    @Mock
+    private MessageGateway<Object> messageGateway;
+
+    @Test
+    void execute() throws WorkflowException, RepositoryException {
+        when(publisherGroupService.getPublisherEmails(anyString())).thenReturn(List.of("dmytro@gmail.com"));
+        when(item.getWorkflowData()).thenReturn(workflowData);
+        when(workflowData.getPayload()).thenReturn("/content/dhl/global/home/new");
+        when(workflowData.getMetaDataMap()).thenReturn(metaDataMap);
+        when(metaDataMap.get("srcPath", "")).thenReturn("/content/dhl/global/home/original");
+        when(item.getWorkflow()).thenReturn(workflow);
+        when(workflow.getInitiator()).thenReturn("dmytro");
+        when(messageGatewayService.getGateway(any())).thenReturn(messageGateway);
+
+        doAnswer(invocationOnMock -> {
+            HtmlEmail email = invocationOnMock.getArgument(0, HtmlEmail.class);
+            assertNotNull(email);
+            assertEquals("Notification of Page Moving", email.getSubject());
+            assertEquals(1, email.getToAddresses().size());
+            assertEquals("dmytro@gmail.com", email.getToAddresses().get(0).getAddress());
+            return null;
+        }).when(messageGateway).send(any());
+
+        service.execute(item, null, metaDataMap);
+
+        verify(messageGateway).send(any());
+    }
+}

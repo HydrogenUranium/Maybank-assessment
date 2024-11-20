@@ -1,4 +1,4 @@
-<sly data-sly-use.model="com.positive.dhl.core.models.LandingPoints"
+<sly data-sly-use.model="com.dhl.discover.core.models.LandingPoints"
 	 data-sly-set.isEmpty="${model.landingPointItems.size == 0}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
@@ -13,7 +13,7 @@
 			${item.content @ context='html'}
 		</div>
 		<style type="text/css" data-sly-test="${model.pointType == 'icon'}"
-					 data-sly-use.picture="${'com.positive.dhl.core.models.Picture' @ image = item.icon || model.defaultIcon, forceMap = true }">
+					 data-sly-use.picture="${'com.dhl.discover.core.models.Picture' @ image = item.icon || model.defaultIcon, forceMap = true }">
 			#${item.id @ context='styleToken'}::before {
 				background-image: url('${picture.image @ context='uri'}');
 			}

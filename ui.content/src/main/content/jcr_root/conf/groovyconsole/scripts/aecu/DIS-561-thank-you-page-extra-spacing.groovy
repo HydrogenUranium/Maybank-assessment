@@ -56,7 +56,7 @@ def addExtraSpacingStyleToTextOnThankYouPages(sqlQuery, dryRun) {
 }
 def getListAffectedPages(sqlQuery) {
     def listPages = []
-    def pageUtilService = getService("com.positive.dhl.core.services.PageUtilService")
+    def pageUtilService = getService("com.dhl.discover.core.services.PageUtilService")
 
     getComponents(sqlQuery).each { node ->
         listPages.add(pageUtilService.getPage(getResource(node.path)).path)

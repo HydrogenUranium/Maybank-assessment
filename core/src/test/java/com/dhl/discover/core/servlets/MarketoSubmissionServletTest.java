@@ -1,0 +1,170 @@
+package com.dhl.discover.core.servlets;
+
+import com.dhl.discover.core.config.MarketoSubmissionConfigReader;
+import com.dhl.discover.core.dto.marketo.FormInputBase;
+import com.dhl.discover.core.dto.marketo.FormSubmissionResponse;
+import com.dhl.discover.core.services.MarketoCommunication;
+import com.dhl.discover.core.services.InitUtil;
+import com.dhl.discover.core.services.InputParamHelper;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.testing.mock.sling.ResourceResolverType;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import javax.servlet.ServletException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
+@ExtendWith({AemContextExtension.class, MockitoExtension.class})
+class MarketoSubmissionServletTest {
+
+	AemContext context = new AemContext(ResourceResolverType.RESOURCERESOLVER_MOCK);
+	MockSlingHttpServletRequest request;
+	MockSlingHttpServletResponse response;
+	@Mock
+	InputParamHelper inputParamHelper;
+	@Mock
+	MarketoCommunication marketoCommunication;
+	@Mock
+	InitUtil initUtil;
+	@Mock
+	FormInputBase formInputBase;
+	@Mock
+	MarketoSubmissionConfigReader configReader;
+//	@InjectMocks
+	MarketoSubmissionServlet underTest;
+
+	@BeforeEach
+	void setUp() {
+		request = context.request();
+		response = context.response();
+		Map<String,Object> injectedServices = new HashMap<>();
+		injectedServices.putIfAbsent("inputParamHelper", inputParamHelper);
+		injectedServices.putIfAbsent("marketoCommunication", marketoCommunication);
+		injectedServices.putIfAbsent("configReader", configReader);
+		injectedServices.putIfAbsent("initUtil", initUtil);
+
+		context.registerService(InputParamHelper.class, inputParamHelper);
+		context.registerService(MarketoCommunication.class, marketoCommunication);
+		context.registerService(InitUtil.class, initUtil);
+		context.registerService(MarketoSubmissionConfigReader.class, configReader);
+
+		underTest = new MarketoSubmissionServlet();
+		context.registerInjectActivateService(underTest, injectedServices);
+	}
+
+	/**
+	 * Tests the scenario where configuration disables the hidden form submissions
+	 * @throws ServletException is thrown by servlet's doPost method
+	 * @throws IOException is thrown by servlet's doPost method
+	 */
+	@Test
+	void functionalityDisabled() throws ServletException, IOException {
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(false);
+		underTest.doPost(request, response);
+
+		int status = response.getStatus();
+		assertEquals(403, status);
+	}
+
+	/**
+	 * Tests the scenario where configuration enables the functionality but one or more important config values are disabled
+	 * @throws ServletException is thrown by servlet's doPost method
+	 * @throws IOException is thrown by servlet's doPost method
+	 */
+	@Test
+	void configNotOK() throws ServletException, IOException {
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
+		when(configReader.getMarketoClientId()).thenReturn("");
+		underTest.doPost(request, response);
+
+		int status = response.getStatus();
+		assertEquals(403, status);
+	}
+
+	@Test
+	void happyScenario() throws ServletException, IOException {
+		request.setHeader("User-agent", "whatever");
+		FormSubmissionResponse formSubmissionResponse = FormSubmissionResponse.builder()
+				.success(true)
+				.requestId("dummy-request-id")
+				.build();
+
+		when(inputParamHelper.getRequestParameter(any(SlingHttpServletRequest.class),eq("formStart")))
+				.thenReturn("/content/dhl/global/en-global/open-an-account/open-a-dhl-account/jcr:content/root/two_columns_container/right-column-body/marketoform.form.html");
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
+		when(configReader.getMarketoHost()).thenReturn("dummy-host");
+		when(configReader.getMarketoClientId()).thenReturn("dummy-client-id");
+		when(configReader.getMarketoClientSecret()).thenReturn("dummy-secret-id");
+		when(configReader.getAPIAllowedPaths()).thenReturn(List.of("/content/dhl/global/en-global"));
+		when(inputParamHelper.buildForm(any(SlingHttpServletRequest.class), anyList(), anyList())).thenReturn(formInputBase);
+		when(formInputBase.isOk()).thenReturn(true);
+		when(marketoCommunication.requestNewToken()).thenReturn("dummy-token");
+		when(marketoCommunication.submitForm(any(FormInputBase.class), anyString())).thenReturn(formSubmissionResponse);
+
+		underTest.doPost(request,response);
+		String responseBody = context.response().getOutputAsString();
+		assertEquals("ok".toLowerCase(), responseBody.toLowerCase());
+	}
+
+	@Test
+	void tokenNotReceived() throws ServletException, IOException {
+		request.setHeader("User-agent", "whatever");
+		when(inputParamHelper.getRequestParameter(any(SlingHttpServletRequest.class),eq("formStart")))
+				.thenReturn("/content/dhl/global/en-global/open-an-account/open-a-dhl-account/jcr:content/root/two_columns_container/right-column-body/marketoform.form.html");
+		when(configReader.getAPIAllowedPaths()).thenReturn(List.of("/content/dhl/global/en-global"));
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
+		when(configReader.getMarketoHost()).thenReturn("dummy-host");
+		when(configReader.getMarketoClientId()).thenReturn("dummy-client-id");
+		when(configReader.getMarketoClientSecret()).thenReturn("dummy-secret-id");
+		when(inputParamHelper.buildForm(any(SlingHttpServletRequest.class), anyList(), anyList())).thenReturn(mock(FormInputBase.class));
+
+		underTest.doPost(request,response);
+		verify(marketoCommunication, times(0)).submitForm(any(FormInputBase.class),anyString());
+	}
+
+	@Test
+	void pathValidation() throws ServletException, IOException {
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
+		underTest.doPost(request, response);
+		int status = response.getStatus();
+		assertEquals(403, status);
+	}
+
+	@ParameterizedTest(name = "{index} : Form path = ''{0}''")
+	@ValueSource(strings = {
+			"/content/dhl/global/vn-vn/open-an-account/open-a-dhl-account/jcr:content/root/two_columns_container/right-column-body/marketoform.form.html",
+			"/content/dhl/global/cz-cs/open-an-account/open-a-dhl-account/jcr:content/root/two_columns_container/right-column-body/marketoform.form.html"
+	})
+	@NullAndEmptySource
+	void testPathValidation(String formPath) throws ServletException, IOException {
+		when(inputParamHelper.getRequestParameter(any(SlingHttpServletRequest.class), anyString())).thenReturn(formPath);
+		if(formPath != null){
+			when(configReader.getAPIAllowedPaths()).thenReturn(List.of("/content/dhl/global/en-global"));
+		}
+
+		when(configReader.getMarketoHiddenFormSubmissionEnabled()).thenReturn(true);
+		when(configReader.getMarketoHost()).thenReturn("dummy-host");
+		when(configReader.getMarketoClientId()).thenReturn("dummy-client-id");
+		when(configReader.getMarketoClientSecret()).thenReturn("dummy-secret-id");
+
+		underTest.doPost(request, response);
+		int status = response.getStatus();
+		assertEquals(403, status);
+	}
+}
