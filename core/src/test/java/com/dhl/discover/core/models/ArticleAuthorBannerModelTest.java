@@ -21,8 +21,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Objects;
 
 import static com.dhl.discover.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
-import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -41,9 +42,6 @@ class ArticleAuthorBannerModelTest {
 
     @InjectMocks
     private HomePropertyInjector homePropertyInjector;
-
-    @Mock
-    private Resource resource;
 
     @BeforeEach
     void setUp() {

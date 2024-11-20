@@ -1,11 +1,10 @@
-package com.positive.dhl.core.models;
+package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
-import com.positive.dhl.core.services.ArticleService;
-import com.positive.dhl.core.services.AssetUtilService;
-import com.positive.dhl.core.services.PageUtilService;
-import com.positive.dhl.core.services.PathUtilService;
+import com.dhl.discover.core.services.ArticleService;
+import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -13,13 +12,12 @@ import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.platform.commons.util.StringUtils;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static com.positive.dhl.junitUtils.InjectorMock.mockInject;
+import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
@@ -57,7 +55,7 @@ class ArticleShowcaseTest {
         context.registerService(PathUtilService.class, pathUtilService);
         context.addModelsForClasses(ArticleShowcase.class);
         context.currentPage(page);
-        context.load().json("/com/positive/dhl/core/models/ArticleShowcase/content.json", "/content");
+        context.load().json("/com/dhl/discover/core/models/ArticleShowcase/content.json", "/content");
         lenient().when(pageUtils.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
         when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);

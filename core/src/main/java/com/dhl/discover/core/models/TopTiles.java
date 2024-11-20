@@ -1,11 +1,8 @@
-package com.positive.dhl.core.models;
+package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.designer.Style;
-import com.positive.dhl.core.services.PageUtilService;
-import com.positive.dhl.core.services.PathUtilService;
-import lombok.AllArgsConstructor;
+import com.dhl.discover.core.services.PageUtilService;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -29,9 +26,6 @@ public class TopTiles {
 
     @OSGiService
     private PageUtilService pageUtilService;
-
-    @OSGiService
-    private PathUtilService pathUtilService;
 
     @SlingObject
     private ResourceResolver resourceResolver;

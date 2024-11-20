@@ -40,38 +40,32 @@ public class ArticlePage {
 	@ScriptVariable
 	private Page currentPage;
 
-	@Optional
 	@InjectHomeProperty
 	@Getter
 	@Named("articleHeader-shareOn")
 	private String shareOn;
 
-	@Optional
 	@InjectHomeProperty
 	@Getter
 	@Named("articleHeader-smartShareButtonsLabel")
 	private String smartShareButtonsLabel;
 
-	@Optional
 	@InjectHomeProperty
 	@Getter
 	@Default(values = "")
 	@Named("articleHeader-smartShareButtonsIconPath")
 	private String smartShareButtonsIconPath;
 
-	@Optional
 	@InjectHomeProperty
 	@Getter
 	@Named("articleHeader-followLabel")
 	private String followLabel;
 
-	@Optional
 	@InjectHomeProperty
 	@Getter
 	@Named("articleHeader-followPath")
 	private String followPath;
 
-	@Optional
 	@InjectHomeProperty
 	@Named("multifields/socialNetwork")
 	private Resource socialNetwork;

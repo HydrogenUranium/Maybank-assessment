@@ -1,9 +1,9 @@
-package com.positive.dhl.core.models;
+package com.dhl.discover.core.models;
 
-import com.positive.dhl.core.services.AssetUtilService;
-import com.positive.dhl.core.services.PageUtilService;
-import com.positive.dhl.core.services.PathUtilService;
-import com.positive.dhl.core.services.TagUtilService;
+import com.dhl.discover.core.services.AssetUtilService;
+import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.PathUtilService;
+import com.dhl.discover.core.services.TagUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -19,7 +19,7 @@ import com.day.cq.wcm.api.designer.Style;
 import java.util.Arrays;
 import java.util.Locale;
 
-import static com.positive.dhl.junitUtils.InjectorMock.mockInject;
+import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -49,7 +49,7 @@ class TopTilesTest {
     @BeforeEach
     void setUp() throws Exception {
         context.addModelsForClasses(TopTiles.class);
-        context.load().json("/com/positive/dhl/core/models/TopTiles/content.json", "/content");
+        context.load().json("/com/dhl/discover/core/models/TopTiles/content.json", "/content");
 
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);

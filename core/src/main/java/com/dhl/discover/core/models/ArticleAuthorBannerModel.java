@@ -1,16 +1,13 @@
-package com.positive.dhl.core.models;
+package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.positive.dhl.core.injectors.InjectHomeProperty;
-import lombok.AllArgsConstructor;
+import com.dhl.discover.core.injectors.InjectHomeProperty;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Required;
-import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
