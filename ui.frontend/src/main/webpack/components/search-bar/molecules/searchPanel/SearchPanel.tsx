@@ -168,6 +168,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                   className={classNames(
                     styles.searchSectionItemsItem,
                     styles.searchSectionItemsItemText,
+                    {[styles.searchSectionItemsItemWithRefreshButton]: isTouchDevice},
                     {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
                   )}
                   dangerouslySetInnerHTML={{ __html: sanitizeHtml(highlightMatches(suggestion, "(?<=^" + getCommonPrefix(suggestion, suggestionQuery.trim(), true) + ").*", "gi")) }}
@@ -230,6 +231,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                   classNames(
                     styles.searchSectionItemsItem,
                     styles.searchSectionItemsItemWithIcon,
+                    {[styles.searchSectionItemsItemWithRefreshButton]: isTouchDevice},
                     {[styles.searchSectionItemsItemActive]: index === activeSuggestion}
                   )} key={search}>
                 <span className={classNames(styles.icon, styles.iconHistory)}></span>
