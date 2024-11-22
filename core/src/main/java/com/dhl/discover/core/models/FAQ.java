@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.sling.api.resource.Resource;
@@ -20,7 +19,7 @@ public class FAQ {
     @SlingObject
     private Resource resource;
 
-	@Inject
+	@SlingObject
 	@Named("items")
 	@Optional
 	private Resource linksResource;

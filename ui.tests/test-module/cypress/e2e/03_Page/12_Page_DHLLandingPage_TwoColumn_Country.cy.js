@@ -42,7 +42,7 @@ describe('Singapore DHL Landing Page - Two Column', () => {
           cy.get('#text-ba3e0cc854').should('exist');
 
           // 4. Verify marketo form exists
-          cy.get('.marketoForm__container').should('exist');
+          cy.get('.cmp-marketoForm__container').should('exist');
 
           // 5. Verify if all fields are present
           cy.get(':nth-child(2) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel').should('exist');

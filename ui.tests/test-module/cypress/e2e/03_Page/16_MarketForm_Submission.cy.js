@@ -41,7 +41,7 @@ describe('Global Subscribe Newsletter Page', () => {
 
         it('should verify the presence of the Marketo form and successful form submission', () => {
           // 1. Verify the Marketo form container is present and visible
-          cy.get('.marketoForm__container')
+          cy.get('.cmp-marketoForm__container')
             .should('exist')
             .and('be.visible');
 
