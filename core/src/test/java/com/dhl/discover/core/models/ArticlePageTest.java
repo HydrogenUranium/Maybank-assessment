@@ -29,7 +29,6 @@ import java.util.Locale;
 import java.util.Objects;
 
 import static com.dhl.discover.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
-import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
