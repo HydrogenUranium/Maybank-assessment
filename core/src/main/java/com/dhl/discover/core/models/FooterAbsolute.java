@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import com.dhl.discover.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -16,6 +15,7 @@ import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 /**
  * @deprecated (will be removed together with old footer)
@@ -23,7 +23,7 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 @Deprecated(since = "2.1", forRemoval = true)
 @Model(adaptables=SlingHttpServletRequest.class)
 public class FooterAbsolute {
-	@Inject
+	@ScriptVariable
 	private Page currentPage;
 
 	@OSGiService

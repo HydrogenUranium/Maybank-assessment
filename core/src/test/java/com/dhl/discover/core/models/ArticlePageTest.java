@@ -99,7 +99,7 @@ class ArticlePageTest {
 		request.setResource(currentResource);
 
 		Page currentPage = Objects.requireNonNull(currentResource).adaptTo(Page.class);
-		mockInject(context, "currentPage", currentPage);
+		context.currentPage(currentPage);
 	}
 
 	private void mockHomePage(String initRequestPath) {
