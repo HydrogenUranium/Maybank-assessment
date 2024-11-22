@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
@@ -19,6 +18,8 @@ import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 /**
  *
@@ -33,10 +34,10 @@ public class LandingPageTwoColumn {
 	@OSGiService
 	private PageUtilService pageUtilService;
 
-	@Inject
+	@SlingObject
 	private ResourceResolver resourceResolver;
 
-	@Inject
+	@ScriptVariable
 	private Page currentPage;
 
 	private String fullTitle;

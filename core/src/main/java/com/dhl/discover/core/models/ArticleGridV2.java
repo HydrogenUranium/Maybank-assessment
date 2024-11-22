@@ -16,7 +16,6 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -35,7 +34,7 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 @Model(adaptables = SlingHttpServletRequest.class)
 @Slf4j
 public class ArticleGridV2 {
-    @Inject
+    @ScriptVariable
     private Page currentPage;
 
     @ScriptVariable
