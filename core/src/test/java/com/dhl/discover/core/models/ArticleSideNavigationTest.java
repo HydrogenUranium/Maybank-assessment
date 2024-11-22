@@ -20,10 +20,23 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.RepositoryException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Date;
+import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.anyBoolean;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.anyMap;
+import static org.mockito.Mockito.eq;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleSideNavigationTest {
@@ -51,9 +64,6 @@ class ArticleSideNavigationTest {
 
     @Mock
     Hit hit;
-
-    @Mock
-    Resource articleItemsResource;
 
     @Mock
     private ResourceResolverHelper resourceResolverHelper;
@@ -105,7 +115,6 @@ class ArticleSideNavigationTest {
         when(valueMap.get(eq("hideInNav"), anyBoolean())).thenReturn(false);
         // following when-then gymnastics is related to Article model class,that's called from ArticleSideNavigation
         Page articlePage = setUpArticlePage();
-
         Article article = createArticleModel(ctx.resourceResolver().getResource(articlePage.getPath()));
         when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
@@ -165,6 +174,7 @@ class ArticleSideNavigationTest {
         if (null == articlePage) {
             return ctx.create().page("/content/dhl/en-global/business/entrepreneurship/the-ten-minute-startup-guide", "/apps/dhl/templates/dhl-article-page", articleSourceProperties);
         }
+
         return articlePage;
     }
 

@@ -2,41 +2,37 @@ package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.services.PageUtilService;
-import com.dhl.discover.core.services.PathUtilService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 @Slf4j
-@Model(adaptables = { Resource.class, SlingHttpServletRequest.class })
+@Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class TopTiles {
 
     @OSGiService
     private PageUtilService pageUtilService;
 
-    @OSGiService
-    private PathUtilService pathUtilService;
-
-    @Inject
+    @SlingObject
     private ResourceResolver resourceResolver;
 
     @ScriptVariable
     protected Style currentStyle;
 
-    @Inject
     @Named("articles")
     @ChildResource
     private Resource articleMultifield;

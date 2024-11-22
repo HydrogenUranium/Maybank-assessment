@@ -2,7 +2,11 @@ package com.dhl.discover.core.models;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
