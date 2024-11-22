@@ -1,22 +1,23 @@
 package com.dhl.discover.core.models;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  *
  */
 @Model(adaptables=Resource.class)
 public class ArticleCategory {
-	@Inject
+	@SlingObject
 	private ResourceResolver resourceResolver;
 	
-    @Inject
+    @ValueMapValue
     public String path;
 	
     private Boolean current;

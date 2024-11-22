@@ -5,23 +5,22 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-
-import javax.inject.Inject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 @Getter
 public class Tab {
 
-    @Inject
+    @ValueMapValue
     private String image;
 
-    @Inject
+    @ValueMapValue
     private String imageAltText;
 
-    @Inject
+    @ValueMapValue
     private String title;
 
-    @Inject
+    @ValueMapValue
     private String body;
 
     public String getImageAltText() {

@@ -11,12 +11,9 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.ChildResource;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.*;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -34,14 +31,14 @@ public class RelatedPosts {
     @Named("relatedPosts-title")
     private String homePropertyTitle;
 
-    @Inject
+    @SlingObject
     private ResourceResolver resourceResolver;
 
-    @Inject
+    @ValueMapValue
     @Getter
     private String title;
 
-    @Inject
+    @ValueMapValue
     @Default(values = "customPick")
     private String source;
 

@@ -4,8 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -13,42 +13,42 @@ import javax.inject.Named;
  */
 @Model(adaptables=Resource.class)
 public class ConfigurableMarketoForm {
-	@Inject
+	@ValueMapValue
 	@Named("marketoid")
 	@Optional
 	public String marketoid;
 
-	@Inject
+	@ValueMapValue
 	@Named("marketoformid")
 	@Optional
 	public String marketoformid;
 
-	@Inject
+	@ValueMapValue
 	@Named("marketohiddenformid")
 	@Optional
 	public String marketohiddenformid;
 
-	@Inject
+	@ValueMapValue
 	@Named("marketohost")
 	@Optional
 	public String marketohost;
 
-	@Inject
+	@ValueMapValue
 	@Named("thanksurl")
 	@Optional
 	public String thanksurl;
 
-	@Inject
+	@ValueMapValue
 	@Named("formtitle")
 	@Optional
 	public String formtitle;
 
-	@Inject
+	@ValueMapValue
 	@Named("shipnowtitle")
 	@Optional
 	public String shipnowtitle;
 
-	@Inject
+	@ValueMapValue
 	@Named("shipnowcontent")
 	@Optional
 	public String shipnowcontent;
