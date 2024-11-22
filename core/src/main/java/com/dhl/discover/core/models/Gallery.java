@@ -5,19 +5,19 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 /**
  *
  */
 @Model(adaptables=Resource.class)
 public class Gallery {
-	@Inject
+	@SlingObject
 	@Named("slides")
 	@Optional
 	private Resource slidesResource;
