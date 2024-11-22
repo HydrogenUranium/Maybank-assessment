@@ -1348,6 +1348,329 @@
                         </cq:styleGroups>
                     </policy_marketoForm>
                 </marketoForm>
+                <cta-banner jcr:primaryType="nt:unstructured">
+                    <policy_cta-banner
+                            jcr:lastModified="{Date}2024-11-25T14:37:02.684+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="CTA Banner Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAdvancedTrackedInteractions="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_cta-banner>
+                </cta-banner>
+                <cta-banner-with-points jcr:primaryType="nt:unstructured">
+                    <policy_cta-banner-with-points
+                            jcr:lastModified="{Date}2024-11-25T14:37:27.351+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="CTA Banner With Points Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAdvancedTrackedInteractions="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_cta-banner-with-points>
+                </cta-banner-with-points>
+                <cta-banner-gray jcr:primaryType="nt:unstructured">
+                    <policy_cta-banner-gray
+                            jcr:lastModified="{Date}2024-11-25T14:37:46.534+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="CTA Banner Gray Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAdvancedTrackedInteractions="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_cta-banner-gray>
+                </cta-banner-gray>
+                <download jcr:primaryType="nt:unstructured">
+                    <policy_download
+                            jcr:lastModified="{Date}2024-11-25T14:38:18.167+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Download Asset Policy"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_download>
+                </download>
+                <error-banner jcr:primaryType="nt:unstructured">
+                    <policy_error-banner
+                            jcr:lastModified="{Date}2024-11-25T14:39:11.631+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Error Banner Policy"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_error-banner>
+                </error-banner>
             </content>
         </components>
     </dhl>

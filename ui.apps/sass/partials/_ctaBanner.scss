@@ -1,26 +1,28 @@
-.cta-banner-component {
+.cta-banner {
   margin-top: 40px;
-  margin-left: -21px;
-  margin-right: -21px;
 
-  @include respond(md) {
-    margin-left: 0;
-    margin-right: 0;
-  }
+  .cmp-cta-banner {
+    margin-left: calc((100% - 100vw) / 2);
+    margin-right: calc((100% - 100vw) / 2);
 
-  .banner {
     min-height: 300px;
     padding: 20px;
     display: flex;
-    @include respond(xl) {
-      padding: 65px 180px;
-    }
     position: relative;
     mix-blend-mode: multiply;
     border-radius: 6px;
     color: #ffffff;
     font-size: 17px;
     line-height: 24px;
+
+    @include respond(md) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    @include respond(xl) {
+      padding: 65px 180px;
+    }
 
     &:after {
       content: "";
@@ -31,31 +33,28 @@
       width: 100%;
       height: 100%;
       mix-blend-mode: multiply;
-      opacity: 0.3;
+      opacity: 0.8;
       z-index: -1;
-      background: transparent
-        linear-gradient(270deg, #ffffff91 0%, #686868 46%, #131313de 100%);
+      background: transparent linear-gradient(270deg, #ffffff91 0%, #686868 46%, #131313de 100%);
+
       [dir="rtl"] & {
-        background: transparent
-          linear-gradient(90deg, #ffffff91 0%, #686868 46%, #131313de 100%);
+        background: transparent linear-gradient(90deg, #ffffff91 0%, #686868 46%, #131313de 100%);
       }
+
       @include respond(md) {
-        background: transparent
-          linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
+        background: transparent linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
         opacity: 1;
 
         [dir="rtl"] & {
-          background: transparent
-            linear-gradient(270deg, #fff 30%, #000 50%, #000 100%);
+          background: transparent linear-gradient(270deg, #fff 30%, #000 50%, #000 100%);
         }
       }
+
       @include respond(xl) {
-        background: transparent
-          linear-gradient(270deg, #fff 30%, #000 50%, #000 100%);
+        background: transparent linear-gradient(270deg, #fff 30%, #000 50%, #000 100%);
 
         [dir="rtl"] & {
-          background: transparent
-            linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
+          background: transparent linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
         }
       }
     }
@@ -63,108 +62,103 @@
     &__body {
       margin-top: auto;
       padding: 0 15px;
+
       @include respond(md) {
         width: 50%;
         margin: auto 0 auto auto;
+
         [dir="rtl"] & {
           margin: auto auto auto 0;
         }
       }
+
       @include respond(xl) {
         width: 100%;
         margin: auto;
       }
-      &__top-title {
-        line-height: 25px;
+    }
+
+    &__top-title {
+      line-height: 25px;
+      opacity: 0.7;
+      font-size: 20px;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.8);
+
+      @include respond(md) {
+        line-height: 42px;
         opacity: 0.7;
+        margin-bottom: unset;
+        text-shadow: none;
+      }
+    }
+
+    &__title {
+      text-shadow: 0 0 20px #131313, 0 0 25px #131313;
+      font-weight: bold;
+      letter-spacing: 0px;
+      font-size: 16px;
+      line-height: 19px;
+
+      @include respond(md) {
+        line-height: 24px;
         font-size: 20px;
-        margin-bottom: 12px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.8);
-
-        @include respond(md) {
-          line-height: 42px;
-          opacity: 0.7;
-          margin-bottom: unset;
-          text-shadow: none;
-        }
       }
 
-      &__title {
-        text-shadow: 0 0 20px #131313, 0 0 25px #131313;
-        font-weight: bold;
-        letter-spacing: 0px;
-        font-size: 16px;
-        line-height: 19px;
-        @include respond(md) {
-          line-height: 24px;
-          font-size: 20px;
-        }
-        @include respond(xl) {
-          line-height: 36px;
-          font-size: 30px;
-        }
+      @include respond(xl) {
+        line-height: 36px;
+        font-size: 30px;
+      }
+    }
+
+    &__button {
+      margin-top: 20px;
+      width: 100%;
+      font-size: 15px;
+
+      @include respond(md) {
+        font-size: 18px;
       }
 
-      &__button {
-        margin-top: 20px;
-        cursor: pointer;
-        text-decoration: none;
-        text-align: center;
-        color: #ffffff;
-        background: #d40511 0% 0% no-repeat padding-box;
-        border-radius: 4px;
-        padding: 15px 0px;
-        display: inline-block;
-        font-weight: bold;
-        width: 100%;
-        line-height: 14px;
-        font-size: 15px;
-        &:hover {
-          color: #ffffff;
-          background-color: #eb131e;
-          text-decoration: none;
-        }
-        &:active {
-          background-color: #9a0000;
-          text-decoration: none;
-        }
-        @include respond(md) {
-          line-height: 16px;
-          font-size: 18px;
-        }
-        @include respond(xl) {
-          padding: 15px 85px;
-          width: auto;
-        }
+      @include respond(xl) {
+        padding: 10px 85px;
+        width: auto;
       }
     }
 
     &__image {
       border-radius: 0;
+
       @include respond(md) {
         border-radius: 6px;
       }
+
       position: absolute;
       top: 0px;
       left: 0px;
       width: 100%;
       height: 100%;
       z-index: -1;
+
       [dir="rtl"] & {
         left: unset;
         right: 0px;
       }
+
       background: {
         position: center;
         repeat: no-repeat;
         size: cover;
       }
+
       @include respond(md) {
         width: 50%;
       }
+
       @include respond(xl) {
         right: 0px;
         left: unset;
+
         [dir="rtl"] & {
           right: unset;
           left: 0px;
@@ -175,39 +169,39 @@
 }
 
 .short-banners {
-  .cta-banner-component {
-    .banner {
-      padding: 20px;
-      &:after {
-        background: transparent
-          linear-gradient(270deg, #ffffff91 0%, #686868 46%, #131313de 100%);
+  .cmp-cta-banner {
+    padding: 20px;
 
-        [dir="rtl"] & {
-          background: transparent
-            linear-gradient(90deg, #ffffff91 0%, #686868 46%, #131313de 100%);
-        }
-      }
-      &__body {
-        margin: auto 0 0 0;
-        width: 100%;
+    &:after {
+      background: transparent linear-gradient(270deg, #ffffff91 0%, #686868 46%, #131313de 100%);
 
-        &__title {
-          font-size: 16px;
-          line-height: 19px;
-        }
-        &__button {
-          padding: 15px 0px;
-          width: 100%;
-          line-height: 14px;
-          font-size: 15px;
-        }
+      [dir="rtl"] & {
+        background: transparent linear-gradient(90deg, #ffffff91 0%, #686868 46%, #131313de 100%);
       }
-      &__image {
-        width: 100%;
-        top: 0px;
-        left: 0px;
-        right: auto;
-      }
+    }
+
+    &__body {
+      margin: auto 0 0 0;
+      width: 100%;
+    }
+
+    &__title {
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    &__button {
+      padding: 15px 0px;
+      width: 100%;
+      line-height: 14px;
+      font-size: 15px;
+    }
+
+    &__image {
+      width: 100%;
+      top: 0px;
+      left: 0px;
+      right: auto;
     }
   }
 }
