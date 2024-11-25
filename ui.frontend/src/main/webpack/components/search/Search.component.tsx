@@ -265,7 +265,7 @@ export const Search: React.FC<SearchProps> = ({
               <SearchRow
                 key={searchRow.article.path}
                 searchRow={searchRow}
-                highlightedWords={articlesQuery.split(" ")}
+                highlightedWords={articlesQuery.match(/\S+/g)}
               />
             ))
           }
