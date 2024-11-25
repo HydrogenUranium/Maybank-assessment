@@ -63,7 +63,7 @@ class ArticleGridV2Test {
         Resource resource = resourceResolver.getResource(path);
         Page page = resource.adaptTo(Page.class);
         request.setResource(resourceResolver.getResource(path));
-        mockInject(context, "currentPage", page);
+        context.currentPage(page);
     }
 
     @BeforeEach

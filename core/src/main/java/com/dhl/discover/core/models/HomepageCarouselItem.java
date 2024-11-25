@@ -4,11 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  * (will be removed together with homepagecarousel )
@@ -16,40 +16,40 @@ import org.apache.sling.models.annotations.Model;
 //@Deprecated(since = "2.1", forRemoval = true)
 @Model(adaptables=Resource.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class HomepageCarouselItem {
-    @Inject
+    @ValueMapValue
     public String imagemob;
 	
-    @Inject
+    @ValueMapValue
     public String imagetab;
 	
-    @Inject
+    @ValueMapValue
     public String imagedt;
 
-    @Inject
+    @ValueMapValue
     public String title;
 
-    @Inject
+    @ValueMapValue
     public String subtitle;
 
-    @Inject
+    @ValueMapValue
     public String readtime;
 
-    @Inject
+    @ValueMapValue
     public Date date;
     
-    @Inject
+    @ValueMapValue
     public String description;
 
-    @Inject
+    @ValueMapValue
     public String mediatype;
 
-    @Inject
+    @ValueMapValue
     public String ctatext;
 
-    @Inject
+    @ValueMapValue
     public String ctapath;
 
-    @Inject
+    @ValueMapValue
     public String ctagrouppath;
 
     private String dateformatted;
