@@ -1,19 +1,19 @@
 package com.dhl.discover.core.models;
 
-import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 /**
  *
  */
 @Model(adaptables=Resource.class)
 public class Link {
-    @Inject
+    @ValueMapValue
     public String name;
 
-    @Inject
+    @ValueMapValue
     public String link;
     
     /**

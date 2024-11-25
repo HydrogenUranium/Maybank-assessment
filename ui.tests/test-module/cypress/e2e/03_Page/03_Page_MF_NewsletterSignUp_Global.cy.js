@@ -39,7 +39,7 @@ describe('Global Subscribe newsletter page', () => {
 
         it('All test case', () => {
           // 1. Verify the marketo is exist"
-          cy.get('.marketoForm__container')
+          cy.get('.cmp-marketoForm__container')
             .should("not.be.empty")
             .should("be.visible");
 

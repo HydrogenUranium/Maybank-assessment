@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -21,56 +20,51 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
 
 import com.day.cq.wcm.api.Page;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 
 /**
  *
  */
-@Model(adaptables=SlingHttpServletRequest.class)
+@Model(adaptables=SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ArticlePage {
 	public static final String VIEW_COUNT = "viewcount";
 
-	@Inject
+	@ScriptVariable
 	private ResourceResolverFactory resolverFactory;
 	
-	@Inject
+	@ScriptVariable
 	private Page currentPage;
 
-	@Optional
 	@InjectHomeProperty
 	@Getter
 	@Named("articleHeader-shareOn")
 	private String shareOn;
 
-	@Optional
 	@InjectHomeProperty
 	@Getter
 	@Named("articleHeader-smartShareButtonsLabel")
 	private String smartShareButtonsLabel;
 
-	@Optional
 	@InjectHomeProperty
 	@Getter
 	@Default(values = "")
 	@Named("articleHeader-smartShareButtonsIconPath")
 	private String smartShareButtonsIconPath;
 
-	@Optional
 	@InjectHomeProperty
 	@Getter
 	@Named("articleHeader-followLabel")
 	private String followLabel;
 
-	@Optional
 	@InjectHomeProperty
 	@Getter
 	@Named("articleHeader-followPath")
 	private String followPath;
 
-	@Optional
 	@InjectHomeProperty
 	@Named("multifields/socialNetwork")
 	private Resource socialNetwork;

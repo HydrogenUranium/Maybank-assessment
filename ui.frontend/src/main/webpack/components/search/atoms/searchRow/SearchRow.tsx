@@ -14,7 +14,7 @@ type SearchRowProps = {
 export const SearchRow: React.FC<SearchRowProps> = ({ searchRow: { article, excerpt }, highlightedWords = [] }) => {
   const description = excerpt.includes("<strong>")
     ? excerpt
-    : highlightMatches(article.description, `(\\b${highlightedWords.join('\\b|\\b')}\\b)`, "gi");
+    : highlightMatches(sanitizeHtml(article.description, []), `(\\b${highlightedWords.join('\\b|\\b')}\\b)`, "gi");
 
   return (
     <div className={styles.article}>
