@@ -15,6 +15,10 @@
     }
   }
 
+  &__panel {
+    padding: 0;
+  }
+
   @include respond(lg) {
     padding-bottom: 20px !important;
   }
@@ -347,6 +351,21 @@
         min-height: 98px;
         border-bottom: 1px solid #ccc;
       }
+    }
+  }
+
+  .dhl-btn {
+    padding: 10px 70px;
+    width: 100%;
+    &--primary {
+      color: white;
+    }
+    &:focus{
+      outline: none;
+    }
+
+    @include respond(md) {
+      width: auto;
     }
   }
 }

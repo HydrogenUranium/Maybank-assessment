@@ -1,45 +1,38 @@
-.cta-banner-gray-component{
-  background-color: #E2E2E2;
-  padding: 40px 40px 30px;
-  .title {
-    font-weight: bold;
-    font-size: 30px;
-    line-height: normal;
-    color: #323232;
-    display: block;
-    text-align: center;
-    @include respond(md) {
-      display: initial;
-    }
-  }
-  .description {
-    margin: 18px 0;
-    font-size: 24px;
-    line-height: normal;
-    color: #323232;
-  }
-  .cta {
-    text-align: center;
-    &__button {
-      text-decoration: none;
+.cta-banner-gray {
+  .cmp-cta-banner-gray {
+    background-color: #E2E2E2;
+    padding: 40px 40px 30px;
+
+    &__title {
+      font-weight: bold;
+      font-size: 30px;
+      line-height: normal;
+      color: #323232;
+      display: block;
       text-align: center;
-      display: inline-block;
+
+      @include respond(md) {
+        display: initial;
+      }
+    }
+
+    &__description {
+      margin: 18px 0;
+      font-size: 24px;
+      line-height: normal;
+      color: #323232;
+    }
+
+    &__link-wrapper {
+      text-align: center;
+    }
+
+    &__button {
       margin: auto;
-      background-color: white;
-      border: 1px solid #D40511;
-      border-radius: 5px;
       font-size: 20px;
       line-height: 40px;
-      color: #D40511;
       padding: 0 20px;
       min-width: min(400px, 100%);
-      &:hover {
-        background-color: #D40511;
-        color: white;
-      }
-      &:active{
-        background-color: #9a0000;
-      }
     }
   }
 }

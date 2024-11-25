@@ -15,7 +15,7 @@
 */-->
 <sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <div class="nextSteps" data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions">
-	<div class="container">
+	<div class="articlepanel__container">
 		<div class="row">
 			<div class="col-12 col-md-6 d-sm-block d-md-none" data-sly-test="${properties.guidance != null && properties.guidance.length > 0}">
 				<h2 class="nextSteps__title"><span>${properties.guidance}</span></h2>
@@ -28,7 +28,7 @@
 					<h2 class="nextSteps__title  d-none d-md-inline" data-sly-test="${properties.guidance != null && properties.guidance.length > 0}">${properties.guidance}</h2>
 					<h3 class="nextSteps__articleTitle">${properties.title}</h3>
 					<p class="nextSteps__copy">${properties.brief}</p>
-					<a href="${properties.ctaurl}" class="nextSteps__cta hero__cta--red">${properties.ctatitle}</a>
+					<a href="${properties.ctaurl}" class="dhl-btn dhl-btn--primary">${properties.ctatitle}</a>
 				</div>
 			</div>
 		</div>
