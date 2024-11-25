@@ -545,7 +545,6 @@ public class SearchResultsList {
             }
         }
 
-        result.sort((o1, o2) -> Integer.compare(o2.getCounter(), o1.getCounter()));
         return result;
     }
 
