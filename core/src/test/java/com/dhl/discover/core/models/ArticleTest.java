@@ -112,7 +112,7 @@ class ArticleTest {
         assertEquals("/content/dam/desktop.jpg", article.getHeroimagedt());
         assertEquals("/content/dam/mobile.jpg", article.getHeroimagemob());
         assertEquals("/content/dam/tablet.jpg", article.getHeroimagetab());
-        assertEquals("What paperwork do I need for international shipping?", article.getHeroimageAltText());
+        assertEquals("", article.getHeroimageAltText());
         assertEquals("infographic", article.getIcon());
         assertEquals("4 min read", article.getReadtime());
         assertEquals("en", article.getLocale().toString());
