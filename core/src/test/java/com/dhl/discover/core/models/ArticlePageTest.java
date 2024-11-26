@@ -159,7 +159,6 @@ class ArticlePageTest {
 		assertEquals(0, article.getIndex());
 		assertFalse(article.isThird());
 		assertFalse(article.isFourth());
-		assertEquals(0, article.getCounter());
 		assertEquals("October 11, 2023", article.getCreatedfriendly());
 		assertEquals("2023-10-11", article.getCreated());
 		assertEquals("article", article.getIcon());

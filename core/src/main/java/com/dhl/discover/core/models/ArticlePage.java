@@ -31,8 +31,6 @@ import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
  */
 @Model(adaptables=SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ArticlePage {
-	public static final String VIEW_COUNT = "viewcount";
-
 	@ScriptVariable
 	private ResourceResolverFactory resolverFactory;
 	
@@ -74,11 +72,6 @@ public class ArticlePage {
 
 	@PostConstruct
     protected void init() {
-		ValueMap properties = currentPage.getProperties();
-
-		if (!properties.isEmpty()) {
-			updateViewCount(properties);
-		}
 		article = currentPage.adaptTo(Article.class);
 	}
 
@@ -96,45 +89,5 @@ public class ArticlePage {
 			});
 		}
 		return socialNetworkMap;
-	}
-
-	private void updateViewCount(@NotNull ValueMap properties) {
-		int viewcount = properties.get(VIEW_COUNT, 0);
-		boolean viewCountUpdated = false;
-		try {
-			Resource contentResource = currentPage.getContentResource();
-			if (contentResource != null) {
-				Node currentPageNode = contentResource.adaptTo(Node.class);
-				if (currentPageNode != null) {
-					currentPageNode.setProperty(VIEW_COUNT, ++viewcount);
-					currentPageNode.getSession().save();
-					viewCountUpdated = true;
-				}
-			}
-		} catch (RepositoryException ex) {
-			//ignore the write
-		}
-
-		if (!viewCountUpdated) {
-			try {
-				Map<String, Object> param = new HashMap<>();
-				param.put(ResourceResolverFactory.SUBSERVICE, "datawrite");
-				ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param);
-				Session session = resolver.adaptTo(Session.class);
-
-				if (session != null) {
-					Node currentPageNode = session.getNode(currentPage.getPath());
-					if (currentPageNode != null) {
-						currentPageNode.setProperty(VIEW_COUNT, ++viewcount);
-					}
-
-					session.save();
-					session.logout();
-				}
-
-			} catch (RepositoryException | LoginException ex) {
-				//ignore the write
-			}
-		}
 	}
 }
