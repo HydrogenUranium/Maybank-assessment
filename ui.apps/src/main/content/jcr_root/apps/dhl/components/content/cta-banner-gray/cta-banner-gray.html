@@ -4,11 +4,11 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
-<div class="cta-banner-gray-component" data-sly-test="${!isEmpty}">
-    <b class="title">${model.title}</b>
-    <p class="description">${model.description}</p>
-    <div class="cta">
-        <a class="cta__button" data-sly-attribute.data-analytics="${analytics.json}" href="${model.buttonLink}" title="${model.buttonLabel}" target="${model.linkTarget}">
+<div class="cmp-cta-banner-gray" data-sly-test="${!isEmpty}">
+    <b class="cmp-cta-banner-gray__title">${model.title}</b>
+    <p class="cmp-cta-banner-gray__description">${model.description}</p>
+    <div class="cmp-cta-banner-gray__link-wrapper">
+        <a class="cmp-cta-banner-gray__button dhl-btn dhl-btn--white" data-sly-attribute.data-analytics="${analytics.json}" href="${model.buttonLink}" title="${model.buttonLabel}" target="${model.linkTarget}">
             <span>${model.buttonLabel}</span>
         </a>
     </div>

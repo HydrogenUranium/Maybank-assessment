@@ -33,9 +33,6 @@
       }
     }
     .mktoButtonRow {
-      .mktoButton{
-        border-radius: 0px !important;
-      }
       margin-top: 30px;
       @include respond(md) {
         margin-top: 50px;
@@ -129,20 +126,29 @@
     }
 
     .mktoButton {
-      @include font("%T2");
-      display: inline-block !important;
-      width: 100% !important;
-      padding: 12px 20px !important;
-      border-radius: 5px !important;
-      border: none !important;
-      background-color: map-get($map: $palette, $key: scarlet)!important;
-      color: map-get($map: $palette, $key: true-white) !important;
+      cursor: pointer !important;
       background-image: none !important;
-      cursor: pointer;
-      font-size: 14px !important;
+      width: 100% !important;
+      text-decoration: none !important;
+      text-align: center !important;
+      display: inline-block !important;
+      transition: background-color .2s ease, color .2s ease !important;
+      font-weight: bold !important;
+      border: none !important;
+      border-radius: 0px !important;
+      padding: 10px 32px !important;
+      color: white !important;
+      background-color: map-get($palette, red) !important;
 
       &:hover {
-        background-color: map-get($map: $palette, $key: dark-scarlet)!important;
+        color: white !important;
+        background-color: map-get($palette, light-red) !important;
+        text-decoration: none !important;
+      }
+
+      &:active {
+        background-color: map-get($palette, dark-red) !important;
+        color: white !important;
       }
     }
 
@@ -199,17 +205,7 @@
       margin-bottom: 0 !important;
     }
 
-    // Custom
-    #mktoForm_1796,
-    #mktoForm_1799 {
-      .mktoButton {
-        width: auto !important;
-        min-width: 154px;
-      }
-    }
-
     #mktoForm_1795 {
-
       @include respond(lg) {
         .mktoFormRow {
           &:nth-child(4),

@@ -137,6 +137,9 @@
               gap: 5px;
               align-items: center;
             }
+            &WithRefreshButton {
+              padding-right: 50px;
+            }
 
             &Active,
             &:hover {

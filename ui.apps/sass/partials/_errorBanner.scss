@@ -1,4 +1,4 @@
-.error-banner-component {
+.cmp-error-banner {
   min-height: 190px;
   border: 2px solid #D40511;
   border-radius: 4px;
@@ -10,7 +10,7 @@
     margin-bottom: 500px;
     padding: 30px min(500px, 50%) 30px 50px;
   }
-  .title{
+  &__title{
     display: block;
     text-align: center;
     font-weight: bold;
@@ -21,7 +21,7 @@
       text-align: left;
     }
   }
-  .description{
+  &__description{
     font-size: 24px;
     line-height: 33px;
     letter-spacing: 0px;
@@ -31,7 +31,7 @@
       text-align: left;
     }
   }
-  .image {
+  &__image {
     max-height: 500px;
     max-width: 100%;
     display: block;
@@ -43,33 +43,16 @@
       top: 0;
     }
   }
-  .button {
+  &__button {
     margin-top: 20px;
     margin-right: 20px;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    color: #FFFFFF;
-    background: #D40511 0% 0% no-repeat padding-box;
-    border-radius: 4px;
     padding: 20px;
     width: 100%;
+    line-height: 14px;
+    font-size: 15px;
     @include respond(md) {
       width: auto;
       padding: 20px 50px;
-    }
-    display: inline-block;
-    font-weight: bold;
-    line-height: 14px;
-    font-size: 15px;
-    &:hover {
-      color: #FFFFFF;
-      background-color: #eb131e;
-      text-decoration: none;
-    }
-    &:active {
-      background-color: #9A0000;
-      text-decoration: none;
     }
   }
 }

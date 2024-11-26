@@ -4,58 +4,68 @@
           jcr:primaryType="nt:unstructured"
           jcr:title="Error Banner - Properties"
           sling:resourceType="cq/gui/components/authoring/dialog" xmlns:granite="http://www.adobe.com/jcr/granite/1.0">
-    <content
-            jcr:primaryType="nt:unstructured"
-            sling:resourceType="granite/ui/components/foundation/container">
-        <layout
+<content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+        <tabs
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
-        <items jcr:primaryType="nt:unstructured">
-            <column
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/foundation/container">
-                <items jcr:primaryType="nt:unstructured">
-                    <title
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Title"
-                            name="./title"/>
-                    <image
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            fieldLabel="Image"
-                            rootPath="/content/dam"
-                            name="./image"/>
-                    <altText
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Alt Text"
-                            name="./altText"/>
-                    <description
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Description"
-                            name="./description"/>
-                    <buttonLabel
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Button Label"
-                            fieldDescription="To show an button that redirect to the valid page. If this label is empty, the button will not be displayed"
-                            name="./buttonLabel"/>
-                    <buttonLink
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            fieldLabel="Button Link"
-                            rootPath="/content/dhl"
-                            name="./buttonLink"/>
-                    <refreshPageButtonLabel
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Refresh Page Button Label"
-                            fieldDescription="To show an additional button that refreshes the page when clicked. If this label is empty, the button will not be displayed"
-                            name="./refreshPageButtonLabel"/>
-                </items>
-            </column>
-        </items>
-    </content>
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+            <items jcr:primaryType="nt:unstructured">
+                <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                    <items jcr:primaryType="nt:unstructured">
+                        <title
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Title"
+                                name="./title"/>
+                        <image
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="Image"
+                                rootPath="/content/dam"
+                                name="./image"/>
+                        <altText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Alt Text"
+                                name="./altText"/>
+                        <description
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Description"
+                                name="./description"/>
+                        <buttonLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Button Label"
+                                fieldDescription="To show an button that redirect to the valid page. If this label is empty, the button will not be displayed"
+                                name="./buttonLabel"/>
+                        <buttonLink
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="Button Link"
+                                rootPath="/content/dhl"
+                                name="./buttonLink"/>
+                        <refreshPageButtonLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Refresh Page Button Label"
+                                fieldDescription="To show an additional button that refreshes the page when clicked. If this label is empty, the button will not be displayed"
+                                name="./refreshPageButtonLabel"/>
+                    </items>
+                </properties>
+                <styletab
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/include"
+                        path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_edit/styletab"/>
+            </items>
+        </tabs>
+    </items>
+</content>
 </jcr:root>
