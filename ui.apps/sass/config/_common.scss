@@ -1,0 +1,46 @@
+.dhl-btn {
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  transition: background-color .2s ease, color .2s ease;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 32px;
+
+  &--primary {
+    color: white;
+    background-color: map-get($palette, red);
+    &:hover {
+      color: white;
+      background-color: map-get($palette, light-red);
+      text-decoration: none;
+    }
+
+    &:active {
+      background-color: map-get($palette, dark-red);
+      color: white;
+    }
+  }
+
+  &--white {
+    font-weight: normal;
+    border: 1px solid map-get($palette, red);
+    color: map-get($palette, red);
+    background-color: white;
+
+    &:hover {
+      background-color: map-get($palette, red);
+      border-color: map-get($palette, red);
+      color: white;
+      text-decoration: none;
+    }
+
+    &:active {
+      border-color: map-get($palette, dark-red);
+      background-color: map-get($palette, dark-red);
+      color: white;
+    }
+  }
+}

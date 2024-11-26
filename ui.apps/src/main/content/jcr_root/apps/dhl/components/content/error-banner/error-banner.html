@@ -7,16 +7,16 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && !hasContent}" data-emptytext="${component.title}"></div>
 
-<div class="error-banner-component" data-sly-test="${hasContent}">
-    <b class="title">${title}.</b>
-    <img class="image" src="${model.image}" alt="${model.altText}"/>
-    <p class="description">${description}</p>
+<div class="cmp-error-banner" data-sly-test="${hasContent}">
+    <b class="cmp-error-banner__title">${title}.</b>
+    <img class="cmp-error-banner__image" src="${model.image}" alt="${model.altText}"/>
+    <p class="cmp-error-banner__description">${description}</p>
     <a data-sly-test="${buttonLabel}"
-       class="button" href="${model.buttonLink}.html" title="${buttonLabel}">
+       class="cmp-error-banner__button dhl-btn dhl-btn--primary" href="${model.buttonLink}.html" title="${buttonLabel}">
         <span>${buttonLabel}</span>
     </a>
     <a data-sly-test="${refreshPageButtonLabel}"
-       class="button" href onClick="window.location.reload();" title="${refreshPageButtonLabel}">
+       class="cmp-error-banner__button dhl-btn dhl-btn--primary" href onClick="window.location.reload();" title="${refreshPageButtonLabel}">
         <span>${model.refreshPageButtonLabel}</span>
     </a>
 </div>

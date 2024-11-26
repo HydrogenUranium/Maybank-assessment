@@ -406,29 +406,10 @@
         align-items: baseline;
 
         .button {
-          cursor: pointer;
-          text-decoration: none;
-          text-align: center;
-          display: block;
-          color: #ffffff;
           font-size: 14px;
-          font-weight: bold;
-          white-space: nowrap;
-          background: #d40511 0% 0% no-repeat padding-box;
-          border-radius: 4px;
           padding: 10px;
+          white-space: nowrap;
           margin-bottom: 3px;
-
-          &:hover {
-            color: #ffffff;
-            background-color: #eb131e;
-            text-decoration: none;
-          }
-
-          &:active {
-            background-color: #9a0000;
-            text-decoration: none;
-          }
         }
       }
     }
