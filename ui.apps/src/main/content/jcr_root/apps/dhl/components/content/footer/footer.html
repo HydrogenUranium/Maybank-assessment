@@ -1,0 +1,43 @@
+<footer class="footerV2-wrapper">
+    <div class="footer-container" data-sly-use.footer="com.dhl.discover.core.models.Footer">
+        <div class="promo">
+            <div class="promo-logo">
+                <a class="logo__link" href="${footer.logoLink}">
+                    <img class="logo__image"
+                         src="${footer.logoIcon}"
+                         title="${footer.logoTitle}"
+                         alt="${footer.logoAltText || footer.logoTitle}" />
+                </a>
+            </div>
+            <div class="promo-text">${footer.promoText}</div>
+        </div>
+        <div class="invitation">
+            <div class="invitation__title">${footer.invitationTitle}</div>
+            <div class="invitation__text">${footer.invitationText}</div>
+        </div>
+        <div class="links">
+            <div class="links-group" data-sly-use.meganav="com.dhl.discover.core.models.Meganav">
+                <div class="links-group__title">${footer.categoryLinksLabel}</div>
+                <sly data-sly-list="${meganav.panels}">
+                    <a class="links-group__item" href="${item.url}"><span>${item.navigationTitle}</span></a>
+                </sly>
+            </div>
+            <div class="links-group">
+                <div class="links-group__title">${footer.companyLinksLabel}</div>
+                <a class="links-group__item" data-sly-repeat="${footer.companyLinks}" href="${item.linkPath}"><span>${item.linkName}</span></a>
+            </div>
+            <div class="links-group">
+                <div class="links-group__title">${footer.socialLinksLabel}</div>
+                <div class="links-group__items">
+                    <a class="links-group__item" data-sly-repeat="${footer.socialLinks}" href="${item.linkPath}">
+                        <span class="not-mobile-only">${item.linkName}</span>
+                        <img class="logo__image mobile-only"
+                             src="${item.linkIcon}"
+                             title="${item.linkName}"
+                             alt="${item.linkName}" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

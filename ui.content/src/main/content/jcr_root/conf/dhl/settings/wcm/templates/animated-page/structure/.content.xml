@@ -11,28 +11,17 @@
             sling:resourceType="wcm/foundation/components/responsivegrid"
             layout="responsiveGrid">
             <headerv2
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/headerV2">
-                <cta_banner_with_poin
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="dhl/components/content/cta-banner-with-points"
-                        style="sidebar"
-                        type="businessAccount">
-                    <analytics
-                            jcr:primaryType="nt:unstructured"
-                            interactionType="content"
-                            name="'Open a Business Account' Banner"
-                            position="Banner in the mobile header menu"
-                            trackedInteractions="basic"/>
-                </cta_banner_with_poin>
-            </headerv2>
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/experiencefragment"
+                    fragmentVariationPath="/content/experience-fragments/dhl/language-masters/en-master/template-fragments/header/master"/>
             <responsivegrid
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid"
                 editable="true"/>
             <footerv2
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/footerV2"/>
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/experiencefragment"
+                    fragmentVariationPath="/content/experience-fragments/dhl/language-masters/en-master/template-fragments/footer/master"/>
         </root>
         <cq:responsive jcr:primaryType="nt:unstructured">
             <breakpoints jcr:primaryType="nt:unstructured">
