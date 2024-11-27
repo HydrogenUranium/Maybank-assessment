@@ -47,9 +47,9 @@ class LanguageVariantsTest {
         assertEquals("en-US", languageVariants.getCurrentLanguage());
         assertEquals(2, languageVariants.getLanguageVariants().size());
         String expectedVariantsJson = "{\"variants\":" +
-                "[{\"path\":\"/content/dhl/us/es-us/category-page/article-page\",\"languages\":\"es-US\"}," +
-                "{\"path\":\"/content/dhl/us/en-us/category-page/article-page\",\"languages\":\"en-US\"}," +
-                "{\"path\":\"/content/dhl/global/en-global/category-page/article-page\",\"languages\":\"en\"}]}";
+                "[{\"path\":\"/content/dhl/us/es-us\",\"languages\":\"es-US\"}," +
+                "{\"path\":\"/content/dhl/us/en-us\",\"languages\":\"en-US\"}," +
+                "{\"path\":\"/content/dhl/global/en-global\",\"languages\":\"en\"}]}";
         assertEquals(expectedVariantsJson, languageVariants.getAllLanguagesJSON());
         assertEquals(2, languageVariants.getAllLanguageVariants().size());
         assertEquals(1, languageVariants.getAllLanguageVariantsGrouped().size());
