@@ -1,5 +1,7 @@
 package com.dhl.discover.core.services;
 
+import com.day.cq.replication.ReplicationActionType;
+import com.day.cq.replication.ReplicationStatus;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageFilter;
 import com.day.cq.wcm.api.PageManager;
@@ -224,5 +226,20 @@ public class PageUtilService implements Serializable {
                 .map(resourceResolver::getResource)
                 .map(r -> r.adaptTo(Article.class))
                 .orElse(null);
+    }
+
+    /**
+     * Checks if a given AEM page is published.
+     *
+     * @param page the AEM `Page` object to check for publication status. May be null.
+     * @return {@code true} if the page is published (last replication action was `ACTIVATE`), {@code false} otherwise.
+     */
+    public boolean isPublished(Page page) {
+        return Optional.ofNullable(page)
+                .filter(Page::hasContent)
+                .map(Page::getContentResource)
+                .map(r -> r.adaptTo(ReplicationStatus.class))
+                .map(replicationStatus -> replicationStatus.getLastReplicationAction() == ReplicationActionType.ACTIVATE)
+                .orElse(Boolean.FALSE);
     }
 }
