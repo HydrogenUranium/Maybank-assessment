@@ -136,8 +136,8 @@
 
       &__right {
         .logo__image {
-          height: 10px;
-          width: 10px;
+          height: 17px;
+          width: 17px;
           object-fit: contain;
           margin: 0;
         }
@@ -145,19 +145,19 @@
         .st-label {
           position: relative;
           top: -1px;
-          font-size: 8px;
+          font-size: 14px;
           line-height: 25px;
           letter-spacing: 0.48px;
           color: map-get($palette, scarlet);
 
           @include respond(md) {
-            font-size: 11px;
+            font-size: 14px;
             line-height: 34px;
             letter-spacing: 0.66px;
           }
 
           @include respond(xl) {
-            font-size: 12px;
+            font-size: 15px;
             line-height: 37px;
             letter-spacing: 0.72px;
           }
