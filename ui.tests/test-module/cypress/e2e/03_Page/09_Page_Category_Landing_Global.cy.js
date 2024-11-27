@@ -104,9 +104,8 @@ describe('Global Category Landing Page', () => {
             });
 
           // 10. Verify CTA Banner exists and the button is clickable. When clicked, it lands on the correct page
-          cy.get('.cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body').should('exist');
-          cy.get('.cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body > .banner__body__button')
-            .click();
+          cy.get('.cta-banner-with-points .cmp-cta-banner-with-points__body').should('exist');
+          cy.get('.cta-banner-with-points .cmp-cta-banner-with-points__button').click();
           cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-global/newsletter-sign-up`);
 
           // 11. Verify header and footer exist
