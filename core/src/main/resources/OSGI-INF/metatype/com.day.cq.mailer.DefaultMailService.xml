@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metatype:MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.1.0">
+    <OCD id="com.day.cq.mailer.DefaultMailService"
+         name="Default Mail Service"
+         description="Service to configure SMTP email settings.">
+        <AD id="smtp.port"
+            name="SMTP Port"
+            description="The port used to connect to the SMTP server."
+            type="Integer"
+            cardinality="0"
+            default="30125"
+            optionValues="25,465,587,30125"
+            optionLabels="Default SMTP Port, Secure SMTP Port, Submission Port, Custom Port"/>
+    </OCD>
+</metatype:MetaData>

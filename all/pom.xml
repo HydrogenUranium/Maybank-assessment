@@ -86,12 +86,14 @@
                             <type>jar</type>
                             <target>/apps/dhl-vendor-packages/install</target>
                         </embedded>
+                        <!--
                         <embedded>
                             <groupId>com.dhl.aem</groupId>
                             <artifactId>akamai.core</artifactId>
                             <target>/apps/dhl-vendor-packages/install</target>
                             <type>jar</type>
                         </embedded>
+                        -->
                         <embedded>
                             <groupId>de.valtech.aecu</groupId>
                             <artifactId>aecu.complete.cloud</artifactId>
@@ -231,10 +233,6 @@
             <type>zip</type>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.servicemix.bundles</groupId>
-            <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
-        </dependency>
         <dependency>
             <groupId>de.valtech.aecu</groupId>
             <artifactId>aecu.complete.cloud</artifactId>
