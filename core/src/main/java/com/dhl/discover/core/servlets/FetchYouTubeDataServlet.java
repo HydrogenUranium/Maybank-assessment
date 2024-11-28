@@ -1,6 +1,6 @@
 package com.dhl.discover.core.servlets;
 
-import org.apache.http.Header;
+
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -17,12 +17,12 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
+import org.owasp.encoder.Encode;
 
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 @Component(service = Servlet.class, property = {
         Constants.SERVICE_DESCRIPTION + "=YouTube Schema Markup",
@@ -51,23 +51,28 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
 
         var apiUrl = String.format("https://www.googleapis.com/youtube/v3/videos?id=%s&part=snippet,contentDetails,statistics&key=%s", videoId, apiKey);
 
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try(CloseableHttpClient httpClient = HttpClients.createDefault()){
             var httpGet = new HttpGet(apiUrl);
-            try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
-                int statusCode = httpResponse.getStatusLine().getStatusCode();
-                response.setStatus(statusCode);
-
-                for (Header header : httpResponse.getAllHeaders()) {
-                    response.setHeader(header.getName(), header.getValue());
+            try(CloseableHttpResponse httpResponse = httpClient.execute(httpGet)){
+                String contentType = httpResponse.getEntity().getContentType().getValue();
+                if (!contentType.startsWith("application/json")) {
+                    response.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Unexpected content type");
+                    return;
                 }
 
-                try (InputStream content = httpResponse.getEntity().getContent(); OutputStream out = response.getOutputStream()) {
-                    var buffer = new byte[1024];
-                    int bytesRead;
-                    while ((bytesRead = content.read(buffer)) != -1) {
-                        out.write(buffer, 0, bytesRead);
-                    }
+                String responseBody = new String(httpResponse.getEntity().getContent().readAllBytes(), StandardCharsets.UTF_8);
+                if (!responseBody.contains("snippet")) {
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid API response");
+                    return;
                 }
+
+                response.setContentType("application/json");
+                response.setHeader("Content-Security-Policy", "default-src 'self'");
+                response.setHeader("X-Content-Type-Options", "nosniff");
+                response.setHeader("X-XSS-Protection", "1; mode=block");
+                response.setHeader("X-Frame-Options", "DENY");
+
+                response.getWriter().write(Encode.forHtml(responseBody));
             }
         }
     }
