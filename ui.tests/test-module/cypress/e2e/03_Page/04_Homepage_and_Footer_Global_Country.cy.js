@@ -72,12 +72,12 @@ describe('Global & Singapore HomePage & Footer', () => {
 
           if (viewport === 'macbook-15') {
             // 6. Verify sign up to the discover exists
-            cy.get(':nth-child(3) > .cta-banner-with-points-component > .banner > .banner__body').click({ force: true });
+            cy.get(':nth-child(3) > .cmp-cta-banner-with-points > .cmp-cta-banner-with-points__body').click({ force: true });
           }
 
           // 7. Verify CTA Banner with Points (apply for a business account) exists with the correct title
-          cy.get('.banner__body__button').should('exist');
-          cy.get('.banner__body__button').find('span').should('contain', 'Apply now');
+          cy.get('.cmp-cta-banner-with-points__button').should('exist');
+          cy.get('.cmp-cta-banner-with-points__button').find('span').should('contain', 'Apply now');
 
           // ---FOOTER---
           // 1. Verify the footer has a logo and three link groups
