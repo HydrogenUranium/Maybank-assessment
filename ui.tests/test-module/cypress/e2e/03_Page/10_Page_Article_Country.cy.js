@@ -95,7 +95,7 @@ describe('Singapore Page Article Country', () => {
             cy.get('.nextSteps__text > .nextSteps__title').should('be.visible');
             cy.get('.nextSteps__image').should('be.visible');
             cy.get('.nextSteps__copy').should('be.visible');
-            cy.get('a.nextSteps__cta')
+            cy.get('.nextSteps__text > a.dhl-btn')
               .should('have.attr', 'href')
               .and('include', '/discover/en-global/e-commerce-advice/e-commerce-sector-guides');
           }
@@ -165,8 +165,8 @@ describe('Singapore Page Article Country', () => {
 
           if (viewport !== 'iphone-6') {
             // 28. Verify CTA Banner exists and the button is clickable, landing on the correct page
-            cy.get('.cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body').should('exist');
-            cy.get('.cta-banner-with-points > .cta-banner-with-points-component > .banner > .banner__body > .banner__body__button')
+            cy.get('.cta-banner-with-points .cmp-cta-banner-with-points__body').should('exist');
+            cy.get('.cta-banner-with-points .cmp-cta-banner-with-points__button')
               .click({ force: true });
             cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-sg/ship-now`);
           }

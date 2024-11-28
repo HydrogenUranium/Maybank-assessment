@@ -10,14 +10,14 @@ import javax.inject.Named;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 
 /**
  *
  */
 @Model(adaptables=Resource.class)
 public class Gallery {
-	@SlingObject
+	@ChildResource
 	@Named("slides")
 	@Optional
 	private Resource slidesResource;
