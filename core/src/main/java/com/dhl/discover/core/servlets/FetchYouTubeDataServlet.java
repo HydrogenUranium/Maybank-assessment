@@ -44,7 +44,7 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
         String videoId = request.getParameter("videoId");
 
-        if (apiKey == null || videoId == null || !videoId.matches("^[a-zA-Z0-9_-]{11}$")) {
+        if ( videoId == null || !videoId.matches("^[a-zA-Z0-9_-]{11}$")) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing API key or videoId parameter");
             return;
         }
@@ -61,11 +61,6 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
                 }
 
                 String responseBody = new String(httpResponse.getEntity().getContent().readAllBytes(), StandardCharsets.UTF_8);
-                if (!responseBody.contains("snippet")) {
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid API response");
-                    return;
-                }
-
                 response.setContentType("application/json");
                 response.setHeader("Content-Security-Policy", "default-src 'self'");
                 response.setHeader("X-Content-Type-Options", "nosniff");

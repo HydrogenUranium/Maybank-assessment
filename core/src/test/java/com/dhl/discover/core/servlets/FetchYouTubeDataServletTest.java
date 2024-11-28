@@ -2,12 +2,18 @@ package com.dhl.discover.core.servlets;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BasicHttpEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeader;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,11 +21,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Map;
 
+import static junit.framework.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -65,28 +76,58 @@ class FetchYouTubeDataServletTest {
 
     @Test
     void testDoGet_validRequest() throws IOException {
-        String apiKey = "test-api-key";
         String videoId = "yaBMNgAcBWA";
         String apiResponse = "{\"kind\":\"youtube#videoListResponse\",\"items\":[]}";
 
         try (MockedStatic<HttpClients> mockedStatic = mockStatic(HttpClients.class)) {
             mockedStatic.when(HttpClients::createDefault).thenReturn(httpClient);
-
-            when(configuration.apiKey()).thenReturn(apiKey);
-            servlet.init(configuration);
             request.setParameterMap(Map.of("videoId", videoId));
 
             when(httpClient.execute(any())).thenReturn(httpResponse);
-            when(httpResponse.getStatusLine()).thenReturn(statusLine);
-            when(statusLine.getStatusCode()).thenReturn(200);
             when(httpResponse.getEntity()).thenReturn(entity);
+            when(entity.getContentType()).thenReturn(new BasicHeader("Content-Type", "application/json"));
             when(entity.getContent()).thenReturn(new ByteArrayInputStream(apiResponse.getBytes()));
-            when(httpResponse.getAllHeaders()).thenReturn(new Header[]{});
 
             servlet.doGet(request, response);
 
+            String decodedResponse = StringEscapeUtils.unescapeHtml4(response.getOutputAsString());
+
+            assertEquals("application/json", response.getContentType());
             assertEquals(200, response.getStatus());
-            assertEquals(apiResponse, response.getOutputAsString());
+            assertEquals(apiResponse, decodedResponse);
+
         }
     }
+
+    @Test
+    void testDoGet_unsupportedContentType() throws IOException {
+        String videoId = "yaBMNgAcBWA";
+        request.setParameterMap(Map.of("videoId", videoId));
+
+        BasicHttpEntity nonJsonEntity = new BasicHttpEntity();
+        nonJsonEntity.setContent(new ByteArrayInputStream("Non-JSON response".getBytes(StandardCharsets.UTF_8)));
+        nonJsonEntity.setContentType(new BasicHeader("Content-Type", "text/html"));
+
+        CloseableHttpClient mockHttpClient = mock(CloseableHttpClient.class);
+        CloseableHttpResponse mockHttpResponse = mock(CloseableHttpResponse.class);
+
+        when(mockHttpClient.execute(any(HttpGet.class))).thenReturn(mockHttpResponse);
+        when(mockHttpResponse.getEntity()).thenReturn(nonJsonEntity);
+
+        try (MockedStatic<HttpClients> mockedStatic = mockStatic(HttpClients.class)) {
+            mockedStatic.when(HttpClients::createDefault).thenReturn(mockHttpClient);
+
+            servlet.doGet(request, response);
+        }
+
+        System.out.println("Response Status: " + response.getStatus());
+        System.out.println("Response Output: " + response.getOutputAsString());
+
+        assertEquals(415, response.getStatus(), "Expected 415 UNSUPPORTED MEDIA TYPE");
+    }
+
+
+
+
+
 }
