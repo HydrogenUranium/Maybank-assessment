@@ -115,7 +115,7 @@
     &-container {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       padding-top: 27px;
 
       @include respond(xl) {
