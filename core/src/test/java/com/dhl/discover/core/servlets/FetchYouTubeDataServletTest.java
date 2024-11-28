@@ -115,9 +115,6 @@ class FetchYouTubeDataServletTest {
             servlet.doGet(request, response);
         }
 
-        System.out.println("Response Status: " + response.getStatus());
-        System.out.println("Response Output: " + response.getOutputAsString());
-
         assertEquals(415, response.getStatus(), "Expected 415 UNSUPPORTED MEDIA TYPE");
     }
 
