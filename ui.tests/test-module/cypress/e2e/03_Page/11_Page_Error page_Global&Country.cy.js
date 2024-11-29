@@ -38,16 +38,16 @@ describe('Global and Country Error Page', () => {
 
         it('All test case', function () {
           // 1. Verify the error page consists of title
-          cy.get('.title').should('exist');
+          cy.get('.cmp-error-banner__title').should('exist');
 
           // 2. Verify image exists without being broken
-          cy.get('.image').should('be.visible').and(($img) => {
+          cy.get('.cmp-error-banner__image').should('be.visible').and(($img) => {
             expect($img[0].naturalWidth).to.be.greaterThan(0);
           });
 
           // 3. Verify button link is visible and when clicked, it redirects to the homepage
-          cy.get('.error-banner-component > .button').should('exist');
-          cy.get('.error-banner-component > .button').click();
+          cy.get('.cmp-error-banner__button').should('exist');
+          cy.get('.cmp-error-banner__button').click();
           cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-global`);
 
           // 4. Verify header and footer exist
