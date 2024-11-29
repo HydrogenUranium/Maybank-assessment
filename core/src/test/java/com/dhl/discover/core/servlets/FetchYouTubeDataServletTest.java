@@ -4,7 +4,6 @@ import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.commons.text.StringEscapeUtils;
 import org.apache.http.HttpEntity;
-import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.BasicHttpEntity;
@@ -48,9 +47,6 @@ class FetchYouTubeDataServletTest {
 
     @Mock
     private CloseableHttpResponse httpResponse;
-
-    @Mock
-    private StatusLine statusLine;
 
     @Mock
     private HttpEntity entity;
