@@ -44,7 +44,7 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
         String videoId = request.getParameter("videoId");
 
-        if ( videoId == null || !videoId.matches("^[a-zA-Z0-9_-]{11}$")) {
+        if (apiKey!= null || videoId == null || !videoId.matches("^[a-zA-Z0-9_-]{11}$")) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing API key or videoId parameter");
             return;
         }
