@@ -56,6 +56,10 @@ class FetchYouTubeDataServletTest {
         request = context.request();
         response = context.response();
         servlet = spy(new FetchYouTubeDataServlet());
+        String apiKey = "test-api-key";
+        when(configuration.apiKey()).thenReturn(apiKey);
+        servlet = new FetchYouTubeDataServlet();
+        servlet.init(configuration);
     }
 
     @Test

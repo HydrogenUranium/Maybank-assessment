@@ -7,6 +7,7 @@ import com.dhl.discover.core.dto.general.HttpApiResponse;
 import com.dhl.discover.core.services.HttpCommunication;
 import com.dhl.discover.core.services.InitUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -141,7 +142,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 	@Override
 	public String getRequestResponse(CloseableHttpResponse response) throws IOException, HttpRequestException {
-		if(null == response){
+		if (response == null) {
 			initUtil.resetClient();
 			throw new IOException("Backend response can't be extracted. Something went wrong.");
 		}
@@ -150,21 +151,28 @@ public class HttpCommunicationImpl implements HttpCommunication {
 		int statusCode = response.getStatusLine().getStatusCode();
 		String statusMessage = response.getStatusLine().getReasonPhrase();
 
-		if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_ACCEPTED) {
-			var responseString = EntityUtils.toString(httpEntity);
+		try {
+			if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_ACCEPTED) {
+				var responseString = EntityUtils.toString(httpEntity);
+				responseString = sanitizeResponse(responseString);
+				EntityUtils.consumeQuietly(httpEntity);
+				return responseString;
+			}
+
+			if (statusCode == HttpStatus.SC_BAD_REQUEST) {
+				var responseString = EntityUtils.toString(httpEntity);
+				responseString = sanitizeResponse(responseString);
+				EntityUtils.consumeQuietly(httpEntity);
+				return responseString;
+			}
+		} finally {
 			EntityUtils.consumeQuietly(httpEntity);
-			return responseString;
 		}
 
-		if (statusCode == HttpStatus.SC_BAD_REQUEST){
-			var responseString = EntityUtils.toString(httpEntity);
-			EntityUtils.consumeQuietly(httpEntity);
-			return responseString;
-		}
-
-		EntityUtils.consumeQuietly(httpEntity);
-
-		String errorMessage = MessageFormat.format("Backend returned status code ''{0}'' with error message ''{1}''", statusCode,statusMessage);
+		String errorMessage = MessageFormat.format(
+				"Backend returned status code ''{0}'' with error message ''{1}''",
+				statusCode, statusMessage
+		);
 		throw new HttpRequestException(errorMessage);
 	}
 
@@ -217,5 +225,11 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			}
 		}
 		return uriBuilder;
+	}
+	private String sanitizeResponse(String input) {
+		if (input == null) {
+			return null;
+		}
+		return StringEscapeUtils.escapeHtml4(input);
 	}
 }
