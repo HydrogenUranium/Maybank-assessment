@@ -1,10 +1,10 @@
-.title-component {
+.cmp-title-v2 {
   font-weight: bold;
   font-size: 28px;
   line-height: 32px;
   max-width: 1640px;
 
-  &_underline {
+  &--underline {
     margin: 30px auto 0;
     line-height: 29px;
     font-size: 20px;
@@ -31,7 +31,7 @@
     }
   }
 
-  &_leftLine {
+  &--leftLine {
     margin: 30px auto 0;
     line-height: 29px;
     font-size: 20px;
@@ -45,9 +45,12 @@
     }
   }
 
-  &_strips {
+  &--strips {
     position: relative;
     margin: 0px auto 0px auto;
+
+    @include remove-container-margins-mobile-only;
+
     background-color: #040404;
     @include respond(md) {
       background-color: initial;

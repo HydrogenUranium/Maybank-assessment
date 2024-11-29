@@ -171,36 +171,46 @@
 }
 
 //Used to remove margin of first element in column
-@mixin ignore-top-child-margin-deep {
-  > :first-child {
-    margin-top: 0;
+@mixin ignore-top-child-margin-deep($depth: 5) {
+  @if $depth > 0 {
     > :first-child {
-        margin-top: 0;
-        > :first-child {
-            margin-top: 0;
-            > :first-child {
-                margin-top: 0;
-              }
-          }
-      }
+      margin-top: 0;
+      @include ignore-top-child-margin-deep($depth - 1);
+    }
   }
 }
 
-@mixin ignore-bottom-child-margin-deep {
-  > :last-child {
-    margin-bottom: 0;
+@mixin ignore-bottom-child-margin-deep($depth: 5) {
+  @if $depth > 0 {
     > :last-child {
-        margin-bottom: 0;
-        > :last-child {
-            margin-bottom: 0;
-            > :last-child {
-                margin-bottom: 0;
-              }
-          }
-      }
+      margin-bottom: 0;
+      @include ignore-bottom-child-margin-deep($depth - 1);
+    }
   }
 }
 
+@mixin remove-container-margins {
+  margin-left: calc((100% - 100vw) / 2);
+  margin-right: calc((100% - 100vw) / 2);
+}
+
+@mixin remove-container-margins-mobile-only {
+  @media (max-width: 768px) { // Adjust the max-width as per your breakpoint
+    @include remove-container-margins;
+  }
+}
+
+@mixin extend-background-edge {
+  @include remove-container-margins;
+  padding-left: calc((100vw - 100%) / 2);
+  padding-right: calc((100vw - 100%) / 2);
+}
+
+@mixin extend-background-mobile-only {
+  @media (max-width: 768px) { // Adjust the max-width as per your breakpoint
+    @include extend-background-edge;
+  }
+}
 
 @mixin headersWithRteWrapper($wrapper, $styleProperty, $styleValue) {
   $headerSelectors: h1, h2, h3, h4, h5, h6;
