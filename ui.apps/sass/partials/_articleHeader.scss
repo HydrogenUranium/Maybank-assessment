@@ -115,7 +115,7 @@
     &-container {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       padding-top: 27px;
 
       @include respond(xl) {
@@ -144,7 +144,6 @@
 
         .st-label {
           position: relative;
-          top: -1px;
           font-size: 14px;
           line-height: 25px;
           letter-spacing: 0.48px;
@@ -166,6 +165,9 @@
 
       .st-custom-button {
         cursor: pointer;
+        align-items: center;
+        display: flex;
+        gap: 5px;
       }
     }
 
