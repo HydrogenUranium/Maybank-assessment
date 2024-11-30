@@ -57,7 +57,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 				// add content type & authorization header (if not null)
 				httpPost.setHeader("Content-type", DiscoverConstants.APPLICATION_JSON);
 				if(isValidAuthToken(authToken)){
-					httpPost.setHeader("Authorization", "Bearer " + authToken);
+					httpPost.setHeader("Authorization", "Bearer " + sanitizeAuthToken(authToken));
 				}
 
 				httpPost.setURI(uri.build());
@@ -128,7 +128,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			httpGet.setHeader(DiscoverConstants.CONTENT_TYPE, DiscoverConstants.APPLICATION_JSON);
 
 			if(isValidAuthToken(authToken)){
-				httpGet.setHeader("Authorization", "Bearer " + authToken);
+				httpGet.setHeader("Authorization", "Bearer " + sanitizeAuthToken(authToken));
 			}
 
 			try (CloseableHttpResponse response = initUtil.getHttpClient().execute(httpGet)) {
@@ -231,5 +231,13 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			return null;
 		}
 		return StringEscapeUtils.escapeHtml4(input);
+	}
+
+	private String sanitizeAuthToken(String authToken) {
+		if (authToken == null) {
+			return "";
+		}
+		// Removes CRLF characters
+		return authToken.replaceAll("[\r\n]", "").trim();
 	}
 }
