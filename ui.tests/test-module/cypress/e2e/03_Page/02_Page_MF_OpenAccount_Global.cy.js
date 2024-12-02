@@ -41,7 +41,7 @@ describe('Global Open An Account page', () => {
 
         it('All test case', () => {
           // 1. Verify the title contains the correct text "Open An Account"
-          cy.get('.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .title-component > #title-v2-880e6e437e > .cmp-title__text').should('exist');
+          cy.get('.columns-section__right-column__header-section .cmp-title__text').should('exist');
 
           // 2. Verify Marketo form is present
           cy.get('#mktoForm_1756')
