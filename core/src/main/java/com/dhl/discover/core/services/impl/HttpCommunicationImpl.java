@@ -56,8 +56,8 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 				// add content type & authorization header (if not null)
 				httpPost.setHeader("Content-type", DiscoverConstants.APPLICATION_JSON);
-				if (isValidAuthToken(authToken)) {
-					String formattedAuthToken = String.format("Bearer %s", sanitizeAuthToken(authToken));
+				if (authToken != null && authToken.matches("^[A-Za-z0-9-_\\.:]+$")) {
+					String formattedAuthToken = "Bearer " + authToken.replaceAll("[\r\n]", "");  // Extra sanitization
 					httpPost.addHeader("Authorization", formattedAuthToken);
 				}
 
