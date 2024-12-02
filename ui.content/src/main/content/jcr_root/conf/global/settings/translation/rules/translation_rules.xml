@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?><nodelist>
-  <node resourceType="dhl/analytics-node-configuration">
-    <property inherit="true" name="name" translate="false" updateDestinationLanguage="false"/>
-    <property inherit="true" name="position" translate="false" updateDestinationLanguage="false"/>
-  </node>
   <node path="/content">
     <!-- Adaptive form related OOTB properties -->
     <!-- End of Adaptive form related OOTB properties -->
@@ -306,6 +302,10 @@
     <node resourceType="dhl/components/content/teaser">
       <property inherit="true" name="titleFromPage" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="descriptionFromPage" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="dhl/analytics-node-configuration">
+      <property inherit="true" name="name" translate="false" updateDestinationLanguage="false"/>
+      <property inherit="true" name="position" translate="false" updateDestinationLanguage="false"/>
     </node>
     <filter/>
     <node pathContains="&amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;/cq:annotations&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;#34;">
