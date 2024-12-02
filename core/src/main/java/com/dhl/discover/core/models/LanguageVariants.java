@@ -236,7 +236,7 @@ public class LanguageVariants {
 				var resource = resourceResolver.getResource(newExactPath);
 				exactPathExists = (resource != null);
 
-				if (!exactPathExists) {
+				if (!exactPathExists || !pageUtilService.isPublished(pageUtilService.getPage(resource))) {
 					newExactPath = newHomepage;
 				}
 			}
@@ -289,4 +289,6 @@ public class LanguageVariants {
 				"hk","Hong Kong",
 				"mo", "Macau");
 	}
+
+
 }
