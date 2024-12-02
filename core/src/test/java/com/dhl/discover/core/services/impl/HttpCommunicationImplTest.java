@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -228,6 +229,33 @@ class HttpCommunicationImplTest {
 			assertTrue(checkHeaderValue(actual.getAllHeaders(), HttpHeaders.AUTHORIZATION, "Bearer authorization-token"));
 		}
 		assertTrue(checkContentType(actual.getAllHeaders(), ContentType.APPLICATION_JSON.getMimeType()));
+	}
+
+	@Test
+	void testSanitizeResponse() {
+
+		assertNull(underTest.sanitizeResponse(null));
+
+		assertEquals("", underTest.sanitizeResponse(""));
+
+		assertEquals("normalString", underTest.sanitizeResponse("normalString"));
+
+		assertEquals("&lt;script&gt;alert('XSS')&lt;/script&gt;", underTest.sanitizeResponse("<script>alert('XSS')</script>"));
+	}
+
+	@ParameterizedTest
+	@CsvSource({
+			"null, ''",
+			"'', ''",
+			"'validToken', 'validToken'",
+			"'tokenWithCRLF\r\n', 'tokenWithCRLF'",
+			"' tokenWithSpaces ', 'tokenWithSpaces'"
+	})
+	void testSanitizeAuthToken(String input, String expected) {
+		if ("null".equals(input)) {
+			input = null;
+		}
+		assertEquals(expected, underTest.sanitizeAuthToken(input));
 	}
 
 

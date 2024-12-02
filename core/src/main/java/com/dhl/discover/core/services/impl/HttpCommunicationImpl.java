@@ -226,14 +226,14 @@ public class HttpCommunicationImpl implements HttpCommunication {
 		}
 		return uriBuilder;
 	}
-	private String sanitizeResponse(String input) {
+	String sanitizeResponse(String input) {
 		if (input == null) {
 			return null;
 		}
 		return StringEscapeUtils.escapeHtml4(input);
 	}
 
-	private String sanitizeAuthToken(String authToken) {
+	String sanitizeAuthToken(String authToken) {
 		if (authToken == null) {
 			return "";
 		}
