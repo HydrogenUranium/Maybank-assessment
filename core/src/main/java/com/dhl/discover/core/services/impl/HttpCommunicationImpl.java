@@ -56,8 +56,9 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 				// add content type & authorization header (if not null)
 				httpPost.setHeader("Content-type", DiscoverConstants.APPLICATION_JSON);
-				if(isValidAuthToken(authToken)){
-					httpPost.setHeader("Authorization", "Bearer " + sanitizeAuthToken(authToken));
+				if (isValidAuthToken(authToken)) {
+					String formattedAuthToken = String.format("Bearer %s", sanitizeAuthToken(authToken));
+					httpPost.addHeader("Authorization", formattedAuthToken);
 				}
 
 				httpPost.setURI(uri.build());
@@ -127,8 +128,9 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			httpGet.setURI(uri.build());
 			httpGet.setHeader(DiscoverConstants.CONTENT_TYPE, DiscoverConstants.APPLICATION_JSON);
 
-			if(isValidAuthToken(authToken)){
-				httpGet.setHeader("Authorization", "Bearer " + sanitizeAuthToken(authToken));
+			if (isValidAuthToken(authToken)) {
+				String formattedAuthToken = String.format("Bearer %s", sanitizeAuthToken(authToken));
+				httpGet.addHeader("Authorization", formattedAuthToken);
 			}
 
 			try (CloseableHttpResponse response = initUtil.getHttpClient().execute(httpGet)) {

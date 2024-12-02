@@ -69,7 +69,6 @@ public class PageListServlet extends SlingAllMethodsServlet {
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("An unexpected error occurred. Please try again later.");
-            log.error("Error occurred while processing the request PageListServlet ", e);
         }
     }
 }
