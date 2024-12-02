@@ -31,10 +31,7 @@
 
 .article-showcase-component_horizontal {
   .horizontal-scroll {
-    margin-left: calc(-1 * (100vw - 100%)/2);
-    padding-left: calc(1 * (100vw - 100%)/2);
-    margin-right: calc(-1 * (100vw - 100%)/2);
-    padding-right: calc(1 * (100vw - 100%)/2);
+    @include extend-background-edge;
 
     &::-webkit-scrollbar-track {
       margin: 35px;
@@ -60,6 +57,7 @@
 .article-showcase-component_vertical {
   padding-top: 18px;
   background-color: #E2E2E266;
+  @include extend-background-mobile-only;
 
   @include respond(md) {
     background-color: initial;

@@ -12,7 +12,7 @@ describe('Global Page Header', () => {
     applyForBusiness: '.navigation-row__right .button:contains("Apply for a Business Account"):first',
     contactUs: '.navigation-item:contains("Contact us"):first',
     hamburgerMenu: '.headerV2__hamburger',
-    applyForBusinessHamburger: '.short-banners > .cta-banner-with-points-component > .banner > .banner__body > .banner__body__button',
+    applyForBusinessHamburger: '.short-banners > .cmp-cta-banner-with-points .cmp-cta-banner-with-points__button',
     contactUsHamburger: ':nth-child(3) > ul > li > .navigation-item',
     countrySwitcher: '.headerV2__desktopCountry > .fi',
     countryList: '.header-countryList--open:first',
