@@ -163,8 +163,8 @@ describe('Global Page Article', () => {
 
           if (viewport !== 'iphone-6') {
             // 28. Verify CTA Banner exists and the button is clickable, landing on the correct page
-            cy.get('.cta-banner-with-points .cmp-cta-banner-with-points__body').should('exist');
-            cy.get('.cta-banner-with-points .cmp-cta-banner-with-points__button')
+            cy.get('.body-container .cta-banner-with-points .cmp-cta-banner-with-points__body').should('exist');
+            cy.get('.body-container .cta-banner-with-points .cmp-cta-banner-with-points__button')
               .click({ force: true });
             cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-global/open-an-account`);
           }

@@ -44,7 +44,7 @@ describe('Global Subscribe newsletter page', () => {
             .should("be.visible");
 
           // 2. Verify if all fields are present
-          cy.get('.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .title-component > #title-v2-b4a322772c > .cmp-title__text', { timeout: 2000 }).should('exist');
+          cy.get('.columns-section__right-column__header-section .cmp-title__text', { timeout: 2000 }).should('exist');
           cy.get('#Email').should('exist');
           cy.get('#suspectCountry').should('exist');
           cy.get('.mktoButton').should('exist');
