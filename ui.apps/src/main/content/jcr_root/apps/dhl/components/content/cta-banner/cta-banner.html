@@ -8,6 +8,7 @@
         <div class="cmp-cta-banner__top-title">${model.topTitle @ context = 'html'}</div>
         <div class="cmp-cta-banner__title">${model.title @ context = 'html'}</div>
         <a data-sly-attribute.data-analytics="${analytics.json}"
+           data-sly-test="${model.buttonLink && model.buttonName}"
            href="${model.buttonLink}"
            class="cmp-cta-banner__button dhl-btn dhl-btn--primary"
         >${model.buttonName}</a>
