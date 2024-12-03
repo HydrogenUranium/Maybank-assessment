@@ -54,7 +54,6 @@
                                     emptyText="Background Image Alt Text Placeholder"/>
                         </items>
                     </customImage>
-
                     <useVideo
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/switch"
