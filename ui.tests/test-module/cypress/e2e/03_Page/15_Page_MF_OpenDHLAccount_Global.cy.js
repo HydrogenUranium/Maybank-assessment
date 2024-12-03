@@ -41,7 +41,7 @@ describe('Global Open A DHL Account Form', () => {
 
         it('All test case', () => {
           // 1. Verify the title is exist"
-          cy.get('.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .title-component > #title-v2-e579709512 > .cmp-title__text').should('exist');
+          cy.get('.columns-section__right-column__header-section .cmp-title__text').should('exist');
 
           // 2. Verify Marketo form is present
           cy.get('#mktoForm_2040')
