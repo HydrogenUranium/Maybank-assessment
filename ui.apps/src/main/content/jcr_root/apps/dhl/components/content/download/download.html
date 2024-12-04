@@ -2,7 +2,8 @@
 <div
         data-sly-use.downloadasset="com.dhl.discover.core.models.DownloadAsset"
         data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions"
-        data-sly-use.marketoConfig="com.dhl.discover.core.models.MarketoConfiguration">
+        data-sly-use.marketoConfig="com.dhl.discover.core.models.MarketoConfiguration"
+		data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent">
 	<div id="download" class="DHLdownload">
  		<div class="container">
 			<div class="row justify-content-center">
@@ -27,6 +28,7 @@
                                      action="${accountactions.getAssetprefix}${currentPage.path}.form.html"
                                      formstart="${accountactions.getAssetprefix}${currentNode.path}.form.html"
                                      source="conf"
+									 data-sly-attribute.data-analytics="${analytics.json}"
                                      data-sly-attribute.apiSubmit="${marketoConfig.isGlobalPage ? 'true' : 'false'}"
                                      data-marketo-form
                                 >
