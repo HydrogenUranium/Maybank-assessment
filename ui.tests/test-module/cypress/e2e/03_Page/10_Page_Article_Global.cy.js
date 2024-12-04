@@ -54,12 +54,12 @@ describe('Global Page Article', () => {
           cy.get('.article-header_share-container__left').should('exist');
 
           // 6. Verify hero banner exists with summary text and picture
-          cy.get('.hero-banner-component > .hero-banner').should('exist');
-          cy.get('.hero-banner-component').within(() => {
-            cy.get('.summary')
+          cy.get('.cmp-hero-banner > .cmp-hero-banner__asset').should('exist');
+          cy.get('.cmp-hero-banner').within(() => {
+            cy.get('.cmp-hero-banner__summary')
               .should('be.visible')
               .and('contain', 'Key Takeaways');
-            cy.get('.hero-banner.hero-banner--with-rounded-corners .hero-banner__image')
+            cy.get('.cmp-hero-banner__asset.cmp-hero-banner__asset--with-rounded-corners .cmp-hero-banner__image')
               .should('be.visible');
           });
 

@@ -36,7 +36,7 @@ describe('Singapore DHL Landing Page - Two Column', () => {
 
         it('Test Case', function () {
           // 1. Verify hero banner exists with image
-          cy.get('.hero-banner-component > .hero-banner').should('exist');
+          cy.get('.cmp-hero-banner > .cmp-hero-banner__asset').should('exist');
 
           // 2. Verify text exists
           cy.get('#text-ba3e0cc854').should('exist');

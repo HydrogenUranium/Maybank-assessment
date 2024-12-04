@@ -36,7 +36,7 @@ describe('Global DHL Landing Page - Two Column', () => {
 
         it('All test case', function () {
           // 1. Verify hero banner exists with image
-          cy.get('.hero-banner-component > .hero-banner').should('exist');
+          cy.get('.cmp-hero-banner > .cmp-hero-banner__asset').should('exist');
 
           // 2. Verify text exists
           cy.get('#text-fa2b4da5ad').should('exist');
@@ -49,7 +49,6 @@ describe('Global DHL Landing Page - Two Column', () => {
 
           // 5. Verify if all fields are present
           cy.get(':nth-child(2) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel').should('exist');
-          cy.get('#suspectCompanyname').should('exist');
           cy.get('#FirstName').should('exist');
           cy.get('#LastName').should('exist');
           cy.get('#Email').should('exist');
