@@ -16,7 +16,7 @@
                  alt=model.backgroundImageAltText
          }"></sly>
         <div data-sly-test="${model.useVideo}" class="cmp-hero-banner__video-wrapper">
-            <video  data-sly-attribute.loop="true"
+            <video  data-sly-attribute.loop="${properties.loop ? 'true' : null}"
                     data-sly-attribute.autoplay="true"
                     data-sly-attribute.muted="true"
                     data-sly-attribute.playsinline="true"
