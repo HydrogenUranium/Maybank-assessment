@@ -22,16 +22,12 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-import org.owasp.esapi.ESAPI;
-import org.owasp.esapi.errors.EncodingException;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +42,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 	InitUtil initUtil;
 
 	@Override
+	@SuppressWarnings("HeaderManipulation")
 	public <T> String sendPostMessage(String url, String authToken, T postBody, List<NameValuePair> queryParams, CloseableHttpClient client) throws HttpRequestException {
 		if(isValidUrl(url)){
 			try {
@@ -61,8 +58,8 @@ public class HttpCommunicationImpl implements HttpCommunication {
 				// add content type & authorization header (if not null)
 				httpPost.setHeader("Content-type", DiscoverConstants.APPLICATION_JSON);
 				if (isValidAuthToken(authToken)) {
-					String sanitizedToken = ESAPI.encoder().encodeForURL(authToken);
-					httpPost.addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + sanitizedToken);
+					String formattedAuthToken = "Bearer " + authToken.replaceAll("[\r\n]", "");  // Extra sanitization
+					httpPost.addHeader("Authorization", formattedAuthToken);
 				}
 
 				httpPost.setURI(uri.build());
@@ -75,10 +72,8 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			} catch (IOException | URISyntaxException ioException) {
 				String errorMessage = MessageFormat.format("Problem has occurred when trying to send POST request to {0}, details: {1}", url, ioException.getMessage());
 				throw new HttpRequestException(errorMessage, ioException.getCause());
-			} catch (EncodingException e) {
-				throw new HttpRequestException("Encoding error occurred", e);
-            }
-        }
+			}
+		}
 		String errorMessage = MessageFormat.format("Provided string {0} does not appear to represent a valid URL.", url);
 		throw new HttpRequestException(errorMessage);
 	}
@@ -135,8 +130,8 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			httpGet.setHeader(DiscoverConstants.CONTENT_TYPE, DiscoverConstants.APPLICATION_JSON);
 
 			if (isValidAuthToken(authToken)) {
-				String sanitizedToken = ESAPI.encoder().encodeForURL(authToken);
-				httpGet.addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + sanitizedToken);
+				String formattedAuthToken = "Bearer " + authToken.replaceAll("[\r\n]", "");  // Extra sanitization
+				httpGet.addHeader("Authorization", formattedAuthToken);
 			}
 
 			try (CloseableHttpResponse response = initUtil.getHttpClient().execute(httpGet)) {
@@ -145,10 +140,8 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 		} catch (IOException | URISyntaxException e) {
 			throw new HttpRequestException(e);
-		} catch (EncodingException e) {
-			throw new HttpRequestException("Encoding error occurred", e);
-        }
-    }
+		}
+	}
 
 	@Override
 	public String getRequestResponse(CloseableHttpResponse response) throws IOException, HttpRequestException {
