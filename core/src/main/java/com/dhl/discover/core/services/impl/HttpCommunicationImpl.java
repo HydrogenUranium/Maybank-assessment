@@ -122,6 +122,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 	}
 
 	@Override
+	@SuppressWarnings("HeaderManipulation")
 	public String sendGetMessage(String url, String authToken) throws HttpRequestException {
 		try {
 			var httpGet = new HttpGet(url);
