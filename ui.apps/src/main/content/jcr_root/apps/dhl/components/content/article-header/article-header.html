@@ -8,7 +8,7 @@
 <h1 class="article-header_title">${article.pageTitle}</h1>
 
 <!--/* This Author-related part of the code will be finalised as part of DIS-372 */-->
-<div data-sly-test.articleAuthor="${article.author}" class="article-header_author">
+<div data-sly-test.articleAuthor="${article.author}" class="article-header_info">
   <img data-sly-test.authorimage="${article.authorimage}"
        class="article-header_author-image"
        src="${authorimage}"
@@ -22,13 +22,12 @@
     </div>
     <div class="article-header_author-description__title">${article.authortitle}</div>
   </div>
+  <div class="article-header_date">
+    <time class="article-header_date-publishDate" datetime="${article.created}">${article.createdfriendly}</time>
+    <span class="article-header_date-readingDuration">${article.readtime}</span>
+  </div>
 </div>
 <!--/* End */-->
-
-<div class="article-header_date">
-  <time class="article-header_date-publishDate" datetime="${article.created}">${article.createdfriendly}</time>
-  <span class="article-header_date-readingDuration">${article.readtime}</span>
-</div>
 
 <div class="article-header_share">
   <div class="article-header_share-label">${articlePage.shareOn}</div>
