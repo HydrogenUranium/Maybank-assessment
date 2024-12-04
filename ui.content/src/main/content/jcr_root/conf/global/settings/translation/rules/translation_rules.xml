@@ -224,6 +224,7 @@
       <property inherit="true" name="readtime" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="subtitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="test" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="heroimageAltText" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/pages/editable-home-page">
       <property inherit="true" name="articleGrid-ShowMoreButtonTitle" translate="true" updateDestinationLanguage="false"/>
