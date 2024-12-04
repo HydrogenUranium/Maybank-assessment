@@ -58,7 +58,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 				// add content type & authorization header (if not null)
 				httpPost.setHeader("Content-type", DiscoverConstants.APPLICATION_JSON);
 				if (isValidAuthToken(authToken)) {
-					String formattedAuthToken = "Bearer " + authToken.replaceAll("[\r\n]", "");  // Extra sanitization
+					String formattedAuthToken = "Bearer " + sanitizeAuthToken(authToken);  // Extra sanitization
 					httpPost.addHeader("Authorization", formattedAuthToken);
 				}
 
@@ -131,7 +131,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			httpGet.setHeader(DiscoverConstants.CONTENT_TYPE, DiscoverConstants.APPLICATION_JSON);
 
 			if (isValidAuthToken(authToken)) {
-				String formattedAuthToken = "Bearer " + authToken.replaceAll("[\r\n]", "");  // Extra sanitization
+				String formattedAuthToken = "Bearer " + sanitizeAuthToken(authToken);  // Extra sanitization
 				httpGet.addHeader("Authorization", formattedAuthToken);
 			}
 
