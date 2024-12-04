@@ -3,6 +3,29 @@ describe('Singapore DHL Landing Page - Two Column', () => {
     Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/sg/en-sg/automation-testing/dhl-landing-two-column-page.html'
   ];
 
+  // Define selectors as constants
+  const selectors = {
+    onetrustConsentSdk: '#onetrust-consent-sdk',
+    onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
+    heroBanner: '.cmp-hero-banner > .cmp-hero-banner__asset',
+    textContent: '#text-ba3e0cc854',
+    marketoFormContainer: '#mktoForm_1795',
+    fieldLabel: ':nth-child(2) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel',
+    suspectCompanyname: '#suspectCompanyname',
+    firstName: '#FirstName',
+    lastName: '#LastName',
+    email: '#Email',
+    suspectAddress: '#suspectAddress',
+    suspectPostalCode: '#suspectPostalCode',
+    suspectCity: '#suspectCity',
+    suspectCountry: '#suspectCountry',
+    phone: '#Phone',
+    shippingFrequency: '#shippingfrequency',
+    submitButton: '.mktoButton',
+    header: '.headerV2-wrapper',
+    footer: '.footer-container'
+  };
+
   pageUrls.forEach((pageUrl) => {
     beforeEach(() => {
       cy.on('uncaught:exception', (e) => {
@@ -11,9 +34,9 @@ describe('Singapore DHL Landing Page - Two Column', () => {
 
       cy.visit(pageUrl);
       cy.get('body', { timeout: 2000 }).then(($body) => {
-        cy.get('#onetrust-consent-sdk', { timeout: 5000 }).then(($onetrust) => {
-          if ($onetrust.find('button#onetrust-accept-btn-handler', { timeout: 5000 }).length > 0) {
-              cy.get('button#onetrust-accept-btn-handler')
+        cy.get(selectors.onetrustConsentSdk, { timeout: 5000 }).then(($onetrust) => {
+          if ($onetrust.find(selectors.onetrustAcceptButton, { timeout: 5000 }).length > 0) {
+              cy.get(selectors.onetrustAcceptButton)
                 .contains('Accept All')
                 .should('be.visible')
                 .click();
@@ -36,46 +59,46 @@ describe('Singapore DHL Landing Page - Two Column', () => {
 
         it('Test Case', function () {
           // 1. Verify hero banner exists with image
-          cy.get('.cmp-hero-banner > .cmp-hero-banner__asset').should('exist');
+          cy.get(selectors.heroBanner).should('exist');
 
           // 2. Verify text exists
-          cy.get('#text-ba3e0cc854').should('exist');
+          cy.get(selectors.textContent).should('exist');
 
           // 4. Verify marketo form exists
-          cy.get('.cmp-marketoForm__container').should('exist');
+          cy.get(selectors.marketoFormContainer).should('exist');
 
           // 5. Verify if all fields are present
-          cy.get(':nth-child(2) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel').should('exist');
-          cy.get('#suspectCompanyname').should('exist');
-          cy.get('#FirstName').should('exist');
-          cy.get('#LastName').should('exist');
-          cy.get('#Email').should('exist');
-          cy.get('#suspectAddress').should('exist');
-          cy.get('#suspectPostalCode').should('exist');
-          cy.get('#suspectCity').should('exist');
-          cy.get('#suspectCountry').should('exist');
-          cy.get('#Phone').should('exist');
-          cy.get('#shippingfrequency').should('exist');
-          cy.get('.mktoButton').should('exist');
+          cy.get(selectors.fieldLabel).should('exist');
+          cy.get(selectors.suspectCompanyname).should('exist');
+          cy.get(selectors.firstName).should('exist');
+          cy.get(selectors.lastName).should('exist');
+          cy.get(selectors.email).should('exist');
+          cy.get(selectors.suspectAddress).should('exist');
+          cy.get(selectors.suspectPostalCode).should('exist');
+          cy.get(selectors.suspectCity).should('exist');
+          cy.get(selectors.suspectCountry).should('exist');
+          cy.get(selectors.phone).should('exist');
+          cy.get(selectors.shippingFrequency).should('exist');
+          cy.get(selectors.submitButton).should('exist');
 
           // 6. Verify the form submits successfully when all fields are filled out correctly
           const testText = 'THIS IS FOR TEST PLEASE IGNORE';
-          cy.get(':nth-child(2) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel').click();
-          cy.get('#suspectCompanyname').type(testText);
-          cy.get('#FirstName').type(testText);
-          cy.get('#LastName').type(testText);
-          cy.get('#Email').type('test@gmail.com');
-          cy.get('#suspectAddress').type(testText);
-          cy.get('#suspectPostalCode').type(testText);
-          cy.get('#suspectCity').type(testText);
-          cy.get('#suspectCountry').select('Albania');
-          cy.get('#Phone').type('111111');
-          cy.get('#shippingfrequency').select('One-off');
-          cy.get('.mktoButton').should('exist');
+          cy.get(selectors.fieldLabel).click();
+          cy.get(selectors.suspectCompanyname).type(testText);
+          cy.get(selectors.firstName).type(testText);
+          cy.get(selectors.lastName).type(testText);
+          cy.get(selectors.email).type('test@gmail.com');
+          cy.get(selectors.suspectAddress).type(testText);
+          cy.get(selectors.suspectPostalCode).type(testText);
+          cy.get(selectors.suspectCity).type(testText);
+          cy.get(selectors.suspectCountry).select('Albania');
+          cy.get(selectors.phone).type('111111');
+          cy.get(selectors.shippingFrequency).select('One-off');
+          cy.get(selectors.submitButton).should('exist');
 
           // 7. Verify header and footer exist
-          cy.get('.headerV2-wrapper').should('exist');
-          cy.get('.footer-container').should('exist');
+          cy.get(selectors.header).should('exist');
+          cy.get(selectors.footer).should('exist');
         });
       });
     });

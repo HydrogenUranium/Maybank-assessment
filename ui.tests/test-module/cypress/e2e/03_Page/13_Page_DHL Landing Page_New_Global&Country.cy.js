@@ -4,6 +4,18 @@ describe('DHL Landing Page', () => {
     Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/sg/en-sg/automation-testing/Page--DHL-Landing-Page.html'
   ];
 
+  // Define selectors as constants
+  const selectors = {
+    onetrustConsentSdk: '#onetrust-consent-sdk',
+    onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
+    title: '.title',
+    titleV2: '.title-v2',
+    downloadAsset: ':nth-child(5) > .download > .cq-dd-file',
+    downloadButton: ':nth-child(5).button > .cmp-button',
+    header: '.headerV2-wrapper',
+    footer: '.footer-container'
+  };
+
   pageUrls.forEach((pageUrl) => {
     beforeEach(() => {
       cy.on('uncaught:exception', (e) => {
@@ -12,9 +24,9 @@ describe('DHL Landing Page', () => {
 
       cy.visit(pageUrl);
       cy.get('body', { timeout: 2000 }).then(($body) => {
-        cy.get('#onetrust-consent-sdk', { timeout: 5000 }).then(($onetrust) => {
-          if ($onetrust.find('button#onetrust-accept-btn-handler', { timeout: 5000 }).length > 0) {
-              cy.get('button#onetrust-accept-btn-handler')
+        cy.get(selectors.onetrustConsentSdk, { timeout: 5000 }).then(($onetrust) => {
+          if ($onetrust.find(selectors.onetrustAcceptButton, { timeout: 5000 }).length > 0) {
+              cy.get(selectors.onetrustAcceptButton)
                 .contains('Accept All')
                 .should('be.visible')
                 .click();
@@ -37,26 +49,26 @@ describe('DHL Landing Page', () => {
 
         it('All test case', function () {
           // 1. Verify the error page consists of title
-          cy.get('.title').should('exist');
+          cy.get(selectors.title).should('exist');
 
           // 2. Verify text exists
-          cy.get('.title-v2').should('exist');
+          cy.get(selectors.titleV2).should('exist');
 
           // 3. Verify download asset exists and when clicked, it redirects to the correct page
           cy.get('body').then(($body) => {
-            if ($body.find(':nth-child(5) > .download > .cq-dd-file').length) {
-              cy.get(':nth-child(5) > .download > .cq-dd-file').should('exist');
-              cy.get(':nth-child(5) > .download > .cq-dd-file').click();
+            if ($body.find(selectors.downloadAsset).length) {
+              cy.get(selectors.downloadAsset).should('exist');
+              cy.get(selectors.downloadAsset).click();
             } else {
-              cy.get(':nth-child(5).button > .cmp-button').should('exist');
-              cy.get(':nth-child(5).button > .cmp-button').click({force: true});
+              cy.get(selectors.downloadButton).should('exist');
+              cy.get(selectors.downloadButton).click({force: true});
             }
           });
           cy.url().should('match', new RegExp(`${Cypress.env('AEM_PUBLISH_URL')}/discover/(en-global|en-sg)/open-an-account`));
 
           // 4. Verify header and footer exist
-          cy.get('.headerV2-wrapper').should('exist');
-          cy.get('.footer-container').should('exist');
+          cy.get(selectors.header).should('exist');
+          cy.get(selectors.footer).should('exist');
         });
       });
     });
