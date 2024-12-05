@@ -66,7 +66,7 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
                 response.setHeader("X-XSS-Protection", "1; mode=block");
                 response.setHeader("X-Frame-Options", "DENY");
 
-                response.getWriter().write(responseBody);
+                response.getWriter().write(sanitizeResponse(responseBody));
             }
         }
     }
@@ -79,5 +79,11 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
                 type = AttributeType.STRING
         )
         String apiKey();
+    }
+    String sanitizeResponse(String input) {
+        if (input == null) {
+            return null;
+        }
+        return input.replaceAll("[\\r\\n]", "").replaceAll("[<>]", "");
     }
 }
