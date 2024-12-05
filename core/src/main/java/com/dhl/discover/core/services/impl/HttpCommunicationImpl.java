@@ -158,7 +158,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 		try {
 			if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_ACCEPTED) {
 				var responseString = EntityUtils.toString(httpEntity);
-				//responseString = sanitizeResponse(responseString);
+				responseString = sanitizeResponse(responseString);
 				log.info("Testing SC_CREATED Haikal");
 				EntityUtils.consumeQuietly(httpEntity);
 				return responseString;
@@ -167,7 +167,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			if (statusCode == HttpStatus.SC_BAD_REQUEST) {
 				var responseString = EntityUtils.toString(httpEntity);
 				log.info("Testing SC_BAD_REQUEST Haikal");
-				//responseString = sanitizeResponse(responseString);
+				responseString = sanitizeResponse(responseString);
 				EntityUtils.consumeQuietly(httpEntity);
 				return responseString;
 			}
@@ -236,7 +236,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 		if (input == null) {
 			return null;
 		}
-		return StringEscapeUtils.escapeHtml4(input);
+		return input.replaceAll("[\\r\\n]", "").replaceAll("[<>]", "");
 	}
 
 	String sanitizeAuthToken(String authToken) {
