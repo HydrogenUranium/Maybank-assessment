@@ -97,6 +97,12 @@
                     </column>
                 </items>
             </marketo>
+            <analytics
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Analytics &amp; Reporting"
+                    sling:resourceType="granite/ui/components/foundation/include"
+                    path="/apps/dhl/dialog-fragments/analytics/dialog"
+                    namespace="analytics"/>
             <styletab
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="granite/ui/components/coral/foundation/include"
