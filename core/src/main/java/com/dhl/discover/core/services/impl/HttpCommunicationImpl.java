@@ -57,7 +57,9 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 				// add content type & authorization header (if not null)
 				httpPost.setHeader("Content-type", DiscoverConstants.APPLICATION_JSON);
-				if (isValidAuthToken(authToken)) {// Extra sanitization
+				if (isValidAuthToken(authToken)) {
+					log.info("Haikal token... sanitizeAuthToken " + sanitizeAuthToken(authToken));
+
 					httpPost.setHeader("Authorization", "Bearer " + sanitizeAuthToken(authToken));
 				}
 
@@ -156,14 +158,16 @@ public class HttpCommunicationImpl implements HttpCommunication {
 		try {
 			if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_ACCEPTED) {
 				var responseString = EntityUtils.toString(httpEntity);
-				responseString = sanitizeResponse(responseString);
+				//responseString = sanitizeResponse(responseString);
+				log.info("Testing SC_CREATED Haikal");
 				EntityUtils.consumeQuietly(httpEntity);
 				return responseString;
 			}
 
 			if (statusCode == HttpStatus.SC_BAD_REQUEST) {
 				var responseString = EntityUtils.toString(httpEntity);
-				responseString = sanitizeResponse(responseString);
+				log.info("Testing SC_BAD_REQUEST Haikal");
+				//responseString = sanitizeResponse(responseString);
 				EntityUtils.consumeQuietly(httpEntity);
 				return responseString;
 			}
