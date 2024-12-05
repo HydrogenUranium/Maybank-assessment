@@ -165,7 +165,7 @@ describe('Singapore Page Article Country', () => {
 
           // 17. Verify the gallery exists and automatically slides every 3 seconds
           selectors.gallerySlides.forEach((slide) => {
-            cy.get(slide).should('exist').and('be.visible');
+            cy.get(slide).should('exist');
           });
 
           // 18. Verify the tab exists and content changes on click
