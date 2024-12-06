@@ -87,20 +87,25 @@
         return dialogContent.querySelector(selectors.videoId).value;
     }
 
-    async function fetchVideoDetails(videoId) {
-        const url = `/apps/dhl/discoverdhlapi/youtube/index.json?videoId=${videoId}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log("data fetched encoded", data);
-        decodeHtmlEntities(data);
-        console.log("data fetched decoded", data);
-        return data.items[0];
-    }
+  async function fetchVideoDetails(videoId) {
+    console.log("Running fetchVideoDetails for videoId:", videoId);
+    const url = `/apps/dhl/discoverdhlapi/youtube/index.json?videoId=${videoId}`;
 
+    try {
+      const response = await fetch(url);
+      const encodedData = await response.text();
+      const decodedData = decodeHtmlEntities(encodedData);
+      const jsonData = JSON.parse(decodedData);
+
+      console.log(jsonData);
+      return jsonData.items[0];
+    } catch (error) {
+      console.error("Error processing response:", error);
+      throw error;
+    }
+  }
   function decodeHtmlEntities(str) {
-    const textarea = document.createElement('textarea');
-    textarea.innerHTML = str;
-    return textarea.value;
+    return str.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec));
   }
 
     function generateSchemaMarkup(videoData) {
