@@ -1,6 +1,7 @@
 package com.dhl.discover.core.servlets;
 
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -67,7 +68,7 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
                 response.setHeader("X-XSS-Protection", "1; mode=block");
                 response.setHeader("X-Frame-Options", "DENY");
 
-                response.getWriter().write(Encode.forHtml(responseBody));
+                response.getWriter().write(StringEscapeUtils.unescapeHtml4(Encode.forHtml(responseBody)));
             }
         }
     }
@@ -80,11 +81,5 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
                 type = AttributeType.STRING
         )
         String apiKey();
-    }
-    String sanitizeResponse(String input) {
-        if (input == null) {
-            return null;
-        }
-        return input.replaceAll("[\\r\\n]", "").replaceAll("[<>]", "");
     }
 }
