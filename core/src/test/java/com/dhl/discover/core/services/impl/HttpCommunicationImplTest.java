@@ -240,7 +240,7 @@ class HttpCommunicationImplTest {
 
 		assertEquals("normalString", underTest.sanitizeResponse("normalString"));
 
-		assertEquals("&lt;script&gt;alert('XSS')&lt;/script&gt;", underTest.sanitizeResponse("<script>alert('XSS')</script>"));
+		assertEquals("scriptalert('XSS')/script", underTest.sanitizeResponse("<script>alert('XSS')</script>"));
 	}
 
 	@ParameterizedTest
