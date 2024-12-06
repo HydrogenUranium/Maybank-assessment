@@ -91,8 +91,17 @@
         const url = `/apps/dhl/discoverdhlapi/youtube/index.json?videoId=${videoId}`;
         const response = await fetch(url);
         const data = await response.json();
+        console.log("data fetched encoded", data);
+        decodeHtmlEntities(data);
+        console.log("data fetched decoded", data);
         return data.items[0];
     }
+
+  function decodeHtmlEntities(str) {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = str;
+    return textarea.value;
+  }
 
     function generateSchemaMarkup(videoData) {
         return {
