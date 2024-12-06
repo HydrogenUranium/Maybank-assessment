@@ -12,8 +12,8 @@ describe('Global Thank You Page Newsletter', () => {
     paragraph: 'p',
     header: '.headerV2-wrapper',
     footer: '.footer-container',
-    recommendedSection: '.article-items',
-    recommendedArticle: '.article-items'
+    recommendedSection: '.cmp-article-showcase__articles',
+    recommendedArticle: 'article'
   };
 
   pageUrls.forEach((pageUrl, index) => {
