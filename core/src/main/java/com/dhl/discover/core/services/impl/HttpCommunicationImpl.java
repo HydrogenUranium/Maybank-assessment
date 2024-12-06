@@ -22,6 +22,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.owasp.encoder.Encode;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -58,9 +59,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 				// add content type & authorization header (if not null)
 				httpPost.setHeader("Content-type", DiscoverConstants.APPLICATION_JSON);
 				if (isValidAuthToken(authToken)) {
-					log.info("Haikal token... sanitizeAuthToken " + sanitizeAuthToken(authToken));
-
-					httpPost.setHeader("Authorization", "Bearer " + sanitizeAuthToken(authToken));
+					httpPost.setHeader("Authorization", "Bearer " + sanitizeAuthToken(Encode.forJava(authToken)));
 				}
 
 				httpPost.setURI(uri.build());
@@ -159,14 +158,12 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_ACCEPTED) {
 				var responseString = EntityUtils.toString(httpEntity);
 				responseString = sanitizeResponse(responseString);
-				log.info("Testing SC_CREATED Haikal");
 				EntityUtils.consumeQuietly(httpEntity);
 				return responseString;
 			}
 
 			if (statusCode == HttpStatus.SC_BAD_REQUEST) {
 				var responseString = EntityUtils.toString(httpEntity);
-				log.info("Testing SC_BAD_REQUEST Haikal");
 				responseString = sanitizeResponse(responseString);
 				EntityUtils.consumeQuietly(httpEntity);
 				return responseString;
