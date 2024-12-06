@@ -88,7 +88,6 @@
     }
 
   async function fetchVideoDetails(videoId) {
-    console.log("Running fetchVideoDetails for videoId:", videoId);
     const url = `/apps/dhl/discoverdhlapi/youtube/index.json?videoId=${videoId}`;
 
     try {
