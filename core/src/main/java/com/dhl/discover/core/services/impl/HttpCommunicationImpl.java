@@ -59,7 +59,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 				// add content type & authorization header (if not null)
 				httpPost.setHeader("Content-type", DiscoverConstants.APPLICATION_JSON);
 				if (isValidAuthToken(authToken)) {
-					httpPost.setHeader("Authorization", "Bearer " + sanitizeAuthToken(Encode.forJava(authToken)));
+					httpPost.setHeader("Authorization", "Bearer " + sanitizeAuthToken(authToken));
 				}
 
 				httpPost.setURI(uri.build());
