@@ -25,9 +25,9 @@
   },
   "homepage": "https://www.dhl.com/discover",
   "devDependencies": {
-    "@babel/core": "^7.23.2",
+    "@babel/core": "^7.26.0",
     "@babel/eslint-parser": "^7.22.15",
-    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-env": "^7.26.0",
     "aemsync": "^5.0.5",
     "autoprefixer": "^10.4.16",
     "babel-core": "^6.26.3",
