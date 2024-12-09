@@ -14,6 +14,13 @@ var observer = new MutationObserver(function (mutations) {
     });
 });
 
+$(document).on("dialog-closed", function() {
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+    });
+});
+
 observer.observe(document.body, {
     childList: true,
     subtree: true,
