@@ -46,6 +46,8 @@ Export-Package: \
     com.dhl.discover.core.helpers, \
     com.dhl.discover.core.constants, \
     com.dhl.discover.core.models, \
+    com.dhl.discover.core.models.common, \
+    com.dhl.discover.core.models.search, \
     com.dhl.discover.core.services, \
     com.dhl.discover.core.dto.general, \
     com.dhl.discover.core.dto.marketo, \
