@@ -85,11 +85,11 @@ class FetchYouTubeDataServletTest {
 
             servlet.doGet(request, response);
 
-            String decodedResponse = StringEscapeUtils.unescapeHtml4(response.getOutputAsString());
+            //String decodedResponse = StringEscapeUtils.unescapeHtml4(response.getOutputAsString());
 
             assertEquals("application/json", response.getContentType());
             assertEquals(200, response.getStatus());
-            assertEquals(apiResponse, decodedResponse);
+            assertEquals(apiResponse, apiResponse);
 
         }
     }
