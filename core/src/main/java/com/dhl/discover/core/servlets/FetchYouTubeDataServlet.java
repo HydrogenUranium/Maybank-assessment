@@ -1,6 +1,9 @@
 package com.dhl.discover.core.servlets;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -23,6 +26,8 @@ import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component(service = Servlet.class, property = {
         Constants.SERVICE_DESCRIPTION + "=YouTube Schema Markup",
@@ -61,13 +66,31 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
                 }
 
                 String responseBody = new String(httpResponse.getEntity().getContent().readAllBytes(), StandardCharsets.UTF_8);
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode root = mapper.readTree(responseBody);
+
                 response.setContentType("application/json");
                 response.setHeader("Content-Security-Policy", "default-src 'self'");
                 response.setHeader("X-Content-Type-Options", "nosniff");
                 response.setHeader("X-XSS-Protection", "1; mode=block");
                 response.setHeader("X-Frame-Options", "DENY");
 
-                response.getWriter().write(Encode.forJavaScript(responseBody));
+                if (!root.isArray() || root.isEmpty()) {
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND, "Video not found");
+                    return;
+                }
+
+
+                ObjectNode resultNode = mapper.createObjectNode();
+                resultNode.put("id", root.path("id").asText());
+                resultNode.put("title", root.path("snippet").path("title").asText());
+                resultNode.put("description", root.path("snippet").path("description").asText());
+                resultNode.put("thumbnailUrl", root.path("snippet").path("thumbnails").path("high").path("url").asText());
+                resultNode.put("publishedAt", root.path("snippet").path("publishedAt").asText());
+                resultNode.put("duration", root.path("contentDetails").path("duration").asText());
+                resultNode.put("viewCount", root.path("statistics").path("viewCount").asText());
+
+                response.getWriter().write(resultNode.toString());
             }
         }
     }
