@@ -5,49 +5,49 @@
      data-sly-set.isHorizontal="${model.designMode == 'horizontal'}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
-<section class="article-showcase-component article-showcase-component_${model.designMode}" data-sly-test="${!isEmpty}">
-    <h2 class="title" data-sly-test="${model.title}">
+<section class="cmp-article-showcase cmp-article-showcase--${model.designMode}" data-sly-test="${!isEmpty}">
+    <h2 class="cmp-article-showcase__title" data-sly-test="${model.title}">
         ${model.title}
     </h2>
-    <div class="article-items horizontal-scroll" data-sly-test="${isHorizontal}">
+    <div class="cmp-article-showcase__articles horizontal-scroll" data-sly-test="${isHorizontal}">
         <sly data-sly-repeat="${model.articles}"
              data-sly-call="${articleCardTemplate.card @ article=item, showTags=model.showTags, enableAssetDelivery=model.enableAssetDelivery}">
         </sly>
     </div>
     <sly data-sly-test="${isVertical}">
-        <div class="article-items">
-            <article class="article" data-sly-repeat="${model.articles}">
-                <a tabindex="-1" href="${item.path}" class="article__picture">
+        <div class="cmp-article-showcase__articles">
+            <article class="cmp-article-showcase__article" data-sly-repeat="${model.articles}">
+                <a tabindex="-1" href="${item.path}" class="cmp-article-showcase__article-picture">
                     <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
                          data-sly-call="${template.picture @
                          image=item.pageImage,
                          useWebOptimized=model.enableAssetDelivery,
-                         imgClass='article__picture__image',
+                         imgClass='cmp-article-showcase__article-image',
                          alt=item.pageImageAltText
                      }"></sly>
                 </a>
-                <div class="article__info">
-                    <div class="article__info__group-tag">${item.groupTag}</div>
-                    <h3><a href="${item.path}" class="article__info__title">${item.pageTitleWithBr @ context='html'}</a></h3>
-                    <div class="article__info__metadata">
+                <div class="cmp-article-showcase__article-info">
+                    <div class="cmp-article-showcase__article-group-tag">${item.groupTag}</div>
+                    <h3><a href="${item.path}" class="cmp-article-showcase__article-title">${item.pageTitleWithBr @ context='html'}</a></h3>
+                    <div class="cmp-article-showcase__article-metadata">
                         <time datetime="${item.created}" data-sly-test="${item.createdfriendly}">${item.createdfriendly}</time>
                         <span data-sly-test="${item.readtime}">${item.readtime}</span>
                     </div>
-                    <div class="article__info__description">${item.description}</div>
-                    <div class="article__info__author">
+                    <div class="cmp-article-showcase__article-description">${item.description}</div>
+                    <div class="cmp-article-showcase__article-author">
                         <sly data-sly-test="${item.authorimage}"
                              data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
                              data-sly-call="${template.picture @
                              image=item.authorimage,
                              useWebOptimized=model.enableAssetDelivery,
-                             imgClass='article__info__author__avatar',
+                             imgClass='cmp-article-showcase__article-author-image',
                              alt=item.author
                          }"></sly>
-                        <div data-sly-test="${item.author}" class="article__info__author__name">${item.author}</div>
+                        <div data-sly-test="${item.author}" class="cmp-article-showcase__article-author-name">${item.author}</div>
                     </div>
                 </div>
             </article>
         </div>
-        <a class="link" data-sly-test="${model.linkName}" href="${model.linkPath}.html">${model.linkName}</a>
+        <a class="cmp-article-showcase__link" data-sly-test="${model.linkName}" href="${model.linkPath}.html">${model.linkName}</a>
     </sly>
 </section>
