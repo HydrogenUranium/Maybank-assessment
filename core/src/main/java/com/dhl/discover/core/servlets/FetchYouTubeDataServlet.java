@@ -20,14 +20,13 @@ import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
-import org.owasp.encoder.Encode;
 
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
+
 
 @Component(service = Servlet.class, property = {
         Constants.SERVICE_DESCRIPTION + "=YouTube Schema Markup",
@@ -53,7 +52,6 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing API key or videoId parameter");
             return;
         }
-
         var apiUrl = String.format("https://www.googleapis.com/youtube/v3/videos?id=%s&part=snippet,contentDetails,statistics&key=%s", videoId, apiKey);
 
         try(CloseableHttpClient httpClient = HttpClients.createDefault()){
@@ -74,11 +72,6 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
                 response.setHeader("X-Content-Type-Options", "nosniff");
                 response.setHeader("X-XSS-Protection", "1; mode=block");
                 response.setHeader("X-Frame-Options", "DENY");
-
-                if (!root.isArray() || root.isEmpty()) {
-                    response.sendError(HttpServletResponse.SC_NOT_FOUND, "Video not found");
-                    return;
-                }
 
 
                 ObjectNode resultNode = mapper.createObjectNode();

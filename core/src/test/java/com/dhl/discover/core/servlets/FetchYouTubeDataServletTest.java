@@ -2,7 +2,6 @@ package com.dhl.discover.core.servlets;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import org.apache.commons.text.StringEscapeUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -88,7 +87,7 @@ class FetchYouTubeDataServletTest {
             //String decodedResponse = StringEscapeUtils.unescapeHtml4(response.getOutputAsString());
 
             assertEquals("application/json", response.getContentType());
-            //assertEquals(200, response.getStatus());
+            assertEquals(200, response.getStatus());
             assertEquals(apiResponse, apiResponse);
 
         }
