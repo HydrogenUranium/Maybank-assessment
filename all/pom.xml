@@ -98,6 +98,13 @@
                             <type>zip</type>
                             <target>/apps/dhl-vendor-packages/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>org.owasp.encoder</groupId>
+                            <artifactId>encoder</artifactId>
+                            <target>/apps/dhl-vendor-packages/install</target>
+                            <type>jar</type>
+                        </embedded>
+
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -247,6 +254,12 @@
             <version>2.1.0</version>
             <type>zip</type>
         </dependency>
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder</artifactId>
+            <version>1.2.3</version> <!-- Replace with the latest version -->
+        </dependency>
+
     </dependencies>
     <distributionManagement>
         <repository>
