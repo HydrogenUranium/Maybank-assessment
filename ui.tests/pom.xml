@@ -120,7 +120,7 @@
                                 </goals>
                                 <configuration>
                                     <nodeVersion>v22.11.0</nodeVersion>
-									<npmVersion>10.5.0</npmVersion>
+									<npmVersion>10.9.2</npmVersion>
                                     <installDirectory>test-module</installDirectory>
                                 </configuration>
                             </execution>

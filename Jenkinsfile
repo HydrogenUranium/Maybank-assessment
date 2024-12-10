@@ -6,7 +6,7 @@ pipeline {
     }
 
     tools {
-        maven 'Maven 3.6.3'
+        maven 'Maven 3.8.1'
         jdk 'JDK17'
     }   
 
@@ -123,7 +123,7 @@ pipeline {
                     )
 
                     rtMavenRun (
-                            tool: 'Maven 3.6.3',
+                            tool: 'Maven 3.8.1',
                             useWrapper: false,
                             pom: 'pom.xml',
                             goals: '-ntp clean install -DskipTests -Pdhl-artifactory -D baseline.skip=true',
