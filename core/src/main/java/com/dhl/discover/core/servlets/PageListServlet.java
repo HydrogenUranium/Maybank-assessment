@@ -7,6 +7,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.dhl.discover.core.constants.DiscoverConstants;
 import com.google.gson.JsonArray;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -31,6 +32,7 @@ import java.util.Map;
                 "sling.servlet.paths=/bin/get-all-pages"
         }
 )
+@Slf4j
 public class PageListServlet extends SlingAllMethodsServlet {
     private static final long serialVersionUID = 1L;
 
@@ -66,7 +68,7 @@ public class PageListServlet extends SlingAllMethodsServlet {
             response.getWriter().write("Failed to get resource resolver: " + e.getMessage());
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("Error: " + e.getMessage());
+            response.getWriter().write("An unexpected error occurred. Please try again later.");
         }
     }
 }
