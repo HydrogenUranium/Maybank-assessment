@@ -7,8 +7,17 @@ var observer = new MutationObserver(function (mutations) {
               // Uncheck and then re-check the checkbox to update Alt Text value in the field
               checkbox.click();
               checkbox.click();
+
+              observer.disconnect();
             }
         }
+    });
+});
+
+$(document).on("dialog-closed", function() {
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
     });
 });
 
