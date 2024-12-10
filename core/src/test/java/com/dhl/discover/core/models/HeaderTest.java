@@ -1,7 +1,6 @@
 package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.WCMException;
 import com.dhl.discover.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -20,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class HeaderTest {
-    private final static String HEADER_PATH = "/content/dhl/global/en-global/jcr:content/header";
+    private static final String HEADER_PATH = "/content/dhl/global/en-global/jcr:content/header";
     private AemContext context = new AemContext();
     private MockSlingHttpServletRequest request = context.request();
 
