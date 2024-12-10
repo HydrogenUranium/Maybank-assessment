@@ -1,0 +1,12 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "searchInputAriaLabel": "Search Bar Input",
+  "openAriaLabel": "Open Search Bar",
+  "closeAriaLabel": "Close Search Bar",
+  "recentSearchesTitle": "Recently searched",
+  "searchButtonAriaLabel": "Go to search result page",
+  "showThumbnail": true,
+  "articlesTitle": "Articles",
+  "sling:resourceType": "dhl/components/content/search-bar",
+  "trendingTopicsTitle": "Trending topics"
+}

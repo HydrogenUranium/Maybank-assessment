@@ -203,6 +203,15 @@
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
+                                    <navigationMenu
+                                            jcr:primaryType="nt:unstructured"
+                                            variant="warning"
+                                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                                            jcr:title="Some common configurations were moved to Experience Fragments"
+                                            text="If you want to update the configuration in an outdated section,
+                                            please make the changes in the corresponding Experience Fragment.
+                                            Note that write access to Experience Fragments is restricted."/>
+
                                     <global
                                             jcr:primaryType="nt:unstructured"
                                             jcr:title="Global Components"
@@ -214,7 +223,7 @@
                                                     multiple="{Boolean}true" variant="quiet" margin="{Boolean}true">
                                                 <items jcr:primaryType="nt:unstructured">
                                                     <headerV2
-                                                            jcr:title="Header v.2"
+                                                            jcr:title="⚠️ Header v.2 (Outdated)"
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                                         <items jcr:primaryType="nt:unstructured">
@@ -436,7 +445,7 @@
                                                         </items>
                                                     </headerV2>
                                                     <searchBar
-                                                            jcr:title="Search Bar"
+                                                            jcr:title="⚠️ Search Bar (Outdated)"
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                                         <items jcr:primaryType="nt:unstructured">
@@ -548,7 +557,7 @@
                                                         </items>
                                                     </searchBar>
                                                     <ctaBannerSubscribeToOurNewsletter
-                                                            jcr:title="CTA Banner 'Subscribe to our Newsletter'"
+                                                            jcr:title="⚠️ CTA Banner 'Subscribe to our Newsletter'  (Outdated)"
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                                         <items jcr:primaryType="nt:unstructured">
@@ -643,7 +652,7 @@
                                                                 active="{Boolean}false"/>
                                                     </ctaBannerSubscribeToOurNewsletter>
                                                     <ctaBannerOpenBusinessAccount
-                                                            jcr:title="CTA Banner 'Open A Business Account'"
+                                                            jcr:title="⚠️ CTA Banner 'Open A Business Account' (Outdated)"
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                                         <items jcr:primaryType="nt:unstructured">
@@ -738,7 +747,7 @@
                                                                       active="{Boolean}false"/>
                                                     </ctaBannerOpenBusinessAccount>
                                                     <ctaBannerGrayIndividualShipper
-                                                            jcr:title="CTA Banner Gray 'Individual Shipper'"
+                                                            jcr:title="⚠️ CTA Banner Gray 'Individual Shipper' (Outdated)"
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                                         <items jcr:primaryType="nt:unstructured">
@@ -796,7 +805,7 @@
                                                                       active="{Boolean}false"/>
                                                     </ctaBannerGrayIndividualShipper>
                                                     <footer
-                                                            jcr:title="Footer v.2"
+                                                            jcr:title="⚠️ Footer v.2 (Outdated)"
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                                         <items jcr:primaryType="nt:unstructured">
@@ -1230,7 +1239,7 @@
                                                         </items>
                                                     </relatedPosts>
                                                     <ctaBannerSubscribeToOurNewsletter
-                                                            jcr:title="Bottom CTA Banner"
+                                                            jcr:title="⚠️ Bottom CTA Banner (Outdated)"
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                                         <items jcr:primaryType="nt:unstructured">

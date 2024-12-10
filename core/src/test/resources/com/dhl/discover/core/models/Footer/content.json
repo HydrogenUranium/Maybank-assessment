@@ -1,0 +1,46 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "invitationTitle": "Ready to grow your business?",
+  "logoAltText": "A logo of DHL Group",
+  "logoTitle": "DHL group",
+  "promoText": "Business and logistics insights to power your SME. If you're looking for ideas, trends or advice to stay ahead of the game, we've got you covered.",
+  "companyLinksLabel": "Company",
+  "socialLinksLabel": "Follow us",
+  "invitationText": "Join the Discover community today.",
+  "categoryLinksLabel": "Categories",
+  "sling:resourceType": "dhl/components/content/footer",
+  "logoIcon": "/content/dam/dhl/glo-footer-logo.svg",
+  "logoLink": "https://www.dhl.com/",
+  "companyLinks": {
+    "jcr:primaryType": "nt:unstructured",
+    "item0": {
+      "jcr:primaryType": "nt:unstructured",
+      "cq:isCancelledForChildren": "true",
+      "linkName": "About DHL",
+      "linkPath": "https://www.dhl.com/gb-en/home/about-us.html"
+    },
+    "item1": {
+      "jcr:primaryType": "nt:unstructured",
+      "cq:isCancelledForChildren": "true",
+      "linkName": "contact",
+      "linkPath": "/content/dhl/global/en-global/ship-with-dhl/contact"
+    }
+  },
+  "socialLinks": {
+    "jcr:primaryType": "nt:unstructured",
+    "item0": {
+      "jcr:primaryType": "nt:unstructured",
+      "cq:isCancelledForChildren": "true",
+      "linkIcon": "/content/dam/dhl/site-image/social-icons/facebook.png",
+      "linkName": "Facebook",
+      "linkPath": "https://www.facebook.com/DHLexpress/"
+    },
+    "item1": {
+      "jcr:primaryType": "nt:unstructured",
+      "cq:isCancelledForChildren": "true",
+      "linkIcon": "/content/dam/dhl/site-image/social-icons/youtube.png",
+      "linkName": "Youku",
+      "linkPath": "https://www.youtube.com/user/dhl"
+    }
+  }
+}

@@ -95,6 +95,10 @@
                                             cq:policy="dhl/components/content/error-banner/policy_error-banner"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <experiencefragment
+                                            cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -182,6 +186,10 @@
                                             cq:policy="dhl/components/content/error-banner/policy_error-banner"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <experiencefragment
+                                            cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -265,6 +273,10 @@
                                             cq:policy="dhl/components/content/error-banner/policy_error-banner"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <experiencefragment
+                                            cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -344,6 +356,10 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <error-banner
                                             cq:policy="dhl/components/content/error-banner/policy_error-banner"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <experiencefragment
+                                            cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
