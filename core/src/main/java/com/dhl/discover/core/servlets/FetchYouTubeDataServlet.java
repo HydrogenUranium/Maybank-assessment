@@ -1,6 +1,11 @@
 package com.dhl.discover.core.servlets;
 
-import org.apache.http.Header;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -20,9 +25,10 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+
 
 @Component(service = Servlet.class, property = {
         Constants.SERVICE_DESCRIPTION + "=YouTube Schema Markup",
@@ -30,9 +36,14 @@ import java.io.OutputStream;
         "sling.servlet.paths=" + "/apps/dhl/discoverdhlapi/youtube/index.json"}
 )
 @Designate(ocd = FetchYouTubeDataServlet.Configuration.class)
+@Slf4j
 public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
 
     private String apiKey;
+
+    private static final String SNIPPET = "snippet";
+
+    private static final String PAGEINFO = "pageInfo";
 
     @Activate
     @Modified
@@ -45,29 +56,79 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
         String videoId = request.getParameter("videoId");
 
         if (apiKey == null || videoId == null || !videoId.matches("^[a-zA-Z0-9_-]{11}$")) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing API key or videoId parameter");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing API key or invalid videoId parameter");
             return;
         }
 
-        var apiUrl = String.format("https://www.googleapis.com/youtube/v3/videos?id=%s&part=snippet,contentDetails,statistics&key=%s", videoId, apiKey);
+        String apiUrl = String.format("https://www.googleapis.com/youtube/v3/videos?id=%s&part=snippet,contentDetails,statistics&key=%s", videoId, apiKey);
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             var httpGet = new HttpGet(apiUrl);
             try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
-                int statusCode = httpResponse.getStatusLine().getStatusCode();
-                response.setStatus(statusCode);
-
-                for (Header header : httpResponse.getAllHeaders()) {
-                    response.setHeader(header.getName(), header.getValue());
+                String contentType = httpResponse.getEntity().getContentType().getValue();
+                if (!contentType.startsWith("application/json")) {
+                    response.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Unexpected content type");
+                    return;
                 }
 
-                try (InputStream content = httpResponse.getEntity().getContent(); OutputStream out = response.getOutputStream()) {
-                    var buffer = new byte[1024];
-                    int bytesRead;
-                    while ((bytesRead = content.read(buffer)) != -1) {
-                        out.write(buffer, 0, bytesRead);
+                String responseBody = new String(httpResponse.getEntity().getContent().readAllBytes(), StandardCharsets.UTF_8);
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode root = mapper.readTree(responseBody);
+
+                ObjectNode resultNode = mapper.createObjectNode();
+                resultNode.put("kind", root.path("kind").asText(""));
+                resultNode.put("etag", root.path("etag").asText(""));
+
+                ArrayNode itemsArray = mapper.createArrayNode();
+                JsonNode itemsNode = root.path("items");
+
+                if (itemsNode.isArray()) {
+                    for (JsonNode item : itemsNode) {
+                        ObjectNode filteredItem = mapper.createObjectNode();
+
+                        filteredItem.put("kind", item.path("kind").asText(""));
+                        filteredItem.put("etag", item.path("etag").asText(""));
+                        filteredItem.put("id", item.path("id").asText(""));
+
+                        ObjectNode snippet = mapper.createObjectNode();
+                        snippet.put("title", item.path(SNIPPET).path("title").asText(""));
+                        snippet.put("description", item.path(SNIPPET).path("description").asText(""));
+                        snippet.put("publishedAt", item.path(SNIPPET).path("publishedAt").asText(""));
+
+                        ObjectNode thumbnails = mapper.createObjectNode();
+                        ObjectNode highThumbnail = mapper.createObjectNode();
+                        highThumbnail.put("url", item.path(SNIPPET).path("thumbnails").path("high").path("url").asText(""));
+                        thumbnails.set("high", highThumbnail);
+                        snippet.set("thumbnails", thumbnails);
+
+                        filteredItem.set(SNIPPET, snippet);
+
+                        ObjectNode contentDetails = mapper.createObjectNode();
+                        contentDetails.put("duration", item.path("contentDetails").path("duration").asText(""));
+                        filteredItem.set("contentDetails", contentDetails);
+
+                        ObjectNode statistics = mapper.createObjectNode();
+                        statistics.put("viewCount", item.path("statistics").path("viewCount").asText(""));
+                        filteredItem.set("statistics", statistics);
+
+                        itemsArray.add(filteredItem);
                     }
                 }
+
+                resultNode.set("items", itemsArray);
+
+                ObjectNode pageInfo = mapper.createObjectNode();
+                pageInfo.put("totalResults", root.path(PAGEINFO).path("totalResults").asInt(0));
+                pageInfo.put("resultsPerPage", root.path(PAGEINFO).path("resultsPerPage").asInt(0));
+                resultNode.set(PAGEINFO, pageInfo);
+
+                response.setContentType("application/json");
+                response.setHeader("Content-Security-Policy", "default-src 'self'");
+                response.setHeader("X-Content-Type-Options", "nosniff");
+                response.setHeader("X-XSS-Protection", "1; mode=block");
+                response.setHeader("X-Frame-Options", "DENY");
+
+                response.getWriter().write(resultNode.toString());
             }
         }
     }
