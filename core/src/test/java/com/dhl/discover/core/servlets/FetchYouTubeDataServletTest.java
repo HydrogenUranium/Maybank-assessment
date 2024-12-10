@@ -84,11 +84,9 @@ class FetchYouTubeDataServletTest {
 
             servlet.doGet(request, response);
 
-            //String decodedResponse = StringEscapeUtils.unescapeHtml4(response.getOutputAsString());
-
             assertEquals("application/json", response.getContentType());
             assertEquals(200, response.getStatus());
-            assertEquals(apiResponse, apiResponse);
+            assertEquals("{\"kind\":\"youtube#videoListResponse\",\"items\":[]}", apiResponse);
 
         }
     }
@@ -116,6 +114,29 @@ class FetchYouTubeDataServletTest {
 
         assertEquals(415, response.getStatus(), "Expected 415 UNSUPPORTED MEDIA TYPE");
     }
+
+    @Test
+    void testDoGet_itemsArrayProcessing() throws IOException {
+        String videoId = "yaBMNgAcBWA";
+        String apiResponse = "{\"kind\":\"youtube#videoListResponse\",\"items\":[{\"kind\":\"youtube#video\",\"etag\":\"etag1\",\"id\":\"videoId1\",\"snippet\":{\"title\":\"title1\",\"description\":\"description1\",\"publishedAt\":\"2021-01-01T00:00:00Z\",\"thumbnails\":{\"high\":{\"url\":\"http://example.com/high.jpg\"}}},\"contentDetails\":{\"duration\":\"PT10M\"},\"statistics\":{\"viewCount\":\"1000\"}}]}";
+
+        try (MockedStatic<HttpClients> mockedStatic = mockStatic(HttpClients.class)) {
+            mockedStatic.when(HttpClients::createDefault).thenReturn(httpClient);
+            request.setParameterMap(Map.of("videoId", videoId));
+
+            when(httpClient.execute(any())).thenReturn(httpResponse);
+            when(httpResponse.getEntity()).thenReturn(entity);
+            when(entity.getContentType()).thenReturn(new BasicHeader("Content-Type", "application/json"));
+            when(entity.getContent()).thenReturn(new ByteArrayInputStream(apiResponse.getBytes()));
+
+            servlet.doGet(request, response);
+
+            assertEquals("application/json", response.getContentType());
+            assertEquals(200, response.getStatus());
+            assertEquals("{\"kind\":\"youtube#videoListResponse\",\"etag\":\"\",\"items\":[{\"kind\":\"youtube#video\",\"etag\":\"etag1\",\"id\":\"videoId1\",\"snippet\":{\"title\":\"title1\",\"description\":\"description1\",\"publishedAt\":\"2021-01-01T00:00:00Z\",\"thumbnails\":{\"high\":{\"url\":\"http://example.com/high.jpg\"}}},\"contentDetails\":{\"duration\":\"PT10M\"},\"statistics\":{\"viewCount\":\"1000\"}}],\"pageInfo\":{\"totalResults\":0,\"resultsPerPage\":0}}", response.getOutputAsString());
+        }
+    }
+
 
 
 
