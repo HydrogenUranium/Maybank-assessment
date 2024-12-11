@@ -46,6 +46,8 @@ Export-Package: \
     com.dhl.discover.core.helpers, \
     com.dhl.discover.core.constants, \
     com.dhl.discover.core.models, \
+    com.dhl.discover.core.models.common, \
+    com.dhl.discover.core.models.search, \
     com.dhl.discover.core.services, \
     com.dhl.discover.core.dto.general, \
     com.dhl.discover.core.dto.marketo, \
@@ -252,6 +254,12 @@ Import-Package: javax.annotation;version=0.0.0,*
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder</artifactId>
+            <version>1.2.3</version> <!-- Replace with the latest version -->
         </dependency>
 
     </dependencies>

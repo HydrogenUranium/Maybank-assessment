@@ -1,0 +1,26 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "countryFilterInputAriaLabel": "Country Filter Input",
+  "moreLinkLabel": "More",
+  "homePageLabel": "Home",
+  "switchLanguageAriaLabel": "Switch Language to",
+  "companyLinksLabel": "Company",
+  "countrySelector-searchPlaceholder": "Search",
+  "buttonLink": "/content/dhl/global/en-global/open-an-account",
+  "buttonName": "Apply for a Business Account",
+  "countrySelector-title": "Countries & Region",
+  "categoryLinksLabel": "Categories",
+  "signInLabel": "",
+  "sling:resourceType": "dhl/components/content/header",
+  "lessLinkLabel": "Less",
+  "countrySelectorToggleAriaLabel": "Country Selector Toggle",
+  "companyLinks": {
+    "jcr:primaryType": "nt:unstructured",
+    "item0": {
+      "jcr:primaryType": "nt:unstructured",
+      "cq:isCancelledForChildren": "true",
+      "linkName": "Contact us",
+      "linkPath": "/content/dhl/global/en-global/ship-with-dhl/contact"
+    }
+  }
+}

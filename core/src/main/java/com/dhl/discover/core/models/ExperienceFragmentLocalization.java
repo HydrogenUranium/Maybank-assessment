@@ -28,8 +28,16 @@ public class ExperienceFragmentLocalization {
     @RequestAttribute
     private String path;
 
+    private boolean isExperienceFragmentMasterReference() {
+        return path.startsWith(EXPERIENCE_FRAGMENT_MASTER_LOCATION);
+    }
+
+    private boolean isExperienceFragmentPage() {
+        return currentPage.getPath().startsWith(EXPERIENCE_FRAGMENTS_FOLDER);
+    }
+
     public String getLocalizedPath() {
-        if(!path.startsWith(EXPERIENCE_FRAGMENT_MASTER_LOCATION)) {
+        if(!isExperienceFragmentMasterReference() || isExperienceFragmentPage()) {
             return path;
         }
 

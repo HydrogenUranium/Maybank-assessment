@@ -7,6 +7,7 @@ import com.dhl.discover.core.dto.general.HttpApiResponse;
 import com.dhl.discover.core.services.HttpCommunication;
 import com.dhl.discover.core.services.InitUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -21,6 +22,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.owasp.encoder.Encode;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -41,6 +43,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 	InitUtil initUtil;
 
 	@Override
+	@SuppressWarnings("HeaderManipulation")
 	public <T> String sendPostMessage(String url, String authToken, T postBody, List<NameValuePair> queryParams, CloseableHttpClient client) throws HttpRequestException {
 		if(isValidUrl(url)){
 			try {
@@ -55,8 +58,8 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 				// add content type & authorization header (if not null)
 				httpPost.setHeader("Content-type", DiscoverConstants.APPLICATION_JSON);
-				if(isValidAuthToken(authToken)){
-					httpPost.setHeader("Authorization", "Bearer " + authToken);
+				if (isValidAuthToken(authToken)) {
+					httpPost.setHeader("Authorization", "Bearer " + sanitizeAuthToken(authToken));
 				}
 
 				httpPost.setURI(uri.build());
@@ -119,6 +122,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 	}
 
 	@Override
+	@SuppressWarnings("HeaderManipulation")
 	public String sendGetMessage(String url, String authToken) throws HttpRequestException {
 		try {
 			var httpGet = new HttpGet(url);
@@ -126,8 +130,8 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			httpGet.setURI(uri.build());
 			httpGet.setHeader(DiscoverConstants.CONTENT_TYPE, DiscoverConstants.APPLICATION_JSON);
 
-			if(isValidAuthToken(authToken)){
-				httpGet.setHeader("Authorization", "Bearer " + authToken);
+			if (isValidAuthToken(authToken)) {
+				httpGet.setHeader("Authorization", "Bearer " + sanitizeAuthToken(authToken));
 			}
 
 			try (CloseableHttpResponse response = initUtil.getHttpClient().execute(httpGet)) {
@@ -141,7 +145,7 @@ public class HttpCommunicationImpl implements HttpCommunication {
 
 	@Override
 	public String getRequestResponse(CloseableHttpResponse response) throws IOException, HttpRequestException {
-		if(null == response){
+		if (response == null) {
 			initUtil.resetClient();
 			throw new IOException("Backend response can't be extracted. Something went wrong.");
 		}
@@ -150,21 +154,28 @@ public class HttpCommunicationImpl implements HttpCommunication {
 		int statusCode = response.getStatusLine().getStatusCode();
 		String statusMessage = response.getStatusLine().getReasonPhrase();
 
-		if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_ACCEPTED) {
-			var responseString = EntityUtils.toString(httpEntity);
+		try {
+			if (statusCode == HttpStatus.SC_OK || statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_ACCEPTED) {
+				var responseString = EntityUtils.toString(httpEntity);
+				responseString = sanitizeResponse(responseString);
+				EntityUtils.consumeQuietly(httpEntity);
+				return responseString;
+			}
+
+			if (statusCode == HttpStatus.SC_BAD_REQUEST) {
+				var responseString = EntityUtils.toString(httpEntity);
+				responseString = sanitizeResponse(responseString);
+				EntityUtils.consumeQuietly(httpEntity);
+				return responseString;
+			}
+		} finally {
 			EntityUtils.consumeQuietly(httpEntity);
-			return responseString;
 		}
 
-		if (statusCode == HttpStatus.SC_BAD_REQUEST){
-			var responseString = EntityUtils.toString(httpEntity);
-			EntityUtils.consumeQuietly(httpEntity);
-			return responseString;
-		}
-
-		EntityUtils.consumeQuietly(httpEntity);
-
-		String errorMessage = MessageFormat.format("Backend returned status code ''{0}'' with error message ''{1}''", statusCode,statusMessage);
+		String errorMessage = MessageFormat.format(
+				"Backend returned status code ''{0}'' with error message ''{1}''",
+				statusCode, statusMessage
+		);
 		throw new HttpRequestException(errorMessage);
 	}
 
@@ -217,5 +228,19 @@ public class HttpCommunicationImpl implements HttpCommunication {
 			}
 		}
 		return uriBuilder;
+	}
+	String sanitizeResponse(String input) {
+		if (input == null) {
+			return null;
+		}
+		return input.replaceAll("[\\r\\n]", "").replaceAll("[<>]", "");
+	}
+
+	String sanitizeAuthToken(String authToken) {
+		if (authToken == null) {
+			return "";
+		}
+		// Removes CRLF characters
+		return authToken.replaceAll("[\r\n]", "").trim();
 	}
 }

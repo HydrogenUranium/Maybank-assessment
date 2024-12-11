@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+        xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+        xmlns:cq="http://www.day.com/jcr/cq/1.0"
+        xmlns:jcr="http://www.jcp.org/jcr/1.0"
+        xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Header"
+        sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <navigationMenu
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                            jcr:title="The list of Navigation Menu "
+                            text="- is automatically generated &lt;br&gt;
+                                  based on the Category pages placed under the Home page"/>
+                    <button
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Button (for Desktop only)"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <buttonName
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Button Name"
+                                    fieldDescription="This 'Open a business account' button will be displayed on the right side of the Header Navigation bar in the Desktop layout"
+                                    emptyText="Open a business account"
+                                    name="./buttonName">
+                            </buttonName>
+                            <buttonLink
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Button Link"
+                                    fieldDescription="The 'Open a business account' button should lead to a page with a form to create a new business account"
+                                    rootPath="/content/dhl"
+                                    name="./buttonLink">
+                            </buttonLink>
+                        </items>
+                    </button>
+                    <contrySelector
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Country Selector"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <title
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Title"
+                                    emptyText="Countries &amp; regions"
+                                    name="./countrySelector-title">
+                            </title>
+                            <searchPlaceholder
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Search Placeholder"
+                                    emptyText="Search"
+                                    name="./countrySelector-searchPlaceholder">
+                            </searchPlaceholder>
+                        </items>
+                    </contrySelector>
+                    <signIn
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Sign In"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <signInLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Sign In Label (for Tablet/Mobile only)"
+                                    fieldDescription="This 'Sign In' label will be displayed in the Hamburger Navigation Menu of the header in the Tablet and Mobile layout"
+                                    emptyText="Sign In"
+                                    name="./signInLabel">
+                            </signInLabel>
+                        </items>
+                    </signIn>
+                    <ariaLabels
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Aria Labels"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <countrySelectorToggleAriaLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Country Selector Toggle Aria Label"
+                                    emptyText="Country Selector Toggle"
+                                    name="./countrySelectorToggleAriaLabel">
+                            </countrySelectorToggleAriaLabel>
+                            <countryFilterInputAriaLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Country Filter Input Aria Label"
+                                    emptyText="Country Filter Input"
+                                    name="./countryFilterInputAriaLabel">
+                            </countryFilterInputAriaLabel>
+                            <switchLanguageAriaLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Switch Language Aria Label"
+                                    emptyText="Switch Language to"
+                                    name="./switchLanguageAriaLabel">
+                            </switchLanguageAriaLabel>
+                        </items>
+                    </ariaLabels>
+                    <categoryLinks
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Category Links"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <categoryLinksLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Category Links Label (for Tablet/Mobile only)"
+                                    fieldDescription="This 'Categories' label will be displayed in the Hamburger Navigation Menu of the header in the Tablet and Mobile layout"
+                                    emptyText="Categories"
+                                    name="./categoryLinksLabel">
+                            </categoryLinksLabel>
+                            <homePageLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Home page Label (for Desktop only)"
+                                    fieldDescription="This 'Home' label will be displayed on the first place on the left side of the of the Header Navigation bar in the Desktop layout"
+                                    emptyText="Home"
+                                    name="./homePageLabel">
+                            </homePageLabel>
+                            <moreLinkLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="More link Label (for Desktop only)"
+                                    fieldDescription="By default, we show only one row with Categories on the Navigation bar in the Desktop layout.
+                                                                                              If there is not enough space for all Categories in that row, this 'More' link is added,
+                                                                                              that allows you to see all Categories in multiple rows"
+                                    emptyText="... More"
+                                    name="./moreLinkLabel">
+                            </moreLinkLabel>
+                            <lessLinkLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Less link Label (for Desktop only)"
+                                    fieldDescription="By default, we show only one row with Categories on the Navigation bar in the Desktop layout.
+                                                                                              If there is not enough space for all Categories in that row, a 'More' link is added,
+                                                                                              that allows you to see all Categories in multiple rows.
+                                                                                              To return to a one-row view of the Navigation bar, you need to use this 'Less' link"
+                                    emptyText="... Less"
+                                    name="./lessLinkLabel">
+                            </lessLinkLabel>
+                        </items>
+                    </categoryLinks>
+                    <companyLinks
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Company links"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <companyLinksLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Company Links Label (for Tablet/Mobile only)"
+                                    fieldDescription="This 'Company' label will be displayed in the Hamburger Navigation Menu of the header in the Tablet and Mobile layout"
+                                    emptyText="Company"
+                                    name="./companyLinksLabel">
+                            </companyLinksLabel>
+                            <companyLinksList
+                                    jcr:primaryType="nt:unstructured"
+                                    fieldLabel="Company Links List (inheritance cancelled)"
+                                    fieldDescription="Add links like 'About Us', 'Contact Us'.
+                                                                                              Synchronisation with Blueprint (Master) disabled (inheritance cancelled)"
+                                    composite="{Boolean}true"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                       jcr:primaryType="nt:unstructured"
+                                       name="./companyLinks">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <linkName
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Link Name"
+                                                name="./linkName"/>
+                                        <linkPath
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldLabel="Link Path"
+                                                rootPath="/content/dhl"
+                                                name="./linkPath"/>
+                                    </items>
+                                </field>
+                            </companyLinksList>
+                        </items>
+                    </companyLinks>
+                    <hideNavigationMenu
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                            text="Hide Navigation Menu"
+                            value="true"
+                            name="./hideNavigationMenu">
+                    </hideNavigationMenu>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

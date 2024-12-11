@@ -19,6 +19,7 @@ import static com.dhl.discover.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static com.dhl.discover.junitUtils.InjectorMock.mockInjectHomeProperty;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -37,7 +38,7 @@ class SearchBarModelTest {
     void setUp() throws Throwable {
         context.addModelsForClasses(SearchBarModel.class);
         context.registerService(TagUtilService.class, tagUtilService);
-        context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
+        lenient().when(tagUtilService.getTrendingTopics(any(Resource.class))).thenReturn(List.of("Business", "China", "small business"));
     }
 
     private void initRequest(String path) {
@@ -51,10 +52,36 @@ class SearchBarModelTest {
     }
 
     @Test
+    void test_withLocalSetup() {
+        String componentPath = "/content/dhl/global/en-global/jcr:content/search-bar";
+
+        Page page = context.create().page("/content/dhl/global/en-global");
+        context.load().json("/com/dhl/discover/core/models/SearchBarModel/content.json", componentPath);
+        when(tagUtilService.getTrendingTopics(any(Resource.class))).thenReturn(List.of("Business", "China", "small business"));
+        context.currentPage(page);
+        request.setPathInfo(componentPath);
+        request.setResource(context.resourceResolver().getResource(componentPath));
+
+        mockInjectHomeProperty(context, "searchBar-searchResultPage" ,"/content/dhl/global/en-global/search-results");
+
+        SearchBarModel searchBarModel = request.adaptTo(SearchBarModel.class);
+        assertNotNull(searchBarModel);
+
+        assertEquals("Recently searched", searchBarModel.getRecentSearchesTitle());
+        assertEquals("Trending topics", searchBarModel.getTrendingTopicsTitle());
+        assertEquals("Go to search result page", searchBarModel.getSearchButtonAriaLabel());
+        assertEquals("Open Search Bar", searchBarModel.getOpenAriaLabel());
+        assertEquals("Close Search Bar", searchBarModel.getCloseAriaLabel());
+        assertEquals("Articles", searchBarModel.getArticlesTitle());
+        assertEquals("[\"Business\",\"China\",\"small business\"]", searchBarModel.getTrendingTopics());
+        assertEquals("/content/dhl/global/en-global/search-results", searchBarModel.getSearchResultPage());
+    }
+
+    @Test
     void test_withValidSetup() {
+        context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
         initRequest(ARTICLE_RESOURCE_PATH);
 
-        when(tagUtilService.getTrendingTopics(any(Resource.class))).thenReturn(List.of("Business", "China", "small business"));
         mockInjectHomeProperty(context, "searchBar-recentSearchesTitle" ,"Recent Searches");
         mockInjectHomeProperty(context, "searchBar-trendingTopicsTitle" ,"Trending Topics");
         mockInjectHomeProperty(context, "searchBar-articlesTitle" ,"Articles");
@@ -78,6 +105,7 @@ class SearchBarModelTest {
 
     @Test
     void test_withoutValidSetup() {
+        context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
         initRequest(ARTICLE_RESOURCE_PATH);
 
         mockInjectHomeProperty(context, "searchBar-recentSearchesTitle" ,null);
@@ -91,7 +119,6 @@ class SearchBarModelTest {
         assertNull(searchBarModel.getRecentSearchesTitle());
         assertNull(searchBarModel.getTrendingTopicsTitle());
         assertNull(searchBarModel.getArticlesTitle());
-        assertEquals("[]", searchBarModel.getTrendingTopics());
-        assertEquals("", searchBarModel.getSearchResultPage());
+        assertEquals("[\"Business\",\"China\",\"small business\"]", searchBarModel.getTrendingTopics());
     }
 }
