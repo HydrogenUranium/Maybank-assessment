@@ -15,12 +15,18 @@
 FROM cypress/included:13.14.1
 
 ENV APP_PATH /usr/src/app
+
 RUN apt -qqy update \
     # Generic dependencies
     && apt -qqy --no-install-recommends install \
     curl \
     build-essential
 # <<< End EAAS Convention \
+
+RUN addgroup --gid 1001 -S "$SERVICE_NAME" && \
+    adduser -G "$SERVICE_NAME" --shell /bin/false --disabled-password -H --uid 1001 "$SERVICE_NAME" && \
+    mkdir -p /var/log/"$SERVICE_NAME" && \
+    chown "$SERVICE_NAME":"$SERVICE_NAME" /var/log/"$SERVICE_NAME" \
 
 # Set Application Environment
 WORKDIR ${APP_PATH}
