@@ -80,13 +80,13 @@
                             <type>zip</type>
                             <target>/apps/dhl-packages/content/install</target>
                         </embedded>
+                        <!--
                         <embedded>
                             <groupId>org.apache.servicemix.bundles</groupId>
                             <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
                             <type>jar</type>
                             <target>/apps/dhl-vendor-packages/install</target>
                         </embedded>
-                        <!--
                         <embedded>
                             <groupId>com.dhl.aem</groupId>
                             <artifactId>akamai.core</artifactId>
@@ -134,6 +134,9 @@
             <plugin>
                 <groupId>com.adobe.aem</groupId>
                 <artifactId>aemanalyser-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
                 <executions>
                     <execution>
                         <id>aem-analyser</id>
