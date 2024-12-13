@@ -3,6 +3,10 @@ export type ArticleCategory = {
     articles: Article[];
 }
 
+export interface IndexedArticleCategory extends ArticleCategory {
+    id: number;
+}
+
 export type Article = {
     author: string,
     createdfriendly: string,

@@ -65,11 +65,11 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const getSuggestionLength = () => {
     return suggestionQuery.length
       ? suggestions.length
-      : recentSearches.length + trendingTopics.length
-  }
+      : recentSearches.length + trendingTopics.length;
+  };
 
   useEffect(() => {
-    if(activeSuggestion < 0) return;
+    if(activeSuggestion < 0) {return;}
 
     if(suggestionQuery.length === 0 && activeSuggestion < recentSearches.length + trendingTopics.length) {
       setInputValue([...recentSearches, ...trendingTopics][activeSuggestion]);
@@ -114,17 +114,17 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
     setActiveSuggestion((prevSelected) => {
       return prevSelected < getSuggestionLength() - 1
         ? prevSelected + 1
-        : 0
+        : 0;
     });
-  }
+  };
 
   const handleArrowUp = () => {
     setActiveSuggestion((prevSelected) => {
       return prevSelected > 0 
         ? prevSelected  - 1 
-        : getSuggestionLength() - 1
+        : getSuggestionLength() - 1;
     });
-  }
+  };
 
   const handleKeyClick = ({ key }: React.KeyboardEvent<HTMLInputElement>): void => {
     if (key === 'Enter' && inputValue.length) {
@@ -163,7 +163,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
                   aria-label={suggestion}
                   href={getSearchResultPagePath(suggestion)}
                   onClick={() => {
-                    putRecentSearch(suggestion)
+                    putRecentSearch(suggestion);
                   }}
                   className={classNames(
                     styles.searchSectionItemsItem,

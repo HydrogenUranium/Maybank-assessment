@@ -1,5 +1,5 @@
 import React, { FunctionComponent }  from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 export const processComponent = (element) => {
   try {
@@ -11,7 +11,8 @@ export const processComponent = (element) => {
       componentName,
       ...componentConfig,
     });
-    ReactDOM.render(subscribeComponent, element);
+    const root = ReactDOM.createRoot(element);
+    root.render(subscribeComponent);
   } catch (error) {
     console.log(error);
   }
