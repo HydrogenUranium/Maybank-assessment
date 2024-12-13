@@ -43,16 +43,16 @@
                         <configuration>
                             <bnd><![CDATA[
 Export-Package: \
-    com.dhl.discover.core.helpers, \
-    com.dhl.discover.core.constants, \
-    com.dhl.discover.core.models, \
-    com.dhl.discover.core.models.common, \
-    com.dhl.discover.core.models.search, \
-    com.dhl.discover.core.services, \
-    com.dhl.discover.core.dto.general, \
-    com.dhl.discover.core.dto.marketo, \
-    com.akamai.edgegrid.signer, \
-    com.akamai.edgegrid.signer.exceptions
+    com.dhl.discover.core.helpers;version="1.0.0", \
+    com.dhl.discover.core.constants;version="1.0.0", \
+    com.dhl.discover.core.models;version="1.0.0", \
+    com.dhl.discover.core.models.common;version="1.0.0", \
+    com.dhl.discover.core.models.search;version="1.0.0", \
+    com.dhl.discover.core.services;version="1.0.0", \
+    com.dhl.discover.core.dto.general;version="1.0.0", \
+    com.dhl.discover.core.dto.marketo;version="1.0.0", \
+    com.akamai.edgegrid.signer;version="5.0.0", \
+    com.akamai.edgegrid.signer.exceptions;version="5.0.0"
 
 Import-Package: javax.annotation;version=0.0.0,*
 -includeresource: @edgegrid-signer-*.jar;lib:=true
@@ -209,12 +209,6 @@ Import-Package: javax.annotation;version=0.0.0,*
         <dependency>
             <groupId>com.jcraft</groupId>
             <artifactId>jzlib</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.servicemix.bundles</groupId>
-            <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
-            <version>0.1.55_1</version>
         </dependency>
 
         <dependency>

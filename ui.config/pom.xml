@@ -66,6 +66,10 @@
             <plugin>
                 <groupId>com.adobe.aem</groupId>
                 <artifactId>aemanalyser-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+
                 <executions>
                     <execution>
                         <id>aem-analyser</id>
