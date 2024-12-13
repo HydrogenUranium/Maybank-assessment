@@ -23,11 +23,6 @@ RUN apt -qqy update \
     build-essential
 # <<< End EAAS Convention \
 
-RUN addgroup --gid 1001 -S "$SERVICE_NAME" && \
-    adduser -G "$SERVICE_NAME" --shell /bin/false --disabled-password -H --uid 1001 "$SERVICE_NAME" && \
-    mkdir -p /var/log/"$SERVICE_NAME" && \
-    chown "$SERVICE_NAME":"$SERVICE_NAME" /var/log/"$SERVICE_NAME" \
-
 # Set Application Environment
 WORKDIR ${APP_PATH}
 COPY ./test-module ./
