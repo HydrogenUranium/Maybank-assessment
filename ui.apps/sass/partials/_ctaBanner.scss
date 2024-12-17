@@ -2,8 +2,7 @@
   margin-top: 40px;
 
   .cmp-cta-banner {
-    margin-left: calc((100% - 100vw) / 2);
-    margin-right: calc((100% - 100vw) / 2);
+    @include remove-container-margins-mobile-only;
 
     min-height: 300px;
     padding: 20px;

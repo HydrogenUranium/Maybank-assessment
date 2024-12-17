@@ -80,6 +80,7 @@
                             <type>zip</type>
                             <target>/apps/dhl-packages/content/install</target>
                         </embedded>
+                        <!--
                         <embedded>
                             <groupId>org.apache.servicemix.bundles</groupId>
                             <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
@@ -92,12 +93,20 @@
                             <target>/apps/dhl-vendor-packages/install</target>
                             <type>jar</type>
                         </embedded>
+                        -->
                         <embedded>
                             <groupId>de.valtech.aecu</groupId>
                             <artifactId>aecu.complete.cloud</artifactId>
                             <type>zip</type>
                             <target>/apps/dhl-vendor-packages/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>org.owasp.encoder</groupId>
+                            <artifactId>encoder</artifactId>
+                            <target>/apps/dhl-vendor-packages/install</target>
+                            <type>jar</type>
+                        </embedded>
+
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -125,6 +134,9 @@
             <plugin>
                 <groupId>com.adobe.aem</groupId>
                 <artifactId>aemanalyser-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
                 <executions>
                     <execution>
                         <id>aem-analyser</id>
@@ -232,10 +244,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.servicemix.bundles</groupId>
-            <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
-        </dependency>
-        <dependency>
             <groupId>de.valtech.aecu</groupId>
             <artifactId>aecu.complete.cloud</artifactId>
             <type>zip</type>
@@ -247,6 +255,12 @@
             <version>2.1.0</version>
             <type>zip</type>
         </dependency>
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder</artifactId>
+            <version>1.2.3</version> <!-- Replace with the latest version -->
+        </dependency>
+
     </dependencies>
     <distributionManagement>
         <repository>

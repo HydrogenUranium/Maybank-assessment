@@ -3,6 +3,19 @@ describe('Global Thank You Page Newsletter', () => {
     Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global/newsletter-sign-up/newsletter-thanks.html'
   ];
 
+  // Define selectors as constants
+  const selectors = {
+    onetrustConsentSdk: '#onetrust-consent-sdk',
+    onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
+    breadcrumbActiveItem: '.cmp-breadcrumb__item--active > span',
+    pageTitleBold: 'h2 b',
+    paragraph: 'p',
+    header: '.headerV2-wrapper',
+    footer: '.footer-container',
+    recommendedSection: '.cmp-article-showcase__articles',
+    recommendedArticle: 'article'
+  };
+
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
       cy.on('uncaught:exception', (e) => {
@@ -12,9 +25,9 @@ describe('Global Thank You Page Newsletter', () => {
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
       cy.get('body', { timeout: 2000 }).then(($body) => {
-        cy.get('#onetrust-consent-sdk', { timeout: 5000 }).then(($onetrust) => {
-          if ($onetrust.find('button#onetrust-accept-btn-handler', { timeout: 5000 }).length > 0) {
-              cy.get('button#onetrust-accept-btn-handler')
+        cy.get(selectors.onetrustConsentSdk, { timeout: 5000 }).then(($onetrust) => {
+          if ($onetrust.find(selectors.onetrustAcceptButton, { timeout: 5000 }).length > 0) {
+              cy.get(selectors.onetrustAcceptButton)
                 .contains('Accept All')
                 .should('be.visible')
                 .click();
@@ -39,25 +52,25 @@ describe('Global Thank You Page Newsletter', () => {
 
         it('All test case', function () {
           // 1. Verify that the "Thank You" page loads successfully without any errors
-          cy.get('.cmp-breadcrumb__item--active > span').should('contain', 'Thank you');
+          cy.get(selectors.breadcrumbActiveItem).should('contain', 'Thank you');
 
           // 2. Verify that the page title is correct with bold and matches the expected title
-          cy.get('h2 b', { timeout: 10000 })
+          cy.get(selectors.pageTitleBold, { timeout: 10000 })
             .should('contain', 'Thank you - just one more step!')
             .and(($h2) => {
               expect($h2).to.have.css('font-weight', '700'); // check for bold text
             });
 
           // 3. Verify text consist with some text
-          cy.get('p').should('exist');
+          cy.get(selectors.paragraph).should('exist');
 
           // 4. Verify header and footer are exist
-          cy.get('.headerV2-wrapper').should('exist');
-          cy.get('.footer-container').should('exist');
+          cy.get(selectors.header).should('exist');
+          cy.get(selectors.footer).should('exist');
 
           // 5. Verify Recommended section is exist and contain maximum 4 articles
-          cy.get('.article-items').should('exist')
-            .find('.article-items').should('have.length.at.most', 4);
+          cy.get(selectors.recommendedSection).should('exist')
+            .find(selectors.recommendedArticle).should('have.length.at.most', 4);
         });
       });
     });

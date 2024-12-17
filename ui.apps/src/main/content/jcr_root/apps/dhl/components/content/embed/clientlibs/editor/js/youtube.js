@@ -87,12 +87,12 @@
         return dialogContent.querySelector(selectors.videoId).value;
     }
 
-    async function fetchVideoDetails(videoId) {
-        const url = `/apps/dhl/discoverdhlapi/youtube/index.json?videoId=${videoId}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        return data.items[0];
-    }
+  async function fetchVideoDetails(videoId) {
+    const url = `/apps/dhl/discoverdhlapi/youtube/index.json?videoId=${videoId}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.items[0];
+  }
 
     function generateSchemaMarkup(videoData) {
         return {

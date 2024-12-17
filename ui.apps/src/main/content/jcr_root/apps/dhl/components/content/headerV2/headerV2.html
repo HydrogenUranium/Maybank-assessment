@@ -79,7 +79,11 @@
             </nav>
             <div class="navigation-row__right">
                 <span class="navigation-item navigation-item_more-less more">${headerV2.moreLinkLabel}</span>
-                <a data-sly-test="${headerV2.buttonName}" class="button dhl-btn dhl-btn--primary" href="${headerV2.buttonLink}" title="${headerV2.buttonName}"
+                <a data-sly-test="${headerV2.buttonName}"
+                   class="button dhl-btn dhl-btn--primary"
+                   href="${headerV2.buttonLink}"
+                   title="${headerV2.buttonName}"
+                   data-testid="header-button"
                    data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;${headerV2.buttonName}&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}">
                     <span>${headerV2.buttonName}</span>
                 </a>
@@ -118,7 +122,7 @@
                     </ul>
                 </li>
             </ul>
-            <div class="short-banners" data-sly-resource="${'cta_banner_with_poin' @ resourceType='dhl/components/content/cta-banner-with-points'}"></div>
+            <div class="short-banners cta_banner_with_points" data-sly-resource="${'cta_banner_with_poin' @ resourceType='dhl/components/content/cta-banner-with-points'}"></div>
         </nav>
     </div>
 </header>

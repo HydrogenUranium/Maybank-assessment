@@ -121,7 +121,6 @@ public class Article {
     @Expose
     private List<String> tagsToShow = new ArrayList<>();
     private List<String> highlights = new ArrayList<>();
-    private int counter;
     private Locale locale;
     @Expose
     protected String path;
@@ -214,8 +213,6 @@ public class Article {
         readtime = valueMap.get("jcr:content/readtime", "");
         author = valueMap.get("jcr:content/author", "");
         authortitle = valueMap.get("jcr:content/authortitle", "");
-
-        counter = valueMap.get("jcr:content/counter", 0);
 
         tags = new ArrayList<>();
         tagsToShow = tagUtilService.getExternalTags(resource);

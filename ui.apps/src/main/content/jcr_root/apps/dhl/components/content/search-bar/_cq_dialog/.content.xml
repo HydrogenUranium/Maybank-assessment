@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Search Bar"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <openSearchAriaLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Open Button Aria Label"
+                            emptyText="Open Search Bar"
+                            name="./openAriaLabel">
+                    </openSearchAriaLabel>
+                    <closeSearchAriaLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Close Button Aria Label"
+                            emptyText="Close Search Bar"
+                            name="./closeAriaLabel">
+                    </closeSearchAriaLabel>
+                    <searchInputAriaLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Search Input Aria Label"
+                            emptyText="Search Bar Input"
+                            name="./searchInputAriaLabel">
+                    </searchInputAriaLabel>
+                    <searchButtonAriaLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Search Button Aria Label"
+                            emptyText="Go to search result page"
+                            name="./searchButtonAriaLabel">
+                    </searchButtonAriaLabel>
+                    <recentSearchesTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Recent Searches Title"
+                            emptyText="Recent Searches"
+                            name="./recentSearchesTitle">
+                    </recentSearchesTitle>
+                    <trendingTopicsTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Trending Topics Title"
+                            emptyText="Trending Topics"
+                            name="./trendingTopicsTitle">
+                    </trendingTopicsTitle>
+                    <articlesTitle
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Suggested Articles Title"
+                            emptyText="Articles"
+                            name="./articlesTitle">
+                    </articlesTitle>
+                    <showThumbnail
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                            fieldDescription="If checked, the thumbnail will be shown in search bar results."
+                            name="./showThumbnail"
+                            text="Show Thumbnail"
+                            value="true">
+                    </showThumbnail>
+                    <searchResultPage
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                            name="./searchResultPage"
+                            rootPath="/content/dhl"
+                            fieldLabel="Search Result Page">
+                    </searchResultPage>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

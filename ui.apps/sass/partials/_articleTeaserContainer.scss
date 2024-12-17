@@ -4,6 +4,10 @@
   width: calc(100% + 40px) !important;
 
   .cmp-container {
+    max-width: 1240px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
     .article-teaser {
       padding: 0 20px;
 

@@ -15,6 +15,7 @@
 FROM cypress/included:13.14.1
 
 ENV APP_PATH /usr/src/app
+
 RUN apt -qqy update \
     # Generic dependencies
     && apt -qqy --no-install-recommends install \

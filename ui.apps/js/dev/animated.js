@@ -1,17 +1,16 @@
 import './Tests/Fonts';
 
 // Import components
-import Header from './Components/Header';
 import IEDetector from './Components/IEDetector';
-import LandingPageButton from './Components/LandingPageButton';
 import Count from './Components/Count';
 import CarouselRow from './Components/CarouselRow';
 import AnimatedParallax from './Components/AnimatedParallax';
-import SmoothScroll from './Components/SmoothScroll';
 import AnimatedShowcasePanel from './Components/AnimatedShowcasePanel';
 import AnimatedPagesHero from './Components/AnimatedPagesHero';
 import InPageNavigation from './Components/InPageNavigation';
 import ShipNowTwoStepForm from './Components/ShipNowTwoStepForm';
+import SmoothScroll from './Components/SmoothScroll';
+
 
 $(document).ready(() => {
   try {
@@ -22,9 +21,7 @@ $(document).ready(() => {
   }
   // Initiate components
   IEDetector.init();
-  Header.init();
   Count.init();
-  LandingPageButton.init();
   CarouselRow.init();
   AnimatedParallax.init();
   AnimatedShowcasePanel.init();

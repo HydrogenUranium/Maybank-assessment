@@ -151,7 +151,7 @@
 }
 
 /* Top Margins */
-.aem-GridColumn .mt {
+.aem-GridColumn.mt {
   &-zero {
     margin-top: var(--margin-zero);
   }
@@ -170,7 +170,7 @@
 }
 
 /* Bottom Margins */
-.aem-GridColumn .mb {
+.aem-GridColumn.mb {
   &-zero {
     margin-bottom: var(--margin-zero);
   }
