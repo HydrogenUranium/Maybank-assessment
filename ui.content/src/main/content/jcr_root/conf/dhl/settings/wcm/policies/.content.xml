@@ -106,6 +106,60 @@
                             roundedCorners="false"
                             topMargin="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </policy_1701253431611>
                     <policy_108071559424200
                             jcr:primaryType="nt:unstructured"
@@ -117,6 +171,60 @@
                             margin="true"
                             roundedCorners="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </policy_108071559424200>
                 </hero-banner>
                 <title jcr:primaryType="nt:unstructured">
@@ -849,6 +957,60 @@
                         controlsPrepended="false"
                         delay="5000">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </article_carousel_policy>
                 </article-carousel>
                 <article-teaser jcr:primaryType="nt:unstructured">
@@ -887,6 +1049,60 @@
                         components="[group:DHL Components]"
                         layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </general_content_page_container_policy>
                     <thank_you_page_container_policy
                             jcr:primaryType="nt:unstructured"
@@ -895,6 +1111,60 @@
                             components="[group:DHL Components]"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </thank_you_page_container_policy>
                 </container>
                 <embed jcr:primaryType="nt:unstructured">
@@ -917,6 +1187,60 @@
                             youtubeRelatedVideosDefaultValue="true"
                             youtubeRelatedVideosEnabled="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </article_embed_component_policy>
                 </embed>
                 <top-tiles jcr:primaryType="nt:unstructured">
@@ -935,6 +1259,60 @@
                             sling:resourceType="wcm/core/components/policy/policy"
                             enableAssetDelivery="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </policy_dhl_showcase>
                 </article-showcase>
                 <related-posts jcr:primaryType="nt:unstructured">
@@ -953,6 +1331,60 @@
                             sling:resourceType="wcm/core/components/policy/policy"
                             enableAssetDelivery="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </policy_dhl_article-grid>
                 </article-grid>
                 <teaser jcr:primaryType="nt:unstructured">
@@ -1012,6 +1444,60 @@
                             isDecorative="false"
                             titleValueFromDAM="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </image_v2_policy>
                 </image>
                 <separator jcr:primaryType="nt:unstructured">
@@ -1735,6 +2221,978 @@
                         </cq:styleGroups>
                     </policy_experiencefragment>
                 </experiencefragment>
+                <accordion-v2 jcr:primaryType="nt:unstructured">
+                    <policy_accordion-v2
+                            jcr:lastModified="{Date}2024-11-25T14:37:02.684+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Accordion-v2 Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAdvancedTrackedInteractions="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_accordion-v2>
+                </accordion-v2>
+                <article-author-banner jcr:primaryType="nt:unstructured">
+                    <policy_article-author-banner
+                            jcr:lastModified="{Date}2024-11-25T14:37:02.684+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Article Author Banner Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAdvancedTrackedInteractions="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_article-author-banner>
+                </article-author-banner>
+                <article-container jcr:primaryType="nt:unstructured">
+                    <policy_article-container
+                            jcr:lastModified="{Date}2024-11-25T14:37:02.684+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Article Container Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAdvancedTrackedInteractions="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_article-container>
+                </article-container>
+                <article-header jcr:primaryType="nt:unstructured">
+                    <policy_dhl_article-header
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Article Header Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAssetDelivery="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_dhl_article-header>
+                </article-header>
+                <!--<articlelistcategoryexplore jcr:primaryType="nt:unstructured">
+                    <articlelistcategoryexplore_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Properties"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </articlelistcategoryexplore_policy>
+                </articlelistcategoryexplore>
+                <articlelistcategorytrending jcr:primaryType="nt:unstructured">
+                    <articlelistcategorytrending_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Properties"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </articlelistcategorytrending_policy>
+                </articlelistcategorytrending>
+                <column_container jcr:primaryType="nt:unstructured">
+                    <column_container_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Column Container Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </column_container_policy>
+                </column_container>
+                <followUs jcr:primaryType="nt:unstructured">
+                    <followUs_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Properties"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </followUs_policy>
+                </followUs>
+                <gallery jcr:primaryType="nt:unstructured">
+                    <gallery_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Properties"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </gallery_policy>
+                </gallery>-->
+                <!--<highlight-banner jcr:primaryType="nt:unstructured">
+                    <highlight-banner_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Highlight Banner"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </highlight-banner_policy>
+                </highlight-banner>
+                <home-page-container jcr:primaryType="nt:unstructured">
+                    <home-page-container_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Home Page Container"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </home-page-container_policy>
+                </home-page-container>
+                <homepagecarousel jcr:primaryType="nt:unstructured">
+                    <homepagecarousel_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Home Page Container"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </homepagecarousel_policy>
+                </homepagecarousel>-->
+<!--                <html5embed jcr:primaryType="nt:unstructured">
+                    <html5embed_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Home Page Container"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </html5embed_policy>
+                </html5embed>-->
+               <!-- <inlineshipnowmarketoconfigurable jcr:primaryType="nt:unstructured">
+                    <inlineshipnowmarketoconfigurable_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Inline Shipnow Market to Configurable"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </inlineshipnowmarketoconfigurable_policy>
+                </inlineshipnowmarketoconfigurable>-->
+                <!--<landingpoints jcr:primaryType="nt:unstructured">
+                    <landingpoints_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="/apps/dhl/components/content/article-teaser"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </landingpoints_policy>
+                </landingpoints>-->
             </content>
         </components>
     </dhl>
