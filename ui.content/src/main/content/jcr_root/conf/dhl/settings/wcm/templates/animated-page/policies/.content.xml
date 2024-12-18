@@ -67,6 +67,10 @@
                                     cq:policy="dhl/components/content/error-banner/policy_error-banner"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <accordion-v2
+                                    cq:policy="dhl/components/content/accordion-v2/policy_accordion-v2"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
                         </content>
                         <separator
                                 cq:policy="dhl/components/content/separator/separator_policy"
