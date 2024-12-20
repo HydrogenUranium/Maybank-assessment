@@ -106,60 +106,6 @@
                             roundedCorners="false"
                             topMargin="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
-                        <cq:styleGroups jcr:primaryType="nt:unstructured">
-                            <item0
-                                    cq:styleGroupLabel="Margin Top"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="mt-large"
-                                            cq:styleId="1729042357900"
-                                            cq:styleLabel="Large"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item1
-                                            cq:styleClasses="mt-medium"
-                                            cq:styleId="1729045097701"
-                                            cq:styleLabel="Medium"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item2
-                                            cq:styleClasses="mt-small"
-                                            cq:styleId="1729045105010"
-                                            cq:styleLabel="Small"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item3
-                                            cq:styleClasses="mt-zero"
-                                            cq:styleId="1729045111413"
-                                            cq:styleLabel="No"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item0>
-                            <item1
-                                    cq:styleGroupLabel="Margin Bottom"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="mb-large"
-                                            cq:styleId="1729045126103"
-                                            cq:styleLabel="Large"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item1
-                                            cq:styleClasses="mb-medium"
-                                            cq:styleId="1729045132395"
-                                            cq:styleLabel="Medium"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item2
-                                            cq:styleClasses="mb-small"
-                                            cq:styleId="1729045139172"
-                                            cq:styleLabel="Small"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item3
-                                            cq:styleClasses="mb-zero"
-                                            cq:styleId="1729045144901"
-                                            cq:styleLabel="No"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item1>
-                        </cq:styleGroups>
                     </policy_1701253431611>
                     <policy_108071559424200
                             jcr:primaryType="nt:unstructured"
@@ -171,60 +117,6 @@
                             margin="true"
                             roundedCorners="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
-                        <cq:styleGroups jcr:primaryType="nt:unstructured">
-                            <item0
-                                    cq:styleGroupLabel="Margin Top"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="mt-large"
-                                            cq:styleId="1729042357900"
-                                            cq:styleLabel="Large"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item1
-                                            cq:styleClasses="mt-medium"
-                                            cq:styleId="1729045097701"
-                                            cq:styleLabel="Medium"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item2
-                                            cq:styleClasses="mt-small"
-                                            cq:styleId="1729045105010"
-                                            cq:styleLabel="Small"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item3
-                                            cq:styleClasses="mt-zero"
-                                            cq:styleId="1729045111413"
-                                            cq:styleLabel="No"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item0>
-                            <item1
-                                    cq:styleGroupLabel="Margin Bottom"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="mb-large"
-                                            cq:styleId="1729045126103"
-                                            cq:styleLabel="Large"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item1
-                                            cq:styleClasses="mb-medium"
-                                            cq:styleId="1729045132395"
-                                            cq:styleLabel="Medium"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item2
-                                            cq:styleClasses="mb-small"
-                                            cq:styleId="1729045139172"
-                                            cq:styleLabel="Small"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item3
-                                            cq:styleClasses="mb-zero"
-                                            cq:styleId="1729045144901"
-                                            cq:styleLabel="No"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item1>
-                        </cq:styleGroups>
                     </policy_108071559424200>
                 </hero-banner>
                 <title jcr:primaryType="nt:unstructured">
@@ -1250,6 +1142,60 @@
                             sling:resourceType="wcm/core/components/policy/policy"
                             enableAssetDelivery="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </policy_dhl_top-tiles>
                 </top-tiles>
                 <article-showcase jcr:primaryType="nt:unstructured">
@@ -1322,6 +1268,60 @@
                             sling:resourceType="wcm/core/components/policy/policy"
                             enableAssetDelivery="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </policy_dhl_related-posts>
                 </related-posts>
                 <article-grid jcr:primaryType="nt:unstructured">
@@ -1759,6 +1759,60 @@
                             linkDisabled="false"
                             type="h1">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
                     </policy_title_v2>
                 </title-v2>
                 <marketoForm jcr:primaryType="nt:unstructured">
@@ -2479,12 +2533,12 @@
                         </cq:styleGroups>
                     </policy_dhl_article-header>
                 </article-header>
-                <!--<articlelistcategoryexplore jcr:primaryType="nt:unstructured">
+                <articlelistcategoryexplore jcr:primaryType="nt:unstructured">
                     <articlelistcategoryexplore_policy
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Properties"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/article-teaser"
+                            components="[group:DHL Components]"
                             layout="responsiveGrid"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -2549,7 +2603,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Properties"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/article-teaser"
+                            components="[group:DHL Components]"
                             layout="responsiveGrid"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -2609,6 +2663,7 @@
                         </cq:styleGroups>
                     </articlelistcategorytrending_policy>
                 </articlelistcategorytrending>
+
                 <column_container jcr:primaryType="nt:unstructured">
                     <column_container_policy
                             jcr:primaryType="nt:unstructured"
@@ -2678,7 +2733,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Properties"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/article-teaser"
+                            components="[group:DHL Components]"
                             layout="responsiveGrid"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -2743,7 +2798,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Properties"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/article-teaser"
+                            components="[group:DHL Components]"
                             layout="responsiveGrid"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -2802,13 +2857,13 @@
                             </item1>
                         </cq:styleGroups>
                     </gallery_policy>
-                </gallery>-->
-                <!--<highlight-banner jcr:primaryType="nt:unstructured">
+                </gallery>
+                <highlight-banner jcr:primaryType="nt:unstructured">
                     <highlight-banner_policy
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Highlight Banner"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/article-teaser"
+                            components="[group:DHL Components]"
                             layout="responsiveGrid"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -2873,7 +2928,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Home Page Container"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/article-teaser"
+                            components="[group:DHL Components]"
                             layout="responsiveGrid"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -2938,7 +2993,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Home Page Container"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/article-teaser"
+                            components="[group:DHL Components]"
                             layout="responsiveGrid"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -2997,13 +3052,13 @@
                             </item1>
                         </cq:styleGroups>
                     </homepagecarousel_policy>
-                </homepagecarousel>-->
-<!--                <html5embed jcr:primaryType="nt:unstructured">
+                </homepagecarousel>
+                <html5embed jcr:primaryType="nt:unstructured">
                     <html5embed_policy
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Home Page Container"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/article-teaser"
+                            components="[group:DHL Components]"
                             layout="responsiveGrid"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -3062,13 +3117,13 @@
                             </item1>
                         </cq:styleGroups>
                     </html5embed_policy>
-                </html5embed>-->
-               <!-- <inlineshipnowmarketoconfigurable jcr:primaryType="nt:unstructured">
+                </html5embed>
+                <inlineshipnowmarketoconfigurable jcr:primaryType="nt:unstructured">
                     <inlineshipnowmarketoconfigurable_policy
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Inline Shipnow Market to Configurable"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/article-teaser"
+                            components="[group:DHL Components]"
                             layout="responsiveGrid"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -3127,13 +3182,13 @@
                             </item1>
                         </cq:styleGroups>
                     </inlineshipnowmarketoconfigurable_policy>
-                </inlineshipnowmarketoconfigurable>-->
-                <!--<landingpoints jcr:primaryType="nt:unstructured">
+                </inlineshipnowmarketoconfigurable>
+                <landingpoints jcr:primaryType="nt:unstructured">
                     <landingpoints_policy
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Landing Points"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="/apps/dhl/components/content/article-teaser"
+                            components="[group:DHL Components]"
                             layout="responsiveGrid"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -3192,7 +3247,982 @@
                             </item1>
                         </cq:styleGroups>
                     </landingpoints_policy>
-                </landingpoints>-->
+                </landingpoints>
+                <listicleitem jcr:primaryType="nt:unstructured">
+                    <listicleitem_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </listicleitem_policy>
+                </listicleitem>
+                <locator jcr:primaryType="nt:unstructured">
+                    <locator_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </locator_policy>
+                </locator>
+                <quote jcr:primaryType="nt:unstructured">
+                    <quote_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </quote_policy>
+                </quote>
+                <savedarticles jcr:primaryType="nt:unstructured">
+                    <savedarticles_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </savedarticles_policy>
+                </savedarticles>
+                <search jcr:primaryType="nt:unstructured">
+                    <search_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </search_policy>
+                </search>
+                <taglist jcr:primaryType="nt:unstructured">
+                    <taglist_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </taglist_policy>
+                </taglist>
+                <video jcr:primaryType="nt:unstructured">
+                    <video_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </video_policy>
+                </video>
+                <carousel-row jcr:primaryType="nt:unstructured">
+                    <carousel-row_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </carousel-row_policy>
+                </carousel-row>
+                <info-row jcr:primaryType="nt:unstructured">
+                    <info-row_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </info-row_policy>
+                </info-row>
+                <page-navigation jcr:primaryType="nt:unstructured">
+                    <page-navigation_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </page-navigation_policy>
+                </page-navigation>
+                <parallax-section jcr:primaryType="nt:unstructured">
+                    <parallax-section_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </parallax-section_policy>
+                </parallax-section>
+                <showcase-panel jcr:primaryType="nt:unstructured">
+                    <showcase-panel_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </showcase-panel_policy>
+                </showcase-panel>
+                <stats-panel jcr:primaryType="nt:unstructured">
+                    <stats-panel_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </stats-panel_policy>
+                </stats-panel>
+                <text-row jcr:primaryType="nt:unstructured">
+                    <text-row_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </text-row_policy>
+                </text-row>
+                <video-row jcr:primaryType="nt:unstructured">
+                    <video-row_policy
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Landing Points"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Components]"
+                            layout="responsiveGrid"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </video-row_policy>
+                </video-row>
             </content>
         </components>
     </dhl>

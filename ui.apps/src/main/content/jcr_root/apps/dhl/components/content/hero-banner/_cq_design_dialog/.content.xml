@@ -65,10 +65,6 @@
                         </items>
                     </sizes>
                 </items>
-                <styletab
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/include"
-                        path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_design/styletab"/>
             </tabs>
         </items>
     </content>

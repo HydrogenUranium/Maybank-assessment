@@ -100,6 +100,14 @@
                                             cq:policy="dhl/components/content/accordion-v2/policy_accordion-v2"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <gallery
+                                            cq:policy="dhl/components/content/gallery/gallery_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <followUs
+                                            cq:policy="dhl/components/content/followUs/followUs_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -191,6 +199,14 @@
                                             cq:policy="dhl/components/content/accordion-v2/policy_accordion-v2"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <gallery
+                                            cq:policy="dhl/components/content/gallery/gallery_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <followUs
+                                            cq:policy="dhl/components/content/followUs/followUs_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
@@ -210,6 +226,14 @@
                                 <content jcr:primaryType="nt:unstructured">
                                     <accordion-v2
                                             cq:policy="dhl/components/content/accordion-v2/policy_accordion-v2"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <gallery
+                                            cq:policy="dhl/components/content/gallery/gallery_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <followUs
+                                            cq:policy="dhl/components/content/followUs/followUs_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
