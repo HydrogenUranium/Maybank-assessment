@@ -50,13 +50,20 @@
 
   &.fixed {
     position: fixed;
-    top: -140px;
+    top: 0;
     left: 0;
     right: 0;
-    transition: all 0.3s ease-in-out;
+    transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth position and opacity transition */
+    opacity: 1; /* Fully visible by default */
+
+    &.hidden {
+      top: -140px; /* Move header out of view */
+      opacity: 0;   /* Fade out smoothly */
+    }
 
     &.in {
-      top: 0;
+      top: 0; /* Bring header back into view */
+      opacity: 1; /* Fully visible */
     }
   }
 
