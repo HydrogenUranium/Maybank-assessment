@@ -70,32 +70,28 @@ class HeaderV2 {
   checkScroll() {
     var wt = $(window).scrollTop();
     var pb = $('.page-body').offset().top;
-
     if (wt > pb) {
       $('.page-body').addClass('fixed');
       $(this.sel.component).addClass('fixed');
-
+      $(this.sel.selectedCountry).attr("aria-expanded", "false")
       if (wt > this.lastScrollTop) {
-        // Scrolling down: hide the header
-        $(this.sel.component).addClass('hidden').removeClass('in');
+        $(this.sel.component).removeClass('in');
       } else {
-        // Scrolling up: show the header
-        $(this.sel.component).removeClass('hidden').addClass('in');
-
-        // Handle ARIA attributes when country options are open
+        $(this.sel.component).addClass('in');
         if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-          $(this.sel.selectedCountry).attr("aria-expanded", "true");
+          $(this.sel.selectedCountry).attr("aria-expanded", "true")
         }
       }
     } else {
-      // When above the page-body offset, reset the header
       $('.page-body').removeClass('fixed');
-      $(this.sel.component).removeClass('fixed hidden in');
+      $(this.sel.component).removeClass('fixed');
+      if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
+        $(this.sel.selectedCountry).attr("aria-expanded", "true")
+      }
     }
 
-    this.lastScrollTop = wt; // Update the last scroll position
+    this.lastScrollTop = wt;
   }
-
 
   toggleMenu() {
     if (!$(this.sel.menu).is(':visible')) {
