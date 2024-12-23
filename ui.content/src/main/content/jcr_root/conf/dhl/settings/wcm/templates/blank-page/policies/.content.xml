@@ -179,6 +179,74 @@
                                             cq:policy="dhl/components/content/video-row/video-row_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-footer
+                                            cq:policy="dhl/components/content/article-footer/article-footer_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <ctapanelrow
+                                            cq:policy="dhl/components/content/ctapanelrow/ctapanelrow_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <listicleitem
+                                            cq:policy="dhl/components/content/listicleitem/listicleitem_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <inlineshipnowmarketoconfigurable
+                                            cq:policy="dhl/components/content/inlineshipnowmarketoconfigurable/inlineshipnowmarketoconfigurable_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <column-container
+                                            cq:policy="dhl/components/content/column-container/column_container_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <articlepanel
+                                            cq:policy="dhl/components/content/articlepanel/articlepanel_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <articlelistcategorytrending
+                                            cq:policy="dhl/components/content/articlelistcategorytrending/articlelistcategorytrending_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <articlelistcategoryexplore
+                                            cq:policy="dhl/components/content/articlelistcategoryexplore/articlelistcategoryexplore_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <articlelistcarousel
+                                            cq:policy="dhl/components/content/articlelistcarousel/articlelistcarousel_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-header
+                                            cq:policy="dhl/components/content/article-header/policy_dhl_article-header"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-grid
+                                            cq:policy="dhl/components/content/article-grid/policy_dhl_article-grid"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-container
+                                            cq:policy="dhl/components/content/article-container/policy_article-container"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-carousel
+                                            cq:policy="dhl/components/content/article-carousel/article_carousel_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-author-banner
+                                            cq:policy="dhl/components/content/article-author-banner/policy_article-author-banner"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <embed
+                                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-teaser-container
+                                            cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <breadcrumb
+                                            cq:policy="dhl/components/content/breadcrumb/breadcrumb_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
                             </components>
                         </dhl>
