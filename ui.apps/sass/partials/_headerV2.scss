@@ -50,22 +50,20 @@
 
   &.fixed {
     position: fixed;
-    top: 0; /* Ensure it starts visible at the top */
+    top: -140px; /* Fully hidden by default */
     left: 0;
     right: 0;
-    opacity: 1; /* Fully visible */
-    transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transitions */
-
-    &.hidden {
-      top: -140px; /* Move header out of view */
-      opacity: 0;   /* Make it invisible */
-    }
+    transition: top 0.4s ease-in-out; /* Smooth transition when changing top value */
 
     &.in {
-      top: 0; /* Reset to visible position */
-      opacity: 1; /* Fully visible */
+      top: 0; /* Fully visible */
+    }
+
+    &.hidden {
+      top: -140px; /* Smoothly slide out when hidden */
     }
   }
+
 
 
   .header-container {

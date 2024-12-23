@@ -68,32 +68,40 @@ class HeaderV2 {
   }
 
   checkScroll() {
-    var wt = $(window).scrollTop();
-    var pb = $('.page-body').offset().top;
+    var wt = $(window).scrollTop(); // Current scroll position
+    var pb = $('.page-body').offset().top; // Offset of '.page-body'
 
     if (wt > pb) {
+      // Add fixed class to make header sticky
       $('.page-body').addClass('fixed');
       $(this.sel.component).addClass('fixed');
       $(this.sel.selectedCountry).attr("aria-expanded", "false");
 
       if (wt > this.lastScrollTop) {
+        // Scrolling down: hide header
         $(this.sel.component).addClass('hidden').removeClass('in');
       } else {
-        $(this.sel.component).removeClass('hidden').addClass('in');
-        if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-          $(this.sel.selectedCountry).attr("aria-expanded", "true");
-        }
+        // Scrolling up: show header
+        $(this.sel.component).addClass('in').removeClass('hidden');
+      }
+
+      // Preserve 'header-countryList--open' if dropdown is open
+      if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
+        $(this.sel.selectedCountry).attr("aria-expanded", "true");
       }
     } else {
+      // Back to top: remove fixed and hidden classes
       $('.page-body').removeClass('fixed');
       $(this.sel.component).removeClass('fixed hidden in');
+
+      // Keep 'header-countryList--open' logic intact
       if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
         $(this.sel.selectedCountry).attr("aria-expanded", "true");
       }
     }
-
-    this.lastScrollTop = wt;
+    this.lastScrollTop = wt; // Store the last scroll position
   }
+
 
   toggleMenu() {
     if (!$(this.sel.menu).is(':visible')) {
