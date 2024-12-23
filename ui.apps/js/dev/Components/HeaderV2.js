@@ -70,23 +70,25 @@ class HeaderV2 {
   checkScroll() {
     var wt = $(window).scrollTop();
     var pb = $('.page-body').offset().top;
+
     if (wt > pb) {
       $('.page-body').addClass('fixed');
       $(this.sel.component).addClass('fixed');
-      $(this.sel.selectedCountry).attr("aria-expanded", "false")
+      $(this.sel.selectedCountry).attr("aria-expanded", "false");
+
       if (wt > this.lastScrollTop) {
-        $(this.sel.component).removeClass('in');
+        $(this.sel.component).addClass('hidden').removeClass('in');
       } else {
-        $(this.sel.component).addClass('in');
+        $(this.sel.component).removeClass('hidden').addClass('in');
         if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-          $(this.sel.selectedCountry).attr("aria-expanded", "true")
+          $(this.sel.selectedCountry).attr("aria-expanded", "true");
         }
       }
     } else {
       $('.page-body').removeClass('fixed');
-      $(this.sel.component).removeClass('fixed');
+      $(this.sel.component).removeClass('fixed hidden in');
       if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-        $(this.sel.selectedCountry).attr("aria-expanded", "true")
+        $(this.sel.selectedCountry).attr("aria-expanded", "true");
       }
     }
 
