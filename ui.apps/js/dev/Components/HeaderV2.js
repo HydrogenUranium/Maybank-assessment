@@ -70,39 +70,26 @@ class HeaderV2 {
   checkScroll() {
     var wt = $(window).scrollTop();
     var pb = $('.page-body').offset().top;
-
-    // Ensure lastScrollTop is initialized
-    this.lastScrollTop = this.lastScrollTop || 0;
-
     if (wt > pb) {
       $('.page-body').addClass('fixed');
       $(this.sel.component).addClass('fixed');
-      $(this.sel.selectedCountry).attr("aria-expanded", "false");
-
+      $(this.sel.selectedCountry).attr("aria-expanded", "false")
       if (wt > this.lastScrollTop) {
-        // Scrolling down: Add `hidden` class for smooth disappearance
-        $(this.sel.component).addClass('hidden').removeClass('in');
+        $(this.sel.component).removeClass('in');
       } else {
-        // Scrolling up: Remove `hidden` class for smooth reappearance
-        $(this.sel.component).addClass('in').removeClass('hidden');
-
-        // Ensure aria-expanded remains true if the country list is open
+        $(this.sel.component).addClass('in');
         if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-          $(this.sel.selectedCountry).attr("aria-expanded", "true");
+          $(this.sel.selectedCountry).attr("aria-expanded", "true")
         }
       }
     } else {
-      // Reset header when back at the top
       $('.page-body').removeClass('fixed');
-      $(this.sel.component).removeClass('fixed hidden in');
-
-      // Ensure aria-expanded remains true if the country list is open
+      $(this.sel.component).removeClass('fixed');
       if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-        $(this.sel.selectedCountry).attr("aria-expanded", "true");
+        $(this.sel.selectedCountry).attr("aria-expanded", "true")
       }
     }
 
-    // Store the last scroll position
     this.lastScrollTop = wt;
   }
 
