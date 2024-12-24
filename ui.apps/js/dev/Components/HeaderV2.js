@@ -68,39 +68,44 @@ class HeaderV2 {
   }
 
   checkScroll() {
-    var wt = $(window).scrollTop(); // Current scroll position
-    var pb = $('.page-body').offset().top; // Offset of '.page-body'
+    var wt = $(window).scrollTop();
+    var pb = $('.page-body').offset().top;
+
+    // Ensure lastScrollTop is initialized
+    this.lastScrollTop = this.lastScrollTop || 0;
 
     if (wt > pb) {
-      // Add fixed class to make header sticky
       $('.page-body').addClass('fixed');
       $(this.sel.component).addClass('fixed');
       $(this.sel.selectedCountry).attr("aria-expanded", "false");
 
       if (wt > this.lastScrollTop) {
-        // Scrolling down: hide header
+        // Scrolling down: Add `hidden` class for smooth disappearance
         $(this.sel.component).addClass('hidden').removeClass('in');
       } else {
-        // Scrolling up: show header
+        // Scrolling up: Remove `hidden` class for smooth reappearance
         $(this.sel.component).addClass('in').removeClass('hidden');
-      }
 
-      // Preserve 'header-countryList--open' if dropdown is open
-      if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-        $(this.sel.selectedCountry).attr("aria-expanded", "true");
+        // Ensure aria-expanded remains true if the country list is open
+        if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
+          $(this.sel.selectedCountry).attr("aria-expanded", "true");
+        }
       }
     } else {
-      // Back to top: remove fixed and hidden classes
+      // Reset header when back at the top
       $('.page-body').removeClass('fixed');
       $(this.sel.component).removeClass('fixed hidden in');
 
-      // Keep 'header-countryList--open' logic intact
+      // Ensure aria-expanded remains true if the country list is open
       if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
         $(this.sel.selectedCountry).attr("aria-expanded", "true");
       }
     }
-    this.lastScrollTop = wt; // Store the last scroll position
+
+    // Store the last scroll position
+    this.lastScrollTop = wt;
   }
+
 
 
   toggleMenu() {

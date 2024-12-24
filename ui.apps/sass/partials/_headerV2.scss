@@ -48,21 +48,23 @@
     margin: auto;
   }
 
-  &.fixed {
+  .headerV2-wrapper.fixed {
     position: fixed;
-    top: -140px; /* Fully hidden by default */
+    top: 0; /* Start visible */
     left: 0;
     right: 0;
-    transition: top 0.4s ease-in-out; /* Smooth transition when changing top value */
-
-    &.in {
-      top: 0; /* Fully visible */
-    }
-
-    &.hidden {
-      top: -140px; /* Smoothly slide out when hidden */
-    }
+    transition: top 0.6s cubic-bezier(0.25, 0.8, 0.5, 1); /* Smooth easing */
   }
+
+  .headerV2-wrapper.fixed.hidden {
+    top: -140px; /* Slide up smoothly */
+  }
+
+  .headerV2-wrapper.fixed.in {
+    top: 0; /* Slide back down smoothly */
+  }
+
+
 
 
 
