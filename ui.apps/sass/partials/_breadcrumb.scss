@@ -28,15 +28,15 @@
     }
 
     &-link {
-      color: unset;
+      color: #d40511;
 
       &:hover {
-        color: #d40511;
-        text-decoration: none;
+        color: #eb131e;
+        text-decoration: underline;
       }
 
       span {
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
   }

@@ -40,7 +40,7 @@
     h3 a,
     h4 a,
     h5 a {
-      @include hoverText($text-decoration-normal: underline, $text-decoration-hover: underline);
+      @include hoverText($colour-normal: map-get($map: $palette, $key: black), $text-decoration-normal: underline, $text-decoration-hover: underline);
     }
 
     h1, h2, h3, h4 {
