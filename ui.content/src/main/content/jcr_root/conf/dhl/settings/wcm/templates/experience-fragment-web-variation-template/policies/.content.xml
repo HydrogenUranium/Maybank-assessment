@@ -237,6 +237,10 @@
                                 cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <breadcrumb
+                                cq:policy="dhl/components/content/breadcrumb/breadcrumb_policy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
                     </content>
                 </components>
             </dhl>

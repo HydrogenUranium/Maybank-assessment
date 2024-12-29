@@ -34,6 +34,10 @@
                                     cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <title
+                                    cq:policy="dhl/components/content/title/title_policy"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
                             <article-carousel
                                     cq:policy="dhl/components/content/article-carousel/article_carousel_policy"
                                     jcr:primaryType="nt:unstructured"
@@ -262,6 +266,10 @@
                                     cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <breadcrumb
+                                    cq:policy="dhl/components/content/breadcrumb/breadcrumb_policy"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
                         </content>
                     </components>
                 </dhl>
@@ -307,10 +315,6 @@
                                             cq:policy="dhl/components/content/image/image_v2_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    <embed
-                                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <separator
                                             cq:policy="dhl/components/content/separator/separator_policy"
                                             jcr:primaryType="nt:unstructured"
@@ -325,19 +329,6 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <title-v2
                                             cq:policy="dhl/components/content/title-v2/policy_title_v2"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    <article-teaser
-                                            cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping">
-                                        <image
-                                                cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    </article-teaser>
-                                    <article-teaser-container
-                                            cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <marketoForm
@@ -514,6 +505,10 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <article-teaser-container
                                             cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <breadcrumb
+                                            cq:policy="dhl/components/content/breadcrumb/breadcrumb_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <experiencefragment
@@ -559,10 +554,6 @@
                                             cq:policy="dhl/components/content/image/image_v2_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    <embed
-                                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <separator
                                             cq:policy="dhl/components/content/separator/separator_policy"
                                             jcr:primaryType="nt:unstructured"
@@ -577,19 +568,6 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <title-v2
                                             cq:policy="dhl/components/content/title-v2/policy_title_v2"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    <article-teaser
-                                            cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping">
-                                        <image
-                                                cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    </article-teaser>
-                                    <article-teaser-container
-                                            cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <marketoForm
@@ -766,6 +744,10 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <article-teaser-container
                                             cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <breadcrumb
+                                            cq:policy="dhl/components/content/breadcrumb/breadcrumb_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <experiencefragment
@@ -800,11 +782,7 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <text
-                                            cq:policy="dhl/components/content/text/policy_1692606883425"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    <embed
-                                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
+                                            cq:policy="dhl/components/content/text/text_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <teaser
@@ -829,19 +807,6 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <title-v2
                                             cq:policy="dhl/components/content/title-v2/policy_title_v2"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    <article-teaser
-                                            cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping">
-                                        <image
-                                                cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    </article-teaser>
-                                    <article-teaser-container
-                                            cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <marketoForm
@@ -1022,6 +987,10 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <experiencefragment
                                             cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <breadcrumb
+                                            cq:policy="dhl/components/content/breadcrumb/breadcrumb_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
