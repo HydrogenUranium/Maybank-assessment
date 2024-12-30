@@ -95,8 +95,8 @@
   }
 }
 
-@mixin hoverText($colour-normal: map-get($map: $palette, $key: black),
-                 $colour-hover: map-get($map: $palette, $key: scarlet),
+@mixin hoverText($colour-normal: map-get($map: $palette, $key: scarlet),
+                 $colour-hover: map-get($map: $palette, $key: light-red),
                  $text-decoration-normal: none,
                  $text-decoration-hover: none) {
     transition: color 150ms ease;

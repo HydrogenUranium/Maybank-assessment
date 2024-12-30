@@ -60,6 +60,10 @@
         width: 50%
       }
 
+      a {
+        @include hoverText($text-decoration-normal: underline, $text-decoration-hover: underline);
+      }
+
       &__title {
         color: map-get($palette, scarlet) !important;
         font-size: 25px !important;
