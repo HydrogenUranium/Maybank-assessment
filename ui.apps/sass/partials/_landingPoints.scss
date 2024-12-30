@@ -49,6 +49,10 @@
         padding-left: 0;
         padding-right: 55px;
       }
+
+      a {
+        @include hoverText($text-decoration-normal: underline, $text-decoration-hover: underline);
+      }
     }
 
     &--red-dot {

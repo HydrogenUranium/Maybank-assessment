@@ -73,6 +73,9 @@
 
     &__text {
       position: relative;
+      a {
+        @include hoverText($text-decoration-normal: underline, $text-decoration-hover: underline);
+      }
     }
 
     &_rounded {
