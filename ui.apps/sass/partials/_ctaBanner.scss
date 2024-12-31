@@ -84,7 +84,7 @@
       margin-bottom: 12px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.8);
 
-      @include respond(md) {
+      @include respond(lg) {
         line-height: 42px;
         opacity: 0.7;
         margin-bottom: unset;
