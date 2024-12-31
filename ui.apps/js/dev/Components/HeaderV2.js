@@ -71,7 +71,6 @@ class HeaderV2 {
     var wt = $(window).scrollTop();
     var pb = $('.page-body').offset().top;
     if (wt > pb) {
-      $('.page-body').addClass('fixed');
       $(this.sel.component).addClass('fixed');
       $(this.sel.selectedCountry).attr("aria-expanded", "false")
       if (wt > this.lastScrollTop) {
@@ -83,7 +82,6 @@ class HeaderV2 {
         }
       }
     } else {
-      $('.page-body').removeClass('fixed');
       $(this.sel.component).removeClass('fixed');
       if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
         $(this.sel.selectedCountry).attr("aria-expanded", "true")
