@@ -74,7 +74,6 @@ class HeaderV2 {
       $(this.sel.component).addClass('fixed');
       $(this.sel.selectedCountry).attr("aria-expanded", "false")
       $(this.sel.component).removeClass('in');
-      $(this.sel.component).addClass('in');
         if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
           $(this.sel.selectedCountry).attr("aria-expanded", "true")
         }
