@@ -73,14 +73,11 @@ class HeaderV2 {
     if (wt > pb) {
       $(this.sel.component).addClass('fixed');
       $(this.sel.selectedCountry).attr("aria-expanded", "false")
-      if (wt > this.lastScrollTop) {
-        $(this.sel.component).removeClass('in');
-      } else {
-        $(this.sel.component).addClass('in');
+      $(this.sel.component).removeClass('in');
+      $(this.sel.component).addClass('in');
         if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
           $(this.sel.selectedCountry).attr("aria-expanded", "true")
         }
-      }
     } else {
       $(this.sel.component).removeClass('fixed');
       if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
