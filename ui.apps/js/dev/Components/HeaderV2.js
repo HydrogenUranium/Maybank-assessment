@@ -68,37 +68,41 @@ class HeaderV2 {
   }
 
   checkScroll() {
-    var wt = $(window).scrollTop(); // Current vertical scroll position
-    var pb = $('.page-body').offset().top; // Top position of .page-body
+    var wt = $(window).scrollTop();
+    var pb = $('.page-body').offset().top;
+    var header = $(this.sel.component);
+    var selectedCountry = $(this.sel.selectedCountry);
+    var countryOptions = $(this.sel.countryOptions);
 
     if (wt > pb) {
-      // User scrolled below .page-body
-      $(this.sel.component).addClass('fixed'); // Make header fixed
+      // When scrolled past the page body
+      $('.page-body').addClass('fixed');
+      header.addClass('fixed');
 
       if (wt > this.lastScrollTop) {
-        // User is scrolling down
-        $(this.sel.component).removeClass('in'); // Header slides out (disappear)
+        // Scrolling down
+        header.removeClass('in'); // Slide header out
       } else {
-        // User is scrolling up
-        $(this.sel.component).addClass('in'); // Header slides in (reappear)
+        // Scrolling up
+        header.addClass('in'); // Slide header back in
       }
 
-      // Accessibility handling
-      $(this.sel.selectedCountry).attr("aria-expanded", "false");
-      if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-        $(this.sel.selectedCountry).attr("aria-expanded", "true");
+      // Update accessibility attributes
+      selectedCountry.attr("aria-expanded", "false");
+      if (countryOptions.hasClass('header-countryList--open')) {
+        selectedCountry.attr("aria-expanded", "true");
       }
     } else {
-      // User scrolled above .page-body
-      $(this.sel.component).removeClass('fixed in'); // Reset header to default state
-
-      if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-        $(this.sel.selectedCountry).attr("aria-expanded", "true");
+      // When scrolled above the page body
+      $('.page-body').removeClass('fixed');
+      header.removeClass('fixed in'); // Reset header
+      if (countryOptions.hasClass('header-countryList--open')) {
+        selectedCountry.attr("aria-expanded", "true");
       }
     }
-
-    this.lastScrollTop = wt; // Save current scroll position for next event
+    this.lastScrollTop = wt; // Save current scroll position
   }
+
 
 
 
