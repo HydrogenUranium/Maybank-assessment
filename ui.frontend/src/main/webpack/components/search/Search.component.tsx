@@ -80,7 +80,7 @@ export const Search: React.FC<SearchProps> = ({
       if (key === 'Escape') {
         handleCloseSearch();
       }
-    }
+    };
   
     if (!hiddenSuggestions) {
       searchRef.current?.addEventListener('mousedown', stopPropagation);
@@ -98,21 +98,21 @@ export const Search: React.FC<SearchProps> = ({
       window.removeEventListener('click', stopPropagation);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [hiddenSuggestions, handleCloseSearch])
+  }, [hiddenSuggestions, handleCloseSearch]);
 
   useEffect(() => {
     setActiveSuggestion(-1);
-  }, [suggestions, setActiveSuggestion])
+  }, [suggestions, setActiveSuggestion]);
 
   useEffect(() => {
-    if(activeSuggestion < 0) return;
+    if(activeSuggestion < 0) {return;}
 
     const items = suggestionQuery.length ? suggestions : recentSearches;
 
     if(activeSuggestion < items.length) {
       setInputValue(items[activeSuggestion]);
     }
-  }, [activeSuggestion]);
+  }, [activeSuggestion, recentSearches]);
 
   useEffect(() => {
     setLimit(Math.min(10, sortedSearchRows.length));
@@ -141,20 +141,20 @@ export const Search: React.FC<SearchProps> = ({
   const getSuggestionLength = () => {
     return suggestionQuery.length
       ? suggestions.length
-      : recentSearches.length
-  }
+      : recentSearches.length;
+  };
 
   const handleArrowDown = () => {
     setActiveSuggestion((prevSelected) => {
-      return prevSelected < getSuggestionLength() - 1 ? prevSelected + 1 : 0
+      return prevSelected < getSuggestionLength() - 1 ? prevSelected + 1 : 0;
     });
-  }
+  };
 
   const handleArrowUp = () => {
     setActiveSuggestion((prevSelected) => {
-      return prevSelected > 0 ? prevSelected  - 1 : getSuggestionLength() - 1
+      return prevSelected > 0 ? prevSelected  - 1 : getSuggestionLength() - 1;
     });
-  }
+  };
 
   const handleKeyClick = ({key}: React.KeyboardEvent<HTMLInputElement>): void => {
     if (key === 'Enter' && inputValue.length) { 
