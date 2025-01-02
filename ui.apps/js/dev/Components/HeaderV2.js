@@ -68,46 +68,34 @@ class HeaderV2 {
   }
 
   checkScroll() {
-    var wt = $(window).scrollTop(); // Current vertical scroll position
-    var pb = $('.page-body').offset().top; // Top offset of the page body
-    var header = $(this.sel.component); // Header selector
-    var selectedCountry = $(this.sel.selectedCountry);
-    var countryOptions = $(this.sel.countryOptions);
+    let wt = $(window).scrollTop();
+    let pb = $('.page-body').offset().top;
+    let header = $(this.sel.component);
+    let selectedCountry = $(this.sel.selectedCountry);
+    let countryOptions = $(this.sel.countryOptions);
 
     if (wt > pb) {
-      // When scrolled past the page body
-      $('.page-body').addClass('fixed');
-
+      header.addClass('fixed');
+      // Scroll direction logic
       if (wt > this.lastScrollTop) {
-        // Scrolling down
-        header.removeClass('in'); // Slide header out
-        setTimeout(() => {
-          header.addClass('fixed'); // Add 'fixed' after sliding out
-        }, 300); // Delay matches CSS transition duration
+        // Scrolling down: Remove 'in' class to slide the header out
+        header.removeClass('in');
       } else {
-        // Scrolling up
-        header.addClass('in'); // Slide header back in immediately
+        // Scrolling up: Add 'in' class to slide the header back in
+        header.addClass('in');
       }
 
-      // Accessibility updates for dropdown
       selectedCountry.attr("aria-expanded", "false");
       if (countryOptions.hasClass('header-countryList--open')) {
         selectedCountry.attr("aria-expanded", "true");
       }
-    } else {
-      // When scrolled above the page body
-      $('.page-body').removeClass('fixed');
-      header.removeClass('fixed in'); // Reset header to original state
-
-      // Accessibility updates for dropdown
-      if (countryOptions.hasClass('header-countryList--open')) {
-        selectedCountry.attr("aria-expanded", "true");
-      }
+    } else if (countryOptions.hasClass('header-countryList--open')) {
+      selectedCountry.attr("aria-expanded", "true");
     }
 
-    // Save current scroll position for the next event
-    this.lastScrollTop = wt;
+    this.lastScrollTop = wt; // Handle case where lastScrollTop might not be initialized
   }
+
 
 
 
