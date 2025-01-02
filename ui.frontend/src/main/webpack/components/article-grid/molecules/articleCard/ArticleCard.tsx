@@ -9,6 +9,14 @@ type ArticleCardProps = {
     showTags?: boolean;
 }
 
+/**
+ * ArticleCard component displays an article with its details.
+ * 
+ * @param {Article} props.article - The article data to display.
+ * @param {boolean} [props.showTags=false] - Whether to show the tags of the article.
+ * 
+ * @returns {JSX.Element} The rendered ArticleCard component.
+ */
 export const ArticleCard: React.FC<ArticleCardProps> = ({
     showTags = false,
     article: {
@@ -27,15 +35,15 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             href={path}
             className={styles.articleCardImage}
             style={{ backgroundImage: `url(${pageImage})` }}>
-            <div className={styles.articleCardImageGroupTag}>{groupTag}</div>
+            <div className={styles.articleCardGroupTag}>{groupTag}</div>
         </a>
         <div className={styles.articleCardInfo}>
-            <div className={styles.articleCardInfoAuthor}>{[author, createdfriendly].filter(i => i).join(' | ')}</div>
-            <a href={path} className={styles.articleCardInfoTitle}>{title}</a>
-            <div className={styles.articleCardInfoDescription}>{description}</div>
-            {showTags && <div className={styles.articleCardInfoTags}>
+            <div className={styles.articleCardAuthor}>{[author, createdfriendly].filter(i => i).join(' | ')}</div>
+            <a href={path} className={styles.articleCardTitle}>{title}</a>
+            <div className={styles.articleCardDescription}>{description}</div>
+            {showTags && <div className={styles.articleCardTags}>
                 {tagsToShow.map((item) => (
-                    <div className={styles.articleCardInfoTagsTag} key={item}>{item}</div>
+                    <div className={styles.articleCardTag} key={item}>{item}</div>
                 ))}
             </div>}
         </div>

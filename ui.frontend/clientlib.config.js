@@ -54,7 +54,7 @@ module.exports = {
      ...libsBaseConfig,
      name: 'discover-react-common',
      categories: ['dhl.site', 'dhl.react-common'],
-     embed: ['dhl.react-core', 'dhl.search-bar'],
+     embed: ['dhl.react-core', 'dhl.search-bar', 'dhl.article-grid'],
      assets: {
          js: [],
          css: [],
@@ -65,7 +65,7 @@ module.exports = {
       ...libsBaseConfig,
       name: 'discover-category-page',
       categories: ['dhl.category-page'],
-      embed: ['dhl.article-grid'],
+      embed: [],
       dependencies: ['dhl.react-common'],
       assets: {
           js: [],
@@ -87,7 +87,6 @@ module.exports = {
       ...libsBaseConfig,
       name: 'discover-article-grid',
       categories: ['dhl.article-grid'],
-      dependencies: ['dhl.react-common'], 
       assets: {
         js: ['site/js/ArticleGrid.bundle.js'],
         css: ['site/css/ArticleGrid.bundle.css']
