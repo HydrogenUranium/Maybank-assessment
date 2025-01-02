@@ -83,6 +83,11 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Position"
                             name="./analytics/position"/>
+                    <analyticsResourceType
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                            value="dhl/analytics-node-configuration"
+                            name="./analytics/sling:resourceType"/>
                     <customAttributes
                             jcr:primaryType="nt:unstructured"
                             fieldLabel="Custom Attributes"
