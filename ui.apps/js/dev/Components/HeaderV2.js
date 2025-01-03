@@ -80,11 +80,11 @@ class HeaderV2 {
       if (wt > this.lastScrollTop) {
         // Scrolling down: Remove 'in' class to slide the header out
         header.removeClass('in');
-      } else if(wt <= pb) {
+      } else  {
         // Scrolling up: Add 'in' class to slide the header back in
-        header.addClass('in');
-        console.log("scroll up");
-        console.log("wt : " + wt + " pb : " + pb);
+        if(wt <= 300){
+          header.addClass('in');
+        }
       }
 
       selectedCountry.attr("aria-expanded", "false");
@@ -96,6 +96,7 @@ class HeaderV2 {
     }
 
     this.lastScrollTop = wt;
+    console.log("lastScrollTop : " + this.lastScrollTop);
   }
 
 
