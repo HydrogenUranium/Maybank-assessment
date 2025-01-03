@@ -140,10 +140,14 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <savedarticles
-                                            cq:policy="dhl/components/content/savedarticles/quote_policy"
+                                            cq:policy="dhl/components/content/savedarticles/savedarticles_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <search
+                                            cq:policy="dhl/components/content/search/quote_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <search-bar
                                             cq:policy="dhl/components/content/search/quote_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
@@ -247,6 +251,15 @@
                                             cq:policy="dhl/components/content/embed/article_embed_component_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-teaser
+                                            cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping">
+                                        <image
+                                                cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    </article-teaser>
                                     <article-teaser-container
                                             cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                             jcr:primaryType="nt:unstructured"
@@ -258,6 +271,10 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <breadcrumb
                                             cq:policy="dhl/components/content/breadcrumb/breadcrumb_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <tabs
+                                            cq:policy="dhl/components/content/tabs/tabs_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
@@ -382,10 +399,14 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <savedarticles
-                                            cq:policy="dhl/components/content/savedarticles/quote_policy"
+                                            cq:policy="dhl/components/content/savedarticles/savedarticles_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <search
+                                            cq:policy="dhl/components/content/search/quote_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <search-bar
                                             cq:policy="dhl/components/content/search/quote_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
@@ -489,6 +510,15 @@
                                             cq:policy="dhl/components/content/embed/article_embed_component_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <article-teaser
+                                            cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping">
+                                        <image
+                                                cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    </article-teaser>
                                     <article-teaser-container
                                             cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
                                             jcr:primaryType="nt:unstructured"
@@ -499,6 +529,10 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <breadcrumb
                                             cq:policy="dhl/components/content/breadcrumb/breadcrumb_policy"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                                    <tabs
+                                            cq:policy="dhl/components/content/tabs/tabs_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                 </content>
