@@ -1,2 +1,2 @@
-js/vendor.min.js
-js/main.min.js
+js/vendor.js
+js/main.js
