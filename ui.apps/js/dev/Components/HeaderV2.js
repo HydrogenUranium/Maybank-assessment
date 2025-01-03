@@ -76,15 +76,11 @@ class HeaderV2 {
 
     if (wt > pb) {
       header.addClass('fixed');
-      // Scroll direction logic
       if (wt > this.lastScrollTop) {
-        // Scrolling down: Remove 'in' class to slide the header out
         header.removeClass('in');
-      } else {
-        // Scrolling up: Add 'in' class to slide the header back in
+      } else if (wt <= pb) {
         header.addClass('in');
       }
-
       selectedCountry.attr("aria-expanded", "false");
       if (countryOptions.hasClass('header-countryList--open')) {
         selectedCountry.attr("aria-expanded", "true");
@@ -93,7 +89,7 @@ class HeaderV2 {
       selectedCountry.attr("aria-expanded", "true");
     }
 
-    this.lastScrollTop = wt; // Handle case where lastScrollTop might not be initialized
+    this.lastScrollTop = wt;
   }
 
 
