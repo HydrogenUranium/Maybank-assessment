@@ -76,7 +76,6 @@ class HeaderV2 {
 
     if (wt > pb) {
       console.log("wt first : " + wt + " pb first : " + pb);
-      header.addClass('fixed');
       // Scroll direction logic
       if (wt > this.lastScrollTop) {
         // Scrolling down: Remove 'in' class to slide the header out
