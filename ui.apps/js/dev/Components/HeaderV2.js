@@ -75,14 +75,17 @@ class HeaderV2 {
     let countryOptions = $(this.sel.countryOptions);
 
     if (wt > pb) {
+      console.log("wt first : " + wt + " pb first : " + pb);
       header.addClass('fixed');
       // Scroll direction logic
       if (wt > this.lastScrollTop) {
         // Scrolling down: Remove 'in' class to slide the header out
         header.removeClass('in');
-      } else {
+      } else if(wt <= pb) {
         // Scrolling up: Add 'in' class to slide the header back in
         header.addClass('in');
+        console.log("scroll up");
+        console.log("wt : " + wt + " pb : " + pb);
       }
 
       selectedCountry.attr("aria-expanded", "false");
