@@ -1,5 +1,5 @@
-.article-header {
-  &_breadcrumb {
+.cmp-article-header {
+  &__breadcrumb {
     padding-top: 7px;
     font-size: 12px;
     line-height: 17px;
@@ -11,7 +11,7 @@
     }
   }
 
-  &_title {
+  &__title {
     padding-top: 3px;
     font-size: 16px;
     line-height: 23px;
@@ -29,7 +29,7 @@
     }
   }
 
-  &_info{
+  &__info {
     padding-top: 25px;
     display: grid;
     grid-template-columns: auto 1fr;
@@ -41,11 +41,12 @@
     }
 
     @include respond(xl) {
+      padding-top: 0;
       display: block;
     }
- }
+  }
 
-  &_author-image {
+  &__author-image {
     width: 28px;
     height: 28px;
     border-radius: 50%;
@@ -56,7 +57,7 @@
     }
   }
 
-  &_author-description {
+  &__author-info {
     display: inline-block;
     vertical-align: middle;
     font-size: 12px;
@@ -69,26 +70,25 @@
     @include respond(xl) {
       display: none;
     }
-
-    &__name {
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    &__follow {
-      padding-left: 15px;
-      text-decoration: underline;
-      color: map-get($palette, scarlet);
-      opacity: 1;
-
-      &:hover {
-        color: map-get($palette, scarlet);
-      }
-    }
-
   }
 
-  &_date {
+  &__author-name {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__author-follow {
+    padding-left: 15px;
+    text-decoration: underline;
+    color: map-get($palette, scarlet);
+    opacity: 1;
+
+    &:hover {
+      color: map-get($palette, scarlet);
+    }
+  }
+
+  &__date {
     font-size: 12px;
     line-height: 17px;
     color: map-get($palette, dhl-black);
@@ -103,91 +103,12 @@
       line-height: 20px;
     }
 
-    .article-header_date-publishDate:after {
+    &> *::after {
       content: '|';
       padding: 0 2px 0 5px;
     }
-  }
-
-  &_share {
-    &-label {
-      display: none;
-
-      @include respond(xl) {
-        display: block;
-        padding-top: 23px;
-        font-size: 12px;
-        line-height: 17px;
-        font-weight: bold;
-        color: map-get($palette, dhl-black);
-      }
-    }
-
-    &-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 27px;
-
-      @include respond(xl) {
-        padding-top: 0;
-      }
-
-      &__left {
-        display: flex;
-        gap: 10px;
-
-        .logo__image {
-          height: 27px;
-          width: 27px;
-          object-fit: contain;
-          margin: 0;
-        }
-      }
-
-      &__right {
-        .logo__image {
-          height: 17px;
-          width: 17px;
-          object-fit: contain;
-          margin: 0;
-        }
-
-        .st-label {
-          position: relative;
-          font-size: 14px;
-          line-height: 25px;
-          letter-spacing: 0.48px;
-          color: map-get($palette, scarlet);
-
-          @include respond(md) {
-            font-size: 14px;
-            line-height: 34px;
-            letter-spacing: 0.66px;
-          }
-
-          @include respond(xl) {
-            font-size: 15px;
-            line-height: 37px;
-            letter-spacing: 0.72px;
-          }
-        }
-      }
-
-      .st-custom-button {
-        cursor: pointer;
-        align-items: center;
-        display: flex;
-        gap: 5px;
-      }
-    }
-
-    &.article-footer:after {
-      content: ' ';
-      display: block;
-      margin-top: 20px;
-      width: 100%;
-      border: 1px solid map-get($palette, scarlet);
+    &> *:last-child::after {
+      content: "";
     }
   }
 }
