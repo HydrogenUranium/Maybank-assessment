@@ -73,18 +73,17 @@ class HeaderV2 {
     let header = $(this.sel.component);
     let selectedCountry = $(this.sel.selectedCountry);
     let countryOptions = $(this.sel.countryOptions);
-
+    console.log("wt first : " + wt + " pb first: " + pb);
     if (wt > pb) {
-      console.log("wt first : " + wt + " pb first : " + pb);
-      // Scroll direction logic
+      header.addClass('fixed');
       if (wt > this.lastScrollTop) {
         // Scrolling down: Remove 'in' class to slide the header out
+        console.log("in class is remove.. ")
         header.removeClass('in');
-      } else  {
+      } else {
         // Scrolling up: Add 'in' class to slide the header back in
-        if(wt <= 300){
-          header.addClass('in');
-        }
+        console.log("wt else bock : " + wt);
+        header.addClass('in');
       }
 
       selectedCountry.attr("aria-expanded", "false");
