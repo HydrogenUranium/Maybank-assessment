@@ -83,6 +83,9 @@ class HeaderV2 {
       } else {
         // Scrolling up: Add 'in' class to slide the header back in
         console.log("wt else bock : " + wt);
+        if(wt <= 300) {
+          console.log("wt is below 300 execute this block");
+        }
         header.addClass('in');
       }
 
