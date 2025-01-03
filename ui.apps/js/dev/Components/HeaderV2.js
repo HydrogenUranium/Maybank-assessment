@@ -82,11 +82,15 @@ class HeaderV2 {
         header.removeClass('in');
       } else {
         // Scrolling up: Add 'in' class to slide the header back in
-        console.log("wt else bock : " + wt);
+        console.log("wt > this.lastScrollTop else bock : " + wt);
         if(wt <= 300) {
           console.log("wt is below 300 execute this block");
+          header.addClass('in');
+        }else{
+          console.log("wt is above 300 .... ");
+          header.removeClass('in');
         }
-        header.addClass('in');
+
       }
 
       selectedCountry.attr("aria-expanded", "false");
