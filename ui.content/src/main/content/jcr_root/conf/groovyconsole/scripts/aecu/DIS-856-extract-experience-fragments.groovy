@@ -222,6 +222,17 @@ def addArticleTemplateFragments(page, xfNode) {
     ]);
 }
 
+def addCategoryTemplateFragments(page, xfNode) {
+    xfNodeArticle = addNode(xfNode, "Category", "sling:OrderedFolder")
+
+    def fragment = createFragment(xfNodeArticle.getPath(), "bottom", "Bottom CTA")
+    def bottom = createVariation(fragment.getPath(), "master", "Bottom CTA")
+    def experienceFragment2 = addComponent(bottom, "experiencefragment", [
+            "sling:resourceType": "dhl/components/content/experiencefragment",
+            "fragmentVariationPath": """${xfNode.getParent().getPath()}/banners/newsletter-subscription/master"""
+    ]);
+}
+
 def addComponent(page, name, properties) {
     def root = getNode(page.getPath());
     if(root.isNodeType("cq:Page")) {
@@ -338,6 +349,7 @@ def process(page) {
     addHeader(page, templateFragmentsRoot);
     addFooter(page, templateFragmentsRoot);
     addArticleTemplateFragments(page, templateFragmentsRoot);
+    addCategoryTemplateFragments(page, templateFragmentsRoot);
 
     save();
 }
