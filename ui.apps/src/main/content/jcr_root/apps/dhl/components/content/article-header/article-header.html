@@ -1,47 +1,36 @@
 <sly data-sly-use.articlePage="com.dhl.discover.core.models.ArticlePage"
      data-sly-set.article="${articlePage.article}"/>
 
-<div class="article-header_breadcrumb">
-  <span>${article.groupTag}</span>
-</div>
-
-<h1 class="article-header_title">${article.pageTitle}</h1>
-
-<!--/* This Author-related part of the code will be finalised as part of DIS-372 */-->
-<div data-sly-test.articleAuthor="${article.author}" class="article-header_info">
-  <img data-sly-test.authorimage="${article.authorimage}"
-       class="article-header_author-image"
-       src="${authorimage}"
-       alt="${articleAuthor}">
-  <div class="article-header_author-description">
-    <div>
-      <span class="article-header_author-description__name">${articleAuthor}</span>
-      <a data-sly-test.followLabel="${articlePage.followLabel}" class="article-header_author-description__follow" href="${articlePage.followPath}">
-        <span>${followLabel}</span>
-      </a>
-    </div>
-    <div class="article-header_author-description__title">${article.authortitle}</div>
+<div class="cmp-article-header">
+  <div class="cmp-article-header__breadcrumb">
+    <span>${article.groupTag}</span>
   </div>
-  <div class="article-header_date">
-    <time class="article-header_date-publishDate" datetime="${article.created}">${article.createdfriendly}</time>
-    <span class="article-header_date-readingDuration">${article.readtime}</span>
-  </div>
-</div>
-<!--/* End */-->
 
-<div class="article-header_share">
-  <div class="article-header_share-label">${articlePage.shareOn}</div>
-  <div class="article-header_share-container">
-    <div class="article-header_share-container__left">
-      <div data-sly-repeat="${articlePage.socialNetwork}" class="st-custom-button" data-network="${item}">
-        <img class="logo__image" alt="${item} sharing button" src="${articlePage.socialNetwork[item]}">
+  <h1 class="cmp-article-header__title">${article.pageTitle}</h1>
+
+  <!--/* This Author-related part of the code will be finalised as part of DIS-372 */-->
+  <div class="cmp-article-header__info">
+    <img data-sly-test.authorimage="${article.authorimage}"
+         data-sly-test.articleAuthor="${article.author}"
+         class="cmp-article-header__author-image"
+         src="${authorimage}"
+         alt="${articleAuthor}">
+    <div class="cmp-article-header__author-info" data-sly-test.articleAuthor="${article.author}">
+      <div>
+        <span class="cmp-article-header__author-name">${articleAuthor}</span>
+        <a data-sly-test.followLabel="${articlePage.followLabel}" class="cmp-article-header__author-follow" href="${articlePage.followPath}">
+          <span>${followLabel}</span>
+        </a>
       </div>
+      <div class="cmp-article-header__author-title">${article.authortitle}</div>
     </div>
-    <div class="article-header_share-container__right">
-      <div class="st-custom-button" data-network="sharethis">
-        <img class="logo__image" alt="Smart Share Buttons Icon" src="${articlePage.smartShareButtonsIconPath}">
-        <span class="st-label">${articlePage.smartShareButtonsLabel}</span>
-      </div>
+    <div class="cmp-article-header__date">
+      <time class="cmp-article-header__publishDate" datetime="${article.created}">${article.createdfriendly}</time>
+      <span class="cmp-article-header__readingDuration" data-sly-test="${article.readtime}">${article.readtime}</span>
     </div>
   </div>
+  <!--/* End */-->
+
+  <sly data-sly-use.share="/apps/dhl/htl/templates/share.html"
+       data-sly-call="${share.shareOptions @ articlePage = articlePage, label = true}"></sly>
 </div>
