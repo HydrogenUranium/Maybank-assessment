@@ -1,6 +1,17 @@
 import DOMPurify from 'dompurify';
 
+export const debounce = (func, delay) => {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), delay);
+    };
+};
+
 export const unique = <T, >(array: T[]): T[] => Array.from(new Set(array));
+
+export const uniqueBy = <T, >(list: T[], keyFn: (item: T) => string | number): T[] => 
+    Array.from(new Map(list.map((item) => [keyFn(item), item])).values());
 
 export const  highlightMatches = (text, regex, flags = "g") => {
     const pattern = new RegExp(regex, flags);

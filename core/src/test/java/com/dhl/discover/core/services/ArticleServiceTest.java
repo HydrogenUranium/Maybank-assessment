@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -65,6 +67,9 @@ class ArticleServiceTest {
     @Mock
     private AssetUtilService assetUtilService;
 
+    @Captor
+    private ArgumentCaptor<PredicateGroup> predicateGroupCaptor;
+
     @InjectMocks
     private ArticleService articleService;
 
@@ -79,7 +84,7 @@ class ArticleServiceTest {
         context.registerService(AssetUtilService.class, assetUtilService);
         context.addModelsForClasses(Article.class);
 
-        when(builder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(query);
+        lenient().when(builder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(query);
         when(query.getResult()).thenReturn(searchResult);
         when(hitOne.getPath()).thenReturn("/content/home/article_1");
         when(hitTwo.getPath()).thenReturn("/content/home/article_2");
@@ -103,39 +108,166 @@ class ArticleServiceTest {
         return context.getService(ModelFactory.class).createModel(resource, Article.class);
     }
 
-    @Test
-    void getLatestArticles_ShouldReturnArticles_WhenArticlesAreFound() {
-        var articles = articleService.getLatestArticles("/content/home", 2);
-
-        assertEquals(2, articles.size());
-        assertEquals("/content/home/article_2.html", articles.get(0).getPath());
-        assertEquals("/content/home/article_1.html", articles.get(1).getPath());
+    void verifyQuery(String... expectedQueries) {
+        verify(builder, times(expectedQueries.length)).createQuery(predicateGroupCaptor.capture(), any(Session.class));
+        List<PredicateGroup> predicateGroups = predicateGroupCaptor.getAllValues();
+        for (int i = 0; i < expectedQueries.length; i++) {
+            String expectedQuery = expectedQueries[i];
+            String actualQuery = predicateGroups.get(i).toString();
+            assertEquals(expectedQuery, actualQuery);
+        }
     }
 
     @Test
-    void getAllArticles_ShouldReturnArticles_WhenArticlesAreFound() {
-        var articles = articleService.getAllArticles(resolver.getResource("/content/home").adaptTo(Page.class));
+    void getLatestArticles_ShouldBuildProperQueries() {
+        String expectedFirstQuery =
+                "ROOT=group: limit=2, excerpt=true[\n" +
+                        "    {group=group: or=true[\n" +
+                        "        {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}\n" +
+                        "        {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}\n" +
+                        "    ]}\n" +
+                        "    {orderby=orderby: orderby=@jcr:content/custompublishdate, sort=desc}\n" +
+                        "    {path=path: path=/content/home}\n" +
+                        "    {type=type: type=cq:Page}\n" +
+                        "    {1_property=property: property=jcr:content/custompublishdate, operation=exists}\n" +
+                        "]";
 
-        assertEquals(2, articles.size());
-        assertEquals("/content/home/article_1.html", articles.get(0).getPath());
-        assertEquals("/content/home/article_2.html", articles.get(1).getPath());
+        String expectedSecondQuery =
+                "ROOT=group: limit=2, excerpt=true[\n" +
+                        "    {group=group: or=true[\n" +
+                        "        {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}\n" +
+                        "        {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}\n" +
+                        "    ]}\n" +
+                        "    {orderby=orderby: orderby=@jcr:content/cq:lastModified, sort=desc}\n" +
+                        "    {path=path: path=/content/home}\n" +
+                        "    {type=type: type=cq:Page}\n" +
+                        "    {1_property=property: property=jcr:content/custompublishdate, operation=not}\n" +
+                        "]";
+
+        String expectedThirdQuery =
+                "ROOT=group: limit=2, excerpt=true[\n" +
+                        "    {group=group: or=true[\n" +
+                        "        {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}\n" +
+                        "        {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}\n" +
+                        "    ]}\n" +
+                        "    {orderby=orderby: orderby=@jcr:content/jcr:created, sort=desc}\n" +
+                        "    {path=path: path=/content/home}\n" +
+                        "    {type=type: type=cq:Page}\n" +
+                        "    {1_property=property: property=jcr:content/custompublishdate, operation=not}\n" +
+                        "]";
+
+        articleService.getLatestArticles("/content/home", 2);
+
+        verifyQuery(expectedFirstQuery, expectedSecondQuery, expectedThirdQuery);
     }
 
     @Test
-    void findArticlesByPageProperties_ShouldReturnArticles_WhenArticlesAreFound() {
-        var entries = articleService.findArticlesByPageProperties("dhl", "/content/home", resolver);
+    void getAllArticles_ShouldBuildProperQuery() {
+        String expectedQuery =
+                "ROOT=group: limit=-1, excerpt=true[\n" +
+                        "    {group=group: or=true[\n" +
+                        "        {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}\n" +
+                        "        {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}\n" +
+                        "    ]}\n" +
+                        "    {path=path: path=/content/home}\n" +
+                        "    {type=type: type=cq:Page}\n" +
+                        "]";
+        articleService.getAllArticles(resolver.getResource("/content/home").adaptTo(Page.class));
 
-        assertEquals(2, entries.size());
-        Assertions.assertEquals("/content/home/article_1.html", entries.get(0).getArticle().getPath());
-        Assertions.assertEquals("/content/home/article_2.html", entries.get(1).getArticle().getPath());
+        verifyQuery(expectedQuery);
     }
 
     @Test
-    void findArticlesByFullText_ShouldReturnArticles_WhenArticlesAreFound() {
-        var entries = articleService.findArticlesByFullText("business advice", "/content/home", resolver);
+    void findArticlesByPageProperties_ShouldBuildProperQuery() {
+        String expectedQuery =
+                "ROOT=group: limit=50, guessTotal=true[\n" +
+                        "    {orderby=orderby: orderby=@jcr:content/jcr:score, sort=desc}\n" +
+                        "    {path=path: path=/content/home}\n" +
+                        "    {type=type: type=cq:Page}\n" +
+                        "    {1_group=group: and=true, or=true[\n" +
+                        "        {1_group=group: [\n" +
+                        "            {1_group=group: [\n" +
+                        "                {1_containsIgnoreCase=containsIgnoreCase: property=jcr:content/jcr:title, value=dhl}\n" +
+                        "            ]}\n" +
+                        "        ]}\n" +
+                        "        {2_group=group: not=true[\n" +
+                        "            {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}\n" +
+                        "            {1_group=group: [\n" +
+                        "                {1_containsIgnoreCase=containsIgnoreCase: property=jcr:content/pageTitle, value=dhl}\n" +
+                        "            ]}\n" +
+                        "        ]}\n" +
+                        "        {3_group=group: or=true[\n" +
+                        "            {1_group=group: [\n" +
+                        "                {1_containsIgnoreCase=containsIgnoreCase: property=jcr:content/navTitle, value=dhl}\n" +
+                        "            ]}\n" +
+                        "        ]}\n" +
+                        "    ]}\n" +
+                        "]";
+        articleService.findArticlesByPageProperties("dhl", "/content/home", resolver);
 
-        assertEquals(2, entries.size());
-        Assertions.assertEquals("/content/home/article_1.html", entries.get(0).getArticle().getPath());
-        Assertions.assertEquals("/content/home/article_2.html", entries.get(1).getArticle().getPath());
+        verifyQuery(expectedQuery);
+    }
+
+    @Test
+    void findArticlesByFullText_ShouldBuildProperQueries() {
+        String expectedFirstQuery =
+                "ROOT=group: limit=50, guessTotal=true[\n" +
+                        "    {explain=explain: explain=true}\n" +
+                        "    {orderby=orderby: orderby=@jcr:content/jcr:score, sort=desc}\n" +
+                        "    {path=path: path=/content/home}\n" +
+                        "    {type=type: type=cq:Page}\n" +
+                        "    {1_group=group: and=true[\n" +
+                        "        {1_group=group: or=true[\n" +
+                        "            {1_fulltext=fulltext: fulltext=\"business advice\"}\n" +
+                        "        ]}\n" +
+                        "        {2_group=group: not=true[\n" +
+                        "            {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}\n" +
+                        "        ]}\n" +
+                        "    ]}\n" +
+                        "]";
+
+        String expectedSecondQuery =
+                "ROOT=group: limit=50, guessTotal=true[\n" +
+                        "    {explain=explain: explain=true}\n" +
+                        "    {orderby=orderby: orderby=@jcr:content/jcr:score, sort=desc}\n" +
+                        "    {path=path: path=/content/home}\n" +
+                        "    {type=type: type=cq:Page}\n" +
+                        "    {1_group=group: and=true[\n" +
+                        "        {1_group=group: or=true[\n" +
+                        "            {1_fulltext=fulltext: fulltext=business}\n" +
+                        "            {2_fulltext=fulltext: fulltext=advice}\n" +
+                        "        ]}\n" +
+                        "        {2_group=group: not=true[\n" +
+                        "            {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}\n" +
+                        "        ]}\n" +
+                        "    ]}\n" +
+                        "]";
+
+        articleService.findArticlesByFullText("business advice", "/content/home", resolver);
+
+        verifyQuery(expectedFirstQuery, expectedSecondQuery);
+    }
+
+    @Test
+    void findArticlesByTag_ShouldBuildProperQuery() {
+        String expectedQuery =
+                "ROOT=group: limit=50, guessTotal=true[\n" +
+                "    {orderby=orderby: orderby=@jcr:content/jcr:created, sort=desc}\n" +
+                "    {path=path: path=/content/home}\n" +
+                "    {type=type: type=cq:Page}\n" +
+                "    {1_group=group: and=true[\n" +
+                "        {1_group=group: or=true[\n" +
+                "            {0_property=property: property=@jcr:content/cq:tags, value=dhl:business-advice}\n" +
+                "            {1_property=property: property=@jcr:content/cq:tags, value=dhl:innovation}\n" +
+                "        ]}\n" +
+                "        {2_group=group: not=true[\n" +
+                "            {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}\n" +
+                "        ]}\n" +
+                "    ]}\n" +
+                "]";
+
+        articleService.findArticlesByTag(List.of("dhl:business-advice", "dhl:innovation"), "/content/home", resolver);
+
+        verifyQuery(expectedQuery);
     }
 }

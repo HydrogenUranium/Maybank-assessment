@@ -44,14 +44,12 @@ public class ArticleService {
     public static final String P_LIMIT = "p.limit";
 
     public static final String GROUP_ONE_PROPERTY = "group.1_property";
-
     public static final String GROUP_ONE_PROPERTY_VALUE = "group.1_property.value";
-
     public static final String GROUP_THREE_PROPERTY = "group.3_property";
-
     public static final String GROUP_THREE_PROPERTY_VALUE = "group.3_property.value";
-
     public static final String ONE_GROUP_ONE_GROUP = "1_group.1_group.";
+    public static final String TAG_PROPERTY_NAME = "@jcr:content/cq:tags";
+
     @Reference
     protected ResourceResolverHelper resolverHelper;
 
@@ -139,7 +137,25 @@ public class ArticleService {
         return fulltextSearch
                 ? findArticlesByFullText(searchQuery, searchScope, resourceResolver)
                 : findArticlesByPageProperties(searchQuery, searchScope, resourceResolver);
+    }
 
+    public List<SearchResultEntry> findArticlesByTag(List<String> tagIds, String searchScope, ResourceResolver resourceResolver) {
+        if(tagIds == null || tagIds.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        Map<String, String> props = new HashMap<>();
+        props.put("path", searchScope);
+        props.put("type", NT_PAGE);
+        props.put("1_group.1_group.p.or", "true");
+        for(var i = 0; i < tagIds.size(); i++) {
+            props.put("1_group.1_group." + i + "_property", TAG_PROPERTY_NAME);
+            props.put("1_group.1_group." + i + "_property.value", tagIds.get(i));
+        }
+        setOrderingAndLimiting(props);
+        props.put(ORDERBY, "@jcr:content/jcr:created");
+
+        return searchArticles(props, resourceResolver);
     }
 
     public List<SearchResultEntry> findArticlesByFullText(String searchQuery, String searchScope, ResourceResolver resourceResolver) {
@@ -209,7 +225,7 @@ public class ArticleService {
             return;
         }
         int tagIndex = termCount + 1;
-        searchParams.put(ONE_GROUP_ONE_GROUP + tagIndex + "_property", "@jcr:content/cq:tags");
+        searchParams.put(ONE_GROUP_ONE_GROUP + tagIndex + "_property", TAG_PROPERTY_NAME);
         for (var i = 0; i < tagIds.size(); i++) {
             searchParams.put(ONE_GROUP_ONE_GROUP + tagIndex + "_property." + (i + 1) + "_value", tagIds.get(i));
         }
@@ -261,13 +277,12 @@ public class ArticleService {
     }
 
     private Map<String, String> setTermsGroupTagPredicates(Map<String, String> map, List<Tag> tags, int propertiesToLookGroupIndex) {
-        var propertyName = "@jcr:content/cq:tags";
         var propertyPredicate = "1_group.%1$s_group.%2$s_property";
         var valuePredicate = propertyPredicate + ".value";
 
         for (var termIndex = 0; termIndex < tags.size(); termIndex++) {
             String term = tags.get(termIndex).getTagID();
-            map.put(String.format(propertyPredicate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), propertyName);
+            map.put(String.format(propertyPredicate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), TAG_PROPERTY_NAME);
             map.put(String.format(valuePredicate, (propertiesToLookGroupIndex + 1), (termIndex + 1)), term);
         }
         return map;

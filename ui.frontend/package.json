@@ -28,6 +28,7 @@
   },
   "scripts": {
     "test": "jest",
+    "fix": "npm run eslint:fix",
     "test:coverage": "npm test -- --coverage",
     "webpack-build": "webpack --config ./webpack.dev.js",
     "dev": "webpack --env dev --config ./webpack.dev.js && npm run dependencies && clientlib --verbose",
