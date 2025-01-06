@@ -1,36 +1,27 @@
 <sly data-sly-use.articlePage="com.dhl.discover.core.models.ArticlePage"
-     data-sly-set.article="${articlePage.article}"/>
+     data-sly-set.article="${articlePage.article}"></sly>
 
-<div class="article-header_share article-footer">
-  <div class="article-header_share-container">
-    <div class="article-header_share-container__left">
-      <div data-sly-repeat="${articlePage.socialNetwork}" class="st-custom-button" data-network="${item}">
-        <img class="logo__image" alt="${item} sharing button" src="${articlePage.socialNetwork[item]}">
+<div class="cmp-article-footer">
+  <sly data-sly-use.share="/apps/dhl/htl/templates/share.html"
+       data-sly-call="${share.shareOptions @ articlePage = articlePage, underline = true}"></sly>
+
+  <!--/* This Author-related part of the code will be finalised as part of DIS-372 */-->
+  <div data-sly-test.articleAuthor="${article.author}" class="cmp-article-footer__author">
+    <img data-sly-test="${(article.authorimage.length > 0)}"
+         class="cmp-article-footer__author-image"
+         src="${article.authorimage}"
+         alt="${articleAuthor}">
+    <div class="cmp-article-footer__author-info">
+      <div>
+        <span class="cmp-article-footer__author-name">${articleAuthor}</span>
+        <a data-sly-test="${articlePage.followLabel}" class="cmp-article-footer__author-follow" href="${articlePage.followPath}">
+          <span>${articlePage.followLabel}</span>
+        </a>
       </div>
-    </div>
-    <div class="article-header_share-container__right">
-      <div class="st-custom-button" data-network="sharethis">
-        <img class="logo__image" alt="Smart Share Buttons Icon" src="${articlePage.smartShareButtonsIconPath}">
-        <span class="st-label">${articlePage.smartShareButtonsLabel}</span>
-      </div>
+      <div class="cmp-article-footer__author-title">${article.authortitle}</div>
     </div>
   </div>
+  <!--/* End */-->
+
 </div>
 
-<!--/* This Author-related part of the code will be finalised as part of DIS-372 */-->
-<div data-sly-test.articleAuthor="${article.author}" class="article-header_author article-footer">
-  <img data-sly-test="${(article.authorimage.length > 0)}"
-       class="article-header_author-image"
-       src="${article.authorimage}"
-       alt="${articleAuthor}">
-  <div class="article-header_author-description">
-    <div>
-      <span class="article-header_author-description__name">${articleAuthor}</span>
-      <a data-sly-test="${articlePage.followLabel}" class="article-header_author-description__follow" href="${articlePage.followPath}">
-        <span>${articlePage.followLabel}</span>
-      </a>
-    </div>
-    <div class="article-header_author-description__title">${article.authortitle}</div>
-  </div>
-</div>
-<!--/* End */-->
