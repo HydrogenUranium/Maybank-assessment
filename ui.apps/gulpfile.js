@@ -18,7 +18,6 @@ const babel = require('babelify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const browserify = require('browserify');
-const terser = require('gulp-terser');
 
 const isDev = util(process.argv.slice(3)).dev === true; // replacement for gulp-util 'env' (deprecated for 4 years now)
 console.log('Dev mode on: ' + isDev);
@@ -92,14 +91,6 @@ gulp.task('javascript', () => {
     .pipe(gulpIf(isDev, sourcemaps.init()))
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest(scriptDest));
-    // .pipe(gulpIf(!isDev, uglify())) to be removed if 'gulp-terser' works
-    // .pipe(gulpIf(!isDev, terser()))
-    // .pipe(rename('vendor.min.js'))
-    // .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
-    //   sourceRoot: '/',
-    //   includeContent: false
-    // })))
-    // .pipe(gulp.dest(scriptDest));
 
   let app = bundler.bundle()
     .on('error', (err) => {
@@ -110,14 +101,6 @@ gulp.task('javascript', () => {
     .pipe(gulp.dest(scriptDest))
     .pipe(buffer())
     .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })));
-    // .pipe(gulpIf(!isDev, uglify())) to be removed if 'gulp-terser' works
-    // .pipe(gulpIf(!isDev, terser()))
-    // .pipe(rename('main.min.js'))
-    // .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
-    //   sourceRoot: '/',
-    //   includeContent: false
-    // })))
-    // .pipe(gulp.dest(scriptDest));
 
   let animatedApp = animatedBundler.bundle()
     .on('error', (err) => {
@@ -128,14 +111,6 @@ gulp.task('javascript', () => {
     .pipe(gulp.dest(scriptDestAnimated))
     .pipe(buffer())
     .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })));
-    // .pipe(gulpIf(!isDev, uglify())) to be removed if 'gulp-terser' works
-    // .pipe(gulpIf(!isDev, terser()))
-    // .pipe(rename('animated.min.js'))
-    // .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
-    //   sourceRoot: '/',
-    //   includeContent: false
-    // })))
-    // .pipe(gulp.dest(scriptDestAnimated));
 
   return ordered([vendor, app, animatedApp]);
 });
