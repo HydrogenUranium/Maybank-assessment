@@ -26,8 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.dhl.discover.junitUtils.InjectorMock.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
@@ -83,6 +82,12 @@ class ArticleGridV2Test {
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
         when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
+
+        mockInjectHomeProperty(context, "articleGrid-title", "Categories");
+        mockInjectHomeProperty(context, "articleGrid-allTitle", "All");
+        mockInjectHomeProperty(context, "articleGrid-sortTitle", "Sort By");
+        mockInjectHomeProperty(context, "articleGrid-latestOptionTitle", "Latest");
+        mockInjectHomeProperty(context, "articleGrid-showTags", "false");
     }
 
     private Article getArticle(String path) {
@@ -108,11 +113,6 @@ class ArticleGridV2Test {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/discover" + invocationOnMock.getArgument(0, String.class) : "";
         });
-        mockInjectHomeProperty(context, "articleGrid-title", "Categories");
-        mockInjectHomeProperty(context, "articleGrid-allTitle", "All");
-        mockInjectHomeProperty(context, "articleGrid-sortTitle", "Sort By");
-        mockInjectHomeProperty(context, "articleGrid-latestOptionTitle", "Latest");
-        mockInjectHomeProperty(context, "articleGrid-showTags", "false");
 
         initRequest("/content/home", "/content/home");
         ArticleGridV2 articleGridV2 = request.adaptTo(ArticleGridV2.class);
@@ -120,7 +120,8 @@ class ArticleGridV2Test {
 
         JsonNode json = new ObjectMapper().readTree(articleGridV2.toJson());
 
-        assertEquals("Categories", articleGridV2.getTitle());
+        assertEquals("Categories", articleGridV2.getDefaultTitle());
+        assertNull(null, articleGridV2.getTitle());
         assertEquals("All", articleGridV2.getAllCategoryTitle());
         assertEquals("Categories", json.get("title").asText());
         assertEquals("false", json.get("showTags").asText());
@@ -144,11 +145,6 @@ class ArticleGridV2Test {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/discover" + invocationOnMock.getArgument(0, String.class) : "";
         });
-        mockInjectHomeProperty(context, "articleGrid-title", "Categories");
-        mockInjectHomeProperty(context, "articleGrid-allTitle", "All");
-        mockInjectHomeProperty(context, "articleGrid-sortTitle", "Sort By");
-        mockInjectHomeProperty(context, "articleGrid-latestOptionTitle", "Latest");
-        mockInjectHomeProperty(context, "articleGrid-showTags", "false");
 
         initRequest("/content/home/b2b-advice", "/content/home/b2b-advice/jcr:content/article_grid");
         ArticleGridV2 articleGridV2 = request.adaptTo(ArticleGridV2.class);
@@ -156,9 +152,10 @@ class ArticleGridV2Test {
 
         JsonNode json = new ObjectMapper().readTree(articleGridV2.toJson());
 
-        assertEquals("Categories", articleGridV2.getTitle());
+        assertEquals("Categories", articleGridV2.getDefaultTitle());
+        assertEquals("Articles", articleGridV2.getTitle());
         assertEquals("All", articleGridV2.getAllCategoryTitle());
-        assertEquals("Categories", json.get("title").asText());
+        assertEquals("Articles", json.get("title").asText());
         assertEquals("false", json.get("showTags").asText());
         assertEquals(2, json.get("categories").size());
         JsonNode productivityCategory = json.get("categories").get(0);
