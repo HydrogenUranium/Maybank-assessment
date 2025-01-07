@@ -73,21 +73,14 @@ class HeaderV2 {
     let header = $(this.sel.component);
     let selectedCountry = $(this.sel.selectedCountry);
     let countryOptions = $(this.sel.countryOptions);
-    console.log("wt first : " + wt + " pb first: " + pb);
     if (wt > pb) {
       header.addClass('fixed');
       if (wt > this.lastScrollTop) {
-        // Scrolling down: Remove 'in' class to slide the header out
-        console.log("in class is remove.. ")
         header.removeClass('in');
       } else {
-        // Scrolling up: Add 'in' class to slide the header back in
-        console.log("wt > this.lastScrollTop else bock : " + wt);
         if(wt <= 450) {
-          console.log("wt is below 300 execute this block");
           header.addClass('in');
         }else{
-          console.log("wt is above 300 .... ");
           header.removeClass('in');
         }
 
