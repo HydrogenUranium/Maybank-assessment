@@ -11,76 +11,88 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
         <items jcr:primaryType="nt:unstructured">
-            <column
+            <tabs
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/foundation/container">
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured">
-                    <openSearchAriaLabel
+                    <properties
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Open Button Aria Label"
-                            emptyText="Open Search Bar"
-                            name="./openAriaLabel">
-                    </openSearchAriaLabel>
-                    <closeSearchAriaLabel
+                            jcr:title="Properties"
+                            sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <openSearchAriaLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Open Button Aria Label"
+                                    emptyText="Open Search Bar"
+                                    name="./openAriaLabel">
+                            </openSearchAriaLabel>
+                            <closeSearchAriaLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Close Button Aria Label"
+                                    emptyText="Close Search Bar"
+                                    name="./closeAriaLabel">
+                            </closeSearchAriaLabel>
+                            <searchInputAriaLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Search Input Aria Label"
+                                    emptyText="Search Bar Input"
+                                    name="./searchInputAriaLabel">
+                            </searchInputAriaLabel>
+                            <searchButtonAriaLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Search Button Aria Label"
+                                    emptyText="Go to search result page"
+                                    name="./searchButtonAriaLabel">
+                            </searchButtonAriaLabel>
+                            <recentSearchesTitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Recent Searches Title"
+                                    emptyText="Recent Searches"
+                                    name="./recentSearchesTitle">
+                            </recentSearchesTitle>
+                            <trendingTopicsTitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Trending Topics Title"
+                                    emptyText="Trending Topics"
+                                    name="./trendingTopicsTitle">
+                            </trendingTopicsTitle>
+                            <articlesTitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Suggested Articles Title"
+                                    emptyText="Articles"
+                                    name="./articlesTitle">
+                            </articlesTitle>
+                            <showThumbnail
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                    fieldDescription="If checked, the thumbnail will be shown in search bar results."
+                                    name="./showThumbnail"
+                                    text="Show Thumbnail"
+                                    value="true">
+                            </showThumbnail>
+                            <searchResultPage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./searchResultPage"
+                                    rootPath="/content/dhl"
+                                    fieldLabel="Search Result Page">
+                            </searchResultPage>
+                        </items>
+                    </properties>
+                    <styletab
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Close Button Aria Label"
-                            emptyText="Close Search Bar"
-                            name="./closeAriaLabel">
-                    </closeSearchAriaLabel>
-                    <searchInputAriaLabel
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Search Input Aria Label"
-                            emptyText="Search Bar Input"
-                            name="./searchInputAriaLabel">
-                    </searchInputAriaLabel>
-                    <searchButtonAriaLabel
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Search Button Aria Label"
-                            emptyText="Go to search result page"
-                            name="./searchButtonAriaLabel">
-                    </searchButtonAriaLabel>
-                    <recentSearchesTitle
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Recent Searches Title"
-                            emptyText="Recent Searches"
-                            name="./recentSearchesTitle">
-                    </recentSearchesTitle>
-                    <trendingTopicsTitle
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Trending Topics Title"
-                            emptyText="Trending Topics"
-                            name="./trendingTopicsTitle">
-                    </trendingTopicsTitle>
-                    <articlesTitle
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldLabel="Suggested Articles Title"
-                            emptyText="Articles"
-                            name="./articlesTitle">
-                    </articlesTitle>
-                    <showThumbnail
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                            fieldDescription="If checked, the thumbnail will be shown in search bar results."
-                            name="./showThumbnail"
-                            text="Show Thumbnail"
-                            value="true">
-                    </showThumbnail>
-                    <searchResultPage
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                            name="./searchResultPage"
-                            rootPath="/content/dhl"
-                            fieldLabel="Search Result Page">
-                    </searchResultPage>
+                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                            path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_edit/styletab"/>
                 </items>
-            </column>
+            </tabs>
         </items>
     </content>
 </jcr:root>

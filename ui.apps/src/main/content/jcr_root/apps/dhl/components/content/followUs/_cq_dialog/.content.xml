@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-        xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
         xmlns:cq="http://www.day.com/jcr/cq/1.0"
         xmlns:jcr="http://www.jcp.org/jcr/1.0"
         xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
@@ -14,19 +13,31 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
         <items jcr:primaryType="nt:unstructured">
-            <column
+            <tabs
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/foundation/container">
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured">
-                    <homePageProperties
+                    <properties
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/alert"
-                            jcr:title="In the Home Page Properties (Common Components Configuration - FOOTER V.2 - Social Links)"
-                            text="- Label &lt;br&gt;
+                            jcr:title="Properties"
+                            sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <homePageProperties
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/alert"
+                                    jcr:title="In the Home Page Properties (Common Components Configuration - FOOTER V.2 - Social Links)"
+                                    text="- Label &lt;br&gt;
                                   - Social Network icons &lt;br&gt;
                                   are configured"/>
+                        </items>
+                    </properties>
+                    <styletab
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                            path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_edit/styletab"/>
                 </items>
-            </column>
+            </tabs>
         </items>
     </content>
 </jcr:root>
