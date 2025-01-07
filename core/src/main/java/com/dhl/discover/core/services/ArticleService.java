@@ -149,8 +149,8 @@ public class ArticleService {
         props.put("type", NT_PAGE);
         props.put("1_group.1_group.p.or", "true");
         for(var i = 0; i < tagIds.size(); i++) {
-            props.put("1_group.1_group." + i + "_property", TAG_PROPERTY_NAME);
-            props.put("1_group.1_group." + i + "_property.value", tagIds.get(i));
+            props.put(ONE_GROUP_ONE_GROUP + i + "_property", TAG_PROPERTY_NAME);
+            props.put(ONE_GROUP_ONE_GROUP + i + "_property.value", tagIds.get(i));
         }
         setOrderingAndLimiting(props);
         props.put(ORDERBY, "@jcr:content/jcr:created");

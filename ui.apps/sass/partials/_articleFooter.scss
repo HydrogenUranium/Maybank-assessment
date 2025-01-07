@@ -1,0 +1,38 @@
+.cmp-article-footer {
+
+  &__author {
+    margin-top: 20px;
+  }
+
+  &__author-image {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  &__author-info {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    line-height: 17px;
+    color: map-get($palette, dhl-black);
+    opacity: 0.7;
+  }
+
+  &__author-name {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__author-follow {
+    padding-left: 15px;
+    text-decoration: underline;
+    color: map-get($palette, scarlet);
+    opacity: 1;
+
+    &:hover {
+      color: map-get($palette, scarlet);
+    }
+  }
+}
