@@ -77,15 +77,11 @@ class HeaderV2 {
       $('.page-body').addClass('fixed');
       header.addClass('fixed');
       console.log("first lastScrollTop : " + this.lastScrollTop);
-      if (wt > this.lastScrollTop) {
+      console.log("current windows scroll top : " + wt);
+      if (wt > this.lastScrollTop ) {
         header.removeClass('in');
       } else {
-        if(wt <= 600) {
-          header.addClass('in');
-        }else{
-          header.removeClass('in');
-        }
-
+        header.addClass('in');
       }
 
       selectedCountry.attr("aria-expanded", "false");
