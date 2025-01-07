@@ -74,6 +74,8 @@ class HeaderV2 {
     let selectedCountry = $(this.sel.selectedCountry);
     let countryOptions = $(this.sel.countryOptions);
     if (wt > pb) {
+      console.log("page body add fixed class running ... ")
+      $('.page-body').addClass('fixed');
       header.addClass('fixed');
       if (wt > this.lastScrollTop) {
         header.removeClass('in');
