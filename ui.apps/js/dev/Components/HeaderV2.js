@@ -74,9 +74,9 @@ class HeaderV2 {
     let selectedCountry = $(this.sel.selectedCountry);
     let countryOptions = $(this.sel.countryOptions);
     if (wt > pb) {
-      console.log("page body add fixed class running ... ")
       $('.page-body').addClass('fixed');
       header.addClass('fixed');
+      console.log("first lastScrollTop : " + this.lastScrollTop);
       if (wt > this.lastScrollTop) {
         header.removeClass('in');
       } else {
@@ -97,7 +97,7 @@ class HeaderV2 {
     }
 
     this.lastScrollTop = wt;
-    console.log("lastScrollTop : " + this.lastScrollTop);
+    console.log("End lastScrollTop : " + this.lastScrollTop);
   }
 
 
