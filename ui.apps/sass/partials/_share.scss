@@ -1,0 +1,78 @@
+.share-options {
+  &__label {
+    display: none;
+
+    @include respond(xl) {
+      display: block;
+      padding-top: 23px;
+      font-size: 12px;
+      line-height: 17px;
+      font-weight: bold;
+      color: map-get($palette, dhl-black);
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 27px;
+
+    @include respond(xl) {
+      padding-top: 0;
+    }
+
+    .st-custom-button {
+      cursor: pointer;
+      align-items: center;
+      display: flex;
+      gap: 5px;
+    }
+  }
+
+  &__left {
+    display: flex;
+    gap: 10px;
+
+    .logo__image {
+      height: 27px;
+      width: 27px;
+      object-fit: contain;
+      margin: 0;
+    }
+  }
+
+  &__right {
+    .logo__image {
+      height: 17px;
+      width: 17px;
+      object-fit: contain;
+      margin: 0;
+    }
+
+    .st-label {
+      position: relative;
+      font-size: 14px;
+      line-height: 25px;
+      letter-spacing: 0.48px;
+      color: map-get($palette, scarlet);
+
+      @include respond(md) {
+        font-size: 14px;
+        line-height: 34px;
+        letter-spacing: 0.66px;
+      }
+
+      @include respond(xl) {
+        font-size: 15px;
+        line-height: 37px;
+        letter-spacing: 0.72px;
+      }
+    }
+  }
+
+  &--underline {
+    padding-bottom: 20px;
+    border-bottom: 2px solid map-get($palette, scarlet);
+  }
+}

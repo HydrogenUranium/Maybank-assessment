@@ -15,7 +15,7 @@ exports[`ArticleCard should render component "ArticleCard" property 1`] = `
     tabIndex={-1}
   >
     <div
-      className="articleCardImageGroupTag"
+      className="articleCardGroupTag"
     >
       #LogisticsAdvice
     </div>
@@ -24,18 +24,18 @@ exports[`ArticleCard should render component "ArticleCard" property 1`] = `
     className="articleCardInfo"
   >
     <div
-      className="articleCardInfoAuthor"
+      className="articleCardAuthor"
     >
       Anna Thompson | April 20, 2023
     </div>
     <a
-      className="articleCardInfoTitle"
+      className="articleCardTitle"
       href="/discover/en-global/logistics-advice/essential-guides/what-is-reverse-logistics"
     >
       What is Reverse Logistics?
     </a>
     <div
-      className="articleCardInfoDescription"
+      className="articleCardDescription"
     >
       Discover everything you need to know about reverse logistics including types, benefits, challenges, and strategies to optimize your reverse logistics practices.
     </div>

@@ -36,5 +36,5 @@ export const SearchRow: React.FC<SearchRowProps> = ({ searchRow: { article, exce
         />
       </div>
     </div>
-  )
+  );
 };
