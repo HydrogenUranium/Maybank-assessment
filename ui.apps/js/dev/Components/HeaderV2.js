@@ -80,7 +80,7 @@ class HeaderV2 {
       if (wt > this.lastScrollTop) {
         header.removeClass('in');
       } else {
-        if(wt <= 450) {
+        if(wt <= 600) {
           header.addClass('in');
         }else{
           header.removeClass('in');
