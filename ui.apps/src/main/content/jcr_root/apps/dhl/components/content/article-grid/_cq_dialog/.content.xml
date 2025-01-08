@@ -49,6 +49,11 @@
                                         jcr:primaryType="nt:unstructured"
                                         showhidetargetvalue="customByTags"/>
                                 <items jcr:primaryType="nt:unstructured">
+                                    <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Custom Title"
+                                            name="./title"/>
                                     <contentSource
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"

@@ -10,6 +10,7 @@ body {
 
 .page-body {
   overflow: hidden;
+  padding-top: 130px;
 
   &--new-design {
     max-width: 1640px;
@@ -20,7 +21,7 @@ body {
     padding-top: 40.3px;
 
     @include respond(lg) {
-      padding-top: 80px;
+      padding-top: 130px;
     }
   }
 }

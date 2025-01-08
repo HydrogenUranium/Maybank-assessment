@@ -8,6 +8,7 @@ import com.dhl.discover.core.services.ArticleService;
 import com.dhl.discover.core.services.InitUtil;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -65,13 +66,16 @@ public class ArticleGridV2 {
     @ValueMapValue
     private boolean includeAllTab;
 
+    @ValueMapValue
+    private String title;
+
     @ChildResource
     private List<TabConfig> tabs;
 
     @InjectHomeProperty
     @Named("articleGrid-title")
     @Default(values = "Categories")
-    private String title;
+    private String defaultTitle;
 
     @InjectHomeProperty
     @Named("articleGrid-allTitle")
@@ -179,7 +183,7 @@ public class ArticleGridV2 {
         categories.build();
 
         return Json.createObjectBuilder()
-                .add(PAGE_TITLE_PARAM, title)
+                .add(PAGE_TITLE_PARAM, StringUtils.defaultIfBlank(title, defaultTitle))
                 .add("showTags", showTags)
                 .add("includeAllTab", includeAllTab)
                 .add("allCategoryTitle", allCategoryTitle)

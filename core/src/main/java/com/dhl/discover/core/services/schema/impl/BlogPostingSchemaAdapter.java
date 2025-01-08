@@ -7,6 +7,7 @@ import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import com.dhl.discover.core.services.schema.AbstractSchemaAdapter;
 import com.dhl.discover.core.services.schema.SchemaAdapter;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
@@ -56,8 +57,8 @@ public class BlogPostingSchemaAdapter extends AbstractSchemaAdapter {
         webPage.addProperty("@id", pathUtilService.getFullMappedPath(article.getPath(), request));
         blogPosting.add("mainEntityOfPage", webPage);
 
-        blogPosting.addProperty("headline", article.getTitle());
-        blogPosting.addProperty("description", article.getDescription());
+        blogPosting.addProperty("headline", StringEscapeUtils.escapeHtml4(article.getTitle()));
+        blogPosting.addProperty("description", StringEscapeUtils.escapeHtml4(article.getDescription()));
         blogPosting.addProperty("image", pathUtilService.getFullMappedPath(article.getHeroimagemob(), request));
 
         JsonObject author = createType(ORGANIZATION);
