@@ -57,8 +57,8 @@ public class BlogPostingSchemaAdapter extends AbstractSchemaAdapter {
         webPage.addProperty("@id", pathUtilService.getFullMappedPath(article.getPath(), request));
         blogPosting.add("mainEntityOfPage", webPage);
 
-        blogPosting.addProperty("headline", article.getTitle());
-        blogPosting.addProperty("description", StringEscapeUtils.escapeHtml4((article.getDescription())));
+        blogPosting.addProperty("headline", StringEscapeUtils.escapeHtml4(article.getTitle()));
+        blogPosting.addProperty("description", StringEscapeUtils.escapeHtml4(article.getDescription()));
         blogPosting.addProperty("image", pathUtilService.getFullMappedPath(article.getHeroimagemob(), request));
 
         JsonObject author = createType(ORGANIZATION);
