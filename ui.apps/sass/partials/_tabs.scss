@@ -69,5 +69,8 @@
   }
   .tab-pane.active {
     display: block;
+      a {
+        @include hoverText($text-decoration-normal: underline, $text-decoration-hover: underline);
+      }
   }
 }

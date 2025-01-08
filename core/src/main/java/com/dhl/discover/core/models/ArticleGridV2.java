@@ -3,17 +3,20 @@ package com.dhl.discover.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.injectors.InjectHomeProperty;
+import com.dhl.discover.core.models.search.SearchResultEntry;
 import com.dhl.discover.core.services.ArticleService;
 import com.dhl.discover.core.services.InitUtil;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.Required;
+import org.apache.sling.models.annotations.injectorspecific.*;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -24,79 +27,113 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static com.day.cq.wcm.api.commands.WCMCommand.PAGE_TITLE_PARAM;
 import static com.dhl.discover.core.services.PageUtilService.CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE;
-
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 
 @Getter
-@Model(adaptables = SlingHttpServletRequest.class)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 @Slf4j
 public class ArticleGridV2 {
     @ScriptVariable
+    @Required
     private Page currentPage;
 
     @ScriptVariable
+    @Required
     protected Style currentStyle;
 
     @OSGiService
+    @Required
     private InitUtil initUtil;
 
     @OSGiService
+    @Required
     private ArticleService articleService;
 
-    @InjectHomeProperty
-    @Optional
-    @Named("articleGrid-title")
-    @Default(values = "Categories")
+    @SlingObject
+    @Required
+    private ResourceResolver resolver;
+
+    @ValueMapValue
+    private String tabSource;
+
+    @ValueMapValue
+    private String contentSource;
+
+    @ValueMapValue
+    private boolean includeAllTab;
+
+    @ValueMapValue
     private String title;
 
-    @InjectHomeProperty
-    @Optional
-    @Named("articleGrid-allTitle")
-    @Default(values = "All")
-    private String allCategoriesTitle;
+    @ChildResource
+    private List<TabConfig> tabs;
 
     @InjectHomeProperty
-    @Optional
+    @Named("articleGrid-title")
+    @Default(values = "Categories")
+    private String defaultTitle;
+
+    @InjectHomeProperty
+    @Named("articleGrid-allTitle")
+    @Default(values = "All")
+    private String allCategoryTitle;
+
+    @InjectHomeProperty
     @Named("articleGrid-sortTitle")
     @Default(values = "Sort By")
     private String sortTitle;
 
     @InjectHomeProperty
-    @Optional
     @Named("articleGrid-latestOptionTitle")
     @Default(values = "Latest")
     private String latestOptionTitle;
 
     @InjectHomeProperty
-    @Optional
     @Named("articleGrid-recommendedOptionTitle")
     @Default(values = "Recommended")
     private String recommendedOptionTitle;
 
     @InjectHomeProperty
-    @Optional
     @Named("articleGrid-ShowMoreButtonTitle")
     @Default(values = "Show More")
     private String showMoreButtonTitle;
 
     @InjectHomeProperty
-    @Optional
     @Named("articleGrid-showTags")
-    @Default(values = "false")
-    private String showTags;
+    private boolean showTags;
+
+    private boolean enableAssetDelivery;
 
     private final Map<String, List<Article>> categoryArticleMap = new LinkedHashMap<>();
 
     @PostConstruct
     private void init() {
-        boolean enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
-        var allLatestArticles = articleService.getAllArticles(currentPage);
-        allLatestArticles.forEach(article -> article.initAssetDeliveryProperties(enableAssetDelivery));
-        categoryArticleMap.put(allCategoriesTitle, allLatestArticles);
+        enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
 
+        if ("customByTags".equals(tabSource)) {
+            initTagBasedCategories();
+        } else {
+            initChildCategories();
+        }
+    }
+
+    private void initTagBasedCategories() {
+        tabs.forEach(tab -> {
+            var results = articleService.findArticlesByTag(tab.getTags(), contentSource, resolver);
+            var articles = results.stream()
+                    .map(SearchResultEntry::getArticle)
+                    .peek(article -> article.initAssetDeliveryProperties(enableAssetDelivery))
+                    .collect(Collectors.toList());
+            categoryArticleMap.put(tab.getTitle(), articles);
+        });
+    }
+
+    private void initChildCategories() {
+        includeAllTab = true;
         getSubCategories().forEach(category -> {
             var categoryArticles = articleService.getAllArticles(category);
             categoryArticles.forEach(article -> article.initAssetDeliveryProperties(enableAssetDelivery));
@@ -146,13 +183,27 @@ public class ArticleGridV2 {
         categories.build();
 
         return Json.createObjectBuilder()
-                .add(PAGE_TITLE_PARAM, title)
-                .add("showTags", showTags.equals("true"))
+                .add(PAGE_TITLE_PARAM, StringUtils.defaultIfBlank(title, defaultTitle))
+                .add("showTags", showTags)
+                .add("includeAllTab", includeAllTab)
+                .add("allCategoryTitle", allCategoryTitle)
                 .add("categories", categories)
                 .add("showMoreResultsButtonTitle", showMoreButtonTitle)
                 .add("recommendedOptionTitle", recommendedOptionTitle)
                 .add("latestOptionTitle", latestOptionTitle)
                 .add("sortingTitle", sortTitle)
                 .build().toString();
+    }
+
+    @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+    @Getter
+    public static class TabConfig {
+
+        @ValueMapValue
+        @Default(values = "")
+        private String title;
+
+        @ValueMapValue
+        private List<String> tags;
     }
 }

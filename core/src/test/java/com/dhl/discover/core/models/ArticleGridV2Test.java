@@ -2,6 +2,7 @@ package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
+import com.dhl.discover.core.models.search.SearchResultEntry;
 import com.dhl.discover.core.services.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -25,10 +26,8 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.dhl.discover.junitUtils.InjectorMock.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -58,12 +57,13 @@ class ArticleGridV2Test {
     @Mock
     private PathUtilService pathUtilService;
 
-    private void initRequest(String path) {
-        request.setPathInfo(path);
-        Resource resource = resourceResolver.getResource(path);
-        Page page = resource.adaptTo(Page.class);
-        request.setResource(resourceResolver.getResource(path));
+    private void initRequest(String pagePath, String resourcePath) {
+        Resource resource = resourceResolver.getResource(resourcePath);
+        Page page = context.pageManager().getPage(pagePath);
+
         context.currentPage(page);
+        request.setPathInfo(pagePath);
+        request.setResource(resource);
     }
 
     @BeforeEach
@@ -82,6 +82,12 @@ class ArticleGridV2Test {
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
         when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
+
+        mockInjectHomeProperty(context, "articleGrid-title", "Categories");
+        mockInjectHomeProperty(context, "articleGrid-allTitle", "All");
+        mockInjectHomeProperty(context, "articleGrid-sortTitle", "Sort By");
+        mockInjectHomeProperty(context, "articleGrid-latestOptionTitle", "Latest");
+        mockInjectHomeProperty(context, "articleGrid-showTags", "false");
     }
 
     private Article getArticle(String path) {
@@ -89,7 +95,7 @@ class ArticleGridV2Test {
     }
 
     @Test
-    void test() throws JsonProcessingException {
+    void test_ChildCategories() throws JsonProcessingException {
         when(articleService.getAllArticles(any(Page.class))).thenAnswer(invocationOnMock -> {
             Page rootPage = invocationOnMock.getArgument(0, Page.class);
             String path = rootPage.getPath();
@@ -103,36 +109,62 @@ class ArticleGridV2Test {
             rootPage.listChildren().forEachRemaining(page -> articles.add(getArticle(page.getPath())));
             return articles;
         });
-        lenient().when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
+        when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/discover" + invocationOnMock.getArgument(0, String.class) : "";
         });
-        mockInjectHomeProperty(context, "articleGrid-title", "Categories");
-        mockInjectHomeProperty(context, "articleGrid-allTitle", "All");
-        mockInjectHomeProperty(context, "articleGrid-sortTitle", "Sort By");
-        mockInjectHomeProperty(context, "articleGrid-latestOptionTitle", "Latest");
-        mockInjectHomeProperty(context, "articleGrid-showTags", "false");
 
-        initRequest("/content/home");
+        initRequest("/content/home", "/content/home");
         ArticleGridV2 articleGridV2 = request.adaptTo(ArticleGridV2.class);
         assertNotNull(articleGridV2);
 
         JsonNode json = new ObjectMapper().readTree(articleGridV2.toJson());
 
-        assertEquals("Categories", articleGridV2.getTitle());
-        assertEquals("All", articleGridV2.getAllCategoriesTitle());
+        assertEquals("Categories", articleGridV2.getDefaultTitle());
+        assertNull(null, articleGridV2.getTitle());
+        assertEquals("All", articleGridV2.getAllCategoryTitle());
         assertEquals("Categories", json.get("title").asText());
         assertEquals("false", json.get("showTags").asText());
-        assertEquals(3, json.get("categories").size());
-        JsonNode allCategory = json.get("categories").get(0);
-        JsonNode b2bAdviceCategory = json.get("categories").get(1);
-        JsonNode eCommerceAdviceCategory = json.get("categories").get(2);
-        assertEquals("All", allCategory.get("name").asText());
+        assertEquals(2, json.get("categories").size());
+        JsonNode b2bAdviceCategory = json.get("categories").get(0);
+        JsonNode eCommerceAdviceCategory = json.get("categories").get(1);
         assertEquals("B2B Advice - title", b2bAdviceCategory.get("name").asText());
         assertEquals("E-commerce Advice - navTitle", eCommerceAdviceCategory.get("name").asText());
-        JsonNode article = allCategory.get("articles").get(0);
+        JsonNode article = eCommerceAdviceCategory.get("articles").get(0);
         assertEquals("What paperwork do I need for international shipping?", article.get("title").asText());
         assertEquals("/content/home/e-commerce-advice/article.html", article.get("path").asText());
         assertEquals("/discover/content/dam/image.jpg", article.get("pageImage").asText());
+    }
+
+    @Test
+    void test_TagBasedCategories() throws JsonProcessingException {
+        Article article = getArticle("/content/home/e-commerce-advice/article");
+        when(articleService.findArticlesByTag(anyList(), anyString(), any(ResourceResolver.class)))
+                .thenReturn(List.of(new SearchResultEntry(article)));
+        when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/discover" + invocationOnMock.getArgument(0, String.class) : "";
+        });
+
+        initRequest("/content/home/b2b-advice", "/content/home/b2b-advice/jcr:content/article_grid");
+        ArticleGridV2 articleGridV2 = request.adaptTo(ArticleGridV2.class);
+        assertNotNull(articleGridV2);
+
+        JsonNode json = new ObjectMapper().readTree(articleGridV2.toJson());
+
+        assertEquals("Categories", articleGridV2.getDefaultTitle());
+        assertEquals("Articles", articleGridV2.getTitle());
+        assertEquals("All", articleGridV2.getAllCategoryTitle());
+        assertEquals("Articles", json.get("title").asText());
+        assertEquals("false", json.get("showTags").asText());
+        assertEquals(2, json.get("categories").size());
+        JsonNode productivityCategory = json.get("categories").get(0);
+        JsonNode innovationCategory = json.get("categories").get(1);
+        assertEquals("Productivity", productivityCategory.get("name").asText());
+        assertEquals("Innovation", innovationCategory.get("name").asText());
+        JsonNode articleJson = productivityCategory.get("articles").get(0);
+        assertEquals("What paperwork do I need for international shipping?", articleJson.get("title").asText());
+        assertEquals("/content/home/e-commerce-advice/article.html", articleJson.get("path").asText());
+        assertEquals("/discover/discover/content/dam/image.jpg", articleJson.get("pageImage").asText());
     }
 }

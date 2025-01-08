@@ -12,7 +12,40 @@
         "jcr:title": "B2B Advice - title",
         "cq:template": "dhl/components/pages/editable-category-page",
         "jcr:primaryType": "cq:PageContent",
-        "sling:resourceType": "dhl/components/pages/editable-category-page"
+        "sling:resourceType": "dhl/components/pages/editable-category-page",
+        "article_grid": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "jcr:lastModifiedBy": "admin",
+          "jcr:created": "Thu Dec 12 2024 13:02:06 GMT+0200",
+          "title": "Articles",
+          "contentSource": "/content/dhl/global/en-global",
+          "jcr:lastModified": "Thu Dec 12 2024 13:04:13 GMT+0200",
+          "sling:resourceType": "dhl/components/content/article-grid",
+          "tabSource": "customByTags",
+          "includeAllTab": "true",
+          "tabs": {
+            "jcr:primaryType": "nt:unstructured",
+            "item0": {
+              "jcr:primaryType": "nt:unstructured",
+              "tags": [
+                "dhl:business-matters/businessplanning/productivity"
+              ],
+              "title": "Productivity"
+            },
+            "item1": {
+              "jcr:primaryType": "nt:unstructured",
+              "tags": [
+                "dhl:culture-hype/art",
+                "dhl:tech-futures/innovation",
+                "dhl:tech-futures/greenvehicles",
+                "dhl:tech-futures/extraordinarydeliveries",
+                "dhl:tech-futures/futuretransport"
+              ],
+              "title": "Innovation"
+            }
+          }
+        }
       },
       "article": {
         "jcr:primaryType": "cq:Page",

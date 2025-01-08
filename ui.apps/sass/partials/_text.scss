@@ -183,3 +183,9 @@
     margin: 0;
   }
 }
+
+.cmp-text p {
+  a {
+  @include hoverText($text-decoration-normal: underline, $text-decoration-hover: underline);
+  }
+}

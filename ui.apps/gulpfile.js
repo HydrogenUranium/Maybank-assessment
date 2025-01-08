@@ -10,7 +10,7 @@ const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
-const ordered = require('ordered-read-streams'); 
+const ordered = require('ordered-read-streams');
 const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
 const eslint = require('gulp-eslint-new');
@@ -18,7 +18,6 @@ const babel = require('babelify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const browserify = require('browserify');
-const terser = require('gulp-terser');
 
 const isDev = util(process.argv.slice(3)).dev === true; // replacement for gulp-util 'env' (deprecated for 4 years now)
 console.log('Dev mode on: ' + isDev);
@@ -43,13 +42,13 @@ gulp.task('sass', finished => {
     .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
     .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover/css'));
 
-    gulp.src('node_modules/flag-icons/css/flag-icons.min.css')
-        .pipe(gulpIf(isDev, sourcemaps.init()))
-        .pipe(replace('../flags', prefix + "/discover/resources/flags"))
-        .pipe(postcss([autoprefixer()]))
-        // .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
-        .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
-        .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover/css'));
+  gulp.src('node_modules/flag-icons/css/flag-icons.min.css')
+    .pipe(gulpIf(isDev, sourcemaps.init()))
+    .pipe(replace('../flags', prefix + "/discover/resources/flags"))
+    .pipe(postcss([autoprefixer()]))
+    // .pipe(autoprefixer({ remove: false, browsers: ['last 100 versions'] }))
+    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps')))
+    .pipe(gulp.dest('./src/main/content/jcr_root/apps/dhl/clientlibs/discover/css'));
 
   /* This is for a 'standalone' stylesheet meant to be delivered via a separate clientlib AEM package */
   gulp.src('./sass/animated-pages.scss')
@@ -91,14 +90,6 @@ gulp.task('javascript', () => {
   let vendor = gulp.src(path.join(scriptsPath, 'vendor', '/**/*.js'))
     .pipe(gulpIf(isDev, sourcemaps.init()))
     .pipe(concat('vendor.js'))
-    .pipe(gulp.dest(scriptDest))
-    // .pipe(gulpIf(!isDev, uglify())) to be removed if 'gulp-terser' works
-    .pipe(gulpIf(!isDev, terser()))
-    .pipe(rename('vendor.min.js'))
-    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
-      sourceRoot: '/',
-      includeContent: false
-    })))
     .pipe(gulp.dest(scriptDest));
 
   let app = bundler.bundle()
@@ -109,15 +100,7 @@ gulp.task('javascript', () => {
     .pipe(source('main.js'))
     .pipe(gulp.dest(scriptDest))
     .pipe(buffer())
-    .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })))
-    // .pipe(gulpIf(!isDev, uglify())) to be removed if 'gulp-terser' works
-    .pipe(gulpIf(!isDev, terser()))
-    .pipe(rename('main.min.js'))
-    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
-      sourceRoot: '/',
-      includeContent: false
-    })))
-    .pipe(gulp.dest(scriptDest));
+    .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })));
 
   let animatedApp = animatedBundler.bundle()
     .on('error', (err) => {
@@ -127,15 +110,7 @@ gulp.task('javascript', () => {
     .pipe(source('animated.js'))
     .pipe(gulp.dest(scriptDestAnimated))
     .pipe(buffer())
-    .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })))
-    // .pipe(gulpIf(!isDev, uglify())) to be removed if 'gulp-terser' works
-    .pipe(gulpIf(!isDev, terser()))
-    .pipe(rename('animated.min.js'))
-    .pipe(gulpIf(isDev, sourcemaps.write('./sourcemaps', {
-      sourceRoot: '/',
-      includeContent: false
-    })))
-    .pipe(gulp.dest(scriptDestAnimated));
+    .pipe(gulpIf(isDev, sourcemaps.init({ loadMaps: true })));
 
   return ordered([vendor, app, animatedApp]);
 });
