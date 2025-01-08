@@ -1,4 +1,4 @@
-<header class="headerV2-wrapper"
+<header class="headerV2-wrapper fixed in"
         data-sly-use.meganav="com.dhl.discover.core.models.Meganav"
         data-sly-use.languageVariants="com.dhl.discover.core.models.LanguageVariants"
         data-sly-use.header="com.dhl.discover.core.models.Header"
@@ -71,7 +71,7 @@
                 <sly data-sly-list="${meganav.panels}">
                     <a class="navigation-item  ${currentPagePath == item.url ? 'active' : '' }"
                        data-sly-attribute.aria-current="${currentPagePath == item.url ? 'page' : ''}"
-                       data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;${item.navigationTitle}&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}"
+                       data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;Header Category Link '${item.navigationTitle}'&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}"
                        href="${item.url}">
                         <span>${item.navigationTitle}</span></a>
                 </sly>
@@ -80,11 +80,11 @@
             <div class="navigation-row__right">
                 <span class="navigation-item navigation-item_more-less more">${header.moreLinkLabel}</span>
                 <a data-sly-test="${header.buttonName}" class="button dhl-btn dhl-btn--primary" href="${header.buttonLink}" title="${header.buttonName}"
-                   data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;${header.buttonName}&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}">
+                   data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;'Apply for a business Account' button&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}">
                     <span>${header.buttonName}</span>
                 </a>
                 <a class="navigation-item" data-sly-repeat="${header.companyLinks}" href="${item.linkPath}"
-                   data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;${header.linkName}&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}">
+                   data-analytics="{&quot;content&quot;:{&quot;name&quot;:&quot;'Contact Us' link&quot;,&quot;type&quot;:&quot;header&quot;,&quot;interaction&quot;:&quot;Click&quot;},&quot;trackedInteractions&quot;:&quot;basic&quot;,&quot;interactionType&quot;:&quot;dhl_utf_contentInteraction&quot;}">
                     <span>${item.linkName}</span>
                 </a>
             </div>
