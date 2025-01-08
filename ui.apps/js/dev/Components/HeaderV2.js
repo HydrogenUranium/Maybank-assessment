@@ -76,8 +76,6 @@ class HeaderV2 {
     if (wt > pb) {
       $('.page-body').addClass('fixed');
       header.addClass('fixed');
-      console.log("first lastScrollTop : " + this.lastScrollTop);
-      console.log("current windows scroll top : " + wt);
       if (wt > this.lastScrollTop ) {
         header.removeClass('in');
       } else {
@@ -93,7 +91,6 @@ class HeaderV2 {
     }
 
     this.lastScrollTop = wt;
-    console.log("End lastScrollTop : " + this.lastScrollTop);
   }
 
 
