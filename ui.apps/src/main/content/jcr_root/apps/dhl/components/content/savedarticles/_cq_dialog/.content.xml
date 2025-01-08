@@ -10,22 +10,34 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
         <items jcr:primaryType="nt:unstructured">
-            <column
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/foundation/container">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured">
-                    <title
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/foundation/form/textfield"
-                        fieldLabel="Title"
-                        name="./title"/>
-                    <brief
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/foundation/form/textarea"
-                        fieldLabel="Brief Description"
-                        name="./brief"/>
+                    <properties
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Properties"
+                            sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                        <title
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Title"
+                            name="./title"/>
+                        <brief
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textarea"
+                            fieldLabel="Brief Description"
+                            name="./brief"/>
+                    </items>
+                    </properties>
+                    <styletab
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                            path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_edit/styletab"/>
                 </items>
-            </column>
+            </tabs>
         </items>
     </content>
 </jcr:root>

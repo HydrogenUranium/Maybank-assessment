@@ -103,7 +103,7 @@
                                     fieldLabel="CTA Button Url"
                                     rootPath="/content/dhl"
                                     name="./ctapath"/>
-                                    
+
                                 <ctagrouppath
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
@@ -114,6 +114,10 @@
                         </field>
                     </slides>
                 </items>
+                <styletab
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/include"
+                        path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_design/styletab"/>
             </column>
         </items>
     </content>

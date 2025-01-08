@@ -3,4 +3,25 @@
           cq:icon="panel"
           jcr:primaryType="cq:Component"
           jcr:title="New Paragraph - Container"
-          sling:resourceSuperType="core/wcm/components/container/v1/container/new"/>
+          sling:resourceSuperType="core/wcm/components/container/v1/container/new">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <styletab
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                            path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_edit/styletab"/>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
