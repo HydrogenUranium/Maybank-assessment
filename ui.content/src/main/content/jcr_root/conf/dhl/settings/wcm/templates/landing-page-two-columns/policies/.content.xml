@@ -239,10 +239,6 @@
                                             cq:policy="dhl/components/content/article-author-banner/policy_article-author-banner"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    <embed
-                                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <article-teaser
                                             cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
                                             jcr:primaryType="nt:unstructured"
@@ -497,10 +493,6 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <article-author-banner
                                             cq:policy="dhl/components/content/article-author-banner/policy_article-author-banner"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    <embed
-                                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <article-teaser
@@ -759,10 +751,6 @@
                                             cq:policy="dhl/components/content/article-author-banner/policy_article-author-banner"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    <embed
-                                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <article-teaser
                                             cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
                                             jcr:primaryType="nt:unstructured"
@@ -1015,10 +1003,6 @@
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <article-author-banner
                                             cq:policy="dhl/components/content/article-author-banner/policy_article-author-banner"
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="wcm/core/components/policies/mapping"/>
-                                    <embed
-                                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="wcm/core/components/policies/mapping"/>
                                     <article-teaser
