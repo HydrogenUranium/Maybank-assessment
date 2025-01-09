@@ -92,6 +92,7 @@
     <property inherit="true" name="value" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="xAxisTitle" translate="true" updateDestinationLanguage="false"/>
     <property inherit="true" name="yAxisTitle" translate="true" updateDestinationLanguage="false"/>
+    <property inherit="true" name="aria-roledescription" translate="true" updateDestinationLanguage="false"/>
     <node resourceType="dhl/components/animated-content/stats-panel">
       <property inherit="true" name="leftBlockTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="rightBlockTitle" translate="true" updateDestinationLanguage="false"/>
@@ -369,4 +370,5 @@
   <assetNode assetReferenceAttribute="link" checkInChildNodes="true" createLangCopy="true" resourceType="core/wcm/components/teaser/v2/teaser"/>
   <assetNode assetReferenceAttribute="fileReference" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/teaser/v2/teaser"/>
   <assetNode assetReferenceAttribute="parentPage" checkInChildNodes="false" createLangCopy="true" resourceType="core/wcm/components/list/v3/list"/>
+
 </nodelist>
