@@ -50,7 +50,7 @@
                            aria-label="${header.switchLanguageAriaLabel}: ${item.title}"
                            data-sly-attribute.aria-current="${item.current ? 'page' : ''}"
                            href="${item.link}.html" data-home="${ item.home }.html"
-                           rel="alternate" lang="${item.acceptlanguages}" hreflang="${item.acceptlanguages}"
+                           rel="alternate" lang="${item.langCode}" hreflang="${item.langCode}"
                            class="headerV2__lang${((item.current) ? ' headerV2__lang--selected' : '') @ context='html'}">
                             ${ item.name @ i18n, context='html' }
                         </a>
