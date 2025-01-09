@@ -179,7 +179,7 @@ public class LanguageVariants {
             String region = homepageProperties.get("siteregion", "").trim();
             String language = homepageProperties.get("sitelanguage", "").trim();
             String title = homepageProperties.get(JCR_TITLE, "").trim();
-            String langCode = homepage.getLanguage().toLanguageTag();
+            String langCode = homepage.getLanguage(false).toLanguageTag();
 
             boolean enabled = homepageProperties.get("siteenabled", false);
             boolean deflt = homepageProperties.get("sitedefault", false);

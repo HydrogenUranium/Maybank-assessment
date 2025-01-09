@@ -19,7 +19,7 @@ class LanguageVariantTest {
     void setUp() {
         context.addModelsForClasses(LanguageVariant.class);
         context.build()
-                .resource("/content/language", "name", "English", "jcr:title", "English Title", "home", "/home", "link", "/link", "acceptlanguages", "en", "deflt", true, "current", true, "exact", true)
+                .resource("/content/language", "name", "English", "jcr:title", "English Title", "home", "/home", "link", "/link", "langCode", "en", "deflt", true, "current", true, "exact", true)
                 .commit();
 
         languageVariant = context.resourceResolver().getResource("/content/language").adaptTo(LanguageVariant.class);
