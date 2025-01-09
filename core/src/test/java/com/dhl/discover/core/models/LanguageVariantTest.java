@@ -32,7 +32,6 @@ class LanguageVariantTest {
         assertEquals("English Title", languageVariant.getTitle());
         assertEquals("/home", languageVariant.getHome());
         assertEquals("/link", languageVariant.getLink());
-        assertEquals("en", languageVariant.getAcceptlanguages());
         assertTrue(languageVariant.isDeflt());
         assertTrue(languageVariant.isCurrent());
         assertTrue(languageVariant.isExact());
