@@ -164,21 +164,7 @@ public class PageUtilService implements Serializable {
     }
 
     public Locale getLocale(Page page) {
-        ValueMap homePageProperties = getHomePageProperties(page);
-        String jcrLanguageProperty = homePageProperties.get(JCR_LANGUAGE, StringUtils.EMPTY);
-
-        if (StringUtils.isBlank(jcrLanguageProperty) || StringUtils.equals(jcrLanguageProperty, "en")) {
-            String acceptLanguagesProperty = homePageProperties.get("acceptlanguages", StringUtils.EMPTY);
-            Locale localeBasedOnAcceptLanguages = acceptLanguagesProperty.contains("-")
-                    ? new Locale(acceptLanguagesProperty.split("-")[0], acceptLanguagesProperty.split("-")[1])
-                    : new Locale(acceptLanguagesProperty);
-            return LocaleUtils.isAvailableLocale(localeBasedOnAcceptLanguages) && !StringUtils.isBlank(acceptLanguagesProperty)
-                    ? localeBasedOnAcceptLanguages : new Locale("en");
-        }
-
-        return jcrLanguageProperty.contains("_")
-                ? new Locale(jcrLanguageProperty.split("_")[0], jcrLanguageProperty.split("_")[1])
-                : new Locale(jcrLanguageProperty);
+        return page.getLanguage();
     }
 
     public Locale getLocale(String pagePath, ResourceResolver resolver) {

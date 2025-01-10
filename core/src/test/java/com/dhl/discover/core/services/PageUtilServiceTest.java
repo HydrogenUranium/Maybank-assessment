@@ -138,16 +138,13 @@ class PageUtilServiceTest {
 
     @Test
     void test_getLocale()  {
-        assertEquals("en", pageUtilService.getLocale(getPage(EMPTY_JCR_LANG_AND_EMPTY_ACCEPT_LANG)).toString());
-        assertEquals("en", pageUtilService.getLocale(getPage(EMPTY_JCR_LANG_AND_ASTERISK_ACCEPT_LANG)).toString());
         assertEquals("fr", pageUtilService.getLocale(getPage(EMPTY_JCR_LANG_AND_FR_ACCEPT_LANG)).toString());
         assertEquals("en", pageUtilService.getLocale(getPage(EN_JCR_LANG_AND_ASTERISK_ACCEPT_LANG)).toString());
         assertEquals("zh", pageUtilService.getLocale(getPage(ZH_JCR_LANG_AND_EMPTY_ACCEPT_LANG)).toString());
         assertEquals("es_US", pageUtilService.getLocale(getPage(ES_US_JCR_LANG_AND_ES_US_ACCEPT_LANG)).toString());
-        assertEquals("en", pageUtilService.getLocale(getPage(EMPTY_JCR_LANG_AND_INVALID_ACCEPT_LANG)).toString());
+        assertEquals("it", pageUtilService.getLocale(getPage(EMPTY_JCR_LANG_AND_INVALID_ACCEPT_LANG)).toString());
 
-        assertEquals("en", pageUtilService.getLocale(EMPTY_JCR_LANG_AND_EMPTY_ACCEPT_LANG, resourceResolver).toString());
-        assertEquals("en", pageUtilService.getLocale(EMPTY_JCR_LANG_AND_ASTERISK_ACCEPT_LANG, resourceResolver).toString());
+        assertEquals("es", pageUtilService.getLocale(EMPTY_JCR_LANG_AND_ASTERISK_ACCEPT_LANG, resourceResolver).toString());
         assertEquals("fr", pageUtilService.getLocale(EMPTY_JCR_LANG_AND_FR_ACCEPT_LANG, resourceResolver).toString());
     }
 
@@ -155,13 +152,11 @@ class PageUtilServiceTest {
     void test_getLocaleFromResource()  {
         assertEquals("en_US", pageUtilService.getLocale(resourceResolver.getResource(EN_US_CATEGORY_COMPONENT_PATH)).toString());
 
-        assertEquals("en", pageUtilService.getLocale(resourceResolver.getResource(EMPTY_JCR_LANG_AND_EMPTY_ACCEPT_LANG)).toString());
-        assertEquals("en", pageUtilService.getLocale(resourceResolver.getResource(EMPTY_JCR_LANG_AND_ASTERISK_ACCEPT_LANG)).toString());
         assertEquals("fr", pageUtilService.getLocale(resourceResolver.getResource(EMPTY_JCR_LANG_AND_FR_ACCEPT_LANG)).toString());
         assertEquals("en", pageUtilService.getLocale(resourceResolver.getResource(EN_JCR_LANG_AND_ASTERISK_ACCEPT_LANG)).toString());
         assertEquals("zh", pageUtilService.getLocale(resourceResolver.getResource(ZH_JCR_LANG_AND_EMPTY_ACCEPT_LANG)).toString());
         assertEquals("es_US", pageUtilService.getLocale(resourceResolver.getResource(ES_US_JCR_LANG_AND_ES_US_ACCEPT_LANG)).toString());
-        assertEquals("en", pageUtilService.getLocale(resourceResolver.getResource(EMPTY_JCR_LANG_AND_INVALID_ACCEPT_LANG)).toString());
+        assertEquals("it", pageUtilService.getLocale(resourceResolver.getResource(EMPTY_JCR_LANG_AND_INVALID_ACCEPT_LANG)).toString());
     }
 
     @Test

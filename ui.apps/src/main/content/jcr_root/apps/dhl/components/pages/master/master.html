@@ -1,12 +1,14 @@
 <!DOCTYPE HTML>
-<html data-sly-use.page="com.adobe.cq.wcm.core.components.models.Page" lang="${page.language}"
+<html data-sly-use.page="com.adobe.cq.wcm.core.components.models.Page"
       data-sly-use.pwa="com.adobe.cq.wcm.core.components.models.PWA"
-      data-sly-use.dhlpage="com.dhl.discover.core.models.DhlPage" dir="${dhlpage.direction != 'ltr' ? dhlpage.direction : ''}"
+      data-sly-use.dhlpage="com.dhl.discover.core.models.DhlPage"
       data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions"
       data-sly-use.languageVariants="com.dhl.discover.core.models.LanguageVariants"
       data-sly-use.head="head.html"
       data-sly-use.footer="footer.html"
-      data-sly-use.redirect="redirect.html">
+      data-sly-use.redirect="redirect.html"
+      lang="${page.language}"
+      dir="${dhlpage.direction != 'ltr' ? dhlpage.direction : ''}">
 <head data-sly-call="${head.head @ page = page, pwa = pwa, dhlpage = dhlpage, accountactions = accountactions}"></head>
 <body class="${page.cssClassNames}"
       id="${page.id}"
