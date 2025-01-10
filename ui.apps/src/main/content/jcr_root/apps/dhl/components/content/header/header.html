@@ -6,13 +6,13 @@
     <div class="header-container">
         <div class="main-row">
             <div class="main-row__left">
-                <div class="headerV2__logoWrap">
+                <div class="headerV2__logoWrap" aria-label="logo image and home link">
                     <a class="headerV2__logo" href="${meganav.homeUrl}" title="${meganav.siteTitle}"><span class="sr-only">${meganav.siteTitle}</span></a>
                 </div>
             </div>
 
             <div class="main-row__right">
-                <div class="search-bar" data-sly-resource="${'search-bar' @ resourceType='dhl/components/content/search-bar'}"></div>
+                <div class="search-bar" data-sly-resource="${'search-bar' @ resourceType='dhl/components/content/search-bar'}" area-label="search-bar"></div>
                 <div class="header__icon">
                     <button class="headerV2__desktopCountry"
                        aria-label="${header.countrySelectorToggleAriaLabel}"
@@ -27,7 +27,7 @@
                             <span class="title ">${ selectedSpecificCountry || languageVariants.getCurrentRegion @ i18n, context='html' }</span>
                         </sly>
                     </button>
-                    <div class="header-countryList">
+                    <div class="header-countryList" aria-label="country list">
                         <label for="countryList-widget" class="header-countryList__label">${header.countrySelectorTitle}</label>
                         <input class="countrySearch" id="countrySearch" type="text" aria-label="${header.countryFilterInputAriaLabel}" placeholder="${header.countrySearchPlaceholder}">
                         <ul class="header-countryList__widget" id="countryList-widget">
