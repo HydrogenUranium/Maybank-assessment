@@ -139,7 +139,7 @@ def addHeader(page, xfNode) {
     ])
     def experienceFragment = addComponent(responsiveGrid, "experiencefragment", [
             "sling:resourceType": "dhl/components/content/experiencefragment",
-            "fragmentVariationPath": """${xfNode.getParent().getPath()}/banners/newsletter-subscription/sidebar-banner-with-points""",
+            "fragmentVariationPath": """${xfNode.getParent().getPath()}/banners/open-business-account/sidebar-banner""",
     ])
 
     def headerWithoutNavigation = createVariation(fragment.getPath(), "header-without-navigation", "Header Without Navigation")
@@ -180,7 +180,7 @@ def addHeader(page, xfNode) {
     ])
     def experienceFragment2 = addComponent(responsiveGrid2, "experiencefragment",[
             "sling:resourceType": "dhl/components/content/experiencefragment",
-            "fragmentVariationPath": """${xfNode.getParent().getPath()}/banners/newsletter-subscription/sidebar-banner-with-points""",
+            "fragmentVariationPath": """${xfNode.getParent().getPath()}/banners/open-business-account/sidebar-banner""",
     ])
 }
 
