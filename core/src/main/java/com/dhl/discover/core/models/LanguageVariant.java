@@ -35,7 +35,7 @@ public class LanguageVariant {
     public String link;
 
     @ValueMapValue
-    public String acceptlanguages;
+    public String langCode;
 
     @ValueMapValue
     public boolean deflt;
@@ -46,11 +46,11 @@ public class LanguageVariant {
     @ValueMapValue
     public boolean exact;
 
-    public LanguageVariant(String name, String title, String home, String link, String acceptlanguages, boolean deflt, boolean current, boolean exact) {
+    public LanguageVariant(String name, String title, String home, String link, String langCode, boolean deflt, boolean current, boolean exact) {
         this.home = home;
         this.title = title;
         this.link = link;
-        this.acceptlanguages = acceptlanguages;
+        this.langCode = langCode;
         this.name = name;
         this.deflt = deflt;
         this.current = current;

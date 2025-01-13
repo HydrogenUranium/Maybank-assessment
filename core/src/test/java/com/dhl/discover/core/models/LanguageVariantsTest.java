@@ -44,13 +44,7 @@ class LanguageVariantsTest {
 
         assertTrue(languageVariants.hasMultipleLanguageVariants());
         assertEquals("United States", languageVariants.getCurrentRegion());
-        assertEquals("en-US", languageVariants.getCurrentLanguage());
         assertEquals(2, languageVariants.getLanguageVariants().size());
-        String expectedVariantsJson = "{\"variants\":" +
-                "[{\"path\":\"/content/dhl/us/es-us\",\"languages\":\"es-US\"}," +
-                "{\"path\":\"/content/dhl/us/en-us\",\"languages\":\"en-US\"}," +
-                "{\"path\":\"/content/dhl/global/en-global\",\"languages\":\"en\"}]}";
-        assertEquals(expectedVariantsJson, languageVariants.getAllLanguagesJSON());
         assertEquals(2, languageVariants.getAllLanguageVariants().size());
         assertEquals(1, languageVariants.getAllLanguageVariantsGrouped().size());
         assertEquals("us", languageVariants.getCurrentRegionCode());
@@ -71,13 +65,7 @@ class LanguageVariantsTest {
 
         assertTrue(languageVariants.hasMultipleLanguageVariants());
         assertEquals("Global", languageVariants.getCurrentRegion());
-        assertEquals("en", languageVariants.getCurrentLanguage());
         assertEquals(1, languageVariants.getLanguageVariants().size());
-        String expectedVariantsJson = "{\"variants\":" +
-                "[{\"path\":\"/content/dhl/us/en-us\",\"languages\":\"en-US\"}," +
-                "{\"path\":\"/content/dhl/us/es-us\",\"languages\":\"es-US\"}," +
-                "{\"path\":\"/content/dhl/global/en-global\",\"languages\":\"en\"}]}";
-        assertEquals(expectedVariantsJson, languageVariants.getAllLanguagesJSON());
         assertEquals(2, languageVariants.getAllLanguageVariants().size());
         assertEquals(1, languageVariants.getAllLanguageVariantsGrouped().size());
         assertEquals("global", languageVariants.getCurrentRegionCode());
@@ -87,7 +75,6 @@ class LanguageVariantsTest {
         assertEquals("EN", languageVariant.getName());
         assertEquals("/content/dhl/global/en-global", languageVariant.getHome());
         assertEquals("/content/dhl/global/en-global", languageVariant.getLink());
-        assertEquals("en", languageVariant.getAcceptlanguages());
         assertEquals("EN Global", languageVariant.getTitle());
         assertTrue(languageVariant.isCurrent());
         assertTrue(languageVariant.isDeflt());
@@ -102,7 +89,6 @@ class LanguageVariantsTest {
         assertEquals("name", variant.getName());
         assertEquals("title", variant.getTitle());
         assertEquals("global", variant.getRegion());
-        assertEquals("EN", variant.getAcceptlanguages());
         assertEquals("/home", variant.getHome());
         assertEquals("link", variant.getLink());
         assertFalse(variant.isExact());

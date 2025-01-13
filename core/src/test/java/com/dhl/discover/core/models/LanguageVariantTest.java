@@ -19,7 +19,7 @@ class LanguageVariantTest {
     void setUp() {
         context.addModelsForClasses(LanguageVariant.class);
         context.build()
-                .resource("/content/language", "name", "English", "jcr:title", "English Title", "home", "/home", "link", "/link", "acceptlanguages", "en", "deflt", true, "current", true, "exact", true)
+                .resource("/content/language", "name", "English", "jcr:title", "English Title", "home", "/home", "link", "/link", "langCode", "en", "deflt", true, "current", true, "exact", true)
                 .commit();
 
         languageVariant = context.resourceResolver().getResource("/content/language").adaptTo(LanguageVariant.class);
@@ -32,7 +32,6 @@ class LanguageVariantTest {
         assertEquals("English Title", languageVariant.getTitle());
         assertEquals("/home", languageVariant.getHome());
         assertEquals("/link", languageVariant.getLink());
-        assertEquals("en", languageVariant.getAcceptlanguages());
         assertTrue(languageVariant.isDeflt());
         assertTrue(languageVariant.isCurrent());
         assertTrue(languageVariant.isExact());

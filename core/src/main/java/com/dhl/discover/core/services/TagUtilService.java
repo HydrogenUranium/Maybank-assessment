@@ -197,6 +197,9 @@ public class TagUtilService implements Serializable {
     }
 
     private String getLocalizedTitle(Tag tag, Locale locale) {
+        if(tag == null) {
+            return StringUtils.EMPTY;
+        }
         boolean useDefaultIfNull = locale.getLanguage().equals(DEFAULT_TAG_TITLE_LANGUAGE);
         String titleForUndefinedLocale = useDefaultIfNull ? tag.getTitle() : "";
 

@@ -50,7 +50,6 @@ public class LanguageVariants {
 	private String currentRegionCode;
 
 	private String currentRegion;
-	private String currentLanguage;
 	private List<LanguageVariant> languageVariantsList;
 	private List<LinkVariant> allLanguageVariants;
 	private List<List<LinkVariant>> allLanguageVariantsGrouped;
@@ -90,26 +89,6 @@ public class LanguageVariants {
 		return "";
 	}
 
-	public String getCurrentLanguage() {
-		if (currentLanguage != null) {
-			return currentLanguage;
-		}
-		
-		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
-			for (LanguageVariant variant: entry.getValue()) {
-				if (variant.isCurrent()) {
-					currentLanguage = variant.getAcceptlanguages().trim();
-					if (("*").equals(currentLanguage)) {
-						currentLanguage = "en";
-					}
-					return currentLanguage;
-				}
-			}
-		}
-		
-		return "en";
-	}
-
 	public List<LanguageVariant> getLanguageVariants() {
 		if (languageVariantsList == null) {
 			languageVariantsList = new ArrayList<>();
@@ -125,23 +104,6 @@ public class LanguageVariants {
 			}
 		}
 		return new ArrayList<>(languageVariantsList);
-	}
-
-	public String getAllLanguagesJSON() {
-		var json = new JsonObject();
-		var jsonVariants = new JsonArray();
-		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
-			for (LanguageVariant variant: entry.getValue()) {
-				var v = new JsonObject();
-				v.addProperty("path", variant.getLink());
-				v.addProperty("languages", variant.getAcceptlanguages());
-				
-				jsonVariants.add(v);
-			}
-		}
-		
-		json.add("variants", jsonVariants);
-		return json.toString();
 	}
 
 	public List<LinkVariant> getAllLanguageVariants() {
@@ -217,10 +179,8 @@ public class LanguageVariants {
             String region = homepageProperties.get("siteregion", "").trim();
             String language = homepageProperties.get("sitelanguage", "").trim();
             String title = homepageProperties.get(JCR_TITLE, "").trim();
-            String acceptlanguages = homepageProperties.get("acceptlanguages", "*").trim();
-			if(acceptlanguages.equals("*")) {
-				acceptlanguages = homepageProperties.get(JCR_LANGUAGE, "*").trim();
-			}
+            String langCode = homepage.getLanguage().toLanguageTag();
+
             boolean enabled = homepageProperties.get("siteenabled", false);
             boolean deflt = homepageProperties.get("sitedefault", false);
             if (hideInNav || !enabled || region.isEmpty()) {
@@ -241,7 +201,7 @@ public class LanguageVariants {
 				}
 			}
 
-			var newItem = new LanguageVariant(language, title, newHomepage, newExactPath, acceptlanguages, deflt, path.contains(homepage.getPath()), exactPathExists);
+			var newItem = new LanguageVariant(language, title, newHomepage, newExactPath, langCode, deflt, path.contains(homepage.getPath()), exactPathExists);
 			if (!variants.containsKey(region)) {
 				ArrayList<LanguageVariant> languages = new ArrayList<>();
 				variants.put(region, languages);
