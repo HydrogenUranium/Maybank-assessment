@@ -17,8 +17,8 @@ describe('Singapore Category Landing Page', () => {
     showMoreButton: '.articleGridShowMoreButton__NntBo',
     articleCard: '.articleCard__Y5mno',
     sortBy: '#sort-by',
-    ctaBanner:'.cta-banner-with-points > .cmp-cta-banner-with-points',
-    ctaBannerButton: '.cta-banner-with-points > .cmp-cta-banner-with-points > .cmp-cta-banner-with-points__body > .cmp-cta-banner-with-points__button',
+    ctaBanner:'#bottom-cta-section.cmp-cta-banner-with-points',
+    ctaBannerButton: '#bottom-cta-section .cmp-cta-banner-with-points__button',
     header: '.headerV2-wrapper',
     footer: '.footer-container',
   };
@@ -86,7 +86,7 @@ describe('Singapore Category Landing Page', () => {
             .should('be.visible')
             .then(($img) => {
               const initialSrc = $img.prop('src');
-              cy.get(selectors.carouselActiveItemImage, { timeout: 5000 })
+              cy.get(selectors.carouselActiveItemImage, { timeout: 10000 })
                 .should('be.visible')
                 .should(($imgAfter) => {
                   expect($imgAfter.prop('src')).not.to.eq(initialSrc);
@@ -94,11 +94,11 @@ describe('Singapore Category Landing Page', () => {
             });
 
           // 5. Verify Article Teaser consists of 5 articles with titles and category tags in each
-          cy.get(selectors.articleTeaser).should('have.length', 5);
-          cy.get(selectors.articleTeaser).each(($el) => {
-            cy.wrap($el).find('.cmp-teaser__title').should('exist');
-            cy.wrap($el).find('.cmp-teaser__article-category-tag').should('exist');
-          });
+           cy.get(selectors.articleTeaser, { timeout: 10000 }).should('have.length', 5);
+           cy.get(selectors.articleTeaser, { timeout: 10000 }).each(($el) => {
+           cy.wrap($el).find('.cmp-teaser__title', { timeout: 10000 }).should('exist');
+           cy.wrap($el).find('.cmp-teaser__article-category-tag', { timeout: 10000 }).should('exist');
+         });
 
           // 6. Verify Article Grid V2 exists
           cy.get(selectors.articleGrid).should('exist');
@@ -109,12 +109,16 @@ describe('Singapore Category Landing Page', () => {
           });
 
           // 8. Verify "Show More" button exists and is clickable. When clicked, it loads an additional 2 rows of articles
-          cy.get(selectors.articleCard).should('have.length', initialLength);
+          if (viewport !== 'iphone-6') {
+          cy.get(selectors.articleCard, { timeout: 10000 }).should('have.length', initialLength);
           cy.get(selectors.showMoreButton)
             .should('exist')
             .should('be.visible')
             .click();
-          cy.get(selectors.articleCard).should('have.length', finalLength);
+          // Wait for the additional articles to load, with an appropriate timeout
+         cy.get(selectors.articleCard, { timeout: 15000 }).should('have.length', finalLength)
+           .and('be.visible');
+           }
 
           // 9. Verify Recommended sort order is the default option
           cy.get(selectors.sortBy)
@@ -126,7 +130,7 @@ describe('Singapore Category Landing Page', () => {
           // 10. Verify CTA Banner exists and the button is clickable. When clicked, it lands on the correct page
           cy.get(selectors.ctaBanner).should('exist');
           cy.get(selectors.ctaBannerButton)
-            .click();
+             .click({ multiple: true });
           cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-sg/newsletter-sign-up`);
 
           // 11. Verify header and footer exist

@@ -9,10 +9,10 @@ describe('Global Page Header', () => {
     searchInput: '[data-testid="search-bar-input"]',
     closeSearch: '[data-testid="close-search"] > .searchButtonImage__y8c7h',
     navigationItem: '.navigation-item',
-    applyForBusiness: '[data-testid="header-button"] > span',
-    contactUs: '.navigation-item:contains("Contact us"):first',
+    applyForBusiness: '[data-testid="header-red-button"] > span',
+    contactUs: '[data-testid="header-company-link-0"] > span',
     hamburgerMenu: '.headerV2__hamburger',
-    applyForBusinessHamburger: '.short-banners > .cmp-cta-banner-with-points > .cmp-cta-banner-with-points__body > .cmp-cta-banner-with-points__button',
+    applyForBusinessHamburger: 'header cmp-cta-banner-with-points__button',
     contactUsHamburger: ':nth-child(3) > ul > li > .navigation-item',
     countrySwitcher: '.headerV2__desktopCountry > .fi',
     countryList: '.header-countryList--open:first',
@@ -85,8 +85,9 @@ describe('Global Page Header', () => {
             });
           }
 
-          if (viewport !== 'iphone-6') {
+          //if (viewport !== 'iphone-6') {
             // 6. Verify country option changes content and URL
+            cy.get('.headerV2__logo', { timeout: 10000 }).click();
             cy.get(selectors.countrySwitcher).click({ force: true });
             cy.get(selectors.countryList).should('be.visible');
             cy.get('.header-countryList__option label[for="country-jp"]').contains('Japan').click({ force: true });
@@ -94,7 +95,7 @@ describe('Global Page Header', () => {
 
             // 7. Verify the language on the page changes appropriately based on country
             cy.get('.cmp-title__text').should('contain', 'DHL Expressのスモールビジネス&グローバルシッピングに関するアドバイス');
-          }
+          //}
 
           // 8. Verify when hovering the cursor over each category, the color changes from black to red
           cy.get('.navigation-row__left').invoke('css', 'color', 'red');
