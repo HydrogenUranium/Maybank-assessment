@@ -12,7 +12,7 @@ describe('Global Page Header', () => {
     applyForBusiness: '[data-testid="header-red-button"] > span',
     contactUs: '[data-testid="header-company-link-0"] > span',
     hamburgerMenu: '.headerV2__hamburger',
-    applyForBusinessHamburger: 'header cmp-cta-banner-with-points__button',
+    applyForBusinessHamburger: 'header .cmp-cta-banner-with-points__button',
     contactUsHamburger: ':nth-child(3) > ul > li > .navigation-item',
     countrySwitcher: '.headerV2__desktopCountry > .fi',
     countryList: '.header-countryList--open:first',

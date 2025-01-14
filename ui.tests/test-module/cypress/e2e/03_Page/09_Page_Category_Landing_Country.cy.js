@@ -17,7 +17,7 @@ describe('Singapore Category Landing Page', () => {
     showMoreButton: '.articleGridShowMoreButton__NntBo',
     articleCard: '.articleCard__Y5mno',
     sortBy: '#sort-by',
-    ctaBanner:'#bottom-cta-section.cmp-cta-banner-with-points',
+    ctaBanner:'#bottom-cta-section .cmp-cta-banner-with-points',
     ctaBannerButton: '#bottom-cta-section .cmp-cta-banner-with-points__button',
     header: '.headerV2-wrapper',
     footer: '.footer-container',

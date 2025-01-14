@@ -11,7 +11,7 @@ describe('Global Page Header', () => {
     navigationItem: '.navigation-item',
     applyForBusiness: '[data-testid="header-red-button"] > span',
     contactUs: '[data-testid="header-company-link-0"] > span',
-    hamburgerMenu: 'header .headerV2__hamburger',
+    hamburgerMenu: '.headerV2__hamburger',
     applyForBusinessHamburger: 'header .cmp-cta-banner-with-points__button',
     contactUsHamburger: ':nth-child(3) > ul > li > .navigation-item',
     countrySwitcher: '.global-icon',
