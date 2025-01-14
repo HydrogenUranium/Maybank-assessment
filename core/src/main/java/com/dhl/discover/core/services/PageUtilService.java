@@ -6,7 +6,6 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageFilter;
 import com.day.cq.wcm.api.PageManager;
 import com.dhl.discover.core.models.Article;
-import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -28,7 +27,6 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.adobe.aem.wcm.seo.SeoTags.PN_ROBOTS_TAGS;
-import static org.apache.jackrabbit.JcrConstants.JCR_LANGUAGE;
 import static org.apache.sling.jcr.resource.api.JcrResourceConstants.SLING_RESOURCE_TYPE_PROPERTY;
 
 @Component(service = PageUtilService.class)
