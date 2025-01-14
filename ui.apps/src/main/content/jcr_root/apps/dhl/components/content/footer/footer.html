@@ -6,7 +6,9 @@
                     <img class="logo__image"
                          src="${footer.logoIcon}"
                          title="${footer.logoTitle}"
-                         alt="${footer.logoAltText || footer.logoTitle}" />
+                         alt="${footer.logoAltText || footer.logoTitle}"
+                         area-label="${footer.logoAltText || footer.logoTitle}"
+                         role="img"/>
                 </a>
             </div>
             <div class="promo-text">${footer.promoText}</div>
@@ -34,7 +36,9 @@
                         <img class="logo__image mobile-only"
                              src="${item.linkIcon}"
                              title="${item.linkName}"
-                             alt="${item.linkName}" />
+                             alt="${item.linkName}"
+                             area-label="${item.linkName}"
+                             role="img"/>
                     </a>
                 </div>
             </div>

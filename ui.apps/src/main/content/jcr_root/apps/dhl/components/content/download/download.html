@@ -14,7 +14,8 @@
 								<h2 class="DHLdownload__title">${properties.title}</h2>
 								<p class="DHLdownload__copy">${properties.brief}</p>
 
-								<img class="DHLdownload__image d-block d-md-none" src="${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.assetimage}" alt="${properties.title}" />
+								<img class="DHLdownload__image d-block d-md-none" src="${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.assetimage}" alt="${properties.title}" area-label="${properties.title}"
+									 role="img"/>
 
 								<div class="forms cmp-marketoForm"
                                      data-sly-set.marketoHostname="${marketoConfig.marketoHostname}"
@@ -42,7 +43,8 @@
 								  </div>
 								</div>
     						</div>
-							<img class="DHLdownload__image d-none d-md-block" src="${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.assetimage}" alt="${properties.title}" />
+							<img class="DHLdownload__image d-none d-md-block" src="${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.assetimage}" alt="${properties.title}" area-label="${properties.title}"
+								 role="img"/>
 						</div>
 					</div>
 				</div>
