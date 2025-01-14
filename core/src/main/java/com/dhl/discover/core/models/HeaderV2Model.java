@@ -52,10 +52,6 @@ public class HeaderV2Model {
     private String switchLanguageAriaLabel;
 
     @InjectHomeProperty
-    @Named("header-discoverLogoAriaLabel")
-    private String discoverLogoAriaLabel;
-
-    @InjectHomeProperty
     @Named("header-countryFilterInputAriaLabel")
     private String countryFilterInputAriaLabel;
 
