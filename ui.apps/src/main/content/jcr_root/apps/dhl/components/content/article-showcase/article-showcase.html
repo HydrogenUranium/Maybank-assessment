@@ -17,7 +17,7 @@
     <sly data-sly-test="${isVertical}">
         <div class="cmp-article-showcase__articles">
             <article class="cmp-article-showcase__article" data-sly-repeat="${model.articles}">
-                <a tabindex="-1" href="${item.path}" class="cmp-article-showcase__article-picture">
+                <a tabindex="-1" href="${item.path}" aria-hidden="true" class="cmp-article-showcase__article-picture">
                     <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
                          data-sly-call="${template.picture @
                          image=item.pageImage,
