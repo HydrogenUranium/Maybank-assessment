@@ -77,8 +77,7 @@ describe('Global Subscribe newsletter page', () => {
 
           // 5. Verify the form submits successfully when all fields are filled out correctly and the second submission is successful
           cy.intercept('POST', '**/Page-NewsletterSignUp.form.html').as('formSubmit');
-          cy.get(selectors.emailField).clear({ force: true });
-          cy.get(selectors.emailField).type('test@gmail.com', { force: true });
+          cy.get(selectors.emailField).clear({ force: true }).type('test@gmail.com', { force: true });
           cy.get(selectors.countryField).select('Afghanistan', { force: true });
           cy.get(selectors.formButton).click({ force: true });
           cy.wait('@formSubmit').its('response.statusCode').should('equal', 202);
