@@ -44,6 +44,9 @@ public class Header {
     private String switchLanguageAriaLabel;
 
     @ValueMapValue
+    private String discoverLogoAriaLabel;
+
+    @ValueMapValue
     private String countryFilterInputAriaLabel;
 
     @ValueMapValue
