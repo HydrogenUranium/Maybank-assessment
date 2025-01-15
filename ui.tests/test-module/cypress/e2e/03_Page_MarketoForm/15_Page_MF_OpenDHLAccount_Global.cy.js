@@ -98,7 +98,8 @@ describe('Global Open A DHL Account Form', () => {
           cy.get(selectors.shippingFrequencyField).select('One-off', { force: true });
           cy.get(selectors.formButton).click({ force: true });
           cy.get(selectors.emailErrorMessage).should('be.visible').and('contain', 'Must be valid email.', 'example@yourdomain.com');
-          cy.get(selectors.emailField).clear().type('test@gmail.com', { force: true });
+          cy.get(selectors.emailField).clear();
+          cy.get(selectors.emailField).type('test@gmail.com', { force: true });
           cy.get(selectors.formButton).click({ force: true });
           cy.get(selectors.phoneErrorMessage).should('exist');
 
