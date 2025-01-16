@@ -2592,6 +2592,24 @@
                             </item1>
                         </cq:styleGroups>
                     </policy_experiencefragment>
+                    <policy_experiencefragment_footer
+                            cq:styleDefaultElement="footer"
+                            jcr:lastModified="{Date}2025-01-14T11:28:25.114+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Experience Fragment Footer Policy"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_experiencefragment_footer>
+                    <policy_experiencefragment_header
+                            cq:styleDefaultElement="header"
+                            jcr:lastModified="{Date}2025-01-14T11:29:43.977+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Experience Fragment Header Policy"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_experiencefragment_header>
                 </experiencefragment>
                 <accordion-v2 jcr:primaryType="nt:unstructured">
                     <policy_accordion-v2

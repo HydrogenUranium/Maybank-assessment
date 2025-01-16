@@ -67,27 +67,27 @@ class HeaderV2 {
     this.checkScroll();
   }
 
-  checkScroll() {
-    let wt = $(window).scrollTop();
-    let pb = $('.page-body').offset().top;
-    let header = $(this.sel.component);
-    let selectedCountry = $(this.sel.selectedCountry);
-    let countryOptions = $(this.sel.countryOptions);
+checkScroll() {
+    var wt = $(window).scrollTop();
+    var pb = $('.page-body').offset().top;
     if (wt > pb) {
       $('.page-body').addClass('fixed');
-      header.addClass('fixed');
-      if (wt > this.lastScrollTop ) {
-        header.removeClass('in');
+      $(this.sel.component).addClass('fixed');
+      $(this.sel.selectedCountry).attr("aria-expanded", "false")
+      if (wt > this.lastScrollTop) {
+        $(this.sel.component).removeClass('in');
       } else {
-        header.addClass('in');
+        $(this.sel.component).addClass('in');
+        if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
+          $(this.sel.selectedCountry).attr("aria-expanded", "true")
+        }
       }
-
-      selectedCountry.attr("aria-expanded", "false");
-      if (countryOptions.hasClass('header-countryList--open')) {
-        selectedCountry.attr("aria-expanded", "true");
+    } else {
+      $('.page-body').removeClass('fixed');
+      $(this.sel.component).removeClass('fixed');
+      if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
+        $(this.sel.selectedCountry).attr("aria-expanded", "true")
       }
-    } else if (countryOptions.hasClass('header-countryList--open')) {
-      selectedCountry.attr("aria-expanded", "true");
     }
 
     this.lastScrollTop = wt;

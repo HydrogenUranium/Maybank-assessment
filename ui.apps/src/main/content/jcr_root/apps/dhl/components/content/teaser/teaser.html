@@ -20,7 +20,10 @@
                 <sly data-sly-call="${pretitleTemplate.pretitle @ teaser=teaser}"></sly>
           </div>
         </div>
-        <sly data-sly-call="${descriptionTemplate.description @ teaser=teaser}"></sly>
     </a>
+    <div class="cmp-teaser__description">
+        <sly data-sly-call="${descriptionTemplate.description @ teaser=teaser}"></sly>
+    </div>
+
 </div>
 <sly data-sly-call="${templates.placeholder @ isEmpty=!hasContent, classAppend='cmp-teaser'}"></sly>

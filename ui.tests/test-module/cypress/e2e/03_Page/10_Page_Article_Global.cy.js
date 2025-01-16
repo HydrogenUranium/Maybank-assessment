@@ -8,16 +8,16 @@ describe('Global Page Article', () => {
     onetrustConsentSdk: '#onetrust-consent-sdk',
     onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
     breadcrumbList: '.cmp-breadcrumb__list',
-    headerTitle: '.article-header_title',
-    publishDate: '.article-header_date-publishDate',
-    readingDuration: '.article-header_date-readingDuration',
-    shareContainer: '.article-header_share-container__left',
-    heroBanner: '.hero-banner-component > .hero-banner',
-    heroBannerSummary: '.hero-banner-component .summary',
-    heroBannerImage: '.hero-banner.hero-banner--with-rounded-corners .hero-banner__image',
-    articleTitle: '.aem-Grid > .title h1',
+    headerTitle: '.cmp-article-header__title',
+    publishDate: '.cmp-article-header__publishDate',
+    readingDuration: '.cmp-article-header__readingDuration',
+    shareContainer: '.cmp-article-header > .share-options > .share-options__container',
+    heroBanner: '.cmp-hero-banner',
+    heroBannerSummary: '.cmp-hero-banner__summary',
+    heroBannerImage: '.cmp-hero-banner__asset',
+    articleTitle: '#title-83f6f208a3 > .cmp-title__text',
     articleText: '#text-bc4d131331',
-    teaserImage: '.teaser img',
+    teaserImage: '.cmp-image__image',
     video: 'video',
     accordionItem: '.cmp-accordion__item',
     accordionLink: '.cmp-accordion__panel .cmp-text p:first-child a',
@@ -32,20 +32,21 @@ describe('Global Page Article', () => {
     listicleRow: '.listicle__row',
     listicleText: '.listicle__row__text__body',
     listicleImage: '.listicle__row__picture',
-    gallerySlides: ['#uniqueIdImageGallerySlide0 > .figure > .figure__image', '#uniqueIdImageGallerySlide1 > .figure > .figure__image'],
-    tabs: '.tabs',
+    gallery: '.gallery',
+    //gallerySlides: ['#uniqueIdImageGallerySlide0 > .figure > .figure__image', '#uniqueIdImageGallerySlide1 > .figure > .figure__image'],
+    activeSlide: '.carousel-item.active > .figure > .figure__image',    tabs: '.tabs',
     tabItem: '[id*="-tab"]',
     tabContent: '[id*="-content"]',
     relatedPosts: '.related-posts-component',
     relatedArticle: '.article-container__article',
     authorBanner: '.article-author-banner_wrapper',
-    authorImage: '.article-author-banner_author-image',
-    authorName: '.article-author-banner_author-description__name',
+    authorImage: '.cmp-article-header__author-image',
+    authorName: '.cmp-article-footer__author-name',
     authorDescription: '.article-author-banner_brief',
     articleFooter: ':nth-child(5) > .article-container-component > .grid > .grid__container',
-    articleFooterAuthorImage: ':nth-child(5) > .article-container-component > .grid > .grid__container > .grid__container__body > .body-container > .aem-Grid > .aem-GridColumn > .article-header_author > .article-header_author-image',
-    articleFooterAuthorName: ':nth-child(5) > .article-container-component > .grid > .grid__container > .grid__container__body > .body-container > .aem-Grid > .aem-GridColumn > .article-header_author > .article-header_author-description > :nth-child(1) > .article-header_author-description__name',
-    articleFooterShare: ':nth-child(5) > .article-container-component > .grid > .grid__container > .grid__container__body > .body-container > .aem-Grid > .aem-GridColumn > .article-header_share > .article-header_share-container > .article-header_share-container__right > .st-custom-button',
+    articleFooterAuthorImage: '.cmp-article-footer__author-image',
+    articleFooterAuthorName: '.cmp-article-footer__author-name',
+    articleFooterShare: '.cmp-article-footer > .share-options',
     header: '.headerV2-wrapper',
     footer: '.footer-container',
     servicePointLocator: '.locator-frame',
@@ -104,15 +105,15 @@ describe('Global Page Article', () => {
           // 5. Verify share options for Facebook, Twitter, and LinkedIn, and clicking redirects correctly
           cy.get(selectors.shareContainer).should('exist');
 
-//          // 6. Verify hero banner exists with summary text and picture
-//          cy.get(selectors.heroBanner).should('exist');
-//          cy.get(selectors.heroBanner).within(() => {
-//            cy.get(selectors.heroBannerSummary, { timeout: 10000 })
-//              .should('be.visible')
-//              .and('contain', 'Key Takeaways');
-//            cy.get(selectors.heroBannerImage)
-//              .should('be.visible');
-//          });
+          // 6. Verify hero banner exists with summary text and picture
+          cy.get(selectors.heroBanner).should('exist');
+          cy.get(selectors.heroBanner).within(() => {
+            cy.get(selectors.heroBannerSummary, { timeout: 10000 })
+              .should('be.visible')
+              .and('contain', 'Key Takeaways');
+            cy.get(selectors.heroBannerImage)
+              .should('be.visible');
+          });
 
           // 7. Verify title exists
           cy.get(selectors.articleTitle).should('exist');
@@ -159,9 +160,9 @@ describe('Global Page Article', () => {
           cy.get(selectors.listicleImage).should('be.visible');
 
           // 17. Verify the gallery exists and automatically slides every 3 seconds
-          selectors.gallerySlides.forEach((slide) => {
-            cy.get(slide).should('exist');
-          });
+          cy.get(selectors.activeSlide, { timeout: 15000 })
+            .should('exist')
+            .and('be.visible');
 
           // 18. Verify the tab exists and content changes on click
           cy.get(selectors.tabs).should('exist').within(() => {

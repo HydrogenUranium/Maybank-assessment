@@ -109,6 +109,13 @@
                                     emptyText="Switch Language to"
                                     name="./switchLanguageAriaLabel">
                             </switchLanguageAriaLabel>
+                            <discoverLogoAriaLabel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Discover Logo Aria Label"
+                                    emptyText="Discover Logo Aria Label"
+                                    name="./discoverLogoAriaLabel">
+                            </discoverLogoAriaLabel>
                         </items>
                     </ariaLabels>
                     <categoryLinks

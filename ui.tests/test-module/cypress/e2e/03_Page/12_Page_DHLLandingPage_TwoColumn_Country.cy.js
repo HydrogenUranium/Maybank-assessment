@@ -7,7 +7,7 @@ describe('Singapore DHL Landing Page - Two Column', () => {
   const selectors = {
     onetrustConsentSdk: '#onetrust-consent-sdk',
     onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
-    heroBanner: '.cmp-hero-banner > .cmp-hero-banner__asset',
+    heroBanner: '.cmp-hero-banner__asset',
     textContent: '#text-ba3e0cc854',
     marketoFormContainer: '#mktoForm_1795',
     fieldLabel: ':nth-child(2) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel',

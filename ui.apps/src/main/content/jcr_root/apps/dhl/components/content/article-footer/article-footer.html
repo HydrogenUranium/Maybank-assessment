@@ -10,7 +10,9 @@
     <img data-sly-test="${(article.authorimage.length > 0)}"
          class="cmp-article-footer__author-image"
          src="${article.authorimage}"
-         alt="${articleAuthor}">
+         alt="${articleAuthor}"
+         area-label="${articleAuthor}"
+         role="img">
     <div class="cmp-article-footer__author-info">
       <div>
         <span class="cmp-article-footer__author-name">${articleAuthor}</span>
