@@ -125,9 +125,9 @@ class ArticleGridV2Test {
         assertEquals("All", articleGridV2.getAllCategoryTitle());
         assertEquals("Categories", json.get("title").asText());
         assertEquals("false", json.get("showTags").asText());
-        assertEquals(2, json.get("categories").size());
-        JsonNode b2bAdviceCategory = json.get("categories").get(0);
-        JsonNode eCommerceAdviceCategory = json.get("categories").get(1);
+        assertEquals(3, json.get("categories").size());
+        JsonNode b2bAdviceCategory = json.get("categories").get(1);
+        JsonNode eCommerceAdviceCategory = json.get("categories").get(2);
         assertEquals("B2B Advice - title", b2bAdviceCategory.get("name").asText());
         assertEquals("E-commerce Advice - navTitle", eCommerceAdviceCategory.get("name").asText());
         JsonNode article = eCommerceAdviceCategory.get("articles").get(0);
