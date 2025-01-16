@@ -191,7 +191,7 @@ public class LanguageVariants {
 
 			if (!StringUtils.isBlank(currentHomePath)) {
 				newExactPath = path.replace(currentHomePath, newHomepage);
-				boolean isValidPath = Optional.ofNullable(pageUtilService.getPage(path, resourceResolver))
+				boolean isValidPath = Optional.ofNullable(pageUtilService.getPage(newExactPath, resourceResolver))
 						.map(Page::getContentResource)
 						.isPresent();
 

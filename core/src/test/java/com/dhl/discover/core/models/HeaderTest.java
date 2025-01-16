@@ -52,6 +52,7 @@ class HeaderTest {
         assertEquals("", header.getSignInLabel());
         assertEquals("Country Selector Toggle", header.getCountrySelectorToggleAriaLabel());
         assertEquals("Switch Language to", header.getSwitchLanguageAriaLabel());
+        assertEquals("DHL Discover Logo", header.getDiscoverLogoAriaLabel());
         assertEquals("Country Filter Input", header.getCountryFilterInputAriaLabel());
         assertEquals("Categories", header.getCategoryLinksLabel());
         assertEquals("Home", header.getHomePageLabel());

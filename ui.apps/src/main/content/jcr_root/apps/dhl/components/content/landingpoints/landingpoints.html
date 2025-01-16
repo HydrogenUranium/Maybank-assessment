@@ -4,8 +4,7 @@
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
 <div class="landing-points-component" data-sly-test="${!isEmpty}">
-	<img class="header-image" src="${model.image}" alt="${model.altText}" data-sly-test="${model.image}" area-label="${model.altText}"
-		 role="img">
+	<img class="header-image" src="${model.image}" alt="${model.altText}" data-sly-test="${model.image}">
 	<div id="${item.id}" class="landing-point landing-point--${model.pointType}" data-sly-repeat="${model.landingPointItems}">
 		<h3 class="landing-point__title">
 			${item.title}

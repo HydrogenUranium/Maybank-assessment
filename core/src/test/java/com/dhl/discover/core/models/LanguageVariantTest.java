@@ -29,6 +29,7 @@ class LanguageVariantTest {
     void testLanguageVariant() {
         assertNotNull(languageVariant);
         assertEquals("English", languageVariant.getName());
+        assertEquals("en", languageVariant.getLangCode());
         assertEquals("English Title", languageVariant.getTitle());
         assertEquals("/home", languageVariant.getHome());
         assertEquals("/link", languageVariant.getLink());
