@@ -87,7 +87,6 @@ describe('Global Page Header', () => {
 
           //if (viewport !== 'iphone-6') {
             // 6. Verify country option changes content and URL
-            cy.get('.headerV2__logo', { timeout: 10000 }).click();
             cy.get(selectors.countrySwitcher).click({ force: true });
             cy.get(selectors.countryList).should('be.visible');
             cy.get('.header-countryList__option label[for="country-jp"]').contains('Japan').click({ force: true });
