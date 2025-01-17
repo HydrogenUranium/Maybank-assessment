@@ -251,14 +251,17 @@ public class Article {
                 .orElse("");
     }
 
+    /**
+     * Retrieves the publication date to display to the end user.
+     * This date can be a custom publication date ("jcr:content/custompublishdate") that is manually updated.
+     * If the custom publication date is not set, it defaults to the creation date ("PN_CREATED").
+     * If neither is available, the current date is used as the fallback.
+     *
+     * @param properties the properties of the article
+     * @return the date when the article was published
+     */
     private Date getPublishDate(@NonNull ValueMap properties) {
-        Date customPublishDate = properties.get("jcr:content/custompublishdate", Date.class);
-        if (customPublishDate != null) {
-            return customPublishDate;
-        } else {
-            Date jcrCreated = properties.get(PN_CREATED, new Date());
-            Date cqLastModified = properties.get("jcr:content/" + PN_PAGE_LAST_MOD, jcrCreated);
-            return jcrCreated.after(cqLastModified) ? jcrCreated : cqLastModified;
-        }
+        return properties.get("jcr:content/custompublishdate",
+                properties.get(PN_CREATED, new Date()));
     }
 }
