@@ -47,6 +47,7 @@ exports[`SortSelect should render component "SortSelect" property 1`] = `
             aria-autocomplete="list"
             aria-expanded={false}
             aria-haspopup={true}
+            aria-label="Select"
             aria-readonly={true}
             className="css-1s80ejz-dummyInput-DummyInput"
             disabled={false}
