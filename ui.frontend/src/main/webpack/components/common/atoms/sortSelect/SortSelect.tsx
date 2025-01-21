@@ -13,6 +13,7 @@ export const SortSelect = ({ options, onChange, sortingTitle }) => (
         isSearchable={false}
         components={{ IndicatorSeparator: () => null }}
         onChange={onChange}
+        aria-label={sortingTitle}
         options={options}
         styles={selectStyles}
       />
