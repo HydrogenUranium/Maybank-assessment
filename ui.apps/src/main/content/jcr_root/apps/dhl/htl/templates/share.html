@@ -4,12 +4,12 @@
     <div class="share-options__container">
       <div class="share-options__left">
         <div data-sly-repeat="${articlePage.socialNetwork}" class="st-custom-button" data-network="${item}">
-          <img class="logo__image" alt="${item} sharing button" src="${articlePage.socialNetwork[item]}">
+          <img class="logo__image" alt="${item} sharing button" src="${articlePage.socialNetwork[item]}" area-label="${item} sharing button">
         </div>
       </div>
       <div class="share-options__right">
         <div class="st-custom-button" data-network="sharethis">
-          <img class="logo__image" alt="Smart Share Buttons Icon" src="${articlePage.smartShareButtonsIconPath}">
+          <img class="logo__image" alt="Smart Share Buttons Icon" src="${articlePage.smartShareButtonsIconPath}" area-label="Smart Share Buttons Icon">
           <span class="st-label">${articlePage.smartShareButtonsLabel}</span>
         </div>
       </div>
