@@ -42,6 +42,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Right Aligned Marketo Form Page Policy"
+                            cq:styleDefaultClasses="digital-assistant--hidden"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
@@ -52,7 +53,12 @@
                                     <item0
                                             cq:styleClasses="digital-assistant--hidden"
                                             cq:styleId="1737448173640"
-                                            cq:styleLabel="Hide"
+                                            cq:styleLabel="Hidden"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="digital-assistant--visible"
+                                            cq:styleId="1737448173641"
+                                            cq:styleLabel="Visible"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
                             </item0>
@@ -73,6 +79,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Landing Page - Two Columns Page Policy"
+                            cq:styleDefaultClasses="digital-assistant--hidden"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
@@ -83,7 +90,12 @@
                                     <item0
                                             cq:styleClasses="digital-assistant--hidden"
                                             cq:styleId="1737448173640"
-                                            cq:styleLabel="Hide"
+                                            cq:styleLabel="Hidden"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="digital-assistant--visible"
+                                            cq:styleId="1737448173641"
+                                            cq:styleLabel="Visible"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
                             </item0>
@@ -93,6 +105,7 @@
                             jcr:lastModified="{Date}2023-11-28T14:53:02.015+02:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
+                            cq:styleDefaultClasses="digital-assistant--hidden"
                             jcr:title="Landing Page - One Column Page Policy"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -104,7 +117,12 @@
                                     <item0
                                             cq:styleClasses="digital-assistant--hidden"
                                             cq:styleId="1737448173640"
-                                            cq:styleLabel="Hide"
+                                            cq:styleLabel="Hidden"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="digital-assistant--visible"
+                                            cq:styleId="1737448173641"
+                                            cq:styleLabel="Visible"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
                             </item0>
@@ -115,6 +133,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="General Page Properties"
+                            cq:styleDefaultClasses="digital-assistant--hidden"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
@@ -125,7 +144,12 @@
                                     <item0
                                             cq:styleClasses="digital-assistant--hidden"
                                             cq:styleId="1737448173640"
-                                            cq:styleLabel="Hide"
+                                            cq:styleLabel="Hidden"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="digital-assistant--visible"
+                                            cq:styleId="1737448173641"
+                                            cq:styleLabel="Visible"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
                             </item0>
