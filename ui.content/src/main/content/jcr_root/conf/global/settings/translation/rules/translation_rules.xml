@@ -307,15 +307,18 @@
       <property inherit="true" name="value" translate="false" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/header">
-      <property inherit="true" name="countrySelector-searchPlaceholder" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="buttonName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="categoryLinksLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="companyLinksLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="countryFilterInputAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="countrySelector-searchPlaceholder" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="countrySelector-title" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="countrySelectorToggleAriaLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="discoverLogoAriaLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="homePageLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="lessLinkLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="moreLinkLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="signInLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="switchLanguageAriaLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="wcagContentLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="wcagFooterLabel" translate="true" updateDestinationLanguage="false"/>
@@ -328,6 +331,7 @@
       <property inherit="true" name="logoAltText" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="promoText" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="socialLinksLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="logoTitle" translate="true" updateDestinationLanguage="false"/>
     </node>
     <filter/>
     <node pathContains="&amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;/cq:annotations&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;#34;">

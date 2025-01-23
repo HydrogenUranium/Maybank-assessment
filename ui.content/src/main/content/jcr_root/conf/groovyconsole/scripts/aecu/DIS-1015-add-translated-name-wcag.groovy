@@ -1,7 +1,7 @@
 import groovy.transform.Field
 import java.util.regex.Pattern;
 
-@Field DRY_RUN = false
+@Field DRY_RUN = true
 
 @Field PROPERTIES = [
         "wcagContentLabel": "Skip to main content",
