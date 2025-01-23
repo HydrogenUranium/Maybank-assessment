@@ -108,8 +108,8 @@ class ArticleTeaserModelTest {
         assertEquals("Alt text", articleTeaserModel.getAltTextFromPageImage());
         assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
         assertEquals("", articleTeaserModel.getAuthor());
-        assertEquals("2023-10-26", articleTeaserModel.getPublishDate());
-        assertEquals("October 26, 2023", articleTeaserModel.getFriendlyPublishDate());
+        assertEquals("2023-10-20", articleTeaserModel.getPublishDate());
+        assertEquals("October 20, 2023", articleTeaserModel.getFriendlyPublishDate());
         assertEquals("SUB CATEGORY PAGE Navigation Title", articleTeaserModel.getTitleFromLinkedPage());
     }
 
