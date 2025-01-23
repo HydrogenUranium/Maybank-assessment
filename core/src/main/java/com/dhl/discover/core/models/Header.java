@@ -78,6 +78,12 @@ public class Header {
     @ValueMapValue
     private boolean hideNavigationMenu;
 
+    @ValueMapValue
+    private String wcagContentLabel;
+
+    @ValueMapValue
+    private String wcagFooterLabel;
+
     @PostConstruct
     private void init() {
         ValueMap currentPageProperties = currentPage.getProperties();
