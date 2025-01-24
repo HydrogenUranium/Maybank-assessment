@@ -1,3 +1,11 @@
+<div class="wcag" data-sly-use.header="com.dhl.discover.core.models.Header">
+    <span class="sr-only">Content and Navigation</span>
+    <ul>
+
+        <li><a href=#content>${header.wcagContentLabel}</a></li>
+        <li><a href=#footer> ${header.wcagFooterLabel}</a></li>
+    </ul>
+</div>
 <div class="headerV2-wrapper"
         data-sly-use.meganav="com.dhl.discover.core.models.Meganav"
         data-sly-use.languageVariants="com.dhl.discover.core.models.LanguageVariants"
@@ -132,3 +140,4 @@
         </nav>
     </div>
 </div>
+<div id="content" class="wcag__spacer">WCAG</div>
