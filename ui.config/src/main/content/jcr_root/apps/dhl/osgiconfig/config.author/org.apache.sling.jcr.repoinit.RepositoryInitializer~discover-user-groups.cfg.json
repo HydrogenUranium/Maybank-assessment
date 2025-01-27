@@ -18,12 +18,14 @@
 
         "set properties on authorizable(author-language-copies)/profile\n set givenName to \"Author - Language Copies\"\n end",
         "set ACL for author-language-copies\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
+        "set ACL for author-language-copies\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/language-masters)\nend",
         "set ACL for author-language-copies\ndeny jcr:all on /content/dhl restriction(rep:glob,/language-masters/en-master)\nend",
         "set ACL for author-language-copies\nallow jcr:read on home(author-language-copies)\nend",
 
         "set properties on authorizable(author-language-master)/profile\n set givenName to \"Author - Language Master\"\n end",
         "add author-language-master to group projects-administrators",
         "set ACL for author-language-master\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
+        "set ACL for author-language-master\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/language-masters)\nend",
         "set ACL for author-language-master\nallow jcr:all on /conf/global\nend",
         "set ACL for author-language-master\nallow jcr:read,rep:write on /content/dhl restriction(rep:glob,/*/*)\nend",
         "set ACL for author-language-master\nallow jcr:read on home(author-language-master)\nend",
@@ -53,6 +55,7 @@
         "set ACL for discover-base-user\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content\nend",
         "set ACL for discover-base-user\ndeny jcr:all on /content restriction(rep:glob,/dhl/*)\nend",
         "set ACL for discover-base-user\nallow jcr:read on /content restriction(rep:glob,/dhl/jcr:content)\nend",
+        "set ACL for discover-base-user\ndeny jcr:read on /content/experience-fragments restriction(rep:glob,/dhl/*)\nend",
         "set ACL for discover-base-user\ndeny rep:write on /content restriction(rep:ntNames,cq:meta)\nend",
         "set ACL for discover-base-user\nallow jcr:read on /content restriction(rep:ntNames,cq:meta)\nend",
 
@@ -61,181 +64,167 @@
         "create group author-all-countries",
         "add author-all-countries to group discover-base-user",
         "add author-all-countries to group author-language-master",
+        "add author-all-countries to group experience-fragments-editors",
         "add author-all-countries to group gmt-tracking-id-editor",
         "set properties on authorizable(author-all-countries)/profile\n set givenName to \"Author - All Countries\"\n end",
         "set ACL for author-all-countries\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl\nend",
+        "set ACL for author-all-countries\nallow jcr:read on /content/experience-fragments/dhl\nend",
         "set ACL for author-all-countries\nallow jcr:read on home(author-all-countries)\nend",
 
         "create group publisher-all-countries",
         "add publisher-all-countries to group discover-base-user",
         "add publisher-all-countries to group author-language-master",
+        "add publisher-all-countries to group experience-fragments-editors",
         "add publisher-all-countries to group gmt-tracking-id-editor",
         "set properties on authorizable(publisher-all-countries)/profile\n set givenName to \"Publisher - All Countries\"\n end",
         "set ACL for publisher-all-countries\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl\nend",
+        "set ACL for publisher-all-countries\nallow jcr:read on /content/experience-fragments/dhl\nend",
         "set ACL for publisher-all-countries\nallow jcr:read on home(publisher-all-countries)\nend",
 
         "create group author-global",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for author-global",
         "add author-global to group discover-base-user",
         "add author-global to group author-language-master",
+        "add author-global to group experience-fragments-editors",
         "add author-global to group gmt-tracking-id-editor",
         "set properties on authorizable(author-global)/profile\n set givenName to \"Author - Global\"\n end",
         "set ACL for author-global\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/global)\nend",
+        "set ACL for author-global\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/global)\nend",
         "set ACL for author-global\nallow jcr:read on home(author-global)\nend",
 
         "create group publisher-global",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for publisher-global",
         "add publisher-global to group discover-base-user",
         "add publisher-global to group author-language-master",
+        "add publisher-global to group experience-fragments-editors",
         "add publisher-global to group gmt-tracking-id-editor",
         "set properties on authorizable(publisher-global)/profile\n set givenName to \"Publisher - Global\"\n end",
         "set ACL for publisher-global\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/global)\nend",
+        "set ACL for publisher-global\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/global)\nend",
         "set ACL for publisher-global\nallow jcr:read on home(publisher-global)\nend",
 
         "create group author-australia",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for author-australia",
         "add author-australia to group discover-base-user",
         "set properties on authorizable(author-australia)/profile\n set givenName to \"Author - Australia\"\n end",
         "set ACL for author-australia\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/au)\nend",
+        "set ACL for author-australia\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/au)\nend",
         "set ACL for author-australia\nallow jcr:read on home(author-australia)\nend",
 
         "create group publisher-australia",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for publisher-australia",
         "add publisher-australia to group discover-base-user",
         "set properties on authorizable(publisher-australia)/profile\n set givenName to \"Publisher - Australia\"\n end",
         "set ACL for publisher-australia\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/au)\nend",
+        "set ACL for publisher-australia\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/au)\nend",
         "set ACL for publisher-australia\nallow jcr:read on home(publisher-australia)\nend",
 
         "create group author-hong-kong",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for author-hong-kong",
         "add author-hong-kong to group discover-base-user",
         "set properties on authorizable(author-hong-kong)/profile\n set givenName to \"Author - Hong Kong\"\n end",
         "set ACL for author-hong-kong\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/hk)\nend",
+        "set ACL for author-hong-kong\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/hk)\nend",
         "set ACL for author-hong-kong\nallow jcr:read on home(author-hong-kong)\nend",
 
         "create group publisher-hong-kong",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for publisher-hong-kong",
         "add publisher-hong-kong to group discover-base-user",
         "set properties on authorizable(publisher-hong-kong)/profile\n set givenName to \"Publisher - Hong Kong\"\n end",
         "set ACL for publisher-hong-kong\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/hk)\nend",
+        "set ACL for publisher-hong-kong\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/hk)\nend",
         "set ACL for publisher-hong-kong\nallow jcr:read on home(publisher-hong-kong)\nend",
 
         "create group author-india",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for author-india",
         "add author-india to group discover-base-user",
         "set properties on authorizable(author-india)/profile\n set givenName to \"Author - India\"\n end",
         "set ACL for author-india\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/in)\nend",
+        "set ACL for author-india\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/in)\nend",
         "set ACL for author-india\nallow jcr:read on home(author-india)\nend",
 
         "create group publisher-india",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for publisher-india",
         "add publisher-india to group discover-base-user",
         "set properties on authorizable(publisher-india)/profile\n set givenName to \"Publisher - India\"\n end",
         "set ACL for publisher-india\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/in)\nend",
+        "set ACL for publisher-india\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/in)\nend",
         "set ACL for publisher-india\nallow jcr:read on home(publisher-india)\nend",
 
         "create group author-indonesia",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for author-indonesia",
         "add author-indonesia to group discover-base-user",
         "set properties on authorizable(author-indonesia)/profile\n set givenName to \"Author - Indonesia\"\n end",
         "set ACL for author-indonesia\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/id)\nend",
+        "set ACL for author-indonesia\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/id)\nend",
         "set ACL for author-indonesia\nallow jcr:read on home(author-indonesia)\nend",
 
         "create group publisher-indonesia",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for publisher-indonesia",
         "add publisher-indonesia to group discover-base-user",
         "set properties on authorizable(publisher-indonesia)/profile\n set givenName to \"Publisher - Indonesia\"\n end",
         "set ACL for publisher-indonesia\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/id)\nend",
+        "set ACL for publisher-indonesia\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/id)\nend",
         "set ACL for publisher-indonesia\nallow jcr:read on home(publisher-indonesia)\nend",
 
         "create group author-malaysia",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for author-malaysia",
         "add author-malaysia to group discover-base-user",
         "set properties on authorizable(author-malaysia)/profile\n set givenName to \"Author - Malaysia\"\n end",
         "set ACL for author-malaysia\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/my)\nend",
+        "set ACL for author-malaysia\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/my)\nend",
         "set ACL for author-malaysia\nallow jcr:read on home(author-malaysia)\nend",
 
         "create group publisher-malaysia",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for publisher-malaysia",
         "add publisher-malaysia to group discover-base-user",
         "set properties on authorizable(publisher-malaysia)/profile\n set givenName to \"Publisher - Malaysia\"\n end",
         "set ACL for publisher-malaysia\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/my)\nend",
+        "set ACL for publisher-malaysia\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/my)\nend",
         "set ACL for publisher-malaysia\nallow jcr:read on home(publisher-malaysia)\nend",
 
         "create group author-new-zealand",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for author-new-zealand",
         "add author-new-zealand to group discover-base-user",
         "set properties on authorizable(author-new-zealand)/profile\n set givenName to \"Author - New Zealand\"\n end",
         "set ACL for author-new-zealand\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/nz)\nend",
+        "set ACL for author-new-zealand\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/nz)\nend",
         "set ACL for author-new-zealand\nallow jcr:read on home(author-new-zealand)\nend",
 
         "create group publisher-new-zealand",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for publisher-new-zealand",
         "add publisher-new-zealand to group discover-base-user",
         "set properties on authorizable(publisher-new-zealand)/profile\n set givenName to \"Publisher - New Zealand\"\n end",
         "set ACL for publisher-new-zealand\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/nz)\nend",
+        "set ACL for publisher-new-zealand\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/nz)\nend",
         "set ACL for publisher-new-zealand\nallow jcr:read on home(publisher-new-zealand)\nend",
 
         "create group author-philippines",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for author-philippines",
         "add author-philippines to group discover-base-user",
         "set properties on authorizable(author-philippines)/profile\n set givenName to \"Author - Philippines\"\n end",
         "set ACL for author-philippines\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ph)\nend",
+        "set ACL for author-philippines\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ph)\nend",
         "set ACL for author-philippines\nallow jcr:read on home(author-philippines)\nend",
 
         "create group publisher-philippines",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for publisher-philippines",
         "add publisher-philippines to group discover-base-user",
         "set properties on authorizable(publisher-philippines)/profile\n set givenName to \"Publisher - Philippines\"\n end",
         "set ACL for publisher-philippines\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ph)\nend",
+        "set ACL for publisher-philippines\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ph)\nend",
         "set ACL for publisher-philippines\nallow jcr:read on home(publisher-philippines)\nend",
 
         "create group author-singapore",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for author-singapore",
         "add author-singapore to group discover-base-user",
         "set properties on authorizable(author-singapore)/profile\n set givenName to \"Author - Singapore\"\n end",
         "set ACL for author-singapore\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/sg)\nend",
+        "set ACL for author-singapore\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/sg)\nend",
         "set ACL for author-singapore\nallow jcr:read on home(author-singapore)\nend",
 
         "create group publisher-singapore",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for publisher-singapore",
         "add publisher-singapore to group discover-base-user",
         "set properties on authorizable(publisher-singapore)/profile\n set givenName to \"Publisher - Singapore\"\n end",
         "set ACL for publisher-singapore\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/sg)\nend",
+        "set ACL for publisher-singapore\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/sg)\nend",
         "set ACL for publisher-singapore\nallow jcr:read on home(publisher-singapore)\nend",
 
         "create group author-united-states",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for author-united-states",
         "add author-united-states to group discover-base-user",
         "set properties on authorizable(author-united-states)/profile\n set givenName to \"Author - United States\"\n end",
         "set ACL for author-united-states\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/us)\nend",
+        "set ACL for author-united-states\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/us)\nend",
         "set ACL for author-united-states\nallow jcr:read on home(author-united-states)\nend",
 
         "create group publisher-united-states",
-        "# *** Delete ACL is used to remove previous access solution. Can be removed in future releases ***",
-        "delete ACL for publisher-united-states",
         "add publisher-united-states to group discover-base-user",
         "set properties on authorizable(publisher-united-states)/profile\n set givenName to \"Publisher - United States\"\n end",
         "set ACL for publisher-united-states\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/us)\nend",
+        "set ACL for publisher-united-states\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/us)\nend",
         "set ACL for publisher-united-states\nallow jcr:read on home(publisher-united-states)\nend",
 
 
@@ -243,12 +232,14 @@
         "add author-united-kingdom to group discover-base-user",
         "set properties on authorizable(author-united-kingdom)/profile\n set givenName to \"Author - United Kingdom\"\n end",
         "set ACL for author-united-kingdom\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/gb)\nend",
+        "set ACL for author-united-kingdom\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/gb)\nend",
         "set ACL for author-united-kingdom\nallow jcr:read on home(author-united-kingdom)\nend",
 
         "create group publisher-united-kingdom",
         "add publisher-united-kingdom to group discover-base-user",
         "set properties on authorizable(publisher-united-kingdom)/profile\n set givenName to \"Publisher - United Kingdom\"\n end",
         "set ACL for publisher-united-kingdom\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/gb)\nend",
+        "set ACL for publisher-united-kingdom\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/gb)\nend",
         "set ACL for publisher-united-kingdom\nallow jcr:read on home(publisher-united-kingdom)\nend",
 
 
@@ -256,12 +247,14 @@
         "add author-canada to group discover-base-user",
         "set properties on authorizable(author-canada)/profile\n set givenName to \"Author - Canada\"\n end",
         "set ACL for author-canada\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ca)\nend",
+        "set ACL for author-canada\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ca)\nend",
         "set ACL for author-canada\nallow jcr:read on home(author-canada)\nend",
 
         "create group publisher-canada",
         "add publisher-canada to group discover-base-user",
         "set properties on authorizable(publisher-canada)/profile\n set givenName to \"Publisher - Canada\"\n end",
         "set ACL for publisher-canada\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ca)\nend",
+        "set ACL for publisher-canada\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ca)\nend",
         "set ACL for publisher-canada\nallow jcr:read on home(publisher-canada)\nend",
 
 
@@ -269,12 +262,14 @@
         "add author-italy to group discover-base-user",
         "set properties on authorizable(author-italy)/profile\n set givenName to \"Author - Italy\"\n end",
         "set ACL for author-italy\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/it)\nend",
+        "set ACL for author-italy\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/it)\nend",
         "set ACL for author-italy\nallow jcr:read on home(author-italy)\nend",
 
         "create group publisher-italy",
         "add publisher-italy to group discover-base-user",
         "set properties on authorizable(publisher-italy)/profile\n set givenName to \"Publisher - Italy\"\n end",
         "set ACL for publisher-italy\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/it)\nend",
+        "set ACL for publisher-italy\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/it)\nend",
         "set ACL for publisher-italy\nallow jcr:read on home(publisher-italy)\nend",
 
 
@@ -282,12 +277,14 @@
         "add author-france to group discover-base-user",
         "set properties on authorizable(author-france)/profile\n set givenName to \"Author - France\"\n end",
         "set ACL for author-france\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/fr)\nend",
+        "set ACL for author-france\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/fr)\nend",
         "set ACL for author-france\nallow jcr:read on home(author-france)\nend",
 
         "create group publisher-france",
         "add publisher-france to group discover-base-user",
         "set properties on authorizable(publisher-france)/profile\n set givenName to \"Publisher - France\"\n end",
         "set ACL for publisher-france\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/fr)\nend",
+        "set ACL for publisher-france\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/fr)\nend",
         "set ACL for publisher-france\nallow jcr:read on home(publisher-france)\nend",
 
 
@@ -295,12 +292,14 @@
         "add author-korea to group discover-base-user",
         "set properties on authorizable(author-korea)/profile\n set givenName to \"Author - Korea\"\n end",
         "set ACL for author-korea\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/kr)\nend",
+        "set ACL for author-korea\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/kr)\nend",
         "set ACL for author-korea\nallow jcr:read on home(author-korea)\nend",
 
         "create group publisher-korea",
         "add publisher-korea to group discover-base-user",
         "set properties on authorizable(publisher-korea)/profile\n set givenName to \"Publisher - Korea\"\n end",
         "set ACL for publisher-korea\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/kr)\nend",
+        "set ACL for publisher-korea\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/kr)\nend",
         "set ACL for publisher-korea\nallow jcr:read on home(publisher-korea)\nend",
 
 
@@ -308,12 +307,14 @@
         "add author-thailand to group discover-base-user",
         "set properties on authorizable(author-thailand)/profile\n set givenName to \"Author - Thailand\"\n end",
         "set ACL for author-thailand\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/th)\nend",
+        "set ACL for author-thailand\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/th)\nend",
         "set ACL for author-thailand\nallow jcr:read on home(author-thailand)\nend",
 
         "create group publisher-thailand",
         "add publisher-thailand to group discover-base-user",
         "set properties on authorizable(publisher-thailand)/profile\n set givenName to \"Publisher - Thailand\"\n end",
         "set ACL for publisher-thailand\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/th)\nend",
+        "set ACL for publisher-thailand\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/th)\nend",
         "set ACL for publisher-thailand\nallow jcr:read on home(publisher-thailand)\nend",
 
 
@@ -321,12 +322,14 @@
         "add author-belgium to group discover-base-user",
         "set properties on authorizable(author-belgium)/profile\n set givenName to \"Author - Belgium\"\n end",
         "set ACL for author-belgium\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/be)\nend",
+        "set ACL for author-belgium\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/be)\nend",
         "set ACL for author-belgium\nallow jcr:read on home(author-belgium)\nend",
 
         "create group publisher-belgium",
         "add publisher-belgium to group discover-base-user",
         "set properties on authorizable(publisher-belgium)/profile\n set givenName to \"Publisher - Belgium\"\n end",
         "set ACL for publisher-belgium\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/be)\nend",
+        "set ACL for publisher-belgium\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/be)\nend",
         "set ACL for publisher-belgium\nallow jcr:read on home(publisher-belgium)\nend",
 
 
@@ -334,12 +337,14 @@
         "add author-ireland to group discover-base-user",
         "set properties on authorizable(author-ireland)/profile\n set givenName to \"Author - Ireland\"\n end",
         "set ACL for author-ireland\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ie)\nend",
+        "set ACL for author-ireland\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ie)\nend",
         "set ACL for author-ireland\nallow jcr:read on home(author-ireland)\nend",
 
         "create group publisher-ireland",
         "add publisher-ireland to group discover-base-user",
         "set properties on authorizable(publisher-ireland)/profile\n set givenName to \"Publisher - Ireland\"\n end",
         "set ACL for publisher-ireland\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ie)\nend",
+        "set ACL for publisher-ireland\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ie)\nend",
         "set ACL for publisher-ireland\nallow jcr:read on home(publisher-ireland)\nend",
 
 
@@ -347,12 +352,14 @@
         "add author-spain to group discover-base-user",
         "set properties on authorizable(author-spain)/profile\n set givenName to \"Author - Spain\"\n end",
         "set ACL for author-spain\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/es)\nend",
+        "set ACL for author-spain\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/es)\nend",
         "set ACL for author-spain\nallow jcr:read on home(author-spain)\nend",
 
         "create group publisher-spain",
         "add publisher-spain to group discover-base-user",
         "set properties on authorizable(publisher-spain)/profile\n set givenName to \"Publisher - Spain\"\n end",
         "set ACL for publisher-spain\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/es)\nend",
+        "set ACL for publisher-spain\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/es)\nend",
         "set ACL for publisher-spain\nallow jcr:read on home(publisher-spain)\nend",
 
 
@@ -360,12 +367,14 @@
         "add author-pakistan to group discover-base-user",
         "set properties on authorizable(author-pakistan)/profile\n set givenName to \"Author - Pakistan\"\n end",
         "set ACL for author-pakistan\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/pk)\nend",
+        "set ACL for author-pakistan\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/pk)\nend",
         "set ACL for author-pakistan\nallow jcr:read on home(author-pakistan)\nend",
 
         "create group publisher-pakistan",
         "add publisher-pakistan to group discover-base-user",
         "set properties on authorizable(publisher-pakistan)/profile\n set givenName to \"Publisher - Pakistan\"\n end",
         "set ACL for publisher-pakistan\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/pk)\nend",
+        "set ACL for publisher-pakistan\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/pk)\nend",
         "set ACL for publisher-pakistan\nallow jcr:read on home(publisher-pakistan)\nend",
 
 
@@ -373,12 +382,14 @@
         "add author-taiwan to group discover-base-user",
         "set properties on authorizable(author-taiwan)/profile\n set givenName to \"Author - Taiwan\"\n end",
         "set ACL for author-taiwan\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/tw)\nend",
+        "set ACL for author-taiwan\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/tw)\nend",
         "set ACL for author-taiwan\nallow jcr:read on home(author-taiwan)\nend",
 
         "create group publisher-taiwan",
         "add publisher-taiwan to group discover-base-user",
         "set properties on authorizable(publisher-taiwan)/profile\n set givenName to \"Publisher - Taiwan\"\n end",
         "set ACL for publisher-taiwan\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/tw)\nend",
+        "set ACL for publisher-taiwan\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/tw)\nend",
         "set ACL for publisher-taiwan\nallow jcr:read on home(publisher-taiwan)\nend",
 
 
@@ -386,12 +397,14 @@
         "add author-switzerland to group discover-base-user",
         "set properties on authorizable(author-switzerland)/profile\n set givenName to \"Author - Switzerland\"\n end",
         "set ACL for author-switzerland\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ch)\nend",
+        "set ACL for author-switzerland\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ch)\nend",
         "set ACL for author-switzerland\nallow jcr:read on home(author-switzerland)\nend",
 
         "create group publisher-switzerland",
         "add publisher-switzerland to group discover-base-user",
         "set properties on authorizable(publisher-switzerland)/profile\n set givenName to \"Publisher - Switzerland\"\n end",
         "set ACL for publisher-switzerland\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ch)\nend",
+        "set ACL for publisher-switzerland\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ch)\nend",
         "set ACL for publisher-switzerland\nallow jcr:read on home(publisher-switzerland)\nend",
 
 
@@ -399,12 +412,14 @@
         "add author-czech-republic to group discover-base-user",
         "set properties on authorizable(author-czech-republic)/profile\n set givenName to \"Author - Czech Republic\"\n end",
         "set ACL for author-czech-republic\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/cz)\nend",
+        "set ACL for author-czech-republic\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/cz)\nend",
         "set ACL for author-czech-republic\nallow jcr:read on home(author-czech-republic)\nend",
 
         "create group publisher-czech-republic",
         "add publisher-czech-republic to group discover-base-user",
         "set properties on authorizable(publisher-czech-republic)/profile\n set givenName to \"Publisher - Czech Republic\"\n end",
         "set ACL for publisher-czech-republic\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/cz)\nend",
+        "set ACL for publisher-czech-republic\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/cz)\nend",
         "set ACL for publisher-czech-republic\nallow jcr:read on home(publisher-czech-republic)\nend",
 
 
@@ -412,12 +427,14 @@
         "add author-vietnam to group discover-base-user",
         "set properties on authorizable(author-vietnam)/profile\n set givenName to \"Author - Vietnam\"\n end",
         "set ACL for author-vietnam\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/vn)\nend",
+        "set ACL for author-vietnam\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/vn)\nend",
         "set ACL for author-vietnam\nallow jcr:read on home(author-vietnam)\nend",
 
         "create group publisher-vietnam",
         "add publisher-vietnam to group discover-base-user",
         "set properties on authorizable(publisher-vietnam)/profile\n set givenName to \"Publisher - Vietnam\"\n end",
         "set ACL for publisher-vietnam\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/vn)\nend",
+        "set ACL for publisher-vietnam\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/vn)\nend",
         "set ACL for publisher-vietnam\nallow jcr:read on home(publisher-vietnam)\nend",
 
 
@@ -425,12 +442,14 @@
         "add author-china to group discover-base-user",
         "set properties on authorizable(author-china)/profile\n set givenName to \"Author - China\"\n end",
         "set ACL for author-china\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/cn)\nend",
+        "set ACL for author-china\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/cn)\nend",
         "set ACL for author-china\nallow jcr:read on home(author-china)\nend",
 
         "create group publisher-china",
         "add publisher-china to group discover-base-user",
         "set properties on authorizable(publisher-china)/profile\n set givenName to \"Publisher - China\"\n end",
         "set ACL for publisher-china\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/cn)\nend",
+        "set ACL for publisher-china\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/cn)\nend",
         "set ACL for publisher-china\nallow jcr:read on home(publisher-china)\nend",
 
 
@@ -438,12 +457,14 @@
         "add author-poland to group discover-base-user",
         "set properties on authorizable(author-poland)/profile\n set givenName to \"Author - Poland\"\n end",
         "set ACL for author-poland\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/pl)\nend",
+        "set ACL for author-poland\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/pl)\nend",
         "set ACL for author-poland\nallow jcr:read on home(author-poland)\nend",
 
         "create group publisher-poland",
         "add publisher-poland to group discover-base-user",
         "set properties on authorizable(publisher-poland)/profile\n set givenName to \"Publisher - Poland\"\n end",
         "set ACL for publisher-poland\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/pl)\nend",
+        "set ACL for publisher-poland\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/pl)\nend",
         "set ACL for publisher-poland\nallow jcr:read on home(publisher-poland)\nend",
 
 
@@ -451,12 +472,14 @@
         "add author-bangladesh to group discover-base-user",
         "set properties on authorizable(author-bangladesh)/profile\n set givenName to \"Author - Bangladesh\"\n end",
         "set ACL for author-bangladesh\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/bd)\nend",
+        "set ACL for author-bangladesh\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/bd)\nend",
         "set ACL for author-bangladesh\nallow jcr:read on home(author-bangladesh)\nend",
 
         "create group publisher-bangladesh",
         "add publisher-bangladesh to group discover-base-user",
         "set properties on authorizable(publisher-bangladesh)/profile\n set givenName to \"Publisher - Bangladesh\"\n end",
         "set ACL for publisher-bangladesh\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/bd)\nend",
+        "set ACL for publisher-bangladesh\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/bd)\nend",
         "set ACL for publisher-bangladesh\nallow jcr:read on home(publisher-bangladesh)\nend",
 
 
@@ -464,24 +487,28 @@
         "add author-denmark to group discover-base-user",
         "set properties on authorizable(author-denmark)/profile\n set givenName to \"Author - Denmark\"\n end",
         "set ACL for author-denmark\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/dk)\nend",
+        "set ACL for author-denmark\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/dk)\nend",
         "set ACL for author-denmark\nallow jcr:read on home(author-denmark)\nend",
 
         "create group publisher-denmark",
         "add publisher-denmark to group discover-base-user",
         "set properties on authorizable(publisher-denmark)/profile\n set givenName to \"Publisher - Denmark\"\n end",
         "set ACL for publisher-denmark\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/dk)\nend",
+        "set ACL for publisher-denmark\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/dk)\nend",
         "set ACL for publisher-denmark\nallow jcr:read on home(publisher-denmark)\nend",
 
         "create group author-israel",
         "add author-israel to group discover-base-user",
         "set properties on authorizable(author-israel)/profile\n set givenName to \"Author - Israel\"\n end",
         "set ACL for author-israel\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/il)\nend",
+        "set ACL for author-israel\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/il)\nend",
         "set ACL for author-israel\nallow jcr:read on home(author-israel)\nend",
 
         "create group publisher-israel",
         "add publisher-israel to group discover-base-user",
         "set properties on authorizable(publisher-israel)/profile\n set givenName to \"Publisher - Israel\"\n end",
         "set ACL for publisher-israel\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/il)\nend",
+        "set ACL for publisher-israel\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/il)\nend",
         "set ACL for publisher-israel\nallow jcr:read on home(publisher-israel)\nend",
 
 
@@ -489,12 +516,14 @@
         "add author-austria to group discover-base-user",
         "set properties on authorizable(author-austria)/profile\n set givenName to \"Author - Austria\"\n end",
         "set ACL for author-austria\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/at)\nend",
+        "set ACL for author-austria\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/at)\nend",
         "set ACL for author-austria\nallow jcr:read on home(author-austria)\nend",
 
         "create group publisher-austria",
         "add publisher-austria to group discover-base-user",
         "set properties on authorizable(publisher-austria)/profile\n set givenName to \"Publisher - Austria\"\n end",
         "set ACL for publisher-austria\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/at)\nend",
+        "set ACL for publisher-austria\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/at)\nend",
         "set ACL for publisher-austria\nallow jcr:read on home(publisher-austria)\nend",
 
 
@@ -502,12 +531,14 @@
         "add author-portugal to group discover-base-user",
         "set properties on authorizable(author-portugal)/profile\n set givenName to \"Author - Portugal\"\n end",
         "set ACL for author-portugal\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/pt)\nend",
+        "set ACL for author-portugal\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/pt)\nend",
         "set ACL for author-portugal\nallow jcr:read on home(author-portugal)\nend",
 
         "create group publisher-portugal",
         "add publisher-portugal to group discover-base-user",
         "set properties on authorizable(publisher-portugal)/profile\n set givenName to \"Publisher - Portugal\"\n end",
         "set ACL for publisher-portugal\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/pt)\nend",
+        "set ACL for publisher-portugal\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/pt)\nend",
         "set ACL for publisher-portugal\nallow jcr:read on home(publisher-portugal)\nend",
 
 
@@ -515,12 +546,14 @@
         "add author-sri-lanka to group discover-base-user",
         "set properties on authorizable(author-sri-lanka)/profile\n set givenName to \"Author - Sri Lanka\"\n end",
         "set ACL for author-sri-lanka\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/lk)\nend",
+        "set ACL for author-sri-lanka\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/lk)\nend",
         "set ACL for author-sri-lanka\nallow jcr:read on home(author-sri-lanka)\nend",
 
         "create group publisher-sri-lanka",
         "add publisher-sri-lanka to group discover-base-user",
         "set properties on authorizable(publisher-sri-lanka)/profile\n set givenName to \"Publisher - Sri Lanka\"\n end",
         "set ACL for publisher-sri-lanka\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/lk)\nend",
+        "set ACL for publisher-sri-lanka\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/lk)\nend",
         "set ACL for publisher-sri-lanka\nallow jcr:read on home(publisher-sri-lanka)\nend",
 
 
@@ -528,12 +561,14 @@
         "add author-hungary to group discover-base-user",
         "set properties on authorizable(author-hungary)/profile\n set givenName to \"Author - Hungary\"\n end",
         "set ACL for author-hungary\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/hu)\nend",
+        "set ACL for author-hungary\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/hu)\nend",
         "set ACL for author-hungary\nallow jcr:read on home(author-hungary)\nend",
 
         "create group publisher-hungary",
         "add publisher-hungary to group discover-base-user",
         "set properties on authorizable(publisher-hungary)/profile\n set givenName to \"Publisher - Hungary\"\n end",
         "set ACL for publisher-hungary\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/hu)\nend",
+        "set ACL for publisher-hungary\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/hu)\nend",
         "set ACL for publisher-hungary\nallow jcr:read on home(publisher-hungary)\nend",
 
 
@@ -541,12 +576,14 @@
         "add author-cambodia to group discover-base-user",
         "set properties on authorizable(author-cambodia)/profile\n set givenName to \"Author - Cambodia\"\n end",
         "set ACL for author-cambodia\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/kh)\nend",
+        "set ACL for author-cambodia\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/kh)\nend",
         "set ACL for author-cambodia\nallow jcr:read on home(author-cambodia)\nend",
 
         "create group publisher-cambodia",
         "add publisher-cambodia to group discover-base-user",
         "set properties on authorizable(publisher-cambodia)/profile\n set givenName to \"Publisher - Cambodia\"\n end",
         "set ACL for publisher-cambodia\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/kh)\nend",
+        "set ACL for publisher-cambodia\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/kh)\nend",
         "set ACL for publisher-cambodia\nallow jcr:read on home(publisher-cambodia)\nend",
 
 
@@ -554,12 +591,14 @@
         "add author-myanmar to group discover-base-user",
         "set properties on authorizable(author-myanmar)/profile\n set givenName to \"Author - Myanmar\"\n end",
         "set ACL for author-myanmar\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/mm)\nend",
+        "set ACL for author-myanmar\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/mm)\nend",
         "set ACL for author-myanmar\nallow jcr:read on home(author-myanmar)\nend",
 
         "create group publisher-myanmar",
         "add publisher-myanmar to group discover-base-user",
         "set properties on authorizable(publisher-myanmar)/profile\n set givenName to \"Publisher - Myanmar\"\n end",
         "set ACL for publisher-myanmar\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/mm)\nend",
+        "set ACL for publisher-myanmar\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/mm)\nend",
         "set ACL for publisher-myanmar\nallow jcr:read on home(publisher-myanmar)\nend",
 
 
@@ -567,36 +606,42 @@
         "add author-slovakia to group discover-base-user",
         "set properties on authorizable(author-slovakia)/profile\n set givenName to \"Author - Slovakia\"\n end",
         "set ACL for author-slovakia\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/sk)\nend",
+        "set ACL for author-slovakia\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/sk)\nend",
         "set ACL for author-slovakia\nallow jcr:read on home(author-slovakia)\nend",
 
         "create group publisher-slovakia",
         "add publisher-slovakia to group discover-base-user",
         "set properties on authorizable(publisher-slovakia)/profile\n set givenName to \"Publisher - Slovakia\"\n end",
         "set ACL for publisher-slovakia\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/sk)\nend",
+        "set ACL for publisher-slovakia\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/sk)\nend",
         "set ACL for publisher-slovakia\nallow jcr:read on home(publisher-slovakia)\nend",
 
         "create group author-japan",
         "add author-japan to group discover-base-user",
         "set properties on authorizable(author-japan)/profile\n set givenName to \"Author - Japan\"\n end",
         "set ACL for author-japan\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/jp)\nend",
+        "set ACL for author-japan\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/jp)\nend",
         "set ACL for author-japan\nallow jcr:read on home(author-japan)\nend",
 
         "create group publisher-japan",
         "add publisher-japan to group discover-base-user",
         "set properties on authorizable(publisher-japan)/profile\n set givenName to \"Publisher - Japan\"\n end",
         "set ACL for publisher-japan\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/jp)\nend",
+        "set ACL for publisher-japan\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/jp)\nend",
         "set ACL for publisher-japan\nallow jcr:read on home(publisher-japan)\nend",
 
         "create group author-nigeria",
         "add author-nigeria to group discover-base-user",
         "set properties on authorizable(author-nigeria)/profile\n set givenName to \"Author - Nigeria\"\n end",
         "set ACL for author-nigeria\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ng)\nend",
+        "set ACL for author-nigeria\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ng)\nend",
         "set ACL for author-nigeria\nallow jcr:read on home(author-nigeria)\nend",
 
         "create group publisher-nigeria",
         "add publisher-nigeria to group discover-base-user",
         "set properties on authorizable(publisher-nigeria)/profile\n set givenName to \"Publisher - Nigeria\"\n end",
         "set ACL for publisher-nigeria\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ng)\nend",
+        "set ACL for publisher-nigeria\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ng)\nend",
         "set ACL for publisher-nigeria\nallow jcr:read on home(publisher-nigeria)\nend",
 
 
@@ -604,12 +649,14 @@
         "add author-kenya to group discover-base-user",
         "set properties on authorizable(author-kenya)/profile\n set givenName to \"Author - Kenya\"\n end",
         "set ACL for author-kenya\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ke)\nend",
+        "set ACL for author-kenya\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ke)\nend",
         "set ACL for author-kenya\nallow jcr:read on home(author-kenya)\nend",
 
         "create group publisher-kenya",
         "add publisher-kenya to group discover-base-user",
         "set properties on authorizable(publisher-kenya)/profile\n set givenName to \"Publisher - Kenya\"\n end",
         "set ACL for publisher-kenya\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ke)\nend",
+        "set ACL for publisher-kenya\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ke)\nend",
         "set ACL for publisher-kenya\nallow jcr:read on home(publisher-kenya)\nend",
 
 
@@ -617,12 +664,14 @@
         "add author-south-africa to group discover-base-user",
         "set properties on authorizable(author-south-africa)/profile\n set givenName to \"Author - South Africa\"\n end",
         "set ACL for author-south-africa\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/za)\nend",
+        "set ACL for author-south-africa\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/za)\nend",
         "set ACL for author-south-africa\nallow jcr:read on home(author-south-africa)\nend",
 
         "create group publisher-south-africa",
         "add publisher-south-africa to group discover-base-user",
         "set properties on authorizable(publisher-south-africa)/profile\n set givenName to \"Publisher - South Africa\"\n end",
         "set ACL for publisher-south-africa\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/za)\nend",
+        "set ACL for publisher-south-africa\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/za)\nend",
         "set ACL for publisher-south-africa\nallow jcr:read on home(publisher-south-africa)\nend",
 
 
@@ -630,12 +679,14 @@
         "add author-united-arab-emirates to group discover-base-user",
         "set properties on authorizable(author-united-arab-emirates)/profile\n set givenName to \"Author - United Arab Emirates\"\n end",
         "set ACL for author-united-arab-emirates\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ae)\nend",
+        "set ACL for author-united-arab-emirates\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ae)\nend",
         "set ACL for author-united-arab-emirates\nallow jcr:read on home(author-united-arab-emirates)\nend",
 
         "create group publisher-united-arab-emirates",
         "add publisher-united-arab-emirates to group discover-base-user",
         "set properties on authorizable(publisher-united-arab-emirates)/profile\n set givenName to \"Publisher - United Arab Emirates\"\n end",
         "set ACL for publisher-united-arab-emirates\nallow jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/ae)\nend",
+        "set ACL for publisher-united-arab-emirates\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/ae)\nend",
         "set ACL for publisher-united-arab-emirates\nallow jcr:read on home(publisher-united-arab-emirates)\nend",
 
         "# !!!  SHOULD BE AT THE BOTTOM OF THIS SCRIPT !!!",
