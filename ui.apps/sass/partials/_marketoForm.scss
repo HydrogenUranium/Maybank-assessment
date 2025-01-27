@@ -6,6 +6,10 @@
 }
 
 .cmp-marketoForm {
+  .mktoForm {
+    font-family: "Delivery", sans-serif !important;
+  }
+
   &__container{
     .mktoCaptchaDisclaimer {
       font-style: italic;
@@ -110,6 +114,10 @@
     margin: 0;
     display: block;
     line-height: normal;
+    [dir="rtl"] & {
+      padding-left: unset;
+      padding-right: 36px;
+    }
   }
 
   .wysiwyg {
@@ -157,6 +165,9 @@
     top: 0;
     left: 0;
     width: 23px !important;
+    [dir="rtl"] & {
+      right: 0;
+    }
 
     input {
       position: fixed;
