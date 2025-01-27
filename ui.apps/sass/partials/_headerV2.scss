@@ -46,6 +46,9 @@
     min-height: 86px;
     max-width: 1640px;
     margin: auto;
+    [dir="rtl"] & {
+      padding: 25px 42px 0 15px;
+    }
   }
 
   &.fixed {
