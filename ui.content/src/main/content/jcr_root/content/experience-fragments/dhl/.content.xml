@@ -6,6 +6,5 @@
     jcr:primaryType="sling:OrderedFolder"
     jcr:title="DHL Experience Fragments"
     sling:configRef="/conf/dhl">
-    <jcr:content jcr:primaryType="nt:unstructured"/>
     <language-masters/>
 </jcr:root>

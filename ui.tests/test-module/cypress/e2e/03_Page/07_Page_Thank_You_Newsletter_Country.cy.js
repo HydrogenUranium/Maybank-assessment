@@ -13,7 +13,7 @@ describe('Thank You Page Newsletter', () => {
     header: '.headerV2-wrapper',
     footer: '.footer-container',
     recommendedSection: '.cmp-article-showcase__articles',
-    recommendedArticle: 'article'
+    recommendedArticle: '.article-items'
   };
 
   pageUrls.forEach((pageUrl, index) => {

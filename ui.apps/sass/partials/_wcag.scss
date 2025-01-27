@@ -1,0 +1,48 @@
+.wcag {
+  display: none;
+
+  @include respond(lg) {
+    display: block;
+    margin: 0 auto;
+    max-width: 136.5rem;
+    min-width: 32rem;
+
+    ul {
+      margin-bottom: 0;
+      padding: 1.4rem;
+      position: absolute;
+      top: -200rem;
+      width: 100%;
+      z-index: 1000000;
+
+      > li {
+        list-style-type: none;
+
+        > a {
+          padding: 0 0.7rem;
+          color: map-get($map: $palette, $key: black);
+          background-color: map-get($map: $palette, $key: true-white);
+
+          &:focus {
+            border: 0.1rem solid map-get($map: $palette, $key: black);
+            left: 20rem;
+            outline: none;
+            position: absolute;
+            top: 201.6rem;
+          }
+
+          &:focus-visible {
+            border-radius: 0.2rem;
+            box-shadow: inset 0 0 0 0.2rem map-get($map: $palette, $key: red);
+          }
+
+        }
+      }
+    }
+  }
+  &__spacer {
+    display: block;
+    font-size: 0.5rem;
+    visibility: hidden;
+  }
+}

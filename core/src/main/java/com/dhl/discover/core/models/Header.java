@@ -44,6 +44,9 @@ public class Header {
     private String switchLanguageAriaLabel;
 
     @ValueMapValue
+    private String discoverLogoAriaLabel;
+
+    @ValueMapValue
     private String countryFilterInputAriaLabel;
 
     @ValueMapValue
@@ -74,6 +77,12 @@ public class Header {
 
     @ValueMapValue
     private boolean hideNavigationMenu;
+
+    @ValueMapValue
+    private String wcagContentLabel;
+
+    @ValueMapValue
+    private String wcagFooterLabel;
 
     @PostConstruct
     private void init() {

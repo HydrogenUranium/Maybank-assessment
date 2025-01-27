@@ -1,8 +1,6 @@
 package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.dhl.discover.core.services.PageUtilService;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
@@ -23,10 +21,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
-import static org.apache.jackrabbit.JcrConstants.JCR_LANGUAGE;
 
 /**
  *
@@ -69,14 +67,14 @@ public class LanguageVariants {
 		if (currentRegion != null) {
 			return currentRegion;
 		}
-		
+
 		// this statement forces the language selection menu to NOT appear if there is only
 		// one single language variant defined
 		if (!this.hasMultipleLanguageVariants()) {
 			currentRegion = "";
 			return currentRegion;
 		}
-		
+
 		for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 			for (LanguageVariant variant: entry.getValue()) {
 				if (variant.isCurrent()) {
@@ -85,14 +83,14 @@ public class LanguageVariants {
 				}
 			}
 		}
-		
+
 		return "";
 	}
 
 	public List<LanguageVariant> getLanguageVariants() {
 		if (languageVariantsList == null) {
 			languageVariantsList = new ArrayList<>();
-			
+
 			for (Entry<String, ArrayList<LanguageVariant>> entry : variants.entrySet()) {
 				for (LanguageVariant variant: entry.getValue()) {
 					if (variant.isCurrent()) {
@@ -158,7 +156,7 @@ public class LanguageVariants {
 				allLanguageVariantsGrouped.add(group);
 			}
 		}
-		
+
 		return new ArrayList<>(allLanguageVariantsGrouped);
 	}
 
@@ -193,10 +191,11 @@ public class LanguageVariants {
 
 			if (!StringUtils.isBlank(currentHomePath)) {
 				newExactPath = path.replace(currentHomePath, newHomepage);
-				var resource = resourceResolver.getResource(newExactPath);
-				exactPathExists = (resource != null);
+				boolean isValidPath = Optional.ofNullable(pageUtilService.getPage(newExactPath, resourceResolver))
+						.map(Page::getContentResource)
+						.isPresent();
 
-				if (!exactPathExists || !pageUtilService.isPublished(pageUtilService.getPage(resource))) {
+				if (!isValidPath) {
 					newExactPath = newHomepage;
 				}
 			}

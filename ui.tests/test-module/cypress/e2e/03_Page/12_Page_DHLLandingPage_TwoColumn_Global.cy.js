@@ -9,7 +9,7 @@ describe('Global DHL Landing Page - Two Column', () => {
   const selectors = {
     onetrustConsentSdk: '#onetrust-consent-sdk',
     onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
-    heroBanner: '.cmp-hero-banner > .cmp-hero-banner__asset',
+    heroBanner: '.cmp-hero-banner__asset',
     lblIsBusiness: '#LblisBusiness',
     textContent: '#text-fa2b4da5ad',
     landingPoint: '.landing-point',

@@ -1,6 +1,8 @@
 describe('Global Open A DHL Account Form', () => {
   const pageUrls = [
     Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global/automation-testing/Page-OpenADHLAccount.html'
+//        Cypress.env('AEM_PUBLISH_URL') + '/en-global/automation-testing/Page-OpenADHLAccount'
+
   ];
 
   const testText = 'THIS IS FOR TEST PLEASE IGNORE';

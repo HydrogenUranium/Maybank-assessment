@@ -1,0 +1,12 @@
+.digital-assistant {
+  &--hidden {
+    #dhl-va-widget-iframe {
+      display: none;
+    }
+  }
+  &--visible {
+    #dhl-va-widget-iframe {
+      display: block;
+    }
+  }
+}

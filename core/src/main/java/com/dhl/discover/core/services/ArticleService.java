@@ -103,6 +103,16 @@ public class ArticleService {
         ));
     }
 
+    /**
+     * Get the latest articles from the given parent page.
+     * The articles are ordered by the displaying publish date
+     * (custom publish date or the creation date, for publish environment it's the same as first publication)
+     * If there are less than the specified limit of articles, the rest are filled by the articles ordered by the created date.
+     *
+     * @param parent the parent page
+     * @param limit the maximum number of articles to return
+     * @return the list of latest articles
+     */
     public List<Article> getLatestArticles(Page parent, int limit) {
         Map<String, String> customPublishProp = Map.of(
                 "path", parent.getPath(),
@@ -118,15 +128,11 @@ public class ArticleService {
         createdProp.put(ORDERBY, "@jcr:content/jcr:created");
         createdProp.put("1_property.operation", "not");
 
-        Map<String, String> lastModifiedProp = new HashMap<>(createdProp);
-        createdProp.put(ORDERBY, "@jcr:content/cq:lastModified");
-
         Map<String, Article> uniqueArticlesMap = new HashMap<>();
 
         Consumer<Article> addUniqueArticle = article -> uniqueArticlesMap.put(article.getPath(), article);
         getArticles(customPublishProp).forEach(addUniqueArticle);
         getArticles(createdProp).forEach(addUniqueArticle);
-        getArticles(lastModifiedProp).forEach(addUniqueArticle);
 
         List<Article> articles = new ArrayList<>(uniqueArticlesMap.values());
         articles.sort((o1, o2) -> o2.getCreatedDate().compareTo(o1.getCreatedDate()));
