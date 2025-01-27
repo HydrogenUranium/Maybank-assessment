@@ -55,27 +55,32 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
     };
 
     return (
-        <ul role="tablist" aria-multiselectable="false" className={`${styles.articleGridCategories} horizontal-scroll`}>
-        {displayedCategories.map((category, index) => {
-          const isSelected = category.id === selectedCategory.id;
-          return (
-            <li
-              id={`article-grid-tab-${index}`}
-              className={`${styles.articleGridCategory}
-                        ${isSelected ? styles.articleGridCategorySelected : ""}
-                        horizontal-scroll__react-button`}
-              tabIndex={isSelected ? 0 : -1}
-              role="tab"
-              aria-selected={isSelected}
-              aria-controls={`article-grid-tabpanel-${index}`}
-              ref={(el) => (tabsRef.current[index] = el)}
-              key={category.name}
-              onClick={(event) => handleCategoryClick(category, event)}
-              onKeyDown={(event) => handleCategoryKeyPress(category, event)}>
-              {category.name}
-            </li>
-          );
-        })}
-      </ul>
+        <>
+            {
+                displayedCategories.length > 0 && (
+                <ul role="tablist" aria-multiselectable="false" className={`${styles.articleGridCategories} horizontal-scroll`}>
+                {displayedCategories.map((category, index) => {
+                  const isSelected = category.id === selectedCategory.id;
+                  return (
+                    <li
+                      id={`article-grid-tab-${index}`}
+                      className={`${styles.articleGridCategory}
+                                ${isSelected ? styles.articleGridCategorySelected : ""}
+                                horizontal-scroll__react-button`}
+                      tabIndex={isSelected ? 0 : -1}
+                      role="tab"
+                      aria-selected={isSelected}
+                      aria-controls={`article-grid-tabpanel-${index}`}
+                      ref={(el) => (tabsRef.current[index] = el)}
+                      key={category.name}
+                      onClick={(event) => handleCategoryClick(category, event)}
+                      onKeyDown={(event) => handleCategoryKeyPress(category, event)}>
+                      {category.name}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+        </>
     );
 };
