@@ -104,8 +104,8 @@ exports[`ArticleGrid should render component "ArticleGrid" property 1`] = `
       aria-controls="article-grid-tabpanel-0"
       aria-selected={true}
       className="articleGridCategory
-                        articleGridCategorySelected
-                        horizontal-scroll__react-button"
+                                articleGridCategorySelected
+                                horizontal-scroll__react-button"
       id="article-grid-tab-0"
       onClick={[Function]}
       onKeyDown={[Function]}
