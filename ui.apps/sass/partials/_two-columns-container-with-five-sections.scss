@@ -58,6 +58,12 @@
       padding-right: 70px;
       width: calc(50% - 10px);
       margin-left: auto;
+      [dir="rtl"] & {
+        margin-right: auto;
+        margin-left: unset;
+        padding-right: unset;
+        padding-left: 70px;
+      }
     }
 
     .columns-section {
@@ -84,6 +90,12 @@
         display: block;
         width: calc(50% - 10px);
         margin-left: auto;
+        [dir="rtl"] & {
+          margin-right: auto;
+          margin-left: unset;
+          padding-right: unset;
+          padding-left: 70px;
+        }
       }
     }
 
