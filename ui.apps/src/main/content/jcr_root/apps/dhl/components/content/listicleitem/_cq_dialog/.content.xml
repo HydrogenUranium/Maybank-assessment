@@ -66,6 +66,42 @@
                         sling:resourceType="granite/ui/components/foundation/form/textfield"
                         fieldLabel="Title"
                         name="./title"/>
+                    <type
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                            fieldLabel="Type / Size"
+                            name="./type">
+                        <items jcr:primaryType="nt:unstructured">
+                            <def
+                                    jcr:primaryType="nt:unstructured"
+                                    text="Default (H2)"
+                                    value="\0"/>
+                            <h1
+                                    jcr:primaryType="nt:unstructured"
+                                    text="H1"
+                                    value="h1"/>
+                            <h2
+                                    jcr:primaryType="nt:unstructured"
+                                    text="H2"
+                                    value="h2"/>
+                            <h3
+                                    jcr:primaryType="nt:unstructured"
+                                    text="H3"
+                                    value="h3"/>
+                            <h4
+                                    jcr:primaryType="nt:unstructured"
+                                    text="H4"
+                                    value="h4"/>
+                            <h5
+                                    jcr:primaryType="nt:unstructured"
+                                    text="H5"
+                                    value="h5"/>
+                            <h6
+                                    jcr:primaryType="nt:unstructured"
+                                    text="H6"
+                                    value="h6"/>
+                        </items>
+                    </type>
                     <content
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="cq/gui/components/authoring/dialog/richtext"
