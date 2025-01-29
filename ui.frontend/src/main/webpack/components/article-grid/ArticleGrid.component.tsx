@@ -54,6 +54,8 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
     selectedSortOption.value, 
     articleGridRef);
 
+  const hasMultipleCategories = displayedCategories.length > 1;
+
   return (
     <div className={styles.articleGrid}>
       <div className={styles.articleGridHeader}>
@@ -65,17 +67,21 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
         />
       </div>
 
-      <CategorySelector 
-        displayedCategories={displayedCategories}
-        selectedCategory={selectedCategory}
-        onSelectCategory={setCategory}
-      />
+      {hasMultipleCategories 
+        &&<CategorySelector 
+          displayedCategories={displayedCategories}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setCategory}
+        />
+      }
 
       <div
-        id={`article-grid-tabpanel-${selectedCategory.id}`}
-        tabIndex={0}
-        aria-labelledby={`article-grid-tab-${selectedCategory.id}`}
-        role="tabpanel"
+        {...(hasMultipleCategories && {
+          id: `article-grid-tabpanel-${selectedCategory.id}`,
+          tabIndex: 0,
+          "aria-labelledby": `article-grid-tab-${selectedCategory.id}`,
+          role: "tabpanel",
+        })}
         ref={articleGridRef}
         className={styles.articleGridArticles}>
         {displayedArticles.map((article) => (
