@@ -95,32 +95,8 @@ exports[`ArticleGrid should render component "ArticleGrid" property 1`] = `
       </div>
     </div>
   </div>
-  <ul
-    aria-multiselectable="false"
-    className="articleGridCategories horizontal-scroll"
-    role="tablist"
-  >
-    <li
-      aria-controls="article-grid-tabpanel-0"
-      aria-selected={true}
-      className="articleGridCategory
-                                articleGridCategorySelected
-                                horizontal-scroll__react-button"
-      id="article-grid-tab-0"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="tab"
-      tabIndex={0}
-    >
-      All
-    </li>
-  </ul>
   <div
-    aria-labelledby="article-grid-tab-0"
     className="articleGridArticles"
-    id="article-grid-tabpanel-0"
-    role="tabpanel"
-    tabIndex={0}
   />
   <button
     className="articleGridShowMoreButton"
