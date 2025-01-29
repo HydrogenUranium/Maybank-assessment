@@ -1,263 +1,263 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-          jcr:primaryType="cq:Page">
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
     <jcr:content
             cq:lastModified="{Date}2024-10-04T18:01:21.636+03:00"
             cq:lastModifiedBy="admin"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/core/components/policies/mappings">
         <root
-                cq:policy="wcm/foundation/components/responsivegrid/policy_dhl-experience-fragments"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/core/components/policies/mapping">
+            cq:policy="wcm/foundation/components/responsivegrid/policy_dhl-experience-fragments"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/core/components/policies/mapping">
             <dhl jcr:primaryType="nt:unstructured">
                 <components jcr:primaryType="nt:unstructured">
                     <content jcr:primaryType="nt:unstructured">
                         <title
-                                cq:policy="dhl/components/content/title/title_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/title/title_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <top-tiles
-                                cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <related-posts
-                                cq:policy="dhl/components/content/related-posts/policy_dhl_related-posts"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/related-posts/policy_dhl_related-posts"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <article-showcase
-                                cq:policy="dhl/components/content/article-showcase/policy_dhl_showcase"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/article-showcase/policy_dhl_showcase"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <text
-                                cq:policy="dhl/components/content/text/text_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/text/general_text_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <teaser
-                                cq:policy="dhl/components/content/teaser/teaser_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/teaser/teaser_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <image
-                                cq:policy="dhl/components/content/image/image_v2_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/image/image_v2_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <separator
-                                cq:policy="dhl/components/content/separator/separator_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/separator/separator_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <callout-box
-                                cq:policy="dhl/components/content/callout-box/policy_callout-box"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/callout-box/policy_callout-box"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <button
-                                cq:policy="dhl/components/content/button/policy_button"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/button/policy_button"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <title-v2
-                                cq:policy="dhl/components/content/title-v2/policy_title_v2"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/title-v2/policy_title_v2"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <marketoForm
-                                cq:policy="dhl/components/content/marketoForm/policy_marketoForm"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/marketoForm/policy_marketoForm"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <cta-banner
-                                cq:policy="dhl/components/content/cta-banner/policy_cta-banner"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/cta-banner/policy_cta-banner"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <cta-banner-with-points
-                                cq:policy="dhl/components/content/cta-banner-with-points/policy_cta-banner-with-points"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/cta-banner-with-points/policy_cta-banner-with-points"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <cta-banner-gray
-                                cq:policy="dhl/components/content/cta-banner-gray/policy_cta-banner-gray"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/cta-banner-gray/policy_cta-banner-gray"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <download
-                                cq:policy="dhl/components/content/download/policy_download"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/download/policy_download"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <error-banner
-                                cq:policy="dhl/components/content/error-banner/policy_error-banner"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/error-banner/policy_error-banner"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <experiencefragment
-                                cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <accordion-v2
-                                cq:policy="dhl/components/content/accordion-v2/policy_accordion-v2"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/accordion-v2/policy_accordion-v2"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <gallery
-                                cq:policy="dhl/components/content/gallery/gallery_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/gallery/gallery_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <followUs
-                                cq:policy="dhl/components/content/followUs/followUs_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/followUs/followUs_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <highlight-banner
-                                cq:policy="dhl/components/content/highlight-banner/highlight-banner_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/highlight-banner/highlight-banner_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <home-page-container
-                                cq:policy="dhl/components/content/home-page-container/home-page-container_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/home-page-container/home-page-container_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <homepagecarousel
-                                cq:policy="dhl/components/content/homepagecarousel/homepagecarousel_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/homepagecarousel/homepagecarousel_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <html5embed
-                                cq:policy="dhl/components/content/html5embed/html5embed_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/html5embed/html5embed_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <landingpoints
-                                cq:policy="dhl/components/content/landingpoints/landingpoints_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/landingpoints/landingpoints_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <locator
-                                cq:policy="dhl/components/content/locator/locator_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/locator/locator_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <quote
-                                cq:policy="dhl/components/content/quote/quote_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/quote/quote_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <savedarticles
-                                cq:policy="dhl/components/content/savedarticles/savedarticles_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/savedarticles/savedarticles_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <search
-                                cq:policy="dhl/components/content/search/quote_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/search/quote_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <search-bar
-                                cq:policy="dhl/components/content/search/quote_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/search/quote_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <taglist
-                                cq:policy="dhl/components/content/taglist/quote_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/taglist/quote_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <video
-                                cq:policy="dhl/components/content/video/video_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/video/video_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <carousel-row
-                                cq:policy="dhl/components/content/carousel-row/carousel-row_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/carousel-row/carousel-row_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <info-row
-                                cq:policy="dhl/components/content/info-row/info-row_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/info-row/info-row_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <page-navigation
-                                cq:policy="dhl/components/content/page-navigation/page-navigation_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/page-navigation/page-navigation_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <parallax-section
-                                cq:policy="dhl/components/content/parallax-section/parallax-section_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/parallax-section/parallax-section_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <showcase-panel
-                                cq:policy="dhl/components/content/showcase-panel/showcase-panel_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/showcase-panel/showcase-panel_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <stats-panel
-                                cq:policy="dhl/components/content/stats-panel/stats-panel_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/stats-panel/stats-panel_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <text-row
-                                cq:policy="dhl/components/content/text-row/text-row_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/text-row/text-row_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <video-row
-                                cq:policy="dhl/components/content/video-row/video-row_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/video-row/video-row_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <article-footer
-                                cq:policy="dhl/components/content/article-footer/article-footer_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/article-footer/article-footer_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <ctapanelrow
-                                cq:policy="dhl/components/content/ctapanelrow/ctapanelrow_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/ctapanelrow/ctapanelrow_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <listicleitem
-                                cq:policy="dhl/components/content/listicleitem/listicleitem_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/listicleitem/listicleitem_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <inlineshipnowmarketoconfigurable
-                                cq:policy="dhl/components/content/inlineshipnowmarketoconfigurable/inlineshipnowmarketoconfigurable_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/inlineshipnowmarketoconfigurable/inlineshipnowmarketoconfigurable_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <column-container
-                                cq:policy="dhl/components/content/column-container/column_container_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/column-container/column_container_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <articlepanel
-                                cq:policy="dhl/components/content/articlepanel/articlepanel_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/articlepanel/articlepanel_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <articlelistcategorytrending
-                                cq:policy="dhl/components/content/articlelistcategorytrending/articlelistcategorytrending_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/articlelistcategorytrending/articlelistcategorytrending_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <articlelistcategoryexplore
-                                cq:policy="dhl/components/content/articlelistcategoryexplore/articlelistcategoryexplore_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/articlelistcategoryexplore/articlelistcategoryexplore_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <articlelistcarousel
-                                cq:policy="dhl/components/content/articlelistcarousel/articlelistcarousel_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/articlelistcarousel/articlelistcarousel_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <article-header
-                                cq:policy="dhl/components/content/article-header/policy_dhl_article-header"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/article-header/policy_dhl_article-header"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <article-grid
-                                cq:policy="dhl/components/content/article-grid/policy_dhl_article-grid"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/article-grid/policy_dhl_article-grid"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <article-container
-                                cq:policy="dhl/components/content/article-container/policy_article-container"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/article-container/policy_article-container"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <article-carousel
-                                cq:policy="dhl/components/content/article-carousel/article_carousel_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/article-carousel/article_carousel_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <article-author-banner
-                                cq:policy="dhl/components/content/article-author-banner/policy_article-author-banner"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/article-author-banner/policy_article-author-banner"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <embed
-                                cq:policy="dhl/components/content/embed/article_embed_component_policy"
+                            cq:policy="dhl/components/content/embed/article_embed_component_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                        <article-teaser
+                            cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping">
+                            <image
+                                cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="wcm/core/components/policies/mapping"/>
-                        <article-teaser
-                                cq:policy="dhl/components/content/article-teaser/article_teaser_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping">
-                            <image
-                                    cq:policy="dhl/components/content/article-teaser/image/article_teaser_image_policy"
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="wcm/core/components/policies/mapping"/>
                         </article-teaser>
                         <article-teaser-container
-                                cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/article-teaser-container/article_teaser_container_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <breadcrumb
-                                cq:policy="dhl/components/content/breadcrumb/breadcrumb_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/breadcrumb/breadcrumb_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                         <tabs
-                                cq:policy="dhl/components/content/tabs/tabs_policy"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            cq:policy="dhl/components/content/tabs/tabs_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
                     </content>
                 </components>
             </dhl>
