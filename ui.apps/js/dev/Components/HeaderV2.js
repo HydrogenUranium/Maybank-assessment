@@ -128,6 +128,7 @@ checkScroll() {
       countrySearch.value = "";
       countrySearch.dispatchEvent(new Event("input"));
       countryOptions.classList.remove('header-countryList--open');
+      countryOptions.setAttribute("aria-hidden", "true");
       selectedCountry.setAttribute("aria-expanded", "false");
       document.removeEventListener('click', clickListener);
       document.removeEventListener('keyup', keyupListener);
@@ -153,6 +154,7 @@ checkScroll() {
 
     countryOptions.classList.add('header-countryList--open');
     selectedCountry.setAttribute("aria-expanded", "true");
+    countryOptions.setAttribute("aria-hidden", "false");
     countrySearch.focus();
 
     document.addEventListener('click', clickListener);

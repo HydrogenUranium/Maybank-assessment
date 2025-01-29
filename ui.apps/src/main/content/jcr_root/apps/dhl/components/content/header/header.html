@@ -35,7 +35,7 @@
                             <span class="title ">${ selectedSpecificCountry || languageVariants.getCurrentRegion @ i18n, context='html' }</span>
                         </sly>
                     </button>
-                    <div class="header-countryList">
+                    <div class="header-countryList" aria-hidden="true">
                         <label for="countryList-widget" class="header-countryList__label">${header.countrySelectorTitle}</label>
                         <input class="countrySearch" id="countrySearch" type="text" aria-label="${header.countryFilterInputAriaLabel}" placeholder="${header.countrySearchPlaceholder}">
                         <ul class="header-countryList__widget" id="countryList-widget">
