@@ -72,7 +72,7 @@ public class Header {
 
     @ValueMapValue
     @Default(values = "Countries & Regions")
-    @Named("countrySelector-searchPlaceholder")
+    @Named("countrySelector-title")
     private String countrySelectorTitle;
 
     @ChildResource
