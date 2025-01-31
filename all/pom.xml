@@ -93,7 +93,7 @@
                             <target>/apps/dhl-vendor-packages/install</target>
                             <type>jar</type>
                         </embedded>
-                        -->
+
                         <embedded>
                             <groupId>de.valtech.aecu</groupId>
                             <artifactId>aecu.complete.cloud</artifactId>
@@ -106,7 +106,7 @@
                             <target>/apps/dhl-vendor-packages/install</target>
                             <type>jar</type>
                         </embedded>
-
+                        -->
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -243,11 +243,11 @@
             <type>zip</type>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>de.valtech.aecu</groupId>
             <artifactId>aecu.complete.cloud</artifactId>
             <type>zip</type>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.adobe.aem</groupId>
@@ -255,11 +255,11 @@
             <version>2.1.0</version>
             <type>zip</type>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.owasp.encoder</groupId>
             <artifactId>encoder</artifactId>
-            <version>1.2.3</version> <!-- Replace with the latest version -->
-        </dependency>
+            <version>1.2.3</version> &lt;!&ndash; Replace with the latest version &ndash;&gt;
+        </dependency>-->
 
     </dependencies>
     <distributionManagement>

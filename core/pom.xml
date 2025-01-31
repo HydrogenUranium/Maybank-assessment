@@ -256,11 +256,11 @@ Import-Package: javax.annotation;version=0.0.0,*
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.owasp.encoder</groupId>
             <artifactId>encoder</artifactId>
-            <version>1.2.3</version> <!-- Replace with the latest version -->
-        </dependency>
+            <version>1.2.3</version> &lt;!&ndash; Replace with the latest version &ndash;&gt;
+        </dependency>-->
 
     </dependencies>
 
