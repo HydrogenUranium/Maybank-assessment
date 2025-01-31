@@ -6,6 +6,7 @@ class HeaderV2 {
       menu: '.headerV2__meganav',
       selectedCountry: '.headerV2__desktopCountry',
       countryOptions: '.header-countryList',
+      countrySearch: '#countrySearch',
       categories: '.navigation-row__left',
       moreLink: '.navigation-item_more-less.more',
       lessLink: '.navigation-item_more-less.less',
@@ -37,15 +38,6 @@ class HeaderV2 {
     $(window).on('stop.resize', this.showHideMoreLink);
     $(document).on('click', this.sel.moreLink, this.showSecondRowOfCategories);
     $(document).on('click', this.sel.lessLink, this.hideSecondRowOfCategories);
-
-    $(document).ready(function(){
-      $("#countrySearch").on("keyup", function() {
-        const value = $(this).val().toLowerCase();
-        $("#countryList-widget .header-countryList__option").filter(function() {
-          $(this).toggle($(this).find(".country-name").text().toLowerCase().trim().startsWith(value))
-        });
-      });
-    });
 
     $(document).on('click', this.sel.toggle, (e) => {
       e.preventDefault();
@@ -121,18 +113,27 @@ checkScroll() {
 
   toggleCountryOptions(e) {
     const countryOptions = document.querySelector(this.sel.countryOptions);
+    const countrySearch = document.querySelector(this.sel.countrySearch);
     const selectedCountry = document.querySelector(this.sel.selectedCountry);
-    const countrySearch = document.getElementById("countrySearch");
 
     const closeOptions = () => {
-      countrySearch.value = "";
-      countrySearch.dispatchEvent(new Event("input"));
       countryOptions.classList.remove('header-countryList--open');
       countryOptions.setAttribute("aria-hidden", "true");
+      countryOptions.removeEventListener('keyup', inputListener)
       selectedCountry.setAttribute("aria-expanded", "false");
       document.removeEventListener('click', clickListener);
       document.removeEventListener('keyup', keyupListener);
     };
+
+    const openOptions = () => {
+      countryOptions.classList.add('header-countryList--open');
+      selectedCountry.setAttribute("aria-expanded", "true");
+      countryOptions.setAttribute("aria-hidden", "false");
+      countryOptions.addEventListener('keyup', inputListener)
+      countrySearch.focus();
+      document.addEventListener('click', clickListener);
+      document.addEventListener('keyup', keyupListener);
+    }
 
     const clickListener = (event) => {
       if (!event.target.closest('.header-countryList')) {
@@ -146,19 +147,34 @@ checkScroll() {
       }
     };
 
+    const filerCountries = (value) => {
+      $("#countryList-widget .header-countryList__option").each(function() {
+          const country = $(this).find(".country-name");
+          const values = [
+            country.text(),
+            country.attr("country-code"),
+            country.attr("country-name")
+          ];
+
+          const isMatch = values
+            .filter(Boolean)
+            .map(v => v.toLowerCase().trim())
+            .some(v => v.startsWith(value));
+
+          $(this).toggle(isMatch);
+      });
+    }
+
+    const inputListener = (event) => {
+      filerCountries(countrySearch.value.toLowerCase());
+    }
+
     e.preventDefault();
     if (countryOptions.classList.contains('header-countryList--open')) {
       closeOptions();
-      return;
+    } else {
+      openOptions();
     }
-
-    countryOptions.classList.add('header-countryList--open');
-    selectedCountry.setAttribute("aria-expanded", "true");
-    countryOptions.setAttribute("aria-hidden", "false");
-    countrySearch.focus();
-
-    document.addEventListener('click', clickListener);
-    document.addEventListener('keyup', keyupListener);
   }
 
   showHideMoreLink() {

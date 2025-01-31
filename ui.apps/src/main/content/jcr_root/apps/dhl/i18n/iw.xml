@@ -1,627 +1,627 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-    jcr:language="fr"
+    jcr:language="iw"
     jcr:mixinTypes="[mix:language]"
     jcr:primaryType="nt:folder">
     <Afghanistan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Afghanistan"/>
+        sling:message="אפגניסטן"/>
     <Albania
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Albanie"/>
+        sling:message="אלבניה"/>
     <Algeria
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Algérie"/>
+        sling:message="אלג'יריה"/>
     <Andorra
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Andorre"/>
+        sling:message="אנדורה"/>
     <Angola
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Angola"/>
+        sling:message="אנגולה"/>
     <Antigua_x0020_and_x0020_Barbuda
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Antigua-et-Barbuda"/>
+        sling:message="אנטיגואה וברבודה"/>
     <Argentina
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Argentine"/>
+        sling:message="ארגנטינה"/>
     <Armenia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Arménie"/>
+        sling:message="אַרְמֶנִיָה"/>
     <Australia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Australie"/>
+        sling:message="אוֹסטְרַלִיָה"/>
     <Austria
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Autriche"/>
+        sling:message="אוֹסְטְרֵיָה"/>
     <Azerbaijan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Azerbaïdjan"/>
+        sling:message="אזרבייג'ן"/>
     <Bahamas
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Bahamas"/>
+        sling:message="איי בהאמה"/>
     <Bahrain
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Bahreïn"/>
+        sling:message="בחריין"/>
     <Bangladesh
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Bangladesh"/>
+        sling:message="בנגלדש"/>
     <Barbados
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Barbade"/>
+        sling:message="ברבדוס"/>
     <Belarus
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Biélorussie"/>
+        sling:message="בלארוס"/>
     <Belgium
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Belgique"/>
+        sling:message="בלגיה"/>
     <Belize
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Bélize"/>
+        sling:message="בליז"/>
     <Benin
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Bénin"/>
+        sling:message="בנין"/>
     <Bhutan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Bhoutan"/>
+        sling:message="בהוטן"/>
     <Bolivia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Bolivie"/>
+        sling:message="בוליביה"/>
     <Bosnia_x0020_and_x0020_Herzegovina
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Bosnie-Herzégovine"/>
+        sling:message="בוסניה והרצגובינה"/>
     <Botswana
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Botswana"/>
+        sling:message="בוצואנה"/>
     <Brazil
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Brésil"/>
+        sling:message="בְּרָזִיל"/>
     <Brunei
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Brunéi"/>
+        sling:message="ברוניי"/>
     <Bulgaria
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Bulgarie"/>
+        sling:message="בולגריה"/>
     <Burkina_x0020_Faso
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Burkina Faso"/>
+        sling:message="בורקינה פאסו"/>
     <Burundi
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Burundi"/>
+        sling:message="בורונדי"/>
     <Cabo_x0020_Verde
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Cap-Vert"/>
+        sling:message="קאבו ורדה"/>
     <Cambodia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Cambodge"/>
+        sling:message="קמבודיה"/>
     <Cameroon
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Cameroun"/>
+        sling:message="קמרון"/>
     <Canada
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Canada"/>
+        sling:message="קנדה"/>
     <Central_x0020_African_x0020_Republic
         jcr:primaryType="sling:MessageEntry"
-        sling:message="République centrafricaine"/>
+        sling:message="הרפובליקה המרכז אפריקאית"/>
     <Chad
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Tchad"/>
+        sling:message="צ'אד"/>
     <Chile
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Chili"/>
+        sling:message="צ'ילה"/>
     <China
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Chine"/>
+        sling:message="סִין"/>
     <China_x002c__x0020_People_x0027_s_x0020_Republic
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Chine, République populaire"/>
+        sling:message="סין, הרפובליקה העממית"/>
     <Colombia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Colombie"/>
+        sling:message="קולומביה"/>
     <Comoros
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Comores"/>
+        sling:message="קומורו"/>
     <Congo
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Congo"/>
+        sling:message="קונגו"/>
     <Costa_x0020_Rica
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Costa Rica"/>
+        sling:message="קוסטה ריקה"/>
     <Croatia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Croatie"/>
+        sling:message="קרואטיה"/>
     <Cuba
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Cuba"/>
+        sling:message="קובה"/>
     <Cyprus
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Chypre"/>
+        sling:message="קַפרִיסִין"/>
     <Czech_x0020_Republic
         jcr:primaryType="sling:MessageEntry"
-        sling:message="République tchèque"/>
+        sling:message="הרפובליקה הצ'כית"/>
     <Czech_x0020_Republic_x0020__x0028_Czechia_x0029_
         jcr:primaryType="sling:MessageEntry"
-        sling:message="République tchèque (Tchéquie)"/>
+        sling:message="צ'כיה (צ'כיה)"/>
     <Czechia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Tchéquie"/>
+        sling:message="צ'כיה"/>
     <Côte_x0020_d_x0027_Ivoire
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Côte d'Ivoire"/>
+        sling:message="חוף השנהב"/>
     <Denmark
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Danemark"/>
+        sling:message="דנמרק"/>
     <Djibouti
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Djibouti"/>
+        sling:message="ג'יבוטי"/>
     <Dominica
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Dominique"/>
+        sling:message="דומיניקה"/>
     <Dominican_x0020_Republic
         jcr:primaryType="sling:MessageEntry"
-        sling:message="République dominicaine"/>
+        sling:message="הרפובליקה הדומיניקנית"/>
     <DR_x0020_Congo
         jcr:primaryType="sling:MessageEntry"
-        sling:message="République démocratique du Congo"/>
+        sling:message="ד&quot;ר קונגו"/>
     <Ecuador
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Équateur"/>
+        sling:message="אקוודור"/>
     <Egypt
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Égypte"/>
+        sling:message="מִצְרַיִם"/>
     <El_x0020_Salvador
         jcr:primaryType="sling:MessageEntry"
-        sling:message="El Salvador"/>
+        sling:message="אל סלבדור"/>
     <Equatorial_x0020_Guinea
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Guinée équatoriale"/>
+        sling:message="גינאה המשוונית"/>
     <Eritrea
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Érythrée"/>
+        sling:message="אריתריאה"/>
     <Estonia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Estonie"/>
+        sling:message="אסטוניה"/>
     <Eswatini
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Eswatini"/>
+        sling:message="אסווטיני"/>
     <Ethiopia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Éthiopie"/>
+        sling:message="אֶתִיוֹפִּיָה"/>
     <Fiji
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Fidji"/>
+        sling:message="פיג'י"/>
     <Finland
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Finlande"/>
+        sling:message="פינלנד"/>
     <France
         jcr:primaryType="sling:MessageEntry"
-        sling:message="France"/>
+        sling:message="צָרְפַת"/>
     <Gabon
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Gabon"/>
+        sling:message="גאבון"/>
     <Gambia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Gambie"/>
+        sling:message="גמביה"/>
     <Georgia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Géorgie"/>
+        sling:message="גאורגיה"/>
     <Germany
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Allemagne"/>
+        sling:message="גֶרמָנִיָה"/>
     <Ghana
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Ghana"/>
+        sling:message="גאנה"/>
     <Global
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Global"/>
+        sling:message="גלובלי"/>
     <Greece
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Grèce"/>
+        sling:message="יָוָן"/>
     <Grenada
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Grenade"/>
+        sling:message="גרנדה"/>
     <Guatemala
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Guatemala"/>
+        sling:message="גואטמלה"/>
     <Guinea
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Guinée"/>
+        sling:message="גינאה"/>
     <Guinea-Bissau
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Guinée-Bissau"/>
+        sling:message="גינאה-ביסאו"/>
     <Guyana
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Guyane"/>
+        sling:message="גיאנה"/>
     <Haiti
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Haïti"/>
+        sling:message="האיטי"/>
     <Holy_x0020_See
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Saint-Siège"/>
+        sling:message="הכס הקדוש"/>
     <Honduras
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Honduras"/>
+        sling:message="הונדורס"/>
     <Hong_x0020_Kong
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Hong Kong"/>
+        sling:message="הונג קונג"/>
     <Hong_x0020_Kong_x002c__x0020_SAR_x0020_China
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Hong Kong, RAS Chine"/>
+        sling:message="הונג קונג, אזור מנהלי מיוחד של סין"/>
     <Hungary
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Hongrie"/>
+        sling:message="הונגריה"/>
     <Iceland
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Islande"/>
+        sling:message="אִיסלַנד"/>
     <India
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Inde"/>
+        sling:message="הוֹדוּ"/>
     <Indonesia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Indonésie"/>
+        sling:message="אִינדוֹנֵזִיָה"/>
     <Iran
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Iran"/>
+        sling:message="איראן"/>
     <Iraq
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Irak"/>
+        sling:message="עִירַאק"/>
     <Ireland
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Irlande"/>
+        sling:message="אירלנד"/>
     <Israel
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Israël"/>
+        sling:message="יִשְׂרָאֵל"/>
     <Italy
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Italie"/>
+        sling:message="אִיטַלִיָה"/>
     <Jamaica
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Jamaïque"/>
+        sling:message="ג'מייקה"/>
     <Japan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Japon"/>
+        sling:message="יַפָּן"/>
     <Jordan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Jordanie"/>
+        sling:message="יַרדֵן"/>
     <Kazakhstan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Kazakhstan"/>
+        sling:message="קזחסטן"/>
     <Kenya
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Kenya"/>
+        sling:message="קניה"/>
     <Kiribati
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Kiribati"/>
+        sling:message="קיריבטי"/>
     <Korea
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Corée"/>
+        sling:message="קוריאה"/>
     <Kuwait
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Koweit"/>
+        sling:message="כווית"/>
     <Kyrgyzstan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Kirghizistan"/>
+        sling:message="קירגיזסטן"/>
     <Laos
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Laos"/>
+        sling:message="לאוס"/>
     <Latvia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Lettonie"/>
+        sling:message="לטביה"/>
     <Lebanon
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Liban"/>
+        sling:message="לבנון"/>
     <Lesotho
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Lesotho"/>
+        sling:message="לסוטו"/>
     <Liberia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Libéria"/>
+        sling:message="ליבריה"/>
     <Libya
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Libye"/>
+        sling:message="לוב"/>
     <Liechtenstein
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Liechtenstein"/>
+        sling:message="ליכטנשטיין"/>
     <Lithuania
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Lituanie"/>
+        sling:message="ליטא"/>
     <Luxembourg
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Luxembourg"/>
+        sling:message="לוקסמבורג"/>
     <Madagascar
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Madagascar"/>
+        sling:message="מדגסקר"/>
     <Malawi
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Malawi"/>
+        sling:message="מלאווי"/>
     <Malaysia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Malaisie"/>
+        sling:message="מלזיה"/>
     <Maldives
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Maldives"/>
+        sling:message="המלדיביים"/>
     <Mali
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Mali"/>
+        sling:message="מלי"/>
     <Malta
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Malte"/>
+        sling:message="מלטה"/>
     <Marshall_x0020_Islands
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Îles Marshall"/>
+        sling:message="איי מרשל"/>
     <Mauritania
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Mauritanie"/>
+        sling:message="מאוריטניה"/>
     <Mauritius
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Maurice"/>
+        sling:message="מאוריציוס"/>
     <Mexico
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Mexique"/>
+        sling:message="מקסיקו"/>
     <Micronesia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Micronésie"/>
+        sling:message="מיקרונזיה"/>
     <Moldova
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Moldavie"/>
+        sling:message="מולדובה"/>
     <Monaco
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Monaco"/>
+        sling:message="מונקו"/>
     <Mongolia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Mongolie"/>
+        sling:message="מונגוליה"/>
     <Montenegro
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Monténégro"/>
+        sling:message="מונטנגרו"/>
     <Morocco
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Maroc"/>
+        sling:message="מָרוֹקוֹ"/>
     <Mozambique
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Mozambique"/>
+        sling:message="מוזמביק"/>
     <Myanmar
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Myanmar"/>
+        sling:message="מיאנמר"/>
     <Namibia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Namibie"/>
+        sling:message="נמיביה"/>
     <Nauru
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Nauru"/>
+        sling:message="נאורו"/>
     <Nepal
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Népal"/>
+        sling:message="נפאל"/>
     <Netherlands
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Pays-Bas"/>
+        sling:message="הוֹלַנד"/>
     <New_x0020_Zealand
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Nouvelle-Zélande"/>
+        sling:message="ניו זילנד"/>
     <Nicaragua
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Nicaragua"/>
+        sling:message="ניקרגואה"/>
     <Niger
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Niger"/>
+        sling:message="ניז'ר"/>
     <Nigeria
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Nigeria"/>
+        sling:message="ניגריה"/>
     <North_x0020_Korea
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Corée du Nord"/>
+        sling:message="צפון קוריאה"/>
     <North_x0020_Macedonia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Macédoine du Nord"/>
+        sling:message="צפון מקדוניה"/>
     <Norway
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Norvège"/>
+        sling:message="נורבגיה"/>
     <Oman
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Oman"/>
+        sling:message="עומאן"/>
     <Pakistan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Pakistan"/>
+        sling:message="פקיסטן"/>
     <Palau
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Palaos"/>
+        sling:message="פלאו"/>
     <Panama
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Panama"/>
+        sling:message="פנמה"/>
     <Papua_x0020_New_x0020_Guinea
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Papouasie-Nouvelle-Guinée"/>
+        sling:message="פפואה גינאה החדשה"/>
     <Paraguay
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Paraguay"/>
+        sling:message="פרגוואי"/>
     <Peru
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Pérou"/>
+        sling:message="פרו"/>
     <Philippines
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Philippines"/>
+        sling:message="פיליפינים"/>
     <Poland
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Pologne"/>
+        sling:message="פּוֹלִין"/>
     <Portugal
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Portugal"/>
+        sling:message="פּוֹרטוּגָל"/>
     <Qatar
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Qatar"/>
+        sling:message="קטאר"/>
     <Romania
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Roumanie"/>
+        sling:message="רומניה"/>
     <Russia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Russie"/>
+        sling:message="רוּסִיָה"/>
     <Rwanda
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Rwanda"/>
+        sling:message="רואנדה"/>
     <Saint_x0020_Kitts_x0020__x0026__x0020_Nevis
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Saint-Kitts-et-Nevis"/>
+        sling:message="סנט קיטס ונוויס"/>
     <Saint_x0020_Lucia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Sainte-Lucie"/>
+        sling:message="סנט לוסיה"/>
     <Samoa
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Samoa"/>
+        sling:message="סמואה"/>
     <San_x0020_Marino
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Saint-Marin"/>
+        sling:message="סן מרינו"/>
     <Sao_x0020_Tome_x0020__x0026__x0020_Principe
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Sao Tomé-et-Principe"/>
+        sling:message="סאו טומה ופרינסיפה"/>
     <Saudi_x0020_Arabia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Arabie saoudite"/>
+        sling:message="ערב הסעודית"/>
     <Senegal
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Sénégal"/>
+        sling:message="סנגל"/>
     <Serbia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Serbie"/>
+        sling:message="סרביה"/>
     <Seychelles
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Seychelles"/>
+        sling:message="איי סיישל"/>
     <Sierra_x0020_Leone
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Sierra Leone"/>
+        sling:message="סיירה לאון"/>
     <Singapore
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Singapour"/>
+        sling:message="סינגפור"/>
     <Slovakia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Slovaquie"/>
+        sling:message="סלובקיה"/>
     <Slovenia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Slovénie"/>
+        sling:message="סלובניה"/>
     <Solomon_x0020_Islands
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Salomon Îles"/>
+        sling:message="איי שלמה"/>
     <Somalia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Somalie"/>
+        sling:message="סומליה"/>
     <Somalia_x0020_Hargeisa
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Somalie Hargeisa"/>
+        sling:message="סומליה הארגייסה"/>
     <Somalia_x0020_Mogadishu
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Somalie Mogadiscio"/>
+        sling:message="סומליה מוגדישו"/>
     <South_x0020_Africa
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Afrique du Sud"/>
+        sling:message="דרום אפריקה"/>
     <South_x0020_Korea
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Corée du Sud"/>
+        sling:message="דרום קוריאה"/>
     <South_x0020_Sudan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Soudan du Sud"/>
+        sling:message="דרום סודן"/>
     <Spain
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Espagne"/>
+        sling:message="סְפָרַד"/>
     <Sri_x0020_Lanka
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Sri Lanka"/>
+        sling:message="סרי לנקה"/>
     <St._x0020_Vincent_x0020__x0026__x0020_Grenadines
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Saint-Vincent-et-les Grenadines"/>
+        sling:message="סנט וינסנט וגרנדינים"/>
     <State_x0020_of_x0020_Palestine
         jcr:primaryType="sling:MessageEntry"
-        sling:message="État de Palestine"/>
+        sling:message="מדינת פלסטין"/>
     <Sudan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Soudan"/>
+        sling:message="סודן"/>
     <Suriname
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Surinam"/>
+        sling:message="סורינאם"/>
     <Sweden
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Suède"/>
+        sling:message="שבדיה"/>
     <Switzerland
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Suisse"/>
+        sling:message="שוויץ"/>
     <Syria
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Syrie"/>
+        sling:message="סוּריָה"/>
     <Taiwan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Taïwan"/>
+        sling:message="טייוואן"/>
     <Taiwan_x002c__x0020_China
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Taïwan, Chine"/>
+        sling:message="טייוואן, סין"/>
     <Tajikistan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Tadjikistan"/>
+        sling:message="טג'יקיסטן"/>
     <Tanzania
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Tanzanie"/>
+        sling:message="טנזניה"/>
     <Thailand
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Thaïlande"/>
+        sling:message="תאילנד"/>
     <Timor-Leste
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Timor-Leste"/>
+        sling:message="טימור-לסטה"/>
     <Togo
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Aller"/>
+        sling:message="טוגו"/>
     <Tonga
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Tonga"/>
+        sling:message="טונגה"/>
     <Trinidad_x0020_and_x0020_Tobago
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Trinité-et-Tobago"/>
+        sling:message="טרינידד וטובגו"/>
     <Tunisia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Tunisie"/>
+        sling:message="תוניסיה"/>
     <Turkey
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Turquie"/>
+        sling:message="טוּרְקִיָה"/>
     <Turkmenistan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Turkménistan"/>
+        sling:message="טורקמניסטן"/>
     <Tuvalu
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Tuvalu"/>
+        sling:message="טובאלו"/>
     <UAE
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Émirats arabes unis"/>
+        sling:message="איחוד האמירויות הערביות"/>
     <Uganda
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Ouganda"/>
+        sling:message="אוגנדה"/>
     <Ukraine
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Ukraine"/>
+        sling:message="אוקראינה"/>
     <United_x0020_Arab_x0020_Emirates
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Émirats arabes unis"/>
+        sling:message="איחוד האמירויות הערביות"/>
     <United_x0020_Kingdom
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Royaume-Uni"/>
+        sling:message="בְּרִיטַנִיָה"/>
     <United_x0020_States
         jcr:primaryType="sling:MessageEntry"
-        sling:message="États-Unis"/>
+        sling:message="אַרצוֹת הַבְּרִית"/>
     <Uruguay
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Uruguay"/>
+        sling:message="אורוגוואי"/>
     <Uzbekistan
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Ouzbékistan"/>
+        sling:message="אוזבקיסטן"/>
     <Vanuatu
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Vanuatu"/>
+        sling:message="ונואטו"/>
     <Venezuela
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Venezuela"/>
+        sling:message="ונצואלה"/>
     <Vietnam
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Vietnam"/>
+        sling:message="וייטנאם"/>
     <Yemen
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Yémen"/>
+        sling:message="תֵימָן"/>
     <Zambia
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Zambie"/>
+        sling:message="זמביה"/>
     <Zimbabwe
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Zimbabwe"/>
+        sling:message="זימבבואה"/>
 </jcr:root>
