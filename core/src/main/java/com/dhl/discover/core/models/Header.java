@@ -15,6 +15,7 @@ import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Named;
 import java.util.List;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
@@ -66,10 +67,12 @@ public class Header {
 
     @ValueMapValue
     @Default(values = "Search")
+    @Named("countrySelector-searchPlaceholder")
     private String countrySearchPlaceholder;
 
     @ValueMapValue
     @Default(values = "Countries & Regions")
+    @Named("countrySelector-searchPlaceholder")
     private String countrySelectorTitle;
 
     @ChildResource
