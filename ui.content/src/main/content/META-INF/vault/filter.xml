@@ -16,6 +16,8 @@
     <filter root="/content/experience-fragments" mode="update"/>
 
     <filter root="/etc/map.publish" />
+    <filter root="/etc/languages" />
+
     <filter root="/conf/groovyconsole/scripts"/>
 
     <filter root="/conf/dhl/settings/wcm/template-types"/>

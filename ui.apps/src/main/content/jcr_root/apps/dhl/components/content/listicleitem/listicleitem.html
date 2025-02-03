@@ -25,7 +25,7 @@
                  alt=properties.imageAltText || properties.title
              }"></sly>
         <div class="listicle__row__text">
-            <h2 class="listicle__row__text__title">${properties.title}</h2>
+            <h2 class="listicle__row__text__title" data-sly-element="${properties.type}">${properties.title}</h2>
             <p class="listicle__row__text__body">${properties.content @ context='html'}</p>
         </div>
     </div>
