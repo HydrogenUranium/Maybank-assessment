@@ -4,6 +4,7 @@
     cq:allowedTemplates="/conf/dhl/settings/wcm/templates/experience-fragment(.*)?"
     cq:conf="/conf/dhl"
     jcr:primaryType="sling:OrderedFolder"
+    jcr:mixinTypes="[rep:AccessControllable]"
     jcr:title="DHL Experience Fragments"
     sling:configRef="/conf/dhl">
     <jcr:content jcr:primaryType="nt:unstructured"/>

@@ -35,7 +35,7 @@
                             <span class="title ">${ selectedSpecificCountry || languageVariants.getCurrentRegion @ i18n, context='html' }</span>
                         </sly>
                     </button>
-                    <div class="header-countryList">
+                    <div class="header-countryList" aria-hidden="true">
                         <label for="countryList-widget" class="header-countryList__label">${header.countrySelectorTitle}</label>
                         <input class="countrySearch" id="countrySearch" type="text" aria-label="${header.countryFilterInputAriaLabel}" placeholder="${header.countrySearchPlaceholder}">
                         <ul class="header-countryList__widget" id="countryList-widget">
@@ -43,8 +43,12 @@
                                 <li class="header-countryList__option"><a href="${languageVariants.countries[item].link}.html">
                                     <label for="country-${item}">
                                         <span class="fi fi-${(item == 'tw' && !selectedSpecificCountry) ? 'twx' : item}"></span>
-                                        <span class="country-name" >
-                                            ${selectedSpecificCountry ? (languageVariants.specificCountries[item] || languageVariants.countries[item].region) : languageVariants.countries[item].region}
+                                        <span
+                                            class="country-name"
+                                            data-sly-set.countryName="${selectedSpecificCountry ? (languageVariants.specificCountries[item] || languageVariants.countries[item].region) : languageVariants.countries[item].region}"
+                                            data-sly-attribute.country-name="${countryName}"
+                                            data-sly-attribute.country-code="${item == 'aa' ? '' : item}">
+                                            ${countryName @ i18n}
                                         </span>
                                     </label>
                                 </a></li>

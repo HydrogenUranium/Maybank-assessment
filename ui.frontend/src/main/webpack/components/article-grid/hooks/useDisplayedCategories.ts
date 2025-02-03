@@ -32,7 +32,7 @@ export const useDisplayedCategories = (
     useMemo(() => {
         const notEmptyCategories = categories.filter((category) => category.articles.length);
 
-        if (!includeAllTab) {
+        if (!includeAllTab || notEmptyCategories.length < 2) {
             return createIndexedCategories(notEmptyCategories);
         }
 
