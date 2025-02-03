@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured"
-    languages="[de,sv,pt,ko,in,it,fr,hu,es,zh-tw,zh-hk,iw,cs,ar,vi,th,ja,sk,da]"/>
+    languages="[de,sv,pt,ko,in,it,fr,hu,es,zh-tw,zh-hk,zh-cn,iw,cs,ar,vi,th,ja,sk,da]"/>
