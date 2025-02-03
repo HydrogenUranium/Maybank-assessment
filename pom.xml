@@ -56,7 +56,6 @@
         <core.wcm.components.version>2.22.2</core.wcm.components.version>
         <junit.version>5.9.1</junit.version>
         <mockito.version>5.3.1</mockito.version>
-        <aecu.version>6.5.2</aecu.version>
         <akamai.version>5.0.0</akamai.version>
         <bnd.version>5.1.2</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -113,7 +112,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.2.1</version>
                 <inherited>true</inherited>
             </plugin>
             <!-- Maven Enforcer Plugin -->
@@ -777,15 +776,6 @@ Bundle-DocURL:
                 <artifactId>org.apache.sling.servlets.annotations</artifactId>
                 <version>1.2.6</version>
             </dependency>
-
-            <!-- AEM Easy Content Upgrade (Groovy Console) -->
-            <dependency>
-                <groupId>de.valtech.aecu</groupId>
-                <artifactId>aecu.complete.cloud</artifactId>
-                <version>${aecu.version}</version>
-                <type>zip</type>
-            </dependency>
-
 
             <!-- Akamai libraries -->
             <dependency>
