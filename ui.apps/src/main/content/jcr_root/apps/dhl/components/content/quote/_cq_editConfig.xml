@@ -8,7 +8,6 @@
         <config
                 jcr:primaryType="nt:unstructured"
                 editElementQuery="div.quote-component__text"
-                required="{Boolean}true"
                 textPropertyName="text"/>
     </cq:inplaceEditing>
 </jcr:root>
