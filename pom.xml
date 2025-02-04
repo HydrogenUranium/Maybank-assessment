@@ -57,14 +57,14 @@
         <junit.version>5.9.1</junit.version>
         <mockito.version>5.3.1</mockito.version>
         <akamai.version>5.0.0</akamai.version>
-        <bnd.version>5.1.2</bnd.version>
+        <bnd.version>6.4.0</bnd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aem.sdk.api>2024.11.18598.20241113T125352Z-241100</aem.sdk.api>
+        <aem.sdk.api>2025.1.19149.20250116T154450Z-250100</aem.sdk.api>
         <aemanalyser.version>1.6.6</aemanalyser.version>
         <componentGroupName>Deutsche Post AG Discover</componentGroupName>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <jacoco.version>0.8.7</jacoco.version>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
@@ -98,7 +98,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.0.1</version>
                 <configuration>
                     <scmCommentPrefix>[maven-scm] </scmCommentPrefix>
                     <preparationGoals>clean install</preparationGoals>
@@ -131,8 +131,8 @@
                                     <version>[3.8.1,)</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <message>Maven must be executed with a Java 11 JRE or higher.</message>
-                                    <version>11</version>
+                                    <message>Maven must be executed with a Java 21 JRE or higher.</message>
+                                    <version>21</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
@@ -150,7 +150,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.26</version>
+                            <version>1.18.30</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -201,13 +201,13 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.1.2</version>
+                    <version>3.3.0</version>
                 </plugin>
                 <!-- Maven Clean Plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <!-- BND Maven Plugin -->
                 <plugin>
@@ -266,25 +266,25 @@ Bundle-DocURL:
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.0.2</version>
+                    <version>3.3.1</version>
                 </plugin>
                 <!-- Maven Compiler Plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>3.11.0</version>
                 </plugin>
                 <!-- Maven Installer Plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
+                    <version>3.1.2</version>
                 </plugin>
                 <!-- Maven Surefire Plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.2.5</version>
                     <configuration>
                         <useSystemClassLoader>false</useSystemClassLoader>
                         <argLine>${argLine} -Duser.language=en -Duser.region=US</argLine>
@@ -300,7 +300,7 @@ Bundle-DocURL:
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
+                    <version>3.1.1</version>
                 </plugin>
                 <!-- Apache Sling Plugin -->
                 <plugin>
@@ -374,13 +374,13 @@ Bundle-DocURL:
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.5.0</version>
                 </plugin>
                 <!-- Maven Dependency Plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.7.0</version>
                 </plugin>
                 <!-- Build Helper Maven Plugin -->
                 <plugin>
@@ -767,7 +767,7 @@ Bundle-DocURL:
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.24</version>
+                <version>1.18.30</version>
                 <scope>provided</scope>
             </dependency>
 
@@ -802,7 +802,11 @@ Bundle-DocURL:
                 <artifactId>commons-lang3</artifactId>
                 <version>3.4</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.apache.groovy</groupId>
+                <artifactId>groovy</artifactId>
+                <version>4.0.25</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
