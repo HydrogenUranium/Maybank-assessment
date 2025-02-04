@@ -802,11 +802,6 @@ Bundle-DocURL:
                 <artifactId>commons-lang3</artifactId>
                 <version>3.4</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.groovy</groupId>
-                <artifactId>groovy</artifactId>
-                <version>4.0.25</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 

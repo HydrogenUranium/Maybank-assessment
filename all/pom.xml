@@ -80,6 +80,12 @@
                             <type>zip</type>
                             <target>/apps/dhl-packages/content/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>org.cid15.aem.groovy.console</groupId>
+                            <artifactId>aem-groovy-console-bundle</artifactId>
+                            <type>jar</type>
+                            <target>/apps/dhl-vendor-packages/install</target>
+                        </embedded>
                         <!--
                         <embedded>
                             <groupId>org.apache.servicemix.bundles</groupId>
@@ -235,6 +241,12 @@
             <artifactId>aem-modernize-tools.all</artifactId>
             <version>2.1.0</version>
             <type>zip</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.cid15.aem.groovy.console</groupId>
+            <artifactId>aem-groovy-console-bundle</artifactId>
+            <version>18.0.2</version>
         </dependency>
 
     </dependencies>
