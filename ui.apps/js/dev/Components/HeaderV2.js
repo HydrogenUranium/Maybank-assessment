@@ -1,7 +1,8 @@
 class HeaderV2 {
   constructor() {
     this.sel = {
-      component: '.headerV2-wrapper',
+      component: 'header',
+      wrapper: '.headerV2-wrapper',
       toggle: '.headerV2__navigation',
       menu: '.headerV2__meganav',
       selectedCountry: '.headerV2__desktopCountry',
@@ -14,7 +15,8 @@ class HeaderV2 {
 
     this.cookieName = 'dhl-default-language';
 
-    this.lastScrollTop = 0;
+    this.header = document.querySelector(this.sel.component);
+    this.lastScrollTop = window.scrollY;
 
     this.init = this.init.bind(this);
     this.bindEvents = this.bindEvents.bind(this);
@@ -55,45 +57,68 @@ class HeaderV2 {
       Cookies.set(this.cookieName, href);
     });
 
-    $(window).on('scroll', this.checkScroll);
-    this.checkScroll();
+    $(window).on('scroll', this.headerScrollHandler);
+    this.initHeader();
   }
 
-checkScroll() {
-    var wt = $(window).scrollTop();
-    var pb = $('.page-body').offset().top;
-    if (wt > pb) {
-      $('.page-body').addClass('fixed');
-      $(this.sel.component).addClass('fixed');
-      $(this.sel.selectedCountry).attr("aria-expanded", "false")
-      if (wt > this.lastScrollTop) {
-        $(this.sel.component).removeClass('in');
-      } else {
-        $(this.sel.component).addClass('in');
-        if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-          $(this.sel.selectedCountry).attr("aria-expanded", "true")
-        }
-      }
-    } else {
-      $('.page-body').removeClass('fixed');
-      $(this.sel.component).removeClass('fixed');
-      if ($(this.sel.countryOptions).hasClass('header-countryList--open')) {
-        $(this.sel.selectedCountry).attr("aria-expanded", "true")
-      }
+  /*
+    Initialize the header based on the scroll position.
+    If the scroll position is greater than the height of the header, then the header is sticky and animation is turned on.
+  */
+  initHeader() {
+    const scrollTop = window.scrollY;
+    const headerHeight = this.header.offsetHeight
+    if(scrollTop > headerHeight) {
+      this.header.classList.add("sticky-header");
+      this.header.classList.add("sticky-header--with-transition");
+    }
+  }
+
+  /*
+    Handle scroll behaviour for the header.
+    At the top of the page the header is not sticky.
+    If the user scrolls down, the sticky header is hidden.
+    If the user scrolls up, the sticky header is shown.
+  */
+  headerScrollHandler() {
+    const scrollTop = window.scrollY;
+    const headerHeight = this.header.offsetHeight
+    // Reset sticky header styles if the user scrolls to the top of the page.
+    if(scrollTop == 0) {
+      this.header.classList.remove("sticky-header--with-transition");
+      this.header.classList.remove("sticky-header");
+      this.header.classList.remove("sticky-header--hidden");
+    }
+    // If the user scrolls less than the height of the header, keep previous behaviour
+    // (sticky if scroll from bottom, regular if scroll from top to bottom).
+    if(scrollTop < headerHeight) {
+      this.lastScrollTop = scrollTop;
+      return;
     }
 
-    this.lastScrollTop = wt;
+    // If the user scrolls down, hide the sticky header.
+    if (scrollTop > this.lastScrollTop) {
+      this.header.classList.add("sticky-header");
+      this.header.classList.add("sticky-header--hidden");
+
+    // If the user scrolls up, show the sticky header.
+    } else if (scrollTop < this.lastScrollTop) {
+      this.header.classList.add("sticky-header--with-transition");
+      this.header.classList.remove("sticky-header--hidden");
+    }
+    // Update the last scroll position.
+    this.lastScrollTop = scrollTop;
   }
 
   toggleMenu() {
     if (!$(this.sel.menu).is(':visible')) {
       this.bodyScrolling(false);
       $(this.sel.toggle).addClass('header__navigation--open');
-      $(this.sel.component).addClass('headerV2__navigation--open');
+      $(this.sel.wrapper).addClass('headerV2__navigation--open');
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
-      $(this.sel.component).removeClass('headerV2__navigation--open');
+      $(this.sel.wrapper).removeClass('headerV2__navigation--open');
     }
     $(this.sel.menu).slideToggle(150);
   }
@@ -116,35 +141,45 @@ checkScroll() {
     const countrySearch = document.querySelector(this.sel.countrySearch);
     const selectedCountry = document.querySelector(this.sel.selectedCountry);
 
-    const closeOptions = () => {
+    const closeCountryList = () => {
       countryOptions.classList.remove('header-countryList--open');
       countryOptions.setAttribute("aria-hidden", "true");
       countryOptions.removeEventListener('keyup', inputListener)
       selectedCountry.setAttribute("aria-expanded", "false");
       document.removeEventListener('click', clickListener);
       document.removeEventListener('keyup', keyupListener);
+      document.removeEventListener('scroll', globalScrollListener);
     };
 
-    const openOptions = () => {
+    const openCountryList = () => {
       countryOptions.classList.add('header-countryList--open');
       selectedCountry.setAttribute("aria-expanded", "true");
       countryOptions.setAttribute("aria-hidden", "false");
       countryOptions.addEventListener('keyup', inputListener)
-      countrySearch.focus();
+      setTimeout(() => {
+         if(countryOptions.classList.contains('header-countryList--open')) {
+            countrySearch.focus();
+         }
+      }, 300); // delay to focus on input to wait for the animation to finish
       document.addEventListener('click', clickListener);
       document.addEventListener('keyup', keyupListener);
+      document.addEventListener('scroll', globalScrollListener);
     }
 
     const clickListener = (event) => {
       if (!event.target.closest('.header-countryList')) {
-        closeOptions();
+        closeCountryList();
       }
     };
 
     const keyupListener = (event) => {
       if (event.key === 'Escape') {
-        closeOptions();
+        closeCountryList();
       }
+    };
+
+    const globalScrollListener = (event) => {
+        closeCountryList();
     };
 
     const filerCountries = (value) => {
@@ -170,11 +205,9 @@ checkScroll() {
     }
 
     e.preventDefault();
-    if (countryOptions.classList.contains('header-countryList--open')) {
-      closeOptions();
-    } else {
-      openOptions();
-    }
+    countryOptions.classList.contains('header-countryList--open')
+      ? closeCountryList()
+      : openCountryList()
   }
 
   showHideMoreLink() {
