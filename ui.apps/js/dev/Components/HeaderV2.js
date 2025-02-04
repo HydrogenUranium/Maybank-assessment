@@ -21,7 +21,7 @@ class HeaderV2 {
     this.init = this.init.bind(this);
     this.bindEvents = this.bindEvents.bind(this);
     this.toggleMenu = this.toggleMenu.bind(this);
-    this.checkScroll = this.checkScroll.bind(this);
+    this.headerScrollHandler = this.headerScrollHandler.bind(this);
     this.showCountryOptions = this.toggleCountryOptions.bind(this);
     this.showHideMoreLink = this.showHideMoreLink.bind(this);
     this.showSecondRowOfCategories = this.showSecondRowOfCategories.bind(this);
