@@ -8,6 +8,10 @@
 .cmp-marketoForm {
   .mktoForm {
     font-family: "Delivery", sans-serif !important;
+
+    a {
+      @include hoverText($text-decoration-normal: none, $text-decoration-hover: underline);
+    }
   }
 
   &__container{
