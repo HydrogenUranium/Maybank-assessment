@@ -255,7 +255,8 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
                             .map(Resource::getValueMap)
                             .map(properties -> properties.get(PN_CREATED, Calendar.class));
             Optional<Calendar> lastModifiedAt = Optional.ofNullable(page).map(Page::getLastModified);
-            if (lastModifiedAt.isPresent() && (createdAt.isEmpty() || lastModifiedAt.get().after(createdAt.get()))) {
+            if (lastModifiedAt.isPresent()
+                    && Boolean.TRUE.equals((createdAt.map(calendar -> lastModifiedAt.get().after(calendar)).orElse(true)))) {
                 return lastModifiedAt.get();
             }
             if (createdAt.isPresent()) {
