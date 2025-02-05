@@ -47,18 +47,34 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
 
   const recentSearches = useMemo(() => getRecentSearches(), []);
 
+  const handleKeyUp = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') { handleCloseSearch(); }
+  };
+
+  const handleWindowScroll = () => {
+    handleCloseSearch();
+  };
+
+  function preventScroll(event) {
+    event.preventDefault();
+  }
+
   useEffect(() => {
     focusInput();
     searchRef.current?.addEventListener('mousedown', stopPropagation);
+    searchRef.current?.addEventListener('touchmove', preventScroll);
     window.addEventListener('mousedown', handleCloseSearch);
     window.addEventListener('click', stopPropagation);
-    window.addEventListener('keyup', (event) => {
-      if (event.key === 'Escape') { handleCloseSearch(); }
-    });
+    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('scroll', handleWindowScroll);
     return () => {
+      searchRef.current?.removeEventListener('mousedown', stopPropagation);
+      searchRef.current?.removeEventListener('touchmove', preventScroll);
       window.removeEventListener('mousedown', handleCloseSearch);
       window.removeEventListener('click', stopPropagation);
       window.removeEventListener('keyup', handleCloseSearch);
+      window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('scroll', handleWindowScroll);
     };
   }, [handleCloseSearch]);
 
