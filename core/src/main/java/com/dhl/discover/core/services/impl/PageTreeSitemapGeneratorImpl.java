@@ -153,7 +153,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     private boolean isCanonicalUrl(Page page, String customCanonicalUrl) {
         Optional<ResourceResolver> resourceResolver = getResourceResolver(page);
         return StringUtils.isBlank(customCanonicalUrl) || (resourceResolver.isPresent() &&
-                (customCanonicalUrl.equals(getExternalizedLink(page, resourceResolver.get()))) || customCanonicalUrl.equals(page.getPath()));
+                (customCanonicalUrl.equals(getExternalizedLink(page, resourceResolver.get())) || customCanonicalUrl.equals(page.getPath())));
     }
 
     private String getExternalizedLink(Page page, ResourceResolver resourceResolver) {
