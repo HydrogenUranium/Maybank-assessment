@@ -138,6 +138,18 @@ class ArticleServiceTest {
                         "        {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}\n" +
                         "        {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}\n" +
                         "    ]}\n" +
+                        "    {orderby=orderby: orderby=@jcr:content/cq:lastModified, sort=desc}\n" +
+                        "    {path=path: path=/content/home}\n" +
+                        "    {type=type: type=cq:Page}\n" +
+                        "    {1_property=property: property=jcr:content/custompublishdate, operation=not}\n" +
+                        "]";
+
+        String expectedThirdQuery =
+                "ROOT=group: limit=2, excerpt=true[\n" +
+                        "    {group=group: or=true[\n" +
+                        "        {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}\n" +
+                        "        {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}\n" +
+                        "    ]}\n" +
                         "    {orderby=orderby: orderby=@jcr:content/jcr:created, sort=desc}\n" +
                         "    {path=path: path=/content/home}\n" +
                         "    {type=type: type=cq:Page}\n" +
@@ -146,7 +158,7 @@ class ArticleServiceTest {
 
         articleService.getLatestArticles("/content/home", 2);
 
-        verifyQuery(expectedFirstQuery, expectedSecondQuery);
+        verifyQuery(expectedFirstQuery, expectedSecondQuery, expectedThirdQuery);
     }
 
     @Test
