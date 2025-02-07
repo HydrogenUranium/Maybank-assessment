@@ -38,6 +38,7 @@
 
     .cmp-carousel {
       padding: 25px 0;
+      overflow: hidden;
 
       @include respond(md) {
         padding: 13px 0 0;
@@ -45,6 +46,18 @@
 
       @include respond(xl) {
         width: 60%;
+      }
+
+      &__item {
+        flex-shrink: 0;
+        display: block;
+        width: 100%;
+        position: relative;
+      }
+
+      &__content {
+        display: flex;
+        transition: transform .3s ease-in-out;
       }
 
       .article-teaser.teaser {
