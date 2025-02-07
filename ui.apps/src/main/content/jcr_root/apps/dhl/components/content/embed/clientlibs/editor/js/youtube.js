@@ -88,7 +88,7 @@
     }
 
   async function fetchVideoDetails(videoId) {
-    const url = `/apps/dhl/discoverdhlapi/youtube/index.json?videoId=${videoId}`;
+    const url = `/content/discoverdhlapi/youtube.index.json?videoId=${videoId}`;
     const response = await fetch(url);
     const data = await response.json();
     return data.items[0];
