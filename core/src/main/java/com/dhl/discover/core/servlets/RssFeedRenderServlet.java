@@ -17,6 +17,7 @@ import org.osgi.service.component.annotations.Reference;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,7 +68,7 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
 
             feed.printFooter();
 
-        } catch (Exception exception) {
+        } catch (IOException exception) {
             throw new ServletException("Error while rendering resource as rss feed: " + exception.getMessage(), exception);
         }
     }
