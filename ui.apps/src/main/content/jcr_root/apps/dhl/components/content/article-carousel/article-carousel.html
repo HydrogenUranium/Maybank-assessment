@@ -21,6 +21,7 @@
     <div data-sly-set.items="${carousel.children || carousel.items}"
          data-sly-test="${items && items.size > 0}"
          class="cmp-carousel__content"
+         data-cmp-hook-carousel="items"
          aria-atomic="false"
          aria-live="${carousel.autoplay ? 'off' : 'polite'}">
       <sly data-sly-list.item="${items}">
@@ -36,21 +37,21 @@
              data-cmp-hook-carousel="item"></div>
       </sly>
       <sly data-sly-call="${controlsTemplate.controls @ carousel=carousel}" data-sly-test="${!carousel.controlsPrepended}"></sly>
-      <ol class="cmp-carousel__indicators"
-          role="tablist"
-          aria-label="${carousel.accessibilityTablist || 'Choose a slide to display' @ i18n}"
-          data-cmp-hook-carousel="indicators">
-        <sly data-sly-list.item="${items}">
-          <li data-sly-test="${item.resource.resourceType != 'wcm/msm/components/ghost'}"
-              id="${item.id}-tab"
-              class="cmp-carousel__indicator${item.name == carousel.activeItem ? ' cmp-carousel__indicator--active' : ''}"
-              role="tab"
-              aria-controls="${item.id}-tabpanel"
-              aria-label="${'Slide {0}' @ format=[itemList.count], i18n}"
-              data-cmp-hook-carousel="indicator">${item.title}</li>
-        </sly>
-      </ol>
     </div>
+    <ol class="cmp-carousel__indicators"
+        role="tablist"
+        aria-label="${carousel.accessibilityTablist || 'Choose a slide to display' @ i18n}"
+        data-cmp-hook-carousel="indicators">
+      <sly data-sly-list.item="${items}">
+        <li data-sly-test="${item.resource.resourceType != 'wcm/msm/components/ghost'}"
+            id="${item.id}-tab"
+            class="cmp-carousel__indicator${item.name == carousel.activeItem ? ' cmp-carousel__indicator--active' : ''}"
+            role="tab"
+            aria-controls="${item.id}-tabpanel"
+            aria-label="${'Slide {0}' @ format=[itemList.count], i18n}"
+            data-cmp-hook-carousel="indicator">${item.title}</li>
+      </sly>
+    </ol>
     <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
          data-sly-test="${(wcmmode.edit || wcmmode.preview) && items.size < 1}"></sly>
   </div>
