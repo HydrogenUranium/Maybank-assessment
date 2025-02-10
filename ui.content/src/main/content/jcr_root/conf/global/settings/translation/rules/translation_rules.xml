@@ -322,6 +322,7 @@
       <property inherit="true" name="switchLanguageAriaLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="wcagContentLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="wcagFooterLabel" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="linkName" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/footer">
       <property inherit="true" name="categoryLinksLabel" translate="true" updateDestinationLanguage="false"/>
@@ -332,6 +333,7 @@
       <property inherit="true" name="promoText" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="socialLinksLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="logoTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="linkName" translate="true" updateDestinationLanguage="false"/>
     </node>
     <filter/>
     <node pathContains="&amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;/cq:annotations&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;#34;">
