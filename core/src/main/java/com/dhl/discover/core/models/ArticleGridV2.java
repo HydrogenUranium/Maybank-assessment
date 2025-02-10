@@ -122,6 +122,9 @@ public class ArticleGridV2 {
     }
 
     private void initTagBasedCategories() {
+        if(tabs == null) {
+            return;
+        }
         tabs.forEach(tab -> {
             var results = articleService.findArticlesByTag(tab.getTags(), contentSource, resolver);
             var articles = results.stream()
