@@ -80,12 +80,12 @@
                             <type>zip</type>
                             <target>/apps/dhl-packages/content/install</target>
                         </embedded>
-                        <embedded>
+                        <!--<embedded>
                             <groupId>org.cid15.aem.groovy.console</groupId>
                             <artifactId>aem-groovy-console-bundle</artifactId>
                             <type>jar</type>
                             <target>/apps/dhl-vendor-packages/install</target>
-                        </embedded>
+                        </embedded>-->
                         <!--
                         <embedded>
                             <groupId>org.apache.servicemix.bundles</groupId>
@@ -243,11 +243,11 @@
             <type>zip</type>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.cid15.aem.groovy.console</groupId>
             <artifactId>aem-groovy-console-bundle</artifactId>
             <version>18.0.2</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
     <distributionManagement>
