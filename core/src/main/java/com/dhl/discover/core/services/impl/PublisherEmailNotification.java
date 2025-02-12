@@ -1,5 +1,6 @@
 package com.dhl.discover.core.services.impl;
 
+import com.day.cq.mailer.MailingException;
 import com.day.cq.mailer.MessageGateway;
 import com.day.cq.workflow.WorkflowException;
 import com.day.cq.workflow.WorkflowSession;
@@ -70,7 +71,7 @@ public abstract class PublisherEmailNotification implements WorkflowProcess {
 
         try {
             getMessageGateway().send(email);
-        } catch (Exception e) {
+        } catch (MailingException e) {
             log.warn("Failed to sand email: {}", e.getMessage());
         }
 

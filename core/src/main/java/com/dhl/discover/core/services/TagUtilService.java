@@ -107,7 +107,7 @@ public class TagUtilService implements Serializable {
                 .collect(Collectors.joining())
                 : StringUtils.EMPTY;
 
-        return !StringUtils.isBlank(tag) ? "#" + tag : StringUtils.EMPTY;
+        return (!StringUtils.isBlank(tag)) ? ("#" + tag) : StringUtils.EMPTY;
     }
 
     private Tag getTag(ResourceResolver resolver, String rootTagID) {
@@ -154,7 +154,7 @@ public class TagUtilService implements Serializable {
 
             tagNames.forEach(tagName -> {
                 if (suggestions.size() < limit) {
-                    suggestions.add(basePhrase.isBlank() ? tagName : basePhrase + " " + tagName);
+                    suggestions.add(basePhrase.isBlank() ? tagName : (basePhrase + " " + tagName));
                 }
             });
         }
