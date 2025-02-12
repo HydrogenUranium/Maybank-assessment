@@ -82,9 +82,11 @@ public class Header {
     private boolean hideNavigationMenu;
 
     @ValueMapValue
+    @Default(values = "Skip to main content")
     private String wcagContentLabel;
 
     @ValueMapValue
+    @Default(values = "Skip to footer")
     private String wcagFooterLabel;
 
     @PostConstruct

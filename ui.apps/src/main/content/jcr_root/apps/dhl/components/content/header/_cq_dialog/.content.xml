@@ -200,6 +200,29 @@
                                     </items>
                                 </field>
                             </companyLinksList>
+                            <hiddenButtonWcag
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Hidden Button for Accessibility"
+                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <skipHeader
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Skip to Main Content"
+                                            fieldDescription="This label will be displayed when users navigate to the button using the keyboard, allowing them to easily skip to the main content of the page"
+                                            emptyText="Skip to main content"
+                                            name="./wcagContentLabel">
+                                    </skipHeader>
+                                    <skipFooter
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Skip to Footer"
+                                            fieldDescription="This label will be displayed when users navigate to the button using the keyboard, allowing them to easily skip to the footer of the page"
+                                            emptyText="Skip to footer"
+                                            name="./wcagFooterLabel">
+                                    </skipFooter>
+                                </items>
+                            </hiddenButtonWcag>
                         </items>
                     </companyLinks>
                     <hideNavigationMenu
