@@ -17,6 +17,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.jcr.LoginException;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -66,7 +67,7 @@ public class PageListServlet extends SlingAllMethodsServlet {
         } catch (LoginException e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("Failed to get resource resolver: " + e.getMessage());
-        } catch (Exception e) {
+        } catch (RepositoryException | org.apache.sling.api.resource.LoginException e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("An unexpected error occurred. Please try again later.");
         }

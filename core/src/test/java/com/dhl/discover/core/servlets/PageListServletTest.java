@@ -8,6 +8,7 @@ import com.day.cq.search.result.SearchResult;
 import com.google.gson.JsonArray;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -79,15 +80,14 @@ class PageListServletTest {
         expectedJsonArray.add("/content/dhl/sample-page");
         assertEquals(expectedJsonArray.toString(), response.getOutputAsString());
     }
-
     @Test
-    void testDoGet_GeneralException() throws Exception {
-        when(resolverFactory.getServiceResourceResolver(any())).thenReturn(resolver);
-        when(resolver.adaptTo(QueryBuilder.class)).thenReturn(queryBuilder);
-        when(queryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenThrow(new RuntimeException("General error"));
+    void testDoGet_LoginException() throws Exception {
+        when(resolverFactory.getServiceResourceResolver(any())).thenThrow(new LoginException("Login failed"));
 
         servlet.doGet(request, response);
 
         assertEquals(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, response.getStatus());
+        assertEquals("An unexpected error occurred. Please try again later.", response.getOutputAsString());
     }
+
 }

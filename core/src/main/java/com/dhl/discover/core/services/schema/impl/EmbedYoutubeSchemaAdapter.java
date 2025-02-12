@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.dhl.discover.core.services.schema.AbstractSchemaAdapter;
 import com.dhl.discover.core.services.schema.SchemaAdapter;
+import com.google.gson.JsonSyntaxException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
@@ -29,7 +30,7 @@ public class EmbedYoutubeSchemaAdapter extends AbstractSchemaAdapter {
             var videoJson = JsonParser.parseString(resource.getValueMap().get("schema", ""))
                     .getAsJsonObject();
             return isValidVideoObjectSchema(videoJson) ? videoJson : null;
-        } catch (Exception e) {
+        } catch (JsonSyntaxException | IllegalStateException e) {
             return null;
         }
     }

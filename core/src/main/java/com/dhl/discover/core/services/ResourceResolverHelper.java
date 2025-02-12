@@ -27,7 +27,7 @@ public class ResourceResolverHelper implements Serializable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ResourceResolverHelper.class);
 
 	@Reference
-	ResourceResolverFactory resourceResolverFactory;
+	transient ResourceResolverFactory resourceResolverFactory;
 
 	public ResourceResolver getUserManagerResourceResolver(){
 		return getResourceResolver(DiscoverConstants.DISCOVER_USER_MANAGER_SERVICE);
