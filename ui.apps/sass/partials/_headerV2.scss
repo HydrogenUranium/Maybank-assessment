@@ -1,3 +1,17 @@
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &--with-transition {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &--hidden {
+    transform: translateY(-100%);
+  }
+}
+
 .headerV2-wrapper {
   position: relative;
   display: flex;
@@ -48,18 +62,6 @@
     margin: auto;
     [dir="rtl"] & {
       padding: 25px 42px 0 15px;
-    }
-  }
-
-  &.fixed {
-    position: fixed;
-    top: -140px;
-    left: 0;
-    right: 0;
-    transition: all 0.3s ease-in-out;
-
-    &.in {
-      top: 0;
     }
   }
 
@@ -160,8 +162,7 @@
             overflow-x: hidden;
             font-size: 16px;
             line-height: 14px;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+            transition: visibility 0.3s ease-in-out, max-height 0.3s ease-in-out;
             pointer-events: none;
             visibility: hidden;
 
@@ -173,7 +174,6 @@
               pointer-events: auto;
               visibility: visible;
               max-height: 195px;
-              opacity: 1;
             }
 
             &::-webkit-scrollbar-track {
@@ -494,13 +494,13 @@
     left: 0;
     padding: 0;
     width: 100%;
-    max-height: calc(100vh - 100px);
+    max-height: calc(100dvh - 64px);
     margin: 0;
     overflow: auto;
 
     .headerV2__meganavNavigation {
       background: map-get($palette, true-white);
-      padding: 31px 36px 28px;
+      padding: 31px 36px 36px;
 
       .headerV2__meganavNav {
         margin: 0px;
