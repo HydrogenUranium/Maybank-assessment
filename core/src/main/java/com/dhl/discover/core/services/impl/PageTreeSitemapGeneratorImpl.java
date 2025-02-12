@@ -172,9 +172,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
         if (resourceResolver.isEmpty()) {
             return StringUtils.EMPTY;
         }
-        var canonicalResource = resourceResolver
-                .map(resolver -> resolver.resolve(canonicalUrl))
-                .orElseThrow(() -> new IllegalStateException("Resource resolver is not present"));
+        var canonicalResource = resourceResolver.get().resolve(canonicalUrl);
         if (ResourceUtil.isNonExistingResource(canonicalResource)) {
             boolean hasExtension = canonicalUrl.matches(".+\\.\\w{2,5}$");
             return externalize(canonicalResource, hasExtension ? HTML_EXTENSION : StringUtils.EMPTY);
@@ -255,8 +253,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
                             .map(Resource::getValueMap)
                             .map(properties -> properties.get(PN_CREATED, Calendar.class));
             Optional<Calendar> lastModifiedAt = Optional.ofNullable(page).map(Page::getLastModified);
-            if (lastModifiedAt.isPresent()
-                    && Boolean.TRUE.equals((createdAt.map(calendar -> lastModifiedAt.get().after(calendar)).orElse(true)))) {
+            if (lastModifiedAt.isPresent() && (createdAt.isEmpty() || (lastModifiedAt.get()).after(createdAt.get()))) {
                 return lastModifiedAt.get();
             }
             if (createdAt.isPresent()) {
