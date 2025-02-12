@@ -11,7 +11,7 @@ pipeline {
 
     tools {
         maven 'Maven 3.8.1'
-        jdk 'JDK11'
+        jdk 'JDK21'
     }
 
     options {
@@ -65,7 +65,7 @@ pipeline {
                             com.fortify.sca.plugins.maven:sca-maven-plugin:clean
                             com.fortify.sca.plugins.maven:sca-maven-plugin:translate
                             com.fortify.sca.plugins.maven:sca-maven-plugin:scan
-                            -Dfortify.sca.source.version=17
+                            -Dfortify.sca.source.version=21
                         """,
                         resolverId: 'artifactory-resolver',
                         deployerId: 'artifactory-deployer',
