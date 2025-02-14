@@ -80,26 +80,11 @@
                             <type>zip</type>
                             <target>/apps/dhl-packages/content/install</target>
                         </embedded>
-                        <!--<embedded>
-                            <groupId>org.cid15.aem.groovy.console</groupId>
-                            <artifactId>aem-groovy-console-bundle</artifactId>
-                            <type>jar</type>
-                            <target>/apps/dhl-vendor-packages/install</target>
-                        </embedded>-->
-                        <!--
                         <embedded>
-                            <groupId>org.apache.servicemix.bundles</groupId>
-                            <artifactId>org.apache.servicemix.bundles.jsch</artifactId>
-                            <type>jar</type>
+                            <groupId>be.orbinson.aem</groupId>
+                            <artifactId>aem-groovy-console-all</artifactId>
                             <target>/apps/dhl-vendor-packages/install</target>
                         </embedded>
-                        <embedded>
-                            <groupId>com.dhl.aem</groupId>
-                            <artifactId>akamai.core</artifactId>
-                            <target>/apps/dhl-vendor-packages/install</target>
-                            <type>jar</type>
-                        </embedded>
-                        -->
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -242,13 +227,13 @@
             <version>2.1.0</version>
             <type>zip</type>
         </dependency>
-
-        <!--<dependency>
-            <groupId>org.cid15.aem.groovy.console</groupId>
-            <artifactId>aem-groovy-console-bundle</artifactId>
-            <version>18.0.2</version>
-        </dependency>-->
-
+        
+        <dependency>
+            <groupId>be.orbinson.aem</groupId>
+            <artifactId>aem-groovy-console-all</artifactId>
+            <version>19.0.3</version>
+            <type>zip</type>
+        </dependency>
     </dependencies>
     <distributionManagement>
         <repository>
