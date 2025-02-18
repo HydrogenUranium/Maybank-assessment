@@ -94,6 +94,11 @@
                             <type>jar</type>
                         </embedded>
                         -->
+                        <embedded>
+                            <groupId>be.orbinson.aem</groupId>
+                            <artifactId>aem-groovy-console-all</artifactId>
+                            <target>/apps/dhl-vendor-packages/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -237,6 +242,12 @@
             <type>zip</type>
         </dependency>
 
+        <dependency>
+            <groupId>be.orbinson.aem</groupId>
+            <artifactId>aem-groovy-console-all</artifactId>
+            <version>19.0.8</version>
+            <type>zip</type>
+        </dependency>
     </dependencies>
     <distributionManagement>
         <repository>
