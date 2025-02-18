@@ -12,7 +12,7 @@
     }
   }
 
-  .cmp-article-showcase__link {
+  &__link {
     margin-top: 15px;
     margin-bottom: 15px;
 
@@ -38,18 +38,24 @@
 
     @include respond(xl) {
       margin-top: 50px;
+      .article-card {
+        width: auto;
+      }
     }
 
     & .cmp-article-showcase {
       &__articles {
-        @include respond(xl) {
-          .article-card:nth-child(n + 5) {
-            display: none;
-          }
-        }
-
         display: flex;
         gap: 36px;
+        @include respond(xl) {
+          display: grid;
+          overflow: hidden;
+          padding-bottom: 0;
+          grid-auto-rows: 0;
+          gap: 0px 36px;
+          grid-template-rows: repeat(1, 1fr);
+          grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        }
       }
     }
   }
