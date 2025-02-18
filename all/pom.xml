@@ -94,6 +94,11 @@
                             <type>jar</type>
                         </embedded>
                         -->
+                        <embedded>
+                            <groupId>be.orbinson.aem</groupId>
+                            <artifactId>aem-groovy-console-all</artifactId>
+                            <target>/apps/dhl-vendor-packages/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
