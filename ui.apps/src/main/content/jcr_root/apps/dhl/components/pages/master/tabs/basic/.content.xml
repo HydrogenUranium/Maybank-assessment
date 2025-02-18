@@ -175,7 +175,7 @@
                         jcr:primaryType="nt:unstructured"
                         jcr:title="On/Off Time"
                         sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
-                        granite:hide="{Boolean}true">
+                        granite:hide="{Boolean}false">
                     <items jcr:primaryType="nt:unstructured">
                         <ondate
                                 jcr:primaryType="nt:unstructured"
