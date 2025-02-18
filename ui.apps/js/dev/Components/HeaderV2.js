@@ -11,6 +11,11 @@ class HeaderV2 {
       categories: '.navigation-row__left',
       moreLink: '.navigation-item_more-less.more',
       lessLink: '.navigation-item_more-less.less',
+      pageBody: '.page-body',
+      greyOutStyle: 'enableGreyOutArea',
+      overlay: 'overlay',
+      body: 'body',
+      div: 'div',
     };
 
     this.cookieName = 'dhl-default-language';
@@ -26,7 +31,6 @@ class HeaderV2 {
     this.showHideMoreLink = this.showHideMoreLink.bind(this);
     this.showSecondRowOfCategories = this.showSecondRowOfCategories.bind(this);
     this.hideSecondRowOfCategories = this.hideSecondRowOfCategories.bind(this);
-    this.isBurgerMenuEnabled = false;
   }
 
   init() {
@@ -59,11 +63,10 @@ class HeaderV2 {
 
     $(window).on('scroll', this.headerScrollHandler);
     this.initHeader();
-    $(document).on('click', '.page-body', (evt) => {
-      if (this.isBurgerMenuEnabled) {
-        if (!$(evt.target).closest('.headerV2__navigation').length) {
-          this.toggleMenu();
-        }
+
+    $(document).on('click', '#overlay', (evt) => {
+      if (!$(evt.target).closest('.headerV2__navigation').length) {
+        this.toggleMenu();
       }
     });
   }
@@ -122,13 +125,11 @@ class HeaderV2 {
       this.bodyScrolling(false);
       $(this.sel.toggle).addClass('header__navigation--open');
       $(this.sel.wrapper).addClass('headerV2__navigation--open');
-      this.isBurgerMenuEnabled = true;
       this.disableAnchorLinks(true);
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
       $(this.sel.wrapper).removeClass('headerV2__navigation--open');
-      this.isBurgerMenuEnabled = false;
       this.disableAnchorLinks(false);
     }
     $(this.sel.menu).slideToggle(150);
@@ -242,19 +243,16 @@ class HeaderV2 {
   }
 
   disableAnchorLinks(value) {
-    const pageBody = document.querySelector('.page-body');
-    if (value && pageBody) {
-      const overlayDiv = document.createElement('div');
-      overlayDiv.id = 'overlay';
-      overlayDiv.classList.add('enableGreyOutArea');
-      pageBody.appendChild(overlayDiv);
+    const body = document.querySelector(this.sel.body);
+    if (value && body) {
+      const overlayDiv = document.createElement(this.sel.div);
+      overlayDiv.id = this.sel.overlay;
+      overlayDiv.classList.add(this.sel.greyOutStyle);
+      body.appendChild(overlayDiv);
     } else {
-      const pageB = document.querySelector('.page-body');
-      if (pageB) {
-        const overlayDiv = document.getElementById('overlay');
-        if (overlayDiv) {
-          pageB.removeChild(overlayDiv);
-        }
+      const overlayDiv = document.getElementById(this.sel.overlay);
+      if (overlayDiv) {
+        overlayDiv.parentNode.removeChild(overlayDiv);
       }
     }
   }
