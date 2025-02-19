@@ -1,8 +1,8 @@
 <div class="article-carousel_container">
   <h1 class="article-carousel_pageTitle">${currentPage.navigationTitle || currentPage.title}</h1>
-
   <div data-sly-use.carousel="com.adobe.cq.wcm.core.components.models.Carousel"
        data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+       data-sly-use.articleTeaser="com.dhl.discover.core.models.ArticleTeaserModel"
        data-sly-use.controlsTemplate="controls.html"
        data-panelcontainer="${wcmmode.edit && 'carousel'}"
        id="${carousel.id}"
@@ -55,4 +55,5 @@
     <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
          data-sly-test="${(wcmmode.edit || wcmmode.preview) && items.size < 1}"></sly>
   </div>
+    <h1>testing ${articleTeaser.linkURL} </h1>
 </div>
