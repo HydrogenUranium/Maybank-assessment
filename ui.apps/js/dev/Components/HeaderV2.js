@@ -11,11 +11,7 @@ class HeaderV2 {
       categories: '.navigation-row__left',
       moreLink: '.navigation-item_more-less.more',
       lessLink: '.navigation-item_more-less.less',
-      pageBody: '.page-body',
-      greyOutStyle: 'enableGreyOutArea',
-      overlay: 'overlay',
       body: 'body',
-      div: 'div',
     };
 
     this.cookieName = 'dhl-default-language';
@@ -64,11 +60,6 @@ class HeaderV2 {
     $(window).on('scroll', this.headerScrollHandler);
     this.initHeader();
 
-    $(document).on('click', '#overlay', (evt) => {
-      if (!$(evt.target).closest('.headerV2__navigation').length) {
-        this.toggleMenu();
-      }
-    });
   }
 
   /*
@@ -245,12 +236,13 @@ class HeaderV2 {
   disableAnchorLinks(value) {
     const body = document.querySelector(this.sel.body);
     if (value && body) {
-      const overlayDiv = document.createElement(this.sel.div);
-      overlayDiv.id = this.sel.overlay;
-      overlayDiv.classList.add(this.sel.greyOutStyle);
+      const overlayDiv = document.createElement('div');
+      overlayDiv.id = 'overlay';
+      overlayDiv.classList.add('enableGreyOutArea');
+      overlayDiv.addEventListener('click', this.toggleMenu);
       body.appendChild(overlayDiv);
     } else {
-      const overlayDiv = document.getElementById(this.sel.overlay);
+      const overlayDiv = document.getElementById('overlay');
       if (overlayDiv) {
         overlayDiv.parentNode.removeChild(overlayDiv);
       }

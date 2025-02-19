@@ -323,6 +323,8 @@
       <property inherit="true" name="wcagContentLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="wcagFooterLabel" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="linkName" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="openHamburgerMenuText" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="closeHamburgerMenuText" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/footer">
       <property inherit="true" name="categoryLinksLabel" translate="true" updateDestinationLanguage="false"/>
