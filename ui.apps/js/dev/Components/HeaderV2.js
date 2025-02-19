@@ -63,12 +63,6 @@ class HeaderV2 {
 
     $(window).on('scroll', this.headerScrollHandler);
     this.initHeader();
-
-    $(document).on('click', '#overlay', (evt) => {
-      if (!$(evt.target).closest('.headerV2__navigation').length) {
-        this.toggleMenu();
-      }
-    });
   }
 
   /*
@@ -248,6 +242,7 @@ class HeaderV2 {
       const overlayDiv = document.createElement(this.sel.div);
       overlayDiv.id = this.sel.overlay;
       overlayDiv.classList.add(this.sel.greyOutStyle);
+      overlayDiv.addEventListener('click', this.toggleMenu);
       body.appendChild(overlayDiv);
     } else {
       const overlayDiv = document.getElementById(this.sel.overlay);
