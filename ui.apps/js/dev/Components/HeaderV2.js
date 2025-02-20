@@ -233,6 +233,7 @@ class HeaderV2 {
     $(this.sel.lessLink).hide();
   }
 
+  /* this method blocks the background when toggle menu is enabled*/
   disableAnchorLinks(value) {
     const body = document.querySelector(this.sel.body);
     if (value && body) {
