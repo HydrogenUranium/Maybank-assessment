@@ -117,7 +117,7 @@
                                     sling:resourceType="/libs/granite/ui/components/coral/foundation/alert"
                                     variant="info"
                                     granite:class="vertical-content-type-showhide"
-                                    text="Only 4 articles will be displayed on desktop view">
+                                    text="Showcase component displays articles with a scrollbar on tablet and mobile, while on desktop it displays a limited number of articles without scrolling, hiding the rest.">
                                 <granite:data
                                         jcr:primaryType="nt:unstructured"
                                         showhidetargetvalue="horizontal"/>
