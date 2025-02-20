@@ -107,19 +107,19 @@ public class DhlPage {
 		String customOgTagImage = properties.get("ogtagimage", pageImage);
 
 		String basePrefix = DEFAULT_PAGE_IMAGE.equals(customOgTagImage)
-				? HTTPS_PREFIX + akamaiHostname
-				: HTTPS_PREFIX + akamaiHostname + assetprefix;
+				? (HTTPS_PREFIX + akamaiHostname)
+				: (HTTPS_PREFIX + akamaiHostname + assetprefix);
 
 		ogtagimage = StringUtils.isNotBlank(customOgTagImage)
 				? basePrefix.concat(customOgTagImage.trim())
-				: HTTPS_PREFIX + akamaiHostname + DEFAULT_OG_IMAGE;
+				: (HTTPS_PREFIX + akamaiHostname + DEFAULT_OG_IMAGE);
 
 	}
 
 	private String getRobotTags(Page page) {
 		var tags = String.join(", ", page.getProperties().get(PN_ROBOTS_TAGS, new String[0]));
 		if(!tags.contains("noindex") && pageUtilService.hasInheritedNoIndex(page)) {
-			return tags.isBlank() ? "noindex" : tags + ", noindex";
+			return tags.isBlank() ? "noindex" : (tags + ", noindex");
 		}
 		return tags;
 	}
