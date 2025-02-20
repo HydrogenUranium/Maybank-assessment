@@ -8,10 +8,12 @@
         </div>
       </div>
       <div class="share-options__right">
-        <div class="st-custom-button" data-network="sharethis">
-          <img class="logo__image" alt="Smart Share Buttons Icon" src="${articlePage.smartShareButtonsIconPath}">
-          <span class="st-label">${articlePage.smartShareButtonsLabel}</span>
-        </div>
+          <div class="st-custom-button" data-network="sharethis">
+              <sly data-sly-test.smartShareButtonsIconPath="${articlePage.smartShareButtonsIconPath}">
+                  <img class="logo__image" alt="Smart Share Buttons Icon" src="${smartShareButtonsIconPath}">
+              </sly>
+              <span class="st-label">${articlePage.smartShareButtonsLabel}</span>
+          </div>
       </div>
     </div>
   </div>
