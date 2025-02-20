@@ -24,6 +24,31 @@
                             jcr:title="The list of Navigation Menu "
                             text="- is automatically generated &lt;br&gt;
                                   based on the Category pages placed under the Home page"/>
+                    <hamburgerMenuTexts
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Hamburger button Aria Labels"
+                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <openHamburgerMenu
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Open Hamburger Menu"
+                                fieldDescription="This text will be provided in aria-label attribute of the Hamburger Menu button."
+                                emptyText="Open Hamburger Menu"
+                                text="Open Hamburger Menu"
+                                name="./openHamburgerMenuText">
+                            </openHamburgerMenu>
+                            <closeHamburgerMenu
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Close Hamburger Menu"
+                                fieldDescription="This text will be provided in aria-label attribute of the Hamburger Menu button."
+                                emptyText="Close Hamburger Menu"
+                                text="Close Hamburger Menu"
+                                name="./closeHamburgerMenuText">
+                            </closeHamburgerMenu>
+                        </items>
+                    </hamburgerMenuTexts>
                     <button
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Button (for Desktop only)"
