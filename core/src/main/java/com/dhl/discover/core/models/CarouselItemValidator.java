@@ -33,7 +33,7 @@ public class CarouselItemValidator {
 
     @PostConstruct
     protected void init() {
-        //nodePath = (String) slingRequest.getAttribute(PAGE_PATH);
+        nodePath = (String) slingRequest.getAttribute(PAGE_PATH);
         if (nodePath != null && !nodePath.isEmpty()) {
             Resource resource = resourceResolver.getResource(nodePath);
             nodeExists = (resource != null);
