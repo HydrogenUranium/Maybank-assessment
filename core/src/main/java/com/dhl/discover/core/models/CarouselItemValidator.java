@@ -35,14 +35,15 @@ public class CarouselItemValidator {
     @PostConstruct
     protected void init() {
         nodePath = (String) slingRequest.getAttribute(PAGE_PATH);
-
         if (nodePath != null && !nodePath.isEmpty()) {
             Resource resource = resourceResolver.getResource(nodePath);
-            log.info("Resource haikal : {}", resource);
             nodeExists = (resource != null);
         } else {
             nodeExists = false;
         }
     }
 
+    public void setResourceResolver(ResourceResolver resourceResolver) {
+        this.resourceResolver = resourceResolver;
+    }
 }
