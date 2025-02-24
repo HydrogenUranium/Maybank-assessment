@@ -7,10 +7,11 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.RequestAttribute;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 @Slf4j
@@ -22,19 +23,17 @@ public class CarouselItemValidator {
     @SlingObject
     private ResourceResolver resourceResolver;
 
-    private final SlingHttpServletRequest slingRequest;
+    @Self
+    private SlingHttpServletRequest slingRequest;
 
+    @RequestAttribute
     private String nodePath;
 
     private boolean nodeExists;
 
-    @Inject
-    public CarouselItemValidator(SlingHttpServletRequest slingRequest) {
-        this.slingRequest = slingRequest;
-    }
     @PostConstruct
     protected void init() {
-        nodePath = (String) slingRequest.getAttribute(PAGE_PATH);
+        //nodePath = (String) slingRequest.getAttribute(PAGE_PATH);
         if (nodePath != null && !nodePath.isEmpty()) {
             Resource resource = resourceResolver.getResource(nodePath);
             nodeExists = (resource != null);
