@@ -11,6 +11,7 @@ class HeaderV2 {
       categories: '.navigation-row__left',
       moreLink: '.navigation-item_more-less.more',
       lessLink: '.navigation-item_more-less.less',
+      body: 'body',
     };
 
     this.cookieName = 'dhl-default-language';
@@ -26,7 +27,6 @@ class HeaderV2 {
     this.showHideMoreLink = this.showHideMoreLink.bind(this);
     this.showSecondRowOfCategories = this.showSecondRowOfCategories.bind(this);
     this.hideSecondRowOfCategories = this.hideSecondRowOfCategories.bind(this);
-
   }
 
   init() {
@@ -59,6 +59,7 @@ class HeaderV2 {
 
     $(window).on('scroll', this.headerScrollHandler);
     this.initHeader();
+
   }
 
   /*
@@ -115,10 +116,12 @@ class HeaderV2 {
       this.bodyScrolling(false);
       $(this.sel.toggle).addClass('header__navigation--open');
       $(this.sel.wrapper).addClass('headerV2__navigation--open');
+      this.disableAnchorLinks(true);
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
       $(this.sel.wrapper).removeClass('headerV2__navigation--open');
+      this.disableAnchorLinks(false);
     }
     $(this.sel.menu).slideToggle(150);
   }
@@ -228,6 +231,23 @@ class HeaderV2 {
     $(this.sel.categories).css({'overflow': 'hidden', 'max-height': '51px'});
     $(this.sel.moreLink).show();
     $(this.sel.lessLink).hide();
+  }
+
+  /* this method blocks the background when toggle menu is enabled*/
+  disableAnchorLinks(value) {
+    const body = document.querySelector(this.sel.body);
+    if (value && body) {
+      const overlayDiv = document.createElement('div');
+      overlayDiv.id = 'overlay';
+      overlayDiv.classList.add('enableGreyOutArea');
+      overlayDiv.addEventListener('click', this.toggleMenu);
+      body.appendChild(overlayDiv);
+    } else {
+      const overlayDiv = document.getElementById('overlay');
+      if (overlayDiv) {
+        overlayDiv.parentNode.removeChild(overlayDiv);
+      }
+    }
   }
 }
 

@@ -1,39 +1,32 @@
 import groovy.transform.Field
 
-@Field DRY_RUN = false;
+@Field DRY_RUN = true;
+@Field OVERRIDE = false;
 
 @Field getCtaBannerName = { node ->
     if(node.hasProperty("type")) {
         def type = node.getProperty("type").getString();
         switch(type) {
-            case "custom":
-                return node.hasProperty("title") ? node.getProperty("title").getString() : ""
             case "subscribeNewsletter":
                 return "'Subscribe to News Letter' Banner"
-            default:
-                return ""
         }
     }
 
-    return ""
+    return node.hasProperty("title") ? node.getProperty("title").getString() : ""
 }
 
 @Field getCtaBannerWithPointsName = { node ->
     if(node.hasProperty("type")) {
         def type = node.getProperty("type").getString();
         switch(type) {
-            case "custom":
-                return node.hasProperty("title") ? node.getProperty("title").getString() : ""
             case "businessAccount":
                 return "'Open A Business Account' Banner"
             case "subscribeNewsletter":
                 return "'Subscribe To Our Newsletter' Banner"
-            default:
-                return ""
         }
     }
 
-    return ""
+    return node.hasProperty("title") ? node.getProperty("title").getString() : ""
 }
 
 @Field getButtonName = { node ->
@@ -46,16 +39,12 @@ import groovy.transform.Field
     if(node.hasProperty("type")) {
         def type = node.getProperty("type").getString();
         switch(type) {
-            case "custom":
-                return node.hasProperty("title") ? node.getProperty("title").getString() : ""
             case "individualShipper":
                 return "'Are you an individual shipper?' Banner"
-            default:
-                return ""
         }
     }
 
-    return ""
+    return node.hasProperty("title") ? node.getProperty("title").getString() : ""
 }
 
 @Field getProperty = { name, defaultValue ->
@@ -67,26 +56,31 @@ import groovy.transform.Field
 @Field COMPONENTS = [
         "dhl/components/content/cta-banner": [
                 "interactionType": "content",
+                "sling:resourceType": "dhl/analytics-node-configuration",
                 "trackedInteractions": "basic",
                 "name": getCtaBannerName],
 
         "dhl/components/content/cta-banner-with-points": [
                 "interactionType": "content",
+                "sling:resourceType": "dhl/analytics-node-configuration",
                 "trackedInteractions": "basic",
                 "name": getCtaBannerWithPointsName],
 
         "dhl/components/content/button": [
                 "interactionType": "content",
+                "sling:resourceType": "dhl/analytics-node-configuration",
                 "trackedInteractions": "basic",
                 "name": getButtonName],
 
         "dhl/components/content/cta-banner-gray": [
                 "interactionType": "content",
+                "sling:resourceType": "dhl/analytics-node-configuration",
                 "trackedInteractions": "basic",
                 "name": getCtaGrayBannerName],
-                
+
         "dhl/components/content/marketoForm": [
                 "interactionType": "content",
+                "sling:resourceType": "dhl/analytics-node-configuration",
                 "trackedInteractions": "basic",
                 "name": "Marketo Form",
                 "/customAttributes/item0/name": "Title",
@@ -99,7 +93,7 @@ import groovy.transform.Field
                 "/customAttributes/item3/value": getProperty("marketohiddenformid", "null"),
                 "/customAttributes/item4/name": "Hostname",
                 "/customAttributes/item4/value": getProperty("marketohost", "null"),
-                ],
+        ],
 ]
 
 def getOrCreateChildNode(node, childNodeName) {
@@ -117,12 +111,12 @@ def getValue(componentNode, valueProvider) {
 def getPropertyHolderNode(analyticsNode, propertyPath) {
     def pathParts = propertyPath.tokenize('/');
     def nodeList = pathParts.isEmpty() ? [] : pathParts.subList(0, pathParts.size() - 1);
-    
+
     def node = analyticsNode;
     nodeList.each{
         node = getOrCreateChildNode(node, it);
     }
-    
+
     return node;
 }
 
@@ -131,7 +125,7 @@ def setAnalyticsProperty(analyticsNode, propertyPath, valueProvider) {
     def propertyHolderNode = getPropertyHolderNode(analyticsNode, propertyPath);
     def property = getPropertyName(propertyPath);
     def value = getValue(componentNode, valueProvider);
-    
+
 
     println "set ${propertyPath}: ${value}"
     propertyHolderNode.setProperty(property, value)
@@ -142,6 +136,9 @@ def isAnalyticsConfigured(analyticsNode) {
 }
 
 def addAnalytics(node, config) {
+    if(OVERRIDE && node.hasNode("analytics")) {
+        node.getNode("analytics").remove();
+    }
     def analyticsNode = getOrCreateChildNode(node, "analytics");
 
     if(isAnalyticsConfigured(analyticsNode)) {
@@ -184,6 +181,5 @@ def updateAnalyticsUnderPath(path) {
     }
 }
 
-getHomePages().each{
-    updateAnalyticsUnderPath(it.getPath())
-}
+
+updateAnalyticsUnderPath("/content/experience-fragments")

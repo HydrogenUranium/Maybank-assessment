@@ -288,14 +288,14 @@
               var itemsWrapper = that._elements["items"];
               itemsWrapper.addEventListener("touchstart", (e) => {
                   pause();
-                  console.log("touchstart e.clientX", e.changedTouches[0].clientX);
                   startX = e.changedTouches[0].clientX;
                 });
               itemsWrapper.addEventListener("touchend", (e) => {
                   let deltaX = e.changedTouches[0].clientX - startX;
-                  console.log("touchend deltaX", deltaX);
-                  if (deltaX < -50) nextSlide();
-                  if (deltaX > 50) prevSlide();
+                  var isRTL = document.documentElement.dir === "rtl";
+
+                  if (deltaX < -50) isRTL ? prevSlide() : nextSlide();
+                  if (deltaX > 50) isRTL ? nextSlide() : prevSlide();
               });
             }
 
@@ -503,9 +503,10 @@
         function refreshActive() {
             var items = that._elements["item"];
             var indicators = that._elements["indicator"];
-
-            const offset = that._active * 100;
-            that._elements["items"].style.transform = `translateX(-${offset}%)`;
+            var direction = document.documentElement.dir || 'ltr';
+            var directionMultiplier = direction === 'ltr' ? -1 : 1;
+            const offset = that._active * 100 * directionMultiplier;
+            that._elements["items"].style.transform = `translateX(${offset}%)`;
 
             if (items) {
                 if (Array.isArray(items)) {
