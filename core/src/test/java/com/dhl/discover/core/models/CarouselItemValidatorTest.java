@@ -87,4 +87,11 @@ class CarouselItemValidatorTest {
         assertTrue("Validator should be valid for a non-ghost resource with an existing linkURL", validator.isValid());
     }
 
+    @Test
+     void testIsValid_whenResourceIsNull() {
+        boolean result = validator.isValid();
+        System.out.println(result);
+        assertFalse(result, "Expected isValid() to return false when resource is null");
+    }
+
 }
