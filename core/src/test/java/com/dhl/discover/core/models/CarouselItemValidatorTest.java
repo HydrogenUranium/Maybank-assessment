@@ -1,80 +1,90 @@
 package com.dhl.discover.core.models;
 
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
-import static junitx.framework.Assert.assertEquals;
-import static junitx.framework.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class CarouselItemValidatorTest {
-    @Mock
-    private SlingHttpServletRequest slingRequest;
 
-    @Mock
+    private CarouselItemValidator validator;
     private ResourceResolver resourceResolver;
 
-    @Mock
-    private Resource resource;
-
-    @InjectMocks
-    private CarouselItemValidator carouselItemValidator;
-
     @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        carouselItemValidator.setResourceResolver(resourceResolver);
+    public void setUp() {
+        validator = new CarouselItemValidator();
+        resourceResolver = mock(ResourceResolver.class);
+        validator.setResourceResolver(resourceResolver);
+    }
+
+    private void setResource(Resource resource) throws Exception {
+        var field = CarouselItemValidator.class.getDeclaredField("resource");
+        field.setAccessible(true);
+        field.set(validator, resource);
     }
 
 
     @Test
-    void testInitWithValidNodePath() {
-        when(slingRequest.getAttribute(CarouselItemValidator.PAGE_PATH)).thenReturn("/content/sample/path");
-        when(resourceResolver.getResource("/content/sample/path")).thenReturn(resource);
-        when(resource.getPath()).thenReturn("/content/sample/path");
+     void testIsValid_whenResourceIsGhost() throws Exception {
+        Resource resource = mock(Resource.class);
+        when(resource.getResourceType()).thenReturn("wcm/msm/components/ghost");
 
-        carouselItemValidator.init();
+        ValueMap vm = mock(ValueMap.class);
+        when(resource.getValueMap()).thenReturn(vm);
+        when(vm.get("linkURL", "")).thenReturn("/content/page");
+        when(resourceResolver.getResource("/content/page")).thenReturn(mock(Resource.class));
 
-        assertEquals("/content/sample/path", carouselItemValidator.getNodePath());
-        assertTrue(carouselItemValidator.isNodeExists());
+        setResource(resource);
+        assertFalse(validator.isValid(), "Validator should be invalid for ghost resource type");
+    }
+
+
+
+    @Test
+     void testIsValid_whenLinkURLBlank() throws Exception {
+        Resource resource = mock(Resource.class);
+        when(resource.getResourceType()).thenReturn("nonGhost");
+
+        ValueMap vm = mock(ValueMap.class);
+        when(resource.getValueMap()).thenReturn(vm);
+        when(vm.get("linkURL", "")).thenReturn("");
+
+        setResource(resource);
+        assertFalse(validator.isValid(), "Validator should be invalid when linkURL is blank");
     }
 
     @Test
-    void testInitWithInvalidNodePath() {
-        when(slingRequest.getAttribute(CarouselItemValidator.PAGE_PATH)).thenReturn("/content/invalid/path");
-        when(resourceResolver.getResource("/content/invalid/path")).thenReturn(null);
+    void testIsValid_whenLinkURLDoesNotExist() throws Exception {
+        Resource resource = mock(Resource.class);
+        when(resource.getResourceType()).thenReturn("nonGhost");
 
-        carouselItemValidator.init();
+        ValueMap vm = mock(ValueMap.class);
+        when(resource.getValueMap()).thenReturn(vm);
+        when(vm.get("linkURL", "")).thenReturn("/content/nonexistent");
+        when(resourceResolver.getResource("/content/nonexistent")).thenReturn(null);
 
-        assertEquals("/content/invalid/path", carouselItemValidator.getNodePath());
-        assertFalse(carouselItemValidator.isNodeExists());
+        setResource(resource);
+        assertFalse(validator.isValid(), "Validator should be invalid when linkURL resource does not exist");
     }
 
     @Test
-    void testInitWithNullNodePath() {
-        when(slingRequest.getAttribute(CarouselItemValidator.PAGE_PATH)).thenReturn(null);
+     void testIsValid_whenValid() throws Exception {
+        Resource resource = mock(Resource.class);
+        when(resource.getResourceType()).thenReturn("nonGhost");
 
-        carouselItemValidator.init();
+        ValueMap vm = mock(ValueMap.class);
+        when(resource.getValueMap()).thenReturn(vm);
+        when(vm.get("linkURL", "")).thenReturn("/content/valid");
+        when(resourceResolver.getResource("/content/valid")).thenReturn(mock(Resource.class));
 
-        assertNull(carouselItemValidator.getNodePath());
-        assertFalse(carouselItemValidator.isNodeExists());
+        setResource(resource);
+        assertTrue("Validator should be valid for a non-ghost resource with an existing linkURL", validator.isValid());
     }
 
-    @Test
-    void testInitWithEmptyNodePath() {
-        when(slingRequest.getAttribute(CarouselItemValidator.PAGE_PATH)).thenReturn("");
-
-        carouselItemValidator.init();
-
-        assertEquals("", carouselItemValidator.getNodePath());
-        assertFalse(carouselItemValidator.isNodeExists());
-    }
 }

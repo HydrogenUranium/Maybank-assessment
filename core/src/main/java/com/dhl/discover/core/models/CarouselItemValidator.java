@@ -38,4 +38,9 @@ public class CarouselItemValidator {
 
         return !isGhost && isTeaserExist;
     }
+
+    public void setResourceResolver(ResourceResolver resourceResolver) {
+        this.resourceResolver = resourceResolver;
+    }
+
 }
