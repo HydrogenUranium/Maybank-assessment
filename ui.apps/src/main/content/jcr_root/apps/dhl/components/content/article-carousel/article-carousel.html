@@ -30,7 +30,6 @@
              id="${item.id}-tabpanel"
              class="cmp-carousel__item${item.name == carousel.activeItem ? ' cmp-carousel__item--active' : ''}"
              role="tabpanel"
-             data-valid="${carouselItemValidator.valid}"
              aria-labelledby="${item.id}-tab"
              aria-roledescription="slide"
              aria-label="${(carousel.accessibilityAutoItemTitles && item.title) || 'Slide {0} of {1}' @ format=[itemList.count, carousel.items.size], i18n}"
