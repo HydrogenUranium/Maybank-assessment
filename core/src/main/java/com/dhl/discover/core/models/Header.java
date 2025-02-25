@@ -89,6 +89,14 @@ public class Header {
     @Default(values = "Skip to footer")
     private String wcagFooterLabel;
 
+    @ValueMapValue
+    @Default(values = "Open Hamburger Menu")
+    private String openHamburgerMenuText;
+
+    @ValueMapValue
+    @Default(values = "Close Hamburger Menu")
+    private String closeHamburgerMenuText;
+
     @PostConstruct
     private void init() {
         ValueMap currentPageProperties = currentPage.getProperties();

@@ -496,7 +496,9 @@
     width: 100%;
     max-height: calc(100dvh - 64px);
     margin: 0;
-    overflow: auto;
+    line-height: 14px;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     .headerV2__meganavNavigation {
       background: map-get($palette, true-white);
@@ -561,5 +563,37 @@
         }
       }
     }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #777;
+    }
+
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        background-color: #666;
+      }
+    }
   }
+}
+.enableGreyOutArea {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
