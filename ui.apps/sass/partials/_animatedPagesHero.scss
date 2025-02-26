@@ -1,5 +1,5 @@
 .animatedPagesHero {
-	padding: 25px 0 87px;
+	padding: 2.5rem 0 8.7rem;
   background-image: linear-gradient(to top, #49bfe0, #55dde0);
   text-align: center;
   color: #ffffff;
@@ -12,11 +12,11 @@
   }
 
   @include respond(md) {
-    padding: 40px 0 107px;
+    padding: 4rem 0 10.7rem;
   }
 
   @include respond(xl) {
-    padding: 65px 0 99px;
+    padding: 6.5rem 0 9.9rem;
   }
   .row {
     justify-content: center;
@@ -26,26 +26,26 @@
     display: block;
     width: 0;
     height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 15px solid #ffffff;
+    border-left: 1.5rem solid transparent;
+    border-right: 1.5rem solid transparent;
+    border-top: 1.5rem solid #ffffff;
     position: absolute;
     left: 50%;
-    bottom: 24px;
-    margin-left: -15px;
+    bottom: 2.4rem;
+    margin-left: -1.5rem;
     z-index: 2;
 
     @include respond(md) {
-      bottom: 47px;
+      bottom: 4.7rem;
     }
 
     @include bounce('2s');
   }
 
   &__title {
-    font-family: $font-family--animated;
-    max-width: 770px;
-    font-size: 32px;
+
+    max-width: 77rem;
+    font-size: 3.2rem;
     font-weight: 800;
     font-stretch: condensed;
     line-height: 1;
@@ -55,19 +55,19 @@
     z-index: 8;
 
     @include respond(md) {
-      font-size: 42px;
+      font-size: 4.2rem;
     }
 
     @include respond(xl) {
-      font-size: 60px;
+      font-size: 6rem;
     }
 
   }
 
   &__copy {
-    font-family: $font-family--animated;
-    max-width: 770px;
-    font-size: 15px;
+
+    max-width: 77rem;
+    font-size: 1.5rem;
     font-weight: 400;
     line-height: 1.6;
     letter-spacing: normal;
@@ -78,69 +78,69 @@
 
   &__animation {
     display: block;
-    height: 167px;
+    height: 16.7rem;
     position: relative;
-    margin: 20px auto;
+    margin: 2rem auto;
 
     @include respond(md) {
-      height: 246px;
-      margin: 40px auto 35px;
+      height: 24.6rem;
+      margin: 4rem auto 3.5rem;
     }
 
     &--consumer {
-      height: 163px;
+      height: 16.3rem;
 
       @include respond(md) {
-        height: 290px;
+        height: 29rem;
       }
 
       @include respond(xl) {
-        height: 302px;
+        height: 30.2rem;
       }
     }
 
     &--fastFashion {
-      height:286px;
+      height:28.6rem;
     }
 
     &--luxury {
-      height: 222px;
+      height: 22.2rem;
       width: auto;
 
       @include respond(md) {
-        height: 284px;
+        height: 28.4rem;
       }
 
       @include respond(xl) {
-        height: 306px;
+        height: 30.6rem;
       }
     }
 
     &--cosmetic {
-      height: 230px;
+      height: 23rem;
       width: auto;
 
       @include respond(md) {
-        height: 284px;
+        height: 28.4rem;
       }
 
       @include respond(xl) {
-        height: 300px;
+        height: 30rem;
       }
     }
 
     &--music {
-      margin: 10px auto;
-      height: 200px;
+      margin: 1rem auto;
+      height: 20rem;
 
       @include respond(md) {
-        margin: 10px auto;
-        height: 320px;
+        margin: 1rem auto;
+        height: 32rem;
       }
 
       @include respond(lg) {
-        height: 350px;
-        margin: 20px auto;
+        height: 35rem;
+        margin: 2rem auto;
       }
     }
 
@@ -157,12 +157,12 @@
 
   &__shadow {
     display: block;
-    width: 120px;
-    height: 52px;
+    width: 12rem;
+    height: 5.2rem;
     position: absolute;
     left: 50%;
     bottom: 0;
-    margin-left: -44px;
+    margin-left: -4.4rem;
     animation-name: shadow;
     animation-duration: 1432ms;
     animation-delay: 2s;
@@ -171,19 +171,19 @@
     animation-timing-function: linear;
 
     @include respond(md) {
-      width: 180px;
-      height: 79px;
-      margin-left: -74px;
-      background-size: 180px 246px;
+      width: 18rem;
+      height: 7.9rem;
+      margin-left: -7.4rem;
+      background-size: 18rem 24.6rem;
     }
   }
 
   &__parcel {
     display: block;
-    width: 120px;
-    height: 165px;
+    width: 12rem;
+    height: 16.5rem;
     margin: 0 auto;
-    transform: translateX(15px);
+    transform: translateX(1.5rem);
     animation-name: parcel;
     animation-duration: 1432ms;
     animation-delay: 2s;
@@ -192,24 +192,24 @@
     animation-timing-function: linear;
 
     @include respond(md) {
-      width: 180px;
-      height: 246px;
-      background-size: 180px 246px;
+      width: 18rem;
+      height: 24.6rem;
+      background-size: 18rem 24.6rem;
     }
   }
 
   &__van {
     display: block;
-    width: 158px;
-    height: 111px;
+    width: 15.8rem;
+    height: 11.1rem;
     background-image: url('__prefix__/discover-animatedpages/resources/img/newVan.svg');
-    background-size: 158px 111px;
+    background-size: 15.8rem 11.1rem;
     background-position: center top;
     background-repeat: no-repeat;
     margin: 0 auto;
-    transform: translateX(15px);
+    transform: translateX(1.5rem);
     position: absolute;
-    top: 38px;
+    top: 3.8rem;
     left: 45%;
     animation-name: van;
     animation-duration: 2500ms;
@@ -218,7 +218,7 @@
     animation-fill-mode: both;
 
     @include respond(md) {
-      top: 106px;
+      top: 10.6rem;
       left: 50%;
     }
 
@@ -266,10 +266,10 @@
   }
 
   &__video {
-    width: 210px;
+    width: 21rem;
 
     @include respond(md) {
-      width: 380px;
+      width: 38rem;
     }
   }
 
@@ -311,7 +311,7 @@
 
 
   &__fullHeightAnimation {
-    width:320px;
+    width:32rem;
     height:100%;
     position:absolute;
     top:0;
@@ -323,18 +323,18 @@
   }
 
   &__conveyorBelt {
-    width:285px;
-    height:300px;
+    width:28.5rem;
+    height:30rem;
     margin:0 auto;
     position:relative;
 
     &--left {
       background-image: url('__prefix__/discover-animatedpages/resources/img/animated3/shoe-belt-2.svg');
-      width:230px;
-      height:300px;
-      background-size:230px 191px;
+      width:23rem;
+      height:30rem;
+      background-size:23rem 19.1rem;
       background-repeat:no-repeat;
-      background-position:0px 0px;
+      background-position:0 0;
       position:absolute;
       top:0;
       left:0;
@@ -343,13 +343,13 @@
 
     &--right {
       background-image: url('__prefix__/discover-animatedpages/resources/img/animated3/shoe-belt-1.svg');
-      width:186px;
-      height:194px;
-      background-size:186px 193px;
+      width:18.6rem;
+      height:19.4rem;
+      background-size:18.6rem 19.3rem;
       background-repeat:no-repeat;
-      background-position:0px 0px;
+      background-position:0 0;
       position:absolute;
-      bottom:15px;
+      bottom:1.5rem;
       right:9px;
       z-index:5;
     }
@@ -358,14 +358,14 @@
 
     &--machine {
       background-image: url('__prefix__/discover-animatedpages/resources/img/animated3/shoe-belt-3.svg');
-      width:120px;
-      height:194px;
-      background-size:186px 193px;
+      width:12rem;
+      height:19.4rem;
+      background-size:18.6rem 19.3rem;
       background-repeat:no-repeat;
-      background-position:0px 0px;
+      background-position:0 0;
       position:absolute;
-      bottom:15px;
-      right:75px;
+      bottom:1.5rem;
+      right:7.5rem;
       z-index:7;
     }
   }
@@ -374,12 +374,12 @@
 
 .shoeItem {
   background-image: url('__prefix__/discover-animatedpages/resources/img/animated3/header-shoes.svg');
-  background-size:85px 66px;
+  background-size:8.5rem 6.6rem;
   background-repeat:no-repeat;
   animation:shoedrop 5s linear infinite;
-  transform-origin:0px 230px;
+  transform-origin:0 23rem;
   position:absolute;
-  top:-54px;
+  top:-5.4rem;
   z-index:3;
 
 
@@ -392,41 +392,41 @@
   }
 
   &--trainers {
-    width:32px;
-    height:24px;
-    background-position:0px 1px;
+    width:3.2rem;
+    height:2.4rem;
+    background-position:0 1px;
   }
 
   &--loafers {
-    width:36px;
-    height:24px;
-    background-position:-50px 1px;
+    width:3.6rem;
+    height:2.4rem;
+    background-position:-5rem 1px;
   }
 
   &--heels {
-    width:30px;
-    height:27px;
-    background-position:0px -38px;
+    width:3rem;
+    height:2.7rem;
+    background-position:0 -3.8rem;
   }
 
   &--boots {
-    width:30px;
-    height:31px;
-    background-position:-55px -34px;
+    width:3rem;
+    height:3.1rem;
+    background-position:-5.5rem -3.4rem;
   }
 }
 
 .boxItem {
   background-image: url('__prefix__/discover-animatedpages/resources/img/animated3/shoes-box.svg');
-  background-size:33px;
+  background-size:3.3rem;
   background-repeat:no-repeat;
-  transform-origin:295px 130px;
+  transform-origin:29.5rem 13rem;
   position:absolute;
   top:0;
   z-index:6;
-  width:33px;
-  height:34px;
-  top:-50px;
+  width:3.3rem;
+  height:3.4rem;
+  top:-5rem;
 
   &:nth-child(1) {
     animation-delay:(2s);
@@ -504,37 +504,37 @@
 
 @keyframes parcel {
   0% {
-    transform: translate(15px, -573px);
+    transform: translate(1.5rem, -57.3rem);
   }
 
   55% {
-    transform: translate(15px, 0px);
+    transform: translate(1.5rem, 0);
   }
 
   65% {
-    transform: translate(15px, -90px);
+    transform: translate(1.5rem, -9rem);
   }
 
   81% {
-    transform: translate(15px, 0px);
+    transform: translate(1.5rem, 0);
   }
 
   88% {
-    transform: translate(15px, -54px);
+    transform: translate(1.5rem, -5.4rem);
   }
 
   100% {
-    transform: translate(15px, 0px);
+    transform: translate(1.5rem, 0);
   }
 }
 
 @keyframes van {
   0% {
-    transform: translate(-500px, -503px);
+    transform: translate(-50rem, -50.3rem);
   }
 
   100% {
-    transform: translate(15px, 0px);
+    transform: translate(1.5rem, 0);
   }
 }
 
@@ -542,18 +542,18 @@
 
   @keyframes van {
     0% {
-      transform: translate(-838px, -503px);
+      transform: translate(-83.8rem, -50.3rem);
     }
   }
 }
 
 @keyframes vanOut {
   0% {
-    transform: translate(15px, 0px);
+    transform: translate(1.5rem, 0);
   }
 
   100% {
-    transform: translate(1561px, 520px);
+    transform: translate(156.1rem, 52rem);
   }
 }
 
@@ -609,98 +609,98 @@
 
 @keyframes shoedrop-xs {
   0% {
-    transform: translateY(0) translateX(200px);
+    transform: translateY(0) translateX(20rem);
   }
 
   10% {
-    transform: translateY(120px) translateX(200px);
+    transform: translateY(12rem) translateX(20rem);
   }
 
   40% {
-     transform: translateY(220px) translateX(40px);
+     transform: translateY(22rem) translateX(4rem);
   }
 
   50% {
-    transform: translateY(260px) translateX(120px);
+    transform: translateY(26rem) translateX(12rem);
   }
   100% {
-     transform: translateY(250px) translateX(120px);
+     transform: translateY(25rem) translateX(12rem);
   }
 }
 
 @keyframes shoedrop-md {
   0% {
-    transform: translateY(0) translateX(230px);
+    transform: translateY(0) translateX(23rem);
   }
 
   10% {
-    transform: translateY(155px) translateX(230px);
+    transform: translateY(15.5rem) translateX(23rem);
   }
 
   40% {
-    transform: translateY(270px) translateX(40px);
+    transform: translateY(27rem) translateX(4rem);
   }
 
   50% {
-    transform: translateY(310px) translateX(130px);
+    transform: translateY(31rem) translateX(13rem);
   }
 
   100% {
-    transform: translateY(300px) translateX(130px);
+    transform: translateY(30rem) translateX(13rem);
   }
 }
 
 @keyframes shoedrop-xl {
   0% {
-    transform: translateY(0) translateX(210px);
+    transform: translateY(0) translateX(21rem);
   }
 
   10% {
-    transform: translateY(210px) translateX(210px);
+    transform: translateY(21rem) translateX(21rem);
   }
 
   25% {
-    transform: translateY(305px) translateX(45px);
+    transform: translateY(30.5rem) translateX(4.5rem);
   }
 
   40% {
-    transform: translateY(360px) translateX(130px);
+    transform: translateY(36rem) translateX(13rem);
   }
   100% {
-     transform: translateY(360px) translateX(130px);
+     transform: translateY(36rem) translateX(13rem);
   }
 }
 
 @keyframes shoeboxdrop-xs {
   0% {
-    transform: translateY(250px) translateX(120px);
+    transform: translateY(25rem) translateX(12rem);
   }
 
   20% {
-    transform: translateY(340px) translateX(270px);
+    transform: translateY(34rem) translateX(27rem);
   }
 
   50% {
-    transform: translateY(800px) translateX(270px);
+    transform: translateY(80rem) translateX(27rem);
   }
   100% {
-    transform: translateY(800px) translateX(270px);
+    transform: translateY(80rem) translateX(27rem);
   }
 }
 
 @keyframes shoeboxdrop-md {
   0% {
-    transform: translateY(305px) translateX(120px);
+    transform: translateY(30.5rem) translateX(12rem);
   }
   20% {
-    transform: translateY(390px) translateX(270px);
+    transform: translateY(39rem) translateX(27rem);
   }
 
   30% {
-    transform: translateY(800px) translateX(270px);
+    transform: translateY(80rem) translateX(27rem);
   }
   100% {
-    transform: translateY(800px) translateX(270px);
+    transform: translateY(80rem) translateX(27rem);
   }
 }
 
@@ -708,19 +708,19 @@
 
 @keyframes shoeboxdrop-xl {
   0% {
-    transform: translateY(345px) translateX(130px);
+    transform: translateY(34.5rem) translateX(13rem);
   }
 
   20% {
-    transform: translateY(430px) translateX(270px);
+    transform: translateY(43rem) translateX(27rem);
   }
 
   30% {
-    transform: translateY(800px) translateX(270px);
+    transform: translateY(80rem) translateX(27rem);
   }
 
   100% {
-    transform: translateY(800px) translateX(270px);
+    transform: translateY(80rem) translateX(27rem);
   }
 }
 

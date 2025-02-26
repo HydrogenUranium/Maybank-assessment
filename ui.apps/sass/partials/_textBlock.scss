@@ -1,6 +1,6 @@
 %textBlock {
-  margin-bottom: 20px;
-  font-size: 25px;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
 
   p,
   a {
@@ -12,22 +12,20 @@
   @extend %textBlock;
   color: map-get($palette, black);
   background-color: map-get($palette, sunflower-yellow);
-  padding: 20px;
+  padding: 2rem;
 
   @include respond(md) {
     width: 40%;
-    padding-bottom: 30px;
+    padding-bottom: 3rem;
   }
 
   span {
-    @include font("%H3");
-    font-size: 30px;
+    font-size: 3rem;
     font-weight: 700;
   }
 
   p {
-    @include font("%H3");
-    font-size: 23px;
+    font-size: 2.3rem;
     font-weight: 200;
     font-stretch: condensed;
     line-height: 1.2;
@@ -41,7 +39,6 @@
   &--right,
   &--yellow {
     @extend %textBlock;
-    @include font("%H3", map-get($palette, scarlet));
     font-weight: 800;
     font-stretch: condensed;
 
@@ -55,8 +52,8 @@
       span {
         background-image: url('__prefix__/discover/resources/img/externallinkicon.svg');
         background-size: contain;
-        width: 15px;
-        height: 15px;
+        width: 1.5rem;
+        height: 1.5rem;
         background-position: center;
         display: inline-block;
       }
@@ -73,7 +70,7 @@
 
     @include respond(md) {
       width: 50%;
-      margin-right: 30px;
+      margin-right: 3rem;
     }
   }
 
@@ -87,8 +84,8 @@
 
     @include respond(md) {
       width: 50%;
-      margin-left: 30px;
-      padding-left: 30px;
+      margin-left: 3rem;
+      padding-left: 3rem;
     }
 
   }
@@ -113,7 +110,7 @@
 
     @include respond(md) {
       float: left;
-      margin-right: 30px;
+      margin-right: 3rem;
     }
   }
 
@@ -127,7 +124,7 @@
 
     @include respond(md) {
       float: right;
-      margin-left: 40px;
+      margin-left: 4rem;
     }
   }
 }

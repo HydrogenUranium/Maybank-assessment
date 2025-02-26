@@ -26,10 +26,10 @@
     &__image {
       background-size: cover;
       background-position: center;
-      height: 180px;
+      height: 18rem;
 
       @include respond(md) {
-        height: 430px;
+        height: 43rem;
       }
     }
   }
@@ -40,18 +40,18 @@
     height: 50%;
     position: absolute;
     align-items: start;
-    top: 195px;
+    top: 19.5rem;
 
 
     @include respond(md) {
-      top: 455px;
+      top: 45.5rem;
     }
 
     @include respond(lg) {
-      height: 430px;
+      height: 43rem;
       top: 0;
       align-items: center;
-      width: 40px;
+      width: 4rem;
     }
 
   }
@@ -61,21 +61,21 @@
   .carousel-control-prev-icon {
     background: url('__prefix__/discover/resources/img/carouseliconsblack.png');
     background-repeat: no-repeat;
-    background-size: 20px 36px;
-    background-position: -13px;
-    top: -15px;
-    width: 20px;
-    height: 26px;
+    background-size: 2rem 3.6rem;
+    background-position: -1.3rem;
+    top: -1.5rem;
+    width: 2rem;
+    height: 2.6rem;
 
     @include respond(lg) {
-      height: 72px;
-      width: 25px;
-      background-size: 25px 72px;
+      height: 7.2rem;
+      width: 2.5rem;
+      background-size: 2.5rem 7.2rem;
     }
   }
 
   .carousel-control-prev-icon {
-    background-position: 13px;
+    background-position: 1.3rem;
   }
 
 }

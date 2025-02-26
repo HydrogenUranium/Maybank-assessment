@@ -228,7 +228,7 @@ class HeaderV2 {
   }
 
   hideSecondRowOfCategories() {
-    $(this.sel.categories).css({'overflow': 'hidden', 'max-height': '51px'});
+    $(this.sel.categories).css({'overflow': 'hidden', 'max-height': '5.1rem'});
     $(this.sel.moreLink).show();
     $(this.sel.lessLink).hide();
   }
