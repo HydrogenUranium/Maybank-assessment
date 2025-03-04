@@ -1,9 +1,13 @@
+.article-showcase {
+  margin-top: 1rem;
+}
+
 .cmp-article-showcase {
   &__title {
     font-weight: bold;
-    font-size: 20px;
-    padding: 5px 10px;
-    margin-bottom: 16px;
+    font-size: 2rem;
+    padding: .5rem 1rem;
+    margin-bottom: 1.6rem;
     border-left: 2px solid #DD3741;
 
     [dir="rtl"] & {
@@ -13,16 +17,16 @@
   }
 
   &__link {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 
     @include respond(md) {
-      margin-bottom: 0px;
+      margin-bottom: 0;
     }
 
     display: inline-block;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 1.4rem;
+    line-height: 2rem;
     text-decoration: underline;
     color: #D40511;
   }
@@ -32,12 +36,12 @@
       @include extend-background-edge;
 
       &::-webkit-scrollbar-track {
-        margin: 35px;
+        margin: 3.5rem;
       }
     }
 
     @include respond(xl) {
-      margin-top: 50px;
+      margin-top: 5rem;
       .article-card {
         width: auto;
       }
@@ -46,79 +50,79 @@
     & .cmp-article-showcase {
       &__articles {
         display: flex;
-        gap: 36px;
+        gap: 3.6rem;
         @include respond(xl) {
           display: grid;
           overflow: hidden;
           padding-bottom: 0;
           grid-auto-rows: 0;
-          gap: 0px 36px;
+          gap: 0 3.6rem;
           grid-template-rows: repeat(1, 1fr);
-          grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
         }
       }
     }
   }
 
   &--vertical {
-    padding-top: 18px;
+    padding-top: 1.8rem;
     background-color: #E2E2E266;
     @include extend-background-mobile-only;
 
     @include respond(md) {
       background-color: initial;
-      margin-top: 30px;
-      padding-top: 0px;
-      padding-left: 5px;
-      padding-right: 10px;
+      margin-top: 3rem;
+      padding-top: 0;
+      padding-left: .5rem;
+      padding-right: 1rem;
     }
 
     @include respond(xl) {
-      margin-top: 50px;
-      padding-right: 20px;
+      margin-top: 5rem;
+      padding-right: 2rem;
     }
 
     & .cmp-article-showcase {
       &__articles {
-        margin-bottom: 0px;
+        margin-bottom: 0;
       }
 
       &__article {
         display: flex;
-        gap: 25px;
+        gap: min(2rem, 20px);
 
         &:not(:first-child) {
-          margin-top: 10px;
+          margin-top: 1rem;
           border-top: 1px solid #E9E9E9;
-          padding-top: 22px;
+          padding-top: 2.2rem;
 
           @include respond(xl) {
-            margin-top: 25px;
-            padding-top: 25px;
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
           }
         }
 
         &-picture {
           position: relative;
-          min-height: 72px;
-          width: 72px;
-          min-width: 72px;
+          min-height: 7.2rem;
+          width: 7.2rem;
+          min-width: 7.2rem;
 
           @include respond(md) {
-            min-height: 110px;
-            width: 165px;
-            min-width: 165px;
+            min-height: 11rem;
+            width: 16.5rem;
+            min-width: 16.5rem;
           }
 
           @include respond(xl) {
-            min-height: 200px;
-            width: 300px;
-            min-width: 300px;
+            min-height: 20rem;
+            width: 30rem;
+            min-width: 30rem;
           }
 
           &:after {
             content: "";
-            border-radius: 2px;
+            border-radius: .2rem;
             position: absolute;
             background: transparent linear-gradient(180deg, #dcdcdc 50%, #3a3a3a 80%, #0d0d0d 100%) 0 0 no-repeat padding-box;
             mix-blend-mode: multiply;
@@ -137,30 +141,30 @@
           width: 100%;
           object-fit: cover;
           display: inline-block;
-          border-radius: 2px;
-          box-shadow: 0px 3px 6px #00000029;
+          border-radius: .2rem;
+          box-shadow: 0 3px .6rem #00000029;
         }
 
         &-group-tag {
           font-weight: bold;
-          font-size: 12px;
-          line-height: 12px;
-          margin-top: 5px;
-          letter-spacing: 0.96px;
+          font-size: 1.2rem;
+          line-height: 1.2rem;
+          margin-top: .5rem;
+          letter-spacing: 0.9.6rem;
           color: #D40511;
 
           @include respond(md) {
             margin-top: 3px;
             font-weight: normal;
-            font-size: 12px;
-            line-height: 12px;
+            font-size: 1.2rem;
+            line-height: 1.2rem;
           }
 
           @include respond(xl) {
-            margin-top: 0px;
+            margin-top: 0;
             font-weight: normal;
-            font-size: 16px;
-            line-height: 16px;
+            font-size: 1.6rem;
+            line-height: 1.6rem;
           }
         }
 
@@ -171,27 +175,33 @@
           -webkit-box-orient: vertical;
           transition: color 0.2s;
           color: #323232;
-          margin-top: 10px;
+          margin-top: 1rem;
           font-weight: bold;
-          font-size: 20px;
-          line-height: 24px;
+          font-size: 1.8rem;
+          line-height: 2.4rem;
           text-decoration: none;
-          letter-spacing: 0px;
+          letter-spacing: 0;
 
           @include respond(md) {
-            font-size: 18px;
-            line-height: 20px;
+            line-height: 2rem;
           }
 
           @include respond(xl) {
-            font-size: 20px;
-            line-height: 22px;
+            font-size: 2rem;
+            line-height: 2.2rem;
           }
 
           &:hover {
             text-decoration: underline;
             color: #D40511;
             display: block;
+          }
+        }
+
+        &-title-wrapper {
+          margin-bottom: .5rem;
+          @include respond(md) {
+            margin-bottom: 1.2rem;
           }
         }
 
@@ -205,9 +215,9 @@
 
           @include respond(md) {
             display: initial;
-            margin-top: 10px;
-            font-size: 12px;
-            line-height: 17px;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            line-height: 1.7rem;
             opacity: 0.7;
           }
         }
@@ -217,13 +227,13 @@
 
           @include respond(xl) {
             display: -webkit-box;
-            margin-top: 15px;
-            margin-bottom: 10px;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
             overflow: hidden;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
-            font-size: 14px;
-            line-height: 20px;
+            font-size: 1.4rem;
+            line-height: 2rem;
           }
         }
 
@@ -239,21 +249,21 @@
           @include respond(xl) {
             display: flex;
             margin-top: auto;
-            gap: 6px;
+            gap: .6rem;
           }
 
           &-image {
             object-fit: cover;
-            height: 32px;
-            width: 32px;
+            height: 3.2rem;
+            width: 3.2rem;
             border-radius: 50%;
           }
 
           &-name {
             font-weight: bold;
-            font-size: 12px;
-            line-height: 22px;
-            margin: auto 0px;
+            font-size: 1.2rem;
+            line-height: 2.2rem;
+            margin: auto 0;
           }
         }
       }

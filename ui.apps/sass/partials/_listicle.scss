@@ -1,5 +1,5 @@
 .listicleitem .listicle-component {
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   overflow: hidden;
 
   font-size: unset;
@@ -18,11 +18,11 @@
   }
 
   .listicle__row {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 
     @include respond(md) {
       display: block;
-      margin-bottom: 30px;
+      margin-bottom: 3rem;
     }
 
     &__picture {
@@ -33,28 +33,28 @@
       @include respond(md) {
         width: 50%;
         float: left;
-        margin-right: 30px;
+        margin-right: 3rem;
         padding-left: 0;
         margin-left: 0;
       }
       img {
         @extend %listicle-block;
         width: 100%;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         object-fit: cover;
 
         @include respond(md) {
-          height: 316px;
+          height: 31.6rem;
         }
 
         @include respond(lg) {
-          height: 277px;
+          height: 27.7rem;
         }
       }
     }
 
     &__text {
-      padding: 30px 30px 0;
+      padding: 3rem 3rem 0;
 
       @include respond(md) {
         width: 50%
@@ -66,22 +66,21 @@
 
       &__title {
         color: map-get($palette, scarlet) !important;
-        font-size: 25px !important;
+        font-size: 2.5rem !important;
         font-weight: bold !important;
         margin-bottom: .5rem !important;
       }
 
       &__body {
-        @include font("%T4");
-        margin: 10px 0;
+        margin: 1rem 0;
       }
 
       ol, ul {
         list-style: revert;
         padding-left: 0;
-        padding-right: 15px;
+        padding-right: 1.5rem;
         position: relative;
-        left: 15px;
+        left: 1.5rem;
 
         [dir="rtl"] & {
           right: 0;
@@ -97,7 +96,7 @@
         @include respond(md) {
           float: right;
           padding-right: 0;
-          margin-left: 30px;
+          margin-left: 3rem;
           margin-right: 0;
         }
       }
@@ -136,7 +135,7 @@
 
 %listicle-block {
   @include respond(md) {
-    margin-right: 30px;
+    margin-right: 3rem;
 
     &:nth-child(2) {
       margin-right: 0;
@@ -147,10 +146,10 @@
 %listicle-text-block {
   @extend %listicle-block;
 
-  padding: 20px;
+  padding: 2rem;
 
   @include respond(md) {
-    margin: 0 30px 0 0;
+    margin: 0 3rem 0 0;
   }
 
 }

@@ -1,53 +1,56 @@
 .landing-points-component {
+  @include inherit-headings;
+
   p {
     margin-bottom: 0;
   }
   .header-image {
-    margin: 40px auto;
-    max-height: 200px;
+    margin: 4rem auto;
+    max-height: 20rem;
     max-width: 100%;
     display: block;
     @include respond(xl) {
-      max-height: 350px;
-      margin: 20px auto;
+      max-height: 35rem;
+      margin: 2rem auto;
     }
   }
   .landing-point {
-    min-height: 45px;
+    margin-top: 1.5em;
+    min-height: 4.5rem;
     color: #323232;
     position: relative;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 1.4rem;
+    line-height: 2rem;
     @include respond(xl) {
-      font-size: 20px;
-      line-height: 29px;
+      font-size: 2rem;
+      line-height: 2.9rem;
     }
     &::before{
         content: "";
         background-size: contain;
-        width: 40px;
-        height: 40px;
+        width: 4rem;
+        height: 4rem;
         background-repeat: no-repeat;
         display: block;
         position: absolute;
-        top: 5px;
+        top: .5rem;
     }
     &__title{
       margin: 0;
-      padding-left: 55px;
+      padding-left: 5.5rem;
       font-weight: bold;
 
       [dir="rtl"] & {
         padding-left: 0;
-        padding-right: 55px;
+        padding-right: 5.5rem;
       }
     }
     &__content{
-      padding-left: 55px;
+      padding-left: 5.5rem;
 
       [dir="rtl"] & {
         padding-left: 0;
-        padding-right: 55px;
+        padding-right: 5.5rem;
       }
 
       a {
@@ -56,21 +59,21 @@
     }
 
     &--red-dot {
-      min-height: 20px;
+      min-height: 2rem;
       &::before{
         content: "•";
         color: #d40511;
         top: 0;
         display: block;
         position: absolute;
-        font-size: 40px;
+        font-size: 4rem;
       }
       .landing-point {
         &__title{
-          padding-left: 30px;
+          padding-left: 3rem;
         }
         &__content{
-          padding-left: 30px;
+          padding-left: 3rem;
         }
       }
     }

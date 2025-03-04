@@ -1,6 +1,14 @@
 $container-max-widths: (
-  sm: 540px,
-  md: 690px,
-  lg: 960px,
-  xl: 1200px
+  sm: 54rem,
+  md: 69rem,
+  lg: 96rem,
+  xl: 120rem
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 34rem,
+  md: 48rem,
+  lg: 60rem,
+  xl: 75rem
 );

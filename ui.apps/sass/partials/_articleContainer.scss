@@ -1,43 +1,39 @@
-.article-container-component {
-  margin: 0 21px;
+.cmp-article-container {
+  margin: 0 2.1rem;
 
   @include respond(md) {
-    margin: 0 35px;
+    margin: 0 3.5rem;
   }
-  .grid {
-    margin: 0 auto;
-    max-width: 1600px;
-    &__container {
-      gap: 20px;
-      max-width: 1380px;
-      margin-left: auto;
+  &__grid {
+    gap: 2rem;
+    max-width: 138rem;
+    margin-left: auto;
 
-      [dir="rtl"] & {
-        margin-left: 0;
-        margin-right: auto;
-      }
-      @include respond(xl) {
-        display: grid;
-        grid-template-columns: minmax(auto, 1080px) 300px;
-        grid-template-areas: "body sidebar";
-      }
+    [dir="rtl"] & {
+      margin-left: 0;
+      margin-right: auto;
+    }
+    @include respond(xl) {
+      display: grid;
+      grid-template-columns: minmax(auto, 108rem) 30rem;
+      grid-template-areas: "body sidebar";
+    }
+  }
 
-      &__body {
-        @include respond(xl) {
-          grid-area: body;
-        }
-      }
+  &__body-wrapper {
+    @include respond(xl) {
+      grid-area: body;
+    }
+  }
 
-      &__sidebar {
-        display: none;
+  &__sidebar-wrapper {
+    display: none;
 
-        @include respond(xl) {
-          display: block;
-          grid-area: sidebar;
-          .sidebar-container {
-            max-width: 280px;
-          }
-        }
+    @include respond(xl) {
+      display: block;
+      grid-area: sidebar;
+      .sidebar-container {
+        max-width: 28rem;
       }
     }
   }

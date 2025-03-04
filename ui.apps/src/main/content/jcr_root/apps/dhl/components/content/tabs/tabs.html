@@ -4,7 +4,6 @@
      data-sly-set.isEmpty=${!model.tabList.size}></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
-
 <div class="tabs-component" data-sly-test="${!isEmpty}">
   <div class="rules-cont mb-4">
     <ul class="nav nav-tabs row" id="tabs-${model.id}" role="tablist" data-sly-list="${model.tabList}">
@@ -20,7 +19,7 @@
             <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
                  data-sly-call="${template.picture @ image=item.image, alt=item.imageAltText}"></sly>
           </div>
-          <h4 class="nav-link__title text-center mb-0" data-sly-element="${model.titleElement}">${item.title}</h4>
+          <div class="nav-link__title text-center mb-0" data-sly-element="${model.titleElement}">${item.title}</div>
         </a>
       </li>
     </ul>
