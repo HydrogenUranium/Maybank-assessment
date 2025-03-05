@@ -1,9 +1,14 @@
+body.editable-article {
+  h1,h2,h3,h4,h5,h6 {
+    font-stretch: condensed;
+  }
+}
+
 .text, .listicle-component {
   margin-top: 1rem;
   @include styledLists();
 
   h1,h2,h3,h4,h5,h6 {
-    font-stretch: condensed;
     margin-bottom: .6em;
     margin-top: 1em;
     @include respond(md) {
@@ -84,19 +89,34 @@
     }
   }
 
-  &.custom-text--p1 p {
-    font-size: 2rem;
-    line-height: 1.6;
+  &.font-size-md {
+    font-size: var(--font-size-md);
   }
 
-  &.custom-text--p2 p {
-    font-size: 1.8rem;
-    line-height: 1.6;
+  &.font-size-lg {
+    font-size: var(--font-size-lg);
   }
 
-  &.custom-text--p3 p {
-    font-size: 1.6rem;
-    line-height: 1.6;
+  &.font-size-xl {
+    font-size: var(--font-size-xl);
+  }
+
+  &.font-size-3xl {
+    font-size: var(--font-size-3xl);
+  }
+
+  &.font-size-5xl {
+    font-size: var(--font-size-5xl);
+  }
+
+  &.font-weight-bold-condensed {
+    font-weight: var(--font-weight-bold);
+    font-stretch: condensed;
+    color: #323232;
+
+    p {
+        color: #323232;
+      }
   }
 
   &.custom-text--mb0 .cmp-text p {

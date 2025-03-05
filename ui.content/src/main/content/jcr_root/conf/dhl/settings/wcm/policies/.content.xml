@@ -336,27 +336,48 @@
                         </rtePlugins>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
-                                    cq:styleGroupLabel="Font"
+                                    cq:styleGroupLabel="Font Size"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
                                     <item0
-                                            cq:styleClasses="custom-text--p3"
+                                            cq:styleClasses="font-size-md"
                                             cq:styleId="1720434563090"
                                             cq:styleLabel="Regular (16px)"
                                             jcr:primaryType="nt:unstructured"/>
                                     <item1
-                                            cq:styleClasses="custom-text--p2"
+                                            cq:styleClasses="font-size-lg"
                                             cq:styleId="1720434574579"
                                             cq:styleLabel="Medium (18px)"
                                             jcr:primaryType="nt:unstructured"/>
                                     <item2
-                                            cq:styleClasses="custom-text--p1"
+                                            cq:styleClasses="font-size-xl"
                                             cq:styleId="1720434583692"
                                             cq:styleLabel="Large (20px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="font-size-3xl"
+                                            cq:styleId="1741170559552"
+                                            cq:styleLabel="Extra Large (24px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item4
+                                            cq:styleClasses="font-size-5xl"
+                                            cq:styleId="1741170559554"
+                                            cq:styleLabel="Double Extra Large (30px)"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
                             </item0>
                             <item1
+                                    cq:styleGroupLabel="Font Weight"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="font-weight-bold-condensed"
+                                            cq:styleId="1741171213248"
+                                            cq:styleLabel="Extra Bold Condensed"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                            <item2
                                     cq:styleGroupLabel="Top Extra Spacing"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
@@ -366,8 +387,8 @@
                                             cq:styleLabel="Top - Middle Spacing (35px)"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item1>
-                            <item2
+                            </item2>
+                            <item3
                                     cq:styleGroupLabel="Bottom Extra Spacing"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
@@ -392,8 +413,8 @@
                                             cq:styleLabel="Large (30px)"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item2>
-                            <item3
+                            </item3>
+                            <item4
                                     cq:styleGroupLabel="Table"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
@@ -403,8 +424,8 @@
                                             cq:styleLabel="Simple Red"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item3>
-                            <item4
+                            </item4>
+                            <item5
                                     cq:styleGroupLabel="Margin Top"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
@@ -429,8 +450,8 @@
                                             cq:styleLabel="No"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item4>
-                            <item5
+                            </item5>
+                            <item6
                                     cq:styleGroupLabel="Margin Bottom"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
@@ -455,7 +476,7 @@
                                             cq:styleLabel="No"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item5>
+                            </item6>
                         </cq:styleGroups>
                     </general_text_policy>
                     <category_text_policy
