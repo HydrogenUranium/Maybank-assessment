@@ -1,76 +1,80 @@
 .tabs-component {
-  margin-top: 15px;
+  margin-top: 1.5rem;
   .rules-cont {
     border-top: solid 4px #d40511;
     border-bottom: solid 4px #d40511;
   }
-  .nav-tabs {
-    padding: 15px 0;
+
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1.5rem;
+    &__title {
+      margin-top: auto;
+    }
+  }
+
+  .nav-item {
+    padding: 0 .3rem;
     margin: 0;
+  }
 
-    .nav-item {
-      padding: 0 3px;
+  .nav-tabs {
+    padding: 1.5rem 0;
+    margin: 0;
+  }
+
+  li {
+    &:before {
+      display: none;
+    }
+
+    img {
+      max-width: 10rem;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      filter: grayscale(100%);
       margin: 0;
+      opacity: 0.2;
+    }
 
-      .nav-link {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        gap: 15px;
-        &__title {
-          margin-top: auto;
-        }
+    a {
+      text-decoration: none;
+      color: #191919;
+      &:hover {
+        color: #d40511;
+        text-decoration: underline;
       }
     }
 
-    li {
-      &:before {
-        display: none;
-      }
-
+    a.active {
+      color: #d40511;
       img {
-        max-width: 100px;
-        aspect-ratio: 1 / 1;
-        object-fit: contain;
-        filter: grayscale(100%);
-        margin: 0;
-        opacity: 0.2;
-      }
-
-      a {
-        text-decoration: none;
-        &:hover {
-          color: #d40511;
-          text-decoration: underline;
-        }
-      }
-
-      a.active {
-        color: #d40511;
-        img {
-          filter: grayscale(0);
-          opacity: 1;
-        }
-      }
-
-      &:hover img {
         filter: grayscale(0);
         opacity: 1;
       }
+    }
+
+    &:hover img {
+      filter: grayscale(0);
+      opacity: 1;
     }
   }
 
   .tab-content {
     border-top: 1px #ececec solid;
-    padding-top: 20px;
+    padding-top: 2rem;
   }
+
   .tab-pane {
     display: none;
   }
+
   .tab-pane.active {
     display: block;
-      a {
-        @include hoverText($text-decoration-normal: underline, $text-decoration-hover: underline);
-      }
+    a {
+      @include hoverText($text-decoration-normal: underline, $text-decoration-hover: underline);
+    }
   }
 }

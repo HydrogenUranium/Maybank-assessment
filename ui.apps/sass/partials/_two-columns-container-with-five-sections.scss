@@ -1,25 +1,25 @@
 .two-columns-container-with-five-sections-component {
   .main-container {
-    padding: 0 30px;
+    padding: 0 3rem;
 
     @include respond(xl) {
-      max-width: 1400px;
+      max-width: 140rem;
       margin: 0 auto;
     }
 
     .text {
       p {
-        font-size: 20px;
-        line-height: 29px;
+        font-size: 2rem;
+        line-height: 2.9rem;
       }
     }
 
     .columns-section {
-      gap: 20px;
+      gap: 2rem;
 
       .marketoForm--white {
         border: 1px solid #E2E2E2;
-        border-radius: 4px;
+        border-radius: .4rem;
       }
 
       &__left-column {
@@ -28,41 +28,41 @@
           margin-top: 0;
         }
         &__body {
-          margin-top: 40px;
+          margin-top: 4rem;
         }
       }
     }
 
     .description-section {
-      margin-top: 25px;
+      margin-top: 2.5rem;
     }
 
     .columns-section,
     .description-section {
       @include respond(ml) {
-        margin-top: 30px;
+        margin-top: 3rem;
       }
 
       @include respond(xl) {
-        margin-top: 50px;
+        margin-top: 5rem;
       }
     }
   }
 
   .bottom-section {
-    margin-top: 20px;
+    margin-top: 2rem;
   }
 
   &__editor {
     .right-header-section {
-      padding-right: 70px;
-      width: calc(50% - 10px);
+      padding-right: 7rem;
+      width: calc(50% - 1rem);
       margin-left: auto;
       [dir="rtl"] & {
         margin-right: auto;
         margin-left: unset;
         padding-right: unset;
-        padding-left: 70px;
+        padding-left: 7rem;
       }
     }
 
@@ -86,15 +86,15 @@
       display: none;
 
       @include respond(xl) {
-        padding-right: 70px;
+        padding-right: 7rem;
         display: block;
-        width: calc(50% - 10px);
+        width: calc(50% - 1rem);
         margin-left: auto;
         [dir="rtl"] & {
           margin-right: auto;
           margin-left: unset;
           padding-right: unset;
-          padding-left: 70px;
+          padding-left: 7rem;
         }
       }
     }
@@ -118,10 +118,10 @@
         }
 
         @include respond(md) {
-          padding-left: 20px;
+          padding-left: 2rem;
           background: white;
           border: 1px solid #E2E2E2;
-          border-radius: 4px;
+          border-radius: .4rem;
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-template-areas: "left-column right-column";
@@ -150,7 +150,7 @@
 
           &__header-section {
             @include respond(md) {
-              padding: 0 20px;
+              padding: 0 2rem;
             }
 
             @include respond(xl) {
@@ -159,7 +159,7 @@
           }
 
           &__body {
-            margin-top: 20px;
+            margin-top: 2rem;
 
             @include respond(md) {
               margin-top: 0;

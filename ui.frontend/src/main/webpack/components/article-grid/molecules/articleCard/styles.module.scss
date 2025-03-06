@@ -6,7 +6,7 @@
     display: block;
     position: relative;
     border-radius: 2px;
-    height: 191px;
+    height: 19.1rem;
     background: {
       size: cover;
       position: center;
@@ -26,27 +26,27 @@
 
   &GroupTag {
     z-index: 1;
-    font-size: 12px;
-    line-height: 17px;
+    font-size: 1.2rem;
+    line-height: 1.7rem;
     color: #FFFFFF;
     position: absolute;
-    bottom: 13px;
-    padding: 0 15px;
+    bottom: 1.3rem;
+    padding: 0 1.5rem;
   }
 
   &Info {
     border: 1px solid #E2E2E2;
     border-top: none;
     border-radius: 0px 0px 8px 8px;
-    height: calc(100% - 191px);
+    height: calc(100% - 19.1rem);
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 1.5rem;
   }
 
   &Author {
-    font-size: 12px;
-    line-height: 17px;
+    font-size: 1.2rem;
+    line-height: 1.7rem;
     letter-spacing: 0px;
     color: #323232;
   }
@@ -57,10 +57,10 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    margin-top: 10px;
+    margin-top: 1rem;
     font-weight: bold;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 1.8rem;
+    line-height: 2.2rem;
     letter-spacing: 0px;
     color: #323232;
 
@@ -71,10 +71,10 @@
   }
 
   &Description {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 12px;
-    line-height: 14px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
     letter-spacing: 0px;
     color: #323232;
     overflow: hidden;
@@ -86,18 +86,18 @@
 
   &Tags {
     margin-top: auto;
-    height: 24px;
+    height: 2.4rem;
     overflow: hidden;
-    font-size: 12px;
-    line-height: 24px;
+    font-size: 1.2rem;
+    line-height: 2.4rem;
   }
 
   &Tag {
     background-color: #FFCC00;
     border-radius: 4px;
-    margin-right: 10px;
+    margin-right: 1rem;
     display: inline-block;
     color: #323232;
-    padding: 0px 9px 0px 15px;
+    padding: 0px 9px 0px 1.5rem;
   }
 }

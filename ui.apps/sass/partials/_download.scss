@@ -1,13 +1,13 @@
 .download {
-  margin: 20px 0;
+  margin: 2rem 0;
 
   @include respond(md) {
-    margin: 30px 0;
+    margin: 3rem 0;
   }
 
   .DHLdownload {
     border: 1px solid rgba(map-get($map: $palette, $key: border-grey), 0.2);
-    padding: 25px 0;
+    padding: 2.5rem 0;
     background: #ffcc00;
     background: linear-gradient(to bottom, #ffcc00 0%,#ffcc00 80%,#ffefb2 100%);
     margin-left: calc(-1 * ((100vw - 100%)/ 2));
@@ -20,26 +20,26 @@
     @include respond(md) {
       margin-left: auto;
       width: auto;
-      padding: 30px;
+      padding: 3rem;
 
       .form-group {
-        margin-bottom: 5px;
+        margin-bottom: .5rem;
       }
     }
 
     &__icon {
-      width: 50px;
-      height: 50px;
+      width: 5rem;
+      height: 5rem;
       display: inline-block;
       background: url('__prefix__/discover/resources/img/downloadicon.svg') no-repeat;
       background-size: contain;
-      margin-bottom: 35px;
+      margin-bottom: 3.5rem;
 
       @include respond(md) {
         display: block;
-        width: 34px;
-        height: 34px;
-        margin-bottom: 19px;
+        width: 3.4rem;
+        height: 3.4rem;
+        margin-bottom: 1.9rem;
       }
     }
 
@@ -53,22 +53,19 @@
     }
 
     &__title {
-      @include font("%H2");
       text-transform: uppercase;
 
       @include respond(md) {
-        font-size: 25px;
+        font-size: 2.5rem;
       }
     }
 
     &__copy {
-      @include font("%T4");
-      margin: 20px 0;
+      margin: 2rem 0;
 
       $block: &;
 
       &--small {
-        @include font("%T5");
         font-weight: 200;
         font-stretch: condensed;
 
@@ -80,10 +77,10 @@
     }
 
     .DHLdownload__image {
-      max-width: 190px;
+      max-width: 19rem;
       background-size: contain;
       display: block;
-      margin: 35px auto;
+      margin: 3.5rem auto;
 
       @include respond(md) {
         float: right;
@@ -95,13 +92,13 @@
 
     &__ctas {
       @include clearfix();
-      margin: 20px 0;
+      margin: 2rem 0;
 
       & .download__copy {
         @include respond(md) {
           display: inline-block;
-          width: 20px;
-          margin: 0 20px;
+          width: 2rem;
+          margin: 0 2rem;
         }
       }
     }
@@ -111,21 +108,21 @@
 
       background-image: none;
       border: none;
-      padding: 10px 30px;
+      padding: 1rem 3rem;
       width: 100%;
       display: block;
       outline: none !important;
 
       @include respond(md) {
         display: inline-block;
-        width: 240px;
+        width: 24rem;
         white-space: nowrap;
       }
     }
 
     & .forms {
       margin-top: 0;
-      padding-top: 30px;
+      padding-top: 3rem;
       padding-bottom: 0;
 
       &__group--text {
@@ -143,7 +140,7 @@
       }
 
       &__subtitle {
-        font-size: 30px;
+        font-size: 3rem;
       }
 
       &__copy {
@@ -151,7 +148,7 @@
       }
 
       &__copy--small {
-        margin-top: 10px;
+        margin-top: 1rem;
       }
 
       &__checkbox {

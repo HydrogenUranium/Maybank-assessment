@@ -1,22 +1,22 @@
 .cta-banner-with-points {
-  margin-top: 30px;
+  margin-top: 3rem;
 
   @include respond(xl) {
-    margin-top: 50px;
+    margin-top: 5rem;
   }
 }
 
 .cmp-cta-banner-with-points {
   position: relative;
   mix-blend-mode: multiply;
-  border-radius: 4px;
+  border-radius: .4rem;
   color: #FFFFFF;
-  font-size: 17px;
-  line-height: 24px;
+  font-size: 1.7rem;
+  line-height: 2.4rem;
 
   &__image {
     position: absolute;
-    border-radius: 4px;
+    border-radius: .4rem;
     width: 100%;
     height: 100%;
     z-index: -1;
@@ -29,7 +29,7 @@
 
     @include respond(xl) {
       width: 50%;
-      border-radius: 4px 0px 0px 4px;
+      border-radius: 4px 0 0 4px;
     }
   }
 
@@ -38,8 +38,8 @@
     content: "";
     border-radius: inherit;
     position: absolute;
-    bottom: 0px;
-    left: 0px;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     mix-blend-mode: multiply;
@@ -63,15 +63,15 @@
   }
 
   &__body {
-    padding: 34px 20px 20px;
+    padding: 3.4rem 2rem 2rem;
 
     @include respond(xl) {
-      padding: 30px 30px 30px 0px;
+      padding: 3rem 3rem 3rem 0;
       margin-left: auto;
       width: 50%;
 
       [dir="rtl"] & {
-        padding: 30px 0 30px 30px;
+        padding: 3rem 0 3rem 3rem;
         margin-right: auto;
         margin-left: 0;
       }
@@ -80,9 +80,9 @@
 
   &__list,
   ul {
-    width: 180px;
-    margin: 50px 20px 35px;
-    padding: 0px;
+    width: 18rem;
+    margin: 5rem 2rem 3.5rem;
+    padding: 0;
     list-style: none;
 
     @include respond(md) {
@@ -91,13 +91,13 @@
 
     @include respond(xl) {
       width: auto;
-      margin: 20px;
+      margin: 2rem;
     }
 
     &--columns {
       @include respond(md) {
         columns: 2;
-        column-gap: 35px;
+        column-gap: 3.5rem;
       }
 
       .banner__body__list__item {
@@ -109,14 +109,14 @@
 
     .cmp-cta-banner-with-points__item,
     li {
-      margin-top: 0px;
-      margin-bottom: 20px;
-      line-height: 24px;
+      margin-top: 0;
+      margin-bottom: 2rem;
+      line-height: 2.4rem;
       color: white;
 
       @include respond(xl) {
-        margin-bottom: 14px;
-        line-height: 24px;
+        margin-bottom: 1.4rem;
+        line-height: 2.4rem;
       }
 
       &:before {
@@ -139,22 +139,22 @@
 
   &__title {
     font-weight: bold;
-    letter-spacing: 0px;
+    letter-spacing: 0;
     text-transform: uppercase;
 
     @include respond(xl) {
-      line-height: 36px;
-      font-size: 30px;
+      line-height: 3.6rem;
+      font-size: 3rem;
     }
   }
 
   &__button {
-    font-size: 14px;
+    font-size: 1.4rem;
     width: 100%;
 
     @include respond(xl) {
       display: inline-block;
-      font-size: 18px;
+      font-size: 1.8rem;
     }
 
     &:hover {
@@ -187,13 +187,13 @@
     &__image {
       @include respond(xl) {
         width: 100%;
-        border-radius: 4px;
+        border-radius: .4rem;
       }
     }
 
     &__body {
       @include respond(xl) {
-        padding: 34px 20px 20px;
+        padding: 3.4rem 2rem 2rem;
         margin-left: initial;
         width: 100%;
       }
@@ -202,7 +202,7 @@
     &__list,
     ul {
       @include respond(md) {
-        width: 180px;
+        width: 18rem;
       }
 
       &--columns {
@@ -214,23 +214,23 @@
       .cmp-cta-banner-with-points__item,
       li {
         @include respond(xl) {
-          margin-bottom: 20px;
+          margin-bottom: 2rem;
         }
       }
     }
 
     &__title {
       @include respond(xl) {
-        line-height: 24px;
-        font-size: 17px;
+        line-height: 2.4rem;
+        font-size: 1.7rem;
       }
     }
 
     &__button {
       @include respond(xl) {
         display: block;
-        line-height: 24px;
-        font-size: 14px;
+        line-height: 2.4rem;
+        font-size: 1.4rem;
       }
     }
   }

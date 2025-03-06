@@ -1,97 +1,97 @@
 .animatedShowcasePanel {
-  padding: 30px 0 30px;
+  padding: 3rem 0 3rem;
   position: relative;
   z-index: 1;
 
   $block: &;
 
   @include respond(md) {
-    padding: 42px 0 48px;
+    padding: 4.2rem 0 4.8rem;
   }
 
   @include respond(xl) {
-    padding: 150px 0 90px;
+    padding: 15rem 0 9rem;
   }
 
   &--alt {
     background-color: #33658a;
-    padding-bottom: 30px;
-    padding-top:30px;
+    padding-bottom: 3rem;
+    padding-top:3rem;
 
     @include respond(md) {
-      padding-top: 40px;
-      padding-bottom: 40px;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
     }
 
     @include respond(lg) {
-      padding-top: 90px;
-      padding-bottom: 90px;
+      padding-top: 9rem;
+      padding-bottom: 9rem;
     }
 
     @include respond(xl) {
-      padding-top: 90px;
-      padding-bottom: 90px;
+      padding-top: 9rem;
+      padding-bottom: 9rem;
     }
   }
 
   &--electronics {
     background-color: #49bfe0;
-    padding-bottom: 70px;
+    padding-bottom: 7rem;
 
     @include respond(md) {
-      padding: 40px 0 60px 0;
+      padding: 4rem 0 6rem 0;
     }
 
     @include respond(lg) {
-      padding: 160px 0 80px;
+      padding: 16rem 0 8rem;
     }
 
     @include respond(xl) {
-      padding: 90px 0;
+      padding: 9rem 0;
     }
 
   }
 
   &--music {
     background-color: #1d2c33;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
     @include respond(md) {
-      padding: 50px 0 30px;
+      padding: 5rem 0 3rem;
     }
 
     @include respond(lg) {
-      padding: 140px 0 80px;
+      padding: 14rem 0 8rem;
     }
 
   }
 
   &--fashion {
     background-color: #33658a;
-    padding: 30px 0 30px;
+    padding: 3rem 0 3rem;
 
 
     @include respond(md) {
-      padding: 40px 0 40px;
+      padding: 4rem 0 4rem;
     }
 
     @include respond(xl) {
-      padding: 90px 0 90px;
+      padding: 9rem 0 9rem;
     }
   }
 
   &--textiles {
     background-color: #33658a;
-    padding: 30px 0 30px;
+    padding: 3rem 0 3rem;
 
 
     @include respond(md) {
-      padding: 40px 0 40px;
+      padding: 4rem 0 4rem;
     }
 
     @include respond(xl) {
-      padding: 90px 0 90px;
+      padding: 9rem 0 9rem;
     }
 
     p {
@@ -101,72 +101,72 @@
 
   &--office {
     background-color: #1d2c33;
-    padding: 30px 0 30px;
+    padding: 3rem 0 3rem;
     z-index: 0;
 
     @include respond(md) {
-      padding: 40px 0 60px;
+      padding: 4rem 0 6rem;
     }
 
     @include respond(xl) {
-      padding: 90px 0 110px;
+      padding: 9rem 0 11rem;
     }
   }
 
   &--medical {
     background-color: #33658a;
-    padding: 30px 0 30px;
+    padding: 3rem 0 3rem;
     z-index: 0;
 
     @include respond(md) {
-      padding: 40px 0 60px;
+      padding: 4rem 0 6rem;
     }
 
     @include respond(xl) {
-      padding: 90px 0 110px;
+      padding: 9rem 0 11rem;
     }
   }
 
   &--sport {
     background-color: #1d2c33;
-    padding: 30px 0 30px;
+    padding: 3rem 0 3rem;
 
     @include respond(md) {
-      padding: 40px 0 30px;
+      padding: 4rem 0 3rem;
     }
 
     @include respond(xl) {
-      padding: 90px 0 90px;
+      padding: 9rem 0 9rem;
     }
   }
 
   &--luxury {
     background-color: transparent;
 
-    padding: 30px 0 0px;
+    padding: 3rem 0 0;
 
 
     @include respond(md) {
-      padding: 40px 0 40px;
+      padding: 4rem 0 4rem;
     }
 
     @include respond(xl) {
-      padding: 90px 0 90px;
+      padding: 9rem 0 9rem;
     }
   }
 
   &--cosmetics101 {
-    padding-top:30px;
-    padding-bottom: 50px;
+    padding-top:3rem;
+    padding-bottom: 5rem;
 
     @include respond(md) {
-      padding-top: 40px;
-      padding-bottom: 70px;
+      padding-top: 4rem;
+      padding-bottom: 7rem;
     }
 
     @include respond(xl) {
-      padding-top: 90px;
-      padding-bottom: 90px;
+      padding-top: 9rem;
+      padding-bottom: 9rem;
     }
 
     .container {
@@ -182,20 +182,20 @@
     &:after {
       content: ' ';
       display: block;
-      height: 1px;
+      height: .1rem;
       background: #e8e8e8;
       position: absolute;
       z-index: 4;
-      left: 15px;
-      right: 15px;
-      bottom: -30px;
+      left: 1.5rem;
+      right: 1.5rem;
+      bottom: -3rem;
 
       @include respond(md) {
-        bottom: -48px;
+        bottom: -4.8rem;
       }
 
       @include respond(xl) {
-        bottom: -90px;
+        bottom: -9rem;
       }
 
     }
@@ -209,25 +209,24 @@
   }
 
   &__title {
-    font-family: $font-family--animated;
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 900;
     line-height: 1.2;
     color: #f3731e;
     text-transform: uppercase;
-    margin: 0 0 24px;
+    margin: 0 0 2.4rem;
     position: relative;
     background: #f0f1f1;
     z-index: 1;
 
     @include respond(md) {
-      margin-top: 87px;
+      margin-top: 8.7rem;
     }
 
     @include respond(xl) {
-      font-size: 22px;
-      max-width: 360px;
-      margin: -38px 0 40px auto;
+      font-size: 2.2rem;
+      max-width: 36rem;
+      margin: -3.8rem 0 4rem auto;
     }
 
     span {
@@ -239,7 +238,7 @@
       content: ' ';
       display: block;
       width: 100%;
-      height: 2000px;
+      height: 200rem;
       background: #f0f1f1;
       position: absolute;
       top: 0;
@@ -253,7 +252,7 @@
       content: ' ';
       display: block;
       width: 100%;
-      height: 2000px;
+      height: 200rem;
       background: #f0f1f1;
       position: absolute;
       top: 100%;
@@ -269,8 +268,8 @@
     &--dark,
     &--left,
     &--altMedical {
-      font-family: $font-family--animated;
-      font-size: 15px;
+
+      font-size: 1.5rem;
       font-weight: 400;
       line-height: 1.6;
       letter-spacing: normal;
@@ -288,7 +287,7 @@
       @include respond(xl) {
         max-width: none;
         margin-bottom: 0;
-        // margin: -38px 0 0 auto;
+        // margin: -3.8rem 0 0 auto;
       }
 
       &::before {
@@ -315,22 +314,22 @@
 
     &--altMedical {
       float: right;
-      margin-bottom: 20px;
+      margin-bottom: 2rem;
     }
 
     &--bottomText {
 
       @include respond(lg) {
-        margin-top: 50px;
+        margin-top: 5rem;
       }
     }
 
     &--bottom,
     &--dark {
-      margin-bottom: 30px;
+      margin-bottom: 3rem;
 
       @include respond(md) {
-        margin-bottom: 40px;
+        margin-bottom: 4rem;
       }
     }
   }
@@ -338,8 +337,8 @@
   &__carousel {
     position: relative;
     z-index: 2;
-    padding-bottom: 20px;
-    height: 460px;
+    padding-bottom: 2rem;
+    height: 46rem;
 
     &--ready {
 
@@ -350,24 +349,24 @@
     }
 
     &--textiles {
-      height: 500px;
+      height: 50rem;
 
       @include respond(md) {
-        height: 520px;
+        height: 52rem;
       }
     }
 
     &--alt {
-      height: 255px;
+      height: 25.5rem;
       padding-bottom: 0;
     }
 
     &--sport {
-      height: 360px;
+      height: 36rem;
     }
 
     &--music {
-      height: 320px;
+      height: 32rem;
     }
 
     &--light {
@@ -381,11 +380,11 @@
   }
 
   &__carouselItem {
-    min-height: 240px;
+    min-height: 24rem;
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 50%;
-    margin-left: -120px;
+    margin-left: -12rem;
     z-index: 16;
     opacity: 0;
     transition: transform 250ms ease, opacity 150ms ease;
@@ -417,7 +416,7 @@
   &__carouselNavigation {
     display: block;
     margin: 0;
-    padding-bottom: 20px;
+    padding-bottom: 2rem;
     text-align: center;
     position: relative;
     z-index: 2;
@@ -425,12 +424,12 @@
 
   &__carouselNavigationItem {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 1rem;
+    height: 1rem;
     background: #666666;
     opacity: 0.3;
     cursor: pointer;
-    margin: 0 4px;
+    margin: 0 .4rem;
     transition: opacity 250ms ease;
 
     &.active {
@@ -447,28 +446,28 @@
   &__item {
     background: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    padding: 20px 15px 10px;
-    max-width: 240px;
-    min-height: 440px;
+    padding: 2rem 1.5rem 1rem;
+    max-width: 24rem;
+    min-height: 44rem;
 
     @include respond(md) {
-      max-width: 245px;
-      padding: 20px 15px 30px;
+      max-width: 24.5rem;
+      padding: 2rem 1.5rem 3rem;
     }
 
     @include respond(xl) {
       position: relative;
       z-index: 2;
-      max-width: 370px;
-      min-width: 370px;
-      padding: 30px 20px 40px;
+      max-width: min(37rem, 100%);
+      min-width: min(37rem, 100%);
+      padding: 3rem 2rem 4rem;
 
       &--pullUp {
-        margin-top: -199px;
+        margin-top: -19.9rem;
       }
 
       &--pushDown {
-        margin-bottom: 30px;
+        margin-bottom: 3rem;
       }
 
     }
@@ -476,76 +475,76 @@
     &--music,
     &--music1,
     &--music2 {
-      min-height: 305px;
-      max-height: 305px;
+      min-height: 30.5rem;
+      max-height: 30.5rem;
 
       @include respond(xl) {
-        min-height: 380px;
-        max-height: 380px;
+        min-height: 38rem;
+        max-height: 38rem;
       }
     }
 
     &--music1 {
       @include respond(xl) {
-        margin-top: 100px;
+        margin-top: 10rem;
       }
     }
 
     &--music2 {
       @include respond(xl) {
-        margin-top: 50px!important;
+        margin-top: 5rem!important;
       }
     }
 
     &--medical {
-      padding-bottom: 20px;
+      padding-bottom: 2rem;
     }
 
     &--medicalAlt {
-      padding-bottom: 40px;
+      padding-bottom: 4rem;
 
       @include respond(md) {
-        padding-bottom: 28px;
+        padding-bottom: 2.8rem;
       }
     }
 
     &--medicalMedium {
-      padding-bottom: 20px;
+      padding-bottom: 2rem;
 
       @include respond(md) {
-        padding-bottom: 10px;
+        padding-bottom: 1rem;
       }
     }
 
     &--office {
-      min-height: 448px;
+      min-height: 44.8rem;
     }
 
     &--sport {
-      min-height: 340px;
+      min-height: 34rem;
     }
 
     &--bulb,
     &--tv,
     &--camera {
-      min-width: 240px;
-      min-height: 235px;
+      min-width: 24rem;
+      min-height: 23.5rem;
 
       @include respond(xl) {
         margin-top: 0;
-        min-height: 322px;
+        min-height: 32.2rem;
       }
     }
 
     &--tv {
       @include respond(xl) {
-        margin-top: 45px;
+        margin-top: 4.5rem;
       }
     }
 
     &--camera {
       @include respond(xl) {
-        margin-top: 90px;
+        margin-top: 9rem;
       }
     }
 
@@ -558,88 +557,88 @@
     &--bee,
     &--testtube,
     &--recycling {
-      min-height: 235px;
-      min-height: 507px;
+      min-height: 23.5rem;
+      min-height: 50.7rem;
 
     }
 
     &--bee {
-      margin-top: 60px;
+      margin-top: 6rem;
     }
 
     &--testtube {
-      margin-top: 30px;
+      margin-top: 3rem;
     }
 
     &--watch {
-      margin-top: 120px;
+      margin-top: 12rem;
     }
 
     &--recycling,
     &--gopro {
-      margin-top:20px;
+      margin-top:2rem;
     }
 
     &--bag,
     &--rugby {
-      margin-top:80px;
+      margin-top:8rem;
     }
 
     &--clothes,
     &--speed {
-      margin-top:140px;
-      margin-bottom:50px;
+      margin-top:14rem;
+      margin-bottom:5rem;
     }
 
     &--headphones{
       @include respond(xl) {
-        margin-top: 55px;
+        margin-top: 5.5rem;
       }
     }
 
     &--speakers {
       @include respond(xl) {
-        margin-top: 105px;
+        margin-top: 10.5rem;
       }
     }
 
   }
 
   &__itemImage {
-    width: 102px;
+    width: 10.2rem;
     height: auto;
-    margin: 0 0 15px;
+    margin: 0 0 1.5rem;
 
     @include respond(xl) {
-      width: 200px;
-      margin: 0 0 30px;
+      width: 20rem;
+      margin: 0 0 3rem;
     }
 
     &--sport {
-      width: 130px;
+      width: 13rem;
 
       @include respond(xl) {
-        width: 170px;
+        width: 17rem;
       }
     }
 
     &--office {
       @include respond(xl) {
-        width: 160px;
+        width: 16rem;
       }
     }
 
     &--pen,
     &--book2 {
-      width: 126px;
+      width: 12.6rem;
     }
 
     &--textiles {
       margin: 0;
-      width: 130px;
+      width: 13rem;
 
       @include respond(xl) {
-        width: 210px;
+        width: 21rem;
         margin: 0;
       }
 
@@ -648,23 +647,23 @@
   }
 
   &__itemTitle {
-    font-family: $font-family--animated;
-    font-size: 17px;
+
+    font-size: 1.7rem;
     font-weight: 800;
     font-stretch: condensed;
     line-height: 1.18;
     text-transform: uppercase;
-    margin: 0 0 10px;
+    margin: 0 0 1rem;
 
     @include respond(xl) {
-      font-size: 25px;
+      font-size: 2.5rem;
     }
 
   }
 
   &__itemCopy {
-    font-family: $font-family--animated;
-    font-size: 13px;
+
+    font-size: 1.3rem;
     font-weight: 400;
     line-height: 1.54;
     margin: 0;
@@ -675,15 +674,15 @@
     }
 
     @include respond(xl) {
-      font-size: 15px;
+      font-size: 1.5rem;
       line-height: 1.6;
     }
 
     &--alt {
-      font-size: 15px;
+      font-size: 1.5rem;
 
       @include respond(lg) {
-        margin-top: 80px;
+        margin-top: 8rem;
       }
     }
   }
@@ -713,7 +712,7 @@
 
   &__wrapper {
     @include respond(xl) {
-      height: 500px;
+      height: 50rem;
     }
 
     &--electronics,
@@ -725,26 +724,26 @@
 
     &--luxury {
       @include respond(xl) {
-        margin-bottom: 50px;
+        margin-bottom: 5rem;
       }
     }
   }
 
   &__heading {
-    font-family: $font-family--animated;
-    font-size: 22px;
+
+    font-size: 2.2rem;
     font-weight: bold;
     color: #ffffff;
     text-transform: uppercase;
     line-height: 1;
-    margin-bottom: 13px;
+    margin-bottom: 1.3rem;
 
     @include respond(md) {
-      font-size: 30px;
+      font-size: 3rem;
     }
 
     @include respond(lg) {
-      font-size: 40px;
+      font-size: 4rem;
     }
 
     &--dark {
@@ -754,48 +753,48 @@
     &--office {
 
       @include respond(md) {
-        left: -15px;
+        left: -1.5rem;
         position: relative;
-        margin-bottom: 20px;
+        margin-bottom: 2rem;
       }
 
       @include respond(lg) {
-        left: 30px;
+        left: 3rem;
       }
 
       @include respond(xl) {
         left: 0;
-        margin-bottom: 13px;
+        margin-bottom: 1.3rem;
       }
     }
   }
 
   &--offset {
-    margin-top:17px;
+    margin-top:1.7rem;
     height:auto;
 
     @include respond(md) {
-      margin-top:20px;
+      margin-top:2rem;
       height:auto
     }
 
     @include respond(xl) {
-      margin-top:237px;
-      height:800px;
+      margin-top:23.7rem;
+      height:80rem;
     }
   }
 
   &__padding {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
 
   .left-align {
     @include respond(md) {
-      left: -35px;
+      left: -3.5rem;
     }
 
     @include respond(lg) {
-      left: -100px;
+      left: -10rem;
     }
   }
 }

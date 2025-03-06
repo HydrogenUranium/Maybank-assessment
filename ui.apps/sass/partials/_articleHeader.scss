@@ -1,8 +1,8 @@
 .cmp-article-header {
   &__breadcrumb {
-    padding-top: 7px;
-    font-size: 12px;
-    line-height: 17px;
+    padding-top: .7rem;
+    font-size: 1.2rem;
+    line-height: 1.7rem;
     font-weight: bold;
     color: map-get($palette, scarlet);
 
@@ -13,31 +13,32 @@
 
   &__title {
     padding-top: 3px;
-    font-size: 16px;
-    line-height: 23px;
+    font-size: 1.6rem;
+    line-height: 2.3rem;
+    margin-bottom: .8rem;
     font-weight: bold;
     text-transform: uppercase;
 
     @include respond(md) {
-      font-size: 20px;
+      font-size: 2rem;
     }
 
     @include respond(xl) {
-      padding-top: 48px;
-      font-size: 40px;
-      line-height: 40px;
+      padding-top: 4.8rem;
+      font-size: 4rem;
+      line-height: 4rem;
     }
   }
 
   &__info {
-    padding-top: 25px;
+    padding-top: 2.5rem;
     display: grid;
     grid-template-columns: auto 1fr;
     row-gap: 3px;
     align-items: center;
 
     @include respond(md) {
-      padding-top: 20px;
+      padding-top: 2rem;
     }
 
     @include respond(xl) {
@@ -47,10 +48,10 @@
   }
 
   &__author-image {
-    width: 28px;
-    height: 28px;
+    width: 2.8rem;
+    height: 2.8rem;
     border-radius: 50%;
-    margin-right: 8px;
+    margin-right: .8rem;
 
     @include respond(xl) {
       display: none;
@@ -60,8 +61,8 @@
   &__author-info {
     display: inline-block;
     vertical-align: middle;
-    font-size: 12px;
-    line-height: 17px;
+    font-size: 1.2rem;
+    line-height: 1.7rem;
     color: map-get($palette, dhl-black);
     opacity: 0.7;
     grid-column: 2;
@@ -73,12 +74,12 @@
   }
 
   &__author-name {
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: bold;
   }
 
   &__author-follow {
-    padding-left: 15px;
+    padding-left: 1.5rem;
     text-decoration: underline;
     color: map-get($palette, scarlet);
     opacity: 1;
@@ -89,8 +90,8 @@
   }
 
   &__date {
-    font-size: 12px;
-    line-height: 17px;
+    font-size: 1.2rem;
+    line-height: 1.7rem;
     color: map-get($palette, dhl-black);
     opacity: 0.7;
     grid-column: 2;
@@ -98,14 +99,14 @@
 
     @include respond(xl) {
       margin-left: 0;
-      padding-top: 5px;
-      font-size: 14px;
-      line-height: 20px;
+      padding-top: .5rem;
+      font-size: 1.4rem;
+      line-height: 2rem;
     }
 
     &> *::after {
       content: '|';
-      padding: 0 2px 0 5px;
+      padding: 0 2px 0 .5rem;
     }
     &> *:last-child::after {
       content: "";

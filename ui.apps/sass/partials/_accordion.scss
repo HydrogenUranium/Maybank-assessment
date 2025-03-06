@@ -1,6 +1,6 @@
 .accordion-component {
 	background-color: map-get($palette, white-two);
-	margin: 20px 0;
+	margin: 2rem 0;
 
 	.container {
 		padding-left: 0;
@@ -8,12 +8,12 @@
 
 		.card {
 			background-color: map-get($palette, white-two);
-			padding: 21px 15px 20px 15px;
+			padding: 2.1rem 1.5rem 2rem 1.5rem;
 			border: none;
 			border-top: 1px solid map-get($palette, white);
 
 			@include respond(md) {
-	      padding: 20px 30px;
+	      padding: 2rem 3rem;
 	    }
 		}
 
@@ -30,7 +30,7 @@
       justify-content: space-between;
 
 			h3 {
-				@include font($style: "%T4");
+				font-size: var(--font-size-md);
 				color: map-get($palette, red);
 				margin: 0;
 			}
@@ -39,18 +39,18 @@
 		.card__header:after {
 			content: ' ';
 			display: block;
-			width: 20px;
-			height: 8px;
+			width: 2rem;
+			height: .8rem;
 			background-image: url('__prefix__/discover/resources/img/accordionarrow.png');
 			background-image: none, url('__prefix__/discover/resources/img/accordionarrow.svg');
       background-position: center center;
-      background-size: 18px 8px;
+      background-size: 1.8rem .8rem;
       background-repeat: no-repeat;
 			line-height: 5rem;
 			transition: transform 100ms ease;
 
 			@include respond(md) {
-				top: 27px;
+				top: 2.7rem;
 			}
 		}
 
@@ -59,9 +59,8 @@
 		}
 
 		.card__body {
-			@include font($style: "%T5");
 			padding: 0;
-			padding-top: 18px;
+			padding-top: 1.8rem;
 		}
 	}
 }

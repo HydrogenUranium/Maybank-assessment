@@ -10,15 +10,16 @@
   @include clearfix;
 }
 
-@mixin copyLists() {
+@mixin styledLists() {
     ul, ol {
         list-style: none;
+        padding-left: 0;
 
         li {
           margin-left: 1.1em;
 
           [dir="rtl"] & {
-            margin-left: unset;
+            margin-left: initial;
             margin-right: 1.1em;
           }
         }
@@ -31,6 +32,7 @@
     ul {
       li {
           position: relative;
+          margin-top: .5rem;
 
           &:before {
               content: '•';
@@ -41,7 +43,7 @@
               top: 0.05em;
 
               [dir="rtl"] & {
-                left: unset;
+                left: initial;
                 right: -1em;
               }
           }
@@ -122,7 +124,6 @@
 }
 
 %form-error-msg {
-  @include font($style: "%T5", $colour: map-get($palette, scarlet));
   display: block;
   margin-top: -17px;
 }
@@ -195,7 +196,7 @@
 }
 
 @mixin remove-container-margins-mobile-only {
-  @media (max-width: 768px) { // Adjust the max-width as per your breakpoint
+  @media (max-width: map-get($discover-breakpoints, md)) { // Adjust the max-width as per your breakpoint
     @include remove-container-margins;
   }
 }
@@ -207,7 +208,7 @@
 }
 
 @mixin extend-background-mobile-only {
-  @media (max-width: 768px) { // Adjust the max-width as per your breakpoint
+  @media (max-width: map-get($discover-breakpoints, md))  { // Adjust the max-width as per your breakpoint
     @include extend-background-edge;
   }
 }
@@ -220,5 +221,14 @@
     #{$header} > .#{$wrapper} {
       #{$styleProperty}: $styleValue;
     }
+  }
+}
+
+// Mixin to apply font size inheritance for all headings inside a specific class
+@mixin inherit-headings {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
   }
 }

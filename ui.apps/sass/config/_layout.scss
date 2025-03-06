@@ -1,7 +1,6 @@
 body {
-  max-width:1640px;
+  max-width:164rem;
   margin: 0 auto;
-  background: #ffffff;
 
   &.modal-open {
     overflow: hidden;
@@ -12,15 +11,15 @@ body {
   overflow-x: clip;
 
   &--new-design {
-    max-width: 1640px;
+    max-width: 164rem;
     margin: 0 auto;
   }
 
   &.fixed {
-    padding-top: 40.3px;
+    padding-top: 4rem;
 
     @include respond(lg) {
-      padding-top: 80px;
+      padding-top: 8rem;
     }
   }
 }
@@ -30,9 +29,7 @@ body {
   overflow: hidden;
 
   &.awaiting {
-    min-height: 300px;
-    // background: transparent url('__prefix__/discover/resources/img/spinner.svg') center no-repeat;
-    // background-size: 120px 120px;
+    min-height: 30rem;
   }
 
   .page-body {
@@ -60,75 +57,13 @@ body {
   }
 
   th {
-    font-size: 18px;
+    font-size: 1.8rem;
     text-align: inherit;
   }
 
   td {
     text-align: inherit;
   }
-}
-
-.wysiwyg {
-
-  h1 {
-    @include font("%H2");
-    margin-bottom: 22px;
-  }
-
-  h2 {
-    @include font($style: "%H3");
-    margin: 0px 0px 20px;
-  }
-
-  h3 {
-    @include font($style: "%H4");
-    margin: 0px 0px 16px;
-  }
-
-  h4 {
-    @include font($style: "%H4");
-    margin: 0px 0px 15px;
-  }
-
-  p {
-    @include font($style: "%T3");
-    margin: 0px 0px 15px;
-
-    b {
-      font-weight: 800;
-      font-stretch: condensed;
-    }
-
-    i {
-      font-style: italic;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: underline;
-    }
-  }
-
-
-  ul,
-  ol {
-    margin: 0px 0px 15px;
-  }
-
-  li {
-    margin: 0px 0px 5px;
-
-    p {
-      margin: 10px 0;
-    }
-  }
-  @include copyLists();
-
-  table {
-    @extend %table;
-  }
-
 }
 
 .container--lg {
@@ -178,7 +113,6 @@ body {
     display: inline-block;
     padding: 5px 25px;
     border-radius: 30px;
-    @include font($style: "%T5", $colour: map-get($palette, true-white));
     background: map-get($palette, brownish-grey);
     text-align: center !important;
   }

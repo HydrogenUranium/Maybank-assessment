@@ -1,8 +1,11 @@
 .teaser {
+  .cmp-teaser__content {
+    margin-top: 3rem;
+  }
 
   @extend  %imageComponent;
   border-bottom: none;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 
   @include respond(lg) {
 
@@ -11,7 +14,7 @@
       .cmp-teaser__image-wrapper {
         float: left;
         display: table;
-        margin-right: 15px;
+        margin-right: 1.5rem;
 
         .cmp-teaser__content {
           display: table-caption;
@@ -19,7 +22,7 @@
         }
 
         .cmp-teaser__pretitle {
-          margin-bottom: 20px;
+          margin-bottom: 2rem;
         }
       }
     }
@@ -27,8 +30,8 @@
     &.right {
       .cmp-teaser__image-wrapper {
         float: right;
-        margin-left: 15px;
-        margin-right: 0px;
+        margin-left: 1.5rem;
+        margin-right: 0;
       }
     }
   }
@@ -39,15 +42,13 @@
   }
 
 	.cmp-teaser__title {
-    @include font("%T5");
     display: block;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 
   .cmp-teaser__pretitle {
-    @include font("%T5");
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
 
   .cmp-teaser {

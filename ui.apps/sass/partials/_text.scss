@@ -1,40 +1,33 @@
+body.editable-article {
+  h1,h2,h3,h4,h5,h6 {
+    font-stretch: condensed;
+  }
+}
+
 .text, .listicle-component {
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 22px;
-  color: #323232;
+  margin-top: 1rem;
+  @include styledLists();
 
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
+  h1,h2,h3,h4,h5,h6 {
+    margin-bottom: .6em;
+    margin-top: 1em;
+    @include respond(md) {
+      margin-bottom: .4em;
+      margin-top: .6em;
+    }
   }
 
-  h1 {
-    font-size: 20px;
-    line-height: 28px;
-  }
-
-  h2 {
-    font-size: 18px;
-    line-height: 26px;
-  }
-
-  h3 {
-    font-size: 18px;
-    line-height: 24px;
-  }
-
-  h4, h5 {
-    font-size: 16px;
-    line-height: 22px;
+  p {
+    color: #000;
   }
 
   hr {
-    height: 3px;
+    height: .3rem;
     color: #D40511;
     background-color: #D40511;
-    max-width: 260px;
+    max-width: 26rem;
     border-style: none;
-    margin-top: 20px;
+    margin-top: 2rem;
   }
 
   i {
@@ -42,63 +35,18 @@
   }
 
   @include respond(md) {
-    margin-top: 18px;
-    font-size: 20px;
-    line-height: 29px;
-
-    h1 {
-      font-size: 30px;
-      line-height: 38px;
-    }
-
-    h2 {
-      font-size: 20px;
-      line-height: 26px;
-    }
-
-    h3 {
-      font-size: 18px;
-      line-height: 24px;
-    }
-
-    h4, h5 {
-      font-size: 16px;
-      line-height: 22px;
-    }
-
+    margin-top: 1.8rem;
 
     hr {
-      margin-top: 40px;
+      margin-top: 4rem;
     }
   }
 
   @include respond(xl) {
-    margin-top: 20px;
-    font-size: 30px;
-    line-height: 43px;
-
-    h1 {
-      font-size: 40px;
-      line-height: 50px;
-    }
-
-    h2 {
-      font-size: 35px;
-      line-height: 42px;
-    }
-
-    h3 {
-      font-size: 25px;
-      line-height: 32px;
-    }
-
-    h4, h5 {
-      font-size: 20px;
-      line-height: 28px;
-    }
+    margin-top: 2rem;
 
     hr {
-      margin-top: 80px;
+      margin-top: 8rem;
     }
   }
 
@@ -119,8 +67,8 @@
 
       tr:first-child {
         color: map-get($palette, red);
-        font-size: 24px;
-        line-height: 32px;
+        font-size: 2.4rem;
+        line-height: 3.2rem;
         font-weight: bold;
         border-bottom: 3pt solid red !important;
 
@@ -130,8 +78,8 @@
       }
 
       tr {
-        font-size: 15px;
-        line-height: 22px;
+        font-size: 1.5rem;
+        line-height: 2.2rem;
         border-bottom: 1pt solid map-get($palette, black) !important;
       }
 
@@ -141,19 +89,34 @@
     }
   }
 
-  &.custom-text--p1 p {
-    font-size: 20px;
-    line-height: 1.6;
+  &.font-size-md {
+    font-size: var(--font-size-md);
   }
 
-  &.custom-text--p2 p {
-    font-size: 18px;
-    line-height: 1.6;
+  &.font-size-lg {
+    font-size: var(--font-size-lg);
   }
 
-  &.custom-text--p3 p {
-    font-size: 16px;
-    line-height: 1.6;
+  &.font-size-xl {
+    font-size: var(--font-size-xl);
+  }
+
+  &.font-size-3xl {
+    font-size: var(--font-size-3xl);
+  }
+
+  &.font-size-5xl {
+    font-size: var(--font-size-5xl);
+  }
+
+  &.font-weight-bold-condensed {
+    font-weight: var(--font-weight-bold);
+    font-stretch: condensed;
+    color: #323232;
+
+    p {
+        color: #323232;
+      }
   }
 
   &.custom-text--mb0 .cmp-text p {
@@ -161,20 +124,20 @@
   }
 
   &.custom-text--mb1 .cmp-text p {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 
   &.custom-text--mb2 .cmp-text p {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
 
   &.custom-text--mb3 .cmp-text p {
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
   }
 }
 .text.text-general-page {
-  font-size: 15px;
-  line-height: 24px;
+  font-size: 1.5rem;
+  line-height: 2.4rem;
 }
 
 [lang^="ko"] body .text {
