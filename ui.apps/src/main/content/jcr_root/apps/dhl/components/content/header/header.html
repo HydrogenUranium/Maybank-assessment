@@ -1,9 +1,8 @@
 <div class="wcag" data-sly-use.header="com.dhl.discover.core.models.Header">
     <span class="sr-only">Content and Navigation</span>
     <ul>
-
-        <li><a href=#content>${header.wcagContentLabel}</a></li>
-        <li><a href=#footer> ${header.wcagFooterLabel}</a></li>
+        <li><a href=#content class="sr-only" aria-label="${header.wcagContentLabel}">${header.wcagContentLabel}</a></li>
+        <li><a href=#footer class="sr-only" aria-label="${header.wcagContentLabel}"> ${header.wcagFooterLabel}</a></li>
     </ul>
 </div>
 <div class="headerV2-wrapper"
