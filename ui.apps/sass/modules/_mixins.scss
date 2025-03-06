@@ -196,7 +196,7 @@
 }
 
 @mixin remove-container-margins-mobile-only {
-  @media (max-width: map-get($discover-breakpoints, md)) { // Adjust the max-width as per your breakpoint
+  @media (max-width: calc(#{map-get($discover-breakpoints, md)} - 1px)) {
     @include remove-container-margins;
   }
 }
@@ -208,7 +208,7 @@
 }
 
 @mixin extend-background-mobile-only {
-  @media (max-width: map-get($discover-breakpoints, md))  { // Adjust the max-width as per your breakpoint
+  @media (max-width: calc(#{map-get($discover-breakpoints, md)} - 1px))  {
     @include extend-background-edge;
   }
 }
