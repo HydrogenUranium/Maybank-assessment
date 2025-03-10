@@ -82,15 +82,6 @@ filtered.each { path ->
             if (session != null) {
                 replicator.replicate(session, ReplicationActionType.ACTIVATE, path)
                 println("Successfully published: ${path}")
-                // Verify if cq:lastReplicated is updated
-                def resource = getJcrContent(path)
-                def valueMap = resource.getValueMap()
-                def lastReplicated = valueMap.get('cq:lastReplicated', null)
-                if (lastReplicated != null) {
-                    println("cq:lastReplicated for ${path} is updated to: ${lastReplicated}")
-                } else {
-                    println("cq:lastReplicated for ${path} is not updated")
-                }
             } else {
                 println("Failed to adapt resourceResolver to Session")
             }
