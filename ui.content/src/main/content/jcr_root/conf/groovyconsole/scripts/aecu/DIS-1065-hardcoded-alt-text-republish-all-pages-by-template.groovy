@@ -5,7 +5,7 @@ import org.osgi.framework.FrameworkUtil
 import org.osgi.framework.ServiceReference
 import javax.jcr.Session
 
-def DRY_RUN = false;
+def DRY_RUN = true;
 
 def list = new HashSet();
 def wrongPaths = []
@@ -32,15 +32,15 @@ def isPublished(path) {
 }
 
 getHomePages().each{ path ->
-        def QUERY = """
+    def QUERY = """
             SELECT * FROM [nt:unstructured] AS page
             WHERE ISDESCENDANTNODE(page, '${path}')
             AND NOT ISDESCENDANTNODE(page, '/content/dhl/language-masters')
             AND page.[cq:template] = '/conf/dhl/settings/wcm/templates/animated-page'
         """
-        sql2Query(QUERY).each {
-            list.add(it.getPath().replaceAll("/jcr:content.*", ""))
-        }
+    sql2Query(QUERY).each {
+        list.add(it.getPath().replaceAll("/jcr:content.*", ""))
+    }
 }
 
 def filtered = list.stream()
@@ -60,22 +60,10 @@ println("""Wrong paths: ${wrongPaths.size()}""")
 println("""Not published: ${notPublished.size()}""")
 println("""Pages to publish: ${filtered.size()}""")
 
-def getResourceResolver() {
-    def resourceResolverFactory = getService(ResourceResolverFactory)
-    def authInfo = Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, "yourSubServiceName")
-    return resourceResolverFactory.getServiceResourceResolver(authInfo)
-}
+def replicator = getService("com.day.cq.replication.Replicator")
 
-def getService(Class serviceClass) {
-    def bundleContext = FrameworkUtil.getBundle(serviceClass).getBundleContext()
-    ServiceReference serviceReference = bundleContext.getServiceReference(serviceClass.name)
-    return bundleContext.getService(serviceReference)
-}
 
-def resourceResolver = getResourceResolver()
-def replicator = getService(Replicator)
-
-filtered.each { path ->
+filtered.each({
     if (!DRY_RUN) {
         try {
             def session = resourceResolver.adaptTo(Session)
@@ -89,7 +77,4 @@ filtered.each { path ->
             println("Replication failed for ${path}: ${e.message}")
         }
     }
-}
-if (resourceResolver != null) {
-    resourceResolver.close()
-}
+})
