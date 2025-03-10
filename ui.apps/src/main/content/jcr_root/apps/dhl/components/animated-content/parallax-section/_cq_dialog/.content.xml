@@ -250,39 +250,39 @@
                                 jcr:primaryType="nt:unstructured"
                                 showhidetargetvalue="getting-certified"/>
                         <items jcr:primaryType="nt:unstructured">
-                            <bkgroundImageAreaLabel1
+                            <bkgroundImageAreaLabel15
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Gold watch"
-                                    name="./bkImgAreaLabel1"
+                                    name="./bkImgAreaLabel15"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Gold watch"/>
-                            <bkgroundImageAreaLabel2
+                            <bkgroundImageAreaLabel16
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Headphones"
-                                    name="./bkImgAreaLabel2"
+                                    name="./bkImgAreaLabel16"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Headphones"/>
-                            <bkgroundImageAreaLabel3
+                            <bkgroundImageAreaLabel17
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Speaker"
-                                    name="./bkImgAreaLabel3"
+                                    name="./bkImgAreaLabel17"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Speaker"/>
-                            <bkgroundImageAreaLabel4
+                            <bkgroundImageAreaLabel18
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Grey watch"
-                                    name="./bkImgAreaLabel4"
+                                    name="./bkImgAreaLabel18"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Grey watch"/>
-                            <bkgroundImageAreaLabel5
+                            <bkgroundImageAreaLabel19
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Desk watch"
-                                    name="./bkImgAreaLabel4"
+                                    name="./bkImgAreaLabel19"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Desk watch"/>
                         </items>
@@ -296,32 +296,32 @@
                                 jcr:primaryType="nt:unstructured"
                                 showhidetargetvalue="men-jewelry"/>
                         <items jcr:primaryType="nt:unstructured">
-                            <bkgroundImageAreaLabel1
+                            <bkgroundImageAreaLabel20
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Earring"
-                                    name="./bkImgAreaLabel1"
+                                    name="./bkImgAreaLabel20"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Earring"/>
-                            <bkgroundImageAreaLabel2
+                            <bkgroundImageAreaLabel21
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Tux"
-                                    name="./bkImgAreaLabel2"
+                                    name="./bkImgAreaLabel21"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Tux"/>
-                            <bkgroundImageAreaLabel3
+                            <bkgroundImageAreaLabel22
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Ring"
-                                    name="./bkImgAreaLabel3"
+                                    name="./bkImgAreaLabel22"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Ring"/>
-                            <bkgroundImageAreaLabel4
+                            <bkgroundImageAreaLabel23
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Hand"
-                                    name="./bkImgAreaLabel4"
+                                    name="./bkImgAreaLabel23"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Hand"/>
                         </items>
@@ -335,46 +335,46 @@
                                 jcr:primaryType="nt:unstructured"
                                 showhidetargetvalue="smartwatches"/>
                         <items jcr:primaryType="nt:unstructured">
-                            <bkgroundImageAreaLabel1
+                            <bkgroundImageAreaLabel24
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for White Apple Smart Watch"
-                                    name="./bkImgAreaLabel1"
+                                    name="./bkImgAreaLabel24"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for White Apple Smart Watch"/>
-                            <bkgroundImageAreaLabel2
+                            <bkgroundImageAreaLabel25
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Glasses"
-                                    name="./bkImgAreaLabel2"
+                                    name="./bkImgAreaLabel25"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Glasses"/>
-                            <bkgroundImageAreaLabel3
+                            <bkgroundImageAreaLabel26
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Garmin Sports Watch"
-                                    name="./bkImgAreaLabel3"
+                                    name="./bkImgAreaLabel26"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Garmin Sports Watch"/>
-                            <bkgroundImageAreaLabel4
+                            <bkgroundImageAreaLabel27
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Tea"
-                                    name="./bkImgAreaLabel4"
+                                    name="./bkImgAreaLabel27"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Tea"/>
-                            <bkgroundImageAreaLabel5
+                            <bkgroundImageAreaLabel28
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Wood color watch"
-                                    name="./bkImgAreaLabel4"
+                                    name="./bkImgAreaLabel28"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Wood color watch"/>
-                            <bkgroundImageAreaLabel6
+                            <bkgroundImageAreaLabel29
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Watch in hand"
-                                    name="./bkImgAreaLabel6"
+                                    name="./bkImgAreaLabel29"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Watch in hand"/>
                         </items>
@@ -388,39 +388,39 @@
                                 jcr:primaryType="nt:unstructured"
                                 showhidetargetvalue="taking-fashion-home"/>
                         <items jcr:primaryType="nt:unstructured">
-                            <bkgroundImageAreaLabel1
+                            <bkgroundImageAreaLabel30
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Shop"
-                                    name="./bkImgAreaLabel1"
+                                    name="./bkImgAreaLabel30"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Shop"/>
-                            <bkgroundImageAreaLabel2
+                            <bkgroundImageAreaLabel31
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Coat"
-                                    name="./bkImgAreaLabel2"
+                                    name="./bkImgAreaLabel31"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Coat"/>
-                            <bkgroundImageAreaLabel3
+                            <bkgroundImageAreaLabel32
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Zara"
-                                    name="./bkImgAreaLabel3"
+                                    name="./bkImgAreaLabel32"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Zara"/>
-                            <bkgroundImageAreaLabel4
+                            <bkgroundImageAreaLabel33
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Catwalk"
-                                    name="./bkImgAreaLabel4"
+                                    name="./bkImgAreaLabel33"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Catwalk"/>
-                            <bkgroundImageAreaLabel5
+                            <bkgroundImageAreaLabel34
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Fashion Bag"
-                                    name="./bkImgAreaLabel5"
+                                    name="./bkImgAreaLabel34"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Fashion Bag"/>
                         </items>
@@ -434,36 +434,114 @@
                                 jcr:primaryType="nt:unstructured"
                                 showhidetargetvalue="trending-in-grooming"/>
                         <items jcr:primaryType="nt:unstructured">
-                            <bkgroundImageAreaLabel1
+                            <bkgroundImageAreaLabel35
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Girl"
-                                    name="./bkImgAreaLabel1"
+                                    name="./bkImgAreaLabel35"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Girl"/>
-                            <bkgroundImageAreaLabel2
+                            <bkgroundImageAreaLabel36
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Yoghurt"
-                                    name="./bkImgAreaLabel2"
+                                    name="./bkImgAreaLabel36"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Yoghurt"/>
-                            <bkgroundImageAreaLabel3
+                            <bkgroundImageAreaLabel37
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Bowl"
-                                    name="./bkImgAreaLabel3"
+                                    name="./bkImgAreaLabel37"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Bowl"/>
-                            <bkgroundImageAreaLabel4
+                            <bkgroundImageAreaLabel38
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Spices"
-                                    name="./bkImgAreaLabel4"
+                                    name="./bkImgAreaLabel38"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Spices"/>
                         </items>
                     </trendingInGroomingImgAltText>
+
+                    <chemicalImpactImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="larry-vs-harry"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel39
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Bottle"
+                                    name="./bkImgAreaLabel39"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Bottle"/>
+                            <bkgroundImageAreaLabel40
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Chemical"
+                                    name="./bkImgAreaLabel40"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Chemical"/>
+                            <bkgroundImageAreaLabel41
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Beach"
+                                    name="./bkImgAreaLabel41"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Beach"/>
+                            <bkgroundImageAreaLabel42
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Sea"
+                                    name="./bkImgAreaLabel42"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Sea"/>
+                        </items>
+                    </chemicalImpactImgAltText>
+
+                    <creativeCampaignsImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="larry-vs-harry"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel43
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Paper"
+                                    name="./bkImgAreaLabel43"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Paper"/>
+                            <bkgroundImageAreaLabel44
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Pencil"
+                                    name="./bkImgAreaLabel44"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Pencil"/>
+                            <bkgroundImageAreaLabel45
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Highlighter"
+                                    name="./bkImgAreaLabel45"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Highlighter"/>
+                            <bkgroundImageAreaLabel46
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Calender"
+                                    name="./bkImgAreaLabel46"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Calender"/>
+                        </items>
+                    </creativeCampaignsImgAltText>
 
                     <larryVsHarryImgAltText
                             jcr:primaryType="nt:unstructured"
@@ -473,29 +551,30 @@
                                 jcr:primaryType="nt:unstructured"
                                 showhidetargetvalue="larry-vs-harry"/>
                         <items jcr:primaryType="nt:unstructured">
-                            <bkgroundImageAreaLabel1
+                            <bkgroundImageAreaLabel47
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Bullitt-1"
-                                    name="./bkImgAreaLabel1"
+                                    name="./bkImgAreaLabel47"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Bullitt-1"/>
-                            <bkgroundImageAreaLabel2
+                            <bkgroundImageAreaLabel48
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Bullitt in Space"
-                                    name="./bkImgAreaLabel2"
+                                    name="./bkImgAreaLabel48"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Bullitt in Space"/>
-                            <bkgroundImageAreaLabel3
+                            <bkgroundImageAreaLabel49
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Bullitt-2"
-                                    name="./bkImgAreaLabel3"
+                                    name="./bkImgAreaLabel49"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Bullitt-2"/>
                         </items>
                     </larryVsHarryImgAltText>
+
                 </items>
             </column>
         </items>
