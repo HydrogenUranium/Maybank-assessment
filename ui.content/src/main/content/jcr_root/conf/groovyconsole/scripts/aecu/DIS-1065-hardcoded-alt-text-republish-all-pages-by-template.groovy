@@ -5,7 +5,7 @@ import org.osgi.framework.FrameworkUtil
 import org.osgi.framework.ServiceReference
 import javax.jcr.Session
 
-def DRY_RUN = true;
+def DRY_RUN = false;
 
 def list = new HashSet();
 def wrongPaths = []
