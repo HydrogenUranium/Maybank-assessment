@@ -19,7 +19,11 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             fieldLabel="Type"
+                            granite:class="cq-dialog-dropdown-multiple-showhide"
                             name="./type">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-dropdown-showhide-target=".parallax-section-options-showhide"/>
                         <items
                                 jcr:primaryType="nt:unstructured">
                             <chemicalImpact
@@ -99,6 +103,399 @@
                             useFixedInlineToolbar="{Boolean}true"
                             fieldLabel="Second Description Part"
                             name="./secondDescriptionPart"/>
+
+                    <deathOfTheDoubleBassImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="death-of-the-double-bass"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel1
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Wooden Guitar"
+                                    name="./bkImgAreaLabel1"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Wooden Guitar"/>
+                            <bkgroundImageAreaLabel2
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Chello"
+                                    name="./bkImgAreaLabel2"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Chello"/>
+                            <bkgroundImageAreaLabel3
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Man with French Horn"
+                                    name="./bkImgAreaLabel3"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Man with French Horn"/>
+                            <bkgroundImageAreaLabel4
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Brass French Horn"
+                                    name="./bkImgAreaLabel4"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Brass French Horn"/>
+                        </items>
+                    </deathOfTheDoubleBassImgAltText>
+
+                    <dhlBoxesImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="dhl-boxes"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel5
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Coffee beans"
+                                    name="./bkImgAreaLabel5"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Coffee beans"/>
+                            <bkgroundImageAreaLabel6
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Stationary"
+                                    name="./bkImgAreaLabel6"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Stationary"/>
+                            <bkgroundImageAreaLabel7
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Laptop"
+                                    name="./bkImgAreaLabel7"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Laptop"/>
+                            <bkgroundImageAreaLabel8
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Brew Coffee"
+                                    name="./bkImgAreaLabel8"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Brass French Horn"/>
+                            <imgAltText
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section Image Alt Text"
+                                    name="./imgAltText"
+                                    fieldDescription="Set Parallax-section image alt text for SEO"
+                                    emptyText="Parallax-section Image Alt Text Placeholder"/>
+                        </items>
+                    </dhlBoxesImgAltText>
+
+                    <eCommerceWinningImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="e-commerce-winning"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel9
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Phone"
+                                    name="./bkImgAreaLabel9"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Phone"/>
+                            <bkgroundImageAreaLabel10
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Bed"
+                                    name="./bkImgAreaLabel10"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Bed"/>
+                            <bkgroundImageAreaLabel11
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Leaves"
+                                    name="./bkImgAreaLabel11"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Leaves"/>
+                            <bkgroundImageAreaLabel12
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Pillow"
+                                    name="./bkImgAreaLabel12"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Brass Pillow"/>
+                            <bkgroundImageAreaLabel13
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Music"
+                                    name="./bkImgAreaLabel13"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Music"/>
+                            <bkgroundImageAreaLabel14
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Speaker"
+                                    name="./bkImgAreaLabel14"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Speaker"/>
+                        </items>
+                    </eCommerceWinningImgAltText>
+
+                    <gettingCertifiedImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="getting-certified"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel1
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Gold watch"
+                                    name="./bkImgAreaLabel1"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Gold watch"/>
+                            <bkgroundImageAreaLabel2
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Headphones"
+                                    name="./bkImgAreaLabel2"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Headphones"/>
+                            <bkgroundImageAreaLabel3
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Speaker"
+                                    name="./bkImgAreaLabel3"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Speaker"/>
+                            <bkgroundImageAreaLabel4
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Grey watch"
+                                    name="./bkImgAreaLabel4"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Grey watch"/>
+                            <bkgroundImageAreaLabel5
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Desk watch"
+                                    name="./bkImgAreaLabel4"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Desk watch"/>
+                        </items>
+                    </gettingCertifiedImgAltText>
+
+                    <menJewelryImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="men-jewelry"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel1
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Earring"
+                                    name="./bkImgAreaLabel1"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Earring"/>
+                            <bkgroundImageAreaLabel2
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Tux"
+                                    name="./bkImgAreaLabel2"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Tux"/>
+                            <bkgroundImageAreaLabel3
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Ring"
+                                    name="./bkImgAreaLabel3"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Ring"/>
+                            <bkgroundImageAreaLabel4
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Hand"
+                                    name="./bkImgAreaLabel4"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Hand"/>
+                        </items>
+                    </menJewelryImgAltText>
+
+                    <smartwatchesImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="smartwatches"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel1
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for White Apple Smart Watch"
+                                    name="./bkImgAreaLabel1"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for White Apple Smart Watch"/>
+                            <bkgroundImageAreaLabel2
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Glasses"
+                                    name="./bkImgAreaLabel2"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Glasses"/>
+                            <bkgroundImageAreaLabel3
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Garmin Sports Watch"
+                                    name="./bkImgAreaLabel3"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Garmin Sports Watch"/>
+                            <bkgroundImageAreaLabel4
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Tea"
+                                    name="./bkImgAreaLabel4"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Tea"/>
+                            <bkgroundImageAreaLabel5
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Wood color watch"
+                                    name="./bkImgAreaLabel4"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Wood color watch"/>
+                            <bkgroundImageAreaLabel6
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Watch in hand"
+                                    name="./bkImgAreaLabel6"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Watch in hand"/>
+                        </items>
+                    </smartwatchesImgAltText>
+
+                    <takingFashionHomeImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="taking-fashion-home"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel1
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Shop"
+                                    name="./bkImgAreaLabel1"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Shop"/>
+                            <bkgroundImageAreaLabel2
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Coat"
+                                    name="./bkImgAreaLabel2"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Coat"/>
+                            <bkgroundImageAreaLabel3
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Zara"
+                                    name="./bkImgAreaLabel3"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Zara"/>
+                            <bkgroundImageAreaLabel4
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Catwalk"
+                                    name="./bkImgAreaLabel4"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Catwalk"/>
+                            <bkgroundImageAreaLabel5
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Fashion Bag"
+                                    name="./bkImgAreaLabel5"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Fashion Bag"/>
+                        </items>
+                    </takingFashionHomeImgAltText>
+
+                    <trendingInGroomingImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="trending-in-grooming"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel1
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Girl"
+                                    name="./bkImgAreaLabel1"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Girl"/>
+                            <bkgroundImageAreaLabel2
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Yoghurt"
+                                    name="./bkImgAreaLabel2"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Yoghurt"/>
+                            <bkgroundImageAreaLabel3
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Bowl"
+                                    name="./bkImgAreaLabel3"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Bowl"/>
+                            <bkgroundImageAreaLabel4
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Spices"
+                                    name="./bkImgAreaLabel4"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Spices"/>
+                        </items>
+                    </trendingInGroomingImgAltText>
+
+                    <larryVsHarryImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="parallax-section-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="larry-vs-harry"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <bkgroundImageAreaLabel1
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Bullitt-1"
+                                    name="./bkImgAreaLabel1"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Bullitt-1"/>
+                            <bkgroundImageAreaLabel2
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Bullitt in Space"
+                                    name="./bkImgAreaLabel2"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Bullitt in Space"/>
+                            <bkgroundImageAreaLabel3
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Parallax-section background image aria-label for Bullitt-2"
+                                    name="./bkImgAreaLabel3"
+                                    fieldDescription="Set Parallax-section image aria-label for Accessibility"
+                                    emptyText="Parallax-section aria-label placeholder for Bullitt-2"/>
+                        </items>
+                    </larryVsHarryImgAltText>
                 </items>
             </column>
         </items>
