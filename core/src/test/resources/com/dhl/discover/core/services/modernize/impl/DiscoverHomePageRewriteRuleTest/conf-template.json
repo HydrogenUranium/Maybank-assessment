@@ -115,7 +115,7 @@
         "sling:resourceType": "wcm/foundation/components/responsivegrid",
         "header": {
           "jcr:primaryType": "nt:unstructured",
-          "sling:resourceType": "dhl/components/content/headerV2"
+          "sling:resourceType": "dhl/components/content/header"
         },
         "responsivegrid": {
           "jcr:primaryType": "nt:unstructured",

@@ -11,7 +11,7 @@ describe('Global and Country Error Page', () => {
     title: '.title',
     image: '.cmp-error-banner__image',
     errorButton: '.cmp-error-banner__button',
-    header: '.headerV2-wrapper',
+    header: '.header-wrapper',
     footer: '.footer-container',
   };
 

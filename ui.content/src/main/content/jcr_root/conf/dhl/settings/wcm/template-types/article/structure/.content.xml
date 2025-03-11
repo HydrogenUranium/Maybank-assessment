@@ -11,13 +11,13 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid"
                 layout="responsiveGrid">
-            <headerv2
+            <header
                     jcr:created="{Date}2023-10-06T14:26:41.371+03:00"
                     jcr:createdBy="admin"
                     jcr:lastModified="{Date}2023-10-06T14:26:41.371+03:00"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/headerV2">
+                    sling:resourceType="dhl/components/content/header">
                 <cta_banner_with_poin
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="dhl/components/content/cta-banner-with-points"
@@ -30,7 +30,7 @@
                             position="Banner in the mobile header menu"
                             trackedInteractions="basic"/>
                 </cta_banner_with_poin>
-            </headerv2>
+            </header>
             <article_header_container
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/article-container"

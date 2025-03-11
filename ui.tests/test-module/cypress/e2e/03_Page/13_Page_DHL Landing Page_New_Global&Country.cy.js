@@ -12,7 +12,7 @@ describe('DHL Landing Page', () => {
     titleV2: '.title-v2',
     downloadAsset: ':nth-child(5) > .download > .cq-dd-file',
     downloadButton: ':nth-child(5).button > .cmp-button',
-    header: '.headerV2-wrapper',
+    header: '.header-wrapper',
     footer: '.footer-container'
   };
 

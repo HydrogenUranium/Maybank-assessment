@@ -10,7 +10,7 @@ describe('Global Thank You Page Open An Account', () => {
     breadcrumbActiveItem: '.cmp-breadcrumb__item--active > span',
     pageTitleBold: 'h2>b',
     paragraph: 'p',
-    header: '.headerV2-wrapper',
+    header: '.header-wrapper',
     footer: '.footer-container',
     followUsSection: '.followUs',
     followUsFacebook: '.followUs__items > [href="https://www.facebook.com/DHLexpress/"]',

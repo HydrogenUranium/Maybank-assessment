@@ -4,17 +4,17 @@ describe('Global Page Header', () => {
   ];
 
   const selectors = {
-    logo: '.headerV2__logo',
+    logo: '.header__logo',
     searchButton: '.searchButtonImage__y8c7h',
     searchInput: '[data-testid="search-bar-input"]',
     closeSearch: '[data-testid="close-search"] > .searchButtonImage__y8c7h',
     navigationItem: '.navigation-item',
     applyForBusiness: '[data-testid="header-red-button"] > span',
     contactUs: '[data-testid="header-company-link-0"] > span',
-    hamburgerMenu: '.headerV2__hamburger',
+    hamburgerMenu: '.header__hamburger',
     applyForBusinessHamburger: 'header .cmp-cta-banner-with-points__button',
     contactUsHamburger: ':nth-child(3) > ul > li > .navigation-item',
-    countrySwitcher: '.headerV2__desktopCountry > .fi',
+    countrySwitcher: '.header__desktopCountry > .fi',
     countryList: '.header-countryList--open:first',
     countryOption: '.header-countryList--open .country-option',
     headerLinks: '.navigation-row__left > .navigation-item:not(.navigation-item_more-less)',
