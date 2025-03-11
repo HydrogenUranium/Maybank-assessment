@@ -28,7 +28,7 @@
                 </a>
                 <div class="cmp-article-showcase__article-info">
                     <div class="cmp-article-showcase__article-group-tag">${item.groupTag}</div>
-                    <h3><a href="${item.path}" class="cmp-article-showcase__article-title">${item.pageTitleWithBr @ context='html'}</a></h3>
+                    <h3 class="cmp-article-showcase__article-title-wrapper"><a href="${item.path}" class="cmp-article-showcase__article-title">${item.pageTitleWithBr @ context='html'}</a></h3>
                     <div class="cmp-article-showcase__article-metadata">
                         <time datetime="${item.created}" data-sly-test="${item.createdfriendly}">${item.createdfriendly}</time>
                         <span data-sly-test="${item.readtime}">${item.readtime}</span>

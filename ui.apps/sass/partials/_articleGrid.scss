@@ -1,7 +1,7 @@
 .article-grid {
-    margin: 40px 0 20px;
+    margin: 4rem 0 2rem;
 
     @include respond(md) {
-        margin-top: 50px;
+        margin-top: 5rem;
     }
 }

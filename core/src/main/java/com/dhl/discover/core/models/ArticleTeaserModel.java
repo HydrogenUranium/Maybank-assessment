@@ -41,6 +41,7 @@ public class ArticleTeaserModel {
     private String imageFromPageImage;
 
     @ValueMapValue
+    @Getter
     private String linkURL;
 
     @ValueMapValue

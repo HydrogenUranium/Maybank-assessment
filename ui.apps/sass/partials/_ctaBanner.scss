@@ -1,18 +1,18 @@
 .cta-banner {
-  margin-top: 40px;
+  margin-top: 4rem;
 
   .cmp-cta-banner {
     @include remove-container-margins-mobile-only;
 
-    min-height: 300px;
-    padding: 20px;
+    min-height: 30rem;
+    padding: 2rem;
     display: flex;
     position: relative;
     mix-blend-mode: multiply;
-    border-radius: 6px;
+    border-radius: .6rem;
     color: #ffffff;
-    font-size: 17px;
-    line-height: 24px;
+    font-size: 1.7rem;
+    line-height: 2.4rem;
 
     @include respond(md) {
       margin-left: 0;
@@ -20,15 +20,15 @@
     }
 
     @include respond(xl) {
-      padding: 65px 180px;
+      padding: 6.5rem 18rem;
     }
 
     &:after {
       content: "";
       border-radius: inherit;
       position: absolute;
-      bottom: 0px;
-      left: 0px;
+      bottom: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       mix-blend-mode: multiply;
@@ -60,7 +60,7 @@
 
     &__body {
       margin-top: auto;
-      padding: 0 15px;
+      padding: 0 1.5rem;
 
       @include respond(md) {
         width: 50%;
@@ -78,14 +78,14 @@
     }
 
     &__top-title {
-      line-height: 25px;
+      line-height: 2.5rem;
       opacity: 0.7;
-      font-size: 20px;
-      margin-bottom: 12px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.8);
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 .5rem rgba(0, 0, 0, 0.8);
 
       @include respond(lg) {
-        line-height: 42px;
+        line-height: 4.2rem;
         opacity: 0.7;
         margin-bottom: unset;
         text-shadow: none;
@@ -93,34 +93,34 @@
     }
 
     &__title {
-      text-shadow: 0 0 20px #131313, 0 0 25px #131313;
+      text-shadow: 0 0 2rem #131313, 0 0 2.5rem #131313;
       font-weight: bold;
-      letter-spacing: 0px;
-      font-size: 16px;
-      line-height: 19px;
+      letter-spacing: 0;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
 
       @include respond(md) {
-        line-height: 24px;
-        font-size: 20px;
+        line-height: 2.4rem;
+        font-size: 2rem;
       }
 
       @include respond(xl) {
-        line-height: 36px;
-        font-size: 30px;
+        line-height: 3.6rem;
+        font-size: 3rem;
       }
     }
 
     &__button {
-      margin-top: 20px;
+      margin-top: 2rem;
       width: 100%;
-      font-size: 15px;
+      font-size: 1.5rem;
 
       @include respond(md) {
-        font-size: 18px;
+        font-size: 1.8rem;
       }
 
       @include respond(xl) {
-        padding: 10px 85px;
+        padding: 1rem 8.5rem;
         width: auto;
       }
     }
@@ -129,19 +129,19 @@
       border-radius: 0;
 
       @include respond(md) {
-        border-radius: 6px;
+        border-radius: .6rem;
       }
 
       position: absolute;
-      top: 0px;
-      left: 0px;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
 
       [dir="rtl"] & {
         left: unset;
-        right: 0px;
+        right: 0;
       }
 
       background: {
@@ -155,12 +155,12 @@
       }
 
       @include respond(xl) {
-        right: 0px;
+        right: 0;
         left: unset;
 
         [dir="rtl"] & {
           right: unset;
-          left: 0px;
+          left: 0;
         }
       }
     }
@@ -169,7 +169,7 @@
 
 .short-banners {
   .cmp-cta-banner {
-    padding: 20px;
+    padding: 2rem;
 
     &:after {
       background: transparent linear-gradient(270deg, #ffffff91 0%, #686868 46%, #131313de 100%);
@@ -185,21 +185,21 @@
     }
 
     &__title {
-      font-size: 16px;
-      line-height: 19px;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
     }
 
     &__button {
-      padding: 15px 0px;
+      padding: 1.5rem 0;
       width: 100%;
-      line-height: 14px;
-      font-size: 15px;
+      line-height: 1.4rem;
+      font-size: 1.5rem;
     }
 
     &__image {
       width: 100%;
-      top: 0px;
-      left: 0px;
+      top: 0;
+      left: 0;
       right: auto;
     }
   }

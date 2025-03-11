@@ -5,8 +5,12 @@ import { Article } from "src/main/webpack/types/article";
 import { SortByOptions } from "src/main/webpack/types";
 import { debounce } from "src/main/webpack/utils";
 
+const getRemSize = () => {
+    return parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
+
 const calculateColumns = (gridWidth = 0, gridGap: number, gridItemWidth: number): number => {
-    return Math.max(1, Math.floor((gridWidth + gridGap) / (gridGap + gridItemWidth)));
+    return Math.max(1, Math.floor((gridWidth + gridGap * getRemSize()) / (gridGap + gridItemWidth * getRemSize())));
 };
 
 /**
@@ -30,8 +34,8 @@ export const useDisplayArticles = (
     articles: Article[],
     sortBy: SortByOptions,
     gridRef: React.MutableRefObject<HTMLDivElement>,
-    gridGap = 36,
-    gridColumnWidth = 270
+    gridGap = 3.6,
+    gridColumnWidth = 27
 ): [Article[], () => void] => {
     const [gridWidth, setGridWidth] = useState(0);
     const columns = useMemo(

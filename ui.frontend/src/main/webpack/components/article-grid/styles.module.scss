@@ -1,12 +1,19 @@
 .articleGrid {
     margin: auto;
-    max-width: 1200px;
+    max-width: 120rem;
+
+    &Sorting {
+      margin-left: auto;
+      [dir="rtl"] & {
+        margin-left: initial;
+        margin-right: auto;
+      }
+    }
 
     &Header {
-        @media screen and (min-width: 567px) {
-            display: flex;
-            justify-content: space-between;
-        }
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     
         &>* {
             align-self: center;
@@ -14,36 +21,36 @@
 
         &Title {
             font-weight: bold;
-            font-size: 20px;
-            line-height: 40px;
-            padding: 0 10px;
+            font-size: 2rem;
+            line-height: 4rem;
+            padding: 0 1rem;
             border-left: 2px solid #dd3741;
         }
     }
 
     &Categories {
-        margin: 25px -50px 0;
-        padding: 0 50px;
+        margin: 2.5rem -5rem 0;
+        padding: 0 5rem;
         display: flex;
-        gap: 20px;
+        gap: 2rem;
 
         //TODO update @media with mixin
-        @media screen and (min-width: 768px) {
-            margin-top: 40px;
+        @media screen and (min-width: 76.8rem) {
+            margin-top: 4rem;
         }
 
         white-space: nowrap;
 
         &::-webkit-scrollbar-track {
-            margin: 50px;
+            margin: 5rem;
         }
     }
 
     &Category {
         cursor: pointer;
         font-weight: bold;
-        font-size: 18px;
-        line-height: 26px;
+        font-size: 1.8rem;
+        line-height: 2.6rem;
         letter-spacing: 0px;
         color: #323232;
 
@@ -60,9 +67,9 @@
     &Articles {
         display: grid;
         flex-wrap: wrap;
-        gap: 20px 36px;
-        margin-top: 30px;
-        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 2rem 3.6rem;
+        margin-top: 3rem;
+        grid-template-columns: repeat(auto-fill, minmax(min(27rem, 100%), 1fr));
     }
 
     &ShowMoreButton {
@@ -72,13 +79,13 @@
         color: #FFFFFF;
         background: #D40511 0% 0% no-repeat padding-box;
         border-radius: 4px;
-        padding: 15px 0px;
+        padding: 1.5rem 0px;
         font-weight: bold;
         width: 100%;
-        line-height: 14px;
-        font-size: 15px;
+        line-height: 1.4rem;
+        font-size: 1.5rem;
         border: none;
-        margin: 50px auto 0;
+        margin: 5rem auto 0;
         display: block;
 
         &:hover {
@@ -92,13 +99,13 @@
             text-decoration: none;
         }
 
-        @media screen and (min-width: 768px) {
-            line-height: 16px;
-            font-size: 18px;
+        @media screen and (min-width: 76.8rem) {
+            line-height: 1.6rem;
+            font-size: 1.8rem;
         }
 
-        @media screen and (min-width: 1200px) {
-            padding: 15px 85px;
+        @media screen and (min-width: 120rem) {
+            padding: 1.5rem 8.5rem;
             width: auto;
         }
     }

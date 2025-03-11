@@ -16,7 +16,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0 21px;
+  padding: 0 2.1rem;
   z-index: 20;
   background: transparent
     linear-gradient(
@@ -27,8 +27,8 @@
       #fff0b2 100%
     )
     0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 4px #0000001a;
-  min-height: 64px;
+  box-shadow: 0 3px 4px #0000001a;
+  min-height: 6.4rem;
   width: 100%;
   transition: width 0.3s ease;
 
@@ -46,22 +46,22 @@
 
   &.headerV2__navigation--open {
     @include respond(md) {
-      width: 390px;
+      width: 39rem;
     }
   }
 
   @include respond(md) {
-    padding: 0 35px;
+    padding: 0 3.5rem;
   }
 
   @include respond(xl) {
     align-items: flex-start;
-    padding: 25px 15px 0 42px;
-    min-height: 86px;
-    max-width: 1640px;
+    padding: 2.5rem 1.5rem 0 4.2rem;
+    min-height: 8.6rem;
+    max-width: 164rem;
     margin: auto;
     [dir="rtl"] & {
-      padding: 25px 42px 0 15px;
+      padding: 2.5rem 4.2rem 0 1.5rem;
     }
   }
 
@@ -76,17 +76,17 @@
       &__left {
         .headerV2__logoWrap {
           display: block;
-          width: 78px;
+          width: 7.8rem;
           max-width: 100%;
 
           @include respond(xl) {
-            width: 124px;
+            width: 12.4rem;
           }
 
           .headerV2__logo {
             display: block;
             width: 100%;
-            height: 0px;
+            height: 0;
             padding-bottom: 37.32%;
             background-image: none,
               url("__prefix__/discover/resources/img/new-logo.svg");
@@ -101,17 +101,17 @@
 
         .header__icon {
           position: relative;
-          margin: 0 8px;
+          margin: 0 0.8rem;
 
           &:last-child {
-            margin: 0 0 0 8px;
+            margin: 0 0 0 0.8rem;
           }
 
           @include respond(xl) {
-            margin: 0 15px;
+            margin: 0 1.5rem;
 
             &:last-child {
-              margin: 0 0 0 15px;
+              margin: 0 0 0 1.5rem;
             }
           }
 
@@ -121,7 +121,7 @@
 
           .header__desktopSearch {
             display: block;
-            height: 26px;
+            height: 2.6rem;
             min-width: 100%;
             border-left: unset;
 
@@ -131,8 +131,8 @@
               background-image: none,
                 url("__prefix__/discover/resources/img/searchicon.svg");
               @include backgroundImage(contain);
-              width: 20px;
-              height: 26px;
+              width: 2rem;
+              height: 2.6rem;
 
               margin: 0;
               position: unset;
@@ -152,43 +152,43 @@
             background: map-get($palette, true-white) 0% 0% no-repeat
               padding-box;
             border: 1px solid map-get($palette, true-black);
-            border-radius: 4px;
-            padding: 0 10px 5px;
+            border-radius: .4rem;
+            padding: 0 1rem .5rem;
             z-index: 22;
             right: 0;
-            width: 205px;
+            width: 20.5rem;
             max-height: 0;
             overflow-y: auto;
             overflow-x: hidden;
-            font-size: 16px;
-            line-height: 14px;
+            font-size: var(--font-size-md);
+            line-height: var(--line-height-xs);
             transition: visibility 0.3s ease-in-out, max-height 0.3s ease-in-out;
             pointer-events: none;
             visibility: hidden;
 
             @include respond(md) {
-              width: 212px;
+              width: 21.2rem;
             }
 
             &--open {
               pointer-events: auto;
               visibility: visible;
-              max-height: 195px;
+              max-height: 19.5rem;
             }
 
             &::-webkit-scrollbar-track {
-              -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+              -webkit-box-shadow: inset 0 0 .6rem rgba(0, 0, 0, 0.3);
               background-color: white;
-              border-radius: 10px;
+              border-radius: 1rem;
             }
 
             &::-webkit-scrollbar {
-              width: 5px;
+              width: .5rem;
             }
 
             &::-webkit-scrollbar-thumb {
-              border-radius: 10px;
-              -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+              border-radius: 1rem;
+              -webkit-box-shadow: inset 0 0 .6rem rgba(0, 0, 0, 0.3);
               background-color: #777;
             }
 
@@ -203,9 +203,9 @@
                 cursor: pointer;
                 color: #323232;
                 display: block;
-                width: calc(100% + 20px);
-                padding: 4px 10px;
-                margin: 0 -10px;
+                width: calc(100% + 2rem);
+                padding: .4rem 1rem;
+                margin: 0 -1rem;
                 &:hover {
                   background: #ccc;
                 }
@@ -222,11 +222,11 @@
               position: sticky;
               top: 0;
               z-index: 1;
-              margin: 0 -10px;
-              padding: 0 10px;
+              margin: 0 -1rem;
+              padding: 0 1rem;
               display: block;
-              width: calc(100% + 20px);
-              margin-bottom: 4px;
+              width: calc(100% + 2rem);
+              margin-bottom: .4rem;
               border: none;
             }
 
@@ -237,19 +237,18 @@
 
             &__label {
               position: relative;
-              font-size: 10px;
-              line-height: 14px;
-              letter-spacing: 0px;
-              margin-bottom: 4px;
+              font-size: var(--font-size-2xs);
+              letter-spacing: 0;
+              margin-bottom: .4rem;
               color: #363636;
               opacity: 0.6;
             }
 
             &__widget {
-              min-width: 175px;
+              min-width: 17.5rem;
 
               .fi {
-                margin: 0 2px 0 0;
+                margin: 0 .2rem 0 0;
               }
 
               .fi-aa {
@@ -260,11 +259,11 @@
 
               .country-name {
                 display: inline-block;
-                width: calc(100% - 30px);
+                width: calc(100% - 3rem);
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                line-height: 17px;
+                line-height: 1.7rem;
                 vertical-align: middle;
               }
             }
@@ -276,10 +275,9 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            font-size: 16px;
-            line-height: 14px;
+            font-size: var(--font-size-md);
             cursor: pointer;
-            gap: 5px;
+            gap: .5rem;
 
             .global-icon {
               display: block;
@@ -288,8 +286,8 @@
                 url("__prefix__/discover/resources/img/globe.svg");
               @include backgroundImage(contain);
 
-              width: 20px;
-              height: 20px;
+              width: 2rem;
+              height: 2rem;
             }
 
             .title {
@@ -302,10 +300,9 @@
           }
 
           .headerV2__lang {
-            padding-right: 5px;
-            min-width: 36px;
-            font-size: 14px;
-            line-height: 14px;
+            padding-right: .5rem;
+            min-width: 3.6rem;
+            font-size: var(--font-size-sm);
             color: map-get($palette, black);
             text-align: center;
             text-decoration: none;
@@ -319,7 +316,7 @@
             }
 
             &--selected {
-              text-underline-offset: 5px;
+              text-underline-offset: .5rem;
               text-decoration: underline;
             }
           }
@@ -327,8 +324,8 @@
 
         .headerV2__navigation {
           display: block;
-          width: 30px;
-          height: 30px;
+          width: 3rem;
+          height: 3rem;
           background: transparent;
 
           @include respond(xl) {
@@ -337,24 +334,24 @@
 
           .headerV2__hamburger {
             display: block;
-            width: 24px;
-            height: 2px;
+            width: 2.4rem;
+            height: .2rem;
             background: map-get($palette, black);
             position: relative;
-            top: 13px;
-            left: -7px;
+            top: 1.3rem;
+            left: -0.7rem;
             transition: background 150ms ease;
-            margin-left: 10px;
+            margin-left: 1rem;
 
             &:before {
               content: " ";
               display: block;
               position: absolute;
-              top: -6px;
-              left: 0px;
+              top: -0.6rem;
+              left: 0;
               background: map-get($palette, black);
-              width: 24px;
-              height: 2px;
+              width: 2.4rem;
+              height: 0.2rem;
               transition: transform 150ms ease;
             }
 
@@ -362,11 +359,11 @@
               content: " ";
               display: block;
               position: absolute;
-              bottom: -6px;
-              left: 0px;
+              bottom: -0.6rem;
+              left: 0;
               background: map-get($palette, black);
-              width: 24px;
-              height: 2px;
+              width: 2.4rem;
+              height: .2rem;
               transition: transform 150ms ease;
             }
           }
@@ -394,29 +391,29 @@
       display: none;
       @include respond(xl) {
         display: flex;
-        column-gap: 40px;
+        column-gap: 4rem;
         justify-content: space-between;
         align-items: baseline;
       }
 
       &__left {
         display: flex;
-        column-gap: 40px;
+        column-gap: 4rem;
         flex-flow: row wrap;
         overflow: hidden;
-        max-height: 51px;
+        max-height: 5.1rem;
       }
 
       &__right {
         display: flex;
-        column-gap: 40px;
+        column-gap: 4rem;
         align-items: baseline;
 
         .button {
-          font-size: 14px;
-          padding: 10px;
+          font-size: var(--font-size-sm);
+          padding: 1rem;
           white-space: nowrap;
-          margin-bottom: 3px;
+          margin-bottom: .3rem;
         }
       }
     }
@@ -425,8 +422,8 @@
   .navigation-item {
     display: block;
     border-bottom: 1px solid map-get($palette, white);
-    padding: 20px 0 8px;
-    font-size: 16px;
+    padding: 2rem 0 .8rem;
+    font-size: var(--font-size-sm);
     color: #000000e6;
 
     &:last-child {
@@ -437,7 +434,7 @@
       display: inline;
       border-bottom: unset;
 
-      font-size: 14px;
+      font-size: var(--font-size-sm);
       white-space: nowrap;
 
       &:last-child {
@@ -465,17 +462,17 @@
       &:after {
         content: " ";
         display: inline-block;
-        width: 6px;
-        height: 14px;
+        width: .6rem;
+        height: 1.4rem;
         background-image: url("__prefix__/discover/resources/img/linkarrow.png");
         background-image: none,
           url("__prefix__/discover/resources/img/linkarrow.png");
         background-size: contain;
         background-position: center center;
         background-repeat: no-repeat;
-        margin: 0 8px;
+        margin: 0 .8rem;
         position: relative;
-        top: 3px;
+        top: 0.3rem;
       }
 
       &.more:after {
@@ -490,33 +487,33 @@
   .headerV2__meganav {
     display: none;
     position: absolute;
-    top: 64px;
+    top: 6.4rem;
     left: 0;
     padding: 0;
     width: 100%;
-    max-height: calc(100dvh - 64px);
+    max-height: calc(100dvh - 6.4rem);
     margin: 0;
-    line-height: 14px;
+    line-height: 1.4rem;
     overflow-y: auto;
     overflow-x: hidden;
 
     .headerV2__meganavNavigation {
       background: map-get($palette, true-white);
-      padding: 31px 36px 36px;
+      padding: 3.1rem 3.6rem 3.6rem;
 
       .headerV2__meganavNav {
-        margin: 0px;
+        margin: 0;
         list-style: none;
         position: relative;
 
         .menuNav-title {
-          font-size: 16px;
+          font-size: var(--font-size-md);
           font-weight: bold;
         }
 
         > li {
           display: block;
-          padding-bottom: 27px;
+          padding-bottom: 2.7rem;
 
           &:last-child {
             padding-bottom: 0;
@@ -524,16 +521,15 @@
 
           a {
             display: block;
-            padding: 15px 0;
+            padding: 1.5rem 0;
             text-decoration: none;
           }
 
           > a {
-            @include font($style: "%T1");
             color: map-get($palette, scarlet);
             text-transform: uppercase;
-            font-size: 16px;
-            padding: 15px 0 0;
+            font-size: var(--font-size-md);
+            padding: 1.5rem 0 0;
 
             &:hover {
               color: #323232;
@@ -545,14 +541,13 @@
 
             li {
               display: block;
-              margin-left: 32px;
+              margin-left: 3.2rem;
 
               a {
-                @include font($style: "%T2Left", $colour: #323232);
                 font-weight: 200;
                 font-stretch: condensed;
-                font-size: 14px;
-                line-height: 16px;
+                font-size: var(--font-size-sm);
+                line-height: 1.6rem;
 
                 &:hover {
                   color: map-get($palette, scarlet);
@@ -565,18 +560,18 @@
     }
 
     &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: inset 0 0 .6rem rgba(0, 0, 0, 0.3);
       background-color: white;
-      border-radius: 10px;
+      border-radius: 1rem;
     }
 
     &::-webkit-scrollbar {
-      width: 5px;
+      width: .5rem;
     }
 
     &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      border-radius: 1rem;
+      -webkit-box-shadow: inset 0 0 .6rem rgba(0, 0, 0, 0.3);
       background-color: #777;
     }
 

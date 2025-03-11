@@ -60,11 +60,13 @@ export const ArticleGrid: React.FC<ArticleGridProps> = ({
     <div className={styles.articleGrid}>
       <div className={styles.articleGridHeader}>
         <div className={styles.articleGridHeaderTitle}>{title}</div>
-        <SortSelect
-          onChange={setSelectedSortOption}
-          options={selectOptions}
-          sortingTitle={sortingTitle}
-        />
+        <div className={styles.articleGridSorting}>
+          <SortSelect
+            onChange={setSelectedSortOption}
+            options={selectOptions}
+            sortingTitle={sortingTitle}
+          />
+        </div>
       </div>
 
       {hasMultipleCategories 
