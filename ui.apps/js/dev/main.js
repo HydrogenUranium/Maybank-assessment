@@ -1,5 +1,5 @@
 // Import components
-import HeaderV2 from './Components/HeaderV2';
+import Header from './Components/Header';
 import BootstrapCarousel from './Components/BootstrapCarousel';
 import ShipForm from './Components/ShipForm';
 import IEDetector from './Components/IEDetector';
@@ -22,7 +22,7 @@ $(document).ready(() => {
   // Initiate components
   LanguageDetect.init();
   IEDetector.init();
-  HeaderV2.init();
+  Header.init();
   BootstrapCarousel.init();
   ShipForm.init();
   Hero.init();
