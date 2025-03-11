@@ -43,6 +43,7 @@
         "set properties on authorizable(discover-base-user)/profile\n set givenName to \"Discover Base User\"\n set aboutMe to \"Common user group with basic access rights\"\n end",
         "add discover-base-user to group author-language-copies",
         "add discover-base-user to group author-language-master",
+        "add discover-base-user to group experience-fragments-editors",
         "add discover-base-user to group contributor",
         "add discover-base-user to group workflow-users",
         "add discover-base-user to group analytics-administrators",

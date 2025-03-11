@@ -1,27 +1,27 @@
 .infoRow {
   background-color: #33658a;
-  padding-top: 20px;
-  padding-bottom: 120px;
+  padding-top: 2rem;
+  padding-bottom: 12rem;
 
   @include respond(md) {
-    padding-top: 40px;
-    padding-bottom: 90px;
+    padding-top: 4rem;
+    padding-bottom: 9rem;
   }
 
   @include respond(lg) {
-    padding-top: 90px;
-    padding-bottom: 140px;
+    padding-top: 9rem;
+    padding-bottom: 14rem;
   }
 
   &--country {
-    margin: 0 0 20px;
+    margin: 0 0 2rem;
 
     @include respond(md) {
-      margin: 0 0 30px;
+      margin: 0 0 3rem;
     }
 
     @include respond(lg) {
-      margin: 0 0 80px;
+      margin: 0 0 8rem;
     }
   }
 
@@ -31,41 +31,41 @@
   }
 
   &--music2 {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
     @include respond(md) {
-      padding-top: 40px;
-      padding-bottom: 40px;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
     }
 
     @include respond(xl) {
-      padding-top: 90px;
-      padding-bottom: 90px;
+      padding-top: 9rem;
+      padding-bottom: 9rem;
     }
   }
 
   &--countryIndia {
-    margin: 30px 0;
+    margin: 3rem 0;
 
     @include respond(md) {
-      margin: 40px 0;
+      margin: 4rem 0;
     }
 
     @include respond(lg) {
-      margin: 90px 0;
+      margin: 9rem 0;
     }
   }
 
   &--countryAsia {
-    margin: 30px 0;
+    margin: 3rem 0;
 
     @include respond(md) {
-      margin: 40px 0;
+      margin: 4rem 0;
     }
 
     @include respond(lg) {
-      margin: 90px 0 30px;
+      margin: 9rem 0 3rem;
     }
 
     .container {
@@ -74,26 +74,26 @@
       &:after {
         content: ' ';
         display: block;
-        height: 2px;
+        height: .2rem;
         background: #e8e8e8;
         position: absolute;
         z-index: 4;
-        left: 15px;
-        right: 15px;
-        bottom: -10px;
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: -1rem;
       }
     }
   }
 
   &--countryUK {
-    margin: 30px 0;
+    margin: 3rem 0;
 
     @include respond(md) {
-      margin: 65px 0 60px;
+      margin: 6.5rem 0 6rem;
     }
 
     @include respond(lg) {
-      margin: 90px 0;
+      margin: 9rem 0;
     }
   }
 
@@ -101,27 +101,27 @@
   &--cosmetics101 {
     background:#21314a;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
-    padding: 30px 0 20px;
+    padding: 3rem 0 2rem;
 
     @include respond(md) {
-      padding: 40px 0 30px;
+      padding: 4rem 0 3rem;
     }
 
     @include respond(lg) {
-      padding: 90px 0;
+      padding: 9rem 0;
     }
   }
 
   &--medical {
     background: #33658a;
-    padding: 30px 0 0;
+    padding: 3rem 0 0;
 
     @include respond(md) {
-      padding: 50px 0 50px;
+      padding: 5rem 0 5rem;
     }
 
     @include respond(md) {
-      padding: 90px 0 50px;
+      padding: 9rem 0 5rem;
     }
 
   }
@@ -129,62 +129,62 @@
   &--office {
     background: #203239;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
-    padding: 30px 0 20px;
+    padding: 3rem 0 2rem;
 
     @include respond(md) {
-      padding: 40px 0;
+      padding: 4rem 0;
     }
 
     @include respond(lg) {
-      padding: 110px 0 50px 0;
+      padding: 11rem 0 5rem 0;
     }
   }
 
   &--fashion {
     background-color: #49bfe0;
-    padding-top: 30px;
-    padding-bottom: 80px;
+    padding-top: 3rem;
+    padding-bottom: 8rem;
     z-index: 0 !important;
 
     @include respond(md) {
-      padding-top: 40px;
-      padding-bottom: 90px;
+      padding-top: 4rem;
+      padding-bottom: 9rem;
     }
 
     @include respond(lg) {
-      padding-top: 90px;
-      padding-bottom: 140px;
+      padding-top: 9rem;
+      padding-bottom: 14rem;
     }
   }
 
   &--textiles {
     background-color: #ffffff;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
     @include respond(md) {
-      padding-top: 60px;
-      padding-bottom: 60px;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
     }
 
     @include respond(lg) {
-      padding-top: 60px;
-      padding-bottom: 60px;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
     }
   }
 
   &--fashionAlt {
     background-color: map-get($palette, true-white);
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
     @include respond(md) {
-      padding-bottom: 40px;
-      padding-top: 30px;
+      padding-bottom: 4rem;
+      padding-top: 3rem;
     }
 
     @include respond(lg) {
-      height: 467px;
+      height: 46.7rem;
       overflow: visible;
     }
 
@@ -196,66 +196,66 @@
 
   &--electronics {
     background-color: #33658a;
-    padding: 30px 0;
+    padding: 3rem 0;
 
     @include respond(md) {
-      padding: 40px 0;
+      padding: 4rem 0;
     }
 
     @include respond(lg) {
-      padding-top: 140px;
-      padding-bottom: 90px;
+      padding-top: 14rem;
+      padding-bottom: 9rem;
     }
   }
 
   &--sport {
     background: #49bfe0;
-    padding: 20px 0 5px 0;
+    padding: 2rem 0 .5rem 0;
 
     @include respond(md) {
-      padding: 40px 0 25px;
+      padding: 4rem 0 2.5rem;
     }
 
     @include respond(lg) {
-      padding: 180px 0 100px;
+      padding: 18rem 0 10rem;
     }
 
     @include respond(xl) {
-      padding-top: 120px;
+      padding-top: 12rem;
     }
 
   }
 
   &--sportAlt {
     background: white;
-    padding: 20px 0 20px 0;
+    padding: 2rem 0 2rem 0;
   }
 
   &--textRow {
     background-color: #49bfe0;
-    padding: 30px 0 60px;
+    padding: 3rem 0 6rem;
 
     @include respond(md) {
-      padding: 40px 0 60px;
+      padding: 4rem 0 6rem;
     }
 
     @include respond(lg) {
-      padding: 70px 0 90px;
+      padding: 7rem 0 9rem;
     }
   }
 
   &__title {
-    font-family: $font-family--animated;
-    font-size: 22px;
+
+    font-size: 2.2rem;
     font-weight: 800;
     font-stretch: condensed;
     line-height: 1.18;
     color: #ffffff;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 
     @include respond(md) {
-      font-size: 40px;
+      font-size: 4rem;
       line-height:normal;
     }
 
@@ -263,11 +263,11 @@
     &--alt {
 
       @include respond(md) {
-        font-size: 30px;
+        font-size: 3rem;
       }
 
       @include respond(lg) {
-        font-size: 40px;
+        font-size: 4rem;
       }
     }
 
@@ -283,8 +283,8 @@
  }
 
   &__copy {
-    font-family: $font-family--animated;
-    font-size: 15px;
+
+    font-size: 1.5rem;
     font-weight: 400;
     line-height: 1.6;
     color: #ffffff;
@@ -334,82 +334,82 @@
   }
 
   &__image {
-    width: 275px;
-    height: 275px;
+    width: 27.5rem;
+    height: 27.5rem;
     margin: 0 auto;
     display: block;
 
     @include respond(md) {
-      width: 340px;
-      height: 340px;
+      width: 34rem;
+      height: 34rem;
       position: relative;
-      left: -37px;
-      top: -25px;
+      left: -3.7rem;
+      top: -2.5rem;
     }
 
     @include respond(lg) {
-      width: 400px;
-      height: 400px;
+      width: 40rem;
+      height: 40rem;
       left: 0;
-      top: -33px;
+      top: -3.3rem;
     }
 
     &--letter {
-      width: 190px;
+      width: 19rem;
       height: auto;
 
       @include respond(md) {
-        width: 373px;
+        width: 37.3rem;
         left: 0;
         top: 0;
       }
     }
 
     &--medical {
-      margin-top: 40px;
+      margin-top: 4rem;
     }
 
     &--music {
-      margin-top: 30px;
+      margin-top: 3rem;
 
       @include respond(md) {
-        margin-top: 80px;
-        width: 300px;
+        margin-top: 8rem;
+        width: 30rem;
         height: auto;
       }
 
       @include respond(lg) {
-        margin-top: 50px;
-        width: 400px;
+        margin-top: 5rem;
+        width: 40rem;
       }
     }
 
     &--music2 {
       height: auto;
-      width: 260px;
+      width: 26rem;
 
       @include respond(md) {
-        width: 255px;
-        margin-top: 40px;
+        width: 25.5rem;
+        margin-top: 4rem;
       }
 
       @include respond(lg) {
-        width: 350px;
+        width: 35rem;
       }
     }
 
     &--ring {
-      width: 246px;
+      width: 24.6rem;
       height: auto;
-      margin-bottom:25px;
+      margin-bottom:2.5rem;
 
       @include respond(md) {
-        width: 246px;
+        width: 24.6rem;
         margin-bottom:0;
       }
 
       @include respond(lg) {
-        width: 373px;
+        width: 37.3rem;
       }
     }
 
@@ -417,18 +417,18 @@
     &--book {
       width: 100%;
       height: auto;
-      margin:0 auto 20px;
+      margin:0 auto 2rem;
 
       @include respond(md) {
-        width: 400px;
-        margin:40px auto;
+        width: 40rem;
+        margin:4rem auto;
         top:auto;
         left:auto;
       }
 
       @include respond(lg) {
-        width: 374px;
-        top:-14px;
+        width: 37.4rem;
+        top:-1.4rem;
       }
     }
 
@@ -438,18 +438,18 @@
       margin: 0 auto 0;
 
       @include respond(md) {
-        width: 250px;
+        width: 25rem;
       }
 
       @include respond(lg) {
-        width: 374px;
+        width: 37.4rem;
       }
     }
 
     &--sport {
       @include respond(md) {
-        width: 400px;
-        margin:40px auto;
+        width: 40rem;
+        margin:4rem auto;
         top:auto;
         left:auto;
       }
@@ -457,47 +457,47 @@
   }
 
   &__sewing {
-    width: 290px;
-    height: 215px;
-    margin-top: 30px !important;
-    margin-bottom: 30px !important;
+    width: 29rem;
+    height: 21.5rem;
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
     margin: 0 auto;
     display: block;
 
     @include respond(md) {
-      width: 384px;
-      height: 285px;
-      margin: 40px auto;
+      width: 38.4rem;
+      height: 28.5rem;
+      margin: 4rem auto;
       position: initial;
     }
 
     @include respond(lg){
-      width: 372px;
-      height: 296px;
+      width: 37.2rem;
+      height: 29.6rem;
     }
   }
 }
 
 .country-gif {
   background-image:none;
-  margin:40px auto;
+  margin:4rem auto;
 
-  width:320px;
-  height:344px;
-  background-size:320px 344px;
+  width:32rem;
+  height:34.4rem;
+  background-size:32rem 34.4rem;
 
   @include respond(sm){
     background-image:none;
-    width:389px;
-    height:421px;
-    background-size:389px 421px;
+    width:38.9rem;
+    height:42.1rem;
+    background-size:38.9rem 42.1rem;
   }
 
   @include respond(lg){
     background-image:none;
-    width:389px;
-    height:421px;
-    background-size:389px 421px;
+    width:38.9rem;
+    height:42.1rem;
+    background-size:38.9rem 42.1rem;
     margin:0 auto;
   }
 

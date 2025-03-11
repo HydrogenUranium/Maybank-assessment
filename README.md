@@ -147,3 +147,12 @@ The project comes with the auto-public repository configured. To setup the repos
 `npm run build:css` - to run apps scss build
 
 `npm run cypress` - to run cypress
+
+
+## RDE Scripts
+
+`npm run rde:deploy:<module-name>` - to deploy the selected module (example: all, apps, dispatcher, etc.) to RDE
+
+`npm run rde:build-and-deploy:<module-name>` - to run build of selected module (example: all, apps, dispatcher, etc.) locally and deploy to RDE
+
+

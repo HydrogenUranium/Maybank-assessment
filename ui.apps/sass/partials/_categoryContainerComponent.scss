@@ -1,8 +1,11 @@
 .category-container-component-wrapper {
-  margin: 0 35px;
+  margin: 0 21px;
+  @include respond(md) {
+    margin: 0 35px;
+  }
   .category-container-component {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 120rem;
   }
 }
 

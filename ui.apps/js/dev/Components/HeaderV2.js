@@ -222,13 +222,15 @@ class HeaderV2 {
   }
 
   showSecondRowOfCategories() {
+    this.lastScrollTop = undefined;
     $(this.sel.categories).css({'overflow': 'unset', 'max-height': 'unset'});
     $(this.sel.moreLink).hide();
     $(this.sel.lessLink).show();
   }
 
   hideSecondRowOfCategories() {
-    $(this.sel.categories).css({'overflow': 'hidden', 'max-height': '51px'});
+    this.lastScrollTop = undefined;
+    $(this.sel.categories).css({'overflow': 'hidden', 'max-height': '5.1rem'});
     $(this.sel.moreLink).show();
     $(this.sel.lessLink).hide();
   }

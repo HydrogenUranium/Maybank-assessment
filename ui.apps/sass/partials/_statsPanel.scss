@@ -1,16 +1,16 @@
 .statsPanel {
   background-color: #33658a;
   padding-top: 0;
-  padding-bottom: 80px;
+  padding-bottom: 8rem;
 
   @include respond(md) {
-    padding-bottom: 90px;
-    padding-top: 30px;
+    padding-bottom: 9rem;
+    padding-top: 3rem;
   }
 
   @include respond(lg) {
-    padding-top: 80px;
-    padding-bottom: 140px;
+    padding-top: 8rem;
+    padding-bottom: 14rem;
   }
 
   &--spacing {
@@ -24,12 +24,12 @@
   }
 
   &--office {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 50px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 5rem;
 
     @include respond(md) {
-      padding-bottom: 40px !important;
+      padding-bottom: 4rem !important;
     }
 
     @include respond(lg) {
@@ -41,52 +41,52 @@
   &--fashion,
   &--office {
     background-color: map-get($palette, true-white);
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
     .container {
-      padding-left:0px;
-      padding-right:0px;
+      padding-left:0;
+      padding-right:0;
 
       @include respond(md) {
-        padding-left:15px;
+        padding-left:1.5rem;
         padding-right:0;
       }
     }
 
     @include respond(md) {
-      margin-bottom: 40px !important;
-      padding-top: 40px !important;
+      margin-bottom: 4rem !important;
+      padding-top: 4rem !important;
       padding-bottom: 0 !important;
     }
 
     @include respond(lg) {
-      height: 500px;
+      height: 50rem;
       overflow: visible;
     }
   }
 
   &--office {
     @include respond(lg) {
-      height: 545px;
+      height: 54.5rem;
     }
 
     @include respond(xl) {
-      height: 415px;
+      height: 41.5rem;
     }
   }
 
   &--electronics {
     background: #ffffff;
-    padding: 30px 0 15px 0;
+    padding: 3rem 0 1.5rem 0;
     text-align: center;
 
     @include respond(md) {
-      padding: 40px 0  25px 0!important;
+      padding: 4rem 0  2.5rem 0!important;
     }
 
     @include respond(lg) {
-      padding: 70px 0 55px 0!important;
+      padding: 7rem 0 5.5rem 0!important;
     }
 
     .statsPanel__copy--alt {
@@ -96,32 +96,32 @@
 
   &--fashion {
     background-color: #49bfe0;
-    padding: 30px 0;
+    padding: 3rem 0;
 
     @include respond(md) {
-      padding: 40px 0 !important;
+      padding: 4rem 0 !important;
       margin-bottom: 0 !important;
     }
 
     @include respond(lg) {
-      padding-top: 140px !important;
-      padding-bottom: 90px !important;
+      padding-top: 14rem !important;
+      padding-bottom: 9rem !important;
       height: auto;
     }
   }
 
   &--textiles {
     background-color: #33658a;
-    padding: 30px 0;
+    padding: 3rem 0;
 
     @include respond(md) {
-      padding: 40px 0 !important;
+      padding: 4rem 0 !important;
       margin-bottom: 0 !important;
     }
 
     @include respond(lg) {
-      padding-top: 90px !important;
-      padding-bottom: 70px !important;
+      padding-top: 9rem !important;
+      padding-bottom: 7rem !important;
       height: auto;
     }
 
@@ -132,17 +132,17 @@
 
   &--fashionAlt {
     background-color: map-get($palette, true-white);
-    padding-top: 30px;
+    padding-top: 3rem;
     padding-bottom: 0;
 
     @include respond(md) {
-      padding-top: 40px !important;
+      padding-top: 4rem !important;
       padding-bottom: 0 !important;
     }
 
     @include respond(lg) {
-      padding-top: 90px !important;
-      padding-bottom: 90px !important;
+      padding-top: 9rem !important;
+      padding-bottom: 9rem !important;
       height: auto;
     }
   }
@@ -151,12 +151,12 @@
     position: relative;
     margin: 0 auto;
     display: table;
-    padding: 30px 0;
+    padding: 3rem 0;
 
     @include respond(md) {
       margin: inherit;
       margin-left: 0;
-      padding: 40px 0;
+      padding: 4rem 0;
     }
 
     @include respond(lg) {
@@ -185,7 +185,7 @@
       }
 
       @include respond(xl) {
-        padding: 40px;
+        padding: 4rem;
       }
     }
 
@@ -198,14 +198,14 @@
     &--padding {
 
       @include respond(md) {
-        margin-top: 40px;
+        margin-top: 4rem;
       }
     }
   }
 
   &__title {
-    font-family: $font-family--animated;
-    font-size: 22px;
+
+    font-size: 2.2rem;
     font-weight: 800;
     font-stretch: condensed;
     line-height: 1.18;
@@ -215,12 +215,12 @@
     margin-bottom:0.5em;
 
     @include respond(md) {
-      font-size: 30px;
+      font-size: 3rem;
       line-height: normal;
     }
 
     @include respond(lg) {
-      font-size: 40px;
+      font-size: 4rem;
     }
 
     &--light {
@@ -229,8 +229,7 @@
   }
 
   &__copy {
-    font-family: $font-family--animated;
-    font-size: 15px;
+    font-size: 1.5rem;
     line-height: 1.6;
     font-weight: 400;
     color: map-get($palette, true-white);
@@ -265,10 +264,10 @@
 
   &__statsValue {
     font-family: Arial;
-    font-size: 44px;
+    font-size: 4.4rem;
     font-weight: 900;
-    height: 47px;
-    line-height:43px;
+    height: 4.7rem;
+    line-height:4.3rem;
     margin-bottom:0;
     transform: translate3d( 0, 0, 0);
     will-change: transform;
@@ -276,34 +275,34 @@
     -webkit-font-smoothing: antialiased;
     transform: perspective(1px) scale(1.1);
     color: map-get($palette, sunflower-yellow);
-    margin-left: 6px;
+    margin-left: .6rem;
 
 
     @include respond(sm) {
-      font-size: 50px;
-      height: 50px;
-      line-height:50px;
+      font-size: 5rem;
+      height: 5rem;
+      line-height:5rem;
     }
 
     @include respond(md) {
-      height: 54px;
+      height: 5.4rem;
     }
 
     @include respond(lg) {
-      height: 98px;
-      font-size: 80px;
-      line-height:92px;
+      height: 9.8rem;
+      font-size: 8rem;
+      line-height:9.2rem;
     }
 
     &--alt {
 
       @include respond(md) {
-        height: 55px;
+        height: 5.5rem;
       }
 
       @include respond(lg) {
-        font-size: 50px;
-        height: 75px;
+        font-size: 5rem;
+        height: 7.5rem;
       }
     }
 
@@ -311,69 +310,68 @@
       color: map-get($palette, true-white);
 
       @include respond(md) {
-        font-size: 50px;
-        height: 56px;
+        font-size: 5rem;
+        height: 5.6rem;
       }
 
       @include respond(lg) {
-        height: 60px;
+        height: 6rem;
       }
     }
   }
 
   &__value {
-    font-size: 17px;
+    font-size: 1.7rem;
     font-weight: 900;
-    font-family: $font-family--animated;
     color: map-get($palette, sunflower-yellow);
     text-transform: uppercase;
-    line-height:20px;
+    line-height:2rem;
 
 
     @include respond(lg) {
-      font-size: 27px;
+      font-size: 2.7rem;
     }
 
     &--alt {
       width: 101%;
 
       @include respond(lg) {
-        font-size: 17px;
+        font-size: 1.7rem;
       }
     }
 
     &--light {
       color: map-get($palette, true-white);
-      line-height:20px;
+      line-height:2rem;
 
       @include respond(md) {
-        font-size: 17px;
+        font-size: 1.7rem;
 
       }
 
       @include respond(lg) {
-        margin-top: 18px;
+        margin-top: 1.8rem;
       }
     }
 
     &--noPercentage {
-      font-size: 28px;
+      font-size: 2.8rem;
       font-weight: 900;
-      margin: 20px 0;
+      margin: 2rem 0;
     }
   }
 
   &__statsWrapper {
     float: right;
-    margin-top: 40px;
-    margin-left: 30px;
+    margin-top: 4rem;
+    margin-left: 3rem;
 
     @include respond(lg) {
-      margin-left: 20px;
+      margin-left: 2rem;
     }
 
     @include respond(xl) {
-      margin-left: 30px;
+      margin-left: 3rem;
     }
 
     &--alt,
@@ -383,7 +381,7 @@
     }
 
     &--altDown {
-      margin-top: 50px;
+      margin-top: 5rem;
     }
 
     &--electronics {
@@ -432,8 +430,8 @@
 
     @include respond(lg) {
       display: flex;
-      //margin-top: 40px;
-      padding: 30px 20px 40px 20px;
+      //margin-top: 4rem;
+      padding: 3rem 2rem 4rem 2rem;
       // object-fit: contain;
       box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
     }
@@ -450,7 +448,7 @@
       display: contents;
 
       @include respond(lg) {
-        padding: 40px 20px 50px 40px;
+        padding: 4rem 2rem 5rem 4rem;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
         display: block;
       }
@@ -459,8 +457,8 @@
 
   &__boxWrapper {
     display: flex;
-    margin-left:-15px;
-    margin-right:-15px;
+    margin-left:-1.5rem;
+    margin-right:-1.5rem;
 
     @include respond(lg) {
       width: 100%;
@@ -493,7 +491,7 @@
 }
 
 .o-pd-copy {
-  margin-bottom:30px;
+  margin-bottom:3rem;
 
   @include respond(sm) {
     margin-bottom:0;

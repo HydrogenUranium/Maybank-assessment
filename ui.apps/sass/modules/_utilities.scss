@@ -1,11 +1,14 @@
-@mixin font($style, $colour: inherit) {
-  @extend #{$style};
-	color: $colour;
-}
+$discover-breakpoints: (
+  xs: 0,
+  sm: 36rem,
+  md: 48rem,
+  lg: 62rem,
+  xl: 75rem
+);
 
 @mixin respond($size) {
 	@if ($size == xl or $size == lg or $size == md or $size == sm or $size == xs) {
-		@media screen and (min-width: map-get($grid-breakpoints, $size)) {
+		@media screen and (min-width: map-get($discover-breakpoints, $size)) {
 			@content;
 		}
 	} @else {
@@ -19,7 +22,6 @@
   display: inline-block;
   margin: 0;
 	padding: 10px 43px;
-	@include font($style: "%T2");
 	border-radius: 5px;
 	transition: background 150ms ease, color 150ms ease;
 
@@ -126,27 +128,24 @@
 }
 
 :root {
-  /* Mobile Margins */
   --margin-zero: 0;
-  --margin-small: 1rem;   /* 16px */
-  --margin-medium: 1rem;    /* 16px */
-  --margin-large: 1.5rem;   /* 24px */
+  --margin-small: 1.6rem;   /* 16px */
+  --margin-medium: 1.6rem;    /* 16px */
+  --margin-large: 2.4rem;   /* 24px */
 }
 
 @include respond(md) {
-  /* Tablet Margins */
   :root {
-    --margin-medium: 1.5rem;  /* 24px */
-    --margin-large: 2rem;     /* 32px */
+    --margin-medium: 2.4rem;  /* 24px */
+    --margin-large: 3.2rem;     /* 32px */
   }
 }
 
 @include respond(xl) {
-  /* Desktop Margins */
   :root {
-    --margin-small: 1.5rem;     /* 24px */
-    --margin-medium: 2rem;    /* 32px */
-    --margin-large: 3rem;     /* 48px */
+    --margin-small: 2.4rem;     /* 24px */
+    --margin-medium: 3.2rem;    /* 32px */
+    --margin-large: 4.8rem;     /* 48px */
   }
 }
 

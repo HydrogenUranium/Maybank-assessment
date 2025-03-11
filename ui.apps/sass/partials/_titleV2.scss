@@ -1,20 +1,19 @@
 .cmp-title-v2 {
   font-weight: bold;
-  font-size: 28px;
-  line-height: 32px;
-  max-width: 1640px;
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-height-lg);
 
   &--underline {
-    margin: 30px auto 0;
-    line-height: 29px;
-    font-size: 20px;
+    margin: 3rem auto 0;
+    line-height: 2.9rem;
+    font-size: 2rem;
     color: #323232;
     @include respond(xl) {
-      margin-top: 50px;
-      line-height: 72px;
-      font-size: 50px;
+      margin-top: 5rem;
+      line-height: 7.2rem;
+      font-size: 5rem;
     }
-    .cmp-title{
+    .cmp-title-v2{
       &__text {
         display: inline-block;
         position: relative;
@@ -23,31 +22,33 @@
           color: transparent;
           display: block;
           position: absolute;
-          top: 0px;
+          top: 0;
           width: 50%;
-          border-bottom: 4px solid #d40511;
+          border-bottom: .4rem solid #d40511;
         }
       }
     }
   }
 
   &--leftLine {
-    margin: 30px auto 0;
-    line-height: 29px;
-    font-size: 20px;
-    border-left: 2px solid #d40511;
+    margin: 3rem auto 0;
+    line-height: 2.9rem;
+    font-size: 2rem;
+    border-left: .2rem solid #d40511;
     color: #323232;
-    padding: 0 10px;
+    padding: 0 1rem;
     @include respond(xl) {
-      margin-top: 50px;
-      line-height: 72px;
-      font-size: 50px;
+      margin-top: 5rem;
+      line-height: 7.2rem;
+      font-size: 5rem;
     }
   }
 
   &--strips {
     position: relative;
-    margin: 0px auto 0px auto;
+    margin: 0 auto;
+
+    @include inherit-headings;
 
     @include remove-container-margins-mobile-only;
 
@@ -66,10 +67,10 @@
         transform-origin: left;
         top: 30px;
         left: 0;
-        transform: translate(-148px, 0px);
+        transform: translate(-148px, 0);
         @include respond(md) {
-          top: 0px;
-          transform: translate(-48px, 0px);
+          top: 0;
+          transform: translate(-48px, 0);
         }
         @include respond(xl) {
           transform: none;
@@ -79,10 +80,10 @@
         transform-origin: right;
         bottom: 30px;
         right: 0;
-        transform: translate(+148px, 0px);
+        transform: translate(+148px, 0);
         @include respond(md) {
-          bottom: 0px;
-          transform: translate(+48px, 0px);
+          bottom: 0;
+          transform: translate(+48px, 0);
         }
         @include respond(xl) {
           transform: none;
@@ -90,21 +91,21 @@
       }
     }
 
-    .cmp-title {
-      line-height: 32px;
-      font-size: 28px;
+    .cmp-title-v2 {
+      line-height: var(--line-height-3xl);
+      font-size: var(--font-size-6xl);
       color: #FFFFFF;
       text-align: center;
       padding: 70px 53px 65px;
       border-top: 2px solid #454545;
       @include respond(md) {
+        font-size: var(--font-size-7xl);
         border-top: none;
         color: #323232;
         padding: 20px 210px;
       }
       @include respond(xl) {
-        line-height: 42px;
-        font-size: 36px;
+        font-size: var(--font-size-10xl);
         padding: 0 310px;
       }
     }

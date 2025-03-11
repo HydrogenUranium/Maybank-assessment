@@ -69,7 +69,7 @@ class Counter {
 
   runAnimations() {
     const start = () => {
-      if (this.isAnimated) return;
+      if (this.isAnimated || !this.$element.find(this.sel.trigger).length) return;
       if (($(window).scrollTop() + (window.innerHeight * 0.75)) >= this.$element.find(this.sel.trigger).offset().top) {
         document.removeEventListener('scroll', start, {passive: true}); // Stop event from triggering more than once
         this.isAnimated = true;
