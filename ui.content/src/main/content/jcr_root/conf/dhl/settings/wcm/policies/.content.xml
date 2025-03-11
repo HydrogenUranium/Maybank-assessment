@@ -4776,6 +4776,19 @@
                         </cq:styleGroups>
                     </tabs_policy>
                 </tabs>
+                <page-container jcr:primaryType="nt:unstructured">
+                    <policy_main
+                            cq:styleDefaultElement="main"
+                            jcr:lastModified="{Date}2025-03-10T18:09:05.687+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Main Container"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="group:DHL Components"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_main>
+                </page-container>
             </content>
         </components>
     </dhl>
