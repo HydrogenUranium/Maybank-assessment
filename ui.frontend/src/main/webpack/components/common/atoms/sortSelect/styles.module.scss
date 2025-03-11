@@ -1,7 +1,7 @@
 .sort {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 2rem;
 
     &Label {
         margin-bottom: 0px;
@@ -12,10 +12,6 @@
     }
 
     &Select {
-        min-width: 160px;
-
-        @media screen and (max-width: 567px) {
-            margin-top: 10px;
-        }
+        min-width: 16rem;
     }
 }

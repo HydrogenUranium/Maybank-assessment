@@ -1,20 +1,20 @@
 .cmp-error-banner {
-  min-height: 190px;
+  min-height: 19rem;
   border: 2px solid #D40511;
-  border-radius: 4px;
-  margin: 35px;
+  border-radius: .4rem;
+  margin: 3.5rem;
   position: relative;
-  padding: 20px;
+  padding: 2rem;
   @include respond(md) {
-    margin: 100px 35px;
-    margin-bottom: 500px;
-    padding: 30px min(500px, 50%) 30px 50px;
+    margin: 10rem 3.5rem;
+    margin-bottom: 50rem;
+    padding: 3rem min(50rem, 50%) 3rem 5rem;
   }
   &__title{
     display: block;
     text-align: center;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 4rem;
     line-height: normal;
     color: #323232;
     @include respond(md) {
@@ -22,9 +22,9 @@
     }
   }
   &__description{
-    font-size: 24px;
-    line-height: 33px;
-    letter-spacing: 0px;
+    font-size: 2.4rem;
+    line-height: 3.3rem;
+    letter-spacing: 0;
     color: #323232;
     text-align: center;
     @include respond(md) {
@@ -32,27 +32,27 @@
     }
   }
   &__image {
-    max-height: 500px;
+    max-height: 50rem;
     max-width: 100%;
     display: block;
     margin: 0 auto;
     @include respond(md) {
-      max-width: min(500px, 50%);
+      max-width: min(50rem, 50%);
       position: absolute;
       right: 0;
       top: 0;
     }
   }
   &__button {
-    margin-top: 20px;
-    margin-right: 20px;
-    padding: 20px;
+    margin-top: 2rem;
+    margin-right: 2rem;
+    padding: 2rem;
     width: 100%;
-    line-height: 14px;
-    font-size: 15px;
+    line-height: 1.4rem;
+    font-size: 1.5rem;
     @include respond(md) {
       width: auto;
-      padding: 20px 50px;
+      padding: 2rem 5rem;
     }
   }
 }
