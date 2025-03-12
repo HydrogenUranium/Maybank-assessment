@@ -106,6 +106,41 @@
       <property inherit="true" name="secondCardTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="thirdCardDescription" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="thirdCardTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText1" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText2" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText3" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText4" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText5" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText6" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText7" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText8" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText9" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText10" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText11" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText12" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText13" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText14" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText15" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText16" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText17" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText18" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText19" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText20" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText21" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText22" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText23" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText24" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText25" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText26" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText27" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText28" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText29" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText30" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText31" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText32" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText33" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText34" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText35" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/animated-content/form">
       <property inherit="true" name="addressMessage" translate="true" updateDestinationLanguage="false"/>
@@ -137,6 +172,94 @@
       <property inherit="true" name="previousTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="secondItemTitle" translate="true" updateDestinationLanguage="false"/>
       <property inherit="true" name="thirdItemTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText1" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText2" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText3" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText4" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText5" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText6" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="dhl/components/animated-content/hero-banner">
+      <property inherit="true" name="imgAltText1" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText2" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText3" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText4" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText5" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText6" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText7" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText8" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText9" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="dhl/components/animated-content/info-row">
+      <property inherit="true" name="imgAltText1" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText2" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText3" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText4" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText5" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText6" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText7" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText8" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText9" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText10" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText11" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText12" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="imgAltText13" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="dhl/components/animated-content/parallax-section">
+      <property inherit="true" name="leftBlockTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="rightBlockTitle" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel1" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel2" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel3" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel4" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel5" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel6" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel7" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel8" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel9" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel10" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel11" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel12" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel13" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel14" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel15" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel16" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel17" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel18" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel19" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel20" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel21" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel22" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel23" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel24" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel25" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel26" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel27" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel28" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel29" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel30" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel31" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel32" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel33" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel34" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel35" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabe36" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel37" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel38" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel39" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel40" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel41" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel42" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel43" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel44" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel45" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel46" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel47" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel48" translate="true" updateDestinationLanguage="false"/>
+      <property inherit="true" name="bkImgAreaLabel49" translate="true" updateDestinationLanguage="false"/>
+    </node>
+    <node resourceType="dhl/components/animated-content/video-row">
+      <property inherit="true" name="imgAltText" translate="true" updateDestinationLanguage="false"/>
     </node>
     <node resourceType="dhl/components/content/articlepanel">
       <property inherit="true" name="brief" translate="true" updateDestinationLanguage="false"/>

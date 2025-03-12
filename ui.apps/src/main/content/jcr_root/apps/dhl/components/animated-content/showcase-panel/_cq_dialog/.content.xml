@@ -19,7 +19,11 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             fieldLabel="Type"
+                            granite:class="cq-dialog-dropdown-multiple-showhide"
                             name="./type">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-dropdown-showhide-target=".showcase-panel-options-showhide"/>
                         <items
                                 jcr:primaryType="nt:unstructured">
                             <artificialIntelligenceInFacion
@@ -164,6 +168,371 @@
                             </forthCard>
                         </items>
                     </accordion>
+
+                    <artificialIntelligenceInFacionImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="artificial-intelligence-in-fashion"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText1
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Clothes"
+                                    name="./imgAltText1"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText2
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Bag"
+                                    name="./imgAltText2"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText3
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Recycling"
+                                    name="./imgAltText3"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </artificialIntelligenceInFacionImgAltText>
+                    <demandIsOffScaleImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="demand-is-off-scale"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText4
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Piano"
+                                    name="./imgAltText4"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText5
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Keys"
+                                    name="./imgAltText5"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText6
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Strings"
+                                    name="./imgAltText6"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </demandIsOffScaleImgAltText>
+
+                    <luxuryImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="luxury"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText7
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Watch"
+                                    name="./imgAltText7"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText8
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Bee"
+                                    name="./imgAltText8"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText9
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Testtube"
+                                    name="./imgAltText9"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </luxuryImgAltText>
+
+                    <makingFabricsFromFoodImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="making-fabrics-from-food"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText10
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Pineapple"
+                                    name="./imgAltText10"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText11
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Tree"
+                                    name="./imgAltText11"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText12
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Milk"
+                                    name="./imgAltText12"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </makingFabricsFromFoodImgAltText>
+
+                    <personalTouchImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="personal-touch"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText13
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Pen"
+                                    name="./imgAltText13"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText14
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Map"
+                                    name="./imgAltText14"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText15
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Book"
+                                    name="./imgAltText15"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </personalTouchImgAltText>
+
+                    <portableHealthcareImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="portable-healthcare"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText16
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Clipboard"
+                                    name="./imgAltText16"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText17
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for iphone"
+                                    name="./imgAltText17"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText18
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for White-watch"
+                                    name="./imgAltText18"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </portableHealthcareImgAltText>
+
+                    <smartHomeMarketImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="smart-home-market"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText19
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Camera"
+                                    name="./imgAltText19"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText20
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for TV"
+                                    name="./imgAltText20"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText21
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Bulb"
+                                    name="./imgAltText21"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </smartHomeMarketImgAltText>
+
+                    <sportsEquipmentImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="sports-equipment"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText22
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Speed"
+                                    name="./imgAltText22"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText23
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Rugby"
+                                    name="./imgAltText23"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText24
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Gopro"
+                                    name="./imgAltText24"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </sportsEquipmentImgAltText>
+
+                    <visualAuthenticityImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="visual-authenticity"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText25
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Heart in the Box"
+                                    name="./imgAltText25"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText26
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Yellow Box"
+                                    name="./imgAltText26"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText27
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Recycle in the Box"
+                                    name="./imgAltText27"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText28
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Gift in the Box"
+                                    name="./imgAltText28"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </visualAuthenticityImgAltText>
+
+                    <worldOfChangeImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="world-of-change"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText29
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Bell"
+                                    name="./imgAltText29"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText30
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Bubbles"
+                                    name="./imgAltText30"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText31
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Opening case"
+                                    name="./imgAltText31"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText32
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for DNA"
+                                    name="./imgAltText32"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </worldOfChangeImgAltText>
+
+                    <lowerPricesImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="showcase-panel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="lower-prices"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText33
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Speakers"
+                                    name="./imgAltText33"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText34
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Headphones"
+                                    name="./imgAltText34"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                            <imgAltText35
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Showcase-panel Image Alt Text for Wireless Charger"
+                                    name="./imgAltText35"
+                                    fieldDescription="Set Showcase-panel image alt text for SEO"
+                                    emptyText="Showcase-panel Image Alt Text Placeholder"/>
+                        </items>
+                    </lowerPricesImgAltText>
                 </items>
             </column>
         </items>
