@@ -7,7 +7,7 @@ describe('Global Open An Account page', () => {
 
   // Define selectors as constants
   const selectors = {
-    title: '.columns-section__right-column__header-section .cmp-title__text',
+    title: '.columns-section__right-column__header-section .cmp-title-v2__text',
     marketoForm: '#mktoForm_1756',
     lblIsBusiness: '#LblisBusiness',
     firstName: '#FirstName',

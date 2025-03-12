@@ -43,7 +43,7 @@ describe('Global Page Article', () => {
     authorImage: '.cmp-article-header__author-image',
     authorName: '.cmp-article-footer__author-name',
     authorDescription: '.article-author-banner_brief',
-    articleFooter: ':nth-child(5) > .article-container-component > .grid > .grid__container',
+    articleFooter: '.cmp-article-footer',
     articleFooterAuthorImage: '.cmp-article-footer__author-image',
     articleFooterAuthorName: '.cmp-article-footer__author-name',
     articleFooterShare: '.cmp-article-footer > .share-options',
