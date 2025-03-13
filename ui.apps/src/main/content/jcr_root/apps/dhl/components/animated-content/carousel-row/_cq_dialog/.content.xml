@@ -19,7 +19,11 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             fieldLabel="Type"
+                            granite:class="cq-dialog-dropdown-multiple-showhide"
                             name="./type">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-dropdown-showhide-target=".carousel-options-showhide"/>
                         <items
                                 jcr:primaryType="nt:unstructured">
                             <cosmetics
@@ -75,6 +79,74 @@
                             sling:resourceType="granite/ui/components/foundation/form/textfield"
                             fieldLabel="Third Title"
                             name="./thirdItemTitle"/>
+                    <localizationImgAltOptions
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="carousel-options-showhide">
+                            <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="localization-and-authenticity"/>
+                            <items jcr:primaryType="nt:unstructured">
+                                <imgAltText1
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        fieldLabel="Alt Text for Vodka Berlin"
+                                        name="./imgAltText1"
+                                        fieldDescription="Set carousel image alt text for SEO"
+                                        emptyText="Carousel Image Alt Text Placeholder">
+                                </imgAltText1>
+                                <imgAltText2
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        fieldLabel="Alt Text for Vodka Korea"
+                                        name="./imgAltText2"
+                                        fieldDescription="Set carousel image alt text for SEO"
+                                        emptyText="Carousel Image Alt Text Placeholder">
+                                </imgAltText2>
+                                <imgAltText3
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        fieldLabel="Alt Text for Vodka BuenosAires"
+                                        name="./imgAltText3"
+                                        fieldDescription="Set carousel image alt text for SEO"
+                                        emptyText="Carousel Image Alt Text Placeholder">
+                                </imgAltText3>
+                            </items>
+                    </localizationImgAltOptions>
+                    <appleWatchImgAltOptions
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="carousel-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="more-than-apple-watch"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText4
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Alt Text for Black Watch"
+                                    name="./imgAltText4"
+                                    fieldDescription="Set carousel image alt text for SEO"
+                                    emptyText="Carousel Image Alt Text Placeholder">
+                            </imgAltText4>
+                            <imgAltText5
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Alt Text for Black Color Strap"
+                                    name="./imgAltText5"
+                                    fieldDescription="Set carousel image alt text for SEO"
+                                    emptyText="Carousel Image Alt Text Placeholder">
+                            </imgAltText5>
+                            <imgAltText6
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Alt Text for Pink Color Strap"
+                                    name="./imgAltText6"
+                                    fieldDescription="Set carousel image alt text for SEO"
+                                    emptyText="Carousel Image Alt Text Placeholder">
+                            </imgAltText6>
+                        </items>
+                    </appleWatchImgAltOptions>
                 </items>
             </column>
         </items>
