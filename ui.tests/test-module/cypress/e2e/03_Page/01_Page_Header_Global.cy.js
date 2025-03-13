@@ -94,7 +94,7 @@ describe('Global Page Header', () => {
             cy.url().should('include', '/ja-jp');
 
             // 7. Verify the language on the page changes appropriately based on country
-            cy.get('.cmp-title__text').should('contain', 'DHL Expressのスモールビジネス&グローバルシッピングに関するアドバイス');
+            cy.get('.cmp-title-v2__text').should('contain', 'DHL Expressのスモールビジネス&グローバルシッピングに関するアドバイス');
           //}
 
 

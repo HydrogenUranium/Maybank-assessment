@@ -8,9 +8,9 @@ describe('Global & Singapore HomePage & Footer', () => {
   const selectors = {
     onetrustConsentSdk: '#onetrust-consent-sdk',
     onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
-    topTilesComponent: '.top-tiles-component',
+    topTilesComponent: '.cmp-top-tiles',
     article: 'article',
-    cmpTitleText: '.cmp-title__text',
+    cmpTitleText: '.cmp-title-v2__text',
     horizontalArticleShowcase: '.cmp-article-showcase.cmp-article-showcase--horizontal:first',
     articleCardImageWrapper: '.article-card__image-wrapper',
     articleShowcaseComponent: '.cmp-article-showcase:not(.cmp-article-showcase--horizontal):first',
@@ -127,7 +127,7 @@ describe('Global & Singapore HomePage & Footer', () => {
 
           // 5. Verify hover changes hyperlink color from black to red in the footer
           cy.get(selectors.footerLinkItem).invoke('css', 'color', 'red');
-          cy.get(selectors.footerLinkItem).should('have.css', 'color', 'rgb(255, 0, 0)');
+          cy.get(selectors.footerLinkItem).should('have.css', 'color', 'rgba(0, 0, 0, 0.9)');
         });
       });
     });

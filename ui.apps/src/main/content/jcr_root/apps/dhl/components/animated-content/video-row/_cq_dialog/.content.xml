@@ -26,6 +26,13 @@
                             useFixedInlineToolbar="{Boolean}true"
                             fieldLabel="Description"
                             name="./description"/>
+                    <imgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            fieldLabel="Video Image Alt Text"
+                            name="./imgAltText"
+                            fieldDescription="Set Video image alt text for SEO"
+                            emptyText="Video Image Alt Text Placeholder"/>
                 </items>
             </column>
         </items>
