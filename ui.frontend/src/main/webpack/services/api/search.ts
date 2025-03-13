@@ -12,7 +12,7 @@ export const getHomePagePath = (): string => {
 };
 
 export const getComponentPath = (): string => {
-    const componentConfig = document.querySelector('.headerV2 .search-bar-component').getAttribute('data-config');
+    const componentConfig = document.querySelector('.header .search-bar-component').getAttribute('data-config');
     return JSON.parse(componentConfig).currentPagePath + '/jcr:content/root';
 };
 
