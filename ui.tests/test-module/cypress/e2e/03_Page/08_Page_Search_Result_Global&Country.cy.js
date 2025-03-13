@@ -14,7 +14,7 @@ describe('Global & Singapore Search Result Page', () => {
     noResultFound: '.searchResult__usgPF > :nth-child(2) > :nth-child(1)',
     popularSearchTag: '.trending__tEuuZ > :nth-child(2)',
     showMoreResultsButton: '.searchResultButton__FxQve',
-    header: '.headerV2-wrapper',
+    header: '.header-wrapper',
     footer: '.footer-container',
     searchSuggestion: '.searchSection__qMyFf',
     searchResult: '.searchResult__usgPF',

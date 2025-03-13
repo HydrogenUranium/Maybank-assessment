@@ -7,6 +7,6 @@ describe('AEM Basic Publish Display Panel', () => {
     it('should be possible to display homepage URL', () => {
         const expectedUrl = Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global.html';
         cy.url().should('eq', expectedUrl);
-        cy.get('.headerV2__logo').should('exist');
+        cy.get('.header__logo').should('exist');
     });
 })

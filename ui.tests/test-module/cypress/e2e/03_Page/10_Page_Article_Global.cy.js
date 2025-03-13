@@ -47,7 +47,7 @@ describe('Global Page Article', () => {
     articleFooterAuthorImage: '.cmp-article-footer__author-image',
     articleFooterAuthorName: '.cmp-article-footer__author-name',
     articleFooterShare: '.cmp-article-footer > .share-options',
-    header: '.headerV2-wrapper',
+    header: '.header-wrapper',
     footer: '.footer-container',
     servicePointLocator: '.locator-frame',
     ctaBanner: '.cmp-cta-banner',
