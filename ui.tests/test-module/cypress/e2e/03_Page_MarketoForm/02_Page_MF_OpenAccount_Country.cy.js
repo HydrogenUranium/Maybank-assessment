@@ -7,7 +7,7 @@ describe('Singapore Open An Account page', () => {
 
   // Define selectors as constants
   const selectors = {
-    title: '.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .cmp-title-v2 > #title-v2-b0172515ad > .cmp-title__text',
+    title: '.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .cmp-title-v2 > #title-v2-b0172515ad > .cmp-title-v2__text',
     marketoForm: '.marketoForm',
     lblIsBusiness: '#LblisBusiness',
     suspectCompanyname: '#suspectCompanyname',

@@ -1,15 +1,16 @@
 {
   "devDependencies": {
-    "aemsync": "^5.0.5"
+    "aemsync": "^5.0.5",
+    "cross-env": "^7.0.3"
   },
   "scripts": {
     "aemsync": "aemsync -t http://admin:admin@localhost:4502 -w ./ui.apps/src/main/content",
     "aemsync:publish": "aemsync -t http://admin:admin@localhost:4503 -w ./ui.apps/src/main/content",
     "cypress": "cd ./ui.tests/test-module && npm run open",
+    "cypress:uat": "cd ./ui.tests/test-module && cross-env AEM_PUBLISH_URL=https://publish-p58772-e1126664.adobeaemcloud.com npm run open",
     "build:frontend": "cd ./ui.frontend && npm run dev",
     "build:css": "cd ./ui.apps && npm run build:css",
     "build:js": "cd ./ui.apps && npm run build:js",
-
     "rde:deploy:apps": "aio aem:rde:install ui.apps/target/discover.ui.apps-2.00.0-SNAPSHOT.zip",
     "rde:deploy:all": "aio aem:rde:install all/target/discover.all-2.00.0-SNAPSHOT.zip",
     "rde:deploy:config": "aio aem:rde:install ui.config/target/discover.ui.config-2.00.0-SNAPSHOT.zip",
