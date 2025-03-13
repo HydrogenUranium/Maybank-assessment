@@ -19,7 +19,11 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             fieldLabel="Type"
+                            granite:class="cq-dialog-dropdown-multiple-showhide"
                             name="./type">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-dropdown-showhide-target=".info-row-options-showhide"/>
                         <items
                                 jcr:primaryType="nt:unstructured">
                             <changeInAsia
@@ -113,6 +117,239 @@
                             useFixedInlineToolbar="{Boolean}true"
                             fieldLabel="Second Description Part"
                             name="./secondDescriptionPart"/>
+                    <chinaMiddleClassImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                            jcr:primaryType="nt:unstructured"
+                            showhidetargetvalue="china-middle-class"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText1
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText1"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </chinaMiddleClassImgAltText>
+
+                    <cosmeticImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="cosmetic"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText2
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText2"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </cosmeticImgAltText>
+
+                    <dependableDeliveryImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="dependable-delivery"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText3
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText3"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </dependableDeliveryImgAltText>
+
+                    <dhlMedicalExpressImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="dhl-medical-express"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText4
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText4"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </dhlMedicalExpressImgAltText>
+
+                    <electricTrendsImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="electric-trends"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText5
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText5"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </electricTrendsImgAltText>
+
+                    <gettingGoodsToCustomersImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="getting-goods-to-customers"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText6
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText6"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </gettingGoodsToCustomersImgAltText>
+
+                    <goingGlobalImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="going-global"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText7
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText7"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </goingGlobalImgAltText>
+
+                    <guitarImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="guitar"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText8
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText8"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </guitarImgAltText>
+
+                    <makingFashionImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="making-fashion"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText9
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText9"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </makingFashionImgAltText>
+
+                    <premiumPapersImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="premium-papers"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText10
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText10"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </premiumPapersImgAltText>
+
+                    <sensorsImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="sensors"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText11
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText11"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </sensorsImgAltText>
+
+                    <smartFabricsImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="smart-fabrics"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText12
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText12"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </smartFabricsImgAltText>
+
+                    <sportingGoodsImgAltText
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="info-row-options-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="sporting-goods"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <imgAltText13
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Info-row Image Alt Text"
+                                    name="./imgAltText13"
+                                    fieldDescription="Set Info-row image alt text for SEO"
+                                    emptyText="Info-row Image Alt Text Placeholder"/>
+                        </items>
+                    </sportingGoodsImgAltText>
                 </items>
             </column>
         </items>
