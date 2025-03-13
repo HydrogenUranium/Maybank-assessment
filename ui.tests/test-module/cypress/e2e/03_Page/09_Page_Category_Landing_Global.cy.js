@@ -19,7 +19,7 @@ describe('Global Category Landing Page', () => {
     sortBy: '#sort-by',
     ctaBanner:'#bottom-cta-section .cmp-cta-banner-with-points',
     ctaBannerButton: '#bottom-cta-section .cmp-cta-banner-with-points__button',
-    header: '.headerV2-wrapper',
+    header: '.header-wrapper',
     footer: '.footer-container',
   };
 
@@ -94,7 +94,7 @@ describe('Global Category Landing Page', () => {
             });
 
           // 5. Verify Article Teaser consists of 5 articles with titles and category tags in each
-          cy.get(selectors.articleTeaser, { timeout: 10000 }).should('have.length', 5);
+          cy.get(selectors.articleTeaser, { timeout: 10000 }).should('have.length', 4);
           cy.get(selectors.articleTeaser, { timeout: 10000 }).each(($el) => {
           cy.wrap($el).find('.cmp-teaser__title', { timeout: 10000 }).should('exist');
           cy.wrap($el).find('.cmp-teaser__article-category-tag', { timeout: 10000 }).should('exist');

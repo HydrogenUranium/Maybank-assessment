@@ -1,11 +1,11 @@
-class HeaderV2 {
+class Header {
   constructor() {
     this.sel = {
       component: 'header',
-      wrapper: '.headerV2-wrapper',
-      toggle: '.headerV2__navigation',
-      menu: '.headerV2__meganav',
-      selectedCountry: '.headerV2__desktopCountry',
+      wrapper: '.header-wrapper',
+      toggle: '.header__navigation',
+      menu: '.header__meganav',
+      selectedCountry: '.header__desktopCountry',
       countryOptions: '.header-countryList',
       countrySearch: '#countrySearch',
       categories: '.navigation-row__left',
@@ -47,7 +47,7 @@ class HeaderV2 {
     });
     $(document).on('click', this.sel.selectedCountry, this.showCountryOptions);
 
-    $(document).on('click', '.headerV2__lang', (evt) => {
+    $(document).on('click', '.header__lang', (evt) => {
       var href = $(evt.currentTarget).attr('href');
       var home = $(evt.currentTarget).attr('data-home');
       if (home !== null && home.length > 0) {
@@ -115,12 +115,12 @@ class HeaderV2 {
     if (!$(this.sel.menu).is(':visible')) {
       this.bodyScrolling(false);
       $(this.sel.toggle).addClass('header__navigation--open');
-      $(this.sel.wrapper).addClass('headerV2__navigation--open');
+      $(this.sel.wrapper).addClass('header__navigation--open');
       this.disableAnchorLinks(true);
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
-      $(this.sel.wrapper).removeClass('headerV2__navigation--open');
+      $(this.sel.wrapper).removeClass('header__navigation--open');
       this.disableAnchorLinks(false);
     }
     $(this.sel.menu).slideToggle(150);
@@ -253,4 +253,4 @@ class HeaderV2 {
   }
 }
 
-export default new HeaderV2();
+export default new Header();

@@ -22,7 +22,7 @@ describe('Singapore DHL Landing Page - Two Column', () => {
     phone: '#Phone',
     shippingFrequency: '#shippingfrequency',
     submitButton: '.mktoButton',
-    header: '.headerV2-wrapper',
+    header: '.header-wrapper',
     footer: '.footer-container'
   };
 

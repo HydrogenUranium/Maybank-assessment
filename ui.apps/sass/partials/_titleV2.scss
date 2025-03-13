@@ -17,14 +17,17 @@
       &__text {
         display: inline-block;
         position: relative;
+        z-index: 1;
         &:after {
           content: ".";
+          z-index: -1;
           color: transparent;
           display: block;
           position: absolute;
           top: 0;
           width: 50%;
-          border-bottom: .4rem solid #d40511;
+          transform: translateY(-0.1em);
+          border-bottom: .12em solid #d40511;
         }
       }
     }

@@ -12,7 +12,7 @@
                 layout="responsiveGrid">
             <header
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/headerV2"/>
+                sling:resourceType="dhl/components/content/header"/>
 
         </root>
     </jcr:content>

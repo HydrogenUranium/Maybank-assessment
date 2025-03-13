@@ -10,7 +10,7 @@ describe('Global Thank You Page Newsletter', () => {
     breadcrumbActiveItem: '.cmp-breadcrumb__item--active > span',
     pageTitleBold: 'h2 b',
     paragraph: 'p',
-    header: '.headerV2-wrapper',
+    header: '.header-wrapper',
     footer: '.footer-container',
     recommendedSection: '.cmp-article-showcase__articles',
     recommendedArticle: '.article-items'

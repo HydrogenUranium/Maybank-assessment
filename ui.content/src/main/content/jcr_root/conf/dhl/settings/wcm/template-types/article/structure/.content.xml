@@ -1,36 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
-          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
           jcr:primaryType="cq:Page">
     <jcr:content
             cq:deviceGroups="[mobile/groups/responsive]"
+            cq:lastModified="{Date}2023-10-10T14:08:09.185+03:00"
+            cq:lastModifiedBy="admin"
+            cq:template="/conf/dhl/settings/wcm/templates/article"
+            jcr:mixinTypes="[]"
             jcr:primaryType="cq:PageContent"
             sling:resourceType="dhl/components/pages/editable-article"
-            cq:template="/conf/dhl/settings/wcm/templates/article">
+            viewcount="{Long}9">
         <root
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid"
                 layout="responsiveGrid">
-            <headerv2
-                    jcr:created="{Date}2023-10-06T14:26:41.371+03:00"
-                    jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2023-10-06T14:26:41.371+03:00"
-                    jcr:lastModifiedBy="admin"
+            <header
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/headerV2">
-                <cta_banner_with_poin
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="dhl/components/content/cta-banner-with-points"
-                        style="sidebar"
-                        type="businessAccount">
-                    <analytics
-                            jcr:primaryType="nt:unstructured"
-                            interactionType="content"
-                            name="'Open a Business Account' Banner"
-                            position="Banner in the mobile header menu"
-                            trackedInteractions="basic"/>
-                </cta_banner_with_poin>
-            </headerv2>
+                    sling:resourceType="dhl/components/content/experiencefragment"
+                    fragmentVariationPath="/content/experience-fragments/dhl/language-masters/en-master/template-fragments/header/master"/>
             <article_header_container
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/article-container"
@@ -57,14 +44,11 @@
                     sling:resourceType="dhl/components/content/article-container"
                     designMode="new"
                     showSidebar="true"
+                    useArticleClarityRegion="true"
                     useArticleStyles="true">
                 <body
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <article_author_banner
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/article-author-banner"
-                            editable="{Boolean}true"/>
                     <hero_banner
                             jcr:created="{Date}2023-10-09T15:45:43.992+03:00"
                             jcr:createdBy="admin"
@@ -77,41 +61,54 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm/foundation/components/responsivegrid"
                             editable="true"/>
-                    <cta_banner
-                            jcr:created="{Date}2023-10-05T11:27:05.466+03:00"
+                    <experiencefragment
+                            jcr:created="{Date}2024-11-26T17:28:29.387+02:00"
                             jcr:createdBy="admin"
-                            jcr:lastModified="{Date}2023-10-09T14:39:28.279+03:00"
+                            jcr:lastModified="{Date}2024-11-26T17:28:44.543+02:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/cta-banner"
-                            type="subscribeNewsletter"/>
+                            sling:resourceType="dhl/components/content/experiencefragment"
+                            id="bottom-cta-section"
+                            fragmentVariationPath="/content/experience-fragments/dhl/language-masters/en-master/template-fragments/article/bottom/master"/>
+                    <responsivegrid_929485349
+                            jcr:created="{Date}2023-10-10T14:05:12.926+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2023-10-10T14:05:12.926+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid"
+                            editable="{Boolean}true">
+                        <cq:responsive jcr:primaryType="nt:unstructured"/>
+                    </responsivegrid_929485349>
                 </body>
                 <sidebar
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <cta_banner_with_poin
-                            jcr:created="{Date}2023-10-06T11:55:23.748+03:00"
+                    <article_author_banner
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/article-author-banner"
+                            editable="{Boolean}true"/>
+                    <experiencefragment
+                            jcr:created="{Date}2024-11-26T17:27:27.550+02:00"
                             jcr:createdBy="admin"
-                            jcr:lastModified="{Date}2023-10-06T11:55:30.435+03:00"
+                            jcr:lastModified="{Date}2024-11-26T17:28:09.303+02:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/cta-banner-with-points"
-                            type="businessAccount"/>
+                            sling:resourceType="dhl/components/content/experiencefragment"
+                            id="sidebar-cta-section"
+                            fragmentVariationPath="/content/experience-fragments/dhl/language-masters/en-master/template-fragments/article/sidebar/master"/>
+                    <responsivegrid
+                            jcr:created="{Date}2023-10-10T14:07:50.160+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2023-10-10T14:07:50.160+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid"
+                            editable="{Boolean}true">
+                        <cq:responsive jcr:primaryType="nt:unstructured"/>
+                    </responsivegrid>
                 </sidebar>
             </article_container>
-            <article_container_author_panel
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-container"
-                    designMode="new"
-                    useArticleStyles="false">
-                <body
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid">
-                </body>
-                <sidebar
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid"/>
-            </article_container_author_panel>
             <article_container_two
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/article-container"
@@ -123,29 +120,12 @@
                     <responsivegrid
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm/foundation/components/responsivegrid"
-                            editable="true">
-                    </responsivegrid>
+                            editable="true"/>
                 </body>
                 <sidebar
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid"/>
             </article_container_two>
-            <article_container_bottom
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-container"
-                    designMode="new"
-                    useArticleStyles="false">
-                <body
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <social_static
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/article-social-static"/>
-                </body>
-                <sidebar
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid"/>
-            </article_container_bottom>
             <article_footer_container
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/article-container"
@@ -161,20 +141,22 @@
                             editable="{Boolean}true"/>
                 </body>
             </article_footer_container>
-            <similar_stories
+            <related_posts
+                    jcr:created="{Date}2023-10-06T15:18:56.004+03:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2023-10-06T15:18:56.004+03:00"
+                    jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-similar-stories"/>
+                    sling:resourceType="dhl/components/content/related-posts"
+                    editable="{Boolean}true"/>
             <responsivegrid
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm/foundation/components/responsivegrid"
                     editable="true"/>
             <footerv2
-                    jcr:created="{Date}2023-10-06T14:26:54.120+03:00"
-                    jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2023-10-06T14:26:54.120+03:00"
-                    jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/footerV2"/>
+                    sling:resourceType="dhl/components/content/experiencefragment"
+                    fragmentVariationPath="/content/experience-fragments/dhl/language-masters/en-master/template-fragments/footer/master"/>
         </root>
         <cq:responsive jcr:primaryType="nt:unstructured">
             <breakpoints jcr:primaryType="nt:unstructured">

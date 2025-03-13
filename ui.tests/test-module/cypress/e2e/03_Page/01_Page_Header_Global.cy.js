@@ -4,14 +4,14 @@ describe('Global Page Header', () => {
   ];
 
   const selectors = {
-    logo: '.headerV2__logo',
+    logo: '.header__logo',
     searchButton: '.searchButtonImage__y8c7h',
     searchInput: '[data-testid="search-bar-input"]',
     closeSearch: '[data-testid="close-search"] > .searchButtonImage__y8c7h',
     navigationItem: '.navigation-item',
     applyForBusiness: '[data-testid="header-red-button"] > span',
     contactUs: '[data-testid="header-company-link-0"] > span',
-    hamburgerMenu: '.headerV2__hamburger',
+    hamburgerMenu: '.header__hamburger',
     applyForBusinessHamburger: 'header .cmp-cta-banner-with-points__button',
     contactUsHamburger: ':nth-child(3) > ul > li > .navigation-item',
     countrySwitcher: '.global-icon',
@@ -94,7 +94,7 @@ describe('Global Page Header', () => {
             cy.url().should('include', '/ja-jp');
 
             // 7. Verify the language on the page changes appropriately based on country
-            cy.get('.cmp-title__text').should('contain', 'DHL Expressのスモールビジネス&グローバルシッピングに関するアドバイス');
+            cy.get('.cmp-title-v2__text').should('contain', 'DHL Expressのスモールビジネス&グローバルシッピングに関するアドバイス');
           //}
 
 
