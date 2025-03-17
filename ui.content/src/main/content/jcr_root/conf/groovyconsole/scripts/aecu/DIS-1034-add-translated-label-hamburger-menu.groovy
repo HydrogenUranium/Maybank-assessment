@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 @Field PROPERTIES = [
         "openHamburgerMenuText": "Open Hamburger Menu",
-        "openHamburgerMenuText": "Close Hamburger Menu"
+        "closeHamburgerMenuText": "Close Hamburger Menu"
 ]
 
 @Field SCOPE = "/content/experience-fragments"
