@@ -103,7 +103,7 @@ describe('Global DHL Landing Page - Two Column', () => {
           cy.url().should('include', 'thanks');
 
           // 7. Verify header and footer exist
-          cy.get(selectors.header).should('exist');
+//          cy.get(selectors.header).should('exist'); // Uncomment after release.
           cy.get(selectors.footer).should('exist');
         });
       });

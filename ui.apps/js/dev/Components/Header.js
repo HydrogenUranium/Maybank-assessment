@@ -3,6 +3,10 @@ class Header {
   this.openHamburgerMenuText = headerIconElement.getAttribute('data-open-hamburger-menu-text');
   this.closeHamburgerMenuText = headerIconElement.getAttribute('data-close-hamburger-menu-text');
   constructor() {
+    const headerElement = document.querySelector('#header__navigation__text');
+    this.openHamburgerMenuText = headerElement.getAttribute('data-open-hamburger-menu-text');
+    this.closeHamburgerMenuText = headerElement.getAttribute('data-close-hamburger-menu-text');
+
     this.sel = {
       component: 'header',
       wrapper: '.header-wrapper',
@@ -115,6 +119,7 @@ class Header {
   }
 
   toggleMenu() {
+    const navigationElement = document.querySelector(this.sel.toggle);
     if (!$(this.sel.menu).is(':visible')) {
       this.bodyScrolling(false);
       $(this.sel.toggle).addClass('header__navigation--open');
