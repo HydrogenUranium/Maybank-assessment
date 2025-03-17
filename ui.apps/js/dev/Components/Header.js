@@ -112,16 +112,19 @@ class Header {
   }
 
   toggleMenu() {
+    const navigationElement = document.querySelector(this.sel.toggle);
     if (!$(this.sel.menu).is(':visible')) {
       this.bodyScrolling(false);
       $(this.sel.toggle).addClass('header__navigation--open');
       $(this.sel.wrapper).addClass('header__navigation--open');
       this.disableAnchorLinks(true);
+      navigationElement.setAttribute('aria-label', 'Close Hamburger Menu');
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
       $(this.sel.wrapper).removeClass('header__navigation--open');
       this.disableAnchorLinks(false);
+      navigationElement.setAttribute('aria-label', 'Open Hamburger Menu');
     }
     $(this.sel.menu).slideToggle(150);
   }
