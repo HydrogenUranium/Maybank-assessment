@@ -1,5 +1,9 @@
 class Header {
   constructor() {
+    const headerElement = document.querySelector('#header__navigation__text');
+    this.openHamburgerMenuText = headerElement.getAttribute('data-open-hamburger-menu-text');
+    this.closeHamburgerMenuText = headerElement.getAttribute('data-close-hamburger-menu-text');
+
     this.sel = {
       component: 'header',
       wrapper: '.header-wrapper',
@@ -118,13 +122,13 @@ class Header {
       $(this.sel.toggle).addClass('header__navigation--open');
       $(this.sel.wrapper).addClass('header__navigation--open');
       this.disableAnchorLinks(true);
-      navigationElement.setAttribute('aria-label', 'Close Hamburger Menu');
+      navigationElement.setAttribute('aria-label', this.closeHamburgerMenuText);
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
       $(this.sel.wrapper).removeClass('header__navigation--open');
       this.disableAnchorLinks(false);
-      navigationElement.setAttribute('aria-label', 'Open Hamburger Menu');
+      navigationElement.setAttribute('aria-label', this.openHamburgerMenuText);
     }
     $(this.sel.menu).slideToggle(150);
   }
