@@ -1,8 +1,8 @@
 class Header {
-  const headerIconElement = document.querySelector('#header__navigation__text');
-  this.openHamburgerMenuText = headerIconElement.getAttribute('data-open-hamburger-menu-text');
-  this.closeHamburgerMenuText = headerIconElement.getAttribute('data-close-hamburger-menu-text');
   constructor() {
+    const headerIconElement = document.querySelector('#header__navigation__text');
+    this.openHamburgerMenuText = headerIconElement.getAttribute('data-open-hamburger-menu-text');
+    this.closeHamburgerMenuText = headerIconElement.getAttribute('data-close-hamburger-menu-text');
     this.sel = {
       component: 'header',
       wrapper: '.header-wrapper',
