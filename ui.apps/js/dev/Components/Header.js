@@ -122,13 +122,13 @@ class Header {
       $(this.sel.toggle).addClass('header__navigation--open');
       $(this.sel.wrapper).addClass('header__navigation--open');
       this.disableAnchorLinks(true);
-      navigationElement.setAttribute('aria-label', this.openHamburgerMenuText);
+      navigationElement.setAttribute('aria-label', this.closeHamburgerMenuText);
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
       $(this.sel.wrapper).removeClass('header__navigation--open');
       this.disableAnchorLinks(false);
-      navigationElement.setAttribute('aria-label', this.closeHamburgerMenuText);
+      navigationElement.setAttribute('aria-label', this.openHamburgerMenuText);
     }
     $(this.sel.menu).slideToggle(150);
   }
