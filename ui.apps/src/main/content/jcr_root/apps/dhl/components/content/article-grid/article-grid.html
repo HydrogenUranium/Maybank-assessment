@@ -1,11 +1,8 @@
-<div data-sly-use.model="com.dhl.discover.core.models.ArticleGridV2">
-
-    <div class="cq-placeholder" data-sly-test="${wcmmode.edit && !model.hasArticles}" data-emptytext="${component.title}"></div>
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit }" data-emptytext="${component.title}"></div>
 
     <div data-sly-test="${model.hasArticles}"
          class="cmp-article-grid aem-react-component"
          data-component-name="article-grid"
-         data-config="${model.toJson}">
+         data-config="${model.toJson}"
+         data-sly-use.model="com.dhl.discover.core.models.ArticleGridV2">
     </div>
-
-</div>
