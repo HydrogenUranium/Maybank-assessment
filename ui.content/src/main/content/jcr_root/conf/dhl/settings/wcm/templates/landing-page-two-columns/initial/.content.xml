@@ -9,58 +9,58 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid"
             layout="responsiveGrid">
-            <container
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/container"
-                layout="responsiveGrid"/>
-            <top_container
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/column-container"
-                columns="two-columns"
-                removeFirstChildTopMargin="true"
-                topMargin="true"
-                width="large">
-                <first-container
+            <main
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <responsivegrid
+                    sling:resourceType="dhl/components/content/page-container">
+                <top_container
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid"/>
-                </first-container>
-                <second-container
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <responsivegrid
+                        sling:resourceType="dhl/components/content/column-container"
+                        columns="two-columns"
+                        removeFirstChildTopMargin="true"
+                        topMargin="true"
+                        width="large">
+                    <first-container
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <responsivegrid
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+                    </first-container>
+                    <second-container
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <responsivegrid
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+                    </second-container>
+                </top_container>
+                <column_container
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid"/>
-                </second-container>
-            </top_container>
-            <column_container
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/column-container"
-                columns="one-column"
-                width="large">
-                <first-container
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <responsivegrid
+                        sling:resourceType="dhl/components/content/column-container"
+                        columns="one-column"
+                        width="large">
+                    <first-container
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <responsivegrid
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+                    </first-container>
+                </column_container>
+                <bottom_container
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid"/>
-                </first-container>
-            </column_container>
-            <bottom_container
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/column-container"
-                columns="one-column"
-                width="large">
-                <first-container
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <responsivegrid
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid"/>
-                </first-container>
-            </bottom_container>
+                        sling:resourceType="dhl/components/content/column-container"
+                        columns="one-column"
+                        width="large">
+                    <first-container
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <responsivegrid
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/foundation/components/responsivegrid"/>
+                    </first-container>
+                </bottom_container>
+            </main>
         </root>
     </jcr:content>
 </jcr:root>

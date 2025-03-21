@@ -10,9 +10,9 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid"
                 layout="responsiveGrid">
-            <responsivegrid
+            <container
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid">
+                    sling:resourceType="dhl/components/content/page-container">
                 <top_tiles
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="dhl/components/content/top-tiles">
@@ -76,7 +76,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm/foundation/components/responsivegrid"/>
                 </home_page_container_cta_banner>
-            </responsivegrid>
+            </container>
         </root>
     </jcr:content>
 </jcr:root>

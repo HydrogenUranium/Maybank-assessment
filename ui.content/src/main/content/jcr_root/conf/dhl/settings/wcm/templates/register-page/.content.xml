@@ -4,6 +4,6 @@
     <jcr:content
         cq:templateType="/conf/dhl/settings/wcm/template-types/content-page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="DHL Register Page (Editable)"
+        jcr:title="DHL Register Page "
         status="enabled"/>
 </jcr:root>
