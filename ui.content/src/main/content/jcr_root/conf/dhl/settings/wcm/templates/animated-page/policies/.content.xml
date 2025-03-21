@@ -12,10 +12,10 @@
             cq:policy="wcm/foundation/components/responsivegrid/policy_1705397210177"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/core/components/policies/mapping">
-            <responsivegrid
-                cq:policy="wcm/foundation/components/responsivegrid/policy_2171260242775700"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/core/components/policies/mapping">
+            <main
+                    cq:policy="dhl/components/content/page-container/policy_main"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/core/components/policies/mapping">
                 <dhl jcr:primaryType="nt:unstructured">
                     <components jcr:primaryType="nt:unstructured">
                         <content jcr:primaryType="nt:unstructured">
@@ -271,8 +271,8 @@
                             sling:resourceType="wcm/core/components/policies/mapping"/>
                     </components>
                 </dhl>
-            </responsivegrid>
-            <footerv2
+            </main>
+            <footer
                 cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment_footer"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/core/components/policies/mapping"/>

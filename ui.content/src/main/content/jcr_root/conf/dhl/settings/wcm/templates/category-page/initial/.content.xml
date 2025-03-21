@@ -9,13 +9,17 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid"
             layout="responsiveGrid">
-            <responsivegrid
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/foundation/components/responsivegrid">
-                <articlelistcarousel
+            <main
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/article-carousel"/>
-            </responsivegrid>
+                    sling:resourceType="dhl/components/content/page-container">
+                <responsivegrid
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/foundation/components/responsivegrid">
+                    <articlelistcarousel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dhl/components/content/article-carousel"/>
+                </responsivegrid>
+            </main>
         </root>
     </jcr:content>
 </jcr:root>

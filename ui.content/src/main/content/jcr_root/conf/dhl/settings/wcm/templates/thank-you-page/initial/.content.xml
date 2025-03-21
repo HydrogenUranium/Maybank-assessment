@@ -10,11 +10,9 @@
             sling:resourceType="wcm/foundation/components/responsivegrid"
             jcr:mixinTypes="[cq:LiveRelationship]"
             layout="responsiveGrid">
-            <container
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/container"
-                jcr:mixinTypes="[cq:LiveRelationship]"
-                layout="responsiveGrid"/>
+            <main
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/page-container"/>
         </root>
     </jcr:content>
 </jcr:root>
