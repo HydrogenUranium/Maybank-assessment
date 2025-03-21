@@ -40,11 +40,13 @@
                                             value="custom"/>
                                     <businessAccount
                                             jcr:primaryType="nt:unstructured"
-                                            text="Open A Business Account (Home Page Configuration)"
+                                            text="⚠️ Open A Business Account (Disabled. Use an Experience Fragment instead)"
+                                            disabled="{Boolean}true"
                                             value="businessAccount"/>
                                     <subscribeNewsletter
                                             jcr:primaryType="nt:unstructured"
-                                            text="Subscribe To Our Newsletter (Home Page Configuration)"
+                                            text="⚠️ Subscribe To Our Newsletter (Disabled. Use an Experience Fragment instead)"
+                                            disabled="{Boolean}true"
                                             value="subscribeNewsletter"/>
                                 </items>
                             </type>
