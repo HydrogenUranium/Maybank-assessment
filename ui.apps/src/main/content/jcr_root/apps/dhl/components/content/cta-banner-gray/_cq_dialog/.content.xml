@@ -39,7 +39,8 @@
                                             value="custom"/>
                                     <individualShipper
                                             jcr:primaryType="nt:unstructured"
-                                            text="Individual Shipper Banner (Home Page Configuration)"
+                                            disabled="{Boolean}true"
+                                            text="⚠️ Individual Shipper Banner (Disabled. Use an Experience Fragment instead)"
                                             value="individualShipper"/>
                                 </items>
                             </type>
