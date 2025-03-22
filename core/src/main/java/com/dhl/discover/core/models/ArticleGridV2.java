@@ -213,4 +213,8 @@ public class ArticleGridV2 {
         @ValueMapValue
         private List<String> tags;
     }
+
+    public boolean hasArticles() {
+        return categoryArticleMap.values().stream().anyMatch(articles -> !articles.isEmpty());
+    }
 }
