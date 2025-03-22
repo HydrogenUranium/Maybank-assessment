@@ -40,7 +40,8 @@
                                             value="custom"/>
                                     <subscribeNewsletter
                                             jcr:primaryType="nt:unstructured"
-                                            text="Common Bottom CTA Banner (Home Page Configuration for article)"
+                                            disabled="{Boolean}true"
+                                            text="⚠️ Common Bottom CTA Banner (Disabled. Use an Experience Fragment instead)"
                                             value="subscribeNewsletter"/>
                                 </items>
                             </type>

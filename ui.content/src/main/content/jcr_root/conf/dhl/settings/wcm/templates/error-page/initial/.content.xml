@@ -9,20 +9,16 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid"
             layout="responsiveGrid">
-            <container
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/container"
-                layout="responsiveGrid"/>
-            <responsivegrid
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/foundation/components/responsivegrid">
+            <main
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="dhl/components/content/page-container">
                 <error_banner
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/error-banner"
                     buttonLabel="Go Back to Home"
                     description="Please click the button to go back home"
                     title="Oops! page not found."/>
-            </responsivegrid>
+            </main>
         </root>
     </jcr:content>
 </jcr:root>
