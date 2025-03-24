@@ -1,0 +1,20 @@
+.cq-Editable-dom--container,.cq-Editable-dom--container.aem-GridColumn{
+  padding-top:2rem;
+  padding-bottom:2rem
+}
+.cq-placeholder,.new{
+  height:4.6rem
+}
+.new{
+  margin:2rem 0 2.5rem 0
+}
+.cq-placeholder.cq-marker-start{
+  margin:1rem 0 .5rem 0
+}
+.cq-placeholder.cq-marker-end{
+  margin:.5rem 0 1rem 0
+}
+.cq-under-inlineeditor-selector{
+  min-height:18rem;
+  margin:1.5rem 0
+}
