@@ -4,12 +4,18 @@ import groovy.transform.Field
 @Field OVERRIDE = true;
 @Field DRY_RUN = false;
 @Field REPLICATE = false;
+@Field LOGGING = false;
 @Field ROOT = "/content/dhl"
 
-@Field MAIN_CONTAINER_RESURCE_TYPE = "dhl/components/content/page-container";
+@Field MAIN_CONTAINER_RESOURCE_TYPE = "dhl/components/content/page-container";
 @Field TARGET_PARENT = "root";
 @Field TARGET_NAME = "main";
 
+def log(string) {
+    if(LOGGING) {
+        println string
+    }
+}
 
 def getJcrContent(path) {
     return pageManager.getContainingPage(path).getContentResource();
@@ -28,9 +34,9 @@ def handlePublication(pagePath) {
     }
     if(isPublished(pagePath)) {
         replicator.replicate(session, ReplicationActionType.ACTIVATE, it.getPath())
-        println "Publish $it.getPath()"
+        log "Publish $it.getPath()"
     } else {
-        println "Page is not published $it.getPath()"
+        log "Page is not published $it.getPath()"
     }
 }
 
@@ -42,7 +48,7 @@ def copyChildNodes(page, source) {
     def sourceNode = contentNode.getNode(source);
     def targetParentNode = contentNode.getNode(TARGET_PARENT);
 
-    println "Page: ${contentNode.getParent().getPath()}"
+    log "Page: ${contentNode.getParent().getPath()}"
 
     if(OVERRIDE && targetParentNode.hasNode(TARGET_NAME)) {
         targetParentNode.getNode(TARGET_NAME).remove();
@@ -51,9 +57,9 @@ def copyChildNodes(page, source) {
     if (!targetParentNode.hasNode(TARGET_NAME)) {
         def targetNode = JcrUtil.copy(sourceNode, targetParentNode, TARGET_NAME)
         targetNode.setProperty("sling:resourceType", "dhl/components/content/page-container")
-        println "Node copied successfully from ${source} to ${TARGET_PARENT}/${TARGET_NAME}"
+        log "Node copied successfully from ${source} to ${TARGET_PARENT}/${TARGET_NAME}"
     } else {
-        println "Target node already exists: ${TARGET_PARENT}/${TARGET_NAME}"
+        log "Target node already exists: ${TARGET_PARENT}/${TARGET_NAME}"
     }
 }
 
@@ -66,13 +72,13 @@ def copyNodes(page, sourcePaths) {
             .toList()
 
     if(sourceNodes.size() < 1) {
-        println "No nodes to copy"
+        log "No nodes to copy"
         return;
     }
 
     def targetParentNode = contentNode.getNode(TARGET_PARENT);
 
-    println "Page: ${page.getPath()}"
+    log "Page: ${page.getPath()}"
 
     if(OVERRIDE && targetParentNode.hasNode(TARGET_NAME)) {
         targetParentNode.getNode(TARGET_NAME).remove();
@@ -80,20 +86,20 @@ def copyNodes(page, sourcePaths) {
 
     if (!targetParentNode.hasNode(TARGET_NAME)) {
         def targetNode = targetParentNode.addNode(TARGET_NAME, "nt:unstructured");
-        targetNode.setProperty("sling:resourceType", MAIN_CONTAINER_RESURCE_TYPE);
+        targetNode.setProperty("sling:resourceType", MAIN_CONTAINER_RESOURCE_TYPE);
 
         sourceNodes.each{
             JcrUtil.copy(it, targetNode, it.getName())
-            println "Node copied successfully from ${it.getPath()} to ${TARGET_PARENT}/${TARGET_NAME}"
+            log "Node copied successfully from ${it.getPath()} to ${TARGET_PARENT}/${TARGET_NAME}"
         }
 
     } else {
-        println "Target node already exists: ${TARGET_PARENT}/${TARGET_NAME}"
+        log "Target node already exists: ${TARGET_PARENT}/${TARGET_NAME}"
     }
 }
 
 def processRightAlignedMarketoForm (page) {
-    println "right alighn marketo form"
+    log "right alighn marketo form"
 }
 
 @Field HANDLERS = [
@@ -122,13 +128,13 @@ def processPage(page) {
         handler(page);
         if(DRY_RUN) {
             session.refresh(false);
-            println "Refresh Changes (---)"
+            log "Refresh Changes (---)"
         } else {
             session.save();
-            println "Save Changes (+++)"
+            log "Save Changes (+++)"
         }
     } else {
-        println """Handler is not found for ${page.getPath()}""";
+        log """Handler is not found for ${page.getPath()}""";
     }
 
     def iterator = page.listChildren();
