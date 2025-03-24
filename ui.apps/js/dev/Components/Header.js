@@ -1,8 +1,10 @@
 class Header {
   constructor() {
     const headerElement = document.querySelector('#header__navigation__text');
-    this.openHamburgerMenuText = headerElement.getAttribute('data-open-hamburger-menu-text');
-    this.closeHamburgerMenuText = headerElement.getAttribute('data-close-hamburger-menu-text');
+    if (headerElement !== null) {
+      this.openHamburgerMenuText = headerElement.getAttribute('data-open-hamburger-menu-text');
+      this.closeHamburgerMenuText = headerElement.getAttribute('data-close-hamburger-menu-text');
+    }
 
     this.sel = {
       component: 'header',
