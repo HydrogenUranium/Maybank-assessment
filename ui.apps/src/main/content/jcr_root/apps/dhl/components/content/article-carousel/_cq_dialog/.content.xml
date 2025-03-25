@@ -5,21 +5,154 @@
         <items jcr:primaryType="nt:unstructured">
             <tabs jcr:primaryType="nt:unstructured">
                 <items jcr:primaryType="nt:unstructured">
-                    <properties jcr:primaryType="nt:unstructured"/>
+                    <properties
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Properties"
+                            sling:orderBefore="cq:styles"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <titleGroup
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <title
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldDescription="Leave empty to use the page title."
+                                                            fieldLabel="Title"
+                                                            name="./jcr:title"/>
+                                                    <defaulttypes
+                                                            granite:class="core-title-sizes-default"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                            fieldLabel="Type / Size"
+                                                            name="./type">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <h1
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="H1"
+                                                                    value="h1"/>
+                                                            <h2
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="H2"
+                                                                    value="h2"/>
+                                                            <h3
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="H3"
+                                                                    value="h3"/>
+                                                            <h4
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="H4"
+                                                                    value="h4"/>
+                                                        </items>
+                                                    </defaulttypes>
+                                                </items>
+                                            </titleGroup>
+                                            <activeItem
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/form/hidden"
+                                                    name="./activeItem">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cmp-carousel-v1-dialog-edit-hook="activeItem"/>
+                                            </activeItem>
+                                            <activeSelect
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="The item that is active by default."
+                                                    fieldLabel="Active Item">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cmp-carousel-v1-dialog-edit-hook="activeSelect"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <default
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Default"
+                                                            value=""/>
+                                                </items>
+                                            </activeSelect>
+                                            <autoplay
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    checked="${not empty cqDesign.autoplay ? cqDesign.autoplay : false}"
+                                                    fieldDescription="If checked, automatically transition between slides."
+                                                    name="./autoplay"
+                                                    text="Automatically transition slides"
+                                                    uncheckedValue="false"
+                                                    value="true">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cmp-carousel-v1-dialog-hook="autoplay"/>
+                                            </autoplay>
+                                            <autoplayGroup
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <alert
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                                                            size="S"
+                                                            text="Automatic transitions are previewed with the 'View as Published' page action."
+                                                            variant="info">
+                                                    </alert>
+                                                    <delay
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                            fieldDescription="The delay (in milliseconds) before automatically transitioning to the next slide."
+                                                            fieldLabel="Transition Delay (milliseconds)"
+                                                            min="0"
+                                                            max="600000"
+                                                            name="./delay"
+                                                            step="100"
+                                                            value="${not empty cqDesign.delay ? cqDesign.delay : 5000}">
+                                                        <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                cmp-carousel-v1-dialog-hook="delay"/>
+                                                    </delay>
+                                                    <autopauseDisabled
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                            checked="${not empty cqDesign.autopauseDisabled ? cqDesign.autopauseDisabled : false}"
+                                                            fieldDescription="If checked, automatic pause when hovering the carousel is disabled."
+                                                            name="./autopauseDisabled"
+                                                            text="Disable automatic pause on hover"
+                                                            uncheckedValue="false"
+                                                            value="true">
+                                                        <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                cmp-carousel-v1-dialog-hook="autopauseDisabled"/>
+                                                    </autopauseDisabled>
+                                                </items>
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cmp-carousel-v1-dialog-hook="autoplayGroup"/>
+                                            </autoplayGroup>
+                                            <id
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="HTML ID attribute to apply to the component."
+                                                    fieldLabel="ID"
+                                                    name="./id"
+                                                    validation="html-unique-id-validator"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
                     <accessibility
                             jcr:primaryType="nt:unstructured"
                             sling:hideResource="{Boolean}true"/>
-                </items>
-            </tabs>
-            <tabs
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
-                    maximized="{Boolean}true">
-                <items jcr:primaryType="nt:unstructured">
-                    <styletab
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/include"
-                            path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_edit/styletab"/>
                 </items>
             </tabs>
         </items>
