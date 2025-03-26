@@ -3,6 +3,6 @@
     jcr:primaryType="cq:Template">
     <jcr:content
         jcr:primaryType="cq:PageContent"
-        jcr:title="Two Column Page (Editable)"
+        jcr:title="Two Column Page "
         jcr:description="Two Column Page"/>
 </jcr:root>

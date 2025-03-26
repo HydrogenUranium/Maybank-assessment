@@ -9,10 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.models.annotations.Default;
-import org.apache.sling.models.annotations.DefaultInjectionStrategy;
-import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.*;
 import org.apache.sling.models.annotations.injectorspecific.*;
 
 import javax.annotation.PostConstruct;
@@ -27,47 +24,51 @@ import java.util.List;
 public class ArticleShowcase {
 
     @OSGiService
+    @Required
     private PageUtilService pageUtils;
 
     @ScriptVariable
+    @Required
     protected Style currentStyle;
 
     @OSGiService
+    @Required
     private ArticleService articleService;
 
     @ScriptVariable
+    @Required
     private Page currentPage;
 
     @SlingObject
+    @Required
     private ResourceResolver resourceResolver;
 
     @ValueMapValue
-    @Optional
     private String title;
 
     @ValueMapValue
-    @Optional
     private String designMode;
 
     @ValueMapValue
-    @Optional
     private String linkName;
 
     @ValueMapValue
-    @Optional
     private String linkPath;
 
     @ValueMapValue
-    @Optional
     private String showTags;
 
     @ValueMapValue
-    @Optional
     @Default(values = "customPick")
     private String source;
 
+    @ValueMapValue
+    private String titleType;
+
+    @ValueMapValue
+    private String articlesTitleType;
+
     @ChildResource
-    @Optional
     @Named("articles")
     private Resource articleMultifield;
 
