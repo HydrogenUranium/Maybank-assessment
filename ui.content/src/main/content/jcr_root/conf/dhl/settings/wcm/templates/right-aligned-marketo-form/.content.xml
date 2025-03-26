@@ -3,7 +3,7 @@
     jcr:primaryType="cq:Template">
     <jcr:content
         jcr:primaryType="cq:PageContent"
-        jcr:title="Right Aligned Marketo Form (Editable)"
+        jcr:title="Right Aligned Marketo Form "
         jcr:description="Right Aligned Marketo Form"
         status="enabled"/>
 </jcr:root>

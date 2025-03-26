@@ -6,6 +6,6 @@
         cq:lastModifiedBy="admin"
         cq:templateType="/conf/dhl/settings/wcm/template-types/article"
         jcr:primaryType="cq:PageContent"
-        jcr:title="DHL Article (Editable)"
+        jcr:title="DHL Article "
         status="enabled"/>
 </jcr:root>

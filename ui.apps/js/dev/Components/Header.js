@@ -122,17 +122,16 @@ class Header {
     if (!$(this.sel.menu).is(':visible')) {
       this.bodyScrolling(false);
       $(this.sel.toggle).addClass('header__navigation--open');
-      $(this.sel.wrapper).addClass('header__navigation--open');
       this.disableAnchorLinks(true);
       navigationElement.setAttribute('aria-label', this.closeHamburgerMenuText);
+      $(this.sel.menu).show().animate({right: '0'}, 100);
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
-      $(this.sel.wrapper).removeClass('header__navigation--open');
       this.disableAnchorLinks(false);
       navigationElement.setAttribute('aria-label', this.openHamburgerMenuText);
+      $(this.sel.menu).animate({right: '-100%'}, 100).delay(200).hide(0);
     }
-    $(this.sel.menu).slideToggle(150);
   }
 
   bodyScrolling(enabled) {
