@@ -107,7 +107,7 @@ class ArticleTest {
         assertEquals("What paperwork do I need for international shipping? \n Discover DHL", article.getPageTitle());
         assertEquals("What paperwork do I need for international shipping? <br> Discover DHL", article.getPageTitleWithBr());
         assertEquals("#SmallBusinessAdvice", article.getGroupTag());
-        assertEquals("/content/dhl/global/home/small-business-advice", article.getGrouppath());
+        assertEquals("/content/dhl/global/home/small-business-advice", article.getGroupPath());
         assertEquals("Small Business advice", article.getGrouptitle());
         assertEquals("/content/dam/desktop.jpg", article.getHeroimagedt());
         assertEquals("/content/dam/mobile.jpg", article.getHeroimagemob());

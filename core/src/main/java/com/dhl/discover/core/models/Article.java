@@ -90,7 +90,7 @@ public class Article {
     private String grouptitle;
     @Expose
     private String groupTag;
-    private String grouppath;
+    private String groupPath;
     private String title;
     private String pageTitle;
     @SerializedName("title")
@@ -189,7 +189,7 @@ public class Article {
         createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, locale).format(createdDate);
         icon = valueMap.get("jcr:content/mediatype", "");
         grouptitle = getGroupTitle(resource);
-        grouppath = getGroupPath(resource);
+        groupPath = getGroupPath(resource);
         groupTag = tagUtilService.transformToHashtag(grouptitle);
 
         title = valueMap.get("jcr:content/jcr:title", "");
