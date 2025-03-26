@@ -30,7 +30,7 @@
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                             fieldDescription="Leave empty to use the page title."
                                                             fieldLabel="Title"
-                                                            name="./jcr:title"/>
+                                                            name="./titleCarousel"/>
                                                     <defaulttypes
                                                             granite:class="core-title-sizes-default"
                                                             jcr:primaryType="nt:unstructured"
