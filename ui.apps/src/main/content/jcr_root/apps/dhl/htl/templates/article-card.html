@@ -1,4 +1,4 @@
-<template data-sly-template.card="${@ article, showTags, enableAssetDelivery}">
+<template data-sly-template.card="${@ article, showTags, enableAssetDelivery, titleType}">
     <article class="article-card">
         <a tabindex="-1" href="${article.path}" aria-hidden="true"  class="article-card__image-wrapper">
             <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
@@ -16,9 +16,11 @@
                 <span data-sly-test="${article.author}">${article.author}</span>
                 <time datetime="${article.created}" data-sly-test="${article.createdfriendly}">${article.createdfriendly}</time>
             </div>
-            <h3><a href="${article.path}" class="article-card__title">
+            <h3 data-sly-element="${titleType}">
+              <a href="${article.path}" class="article-card__title">
                 ${article.pageTitleWithBr @ context='html'}
-            </a></h3>
+              </a>
+            </h3>
             <div class="article-card__description">${article.description}</div>
             <div class="article-card__tags" data-sly-list="${article.tagsToShow @ begin = 0, end = 1}" data-sly-test="${showTags}">
                 <div class="article-card__tag">${item}</div>

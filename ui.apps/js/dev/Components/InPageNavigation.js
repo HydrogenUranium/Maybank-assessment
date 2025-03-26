@@ -36,11 +36,21 @@ class InPageNavigation {
     let $sections = [];
     $(this.sel.sections).each((index, elm) => {
       let randomId = Strings.id();
-      $(elm).attr('id', randomId);
-      let $item = $(this.$template.clone().html());
-      $item.find('.inPageNavigation__link').attr('href', '#' + randomId);
-      $sections.push($item);
-      this.addOffset($(elm));
+        $(elm).attr('id', randomId);
+
+        let $item = $(this.$template.clone().html());
+        let $link = $item.find('.inPageNavigation__link');
+
+        $link.attr('href', '#' + randomId);
+
+        // Check if elm has data-section-title
+        let sectionTitle = $(elm).data('section-title');
+        if (sectionTitle) {
+          $link.attr('aria-label', sectionTitle);
+        }
+
+        $sections.push($item);
+        this.addOffset($(elm));
     });
     $(this.sel.list).html('').append($sections);
     $(this.sel.listItems).first().find(this.sel.links).addClass('inPageNavigation__link--active');
