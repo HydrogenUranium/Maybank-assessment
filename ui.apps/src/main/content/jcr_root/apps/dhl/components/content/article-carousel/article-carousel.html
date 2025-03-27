@@ -25,8 +25,7 @@
          aria-live="${carousel.autoplay ? 'off' : 'polite'}">
       <sly data-sly-list.item="${items}">
           <sly data-sly-use.carouselItemValidator="${'com.dhl.discover.core.models.CarouselItemValidator' @ resource=item.resource}"></sly>
-          <sly data-sly-use.teaserModel="${item @ adaptTo='com.adobe.cq.wcm.core.components.models.Teaser'}"></sly>
-        <div data-sly-test="${wcmmode.edit || carouselItemValidator.valid || item.imageFromPageImage || (teaserModel.imageResource && teaserModel.imageResource.path)}"
+        <div data-sly-test="${wcmmode.edit || carouselItemValidator.valid || item.resource.imageFromPageImage}"
              data-sly-resource="${item.resource @ decorationTagName='div'}"
              id="${item.id}-tabpanel"
              class="cmp-carousel__item${item.name == carousel.activeItem ? ' cmp-carousel__item--active' : ''}"
@@ -46,8 +45,7 @@
       <sly data-sly-list.item="${items}">
           <sly data-sly-set.nodePath="${item.resource.linkURL}"></sly>
           <sly data-sly-use.carouselItemValidator="${'com.dhl.discover.core.models.CarouselItemValidator' @ resource=item.resource}"></sly>
-          <sly data-sly-use.teaserModel="${item @ adaptTo='com.adobe.cq.wcm.core.components.models.Teaser'}"></sly>
-        <li data-sly-test="${wcmmode.edit || carouselItemValidator.valid || item.imageFromPageImage || (teaserModel.imageResource && teaserModel.imageResource.path)}"
+        <li data-sly-test="${wcmmode.edit || carouselItemValidator.valid || item.resource.imageFromPageImage }"
             id="${item.id}-tab"
             class="cmp-carousel__indicator${item.name == carousel.activeItem ? ' cmp-carousel__indicator--active' : ''}"
             role="tab"
