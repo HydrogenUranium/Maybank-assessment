@@ -17,7 +17,7 @@ class Header {
       categories: '.navigation-row__left',
       moreLink: '.navigation-item_more-less.more',
       lessLink: '.navigation-item_more-less.less',
-      body: 'body',
+      main: 'main',
     };
 
     this.cookieName = 'dhl-default-language';
@@ -245,13 +245,13 @@ class Header {
 
   /* this method blocks the background when toggle menu is enabled*/
   disableAnchorLinks(value) {
-    const body = document.querySelector(this.sel.body);
-    if (value && body) {
+    const main = document.querySelector(this.sel.main);
+    if (value && main) {
       const overlayDiv = document.createElement('div');
       overlayDiv.id = 'overlay';
       overlayDiv.classList.add('enableGreyOutArea');
       overlayDiv.addEventListener('click', this.toggleMenu);
-      body.appendChild(overlayDiv);
+      main.appendChild(overlayDiv);
     } else {
       const overlayDiv = document.getElementById('overlay');
       if (overlayDiv) {
