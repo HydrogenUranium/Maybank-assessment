@@ -587,16 +587,10 @@
 .enableGreyOutArea {
   display: block;
   position: absolute;
-  top: 0;
+  top: 6.4rem;
   left: 0;
   width: calc(100% - 39rem);
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 99;
-}
-
-main {
-  @include respond(md) {
-    position: relative;
-  }
 }
