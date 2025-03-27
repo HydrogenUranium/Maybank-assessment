@@ -4,4 +4,10 @@
     jcr:primaryType="cq:Component"
     jcr:title="Article Carousel"
     sling:resourceSuperType="core/wcm/components/carousel/v1/carousel"
-    componentGroup="DHL Components"/>
+    componentGroup="DHL Components">
+
+    <teaser
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="core/wcm/components/teaser/v1/teaser"/>
+
+</jcr:root>
