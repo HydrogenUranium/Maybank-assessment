@@ -9,6 +9,9 @@
         "# *** deny access for gmt-tracking should be placed below all user groups and then allow access for gmt-tracking-id-editor ***",
         "create group gmt-tracking-id-editor",
 
+        "create group groovy-console-administrators",
+        "set properties on authorizable(groovy-console-administrators)/profile\n set givenName to \"Groovy Console Administrators\"\n end",
+
         "create group author-language-copies",
         "create group author-language-master",
 
