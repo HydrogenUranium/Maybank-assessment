@@ -50,7 +50,7 @@ def getLocalizedFragment(node, fragmentPath) {
     def localizedVariationPath = fragmentPath.replaceFirst(EXPERIENCE_FRAGMENT_MASTER_LOCATION, relativeRootPath);
     def localizedVariationResource = resourceResolver.getResource(localizedVariationPath);
 
-    return localizedVariationResource != null ? localizedVariationPath : path;
+    return localizedVariationResource != null ? localizedVariationPath : fragmentPath;
 }
 
 def isInSidebar(node) {

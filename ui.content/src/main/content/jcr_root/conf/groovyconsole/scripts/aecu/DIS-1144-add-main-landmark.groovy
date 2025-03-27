@@ -1,15 +1,24 @@
 import com.day.cq.commons.jcr.JcrUtil
 import groovy.transform.Field
+import java.util.regex.Pattern;
 
 @Field OVERRIDE = true;
 @Field DRY_RUN = false;
 @Field REPLICATE = false;
-@Field ROOT = "/content/dhl"
+@Field LOGGING = false;
+@Field ROOT = "/content/dhl/global/en-global"
 
-@Field MAIN_CONTAINER_RESURCE_TYPE = "dhl/components/content/page-container";
+@Field MAIN_CONTAINER_RESOURCE_TYPE = "dhl/components/content/page-container";
 @Field TARGET_PARENT = "root";
 @Field TARGET_NAME = "main";
 
+@Field STYLE_ID_PROPERTY_NAME = "cq:styleIds";
+
+def log(string) {
+    if(LOGGING) {
+        println string
+    }
+}
 
 def getJcrContent(path) {
     return pageManager.getContainingPage(path).getContentResource();
@@ -28,9 +37,9 @@ def handlePublication(pagePath) {
     }
     if(isPublished(pagePath)) {
         replicator.replicate(session, ReplicationActionType.ACTIVATE, it.getPath())
-        println "Publish $it.getPath()"
+        log "Publish $it.getPath()"
     } else {
-        println "Page is not published $it.getPath()"
+        log "Page is not published $it.getPath()"
     }
 }
 
@@ -42,7 +51,7 @@ def copyChildNodes(page, source) {
     def sourceNode = contentNode.getNode(source);
     def targetParentNode = contentNode.getNode(TARGET_PARENT);
 
-    println "Page: ${contentNode.getParent().getPath()}"
+    log "Page: ${contentNode.getParent().getPath()}"
 
     if(OVERRIDE && targetParentNode.hasNode(TARGET_NAME)) {
         targetParentNode.getNode(TARGET_NAME).remove();
@@ -51,9 +60,9 @@ def copyChildNodes(page, source) {
     if (!targetParentNode.hasNode(TARGET_NAME)) {
         def targetNode = JcrUtil.copy(sourceNode, targetParentNode, TARGET_NAME)
         targetNode.setProperty("sling:resourceType", "dhl/components/content/page-container")
-        println "Node copied successfully from ${source} to ${TARGET_PARENT}/${TARGET_NAME}"
+        log "Node copied successfully from ${source} to ${TARGET_PARENT}/${TARGET_NAME}"
     } else {
-        println "Target node already exists: ${TARGET_PARENT}/${TARGET_NAME}"
+        log "Target node already exists: ${TARGET_PARENT}/${TARGET_NAME}"
     }
 }
 
@@ -66,13 +75,13 @@ def copyNodes(page, sourcePaths) {
             .toList()
 
     if(sourceNodes.size() < 1) {
-        println "No nodes to copy"
+        log "No nodes to copy"
         return;
     }
 
     def targetParentNode = contentNode.getNode(TARGET_PARENT);
 
-    println "Page: ${page.getPath()}"
+    log "Page: ${page.getPath()}"
 
     if(OVERRIDE && targetParentNode.hasNode(TARGET_NAME)) {
         targetParentNode.getNode(TARGET_NAME).remove();
@@ -80,24 +89,88 @@ def copyNodes(page, sourcePaths) {
 
     if (!targetParentNode.hasNode(TARGET_NAME)) {
         def targetNode = targetParentNode.addNode(TARGET_NAME, "nt:unstructured");
-        targetNode.setProperty("sling:resourceType", MAIN_CONTAINER_RESURCE_TYPE);
+        targetNode.setProperty("sling:resourceType", MAIN_CONTAINER_RESOURCE_TYPE);
 
         sourceNodes.each{
             JcrUtil.copy(it, targetNode, it.getName())
-            println "Node copied successfully from ${it.getPath()} to ${TARGET_PARENT}/${TARGET_NAME}"
+            log "Node copied successfully from ${it.getPath()} to ${TARGET_PARENT}/${TARGET_NAME}"
         }
 
     } else {
-        println "Target node already exists: ${TARGET_PARENT}/${TARGET_NAME}"
+        log "Target node already exists: ${TARGET_PARENT}/${TARGET_NAME}"
     }
 }
 
-def processRightAlignedMarketoForm (page) {
-    println "right alighn marketo form"
+def getFirstTextNode(root) {
+    def nodes = root.getNodes();
+    while(nodes.hasNext()) {
+        def node = nodes.next();
+        if(node.hasProperty('sling:resourceType') && node.getProperty('sling:resourceType').getString().equals("dhl/components/content/text")) {
+            return node;
+        }
+    }
+    return null;
+}
+
+def processArticle(page) {
+       copyNodes(page, [
+        'root/article_header_container',
+        'root/article_container',
+        'root/article_container_two',
+        'root/article_footer_container',
+        'root/related_posts',
+        'root/responsivegrid'
+    ])
+
+    def contentNode = page.getContentResource().adaptTo(Node.class)
+    if (contentNode == null || !contentNode.hasNode('root/main/article_container/body/responsivegrid')) {
+        return
+    }
+
+    def textNode = getFirstTextNode(contentNode.getNode('root/main/article_container/body/responsivegrid'))
+    if (textNode == null || !textNode.hasProperty('text')) {
+        return
+    }
+
+    def originalText = textNode.getProperty('text').getString()
+    def matcher = originalText =~ /(?s)^<h3>.*?<\/h3>/
+    
+    if (!matcher.find()) {
+        return
+    }
+
+    def h3Text = matcher.group()
+    def headingAsParagraph = h3Text.replaceAll('<h3>', '<p>').replaceAll('</h3>', '</p>')
+    def remainingText = originalText.replaceFirst(Pattern.quote(h3Text), "").trim()
+
+    if (!remainingText.isBlank()) {
+        // Update original node with the remaining content
+        textNode.setProperty('text', remainingText)
+        def oldTextNodeName = textNode.getName()
+        
+        // Create new node for heading
+        def headingNode = textNode.getParent().addNode('highlighted_text', 'nt:unstructured')
+        headingNode.setProperty('text', headingAsParagraph)
+        headingNode.setProperty(STYLE_ID_PROPERTY_NAME, ['1741170559552', '1741171213248'] as String[])
+        headingNode.setProperty("sling:resourceType", "dhl/components/content/text")
+        headingNode.setProperty("textIsRich", true)
+        
+        // Place new heading node before the original one
+        headingNode.getParent().orderBefore(headingNode.getName(), oldTextNodeName)
+
+        log """Set heading text: ${headingAsParagraph} to ${headingNode.getPath()}"""
+        log """Set ${STYLE_ID_PROPERTY_NAME}: ['1741170559552', '1741171213248'] to ${headingNode.getPath()}"""
+    } else {
+        // Only <h3> exists, so reuse current node and just replace it with <p>
+        textNode.setProperty('text', headingAsParagraph)
+        textNode.setProperty(STYLE_ID_PROPERTY_NAME, ['1741170559552', '1741171213248'] as String[])
+        
+        log """Replaced h3 with p: ${headingAsParagraph} in ${textNode.getPath()}"""
+    }
 }
 
 @Field HANDLERS = [
-        '/conf/dhl/settings/wcm/templates/article': (page) -> copyNodes(page, ['root/article_header_container','root/article_container','root/article_container_two','root/article_footer_container','root/related_posts','root/responsivegrid']),
+        '/conf/dhl/settings/wcm/templates/article': (page) -> processArticle(page),
         '/conf/dhl/settings/wcm/templates/category-page': (page) -> copyNodes(page, ['root/breadcrumb-responsivegrid','root/responsivegrid','root/category_container']),
         '/conf/dhl/settings/wcm/templates/thank-you-page': (page) -> copyNodes(page, ['root/breadcrumb-responsivegrid','root/container']),
         '/conf/dhl/settings/wcm/templates/right-aligned-marketo-form': (page) -> copyNodes(page, ['root/breadcrumb','root/two_columns_container','root/responsivegrid']),
@@ -122,13 +195,13 @@ def processPage(page) {
         handler(page);
         if(DRY_RUN) {
             session.refresh(false);
-            println "Refresh Changes (---)"
+            log "Refresh Changes (---)"
         } else {
             session.save();
-            println "Save Changes (+++)"
+            log "Save Changes (+++)"
         }
     } else {
-        println """Handler is not found for ${page.getPath()}""";
+        log """Handler is not found for ${page.getPath()}""";
     }
 
     def iterator = page.listChildren();
