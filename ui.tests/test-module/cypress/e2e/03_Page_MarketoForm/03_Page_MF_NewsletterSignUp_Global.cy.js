@@ -5,7 +5,7 @@ describe('Global Subscribe newsletter page', () => {
 
   const selectors = {
     marketoFormContainer: '.cmp-marketoForm__container',
-    title: '.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .cmp-title-v2 > #title-v2-b4a322772c > .cmp-title-v2__text',
+    title: '.right-header-section .cmp-title-v2__text',
     emailField: '#Email',
     countryField: '#suspectCountry',
     formButton: '.mktoButton',

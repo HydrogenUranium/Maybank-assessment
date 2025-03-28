@@ -8,7 +8,7 @@ describe('Global Open A DHL Account Form', () => {
   const testText = 'THIS IS FOR TEST PLEASE IGNORE';
 
   const selectors = {
-    title: '.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .cmp-title-v2 > #title-v2-e579709512 > .cmp-title-v2__text',
+    title: '.right-header-section .cmp-title-v2__text',
     marketoForm: '#mktoForm_2040',
     firstNameLabel: ':nth-child(2) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel',
     firstNameField: '#FirstName',

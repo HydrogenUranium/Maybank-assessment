@@ -11,7 +11,7 @@ describe('Global DHL Landing Page - Two Column', () => {
     onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
     heroBanner: '.cmp-hero-banner__asset',
     lblIsBusiness: '#LblisBusiness',
-    textContent: '#text-fa2b4da5ad',
+    textContent: '.cmp-text',
     landingPoint: '.landing-point',
     marketoFormContainer: '.cmp-marketoForm__container',
     fieldLabel: ':nth-child(2) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel',
