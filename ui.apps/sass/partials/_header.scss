@@ -483,9 +483,7 @@
     display: none;
     position: absolute;
     top: 6.4rem;
-    right: -100%;
     padding: 0;
-    width: 100%;
     max-height: calc(100dvh - 6.4rem);
     margin: 0;
     line-height: 1.4rem;
@@ -499,7 +497,6 @@
 
       @include respond(md) {
         width: 39rem;
-        margin-left: 50%;
       }
 
 
