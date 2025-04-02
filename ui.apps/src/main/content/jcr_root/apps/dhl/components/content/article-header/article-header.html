@@ -2,9 +2,7 @@
      data-sly-set.article="${articlePage.article}"/>
 
 <div class="cmp-article-header">
-  <div class="cmp-article-header__breadcrumb">
-    <span>${article.groupTag}</span>
-  </div>
+  <a class="cmp-article-header__groupTag" href="${article.groupPath}">${article.groupTag}</a>
 
   <h1 class="cmp-article-header__title">${article.pageTitle}</h1>
 
