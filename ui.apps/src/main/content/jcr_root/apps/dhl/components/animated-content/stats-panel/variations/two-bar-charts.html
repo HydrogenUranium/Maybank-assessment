@@ -13,8 +13,8 @@
             <div class="col-6 offset-lg-2 col-lg-4">
               <div class="statsPanel__wrapper statsPanel__wrapper--alt">
                 <div class="statsPanel__statsWrapper statsPanel__statsWrapper--alt">
-                  <h4 class="statsPanel__statsValue statsPanel__statsValue--alt" data-sly-test="${properties.hidePercentage != 'true'}" data-start="0" data-end="${properties.leftBlockPercent}" data-suffix="%">${properties.leftBlockPercent}%</h4>
-                  <h2 class="statsPanel__value statsPanel__value--alt">${properties.leftBlockTitle}</h2>
+                  <div class="statsPanel__statsValue statsPanel__statsValue--alt" data-sly-test="${properties.hidePercentage != 'true'}" data-start="0" data-end="${properties.leftBlockPercent}" data-suffix="%">${properties.leftBlockPercent}%</div>
+                  <div class="statsPanel__value statsPanel__value--alt">${properties.leftBlockTitle}</div>
                 </div>
                 <div class="boxFill boxFill--dark" aria-label="${properties.leftBlockTitle}">
 				  <div class="boxFill__fill boxFill__fillstat__${idModel.id}">
@@ -33,8 +33,8 @@
             <div class="col-6 col-lg-4">
               <div class="statsPanel__wrapper statsPanel__wrapper--alt">
                 <div class="statsPanel__statsWrapper statsPanel__statsWrapper--altDown">
-                  <h4 class="statsPanel__statsValue statsPanel__statsValue--alt" data-start="0" data-sly-test="${properties.hidePercentage != 'true'}" data-end="${properties.rightBlockPercent}" data-suffix="%" data-duration="2.4">${properties.rightBlockPercent}%</h4>
-                  <h2 class="statsPanel__value statsPanel__value--alt">${properties.rightBlockTitle}</h2>
+                  <div class="statsPanel__statsValue statsPanel__statsValue--alt" data-start="0" data-sly-test="${properties.hidePercentage != 'true'}" data-end="${properties.rightBlockPercent}" data-suffix="%" data-duration="2.4">${properties.rightBlockPercent}%</div>
+                  <div class="statsPanel__value statsPanel__value--alt">${properties.rightBlockTitle}</div>
                 </div>
                 <div class="boxFill boxFill--dark" aria-label="${properties.rightBlockTitle}">
 				  <div class="boxFill__fill boxFill__fillstat2__${idModel.id}">
