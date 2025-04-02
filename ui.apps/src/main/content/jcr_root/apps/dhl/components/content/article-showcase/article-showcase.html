@@ -27,7 +27,7 @@
                      }"></sly>
                 </a>
                 <div class="cmp-article-showcase__article-info">
-                    <div class="cmp-article-showcase__article-group-tag">${item.groupTag}</div>
+                    <a class="cmp-article-showcase__article-group-tag" href="${item.groupPath}">${item.groupTag}</a>
                     <h3 data-sly-element="${model.articlesTitleType}" class="cmp-article-showcase__article-title-wrapper">
                       <a href="${item.path}" class="cmp-article-showcase__article-title">${item.pageTitleWithBr @ context='html'}</a>
                     </h3>
