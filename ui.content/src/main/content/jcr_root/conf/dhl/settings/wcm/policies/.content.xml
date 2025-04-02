@@ -854,8 +854,8 @@
                         allowedHeadingElements="[h1,h2,h3,h4]"
                         descriptionHidden="true"
                         pretitleHidden="true"
-                        showTitleType="false"
-                        titleType="h3">
+                        showTitleType="true"
+                        titleType="h2">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
