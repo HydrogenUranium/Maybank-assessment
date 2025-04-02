@@ -1,14 +1,12 @@
 package com.dhl.discover.core.services.schema;
 
+import com.dhl.discover.core.config.SchemaServiceConfig;
 import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.factory.ModelFactory;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,15 @@ public class SchemaService {
     private final List<SchemaAdapter> adapters = new ArrayList<>();
     public static final String CQ_TEMPLATE = "cq:template";
     public static final String TYPE_EDITABLE = "editable";
-    public static final String BREADCRUMB_TEMPLATE_PATH = "/structure/jcr:content";
+
+    private String breadcrumbTemplatePath;
+
+    @Activate
+    @Modified
+    protected void activate(SchemaServiceConfig config) {
+        this.breadcrumbTemplatePath = config.breadcrumbTemplatePath();
+    }
+
     @Reference(
             service = SchemaAdapter.class,
             cardinality = ReferenceCardinality.MULTIPLE,
@@ -47,11 +53,12 @@ public class SchemaService {
 
     public List<String> getSchemas(Resource resource, SlingHttpServletRequest request) {
         List<String> schemas = new ArrayList<>();
-        collectSchemas(resource, request, schemas, r -> r != null);
-        if( resource != null) {
-            Resource templateStructureRoot = resource.getResourceResolver().getResource(resource.getValueMap().get(CQ_TEMPLATE, "") + BREADCRUMB_TEMPLATE_PATH);
-            collectSchemas(templateStructureRoot, request, schemas, r -> r != null && !r.getValueMap().get(TYPE_EDITABLE, false));
+        if (resource == null) {
+            return schemas;
         }
+        collectSchemas(resource, request, schemas, r -> r != null);
+        Resource templateStructureRoot = resource.getResourceResolver().getResource(resource.getValueMap().get(CQ_TEMPLATE, "") + breadcrumbTemplatePath);
+        collectSchemas(templateStructureRoot, request, schemas, r -> r != null && !r.getValueMap().get(TYPE_EDITABLE, false));
         return schemas;
     }
 
