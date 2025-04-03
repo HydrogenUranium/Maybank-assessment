@@ -105,6 +105,24 @@ class CarouselItemValidatorTest {
     }
 
     @Test
+    void isValid_combinedConditions() throws Exception {
+        Resource resource = mock(Resource.class);
+        when(resource.getResourceType()).thenReturn("nonGhost");
+
+        ValueMap vm = mock(ValueMap.class);
+        when(resource.getValueMap()).thenReturn(vm);
+        when(vm.get("linkURL", "")).thenReturn("/content/page");
+        when(vm.get("imageFromPageImage", "")).thenReturn("image");
+        when(vm.get("fileName", "")).thenReturn("fileName");
+
+        Resource validResource = mock(Resource.class);
+        when(resourceResolver.getResource("/content/page")).thenReturn(validResource);
+
+        setResource(resource);
+        assertTrue("Validator should be valid when all conditions are met", validator.isValid());
+    }
+
+    @Test
     void propertiesCheck_whenPropertyNameIsNull() {
         assertFalse(validator.propertiesCheck(null), "Expected propertiesCheck() to return false when propertyName is null");
     }
