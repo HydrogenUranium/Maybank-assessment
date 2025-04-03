@@ -13,7 +13,7 @@
 }
 
 .page-body.category {
-  .container {
+  .dhl-ccontainer {
     @include respond(md) {
       background: #F6F6F6 0% 0% no-repeat padding-box;
     }
