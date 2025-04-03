@@ -58,7 +58,7 @@ public class SchemaService {
         }
         collectSchemas(resource, request, schemas, r -> r != null);
         Resource templateStructureRoot = resource.getResourceResolver().getResource(resource.getValueMap().get(CQ_TEMPLATE, "") + breadcrumbTemplatePath);
-        collectSchemas(templateStructureRoot, request, schemas, r -> r != null && !r.getValueMap().get(TYPE_EDITABLE, false));
+        collectSchemas(templateStructureRoot, request, schemas, r -> r != null && !Boolean.TRUE.equals(r.getValueMap().get(TYPE_EDITABLE)));
         return schemas;
     }
 
