@@ -94,22 +94,6 @@ class CarouselItemValidatorTest {
     }
 
     @Test
-    void propertiesCheck_whenPropertyNameIsBlank() {
-        assertFalse(validator.propertiesCheck(""), "Expected propertiesCheck() to return false when propertyName is blank");
-    }
-
-    @Test
-    void propertiesCheck_whenPropertyDoesNotExist() throws Exception {
-        Resource resource = mock(Resource.class);
-        ValueMap vm = mock(ValueMap.class);
-        when(resource.getValueMap()).thenReturn(vm);
-        when(vm.get("nonExistentProperty", "")).thenReturn("");
-        setResource(resource);
-
-        assertFalse(validator.propertiesCheck("nonExistentProperty"), "Expected propertiesCheck() to return false when property does not exist");
-    }
-
-    @Test
     void propertiesCheck_whenPropertyExists() throws Exception {
         Resource resource = mock(Resource.class);
         ValueMap vm = mock(ValueMap.class);
@@ -118,6 +102,31 @@ class CarouselItemValidatorTest {
         setResource(resource);
 
         assertTrue("Expected propertiesCheck() to return true when property exists and is not blank", validator.propertiesCheck("existingProperty"));
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyNameIsNull() {
+        assertFalse(validator.propertiesCheck(null), "Expected propertiesCheck() to return false when propertyName is null");
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyNameIsFalse() {
+        assertFalse(validator.propertiesCheck("false"), "Expected propertiesCheck() to return false when propertyName is 'false'");
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyNameIsBlank() {
+        assertFalse(validator.propertiesCheck(""), "Expected propertiesCheck() to return false when propertyName is blank");
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyNameIsWhitespace() {
+        assertFalse(validator.propertiesCheck("   "), "Expected propertiesCheck() to return false when propertyName is whitespace");
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyNameIsValid() {
+        assertTrue("Expected propertiesCheck() to return true when propertyName is valid", validator.propertiesCheck("validProperty"));
     }
 
 }

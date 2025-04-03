@@ -1,6 +1,7 @@
 package com.dhl.discover.core.models;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -38,19 +39,16 @@ public class CarouselItemValidator {
         var imageFromPageImage = propertiesCheck(resource.getValueMap().get("imageFromPageImage", ""));
         var fileName = propertiesCheck(resource.getValueMap().get("fileName", ""));
 
-        return (!isGhost && isTeaserExist && imageFromPageImage) || fileName ;
+        return !isGhost && isTeaserExist && imageFromPageImage || fileName;
     }
 
     public void setResourceResolver(ResourceResolver resourceResolver) {
         this.resourceResolver = resourceResolver;
     }
 
-    public boolean propertiesCheck (String propertyName) {
-        if (StringUtils.isBlank(propertyName)) {
-            return false;
-        }
-        var property = resource.getValueMap().get(propertyName, "");
-        return StringUtils.isNotBlank(property);
+    public boolean propertiesCheck(String propertyName) {
+        return StringUtils.isNotBlank(propertyName)
+                && !"false".equalsIgnoreCase(propertyName.trim());
     }
 
 }
