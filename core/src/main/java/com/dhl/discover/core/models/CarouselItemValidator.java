@@ -35,12 +35,19 @@ public class CarouselItemValidator {
         }
         var isGhost = GHOST_RESOURCE_TYPE.equals(resource.getResourceType());
         var isTeaserExist = isPathExist(resource.getValueMap().get("linkURL", ""));
+        var imageFromPageImage = propertiesCheck(resource.getValueMap().get("imageFromPageImage", ""));
+        var fileName = propertiesCheck(resource.getValueMap().get("fileName", ""));
 
-        return !isGhost && isTeaserExist;
+        return !isGhost && isTeaserExist && imageFromPageImage || fileName;
     }
 
     public void setResourceResolver(ResourceResolver resourceResolver) {
         this.resourceResolver = resourceResolver;
+    }
+
+    public boolean propertiesCheck(String propertyName) {
+        return StringUtils.isNotBlank(propertyName)
+                && !"false".equalsIgnoreCase(propertyName.trim());
     }
 
 }
