@@ -89,7 +89,7 @@ public class EnhanceGoogleConversion extends SlingAllMethodsServlet {
     private void writeResponse(SlingHttpServletResponse response, JsonObject responseObject) throws IOException {
         try (PrintWriter pw = response.getWriter()) {
             pw.write(responseObject.toString());
-            response.setContentType("text/plain");
+            response.setContentType("application/json");
             response.setStatus(HttpServletResponse.SC_ACCEPTED);
         }
     }
