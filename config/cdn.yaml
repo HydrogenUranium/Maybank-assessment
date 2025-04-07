@@ -1,7 +1,7 @@
 kind: "CDN"
 version: "1"
 metadata:
-  envTypes: [ "Development" , "Stage" ]
+  envTypes: [ "dev", "stage" ]
 data:
   responseTransformations:
     rules:
