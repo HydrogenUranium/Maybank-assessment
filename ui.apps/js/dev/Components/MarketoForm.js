@@ -127,6 +127,8 @@ class MarketForm {
         const hiddenFormId = baseElement.getAttribute('hiddenFormId');
         const formSubmissionPath = baseElement.getAttribute('action');
         const formStart = baseElement.getAttribute('formstart');
+        const orderId = values.Email ? sha256(visibleFormHost + munchkinId + formId + values.Email) : crypto.randomUUID();
+        const thankYouUrlWithOrderId = thankYouUrl + '?orderId=' + orderId;
         let needHiddenFormSubmission = this.isValidAPISubmission(baseElement);
         if (needHiddenFormSubmission &&  formStart !== null && hiddenFormId !== null && formSubmissionPath !== null && formSubmissionPath !== ' ' ) {
           let formData = this.buildFormData(values, hiddenFormId, formStart);
@@ -134,10 +136,10 @@ class MarketForm {
             if (response.status == 202) {
               console.log('Second submission was a success');
             }
-            this.handleRedirect(baseElement, thankYouUrl);
+            this.handleRedirect(baseElement, thankYouUrlWithOrderId);
           });
         } else {
-          this.handleRedirect(baseElement, thankYouUrl);
+          this.handleRedirect(baseElement, thankYouUrlWithOrderId);
         }
         return false;
       });
