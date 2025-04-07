@@ -71,7 +71,7 @@ public class GoogleApiHelper {
     }
 
     public static JsonObject requestAccessToken(String clientId, String clientSecret, String refreshToken) throws IOException {
-        try (CloseableHttpClient client = HttpClients.createDefault()) {
+        try (CloseableHttpClient client = HttpClients.createSystem()) {
             var post = new HttpPost(OAUTH2_TOKEN_URL);
 
             List<NameValuePair> params = new ArrayList<>();
@@ -103,7 +103,7 @@ public class GoogleApiHelper {
         JsonObject payload = getConversionAdjustmentPayload(customerId, orderId, hashedEmail, conversionActionId);
         String url = GOOGLEADS_URL + API_VERSION_19 + "/customers/" + customerId + ":uploadConversionAdjustments?partialFailure=true";
 
-        try (CloseableHttpClient client = HttpClients.createDefault()) {
+        try (CloseableHttpClient client = HttpClients.createSystem()) {
             HttpPost post = createPostRequest(url, accessToken, developerToken, payload);
             return executeRequest(client, post);
         }

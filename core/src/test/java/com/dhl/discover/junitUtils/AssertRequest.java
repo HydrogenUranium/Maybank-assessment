@@ -7,9 +7,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.mockito.MockedStatic;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -22,7 +20,7 @@ public class AssertRequest {
         try (MockedStatic<HttpClients> mockedHttpClients = mockStatic(HttpClients.class);
              CloseableHttpClient mockHttpClient = mock(CloseableHttpClient.class)) {
 
-            mockedHttpClients.when(HttpClients::createDefault).thenReturn(mockHttpClient);
+            mockedHttpClients.when(HttpClients::createSystem).thenReturn(mockHttpClient);
 
             when(mockHttpClient.execute(any(HttpPost.class))).thenAnswer(invocation -> {
                 HttpPost request = invocation.getArgument(0);
