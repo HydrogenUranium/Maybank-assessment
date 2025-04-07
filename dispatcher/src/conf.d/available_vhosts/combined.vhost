@@ -69,7 +69,7 @@ Include conf.d/variables/custom.vars
 		RewriteRule "^(/?)$" "/index.html" [PT]
 	</IfModule>
 
-	<LocationMatch "^.*/discover/zh-cn/$">
+	<LocationMatch "^.*/discover/zh-cn$">
             <IfModule mod_headers.c>
                 Header add Speculation-Rules "\"/content/dam/speculation-rules/speculation-rules-discover-zh-cn.specrules\""
             </IfModule>
