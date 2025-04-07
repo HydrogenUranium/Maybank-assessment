@@ -62,7 +62,7 @@ public class FetchYouTubeDataServlet extends SlingAllMethodsServlet {
 
         String apiUrl = String.format("https://www.googleapis.com/youtube/v3/videos?id=%s&part=snippet,contentDetails,statistics&key=%s", videoId, apiKey);
 
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        try (CloseableHttpClient httpClient = HttpClients.createSystem()) {
             var httpGet = new HttpGet(apiUrl);
             try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
                 String contentType = httpResponse.getEntity().getContentType().getValue();
