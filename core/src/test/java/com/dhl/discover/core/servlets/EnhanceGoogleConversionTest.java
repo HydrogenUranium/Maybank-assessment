@@ -14,7 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -48,7 +47,7 @@ class EnhanceGoogleConversionTest {
     }
 
     @Test
-    void doPost_validRequest_successfulResponse() throws IOException, NoSuchAlgorithmException {
+    void doPost_validRequest_successfulResponse() throws IOException {
         String email = "test@example.com";
         String orderId = "testOrderId";
         String conversionActionId = "testConversionActionId";
@@ -74,7 +73,7 @@ class EnhanceGoogleConversionTest {
             servlet.doPost(mockRequest, mockResponse);
 
             verify(mockWriter).write(uploadResponse.toString());
-            verify(mockResponse).setContentType("text/plain");
+            verify(mockResponse).setContentType("application/json");
             verify(mockResponse).setStatus(HttpServletResponse.SC_ACCEPTED);
 
             mockedHelper.verify(() ->
