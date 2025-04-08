@@ -105,6 +105,32 @@ class MarketForm {
     });
   }
 
+  addOrderIdToAnalytics(baseElement, transactionId) {
+    const analyticsData = baseElement.getAttribute('data-analytics');
+
+    if (!analyticsData) {
+      console.warn('Missing data-analytics attribute on marketo form element.');
+      return;
+    }
+
+    try {
+      const analyticsObj = JSON.parse(analyticsData);
+
+      // Ensure required structure exists
+      analyticsObj.content = analyticsObj.content || {};
+      analyticsObj.content.attributes = analyticsObj.content.attributes || {};
+
+      // Add or update transactionId
+      analyticsObj.content.transactionId = transactionId;
+      analyticsObj.content.attributes.transactionId = transactionId;
+
+      // Write it back to the DOM
+      baseElement.setAttribute('data-analytics', JSON.stringify(analyticsObj));
+    } catch (e) {
+      console.error('Invalid JSON in data-analytics attribute:', e);
+    }
+  }
+
   /**
    * Method that orchestrates the submission of 'original' (visible) form on the page and if needed, then
    * submission of provided fields to AEM (to be further forwarded to second Marketo instance)
@@ -122,25 +148,50 @@ class MarketForm {
     window.MktoForms2.whenReady(originalForm => {
       $('#mktoForms2BaseStyle').remove();
       $('#mktoForms2ThemeStyle').remove();
+      const orderId = crypto.randomUUID();
+      this.addOrderIdToAnalytics(baseElement, orderId);
       // eslint-disable-next-line no-unused-vars
       originalForm.onSuccess((values, thankYouUrl) => {
         const hiddenFormId = baseElement.getAttribute('hiddenFormId');
         const formSubmissionPath = baseElement.getAttribute('action');
         const formStart = baseElement.getAttribute('formstart');
-        const orderId = values.Email ? sha256(visibleFormHost + munchkinId + formId + values.Email) : crypto.randomUUID();
-        const thankYouUrlWithOrderId = thankYouUrl + '?orderId=' + orderId;
-        let needHiddenFormSubmission = this.isValidAPISubmission(baseElement);
-        if (needHiddenFormSubmission &&  formStart !== null && hiddenFormId !== null && formSubmissionPath !== null && formSubmissionPath !== ' ' ) {
-          let formData = this.buildFormData(values, hiddenFormId, formStart);
-          shared.submitForm(formSubmissionPath, formData).then(response => {
-            if (response.status == 202) {
-              console.log('Second submission was a success');
-            }
-            this.handleRedirect(baseElement, thankYouUrlWithOrderId);
-          });
-        } else {
-          this.handleRedirect(baseElement, thankYouUrlWithOrderId);
+        const googleConversionActionId = baseElement.getAttribute('googleConversionActionId');
+        const enhancedConversionUrl = baseElement.getAttribute('enhancedConversionAction');
+        const needHiddenFormSubmission = this.isValidAPISubmission(baseElement) && formStart && hiddenFormId && formSubmissionPath?.trim();
+        const needEnhancedConversion = values?.optinEnhancedConversions === 'yes';
+
+        const promises = [];
+
+        if (needHiddenFormSubmission) {
+          const formData = this.buildFormData(values, hiddenFormId, formStart);
+          promises.push(shared.submitForm(formSubmissionPath, formData));
         }
+
+        if (needEnhancedConversion) {
+          const params = new URLSearchParams();
+          params.append('email', values.Email);
+          params.append('orderId', orderId);
+          params.append('conversionActionId', googleConversionActionId);
+
+          promises.push(
+            fetch(enhancedConversionUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: params.toString()
+            })
+          );
+        }
+
+        Promise.all(promises).then(responses => {
+          console.log('All optional submissions completed');
+          this.handleRedirect(baseElement, thankYouUrl);
+        }).catch(err => {
+          console.error('Error during optional submissions', err);
+          this.handleRedirect(baseElement, thankYouUrl);
+        });
+
         return false;
       });
     });

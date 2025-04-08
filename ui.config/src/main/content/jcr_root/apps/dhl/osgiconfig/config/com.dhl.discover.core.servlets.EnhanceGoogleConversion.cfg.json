@@ -1,7 +1,7 @@
 {
-  "customerId": "4946003184",
-  "developerToken": "04JKplfweBTSOda1fqBLOg",
-  "clientId": "588510181168-rftvl72ffvvtcu1edphn4p0hemtfnlmr.apps.googleusercontent.com",
-  "clientSecret": "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",
-  "refreshToken": "1//096xkG6cnABQwCgYIARAAGAkSNwF-L9Ir_q0AG-yg6dHKXu0rotNafl7IVDNGMByaEoJQmBKw0sIhiLCtNiMzZjsU3iZSpPAJqOU"
+  "customerId": "$[env:GOOGLE_CUSTOMER_ID]",
+  "developerToken": "$[secret:GOOGLE_DEVELOPER_TOKEN]",
+  "clientId": "$[env:GOOGLE_CLIENT_ID]",
+  "clientSecret": "$[secret:GOOGLE_CLIENT_SECRET]",
+  "refreshToken": "$[secret:GOOGLE_REFRESH_TOKEN]"
 }
