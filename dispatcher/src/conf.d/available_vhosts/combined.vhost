@@ -26,7 +26,7 @@ Include conf.d/variables/custom.vars
 		Header always add X-Vhost "publish-combined-%{CUSTOM_HOST}e"
 		Header set Content-Security-Policy "frame-ancestors 'self' https://dhlinsights.dhlsupplychain.dhl.com https://dpdhlcsiace.my.site.com; default-src 'self' data: https: blob: wss://cctr-chat.dhl.com:443 wss://cctr-xchat.dhl.com:443 wss://streaming.mypurecloud.de wss://collection.decibelinsight.net; script-src 'unsafe-inline' 'unsafe-eval' 'self' https: blob:; style-src 'unsafe-inline' 'self' https: blob:; media-src 'unsafe-inline' 'self' https: blob:"
 		<LocationMatch "^.*/discover/zh-cn/$"
-            Header add Speculation-Rules "\"/content/dam/speculation-rules/speculation-rules-discover-zh-cn.specrules\""
+            Header add Speculation-Rules /content/dam/speculation-rules/speculation-rules-discover-zh-cn.specrules\
         </LocationMatch>
 	</IfModule>
 
