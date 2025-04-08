@@ -25,6 +25,11 @@ Include conf.d/variables/custom.vars
 		SetEnvIfNoCase Host ^(.+)$ CUSTOM_HOST=$1
 		Header always add X-Vhost "publish-combined-%{CUSTOM_HOST}e"
 		Header set Content-Security-Policy "frame-ancestors 'self' https://dhlinsights.dhlsupplychain.dhl.com https://dpdhlcsiace.my.site.com; default-src 'self' data: https: blob: wss://cctr-chat.dhl.com:443 wss://cctr-xchat.dhl.com:443 wss://streaming.mypurecloud.de wss://collection.decibelinsight.net; script-src 'unsafe-inline' 'unsafe-eval' 'self' https: blob:; style-src 'unsafe-inline' 'self' https: blob:; media-src 'unsafe-inline' 'self' https: blob:"
+		<LocationMatch "^.*/discover/zh-cn/$"
+                <IfModule mod_headers.c>
+                    Header add Speculation-Rules "\"/content/dam/speculation-rules/speculation-rules-discover-zh-cn.specrules\""
+                </IfModule>
+        </LocationMatch>
 	</IfModule>
 
 	<IfModule disp_apache2.c>
@@ -68,10 +73,4 @@ Include conf.d/variables/custom.vars
 		# Rewrite index page internally, pass through (PT)
 		RewriteRule "^(/?)$" "/index.html" [PT]
 	</IfModule>
-
-	<LocationMatch "^.*/discover/zh-cn$">
-            <IfModule mod_headers.c>
-                Header set Speculation-Rules /content/dam/speculation-rules/speculation-rules-discover-zh-cn.specrules
-            </IfModule>
-    </LocationMatch>
 </VirtualHost>
