@@ -482,6 +482,7 @@
   .header__meganav {
     display: none;
     position: absolute;
+    right: -100%;
     top: 6.4rem;
     padding: 0;
     max-height: calc(100dvh - 6.4rem);
