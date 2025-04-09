@@ -5,8 +5,6 @@ describe('Global Thank You Page Newsletter', () => {
 
   // Define selectors as constants
   const selectors = {
-    onetrustConsentSdk: '#onetrust-consent-sdk',
-    onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
     breadcrumbActiveItem: '.cmp-breadcrumb__item--active > span',
     pageTitleBold: 'h2 b',
     paragraph: 'p',
@@ -24,16 +22,7 @@ describe('Global Thank You Page Newsletter', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.get('body', { timeout: 2000 }).then(($body) => {
-        cy.get(selectors.onetrustConsentSdk, { timeout: 5000 }).then(($onetrust) => {
-          if ($onetrust.find(selectors.onetrustAcceptButton, { timeout: 5000 }).length > 0) {
-              cy.get(selectors.onetrustAcceptButton)
-                .contains('Accept All')
-                .should('be.visible')
-                .click();
-          }
-        });
-      });
+      cy.acceptCookies();
     });
 
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];

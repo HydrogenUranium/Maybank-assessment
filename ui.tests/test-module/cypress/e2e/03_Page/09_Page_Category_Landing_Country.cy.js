@@ -5,8 +5,6 @@ describe('Singapore Category Landing Page', () => {
 
   // Define selectors as constants
   const selectors = {
-    onetrustConsentSdk: '#onetrust-consent-sdk',
-    onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
     breadcrumbList: '.cmp-breadcrumb__list',
     articleCarousel: '.article-carousel',
     articleCarouselTitle: '.article-carousel_pageTitle',
@@ -31,16 +29,7 @@ describe('Singapore Category Landing Page', () => {
 
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.get('body', { timeout: 2000 }).then(($body) => {
-        cy.get(selectors.onetrustConsentSdk, { timeout: 5000 }).then(($onetrust) => {
-          if ($onetrust.find(selectors.onetrustAcceptButton, { timeout: 5000 }).length > 0) {
-              cy.get(selectors.onetrustAcceptButton)
-                .contains('Accept All')
-                .should('be.visible')
-                .click();
-          }
-        });
-      });
+      cy.acceptCookies();
     });
 
     const viewports = ['iphone-6', 'ipad-2', 'macbook-13'];
