@@ -119,9 +119,6 @@ class MarketForm {
       // Ensure required structure exists
       analyticsObj.content = analyticsObj.content || {};
       analyticsObj.content.attributes = analyticsObj.content.attributes || {};
-
-      // Add or update transactionId
-      analyticsObj.content.transactionId = transactionId;
       analyticsObj.content.attributes.transactionId = transactionId;
 
       // Write it back to the DOM
