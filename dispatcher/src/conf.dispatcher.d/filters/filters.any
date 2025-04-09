@@ -46,4 +46,4 @@ $include "./default_filters.any"
 /3101 { /type "allow" /method "GET" /url "/adobe/dynamicmedia/*" }
 
 # Allow speculation rules JSON model
-/0104 { /type "allow" /method "GET" /url "/content/dam/speculation-rules/.*\.specrules" }
+/0104 { /type "allow" /method "GET" /url "/content/dam/speculation-rules/*.specrules" }
