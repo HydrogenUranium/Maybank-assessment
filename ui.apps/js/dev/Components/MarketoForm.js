@@ -156,7 +156,7 @@ class MarketForm {
         const formSubmissionPath = baseElement.getAttribute('action');
         const formStart = baseElement.getAttribute('formstart');
         const googleConversionActionId = baseElement.getAttribute('googleConversionActionId');
-        const enhancedConversionUrl = baseElement.getAttribute('enhancedConversionAction');
+        const enhancedConversionUrl = baseElement.getAttribute('enhancedConversionUrl');
         const needHiddenFormSubmission = this.isValidAPISubmission(baseElement) && formStart && hiddenFormId && formSubmissionPath?.trim();
         const needEnhancedConversion = values?.optinEnhancedConversions === 'yes';
 
