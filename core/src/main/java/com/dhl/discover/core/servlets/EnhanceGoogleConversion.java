@@ -76,12 +76,10 @@ public class EnhanceGoogleConversion extends SlingAllMethodsServlet {
     }
 
     private JsonObject processEnhancementRequest(SlingHttpServletRequest request, String token) throws IOException, NoSuchAlgorithmException {
-        var email = request.getParameter("Email");
-        if (email == null) {
-            email = request.getParameter("email");
-        }
+        var email = request.getParameter("email");
         var orderId = request.getParameter("orderId");
         var conversionActionId = request.getParameter("conversionActionId");
+        log.debug("Processing enhancement request for orderId: {}, conversionActionId: {}", orderId, conversionActionId);
 
         return uploadEnhancedConversion(token, developerToken, customerId, orderId, email, conversionActionId);
     }
