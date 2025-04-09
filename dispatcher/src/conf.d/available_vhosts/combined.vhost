@@ -27,7 +27,7 @@ Include conf.d/variables/custom.vars
         <LocationMatch "^.*/discover/zh-cn/?$">
             Header set Speculation-Rules "\"/discover/content/dam/speculation-rules/speculation-rules-discover-zh-cn.specrules\""
         </LocationMatch>
-		Header set Content-Security-Policy "frame-ancestors 'self' https://dhlinsights.dhlsupplychain.dhl.com https://dpdhlcsiace.my.site.com; default-src 'self' data: https: blob: wss://cctr-chat.dhl.com:443 wss://cctr-xchat.dhl.com:443 wss://streaming.mypurecloud.de wss://collection.decibelinsight.net; script-src 'unsafe-inline' 'unsafe-eval' 'self' https: blob:; style-src 'unsafe-inline' 'self' https: blob:; media-src 'unsafe-inline' 'self' https: blob:; 'speculation-rules' 'self';"
+		Header set Content-Security-Policy "frame-ancestors 'self' https://dhlinsights.dhlsupplychain.dhl.com https://dpdhlcsiace.my.site.com; default-src 'self' data: https: blob: wss://cctr-chat.dhl.com:443 wss://cctr-xchat.dhl.com:443 wss://streaming.mypurecloud.de wss://collection.decibelinsight.net; script-src 'unsafe-inline' 'unsafe-eval' 'self' https: blob:; style-src 'unsafe-inline' 'self' https: blob:; media-src 'unsafe-inline' 'self' https: blob:; speculation-rules 'self';"
 	</IfModule>
 
 	<IfModule disp_apache2.c>
