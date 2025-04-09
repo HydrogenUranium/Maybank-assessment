@@ -1045,12 +1045,12 @@
                                 </cq:styles>
                             </item1>
                             <item2
-                                    cq:styleGroupLabel="Background for Mobile and Tablet"
+                                    cq:styleGroupLabel="Background for Tablet and Desktop"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
                                     <item0
                                             selected="{Boolean}true"
-                                            cq:styleClasses="bg-breadcrumb-wrapper-mobile-tablet"
+                                            cq:styleClasses="bg-breadcrumb-wrapper-tablet-desktop"
                                             cq:styleId="1743998604962"
                                             cq:styleLabel="Gray"
                                             jcr:primaryType="nt:unstructured"/>
