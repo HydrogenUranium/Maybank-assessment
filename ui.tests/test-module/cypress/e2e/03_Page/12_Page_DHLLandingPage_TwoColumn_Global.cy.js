@@ -30,10 +30,6 @@ describe('Global DHL Landing Page - Two Column', () => {
 
   pageUrls.forEach((pageUrl) => {
     beforeEach(() => {
-      cy.on('uncaught:exception', (e) => {
-        return false;
-      });
-
       cy.visit(pageUrl);
       cy.acceptCookies();
     });

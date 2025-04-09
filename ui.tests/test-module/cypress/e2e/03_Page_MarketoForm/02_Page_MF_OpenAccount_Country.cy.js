@@ -26,10 +26,6 @@ describe('Singapore Open An Account page', () => {
 
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
-      cy.on('uncaught:exception', (e) => {
-        return false;
-      });
-
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
       cy.acceptCookies();

@@ -13,10 +13,6 @@ describe('Global Download Marketo page', () => {
     emailErrorMessage: '#ValidMsgEmail'
   };
 
-  beforeEach(() => {
-    cy.on('uncaught:exception', () => false);
-  });
-
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
       // Log URL and visit page

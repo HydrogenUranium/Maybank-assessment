@@ -12,20 +12,12 @@ describe('Global Subscribe newsletter page', () => {
     emailErrorMessage: '#ValidMsgEmail'
   };
 
-  const acceptCookieConsent = () => {
-    cy.acceptCookies();
-  };
-
-  beforeEach(() => {
-    cy.on('uncaught:exception', () => false);
-  });
-
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
       // Log URL and visit page
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      acceptCookieConsent();
+      cy.acceptCookies();
     });
 
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];

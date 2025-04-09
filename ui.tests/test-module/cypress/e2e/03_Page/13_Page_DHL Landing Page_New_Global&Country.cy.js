@@ -16,10 +16,6 @@ describe('DHL Landing Page', () => {
 
   pageUrls.forEach((pageUrl) => {
     beforeEach(() => {
-      cy.on('uncaught:exception', (e) => {
-        return false;
-      });
-
       cy.visit(pageUrl);
       cy.acceptCookies();
     });

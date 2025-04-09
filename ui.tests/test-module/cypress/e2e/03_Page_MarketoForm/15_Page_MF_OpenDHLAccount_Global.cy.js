@@ -25,10 +25,6 @@ describe('Global Open A DHL Account Form', () => {
     phoneErrorMessage: '#ValidMsgPhone',
   };
 
-  beforeEach(() => {
-    cy.on('uncaught:exception', () => false);
-  });
-
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
       // Log URL and visit page
