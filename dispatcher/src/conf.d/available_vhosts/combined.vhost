@@ -24,9 +24,10 @@ Include conf.d/variables/custom.vars
 		# Add X-Vhost header to help in troubleshooting
 		SetEnvIfNoCase Host ^(.+)$ CUSTOM_HOST=$1
 		Header always add X-Vhost "publish-combined-%{CUSTOM_HOST}e"
-        <LocationMatch "^.*/zh-cn$">
-            Header set Speculation-Rules "\"/discover/content/dam/speculation-rules/speculation-rules-discover-zh-cn.specrules\""
-        </LocationMatch>
+        <Location "/discover/zh-cn/">
+           Header set Speculation-Rules "\"/discover/content/dam/speculation-rules/speculation-rules-discover-zh-cn.specrules\""
+        </Location>
+
 		Header set Content-Security-Policy "frame-ancestors 'self' https://dhlinsights.dhlsupplychain.dhl.com https://dpdhlcsiace.my.site.com; default-src 'self' data: https: blob: wss://cctr-chat.dhl.com:443 wss://cctr-xchat.dhl.com:443 wss://streaming.mypurecloud.de wss://collection.decibelinsight.net; script-src 'unsafe-inline' 'unsafe-eval' 'self' https: blob:; style-src 'unsafe-inline' 'self' https: blob:; media-src 'unsafe-inline' 'self' https: blob:;"
 	</IfModule>
 
