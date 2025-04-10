@@ -13,29 +13,12 @@ describe('Singapore Subscribe newsletter page', () => {
     formButton: '.mktoButton'
   };
 
-  const acceptCookieConsent = () => {
-    cy.get('body', { timeout: 2000 }).then(($body) => {
-      cy.get('#onetrust-consent-sdk', { timeout: 5000 }).then(($onetrust) => {
-        if ($onetrust.find('button#onetrust-accept-btn-handler', { timeout: 5000 }).length > 0) {
-          cy.get('button#onetrust-accept-btn-handler')
-            .contains('Accept All')
-            .should('be.visible')
-            .click();
-        }
-      });
-    });
-  };
-
-  beforeEach(() => {
-    cy.on('uncaught:exception', () => false);
-  });
-
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
       // Log URL and visit page
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      acceptCookieConsent();
+      cy.acceptCookies();
     });
 
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];

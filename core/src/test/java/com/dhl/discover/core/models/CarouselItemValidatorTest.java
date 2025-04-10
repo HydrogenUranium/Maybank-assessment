@@ -74,23 +74,77 @@ class CarouselItemValidatorTest {
     }
 
     @Test
-     void testIsValid_whenValid() throws Exception {
+     void testIsValid_whenImageFromPageImageIsBlank() throws Exception {
         Resource resource = mock(Resource.class);
         when(resource.getResourceType()).thenReturn("nonGhost");
 
         ValueMap vm = mock(ValueMap.class);
         when(resource.getValueMap()).thenReturn(vm);
-        when(vm.get("linkURL", "")).thenReturn("/content/valid");
-        when(resourceResolver.getResource("/content/valid")).thenReturn(mock(Resource.class));
+        when(vm.get("linkURL", "")).thenReturn("/content/page");
+        when(vm.get("imageFromPageImage", "")).thenReturn("");
 
         setResource(resource);
-        assertTrue("Validator should be valid for a non-ghost resource with an existing linkURL", validator.isValid());
+        assertFalse(validator.isValid(), "Validator should be invalid when imageFromPageImage is blank");
     }
 
     @Test
      void testIsValid_whenResourceIsNull() {
         boolean result = validator.isValid();
         assertFalse(result, "Expected isValid() to return false when resource is null");
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyExists() throws Exception {
+        Resource resource = mock(Resource.class);
+        ValueMap vm = mock(ValueMap.class);
+        when(resource.getValueMap()).thenReturn(vm);
+        when(vm.get("existingProperty", "")).thenReturn("someValue");
+        setResource(resource);
+
+        assertTrue("Expected propertiesCheck() to return true when property exists and is not blank", validator.propertiesCheck("existingProperty"));
+    }
+
+    @Test
+    void isValid_combinedConditions() throws Exception {
+        Resource resource = mock(Resource.class);
+        when(resource.getResourceType()).thenReturn("nonGhost");
+
+        ValueMap vm = mock(ValueMap.class);
+        when(resource.getValueMap()).thenReturn(vm);
+        when(vm.get("linkURL", "")).thenReturn("/content/page");
+        when(vm.get("imageFromPageImage", "")).thenReturn("image");
+        when(vm.get("fileName", "")).thenReturn("fileName");
+
+        Resource validResource = mock(Resource.class);
+        when(resourceResolver.getResource("/content/page")).thenReturn(validResource);
+
+        setResource(resource);
+        assertTrue("Validator should be valid when all conditions are met", validator.isValid());
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyNameIsNull() {
+        assertFalse(validator.propertiesCheck(null), "Expected propertiesCheck() to return false when propertyName is null");
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyNameIsFalse() {
+        assertFalse(validator.propertiesCheck("false"), "Expected propertiesCheck() to return false when propertyName is 'false'");
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyNameIsBlank() {
+        assertFalse(validator.propertiesCheck(""), "Expected propertiesCheck() to return false when propertyName is blank");
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyNameIsWhitespace() {
+        assertFalse(validator.propertiesCheck("   "), "Expected propertiesCheck() to return false when propertyName is whitespace");
+    }
+
+    @Test
+    void propertiesCheck_whenPropertyNameIsValid() {
+        assertTrue("Expected propertiesCheck() to return true when propertyName is valid", validator.propertiesCheck("validProperty"));
     }
 
 }

@@ -489,9 +489,10 @@
                 for (var i = 0; i < items.length; i++) {
                     if (items[i].classList.contains("cmp-carousel__item--active")) {
                         that._active = i;
-                        break;
+                        return;
                     }
                 }
+                navigate(0);
             }
         }
 
