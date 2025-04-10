@@ -133,14 +133,6 @@ Cypress.Commands.add('waitUntil', function (innerFunction, options = {}) {
     return callFunction()
 })
 
-Cypress.Commands.add('handleUncaughtExceptions ', () => {
-  Cypress.on('uncaught:exception', (err) => {
-    // Optional: add more filtering here based on error message
-    console.error('Uncaught exception:', err);
-    return false; // prevents test from failing
-  });
-});
-
 Cypress.Commands.add('acceptCookies', () => {
   const onetrustConsentSdk = '#onetrust-consent-sdk';
   const onetrustAcceptButton = 'button#onetrust-accept-btn-handler';
