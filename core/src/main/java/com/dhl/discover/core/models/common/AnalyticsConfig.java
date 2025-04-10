@@ -79,7 +79,7 @@ public class AnalyticsConfig {
         if (detail != null) {
             jsonObject.addProperty(DETAIL, detail);
         }
-        if (attributes != null || attributes.isEmpty()) {
+        if (attributes != null && !attributes.isEmpty()) {
             jsonObject.add(ATTRIBUTES, attributesJson);
             attributes.forEach(attributesJson::addProperty);
         }
