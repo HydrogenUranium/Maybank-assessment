@@ -6,8 +6,6 @@ describe('DHL Landing Page', () => {
 
   // Define selectors as constants
   const selectors = {
-    onetrustConsentSdk: '#onetrust-consent-sdk',
-    onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
     title: '.title',
     titleV2: '.title-v2',
     downloadAsset: ':nth-child(5) > .download > .cq-dd-file',
@@ -18,21 +16,8 @@ describe('DHL Landing Page', () => {
 
   pageUrls.forEach((pageUrl) => {
     beforeEach(() => {
-      cy.on('uncaught:exception', (e) => {
-        return false;
-      });
-
       cy.visit(pageUrl);
-      cy.get('body', { timeout: 2000 }).then(($body) => {
-        cy.get(selectors.onetrustConsentSdk, { timeout: 5000 }).then(($onetrust) => {
-          if ($onetrust.find(selectors.onetrustAcceptButton, { timeout: 5000 }).length > 0) {
-              cy.get(selectors.onetrustAcceptButton)
-                .contains('Accept All')
-                .should('be.visible')
-                .click();
-          }
-        });
-      });
+      cy.acceptCookies();
     });
 
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];

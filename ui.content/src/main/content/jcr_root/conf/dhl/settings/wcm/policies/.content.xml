@@ -4790,6 +4790,17 @@
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_main>
+                    <policy_animated-main
+                            cq:styleDefaultElement="main"
+                            jcr:lastModified="{Date}2025-04-08T11:44:20.167+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Animated Pages Main Container"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Animated Components,group:DHL Components]"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_animated-main>
                 </page-container>
             </content>
         </components>
