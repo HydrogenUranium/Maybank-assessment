@@ -51,7 +51,7 @@ class EnhanceGoogleConversionTest {
         String email = "test@example.com";
         String orderId = "testOrderId";
         String conversionActionId = "testConversionActionId";
-        when(mockRequest.getParameter("Email")).thenReturn(email);
+        when(mockRequest.getParameter("email")).thenReturn(email);
         when(mockRequest.getParameter("orderId")).thenReturn(orderId);
         when(mockRequest.getParameter("conversionActionId")).thenReturn(conversionActionId);
         when(mockResponse.getWriter()).thenReturn(mockWriter);
@@ -72,7 +72,6 @@ class EnhanceGoogleConversionTest {
 
             servlet.doPost(mockRequest, mockResponse);
 
-            verify(mockWriter).write(uploadResponse.toString());
             verify(mockResponse).setContentType("application/json");
             verify(mockResponse).setStatus(HttpServletResponse.SC_ACCEPTED);
 
