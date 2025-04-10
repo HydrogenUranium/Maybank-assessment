@@ -116,10 +116,11 @@ class MarketForm {
     try {
       const analyticsObj = JSON.parse(analyticsData);
 
-      // Ensure required structure exists
-      analyticsObj.content = analyticsObj.content || {};
-      analyticsObj.content.attributes = analyticsObj.content.attributes || {};
-      analyticsObj.content.attributes.transactionId = transactionId;
+      if(!analyticsObj.conversion) {
+        return;
+      }
+      analyticsObj.conversion.attributes = analyticsObj.conversion.attributes || {};
+      analyticsObj.conversion.attributes.transactionId = transactionId;
 
       // Write it back to the DOM
       baseElement.setAttribute('data-analytics', JSON.stringify(analyticsObj));

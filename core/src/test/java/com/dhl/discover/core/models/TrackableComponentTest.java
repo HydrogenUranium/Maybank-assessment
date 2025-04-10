@@ -37,6 +37,6 @@ class TrackableComponentTest {
         TrackableComponent trackableComponent = context.resourceResolver().getResource("/content/banner").adaptTo(TrackableComponent.class);
         trackableComponent.getAnalytics().getCustomAttributes().put("topic", "subscription");
 
-        assertEquals("{\"content\":{\"attributes\":{\"topic\":\"subscription\"},\"name\":\"SUBSCRIBE TO OUR NEWSLETTER\",\"type\":\"CTA Banner\",\"interaction\":\"Click\",\"position\":\"position\"},\"trackedInteractions\":\"basic\",\"interactionType\":\"dhl_utf_contentInteraction\"}", trackableComponent.getJson());
+        assertEquals("{\"trackedInteractions\":\"basic\",\"interactionType\":\"dhl_utf_contentInteraction\",\"content\":{\"name\":\"SUBSCRIBE TO OUR NEWSLETTER\",\"type\":\"CTA Banner\",\"interaction\":\"Click\",\"position\":\"position\",\"attributes\":{\"topic\":\"subscription\"}}}", trackableComponent.getJson());
     }
 }

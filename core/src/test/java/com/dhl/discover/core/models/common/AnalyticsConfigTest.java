@@ -36,6 +36,7 @@ class AnalyticsConfigTest {
         assertEquals("content", config.getInteractionType());
         assertEquals("basic", config.getTrackedInteractions());
         assertEquals(Map.of("topic", "subscription"), config.getCustomAttributes());
-        assertEquals("{\"content\":{\"attributes\":{\"topic\":\"subscription\"},\"name\":\"SUBSCRIBE TO OUR NEWSLETTER\",\"type\":\"component\",\"interaction\":\"Click\",\"position\":\"position\"},\"trackedInteractions\":\"basic\",\"interactionType\":\"dhl_utf_contentInteraction\"}", config.getJson());
+        assertEquals("{\"trackedInteractions\":\"basic\",\"interactionType\":\"dhl_utf_contentInteraction\",\"content\":{\"name\":\"SUBSCRIBE TO OUR NEWSLETTER\",\"type\":\"component\",\"interaction\":\"Click\",\"position\":\"position\",\"attributes\":{\"topic\":\"subscription\"}}}"
+                , config.getJson());
     }
 }

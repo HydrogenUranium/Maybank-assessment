@@ -18,6 +18,14 @@ import java.util.Map;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 @Getter
 public class AnalyticsConfig {
+    private static final String ATTRIBUTES = "attributes";
+    private static final String NAME = "name";
+    private static final String TYPE = "type";
+    private static final String INTERACTION = "interaction";
+    private static final String POSITION = "position";
+    private static final String DETAIL = "detail";
+    private static final String CONTENT = "content";
+    private static final String CONVERSION = "conversion";
 
     @ValueMapValue
     private String trackedInteractions;
@@ -30,6 +38,9 @@ public class AnalyticsConfig {
 
     @ValueMapValue
     private String position;
+
+    @ValueMapValue
+    private String detail;
 
     @Setter
     private String type = "component";
@@ -45,29 +56,46 @@ public class AnalyticsConfig {
         if (customAttributeResources != null) {
             customAttributeResources.forEach(resource -> {
                 var props = resource.getValueMap();
-                var key = props.get("name", "");
+                var key = props.get(NAME, "");
                 var value = props.get("value", "");
                 customAttributes.put(key, value);
             });
         }
     }
 
+    private JsonObject createJsonObject(String name, String type, String interaction, String position, String detail, Map<String, String> attributes) {
+        var jsonObject = new JsonObject();
+        var attributesJson = new JsonObject();
+
+        jsonObject.addProperty(NAME, name);
+        jsonObject.addProperty(TYPE, type);
+
+        if (interaction != null) {
+            jsonObject.addProperty(INTERACTION, interaction);
+        }
+        if (position != null) {
+            jsonObject.addProperty(POSITION, position);
+        }
+        if (detail != null) {
+            jsonObject.addProperty(DETAIL, detail);
+        }
+        if (attributes != null) {
+            jsonObject.add(ATTRIBUTES, attributesJson);
+            attributes.forEach(attributesJson::addProperty);
+        }
+
+        return jsonObject;
+    }
+
     public String getJson() {
         var json = new JsonObject();
-        var content = new JsonObject();
-        var attributes = new JsonObject();
-        json.add("content", content);
-        content.add("attributes", attributes);
-
         json.addProperty("trackedInteractions", trackedInteractions);
         json.addProperty("interactionType", "dhl_utf_" + interactionType + "Interaction");
 
-        content.addProperty("name", name);
-        content.addProperty("type", type);
-        content.addProperty("interaction", "Click");
-        content.addProperty("position", position);
-
-        customAttributes.forEach(attributes::addProperty);
+        if (CONVERSION.equals(interactionType)) {
+            json.add(CONVERSION, createJsonObject(name, "Lead", null, null, detail, null));
+        }
+        json.add(CONTENT, createJsonObject(name, type, "Click", position, null, customAttributes));
 
         return json.toString();
     }
