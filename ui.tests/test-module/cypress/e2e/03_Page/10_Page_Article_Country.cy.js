@@ -5,8 +5,6 @@ describe('Singapore Page Article Country', () => {
 
   // Define selectors as constants
   const selectors = {
-    onetrustConsentSdk: '#onetrust-consent-sdk',
-    onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
     breadcrumbList: '.cmp-breadcrumb__list',
     headerTitle: '.cmp-article-header__title',
     publishDate: '.cmp-article-header__publishDate',
@@ -15,13 +13,13 @@ describe('Singapore Page Article Country', () => {
     heroBanner: '.cmp-hero-banner',
     heroBannerSummary: '.cmp-hero-banner__summary',
     heroBannerImage: '.cmp-hero-banner__asset',
-    articleTitle: '#title-5030390b7a > .cmp-title__text',
-    articleText: '#text-3816155b32',
+    articleTitle: '.cmp-title__text',
+    articleText: '.cmp-text',
     teaserImage: '.cmp-image__image',
     video: 'video',
     accordionItem: '.cmp-accordion__item',
     accordionLink: '.cmp-accordion__panel .cmp-text p:first-child a',
-    embeddedComponent: '#embed-57a539b2f8 > iframe',
+    embeddedComponent: '.cmp-embed iframe',
     articlePanel: '.nextSteps',
     articlePanelTitle: '.nextSteps__text > .nextSteps__title',
     articlePanelImage: '.nextSteps__image',
@@ -44,11 +42,11 @@ describe('Singapore Page Article Country', () => {
     authorImage: '.cmp-article-header__author-image',
     authorName: '.cmp-article-footer__author-name',
     authorDescription: '.article-author-banner_brief',
-    articleFooter: ':nth-child(5) > .article-container-component > .grid > .grid__container',
+    articleFooter: '.cmp-article-footer',
     articleFooterAuthorImage: '.cmp-article-footer__author-image',
     articleFooterAuthorName: '.cmp-article-footer__author-name',
     articleFooterShare: '.cmp-article-footer > .share-options',
-    header: '.headerV2-wrapper',
+    header: '.header-wrapper',
     footer: '.footer-container',
     servicePointLocator: '.locator-frame',
     ctaBanner: '.cmp-cta-banner',
@@ -57,22 +55,9 @@ describe('Singapore Page Article Country', () => {
 
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
-      cy.on('uncaught:exception', (e) => {
-        return false;
-      });
-
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.get('body', { timeout: 2000 }).then(($body) => {
-        cy.get(selectors.onetrustConsentSdk, { timeout: 5000 }).then(($onetrust) => {
-          if ($onetrust.find(selectors.onetrustAcceptButton, { timeout: 5000 }).length > 0) {
-              cy.get(selectors.onetrustAcceptButton)
-                .contains('Accept All')
-                .should('be.visible')
-                .click();
-          }
-        });
-      });
+      cy.acceptCookies();
     });
 
     function verifyDownload(fileName) {

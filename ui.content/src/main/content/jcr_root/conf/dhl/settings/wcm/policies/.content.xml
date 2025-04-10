@@ -336,27 +336,48 @@
                         </rtePlugins>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
-                                    cq:styleGroupLabel="Font"
+                                    cq:styleGroupLabel="Font Size"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
                                     <item0
-                                            cq:styleClasses="custom-text--p3"
+                                            cq:styleClasses="font-size-md"
                                             cq:styleId="1720434563090"
                                             cq:styleLabel="Regular (16px)"
                                             jcr:primaryType="nt:unstructured"/>
                                     <item1
-                                            cq:styleClasses="custom-text--p2"
+                                            cq:styleClasses="font-size-lg"
                                             cq:styleId="1720434574579"
                                             cq:styleLabel="Medium (18px)"
                                             jcr:primaryType="nt:unstructured"/>
                                     <item2
-                                            cq:styleClasses="custom-text--p1"
+                                            cq:styleClasses="font-size-xl"
                                             cq:styleId="1720434583692"
                                             cq:styleLabel="Large (20px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="font-size-3xl"
+                                            cq:styleId="1741170559552"
+                                            cq:styleLabel="Extra Large (24px)"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item4
+                                            cq:styleClasses="font-size-5xl"
+                                            cq:styleId="1741170559554"
+                                            cq:styleLabel="Double Extra Large (30px)"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
                             </item0>
                             <item1
+                                    cq:styleGroupLabel="Font Weight"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="font-weight-bold-condensed"
+                                            cq:styleId="1741171213248"
+                                            cq:styleLabel="Extra Bold Condensed"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                            <item2
                                     cq:styleGroupLabel="Top Extra Spacing"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
@@ -366,8 +387,8 @@
                                             cq:styleLabel="Top - Middle Spacing (35px)"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item1>
-                            <item2
+                            </item2>
+                            <item3
                                     cq:styleGroupLabel="Bottom Extra Spacing"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
@@ -392,8 +413,8 @@
                                             cq:styleLabel="Large (30px)"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item2>
-                            <item3
+                            </item3>
+                            <item4
                                     cq:styleGroupLabel="Table"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
@@ -403,8 +424,8 @@
                                             cq:styleLabel="Simple Red"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item3>
-                            <item4
+                            </item4>
+                            <item5
                                     cq:styleGroupLabel="Margin Top"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
@@ -429,8 +450,8 @@
                                             cq:styleLabel="No"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item4>
-                            <item5
+                            </item5>
+                            <item6
                                     cq:styleGroupLabel="Margin Bottom"
                                     jcr:primaryType="nt:unstructured">
                                 <cq:styles jcr:primaryType="nt:unstructured">
@@ -455,7 +476,7 @@
                                             cq:styleLabel="No"
                                             jcr:primaryType="nt:unstructured"/>
                                 </cq:styles>
-                            </item5>
+                            </item6>
                         </cq:styleGroups>
                     </general_text_policy>
                     <category_text_policy
@@ -833,8 +854,8 @@
                         allowedHeadingElements="[h1,h2,h3,h4]"
                         descriptionHidden="true"
                         pretitleHidden="true"
-                        showTitleType="false"
-                        titleType="h3">
+                        showTitleType="true"
+                        titleType="h2">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
@@ -2412,12 +2433,14 @@
                 </experiencefragment>
                 <accordion-v2 jcr:primaryType="nt:unstructured">
                     <policy_accordion-v2
-                            jcr:lastModified="{Date}2024-11-25T14:37:02.684+02:00"
+                            jcr:lastModified="{Date}2025-03-29T00:42:45.485+08:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Accordion-v2 Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            enableAdvancedTrackedInteractions="false">
+                            allowedHeadingElements="[h2,h3,h4]"
+                            enableAdvancedTrackedInteractions="false"
+                            headingElement="h2">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
@@ -4755,6 +4778,30 @@
                         </cq:styleGroups>
                     </tabs_policy>
                 </tabs>
+                <page-container jcr:primaryType="nt:unstructured">
+                    <policy_main
+                            cq:styleDefaultElement="main"
+                            jcr:lastModified="{Date}2025-03-10T18:09:05.687+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Main Container"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="group:DHL Components"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_main>
+                    <policy_animated-main
+                            cq:styleDefaultElement="main"
+                            jcr:lastModified="{Date}2025-04-08T11:44:20.167+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Animated Pages Main Container"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Animated Components,group:DHL Components]"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_animated-main>
+                </page-container>
             </content>
         </components>
     </dhl>

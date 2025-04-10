@@ -1,5 +1,6 @@
-<div class="footerV2-wrapper" id="footer">
-    <div class="footer-container" data-sly-use.footer="com.dhl.discover.core.models.Footer">
+<div class="footer-wrapper" id="footer" data-sly-use.footer="com.dhl.discover.core.models.Footer">
+  <h2 class="sr-only" data-sly-test="${footer.sectionTitle}">${footer.sectionTitle}</h2>
+    <div class="footer-container">
         <div class="promo">
             <div class="promo-logo">
                 <a class="logo__link" href="${footer.logoLink}">
@@ -17,26 +18,29 @@
         </div>
         <div class="links">
             <div class="links-group" data-sly-use.meganav="com.dhl.discover.core.models.Meganav">
-                <div class="links-group__title">${footer.categoryLinksLabel}</div>
-                <sly data-sly-list="${meganav.panels}">
-                    <a class="links-group__item" href="${item.url}"><span>${item.navigationTitle}</span></a>
-                </sly>
+                <h2 data-sly-element="${footer.sectionTitle ? 'h3' : 'h2'}" class="links-group__title">${footer.categoryLinksLabel}</h2>
+                <ul data-sly-list="${meganav.panels}">
+                  <li><a class="links-group__item" href="${item.url}"><span>${item.navigationTitle}</span></a></li>
+                </ul>
             </div>
             <div class="links-group">
-                <div class="links-group__title">${footer.companyLinksLabel}</div>
-                <a class="links-group__item" data-sly-repeat="${footer.companyLinks}" href="${item.linkPath}"><span>${item.linkName}</span></a>
+              <h2 data-sly-element="${footer.sectionTitle ? 'h3' : 'h2'}" class="links-group__title">${footer.companyLinksLabel}</h2>
+                <ul data-sly-list="${footer.companyLinks}">
+                  <li><a class="links-group__item" href="${item.linkPath}"><span>${item.linkName}</span></a></li>
+                </ul>
             </div>
             <div class="links-group">
-                <div class="links-group__title">${footer.socialLinksLabel}</div>
-                <div class="links-group__items">
-                    <a class="links-group__item" data-sly-repeat="${footer.socialLinks}" href="${item.linkPath}">
-                        <span class="not-mobile-only">${item.linkName}</span>
-                        <img class="logo__image mobile-only"
-                             src="${item.linkIcon}"
-                             title="${item.linkName}"
-                             alt="${item.linkName}"/>
+              <h2 data-sly-element="${footer.sectionTitle ? 'h3' : 'h2'}" class="links-group__title">${footer.socialLinksLabel}</h2>
+              <ul class="links-group__items" data-sly-list="${footer.socialLinks}">
+                  <li><a class="links-group__item" href="${item.linkPath}">
+                      <span class="not-mobile-only">${item.linkName}</span>
+                      <img class="logo__image mobile-only"
+                           src="${item.linkIcon}"
+                           title="${item.linkName}"
+                           alt="${item.linkName}"/>
                     </a>
-                </div>
+                  </li>
+              </ul>
             </div>
         </div>
     </div>

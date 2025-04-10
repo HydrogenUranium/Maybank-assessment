@@ -2,12 +2,12 @@
   @include remove-container-margins-mobile-only;
 
   &--with-margins {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 
     @include respond(xl) {
-      margin-top: 50px;
-      margin-bottom: 40px;
+      margin-top: 5rem;
+      margin-bottom: 4rem;
     }
   }
 
@@ -18,8 +18,8 @@
       content: "";
       border-radius: inherit;
       position: absolute;
-      bottom: 0px;
-      left: 0px;
+      bottom: 0;
+      left: 0;
       z-index: 1;
       width: 100%;
       height: 100%;
@@ -34,7 +34,7 @@
         border-radius: 0;
 
         @include respond(md) {
-          border-radius: 6px;
+          border-radius: .6rem;
         }
       }
 
@@ -43,7 +43,7 @@
         border-radius: 0;
 
         @include respond(md) {
-          border-radius: 6px;
+          border-radius: .6rem;
         }
       }
 
@@ -51,7 +51,7 @@
         border-radius: 0;
 
         @include respond(md) {
-          border-radius: 6px;
+          border-radius: .6rem;
         }
       }
     }
@@ -60,80 +60,80 @@
 
   .cmp-hero-banner__image {
     width: 100%;
-    min-height: 215px;
-    max-height: 400px;
+    min-height: 21.5rem;
+    max-height: 40rem;
     aspect-ratio: 2/1;
     margin-bottom: 0;
     height: 100%;
     object-fit: cover;
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0 3px .6rem #00000029;
 
     @include respond(xl) {
-      height: 400px;
+      height: 40rem;
     }
   }
 
   &__video-wrapper {
     width: 100%;
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0 3px .6rem #00000029;
   }
 
   &__video {
     display: block;
-    min-height: 215px;
-    max-height: 400px;
+    min-height: 21.5rem;
+    max-height: 40rem;
     object-fit: cover;
 
     @include respond(xl) {
-      height: 400px;
+      height: 40rem;
     }
   }
 
   &__summary {
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0 3px .6rem #00000029;
     position: relative;
     background-color: white;
-    border-radius: 6px;
+    border-radius: .6rem;
     border: 1px solid #e2e2e2;
-    margin: -25px 16px 0;
-    padding: 20px 10px;
+    margin: -2.5rem 1.6rem 0;
+    padding: 2rem 1rem;
     z-index: 2;
 
     @include respond(md) {
-      padding: 40px 50px;
+      padding: 4rem 5rem;
     }
 
     @include respond(xl) {
-      margin: -50px 25px 0;
+      margin: -5rem 2.5rem 0;
     }
   }
 
   &__summary-label {
     font-style: italic;
     font-weight: 300;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
     color: #323232;
 
     @include respond(xl) {
-      font-size: 20px;
-      line-height: 24px;
+      font-size: 2rem;
+      line-height: 2.4rem;
     }
   }
 
   &__summary-points {
     font-weight: bold;
-    font-size: 16px;
-    line-height: 24px;
-    margin: 30px 0 0;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    margin: 3rem 0 0;
     padding-left: 0;
     counter-reset: item;
   }
 
    &__summary-item {
     @include respond(xl) {
-      margin-top: 23px;
-      font-size: 22px;
+      margin-top: 2.3rem;
+      font-size: 2.2rem;
     }
 
     &::before {

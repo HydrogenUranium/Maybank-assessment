@@ -1,32 +1,32 @@
 .cmp-article-footer {
 
   &__author {
-    margin-top: 20px;
+    margin-top: 2rem;
   }
 
   &__author-image {
-    width: 28px;
-    height: 28px;
+    width: 2.8rem;
+    height: 2.8rem;
     border-radius: 50%;
-    margin-right: 8px;
+    margin-right: .8rem;
   }
 
   &__author-info {
     display: inline-block;
     vertical-align: middle;
-    font-size: 12px;
-    line-height: 17px;
+    font-size: 1.2rem;
+    line-height: 1.7rem;
     color: map-get($palette, dhl-black);
     opacity: 0.7;
   }
 
   &__author-name {
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: bold;
   }
 
   &__author-follow {
-    padding-left: 15px;
+    padding-left: 1.5rem;
     text-decoration: underline;
     color: map-get($palette, scarlet);
     opacity: 1;

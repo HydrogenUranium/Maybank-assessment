@@ -1,4 +1,4 @@
-@import '_headerV2';
+@import 'header';
 @import '_breadcrumb';
 @import '_container';
 @import '_articleContainer';
@@ -6,13 +6,12 @@
 @import '_articleAuthorBanner';
 @import '_articleCarousel';
 @import '_articleTeaserContainer';
-@import '_footerV2';
+@import 'footer';
 @import '_hero';
 @import '_heroCarousel';
 @import '_articlePanel';
 @import '_accordion';
 @import '_accordionV2';
-@import '_wysiwyg';
 @import '_categoryHero';
 @import '_listicle';
 @import '_nextSteps';
@@ -53,6 +52,7 @@
 @import '_articleFooter';
 @import '_articleGrid';
 @import '_digitalAssistant';
+@import '_pageContainer';
 
 @import '_inPageNavigation';
 

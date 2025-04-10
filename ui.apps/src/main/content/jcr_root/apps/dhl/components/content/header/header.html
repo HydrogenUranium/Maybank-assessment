@@ -1,12 +1,11 @@
 <div class="wcag" data-sly-use.header="com.dhl.discover.core.models.Header">
     <span class="sr-only">Content and Navigation</span>
     <ul>
-
-        <li><a href=#content>${header.wcagContentLabel}</a></li>
-        <li><a href=#footer> ${header.wcagFooterLabel}</a></li>
+        <li><a href=#content aria-label="${header.wcagContentLabel}">${header.wcagContentLabel}</a></li>
+        <li><a href=#footer aria-label="${header.wcagFooterLabel}"> ${header.wcagFooterLabel}</a></li>
     </ul>
 </div>
-<div class="headerV2-wrapper"
+<div class="header-wrapper"
         data-sly-use.meganav="com.dhl.discover.core.models.Meganav"
         data-sly-use.languageVariants="com.dhl.discover.core.models.LanguageVariants"
         data-sly-use.header="com.dhl.discover.core.models.Header"
@@ -14,15 +13,15 @@
     <div class="header-container">
         <div class="main-row">
             <div class="main-row__left">
-                <div class="headerV2__logoWrap">
-                    <a class="headerV2__logo" href="${meganav.homeUrl}" aria-label="${header.discoverLogoAriaLabel}" title="${meganav.siteTitle}"><span class="sr-only">${meganav.siteTitle}</span></a>
+                <div class="header__logoWrap">
+                    <a class="header__logo" href="${meganav.homeUrl}" aria-label="${header.discoverLogoAriaLabel}" title="${meganav.siteTitle}"><span class="sr-only">${meganav.siteTitle}</span></a>
                 </div>
             </div>
 
             <div class="main-row__right">
                 <div class="search-bar" data-sly-resource="${'search-bar' @ resourceType='dhl/components/content/search-bar'}"></div>
                 <div class="header__icon">
-                    <button class="headerV2__desktopCountry"
+                    <button class="header__desktopCountry"
                        aria-label="${header.countrySelectorToggleAriaLabel}"
                         aria-expanded="false">
                         <sly data-sly-test.isGlobal="${languageVariants.getCurrentRegion == 'Global'}">
@@ -63,15 +62,18 @@
                            data-sly-attribute.aria-current="${item.current ? 'page' : ''}"
                            href="${item.link}.html" data-home="${ item.home }.html"
                            rel="alternate" lang="${item.langCode}" hreflang="${item.langCode}"
-                           class="headerV2__lang${((item.current) ? ' headerV2__lang--selected' : '') @ context='html'}">
+                           class="header__lang${((item.current) ? ' header__lang--selected' : '') @ context='html'}">
                             ${ item.name @ i18n, context='html' }
                         </a>
                     </sly>
                 </div>
                 <div data-sly-test="${showNavigationMenu}"
+                     data-open-hamburger-menu-text="${header.openHamburgerMenuText}"
+                     data-close-hamburger-menu-text="${header.closeHamburgerMenuText}"
+                     id="header__navigation__text"
                      class="header__icon">
-                    <a class="headerV2__navigation" href="#" aria-label="${header.openHamburgerMenuText}">
-                        <i class="headerV2__hamburger"></i>
+                    <a class="header__navigation" href="#" aria-label="${header.openHamburgerMenuText}">
+                        <i class="header__hamburger"></i>
                     </a>
                 </div>
             </div>
@@ -111,9 +113,9 @@
         </div>
     </div>
     <div data-sly-test="${showNavigationMenu}"
-         class="headerV2__meganav">
-        <nav class="headerV2__meganavNavigation">
-            <ul class="headerV2__meganavNav">
+         class="header__meganav">
+        <nav class="header__meganavNavigation">
+            <ul class="header__meganavNav">
                 <li>
                     <div class="menuNav-title">${header.signInLabel}</div>
                 </li>

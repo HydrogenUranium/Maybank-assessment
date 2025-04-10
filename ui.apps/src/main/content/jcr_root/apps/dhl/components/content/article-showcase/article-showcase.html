@@ -6,12 +6,12 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 <section class="cmp-article-showcase cmp-article-showcase--${model.designMode}" data-sly-test="${!isEmpty}">
-    <h2 class="cmp-article-showcase__title" data-sly-test="${model.title}">
+    <h2 data-sly-element="${model.titleType}" class="cmp-article-showcase__title" data-sly-test="${model.title}">
         ${model.title}
     </h2>
     <div class="cmp-article-showcase__articles horizontal-scroll" data-sly-test="${isHorizontal}">
         <sly data-sly-repeat="${model.articles}"
-             data-sly-call="${articleCardTemplate.card @ article=item, showTags=model.showTags, enableAssetDelivery=model.enableAssetDelivery}">
+             data-sly-call="${articleCardTemplate.card @ article=item, showTags=model.showTags, enableAssetDelivery=model.enableAssetDelivery, titleType=model.articlesTitleType}">
         </sly>
     </div>
     <sly data-sly-test="${isVertical}">
@@ -27,8 +27,10 @@
                      }"></sly>
                 </a>
                 <div class="cmp-article-showcase__article-info">
-                    <div class="cmp-article-showcase__article-group-tag">${item.groupTag}</div>
-                    <h3><a href="${item.path}" class="cmp-article-showcase__article-title">${item.pageTitleWithBr @ context='html'}</a></h3>
+                    <a class="cmp-article-showcase__article-group-tag" href="${item.groupPath}">${item.groupTag}</a>
+                    <h3 data-sly-element="${model.articlesTitleType}" class="cmp-article-showcase__article-title-wrapper">
+                      <a href="${item.path}" class="cmp-article-showcase__article-title">${item.pageTitleWithBr @ context='html'}</a>
+                    </h3>
                     <div class="cmp-article-showcase__article-metadata">
                         <time datetime="${item.created}" data-sly-test="${item.createdfriendly}">${item.createdfriendly}</time>
                         <span data-sly-test="${item.readtime}">${item.readtime}</span>

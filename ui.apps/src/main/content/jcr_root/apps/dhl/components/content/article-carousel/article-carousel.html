@@ -1,6 +1,7 @@
-<div class="article-carousel_container">
-  <h1 class="article-carousel_pageTitle">${currentPage.navigationTitle || currentPage.title}</h1>
-
+<div data-sly-use.articleCarousel="com.dhl.discover.core.models.ArticleCarouselModel"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+     class="article-carousel_container">
+        <h1 class="article-carousel_pageTitle" data-sly-element="${articleCarousel.type}">${articleCarousel.titleCarousel}</h1>
   <div data-sly-use.carousel="com.adobe.cq.wcm.core.components.models.Carousel"
        data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
        data-sly-use.controlsTemplate="controls.html"
@@ -25,7 +26,8 @@
          aria-atomic="false"
          aria-live="${carousel.autoplay ? 'off' : 'polite'}">
       <sly data-sly-list.item="${items}">
-        <div data-sly-test="${item.resource.resourceType != 'wcm/msm/components/ghost'}"
+          <sly data-sly-use.carouselItemValidator="${'com.dhl.discover.core.models.CarouselItemValidator' @ resource=item.resource}"></sly>
+        <div data-sly-test="${wcmmode.edit || carouselItemValidator.valid }"
              data-sly-resource="${item.resource @ decorationTagName='div'}"
              id="${item.id}-tabpanel"
              class="cmp-carousel__item${item.name == carousel.activeItem ? ' cmp-carousel__item--active' : ''}"
@@ -43,7 +45,9 @@
         aria-label="${carousel.accessibilityTablist || 'Choose a slide to display' @ i18n}"
         data-cmp-hook-carousel="indicators">
       <sly data-sly-list.item="${items}">
-        <li data-sly-test="${item.resource.resourceType != 'wcm/msm/components/ghost'}"
+          <sly data-sly-set.nodePath="${item.resource.linkURL}"></sly>
+          <sly data-sly-use.carouselItemValidator="${'com.dhl.discover.core.models.CarouselItemValidator' @ resource=item.resource}"></sly>
+        <li data-sly-test="${wcmmode.edit || carouselItemValidator.valid }"
             id="${item.id}-tab"
             class="cmp-carousel__indicator${item.name == carousel.activeItem ? ' cmp-carousel__indicator--active' : ''}"
             role="tab"

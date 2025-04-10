@@ -18,14 +18,11 @@
 /* modules */
 @import 'modules/_utilities';
 @import 'modules/_mixins';
+@import 'config/_base';
 
 /* layout */
 @import 'config/_layout';
-@import 'config/_offline';
 
-/* font */
-@import 'config/_typography';
-@import 'config/_animatedPageFonts';
 
 /* partials */
 
@@ -41,6 +38,7 @@
 @import 'partials/_animatedShowcasePanel';
 @import 'partials/_inPageNavigation';
 @import 'partials/_boxFill';
+@import 'partials/_pageContainer';
 
 /* internet explorer */
 @import '_ie';

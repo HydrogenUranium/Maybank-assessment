@@ -8,7 +8,7 @@
     width: 100%;
     height: 100%;
     background-color: hsla(0, 0%, 100%, .8);
-    background-position-y: 200px;
+    background-position-y: 20rem;
     background-position-x: 50%;
     background-repeat: no-repeat;
     background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/loading.svg');
@@ -19,44 +19,44 @@
 
   &Form {
     background-color: #F6F6F6;
-    padding: 30px 20px 20px;
-    @media screen and (min-width: 768px) {
-      padding: 50px 20px 20px;
+    padding: 3rem 2rem 2rem;
+    @media screen and (min-width: 76.8rem) {
+      padding: 5rem 2rem 2rem;
     }
 
     &InputWrapper {
-      max-width: 800px;
+      max-width: 80rem;
       border-radius: 6px;
       border: 1px solid #5A5A5A;
-      height: 50px;
+      height: 5rem;
       background-color: white;
       position: relative;
       margin: auto;
-      @media screen and (min-width: 768px) {
-        height: 70px;
+      @media screen and (min-width: 76.8rem) {
+        height: 7rem;
       }
 
       input {
         width: 100%;
         border: none;
         background: transparent;
-        padding-left: 50px;
+        padding-left: 5rem;
         height: 100%;
-        font-size: 16px;
-        line-height: 25px;
+        font-size: 1.6rem;
+        line-height: 2.5rem;
 
         [dir="rtl"] & {
           padding-left: 0px;
-          padding-right: 50px;
+          padding-right: 5rem;
         }
-        @media screen and (min-width: 768px) {
-          line-height: 30px;
-          font-size: 20px;
-          padding-left: 70px;
+        @media screen and (min-width: 76.8rem) {
+          line-height: 3rem;
+          font-size: 2rem;
+          padding-left: 7rem;
 
           [dir="rtl"] & {
             padding-left: 0px;
-            padding-right: 70px;
+            padding-right: 7rem;
           }
         }
 
@@ -67,60 +67,63 @@
     }
 
     &Title {
-      margin-top: 20px;
+      margin-top: 2rem;
       font-weight: bold;
-      font-size: 28px;
-      line-height: 40px;
-      @media screen and (min-width: 768px) {
-        margin-top: 30px;
-        line-height: 50px;
-        font-size: 40px;
+      font-size: 2.8rem;
+      line-height: 4rem;
+      @media screen and (min-width: 76.8rem) {
+        margin-top: 3rem;
+        line-height: 5rem;
+        font-size: 4rem;
       }
-      @media screen and (min-width: 1200px) {
-        margin-top: 40px;
-        line-height: 60px;
-        font-size: 50px;
+      @media screen and (min-width: 120rem) {
+        margin-top: 4rem;
+        line-height: 6rem;
+        font-size: 5rem;
       }
       text-align: center;
     }
 
     &Details {
-      font-size: 16px;
-      line-height: 25px;
-      @media screen and (min-width: 768px) {
-        line-height: 30px;
-        font-size: 20px;
+      font-size: 1.6rem;
+      line-height: 2.5rem;
+      @media screen and (min-width: 76.8rem) {
+        line-height: 3rem;
+        font-size: 2rem;
       }
       text-align: center;
     }
   }
 
   &Result {
-    max-width: 1270px;
-    padding: 10px 35px;
+    max-width: 127rem;
+    padding: 1rem 21px;
     margin: auto;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 76.8rem) {
       padding: 35px;
     }
 
     &Headline {
-      font-size: 14px;
-      line-height: 30px;
-      gap: 20px;
-      @media screen and (min-width: 768px) {
-        display: flex;
-      }
+      font-size: 1.4rem;
+      line-height: 3rem;
+      gap: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+
       .sorting {
-        margin: 20px 0;
         margin-left: auto;
+        [dir="rtl"] & {
+          margin-left: initial;
+          margin-right: auto;
+        }
       }
 
       .trending {
-        margin: 20px 0;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: 10px;
+        gap: 1rem;
 
         &Title {}
 
@@ -143,13 +146,13 @@
       color: #FFFFFF;
       background: #D40511 0% 0% no-repeat padding-box;
       border-radius: 4px;
-      padding: 15px 0px;
+      padding: 1.5rem 0px;
       font-weight: bold;
       width: 100%;
-      line-height: 14px;
-      font-size: 15px;
+      line-height: 1.4rem;
+      font-size: 1.5rem;
       border: none;
-      margin: 50px auto 20px;
+      margin: 5rem auto 2rem;
       display: block;
 
       &:hover {
@@ -163,13 +166,13 @@
         text-decoration: none;
       }
 
-      @media screen and (min-width: 768px) {
-        line-height: 16px;
-        font-size: 18px;
+      @media screen and (min-width: 76.8rem) {
+        line-height: 1.6rem;
+        font-size: 1.8rem;
       }
 
-      @media screen and (min-width: 1200px) {
-        padding: 15px 85px;
+      @media screen and (min-width: 120rem) {
+        padding: 1.5rem 8.5rem;
         width: auto;
       }
     }
@@ -180,7 +183,7 @@
   cursor: pointer;
   background: transparent;
   border: none;
-  max-height: 100px;
+  max-height: 10rem;
   height: 100%;
   padding: 0;
   aspect-ratio: 1/1;

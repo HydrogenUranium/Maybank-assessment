@@ -1,11 +1,11 @@
 .cmp-breadcrumb {
   display: block;
-  padding: 18px 0 0;
-  max-width: 1200px;
+  padding: 1.8rem 0 0;
+  max-width: 120rem;
   margin: auto;
 
   @include respond(xl) {
-    padding: 30px 0 0;
+    padding: 3rem 0 0;
   }
 
   &__list {
@@ -14,8 +14,8 @@
 
   &__item {
     display: inline-block;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 1.4rem;
+    line-height: 2rem;
     color: map-get($palette, dhl-black);
 
     &:not(:last-child):after {
@@ -44,7 +44,11 @@
 
 .page-body.article-counter {
   .cmp-breadcrumb {
-    display: block;
+    display: none;
+
+    @include respond(xl) {
+      display: block;
+    }
 
     .cmp-breadcrumb__item {
       &:not(:nth-of-type(-n+2)):not(:nth-last-of-type(1)) {

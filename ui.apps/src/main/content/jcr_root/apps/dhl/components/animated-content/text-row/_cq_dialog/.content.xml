@@ -20,6 +20,9 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             fieldLabel="Type"
                             name="./type">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-dropdown-showhide-target=".stats-panel-options-showhide"/>
                         <items
                                 jcr:primaryType="nt:unstructured">
                             <blue

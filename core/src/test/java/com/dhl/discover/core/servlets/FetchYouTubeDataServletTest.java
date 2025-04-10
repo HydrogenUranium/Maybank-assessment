@@ -74,7 +74,7 @@ class FetchYouTubeDataServletTest {
         String apiResponse = "{\"kind\":\"youtube#videoListResponse\",\"items\":[]}";
 
         try (MockedStatic<HttpClients> mockedStatic = mockStatic(HttpClients.class)) {
-            mockedStatic.when(HttpClients::createDefault).thenReturn(httpClient);
+            mockedStatic.when(HttpClients::createSystem).thenReturn(httpClient);
             request.setParameterMap(Map.of("videoId", videoId));
 
             when(httpClient.execute(any())).thenReturn(httpResponse);
@@ -107,7 +107,7 @@ class FetchYouTubeDataServletTest {
         when(mockHttpResponse.getEntity()).thenReturn(nonJsonEntity);
 
         try (MockedStatic<HttpClients> mockedStatic = mockStatic(HttpClients.class)) {
-            mockedStatic.when(HttpClients::createDefault).thenReturn(mockHttpClient);
+            mockedStatic.when(HttpClients::createSystem).thenReturn(mockHttpClient);
 
             servlet.doGet(request, response);
         }
@@ -121,7 +121,7 @@ class FetchYouTubeDataServletTest {
         String apiResponse = "{\"kind\":\"youtube#videoListResponse\",\"items\":[{\"kind\":\"youtube#video\",\"etag\":\"etag1\",\"id\":\"videoId1\",\"snippet\":{\"title\":\"title1\",\"description\":\"description1\",\"publishedAt\":\"2021-01-01T00:00:00Z\",\"thumbnails\":{\"high\":{\"url\":\"http://example.com/high.jpg\"}}},\"contentDetails\":{\"duration\":\"PT10M\"},\"statistics\":{\"viewCount\":\"1000\"}}]}";
 
         try (MockedStatic<HttpClients> mockedStatic = mockStatic(HttpClients.class)) {
-            mockedStatic.when(HttpClients::createDefault).thenReturn(httpClient);
+            mockedStatic.when(HttpClients::createSystem).thenReturn(httpClient);
             request.setParameterMap(Map.of("videoId", videoId));
 
             when(httpClient.execute(any())).thenReturn(httpResponse);

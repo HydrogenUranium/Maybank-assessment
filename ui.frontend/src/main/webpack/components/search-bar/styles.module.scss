@@ -1,11 +1,11 @@
 .searchBar {
-    height: 45px;
-    @media screen and (min-width: 768px) {
+    height: 4.5rem;
+    @media screen and (min-width: 76.8rem) {
         position: relative;
     }
 }
 
-:global(.headerV2__navigation--open) {
+:global(.header__navigation--open) {
     .searchBar {
         position: initial;
     }

@@ -5,8 +5,6 @@ describe('Global Page Article', () => {
 
   // Define selectors as constants
   const selectors = {
-    onetrustConsentSdk: '#onetrust-consent-sdk',
-    onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
     breadcrumbList: '.cmp-breadcrumb__list',
     headerTitle: '.cmp-article-header__title',
     publishDate: '.cmp-article-header__publishDate',
@@ -15,13 +13,13 @@ describe('Global Page Article', () => {
     heroBanner: '.cmp-hero-banner',
     heroBannerSummary: '.cmp-hero-banner__summary',
     heroBannerImage: '.cmp-hero-banner__asset',
-    articleTitle: '#title-83f6f208a3 > .cmp-title__text',
-    articleText: '#text-bc4d131331',
+    articleTitle: '.cmp-title__text',
+    articleText: '.cmp-text',
     teaserImage: '.cmp-image__image',
     video: 'video',
     accordionItem: '.cmp-accordion__item',
     accordionLink: '.cmp-accordion__panel .cmp-text p:first-child a',
-    embeddedComponent: '#embed-4a64c4e8e3 > iframe',
+    embeddedComponent: '.cmp-embed iframe',
     articlePanel: '.nextSteps',
     articlePanelTitle: '.nextSteps__text > .nextSteps__title',
     articlePanelImage: '.nextSteps__image',
@@ -43,11 +41,11 @@ describe('Global Page Article', () => {
     authorImage: '.cmp-article-header__author-image',
     authorName: '.cmp-article-footer__author-name',
     authorDescription: '.article-author-banner_brief',
-    articleFooter: ':nth-child(5) > .article-container-component > .grid > .grid__container',
+    articleFooter: '.cmp-article-footer',
     articleFooterAuthorImage: '.cmp-article-footer__author-image',
     articleFooterAuthorName: '.cmp-article-footer__author-name',
     articleFooterShare: '.cmp-article-footer > .share-options',
-    header: '.headerV2-wrapper',
+    header: '.header-wrapper',
     footer: '.footer-container',
     servicePointLocator: '.locator-frame',
     ctaBanner: '.cmp-cta-banner',
@@ -57,22 +55,9 @@ describe('Global Page Article', () => {
 
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
-      cy.on('uncaught:exception', (e) => {
-        return false;
-      });
-
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.get('body', { timeout: 2000 }).then(($body) => {
-        cy.get(selectors.onetrustConsentSdk, { timeout: 5000 }).then(($onetrust) => {
-          if ($onetrust.find(selectors.onetrustAcceptButton, { timeout: 5000 }).length > 0) {
-              cy.get(selectors.onetrustAcceptButton)
-                .contains('Accept All')
-                .should('be.visible')
-                .click();
-          }
-        });
-      });
+      cy.acceptCookies();
     });
 
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];

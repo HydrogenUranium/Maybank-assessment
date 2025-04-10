@@ -1,11 +1,11 @@
 import groovy.transform.Field
 import java.util.regex.Pattern;
 
-@Field DRY_RUN = true
+@Field DRY_RUN = false
 
 @Field PROPERTIES = [
-        "openHamburgerMenu": "Open Hamburger Menu",
-        "closeHamburgerMenu": "Close Hamburger Menu"
+        "openHamburgerMenuText": "Open Hamburger Menu",
+        "closeHamburgerMenuText": "Close Hamburger Menu"
 ]
 
 @Field SCOPE = "/content/experience-fragments"

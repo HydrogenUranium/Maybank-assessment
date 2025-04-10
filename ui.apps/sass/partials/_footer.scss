@@ -1,0 +1,212 @@
+.footer-wrapper {
+  background: #CCCCCC 0% 0% no-repeat padding-box;
+  margin: min(6rem,  30px + 2rem) auto 0;
+
+  @include respond(md) {
+    margin: min(10rem,  35px + 3rem)  auto 0;
+  }
+
+  @include respond(xl) {
+    margin: min(10rem,  60px + 4rem)  auto 0;
+    max-width: 164rem;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1.3rem 3.4rem 3.4rem;
+
+    @include respond(md) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 3.2rem 3.7rem 11.5rem;
+    }
+
+    @include respond(xl) {
+      padding: 5.6rem 13.7rem 8.7rem;
+    }
+
+    .promo {
+      order: 2;
+
+      @include respond(md) {
+        width: 50%;
+        padding-top: 2.9rem;
+        padding-right: 1rem;
+      }
+
+      @include respond(xl) {
+        width: 25%;
+        padding-top: 6.4rem;
+        padding-right: 5%;
+      }
+
+      &-logo .logo__image {
+        height: 5.2rem;
+      }
+
+      &-text {
+        padding-top: 2.4rem;
+        font-size: 1.4rem;
+        line-height: 2rem;
+
+        @include respond(md) {
+          padding-top: 2.9rem;
+        }
+
+        @include respond(xl) {
+          font-size: 1.6rem;
+          line-height: 2.3rem;
+        }
+      }
+    }
+
+    .invitation {
+      order: 3;
+
+      @include respond(md) {
+        order: 1;
+        width: 100%;
+      }
+
+      &__title {
+        padding-top: 2.5rem;
+        font-size: 1.6rem;
+        line-height: 2.3rem;
+        font-weight: bold;
+
+        @include respond(md) {
+          padding-top: 0;
+        }
+
+        @include respond(xl) {
+          font-size: 2.4rem;
+          line-height: 3.5rem;
+        }
+      }
+
+      &__text {
+        padding-top: 1.9rem;
+        font-size: 1.4rem;
+        line-height: 2rem;
+
+        @include respond(xl) {
+          padding-top: 1rem;
+          font-size: 2.4rem;
+          line-height: 3.5rem;
+        }
+      }
+    }
+
+    .links {
+      order: 4;
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 3.1rem;
+      font-size: 1.6rem;
+      line-height: 2.3rem;
+
+      @include respond(md) {
+        width: 100%;
+        padding-top: 7.5rem;
+      }
+
+      @include respond(xl) {
+        order: 3;
+        width: 75%;
+        padding-top: 6.4rem;
+      }
+
+      &-group {
+        width: 50%;
+
+        &:first-of-type {
+          padding-right: 1rem;
+        }
+
+        &:last-child {
+          width: 100%;
+          padding-top: 2.5rem;
+        }
+
+        @include respond(md) {
+          width: 20%;
+          padding-right: 1rem;
+
+          &:first-of-type {
+            width: 30%;
+          }
+
+          &:last-child {
+            width: 50%;
+            padding-top: 0;
+          }
+        }
+
+        @include respond(xl) {
+          width: 33%;
+
+          &:first-of-type {
+            width: 33%;
+          }
+
+          &:last-child {
+            width: 33%;
+          }
+        }
+
+        &__title {
+          font-weight: bold;
+          font-size: var(--font-size-md);
+          margin-bottom: 1.5rem;
+
+          @include respond(xl) {
+            margin-bottom: 2.5rem;
+          }
+        }
+
+        &__items {
+          display: flex;
+          flex-wrap: wrap;
+
+          @include respond(md) {
+            flex-direction: column;
+          }
+        }
+
+        &__item {
+          display: block;
+          padding-right: 1rem;
+          color: #000000E6;
+
+          &:hover {
+            text-decoration: none;
+            color: map-get($palette, scarlet);
+          }
+
+          .logo__image {
+            height: 2.7rem;
+            width: 2.7rem;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+
+    .not-mobile-only {
+      display: none;
+
+      @include respond(md) {
+        display: block;
+      }
+    }
+
+    .mobile-only {
+      display: block;
+
+      @include respond(md) {
+        display: none;
+      }
+    }
+  }
+}

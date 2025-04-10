@@ -13,74 +13,78 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/foundation/components/responsivegrid"
                 layout="responsiveGrid">
-            <headerv2
+            <header
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/experiencefragment"
                     fragmentVariationPath="/content/experience-fragments/dhl/language-masters/en-master/template-fragments/header/master"/>
-            <breadcrumb
+            <main
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/breadcrumb"
-                    startLevel="3"/>
-            <two_columns_container
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/two-columns-container-with-five-sections">
-                <headline
+                    sling:resourceType="dhl/components/content/page-container">
+                <breadcrumb
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <title_v2
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/title-v2"
-                            editable="{Boolean}true"/>
-                </headline>
-                <right-column-body
+                        sling:resourceType="dhl/components/content/breadcrumb"
+                        startLevel="3"/>
+                <two_columns_container
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <marketoform
+                        sling:resourceType="dhl/components/content/two-columns-container-with-five-sections">
+                    <headline
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/marketoForm"
-                            editable="{Boolean}true"/>
-                    <responsivegrid
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <title_v2
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/title-v2"
+                                editable="{Boolean}true"/>
+                    </headline>
+                    <right-column-body
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="wcm/foundation/components/responsivegrid"
-                            editable="{Boolean}true">
-                    </responsivegrid>
-                </right-column-body>
-                <description
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <marketoform
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/marketoForm"
+                                editable="{Boolean}true"/>
+                        <responsivegrid
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/foundation/components/responsivegrid"
+                                editable="{Boolean}true">
+                        </responsivegrid>
+                    </right-column-body>
+                    <description
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <text
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/text"
+                                editable="{Boolean}true"/>
+                    </description>
+                    <left-column-body
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <landingpoints
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/landingpoints"
+                                editable="{Boolean}true"/>
+                        <responsivegrid
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/foundation/components/responsivegrid"
+                                editable="{Boolean}true">
+                        </responsivegrid>
+                    </left-column-body>
+                    <bottom
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <cta_banner_gray
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/cta-banner-gray"
+                                editable="{Boolean}true"/>
+                    </bottom>
+                </two_columns_container>
+                <responsivegrid
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <text
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/text"
-                            editable="{Boolean}true"/>
-                </description>
-                <left-column-body
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <landingpoints
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/landingpoints"
-                            editable="{Boolean}true"/>
-                    <responsivegrid
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="wcm/foundation/components/responsivegrid"
-                            editable="{Boolean}true">
-                    </responsivegrid>
-                </left-column-body>
-                <bottom
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="wcm/foundation/components/responsivegrid">
-                    <cta_banner_gray
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/cta-banner-gray"
-                            editable="{Boolean}true"/>
-                </bottom>
-            </two_columns_container>
-            <responsivegrid
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="wcm/foundation/components/responsivegrid"
-                    editable="{Boolean}true">
-            </responsivegrid>
-            <footerv2
+                        sling:resourceType="wcm/foundation/components/responsivegrid"
+                        editable="{Boolean}true">
+                </responsivegrid>
+            </main>
+            <footer
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/experiencefragment"
                     fragmentVariationPath="/content/experience-fragments/dhl/language-masters/en-master/template-fragments/footer/master"/>

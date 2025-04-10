@@ -1,8 +1,8 @@
 .MarketoNewsletter {
-  padding: 0 0 25px 0;
+  padding: 0 0 2.5rem 0;
   background: #ffcc00;
   background: linear-gradient(to bottom, #ffcc00 0%,#ffcc00 80%,#ffefb2 100%);
-  margin: 20px 0;
+  margin: 2rem 0;
   margin-left: calc(-1 * ((100vw - 100%)/ 2));
   width: 100vw;
   max-width: 100vw;
@@ -11,15 +11,15 @@
   text-align: inherit;
 
   @include respond(sm) {
-    padding: 25px 0;
+    padding: 2.5rem 0;
     margin-left: auto;
     width: auto;
-    margin: 30px 0;
+    margin: 3rem 0;
 
-    padding: 30px 5px;
+    padding: 3rem .5rem;
 
     .form-group {
-      margin-bottom: 5px;
+      margin-bottom: .5rem;
     }
   }
 
@@ -27,41 +27,40 @@
     text-align: inherit;
 
     h2 {
-      @include font("%H2");
       text-align: inherit;
-      margin-top: 26px;
+      margin-top: 2.6rem;
       font-weight: 800;
 
       @include respond(sm) {
-        font-size: 25px;
+        font-size: 2.5rem;
         margin-top: 0;
       }
     }
 
     ul {
-      padding-left: 10px;
-      margin-top: 15px;
-      margin-bottom: 5px;
+      padding-left: 1rem;
+      margin-top: 1.5rem;
+      margin-bottom: .5rem;
 
       li {
         position: relative;
-        padding-left: 10px;
+        padding-left: 1rem;
         display: inline-block;
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 1rem;
         &:before {
           content: '';
-          width: 4px;
-          height: 4px;
-          border-radius: 3px;
+          width: .4rem;
+          height: .4rem;
+          border-radius: .3rem;
           position: absolute;
-          top: 10px;
-          left: -10px;
+          top: 1rem;
+          left: -1rem;
           background-color: map-get($palette, red);
 
           [dir="rtl"] & {
             left: unset;
-            right: -10px;
+            right: -1rem;
           }
         }
       }
@@ -77,33 +76,33 @@
       ul {
         font-size: 0;
         li {
-          font-size: 16px;
+          font-size: 1.6rem;
           width: 50%;
           display: inline-block;
           vertical-align: top;
-          padding-left: 10px;
-          padding-right: 10px;
+          padding-left: 1rem;
+          padding-right: 1rem;
 
           &:before {
             content: '';
-            width: 4px;
-            height: 4px;
-            border-radius: 3px;
+            width: .4rem;
+            height: .4rem;
+            border-radius: .3rem;
             position: absolute;
-            top: 10px;
-            left: -10px;
+            top: 1rem;
+            left: -1rem;
             background-color: map-get($palette, red);
 
             [dir="rtl"] & {
               left: unset;
-              right: -10px;
+              right: -1rem;
             }
           }
           // &:nth-child(even) {
-          //   padding-left: 10px;
+          //   padding-left: 1rem;
           // }
           // &:nth-child(odd) {
-          //   padding-right: 10px;
+          //   padding-right: 1rem;
           // }
         }
       }
@@ -111,14 +110,12 @@
   }
 
   &__copy {
-    @include font("%T4");
     text-align: left;
-    margin: 20px 0;
+    margin: 2rem 0;
 
     $block: &;
 
     &--small {
-      @include font("%T5");
       font-weight: 200;
       font-stretch: condensed;
 
@@ -130,15 +127,15 @@
   }
 
   &__image-container {
-    height: 140px;
+    height: 14rem;
     overflow: hidden;
     position: relative;
     background-image: linear-gradient(to right, #fff0b2 0%, #ffde59 25%, #ffde59 80%, #fff0b2);
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
     img {
       position: absolute;
-      top: -70px;
+      top: -7rem;
       margin: 0;
       left: 0;
       right: 0;
@@ -147,9 +144,9 @@
   }
 
   &__image {
-    max-width: 190px !important;
+    max-width: 19rem !important;
     background-size: contain;
-    margin: 35px auto;
+    margin: 3.5rem auto;
 
     @include respond(sm) {
       text-align: left;
@@ -162,14 +159,14 @@
 
   &__ctas {
     @include clearfix();
-    margin: 20px 0;
+    margin: 2rem 0;
 
     & .download__copy {
       @include respond(sm) {
         display: inline-block;
-        width: 20px;
+        width: 2rem;
         text-align: left;
-        margin: 0 20px;
+        margin: 0 2rem;
       }
     }
   }
@@ -179,21 +176,21 @@
 
     background-image: none;
     border: none;
-    padding: 10px 30px;
+    padding: 1rem 3rem;
     width: 100%;
     display: block;
     outline: none !important;
 
     @include respond(sm) {
       display: inline-block;
-      width: 240px;
+      width: 24rem;
       white-space: nowrap;
     }
   }
 
   & .forms {
     margin-top: 0;
-    padding-top: 10px;
+    padding-top: 1rem;
     padding-bottom: 0;
 
     &__group--text {
@@ -211,7 +208,7 @@
     }
 
     &__subtitle {
-      font-size: 30px;
+      font-size: 3rem;
     }
 
     &__copy {
@@ -219,7 +216,7 @@
     }
 
     &__copy--small {
-      margin-top: 10px;
+      margin-top: 1rem;
     }
 
     &__checkbox {

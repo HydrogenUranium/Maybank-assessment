@@ -13,7 +13,7 @@
       </div>
       <div class="col-12 col-md-5 col-lg-5 offset-lg-1">
         <div class="statsPanel__wrapper statsPanel__wrapper--noPadding">
-          <div class="boxFill boxFill--dark">
+          <div class="boxFill boxFill--dark" aria-label="${properties.leftBlockTitle}">
             <div class="boxFill__fill boxFill__fillstat__${idModel.id}">
               <style type="text/css">
                         .boxFill--show .boxFill__fillstat__${idModel.id @ context='styleToken'} {
@@ -27,8 +27,8 @@
           </div>
 
           <div class="statsPanel__statsWrapper statsPanel__statsWrapper--electronics">
-            <h4 class="statsPanel__statsValue" data-sly-test="${properties.hidePercentage != 'true'}" data-start="0" data-end="${properties.leftBlockPercent}" data-suffix="%">${properties.leftBlockPercent}%</h4>
-            <h2 class="statsPanel__value">${properties.leftBlockTitle}</h2>
+            <div class="statsPanel__statsValue" data-sly-test="${properties.hidePercentage != 'true'}" data-start="0" data-end="${properties.leftBlockPercent}" data-suffix="%">${properties.leftBlockPercent}%</div>
+            <div class="statsPanel__value">${properties.leftBlockTitle}</div>
           </div>
         </div>
       </div>

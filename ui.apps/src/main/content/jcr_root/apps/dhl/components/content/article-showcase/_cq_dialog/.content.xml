@@ -25,6 +25,68 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Title"
                                     name="./title"/>
+                            <titleType
+                                    granite:class="core-title-sizes-default"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Title Type"
+                                    name="./titleType">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <default
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Default (H2)"
+                                            value="default"/>
+                                    <h1
+                                            jcr:primaryType="nt:unstructured"
+                                            text="H1"
+                                            value="h1"/>
+                                    <h2
+                                            jcr:primaryType="nt:unstructured"
+                                            text="H2"
+                                            value="h2"/>
+                                    <h3
+                                            jcr:primaryType="nt:unstructured"
+                                            text="H3"
+                                            value="h3"/>
+                                    <h4
+                                            jcr:primaryType="nt:unstructured"
+                                            text="H4"
+                                            value="h4"/>
+                                </items>
+                            </titleType>
+                            <articlesTitleType
+                                    granite:class="core-title-sizes-default"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Articles Title Type"
+                                    name="./articlesTitleType">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <default
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Default (H3)"
+                                            value="default"/>
+                                    <h1
+                                            jcr:primaryType="nt:unstructured"
+                                            text="H1"
+                                            value="h1"/>
+                                    <h2
+                                            jcr:primaryType="nt:unstructured"
+                                            text="H2"
+                                            value="h2"/>
+                                    <h3
+                                            jcr:primaryType="nt:unstructured"
+                                            text="H3"
+                                            value="h3"/>
+                                    <h4
+                                            jcr:primaryType="nt:unstructured"
+                                            text="H4"
+                                            value="h4"/>
+                                    <div
+                                            jcr:primaryType="nt:unstructured"
+                                            text="DIV"
+                                            value="div"/>
+                                </items>
+                            </articlesTitleType>
                             <verticalOptions
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/container"
