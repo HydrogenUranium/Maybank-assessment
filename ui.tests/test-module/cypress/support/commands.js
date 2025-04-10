@@ -148,3 +148,15 @@ Cypress.Commands.add('acceptCookies', () => {
     });
   });
 });
+
+Cypress.Commands.add('exist', (selector) =>  cy.get(selector).should('exist'));
+
+Cypress.Commands.add('handleViewport', (viewport, vIndex) => {
+    if (typeof viewport === 'string') {
+        cy.viewport(viewport);
+      } else {
+        cy.viewport(viewport[0], viewport[1]);
+      }
+
+      cy.log(`Running tests for viewport at index ${vIndex}: ${viewport}`);
+  });

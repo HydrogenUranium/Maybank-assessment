@@ -35,36 +35,32 @@ describe('Singapore DHL Landing Page - Two Column', () => {
     viewports.forEach((viewport) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
-          if (typeof viewport === 'string') {
-            cy.viewport(viewport);
-          } else {
-            cy.viewport(viewport[0], viewport[1]);
-          }
+          cy.handleViewport(viewport, vIndex);
         });
 
         it('Test Case', function () {
           // 1. Verify hero banner exists with image
-          cy.get(selectors.heroBanner).should('exist');
+          cy.exist(selectors.heroBanner);
 
           // 2. Verify text exists
-          cy.get(selectors.textContent).should('exist');
+          cy.exist(selectors.textContent);
 
           // 4. Verify marketo form exists
-          cy.get(selectors.marketoFormContainer).should('exist');
+          cy.exist(selectors.marketoFormContainer);
 
           // 5. Verify if all fields are present
-          cy.get(selectors.fieldLabel).should('exist');
-          cy.get(selectors.suspectCompanyname).should('exist');
-          cy.get(selectors.firstName).should('exist');
-          cy.get(selectors.lastName).should('exist');
-          cy.get(selectors.email).should('exist');
-          cy.get(selectors.suspectAddress).should('exist');
-          cy.get(selectors.suspectPostalCode).should('exist');
-          cy.get(selectors.suspectCity).should('exist');
-          cy.get(selectors.suspectCountry).should('exist');
-          cy.get(selectors.phone).should('exist');
-          cy.get(selectors.shippingFrequency).should('exist');
-          cy.get(selectors.submitButton).should('exist');
+          cy.exist(selectors.fieldLabel);
+          cy.exist(selectors.suspectCompanyname);
+          cy.exist(selectors.firstName);
+          cy.exist(selectors.lastName);
+          cy.exist(selectors.email);
+          cy.exist(selectors.suspectAddress);
+          cy.exist(selectors.suspectPostalCode);
+          cy.exist(selectors.suspectCity);
+          cy.exist(selectors.suspectCountry);
+          cy.exist(selectors.phone);
+          cy.exist(selectors.shippingFrequency);
+          cy.exist(selectors.submitButton);
 
           // 6. Verify the form submits successfully when all fields are filled out correctly
           const testText = 'THIS IS FOR TEST PLEASE IGNORE';
@@ -79,11 +75,11 @@ describe('Singapore DHL Landing Page - Two Column', () => {
           cy.get(selectors.suspectCountry).select('Albania');
           cy.get(selectors.phone).type('111111');
           cy.get(selectors.shippingFrequency).select('One-off');
-          cy.get(selectors.submitButton).should('exist');
+          cy.exist(selectors.submitButton);
 
           // 7. Verify header and footer exist
-          cy.get(selectors.header).should('exist');
-          cy.get(selectors.footer).should('exist');
+          cy.exist(selectors.header);
+          cy.exist(selectors.footer);
         });
       });
     });

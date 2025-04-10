@@ -1,6 +1,6 @@
-describe('Singapore Page Article Country', () => {
+describe('Global Page Article', () => {
   const pageUrls = [
-    Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/sg/en-sg/automation-testing/Page-Article.html'
+    Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/global/en-global/automation-testing/Page-Article.html'
   ];
 
   // Define selectors as constants
@@ -32,8 +32,7 @@ describe('Singapore Page Article Country', () => {
     listicleImage: '.listicle__row__picture',
     gallery: '.gallery',
     //gallerySlides: ['#uniqueIdImageGallerySlide0 > .figure > .figure__image', '#uniqueIdImageGallerySlide1 > .figure > .figure__image'],
-    activeSlide: '.carousel-item.active > .figure > .figure__image',
-    tabs: '.tabs',
+    activeSlide: '.carousel-item.active > .figure > .figure__image',    tabs: '.tabs',
     tabItem: '[id*="-tab"]',
     tabContent: '[id*="-content"]',
     relatedPosts: '.related-posts-component',
@@ -51,7 +50,8 @@ describe('Singapore Page Article Country', () => {
     servicePointLocator: '.locator-frame',
     ctaBanner: '.cmp-cta-banner',
     ctaBannerButton: '.cmp-cta-banner__button'
-  };
+
+      };
 
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
@@ -60,43 +60,32 @@ describe('Singapore Page Article Country', () => {
       cy.acceptCookies();
     });
 
-    function verifyDownload(fileName) {
-      const downloadsFolder = Cypress.config("downloadsFolder");
-      cy.readFile(`${downloadsFolder}/${fileName}`).should("exist");
-    }
-
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];
 
     viewports.forEach((viewport, vIndex) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
-          if (typeof viewport === 'string') {
-            cy.viewport(viewport);
-          } else {
-            cy.viewport(viewport[0], viewport[1]);
-          }
-
-          cy.log(`Running tests for viewport at index ${vIndex}: ${viewport}`);
+          cy.handleViewport(viewport, vIndex);
         });
 
-        it('Test case', function () {
+        it('All test cases', function () {
           // 1. Verify breadcrumb exists
-          cy.get(selectors.breadcrumbList).should('exist');
+          cy.exist(selectors.breadcrumbList);
 
           // 2. Verify header title exists
-          cy.get(selectors.headerTitle).should('exist');
+          cy.exist(selectors.headerTitle);
 
           // 3. Verify publish date exists
-          cy.get(selectors.publishDate).should('exist');
+          cy.exist(selectors.publishDate);
 
           // 4. Verify reading duration exists
-          cy.get(selectors.readingDuration).should('exist');
+          cy.exist(selectors.readingDuration);
 
           // 5. Verify share options for Facebook, Twitter, and LinkedIn, and clicking redirects correctly
-          cy.get(selectors.shareContainer).should('exist');
+          cy.exist(selectors.shareContainer);
 
           // 6. Verify hero banner exists with summary text and picture
-          cy.get(selectors.heroBanner).should('exist');
+          cy.exist(selectors.heroBanner);
           cy.get(selectors.heroBanner).within(() => {
             cy.get(selectors.heroBannerSummary, { timeout: 10000 })
               .should('be.visible')
@@ -106,10 +95,10 @@ describe('Singapore Page Article Country', () => {
           });
 
           // 7. Verify title exists
-          cy.get(selectors.articleTitle).should('exist');
+          cy.exist(selectors.articleTitle);
 
           // 8. Verify text exists
-          cy.get(selectors.articleText).should('exist');
+          cy.exist(selectors.articleText);
 
           // 9. Verify image exists without being broken
           cy.get(selectors.teaserImage).should('be.visible').and(($img) => {
@@ -120,14 +109,14 @@ describe('Singapore Page Article Country', () => {
           cy.get(selectors.video).should('be.visible').click();
 
           // 11. Verify accordion exists and clicking links redirects correctly
-          cy.get(selectors.accordionItem).should('exist');
+          cy.exist(selectors.accordionItem);
           cy.get(selectors.accordionLink).should('not.be.visible');
           cy.get(selectors.accordionLink)
             .should('have.attr', 'href')
             .and('include', 'https://globalpeoservices.com/top-15-countries-by-gdp-in-2022/');
 
           // 12. Verify embedded component exists with configured YouTube video
-          cy.get(selectors.embeddedComponent).should('exist');
+          cy.exist(selectors.embeddedComponent);
 
           if (viewport !== 'iphone-6') {
             // 13. Verify article panel exists with title, image, description, and button redirects correctly
@@ -141,8 +130,8 @@ describe('Singapore Page Article Country', () => {
           }
 
           // 14. Verify quote exists with text
-          cy.get(selectors.quoteComponent).should('exist');
-          cy.get(selectors.quoteText).should('exist');
+          cy.exist(selectors.quoteComponent);
+          cy.exist(selectors.quoteText);
 
           // 15. Verify listicle item exists with text content and image
           cy.get(selectors.listicleRow).should('be.visible');
@@ -172,31 +161,31 @@ describe('Singapore Page Article Country', () => {
           });
 
           // 19. Verify the related posts section exists and shows only 3 articles
-          cy.get(selectors.relatedPosts).should('exist');
+          cy.exist(selectors.relatedPosts);
           cy.get(selectors.relatedArticle).should('have.length.gte', 3);
 
           if (viewport !== 'iphone-6') {
             // 20. Verify the about author sidebar exists with image, name, and description
-            cy.get(selectors.authorBanner).should('exist');
-            cy.get(selectors.authorImage).should('exist');
-            cy.get(selectors.authorName).should('exist');
-            cy.get(selectors.authorDescription).should('exist');
+            cy.exist(selectors.authorBanner);
+            cy.exist(selectors.authorImage);
+            cy.exist(selectors.authorName);
+            cy.exist(selectors.authorDescription);
           }
 
           if (viewport === 'iphone-6') {
             // 21. Verify the article footer exists with author details, share, publication date, and reading duration
-            cy.get(selectors.articleFooter).should('exist');
-            cy.get(selectors.articleFooterAuthorImage).should('exist');
-            cy.get(selectors.articleFooterAuthorName).should('exist');
-            cy.get(selectors.articleFooterShare).should('exist');
+            cy.exist(selectors.articleFooter);
+            cy.exist(selectors.articleFooterAuthorImage);
+            cy.exist(selectors.articleFooterAuthorName);
+            cy.exist(selectors.articleFooterShare);
           }
 
           // 22. Verify header and footer exist
-          cy.get(selectors.header).should('exist');
-          cy.get(selectors.footer).should('exist');
+          cy.exist(selectors.header);
+          cy.exist(selectors.footer);
 
           // 26. Verify Service Point Locator exists
-          cy.get(selectors.servicePointLocator).should('exist');
+          cy.exist(selectors.servicePointLocator);
 
           // 27. Verify when hovering the breadcrumb it changes from black to red
           cy.get(selectors.breadcrumbList).invoke('css', 'color', 'red');
@@ -204,10 +193,10 @@ describe('Singapore Page Article Country', () => {
 
           if (viewport !== 'iphone-6') {
             // 28. Verify CTA Banner exists and the button is clickable, landing on the correct page
-            cy.get(selectors.ctaBanner).should('exist');
+            cy.exist(selectors.ctaBanner);
             cy.get(selectors.ctaBannerButton)
               .click({ force: true });
-            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-sg/newsletter-sign-up`);
+            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-global/newsletter-sign-up`);
           }
         });
       });

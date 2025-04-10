@@ -39,38 +39,34 @@ describe('Global DHL Landing Page - Two Column', () => {
     viewports.forEach((viewport) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
-          if (typeof viewport === 'string') {
-            cy.viewport(viewport);
-          } else {
-            cy.viewport(viewport[0], viewport[1]);
-          }
+          cy.handleViewport(viewport, vIndex);
         });
 
         it('All test case', function () {
           // 1. Verify hero banner exists with image
-          cy.get(selectors.heroBanner).should('exist');
+          cy.exist(selectors.heroBanner);
 
           // 2. Verify text exists
-          cy.get(selectors.textContent).should('exist');
+          cy.exist(selectors.textContent);
 
           // 3. Verify landing page point exists with title, icon, and content
-          cy.get(selectors.landingPoint).should('exist');
+          cy.exist(selectors.landingPoint);
 
           // 4. Verify marketo form exists
-          cy.get(selectors.marketoFormContainer).should('exist');
+          cy.exist(selectors.marketoFormContainer);
 
            // 5. Verify if all fields are present
-          cy.get(selectors.lblIsBusiness).should('exist');
-          cy.get(selectors.firstName).should('exist');
-          cy.get(selectors.lastName).should('exist');
-          cy.get(selectors.email).should('exist');
-          cy.get(selectors.suspectAddress).should('exist');
-          cy.get(selectors.suspectPostalCode).should('exist');
-          cy.get(selectors.suspectCity).should('exist');
-          cy.get(selectors.suspectCountry).should('exist');
-          cy.get(selectors.phone).should('exist');
-          cy.get(selectors.shippingFrequency).should('exist');
-          cy.get(selectors.submitButton).should('exist');
+          cy.exist(selectors.lblIsBusiness);
+          cy.exist(selectors.firstName);
+          cy.exist(selectors.lastName);
+          cy.exist(selectors.email);
+          cy.exist(selectors.suspectAddress);
+          cy.exist(selectors.suspectPostalCode);
+          cy.exist(selectors.suspectCity);
+          cy.exist(selectors.suspectCountry);
+          cy.exist(selectors.phone);
+          cy.exist(selectors.shippingFrequency);
+          cy.exist(selectors.submitButton);
 
           // 6. Verify the form submits successfully when all fields are filled out correctly
           cy.intercept('POST', '**/dhl-landing-two-column-page.form.html').as('formSubmit');
@@ -88,8 +84,8 @@ describe('Global DHL Landing Page - Two Column', () => {
           cy.url().should('include', 'thanks');
 
           // 7. Verify header and footer exist
-//          cy.get(selectors.header).should('exist'); // Uncomment after release.
-          cy.get(selectors.footer).should('exist');
+          cy.exist(selectors.header);
+          cy.exist(selectors.footer);
         });
       });
     });

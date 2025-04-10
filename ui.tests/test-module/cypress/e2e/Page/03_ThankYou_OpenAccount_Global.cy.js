@@ -30,13 +30,7 @@ describe('Global Thank You Page Open An Account', () => {
     viewports.forEach((viewport, vIndex) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
-          if (typeof viewport === 'string') {
-            cy.viewport(viewport);
-          } else {
-            cy.viewport(viewport[0], viewport[1]);
-          }
-
-          cy.log(`Running tests for viewport at index ${vIndex}: ${viewport}`);
+          cy.handleViewport(viewport, vIndex);
         });
 
         it('All test case', function () {
@@ -50,14 +44,14 @@ describe('Global Thank You Page Open An Account', () => {
             });
 
           // 3. Verify text consist with some text
-          cy.get(selectors.paragraph).should('exist');
+          cy.exist(selectors.paragraph);
 
           // 4. Verify header and footer are exist
-          cy.get(selectors.header).should('exist');
-          cy.get(selectors.footer).should('exist');
+          cy.exist(selectors.header);
+          cy.exist(selectors.footer);
 
           // 5. Verify follow us section is exist
-          cy.get(selectors.followUsSection).should('exist');
+          cy.exist(selectors.followUsSection);
 
           // 6. Verify all the social media icon is clickable (Facebook, Youtube, Instagram, LinkedIn, Twitter)
           cy.get(selectors.followUsFacebook).should('have.attr', 'href');

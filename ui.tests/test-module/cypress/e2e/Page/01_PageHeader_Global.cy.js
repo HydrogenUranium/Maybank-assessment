@@ -1,6 +1,6 @@
 describe('Global Page Header', () => {
   const pageUrls = [
-    `${Cypress.env('AEM_PUBLISH_URL')}/content/dhl/sg/en-sg.html`
+    `${Cypress.env('AEM_PUBLISH_URL')}/content/dhl/global/en-global.html`
   ];
 
   const selectors = {
@@ -14,7 +14,7 @@ describe('Global Page Header', () => {
     hamburgerMenu: '.header__hamburger',
     applyForBusinessHamburger: 'header .cmp-cta-banner-with-points__button',
     contactUsHamburger: ':nth-child(3) > ul > li > .navigation-item',
-    countrySwitcher: '.header__desktopCountry > .fi',
+    countrySwitcher: '.global-icon',
     countryList: '.header-countryList--open:first',
     countryOption: '.header-countryList--open .country-option',
     headerLinks: '.navigation-row__left > .navigation-item:not(.navigation-item_more-less)',
@@ -33,7 +33,7 @@ describe('Global Page Header', () => {
     viewports.forEach((viewport) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
-          cy.viewport(viewport);
+          cy.handleViewport(viewport, vIndex);
         });
 
         it('Test Case', () => {
@@ -48,20 +48,20 @@ describe('Global Page Header', () => {
           if (viewport === 'macbook-11') {
             // 3. Verify that all navigation links (Apply for Business, Contact Us) in the header are present and correctly redirect to their respective pages
             cy.get(selectors.applyForBusiness).should('be.visible').click({ force: true });
-            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-sg/ship-now`);
+            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-global/open-an-account`);
             cy.visit(pageUrl);
 
             cy.get(selectors.contactUs, { timeout: 2000 }).should('be.visible').click({ force: true });
-            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-sg/contact`);
+            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-global/ship-with-dhl/contact`);
           } else {
             // 4. Verify hamburger menu exists and all navigation links are present and redirect correctly
             cy.get(selectors.hamburgerMenu).click({ force: true });
             cy.get(selectors.applyForBusinessHamburger).click({ force: true });
-            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-sg/ship-now`);
+            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-global/open-an-account`);
             cy.visit(pageUrl);
 
             cy.get(selectors.contactUsHamburger, { timeout: 2000 }).click({ force: true });
-            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-sg/contact`);
+            cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-global/ship-with-dhl/contact`);
           }
 
           if (viewport === 'macbook-11') {
@@ -71,6 +71,7 @@ describe('Global Page Header', () => {
               cy.wrap($link).should('have.focus');
             });
           }
+
 
           //if (viewport !== 'iphone-6') {
             // 6. Verify country option changes content and URL
@@ -82,6 +83,7 @@ describe('Global Page Header', () => {
             // 7. Verify the language on the page changes appropriately based on country
             cy.get('.header__desktopCountry > .title').should('contain', '日本');
           //}
+
 
           // 8. Verify when hovering the cursor over each category, the color changes from black to red
           cy.get('.navigation-row__left').invoke('css', 'color', 'red');
