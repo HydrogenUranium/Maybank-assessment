@@ -24,7 +24,7 @@ Include conf.d/variables/custom.vars
 		# Add X-Vhost header to help in troubleshooting
 		SetEnvIfNoCase Host ^(.+)$ CUSTOM_HOST=$1
 		Header always add X-Vhost "publish-combined-%{CUSTOM_HOST}e"
-        <LocationMatch ".*zh-cn.*">
+        <LocationMatch "/content/dhl/cn/zh-cn.*">
             Header set Speculation-Rules "\"/discover/content/dam/speculation-rules/speculation-rules-discover-zh-cn.specrules\""
         </LocationMatch>
 
