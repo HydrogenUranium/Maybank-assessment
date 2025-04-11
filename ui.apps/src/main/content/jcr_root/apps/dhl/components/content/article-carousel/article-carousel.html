@@ -27,7 +27,7 @@
          aria-live="${carousel.autoplay ? 'off' : 'polite'}">
       <sly data-sly-list.item="${items}">
           <sly data-sly-use.carouselItemValidator="${'com.dhl.discover.core.models.CarouselItemValidator' @ resource=item.resource}"></sly>
-        <div data-sly-test="${wcmmode.edit || carouselItemValidator.valid}"
+        <div data-sly-test="${wcmmode.edit || carouselItemValidator.valid }"
              data-sly-resource="${item.resource @ decorationTagName='div'}"
              id="${item.id}-tabpanel"
              class="cmp-carousel__item${item.name == carousel.activeItem ? ' cmp-carousel__item--active' : ''}"
@@ -47,7 +47,7 @@
       <sly data-sly-list.item="${items}">
           <sly data-sly-set.nodePath="${item.resource.linkURL}"></sly>
           <sly data-sly-use.carouselItemValidator="${'com.dhl.discover.core.models.CarouselItemValidator' @ resource=item.resource}"></sly>
-        <li data-sly-test="${wcmmode.edit || carouselItemValidator.valid}"
+        <li data-sly-test="${wcmmode.edit || carouselItemValidator.valid }"
             id="${item.id}-tab"
             class="cmp-carousel__indicator${item.name == carousel.activeItem ? ' cmp-carousel__indicator--active' : ''}"
             role="tab"
