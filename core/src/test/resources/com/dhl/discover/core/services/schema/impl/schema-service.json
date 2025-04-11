@@ -1,6 +1,4 @@
 {
-  "jcr:root": {
-    "jcr:primaryType": "cq:Page",
     "jcr:content": {
       "jcr:primaryType": "cq:PageContent",
       "cq:template": "/conf/dhl/settings/wcm/templates/home-page",
@@ -18,7 +16,31 @@
             "editable": false
           }
         }
+      },
+      "category": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "jcr:title": "bratchun-test",
+          "cq:template": "/libs/launches/templates/outofscope",
+          "sling:resourceType": "launches/components/outofscope"
+        },
+        "article": {
+          "jcr:primaryType": "cq:Page",
+          "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:title": "ARTICLE PAGE",
+            "cq:template": "/conf/dhl/settings/wcm/templates/article-with-new-ux-design",
+            "sling:resourceType": "dhl/components/pages/editable-article",
+            "cq:tags": [
+              "dhl-article-external:default/dhl_internationalshipping",
+              "dhl-article-external:default/e-commerce_advice",
+              "dhl-article-external:default/business_advice",
+              "dhl-article-internal:hidden",
+              "dhl-author-highlights:recommended"
+            ]
+          }
+        }
       }
     }
-  }
 }
