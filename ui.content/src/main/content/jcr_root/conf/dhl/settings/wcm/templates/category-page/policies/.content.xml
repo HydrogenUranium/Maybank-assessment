@@ -1046,6 +1046,12 @@
                         </responsivegrid_bottom>
                     </responsivegrid>
                 </category_container>
+                <breadcrumb-responsivegrid jcr:primaryType="nt:unstructured">
+                    <breadcrumb-container
+                            cq:policy="dhl/components/content/container/breadcrumb_wrapper_policy"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/core/components/policies/mapping"/>
+                </breadcrumb-responsivegrid>
             </main>
             <footer
                 cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment_footer"
