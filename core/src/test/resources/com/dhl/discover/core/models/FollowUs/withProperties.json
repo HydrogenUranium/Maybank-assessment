@@ -1,0 +1,63 @@
+{
+  "home": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:content": {
+      "footer-socialLinksLabel": "Social",
+      "multifields": {
+        "footer-companyLinks": {
+          "jcr:primaryType": "nt:unstructured",
+          "item0": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "About us",
+            "linkPath": "/content/dhl/about-us"
+          },
+          "item1": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "Press",
+            "linkPath": "#"
+          },
+          "item2": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkName": "Contact",
+            "linkPath": "#"
+          }
+        },
+        "footer-socialLinks": {
+          "jcr:primaryType": "nt:unstructured",
+          "item0": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-facebook.svg",
+            "linkName": "Facebook",
+            "linkPath": "https://www.facebook.com/"
+          },
+          "item1": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-twitter.svg",
+            "linkName": "Twitter",
+            "linkPath": "#"
+          },
+          "item2": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkIcon": "/content/dam/dhl-discover/common/icons/icon-sc-linkedIn.svg",
+            "linkName": "LinkedIn",
+            "linkPath": "#"
+          }
+        }
+      }
+    },
+    "small-business-advice": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "sling:resourceType": "dhl/components/pages/editable-category-page"
+      },
+      "article": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "cq:template": "/conf/dhl/settings/wcm/templates/article"
+        }
+      }
+    }
+  }
+}
