@@ -1,8 +1,8 @@
-<sly data-sly-use.footerV2="com.dhl.discover.core.models.FooterV2Model"/>
+<sly data-sly-use.footer="com.dhl.discover.core.models.Footer"/>
 
-<div class="followUs__title">${footerV2.socialLinksLabel}</div>
+<div class="followUs__title">${footer.socialLinksLabel}</div>
 <div class="followUs__items">
-    <a class="followUs__item" data-sly-repeat="${footerV2.socialLinks}" href="${item.linkPath}">
+    <a class="followUs__item" data-sly-repeat="${footer.socialLinks}" href="${item.linkPath}">
         <img class="logo__image"
              src="${item.linkIcon}"
              title="${item.linkName}"

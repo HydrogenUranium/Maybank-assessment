@@ -132,3 +132,19 @@ Cypress.Commands.add('waitUntil', function (innerFunction, options = {}) {
 
     return callFunction()
 })
+
+Cypress.Commands.add('acceptCookies', () => {
+  const onetrustConsentSdk = '#onetrust-consent-sdk';
+  const onetrustAcceptButton = 'button#onetrust-accept-btn-handler';
+
+  cy.get('body', { timeout: 2000 }).then(($body) => {
+    cy.get(onetrustConsentSdk, { timeout: 5000 }).then(($onetrust) => {
+      if ($onetrust.find(onetrustAcceptButton, { timeout: 5000 }).length > 0) {
+          cy.get(onetrustAcceptButton)
+            .contains('Accept All')
+            .should('be.visible')
+            .click();
+      }
+    });
+  });
+});

@@ -44,7 +44,7 @@
             </main>
             <footer
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="dhl/components/content/footerV2"/>
+                sling:resourceType="dhl/components/content/footer"/>
         </root>
         <cq:responsive jcr:primaryType="nt:unstructured">
             <breakpoints jcr:primaryType="nt:unstructured">

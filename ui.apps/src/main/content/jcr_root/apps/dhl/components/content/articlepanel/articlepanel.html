@@ -25,8 +25,8 @@
 			</div>
 			<div class="col-12 col-md-6">
 				<div class="nextSteps__text">
-					<h2 class="nextSteps__title  d-none d-md-inline" data-sly-test="${properties.guidance != null && properties.guidance.length > 0}">${properties.guidance}</h2>
-					<h3 class="nextSteps__articleTitle">${properties.title}</h3>
+					<h2 class="nextSteps__title  d-none d-md-inline" data-sly-element="${properties.guidanceType}" data-sly-test="${properties.guidance != null && properties.guidance.length > 0}">${properties.guidance}</h2>
+					<h3 class="nextSteps__articleTitle" data-sly-element="${properties.titleType}">${properties.title}</h3>
 					<p class="nextSteps__copy">${properties.brief}</p>
 					<a href="${properties.ctaurl}" class="dhl-btn dhl-btn--primary">${properties.ctatitle}</a>
 				</div>
