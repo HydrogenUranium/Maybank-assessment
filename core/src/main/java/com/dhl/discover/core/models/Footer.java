@@ -44,6 +44,9 @@ public class Footer {
     @ValueMapValue
     private String socialLinksLabel;
 
+    @ValueMapValue
+    private String sectionTitle;
+
     @ChildResource
     private List<LinkModel> companyLinks;
 

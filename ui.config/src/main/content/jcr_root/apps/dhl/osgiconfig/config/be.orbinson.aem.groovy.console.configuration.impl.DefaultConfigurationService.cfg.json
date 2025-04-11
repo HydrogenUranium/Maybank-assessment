@@ -1,8 +1,10 @@
 {
   "allowedGroups":[
-    "aecu_execute"
+    "groovy-console-administrators",
+    "administrators"
   ],
   "allowedScheduledJobsGroups":[
-    "aecu_execute"
+    "groovy-console-administrators",
+    "administrators"
   ]
 }
