@@ -82,6 +82,7 @@ public class ArticleTeaserModel {
     @Getter
     private String titleFromLinkedPage;
 
+    private static final String DEFAULT_PAGE_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
     @PostConstruct
     protected void init() {
         var article = pageUtilService.getArticle(linkURL, resourceResolver);
@@ -94,7 +95,8 @@ public class ArticleTeaserModel {
                         .map(link -> pageUtilService.getPage(link, resourceResolver))
                         .map(Page::getContentResource)
                         .map(res -> assetUtilService.getPageImagePath(res))
-                        .orElse(StringUtils.EMPTY);
+                        .filter(StringUtils::isNotBlank)
+                        .orElse(DEFAULT_PAGE_IMAGE);
 
                 altTextFromPageImage = !Boolean.parseBoolean(altValueFromPageImage)
                         ? alt

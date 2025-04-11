@@ -44,11 +44,6 @@
       0% 0% no-repeat padding-box;
   }
 
-  &.header__navigation--open {
-    @include respond(md) {
-      width: 39rem;
-    }
-  }
 
   @include respond(md) {
     padding: 0 3.5rem;
@@ -487,19 +482,24 @@
   .header__meganav {
     display: none;
     position: absolute;
+    right: -100%;
     top: 6.4rem;
-    left: 0;
     padding: 0;
-    width: 100%;
     max-height: calc(100dvh - 6.4rem);
     margin: 0;
     line-height: 1.4rem;
     overflow-y: auto;
     overflow-x: hidden;
+    transition: right 0.3s ease-in-out;
 
     .header__meganavNavigation {
       background: map-get($palette, true-white);
       padding: 3.1rem 3.6rem 3.6rem;
+
+      @include respond(md) {
+        width: 39rem;
+      }
+
 
       .header__meganavNav {
         margin: 0;

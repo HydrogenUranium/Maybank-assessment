@@ -9,16 +9,20 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/foundation/components/responsivegrid"
             layout="responsiveGrid">
-            <search
+            <main
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="dhl/components/content/search"
-                    title="Search Results"
-                    descriptionFormat="Browse search results for &lt;b&gt;{0}&lt;/b&gt; (Showing {1} of {2} results)"
-                    descriptionFormatNoResults="No results found for &lt;b&gt;{0}&lt;/b&gt;"
-                    popularSearchesTitle="Popular searches"
-                    sortByTitle="Sort By"
-                    latestSortOptionTitle="Latest"
-                    showMoreResultsButtonTitle="Show more results"/>
+                    sling:resourceType="dhl/components/content/page-container">
+                <search
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/content/search"
+                        title="Search Results"
+                        descriptionFormat="Browse search results for &lt;b&gt;{0}&lt;/b&gt; (Showing {1} of {2} results)"
+                        descriptionFormatNoResults="No results found for &lt;b&gt;{0}&lt;/b&gt;"
+                        popularSearchesTitle="Popular searches"
+                        sortByTitle="Sort By"
+                        latestSortOptionTitle="Latest"
+                        showMoreResultsButtonTitle="Show more results"/>
+            </main>
         </root>
     </jcr:content>
 </jcr:root>

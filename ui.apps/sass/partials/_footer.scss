@@ -1,4 +1,4 @@
-.footerV2-wrapper {
+.footer-wrapper {
   background: #CCCCCC 0% 0% no-repeat padding-box;
   margin: min(6rem,  30px + 2rem) auto 0;
 
@@ -157,10 +157,11 @@
 
         &__title {
           font-weight: bold;
-          padding-bottom: 1.5rem;
+          font-size: var(--font-size-md);
+          margin-bottom: 1.5rem;
 
           @include respond(xl) {
-            padding-bottom: 2.5rem;
+            margin-bottom: 2.5rem;
           }
         }
 

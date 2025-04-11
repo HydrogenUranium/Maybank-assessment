@@ -5,36 +5,19 @@ describe('Global Subscribe newsletter page', () => {
 
   const selectors = {
     marketoFormContainer: '.cmp-marketoForm__container',
-    title: '.columns-section__right-column__header-section > .aem-Grid > .title-v2 > .cmp-title-v2 > #title-v2-b4a322772c > .cmp-title-v2__text',
+    title: '.right-header-section .cmp-title-v2__text',
     emailField: '#Email',
     countryField: '#suspectCountry',
     formButton: '.mktoButton',
     emailErrorMessage: '#ValidMsgEmail'
   };
 
-  const acceptCookieConsent = () => {
-    cy.get('body', { timeout: 2000 }).then(($body) => {
-      cy.get('#onetrust-consent-sdk', { timeout: 5000 }).then(($onetrust) => {
-        if ($onetrust.find('button#onetrust-accept-btn-handler', { timeout: 5000 }).length > 0) {
-          cy.get('button#onetrust-accept-btn-handler')
-            .contains('Accept All')
-            .should('be.visible')
-            .click();
-        }
-      });
-    });
-  };
-
-  beforeEach(() => {
-    cy.on('uncaught:exception', () => false);
-  });
-
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
       // Log URL and visit page
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      acceptCookieConsent();
+      cy.acceptCookies();
     });
 
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];

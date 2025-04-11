@@ -6,6 +6,6 @@
         cq:lastModifiedBy="admin"
         cq:templateType="/conf/dhl/settings/wcm/template-types/home-page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="DHL Home Page (Editable)"
+        jcr:title="DHL Home Page"
         status="enabled"/>
 </jcr:root>

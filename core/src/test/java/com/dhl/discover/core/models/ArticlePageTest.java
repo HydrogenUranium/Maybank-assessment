@@ -163,7 +163,7 @@ class ArticlePageTest {
 		assertEquals("2023-10-11", article.getCreated());
 		assertEquals("article", article.getIcon());
 		assertEquals("CATEGORY PAGE", article.getGrouptitle());
-		assertEquals("/content/dhl/global/en-global/category-page", article.getGrouppath());
+		assertEquals("/content/dhl/global/en-global/category-page", article.getGroupPath());
 		assertEquals("ARTICLE PAGE", article.getTitle());
 		assertEquals("ARTICLE PAGE", article.getNavTitle());
 		assertEquals("ARTICLE PAGE", article.getPageTitle());

@@ -44,7 +44,11 @@
 
 .page-body.article-counter {
   .cmp-breadcrumb {
-    display: block;
+    display: none;
+
+    @include respond(xl) {
+      display: block;
+    }
 
     .cmp-breadcrumb__item {
       &:not(:nth-of-type(-n+2)):not(:nth-last-of-type(1)) {

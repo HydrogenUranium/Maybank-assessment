@@ -167,4 +167,31 @@ class ArticleGridV2Test {
         assertEquals("/content/home/e-commerce-advice/article.html", articleJson.get("path").asText());
         assertEquals("/discover/discover/content/dam/image.jpg", articleJson.get("pageImage").asText());
     }
+
+    @Test
+    void test_HasArticles() {
+        when(articleService.getAllArticles(any(Page.class))).thenAnswer(invocationOnMock -> {
+            Page rootPage = invocationOnMock.getArgument(0, Page.class);
+            String path = rootPage.getPath();
+            if (path.equals("/content/home")) {
+                return List.of(
+                        getArticle("/content/home/e-commerce-advice/article"),
+                        getArticle("/content/home/b2b-advice/article")
+                );
+            }
+            List<Article> articles = new ArrayList<>();
+            rootPage.listChildren().forEachRemaining(page -> articles.add(getArticle(page.getPath())));
+            return articles;
+        });
+        when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/discover" + invocationOnMock.getArgument(0, String.class) : "";
+        });
+
+        initRequest("/content/home", "/content/home");
+        ArticleGridV2 articleGridV2 = request.adaptTo(ArticleGridV2.class);
+        assertNotNull(articleGridV2);
+
+        assertTrue(articleGridV2.hasArticles());
+    }
 }

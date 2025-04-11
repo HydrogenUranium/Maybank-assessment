@@ -6,6 +6,6 @@
         cq:lastModifiedBy="admin"
         cq:templateType="/conf/dhl/settings/wcm/template-types/animated-page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Animated Page (editable)"
+        jcr:title="Animated Page "
         status="enabled"/>
 </jcr:root>

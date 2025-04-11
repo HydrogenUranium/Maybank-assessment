@@ -854,8 +854,8 @@
                         allowedHeadingElements="[h1,h2,h3,h4]"
                         descriptionHidden="true"
                         pretitleHidden="true"
-                        showTitleType="false"
-                        titleType="h3">
+                        showTitleType="true"
+                        titleType="h2">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
@@ -2433,12 +2433,14 @@
                 </experiencefragment>
                 <accordion-v2 jcr:primaryType="nt:unstructured">
                     <policy_accordion-v2
-                            jcr:lastModified="{Date}2024-11-25T14:37:02.684+02:00"
+                            jcr:lastModified="{Date}2025-03-29T00:42:45.485+08:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Accordion-v2 Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            enableAdvancedTrackedInteractions="false">
+                            allowedHeadingElements="[h2,h3,h4]"
+                            enableAdvancedTrackedInteractions="false"
+                            headingElement="h2">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
@@ -4788,6 +4790,17 @@
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_main>
+                    <policy_animated-main
+                            cq:styleDefaultElement="main"
+                            jcr:lastModified="{Date}2025-04-08T11:44:20.167+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Animated Pages Main Container"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:DHL Animated Components,group:DHL Components]"
+                            layoutDisabled="false">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_animated-main>
                 </page-container>
             </content>
         </components>

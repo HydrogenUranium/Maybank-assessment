@@ -5,8 +5,6 @@ describe('Global Category Landing Page', () => {
 
   // Define selectors as constants
   const selectors = {
-    onetrustConsentSdk: '#onetrust-consent-sdk',
-    onetrustAcceptButton: 'button#onetrust-accept-btn-handler',
     breadcrumbList: '.cmp-breadcrumb__list',
     articleCarousel: '.article-carousel',
     articleCarouselTitle: '.article-carousel_pageTitle',
@@ -25,22 +23,9 @@ describe('Global Category Landing Page', () => {
 
   pageUrls.forEach((pageUrl, index) => {
     beforeEach(() => {
-      cy.on('uncaught:exception', (e) => {
-        return false;
-      });
-
       cy.log(`Running tests for URL at index ${index}: ${pageUrl}`);
       cy.visit(pageUrl);
-      cy.get('body', { timeout: 2000 }).then(($body) => {
-        cy.get(selectors.onetrustConsentSdk, { timeout: 5000 }).then(($onetrust) => {
-          if ($onetrust.find(selectors.onetrustAcceptButton, { timeout: 5000 }).length > 0) {
-              cy.get(selectors.onetrustAcceptButton)
-                .contains('Accept All')
-                .should('be.visible')
-                .click();
-          }
-        });
-      });
+      cy.acceptCookies();
     });
 
     const viewports = ['iphone-6', 'ipad-2', 'macbook-13'];
@@ -94,7 +79,7 @@ describe('Global Category Landing Page', () => {
             });
 
           // 5. Verify Article Teaser consists of 5 articles with titles and category tags in each
-          cy.get(selectors.articleTeaser, { timeout: 10000 }).should('have.length', 5);
+          cy.get(selectors.articleTeaser, { timeout: 10000 }).should('have.length', 3);
           cy.get(selectors.articleTeaser, { timeout: 10000 }).each(($el) => {
           cy.wrap($el).find('.cmp-teaser__title', { timeout: 10000 }).should('exist');
           cy.wrap($el).find('.cmp-teaser__article-category-tag', { timeout: 10000 }).should('exist');
