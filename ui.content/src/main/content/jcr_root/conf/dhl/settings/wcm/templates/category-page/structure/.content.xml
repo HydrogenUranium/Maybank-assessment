@@ -23,7 +23,8 @@
                         layout="responsiveGrid">
                     <breadcrumb-container
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="dhl/components/content/container">
+                            sling:resourceType="dhl/components/content/container"
+                            cq:styleIds="[1743998604962]">
                         <breadcrumb
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="dhl/components/content/breadcrumb"
