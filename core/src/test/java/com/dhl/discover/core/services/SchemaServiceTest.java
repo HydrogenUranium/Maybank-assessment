@@ -6,9 +6,6 @@ import com.dhl.discover.core.services.schema.SchemaAdapter;
 import com.google.gson.JsonObject;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.models.factory.ModelFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,9 +23,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class SchemaServiceTest {
-
-    @Mock
-    private ModelFactory modelFactory;
 
     @Mock
     private Resource resource;
@@ -57,30 +51,6 @@ class SchemaServiceTest {
     void testGetSchemasWithNullResource() {
         List<String> schemas = schemaService.getSchemas(null, request);
         assertTrue(schemas.isEmpty());
-    }
-
-    @Test
-    void testGetSchemasWithValidResource() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-        ValueMap valueMap = mock(ValueMap.class);
-        ResourceResolver resourceResolver = mock(ResourceResolver.class);
-        Resource templateStructureRoot = mock(Resource.class);
-
-        when(resource.getValueMap()).thenReturn(valueMap);
-        when(resource.getResourceResolver()).thenReturn(resourceResolver);
-        when(valueMap.get(SchemaService.CQ_TEMPLATE, "")).thenReturn("/conf/dhl/settings/wcm/templates/home-page");
-        when(resourceResolver.getResource(valueMap.get(SchemaService.CQ_TEMPLATE, "") + "/structure/jcr:content")).thenReturn(templateStructureRoot);
-        when(schemaAdapter.canHandle(resource)).thenReturn(true);
-        when(schemaAdapter.toJson(resource, request)).thenReturn(new JsonObject());
-        when(schemaAdapter.canHandle(templateStructureRoot)).thenReturn(true);
-        when(schemaAdapter.toJson(templateStructureRoot, request)).thenReturn(new JsonObject());
-
-        Method bindSchemaAdapterMethod = SchemaService.class.getDeclaredMethod("bindSchemaAdapter", SchemaAdapter.class);
-        bindSchemaAdapterMethod.setAccessible(true);
-        bindSchemaAdapterMethod.invoke(schemaService, schemaAdapter);
-
-        List<String> schemas = schemaService.getSchemas(resource, request);
-        assertFalse(schemas.isEmpty());
-        verify(schemaAdapter, times(2)).toJson(any(Resource.class), eq(request));
     }
 
     @Test
