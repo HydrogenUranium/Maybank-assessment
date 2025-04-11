@@ -36,7 +36,7 @@ describe('Global DHL Landing Page - Two Column', () => {
 
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];
 
-    viewports.forEach((viewport) => {
+    viewports.forEach((viewport, vIndex) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
           cy.handleViewport(viewport, vIndex);
