@@ -18,14 +18,14 @@ import java.util.Map;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 @Getter
 public class AnalyticsConfig {
-    private static final String ATTRIBUTES = "attributes";
-    private static final String NAME = "name";
-    private static final String TYPE = "type";
-    private static final String INTERACTION = "interaction";
-    private static final String POSITION = "position";
-    private static final String DETAIL = "detail";
-    private static final String CONTENT = "content";
-    private static final String CONVERSION = "conversion";
+    private static final String ATTRIBUTES_PROPERTY = "attributes";
+    private static final String NAME_PROPERTY = "name";
+    private static final String TYPE_PROPERTY = "type";
+    private static final String INTERACTION_PROPERTY = "interaction";
+    private static final String POSITION_PROPERTY = "position";
+    private static final String DETAIL_PROPERTY = "detail";
+    private static final String CONTENT_TYPE = "content";
+    private static final String CONVERSION_TYPE = "conversion";
 
     @ValueMapValue
     private String trackedInteractions;
@@ -56,7 +56,7 @@ public class AnalyticsConfig {
         if (customAttributeResources != null) {
             customAttributeResources.forEach(resource -> {
                 var props = resource.getValueMap();
-                var key = props.get(NAME, "");
+                var key = props.get(NAME_PROPERTY, "");
                 var value = props.get("value", "");
                 customAttributes.put(key, value);
             });
@@ -67,20 +67,20 @@ public class AnalyticsConfig {
         var jsonObject = new JsonObject();
         var attributesJson = new JsonObject();
 
-        jsonObject.addProperty(NAME, name);
-        jsonObject.addProperty(TYPE, type);
+        jsonObject.addProperty(NAME_PROPERTY, name);
+        jsonObject.addProperty(TYPE_PROPERTY, type);
 
         if (interaction != null) {
-            jsonObject.addProperty(INTERACTION, interaction);
+            jsonObject.addProperty(INTERACTION_PROPERTY, interaction);
         }
         if (position != null) {
-            jsonObject.addProperty(POSITION, position);
+            jsonObject.addProperty(POSITION_PROPERTY, position);
         }
         if (detail != null) {
-            jsonObject.addProperty(DETAIL, detail);
+            jsonObject.addProperty(DETAIL_PROPERTY, detail);
         }
         if (attributes != null && !attributes.isEmpty()) {
-            jsonObject.add(ATTRIBUTES, attributesJson);
+            jsonObject.add(ATTRIBUTES_PROPERTY, attributesJson);
             attributes.forEach(attributesJson::addProperty);
         }
 
@@ -92,10 +92,10 @@ public class AnalyticsConfig {
         json.addProperty("trackedInteractions", trackedInteractions);
         json.addProperty("interactionType", "dhl_utf_" + interactionType + "Interaction");
 
-        if (CONVERSION.equals(interactionType)) {
-            json.add(CONVERSION, createJsonObject(name, "Lead", null, null, detail, null));
+        if (CONVERSION_TYPE.equals(interactionType)) {
+            json.add(CONVERSION_TYPE, createJsonObject(name, "Lead", null, null, detail, null));
         }
-        json.add(CONTENT, createJsonObject(name, type, "Click", position, null, customAttributes));
+        json.add(CONTENT_TYPE, createJsonObject(name, type, "Click", position, null, customAttributes));
 
         return json.toString();
     }
