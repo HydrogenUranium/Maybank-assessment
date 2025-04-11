@@ -12,10 +12,8 @@
   }
 }
 
-.page-body.category {
-  .container {
-    @include respond(md) {
-      background: #F6F6F6 0% 0% no-repeat padding-box;
-    }
+.bg-breadcrumb-wrapper-tablet-desktop {
+  @include respond(md) {
+    background: #F6F6F6 0% 0% no-repeat padding-box;
   }
 }
