@@ -31,7 +31,7 @@ public class FollowUs {
         return getInnerLinks(socialLinks);
     }
 
-    private List<LinkModel> getInnerLinks(Resource parentResource) {
+    List<LinkModel> getInnerLinks(Resource parentResource) {
         List<LinkModel> links = new LinkedList<>();
         if (parentResource != null) {
             parentResource.listChildren().forEachRemaining(r -> links.add(r.adaptTo(LinkModel.class)));
