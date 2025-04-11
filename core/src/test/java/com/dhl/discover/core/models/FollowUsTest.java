@@ -31,7 +31,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class FollowUsTest {
 
-    private final static String COMPONENT_LOCATION = "/content/home/small-business-advice/article/jcr:content";
+    private static final String COMPONENT_LOCATION = "/content/home/small-business-advice/article/jcr:content";
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
@@ -52,7 +52,7 @@ class FollowUsTest {
     private HomePropertyInjector homePropertyInjector;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         context.registerService(AssetUtilService.class, assetUtils);
         context.registerService(Injector.class, homePropertyInjector);
         context.registerService(PathUtilService.class, pathUtilService);
