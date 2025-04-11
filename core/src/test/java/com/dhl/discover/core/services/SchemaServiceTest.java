@@ -21,6 +21,9 @@ import java.util.function.Predicate;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Test class for SchemaService.
+ */
 @ExtendWith(MockitoExtension.class)
 class SchemaServiceTest {
 
@@ -39,6 +42,12 @@ class SchemaServiceTest {
     @InjectMocks
     private SchemaService schemaService;
 
+    /**
+     *
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     * @throws NoSuchMethodException
+     */
     @BeforeEach
     void setUp() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         when(config.breadcrumbTemplatePath()).thenReturn("/structure/jcr:content");
