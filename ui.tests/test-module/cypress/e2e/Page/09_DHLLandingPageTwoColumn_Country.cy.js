@@ -1,3 +1,5 @@
+import { marketo } from "../../support/selectors";
+
 describe('Singapore DHL Landing Page - Two Column', () => {
   const pageUrls = [
     Cypress.env('AEM_PUBLISH_URL') + '/content/dhl/sg/en-sg/automation-testing/dhl-landing-two-column-page.html'
@@ -7,19 +9,7 @@ describe('Singapore DHL Landing Page - Two Column', () => {
   const selectors = {
     heroBanner: '.cmp-hero-banner__asset',
     textContent: '.cmp-text',
-    marketoFormContainer: '#mktoForm_1795',
     fieldLabel: ':nth-child(2) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel',
-    suspectCompanyname: '#suspectCompanyname',
-    firstName: '#FirstName',
-    lastName: '#LastName',
-    email: '#Email',
-    suspectAddress: '#suspectAddress',
-    suspectPostalCode: '#suspectPostalCode',
-    suspectCity: '#suspectCity',
-    suspectCountry: '#suspectCountry',
-    phone: '#Phone',
-    shippingFrequency: '#shippingfrequency',
-    submitButton: '.mktoButton',
     header: '.header-wrapper',
     footer: '.footer-container'
   };
@@ -50,32 +40,32 @@ describe('Singapore DHL Landing Page - Two Column', () => {
 
           // 5. Verify if all fields are present
           cy.exist(selectors.fieldLabel);
-          cy.exist(selectors.suspectCompanyname);
-          cy.exist(selectors.firstName);
-          cy.exist(selectors.lastName);
-          cy.exist(selectors.email);
-          cy.exist(selectors.suspectAddress);
-          cy.exist(selectors.suspectPostalCode);
-          cy.exist(selectors.suspectCity);
-          cy.exist(selectors.suspectCountry);
-          cy.exist(selectors.phone);
-          cy.exist(selectors.shippingFrequency);
-          cy.exist(selectors.submitButton);
+          cy.exist(marketo.suspectCompanyname);
+          cy.exist(marketo.firstName);
+          cy.exist(marketo.lastName);
+          cy.exist(marketo.email);
+          cy.exist(marketo.suspectAddress);
+          cy.exist(marketo.suspectPostalCode);
+          cy.exist(marketo.suspectCity);
+          cy.exist(marketo.suspectCountry);
+          cy.exist(marketo.phone);
+          cy.exist(marketo.shippingFrequency);
+          cy.exist(marketo.submit);
 
           // 6. Verify the form submits successfully when all fields are filled out correctly
           const testText = 'THIS IS FOR TEST PLEASE IGNORE';
           cy.get(selectors.fieldLabel).click();
-          cy.get(selectors.suspectCompanyname).type(testText);
-          cy.get(selectors.firstName).type(testText);
-          cy.get(selectors.lastName).type(testText);
-          cy.get(selectors.email).type('test@gmail.com');
-          cy.get(selectors.suspectAddress).type(testText);
-          cy.get(selectors.suspectPostalCode).type(testText);
-          cy.get(selectors.suspectCity).type(testText);
-          cy.get(selectors.suspectCountry).select('Albania');
-          cy.get(selectors.phone).type('111111');
-          cy.get(selectors.shippingFrequency).select('One-off');
-          cy.exist(selectors.submitButton);
+          cy.get(marketo.suspectCompanyname).type(testText);
+          cy.get(marketo.firstName).type(testText);
+          cy.get(marketo.lastName).type(testText);
+          cy.get(marketo.email).type('test@gmail.com');
+          cy.get(marketo.suspectAddress).type(testText);
+          cy.get(marketo.suspectPostalCode).type(testText);
+          cy.get(marketo.suspectCity).type(testText);
+          cy.get(marketo.suspectCountry).select('Albania');
+          cy.get(marketo.phone).type('111111');
+          cy.get(marketo.shippingFrequency).select('One-off');
+          cy.exist(marketo.submit);
 
           // 7. Verify header and footer exist
           cy.exist(selectors.header);
