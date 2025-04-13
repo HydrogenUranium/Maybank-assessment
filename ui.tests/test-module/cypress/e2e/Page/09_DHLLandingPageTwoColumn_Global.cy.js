@@ -12,7 +12,6 @@ describe('Global DHL Landing Page - Two Column', () => {
     heroBanner: '.cmp-hero-banner__asset',
     textContent: '.cmp-text',
     landingPoint: '.landing-point',
-    marketoFormContainer: '.cmp-marketoForm__container',
     fieldLabel: ':nth-child(2) > .mktoFieldDescriptor > .mktoFieldWrap > .mktoLabel',
     header: '.header-wrapper',
     footer: '.footer-container'
@@ -43,7 +42,7 @@ describe('Global DHL Landing Page - Two Column', () => {
           cy.exist(selectors.landingPoint);
 
           // 4. Verify marketo form exists
-          cy.exist(selectors.marketoFormContainer);
+          cy.exist(marketo.formContainer);
 
            // 5. Verify if all fields are present
           cy.exist(marketo.lblIsBusiness);
