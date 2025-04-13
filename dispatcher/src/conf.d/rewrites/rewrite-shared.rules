@@ -22,7 +22,7 @@ RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/toke
 
 ### Remove trailing slash (if present) for head & get requests (https://jira.dhl.com/browse/DIS-168)
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)
-RewriteRule ^(.+)/$ $1 [L,R=301]
+RewriteRule ^(.+)/$ https://%{HTTP_HOST}$1 [L,R=301]
 
 ### 301 Rewrite all URLs ending in '.html' to remove the extension
 ### not valid for POST requests

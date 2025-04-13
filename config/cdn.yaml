@@ -1,0 +1,15 @@
+kind: "CDN"
+version: "1"
+metadata:
+  envTypes: [ "dev", "uat", "stage", "prod"]
+data:
+  responseTransformations:
+    rules:
+      - name: set-response-header-rule
+        when:
+         reqProperty: path
+         like: /content/dam/speculation-rules/*.specrules
+         actions:
+           - type: set
+             value: application/speculationrules+json
+             respHeader: content-type
