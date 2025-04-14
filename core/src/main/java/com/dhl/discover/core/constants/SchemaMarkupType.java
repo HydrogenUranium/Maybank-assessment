@@ -10,7 +10,9 @@ public enum SchemaMarkupType {
     IMAGE_OBJECT("ImageObject"),
     FAQ_PAGE("FAQPage"),
     QUESTION("Question"),
-    ANSWER("Answer");
+    ANSWER("Answer"),
+    BREADCRUMB_LIST("BreadcrumbList"),
+    LIST_ITEM("ListItem");
 
     private final String value;
 
