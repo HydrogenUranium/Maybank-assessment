@@ -151,6 +151,7 @@ class Header {
     const countryOptions = document.querySelector(this.sel.countryOptions);
     const countrySearch = document.querySelector(this.sel.countrySearch);
     const selectedCountry = document.querySelector(this.sel.selectedCountry);
+    const hamburgerMenu = document.querySelector(this.sel.toggle);
 
     const closeCountryList = () => {
       countryOptions.classList.remove('header-countryList--open');
@@ -163,6 +164,10 @@ class Header {
     };
 
     const openCountryList = () => {
+      //close the toggle menu if open
+      if (hamburgerMenu.classList.contains('header__navigation--open')) {
+        this.toggleMenu();
+      }
       countryOptions.classList.add('header-countryList--open');
       selectedCountry.setAttribute("aria-expanded", "true");
       countryOptions.setAttribute("aria-hidden", "false");
