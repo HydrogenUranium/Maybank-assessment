@@ -6,8 +6,6 @@ class Header {
       this.closeHamburgerMenuText = headerElement.getAttribute('data-close-hamburger-menu-text');
     }
 
-
-
     this.sel = {
       component: 'header',
       wrapper: '.header-wrapper',
