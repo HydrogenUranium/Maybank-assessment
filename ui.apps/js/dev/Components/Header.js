@@ -6,6 +6,8 @@ class Header {
       this.closeHamburgerMenuText = headerElement.getAttribute('data-close-hamburger-menu-text');
     }
 
+
+
     this.sel = {
       component: 'header',
       wrapper: '.header-wrapper',
@@ -33,6 +35,8 @@ class Header {
     this.showHideMoreLink = this.showHideMoreLink.bind(this);
     this.showSecondRowOfCategories = this.showSecondRowOfCategories.bind(this);
     this.hideSecondRowOfCategories = this.hideSecondRowOfCategories.bind(this);
+
+    this.closeMenuOnEsc = this.closeMenuOnEsc.bind(this);
   }
 
   init() {
@@ -125,12 +129,21 @@ class Header {
       this.disableAnchorLinks(true);
       navigationElement.setAttribute('aria-label', this.closeHamburgerMenuText);
       $(this.sel.menu).show().animate({right: '0'}, 100);
+      document.addEventListener('keyup', this.closeMenuOnEsc);
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
       this.disableAnchorLinks(false);
       navigationElement.setAttribute('aria-label', this.openHamburgerMenuText);
       $(this.sel.menu).animate({right: '-100%'}, 100).delay(200).hide(0);
+      document.removeEventListener('keyup', this.closeMenuOnEsc);
+    }
+  }
+
+  //add event listener, when esc key is pressed, close the menu
+  closeMenuOnEsc(e) {
+    if (e.key === 'Escape') {
+      this.toggleMenu()
     }
   }
 
