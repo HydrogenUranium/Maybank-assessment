@@ -35,6 +35,8 @@ class Header {
     this.hideSecondRowOfCategories = this.hideSecondRowOfCategories.bind(this);
 
     this.closeMenuOnEsc = this.closeMenuOnEsc.bind(this);
+    this.closeMenuOnClick = this.closeMenuOnClick.bind(this);
+    this.closeMenuOnResize = this.closeMenuOnResize.bind(this);
   }
 
   init() {
@@ -128,6 +130,8 @@ class Header {
       navigationElement.setAttribute('aria-label', this.closeHamburgerMenuText);
       $(this.sel.menu).show().animate({right: '0'}, 100);
       document.addEventListener('keyup', this.closeMenuOnEsc);
+      document.addEventListener('click', this.closeMenuOnClick);
+      window.addEventListener('resize', this.closeMenuOnResize);
     } else {
       this.bodyScrolling(true);
       $(this.sel.toggle).removeClass('header__navigation--open');
@@ -135,13 +139,29 @@ class Header {
       navigationElement.setAttribute('aria-label', this.openHamburgerMenuText);
       $(this.sel.menu).animate({right: '-100%'}, 100).delay(200).hide(0);
       document.removeEventListener('keyup', this.closeMenuOnEsc);
+      document.removeEventListener('click', this.closeMenuOnClick);
+      window.removeEventListener('resize', this.closeMenuOnResize);
     }
   }
 
-  //add event listener, when esc key is pressed, close the menu
+  //when esc key is pressed, close the menu
   closeMenuOnEsc(e) {
     if (e.key === 'Escape') {
       this.toggleMenu()
+    }
+  }
+
+  //when click outside the menu, close the menu
+  closeMenuOnClick(e) {
+    if (!e.target.closest(this.sel.toggle)) {
+      this.toggleMenu();
+    }
+  }
+
+  closeMenuOnResize(e) {
+    // When screen size is resize until hamburger menu is disappeared, close the menu
+    if (!$(this.sel.toggle).is(':visible')) {
+      this.toggleMenu();
     }
   }
 
@@ -175,10 +195,6 @@ class Header {
     };
 
     const openCountryList = () => {
-      //close the toggle menu if open
-      if (hamburgerMenu.classList.contains('header__navigation--open')) {
-        this.toggleMenu();
-      }
       countryOptions.classList.add('header-countryList--open');
       selectedCountry.setAttribute("aria-expanded", "true");
       countryOptions.setAttribute("aria-hidden", "false");
