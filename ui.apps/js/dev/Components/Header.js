@@ -182,7 +182,6 @@ class Header {
     const countryOptions = document.querySelector(this.sel.countryOptions);
     const countrySearch = document.querySelector(this.sel.countrySearch);
     const selectedCountry = document.querySelector(this.sel.selectedCountry);
-    const hamburgerMenu = document.querySelector(this.sel.toggle);
 
     const closeCountryList = () => {
       countryOptions.classList.remove('header-countryList--open');
