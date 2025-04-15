@@ -1,6 +1,8 @@
 <article data-sly-use.authorBanner="com.dhl.discover.core.models.ArticleAuthorBannerModel"
      data-sly-use.articlePage="com.dhl.discover.core.models.ArticlePage"
-     data-sly-test.articleAuthor="${articlePage.article.author}"
+     data-sly-test.author="${articlePage.article.author}"
+     data-sly-set.authorTitle="${articlePage.article.authortitle}"
+     data-sly-set.bio="${articlePage.article.authorBriefDescription}"
      class="article-author-banner_wrapper">
 
     <div class="article-author-banner_title">${authorBanner.title}</div>
@@ -10,15 +12,15 @@
         <img data-sly-test.authorimage="${articlePage.article.authorimage}"
              class="article-author-banner_author-image"
              src="${authorimage}"
-             alt="${articleAuthor}">
+             alt="${author}">
         <div class="article-author-banner_author-description">
-            <div class="article-author-banner_author-description__name">${articleAuthor}</div>
-            <div class="article-author-banner_author-description__title">${articlePage.article.authortitle}</div>
+            <div class="article-author-banner_author-description__name">${author}</div>
+            <div class="article-author-banner_author-description__title">${authorTitle}</div>
         </div>
     </div>
     <!--/* End */-->
 
-    <div data-sly-test="${authorBanner.brief}" class="article-author-banner_brief">${authorBanner.brief}</div>
+    <div data-sly-test="${bio}" class="article-author-banner_brief">${bio}</div>
 
     <div data-sly-test="${authorBanner.followLabel && authorBanner.followPath}" class="article-author-banner_follow">
         <a class="article-author-banner_follow__button" href="${authorBanner.followPath}">
