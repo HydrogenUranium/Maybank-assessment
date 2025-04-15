@@ -70,6 +70,9 @@ public class DhlPage {
 	private static final String DEFAULT_PAGE_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
 	private static final String DEFAULT_OG_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
 
+	@InjectHomeProperty
+	@Default(values = "")
+	private String brandSlug;
 
 	@PostConstruct
     protected void init() {
@@ -114,6 +117,9 @@ public class DhlPage {
 				? basePrefix.concat(customOgTagImage.trim())
 				: (HTTPS_PREFIX + akamaiHostname + DEFAULT_OG_IMAGE);
 
+		if (StringUtils.isNotBlank(brandSlug) && brandSlug.contains("DHL")) {
+			brandSlug = brandSlug.replace("DHL ", "");
+		}
 	}
 
 	private String getRobotTags(Page page) {
