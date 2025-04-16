@@ -33,13 +33,7 @@ describe('Global & Singapore Search Result Page', () => {
     viewports.forEach((viewport, vIndex) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
-          if (typeof viewport === 'string') {
-            cy.viewport(viewport);
-          } else {
-            cy.viewport(viewport[0], viewport[1]);
-          }
-
-          cy.log(`Running tests for viewport at index ${vIndex}: ${viewport}`);
+          cy.handleViewport(viewport, vIndex);
         });
 
         it('Test Case', function () {
@@ -56,7 +50,7 @@ describe('Global & Singapore Search Result Page', () => {
           cy.get(selectors.searchInput).clear();
           cy.get(selectors.searchInput).type('yhs');
           cy.get(selectors.searchInput).type('{enter}');
-          cy.get(selectors.noResultFound).should('exist');
+          cy.exist(selectors.noResultFound);
 
           // 4. Verify when clicking one of the popular searches (yellow tags), it displays the articles
           cy.get(selectors.popularSearchTag).click();
@@ -72,8 +66,8 @@ describe('Global & Singapore Search Result Page', () => {
           });
 
           // 6. Verify header and footer exist
-          cy.get(selectors.header).should('exist');
-          cy.get(selectors.footer).should('exist');
+          cy.exist(selectors.header);
+          cy.exist(selectors.footer);
 
           // 7. Verify search results should be shown even for incorrectly spelled queries if we have suggestions for correction
           cy.get(selectors.searchInput).clear();

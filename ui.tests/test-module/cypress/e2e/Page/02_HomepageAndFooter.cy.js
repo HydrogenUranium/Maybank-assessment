@@ -34,13 +34,7 @@ describe('Global & Singapore HomePage & Footer', () => {
     viewports.forEach((viewport, vIndex) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
-          if (typeof viewport === 'string') {
-            cy.viewport(viewport);
-          } else {
-            cy.viewport(viewport[0], viewport[1]);
-          }
-
-          cy.log(`Running tests for viewport at index ${vIndex}: ${viewport}`);
+          cy.handleViewport(viewport, vIndex);
         });
 
         it('All the test cases', () => {
@@ -59,7 +53,7 @@ describe('Global & Singapore HomePage & Footer', () => {
             .each(($article, index) => {
               if (index < 4) {
                 cy.wrap($article).within(() => {
-                  cy.get(selectors.articleCardImageWrapper).should('exist').find('img').should('exist');
+                  cy.exist(selectors.articleCardImageWrapper).find('img').should('exist');
                 });
               }
             });
@@ -73,7 +67,7 @@ describe('Global & Singapore HomePage & Footer', () => {
             });
 
           // 5. Verify CTA Banner with Points (apply for a business account) exists with the correct title
-          cy.get(selectors.bannerBodyButton).should('exist');
+          cy.exist(selectors.bannerBodyButton);
           cy.get(selectors.bannerBodyButton).find('span').should('contain', 'Apply now');
 
           // 6. Verify the bottom link at vertical showcase is clickable
@@ -92,7 +86,7 @@ describe('Global & Singapore HomePage & Footer', () => {
           cy.get(selectors.footerLinksGroup).should('have.length', 3);
 
           // 2. Verify when clicking the DHL logo, it redirects to the correct URL (dhl.com)
-          cy.get(selectors.footerLogo).should('exist');
+          cy.exist(selectors.footerLogo);
           cy.get(selectors.footerLogoLink)
             .should('have.attr', 'href')
             .and('include', 'https://www.dhl.com/');

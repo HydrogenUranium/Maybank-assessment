@@ -33,13 +33,7 @@ describe('Singapore Category Landing Page', () => {
     viewports.forEach((viewport, vIndex) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
-          if (typeof viewport === 'string') {
-            cy.viewport(viewport);
-          } else {
-            cy.viewport(viewport[0], viewport[1]);
-          }
-
-          cy.log(`Running tests for viewport at index ${vIndex}: ${viewport}`);
+          cy.handleViewport(viewport, vIndex);
         });
 
         let initialLength, finalLength;
@@ -57,14 +51,14 @@ describe('Singapore Category Landing Page', () => {
 
         it('All test cases', function () {
           // 1. Verify breadcrumb exists
-          cy.get(selectors.breadcrumbList).should('exist');
+          cy.exist(selectors.breadcrumbList);
 
           // 2. Verify Article Carousel exists with some text
-          cy.get(selectors.articleCarousel).should('exist');
-          cy.get(selectors.articleCarouselTitle).should('exist');
+          cy.exist(selectors.articleCarousel);
+          cy.exist(selectors.articleCarouselTitle);
 
           // 3. Verify Article Teaser exists
-          cy.get(selectors.articleTeaser).should('exist');
+          cy.exist(selectors.articleTeaser);
 
           // 4. Verify Article Teaser automatically transitions slides
           cy.get(selectors.carouselActiveItemImage)
@@ -86,7 +80,7 @@ describe('Singapore Category Landing Page', () => {
          });
 
           // 6. Verify Article Grid V2 exists
-          cy.get(selectors.articleGrid).should('exist');
+          cy.exist(selectors.articleGrid);
 
           // 7. Verify category in Article Grid V2 can be horizontally scrolled
           cy.get(selectors.articleGridCategories).then(($el) => {
@@ -113,14 +107,14 @@ describe('Singapore Category Landing Page', () => {
             });
 
           // 10. Verify CTA Banner exists and the button is clickable. When clicked, it lands on the correct page
-          cy.get(selectors.ctaBanner).should('exist');
+          cy.exist(selectors.ctaBanner);
           cy.get(selectors.ctaBannerButton)
              .click({ multiple: true });
           cy.url().should('include', `${Cypress.env('AEM_PUBLISH_URL')}/discover/en-sg/newsletter-sign-up`);
 
           // 11. Verify header and footer exist
-          cy.get(selectors.header).should('exist');
-          cy.get(selectors.footer).should('exist');
+          cy.exist(selectors.header);
+          cy.exist(selectors.footer);
 
           // 12. Verify when hovering the breadcrumb it changes from black to red
           cy.get(selectors.breadcrumbList).invoke('css', 'color', 'red');

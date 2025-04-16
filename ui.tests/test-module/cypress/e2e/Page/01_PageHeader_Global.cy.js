@@ -30,10 +30,10 @@ describe('Global Page Header', () => {
 
     const viewports = ['iphone-6', 'ipad-2', 'macbook-11'];
 
-    viewports.forEach((viewport) => {
+    viewports.forEach((viewport, vIndex) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
-          cy.viewport(viewport);
+          cy.handleViewport(viewport, vIndex);
         });
 
         it('Test Case', () => {

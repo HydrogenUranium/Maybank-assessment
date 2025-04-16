@@ -22,38 +22,34 @@ describe('DHL Landing Page', () => {
 
     const viewports = ['iphone-6', 'ipad-2', [1024, 768]];
 
-    viewports.forEach((viewport) => {
+    viewports.forEach((viewport, vIndex) => {
       context(`Testing on ${viewport}`, () => {
         beforeEach(() => {
-          if (typeof viewport === 'string') {
-            cy.viewport(viewport);
-          } else {
-            cy.viewport(viewport[0], viewport[1]);
-          }
+          cy.handleViewport(viewport, vIndex);
         });
 
         it('All test case', function () {
           // 1. Verify the error page consists of title
-          cy.get(selectors.title).should('exist');
+          cy.exist(selectors.title);
 
           // 2. Verify text exists
-          cy.get(selectors.titleV2).should('exist');
+          cy.exist(selectors.titleV2);
 
           // 3. Verify download asset exists and when clicked, it redirects to the correct page
           cy.get('body').then(($body) => {
             if ($body.find(selectors.downloadAsset).length) {
-              cy.get(selectors.downloadAsset).should('exist');
+              cy.exist(selectors.downloadAsset);
               cy.get(selectors.downloadAsset).click();
             } else {
-              cy.get(selectors.downloadButton).should('exist');
+              cy.exist(selectors.downloadButton);
               cy.get(selectors.downloadButton).click({force: true});
             }
           });
           cy.url().should('match', new RegExp(`${Cypress.env('AEM_PUBLISH_URL')}/discover/(en-global|en-sg)/open-an-account`));
 
           // 4. Verify header and footer exist
-          cy.get(selectors.header).should('exist');
-          cy.get(selectors.footer).should('exist');
+          cy.exist(selectors.header);
+          cy.exist(selectors.footer);
         });
       });
     });
