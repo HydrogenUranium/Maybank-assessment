@@ -53,6 +53,10 @@ public class ConfigurableMarketoForm {
 	@Optional
 	public String shipnowcontent;
 
+	@ValueMapValue
+	@Optional
+	public String googleConversionActionId;
+
 	public String getVisibleFormHost(){
 		return !StringUtils.isAnyBlank(marketohost, marketoformid) ? marketohost : "https://express-resource.dhl.com";
 	}
