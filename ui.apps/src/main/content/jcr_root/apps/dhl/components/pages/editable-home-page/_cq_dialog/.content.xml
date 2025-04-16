@@ -472,7 +472,7 @@
                                                     </ctaBannerGrayIndividualShipper>
                                                     <socialLinks
                                                             jcr:primaryType="nt:unstructured"
-                                                            jcr:title="Social Links Follow Us"
+                                                            jcr:title="Social Links Follow Us - Thank you page"
                                                             sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                                         <items jcr:primaryType="nt:unstructured">
                                                             <socialLinksLabel
