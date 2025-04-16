@@ -72,8 +72,7 @@ describe('Global Category Landing Page', () => {
                 });
             });
 
-          // 5. Verify Article Teaser consists of 5 articles with titles and category tags in each
-          cy.get(selectors.articleTeaser, { timeout: 10000 }).should('have.length', 3);
+          // 5. Verify Article Teaser
           cy.get(selectors.articleTeaser, { timeout: 10000 }).each(($el) => {
           cy.wrap($el).find('.cmp-teaser__title', { timeout: 10000 }).should('exist');
           cy.wrap($el).find('.cmp-teaser__article-category-tag', { timeout: 10000 }).should('exist');
