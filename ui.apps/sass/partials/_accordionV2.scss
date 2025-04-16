@@ -6,7 +6,6 @@
 		padding-left: 0;
 		padding-right: 0;
 
-
 		&__panel {
 		  @include ignore-top-child-margin-deep;
 		  @include ignore-bottom-child-margin-deep;
@@ -37,7 +36,6 @@
       justify-content: space-between;
       align-items: center;
 
-
 			.cmp-accordion__title {
 				font-size: var(--font-size-md);
 				color: map-get($palette, red);
@@ -45,7 +43,6 @@
         padding-right: 1rem;
 			}
 		}
-
     .cmp-accordion__item:first-child {
       border-top: none;
     }
