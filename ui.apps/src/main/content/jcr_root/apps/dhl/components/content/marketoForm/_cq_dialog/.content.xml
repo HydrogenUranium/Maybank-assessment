@@ -57,6 +57,20 @@
                             sling:resourceType="granite/ui/components/foundation/include"
                             path="/apps/dhl/dialog-fragments/analytics/dialog"
                             namespace="analytics"/>
+                    <googleConversion
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Enhanced Google Conversion"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <googleConversionActionId
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    fieldLabel="Google Conversion Action Id"
+                                    fieldDescription="Optional. An empty value excludes the Form Title from the HTML markup"
+                                    name="./googleConversionActionId"/>
+                        </items>
+                    </googleConversion>
                     <styletab
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/include"
