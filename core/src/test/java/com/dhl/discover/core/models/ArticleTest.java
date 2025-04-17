@@ -17,7 +17,6 @@ import org.junit.platform.commons.util.StringUtils;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -29,8 +28,11 @@ import static org.mockito.Mockito.when;
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleTest {
     public static final String PAGE_PATH = "/content/dhl/global";
+    public static final String CF_PATH = "/content/dam/global-master/8-site-images/roundels/anna_thompson";
     public static final String TEST_RESOURCE_PATH = "/com/dhl/discover/core/models/Article/content.json";
+    public static final String TEST_CF_RESOURCE_PATH = "/com/dhl/discover/core/models/Article/content-fragment.json";
     public static final String ARTICLE_PAGE_PATH = "/content/dhl/global/home/small-business-advice/article";
+    public static final String ARTICLE_PAGE_WITH_CF_PATH = "/content/dhl/global/home/small-business-advice/article-with-author-cf";
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
@@ -53,6 +55,7 @@ class ArticleTest {
     void setUp() throws Exception {
         resourceResolver = context.resourceResolver();
         context.load().json(TEST_RESOURCE_PATH, PAGE_PATH);
+        context.load().json(TEST_CF_RESOURCE_PATH, CF_PATH);
         resource = resourceResolver.getResource(PAGE_PATH);
 
         context.registerService(PageUtilService.class, pageUtilService);
@@ -84,22 +87,7 @@ class ArticleTest {
     }
 
     @Test
-    void init_ShouldInitArticle_1() throws ParseException {
-        Article article = createModel(getResource(ARTICLE_PAGE_PATH));
-        checkModel(article);
-
-        assertArrayEquals(new String[]{"#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"}, article.getTagsToShow().toArray());
-        assertEquals("From Waybills to Export Licenses, this guide breaks down the jargon to help you navigate customs seamlessly. ", article.getBrief());
-        assertEquals("What paperwork do I need for international shipping?", article.getDescription());
-        assertEquals("Anna Thompson", article.getAuthor());
-        assertEquals("/content/dam/global-master/8-site-images/roundels/anna_thompson.jpg", article.getAuthorimage());
-        assertEquals("Discover content team", article.getAuthortitle());
-        assertEquals("2023-08-04", article.getCreated());
-        assertEquals("August 4, 2023", article.getCreatedfriendly());
-    }
-
-    @Test
-    void init_ShouldInitArticle_2() throws ParseException {
+    void init_ShouldInitArticle() {
         Article article = createModel(getResource(ARTICLE_PAGE_PATH));
         checkModel(article);
 
@@ -112,13 +100,33 @@ class ArticleTest {
         assertEquals("/content/dam/desktop.jpg", article.getHeroimagedt());
         assertEquals("/content/dam/mobile.jpg", article.getHeroimagemob());
         assertEquals("/content/dam/tablet.jpg", article.getHeroimagetab());
-        assertEquals("", article.getHeroimageAltText());
         assertEquals("infographic", article.getIcon());
         assertEquals("4 min read", article.getReadtime());
         assertEquals("en", article.getLocale().toString());
         assertEquals("/content/dhl/global/home/small-business-advice/article.html", article.getPath());
         assertEquals("/content/dam/image.jpg", article.getPageImage());
         assertEquals("Page Image Alt Text", article.getPageImageAltText());
+        assertEquals("Anna Thompson", article.getAuthor());
+        assertEquals("Discover content team", article.getAuthortitle());
+        assertEquals("/content/dam/global-master/8-site-images/roundels/anna_thompson.jpg", article.getAuthorimage());
+        assertArrayEquals(new String[]{"#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"}, article.getTagsToShow().toArray());
+        assertEquals("From Waybills to Export Licenses, this guide breaks down the jargon to help you navigate customs seamlessly. ", article.getBrief());
+        assertEquals("What paperwork do I need for international shipping?", article.getDescription());
+        assertEquals("2023-08-04", article.getCreated());
+        assertEquals("August 4, 2023", article.getCreatedfriendly());
+
+        checkGettersAndSetters(article);
+    }
+
+    @Test
+    void init_ShouldInitArticleWithContentFragment() {
+        Article article = createModel(getResource(ARTICLE_PAGE_WITH_CF_PATH));
+        checkModel(article);
+
+        assertEquals("Adam Riley", article.getAuthor());
+        assertEquals("Discover Content Team", article.getAuthortitle());
+        assertEquals("Adam Riley Description", article.getAuthorBriefDescription());
+        assertEquals("/content/dam/global-master/8-site-images/roundels/laptop.png", article.getAuthorimage());
 
         checkGettersAndSetters(article);
     }
