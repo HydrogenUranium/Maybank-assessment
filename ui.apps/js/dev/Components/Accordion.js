@@ -7,7 +7,6 @@ class Accordion {
       panel: '.cmp-accordion__panel',
     };
     this.bindEvents = this.bindEvents.bind(this);
-
     this.init = this.init.bind(this);
   }
 
@@ -17,13 +16,6 @@ class Accordion {
 
       const panel = $(e.currentTarget).find(this.sel.panel);
 
-      //REMOVE THIS LINE
-      const selectedPanel = document.querySelector(this.sel.panel);
-
-      //REMOVE THIS LINE
-      if(selectedPanel.classList.contains('cmp-accordion__panel--hidden')) {
-        console.log('panel is hidden');
-      }
       panel.css({
         'max-height': panel.prop('scrollHeight') + 'px',
       });
