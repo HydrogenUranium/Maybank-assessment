@@ -10,6 +10,7 @@ import MarketoForm from './Components/MarketoForm';
 import LanguageDetect from './Components/LanguageDetect';
 import Shared from './Components/Shared';
 import HorizontalScroll from './Components/HorizontalScroll';
+import Accordion from "./Components/Accordion";
 
 $(document).ready(() => {
   try {
@@ -31,4 +32,5 @@ $(document).ready(() => {
   MarketoForm.init();
   Shared.init();
   HorizontalScroll.init();
+  Accordion.init();
 });

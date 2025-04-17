@@ -9,7 +9,9 @@
 		&__panel {
 		  @include ignore-top-child-margin-deep;
 		  @include ignore-bottom-child-margin-deep;
-		  padding: 0 3rem 3.6rem;
+		  margin: 0 3rem 3.6rem;
+      //REMOVE VISIBILITY
+      transition: visibility 0.3s ease-in-out, max-height 0.3s ease-out;
 		}
 
 		&__header {
@@ -71,5 +73,19 @@
 			transform: rotate(-180deg)
 		}
 	}
+
+  .cmp-accordion__panel--expanded {
+    overflow: hidden;
+    max-height: fit-content;
+    //REMOVE VISIBILITY
+    visibility: visible;
+  }
+
+  .cmp-accordion__panel--hidden {
+    max-height: 0;
+    //REMOVE VISIBILITY
+    visibility: hidden;
+  }
+
 }
 
