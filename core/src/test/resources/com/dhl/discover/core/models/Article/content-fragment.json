@@ -1,0 +1,60 @@
+{
+  "jcr:primaryType": "dam:Asset",
+  "jcr:mixinTypes": [
+    "mix:referenceable"
+  ],
+  "jcr:createdBy": "admin",
+  "jcr:created": "Thu Apr 17 2025 14:41:21 GMT+0300",
+  "jcr:uuid": "91547180-71a9-43de-bada-7338600d4210",
+  "jcr:content": {
+    "jcr:primaryType": "dam:AssetContent",
+    "jcr:title": "Adam Riley",
+    "contentFragment": true,
+    "renditions": {
+      "jcr:primaryType": "nt:folder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Thu Apr 17 2025 14:41:21 GMT+0300"
+    },
+    "related": {
+      "jcr:primaryType": "nt:unstructured"
+    },
+    "indexedData": {
+      "jcr:primaryType": "nt:unstructured",
+      "master": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:mixinTypes": [
+          "dam:IndexedFragmentData"
+        ],
+        "@string@model": "/conf/dhl/settings/dam/cfm/models/author",
+        "@stringArray@variations": [],
+        "jcr:uuid": "7f7a92e6-44e6-4638-ad49-bd77f1b769c5"
+      }
+    },
+    "metadata": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:mixinTypes": [
+        "cq:Taggable"
+      ]
+    },
+    "data": {
+      "jcr:primaryType": "nt:unstructured",
+      "_strucVersion": 1,
+      "cq:model": "/conf/dhl/settings/dam/cfm/models/author",
+      "master": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:mixinTypes": [
+          "dam:cfVariationNode",
+          "cq:Taggable"
+        ],
+        "title@LastModified": "Thu Apr 17 2025 14:41:21 GMT+0300",
+        "description": "Adam Riley Description",
+        "name@LastModified": "Thu Apr 17 2025 14:41:21 GMT+0300",
+        "description@LastModified": "Thu Apr 17 2025 14:41:21 GMT+0300",
+        "image@LastModified": "Thu Apr 17 2025 14:41:21 GMT+0300",
+        "name": "Adam Riley",
+        "image": "/content/dam/global-master/8-site-images/roundels/laptop.png",
+        "title": "Discover Content Team"
+      }
+    }
+  }
+}

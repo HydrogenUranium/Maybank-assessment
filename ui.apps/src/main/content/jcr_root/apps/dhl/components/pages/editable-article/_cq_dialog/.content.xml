@@ -92,36 +92,79 @@
                                                 fieldLabel="Read time"
                                                 name="./readtime"
                                                 required="{Boolean}false"/>
-
-                                            <author
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Author name"
-                                                name="./author"
-                                                required="{Boolean}false"/>
-                                            <authortitle
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Author title"
-                                                name="./authortitle"
-                                                required="{Boolean}false"/>
-                                            <authorBriefDescription
+                                            <authorCF
                                                     jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                                    fieldLabel="Brief description of the author"
-                                                    fieldDescription="For Author Banner component"
-                                                    name="./authorBriefDescription">
-                                            </authorBriefDescription>
-                                            <authorimage
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Author image"
-                                                name="./authorimage"
-                                                rootPath="/content/dam"
-                                                required="{Boolean}false"/>
+                                                    jcr:title="Author"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <fragmentPath
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="dam/cfm/components/cfpicker"
+                                                            emptyText="Enter or select Content Fragment"
+                                                            granite:class="author-cf-input"
+                                                            fieldDescription="Path to the Content Fragment to display."
+                                                            cq:showOnCreate="{Boolean}true"
+                                                            fieldLabel="Content Fragment"
+                                                            name="./author-cf/fragmentPath"
+                                                            pickerTitle="Select Content Fragment"
+                                                            rootPath="/content/dam/content-fragments"/>
+                                                    <type
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            cq:showOnCreate="{Boolean}true"
+                                                            name="./author-cf/sling:resourceType"
+                                                            value="core/wcm/components/contentfragment/v1/contentfragment"/>
+                                                    <variationName
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            fieldDescription="Specify which variation to display"
+                                                            cq:showOnCreate="{Boolean}true"
+                                                            fieldLabel="Variation"
+                                                            value="master"
+                                                            name="./author-cf/variationName">
+                                                    </variationName>
+
+                                                    <note
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                                                            jcr:title="⚠️ Author configuration has been moved to Content Fragments"
+                                                            text="Legacy author configuration is no longer available. Please use the Content Fragment configuration above instead. ☝️"/>
+
+                                                    <author
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            disabled="{Boolean}true"
+                                                            fieldLabel="⚠️ Author name (deprecated)"
+                                                            name="./author"
+                                                            required="{Boolean}false"/>
+                                                    <authortitle
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            disabled="{Boolean}true"
+                                                            fieldLabel="⚠️ Author title (deprecated)"
+                                                            name="./authortitle"
+                                                            required="{Boolean}false"/>
+                                                    <authorBriefDescription
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                            disabled="{Boolean}true"
+                                                            fieldLabel="⚠️ Brief description of the author (deprecated)"
+                                                            fieldDescription="For Author Banner component"
+                                                            name="./authorBriefDescription">
+                                                    </authorBriefDescription>
+                                                    <authorimage
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            disabled="{Boolean}true"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            fieldLabel="⚠️ Author image (deprecated)"
+                                                            name="./authorimage"
+                                                            rootPath="/content/dam"
+                                                            required="{Boolean}false"/>
+                                                </items>
+                                            </authorCF>
 
                                             <mediatype
                                                 jcr:primaryType="nt:unstructured"
