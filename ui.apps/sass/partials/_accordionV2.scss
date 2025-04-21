@@ -11,6 +11,15 @@
 		  @include ignore-bottom-child-margin-deep;
 		  margin: 0 3rem 3.6rem;
       transition: max-height 0.3s ease-out;
+
+      &--expanded {
+        overflow: hidden;
+        max-height: fit-content;
+      }
+
+      &--hidden {
+        max-height: 0;
+      }
 		}
 
 		&__header {
@@ -44,7 +53,7 @@
         padding-right: 1rem;
 			}
 		}
-    .cmp-accordion__item:first-child {
+    :first-child {
       border-top: none;
     }
 
@@ -72,15 +81,5 @@
 			transform: rotate(-180deg)
 		}
 	}
-
-  .cmp-accordion__panel--expanded {
-    overflow: hidden;
-    max-height: fit-content;
-  }
-
-  .cmp-accordion__panel--hidden {
-    max-height: 0;
-  }
-
 }
 
