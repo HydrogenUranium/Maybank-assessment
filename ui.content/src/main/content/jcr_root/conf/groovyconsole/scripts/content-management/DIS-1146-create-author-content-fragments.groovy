@@ -33,18 +33,24 @@ def normalize(name) {
 }
 
 def getOrCreateNode(node, child, type) {
-    return node.hasNode(child) ? node.getNode(child) : node.addNode(child);
+    return node.hasNode(child) ? node.getNode(child) : node.addNode(child, type);
+}
+
+def setPropertyIfEmpty(node, property, value) {
+    if(!node.hasProperty(property) || node.getProperty(property).getString().isBlank()){
+        node.setProperty(property, value);
+    }
 }
 
 def initStructure() {
     def node = getNode('/content/dam')
     def dhl = getOrCreateNode(node, 'dhl', 'sling:Folder');
     def contentFragment = getOrCreateNode(dhl, 'content-fragments', 'sling:Folder');
-}
-
-def setPropertyIfEmpty(node, property, value) {
-    if(!node.hasProperty(property) || node.getProperty(property).getString().isBlank()){
-        node.setProperty(property, value);
+    def contentFragmentJcrContent = getOrCreateNode(contentFragment, 'jcr:content', 'nt:unstructured');
+    def policies = getOrCreateNode(contentFragmentJcrContent, 'policies', 'nt:unstructured');
+    def cfm = getOrCreateNode(policies, 'cfm', 'nt:unstructured');
+    if(!cfm.hasProperty('policy-cfm-allowedModelsByPaths')) {
+        setPropertyIfEmpty(cfm, 'policy-cfm-allowedModelsByPaths', ['/conf/dhl/settings/dam/cfm/models/author'] as String[]);
     }
 }
 
@@ -107,12 +113,9 @@ getHomePages().each{page ->
         def fragment = createAuthor(lang, name, title, description, photo);
         cfNode.setProperty('fragmentPath', fragment)
     }
+    if(DRY_RUN) {
+        session.refresh(false);
+    } else {
+        save();
+    }
 }
-
-if(DRY_RUN) {
-    session.refresh(false);
-} else {
-    save();
-}
-
-
