@@ -233,7 +233,7 @@ public class Article {
     private void initAuthor() {
         Optional<ValueMap> optionalData = Optional.ofNullable(resource.getChild("jcr:content/author-cf"))
                         .map(r -> r.getValueMap().get("fragmentPath", String.class))
-                        .map(path -> resource.getResourceResolver().getResource(path + "/jcr:content/data"))
+                        .map(p -> resource.getResourceResolver().getResource(p + "/jcr:content/data"))
                 .filter(r -> r.getValueMap().get("cq:model", "").equals("/conf/dhl/settings/dam/cfm/models/author"))
                 .map(r -> r.getChild("master"))
                 .map(r-> r.getValueMap());
