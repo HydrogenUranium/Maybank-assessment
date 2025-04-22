@@ -107,7 +107,7 @@
                                                             fieldLabel="Content Fragment"
                                                             name="./author-cf/fragmentPath"
                                                             pickerTitle="Select Content Fragment"
-                                                            rootPath="/content/dam/content-fragments"/>
+                                                            rootPath="/content/dam/dhl/content-fragments"/>
                                                     <type
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
