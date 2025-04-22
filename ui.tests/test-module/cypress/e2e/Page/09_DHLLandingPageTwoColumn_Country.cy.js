@@ -36,7 +36,7 @@ describe('Singapore DHL Landing Page - Two Column', () => {
           cy.exist(selectors.textContent);
 
           // 4. Verify marketo form exists
-          cy.exist(selectors.marketoFormContainer);
+          cy.exist(marketo.formContainer);
 
           // 5. Verify if all fields are present
           cy.exist(selectors.fieldLabel);
