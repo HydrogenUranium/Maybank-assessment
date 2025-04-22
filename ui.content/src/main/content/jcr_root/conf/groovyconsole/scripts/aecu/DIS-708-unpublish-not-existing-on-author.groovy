@@ -38,6 +38,8 @@ import java.net.URL
 ]
 
 @Field versionAndPackageName = "DIS-708-unpublish-not-existing-on-author"
+@Field dummyApiNodePath = "/content/list-pages"
+@Field dummyApiResourceType = "/apps/dhl/components/pages"
 
 main()
 
@@ -45,6 +47,7 @@ main()
 
 // main
 def main() {
+    ensureDummyApiNodeExists()
     affectedItemPaths = getAffectedItemPaths()
     if (dryRun) {
         showAffectedItems(affectedItemPaths)
@@ -178,4 +181,33 @@ def createBackupPackage(listPages) {
     }
 
     println "> Please go to '/crx/packmgr/index.jsp' and build created package: " + versionAndPackageName
+}
+
+def ensureDummyApiNodeExists() {
+    def dummyResource = resourceResolver.getResource(dummyApiNodePath)
+
+    if (!dummyResource) {
+        println "Dummy node not found at ${dummyApiNodePath}, creating..."
+
+        def parentPath = dummyApiNodePath.substring(0, dummyApiNodePath.lastIndexOf('/'))
+        def nodeName = dummyApiNodePath.substring(dummyApiNodePath.lastIndexOf('/') + 1)
+
+
+        def parentResource = resourceResolver.getResource(parentPath)
+        if (!parentResource) {
+            JcrUtil.createPath(parentPath, "nt:unstructured", session)
+            println "Created parent path: $parentPath"
+        }
+
+        Node parentNode = session.getNode(parentPath)
+        Node dummyNode = parentNode.addNode(nodeName, "nt:unstructured")
+
+        dummyNode.setProperty("sling:resourceType", dummyApiResourceType)
+        dummyNode.setProperty("cq:hideInNav", true)
+
+        session.save()
+        println "Dummy API node created at $dummyApiNodePath"
+    } else {
+        println "Dummy API node already exists at $dummyApiNodePath"
+    }
 }

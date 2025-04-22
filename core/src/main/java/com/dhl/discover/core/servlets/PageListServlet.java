@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+/*
 @Component(
         service = { Servlet.class },
         property = {
@@ -33,6 +33,18 @@ import java.util.Map;
                 "sling.servlet.paths=/bin/get-all-pages"
         }
 )
+
+ */
+@Component(
+        service = { Servlet.class },
+        property = {
+                "sling.servlet.methods=GET",
+                "sling.servlet.resourceTypes=/apps/dhl/components/pages",
+                "sling.servlet.selectors=published",
+                "sling.servlet.extensions=json"
+        }
+)
+
 @Slf4j
 public class PageListServlet extends SlingAllMethodsServlet {
     private static final long serialVersionUID = 1L;
