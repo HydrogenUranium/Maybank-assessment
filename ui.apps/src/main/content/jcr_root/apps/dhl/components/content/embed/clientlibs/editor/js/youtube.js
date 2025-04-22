@@ -86,15 +86,32 @@
     function getVideoId() {
         return dialogContent.querySelector(selectors.videoId).value;
     }
+  async function fetchVideoDetailsForm(videoId) {
+    const form = document.querySelector("form.is-open");
+    const componentPathAction = form?.action;
 
-  async function fetchVideoDetails(videoId) {
-    const url = `/apps/dhl/discoverdhlapi/youtube/index.json?videoId=${videoId}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data.items[0];
+    if (!componentPathAction) {
+      console.error(" Component path not found in form action.");
+      return null;
+    }
+    console.log(" Found componentPath:", componentPathAction);
+
+    const url = `${componentPathAction}.youtube.json?videoId=${videoId}`;
+    console.log(" Fetching:", url);
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(" API call failed");
+      const data = await response.json();
+      return data.items[0];
+    } catch (e) {
+      console.error("Error fetching video data:", e);
+      return null;
+    }
   }
 
-    function generateSchemaMarkup(videoData) {
+
+  function generateSchemaMarkup(videoData) {
         return {
             "@context": "https://schema.org",
             "@type": "VideoObject",
@@ -110,7 +127,7 @@
     }
 
     async function addSchemaToPage() {
-        const videoData = await fetchVideoDetails(getVideoId());
+        const videoData = await fetchVideoDetailsForm(getVideoId());
         if(videoData) {
           const schemaMarkup = generateSchemaMarkup(videoData);
           dialogContent.querySelector(selectors.schemaMarkupField).value = JSON.stringify(schemaMarkup, null, 2)
