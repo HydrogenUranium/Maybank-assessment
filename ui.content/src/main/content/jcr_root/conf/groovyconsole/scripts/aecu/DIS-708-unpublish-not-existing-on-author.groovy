@@ -57,7 +57,7 @@ def main() {
 }
 
 def getAllPagesOnPublishEnv() {
-    def url = new URL(publishEnvHost + "/bin/get-all-pages")
+    def url = new URL(publishEnvHost + "content/dhl/jcr:content.published-pages.json")
     HttpURLConnection connection = (HttpURLConnection) url.openConnection()
     connection.setRequestMethod("GET")
     connection.setRequestProperty("Accept", "application/json")
@@ -181,33 +181,4 @@ def createBackupPackage(listPages) {
     }
 
     println "> Please go to '/crx/packmgr/index.jsp' and build created package: " + versionAndPackageName
-}
-
-def ensureDummyApiNodeExists() {
-    def dummyResource = resourceResolver.getResource(dummyApiNodePath)
-
-    if (!dummyResource) {
-        println "Dummy node not found at ${dummyApiNodePath}, creating..."
-
-        def parentPath = dummyApiNodePath.substring(0, dummyApiNodePath.lastIndexOf('/'))
-        def nodeName = dummyApiNodePath.substring(dummyApiNodePath.lastIndexOf('/') + 1)
-
-
-        def parentResource = resourceResolver.getResource(parentPath)
-        if (!parentResource) {
-            JcrUtil.createPath(parentPath, "nt:unstructured", session)
-            println "Created parent path: $parentPath"
-        }
-
-        Node parentNode = session.getNode(parentPath)
-        Node dummyNode = parentNode.addNode(nodeName, "nt:unstructured")
-
-        dummyNode.setProperty("sling:resourceType", dummyApiResourceType)
-        dummyNode.setProperty("cq:hideInNav", true)
-
-        session.save()
-        println "Dummy API node created at $dummyApiNodePath"
-    } else {
-        println "Dummy API node already exists at $dummyApiNodePath"
-    }
 }

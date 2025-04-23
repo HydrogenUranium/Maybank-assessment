@@ -17,7 +17,7 @@ $include "./default_filters.any"
 /3005 {
     /type "allow"
     /method "GET"
-    /url "/content/dhl.published.json"
+    /url "/content/dhl/jcr:content.published-pages.json"
 }
 
 /3006 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/google*" }
