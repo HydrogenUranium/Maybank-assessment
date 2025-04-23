@@ -39,12 +39,11 @@ import java.util.Map;
         service = { Servlet.class },
         property = {
                 "sling.servlet.methods=GET",
-                "sling.servlet.resourceTypes=/apps/dhl/components/pages",
+                "sling.servlet.resourceTypes=dhl/components/pages/editable-standard",
                 "sling.servlet.selectors=published",
                 "sling.servlet.extensions=json"
         }
 )
-
 @Slf4j
 public class PageListServlet extends SlingAllMethodsServlet {
     private static final long serialVersionUID = 1L;
