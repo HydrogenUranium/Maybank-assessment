@@ -38,8 +38,6 @@ import java.net.URL
 ]
 
 @Field versionAndPackageName = "DIS-708-unpublish-not-existing-on-author"
-@Field dummyApiNodePath = "/content/list-pages"
-@Field dummyApiResourceType = "/apps/dhl/components/pages"
 
 main()
 
@@ -47,7 +45,6 @@ main()
 
 // main
 def main() {
-    ensureDummyApiNodeExists()
     affectedItemPaths = getAffectedItemPaths()
     if (dryRun) {
         showAffectedItems(affectedItemPaths)
