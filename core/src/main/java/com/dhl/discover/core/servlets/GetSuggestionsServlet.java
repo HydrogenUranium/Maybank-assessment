@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.framework.Constants;
@@ -29,13 +28,14 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.normalizeSpace;
-
 @Component(
         service = Servlet.class,
         property = {
                 Constants.SERVICE_DESCRIPTION + "=DHL Suggestions Servlet",
-                "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                "sling.servlet.paths="+ "/apps/dhl/discoverdhlapi/suggestions/index.json"
+                "sling.servlet.methods=GET",
+                "sling.servlet.resourceTypes=dhl/components/pages/editable-standard",
+                "sling.servlet.extensions=json",
+                "sling.servlet.selectors=index"
         }
 )
 public class GetSuggestionsServlet extends SlingAllMethodsServlet {
