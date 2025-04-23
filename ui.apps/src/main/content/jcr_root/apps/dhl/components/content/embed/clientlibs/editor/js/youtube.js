@@ -89,16 +89,11 @@
   async function fetchVideoDetailsForm(videoId) {
     const form = document.querySelector("form.is-open");
     const componentPathAction = form?.action;
-
     if (!componentPathAction) {
       console.error(" Component path not found in form action.");
       return null;
     }
-    console.log(" Found componentPath:", componentPathAction);
-
     const url = `${componentPathAction}.youtube.json?videoId=${videoId}`;
-    console.log(" Fetching:", url);
-
     try {
       const response = await fetch(url);
       if (!response.ok) throw new Error(" API call failed");
