@@ -157,11 +157,17 @@ const performDefaultAnalyticsCall = (event) => {
 		}
 		// create and dispatch the CustomEvent with the analytics data
 		else {
+		  const detail = {};
+      if (analyticsData.content) {
+          detail.content = analyticsData.content;
+      }
+      if (analyticsData.conversion) {
+          detail.conversion = analyticsData.conversion;
+      }
+
 			const customEvent = new CustomEvent(analyticsData.interactionType, {
 				bubbles: true,
-				detail: {
-					content: analyticsData.content
-				}
+				detail: detail,
 			});
 
 			window.dispatchEvent(customEvent);
