@@ -30,6 +30,13 @@ $include "./default_filters.any"
     /selectors 'form'
     /extension 'html' }  # allow POSTs to form selectors under content
 
+/3013 {
+    /type "allow"
+    /method "POST"
+    /path "*/content/dhl/*"
+    /selectors 'enhanced-google-conversion'
+    /extension 'html' }  # allow POSTs to enhanced-google-conversion selectors under content
+
 # Allow AEM WCM Core Components sitemap
 /3020 { /type "allow" /path "/content/*" /selectors '(sitemap-index|sitemap)' /extension "xml" }
 
