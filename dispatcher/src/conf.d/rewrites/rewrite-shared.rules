@@ -29,9 +29,14 @@ RewriteRule ^(.+)/$ https://%{HTTP_HOST}$1 [L,R=301]
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)
 RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
 
-### Rewrite the servlet call to suggestion servlet
+# Exclude AEM servlet from trailing slash redirects
 RewriteCond %{REQUEST_URI} ^/discover/content/dhl/jcr:content\.suggestions\.json$
 RewriteRule ^ - [PT,L]
+
+# Generic trailing slash redirect (leave this below!)
+RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]+$
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule ^(.*)$ /$1/ [R=301,L]
 
 ### Default redirects to en-global homepage
 RewriteRule ^/discover/?$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
