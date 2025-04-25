@@ -29,6 +29,10 @@ RewriteRule ^(.+)/$ https://%{HTTP_HOST}$1 [L,R=301]
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)
 RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
 
+### Rewrite the servlet call to suggestion servlet
+RewriteCond %{REQUEST_URI} ^/content/dhl/jcr:content\.suggestions\.json$
+RewriteRule ^ - [L]
+
 ### Default redirects to en-global homepage
 RewriteRule ^/discover/?$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)

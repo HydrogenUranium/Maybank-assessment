@@ -34,7 +34,7 @@ import static org.apache.commons.lang3.StringUtils.normalizeSpace;
                 Constants.SERVICE_DESCRIPTION + "=DHL Suggestions Servlet",
                 "sling.servlet.methods=GET",
                 "sling.servlet.resourceTypes=dhl/components/pages/editable-standard",
-                "sling.servlet.selectors=index",
+                "sling.servlet.selectors=suggestions",
                 "sling.servlet.extensions=json"
         }
 )
