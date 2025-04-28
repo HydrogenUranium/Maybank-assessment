@@ -29,15 +29,6 @@ RewriteRule ^(.+)/$ https://%{HTTP_HOST}$1 [L,R=301]
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)
 RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
 
-# Exclude AEM servlet from trailing slash redirects
-RewriteCond %{REQUEST_URI} ^/discover/content/dhl/jcr:content\.suggestions\.json$
-RewriteRule ^ - [PT,L]
-
-# Generic trailing slash redirect (leave this below!)
-RewriteCond %{REQUEST_URI} !\.[a-zA-Z0-9]+$
-RewriteCond %{REQUEST_URI} !/$
-RewriteRule ^(.*)$ /$1/ [R=301,L]
-
 ### Default redirects to en-global homepage
 RewriteRule ^/discover/?$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)
@@ -62,6 +53,8 @@ RewriteRule ^/discover/(content/dam)/(.+)$ /$1/$2 [PT,L,NC]
 RewriteRule ^/discover/adobe/dynamicmedia/deliver/(.+)$ /adobe/dynamicmedia/deliver/$1 [PT,L,NC]
 # Search Articles servlet
 RewriteRule ^/discover/(content/dhl/.+/jcr[:]content/root\.searcharticlesuggest\.json.*)$ /$1 [PT,L,NC]
+# Suggestions servlet
+RewriteRule ^/discover/(content/dhl/jcr[:]content\.suggestions\.json.*)$ /$1 [PT,L,NC]
 # Adaptive Image servlet
 RewriteRule ^/discover/((\w{2})-(global|\w{2}).*/_jcr_content/.*coreimg.*)$ /content/dhl/$3/$1 [PT,L,NC]
 # rss generator pages
