@@ -37,6 +37,13 @@ $include "./default_filters.any"
 
 /3013 {
     /type "allow"
+    /method "POST"
+    /path "*/content/dhl/*"
+    /selectors 'enhanced-google-conversion'
+    /extension 'html' }  # allow POSTs to enhanced-google-conversion selectors under content
+
+/3014 {
+    /type "allow"
     /method "GET"
     /url "/content/dhl/jcr:content.suggestions.json"
 }
