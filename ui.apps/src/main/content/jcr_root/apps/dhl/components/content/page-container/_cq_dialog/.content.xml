@@ -138,7 +138,10 @@
                                                     granite:hide="${!cqDesign.clarityRegionEnabled}"
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                    fieldDescription="If selected, the container will be treated as a clarity region. This is used to improve the performance of the component."
+                                                    fieldDescription="The data-clarity-region='article' attribute in an HTML article tag is used
+                                to mark that section as a distinct clarity region for analytics or tracking purposes,
+                                helping tools like Microsoft Clarity identify and analyze user
+                                interactions specifically within that article content."
                                                     text="Use Clarity Region"
                                                     name="./useClarityRegion"
                                                     value="true"/>
