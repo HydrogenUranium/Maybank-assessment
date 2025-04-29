@@ -27,17 +27,6 @@
                             value="true"
                             name="./useArticleStyles">
                     </useArticleStyles>
-                    <useArticleClarityRegion
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                            text="Use Article Clarity Region Wrapper"
-                            fieldDescription="The data-clarity-region='article' attribute in an HTML article tag is used
-                                to mark that section as a distinct clarity region for analytics or tracking purposes,
-                                helping tools like Microsoft Clarity identify and analyze user
-                                interactions specifically within that article content."
-                            value="true"
-                            name="./useArticleClarityRegion">
-                    </useArticleClarityRegion>
                     <showSidebar
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
