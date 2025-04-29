@@ -18,19 +18,19 @@
         </div>
         <div class="links">
             <div class="links-group" data-sly-use.meganav="com.dhl.discover.core.models.Meganav">
-                <h2 data-sly-element="${footer.sectionTitle ? 'h3' : 'h2'}" class="links-group__title">${footer.categoryLinksLabel}</h2>
+                <h2 data-sly-test="${footer.categoryLinksLabel}" data-sly-element="${footer.sectionTitle ? 'h3' : 'h2'}" class="links-group__title">${footer.categoryLinksLabel}</h2>
                 <ul data-sly-list="${meganav.panels}">
                   <li><a class="links-group__item" href="${item.url}"><span>${item.navigationTitle}</span></a></li>
                 </ul>
             </div>
             <div class="links-group">
-              <h2 data-sly-element="${footer.sectionTitle ? 'h3' : 'h2'}" class="links-group__title">${footer.companyLinksLabel}</h2>
+              <h2 data-sly-test="${footer.companyLinksLabel}" data-sly-element="${footer.sectionTitle ? 'h3' : 'h2'}" class="links-group__title">${footer.companyLinksLabel}</h2>
                 <ul data-sly-list="${footer.companyLinks}">
                   <li><a class="links-group__item" href="${item.linkPath}"><span>${item.linkName}</span></a></li>
                 </ul>
             </div>
             <div class="links-group">
-              <h2 data-sly-element="${footer.sectionTitle ? 'h3' : 'h2'}" class="links-group__title">${footer.socialLinksLabel}</h2>
+              <h2 data-sly-test="${footer.socialLinksLabel}" data-sly-element="${footer.sectionTitle ? 'h3' : 'h2'}" class="links-group__title">${footer.socialLinksLabel}</h2>
               <ul class="links-group__items" data-sly-list="${footer.socialLinks}">
                   <li><a class="links-group__item" href="${item.linkPath}">
                       <span class="not-mobile-only">${item.linkName}</span>
