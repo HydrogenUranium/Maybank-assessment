@@ -1,0 +1,195 @@
+{
+  "jcr:primaryType": "cq:Template",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Fri Feb 28 2025 14:23:27 GMT+0200",
+  "initial": {},
+  "jcr:content": {},
+  "structure": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Fri Feb 28 2025 14:23:29 GMT+0200",
+    "jcr:content": {
+      "jcr:primaryType": "cq:PageContent",
+      "jcr:createdBy": "admin",
+      "viewcount": 9,
+      "cq:template": "/conf/dhl/settings/wcm/templates/article",
+      "jcr:created": "Fri Feb 28 2025 14:23:29 GMT+0200",
+      "cq:lastModified": "Tue Oct 10 2023 14:08:09 GMT+0300",
+      "cq:deviceGroups": [
+        "mobile/groups/responsive"
+      ],
+      "sling:resourceType": "dhl/components/pages/editable-article",
+      "cq:lastModifiedBy": "admin",
+      "root": {
+        "jcr:primaryType": "nt:unstructured",
+        "layout": "responsiveGrid",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "header": {
+          "jcr:primaryType": "nt:unstructured",
+          "fragmentVariationPath": "/content/experience-fragments/dhl/language-masters/en-master/template-fragments/header/master",
+          "sling:resourceType": "dhl/components/content/experiencefragment"
+        },
+        "main": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "dhl/components/content/page-container",
+          "article_header_container": {
+            "jcr:primaryType": "nt:unstructured",
+            "showSidebar": "false",
+            "useArticleStyles": "false",
+            "designMode": "new",
+            "sling:resourceType": "dhl/components/content/article-container",
+            "body": {
+              "jcr:primaryType": "nt:unstructured",
+              "sling:resourceType": "wcm/foundation/components/responsivegrid",
+              "breadcrumb": {
+                "jcr:primaryType": "nt:unstructured",
+                "startLevel": "3",
+                "sling:resourceType": "dhl/components/content/breadcrumb"
+              },
+              "article-header": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "dhl/components/content/article-header",
+                "editable": true
+              }
+            }
+          },
+          "article_container": {
+            "jcr:primaryType": "nt:unstructured",
+            "showSidebar": "true",
+            "jcr:lastModifiedBy": "admin",
+            "useArticleStyles": "true",
+            "designMode": "new",
+            "jcr:lastModified": "Fri Oct 06 2023 14:22:14 GMT+0300",
+            "sling:resourceType": "dhl/components/content/article-container",
+            "useArticleClarityRegion": "true",
+            "body": {
+              "jcr:primaryType": "nt:unstructured",
+              "sling:resourceType": "wcm/foundation/components/responsivegrid",
+              "hero_banner": {
+                "jcr:primaryType": "nt:unstructured",
+                "jcr:createdBy": "admin",
+                "jcr:lastModifiedBy": "admin",
+                "jcr:created": "Mon Oct 09 2023 15:45:43 GMT+0300",
+                "jcr:lastModified": "Mon Oct 09 2023 15:45:43 GMT+0300",
+                "sling:resourceType": "dhl/components/content/hero-banner",
+                "editable": true
+              },
+              "responsivegrid": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "editable": "true"
+              },
+              "experiencefragment": {
+                "jcr:primaryType": "nt:unstructured",
+                "jcr:createdBy": "admin",
+                "jcr:lastModifiedBy": "admin",
+                "fragmentVariationPath": "/content/experience-fragments/dhl/language-masters/en-master/template-fragments/article/bottom/master",
+                "jcr:created": "Tue Nov 26 2024 17:28:29 GMT+0200",
+                "id": "bottom-cta-section",
+                "jcr:lastModified": "Tue Nov 26 2024 17:28:44 GMT+0200",
+                "sling:resourceType": "dhl/components/content/experiencefragment"
+              },
+              "responsivegrid_929485349": {
+                "jcr:primaryType": "nt:unstructured",
+                "jcr:createdBy": "admin",
+                "jcr:lastModifiedBy": "admin",
+                "jcr:created": "Tue Oct 10 2023 14:05:12 GMT+0300",
+                "jcr:lastModified": "Tue Oct 10 2023 14:05:12 GMT+0300",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "editable": true,
+                "cq:responsive": {
+                  "jcr:primaryType": "nt:unstructured"
+                }
+              }
+            },
+            "sidebar": {
+              "jcr:primaryType": "nt:unstructured",
+              "sling:resourceType": "wcm/foundation/components/responsivegrid",
+              "article_author_banner": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "dhl/components/content/article-author-banner",
+                "editable": true
+              },
+              "experiencefragment": {
+                "jcr:primaryType": "nt:unstructured",
+                "jcr:createdBy": "admin",
+                "jcr:lastModifiedBy": "admin",
+                "fragmentVariationPath": "/content/experience-fragments/dhl/language-masters/en-master/template-fragments/article/sidebar/master",
+                "jcr:created": "Tue Nov 26 2024 17:27:27 GMT+0200",
+                "id": "sidebar-cta-section",
+                "jcr:lastModified": "Tue Nov 26 2024 17:28:09 GMT+0200",
+                "sling:resourceType": "dhl/components/content/experiencefragment"
+              },
+              "responsivegrid": {
+                "jcr:primaryType": "nt:unstructured",
+                "jcr:createdBy": "admin",
+                "jcr:lastModifiedBy": "admin",
+                "jcr:created": "Tue Oct 10 2023 14:07:50 GMT+0300",
+                "jcr:lastModified": "Tue Oct 10 2023 14:07:50 GMT+0300",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "editable": true,
+                "cq:responsive": {
+                  "jcr:primaryType": "nt:unstructured"
+                }
+              }
+            }
+          },
+          "article_container_two": {
+            "jcr:primaryType": "nt:unstructured",
+            "useArticleStyles": "false",
+            "designMode": "new",
+            "sling:resourceType": "dhl/components/content/article-container",
+            "body": {
+              "jcr:primaryType": "nt:unstructured",
+              "sling:resourceType": "wcm/foundation/components/responsivegrid",
+              "responsivegrid": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "editable": "true"
+              }
+            },
+            "sidebar": {
+              "jcr:primaryType": "nt:unstructured",
+              "sling:resourceType": "wcm/foundation/components/responsivegrid"
+            }
+          },
+          "article_footer_container": {
+            "jcr:primaryType": "nt:unstructured",
+            "showSidebar": "false",
+            "useArticleStyles": "false",
+            "designMode": "new",
+            "sling:resourceType": "dhl/components/content/article-container",
+            "body": {
+              "jcr:primaryType": "nt:unstructured",
+              "sling:resourceType": "wcm/foundation/components/responsivegrid",
+              "article-footer": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "dhl/components/content/article-footer",
+                "editable": true
+              }
+            }
+          },
+          "related_posts": {
+            "jcr:primaryType": "nt:unstructured",
+            "jcr:createdBy": "admin",
+            "jcr:lastModifiedBy": "admin",
+            "jcr:created": "Fri Oct 06 2023 15:18:56 GMT+0300",
+            "jcr:lastModified": "Fri Oct 06 2023 15:18:56 GMT+0300",
+            "sling:resourceType": "dhl/components/content/related-posts",
+            "editable": true
+          },
+          "responsivegrid": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "wcm/foundation/components/responsivegrid",
+            "editable": "true"
+          }
+        },
+        "footer": {
+          "jcr:primaryType": "nt:unstructured",
+          "fragmentVariationPath": "/content/experience-fragments/dhl/language-masters/en-master/template-fragments/footer/master",
+          "sling:resourceType": "dhl/components/content/experiencefragment"
+        }
+      }
+    }
+  }
+}

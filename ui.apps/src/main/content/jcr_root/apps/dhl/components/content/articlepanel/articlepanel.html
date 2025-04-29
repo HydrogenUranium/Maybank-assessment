@@ -14,21 +14,21 @@
     limitations under the License.
 */-->
 <sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
-<div class="nextSteps" data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions">
+<div class="nextSteps" data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions" data-sly-test="${properties.guidance || properties.image || properties.title || properties.brief || properties.ctatitle }">
 	<div class="articlepanel__container">
 		<div class="row">
 			<div class="col-12 col-md-6 d-sm-block d-md-none" data-sly-test="${properties.guidance != null && properties.guidance.length > 0}">
 				<h2 class="nextSteps__title"><span>${properties.guidance}</span></h2>
 			</div>
-			<div class="col-12 col-md-6">
-				<div class="nextSteps__image" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.image @ context='uri'}');"></div>
+			<div class="col-12 col-md-6" data-sly-test="${properties.image}">
+				<div  class="nextSteps__image" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.image @ context='uri'}');"></div>
 			</div>
 			<div class="col-12 col-md-6">
 				<div class="nextSteps__text">
 					<h2 class="nextSteps__title  d-none d-md-inline" data-sly-element="${properties.guidanceType}" data-sly-test="${properties.guidance != null && properties.guidance.length > 0}">${properties.guidance}</h2>
-					<h3 class="nextSteps__articleTitle" data-sly-element="${properties.titleType}">${properties.title}</h3>
-					<p class="nextSteps__copy">${properties.brief}</p>
-					<a href="${properties.ctaurl}" class="dhl-btn dhl-btn--primary">${properties.ctatitle}</a>
+					<h3 data-sly-test="${properties.title != null && properties.title.length > 0}" class="nextSteps__articleTitle" data-sly-element="${properties.titleType}">${properties.title}</h3>
+					<p data-sly-test="${properties.brief != null && properties.brief.length > 0}" class="nextSteps__copy">${properties.brief}</p>
+					<a data-sly-test="${properties.ctatitle != null && properties.ctatitle.length > 0}" href="${properties.ctaurl}" class="dhl-btn dhl-btn--primary">${properties.ctatitle}</a>
 				</div>
 			</div>
 		</div>

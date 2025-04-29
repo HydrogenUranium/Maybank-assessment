@@ -470,6 +470,60 @@
                                                         <parentConfig jcr:primaryType="nt:unstructured"
                                                                       active="{Boolean}false"/>
                                                     </ctaBannerGrayIndividualShipper>
+                                                    <socialLinks
+                                                            jcr:primaryType="nt:unstructured"
+                                                            jcr:title="Social Links Follow Us - Thank you page"
+                                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <socialLinksLabel
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Social Links Label"
+                                                                    fieldDescription="This 'Social' label will be displayed above the list of all links connected to the social messengers"
+                                                                    emptyText="Social"
+                                                                    name="./footer-socialLinksLabel">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-msm-lockable="./footer-socialLinksLabel"/>
+                                                            </socialLinksLabel>
+                                                            <socialLinksList
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    fieldLabel="Social Network Links List (inheritance cancelled)"
+                                                                    fieldDescription="Add links like 'LinkedIn', 'Instagram', 'Twitter', 'Facebook'.
+                                                                                              Synchronisation with Blueprint (Master) disabled (inheritance cancelled)"
+                                                                    composite="{Boolean}true"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                                       jcr:primaryType="nt:unstructured"
+                                                                       name="./multifields/footer-socialLinks">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <linkName
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                fieldLabel="Label"
+                                                                                name="./linkName"/>
+                                                                        <linkPath
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                                fieldLabel="Path"
+                                                                                rootPath="/content/dhl"
+                                                                                name="./linkPath"/>
+                                                                        <icon
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                                fieldLabel="Icon (for Mobile only) "
+                                                                                rootPath="/content/dam"
+                                                                                name="./linkIcon"/>
+                                                                        <hidden
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                                name="./cq:isCancelledForChildren"
+                                                                                value="true"/>
+                                                                    </items>
+                                                                </field>
+                                                            </socialLinksList>
+                                                        </items>
+                                                    </socialLinks>
                                                     <landingPoints
                                                             jcr:title="Landings Points"
                                                             jcr:primaryType="nt:unstructured"

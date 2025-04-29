@@ -24,7 +24,7 @@ class AnalyticsConfigTest {
     }
 
     @Test
-    void test() {
+    void testContent() {
         Resource resource = context.resourceResolver().getResource("/content/cta_banner/analytics");
 
         AnalyticsConfig config = resource.adaptTo(AnalyticsConfig.class);
@@ -36,6 +36,18 @@ class AnalyticsConfigTest {
         assertEquals("content", config.getInteractionType());
         assertEquals("basic", config.getTrackedInteractions());
         assertEquals(Map.of("topic", "subscription"), config.getCustomAttributes());
-        assertEquals("{\"content\":{\"attributes\":{\"topic\":\"subscription\"},\"name\":\"SUBSCRIBE TO OUR NEWSLETTER\",\"type\":\"component\",\"interaction\":\"Click\",\"position\":\"position\"},\"trackedInteractions\":\"basic\",\"interactionType\":\"dhl_utf_contentInteraction\"}", config.getJson());
+        assertEquals("{\"trackedInteractions\":\"basic\",\"interactionType\":\"dhl_utf_contentInteraction\",\"content\":{\"name\":\"SUBSCRIBE TO OUR NEWSLETTER\",\"type\":\"component\",\"interaction\":\"Click\",\"position\":\"position\",\"attributes\":{\"topic\":\"subscription\"}}}"
+                , config.getJson());
+    }
+
+    @Test
+    void testConversion() {
+        Resource resource = context.resourceResolver().getResource("/content/form/analytics");
+
+        AnalyticsConfig config = resource.adaptTo(AnalyticsConfig.class);
+
+        assertNotNull(config);
+        assertEquals("{\"trackedInteractions\":\"basic\",\"interactionType\":\"dhl_utf_conversionInteraction\",\"conversion\":{\"name\":\"SUBSCRIBE TO OUR NEWSLETTER\",\"type\":\"Lead\",\"detail\":\"form submission\"},\"content\":{\"name\":\"SUBSCRIBE TO OUR NEWSLETTER\",\"type\":\"component\",\"interaction\":\"Click\",\"position\":\"position\",\"attributes\":{\"topic\":\"subscription\"}}}"
+                , config.getJson());
     }
 }

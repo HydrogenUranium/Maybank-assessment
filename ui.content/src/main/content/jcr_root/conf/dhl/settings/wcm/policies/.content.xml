@@ -4815,6 +4815,7 @@
                             jcr:lastModified="{Date}2025-03-10T18:09:05.687+02:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
+                            layout="responsiveGrid"
                             jcr:title="Main Container"
                             sling:resourceType="wcm/core/components/policy/policy"
                             components="group:DHL Components"
@@ -4826,12 +4827,26 @@
                             jcr:lastModified="{Date}2025-04-08T11:44:20.167+03:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
+                            layout="responsiveGrid"
                             jcr:title="Animated Pages Main Container"
                             sling:resourceType="wcm/core/components/policy/policy"
                             components="[group:DHL Animated Components,group:DHL Components]"
                             layoutDisabled="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_animated-main>
+                    <policy_main_article
+                            cq:styleDefaultElement="main"
+                            jcr:lastModified="{Date}2025-03-10T18:09:05.687+02:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            layout="responsiveGrid"
+                            jcr:title="Main Container - Article"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="group:DHL Components"
+                            layoutDisabled="false"
+                            clarityRegionEnabled="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_main_article>
                 </page-container>
             </content>
         </components>
