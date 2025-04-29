@@ -1977,6 +1977,17 @@
                             </item1>
                         </cq:styleGroups>
                     </policy_title_v2>
+                    <policy_151333100645400
+                            cq:styleDefaultClasses="sr-only"
+                            jcr:lastModified="{Date}2025-04-29T15:14:16.119+05:30"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Hide h1 tag SC Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            allowedTypes="h1"
+                            linkDisabled="false"
+                            type="h1">
+                    </policy_151333100645400>
                 </title-v2>
                 <marketoForm jcr:primaryType="nt:unstructured">
                     <policy_marketoForm
