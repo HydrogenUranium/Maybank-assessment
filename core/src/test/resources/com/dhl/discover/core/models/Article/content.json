@@ -60,6 +60,60 @@
           "navTitle": "What paperwork do I need for international shipping?",
           "mediatype": "infographic"
         }
+      },
+      "article-with-author-cf": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Aug 22 2023 11:40:53 GMT+0300",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "jcr:mixinTypes": [
+            "cq:LiveRelationship"
+          ],
+          "author-cf": {
+            "fragmentPath": "/content/dam/global-master/8-site-images/roundels/anna_thompson",
+            "jcr:primaryType": "nt:unstructured",
+            "variationName": "master",
+            "sling:resourceType": "core/wcm/components/contentfragment/v1/contentfragment"
+          },
+          "subtitle": "What paperwork do I need for international shipping? | Discover DHL",
+          "jcr:createdBy": "admin",
+          "jcr:title": "What paperwork do I need for international shipping?",
+          "custompublishdate": "Fri Aug 04 2023 08:00:00 GMT+0100",
+          "viewcount": 16,
+          "author": "Anna Thompson",
+          "cq:template": "/apps/dhl/templates/dhl-article-page",
+          "listbrief": "From Waybills to Export Licenses, this guide breaks down the jargon to help you navigate customs seamlessly. ",
+          "cq:featuredimage": {
+            "jcr:primaryType": "nt:unstructured",
+            "fileReference": "/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg",
+            "sling:resourceType": "core/wcm/components/image/v3/image",
+            "altValueFromDAM": "false",
+            "alt": "List Image Alt Text"
+          },
+          "heroimagemob": "/content/dam/mobile.jpg",
+          "heroimagetab": "/content/dam/tablet.jpg",
+          "cq:lastRolledout": "Thu Aug 17 2023 08:20:47 GMT+0000",
+          "readtime": "4 min read",
+          "jcr:created": "Tue Aug 22 2023 11:40:53 GMT+0300",
+          "cq:lastModified": "Thu Aug 17 2023 08:20:47 GMT+0000",
+          "jcr:description": "What paperwork do I need for international shipping?",
+          "authorimage": "/content/dam/global-master/8-site-images/roundels/anna_thompson.jpg",
+          "authortitle": "Discover content team",
+          "pageTitle": "What paperwork do I need for international shipping? \n Discover DHL",
+          "cq:tags": [
+            "dhl-article-external:default/dhl_internationalshipping",
+            "dhl-article-external:default/e-commerce_advice",
+            "dhl-article-external:default/business_advice"
+          ],
+          "sling:resourceType": "dhl/components/pages/editable-article",
+          "heroimagedt": "/content/dam/desktop.jpg",
+          "cq:lastRolledoutBy": "david.akara@dhl.com",
+          "ogtagimage": "/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg",
+          "cq:lastModifiedBy": "david.akara@dhl.com",
+          "navTitle": "What paperwork do I need for international shipping?",
+          "mediatype": "infographic"
+        }
       }
     }
   }
