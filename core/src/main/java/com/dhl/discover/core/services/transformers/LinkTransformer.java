@@ -12,9 +12,11 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class LinkTransformer extends DefaultTransformer implements Transformer {
@@ -42,17 +44,39 @@ public class LinkTransformer extends DefaultTransformer implements Transformer {
 
     private void processEntry(Map.Entry<String, String> entry, AttributesImpl attributes) {
         String attribute = entry.getValue();
+        int index = attributes.getIndex(attribute);
 
-        if(attributes.getIndex(attribute) == -1) {
+        if(index < 0) {
             return;
         }
 
         String original = attributes.getValue(attribute);
+        String mapped = mapLinks(original);
+        attributes.setValue(index, mapped);
+    }
 
-        if(isInWhitelist(original)) {
-            String resolved = pathUtilService.map(original);
-            attributes.setValue(attributes.getIndex(attribute), resolved);
+    private String mapLinks(String original) {
+        if (!original.contains(",")) {
+            return isInWhitelist(original)
+                    ? pathUtilService.map(original)
+                    : original;
         }
+
+        // multiple URIs (e.g. srcset)
+        return Arrays.stream(original.split(","))
+                .map(String::trim)
+                .map(item -> {
+                    // split URL from descriptor ("200w", "2x", etc.)
+                    int space = item.indexOf(' ');
+                    String url        = space < 0 ? item : item.substring(0, space);
+                    String descriptor = space < 0 ? ""   : item.substring(space);
+
+                    if (isInWhitelist(url)) {
+                        url = pathUtilService.map(url);
+                    }
+                    return url + descriptor;
+                })
+                .collect(Collectors.joining(", "));
     }
 
     private boolean isInWhitelist(String uri) {
