@@ -11,6 +11,7 @@
         sling:resourceType="cq/translation/components/mt-cloudconfig"
         assets_autoexecuteTranslationWorkflow="true"
         assets_contentFragmentAssets="inlineMediaAssetsAndAssociatedCollections"
+        assets_translateCfModelTranslatables="true"
         assets_defaultCategory="general"
         assets_defaultTranslationProvider="Microsoft"
         assets_translateAssets="true"

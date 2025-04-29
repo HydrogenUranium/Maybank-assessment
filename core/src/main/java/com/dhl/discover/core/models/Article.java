@@ -2,13 +2,13 @@ package com.dhl.discover.core.models;
 
 import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.wcm.api.Page;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import com.dhl.discover.core.constants.DiscoverConstants;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import com.dhl.discover.core.services.TagUtilService;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
@@ -102,6 +102,7 @@ public class Article {
     @Expose
     private String author;
     private String authortitle;
+    private String authorBriefDescription;
     private String authorimage;
     @Expose
     private String readtime;
@@ -207,12 +208,11 @@ public class Article {
         heroimagetab = valueMap.get("jcr:content/heroimagetab", "");
         heroimagedt = valueMap.get("jcr:content/heroimagedt", "");
         heroimageAltText = valueMap.get("jcr:content/heroimageAltText", "");
-        authorimage = valueMap.get("jcr:content/authorimage", "");
         thumbnail = assetUtilService.getThumbnailLink(pageImage);
 
         readtime = valueMap.get("jcr:content/readtime", "");
-        author = valueMap.get("jcr:content/author", "");
-        authortitle = valueMap.get("jcr:content/authortitle", "");
+
+        initAuthor();
 
         tags = new ArrayList<>();
         tagsToShow = tagUtilService.getExternalTags(resource);
@@ -222,6 +222,33 @@ public class Article {
         path = resource.getResourceResolver().map(resource.getPath().concat(URL_EXTENSION));
 
         valid = true;
+    }
+
+    private void initAuthorLegacy() {
+        authorimage = valueMap.get("jcr:content/authorimage", "");
+        author = valueMap.get("jcr:content/author", "");
+        authortitle = valueMap.get("jcr:content/authortitle", "");
+        authorBriefDescription = valueMap.get("jcr:content/authorBriefDescription", "");
+    }
+    private void initAuthor() {
+        Optional<ValueMap> optionalData = Optional.ofNullable(resource.getChild("jcr:content/author-cf"))
+                        .map(r -> r.getValueMap().get("fragmentPath", String.class))
+                        .map(p -> resource.getResourceResolver().getResource(p + "/jcr:content/data"))
+                .filter(r -> r.getValueMap().get("cq:model", "").equals("/conf/dhl/settings/dam/cfm/models/author"))
+                .map(r -> r.getChild("master"))
+                .map(r-> r.getValueMap());
+
+        if (optionalData.isEmpty()) {
+            initAuthorLegacy();
+            return;
+        }
+
+        ValueMap data = optionalData.get();
+
+        authorimage = data.get("image", "");
+        author = data.get("name", "");
+        authortitle = data.get("title", "");
+        authorBriefDescription = data.get("description", "");
     }
 
     public String getCreated(String pattern) {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
           jcr:primaryType="cq:Page">
     <jcr:content
             cq:deviceGroups="[mobile/groups/responsive]"
-            cq:lastModified="{Date}2023-11-08T13:40:07.205+02:00"
+            cq:lastModified="{Date}2025-04-16T12:26:12.116+03:00"
             cq:lastModifiedBy="admin"
             cq:template="/conf/dhl/settings/wcm/templates/right-aligned-marketo-form"
-            jcr:isCheckedOut="{Boolean}true"
+            jcr:mixinTypes="[]"
             jcr:primaryType="cq:PageContent"
             sling:resourceType="dhl/components/pages/editable-two-column-page">
         <root
@@ -45,8 +45,7 @@
                         <responsivegrid
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="wcm/foundation/components/responsivegrid"
-                                editable="{Boolean}true">
-                        </responsivegrid>
+                                editable="{Boolean}true"/>
                     </right-column-body>
                     <description
                             jcr:primaryType="nt:unstructured"
@@ -66,23 +65,25 @@
                         <responsivegrid
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="wcm/foundation/components/responsivegrid"
-                                editable="{Boolean}true">
-                        </responsivegrid>
+                                editable="{Boolean}true"/>
                     </left-column-body>
                     <bottom
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm/foundation/components/responsivegrid">
                         <cta_banner_gray
+                                jcr:created="{Date}2025-04-16T12:26:05.096+03:00"
+                                jcr:createdBy="admin"
+                                jcr:lastModified="{Date}2025-04-16T12:26:05.096+03:00"
+                                jcr:lastModifiedBy="admin"
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="dhl/components/content/cta-banner-gray"
+                                sling:resourceType="dhl/components/content/experiencefragment"
                                 editable="{Boolean}true"/>
                     </bottom>
                 </two_columns_container>
                 <responsivegrid
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/foundation/components/responsivegrid"
-                        editable="{Boolean}true">
-                </responsivegrid>
+                        editable="{Boolean}true"/>
             </main>
             <footer
                     jcr:primaryType="nt:unstructured"
