@@ -53,7 +53,11 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             fieldLabel="Interaction Type"
+                            granite:class="cq-dialog-dropdown-multiple-showhide"
                             name="./analytics/interactionType">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-dropdown-showhide-target=".interaction-type-showhide"/>
                         <items
                                 jcr:primaryType="nt:unstructured">
                             <content
@@ -83,6 +87,22 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Position"
                             name="./analytics/position"/>
+                    <conversionOptions
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="interaction-type-showhide">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                showhidetargetvalue="conversion"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <detail
+                                    jcr:primaryType="nt:unstructured"
+                                    required="true"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Detail"
+                                    name="./analytics/detail"/>
+                        </items>
+                    </conversionOptions>
                     <analyticsResourceType
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/hidden"

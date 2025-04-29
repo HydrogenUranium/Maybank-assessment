@@ -20,6 +20,8 @@
 
     <filter root="/conf/groovyconsole/scripts"/>
 
+    <filter root="/conf/dhl/settings/dam/cfm/models"/>
+
     <filter root="/conf/dhl/settings/wcm/template-types"/>
     <filter root="/conf/dhl/settings/wcm/policies"/>
     <filter root="/conf/dhl/settings/wcm/templates/article"/>
