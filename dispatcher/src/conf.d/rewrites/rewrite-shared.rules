@@ -52,8 +52,6 @@ RewriteRule ^/discover/(content/dam)/(.+)$ /$1/$2 [PT,L,NC]
 RewriteRule ^/discover/adobe/dynamicmedia/deliver/(.+)$ /adobe/dynamicmedia/deliver/$1 [PT,L,NC]
 # Search Articles servlet
 RewriteRule ^/discover/((\w{2})-(global|\w{2}).*)(\.search|\.suggestions).json$ /content/dhl/$3/$1$4.json [PT,L,NC]
-# Suggestions servlet
-RewriteRule ^/discover/(content/dhl/jcr[:]content\.suggestions\.json.*)$ /$1 [PT,L,NC]
 # Adaptive Image servlet
 RewriteRule ^/discover/((\w{2})-(global|\w{2}).*/_jcr_content/.*coreimg.*)$ /content/dhl/$3/$1 [PT,L,NC]
 # rss generator pages
