@@ -17,10 +17,8 @@ export const getComponentPath = (): string => {
 };
 
 export const getArticles = async (query: string): Promise<SearchResult> => {
-    const prefix = getPathPrefix();
     const homePagePath = getHomePagePath();
-    const componentPath = getComponentPath();
-    const searchResult = await get<SearchResult>({ 
+    const searchResult = await get<SearchResult>({
         url: `${homePagePath}.search.json?s=${query}`
     });
 
@@ -29,7 +27,6 @@ export const getArticles = async (query: string): Promise<SearchResult> => {
 
 export const getTags = async (query: string): Promise<any> => {
     const homePagePath = getHomePagePath();
-    const prefix = getPathPrefix();
     return get({ url: `${homePagePath}.suggestions.json?s=${query}` });
 };
 
