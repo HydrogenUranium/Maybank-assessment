@@ -33,7 +33,7 @@ import static org.apache.commons.lang3.StringUtils.normalizeSpace;
         property = {
                 Constants.SERVICE_DESCRIPTION + "=DHL Suggestions Servlet",
                 "sling.servlet.methods=GET",
-                "sling.servlet.resourceTypes=dhl/components/pages/editable-standard",
+                "sling.servlet.resourceTypes=cq/Page",
                 "sling.servlet.selectors=suggestions",
                 "sling.servlet.extensions=json"
         }
@@ -71,7 +71,7 @@ public class GetSuggestionsServlet extends SlingAllMethodsServlet {
 
     private String processRequest(SlingHttpServletRequest request) throws RepositoryException {
         String query = isValid(request.getParameter("s"));
-        String homePagePath = request.getParameter("homepagepath");
+        String homePagePath = request.getRequestPathInfo().getResourcePath();
         String indexName = getSuggestionIndexName(homePagePath);
 
         var queryManager = QueryManagerUtils.getQueryManager(request);

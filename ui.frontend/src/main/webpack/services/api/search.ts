@@ -18,19 +18,19 @@ export const getComponentPath = (): string => {
 
 export const getArticles = async (query: string): Promise<SearchResult> => {
     const prefix = getPathPrefix();
-    const homePagePathSuffix = getHomePagePath();
+    const homePagePath = getHomePagePath();
     const componentPath = getComponentPath();
     const searchResult = await get<SearchResult>({ 
-        url: `${prefix}${componentPath}.searcharticlesuggest.json?s=${query}&homepagepath=${homePagePathSuffix}` 
+        url: `${homePagePath}.search.json?s=${query}`
     });
 
     return searchResult;
 };
 
 export const getTags = async (query: string): Promise<any> => {
-    const homePagePathSuffix = getHomePagePath();
+    const homePagePath = getHomePagePath();
     const prefix = getPathPrefix();
-    return get({ url: `${prefix}/content/dhl/jcr:content.suggestions.json?s=${query}&homepagepath=${homePagePathSuffix}` });
+    return get({ url: `${homePagePath}.suggestions.json?s=${query}` });
 };
 
 export const getTagSuggestions = async(query: string): Promise<string[]> => {

@@ -45,7 +45,9 @@ $include "./default_filters.any"
 /3014 {
     /type "allow"
     /method "GET"
-    /url "/content/dhl/jcr:content.suggestions.json"
+    /path '/content/dhl*'
+     /selectors '(suggestions|search)'
+     /extension '(json)'
 }
 
 # Allow AEM WCM Core Components sitemap
