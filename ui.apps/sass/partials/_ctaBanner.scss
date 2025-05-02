@@ -3,6 +3,7 @@
 
   .cmp-cta-banner {
     @include remove-container-margins-mobile-only;
+    z-index: 1;
 
     min-height: 30rem;
     padding: 2rem;
