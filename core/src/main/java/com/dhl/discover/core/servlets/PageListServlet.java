@@ -25,12 +25,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 @Component(
         service = { Servlet.class },
         property = {
                 "sling.servlet.methods=GET",
-                "sling.servlet.paths=/bin/get-all-pages"
+                "sling.servlet.resourceTypes=dhl/components/pages/editable-standard",
+                "sling.servlet.selectors=published-pages",
+                "sling.servlet.extensions=json"
         }
 )
 @Slf4j

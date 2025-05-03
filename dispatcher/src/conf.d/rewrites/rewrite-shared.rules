@@ -32,7 +32,6 @@ RewriteRule ^/discover/(.+)\.html$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
 ### Default redirects to en-global homepage
 RewriteRule ^/discover/?$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)
-RewriteRule ^/discover/content/dhl((?!jcr:content/root.searcharticlesuggest.json).)*$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 RewriteRule ^/$ https://%{HTTP_HOST}/discover/en-global [R=301,L]
 
 RewriteRule ^/discover/discover/(.+)$ https://%{HTTP_HOST}/discover/$1 [R=301,L]
@@ -52,7 +51,7 @@ RewriteRule ^/discover/(content/dam)/(.+)$ /$1/$2 [PT,L,NC]
 # dynamic media
 RewriteRule ^/discover/adobe/dynamicmedia/deliver/(.+)$ /adobe/dynamicmedia/deliver/$1 [PT,L,NC]
 # Search Articles servlet
-RewriteRule ^/discover/(content/dhl/.+/jcr[:]content/root\.searcharticlesuggest\.json.*)$ /$1 [PT,L,NC]
+RewriteRule ^/discover/((\w{2})-(global|\w{2}).*)(\.search|\.suggestions).json$ /content/dhl/$3/$1$4.json [PT,L,NC]
 # Adaptive Image servlet
 RewriteRule ^/discover/((\w{2})-(global|\w{2}).*/_jcr_content/.*coreimg.*)$ /content/dhl/$3/$1 [PT,L,NC]
 # rss generator pages

@@ -17,20 +17,17 @@ export const getComponentPath = (): string => {
 };
 
 export const getArticles = async (query: string): Promise<SearchResult> => {
-    const prefix = getPathPrefix();
-    const homePagePathSuffix = getHomePagePath();
-    const componentPath = getComponentPath();
-    const searchResult = await get<SearchResult>({ 
-        url: `${prefix}${componentPath}.searcharticlesuggest.json?s=${query}&homepagepath=${homePagePathSuffix}` 
+    const homePagePath = getHomePagePath();
+    const searchResult = await get<SearchResult>({
+        url: `${homePagePath}.search.json?s=${query}`
     });
 
     return searchResult;
 };
 
 export const getTags = async (query: string): Promise<any> => {
-    const homePagePathSuffix = getHomePagePath();
-    const prefix = getPathPrefix();
-    return get({ url: `${prefix}/apps/dhl/discoverdhlapi/suggestions/index.json?s=${query}&homepagepath=${homePagePathSuffix}` });
+    const homePagePath = getHomePagePath();
+    return get({ url: `${homePagePath}.suggestions.json?s=${query}` });
 };
 
 export const getTagSuggestions = async(query: string): Promise<string[]> => {
