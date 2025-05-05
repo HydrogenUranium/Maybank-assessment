@@ -62,44 +62,41 @@ public class PageListServlet extends SlingAllMethodsServlet {
         Map<String, Object> params = new HashMap<>();
         params.put(ResourceResolverFactory.SUBSERVICE, DiscoverConstants.DISCOVER_READ_SERVICE);
 
-        var searchScope = request.getRequestPathInfo().getResourcePath();
-        if (searchScope == null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Invalid or missing resource path.");
-            return;
-        }
+        String searchScope = request.getRequestPathInfo().getResourcePath();
+
         if (!pageListServletEnabled) {
                 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                 response.getWriter().write("PageListServlet is disabled.");
+                return;
         }
-        else {
-            try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(params)) {
-                log.info("Executing query for path: {}", searchScope);
-                QueryBuilder queryBuilder = resolver.adaptTo(QueryBuilder.class);
-                Map<String, String> queryMap = new HashMap<>();
-                queryMap.put("path", searchScope);
-                queryMap.put("type", "cq:Page");
-                queryMap.put("p.limit", "-1");
-                queryMap.put("orderby", "@jcr:path");
-                queryMap.put("orderby.sort", "asc");
-                Query query = queryBuilder.createQuery(PredicateGroup.create(queryMap), resolver.adaptTo(Session.class));
-                SearchResult result = query.getResult();
 
-                JsonArray pagesArray = new JsonArray();
-                for (Hit hit : result.getHits()) {
-                    pagesArray.add(hit.getPath());
-                }
+        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(params)) {
+            log.info("Executing query for path: {}", searchScope);
+            QueryBuilder queryBuilder = resolver.adaptTo(QueryBuilder.class);
+            Map<String, String> queryMap = new HashMap<>();
+            queryMap.put("path", searchScope);
+            queryMap.put("type", "cq:Page");
+            queryMap.put("p.limit", "-1");
+            queryMap.put("orderby", "@jcr:path");
+            queryMap.put("orderby.sort", "asc");
+            Query query = queryBuilder.createQuery(PredicateGroup.create(queryMap), resolver.adaptTo(Session.class));
+            SearchResult result = query.getResult();
 
-                response.setContentType("application/json");
-                response.getWriter().write(pagesArray.toString());
-            } catch (LoginException e) {
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("Failed to get resource resolver: " + e.getMessage());
-            } catch (RepositoryException | org.apache.sling.api.resource.LoginException e) {
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("An unexpected error occurred. Please try again later.");
+            JsonArray pagesArray = new JsonArray();
+            for (Hit hit : result.getHits()) {
+                pagesArray.add(hit.getPath());
             }
+
+            response.setContentType("application/json");
+            response.getWriter().write(pagesArray.toString());
+        } catch (LoginException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("Failed to get resource resolver: " + e.getMessage());
+        } catch (RepositoryException | org.apache.sling.api.resource.LoginException e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("An unexpected error occurred. Please try again later.");
         }
+
     }
 
     @ObjectClassDefinition
