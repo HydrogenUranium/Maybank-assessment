@@ -18,7 +18,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.List;
-import static com.dhl.discover.core.utils.OSGiConfigUtils.arrayToEntrySetWithDelimiter;
 
 @Component(
         immediate = true,

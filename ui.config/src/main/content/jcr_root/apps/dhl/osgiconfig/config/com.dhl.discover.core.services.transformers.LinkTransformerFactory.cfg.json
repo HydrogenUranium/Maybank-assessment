@@ -1,6 +1,7 @@
 {
   "rewrite.elements":[
     "img:src",
+    "img:srcset",
     "source:srcset",
     "source:src",
     "video:poster",

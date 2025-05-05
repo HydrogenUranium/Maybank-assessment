@@ -14,7 +14,12 @@ $include "./default_filters.any"
 ### bespoke DHL api endpoints
 /3001 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/*" } ## ??
 
-/3005 { /type "allow" /method "GET" /url "/bin/get-all-pages" }
+/3005 {
+    /type "allow"
+    /method "GET"
+    /url "/content/dhl/jcr:content.published-pages.json"
+}
+
 /3006 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/google*" }
 /3008 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/suggestions*" }
 
@@ -36,6 +41,14 @@ $include "./default_filters.any"
     /path "*/content/dhl/*"
     /selectors 'enhanced-google-conversion'
     /extension 'html' }  # allow POSTs to enhanced-google-conversion selectors under content
+
+/3014 {
+    /type "allow"
+    /method "GET"
+    /path '/content/dhl*'
+     /selectors '(suggestions|search)'
+     /extension '(json)'
+}
 
 # Allow AEM WCM Core Components sitemap
 /3020 { /type "allow" /path "/content/*" /selectors '(sitemap-index|sitemap)' /extension "xml" }
