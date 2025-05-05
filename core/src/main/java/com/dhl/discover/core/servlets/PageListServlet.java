@@ -13,8 +13,14 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.AttributeType;
+import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 import javax.jcr.LoginException;
 import javax.jcr.RepositoryException;
@@ -35,42 +41,70 @@ import java.util.Map;
         }
 )
 @Slf4j
+@Designate(ocd = PageListServlet.Configuration.class)
 public class PageListServlet extends SlingAllMethodsServlet {
     private static final long serialVersionUID = 1L;
 
     @Reference
     private transient ResourceResolverFactory resolverFactory;
 
+    private boolean pageListServletEnabled;
+
+    @Activate
+    @Modified
+    public void init(PageListServlet.Configuration config) {
+        this.pageListServletEnabled =  config.pageListServletEnabled();
+    }
+
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws ServletException, IOException {
-        Map<String, Object> params = new HashMap<>();
-        params.put(ResourceResolverFactory.SUBSERVICE, DiscoverConstants.DISCOVER_READ_SERVICE);
+        if (pageListServletEnabled) {
+            Map<String, Object> params = new HashMap<>();
+            params.put(ResourceResolverFactory.SUBSERVICE, DiscoverConstants.DISCOVER_READ_SERVICE);
 
-        try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(params)) {
-            QueryBuilder queryBuilder = resolver.adaptTo(QueryBuilder.class);
-            Map<String, String> queryMap = new HashMap<>();
-            queryMap.put("path", "/content/dhl");
-            queryMap.put("type", "cq:Page");
-            queryMap.put("p.limit", "-1");
-            queryMap.put("orderby", "@jcr:path");
-            queryMap.put("orderby.sort", "asc");
-            Query query = queryBuilder.createQuery(PredicateGroup.create(queryMap), resolver.adaptTo(Session.class));
-            SearchResult result = query.getResult();
+            try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(params)) {
+                QueryBuilder queryBuilder = resolver.adaptTo(QueryBuilder.class);
+                Map<String, String> queryMap = new HashMap<>();
+                queryMap.put("path", "/content/dhl");
+                queryMap.put("type", "cq:Page");
+                queryMap.put("p.limit", "-1");
+                queryMap.put("orderby", "@jcr:path");
+                queryMap.put("orderby.sort", "asc");
+                Query query = queryBuilder.createQuery(PredicateGroup.create(queryMap), resolver.adaptTo(Session.class));
+                SearchResult result = query.getResult();
 
-            JsonArray pagesArray = new JsonArray();
-            for (Hit hit : result.getHits()) {
-                pagesArray.add(hit.getPath());
+                JsonArray pagesArray = new JsonArray();
+                for (Hit hit : result.getHits()) {
+                    pagesArray.add(hit.getPath());
+                }
+
+                response.setContentType("application/json");
+                response.getWriter().write(pagesArray.toString());
+            } catch (LoginException e) {
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                response.getWriter().write("Failed to get resource resolver: " + e.getMessage());
+            } catch (RepositoryException | org.apache.sling.api.resource.LoginException e) {
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                response.getWriter().write("An unexpected error occurred. Please try again later.");
             }
-
-            response.setContentType("application/json");
-            response.getWriter().write(pagesArray.toString());
-        } catch (LoginException e) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("Failed to get resource resolver: " + e.getMessage());
-        } catch (RepositoryException | org.apache.sling.api.resource.LoginException e) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("An unexpected error occurred. Please try again later.");
+        }
+        else{
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.getWriter().write("PageListServlet is disabled.");
         }
     }
+
+    @ObjectClassDefinition
+    @interface Configuration {
+
+        @AttributeDefinition(
+                name = "PAGE_LIST_SERVLET_ENABLED",
+                description = "On / Off switch that either sets the configuration enabled or disabled. " +
+                        "If disabled, replication events would still be listened to, but not acted on.",
+                type = AttributeType.BOOLEAN
+        )
+        boolean pageListServletEnabled() default false;
+    }
+
 }
