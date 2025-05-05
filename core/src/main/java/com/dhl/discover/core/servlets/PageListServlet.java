@@ -35,8 +35,8 @@ import java.util.Map;
         service = { Servlet.class },
         property = {
                 "sling.servlet.methods=GET",
-                "sling.servlet.resourceTypes=dhl/components/pages/editable-standard",
-                "sling.servlet.selectors=published-pages",
+                "sling.servlet.resourceTypes=cq/Page",
+                "sling.servlet.selectors=child-pages",
                 "sling.servlet.extensions=json"
         }
 )
