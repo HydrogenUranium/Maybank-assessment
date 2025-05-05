@@ -59,15 +59,25 @@ public class PageListServlet extends SlingAllMethodsServlet {
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws ServletException, IOException {
+        Map<String, Object> params = new HashMap<>();
+        params.put(ResourceResolverFactory.SUBSERVICE, DiscoverConstants.DISCOVER_READ_SERVICE);
 
-        if (pageListServletEnabled) {
-            Map<String, Object> params = new HashMap<>();
-            params.put(ResourceResolverFactory.SUBSERVICE, DiscoverConstants.DISCOVER_READ_SERVICE);
-
+        var searchScope = request.getRequestPathInfo().getResourcePath();
+        if (searchScope == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("Invalid or missing resource path.");
+            return;
+        }
+        if (!pageListServletEnabled) {
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                response.getWriter().write("PageListServlet is disabled.");
+        }
+        else {
             try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(params)) {
+                log.info("Executing query for path: {}", searchScope);
                 QueryBuilder queryBuilder = resolver.adaptTo(QueryBuilder.class);
                 Map<String, String> queryMap = new HashMap<>();
-                queryMap.put("path", "/content/dhl");
+                queryMap.put("path", searchScope);
                 queryMap.put("type", "cq:Page");
                 queryMap.put("p.limit", "-1");
                 queryMap.put("orderby", "@jcr:path");
@@ -89,10 +99,6 @@ public class PageListServlet extends SlingAllMethodsServlet {
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 response.getWriter().write("An unexpected error occurred. Please try again later.");
             }
-        }
-        else{
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            response.getWriter().write("PageListServlet is disabled.");
         }
     }
 
