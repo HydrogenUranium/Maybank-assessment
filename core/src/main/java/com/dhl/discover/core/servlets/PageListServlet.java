@@ -59,6 +59,7 @@ public class PageListServlet extends SlingAllMethodsServlet {
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws ServletException, IOException {
+
         if (pageListServletEnabled) {
             Map<String, Object> params = new HashMap<>();
             params.put(ResourceResolverFactory.SUBSERVICE, DiscoverConstants.DISCOVER_READ_SERVICE);
