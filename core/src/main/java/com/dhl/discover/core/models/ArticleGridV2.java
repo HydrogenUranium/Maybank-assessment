@@ -5,7 +5,6 @@ import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.injectors.InjectHomeProperty;
 import com.dhl.discover.core.models.search.SearchResultEntry;
 import com.dhl.discover.core.services.ArticleService;
-import com.dhl.discover.core.services.InitUtil;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -44,10 +43,6 @@ public class ArticleGridV2 {
     @ScriptVariable
     @Required
     protected Style currentStyle;
-
-    @OSGiService
-    @Required
-    private InitUtil initUtil;
 
     @OSGiService
     @Required
