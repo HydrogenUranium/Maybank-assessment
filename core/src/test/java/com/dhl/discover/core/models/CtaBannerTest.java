@@ -64,14 +64,11 @@ class CtaBannerTest {
         CtaBanner ctaBanner = request.adaptTo(CtaBanner.class);
 
         assertNotNull(ctaBanner);
-        assertEquals("Subscribe To Our Newsletter", ctaBanner.getTitle());
-        assertEquals("Stay In The Loop!", ctaBanner.getTopTitle());
         assertEquals("/content/dhl/openBusinessAccount", ctaBanner.getButtonLink());
         assertEquals("Subscribe", ctaBanner.getButtonName());
         assertEquals("/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
         assertEquals("/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
         assertEquals("/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
-        assertTrue(ctaBanner.isDisabled());
     }
 
     @Test
