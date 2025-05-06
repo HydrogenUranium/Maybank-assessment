@@ -63,16 +63,12 @@ class PageListServletTest {
     @BeforeEach
     void setUp() throws LoginException {
         MockitoAnnotations.openMocks(this);
-        // Mock the ResourceResolverFactory
-        ResourceResolver resourceResolver = mock(ResourceResolver.class);
-        when(resolverFactory.getServiceResourceResolver(any())).thenReturn(resourceResolver);
+        when(resolverFactory.getServiceResourceResolver(any())).thenReturn(resolver);
 
         request = context.request();
         response = context.response();
-        servlet = new PageListServlet();
         when(mockConfig.pageListServletEnabled()).thenReturn(true);
         servlet.init(mockConfig);
-        //servlet.resolverFactory = resolverFactory;
     }
 
     @Test
