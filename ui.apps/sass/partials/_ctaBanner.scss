@@ -1,14 +1,15 @@
 .cta-banner {
   margin-top: 4rem;
+  z-index: 1;
+  position: relative;
 
   .cmp-cta-banner {
     @include remove-container-margins-mobile-only;
-    z-index: 1;
 
     min-height: 30rem;
     padding: 2rem;
     display: flex;
-    position: relative;
+
     border-radius: .6rem;
     color: #ffffff;
     font-size: 1.7rem;
