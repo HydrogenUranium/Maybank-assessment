@@ -203,14 +203,6 @@
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
-                                    <navigationMenu
-                                            jcr:primaryType="nt:unstructured"
-                                            variant="warning"
-                                            sling:resourceType="granite/ui/components/coral/foundation/alert"
-                                            jcr:title="Some common configurations were moved to Experience Fragments"
-                                            text="If you want to update the configuration in an outdated section,
-                                            please make the changes in the corresponding Experience Fragment.
-                                            Note that write access to Experience Fragments is restricted."/>
 
                                     <global
                                             jcr:primaryType="nt:unstructured"
