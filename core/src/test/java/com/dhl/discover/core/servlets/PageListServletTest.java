@@ -11,6 +11,7 @@ import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.testing.mock.sling.servlet.MockRequestPathInfo;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,11 +57,18 @@ class PageListServletTest {
     @Mock
     private Hit hit;
 
+    @Mock
+    private PageListServlet.Configuration mockConfig;
+
     @BeforeEach
-    void setUp() {
+    void setUp() throws LoginException {
         MockitoAnnotations.openMocks(this);
+        //when(resolverFactory.getServiceResourceResolver(any())).thenReturn(resolver);
+
         request = context.request();
         response = context.response();
+        when(mockConfig.pageListServletEnabled()).thenReturn(true);
+        servlet.init(mockConfig);
     }
 
     @Test
@@ -72,6 +80,8 @@ class PageListServletTest {
         when(query.getResult()).thenReturn(searchResult);
         when(searchResult.getHits()).thenReturn(Collections.singletonList(hit));
         when(hit.getPath()).thenReturn("/content/dhl/sample-page");
+        MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) request.getRequestPathInfo();
+        requestPathInfo.setResourcePath("/content/dhl/sample-page");
 
         servlet.doGet(request, response);
 
@@ -88,6 +98,18 @@ class PageListServletTest {
 
         assertEquals(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, response.getStatus());
         assertEquals("An unexpected error occurred. Please try again later.", response.getOutputAsString());
+    }
+
+    @Test
+    void testServletDisabled() throws Exception {
+        when(mockConfig.pageListServletEnabled()).thenReturn(false);
+        servlet.init(mockConfig);
+        // Act
+        servlet.doGet(request, response);
+
+        // Assert
+        assertEquals(HttpServletResponse.SC_FORBIDDEN, response.getStatus());
+        assertEquals("PageListServlet is disabled.", response.getOutputAsString());
     }
 
 }
