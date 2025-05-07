@@ -1,5 +1,5 @@
 <sly data-sly-use.dhlpage="com.dhl.discover.core.models.DhlPage">
-    <sly data-sly-test="${true}" data-sly-unwrap>
+    <sly data-sly-test="${(currentSession.userID == null || currentSession.userID == 'anonymous')}" data-sly-unwrap>
         <sly data-sly-test="${(dhlpage.gtmtrackingid != '') && (dhlpage.gtmDelayEnabled)}" data-sly-unwrap>
             <!-- Google Tag Manager -->
             <script>
@@ -18,7 +18,7 @@
                         let gtmTrackingId = '${dhlpage.gtmtrackingid @ context = "uri"}';
                         gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmTrackingId;
                         document.head.appendChild(gtmScript);
-                    }, 5000); // Delay by 3 seconds after full page load
+                    }, 5000); // Delay by 5 seconds after full page load
                 });
             </script>
             <!-- End Google Tag Manager -->
@@ -29,7 +29,7 @@
                     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${dhlpage.gtmtrackingid @ context = "unsafe"}');</script>
+            })(window,document,'script','dataLayer','${dhlpage.gtmtrackingid @ context = "uri"}');</script>
             <!-- End Google Tag Manager -->
         </sly>
     </sly>
