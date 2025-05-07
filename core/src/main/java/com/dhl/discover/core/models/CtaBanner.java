@@ -4,7 +4,6 @@ import com.dhl.discover.core.injectors.InjectHomeProperty;
 import lombok.Getter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
@@ -14,10 +13,6 @@ import java.util.UUID;
 
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class CtaBanner {
-
-    @ValueMapValue
-    @Default(values = "custom")
-    private String type;
 
     @ValueMapValue
     @Getter
