@@ -54,6 +54,7 @@ public class DhlPage {
 	private String pageImage;
 	private String seoTitle;
 	private String adobeDtmLink;
+	private String gtmDelayEnabled;
 
 	@InjectHomeProperty
 	@Default(values = "")
@@ -79,6 +80,7 @@ public class DhlPage {
 		adobeDtmLink = environmentConfiguration.getAdobeDtmLink();
 		assetprefix = environmentConfiguration.getAssetPrefix();
 		akamaiHostname = environmentConfiguration.getAkamaiHostname();
+		gtmDelayEnabled = environmentConfiguration.getGtmDelayEnabled();
 
 		var isPublishRunmode = true;
 		var mode = WCMMode.fromRequest(request);

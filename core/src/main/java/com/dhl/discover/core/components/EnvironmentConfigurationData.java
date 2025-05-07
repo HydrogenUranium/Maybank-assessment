@@ -71,4 +71,12 @@ public @interface EnvironmentConfigurationData {
             type = AttributeType.STRING
     )
     String adobeDtmLink();
+
+    @AttributeDefinition(
+            name = "GTM Delay Enabled",
+            description = "GTM Delay Enabled",
+            defaultValue = "true",
+            type = AttributeType.BOOLEAN
+    )
+    String gtmDelayEnabled();
 }
