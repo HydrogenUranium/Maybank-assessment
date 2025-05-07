@@ -63,6 +63,7 @@ class PageListServletTest {
     @BeforeEach
     void setUp() throws LoginException {
         MockitoAnnotations.openMocks(this);
+
         //when(resolverFactory.getServiceResourceResolver(any())).thenReturn(resolver);
 
         request = context.request();
