@@ -63,9 +63,6 @@ class PageListServletTest {
     @BeforeEach
     void setUp() throws LoginException {
         MockitoAnnotations.openMocks(this);
-
-        //when(resolverFactory.getServiceResourceResolver(any())).thenReturn(resolver);
-
         request = context.request();
         response = context.response();
         when(mockConfig.pageListServletEnabled()).thenReturn(true);
@@ -105,10 +102,7 @@ class PageListServletTest {
     void testServletDisabled() throws Exception {
         when(mockConfig.pageListServletEnabled()).thenReturn(false);
         servlet.init(mockConfig);
-        // Act
         servlet.doGet(request, response);
-
-        // Assert
         assertEquals(HttpServletResponse.SC_FORBIDDEN, response.getStatus());
         assertEquals("PageListServlet is disabled.", response.getOutputAsString());
     }
