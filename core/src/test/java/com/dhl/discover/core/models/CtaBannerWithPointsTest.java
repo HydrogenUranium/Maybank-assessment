@@ -1,6 +1,5 @@
 package com.dhl.discover.core.models;
 
-import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.injectors.HomePropertyInjector;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
@@ -19,21 +18,14 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class CtaBannerWithPointsTest {
     private final static String COMPONENT_LOCATION = "/content/home/small-business-advice/article/jcr:content/root/article_container/body/responsivegrid";
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
-
-    private final MockSlingHttpServletRequest request = context.request();
-
-    private final ResourceResolver resourceResolver = context.resourceResolver();
 
     @Mock
     private PathUtilService pathUtilService;

@@ -25,10 +25,6 @@ class CtaBannerTest {
     private final static String COMPONENT_LOCATION = "/content/home/small-business-advice/article/jcr:content/root/article_container/body/responsivegrid";
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
-
-    private final MockSlingHttpServletRequest request = context.request();
-    private final ResourceResolver resourceResolver = context.resourceResolver();
-
     @Mock
     private PathUtilService pathUtilService;
 
