@@ -81,6 +81,10 @@ formattedDate = formatter.format(now)
 
 def isPublished(page) {
     def resource = page.getContentResource()
+    if(resource == null) {
+        println """Page is missing jcr:content node ${page.getPath()} """
+        return false;
+    }
     def valueMap = resource.getValueMap()
     def status = valueMap.get('cq:lastReplicationAction_publish', valueMap.get('cq:lastReplicationAction', ''))
     return status.equals('Activate')
