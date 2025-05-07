@@ -9,7 +9,6 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import java.util.UUID;
 
@@ -74,14 +73,4 @@ public class CtaBanner {
     @Getter
     private final String id = "cta-banner_" + UUID.randomUUID();
 
-    @PostConstruct
-    protected void init() {
-        if(type.equals("subscribeNewsletter")) {
-            mobileBackgroundImage = mobileBackgroundImageGlobal;
-            tabletBackgroundImage = tabletBackgroundImageGlobal;
-            desktopBackgroundImage = desktopBackgroundImageGlobal;
-            buttonName = buttonNameGlobal;
-            buttonLink = buttonLinkGlobal;
-        }
-    }
 }

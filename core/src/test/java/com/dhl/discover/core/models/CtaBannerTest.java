@@ -64,11 +64,6 @@ class CtaBannerTest {
         CtaBanner ctaBanner = request.adaptTo(CtaBanner.class);
 
         assertNotNull(ctaBanner);
-        assertEquals("/content/dhl/openBusinessAccount", ctaBanner.getButtonLink());
-        assertEquals("Subscribe", ctaBanner.getButtonName());
-        assertEquals("/content/dam/images/desktop.jpg", ctaBanner.getDesktopBackgroundImage());
-        assertEquals("/content/dam/images/tablet.jpg", ctaBanner.getTabletBackgroundImage());
-        assertEquals("/content/dam/images/mobile.jpg", ctaBanner.getMobileBackgroundImage());
     }
 
     @Test
