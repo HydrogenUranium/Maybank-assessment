@@ -1,6 +1,7 @@
 package com.dhl.discover.core.services;
 
 import com.akamai.edgegrid.signer.ClientCredential;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -17,6 +18,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.HashMap;
 import java.util.Map;
 
+import static junit.framework.Assert.assertNotSame;
+import static junit.framework.Assert.assertSame;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -55,8 +58,8 @@ class InitUtilTest {
 		when(httpClientBuilder.setDefaultRequestConfig(any())).thenReturn(httpClientBuilder);
 		when(httpClientBuilder.build()).thenReturn(client);
 
-		CloseableHttpClient client = underTest.getHttpClient();
-		assertNotNull(client);
+		CloseableHttpClient clientObj = underTest.getHttpClient();
+		assertNotNull(clientObj);
 		verify(httpClientBuilderFactory, times(1)).newBuilder();
 
 		CloseableHttpClient existingClient = underTest.getHttpClient();
@@ -70,12 +73,41 @@ class InitUtilTest {
 		when(httpClientBuilder.setDefaultRequestConfig(any())).thenReturn(httpClientBuilder);
 		when(httpClientBuilder.build()).thenReturn(client);
 
-		CloseableHttpClient client = underTest.getAkamaiClient(clientCredential);
-		assertNotNull(client);
+		CloseableHttpClient clientObj = underTest.getAkamaiClient(clientCredential);
+		assertNotNull(clientObj);
 		verify(httpClientBuilderFactory, times(1)).newBuilder();
 
 		CloseableHttpClient existingClient = underTest.getAkamaiClient(clientCredential);
 		assertNotNull(existingClient);
 		verifyNoMoreInteractions(httpClientBuilderFactory);
+	}
+
+	@Test
+	void getObjectMapper() {
+		ObjectMapper objectMapper = underTest.getObjectMapper();
+		assertNotNull(objectMapper);
+
+		// Ensure the same instance is returned
+		ObjectMapper existingObjectMapper = underTest.getObjectMapper();
+		assertNotNull(existingObjectMapper);
+		assertSame(objectMapper, existingObjectMapper);
+	}
+
+	@Test
+	void resetClient() {
+		when(httpClientBuilderFactory.newBuilder()).thenReturn(httpClientBuilder);
+		when(httpClientBuilder.setDefaultRequestConfig(any())).thenReturn(httpClientBuilder);
+
+		// Initialize the client
+		CloseableHttpClient initialClient = underTest.getHttpClient();
+		assertNotNull(initialClient);
+
+		// Reset the client
+		underTest.resetClient();
+
+		// Ensure a new client is created
+		CloseableHttpClient newClient = underTest.getHttpClient();
+		assertNotNull(newClient);
+		assertNotSame(initialClient, newClient);
 	}
 }
