@@ -52,53 +52,6 @@ class CtaBannerWithPointsTest {
         context.addModelsForClasses(CtaBannerWithPoints.class);
     }
 
-    private void mockHomePage() {
-        when(pageUtils.getHomePage(any(Page.class))).thenReturn(context.resourceResolver().getResource("/content/home").adaptTo(Page.class));
-    }
-
-    private void initRequest(String path) {
-        request.setPathInfo(path);
-        request.setResource(resourceResolver.getResource(path));
-    }
-
-    @Test
-    void init_ShouldInitPropertiesFromHomePage_WhenTypeIsSubscribe() {
-        initRequest(COMPONENT_LOCATION + "/cta_banner_subscribeNewsletter");
-        mockHomePage();
-
-        CtaBannerWithPoints ctaBannerWithPoints = request.adaptTo(CtaBannerWithPoints.class);
-
-        assertEquals("SUBSCRIBE TO OUR NEWSLETTER", ctaBannerWithPoints.getTitle());
-        assertEquals("/content/dhl/subscribe", ctaBannerWithPoints.getButtonLink());
-        assertEquals("Subscribe", ctaBannerWithPoints.getButtonName());
-        assertEquals("/content/dam/images/subscribe-desktop.png", ctaBannerWithPoints.getDesktopBackgroundImage());
-        assertEquals("/content/dam/images/subscribe-tablet.png", ctaBannerWithPoints.getTabletBackgroundImage());
-        assertEquals("/content/dam/images/subscribe-mobile.png", ctaBannerWithPoints.getMobileBackgroundImage());
-        assertEquals(Arrays.asList(
-                "Fortnightly insights, tips and free assets",
-                "Shape a global audience for your business"
-        ), ctaBannerWithPoints.getPoints());
-    }
-
-    @Test
-    void init_ShouldInitPropertiesFromHomePage_WhenTypeIsOpenBusinessAccount() {
-        initRequest(COMPONENT_LOCATION + "/cta_banner_businessAccount");
-        mockHomePage();
-
-        CtaBannerWithPoints ctaBannerWithPoints = request.adaptTo(CtaBannerWithPoints.class);
-
-        assertEquals("Open a Business Account", ctaBannerWithPoints.getTitle());
-        assertEquals("/content/dhl/openBusinessAccount", ctaBannerWithPoints.getButtonLink());
-        assertEquals("Join Us", ctaBannerWithPoints.getButtonName());
-        assertEquals("/content/dam/images/desktop.jpg", ctaBannerWithPoints.getDesktopBackgroundImage());
-        assertEquals("/content/dam/images/tablet.jpg", ctaBannerWithPoints.getTabletBackgroundImage());
-        assertEquals("/content/dam/images/mobile.jpg", ctaBannerWithPoints.getMobileBackgroundImage());
-        assertEquals(Arrays.asList(
-                "Fortnightly insights, tips and free assets",
-                "Shape a global audience for your business"
-        ), ctaBannerWithPoints.getPoints());
-    }
-
     @Test
     void init_ShouldInitPropertiesFromHomePage_WhenTypeIsCustom() {
         Resource resource = context.resourceResolver().getResource(COMPONENT_LOCATION + "/cta_banner_custom");

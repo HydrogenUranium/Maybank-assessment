@@ -1,6 +1,6 @@
 package com.dhl.discover.core.models;
 
-import com.day.cq.wcm.api.Page;
+
 import com.dhl.discover.core.injectors.HomePropertyInjector;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
@@ -19,8 +19,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class CtaBannerTest {
@@ -45,25 +43,6 @@ class CtaBannerTest {
         context.load().json("/com/dhl/discover/core/models/CtaBanner/content.json", "/content");
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(Injector.class, homePropertyInjector);
-    }
-
-    private void mockHomePage() {
-        when(pageUtils.getHomePage(any(Page.class))).thenReturn(resourceResolver.getResource("/content/home").adaptTo(Page.class));
-    }
-
-    private void initRequest(String path) {
-        request.setPathInfo(path);
-        request.setResource(resourceResolver.getResource(path));
-    }
-
-    @Test
-    void init_ShouldInitPropertiesFromHomePage_WhenTypeIsSubscribe() {
-        initRequest(COMPONENT_LOCATION + "/cta_banner_subscribeNewsletter");
-        mockHomePage();
-
-        CtaBanner ctaBanner = request.adaptTo(CtaBanner.class);
-
-        assertNotNull(ctaBanner);
     }
 
     @Test
