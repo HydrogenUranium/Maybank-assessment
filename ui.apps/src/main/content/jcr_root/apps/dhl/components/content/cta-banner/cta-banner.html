@@ -13,7 +13,7 @@
            class="cmp-cta-banner__button dhl-btn dhl-btn--primary"
         >${model.buttonName}</a>
     </div>
-    <div class="cmp-cta-banner__image" id="${                              .id}">
+    <div class="cmp-cta-banner__image" id="${model.id}">
         <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
              data-sly-call="${template.adaptiveBackground @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>
     </div>
