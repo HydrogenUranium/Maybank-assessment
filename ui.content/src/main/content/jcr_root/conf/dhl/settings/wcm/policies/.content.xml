@@ -1201,6 +1201,86 @@
                         </cq:styleGroups>
                     </policy_dhl_top-tiles>
                 </top-tiles>
+                <top-tiles-v2 jcr:primaryType="nt:unstructured">
+                    <policy_dhl_top-tiles-v2
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="DHL Top Tiles V2 Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            enableAssetDelivery="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Margin Top"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mt-large"
+                                            cq:styleId="1729042357900"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mt-medium"
+                                            cq:styleId="1729045097701"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mt-small"
+                                            cq:styleId="1729045105010"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mt-zero"
+                                            cq:styleId="1729045111413"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                            <item1
+                                    cq:styleGroupLabel="Margin Bottom"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="mb-large"
+                                            cq:styleId="1729045126103"
+                                            cq:styleLabel="Large"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item1
+                                            cq:styleClasses="mb-medium"
+                                            cq:styleId="1729045132395"
+                                            cq:styleLabel="Medium"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item2
+                                            cq:styleClasses="mb-small"
+                                            cq:styleId="1729045139172"
+                                            cq:styleLabel="Small"
+                                            jcr:primaryType="nt:unstructured"/>
+                                    <item3
+                                            cq:styleClasses="mb-zero"
+                                            cq:styleId="1729045144901"
+                                            cq:styleLabel="No"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item1>
+                        </cq:styleGroups>
+                    </policy_dhl_top-tiles-v2>
+                    <image jcr:primaryType="nt:unstructured">
+                    <policy_top-tiles-image
+                            jcr:lastModified="{Date}2025-05-10T13:57:17.036+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Top Tiles Image Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            allowedRenditionWidths="[400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600]"
+                            disableLazyLoading="true"
+                            enableAssetDelivery="true"
+                            displayPopupTitle="true"
+                            isDecorative="false"
+                            titleValueFromDAM="true"
+                            altValueFromDAM="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_top-tiles-image>
+                </image>
+                </top-tiles-v2>
                 <article-showcase jcr:primaryType="nt:unstructured">
                     <policy_dhl_showcase
                             jcr:primaryType="nt:unstructured"
