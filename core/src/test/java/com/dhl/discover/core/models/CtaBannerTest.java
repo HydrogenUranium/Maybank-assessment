@@ -1,18 +1,13 @@
 package com.dhl.discover.core.models;
 
-
-import com.dhl.discover.core.injectors.HomePropertyInjector;
-import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.models.spi.Injector;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -26,17 +21,10 @@ class CtaBannerTest {
     @Mock
     private PathUtilService pathUtilService;
 
-    @Mock
-    private PageUtilService pageUtils;
-
-    @InjectMocks
-    private HomePropertyInjector homePropertyInjector;
-
     @BeforeEach
     void setUp() throws Exception {
         context.load().json("/com/dhl/discover/core/models/CtaBanner/content.json", "/content");
         context.registerService(PathUtilService.class, pathUtilService);
-        context.registerService(Injector.class, homePropertyInjector);
     }
 
     @Test
