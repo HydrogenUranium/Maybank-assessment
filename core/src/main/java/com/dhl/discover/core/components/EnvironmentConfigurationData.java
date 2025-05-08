@@ -71,4 +71,12 @@ public @interface EnvironmentConfigurationData {
             type = AttributeType.STRING
     )
     String adobeDtmLink();
+
+    @AttributeDefinition(
+            name = "GTM Delay Enabled",
+            description = "By turning on, the GTM script will be delayed by 5s. Setting it off, the original script will be used, no delay is applied",
+            defaultValue = "true",
+            type = AttributeType.BOOLEAN
+    )
+    String gtmDelayEnabled();
 }

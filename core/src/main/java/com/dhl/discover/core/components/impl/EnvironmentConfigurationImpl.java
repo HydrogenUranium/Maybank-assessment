@@ -29,6 +29,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     private String defaultMarketoFormId;
     private String defaultMarketoHiddenFormId;
     private String adobeDtmLink;
+    private String gtmDelayEnabled;
 
     /**
      *
@@ -42,6 +43,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
         defaultMarketoFormId = PropertiesUtil.toString(environmentConfigurationData.marketoDefaultFormId(),"1795");
         defaultMarketoHiddenFormId = PropertiesUtil.toString(environmentConfigurationData.marketoDefaultHiddenFormId(),"1756");
         adobeDtmLink = PropertiesUtil.toString(environmentConfigurationData.adobeDtmLink(), "https://assets.adobedtm.com/cd52279ef3fa/6b1d49db70e9/launch-f5fe1ed8f4b2-staging.min.js");
+        gtmDelayEnabled = PropertiesUtil.toString(environmentConfigurationData.gtmDelayEnabled(), "true") ;
     }
 
     @Override
@@ -73,4 +75,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
     public String getAdobeDtmLink() {
         return adobeDtmLink;
     }
+
+    @Override
+    public String getGtmDelayEnabled() { return gtmDelayEnabled; }
 }

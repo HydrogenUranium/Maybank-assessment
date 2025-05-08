@@ -2,5 +2,6 @@
   "assetPrefix": "/discover",
   "akamaiHostname": "$[env:AKAMAI_HOSTNAME]",
   "countryInfoLocation": "/conf/dhl/appdata/countries",
-  "adobeDtmLink": "$[env:DTM_SCRIPT_LINK]"
+  "adobeDtmLink": "$[env:DTM_SCRIPT_LINK]",
+  "gtmDelayEnabled": "$[env:GTM_DELAY_ENABLED]"
 }
