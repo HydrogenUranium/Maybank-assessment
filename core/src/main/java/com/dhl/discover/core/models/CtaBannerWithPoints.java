@@ -11,7 +11,6 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.inject.Named;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -64,18 +63,4 @@ public class CtaBannerWithPoints {
     @Getter
     private List<String> points = new ArrayList<>();
 
-
-    private List<String> extractPoints(Resource pointsMultifield) {
-        List<String> list = new ArrayList<>();
-        if (pointsMultifield == null) {
-            return list;
-        }
-
-        Iterator<Resource> multifieldItems = pointsMultifield.listChildren();
-        while (multifieldItems.hasNext()) {
-            var properties = multifieldItems.next().getValueMap();
-            list.add(properties.get("text", ""));
-        }
-        return list;
-    }
 }
