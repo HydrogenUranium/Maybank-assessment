@@ -6,10 +6,8 @@ import com.dhl.discover.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.spi.Injector;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,13 +18,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class CtaBannerWithPointsTest {
     private final static String COMPONENT_LOCATION = "/content/home/small-business-advice/article/jcr:content/root/article_container/body/responsivegrid";
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
-
     @Mock
     private PathUtilService pathUtilService;
 
@@ -43,6 +39,7 @@ class CtaBannerWithPointsTest {
         context.registerService(Injector.class, homePropertyInjector);
         context.addModelsForClasses(CtaBannerWithPoints.class);
     }
+
 
     @Test
     void init_ShouldInitPropertiesFromHomePage_WhenTypeIsCustom() {
