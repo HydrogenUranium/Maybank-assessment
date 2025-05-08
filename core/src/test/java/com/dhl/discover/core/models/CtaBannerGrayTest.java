@@ -35,6 +35,20 @@ class CtaBannerGrayTest {
     }
 
     @Test
+    void init_ShouldInitPropertiesFromHomePage_WhenTypeIsPredefined() {
+        Resource resource = resourceResolver.getResource("/content/home/article/jcr:content" + "/cta_banner_gray");
+
+        CtaBannerGray ctaBanner = resource.adaptTo(CtaBannerGray.class);
+
+        assertNotNull(ctaBanner);
+        assertEquals("global title", ctaBanner.getTitle());
+        assertEquals("global description", ctaBanner.getDescription());
+        assertEquals("/global/button/link", ctaBanner.getButtonLink());
+        assertEquals("global button label", ctaBanner.getButtonLabel());
+        assertEquals("global_link_target", ctaBanner.getLinkTarget());
+    }
+
+    @Test
     void init_ShouldInitPropertiesFromPageProperties_WhenTypeIsCustom() {
         Resource resource = resourceResolver.getResource("/content/home/article/jcr:content" + "/cta_banner_gray_custom");
 
