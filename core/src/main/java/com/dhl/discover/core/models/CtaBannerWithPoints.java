@@ -26,11 +26,6 @@ public class CtaBannerWithPoints {
 
     @ValueMapValue
     @Optional
-    @Default(values = "custom")
-    private String type;
-
-    @ValueMapValue
-    @Optional
     @Getter
     private String title;
 
