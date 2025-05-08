@@ -25,10 +25,10 @@ import static org.apache.commons.codec.CharEncoding.UTF_8;
 
 @Component(service = {Servlet.class})
 @SlingServletResourceTypes(
-        resourceTypes = "wcm/foundation/components/responsivegrid",
+        resourceTypes = "cq/Page",
         methods = HttpConstants.METHOD_GET,
         extensions = JSON,
-        selectors = "searcharticlesuggest")
+        selectors = "search")
 public class GetArticlesServlet extends SlingSafeMethodsServlet {
     private static final long serialVersionUID = 5380383600055940736L;
 
@@ -44,7 +44,7 @@ public class GetArticlesServlet extends SlingSafeMethodsServlet {
         response.setContentType(ContentType.APPLICATION_JSON.getMimeType());
 
         var searchTerm = request.getParameter("s");
-        var searchScope = request.getParameter("homepagepath");
+        var searchScope = request.getRequestPathInfo().getResourcePath();
         var useWebOptimized = Boolean.parseBoolean(request.getParameter("optimized"));
         var imgQuality = request.getParameter("imgquality");
         var fullTextSearch = hasFullTextIndex(searchScope);

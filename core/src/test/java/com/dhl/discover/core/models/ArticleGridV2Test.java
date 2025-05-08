@@ -40,9 +40,6 @@ class ArticleGridV2Test {
     protected Style currentStyle;
 
     @Mock
-    private InitUtil initUtil;
-
-    @Mock
     private ArticleService articleService;
 
     @Mock
@@ -69,7 +66,6 @@ class ArticleGridV2Test {
     @BeforeEach
     void setUp() {
         context.addModelsForClasses(ArticleGridV2.class);
-        context.registerService(InitUtil.class, initUtil);
         context.registerService(ArticleService.class, articleService);
         context.registerService(AssetUtilService.class, assetUtilService);
         context.registerService(PathUtilService.class, pathUtilService);

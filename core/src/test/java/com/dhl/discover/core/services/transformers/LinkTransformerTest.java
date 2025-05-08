@@ -1,6 +1,7 @@
 package com.dhl.discover.core.services.transformers;
 
 import com.dhl.discover.core.services.PathUtilService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.commons.util.StringUtils;
@@ -24,17 +25,26 @@ class LinkTransformerTest {
     @Mock
     private PathUtilService pathUtilService;
 
-    @Test
-    void test() {
+    private final Set<Map.Entry<String, String>> rewriteElements = arrayToEntrySetWithDelimiter(new String[]{
+            "img:src",
+            "img:srcset",
+            "source:src",
+    });
+    private final List<String> whitelistedLinks = List.of(
+            "/content/dam/.*",
+            "/adobe/dynamicmedia/deliver/.*"
+    );
+
+    @BeforeEach
+    void setUp() {
         when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/discover" + path : "";
         });
-        Set<Map.Entry<String, String>> rewriteElements = arrayToEntrySetWithDelimiter(new String[]{
-                "img:src",
-                "source:src",
-        });
-        List<String> whitelistedLinks = List.of("/content/dam/.*");
+    }
+
+    @Test
+    void modifyAttributes_shouldReturnMappedLink_WhenAttributeContainsLink() {
         AttributesImpl attributes  = new AttributesImpl();
         attributes.addAttribute("", "src", "src", "CDATA", "/content/dam/img.png");
 
@@ -42,5 +52,18 @@ class LinkTransformerTest {
         Attributes result = transformer.modifyAttributes("img", attributes);
 
         assertEquals("/discover/content/dam/img.png", result.getValue("src"));
+    }
+
+    @Test
+    void modifyAttributes_shouldReturnMappedSrcset_WhenAttributeContainsSrcset() {
+        AttributesImpl attributes  = new AttributesImpl();
+        attributes.addAttribute("", "srcset", "srcset", "CDATA",
+                "/adobe/dynamicmedia/deliver/image.jpg?preferwebp=true 400w, /adobe/dynamicmedia/deliver/image.jpg 500w");
+
+        LinkTransformer transformer = new LinkTransformer(pathUtilService, rewriteElements, whitelistedLinks);
+        Attributes result = transformer.modifyAttributes("img", attributes);
+
+        assertEquals("/discover/adobe/dynamicmedia/deliver/image.jpg?preferwebp=true 400w, /discover/adobe/dynamicmedia/deliver/image.jpg 500w",
+                result.getValue("srcset"));
     }
 }

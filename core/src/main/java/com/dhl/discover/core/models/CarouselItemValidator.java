@@ -36,9 +36,10 @@ public class CarouselItemValidator {
         var isGhost = GHOST_RESOURCE_TYPE.equals(resource.getResourceType());
         var isTeaserExist = isPathExist(resource.getValueMap().get("linkURL", ""));
         var imageFromPageImage = propertiesCheck(resource.getValueMap().get("imageFromPageImage", ""));
+        var fileReference = propertiesCheck(resource.getValueMap().get("fileReference", ""));
         var fileName = propertiesCheck(resource.getValueMap().get("fileName", ""));
 
-        return (!isGhost && isTeaserExist && imageFromPageImage) || fileName;
+        return !isGhost && isTeaserExist && (imageFromPageImage || fileReference || fileName);
     }
 
     public void setResourceResolver(ResourceResolver resourceResolver) {

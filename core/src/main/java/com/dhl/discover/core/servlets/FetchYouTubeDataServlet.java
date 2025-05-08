@@ -33,7 +33,9 @@ import java.nio.charset.StandardCharsets;
 @Component(service = Servlet.class, property = {
         Constants.SERVICE_DESCRIPTION + "=YouTube Schema Markup",
         "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-        "sling.servlet.paths=" + "/apps/dhl/discoverdhlapi/youtube/index.json"}
+        "sling.servlet.resourceTypes=" + "dhl/components/content/embed",
+        "sling.servlet.selectors=" + "youtube",
+        "sling.servlet.extensions=" + "json"}
 )
 @Designate(ocd = FetchYouTubeDataServlet.Configuration.class)
 @Slf4j
