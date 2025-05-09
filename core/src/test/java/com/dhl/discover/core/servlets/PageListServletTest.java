@@ -61,7 +61,7 @@ class PageListServletTest {
     private PageListServlet.Configuration mockConfig;
 
     @BeforeEach
-    void setUp() throws LoginException {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         request = context.request();
         response = context.response();
