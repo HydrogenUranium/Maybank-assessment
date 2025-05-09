@@ -64,7 +64,7 @@ public class CtaBannerWithPoints {
         points = extractPoints(pointsMultifield);
     }
 
-    private List<String> extractPoints(Resource pointsMultifield) {
+    List<String> extractPoints(Resource pointsMultifield) {
         List<String> list = new ArrayList<>();
         if (pointsMultifield == null) {
             return list;
