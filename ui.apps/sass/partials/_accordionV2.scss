@@ -18,6 +18,7 @@
       }
 
       &--hidden {
+        max-height: 0 !important;
         overflow: hidden;
         display: block;
         margin-bottom: 0;
