@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -39,5 +40,21 @@ class CtaBannerWithPointsTest {
         assertEquals("/content/dam/images/tablet.jpg", ctaBannerWithPoints.getTabletBackgroundImage());
         assertEquals("/content/dam/images/mobile.jpg", ctaBannerWithPoints.getMobileBackgroundImage());
         assertEquals(new ArrayList<>(), ctaBannerWithPoints.getPoints());
+    }
+
+    @Test
+    void init_ShouldExtractPointsFromMultifield_WhenPointsArePresent() {
+        Resource resource = context.resourceResolver().getResource(COMPONENT_LOCATION + "/cta_banner_custom");
+        CtaBannerWithPoints ctaBannerWithPoints = resource.adaptTo(CtaBannerWithPoints.class);
+
+        List<String> points = ctaBannerWithPoints.getPoints();
+
+        assertEquals("CTA BANNER", ctaBannerWithPoints.getTitle());
+        assertEquals("/content/dam/images/desktop.jpg", ctaBannerWithPoints.getDesktopBackgroundImage());
+        assertEquals("/content/dam/images/tablet.jpg", ctaBannerWithPoints.getTabletBackgroundImage());
+        assertEquals("/content/dam/images/mobile.jpg", ctaBannerWithPoints.getMobileBackgroundImage());
+        assertEquals("Buy", ctaBannerWithPoints.getButtonName());
+        assertEquals("/content/test", ctaBannerWithPoints.getButtonLink());
+        assertEquals(0, points.size());
     }
 }
