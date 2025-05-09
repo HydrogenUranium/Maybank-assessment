@@ -28,7 +28,7 @@ class Accordion {
 
     //calculate the max-height of the panel
       panel.css({
-        transition: `max-height ${duration}ms ease-out, margin ${duration}ms ease-out`,
+        transition: `max-height ${duration}ms ease-in-out, margin ${duration}ms ease-in-out`,
         'max-height': scrollHeight + 'px',
       });
     })
@@ -42,7 +42,7 @@ class Accordion {
           const scrollHeight = panel.prop('scrollHeight');
           const duration = this.calculateTransitionDuration(scrollHeight);
           $(this).css({
-            transition: `max-height ${duration}ms ease-out, margin ${duration}ms ease-out`,
+            transition: `max-height ${duration}ms ease-in-out, margin ${duration}ms ease-in-out`,
             'max-height': scrollHeight + 'px',
           });
         }
@@ -61,8 +61,8 @@ class Accordion {
         const scrollHeight = panel.prop('scrollHeight');
         const duration = calculateTransitionDuration(scrollHeight);
         $(this).css({
-          transition: `max-height ${duration}ms ease-out, margin ${duration}ms ease-out`,
-          'max-height': '0',
+          transition: `max-height ${duration}ms ease-in-out, margin ${duration}ms ease-in-out`,
+          'max-height': scrollHeight + 'px',
         });
       }
     });

@@ -10,7 +10,7 @@
 		  @include ignore-top-child-margin-deep;
 		  @include ignore-bottom-child-margin-deep;
 		  margin: 0 3rem 3.6rem;
-      transition: max-height 0.3s ease-out, margin 0.3s ease-out;
+      transition: max-height 0.3s ease-in-out, margin 0.3s ease-in-out;
 
       &--expanded {
         overflow: hidden;
