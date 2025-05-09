@@ -10,7 +10,7 @@
 		  @include ignore-top-child-margin-deep;
 		  @include ignore-bottom-child-margin-deep;
 		  margin: 0 3rem 3.6rem;
-      transition: max-height 0.3s ease-out;
+      transition: max-height 0.3s ease-out, margin 0.3s ease-out;
 
       &--expanded {
         overflow: hidden;
@@ -18,7 +18,9 @@
       }
 
       &--hidden {
-        max-height: 0;
+        overflow: hidden;
+        display: block;
+        margin-bottom: 0;
       }
 		}
 
@@ -28,13 +30,9 @@
 
 		.cmp-accordion__item {
 			background-color: map-get($palette, white-two);
-			padding: 2.1rem 1.5rem 2rem 1.5rem;
+			padding: 0;
 			border: none;
 			border-top: 1px solid map-get($palette, white);
-
-			@include respond(md) {
-	      padding: 0;
-	    }
 		}
 
 		.cmp-accordion__button {
