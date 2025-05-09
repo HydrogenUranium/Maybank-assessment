@@ -40,10 +40,17 @@ public class LandingPoints {
 	@Named("landingPoints-defaultIcon")
 	private String defaultIcon;
 
+	@ValueMapValue
+	private String titleType;
+
 	private final List<LandingPointItem> landingPointItems = new ArrayList<>();
 
 	public List<LandingPointItem> getLandingPointItems() {
 		return new ArrayList<>(landingPointItems);
+	}
+
+	public String getTitleType() {
+		return titleType;
 	}
 
 	@PostConstruct
