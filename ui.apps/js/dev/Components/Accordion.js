@@ -8,6 +8,14 @@ class Accordion {
     };
     this.bindEvents = this.bindEvents.bind(this);
     this.init = this.init.bind(this);
+    this.calculateTransitionDuration = this.calculateTransitionDuration.bind(this);
+  }
+
+  calculateTransitionDuration(scrollHeight) {
+    const min = 200;
+    const max = 600;
+    const factor = 15; // tune this value
+    return Math.min(max, Math.max(min, Math.sqrt(scrollHeight) * factor));
   }
 
   bindEvents() {
@@ -15,10 +23,13 @@ class Accordion {
       e.preventDefault();
 
       const panel = $(e.currentTarget).find(this.sel.panel);
+      const scrollHeight = panel.prop('scrollHeight');
+      const duration = this.calculateTransitionDuration(scrollHeight);
 
     //calculate the max-height of the panel
       panel.css({
-        'max-height': panel.prop('scrollHeight') + 'px',
+        transition: `max-height ${duration}ms ease-out, margin ${duration}ms ease-out`,
+        'max-height': scrollHeight + 'px',
       });
     })
 
@@ -27,8 +38,12 @@ class Accordion {
       $(this.sel.panel).each(function () {
         if (!$(this).hasClass('cmp-accordion__panel--hidden')) {
           // Recalculate max-height only for expanded panels
+          const panel = $(this);
+          const scrollHeight = panel.prop('scrollHeight');
+          const duration = this.calculateTransitionDuration(scrollHeight);
           $(this).css({
-            'max-height': $(this).prop('scrollHeight') + 'px',
+            transition: `max-height ${duration}ms ease-out, margin ${duration}ms ease-out`,
+            'max-height': scrollHeight + 'px',
           });
         }
       });
@@ -37,11 +52,16 @@ class Accordion {
 
   init() {
     if ($(this.sel.component).length <= 0) return false;
-
+    const calculateTransitionDuration = this.calculateTransitionDuration;
     // Set max-height to 0 for all panels with the class .cmp-accordion__panel--hidden
     $(this.sel.panel).each(function () {
       if ($(this).hasClass('cmp-accordion__panel--hidden')) {
+        // Recalculate max-height only for hidden panels
+        const panel = $(this);
+        const scrollHeight = panel.prop('scrollHeight');
+        const duration = calculateTransitionDuration(scrollHeight);
         $(this).css({
+          transition: `max-height ${duration}ms ease-out, margin ${duration}ms ease-out`,
           'max-height': '0',
         });
       }
