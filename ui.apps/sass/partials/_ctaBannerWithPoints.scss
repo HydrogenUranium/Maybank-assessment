@@ -1,5 +1,7 @@
 .cta-banner-with-points {
   margin-top: 3rem;
+  z-index: 1;
+  position: relative;
 
   @include respond(xl) {
     margin-top: 5rem;

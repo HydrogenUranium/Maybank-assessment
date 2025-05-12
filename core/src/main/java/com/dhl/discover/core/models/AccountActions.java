@@ -52,6 +52,7 @@ public class AccountActions {
 
 
 	private String homeUrl;
+	private String mappedHomeUrl;
 	private String backUrl;
 	private String backUrlSelf;
 	private String editDetailsUrl;
@@ -82,6 +83,7 @@ public class AccountActions {
 				contactEmail = "discover@dhl-news.com";
 
 				homeUrl = home.getPath();
+				mappedHomeUrl = resourceResolver.map(homeUrl);
 		        editDetailsUrl = properties.get("editdetailspage", "/content/dhl/your-account").concat(HTML_EXTENSION);
 
 		        // url handling if we've bypassed dispatcher - checking QS params

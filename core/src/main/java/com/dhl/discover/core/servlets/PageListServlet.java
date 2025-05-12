@@ -13,8 +13,14 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.AttributeType;
+import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 import javax.jcr.LoginException;
 import javax.jcr.RepositoryException;
@@ -25,20 +31,30 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 @Component(
         service = { Servlet.class },
         property = {
                 "sling.servlet.methods=GET",
-                "sling.servlet.paths=/bin/get-all-pages"
+                "sling.servlet.resourceTypes=cq/Page",
+                "sling.servlet.selectors=child-pages",
+                "sling.servlet.extensions=json"
         }
 )
 @Slf4j
+@Designate(ocd = PageListServlet.Configuration.class)
 public class PageListServlet extends SlingAllMethodsServlet {
     private static final long serialVersionUID = 1L;
 
     @Reference
     private transient ResourceResolverFactory resolverFactory;
+
+    private boolean pageListServletEnabled;
+
+    @Activate
+    @Modified
+    public void init(PageListServlet.Configuration config) {
+        this.pageListServletEnabled =  config.pageListServletEnabled();
+    }
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
@@ -46,10 +62,19 @@ public class PageListServlet extends SlingAllMethodsServlet {
         Map<String, Object> params = new HashMap<>();
         params.put(ResourceResolverFactory.SUBSERVICE, DiscoverConstants.DISCOVER_READ_SERVICE);
 
+        String searchScope = request.getRequestPathInfo().getResourcePath();
+
+        if (!pageListServletEnabled) {
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                response.getWriter().write("PageListServlet is disabled.");
+                return;
+        }
+
         try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(params)) {
+            log.info("Executing query for path: {}", searchScope);
             QueryBuilder queryBuilder = resolver.adaptTo(QueryBuilder.class);
             Map<String, String> queryMap = new HashMap<>();
-            queryMap.put("path", "/content/dhl");
+            queryMap.put("path", searchScope);
             queryMap.put("type", "cq:Page");
             queryMap.put("p.limit", "-1");
             queryMap.put("orderby", "@jcr:path");
@@ -71,5 +96,19 @@ public class PageListServlet extends SlingAllMethodsServlet {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("An unexpected error occurred. Please try again later.");
         }
+
     }
+
+    @ObjectClassDefinition
+    @interface Configuration {
+
+        @AttributeDefinition(
+                name = "PAGE_LIST_SERVLET_ENABLED",
+                description = "On / Off switch that either sets the configuration enabled or disabled. " +
+                        "If disabled, replication events would still be listened to, but not acted on.",
+                type = AttributeType.BOOLEAN
+        )
+        boolean pageListServletEnabled() default false;
+    }
+
 }
