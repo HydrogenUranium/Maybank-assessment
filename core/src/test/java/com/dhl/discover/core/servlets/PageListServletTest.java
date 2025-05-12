@@ -61,10 +61,8 @@ class PageListServletTest {
     private PageListServlet.Configuration mockConfig;
 
     @BeforeEach
-    void setUp() throws LoginException {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
-        when(resolverFactory.getServiceResourceResolver(any())).thenReturn(resolver);
-
         request = context.request();
         response = context.response();
         when(mockConfig.pageListServletEnabled()).thenReturn(true);
@@ -98,6 +96,15 @@ class PageListServletTest {
 
         assertEquals(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, response.getStatus());
         assertEquals("An unexpected error occurred. Please try again later.", response.getOutputAsString());
+    }
+
+    @Test
+    void testServletDisabled() throws Exception {
+        when(mockConfig.pageListServletEnabled()).thenReturn(false);
+        servlet.init(mockConfig);
+        servlet.doGet(request, response);
+        assertEquals(HttpServletResponse.SC_FORBIDDEN, response.getStatus());
+        assertEquals("PageListServlet is disabled.", response.getOutputAsString());
     }
 
 }

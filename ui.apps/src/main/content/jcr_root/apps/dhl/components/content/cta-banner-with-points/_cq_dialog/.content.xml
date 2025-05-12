@@ -20,36 +20,6 @@
                             sling:resourceType="granite/ui/components/coral/foundation/container"
                             margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <type
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                    fieldLabel="Type (Source of configuration)"
-                                    fieldDescription="In this selector you can choose the source of configuration.
-                                            Select 'Custom Configuration' for a unique, personalized setup.
-                                             Or you can choose one of pre-made settings (configured in home page properties)"
-                                    granite:class="cq-dialog-dropdown-showhide cq-dialog-dropdown-reset-linked-checkbox"
-                                    name="./type">
-                                <granite:data
-                                        jcr:primaryType="nt:unstructured"
-                                        cq-dialog-dropdown-showhide-target=".cta-banner-type-checkbox-showhide"/>
-                                <items
-                                        jcr:primaryType="nt:unstructured">
-                                    <custom
-                                            jcr:primaryType="nt:unstructured"
-                                            text="Custom Configuration"
-                                            value="custom"/>
-                                    <businessAccount
-                                            jcr:primaryType="nt:unstructured"
-                                            text="⚠️ Open A Business Account (Disabled. Use an Experience Fragment instead)"
-                                            disabled="{Boolean}true"
-                                            value="businessAccount"/>
-                                    <subscribeNewsletter
-                                            jcr:primaryType="nt:unstructured"
-                                            text="⚠️ Subscribe To Our Newsletter (Disabled. Use an Experience Fragment instead)"
-                                            disabled="{Boolean}true"
-                                            value="subscribeNewsletter"/>
-                                </items>
-                            </type>
                             <configuration
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/container"
