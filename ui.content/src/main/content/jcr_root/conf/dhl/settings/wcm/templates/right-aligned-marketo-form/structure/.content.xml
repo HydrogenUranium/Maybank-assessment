@@ -24,6 +24,9 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="dhl/components/content/breadcrumb"
                         startLevel="3"/>
+                <title_v2
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dhl/components/content/title-v2"/>
                 <two_columns_container
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="dhl/components/content/two-columns-container-with-five-sections">

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          jcr:primaryType="cq:Page">
+    <jcr:content
+            cq:designPath="/libs/settings/wcm/designs/default"
+            cq:lastModified="{Date}2025-05-02T17:08:46.052+03:00"
+            cq:lastModifiedBy="admin"
+            cq:template="/libs/cq/workflow/templates/model"
+            jcr:primaryType="cq:PageContent"
+            jcr:title="Request for Page Deletion"
+            sling:resourceType="cq/workflow/components/pages/model"
+            lastSynced="{Date}2025-05-02T17:08:47.271+03:00">
+        <flow
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/parsys">
+            <or
+                    jcr:created="{Date}2025-04-29T12:53:49.029+03:00"
+                    jcr:createdBy="all-countries-author-test-user"
+                    jcr:lastModified="{Date}2025-04-29T14:00:10.671+03:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="cq/workflow/components/model/or"
+                    branches="2"
+                    branchName1="Request Deactivation and Deletion"
+                    branchName2="Delete"
+                    branchOrder="[0,1]"
+                    orSplit="true"
+                    script1="function check() {&#xd;&#xa;    // 1) get the payload path from the workflow&#xd;&#xa;    var path = workflowData.getPayload().toString();&#xd;&#xa;    var session = workflowSession.getSession();&#xd;&#xa;&#xd;&#xa;    // 2) build the jcr:content path&#xd;&#xa;    var contentPath = path + &quot;/jcr:content&quot;;&#xd;&#xa;&#xd;&#xa;    // 3) bail out if the node doesn't even exist&#xd;&#xa;    if (!session.nodeExists(contentPath)) {&#xd;&#xa;        // no jcr:content → nothing to check&#xd;&#xa;        throw new Packages.java.lang.RuntimeException(&quot;jcr:content not found at: &quot; + contentPath);&#xd;&#xa;    }&#xd;&#xa;&#xd;&#xa;    // 4) pull the jcr:content node and inspect cq:lastReplicationAction&#xd;&#xa;    var contentNode = session.getNode(contentPath);&#xd;&#xa;    if (contentNode.hasProperty(&quot;cq:lastReplicationAction&quot;)) {&#xd;&#xa;        var lastAction = contentNode.getProperty(&quot;cq:lastReplicationAction&quot;).getString();&#xd;&#xa;        // if it's ever been activated, this will be &quot;Activate&quot;&#xd;&#xa;        return (&quot;Activate&quot;.equals(lastAction));&#xd;&#xa;    }&#xd;&#xa;&#xd;&#xa;    // 5) no replication property found → never activated&#xd;&#xa;    return false;&#xd;&#xa;}">
+                <_x0031_
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/flow/components/parsys">
+                    <cta_banner_with_poin jcr:primaryType="nt:unstructured"/>
+                    <process_1572443172
+                            jcr:created="{Date}2025-04-30T11:37:18.233+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2025-05-02T16:56:32.496+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Remove Deleted Page Property "
+                            sling:resourceType="cq/workflow/components/model/process">
+                        <metaData
+                                jcr:primaryType="nt:unstructured"
+                                PROCESS="com.dhl.discover.core.services.impl.RemoveDeletedPageProperties"
+                                PROCESS_AUTO_ADVANCE="true"/>
+                    </process_1572443172>
+                    <process
+                            jcr:created="{Date}2025-04-30T17:12:56.811+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2025-05-02T17:08:40.885+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Set Pending Deletion Thumbnail"
+                            sling:resourceType="cq/workflow/components/model/process">
+                        <metaData
+                                jcr:primaryType="nt:unstructured"
+                                PROCESS="com.dhl.discover.core.services.impl.SetPendingDeletionThumbnail"
+                                PROCESS_ARGS="deletedImageReference:/apps/dhl/clientlibs/discover/resources/img/pending-deletion.png"
+                                PROCESS_AUTO_ADVANCE="true"/>
+                    </process>
+                    <lockpayloadprocess
+                            jcr:created="{Date}2025-04-30T15:29:50.651+03:00"
+                            jcr:createdBy="admin"
+                            jcr:description="A process to lock the payload."
+                            jcr:lastModified="{Date}2025-04-30T15:29:50.651+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Lock Payload Process"
+                            sling:resourceType="cq/workflow/components/workflow/lockpayloadprocess">
+                        <metaData
+                                jcr:primaryType="nt:unstructured"
+                                PROCESS="com.day.cq.workflow.impl.process.LockProcess"
+                                PROCESS_AUTO_ADVANCE="true"/>
+                    </lockpayloadprocess>
+                    <dynamic_participant
+                            jcr:created="{Date}2025-04-29T13:49:24.504+03:00"
+                            jcr:createdBy="admin"
+                            jcr:description="Please deactivate and delete the page"
+                            jcr:lastModified="{Date}2025-04-29T13:54:13.309+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Deactivate And Delete"
+                            sling:resourceType="cq/workflow/components/model/dynamic_participant">
+                        <metaData
+                                jcr:primaryType="nt:unstructured"
+                                DO_NOTIFY="true"
+                                DYNAMIC_PARTICIPANT="com.dhl.discover.core.services.impl.ParticipantStepChooserForPublishReview"/>
+                    </dynamic_participant>
+                    <or
+                            jcr:created="{Date}2025-04-30T17:10:34.721+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2025-04-30T17:11:34.567+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/workflow/components/model/or"
+                            branches="2"
+                            branchName1="Approve (Deactivate and Delete)"
+                            branchName2="Reject and Close"
+                            branchOrder="[0,1]"
+                            orSplit="true">
+                        <_x0031_
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/flow/components/parsys">
+                            <noopprocess
+                                    jcr:created="{Date}2025-04-30T17:30:52.653+03:00"
+                                    jcr:createdBy="admin"
+                                    jcr:lastModified="{Date}2025-04-30T17:31:22.930+03:00"
+                                    jcr:lastModifiedBy="admin"
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Approve (Deactivate and Delete)"
+                                    sling:resourceType="cq/workflow/components/workflow/noopprocess">
+                                <metaData
+                                        jcr:primaryType="nt:unstructured"
+                                        PROCESS="/libs/workflow/scripts/noop.ecma"
+                                        PROCESS_AUTO_ADVANCE="true"/>
+                            </noopprocess>
+                            <unlockpayloadprocess
+                                    jcr:created="{Date}2025-04-30T15:30:01.549+03:00"
+                                    jcr:createdBy="admin"
+                                    jcr:description="A process to unlock the payload."
+                                    jcr:lastModified="{Date}2025-04-30T15:30:01.549+03:00"
+                                    jcr:lastModifiedBy="admin"
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Unlock Payload Process"
+                                    sling:resourceType="cq/workflow/components/workflow/unlockpayloadprocess">
+                                <metaData
+                                        jcr:primaryType="nt:unstructured"
+                                        PROCESS="com.day.cq.workflow.impl.process.UnlockProcess"
+                                        PROCESS_AUTO_ADVANCE="true"/>
+                            </unlockpayloadprocess>
+                            <process
+                                    jcr:created="{Date}2025-04-29T13:51:43.480+03:00"
+                                    jcr:createdBy="admin"
+                                    jcr:lastModified="{Date}2025-04-29T14:05:19.414+03:00"
+                                    jcr:lastModifiedBy="admin"
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Deactivate"
+                                    sling:resourceType="cq/workflow/components/model/process">
+                                <metaData
+                                        jcr:primaryType="nt:unstructured"
+                                        PROCESS="com.day.cq.wcm.workflow.process.UnpublishPageProcess"
+                                        PROCESS_AUTO_ADVANCE="true"/>
+                            </process>
+                            <process_1388447781
+                                    jcr:created="{Date}2025-04-29T13:53:01.613+03:00"
+                                    jcr:createdBy="admin"
+                                    jcr:lastModified="{Date}2025-04-29T14:05:09.651+03:00"
+                                    jcr:lastModifiedBy="admin"
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Delete"
+                                    sling:resourceType="cq/workflow/components/model/process">
+                                <metaData
+                                        jcr:primaryType="nt:unstructured"
+                                        PROCESS="com.day.cq.wcm.workflow.process.DeletePageProcess"
+                                        PROCESS_AUTO_ADVANCE="true"/>
+                            </process_1388447781>
+                        </_x0031_>
+                        <_x0032_
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/flow/components/parsys">
+                            <noopprocess
+                                    jcr:created="{Date}2025-04-30T17:31:29.668+03:00"
+                                    jcr:createdBy="admin"
+                                    jcr:description="A no operation process"
+                                    jcr:lastModified="{Date}2025-04-30T17:31:37.809+03:00"
+                                    jcr:lastModifiedBy="admin"
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Reject and Close"
+                                    sling:resourceType="cq/workflow/components/workflow/noopprocess">
+                                <metaData
+                                        jcr:primaryType="nt:unstructured"
+                                        PROCESS="/libs/workflow/scripts/noop.ecma"
+                                        PROCESS_AUTO_ADVANCE="true"/>
+                            </noopprocess>
+                            <unlockpayloadprocess
+                                    jcr:created="{Date}2025-04-30T15:30:01.549+03:00"
+                                    jcr:createdBy="admin"
+                                    jcr:description="A process to unlock the payload."
+                                    jcr:lastModified="{Date}2025-04-30T15:30:01.549+03:00"
+                                    jcr:lastModifiedBy="admin"
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Unlock Payload Process"
+                                    sling:resourceType="cq/workflow/components/workflow/unlockpayloadprocess">
+                                <metaData
+                                        jcr:primaryType="nt:unstructured"
+                                        PROCESS="com.day.cq.workflow.impl.process.UnlockProcess"
+                                        PROCESS_AUTO_ADVANCE="true"/>
+                            </unlockpayloadprocess>
+                            <process
+                                    jcr:created="{Date}2025-04-30T17:18:10.591+03:00"
+                                    jcr:createdBy="admin"
+                                    jcr:lastModified="{Date}2025-05-02T17:08:46.048+03:00"
+                                    jcr:lastModifiedBy="admin"
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Remove Pending Deletion Thumbnail"
+                                    sling:resourceType="cq/workflow/components/model/process">
+                                <metaData
+                                        jcr:primaryType="nt:unstructured"
+                                        PROCESS="com.dhl.discover.core.services.impl.RemovePendingDeletionThumbnail"
+                                        PROCESS_ARGS="deletedImageReference:/apps/dhl/clientlibs/discover/resources/img/pending-deletion.png"
+                                        PROCESS_AUTO_ADVANCE="true"/>
+                            </process>
+                        </_x0032_>
+                    </or>
+                </_x0031_>
+                <_x0032_
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="cq/flow/components/parsys">
+                    <cta_banner_with_poin jcr:primaryType="nt:unstructured"/>
+                    <process_1388447781_c
+                            jcr:created="{Date}2025-04-29T13:53:01.613+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2025-04-29T14:05:23.710+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Delete"
+                            sling:resourceType="cq/workflow/components/model/process">
+                        <metaData
+                                jcr:primaryType="nt:unstructured"
+                                PROCESS="com.day.cq.wcm.workflow.process.DeletePageProcess"
+                                PROCESS_AUTO_ADVANCE="true"/>
+                    </process_1388447781_c>
+                    <process
+                            jcr:created="{Date}2025-04-29T14:04:29.337+03:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2025-04-30T17:12:39.518+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Email Notification"
+                            sling:resourceType="cq/workflow/components/model/process">
+                        <metaData
+                                jcr:primaryType="nt:unstructured"
+                                PROCESS="com.dhl.discover.core.services.impl.PublisherPageRemovalNotification"
+                                PROCESS_AUTO_ADVANCE="true"/>
+                    </process>
+                </_x0032_>
+            </or>
+        </flow>
+    </jcr:content>
+</jcr:root>

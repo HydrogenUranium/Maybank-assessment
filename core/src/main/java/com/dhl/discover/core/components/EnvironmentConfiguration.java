@@ -32,4 +32,6 @@ public interface EnvironmentConfiguration {
      * @return a {@link String} representing the Marketo FormID
      */
     String getDefaultMarketoHiddenFormId();
+
+    String getGtmDelayEnabled();
 }
