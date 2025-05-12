@@ -1,0 +1,3 @@
+{
+  "pageListServletEnabled": "$[env:PAGE_LIST_SERVLET_ENABLED]"
+}
