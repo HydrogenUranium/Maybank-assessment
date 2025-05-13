@@ -254,5 +254,13 @@
       }
     }
   }
+  @media (max-width: 767px) {
+    &__container {
+      width: 100vw;
+      margin: 0;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
 }
 
