@@ -3,7 +3,7 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
-<div class="cmp-hero-banner ${model.margin ? 'cmp-hero-banner--with-margins' : ''}" data-sly-test="${!isEmpty}">
+<div id="${properties.id}" class="cmp-hero-banner ${model.margin ? 'cmp-hero-banner--with-margins' : ''}" data-sly-test="${!isEmpty}">
     <div class="cmp-hero-banner__asset ${model.roundedCorners ? 'cmp-hero-banner__asset--with-rounded-corners' : ''}">
         <sly data-sly-test="${!model.useVideo}" data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
              data-sly-call="${template.picture @

@@ -4,7 +4,7 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
-<div class="cmp-cta-banner-gray" data-sly-test="${!isEmpty}">
+<div id="${properties.id}" class="cmp-cta-banner-gray" data-sly-test="${!isEmpty}">
     <b class="cmp-cta-banner-gray__title">${model.title}</b>
     <p class="cmp-cta-banner-gray__description">${model.description}</p>
     <div class="cmp-cta-banner-gray__link-wrapper">

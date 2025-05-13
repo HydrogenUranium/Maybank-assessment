@@ -1,6 +1,7 @@
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit}" data-emptytext="${component.title}"></div>
 
 <div
+        id="${properties.id}"
         data-sly-use.model="com.dhl.discover.core.models.Video"
         data-sly-set.align="video-component--align-${model.align}"
         class="video-component ${model.align ? align : ''}">
