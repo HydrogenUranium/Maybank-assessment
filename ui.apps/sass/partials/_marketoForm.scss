@@ -1,7 +1,15 @@
 .marketoForm {
-  background: #d90606;
+  background: white;
   &--yellow {
     background: linear-gradient(to bottom,#fc0 0,#fc0 80%,#ffefb2 100%);
+  }
+  @media (max-width: 767px) {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
@@ -252,14 +260,6 @@
           }
         }
       }
-    }
-  }
-  @media (max-width: 767px) {
-    &__container {
-      width: 100vw;
-      margin: 0;
-      padding-left: 1rem;
-      padding-right: 1rem;
     }
   }
 }
