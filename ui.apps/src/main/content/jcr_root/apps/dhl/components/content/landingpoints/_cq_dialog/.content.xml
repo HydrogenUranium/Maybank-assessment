@@ -52,6 +52,13 @@
                                             value="red-dot"/>
                                 </items>
                             </pointType>
+                            <id
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="HTML ID attribute to apply to the component."
+                                    fieldLabel="ID"
+                                    name="./id"
+                                    validation="html-unique-id-validator"/>
                             <faq
                                 jcr:primaryType="nt:unstructured"
                                 name="./faq"
