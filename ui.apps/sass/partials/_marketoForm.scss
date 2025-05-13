@@ -1,15 +1,22 @@
 .marketoForm {
-  background: white;
-  &--yellow {
-    background: linear-gradient(to bottom,#fc0 0,#fc0 80%,#ffefb2 100%);
-  }
-  @media (max-width: 767px) {
+  position: relative;
+  z-index: 1; // make sure form content stays on top
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
     width: 100vw;
-    position: relative;
-    left: 50%;
-    margin-left: -50vw;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    background: white; // or use `inherit` to match .marketoForm background
+    z-index: -1;
+  }
+
+  @media (max-width: 767px) {
+    &::before {
+      background: white; // optional — for clarity
+    }
   }
 }
 
