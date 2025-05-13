@@ -1,4 +1,7 @@
-import groovy.transform.Field;
+import com.day.cq.replication.ReplicationActionType
+import groovy.transform.Field
+
+import javax.jcr.Session;
 
 
 /**
@@ -6,8 +9,12 @@ import groovy.transform.Field;
  * then only node path will be printed having either title-v2 resource type or
  *
  * */
-@Field DRY_RUN = true;
-@Field ROOT = '/content/dhl/global/en-global'
+@Field DRY_RUN = false;
+@Field ROOT = '/content/dhl'
+
+@Field list = new HashSet();
+def wrongPaths = []
+def notPublished = []
 
 def getPages() {
     return sql2Query("""
@@ -39,7 +46,7 @@ def handleText(node) {
     def resultText = originalText.replaceAll("<h1>", "<h2>").replaceAll("</h1>", "</h2>")
     node.setProperty('text', resultText)
     if(!DRY_RUN) {
-        println "Text description updated : " +  + node.getPath()
+        println "Text description updated : " + node.getPath()
     }
 }
 @Field HANDLERS = [
@@ -60,11 +67,61 @@ def processNode(node) {
         processNode(child)
     }
 }
-getPages().each { processNode(it)}
-
+getPages().each {
+    processNode(it)
+    list.add(it.getPath().replaceAll("/jcr:content.*", ""));
+}
 
 if(DRY_RUN) {
     session.refresh(false);
 } else {
     session.save();
 }
+
+
+def getJcrContent(path) {
+    return pageManager.getContainingPage(path).getContentResource();
+}
+
+def isPublished(path) {
+    def resource = getJcrContent(path)
+    def valueMap = resource.getValueMap()
+    def status = valueMap.get('cq:lastReplicationAction_publish', valueMap.get('cq:lastReplicationAction', ''))
+    return status.equals('Activate')
+}
+
+def filtered = list.stream()
+        .filter(path -> {
+            if(getResource(path) == null) {
+                wrongPaths.add(path)
+                return false
+            }
+            if(!isPublished(path)) {
+                notPublished.add(path)
+                return false;
+            }
+            return true
+        }).toList()
+
+println("""Wrong paths: ${wrongPaths.size()}""")
+println("""Not published: ${notPublished.size()}""")
+println("""Pages to publish: ${filtered.size()}""")
+
+def replicator = getService("com.day.cq.replication.Replicator")
+
+
+filtered.each({
+    if (!DRY_RUN) {
+        try {
+            def session = resourceResolver.adaptTo(Session)
+            if (session != null) {
+                replicator.replicate(session, ReplicationActionType.ACTIVATE, it)
+                println("Successfully published: ${it}")
+            } else {
+                println("Failed to adapt resourceResolver to Session")
+            }
+        } catch (Exception e) {
+            println("Replication failed for ${it}: ${e.message}")
+        }
+    }
+})
