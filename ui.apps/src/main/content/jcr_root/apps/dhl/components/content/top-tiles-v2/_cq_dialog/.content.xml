@@ -70,11 +70,6 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
                                                 name="./mobileImage/altValueFromDAM"
                                                 value="{Boolean}true"/>
-                                        <mobileImageIsCancelledForChildren
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
-                                                name="./mobileImage/cq:isCancelledForChildren"
-                                                value="{Boolean}true"/>
                                         <mobileImageResourceType
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
@@ -90,11 +85,6 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
                                                 name="./desktopImage/altValueFromDAM"
-                                                value="{Boolean}true"/>
-                                        <desktopImageIsCancelledForChildren
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
-                                                name="./desktopImage/cq:isCancelledForChildren"
                                                 value="{Boolean}true"/>
                                         <desktopImageResourceType
                                                 jcr:primaryType="nt:unstructured"
