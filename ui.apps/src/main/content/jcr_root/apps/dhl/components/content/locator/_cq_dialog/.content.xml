@@ -95,6 +95,13 @@
                                             name="./resultUomQueryParam"/>
                                 </items>
                             </localization>
+                            <id
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="HTML ID attribute to apply to the component."
+                                    fieldLabel="ID"
+                                    name="./id"
+                                    validation="html-unique-id-validator"/>
                             <paymentHandlingOptions
                                     jcr:primaryType="nt:unstructured"
                                     jcr:title="Payment / Handling Options"

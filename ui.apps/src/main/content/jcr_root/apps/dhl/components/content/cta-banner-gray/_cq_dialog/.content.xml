@@ -56,6 +56,13 @@
                                             text="Open Link in New Tab"
                                             uncheckedValue="_self"
                                             value="_blank"/>
+                                    <id
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldDescription="HTML ID attribute to apply to the component."
+                                            fieldLabel="ID"
+                                            name="./id"
+                                            validation="html-unique-id-validator"/>
                                 </items>
                             </configuration>
                         </items>
