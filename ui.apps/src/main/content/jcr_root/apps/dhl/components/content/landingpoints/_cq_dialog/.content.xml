@@ -65,7 +65,7 @@
                                             value="default"/>
                                     <h1
                                             jcr:primaryType="nt:unstructured"
-                                            text="h"
+                                            text="h1"
                                             value="h1"/>
                                     <h2
                                             jcr:primaryType="nt:unstructured"
