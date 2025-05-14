@@ -59,27 +59,26 @@
                                     fieldLabel="Type / Size"
                                     name="./titleType">
                                 <items jcr:primaryType="nt:unstructured">
+                                    <default
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Default (p)"
+                                            value="default"/>
                                     <h1
                                             jcr:primaryType="nt:unstructured"
-                                            text="H1"
+                                            text="h"
                                             value="h1"/>
                                     <h2
                                             jcr:primaryType="nt:unstructured"
-                                            text="H2"
+                                            text="h2"
                                             value="h2"/>
                                     <h3
                                             jcr:primaryType="nt:unstructured"
-                                            text="Default (H3)"
-                                            value="h3"
-                                            selected="{Boolean}true"/>
+                                            text="h3"
+                                            value="h3"/>
                                     <h4
                                             jcr:primaryType="nt:unstructured"
-                                            text="H4"
+                                            text="h4"
                                             value="h4"/>
-                                    <h5
-                                            jcr:primaryType="nt:unstructured"
-                                            text="H5"
-                                            value="h5"/>
                                 </items>
                             </titleType>
                             <faq
