@@ -1,22 +1,13 @@
 .marketoForm {
-  position: relative;
-  z-index: 1; // make sure form content stays on top
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100vw;
-    background: white; // or use `inherit` to match .marketoForm background
-    z-index: -1;
+  background: white;
+  @include remove-container-margins-mobile-only;
+  padding: 2rem calc((100vw - 100%) / 2);
+  width: auto !important;
+  @include respond(md) {
+    padding: 2rem;
   }
-
-  @media (max-width: 767px) {
-    &::before {
-      background: white; // optional — for clarity
-    }
+  &--yellow {
+    background: linear-gradient(to bottom,#fc0 0,#fc0 80%,#ffefb2 100%);
   }
 }
 
@@ -105,10 +96,6 @@
     font-weight: 800;
     margin-bottom: 1.5rem;
     line-height: 1.08;
-  }
-
-  &__container {
-    padding: 2rem;
   }
 
   .mktoErrorMsg {
