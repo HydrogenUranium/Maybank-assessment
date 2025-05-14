@@ -9,7 +9,7 @@
     <h2 data-sly-element="${model.titleType}" class="cmp-article-showcase__title" data-sly-test="${model.title}">
         ${model.title}
     </h2>
-    <div class="cmp-article-showcase__articles horizontal-scroll" data-sly-test="${isHorizontal}">
+    <div id="${properties.id}" class="cmp-article-showcase__articles horizontal-scroll" data-sly-test="${isHorizontal}">
         <sly data-sly-repeat="${model.articles}"
              data-sly-call="${articleCardTemplate.card @ article=item, showTags=model.showTags, enableAssetDelivery=model.enableAssetDelivery, titleType=model.articlesTitleType}">
         </sly>
