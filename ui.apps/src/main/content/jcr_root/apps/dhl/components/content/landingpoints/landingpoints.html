@@ -6,7 +6,7 @@
 <div class="landing-points-component" data-sly-test="${!isEmpty}">
 	<img class="header-image" src="${model.image}" alt="${model.altText}" data-sly-test="${model.image}">
 	<div id="${item.id}" class="landing-point landing-point--${model.pointType}" data-sly-repeat="${model.landingPointItems}">
-        <h3 data-sly-test="${item.title != null && item.title.length > 0}" class="landing-point__title" data-sly-element="${model.titleType}">${item.title}</h3>
+        <div class="landing-point__title" data-sly-element="${model.titleType}">${item.title}</div>
 		<div class="landing-point__content">
 			${item.content @ context='html'}
 		</div>
