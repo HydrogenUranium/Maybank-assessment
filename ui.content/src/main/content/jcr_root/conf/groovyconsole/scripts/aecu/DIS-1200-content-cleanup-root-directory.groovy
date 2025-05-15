@@ -1,7 +1,7 @@
 import groovy.transform.Field
 
 @Field DRY_RUN = false;
-@Field REPLICATE = false;
+@Field REPLICATE = true;
 @Field LOGGING = true;
 
 @Field ROOTS = [
@@ -123,7 +123,7 @@ def processNodes(page, sourcePaths) {
             .map(source -> contentNode.getNode(source))
             .toList()
 
-    if(sourceNodes.isEmpty()) {
+    if(sourceNodes.isEmpty() && sourceNodes.size() < 1) {
         log "No nodes to remove"
         return;
     }
@@ -155,7 +155,7 @@ def processNode(child) {
         '/conf/dhl/settings/wcm/templates/blank-page': (page) -> processNodes(page, ['root/hero_banner','root/column_container']),
         '/conf/dhl/settings/wcm/templates/general-page': (page) -> processNodes(page, ['root/hero_banner','root/column_container']),
         '/conf/dhl/settings/wcm/templates/register-page': (page) -> processNodes(page, ['root/hero_banner','root/column_container']),
-        '/conf/dhl/settings/wcm/templates/landing-page-two-columns': (page) -> processNodes(page, ['root/hero_banner','root/top_container','root/column_container','root/bottom_container']),
+        '/conf/dhl/settings/wcm/templates/landing-page-two-columns': (page) -> processNodes(page, ['root/container','root/hero_banner','root/top_container','root/column_container','root/bottom_container']),
         '/conf/dhl/settings/wcm/templates/search-result-page': (page) -> processNodes(page, ['root/search']),
         '/conf/dhl/settings/wcm/templates/animated-page': (page) -> processSingleNode(page, 'root/responsivegrid'),
         '/conf/dhl/settings/wcm/templates/home-page': (page) -> processNodes(page, ['root/responsivegrid','root/container']),
