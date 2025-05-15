@@ -102,6 +102,13 @@
                                     value="h6"/>
                         </items>
                     </type>
+                    <id
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="HTML ID attribute to apply to the component."
+                            fieldLabel="ID"
+                            name="./id"
+                            validation="html-unique-id-validator"/>
                     <content
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="cq/gui/components/authoring/dialog/richtext"

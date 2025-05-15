@@ -20,7 +20,7 @@
 
 <sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <div class="figure-carousel" data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions">
-	<div id="carouselId" class="carousel slide" data-ride="carousel">
+	<div id="${properties.id}" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner" data-sly-list="${gallery.slides}">
 			<div class="carousel-item ${((itemList.index == 0) ? 'active' : '')}" id="uniqueIdImageGallerySlide${itemList.index}">
 				<style type="text/css">@media screen and (min-width: 768px) { #uniqueIdImageGallerySlide${itemList.index @context='styleToken'} .image { background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='uri'}${item.imagetab @context='uri'}') !important; } }</style>
@@ -34,7 +34,7 @@
 				</figure>
 			</div>
 		</div>
-		<a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">${ 'Previous' @ i18n, context='html' }</span></a>
-		<a class="carousel-control-next" href="#carouselId" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">${ 'Next' @ i18n, context='html' }</span></a>
+		<a class="carousel-control-prev" href="#${properties.id}" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">${ 'Previous' @ i18n, context='html' }</span></a>
+		<a class="carousel-control-next" href="#${properties.id}" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">${ 'Next' @ i18n, context='html' }</span></a>
 	</div>
 </div>

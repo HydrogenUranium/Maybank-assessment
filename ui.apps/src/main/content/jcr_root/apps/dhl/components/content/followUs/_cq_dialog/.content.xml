@@ -30,6 +30,13 @@
                                     text="- Label &lt;br&gt;
                                   - Social Network icons &lt;br&gt;
                                   are configured"/>
+                            <id
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="HTML ID attribute to apply to the component."
+                                    fieldLabel="ID"
+                                    name="./id"
+                                    validation="html-unique-id-validator"/>
                         </items>
                     </properties>
                     <styletab
