@@ -52,6 +52,13 @@
                                     name="./backgroundImageAltText"
                                     fieldDescription="Set Background image alt text for SEO"
                                     emptyText="Background Image Alt Text Placeholder"/>
+                            <id
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="HTML ID attribute to apply to the component."
+                                    fieldLabel="ID"
+                                    name="./id"
+                                    validation="html-unique-id-validator"/>
                         </items>
                     </customImage>
                     <useVideo
