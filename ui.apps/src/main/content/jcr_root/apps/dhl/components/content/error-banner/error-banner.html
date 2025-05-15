@@ -7,7 +7,7 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && !hasContent}" data-emptytext="${component.title}"></div>
 
-<div class="cmp-error-banner" data-sly-test="${hasContent}">
+<div id="${properties.id}" class="cmp-error-banner" data-sly-test="${hasContent}">
     <b class="cmp-error-banner__title">${title}.</b>
     <img class="cmp-error-banner__image" src="${model.image}" alt="${model.altText}"/>
     <p class="cmp-error-banner__description">${description}</p>

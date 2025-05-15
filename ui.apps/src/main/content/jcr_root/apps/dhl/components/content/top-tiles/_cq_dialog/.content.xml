@@ -35,6 +35,13 @@
                                     image for mobile, tablet, and desktop devices.
                                     Content Authors can override those images using appropriate properties.">
                             </note2>
+                            <id
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="HTML ID attribute to apply to the component."
+                                    fieldLabel="ID"
+                                    name="./id"
+                                    validation="html-unique-id-validator"/>
                             <articles
                                 jcr:primaryType="nt:unstructured"
                                 fieldLabel="Articles"

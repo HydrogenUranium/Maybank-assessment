@@ -63,7 +63,7 @@ println("""Pages to publish: ${filtered.size()}""")
 def replicator = getService("com.day.cq.replication.Replicator")
 
 
-filtered.each({
+filtered.each({ path ->
     if (!DRY_RUN) {
         try {
             def session = resourceResolver.adaptTo(Session)

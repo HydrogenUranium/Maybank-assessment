@@ -29,6 +29,13 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/container"
                                                     margin="{Boolean}true">
                                                 <items jcr:primaryType="nt:unstructured">
+                                                    <id
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldDescription="HTML ID attribute to apply to the component."
+                                                            fieldLabel="ID"
+                                                            name="./id"
+                                                            validation="html-unique-id-validator"/>
                                                     <url
                                                             granite:class="cmp-link-url"
                                                             jcr:primaryType="nt:unstructured"

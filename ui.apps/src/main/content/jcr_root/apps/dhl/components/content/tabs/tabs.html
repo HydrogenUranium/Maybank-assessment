@@ -6,14 +6,14 @@
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 <div class="tabs-component" data-sly-test="${!isEmpty}">
   <div class="rules-cont mb-4">
-    <ul class="nav nav-tabs row" id="tabs-${model.id}" role="tablist" data-sly-list="${model.tabList}">
+    <ul class="nav nav-tabs row" id="tabs-${properties.id}" role="tablist" data-sly-list="${model.tabList}">
       <li class="nav-item" role="presentation" style="width: calc(100% / ${model.tabList.size @ context='styleToken'});">
         <a class="nav-link t-red ${itemList.first ? 'active' : ''}"
-           id="${model.id}-${itemList.index}-tab"
+           id="${properties.id}-${itemList.index}-tab"
            data-toggle="tab"
-           href="#${model.id}-${itemList.index}"
+           href="#${properties.id}-${itemList.index}"
            role="tab"
-           aria-controls="${model.id}-${itemList.index}"
+           aria-controls="${properties.id}-${itemList.index}"
            aria-selected="${itemList.index == 0 ? 'true' : 'false'}">
           <div class="text-center" data-sly-test="${item.image}">
             <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
@@ -23,8 +23,8 @@
         </a>
       </li>
     </ul>
-    <div class="tab-content" id="tabs-content-${model.id}" data-sly-list="${model.tabList}">
-      <div class="tab-pane fade ${itemList.first ? 'show active' : ''}" id="${model.id}-${itemList.index}" role="tabpanel" aria-labelledby="${model.id}-${itemList.index}-tab">
+    <div class="tab-content" id="tabs-content-${properties.id}" data-sly-list="${model.tabList}">
+      <div class="tab-pane fade ${itemList.first ? 'show active' : ''}" id="${properties.id}-${itemList.index}" role="tabpanel" aria-labelledby="${properties.id}-${itemList.index}-tab">
         ${item.body @ context='html'}
       </div>
     </div>
