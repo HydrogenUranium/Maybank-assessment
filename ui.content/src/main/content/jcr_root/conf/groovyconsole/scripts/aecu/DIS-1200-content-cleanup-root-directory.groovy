@@ -158,7 +158,6 @@ def processNode(child) {
         '/conf/dhl/settings/wcm/templates/landing-page-two-columns': (page) -> processNodes(page, ['root/container','root/hero_banner','root/top_container','root/column_container','root/bottom_container']),
         '/conf/dhl/settings/wcm/templates/search-result-page': (page) -> processNodes(page, ['root/search']),
         '/conf/dhl/settings/wcm/templates/animated-page': (page) -> processSingleNode(page, 'root/responsivegrid'),
-        '/conf/dhl/settings/wcm/templates/home-page': (page) -> processNodes(page, ['root/responsivegrid','root/container']),
 ];
 
 def processPage(ROOTS) {
