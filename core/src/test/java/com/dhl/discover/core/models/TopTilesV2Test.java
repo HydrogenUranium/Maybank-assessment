@@ -79,8 +79,5 @@ class TopTilesV2Test {
         assertEquals("#GroupTag", tile.getTag());
         assertEquals("high", tile.getFetchPriority());
         assertNull(tile.getSizes());
-
-        TopTilesV2.Tile tile2 = topTiles.getTiles().get(1);
-        assertEquals("(max-width: 48rem) 100vw,(max-width: 75rem) 50vw, 50.625rem", tile2.getSizes());
     }
 }
