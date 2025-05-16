@@ -27,7 +27,8 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
 
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
         String environmentPrefix = getEnvironmentName();
-        var payloadPath = getPayloadPath(item);
+        String aemEnvName = getAEMEnvironmentName();
+        var payloadPath = aemEnvName+getPayloadPath(item);
         var initiator = getInitiator(item);
         var date = getDate();
 
@@ -54,6 +55,11 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     protected String getEnvironmentName() {
         String envName = System.getenv("ENVIRONMENT_NAME");
         return envName != null && !envName.isEmpty() ? envName + ": " : "";
+    }
+
+    protected String getAEMEnvironmentName() {
+        String envName = System.getenv("CMEnvironment");
+        return envName != null && !envName.isEmpty() ? envName + "/" : "";
     }
 
 }
