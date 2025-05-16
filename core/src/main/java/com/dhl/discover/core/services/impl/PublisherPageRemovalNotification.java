@@ -58,7 +58,7 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     }
 
     protected String getAEMEnvironmentName() {
-        String envName = System.getenv("CMEnvironment");
+        String envName = System.getenv("AEM_ENV_NAME");
         return envName != null && !envName.isEmpty() ? envName + "/" : "";
     }
 
