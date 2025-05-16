@@ -44,7 +44,8 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
 
     @Override
     protected List<String> getRecipients(String payloadPath) throws RepositoryException {
-        return publisherGroupService.getPublisherEmails(payloadPath);
+        String aemEnvName = getAEMEnvironmentName();
+        return publisherGroupService.getPublisherEmails(aemEnvName+payloadPath);
     }
 
     @Override
