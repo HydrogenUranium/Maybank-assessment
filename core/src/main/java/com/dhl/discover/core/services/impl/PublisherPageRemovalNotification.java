@@ -12,6 +12,8 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.jcr.RepositoryException;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import java.util.List;
 
 @Component(service = WorkflowProcess.class, property = {"process.label=Delete Page Email Notification Process"})
@@ -24,11 +26,12 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     private PublisherGroupService publisherGroupService;
 
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
+        String environmentPrefix = getEnvironmentName();
         var payloadPath = getPayloadPath(item);
         var initiator = getInitiator(item);
         var date = getDate();
 
-        email.setSubject("Notification of Page Removal");
+        email.setSubject(environmentPrefix+"Notification of Page Removal");
         email.setHtmlMsg(String.format(
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +
@@ -46,6 +49,11 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     @Override
     protected MessageGateway<HtmlEmail> getMessageGateway() {
         return messageGatewayService.getGateway(HtmlEmail.class);
+    }
+
+    protected String getEnvironmentName() {
+        String envName = System.getenv("ENVIRONMENT_NAME");
+        return envName != null && !envName.isEmpty() ? envName + ": " : "";
     }
 
 }
