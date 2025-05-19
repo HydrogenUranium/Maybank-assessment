@@ -27,15 +27,16 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
     private PublisherGroupService publisherGroupService;
 
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
-        String environmentPrefix = getEnvironmentName();
-        String aemEnvName = getAEMEnvironmentName();
+        String environmentPrefix = System.getenv("ENVIRONMENT_NAME");
+        String aemEnvName = StringUtils.defaultIfBlank(System.getenv("AEM_ENV_NAME"),"");
         var sourcePath = item.getWorkflowData().getMetaDataMap().get("srcPath", "");
         var payloadPath = getPayloadPath(item);
         var initiator = getInitiator(item);
         var date = getDate();
         var references = item.getWorkflowData().getMetaDataMap().get("publishReferences", new String[]{});
 
-        email.setSubject(environmentPrefix+"Notification of Page Moving");
+        environmentPrefix = StringUtils.isNotBlank(environmentPrefix) ? environmentPrefix.toUpperCase() : "";
+        email.setSubject(environmentPrefix + ":Notification of Page Moving");
         email.setHtmlMsg(String.format(
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +

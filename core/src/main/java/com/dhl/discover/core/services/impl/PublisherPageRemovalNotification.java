@@ -25,13 +25,13 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     private PublisherGroupService publisherGroupService;
 
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
-        String environmentPrefix = getEnvironmentName();
-        String aemEnvName = getAEMEnvironmentName();
+        String environmentPrefix = System.getenv("ENVIRONMENT_NAME");
+        String aemEnvName = StringUtils.defaultIfBlank(System.getenv("AEM_ENV_NAME"),"");
         var payloadPath = getPayloadPath(item);
         var initiator = getInitiator(item);
         var date = getDate();
-
-        email.setSubject(environmentPrefix+"Notification of Page Removal");
+        environmentPrefix = StringUtils.isNotBlank(environmentPrefix) ? environmentPrefix.toUpperCase() : "";
+        email.setSubject(environmentPrefix + ":Notification of Page Removal");
         email.setHtmlMsg(String.format(
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +
@@ -49,15 +49,6 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     @Override
     protected MessageGateway<HtmlEmail> getMessageGateway() {
         return messageGatewayService.getGateway(HtmlEmail.class);
-    }
-
-    protected String getEnvironmentName() {
-        String envName = System.getenv("ENVIRONMENT_NAME");
-        return StringUtils.isNotBlank(envName) ? envName.toUpperCase() + ":" : "";
-    }
-
-    protected String getAEMEnvironmentName() {
-        return StringUtils.defaultIfBlank(System.getenv("AEM_ENV_NAME"),"");
     }
 
 }
