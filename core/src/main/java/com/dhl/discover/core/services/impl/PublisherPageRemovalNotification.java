@@ -12,8 +12,6 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.jcr.RepositoryException;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import java.util.List;
 
 @Component(service = WorkflowProcess.class, property = {"process.label=Delete Page Email Notification Process"})
@@ -44,8 +42,7 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
 
     @Override
     protected List<String> getRecipients(String payloadPath) throws RepositoryException {
-        String aemEnvName = getAEMEnvironmentName();
-        return publisherGroupService.getPublisherEmails(aemEnvName+payloadPath);
+        return publisherGroupService.getPublisherEmails(payloadPath);
     }
 
     @Override
