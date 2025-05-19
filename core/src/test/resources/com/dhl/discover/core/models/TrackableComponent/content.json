@@ -30,5 +30,22 @@
         }
       }
     }
+  },
+  "banner-without-tracking": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:createdBy": "admin",
+    "jcr:lastModifiedBy": "admin",
+    "jcr:created": "Wed Sep 06 2023 14:38:21 GMT+0300",
+    "type": "custom",
+    "style": "adaptive",
+    "title": "CTA BANNER",
+    "topTitle": "Custom Top Title",
+    "buttonName": "Buy",
+    "buttonLink": "/content/test",
+    "jcr:lastModified": "Wed Sep 06 2023 15:07:43 GMT+0300",
+    "tabletBackgroundImage": "/content/dam/images/tablet.jpg",
+    "mobileBackgroundImage": "/content/dam/images/mobile.jpg",
+    "sling:resourceType": "dhl/components/content/cta-banner",
+    "desktopBackgroundImage": "/content/dam/images/desktop.jpg"
   }
 }

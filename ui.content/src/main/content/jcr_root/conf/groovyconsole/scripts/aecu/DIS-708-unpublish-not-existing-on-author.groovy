@@ -54,7 +54,7 @@ def main() {
 }
 
 def getAllPagesOnPublishEnv() {
-    def url = new URL(publishEnvHost + "/bin/get-all-pages")
+    def url = new URL(publishEnvHost + "/content/dhl.child-pages.json")
     HttpURLConnection connection = (HttpURLConnection) url.openConnection()
     connection.setRequestMethod("GET")
     connection.setRequestProperty("Accept", "application/json")

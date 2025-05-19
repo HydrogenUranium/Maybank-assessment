@@ -1,5 +1,7 @@
 .cta-banner {
   margin-top: 4rem;
+  z-index: 1;
+  position: relative;
 
   .cmp-cta-banner {
     @include remove-container-margins-mobile-only;
@@ -8,11 +10,34 @@
     padding: 2rem;
     display: flex;
     position: relative;
-    mix-blend-mode: multiply;
+
     border-radius: .6rem;
     color: #ffffff;
     font-size: 1.7rem;
     line-height: 2.4rem;
+
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(19, 19, 19, 0.5) 46%, rgba(19, 19, 19, 0.7) 100%);
+
+    [dir="rtl"] & {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(19, 19, 19, 0.5) 46%, rgba(19, 19, 19, 0.7) 100%);
+    }
+
+    @include respond(md) {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0) 30%, #191919 50%, #191919 100%);
+      opacity: 1;
+
+      [dir="rtl"] & {
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0) 30%, #191919 50%, #191919 100%);
+      }
+    }
+
+    @include respond(xl) {
+      background: linear-gradient(270deg, rgba(0, 0, 0, 0) 30%, #191919 50%, #191919 100%);
+
+      [dir="rtl"] & {
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0) 30%, #191919 50%, #191919 100%);
+      }
+    }
 
     @include respond(md) {
       margin-left: 0;
@@ -21,41 +46,6 @@
 
     @include respond(xl) {
       padding: 6.5rem 18rem;
-    }
-
-    &:after {
-      content: "";
-      border-radius: inherit;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      mix-blend-mode: multiply;
-      opacity: 0.8;
-      z-index: -1;
-      background: transparent linear-gradient(270deg, #ffffff91 0%, #686868 46%, #131313de 100%);
-
-      [dir="rtl"] & {
-        background: transparent linear-gradient(90deg, #ffffff91 0%, #686868 46%, #131313de 100%);
-      }
-
-      @include respond(md) {
-        background: transparent linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
-        opacity: 1;
-
-        [dir="rtl"] & {
-          background: transparent linear-gradient(270deg, #fff 30%, #000 50%, #000 100%);
-        }
-      }
-
-      @include respond(xl) {
-        background: transparent linear-gradient(270deg, #fff 30%, #000 50%, #000 100%);
-
-        [dir="rtl"] & {
-          background: transparent linear-gradient(90deg, #fff 30%, #000 50%, #000 100%);
-        }
-      }
     }
 
     &__body {
@@ -170,13 +160,10 @@
 .short-banners {
   .cmp-cta-banner {
     padding: 2rem;
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(19, 19, 19, 0.5) 46%, rgba(19, 19, 19, 0.7) 100%);
 
-    &:after {
-      background: transparent linear-gradient(270deg, #ffffff91 0%, #686868 46%, #131313de 100%);
-
-      [dir="rtl"] & {
-        background: transparent linear-gradient(90deg, #ffffff91 0%, #686868 46%, #131313de 100%);
-      }
+    [dir="rtl"] & {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(19, 19, 19, 0.5) 46%, rgba(19, 19, 19, 0.7) 100%);
     }
 
     &__body {

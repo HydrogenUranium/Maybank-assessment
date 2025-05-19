@@ -3,13 +3,16 @@
           jcr:mixinTypes="[rep:AccessControllable]"
           jcr:primaryType="cq:Page">
     <jcr:content
+            cq:lastModified="{Date}2025-04-16T12:30:23.150+03:00"
+            cq:lastModifiedBy="admin"
             cq:policy="dhl/components/pages/editable-two-column-page/policy_1699455642574"
+            jcr:mixinTypes="[]"
             jcr:primaryType="nt:unstructured"
             sling:resourceType="wcm/core/components/policies/mappings">
         <root
-            cq:policy="wcm/foundation/components/responsivegrid/policy_right_aligned_marketo_form"
-            jcr:primaryType="nt:unstructured"
-            sling:resourceType="wcm/core/components/policies/mapping">
+                cq:policy="wcm/foundation/components/responsivegrid/policy_right_aligned_marketo_form"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/core/components/policies/mapping">
             <main
                     cq:policy="dhl/components/content/page-container/policy_main"
                     jcr:primaryType="nt:unstructured"
@@ -552,16 +555,26 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                     </description>
+                    <bottom jcr:primaryType="nt:unstructured">
+                        <cta_banner_gray
+                                cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                    </bottom>
                 </two_columns_container>
+                <title_v2
+                        cq:policy="dhl/components/content/title-v2/policy_151333100645400"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wcm/core/components/policies/mapping"/>
             </main>
             <footer
-                cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment_footer"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/core/components/policies/mapping"/>
+                    cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment_footer"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/core/components/policies/mapping"/>
             <header
-                cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment_header"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="wcm/core/components/policies/mapping"/>
+                    cq:policy="dhl/components/content/experiencefragment/policy_experiencefragment_header"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/core/components/policies/mapping"/>
         </root>
     </jcr:content>
 </jcr:root>

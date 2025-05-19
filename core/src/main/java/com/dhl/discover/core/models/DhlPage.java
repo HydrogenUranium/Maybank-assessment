@@ -54,6 +54,7 @@ public class DhlPage {
 	private String pageImage;
 	private String seoTitle;
 	private String adobeDtmLink;
+	private String gtmDelayEnabled;
 
 	@InjectHomeProperty
 	@Default(values = "")
@@ -70,12 +71,16 @@ public class DhlPage {
 	private static final String DEFAULT_PAGE_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
 	private static final String DEFAULT_OG_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
 
+	@InjectHomeProperty
+	@Default(values = "")
+	private String brandSlug;
 
 	@PostConstruct
     protected void init() {
 		adobeDtmLink = environmentConfiguration.getAdobeDtmLink();
 		assetprefix = environmentConfiguration.getAssetPrefix();
 		akamaiHostname = environmentConfiguration.getAkamaiHostname();
+		gtmDelayEnabled = environmentConfiguration.getGtmDelayEnabled();
 
 		var isPublishRunmode = true;
 		var mode = WCMMode.fromRequest(request);
@@ -114,6 +119,9 @@ public class DhlPage {
 				? basePrefix.concat(customOgTagImage.trim())
 				: (HTTPS_PREFIX + akamaiHostname + DEFAULT_OG_IMAGE);
 
+		if (StringUtils.isNotBlank(brandSlug) && brandSlug.contains("DHL")) {
+			brandSlug = brandSlug.replace("DHL ", "");
+		}
 	}
 
 	private String getRobotTags(Page page) {

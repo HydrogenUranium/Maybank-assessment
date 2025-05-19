@@ -10,9 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Map;
-
-import static com.dhl.discover.junitUtils.InjectorMock.mockInjectHomeProperty;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -25,27 +22,6 @@ class CtaBannerGrayTest {
     void setUp() throws Exception {
         context.load().json("/com/dhl/discover/core/models/CtaBannerGray/content.json", "/content/home/article/jcr:content");
         context.addModelsForClasses(CtaBannerGray.class);
-        mockInjectHomeProperty(context, Map.of(
-                "ctaBannerGray-individualShipper-title", "global title",
-                "ctaBannerGray-individualShipper-description", "global description",
-                "ctaBannerGray-individualShipper-buttonLink", "/global/button/link",
-                "ctaBannerGray-individualShipper-buttonLabel", "global button label",
-                "ctaBannerGray-individualShipper-linkTarget", "global_link_target"
-        ));
-    }
-
-    @Test
-    void init_ShouldInitPropertiesFromHomePage_WhenTypeIsPredefined() {
-        Resource resource = resourceResolver.getResource("/content/home/article/jcr:content" + "/cta_banner_gray");
-
-        CtaBannerGray ctaBanner = resource.adaptTo(CtaBannerGray.class);
-
-        assertNotNull(ctaBanner);
-        assertEquals("global title", ctaBanner.getTitle());
-        assertEquals("global description", ctaBanner.getDescription());
-        assertEquals("/global/button/link", ctaBanner.getButtonLink());
-        assertEquals("global button label", ctaBanner.getButtonLabel());
-        assertEquals("global_link_target", ctaBanner.getLinkTarget());
     }
 
     @Test

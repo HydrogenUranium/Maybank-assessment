@@ -14,7 +14,6 @@ $include "./default_filters.any"
 ### bespoke DHL api endpoints
 /3001 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/*" } ## ??
 
-/3005 { /type "allow" /method "GET" /url "/bin/get-all-pages" }
 /3006 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/google*" }
 /3008 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/suggestions*" }
 
@@ -30,6 +29,21 @@ $include "./default_filters.any"
     /selectors 'form'
     /extension 'html' }  # allow POSTs to form selectors under content
 
+/3013 {
+    /type "allow"
+    /method "POST"
+    /path "*/content/dhl/*"
+    /selectors 'enhanced-google-conversion'
+    /extension 'html' }  # allow POSTs to enhanced-google-conversion selectors under content
+
+/3014 {
+    /type "allow"
+    /method "GET"
+    /path '/content/dhl*'
+     /selectors '(suggestions|search|child-pages)'
+     /extension '(json)'
+}
+
 # Allow AEM WCM Core Components sitemap
 /3020 { /type "allow" /path "/content/*" /selectors '(sitemap-index|sitemap)' /extension "xml" }
 
@@ -44,3 +58,6 @@ $include "./default_filters.any"
 # Allow WEBP images
 /3100 { /type "allow" /method "GET" /extension '(webp)' /path "/content/*" }
 /3101 { /type "allow" /method "GET" /url "/adobe/dynamicmedia/*" }
+
+# Allow speculation rules JSON model
+/0104 { /type "allow" /method "GET" /url "/content/dam/speculation-rules/*.specrules" }

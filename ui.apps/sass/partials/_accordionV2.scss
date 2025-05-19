@@ -9,8 +9,20 @@
 		&__panel {
 		  @include ignore-top-child-margin-deep;
 		  @include ignore-bottom-child-margin-deep;
-		  padding-top: 1.8rem;
-		  padding-bottom: 1.6rem;
+		  margin: 0 3rem 3.6rem;
+      transition: max-height 0.3s ease-in-out, margin 0.3s ease-in-out;
+
+      &--expanded {
+        overflow: hidden;
+        max-height: fit-content;
+      }
+
+      &--hidden {
+        max-height: 0 !important;
+        overflow: hidden;
+        display: block;
+        margin-bottom: 0;
+      }
 		}
 
 		&__header {
@@ -19,29 +31,30 @@
 
 		.cmp-accordion__item {
 			background-color: map-get($palette, white-two);
-			padding: 2.1rem 1.5rem 2rem 1.5rem;
+			padding: 0;
 			border: none;
 			border-top: 1px solid map-get($palette, white);
-
-			@include respond(md) {
-	      padding: 2rem 3rem;
-	    }
 		}
 
 		.cmp-accordion__button {
 			cursor: pointer;
 			background-color: map-get($palette, white-two);
 			border: none;
-			padding: 0;
+			padding: 2rem 3rem;
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
 			.cmp-accordion__title {
 				font-size: var(--font-size-md);
 				color: map-get($palette, red);
 				margin: 0;
+        padding-right: 1rem;
 			}
 		}
+    :first-child {
+      border-top: none;
+    }
 
 		.cmp-accordion__icon {
 			content: ' ';
@@ -55,6 +68,8 @@
       background-repeat: no-repeat;
 			line-height: 5rem;
 			transition: transform 100ms ease;
+      flex-shrink: 0;
+      padding: 0 1rem;
 
 			@include respond(md) {
 				top: 2.7rem;
@@ -64,8 +79,6 @@
 		.cmp-accordion__button--expanded .cmp-accordion__icon {
 			transform: rotate(-180deg)
 		}
-
-
 	}
 }
 

@@ -32,6 +32,10 @@
                                     fieldLabel="Title Type / Size"
                                     name="./titleType">
                                 <items jcr:primaryType="nt:unstructured">
+                                    <default
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Default (H3)"
+                                            value="default"/>
                                     <h1
                                             jcr:primaryType="nt:unstructured"
                                             text="H1"
@@ -43,8 +47,7 @@
                                     <h3
                                             jcr:primaryType="nt:unstructured"
                                             text="H3"
-                                            value="h3"
-                                            selected="{Boolean}true"/>
+                                            value="h3"/>
                                 </items>
                             </titleType>
                             <guidance
@@ -59,6 +62,10 @@
                                     fieldLabel="Guidance Text Type / Size"
                                     name="./guidanceType">
                                 <items jcr:primaryType="nt:unstructured">
+                                    <default
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Default (H2)"
+                                            value="default"/>
                                     <h1
                                             jcr:primaryType="nt:unstructured"
                                             text="H1"
@@ -66,8 +73,7 @@
                                     <h2
                                             jcr:primaryType="nt:unstructured"
                                             text="H2"
-                                            value="h2"
-                                            selected="{Boolean}true"/>
+                                            value="h2"/>
                                     <h3
                                             jcr:primaryType="nt:unstructured"
                                             text="H3"

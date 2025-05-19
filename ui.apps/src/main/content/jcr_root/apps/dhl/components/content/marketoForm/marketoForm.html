@@ -5,7 +5,7 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
-<div class="ship-now-group" data-sly-test="${!isEmpty}">
+<div id="${properties.id}" class="ship-now-group" data-sly-test="${!isEmpty}">
     <div class="forms cmp-marketoForm"
          formId="${cmf.marketoformid @ context='attribute'}"
          munchkinId="${cmf.marketoid @ context='attribute'}"
@@ -13,6 +13,8 @@
          hiddenFormId="${cmf.marketohiddenformid @ context='attribute'}"
          action="${accountactions.getAssetprefix}${currentPage.path}.form.html"
          formstart="${accountactions.getAssetprefix}${currentNode.path}.form.html"
+         enhancedConversionUrl="${accountactions.getAssetprefix}${currentPage.path}.enhanced-google-conversion.html"
+         googleConversionActionId="${cmf.googleConversionActionId @ context='attribute'}"
          source="conf"
          data-sly-attribute.data-analytics="${analytics.json}"
          data-marketo-form>
