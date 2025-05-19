@@ -6,6 +6,7 @@ import com.day.cq.workflow.WorkflowSession;
 import com.day.cq.workflow.exec.WorkItem;
 import com.day.cq.workflow.exec.WorkflowProcess;
 import com.day.cq.workflow.metadata.MetaDataMap;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.osgi.service.component.annotations.Component;
@@ -52,12 +53,11 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
 
     protected String getEnvironmentName() {
         String envName = System.getenv("ENVIRONMENT_NAME");
-        return envName != null && !envName.isEmpty() ? envName.toUpperCase() + ": " : "";
+        return StringUtils.isNotBlank(envName) ? envName.toUpperCase() + ":" : "";
     }
 
     protected String getAEMEnvironmentName() {
-        String envName = System.getenv("AEM_ENV_NAME");
-        return envName != null && !envName.isEmpty() ? envName : "";
+        return StringUtils.defaultIfBlank(System.getenv("AEM_ENV_NAME"),"");
     }
 
 }
