@@ -42,7 +42,7 @@ public abstract class PublisherEmailNotification implements WorkflowProcess {
 
     protected String getEnvironmentName() {
         String envName = System.getenv("ENVIRONMENT_NAME");
-        return StringUtils.isNotBlank(envName) ? envName.toUpperCase() + ":" : "";
+        return StringUtils.isNotBlank(envName) ? envName.toUpperCase() + ": " : "";
     }
 
     protected String getAEMEnvironmentName() {
