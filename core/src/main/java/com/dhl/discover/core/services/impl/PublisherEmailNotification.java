@@ -8,6 +8,7 @@ import com.day.cq.workflow.exec.WorkItem;
 import com.day.cq.workflow.exec.WorkflowProcess;
 import com.day.cq.workflow.metadata.MetaDataMap;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
@@ -38,6 +39,15 @@ public abstract class PublisherEmailNotification implements WorkflowProcess {
     protected abstract List<String> getRecipients(String payloadPath) throws RepositoryException;
 
     protected abstract MessageGateway<HtmlEmail> getMessageGateway();
+
+    protected String getEnvironmentName() {
+        String envName = System.getenv("ENVIRONMENT_NAME");
+        return StringUtils.isNotBlank(envName) ? envName.toUpperCase() + ":" : "";
+    }
+
+    protected String getAEMEnvironmentName() {
+        return StringUtils.defaultIfBlank(System.getenv("AEM_ENV_NAME"),"");
+    }
 
     @Override
     public final void execute(WorkItem item, WorkflowSession session, MetaDataMap args) throws WorkflowException {

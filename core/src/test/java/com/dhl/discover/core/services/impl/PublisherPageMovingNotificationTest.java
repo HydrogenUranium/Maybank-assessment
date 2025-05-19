@@ -63,7 +63,7 @@ class PublisherPageMovingNotificationTest {
         doAnswer(invocationOnMock -> {
             HtmlEmail email = invocationOnMock.getArgument(0, HtmlEmail.class);
             assertNotNull(email);
-            assertEquals(":Notification of Page Moving", email.getSubject());
+            assertEquals("Notification of Page Moving", email.getSubject());
             assertEquals(1, email.getToAddresses().size());
             assertEquals("dmytro@gmail.com", email.getToAddresses().get(0).getAddress());
             return null;

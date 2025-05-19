@@ -27,16 +27,13 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
     private PublisherGroupService publisherGroupService;
 
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
-        String environmentPrefix = System.getenv("ENVIRONMENT_NAME");
-        String aemEnvName = StringUtils.defaultIfBlank(System.getenv("AEM_ENV_NAME"),"");
         var sourcePath = item.getWorkflowData().getMetaDataMap().get("srcPath", "");
         var payloadPath = getPayloadPath(item);
         var initiator = getInitiator(item);
         var date = getDate();
         var references = item.getWorkflowData().getMetaDataMap().get("publishReferences", new String[]{});
 
-        environmentPrefix = StringUtils.isNotBlank(environmentPrefix) ? environmentPrefix.toUpperCase() : "";
-        email.setSubject(environmentPrefix + ":Notification of Page Moving");
+        email.setSubject(getEnvironmentName() + "Notification of Page Moving");
         email.setHtmlMsg(String.format(
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +
@@ -50,7 +47,7 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
                 "<li>Updated References: %s</li>" +
                 "</ul>" +
                 "<p>This is an automatically generated message. Please do not reply.</p>" +
-                "</body></html>", aemEnvName, sourcePath, payloadPath, initiator, date, Arrays.toString(references)));
+                "</body></html>", getAEMEnvironmentName(), sourcePath, payloadPath, initiator, date, Arrays.toString(references)));
     }
 
     @Override
@@ -61,14 +58,5 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
     @Override
     protected MessageGateway<HtmlEmail> getMessageGateway() {
         return messageGatewayService.getGateway(HtmlEmail.class);
-    }
-
-    protected String getEnvironmentName() {
-        String envName = System.getenv("ENVIRONMENT_NAME");
-        return StringUtils.isNotBlank(envName) ? envName.toUpperCase() + ":" : "";
-    }
-
-    protected String getAEMEnvironmentName() {
-        return StringUtils.defaultIfBlank(System.getenv("AEM_ENV_NAME"),"");
     }
 }

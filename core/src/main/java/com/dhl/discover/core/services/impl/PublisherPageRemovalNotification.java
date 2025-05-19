@@ -25,20 +25,17 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     private PublisherGroupService publisherGroupService;
 
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
-        String environmentPrefix = System.getenv("ENVIRONMENT_NAME");
-        String aemEnvName = StringUtils.defaultIfBlank(System.getenv("AEM_ENV_NAME"),"");
         var payloadPath = getPayloadPath(item);
         var initiator = getInitiator(item);
         var date = getDate();
-        environmentPrefix = StringUtils.isNotBlank(environmentPrefix) ? environmentPrefix.toUpperCase() : "";
-        email.setSubject(environmentPrefix + ":Notification of Page Removal");
+        email.setSubject(getEnvironmentName() + "Notification of Page Removal");
         email.setHtmlMsg(String.format(
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +
                 "<p>The page delete operation has started.</p>"+
                 "<ul><li>Environment: %s</li><li>Page Path: %s</li><li>Removed By: %s</li><li>Removal Date: %s (GMT+2)</li></ul>" +
                 "<p>This is an automatically generated message. Please do not reply.</p>" +
-                "</body></html>", aemEnvName, payloadPath, initiator, date));
+                "</body></html>", getAEMEnvironmentName(), payloadPath, initiator, date));
     }
 
     @Override
