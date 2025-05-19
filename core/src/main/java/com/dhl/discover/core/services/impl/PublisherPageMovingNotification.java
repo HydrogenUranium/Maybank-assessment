@@ -25,18 +25,21 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
     private PublisherGroupService publisherGroupService;
 
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
+        String environmentPrefix = getEnvironmentName();
+        String aemEnvName = getAEMEnvironmentName();
         var sourcePath = item.getWorkflowData().getMetaDataMap().get("srcPath", "");
         var payloadPath = getPayloadPath(item);
         var initiator = getInitiator(item);
         var date = getDate();
         var references = item.getWorkflowData().getMetaDataMap().get("publishReferences", new String[]{});
 
-        email.setSubject("Notification of Page Moving");
+        email.setSubject(environmentPrefix+"Notification of Page Moving");
         email.setHtmlMsg(String.format(
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +
                 "<p>The page move operation has started.</p>"+
                 "<ul>" +
+                "<li>Environment: %s</li>" +
                 "<li>Source Page Path: %s</li>" +
                 "<li>New Page Path: %s</li>" +
                 "<li>Moved By: %s</li>" +
@@ -44,7 +47,7 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
                 "<li>Updated References: %s</li>" +
                 "</ul>" +
                 "<p>This is an automatically generated message. Please do not reply.</p>" +
-                "</body></html>", sourcePath, payloadPath, initiator, date, Arrays.toString(references)));
+                "</body></html>", aemEnvName, sourcePath, payloadPath, initiator, date, Arrays.toString(references)));
     }
 
     @Override
@@ -55,5 +58,15 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
     @Override
     protected MessageGateway<HtmlEmail> getMessageGateway() {
         return messageGatewayService.getGateway(HtmlEmail.class);
+    }
+
+    protected String getEnvironmentName() {
+        String envName = System.getenv("ENVIRONMENT_NAME");
+        return envName != null && !envName.isEmpty() ? envName.toUpperCase() + ": " : "";
+    }
+
+    protected String getAEMEnvironmentName() {
+        String envName = System.getenv("AEM_ENV_NAME");
+        return envName != null && !envName.isEmpty() ? envName : "";
     }
 }

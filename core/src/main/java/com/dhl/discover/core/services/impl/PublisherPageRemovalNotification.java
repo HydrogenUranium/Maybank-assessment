@@ -26,7 +26,7 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
         String environmentPrefix = getEnvironmentName();
         String aemEnvName = getAEMEnvironmentName();
-        var payloadPath = aemEnvName+getPayloadPath(item);
+        var payloadPath = getPayloadPath(item);
         var initiator = getInitiator(item);
         var date = getDate();
 
@@ -35,9 +35,9 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +
                 "<p>The page delete operation has started.</p>"+
-                "<ul><li>Page Path: %s</li><li>Removed By: %s</li><li>Removal Date: %s (GMT+2)</li></ul>" +
+                "<ul><li>Environment: %s</li><li>Page Path: %s</li><li>Removed By: %s</li><li>Removal Date: %s (GMT+2)</li></ul>" +
                 "<p>This is an automatically generated message. Please do not reply.</p>" +
-                "</body></html>", payloadPath, initiator, date));
+                "</body></html>", aemEnvName, payloadPath, initiator, date));
     }
 
     @Override
@@ -52,12 +52,12 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
 
     protected String getEnvironmentName() {
         String envName = System.getenv("ENVIRONMENT_NAME");
-        return envName != null && !envName.isEmpty() ? envName + ": " : "";
+        return envName != null && !envName.isEmpty() ? envName.toUpperCase() + ": " : "";
     }
 
     protected String getAEMEnvironmentName() {
         String envName = System.getenv("AEM_ENV_NAME");
-        return envName != null && !envName.isEmpty() ? envName + "/" : "";
+        return envName != null && !envName.isEmpty() ? envName : "";
     }
 
 }
