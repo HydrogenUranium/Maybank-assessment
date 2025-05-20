@@ -78,4 +78,10 @@ class PublisherPageMovingNotificationTest {
 
         verify(messageGateway).send(any());
     }
+
+    @Test
+    void environmentNameIsEmpty() {
+        when(environmentConfiguration.getEnvironmentName()).thenReturn("");
+        assertEquals("", service.getEnvironmentName());
+    }
 }
