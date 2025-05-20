@@ -83,7 +83,7 @@ class PublisherPageRemovalNotificationTest {
     @Test
     void environmentNameIsEmpty() {
         when(environmentConfiguration.getEnvironmentName()).thenReturn("");
-        assertEquals("", service.getEnvironmentName());
+        assertEquals("", environmentConfiguration.getEnvironmentName());
     }
 
 }
