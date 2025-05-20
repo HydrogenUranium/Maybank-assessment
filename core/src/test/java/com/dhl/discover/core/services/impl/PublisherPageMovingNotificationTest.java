@@ -7,6 +7,7 @@ import com.day.cq.workflow.exec.WorkItem;
 import com.day.cq.workflow.exec.Workflow;
 import com.day.cq.workflow.exec.WorkflowData;
 import com.day.cq.workflow.metadata.MetaDataMap;
+import com.dhl.discover.core.components.EnvironmentConfiguration;
 import org.apache.commons.mail.HtmlEmail;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,6 +44,9 @@ class PublisherPageMovingNotificationTest {
     @Mock
     private Workflow workflow;
 
+    @Mock
+    private EnvironmentConfiguration environmentConfiguration;
+
     @InjectMocks
     private PublisherPageMovingNotification service;
 
@@ -51,6 +55,10 @@ class PublisherPageMovingNotificationTest {
 
     @Test
     void execute() throws WorkflowException, RepositoryException {
+        when(environmentConfiguration.getAemEnvName()).thenReturn("deutsche-post-ag-discover-dev");
+        when(environmentConfiguration.getEnvironmentName()).thenReturn("dev");
+        System.setProperty("ENVIRONMENT_NAME", "dev");
+        System.setProperty("AEM_ENV_NAME", "deutsche-post-ag-discover-dev");
         when(publisherGroupService.getPublisherEmails(anyString())).thenReturn(List.of("dmytro@gmail.com"));
         when(item.getWorkflowData()).thenReturn(workflowData);
         when(workflowData.getPayload()).thenReturn("/content/dhl/global/home/new");
@@ -59,10 +67,6 @@ class PublisherPageMovingNotificationTest {
         when(item.getWorkflow()).thenReturn(workflow);
         when(workflow.getInitiator()).thenReturn("dmytro");
         when(messageGatewayService.getGateway(any())).thenReturn(messageGateway);
-        PublisherPageMovingNotification serviceSpy = spy(service);
-        doReturn("DEV: ").when(serviceSpy).getEnvironmentName();
-        doReturn("deutsche-post-ag-discover-dev").when(serviceSpy).getAEMEnvironmentName();
-
         doAnswer(invocationOnMock -> {
             HtmlEmail email = invocationOnMock.getArgument(0, HtmlEmail.class);
             assertNotNull(email);
@@ -72,8 +76,7 @@ class PublisherPageMovingNotificationTest {
             return null;
         }).when(messageGateway).send(any());
 
-        //service.execute(item, null, metaDataMap);
-        serviceSpy.execute(item, null, metaDataMap);
+        service.execute(item, null, metaDataMap);
 
         verify(messageGateway).send(any());
     }

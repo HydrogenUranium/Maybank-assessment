@@ -7,13 +7,12 @@ import com.day.cq.workflow.exec.WorkItem;
 import com.day.cq.workflow.exec.Workflow;
 import com.day.cq.workflow.exec.WorkflowData;
 import com.day.cq.workflow.metadata.MetaDataMap;
+import com.dhl.discover.core.components.EnvironmentConfiguration;
 import org.apache.commons.mail.HtmlEmail;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.RepositoryException;
@@ -46,6 +45,9 @@ class PublisherPageRemovalNotificationTest {
     @Mock
     private Workflow workflow;
 
+    @Mock
+    private EnvironmentConfiguration environmentConfiguration;
+
     @InjectMocks
     private PublisherPageRemovalNotification service;
 
@@ -54,15 +56,14 @@ class PublisherPageRemovalNotificationTest {
 
     @Test
     void execute() throws WorkflowException, RepositoryException {
+        when(environmentConfiguration.getAemEnvName()).thenReturn("deutsche-post-ag-discover-dev");
+        when(environmentConfiguration.getEnvironmentName()).thenReturn("dev");
         when(publisherGroupService.getPublisherEmails(anyString())).thenReturn(List.of("dmytro@gmail.com"));
         when(item.getWorkflowData()).thenReturn(workflowData);
         when(workflowData.getPayload()).thenReturn("/content/dhl/global/home");
         when(item.getWorkflow()).thenReturn(workflow);
         when(workflow.getInitiator()).thenReturn("dmytro");
         when(messageGatewayService.getGateway(any())).thenReturn(messageGateway);
-        PublisherPageRemovalNotification serviceSpy = spy(service);
-        doReturn("DEV: ").when(serviceSpy).getEnvironmentName();
-        doReturn("deutsche-post-ag-discover-dev").when(serviceSpy).getAEMEnvironmentName();
 
         doAnswer(invocationOnMock -> {
             HtmlEmail email = invocationOnMock.getArgument(0, HtmlEmail.class);
@@ -73,10 +74,8 @@ class PublisherPageRemovalNotificationTest {
             return null;
         }).when(messageGateway).send(any());
 
-        serviceSpy.execute(item, null, metaDataMap);
+        service.execute(item, null, metaDataMap);
 
         verify(messageGateway).send(any());
         }
-
-
 }

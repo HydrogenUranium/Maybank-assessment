@@ -7,10 +7,12 @@ import com.day.cq.workflow.WorkflowSession;
 import com.day.cq.workflow.exec.WorkItem;
 import com.day.cq.workflow.exec.WorkflowProcess;
 import com.day.cq.workflow.metadata.MetaDataMap;
+import com.dhl.discover.core.components.EnvironmentConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
+import org.osgi.service.component.annotations.Reference;
 
 import javax.jcr.RepositoryException;
 import java.time.LocalDateTime;
@@ -21,6 +23,10 @@ import java.util.Locale;
 
 @Slf4j
 public abstract class PublisherEmailNotification implements WorkflowProcess {
+
+    @Reference
+    private EnvironmentConfiguration environmentConfiguration;
+
     protected String getDate() {
         var offset = ZoneOffset.of("+02:00");
         var currentDateTime = LocalDateTime.now(offset);
@@ -41,12 +47,12 @@ public abstract class PublisherEmailNotification implements WorkflowProcess {
     protected abstract MessageGateway<HtmlEmail> getMessageGateway();
 
     protected String getEnvironmentName() {
-        String envName = System.getenv("ENVIRONMENT_NAME");
+        String envName = environmentConfiguration.getEnvironmentName();
         return StringUtils.isNotBlank(envName) ? envName.toUpperCase() + ": " : "";
     }
 
     protected String getAEMEnvironmentName() {
-        return StringUtils.defaultIfBlank(System.getenv("AEM_ENV_NAME"),"");
+        return StringUtils.defaultIfBlank(environmentConfiguration.getAemEnvName(),"");
     }
 
     @Override
