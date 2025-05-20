@@ -97,7 +97,6 @@
                         <items jcr:primaryType="nt:unstructured">
                             <detail
                                     jcr:primaryType="nt:unstructured"
-                                    required="true"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Detail"
                                     name="./analytics/detail"/>

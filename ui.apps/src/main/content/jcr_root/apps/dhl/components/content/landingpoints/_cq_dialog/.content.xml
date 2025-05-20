@@ -52,6 +52,35 @@
                                             value="red-dot"/>
                                 </items>
                             </pointType>
+                            <titleType
+                                    granite:class="core-title-sizes-default"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Type / Size"
+                                    name="./titleType">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <default
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Default (p)"
+                                            value="default"/>
+                                    <h1
+                                            jcr:primaryType="nt:unstructured"
+                                            text="h1"
+                                            value="h1"/>
+                                    <h2
+                                            jcr:primaryType="nt:unstructured"
+                                            text="h2"
+                                            value="h2"/>
+                                    <h3
+                                            jcr:primaryType="nt:unstructured"
+                                            text="h3"
+                                            value="h3"/>
+                                    <h4
+                                            jcr:primaryType="nt:unstructured"
+                                            text="h4"
+                                            value="h4"/>
+                                </items>
+                            </titleType>
                             <id
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
