@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.RepositoryException;
@@ -58,19 +60,23 @@ class PublisherPageRemovalNotificationTest {
         when(item.getWorkflow()).thenReturn(workflow);
         when(workflow.getInitiator()).thenReturn("dmytro");
         when(messageGatewayService.getGateway(any())).thenReturn(messageGateway);
+        PublisherPageRemovalNotification serviceSpy = spy(service);
+        doReturn("DEV: ").when(serviceSpy).getEnvironmentName();
+        doReturn("deutsche-post-ag-discover-dev").when(serviceSpy).getAEMEnvironmentName();
 
         doAnswer(invocationOnMock -> {
             HtmlEmail email = invocationOnMock.getArgument(0, HtmlEmail.class);
             assertNotNull(email);
-            assertEquals("Notification of Page Removal", email.getSubject());
+            assertEquals("DEV: Notification of Page Removal", email.getSubject());
             assertEquals(1, email.getToAddresses().size());
             assertEquals("dmytro@gmail.com", email.getToAddresses().get(0).getAddress());
             return null;
         }).when(messageGateway).send(any());
 
-        service.execute(item, null, metaDataMap);
+        serviceSpy.execute(item, null, metaDataMap);
 
         verify(messageGateway).send(any());
-    }
+        }
+
 
 }
