@@ -6,6 +6,7 @@ import com.day.cq.workflow.WorkflowSession;
 import com.day.cq.workflow.exec.WorkItem;
 import com.day.cq.workflow.exec.WorkflowProcess;
 import com.day.cq.workflow.metadata.MetaDataMap;
+import com.dhl.discover.core.components.EnvironmentConfiguration;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.osgi.service.component.annotations.Component;
@@ -23,18 +24,21 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     @Reference
     private PublisherGroupService publisherGroupService;
 
+    @Reference
+    private EnvironmentConfiguration environmentConfiguration;
+
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
         var payloadPath = getPayloadPath(item);
         var initiator = getInitiator(item);
         var date = getDate();
-        email.setSubject(getEnvironmentName() + "Notification of Page Removal");
+        email.setSubject(environmentConfiguration.getEnvironmentName() + ": Notification of Page Removal");
         email.setHtmlMsg(String.format(
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +
                 "<p>The page delete operation has started.</p>"+
                 "<ul><li>Environment: %s</li><li>Page Path: %s</li><li>Removed By: %s</li><li>Removal Date: %s (GMT+2)</li></ul>" +
                 "<p>This is an automatically generated message. Please do not reply.</p>" +
-                "</body></html>", getAEMEnvironmentName(), payloadPath, initiator, date));
+                "</body></html>", environmentConfiguration.getAemEnvName(), payloadPath, initiator, date));
     }
 
     @Override
@@ -46,5 +50,4 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     protected MessageGateway<HtmlEmail> getMessageGateway() {
         return messageGatewayService.getGateway(HtmlEmail.class);
     }
-
 }

@@ -24,9 +24,6 @@ import java.util.Locale;
 @Slf4j
 public abstract class PublisherEmailNotification implements WorkflowProcess {
 
-    @Reference
-    private EnvironmentConfiguration environmentConfiguration;
-
     protected String getDate() {
         var offset = ZoneOffset.of("+02:00");
         var currentDateTime = LocalDateTime.now(offset);
@@ -45,15 +42,6 @@ public abstract class PublisherEmailNotification implements WorkflowProcess {
     protected abstract List<String> getRecipients(String payloadPath) throws RepositoryException;
 
     protected abstract MessageGateway<HtmlEmail> getMessageGateway();
-
-    protected String getEnvironmentName() {
-        String envName = environmentConfiguration.getEnvironmentName();
-        return StringUtils.isNotBlank(envName) ? envName.toUpperCase() + ": " : "";
-    }
-
-    protected String getAEMEnvironmentName() {
-        return StringUtils.defaultIfBlank(environmentConfiguration.getAemEnvName(),"");
-    }
 
     @Override
     public final void execute(WorkItem item, WorkflowSession session, MetaDataMap args) throws WorkflowException {

@@ -8,6 +8,7 @@ import com.day.cq.workflow.exec.WorkflowProcess;
 import com.day.cq.workflow.metadata.MetaDataMap;
 import java.util.Arrays;
 
+import com.dhl.discover.core.components.EnvironmentConfiguration;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.osgi.service.component.annotations.Component;
@@ -25,6 +26,9 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
     @Reference
     private PublisherGroupService publisherGroupService;
 
+    @Reference
+    private EnvironmentConfiguration environmentConfiguration;
+
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
         var sourcePath = item.getWorkflowData().getMetaDataMap().get("srcPath", "");
         var payloadPath = getPayloadPath(item);
@@ -32,7 +36,7 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
         var date = getDate();
         var references = item.getWorkflowData().getMetaDataMap().get("publishReferences", new String[]{});
 
-        email.setSubject(getEnvironmentName() + "Notification of Page Moving");
+        email.setSubject(environmentConfiguration.getEnvironmentName() + ": Notification of Page Moving");
         email.setHtmlMsg(String.format(
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +
@@ -46,7 +50,7 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
                 "<li>Updated References: %s</li>" +
                 "</ul>" +
                 "<p>This is an automatically generated message. Please do not reply.</p>" +
-                "</body></html>", getAEMEnvironmentName(), sourcePath, payloadPath, initiator, date, Arrays.toString(references)));
+                "</body></html>", environmentConfiguration.getAemEnvName(), sourcePath, payloadPath, initiator, date, Arrays.toString(references)));
     }
 
     @Override
