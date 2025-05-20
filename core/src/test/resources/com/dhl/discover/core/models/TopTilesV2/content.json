@@ -1,0 +1,70 @@
+{
+  "top_tiles": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:createdBy": "admin",
+    "jcr:lastModifiedBy": "admin",
+    "jcr:created": "Wed May 07 2025 16:51:07 GMT+0300",
+    "jcr:lastModified": "Tue May 13 2025 14:39:48 GMT+0300",
+    "sling:resourceType": "dhl/components/content/top-tiles-v2",
+    "items": {
+      "jcr:primaryType": "nt:unstructured",
+      "item0": {
+        "jcr:primaryType": "nt:unstructured",
+        "linkURL": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality",
+        "sling:resourceType": "dhl/components/content/top-tiles-v2/image",
+        "mobileImage": {
+          "jcr:primaryType": "nt:unstructured",
+          "cq:isCancelledForChildren": "true",
+          "fileReference": "/content/dam/images/karsten-winegeart-2zvWgdH5PBU-unsplash.jpg",
+          "sling:resourceType": "dhl/components/content/top-tiles-v2/image",
+          "altValueFromDAM": "true"
+        },
+        "desktopImage": {
+          "jcr:primaryType": "nt:unstructured",
+          "cq:isCancelledForChildren": "true",
+          "sling:resourceType": "dhl/components/content/top-tiles-v2/image",
+          "altValueFromDAM": "true"
+        }
+      },
+      "item1": {
+        "jcr:primaryType": "nt:unstructured",
+        "linkURL": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality",
+        "sling:resourceType": "dhl/components/content/top-tiles-v2/image",
+        "mobileImage": {
+          "jcr:primaryType": "nt:unstructured",
+          "cq:isCancelledForChildren": "true",
+          "sling:resourceType": "dhl/components/content/top-tiles-v2/image",
+          "altValueFromDAM": "true"
+        },
+        "desktopImage": {
+          "jcr:primaryType": "nt:unstructured",
+          "cq:isCancelledForChildren": "true",
+          "sling:resourceType": "dhl/components/content/top-tiles-v2/image",
+          "altValueFromDAM": "true"
+        }
+      },
+      "item2": {
+        "jcr:primaryType": "nt:unstructured",
+        "linkURL": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality",
+        "sling:resourceType": "dhl/components/content/top-tiles-v2/image",
+        "mobileImage": {
+          "jcr:primaryType": "nt:unstructured",
+          "cq:isCancelledForChildren": "true",
+          "sling:resourceType": "dhl/components/content/top-tiles-v2/image",
+          "altValueFromDAM": "true"
+        },
+        "desktopImage": {
+          "jcr:primaryType": "nt:unstructured",
+          "cq:isCancelledForChildren": "true",
+          "sling:resourceType": "dhl/components/content/top-tiles-v2/image",
+          "altValueFromDAM": "true"
+        }
+      },
+      "item3": {
+        "jcr:primaryType": "nt:unstructured",
+        "linkURL": "/content/dhl/global/en-global/about-dhl/dhl-stories/augmented-reality",
+        "sling:resourceType": "dhl/components/content/top-tiles-v2/image"
+      }
+    }
+  }
+}

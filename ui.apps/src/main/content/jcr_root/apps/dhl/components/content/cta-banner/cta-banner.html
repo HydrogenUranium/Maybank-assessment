@@ -3,7 +3,7 @@
      data-sly-set.isEmpty="${!model.title || model.disabled}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
-<article class="cmp-cta-banner" data-sly-test="${!isEmpty}">
+<article id="${properties.id}" class="cmp-cta-banner" data-sly-test="${!isEmpty}">
     <div class="cmp-cta-banner__body">
         <div class="cmp-cta-banner__top-title">${model.topTitle @ context = 'html'}</div>
         <div class="cmp-cta-banner__title">${model.title @ context = 'html'}</div>

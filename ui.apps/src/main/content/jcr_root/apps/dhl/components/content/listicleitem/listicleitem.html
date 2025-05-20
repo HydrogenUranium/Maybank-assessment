@@ -16,7 +16,7 @@
 <sly data-sly-set.isEmpty="${!properties.title && !properties.content && !properties.image}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
-<div class="listicle-component listicle__row__text--${properties.colour}" data-sly-test="${!isEmpty}">
+<div  id="${properties.id}" class="listicle-component listicle__row__text--${properties.colour}" data-sly-test="${!isEmpty}">
     <div class="listicle__row listicle__row--text-${properties.textside} listicle__row--text-${properties.style}" >
         <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
              data-sly-call="${template.picture @
