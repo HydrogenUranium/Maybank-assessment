@@ -2,6 +2,7 @@ package com.dhl.discover.core.services.impl;
 
 import com.day.cq.mailer.MailingException;
 import com.day.cq.mailer.MessageGateway;
+import com.day.cq.mailer.MessageGatewayService;
 import com.day.cq.workflow.WorkflowException;
 import com.day.cq.workflow.WorkflowSession;
 import com.day.cq.workflow.exec.WorkItem;
@@ -39,9 +40,17 @@ public abstract class PublisherEmailNotification implements WorkflowProcess {
         return item.getWorkflow().getInitiator();
     }
 
-    protected abstract List<String> getRecipients(String payloadPath) throws RepositoryException;
+    protected abstract PublisherGroupService getPublisherGroupService() ;
 
-    protected abstract MessageGateway<HtmlEmail> getMessageGateway();
+    protected abstract MessageGatewayService getMessageGatewayService();
+
+    protected List<String> getRecipients(String payloadPath) throws RepositoryException {
+        return getPublisherGroupService().getPublisherEmails(payloadPath);
+    }
+
+    protected MessageGateway<HtmlEmail> getMessageGateway() {
+        return getMessageGatewayService().getGateway(HtmlEmail.class);
+    }
 
     @Override
     public final void execute(WorkItem item, WorkflowSession session, MetaDataMap args) throws WorkflowException {
