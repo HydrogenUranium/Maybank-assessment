@@ -11,14 +11,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class EnvironmentConfigurationImplTest {
+class EnvironmentConfigurationImplTest {
 
     @InjectMocks
     EnvironmentConfigurationImpl config;
 
     @Test
     void shouldSetAllConfigurationValuesCorrectlyOnActivation() {
-        // Arrange
         EnvironmentConfigurationData configData = mock(EnvironmentConfigurationData.class);
         when(configData.countryInfoLocation()).thenReturn("/custom/path");
         when(configData.assetPrefix()).thenReturn("/custom-prefix");
@@ -30,10 +29,7 @@ public class EnvironmentConfigurationImplTest {
         when(configData.environmentName()).thenReturn("prod");
         when(configData.aemEnvName()).thenReturn("prod-aem");
 
-        // Act
         config.activate(configData);
-
-        // Assert
         assertEquals("/custom/path", config.getCountryInfoLocation());
         assertEquals("/custom-prefix", config.getAssetPrefix());
         assertEquals("custom.dhl.com", config.getAkamaiHostname());

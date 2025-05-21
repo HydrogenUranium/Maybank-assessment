@@ -102,7 +102,7 @@ class PublisherPageRemovalNotificationTest {
     }
 
     @Test
-    void setEmailBodyThrowsEmailException() throws RepositoryException, WorkflowException, EmailException {
+    void setEmailBodyThrowsEmailException() throws RepositoryException, EmailException {
         when(item.getWorkflowData()).thenReturn(workflowData);
         when(workflowData.getPayload()).thenReturn("/content/dhl/global/home");
         when(publisherGroupService.getPublisherEmails(anyString())).thenReturn(List.of("publisher@example.com"));
@@ -121,7 +121,7 @@ class PublisherPageRemovalNotificationTest {
     }
 
     @Test
-    void whenMailingExceptionOccurs() throws RepositoryException, WorkflowException, EmailException {
+    void whenMailingExceptionOccurs() throws RepositoryException, WorkflowException {
         when(environmentConfiguration.getAemEnvName()).thenReturn("deutsche-post-ag-discover-dev");
         when(environmentConfiguration.getEnvironmentName()).thenReturn("DEV");
         when(item.getWorkflowData()).thenReturn(workflowData);
