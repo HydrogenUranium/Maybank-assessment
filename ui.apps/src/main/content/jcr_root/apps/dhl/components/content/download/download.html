@@ -4,13 +4,13 @@
         data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions"
         data-sly-use.marketoConfig="com.dhl.discover.core.models.MarketoConfiguration"
 		data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent">
-	<div id="download" class="DHLdownload">
+	<div id="${properties.id}" class="DHLdownload">
  		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-12">
 					<div class="row">
 						<div class="col-12">
-							<div id="${properties.id}" class="DHLdownload__text">
+							<div class="DHLdownload__text">
 								<h2 class="DHLdownload__title">${properties.title}</h2>
 								<p class="DHLdownload__copy">${properties.brief}</p>
 

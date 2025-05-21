@@ -3,9 +3,9 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
-<div class="landing-points-component" data-sly-test="${!isEmpty}">
+<div id="${properties.id}" class="landing-points-component" data-sly-test="${!isEmpty}">
 	<img class="header-image" src="${model.image}" alt="${model.altText}" data-sly-test="${model.image}">
-	<div id="${properties.id}" class="landing-point landing-point--${model.pointType}" data-sly-repeat="${model.landingPointItems}">
+	<div id="${item.id}" class="landing-point landing-point--${model.pointType}" data-sly-repeat="${model.landingPointItems}">
         <p data-sly-test="${item.title != null && item.title.length > 0}" class="landing-point__title" data-sly-element="${model.titleType}">${item.title}</p>
 		<div class="landing-point__content">
 			${item.content @ context='html'}
