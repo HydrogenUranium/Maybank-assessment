@@ -1,5 +1,7 @@
 package com.dhl.discover.core.services.impl;
 
+
+import com.day.cq.mailer.MailingException;
 import com.day.cq.mailer.MessageGateway;
 import com.day.cq.mailer.MessageGatewayService;
 import com.day.cq.workflow.WorkflowException;
@@ -8,6 +10,7 @@ import com.day.cq.workflow.exec.Workflow;
 import com.day.cq.workflow.exec.WorkflowData;
 import com.day.cq.workflow.metadata.MetaDataMap;
 import com.dhl.discover.core.components.EnvironmentConfiguration;
+import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,8 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.jcr.RepositoryException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -84,6 +86,56 @@ class PublisherPageRemovalNotificationTest {
     void environmentNameIsEmpty() {
         when(environmentConfiguration.getEnvironmentName()).thenReturn("");
         assertEquals("", environmentConfiguration.getEnvironmentName());
+    }
+
+    @Test
+    void whenNoPublishersFound() throws RepositoryException, WorkflowException {
+        when(item.getWorkflowData()).thenReturn(workflowData);
+        when(workflowData.getPayload()).thenReturn("/content/dhl/global/home");
+        when(publisherGroupService.getPublisherEmails(anyString())).thenReturn(List.of());
+
+        service.execute(item, null, metaDataMap);
+
+        verify(publisherGroupService).getPublisherEmails("/content/dhl/global/home");
+        verify(messageGatewayService, never()).getGateway(any());
+        verify(messageGateway, never()).send(any());
+    }
+
+    @Test
+    void setEmailBodyThrowsEmailException() throws RepositoryException, WorkflowException, EmailException {
+        when(item.getWorkflowData()).thenReturn(workflowData);
+        when(workflowData.getPayload()).thenReturn("/content/dhl/global/home");
+        when(publisherGroupService.getPublisherEmails(anyString())).thenReturn(List.of("publisher@example.com"));
+
+        PublisherPageRemovalNotification serviceSpy = spy(service);
+        doThrow(new EmailException("Test email exception")).when(serviceSpy)
+                .setEmailBody(any(HtmlEmail.class), eq(item), any(), eq(metaDataMap));
+
+        WorkflowException exception = assertThrows(WorkflowException.class, () ->
+                serviceSpy.execute(item, null, metaDataMap));
+
+        assertTrue(exception.getCause() instanceof EmailException);
+        assertEquals("Test email exception", exception.getCause().getMessage());
+
+        verify(messageGateway, never()).send(any());
+    }
+
+    @Test
+    void whenMailingExceptionOccurs() throws RepositoryException, WorkflowException, EmailException {
+        when(environmentConfiguration.getAemEnvName()).thenReturn("deutsche-post-ag-discover-dev");
+        when(environmentConfiguration.getEnvironmentName()).thenReturn("DEV");
+        when(item.getWorkflowData()).thenReturn(workflowData);
+        when(workflowData.getPayload()).thenReturn("/content/dhl/global/home");
+        when(item.getWorkflow()).thenReturn(workflow);
+        when(workflow.getInitiator()).thenReturn("dmytro");
+        when(publisherGroupService.getPublisherEmails(anyString())).thenReturn(List.of("publisher@example.com"));
+        when(messageGatewayService.getGateway(any())).thenReturn(messageGateway);
+
+        doThrow(new MailingException("Failed to send email")).when(messageGateway).send(any());
+
+        service.execute(item, null, metaDataMap);
+
+        verify(messageGateway).send(any());
     }
 
 }
