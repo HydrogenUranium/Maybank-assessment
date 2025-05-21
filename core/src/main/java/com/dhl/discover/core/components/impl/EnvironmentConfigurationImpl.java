@@ -40,7 +40,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
      * @param environmentConfigurationData is an instance of {@link EnvironmentConfigurationData} object, this object represents the entry visible in AEM's config manager
      */
     @Activate
-    protected void activate(EnvironmentConfigurationData environmentConfigurationData) {
+    public void activate(EnvironmentConfigurationData environmentConfigurationData) {
         countryInfoLocation = PropertiesUtil.toString(environmentConfigurationData.countryInfoLocation(), "/conf/dhl/appdata/countries");
         assetPrefix = PropertiesUtil.toString(environmentConfigurationData.assetPrefix(), "/discover");
         akamaiHostname = PropertiesUtil.toString(environmentConfigurationData.akamaiHostname(), "www.dhl.com");
