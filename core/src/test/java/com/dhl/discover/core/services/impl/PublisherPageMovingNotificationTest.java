@@ -56,7 +56,7 @@ class PublisherPageMovingNotificationTest {
     @Test
     void execute() throws WorkflowException, RepositoryException {
         when(environmentConfiguration.getAemEnvName()).thenReturn("deutsche-post-ag-discover-dev");
-        when(environmentConfiguration.getEnvironmentName()).thenReturn("dev");
+        when(environmentConfiguration.getEnvironmentName()).thenReturn("DEV");
         when(publisherGroupService.getPublisherEmails(anyString())).thenReturn(List.of("dmytro@gmail.com"));
         when(item.getWorkflowData()).thenReturn(workflowData);
         when(workflowData.getPayload()).thenReturn("/content/dhl/global/home/new");

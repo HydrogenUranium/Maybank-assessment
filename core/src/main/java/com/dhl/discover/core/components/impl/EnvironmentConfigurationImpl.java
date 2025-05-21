@@ -48,7 +48,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
         defaultMarketoHiddenFormId = PropertiesUtil.toString(environmentConfigurationData.marketoDefaultHiddenFormId(),"1756");
         adobeDtmLink = PropertiesUtil.toString(environmentConfigurationData.adobeDtmLink(), "https://assets.adobedtm.com/cd52279ef3fa/6b1d49db70e9/launch-f5fe1ed8f4b2-staging.min.js");
         gtmDelayEnabled = PropertiesUtil.toString(environmentConfigurationData.gtmDelayEnabled(), "true");
-        environmentName = PropertiesUtil.toString(environmentConfigurationData.environmentName(), "local");
+        environmentName = PropertiesUtil.toString(environmentConfigurationData.environmentName().toUpperCase(), "local");
         aemEnvName = PropertiesUtil.toString(environmentConfigurationData.aemEnvName(), "local-aem-env");
     }
 }
