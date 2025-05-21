@@ -1,10 +1,10 @@
 <sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
-<div
+<div id="${properties.id}"
         data-sly-use.downloadasset="com.dhl.discover.core.models.DownloadAsset"
         data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions"
         data-sly-use.marketoConfig="com.dhl.discover.core.models.MarketoConfiguration"
 		data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent">
-	<div id="${properties.id}" class="DHLdownload">
+	<div id="download" class="DHLdownload">
  		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-12">
