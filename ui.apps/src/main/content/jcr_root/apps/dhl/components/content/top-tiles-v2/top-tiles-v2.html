@@ -2,7 +2,7 @@
      data-sly-test.isEmpty=${model.articles.empty}></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
-<div class="cmp-top-tiles">
+<div id="${properties.id}" class="cmp-top-tiles">
     <a href="${item.linkURL}" class="cmp-top-tiles__tile" data-sly-repeat="${model.tiles}" title="${item.pageTitle}">
         <div class="cmp-top-tiles__article">
               <picture>
