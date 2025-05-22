@@ -3,5 +3,7 @@
   "akamaiHostname": "$[env:AKAMAI_HOSTNAME]",
   "countryInfoLocation": "/conf/dhl/appdata/countries",
   "adobeDtmLink": "$[env:DTM_SCRIPT_LINK]",
-  "gtmDelayEnabled": "$[env:GTM_DELAY_ENABLED]"
+  "gtmDelayEnabled": "$[env:GTM_DELAY_ENABLED]",
+  "environmentName": "${env:ENVIRONMENT_NAME}",
+  "aemEnvName": "${env:AEM_ENV_NAME}"
 }
