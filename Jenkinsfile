@@ -7,7 +7,7 @@ pipeline {
 
     tools {
         maven 'Maven 3.8.1'
-        jdk 'JDK17'
+        jdk 'JDK21'
     }   
 
     options {
@@ -74,7 +74,7 @@ pipeline {
             steps {
                  script {
                      withSonarQubeEnv(installationName: 'Central Sonar') {
-                         sh 'mvn install -Dmaven.compiler.source=17 -Dmaven.compiler.target=17 -Dmaven.compiler.release=17 org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar -ntp -Pdhl-artifactory'
+                         sh 'mvn install -Dmaven.compiler.source=21 -Dmaven.compiler.target=21 -Dmaven.compiler.release=21 org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar -ntp -Pdhl-artifactory'
                      }
                  }
              }
