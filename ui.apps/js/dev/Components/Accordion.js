@@ -21,7 +21,7 @@ class Accordion {
   bindEvents() {
     $(document).on('click', this.sel.item, (e) => {
       if ($(e.target).closest('a').length > 0) {
-        // this code will allow anchor links work as expected
+        // Allow anchor links to work as expected
         return;
       }
       e.preventDefault();
