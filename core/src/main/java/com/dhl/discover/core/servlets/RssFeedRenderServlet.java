@@ -19,7 +19,6 @@ import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.dhl.discover.core.rss.DiscoverRssFeed.SUB_REQUEST_LIMITATION;
 

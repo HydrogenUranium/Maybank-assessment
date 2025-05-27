@@ -112,49 +112,52 @@ class ArticleServiceTest {
         verify(builder, times(expectedQueries.length)).createQuery(predicateGroupCaptor.capture(), any(Session.class));
         List<PredicateGroup> predicateGroups = predicateGroupCaptor.getAllValues();
         for (int i = 0; i < expectedQueries.length; i++) {
-            String expectedQuery = expectedQueries[i];
-            String actualQuery = predicateGroups.get(i).toString();
-            assertEquals(expectedQuery, actualQuery);
+            String expectedQuery = expectedQueries[i].replaceAll("\\s+", "").trim();
+            String actualQuery = predicateGroups.get(i).toString().replaceAll("\\s+", "").trim();
+            assertEquals(expectedQuery, actualQuery, "Query mismatch at index " + i);
         }
     }
 
     @Test
     void getLatestArticles_ShouldBuildProperQueries() {
-        String expectedFirstQuery =
-                "ROOT=group: limit=2, excerpt=true[\n" +
-                        "    {group=group: or=true[\n" +
-                        "        {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}\n" +
-                        "        {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}\n" +
-                        "    ]}\n" +
-                        "    {orderby=orderby: orderby=@jcr:content/custompublishdate, sort=desc}\n" +
-                        "    {path=path: path=/content/home}\n" +
-                        "    {type=type: type=cq:Page}\n" +
-                        "    {1_property=property: property=jcr:content/custompublishdate, operation=exists}\n" +
-                        "]";
+        String expectedFirstQuery = """
+            ROOT=group: limit=2, excerpt=true[
+                {group=group: or=true[
+                    {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}
+                    {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}
+                ]}
+                {orderby=orderby: orderby=@jcr:content/custompublishdate, sort=desc}
+                {path=path: path=/content/home}
+                {type=type: type=cq:Page}
+                {1_property=property: property=jcr:content/custompublishdate, operation=exists}
+            ]
+            """;
 
-        String expectedSecondQuery =
-                "ROOT=group: limit=2, excerpt=true[\n" +
-                        "    {group=group: or=true[\n" +
-                        "        {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}\n" +
-                        "        {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}\n" +
-                        "    ]}\n" +
-                        "    {orderby=orderby: orderby=@jcr:content/cq:lastModified, sort=desc}\n" +
-                        "    {path=path: path=/content/home}\n" +
-                        "    {type=type: type=cq:Page}\n" +
-                        "    {1_property=property: property=jcr:content/custompublishdate, operation=not}\n" +
-                        "]";
+        String expectedSecondQuery = """
+            ROOT=group: limit=2, excerpt=true[
+                {group=group: or=true[
+                    {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}
+                    {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}
+                ]}
+                {orderby=orderby: orderby=@jcr:content/cq:lastModified, sort=desc}
+                {path=path: path=/content/home}
+                {type=type: type=cq:Page}
+                {1_property=property: property=jcr:content/custompublishdate, operation=not}
+            ]
+            """;
 
-        String expectedThirdQuery =
-                "ROOT=group: limit=2, excerpt=true[\n" +
-                        "    {group=group: or=true[\n" +
-                        "        {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}\n" +
-                        "        {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}\n" +
-                        "    ]}\n" +
-                        "    {orderby=orderby: orderby=@jcr:content/jcr:created, sort=desc}\n" +
-                        "    {path=path: path=/content/home}\n" +
-                        "    {type=type: type=cq:Page}\n" +
-                        "    {1_property=property: property=jcr:content/custompublishdate, operation=not}\n" +
-                        "]";
+        String expectedThirdQuery = """
+            ROOT=group: limit=2, excerpt=true[
+                {group=group: or=true[
+                    {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}
+                    {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}
+                ]}
+                {orderby=orderby: orderby=@jcr:content/jcr:created, sort=desc}
+                {path=path: path=/content/home}
+                {type=type: type=cq:Page}
+                {1_property=property: property=jcr:content/custompublishdate, operation=not}
+            ]
+            """;
 
         articleService.getLatestArticles("/content/home", 2);
 
@@ -163,15 +166,16 @@ class ArticleServiceTest {
 
     @Test
     void getAllArticles_ShouldBuildProperQuery() {
-        String expectedQuery =
-                "ROOT=group: limit=-1, excerpt=true[\n" +
-                        "    {group=group: or=true[\n" +
-                        "        {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}\n" +
-                        "        {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}\n" +
-                        "    ]}\n" +
-                        "    {path=path: path=/content/home}\n" +
-                        "    {type=type: type=cq:Page}\n" +
-                        "]";
+        String expectedQuery = """
+            ROOT=group: limit=-1, excerpt=true[
+                {group=group: or=true[
+                    {1_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/article}
+                    {3_property=property: property=jcr:content/cq:template, value=/conf/dhl/settings/wcm/templates/animated-page}
+                ]}
+                {path=path: path=/content/home}
+                {type=type: type=cq:Page}
+            ]
+            """;
         articleService.getAllArticles(resolver.getResource("/content/home").adaptTo(Page.class));
 
         verifyQuery(expectedQuery);
@@ -179,30 +183,31 @@ class ArticleServiceTest {
 
     @Test
     void findArticlesByPageProperties_ShouldBuildProperQuery() {
-        String expectedQuery =
-                "ROOT=group: limit=50, guessTotal=true[\n" +
-                        "    {orderby=orderby: orderby=@jcr:content/jcr:score, sort=desc}\n" +
-                        "    {path=path: path=/content/home}\n" +
-                        "    {type=type: type=cq:Page}\n" +
-                        "    {1_group=group: and=true, or=true[\n" +
-                        "        {1_group=group: [\n" +
-                        "            {1_group=group: [\n" +
-                        "                {1_containsIgnoreCase=containsIgnoreCase: property=jcr:content/jcr:title, value=dhl}\n" +
-                        "            ]}\n" +
-                        "        ]}\n" +
-                        "        {2_group=group: not=true[\n" +
-                        "            {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}\n" +
-                        "            {1_group=group: [\n" +
-                        "                {1_containsIgnoreCase=containsIgnoreCase: property=jcr:content/pageTitle, value=dhl}\n" +
-                        "            ]}\n" +
-                        "        ]}\n" +
-                        "        {3_group=group: or=true[\n" +
-                        "            {1_group=group: [\n" +
-                        "                {1_containsIgnoreCase=containsIgnoreCase: property=jcr:content/navTitle, value=dhl}\n" +
-                        "            ]}\n" +
-                        "        ]}\n" +
-                        "    ]}\n" +
-                        "]";
+        String expectedQuery = """
+        ROOT=group: limit=50, guessTotal=true[
+            {orderby=orderby: orderby=@jcr:content/jcr:score, sort=desc}
+            {path=path: path=/content/home}
+            {type=type: type=cq:Page}
+            {1_group=group: and=true, or=true[
+                {1_group=group: [
+                    {1_group=group: [
+                        {1_containsIgnoreCase=containsIgnoreCase: property=jcr:content/jcr:title, value=dhl}
+                    ]}
+                ]}
+                {2_group=group: not=true[
+                    {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}
+                    {1_group=group: [
+                        {1_containsIgnoreCase=containsIgnoreCase: property=jcr:content/pageTitle, value=dhl}
+                    ]}
+                ]}
+                {3_group=group: or=true[
+                    {1_group=group: [
+                        {1_containsIgnoreCase=containsIgnoreCase: property=jcr:content/navTitle, value=dhl}
+                    ]}
+                ]}
+            ]}
+        ]
+        """;
         articleService.findArticlesByPageProperties("dhl", "/content/home", resolver);
 
         verifyQuery(expectedQuery);
@@ -210,38 +215,40 @@ class ArticleServiceTest {
 
     @Test
     void findArticlesByFullText_ShouldBuildProperQueries() {
-        String expectedFirstQuery =
-                "ROOT=group: limit=50, guessTotal=true[\n" +
-                        "    {explain=explain: explain=true}\n" +
-                        "    {orderby=orderby: orderby=@jcr:content/jcr:score, sort=desc}\n" +
-                        "    {path=path: path=/content/home}\n" +
-                        "    {type=type: type=cq:Page}\n" +
-                        "    {1_group=group: and=true[\n" +
-                        "        {1_group=group: or=true[\n" +
-                        "            {1_fulltext=fulltext: fulltext=\"business advice\"}\n" +
-                        "        ]}\n" +
-                        "        {2_group=group: not=true[\n" +
-                        "            {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}\n" +
-                        "        ]}\n" +
-                        "    ]}\n" +
-                        "]";
+        String expectedFirstQuery = """
+        ROOT=group: limit=50, guessTotal=true[
+            {explain=explain: explain=true}
+            {orderby=orderby: orderby=@jcr:content/jcr:score, sort=desc}
+            {path=path: path=/content/home}
+            {type=type: type=cq:Page}
+            {1_group=group: and=true[
+                {1_group=group: or=true[
+                    {1_fulltext=fulltext: fulltext="business advice"}
+                ]}
+                {2_group=group: not=true[
+                    {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}
+                ]}
+            ]}
+        ]
+        """;
 
-        String expectedSecondQuery =
-                "ROOT=group: limit=50, guessTotal=true[\n" +
-                        "    {explain=explain: explain=true}\n" +
-                        "    {orderby=orderby: orderby=@jcr:content/jcr:score, sort=desc}\n" +
-                        "    {path=path: path=/content/home}\n" +
-                        "    {type=type: type=cq:Page}\n" +
-                        "    {1_group=group: and=true[\n" +
-                        "        {1_group=group: or=true[\n" +
-                        "            {1_fulltext=fulltext: fulltext=business}\n" +
-                        "            {2_fulltext=fulltext: fulltext=advice}\n" +
-                        "        ]}\n" +
-                        "        {2_group=group: not=true[\n" +
-                        "            {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}\n" +
-                        "        ]}\n" +
-                        "    ]}\n" +
-                        "]";
+        String expectedSecondQuery = """
+        ROOT=group: limit=50, guessTotal=true[
+            {explain=explain: explain=true}
+            {orderby=orderby: orderby=@jcr:content/jcr:score, sort=desc}
+            {path=path: path=/content/home}
+            {type=type: type=cq:Page}
+            {1_group=group: and=true[
+                {1_group=group: or=true[
+                    {1_fulltext=fulltext: fulltext=business}
+                    {2_fulltext=fulltext: fulltext=advice}
+                ]}
+                {2_group=group: not=true[
+                    {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}
+                ]}
+            ]}
+        ]
+        """;
 
         articleService.findArticlesByFullText("business advice", "/content/home", resolver);
 
@@ -250,21 +257,22 @@ class ArticleServiceTest {
 
     @Test
     void findArticlesByTag_ShouldBuildProperQuery() {
-        String expectedQuery =
-                "ROOT=group: limit=50, guessTotal=true[\n" +
-                "    {orderby=orderby: orderby=@jcr:content/jcr:created, sort=desc}\n" +
-                "    {path=path: path=/content/home}\n" +
-                "    {type=type: type=cq:Page}\n" +
-                "    {1_group=group: and=true[\n" +
-                "        {1_group=group: or=true[\n" +
-                "            {0_property=property: property=@jcr:content/cq:tags, value=dhl:business-advice}\n" +
-                "            {1_property=property: property=@jcr:content/cq:tags, value=dhl:innovation}\n" +
-                "        ]}\n" +
-                "        {2_group=group: not=true[\n" +
-                "            {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}\n" +
-                "        ]}\n" +
-                "    ]}\n" +
-                "]";
+        String expectedQuery = """
+        ROOT=group: limit=50, guessTotal=true[
+            {orderby=orderby: orderby=@jcr:content/jcr:created, sort=desc}
+            {path=path: path=/content/home}
+            {type=type: type=cq:Page}
+            {1_group=group: and=true[
+                {1_group=group: or=true[
+                    {0_property=property: property=@jcr:content/cq:tags, value=dhl:business-advice}
+                    {1_property=property: property=@jcr:content/cq:tags, value=dhl:innovation}
+                ]}
+                {2_group=group: not=true[
+                    {property=property: property=jcr:content/cq:robotsTags, value=noindex, operation=like}
+                ]}
+            ]}
+        ]
+        """;
 
         articleService.findArticlesByTag(List.of("dhl:business-advice", "dhl:innovation"), "/content/home", resolver);
 
