@@ -69,7 +69,7 @@ class ArticlePageTest {
 
 		when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
 		when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
-		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
 		when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
 		when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
 	}
@@ -131,7 +131,7 @@ class ArticlePageTest {
 
 		assertEquals("ARTICLE PAGE without new article setup", article.getTitle());
 		assertEquals(getTodayDate(), article.getCreated());
-		assertEquals(getTodayDateText(new Locale("en", "us")), article.getCreatedfriendly());
+		assertEquals(getTodayDateText(Locale.forLanguageTag("en-US")), article.getCreatedfriendly());
 		assertEquals("", article.getReadtime());
 		assertNull(articlePage.getShareOn());
 		assertNull(articlePage.getSmartShareButtonsLabel());
