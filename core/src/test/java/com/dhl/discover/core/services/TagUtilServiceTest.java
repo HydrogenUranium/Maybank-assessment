@@ -173,7 +173,7 @@ class TagUtilServiceTest {
     void test_getDefaultTrendingTopicsList() {
         Page homePage = context.resourceResolver().getResource("/content/dhl/language-masters/en-master").adaptTo(Page.class);
         when(pageUtilService.getHomePage(any(Resource.class))).thenReturn(homePage);
-        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
 
         assertNotNull(tagUtilService);
         List<String> list = tagUtilService.getTrendingTopics(resource);
