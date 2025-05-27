@@ -55,7 +55,7 @@ public class TagUtilService implements Serializable {
                     return AUTHOR_HIGHLIGHTS_TAGS_NAMESPACE.equals(namespace);
                 })
                 .map(Tag::getName)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**
@@ -76,7 +76,7 @@ public class TagUtilService implements Serializable {
                 })
                 .map(tag -> tag.getTitle(pageUtilService.getLocale(pageResource)))
                 .map(this::transformToHashtag)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<String> getTrendingTopics(Resource pageResource) {
@@ -92,7 +92,7 @@ public class TagUtilService implements Serializable {
                 .map(tagManager::resolve)
                 .map(tag -> getLocalizedTitle(tag, locale))
                 .filter(title -> !title.isBlank())
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public String transformToHashtag(String tagTitle) {
@@ -134,7 +134,7 @@ public class TagUtilService implements Serializable {
 
     private List<String> getTagNamesByPrefix(SortedMap<String, Tag> tagMap, String prefix) {
         return tagMap.subMap(prefix + Character.MIN_VALUE, prefix + Character.MAX_VALUE)
-                .keySet().stream().sorted().collect(Collectors.toList());
+                .keySet().stream().sorted().toList();
     }
 
     public List<String> getTagLocalizedSuggestionsByQuery(ResourceResolver resolver, String query, String rootTagID, Locale locale, int limit) {

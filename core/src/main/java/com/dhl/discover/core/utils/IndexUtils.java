@@ -91,9 +91,11 @@ public class IndexUtils {
     }
 
     public static boolean hasFullTextIndex(String searchScope, ResourceResolver resolver) {
-        var queryString = "SELECT * FROM [oak:QueryIndexDefinition]\n" +
-                "WHERE ISDESCENDANTNODE('/oak:index')\n" +
-                "AND [dhlFullTextSearch] = true\n";
+        var queryString = """
+        SELECT * FROM [oak:QueryIndexDefinition]
+        WHERE ISDESCENDANTNODE('/oak:index')
+        AND [dhlFullTextSearch] = true
+        """;
         var resourceIterator = resolver.findResources(queryString, Query.JCR_SQL2);
         var indexesAndVersions = splitByIndexName(resourceIterator);
         List<Resource> indexes = new ArrayList<>();

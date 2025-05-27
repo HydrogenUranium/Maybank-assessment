@@ -6,10 +6,10 @@ import org.apache.sling.models.spi.Injector;
 
 public abstract class AbstractInjector implements Injector {
     protected Resource getResource(Object adaptable) {
-        if (adaptable instanceof Resource) {
-            return (Resource) adaptable;
-        } else if (adaptable instanceof SlingHttpServletRequest) {
-            return ((SlingHttpServletRequest) adaptable).getResource();
+        if (adaptable instanceof Resource resource) {
+            return resource;
+        } else if (adaptable instanceof SlingHttpServletRequest request) {
+            return request.getResource();
         }
 
         return null;
