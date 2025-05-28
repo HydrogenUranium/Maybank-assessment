@@ -68,7 +68,8 @@ class AccountActionsTest {
         assertEquals("/content/dhl/your-account.html", accountActions.getEditDetailsUrl());
         assertEquals("""
 <p>Please read our <a href="/content/dhl/privacy.html" target="_blank" title="Privacy Notice">Privacy Notice</a> to find out how your email will be used.<br />
-</p>""", accountActions.getSignupEmailPrivacyMessage());
+</p>
+""", accountActions.getSignupEmailPrivacyMessage().replace("\r\n", "\n"));
         assertEquals("<p>Yes, I would like to receive emails with information and offers from DHL, and can withdraw this consent at any time. </p>\r\n" + 
         		"", accountActions.getSignupTCMessage());
         assertEquals("<p>For global reach, business rates and state-of-the-art tracking, an account with DHL Express is your next step.</p>\r\n" +
