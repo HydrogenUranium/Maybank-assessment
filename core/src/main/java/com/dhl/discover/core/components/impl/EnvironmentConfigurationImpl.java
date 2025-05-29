@@ -10,7 +10,6 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 import org.osgi.service.metatype.annotations.Designate;
 
-import java.util.Optional;
 
 /**
  * Reads various configuration entries of the Discover application from the OSGi
