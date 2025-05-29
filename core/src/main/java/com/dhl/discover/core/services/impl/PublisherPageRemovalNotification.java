@@ -9,6 +9,7 @@ import com.dhl.discover.core.components.EnvironmentConfiguration;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.osgi.service.component.annotations.Component;
@@ -33,9 +34,8 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
         var payloadPath = getPayloadPath(item);
         var initiator = getInitiator(item);
         var date = getDate();
-        log.info("getEnvironmentName: {}", environmentConfiguration.getEnvironmentName());
-        log.info("getAemEnvName: {}", environmentConfiguration.getAemEnvName());
-        email.setSubject(environmentConfiguration.getEnvironmentName() + ": Notification of Page Removal");
+        String environment = environmentConfiguration.getEnvironmentName();
+        email.setSubject((StringUtils.isNotBlank(environment) ? environment.toUpperCase() : "") + ": Notification of Page Removal");
         email.setHtmlMsg(String.format(
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +
