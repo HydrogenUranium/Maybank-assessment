@@ -10,6 +10,8 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceDescription;
 import org.osgi.service.metatype.annotations.Designate;
 
+import java.util.Optional;
+
 /**
  * Reads various configuration entries of the Discover application from the OSGi
  */
@@ -48,7 +50,7 @@ public class EnvironmentConfigurationImpl implements EnvironmentConfiguration {
         defaultMarketoHiddenFormId = PropertiesUtil.toString(environmentConfigurationData.marketoDefaultHiddenFormId(),"1756");
         adobeDtmLink = PropertiesUtil.toString(environmentConfigurationData.adobeDtmLink(), "https://assets.adobedtm.com/cd52279ef3fa/6b1d49db70e9/launch-f5fe1ed8f4b2-staging.min.js");
         gtmDelayEnabled = PropertiesUtil.toString(environmentConfigurationData.gtmDelayEnabled(), "true");
-        environmentName = PropertiesUtil.toString(environmentConfigurationData.environmentName().toUpperCase(), "local");
+        environmentName = PropertiesUtil.toString(environmentConfigurationData.environmentName(), "local");
         aemEnvName = PropertiesUtil.toString(environmentConfigurationData.aemEnvName(), "local-aem-env");
     }
 }

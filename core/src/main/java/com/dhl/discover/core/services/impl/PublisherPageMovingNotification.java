@@ -10,6 +10,7 @@ import java.util.Arrays;
 import com.dhl.discover.core.components.EnvironmentConfiguration;
 import lombok.AccessLevel;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.osgi.service.component.annotations.Component;
@@ -36,7 +37,8 @@ public class PublisherPageMovingNotification extends PublisherEmailNotification 
         var date = getDate();
         var references = item.getWorkflowData().getMetaDataMap().get("publishReferences", new String[]{});
 
-        email.setSubject(environmentConfiguration.getEnvironmentName() + ": Notification of Page Moving");
+        String environment = environmentConfiguration.getEnvironmentName();
+        email.setSubject((StringUtils.isNotBlank(environment) ? environment.toUpperCase() : "") + ": Notification of Page Moving");
         email.setHtmlMsg(String.format(
                 "<html><body>" +
                 "<p>Dear publisher,</p>" +
