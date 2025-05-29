@@ -10,7 +10,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -25,7 +24,7 @@ public class PublisherPageRemovalNotification extends PublisherEmailNotification
     @Getter(AccessLevel.PROTECTED)
     private PublisherGroupService publisherGroupService;
 
-    @OSGiService
+    @Reference
     private EnvironmentConfiguration environmentConfiguration;
 
     public void setEmailBody(HtmlEmail email, WorkItem item, WorkflowSession session, MetaDataMap args) throws EmailException {
