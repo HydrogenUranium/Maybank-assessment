@@ -37,7 +37,7 @@ class EnvironmentConfigurationImplTest {
         assertEquals("2001", config.getDefaultMarketoHiddenFormId());
         assertEquals("https://custom-dtm.js", config.getAdobeDtmLink());
         assertEquals("false", config.getGtmDelayEnabled());
-        assertEquals("PROD", config.getEnvironmentName()); // Note: Converts to uppercase
+        assertEquals("prod", config.getEnvironmentName());
         assertEquals("prod-aem", config.getAemEnvName());
     }
 
