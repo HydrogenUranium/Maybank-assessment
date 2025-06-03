@@ -44,35 +44,38 @@
                                                     <note
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/alert"
-                                                            text="Hero images are only used in Top Tiles and Hero Banner components"/>
+                                                            text="The configuration for the Hero image has been moved to the Hero Image component. Please edit the component on the page if you want to override the Hero banner image."/>
                                                     <heroimagemob
                                                             jcr:primaryType="nt:unstructured"
+                                                            disabled="{Boolean}true"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                             allowBulkEdit="{Boolean}true"
-                                                            fieldLabel="Article 'Hero' Image (mobile)"
+                                                            fieldLabel="⚠️ Article 'Hero' Image (mobile)"
                                                             name="./heroimagemob"
                                                             rootPath="/content/dam"
                                                             required="{Boolean}true"/>
                                                     <heroimagetab
                                                             jcr:primaryType="nt:unstructured"
+                                                            disabled="{Boolean}true"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                             allowBulkEdit="{Boolean}true"
-                                                            fieldLabel="Article 'Hero' Image (tablet)"
+                                                            fieldLabel="⚠️ Article 'Hero' Image (tablet)"
                                                             name="./heroimagetab"
                                                             rootPath="/content/dam"
                                                             required="{Boolean}true"/>
                                                     <heroimagedt
                                                             jcr:primaryType="nt:unstructured"
+                                                            disabled="{Boolean}true"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                             allowBulkEdit="{Boolean}true"
-                                                            fieldLabel="Article 'Hero' Image (desktop)"
+                                                            fieldLabel="⚠️ Article 'Hero' Image (desktop)"
                                                             name="./heroimagedt"
                                                             rootPath="/content/dam"
                                                             required="{Boolean}true"/>
                                                     <heroimageAltText
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                            fieldLabel="Hero Image Alt Text"
+                                                            fieldLabel="⚠️ Hero Image Alt Text"
                                                             name="./heroimageAltText"
                                                             fieldDescription="Set Hero image alt text for SEO"
                                                             emptyText="Hero Image Alt Text Placeholder"/>
