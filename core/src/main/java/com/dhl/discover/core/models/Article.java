@@ -224,31 +224,24 @@ public class Article {
         valid = true;
     }
 
-    private void initAuthorLegacy() {
-        authorimage = valueMap.get("jcr:content/authorimage", "");
-        author = valueMap.get("jcr:content/author", "");
-        authortitle = valueMap.get("jcr:content/authortitle", "");
-        authorBriefDescription = valueMap.get("jcr:content/authorBriefDescription", "");
-    }
     private void initAuthor() {
-        Optional<ValueMap> optionalData = Optional.ofNullable(resource.getChild("jcr:content/author-cf"))
+        Optional<ValueMap> authorContentFragmentData = Optional.ofNullable(resource.getChild("jcr:content/author-cf"))
                         .map(r -> r.getValueMap().get("fragmentPath", String.class))
                         .map(p -> resource.getResourceResolver().getResource(p + "/jcr:content/data"))
                 .filter(r -> r.getValueMap().get("cq:model", "").equals("/conf/dhl/settings/dam/cfm/models/author"))
                 .map(r -> r.getChild("master"))
                 .map(r-> r.getValueMap());
 
-        if (optionalData.isEmpty()) {
-            initAuthorLegacy();
+        if (authorContentFragmentData.isEmpty()) {
             return;
         }
 
-        ValueMap data = optionalData.get();
+        ValueMap authorData = authorContentFragmentData.get();
 
-        authorimage = data.get("image", "");
-        author = data.get("name", "");
-        authortitle = data.get("title", "");
-        authorBriefDescription = data.get("description", "");
+        authorimage = authorData.get("image", "");
+        author = authorData.get("name", "");
+        authortitle = authorData.get("title", "");
+        authorBriefDescription = authorData.get("description", "");
     }
 
     public String getCreated(String pattern) {
