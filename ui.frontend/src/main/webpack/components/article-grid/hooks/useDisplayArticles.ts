@@ -10,7 +10,7 @@ const getRemSize = () => {
 }
 
 const calculateColumns = (gridWidth = 0, gridGap: number, gridItemWidth: number): number => {
-    return Math.max(1, Math.floor((gridWidth + gridGap * getRemSize()) / (gridGap + gridItemWidth * getRemSize())));
+    return Math.max(1, Math.floor((gridWidth + gridGap * getRemSize()) / ((gridGap + gridItemWidth) * getRemSize())));
 };
 
 /**
