@@ -79,9 +79,9 @@
         color: #FFFFFF;
         background: #D40511 0% 0% no-repeat padding-box;
         border-radius: 4px;
-        padding: 1.5rem 0px;
+        padding: 1.5rem 8.5rem;
         font-weight: bold;
-        width: 100%;
+        width: auto;
         line-height: 1.4rem;
         font-size: 1.5rem;
         border: none;
@@ -99,14 +99,12 @@
             text-decoration: none;
         }
 
-        @media screen and (min-width: 76.8rem) {
-            line-height: 1.6rem;
-            font-size: 1.8rem;
-        }
-
         @media screen and (min-width: 120rem) {
             padding: 1.5rem 8.5rem;
             width: auto;
+        }
+        @media screen and (max-width: 26.5625rem) {
+            width: 100%;
         }
     }
 }
