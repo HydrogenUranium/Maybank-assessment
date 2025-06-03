@@ -1,0 +1,36 @@
+<sly data-sly-use.model="com.dhl.discover.core.models.HeroBannerV2"
+     data-sly-set.hasDefaultImage="${model.defaultImageModel && model.defaultImageModel.src}"
+     data-sly-set.isEmpty="${!hasDefaultImage && !model.mobileImageModel && !model.tabletImageModel && !model.desktopImageModel}"></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+
+<div id="${properties.id}" class="cmp-hero-banner ${model.margin ? 'cmp-hero-banner--with-margins' : ''}" data-sly-test="${!isEmpty}">
+    <div class="cmp-hero-banner__asset ${model.roundedCorners ? 'cmp-hero-banner__asset--with-rounded-corners' : ''}">
+        <sly data-sly-test="${!model.useVideo}" data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+             data-sly-call="${template.pictureWithModels @
+                   mobile=model.mobileImageModel,
+                   tablet=model.tabletImageModel,
+                   desktop=model.desktopImageModel,
+                   image=model.defaultImageModel,
+                   imgClass='cmp-hero-banner__image',
+                   priority='high'
+           }"></sly>
+        <div data-sly-test="${model.useVideo}" class="cmp-hero-banner__video-wrapper">
+            <video  data-sly-attribute.loop="${properties.loop ? 'true' : null}"
+                    data-sly-attribute.autoplay="true"
+                    data-sly-attribute.muted="true"
+                    data-sly-attribute.playsinline="true"
+                    data-sly-set.style = "width: 100%;"
+                    src="${model.video}"
+                    class="cmp-hero-banner__video"
+                    style="${style @ context='styleString'}">
+            </video>
+        </div>
+    </div>
+    <div class="cmp-hero-banner__summary" data-sly-test="${model.summaryPoints && model.summaryPoints.size > 1 && model.keyTakeaways}">
+        <div class="cmp-hero-banner__summary-label">${model.summaryTitle}</div>
+        <div class="cmp-hero-banner__summary-points">
+            <div class="cmp-hero-banner__summary-item" data-sly-repeat="${model.summaryPoints}">${item.text}</div>
+        </div>
+    </div>
+</div>

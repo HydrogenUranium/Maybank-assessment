@@ -52,13 +52,13 @@
                     <body
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm/foundation/components/responsivegrid">
-                        <hero_banner
+                        <hero_banner_v2
                                 jcr:created="{Date}2023-10-09T15:45:43.992+03:00"
                                 jcr:createdBy="admin"
                                 jcr:lastModified="{Date}2023-10-09T15:45:43.992+03:00"
                                 jcr:lastModifiedBy="admin"
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="dhl/components/content/hero-banner"
+                                sling:resourceType="dhl/components/content/hero-banner-v2"
                                 editable="{Boolean}true"/>
                         <responsivegrid
                                 jcr:primaryType="nt:unstructured"

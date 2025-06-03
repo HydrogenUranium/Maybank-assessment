@@ -32,7 +32,7 @@
                 if (typeof targetValue !== "undefined") {
                     let idfSelect = $(this).attr("class").split(' ').filter((item) => item !== "hide")
                     let checked = $(this).parent().find("coral-switch[data-cq-dialog-switch-showhide-target='." + idfSelect + "']")[0].checked;
-                    if ((checked && targetValue == "checked") || (!checked && !targetValue == "checked")) {
+                    if ((checked && targetValue == "checked") || (!checked && targetValue != "checked")) {
                       $(this).removeClass('hide');
                     }
                 }

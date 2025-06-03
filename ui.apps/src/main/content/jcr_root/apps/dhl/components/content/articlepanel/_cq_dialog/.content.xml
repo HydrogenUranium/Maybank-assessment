@@ -50,6 +50,13 @@
                                             value="h3"/>
                                 </items>
                             </titleType>
+                            <id
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="HTML ID attribute to apply to the component."
+                                    fieldLabel="ID"
+                                    name="./id"
+                                    validation="html-unique-id-validator"/>
                             <guidance
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/foundation/form/textfield"

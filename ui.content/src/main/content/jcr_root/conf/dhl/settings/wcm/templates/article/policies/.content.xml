@@ -520,10 +520,23 @@
                                 </components>
                             </dhl>
                         </responsivegrid_929485349>
-                        <hero_banner
-                                cq:policy="dhl/components/content/hero-banner/policy_108071559424200"
+                        <hero_banner_v2
+                                cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-article"
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                                sling:resourceType="wcm/core/components/policies/mapping">
+                            <mobileImage
+                                    cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-article"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <tabletImage
+                                    cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-article"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <desktopImage
+                                    cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-article"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                        </hero_banner_v2>
                     </body>
                     <sidebar jcr:primaryType="nt:unstructured">
                         <responsivegrid
