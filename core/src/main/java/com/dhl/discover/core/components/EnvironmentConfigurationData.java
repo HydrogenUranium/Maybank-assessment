@@ -79,4 +79,17 @@ public @interface EnvironmentConfigurationData {
             type = AttributeType.BOOLEAN
     )
     String gtmDelayEnabled();
+
+    @AttributeDefinition(
+            name = "Environment name",
+            type = AttributeType.STRING
+    )
+    String environmentName();
+
+
+    @AttributeDefinition(
+            name = "AEM Env Name",
+            type = AttributeType.STRING
+    )
+    String aemEnvName();
 }

@@ -17,9 +17,9 @@
             <main
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="dhl/components/content/page-container">
-                <hero_banner
+                <hero_banner_v2
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="dhl/components/content/hero-banner"
+                        sling:resourceType="dhl/components/content/hero-banner-v2"
                         editable="{Boolean}true"/>
                 <top_container
                         jcr:primaryType="nt:unstructured"

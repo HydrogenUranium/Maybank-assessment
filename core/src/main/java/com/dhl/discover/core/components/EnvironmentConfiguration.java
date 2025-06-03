@@ -34,4 +34,7 @@ public interface EnvironmentConfiguration {
     String getDefaultMarketoHiddenFormId();
 
     String getGtmDelayEnabled();
+
+    String getEnvironmentName();
+    String getAemEnvName();
 }
