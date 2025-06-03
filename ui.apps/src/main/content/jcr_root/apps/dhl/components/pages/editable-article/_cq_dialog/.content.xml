@@ -76,6 +76,7 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                             fieldLabel="⚠️ Hero Image Alt Text"
+                                                            disabled="{Boolean}true"
                                                             name="./heroimageAltText"
                                                             fieldDescription="Set Hero image alt text for SEO"
                                                             emptyText="Hero Image Alt Text Placeholder"/>
