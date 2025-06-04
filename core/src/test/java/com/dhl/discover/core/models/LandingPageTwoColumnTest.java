@@ -1,7 +1,6 @@
 package com.dhl.discover.core.models;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 
 import java.util.ArrayList;
 
@@ -55,9 +54,10 @@ class LandingPageTwoColumnTest {
         assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagemob());
         assertEquals("/content/dam/dhl/landing-pages/new/mobile_towerblock.jpg", landingPageTwoColumn.getHeroimagetab());
         assertEquals("/content/dam/dhl/landing-pages/new/desktop_towerblock.jpg", landingPageTwoColumn.getHeroimagedt());
-        assertEquals("<p>Ship today without a DHL Express Account. It’s easy to get started. <br />\r\n" + 
-        		"</p>\r\n" + 
-        		"", landingPageTwoColumn.getShipNowMessage());
+        assertEquals("""
+<p>Ship today without a DHL Express Account. It’s easy to get started. <br />
+</p>
+""",landingPageTwoColumn.getShipNowMessage().replace("\r\n", "\n"));
         assertEquals("https://mydhl.express.dhl/us/en/shipping_apps_redirect.html", landingPageTwoColumn.getShipNowUrl());
         assertEquals("", landingPageTwoColumn.getPreselectedCountry());
         assertEquals(0, landingPageTwoColumn.getRelatedArticles().size());

@@ -77,7 +77,7 @@ public class ArticleService {
 
     private List<Article> getArticlesFromSearchResultEntries(List<SearchResultEntry> searchResultEntries) {
         return searchResultEntries.stream().map(SearchResultEntry::getArticle)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private List<Article> getArticles(Map<String, String> customProps) {
