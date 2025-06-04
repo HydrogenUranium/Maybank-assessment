@@ -56,6 +56,10 @@ public class LinkTransformer extends DefaultTransformer implements Transformer {
     }
 
     private String mapLinks(String original) {
+        if (StringUtils.isBlank(original)) {
+            return original;
+        }
+
         if (!original.contains(",")) {
             return isInWhitelist(original)
                     ? pathUtilService.map(original)

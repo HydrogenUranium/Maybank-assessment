@@ -17,15 +17,15 @@
 
 <template data-sly-template.pictureWithModels="${@image, desktop, tablet, mobile, imgClass, pictureClass, priority, sizes}">
   <picture class="${pictureClass}">
-    <source data-sly-test="${desktop}"
+    <source data-sly-test="${desktop && desktop.src}"
             media="(min-width: 75rem)"
             srcset="${desktop.srcset || desktop.src}"
             sizes="${sizes || desktop.sizes}"/>
-    <source data-sly-test="${tablet}"
+    <source data-sly-test="${tablet && tablet.src}"
             media="(min-width: 48rem) and (max-width: 74.999rem)"
             srcset="${tablet.srcset || tablet.src}"
             sizes="${sizes || tablet.sizes}"/>
-    <source data-sly-test="${mobile}"
+    <source data-sly-test="${mobile && mobile.src}"
             media="(max-width: 47.999rem)"
             srcset="${mobile.srcset || mobile.src}"
             sizes="${sizes || mobile.sizes}"/>
