@@ -15,7 +15,7 @@
 */-->
 <sly data-sly-test.editmode="${wcmmode.edit || wcmmode.preview}" />
 <div class="nextSteps" data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions" data-sly-test="${properties.guidance || properties.image || properties.title || properties.brief || properties.ctatitle }">
-	<div class="articlepanel__container">
+	<div id="${properties.id}" class="articlepanel__container">
 		<div class="row">
 			<div class="col-12 col-md-6 d-sm-block d-md-none" data-sly-test="${properties.guidance != null && properties.guidance.length > 0}">
 				<h2 class="nextSteps__title"><span>${properties.guidance}</span></h2>

@@ -82,6 +82,8 @@ public class DhlPage {
 		akamaiHostname = environmentConfiguration.getAkamaiHostname();
 		gtmDelayEnabled = environmentConfiguration.getGtmDelayEnabled();
 
+		gtmtrackingid = StringUtils.trimToEmpty(gtmtrackingid);
+
 		var isPublishRunmode = true;
 		var mode = WCMMode.fromRequest(request);
 		if (mode != WCMMode.DISABLED) {

@@ -5,16 +5,13 @@
     <jcr:content
             jcr:primaryType="cq:PageContent"
             sling:resourceType="dhl/components/pages/editable-article"
-            heroimagedt="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"
-            heroimagemob="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage.jpg"
-            heroimagetab="/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-tab.jpg"
             listbrief="Lorem ipsum dolor sit amet consectetur adipiscing elit diam nonummy"
             mediatype="infographic"
             cq:template="/conf/dhl/settings/wcm/templates/article">
         <cq:featuredimage
                 jcr:primaryType="nt:unstructured"
                 cq:isDelivered="{Boolean}false"
-                fileReference="/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg"
+                fileReference="/content/dam/default-assets/feature-image.jpg"
                 sling:resourceType="core/wcm/components/image/v3/image"
                 altValueFromDAM="false"
                 alt="Default Article Image"/>
@@ -34,6 +31,20 @@
                     <body
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <hero_banner_v2
+                                cq:isCancelledForChildren="{Boolean}true"
+                                jcr:lastModified="{Date}2025-05-30T15:19:24.543+03:00"
+                                jcr:lastModifiedBy="admin"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/hero-banner-v2"
+                                altValueFromPageImage="true"
+                                displayPopupTitle="true"
+                                imageFromPageImage="true"
+                                isDecorative="false"
+                                linkTarget="_self"
+                                loop="true"
+                                useVideo="false">
+                        </hero_banner_v2>
                         <responsivegrid
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="wcm/foundation/components/responsivegrid">

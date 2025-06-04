@@ -17,6 +17,7 @@ import java.util.Set;
 import static com.dhl.discover.core.utils.OSGiConfigUtils.arrayToEntrySetWithDelimiter;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -37,7 +38,7 @@ class LinkTransformerTest {
 
     @BeforeEach
     void setUp() {
-        when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
+        lenient().when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
             return StringUtils.isNotBlank(path) ? "/discover" + path : "";
         });
@@ -52,6 +53,17 @@ class LinkTransformerTest {
         Attributes result = transformer.modifyAttributes("img", attributes);
 
         assertEquals("/discover/content/dam/img.png", result.getValue("src"));
+    }
+
+    @Test
+    void modifyAttributes_shouldReturnEmpty_WhenAttributeContainsBlankLink() {
+        AttributesImpl attributes  = new AttributesImpl();
+        attributes.addAttribute("", "src", "src", "CDATA", "");
+
+        LinkTransformer transformer = new LinkTransformer(pathUtilService, rewriteElements, whitelistedLinks);
+        Attributes result = transformer.modifyAttributes("img", attributes);
+
+        assertEquals("", result.getValue("src"));
     }
 
     @Test
