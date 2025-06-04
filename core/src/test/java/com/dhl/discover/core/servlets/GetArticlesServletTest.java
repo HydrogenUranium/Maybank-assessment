@@ -72,7 +72,7 @@ class GetArticlesServletTest {
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);
 
-        lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+        lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
         when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
