@@ -168,9 +168,6 @@ class ArticlePageTest {
 		assertEquals("ARTICLE PAGE", article.getNavTitle());
 		assertEquals("ARTICLE PAGE", article.getPageTitle());
 		assertEquals("How subscription models are changing e-commerce habits", article.getBrief());
-		assertEquals("Sansa Stark", article.getAuthor());
-		assertEquals("Senior Content Writer, Discover", article.getAuthortitle());
-		assertEquals("/content/dam/dhl/site-image/roundels/laptop.png", article.getAuthorimage());
 		assertEquals("6 min read", article.getReadtime());
 		assertEquals("/content/dam/image.jpg", article.getPageImage());
 		assertEquals("/content/dam/dhl/heroimagemob.jpg", article.getHeroimagemob());

@@ -13,6 +13,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -100,10 +101,10 @@ public class Article {
     private String description;
     private String brief;
     @Expose
-    private String author;
-    private String authortitle;
-    private String authorBriefDescription;
-    private String authorimage;
+    private String author = StringUtils.EMPTY;
+    private String authortitle = StringUtils.EMPTY;
+    private String authorBriefDescription = StringUtils.EMPTY;
+    private String authorimage = StringUtils.EMPTY;
     @Expose
     private String readtime;
     @Expose
@@ -224,19 +225,22 @@ public class Article {
         valid = true;
     }
 
-    private void initAuthor() {
-        Optional<ValueMap> authorContentFragmentData = Optional.ofNullable(resource.getChild("jcr:content/author-cf"))
-                        .map(r -> r.getValueMap().get("fragmentPath", String.class))
-                        .map(p -> resource.getResourceResolver().getResource(p + "/jcr:content/data"))
-                .filter(r -> r.getValueMap().get("cq:model", "").equals("/conf/dhl/settings/dam/cfm/models/author"))
+    private ValueMap getAuthorContentFragmentData() {
+        return Optional.ofNullable(resource.getChild("jcr:content/author-cf"))
+                .map(r -> r.getValueMap().get("fragmentPath", String.class))
+                .map(p -> resource.getResourceResolver().getResource(p + "/jcr:content/data"))
+                .filter(r -> "/conf/dhl/settings/dam/cfm/models/author".equals(r.getValueMap().get("cq:model", "")))
                 .map(r -> r.getChild("master"))
-                .map(r-> r.getValueMap());
+                .map(Resource::getValueMap)
+                .orElse(null);
+    }
 
-        if (authorContentFragmentData.isEmpty()) {
+    private void initAuthor() {
+        ValueMap authorData = getAuthorContentFragmentData();
+
+        if (authorData == null) {
             return;
         }
-
-        ValueMap authorData = authorContentFragmentData.get();
 
         authorimage = authorData.get("image", "");
         author = authorData.get("name", "");

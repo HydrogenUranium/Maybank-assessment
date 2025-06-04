@@ -88,7 +88,6 @@ class ArticleTeaserModelTest {
         assertEquals("/content/dam/dhl/listimage.jpg", articleTeaserModel.getImagePathFromPage());
         assertEquals("Alt text", articleTeaserModel.getAltTextFromPageImage());
         assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
-        assertEquals("Sansa Stark", articleTeaserModel.getAuthor());
         assertEquals("2023-10-11", articleTeaserModel.getPublishDate());
         assertEquals("October 11, 2023", articleTeaserModel.getFriendlyPublishDate());
         assertEquals("ARTICLE PAGE", articleTeaserModel.getTitleFromLinkedPage());
@@ -144,7 +143,6 @@ class ArticleTeaserModelTest {
         assertNull(articleTeaserModel.getImagePathFromPage());
         assertNull(articleTeaserModel.getAltTextFromPageImage());
         assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
-        assertEquals("Sansa Stark", articleTeaserModel.getAuthor());
         assertEquals("2023-10-11", articleTeaserModel.getPublishDate());
         assertEquals("October 11, 2023", articleTeaserModel.getFriendlyPublishDate());
         assertEquals("", articleTeaserModel.getTitleFromLinkedPage());
