@@ -50,7 +50,7 @@ public class PathUtilService {
             encodedPath = new URI(null, null, path, null).toASCIIString();
             encodedPath = encodeUnsupportedCharacters(encodedPath);
         } catch (UnsupportedEncodingException | URISyntaxException ex) {
-            log.error("An error occurred encoding URL path", ex);
+            log.error("An error occurred encoding URL path: {}", ex.getMessage());
         }
 
         return StringUtils.isBlank(encodedPath) ? path : encodedPath;
