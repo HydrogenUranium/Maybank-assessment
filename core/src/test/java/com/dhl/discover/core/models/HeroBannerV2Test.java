@@ -45,16 +45,16 @@ class HeroBannerV2Test {
     private AssetUtilService assetUtilService;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         context.load().json("/com/dhl/discover/core/models/HeroBannerV2/content.json", "/content");
         mockInject(context, INJECT_SCRIPT_BINDINGS, "currentStyle", currentStyle);
 
         Page currentPage = Objects.requireNonNull(resourceResolver.getResource("/content/article")).adaptTo(Page.class);
         context.currentPage(currentPage);
         context.addModelsForClasses(HeroBannerV2.class);
-        context.registerAdapter(SlingHttpServletRequest.class, Image.class, (Function<SlingHttpServletRequest, Image>) request -> {
+        context.registerAdapter(SlingHttpServletRequest.class, Image.class, (Function<SlingHttpServletRequest, Image>) adaptableRequest -> {
             Image image = mock(Image.class);
-            String path = request.getResource().getValueMap().getOrDefault("fileReference", "").toString();
+            String path = adaptableRequest.getResource().getValueMap().getOrDefault("fileReference", "").toString();
             lenient().when(image.getSrc()).thenReturn(path);
             return image;
         });
