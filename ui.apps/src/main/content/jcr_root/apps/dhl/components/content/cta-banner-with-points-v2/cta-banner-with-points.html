@@ -1,0 +1,31 @@
+<sly data-sly-use.model="com.dhl.discover.core.models.CtaBannerWithPointsV2"
+     data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"
+     data-sly-test.isEmpty=${model.points.empty}></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+<article id="${properties.id}" class="cmp-cta-banner-with-points">
+    <div class="cmp-cta-banner-with-points__image" id="${model.id}">
+        <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+             data-sly-call="${template.pictureWithModels @
+                   mobile=model.mobileImageModel,
+                   tablet=model.tabletImageModel,
+                   desktop=model.desktopImageModel,
+                   image=model.defaultImageModel,
+                   imgClass='cmp-hero-banner__image',
+                   priority='high'
+           }"></sly>
+    </div>
+    <div class="cmp-cta-banner-with-points__body">
+        <div class="cmp-cta-banner-with-points__title">${model.title}</div>
+        <ul class="cmp-cta-banner-with-points__list ${model.points.size > 2 ? 'cmp-cta-banner-with-points__list--columns' : ''}">
+            <li class="cmp-cta-banner-with-points__item" data-sly-repeat="${model.points}">${item}</li>
+        </ul>
+        <a class="cmp-cta-banner-with-points__button dhl-btn dhl-btn--primary"
+           data-sly-attribute.data-analytics="${analytics.json}"
+           data-sly-test="${model.buttonLink && model.buttonName}"
+           href="${model.buttonLink}"
+           title="${model.buttonName}">
+            <span>${model.buttonName}</span>
+        </a>
+    </div>
+</article>

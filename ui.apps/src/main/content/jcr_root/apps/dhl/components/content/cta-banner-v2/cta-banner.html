@@ -1,0 +1,27 @@
+<sly data-sly-use.model="com.dhl.discover.core.models.CtaBannerV2"
+     data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"
+     data-sly-set.isEmpty="${!model.title || model.disabled}"></sly>
+
+<div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
+<article id="${properties.id}" class="cmp-cta-banner" data-sly-test="${!isEmpty}">
+    <div class="cmp-cta-banner__body">
+        <div class="cmp-cta-banner__top-title">${model.topTitle @ context = 'html'}</div>
+        <div class="cmp-cta-banner__title">${model.title @ context = 'html'}</div>
+        <a data-sly-attribute.data-analytics="${analytics.json}"
+           data-sly-test="${model.buttonLink && model.buttonName}"
+           href="${model.buttonLink}"
+           class="cmp-cta-banner__button dhl-btn dhl-btn--primary"
+        >${model.buttonName}</a>
+    </div>
+    <div class="cmp-cta-banner__image" id="${model.id}">
+        <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+             data-sly-call="${template.pictureWithModels @
+                   mobile=model.mobileImageModel,
+                   tablet=model.tabletImageModel,
+                   desktop=model.desktopImageModel,
+                   image=model.defaultImageModel,
+                   imgClass='cmp-hero-banner__image',
+                   priority='high'
+           }"></sly>
+    </div>
+</article>

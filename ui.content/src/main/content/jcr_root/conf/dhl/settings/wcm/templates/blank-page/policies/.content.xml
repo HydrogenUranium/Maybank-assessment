@@ -71,14 +71,41 @@
                                                 cq:policy="dhl/components/content/marketoForm/policy_marketoForm"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
-                                        <cta-banner
-                                                cq:policy="dhl/components/content/cta-banner/policy_cta-banner"
+                                        <cta-banner-v2
+                                                cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="wcm/core/components/policies/mapping">
+                                                <mobileImage
+                                                        cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2-blank"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="wcm/core/components/policies/mapping"/>
+                                                <tabletImage
+                                                        cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2-blank"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="wcm/core/components/policies/mapping"/>
+                                                <desktopImage
+                                                        cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2-blank"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="wcm/core/components/policies/mapping"/>
+                                        </cta-banner-v2>
+                                        <cta-banner-with-points-v2
+                                                cq:policy="dhl/components/content/cta-banner-with-points-v2/policy_cta-banner-with-points-v2"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
-                                        <cta-banner-with-points
-                                                cq:policy="dhl/components/content/cta-banner-with-points/policy_cta-banner-with-points"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                                            <mobileImage
+                                                    cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-with-points-v2-blank"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                                            <tabletImage
+                                                    cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-with-points-v2-blank"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                                            <desktopImage
+                                                    cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-with-points-v2-blank"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="wcm/core/components/policies/mapping"/>
+                                        <cta-banner-with-points-v2/>
+
                                         <cta-banner-gray
                                                 cq:policy="dhl/components/content/cta-banner-gray/policy_cta-banner-gray"
                                                 jcr:primaryType="nt:unstructured"
@@ -275,19 +302,19 @@
                     </first-container>
                 </column_container>
                 <hero_banner_v2
-                        cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-landing"
+                        cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-blank-page"
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="wcm/core/components/policies/mapping">
                     <mobileImage
-                            cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-landing"
+                            cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-blank-page"
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm/core/components/policies/mapping"/>
                     <tabletImage
-                            cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-landing"
+                            cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-blank-page"
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm/core/components/policies/mapping"/>
                     <desktopImage
-                            cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-landing"
+                            cq:policy="dhl/components/content/hero-banner-v2/policy_hero-banner-v2-blank-page"
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="wcm/core/components/policies/mapping"/>
                 </hero_banner_v2>
