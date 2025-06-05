@@ -99,14 +99,16 @@ class AkamaiFlushTest {
 		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
 		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
 		when(initUtil.getObjectMapper()).thenReturn(new ObjectMapper());
-		when(httpCommunication.sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class)))
-				.thenReturn(HttpApiResponse.builder().httpStatus(201).jsonResponse("{\n" +
-						"  \"httpStatus\": 201,\n" +
-						"  \"estimatedSeconds\": 5,\n" +
-						"  \"purgeId\": \"edcp-NZbXzFpHBjcJeryhw6PVgG\",\n" +
-						"  \"supportId\": \"edcp-NZbXzFpHBjcJeryhw6PVgG\",\n" +
-						"  \"detail\": \"Request accepted\"\n" +
-						"}").build());
+		when(httpCommunication.sendPostMessage(anyString(), any(FlushRequest.class), any(CloseableHttpClient.class)))
+				.thenReturn(HttpApiResponse.builder().httpStatus(201).jsonResponse("""
+	{
+	  "httpStatus": 201,
+	  "estimatedSeconds": 5,
+	  "purgeId": "edcp-NZbXzFpHBjcJeryhw6PVgG",
+	  "supportId": "edcp-NZbXzFpHBjcJeryhw6PVgG",
+	  "detail": "Request accepted"
+	}
+	""").build());
 
 		AkamaiInvalidationResult akamaiInvalidationResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", StringUtils.EMPTY);
 		verify(httpCommunication, times(1)).sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class));
@@ -211,14 +213,15 @@ class AkamaiFlushTest {
 		when(repositoryChecks.getResourceType(anyString(),any(ResourceResolver.class))).thenReturn("cq:Page");
 		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
 		when(initUtil.getObjectMapper()).thenReturn(new ObjectMapper());
-		when(httpCommunication.sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class)))
-				.thenReturn(HttpApiResponse.builder().httpStatus(201).jsonResponse("{\n" +
-						"  \"httpStatus\": 201,\n" +
-						"  \"estimatedSeconds\": 5,\n" +
-						"  \"purgeId\": \"edcp-NZbXzFpHBjcJeryhw6PVgG\",\n" +
-						"  \"supportId\": \"edcp-NZbXzFpHBjcJeryhw6PVgG\",\n" +
-						"  \"detail\": \"Request accepted\"\n" +
-						"}").build());
+		when(httpCommunication.sendPostMessage(anyString(), any(FlushRequest.class), any(CloseableHttpClient.class)))
+				.thenReturn(HttpApiResponse.builder().httpStatus(201).jsonResponse("""
+				{
+  					"httpStatus": 201,
+  					"estimatedSeconds": 5,
+  					"purgeId": "edcp-NZbXzFpHBjcJeryhw6PVgG",
+  					"supportId": "edcp-NZbXzFpHBjcJeryhw6PVgG",
+  					"detail": "Request accepted"
+}""").build());
 
 		AkamaiInvalidationResult akamaiInvalidationSitemapResult = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", "/sitemap.xml");
 		verify(httpCommunication, times(1)).sendPostMessage(anyString(),any(FlushRequest.class), any(CloseableHttpClient.class));
