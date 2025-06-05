@@ -75,6 +75,7 @@
                                     /etc,
                                     /content,
                                     /content/cq:tags
+                                    /content/dam-default-assets
                                 </validRoots>
                             </options>
                         </jackrabbit-filter>

@@ -33,10 +33,9 @@ public class HomePropertyInjector extends AbstractInjector {
 
     @Override
     protected Resource getResource(Object object) {
-        if (object instanceof SlingHttpServletRequest) {
-            SlingHttpServletRequest request = ((SlingHttpServletRequest) object);
-            var resourceResolver = request.getResourceResolver();
-            return resourceResolver.resolve(request.getPathInfo());
+        if (object instanceof SlingHttpServletRequest slingHttpServletRequest) {
+            var resourceResolver = slingHttpServletRequest.getResourceResolver();
+            return resourceResolver.resolve(slingHttpServletRequest.getPathInfo());
         }
 
         return null;

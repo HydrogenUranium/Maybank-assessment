@@ -44,7 +44,7 @@
                         localStorage.setItem(storageKey, value);
                         const toast = document.createElement("coral-toast");
                         toast.variant = "success"; // Other options: "success", "error", "warning"
-                        toast.innerHTML = `The author selection has been saved for ${branch}`;
+                        toast.textContent = `The author selection has been saved for ${branch}`;
                         toast.setAttribute("open", ""); // Show it
                         document.body.appendChild(toast);
 

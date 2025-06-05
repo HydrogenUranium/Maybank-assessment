@@ -5012,6 +5012,45 @@
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_main_article>
                 </page-container>
+                <hero-banner-v2 jcr:primaryType="nt:unstructured">
+                    <policy_hero-banner-v2-landing
+                            jcr:lastModified="{Date}2025-05-30T10:50:56.128+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Hero Banner V2 - Landing Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            allowedRenditionWidths="[400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600]"
+                            altValueFromDAM="true"
+                            disableLazyLoading="false"
+                            displayPopupTitle="true"
+                            enableAssetDelivery="true"
+                            isDecorative="false"
+                            keyTakeaways="false"
+                            margin="false"
+                            roundedCorners="false"
+                            topMargin="true"
+                            titleValueFromDAM="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_hero-banner-v2-landing>
+                    <policy_hero-banner-v2-article
+                            jcr:lastModified="{Date}2025-05-30T10:50:56.128+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Hero Banner V2 - Article Policy"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            allowedRenditionWidths="[400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600]"
+                            altValueFromDAM="true"
+                            disableLazyLoading="false"
+                            displayPopupTitle="true"
+                            enableAssetDelivery="true"
+                            isDecorative="false"
+                            keyTakeaways="true"
+                            margin="true"
+                            roundedCorners="true"
+                            titleValueFromDAM="true">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_hero-banner-v2-article>
+                </hero-banner-v2>
             </content>
         </components>
     </dhl>
