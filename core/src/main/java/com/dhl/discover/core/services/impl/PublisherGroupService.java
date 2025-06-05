@@ -55,9 +55,9 @@ public class PublisherGroupService {
             if(userManager == null) {
                 return emails;
             }
-            var group = userManager.getAuthorizable(getPublisherGroup(pagePath));
-            if (group instanceof Group) {
-                Iterator<Authorizable> members = ((Group) group).getDeclaredMembers();
+            var authorizable = userManager.getAuthorizable(getPublisherGroup(pagePath));
+            if (authorizable instanceof Group group) {
+                Iterator<Authorizable> members = group.getDeclaredMembers();
                 while (members.hasNext()) {
                     Authorizable member = members.next();
                     if (member.hasProperty("profile/email")) {

@@ -74,7 +74,7 @@ class ArticleGridV2Test {
         context.load().json("/com/dhl/discover/core/models/ArticleGridV2/content.json", "/content");
         mockInject(context, INJECT_SCRIPT_BINDINGS, "currentStyle", currentStyle);
         when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
-        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
         when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");

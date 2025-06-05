@@ -92,17 +92,19 @@ class DiscoverRssFeedTest {
 
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
-        String expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
-                "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n" +
-                "<channel>\n" +
-                "<link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
-                "<title>The future of cyber sales</title>\n" +
-                "<description>description</description>\n" +
-                "<language>en</language>\n" +
-                "<region>Global</region>\n" +
-                "<pubDate/>\n" +
-                "</channel>\n" +
-                "</rss>\n";
+        String expected = """
+      <?xml version="1.0" encoding="utf-8"?>
+      <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+      <channel>
+      <link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>
+      <title>The future of cyber sales</title>
+      <description>description</description>
+      <language>en</language>
+      <region>Global</region>
+      <pubDate/>
+      </channel>
+      </rss>
+      """;
 
         assertXmlEquals(expected, responseBody);
     }
@@ -117,17 +119,19 @@ class DiscoverRssFeedTest {
 
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
-        String expected = "<item>\n" +
-                "<link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
-                "<title>The future of cyber sales</title>\n" +
-                "<description>description</description>\n" +
-                "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
-                "<region>Global</region>\n" +
-                "<language>en</language>\n" +
-                "<pubDate/>\n" +
-                "<tags>Tech Futures,Culture Hype</tags>\n" +
-                "<thumbnail/>\n" +
-                "</item>\n";
+        String expected = """
+                    <item>
+                    <link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>
+                    <title>The future of cyber sales</title>
+                    <description>description</description>
+                    <articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>
+                    <region>Global</region>
+                    <language>en</language>
+                    <pubDate/>
+                    <tags>Tech Futures,Culture Hype</tags>
+                    <thumbnail/>
+                    </item>
+                    """;
 
         assertXmlEquals(expected, responseBody);
     }
@@ -143,17 +147,19 @@ class DiscoverRssFeedTest {
 
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
-        String expected = "<item>\n" +
-                "<link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
-                "<title>The future of cyber sales</title>\n" +
-                "<description>description</description>\n" +
-                "<articleBody><![CDATA[<div>full body</div>]]></articleBody>\n" +
-                "<region>Global</region>\n" +
-                "<language>en</language>\n" +
-                "<pubDate/>\n" +
-                "<tags>Tech Futures,Culture Hype</tags>\n" +
-                "<thumbnail/>\n" +
-                "</item>\n";
+        String expected = """
+                        <item>
+                        <link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>
+                        <title>The future of cyber sales</title>
+                        <description>description</description>
+                        <articleBody><![CDATA[<div>full body</div>]]></articleBody>
+                        <region>Global</region>
+                        <language>en</language>
+                        <pubDate/>
+                        <tags>Tech Futures,Culture Hype</tags>
+                        <thumbnail/>
+                        </item>
+                        """;
 
         assertXmlEquals(expected, responseBody);
     }
@@ -169,17 +175,19 @@ class DiscoverRssFeedTest {
 
         String responseBody = context.response().getOutputAsString()
                 .replaceAll("<pubDate>.+</pubDate>", "<pubDate/>");
-        String expected = "<item>" +
-                "<link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>\n" +
-                "<title>The future of cyber sales</title>\n" +
-                "<description>description</description>\n" +
-                "<articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>\n" +
-                "<region>Global</region>\n" +
-                "<language>en</language>\n" +
-                "<pubDate/>\n" +
-                "<tags>Tech Futures,Culture Hype</tags>\n" +
-                "<thumbnail/>\n" +
-                "</item>\n";
+        String expected = """
+                        <item>
+                        <link>/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales.html</link>
+                        <title>The future of cyber sales</title>
+                        <description>description</description>
+                        <articleBody><![CDATA[<h2>Article Body the-future-of-cyber-sales</h2>]]></articleBody>
+                        <region>Global</region>
+                        <language>en</language>
+                        <pubDate/>
+                        <tags>Tech Futures,Culture Hype</tags>
+                        <thumbnail/>
+                        </item>
+                        """;
 
         assertXmlEquals(expected, responseBody);
     }
