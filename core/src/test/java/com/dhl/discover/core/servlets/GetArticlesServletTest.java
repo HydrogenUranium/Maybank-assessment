@@ -32,6 +32,10 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class GetArticlesServletTest {
+    public static final String CF_PATH = "/content/dam/global-master/8-site-images/roundels/anna_thompson";
+    public static final String CONTENT_PATH = "/com/dhl/discover/core/services/ArticleServiceTest/content.json";
+    public static final String TEST_CF_RESOURCE_PATH = "/com/dhl/discover/core/models/Article/content-fragment.json";
+
     private final AemContext context = new AemContext();
 
     private final MockSlingHttpServletRequest request = context.request();
@@ -65,7 +69,8 @@ class GetArticlesServletTest {
     @BeforeEach
     void setUp() {
         context.requestPathInfo().setResourcePath("/content");
-        context.load().json("/com/dhl/discover/core/services/ArticleServiceTest/content.json", "/content");
+        context.load().json(CONTENT_PATH, "/content");
+        context.load().json(TEST_CF_RESOURCE_PATH, CF_PATH);
 
         context.registerService(PageUtilService.class, pageUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
@@ -115,7 +120,7 @@ class GetArticlesServletTest {
                         "\"groupTag\":\"#CategoryPage\"," +
                         "\"title\":\"What paperwork do I need for international shipping?\"," +
                         "\"description\":\"What paperwork do I need for international shipping?\"," +
-                        "\"author\":\"Anna Thompson\"," +
+                        "\"author\":\"Adam Riley\"," +
                         "\"readtime\":\"4 min read\"," +
                         "\"pageImage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                         "\"tagsToShow\":[\"#CategoryPage\"]," +
@@ -132,7 +137,7 @@ class GetArticlesServletTest {
                         "\"groupTag\":\"#CategoryPage\"," +
                         "\"title\":\"What paperwork do I need for international shipping?\"," +
                         "\"description\":\"What paperwork do I need for international shipping?\"," +
-                        "\"author\":\"Anna Thompson\"," +
+                        "\"author\":\"Adam Riley\"," +
                         "\"readtime\":\"4 min read\"," +
                         "\"pageImage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                         "\"tagsToShow\":[\"#CategoryPage\"]," +

@@ -36,6 +36,12 @@
           "dhl:default/e-commerce_advice",
           "dhl:default/business_advice"
         ],
+        "author-cf": {
+          "fragmentPath": "/content/dam/global-master/8-site-images/roundels/anna_thompson",
+          "jcr:primaryType": "nt:unstructured",
+          "variationName": "master",
+          "sling:resourceType": "core/wcm/components/contentfragment/v1/contentfragment"
+        },
         "sling:resourceType": "dhl/components/pages/article",
         "heroimagedt": "/content/dam/desktop.jpg",
         "cq:lastRolledoutBy": "david.akara@dhl.com",
@@ -75,6 +81,12 @@
           "dhl:default/e-commerce_advice",
           "dhl:default/business_advice"
         ],
+        "author-cf": {
+          "fragmentPath": "/content/dam/global-master/8-site-images/roundels/anna_thompson",
+          "jcr:primaryType": "nt:unstructured",
+          "variationName": "master",
+          "sling:resourceType": "core/wcm/components/contentfragment/v1/contentfragment"
+        },
         "sling:resourceType": "dhl/components/pages/article",
         "heroimagedt": "/content/dam/desktop.jpg",
         "cq:lastRolledoutBy": "david.akara@dhl.com",
