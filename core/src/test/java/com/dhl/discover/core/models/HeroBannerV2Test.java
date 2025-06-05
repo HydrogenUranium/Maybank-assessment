@@ -51,6 +51,7 @@ class HeroBannerV2Test {
 
         Page currentPage = Objects.requireNonNull(resourceResolver.getResource("/content/article")).adaptTo(Page.class);
         context.currentPage(currentPage);
+        context.addModelsForClasses(AdaptiveImage.class);
         context.addModelsForClasses(HeroBannerV2.class);
         context.registerAdapter(SlingHttpServletRequest.class, Image.class, (Function<SlingHttpServletRequest, Image>) slingRequest -> {
             Image image = mock(Image.class);
@@ -91,6 +92,7 @@ class HeroBannerV2Test {
     @Test
     void init_shouldInitPropertiesFromPage() {
         initRequest("/content/article/jcr:content/root/article_container/body/hero_banner");
+
         HeroBannerV2 heroBanner = request.adaptTo(HeroBannerV2.class);
 
         assertNotNull(heroBanner);
@@ -103,7 +105,7 @@ class HeroBannerV2Test {
         assertNull(heroBanner.getTabletImageModel());
         assertEquals("/mobile-image.jpg", heroBanner.getMobileImageModel().getSrc());
         assertTrue(heroBanner.isMargin());
-        assertTrue(heroBanner.isKeyTakeAways());
+        assertTrue(heroBanner.isKeyTakeaways());
         assertTrue(heroBanner.isRoundedCorners());
         assertTrue(heroBanner.isEnableAssetDelivery());
     }
@@ -120,7 +122,7 @@ class HeroBannerV2Test {
         assertEquals("/video.mp4", heroBanner.getVideo());
         assertEquals("mp4", heroBanner.getVideoMimeType());
         assertTrue(heroBanner.isMargin());
-        assertFalse(heroBanner.isKeyTakeAways());
+        assertFalse(heroBanner.isKeyTakeaways());
         assertTrue(heroBanner.isRoundedCorners());
     }
 }

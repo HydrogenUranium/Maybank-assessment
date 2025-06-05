@@ -1,6 +1,7 @@
 package com.dhl.discover.core.models;
 
 import com.adobe.cq.wcm.core.components.models.Image;
+import com.day.cq.wcm.api.designer.Style;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -16,7 +17,10 @@ import java.util.List;
         defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 
 @Getter
-public class CtaBannerV2 extends AbstractBanner {
+public class CtaBannerV2 extends AdaptiveImage {
+
+    @ScriptVariable
+    protected Style currentStyle;
 
     @ValueMapValue
     private String summaryTitle;
@@ -39,7 +43,7 @@ public class CtaBannerV2 extends AbstractBanner {
 
     @PostConstruct
     protected void init() {
-        super.initBase();
+        super.initModel();
         
         if (currentStyle != null) {
             keyTakeAways = currentStyle.get("keyTakeAways", false);

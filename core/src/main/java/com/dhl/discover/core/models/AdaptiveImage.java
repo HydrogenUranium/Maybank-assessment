@@ -8,73 +8,50 @@ import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.models.annotations.Optional;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.*;
 import org.apache.sling.models.factory.ModelFactory;
-import org.osgi.annotation.versioning.ConsumerType;
+
+import javax.annotation.PostConstruct;
 import java.util.UUID;
 
 /**
  * Abstract base class for Banner components that provides common functionality
  */
 
-@ConsumerType
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 @Getter
-public abstract class AbstractBanner {
+public class AdaptiveImage {
 
     @OSGiService
-    @Optional
     protected ModelFactory modelFactory;
 
     @Self
     protected SlingHttpServletRequest request;
 
     @ScriptVariable
-    @Optional
     protected Page currentPage;
 
-    @ScriptVariable
-    @Optional
-    protected Style currentStyle;
-
     @OSGiService
-    @Optional
     protected AssetUtilService assetUtilService;
 
     @ValueMapValue
-    @Optional
     protected String title;
 
     @ChildResource
-    @Optional
     protected Resource desktopImage;
 
     @ChildResource
-    @Optional
     protected Resource mobileImage;
 
     @ChildResource
-    @Optional
     protected Resource tabletImage;
 
     @ValueMapValue
-    @Optional
-    protected String desktopBackgroundImage;
-
-    @ValueMapValue
-    @Optional
-    protected String mobileBackgroundImage;
-
-    @ValueMapValue
-    @Optional
-    protected String tabletBackgroundImage;
-
-    @ValueMapValue
-    @Optional
     protected String buttonName;
 
     @ValueMapValue
-    @Optional
     protected String buttonLink;
 
     protected final String id = "cta-banner_" + UUID.randomUUID();
@@ -83,28 +60,9 @@ public abstract class AbstractBanner {
     protected Image tabletImageModel;
     protected Image desktopImageModel;
 
-    protected boolean roundedCorners;
-    protected boolean margin;
-    protected boolean enableAssetDelivery;
-
-    /**
-     * Common initialization for banner components.
-     * Should be called from the init() method of subclasses.
-     */
-    protected void initBase() {
-        if (currentStyle != null) {
-            initDesignProperties();
-        }
+    @PostConstruct
+    protected void initModel() {
         initImageModels();
-    }
-
-    /**
-     * Initialize design-related properties from the component's style
-     */
-    protected void initDesignProperties() {
-        margin = currentStyle.get("margin", false);
-        roundedCorners = currentStyle.get("roundedCorners", false);
-        enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
     }
 
     /**

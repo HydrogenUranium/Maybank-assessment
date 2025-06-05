@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class CtaBannerWithPointsV2 extends AbstractBanner {
+public class CtaBannerWithPointsV2 extends AdaptiveImage {
 
     @ChildResource
     @Named("points")
@@ -27,7 +27,7 @@ public class CtaBannerWithPointsV2 extends AbstractBanner {
 
     @PostConstruct
     protected void init() {
-        super.initBase();
+        super.initModel();
         points = extractPoints(pointsMultifield);
     }
 
