@@ -71,7 +71,8 @@ import groovy.transform.Field
         '/content/dhl/us/en-us',
         '/content/dhl/vn/en-vn',
         '/content/dhl/vn/vi-vn',
-        '/content/dhl/za/en-za'
+        '/content/dhl/za/en-za',
+        '/content/dhl/language-masters/en-master'
 ]
 
 def log(string) {
