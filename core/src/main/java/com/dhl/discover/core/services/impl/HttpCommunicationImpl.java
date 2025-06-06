@@ -23,9 +23,8 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -179,12 +178,12 @@ public class HttpCommunicationImpl implements HttpCommunication {
 	@Override
 	public boolean isValidUrl(String url) {
 		try {
-			var underTest = new URL(url);
+			var underTest = new URI(url);
 			if(log.isDebugEnabled()){
 				log.debug("Provided string appears to represent a valid URL ({})",underTest);
 			}
-			return true;
-		} catch (MalformedURLException e) {
+            return underTest.isAbsolute() && underTest.getScheme() != null && underTest.getHost() != null;
+        } catch (URISyntaxException e) {
 			log.error("Provided string {} does not appear to represent a valid URL: {}", url, e.getMessage());
 			return false;
 		}
