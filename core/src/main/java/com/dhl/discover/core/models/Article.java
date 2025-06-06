@@ -232,15 +232,11 @@ public class Article {
                 .filter(r -> "/conf/dhl/settings/dam/cfm/models/author".equals(r.getValueMap().get("cq:model", "")))
                 .map(r -> r.getChild("master"))
                 .map(Resource::getValueMap)
-                .orElse(null);
+                .orElse(ValueMap.EMPTY);
     }
 
     private void initAuthor() {
         ValueMap authorData = getAuthorContentFragmentData();
-
-        if (authorData == null) {
-            return;
-        }
 
         authorimage = authorData.get("image", "");
         author = authorData.get("name", "");
