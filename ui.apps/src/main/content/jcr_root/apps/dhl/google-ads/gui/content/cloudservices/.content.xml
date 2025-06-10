@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Google Ads"
+        sling:resourceType="granite/ui/components/shell/collectionpage"
+        consoleId="cq-cloudservices-google-ads"
+        modeGroup="cq-cloudservices-google-ads-list"
+        targetCollection=".cq-cloudservices-google-ads-list">
+        <head jcr:primaryType="nt:unstructured">
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/includeclientlibs"
+                categories="[discover.google-ads,granite.shared]"/>
+        </head>
+        <views jcr:primaryType="nt:unstructured">
+            <column
+                granite:rel="cq-cloudservices-google-ads-list"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Column View"
+                sling:resourceType="granite/ui/components/coral/foundation/columnview"
+                icon="viewColumn"
+                limit="{Long}19"
+                modeGroup="cq-cloudservices-google-ads-list"
+                path="${empty requestPathInfo.suffix ? '/' : requestPathInfo.suffix}"
+                previewSrc="/apps/dhl/google-ads/gui/content/cloudservices/columnpreview.html{+id}"
+                rootPath="/"
+                showRoot="{Boolean}false"
+                size="${empty requestPathInfo.selectors[1] ? &quot;19&quot; : requestPathInfo.selectors[1]}"
+                src="/apps/dhl/google-ads/gui/content/cloudservices/jcr:content/views/column{.offset,limit}.html{+id}">
+                <granite:data
+                    jcr:primaryType="nt:unstructured"
+                    allowedResourceTypes="[dhl/google-ads/components/utilities/cloudconfig/google-ads]"
+                    group="google-ads"
+                    renderOOTB="{Boolean}true"
+                    skipbucket="{Boolean}true"/>
+                <datasource
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="cq/cloudconfig/components/admin/datasources/configurations"
+                    itemResourceType="dhl/google-ads/datasource/cloudservices/views/columnitem"
+                    limit="${empty requestPathInfo.selectors[1] ? &quot;41&quot; : requestPathInfo.selectors[1] + 1}"
+                    offset="${requestPathInfo.selectors[0]}"/>
+            </column>
+        </views>
+        <actions jcr:primaryType="nt:unstructured">
+            <secondary jcr:primaryType="nt:unstructured">
+                <create
+                    granite:rel="cq-google-ads-config-create"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                    action="foundation.dialog"
+                    activeSelectionCount="none"
+                    hideText="{Boolean}false"
+                    target=".cq-cloudservices-google-ads-list"
+                    text="Create"
+                    variant="primary">
+                    <data
+                        jcr:primaryType="nt:unstructured"
+                        src.template="/apps/dhl/google-ads/gui/content/cloudservices/jcr:content/header/items/dialog/create.html{+id}"/>
+                </create>
+            </secondary>
+            <selection jcr:primaryType="nt:unstructured">
+                <edit
+                    granite:rel="google-ads-config-edit-activator"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                    action="foundation.link"
+                    activeSelectionCount="single"
+                    icon="edit"
+                    target=".cq-cloudservices-google-ads-list"
+                    text="Edit"
+                    variant="actionBar">
+                    <data
+                        jcr:primaryType="nt:unstructured"
+                        href.uritemplate="/mnt/overlay/wcm/core/content/sites/properties.html?item={+item}"/>
+                </edit>
+                <publish
+                        granite:rel="conf-browser-publish-activator"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                        action="publish.conf.action"
+                        activeSelectionCount="single"
+                        icon="publish"
+                        text="Publish"
+                        variant="actionBar"/>
+                <unpublish
+                        granite:rel="conf-browser-unpublish-activator"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                        action="unpublish.conf.action"
+                        activeSelectionCount="single"
+                        icon="publishRemove"
+                        text="Unpublish"
+                        variant="actionBar"/>
+            </selection>
+        </actions>
+        <header
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+            <items jcr:primaryType="nt:unstructured">
+                <dialog
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                    <create
+                            granite:rel="translation-config-create-dialog"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Create Configuration"
+                            sling:resourceType="granite/ui/components/coral/foundation/dialog">
+                        <items jcr:primaryType="nt:unstructured">
+                            <form
+                                    granite:id="cloudservice-addform"
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Create "
+                                    sling:resourceType="granite/ui/components/coral/foundation/form"
+                                    enctype="application/x-www-form-urlencoded"
+                                    method="POST"
+                                    style="vertical">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <fieldTitle
+                                            granite:class="coral-Form-fieldlabel"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/text"
+                                            text="Title *"/>
+                                    <title
+                                            granite:id="config-title"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            emptyText="title"
+                                            required="{Boolean}true"
+                                            label="Title"
+                                            name="config-title"/>
+                                    <fieldName
+                                            granite:class="coral-Form-fieldlabel"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/text"
+                                            text="Name *"/>
+                                    <name
+                                            granite:id="config-name"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            emptyText="name"
+                                            required="{Boolean}true"
+                                            label="Name"
+                                            name="config-name"/>
+                                    <charset
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                            ignoreData="{Boolean}true"
+                                            name="_charset_"
+                                            value="UTF-8"/>
+                                </items>
+                            </form>
+                        </items>
+                        <footer jcr:primaryType="nt:unstructured">
+                            <cancel
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/button"
+                                    text="Cancel">
+                                <parentConfig
+                                        jcr:primaryType="nt:unstructured"
+                                        close="{Boolean}true"/>
+                            </cancel>
+                            <submit
+                                    granite:id="cloudservice-addform-submit"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/button"
+                                    disabled="{Boolean}true"
+                                    formId="cloudservice-addform"
+                                    text="Create"
+                                    variant="primary"/>
+                        </footer>
+                    </create>
+                </dialog>
+            </items>
+        </header>
+    </jcr:content>
+    <columnpreview
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="cq/gui/components/coral/admin/page/columnpreview"
+        path="${requestPathInfo.suffix}"/>
+</jcr:root>

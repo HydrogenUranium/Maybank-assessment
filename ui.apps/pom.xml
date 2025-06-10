@@ -68,6 +68,7 @@
                         <jackrabbit-filter>
                             <options>
                                 <validRoots>/oak:index</validRoots>
+                                <validRoots>/apps/cq/core/content/nav/tools/cloudservices</validRoots>
                             </options>
                         </jackrabbit-filter>
                     </validatorsSettings>
