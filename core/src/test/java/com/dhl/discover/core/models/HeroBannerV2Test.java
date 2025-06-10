@@ -53,9 +53,10 @@ class HeroBannerV2Test {
         context.currentPage(currentPage);
         context.addModelsForClasses(AdaptiveImage.class);
         context.addModelsForClasses(HeroBannerV2.class);
-        context.registerAdapter(SlingHttpServletRequest.class, Image.class, (Function<SlingHttpServletRequest, Image>) slingRequest -> {
+
+        context.registerAdapter(SlingHttpServletRequest.class, Image.class, (Function<SlingHttpServletRequest, Image>) adaptableRequest -> {
             Image image = mock(Image.class);
-            String path = slingRequest.getResource().getValueMap().getOrDefault("fileReference", "").toString();
+            String path = adaptableRequest.getResource().getValueMap().getOrDefault("fileReference", "").toString();
             lenient().when(image.getSrc()).thenReturn(path);
             return image;
         });
