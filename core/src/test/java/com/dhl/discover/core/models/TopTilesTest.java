@@ -56,7 +56,7 @@ class TopTilesTest {
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);
 
-        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
         mockInject(context, "script-bindings", "currentStyle", currentStyle);

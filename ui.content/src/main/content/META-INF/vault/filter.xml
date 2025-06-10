@@ -16,6 +16,7 @@
 
     <filter root="/content/cq:tags" mode="update"/>
     <filter root="/content/experience-fragments" mode="update"/>
+    <filter root="/content/dam/default-assets" mode="merge"/>
 
     <filter root="/etc/map.publish" />
     <filter root="/etc/languages" />

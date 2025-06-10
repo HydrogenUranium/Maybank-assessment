@@ -63,7 +63,7 @@ class ArticleTest {
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);
 
-        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+        when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
         when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
@@ -80,7 +80,6 @@ class ArticleTest {
         article.initAssetDeliveryProperties(true);
 
         checkModel(article);
-        assertEquals("/adobe/dynamicmedia/deliver/content/dam/global-master/8-site-images/roundels/anna_thompson.jpg", article.getAuthorimage());
         assertEquals("/adobe/dynamicmedia/deliver/content/dam/desktop.jpg", article.getHeroimagedt());
         assertEquals("/adobe/dynamicmedia/deliver/content/dam/mobile.jpg", article.getHeroimagemob());
         assertEquals("/adobe/dynamicmedia/deliver/content/dam/tablet.jpg", article.getHeroimagetab());
@@ -106,9 +105,6 @@ class ArticleTest {
         assertEquals("/content/dhl/global/home/small-business-advice/article.html", article.getPath());
         assertEquals("/content/dam/image.jpg", article.getPageImage());
         assertEquals("Page Image Alt Text", article.getPageImageAltText());
-        assertEquals("Anna Thompson", article.getAuthor());
-        assertEquals("Discover content team", article.getAuthortitle());
-        assertEquals("/content/dam/global-master/8-site-images/roundels/anna_thompson.jpg", article.getAuthorimage());
         assertArrayEquals(new String[]{"#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"}, article.getTagsToShow().toArray());
         assertEquals("From Waybills to Export Licenses, this guide breaks down the jargon to help you navigate customs seamlessly. ", article.getBrief());
         assertEquals("What paperwork do I need for international shipping?", article.getDescription());
@@ -119,7 +115,7 @@ class ArticleTest {
     }
 
     @Test
-    void init_ShouldInitArticleWithContentFragment() {
+    void init_ShouldInitAuthorData() {
         Article article = createModel(getResource(ARTICLE_PAGE_WITH_CF_PATH));
         checkModel(article);
 
