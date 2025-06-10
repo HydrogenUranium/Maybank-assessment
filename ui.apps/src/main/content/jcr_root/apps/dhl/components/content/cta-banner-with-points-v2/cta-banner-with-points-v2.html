@@ -1,21 +1,20 @@
 <sly data-sly-use.model="com.dhl.discover.core.models.CtaBannerWithPointsV2"
-     data-sly-set.hasDefaultImage="${model.defaultImageModel && model.defaultImageModel.src}"
      data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"
      data-sly-test.isEmpty=${model.points.empty}></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 <article id="${properties.id}" class="cmp-cta-banner-with-points">
-    <div class="cmp-cta-banner-with-points__image" id="${model.id}">
+
         <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
              data-sly-call="${template.pictureWithModels @
                    mobile=model.mobileImageModel,
                    tablet=model.tabletImageModel,
                    desktop=model.desktopImageModel,
                    image=model.defaultImageModel,
-                   imgClass='cmp-hero-banner__image',
+                   imgClass='cmp-cta-banner-with-points__image',
                    priority='high'
            }"></sly>
-    </div>
+
     <div class="cmp-cta-banner-with-points__body">
         <div class="cmp-cta-banner-with-points__title">${model.title}</div>
         <ul class="cmp-cta-banner-with-points__list ${model.points.size > 2 ? 'cmp-cta-banner-with-points__list--columns' : ''}">

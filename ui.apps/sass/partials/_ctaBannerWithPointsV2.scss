@@ -9,6 +9,43 @@
 }
 
 .cmp-cta-banner-with-points {
+  &__asset {
+    position: relative;
+
+    &:after {
+      content: "";
+      border-radius: inherit;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      mix-blend-mode: multiply;
+      opacity: 0.4;
+      background: transparent linear-gradient(180deg, #ffffff 50%, #131313 100%)
+      0% 0% no-repeat padding-box;
+    }
+
+    &--with-rounded-corners {
+      .cmp-hero-banner__image {
+        border-radius: 0;
+
+        @include respond(md) {
+          border-radius: .6rem;
+        }
+      }
+
+      &:after {
+        border-radius: 0;
+
+        @include respond(md) {
+          border-radius: .6rem;
+        }
+      }
+    }
+
+  }
   position: relative;
   border-radius: .4rem;
   color: #FFFFFF;
@@ -34,6 +71,7 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    object-fit: cover;
 
     background: {
       position: center;
