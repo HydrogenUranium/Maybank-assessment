@@ -2,10 +2,10 @@
 <sly data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"></sly>
 
 <div class="cq-placeholder"
-     data-sly-test="${wcmmode.edit && (!model.points || model.points.size == 0)}"
+     data-sly-test="${wcmmode.edit && (!model.points || model.points.size == 0) && !model.title && !model.buttonName}"
      data-emptytext="${component.title}"></div>
 
-<sly data-sly-test="${model.points && model.points.size > 0}">
+<sly data-sly-test="${(model.points && model.points.size > 0) || model.title || model.buttonName}">
     <article id="${properties.id}" class="cmp-cta-banner-with-points">
         <div class="cmp-cta-banner-with-points__image" id="${model.id}">
             <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
@@ -19,8 +19,8 @@
             </style>
         </div>
         <div class="cmp-cta-banner-with-points__body">
-            <div class="cmp-cta-banner-with-points__title">${model.title}</div>
-            <ul class="cmp-cta-banner-with-points__list ${model.points.size > 2 ? 'cmp-cta-banner-with-points__list--columns' : ''}">
+            <div class="cmp-cta-banner-with-points__title" data-sly-test="${model.title}">${model.title}</div>
+            <ul class="cmp-cta-banner-with-points__list ${model.points && model.points.size > 2 ? 'cmp-cta-banner-with-points__list--columns' : ''}" data-sly-test="${model.points && model.points.size > 0}">
                 <li class="cmp-cta-banner-with-points__item" data-sly-repeat="${model.points}">${item}</li>
             </ul>
             <a class="cmp-cta-banner-with-points__button dhl-btn dhl-btn--primary"
@@ -33,4 +33,3 @@
         </div>
     </article>
 </sly>
-
