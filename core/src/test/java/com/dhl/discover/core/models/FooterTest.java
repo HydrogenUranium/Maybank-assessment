@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(AemContextExtension.class)
 class FooterTest {
-    private final static String FOOTER_PATH = "/content/dhl/global/en-global/jcr:content/footer";
+    private static final String FOOTER_PATH = "/content/dhl/global/en-global/jcr:content/footer";
     private AemContext context = new AemContext();
     private MockSlingHttpServletRequest request = context.request();
 
