@@ -2218,13 +2218,7 @@
                             altValueFromDAM="true"
                             disableLazyLoading="false"
                             displayPopupTitle="true"
-                            enableAssetDelivery="true"
-                            isDecorative="false"
-                            keyTakeaways="false"
-                            margin="false"
-                            roundedCorners="false"
-                            topMargin="true"
-                            titleValueFromDAM="true">
+                            isDecorative="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
@@ -2292,14 +2286,7 @@
                             allowedRenditionWidths="[400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600]"
                             altValueFromDAM="true"
                             disableLazyLoading="false"
-                            displayPopupTitle="true"
-                            enableAssetDelivery="true"
-                            isDecorative="false"
-                            keyTakeaways="false"
-                            margin="false"
-                            roundedCorners="false"
-                            topMargin="true"
-                            titleValueFromDAM="true">
+                            isDecorative="false">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0

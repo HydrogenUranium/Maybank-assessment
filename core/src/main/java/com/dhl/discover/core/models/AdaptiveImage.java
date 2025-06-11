@@ -34,9 +34,6 @@ public class AdaptiveImage {
     @OSGiService
     protected AssetUtilService assetUtilService;
 
-    @ValueMapValue
-    protected String title;
-
     @ChildResource
     protected Resource desktopImage;
 
@@ -53,15 +50,8 @@ public class AdaptiveImage {
     protected Image tabletImageModel;
     protected Image desktopImageModel;
 
-    @ValueMapValue
-    private String fileReference;
-
-    public String getSrc() {
-        return fileReference;
-    }
-
     @PostConstruct
-    protected void initModel() {
+    protected void initialize() {
         initImageModels();
     }
 

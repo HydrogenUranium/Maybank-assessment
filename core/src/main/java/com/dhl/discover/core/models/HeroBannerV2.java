@@ -43,7 +43,6 @@ public class HeroBannerV2 extends AdaptiveImage {
 
     @PostConstruct
     protected void init() {
-        super.initModel();
         if (currentStyle != null) {
             initDesignProperties();
         }
