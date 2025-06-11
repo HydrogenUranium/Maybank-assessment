@@ -17,8 +17,8 @@
 
     <div class="cmp-cta-banner-with-points__body">
         <div class="cmp-cta-banner-with-points__title">${model.title}</div>
-        <ul class="cmp-cta-banner-with-points__list ${model.points.size > 2 ? 'cmp-cta-banner-with-points__list--columns' : ''}">
-            <li class="cmp-cta-banner-with-points__item" data-sly-repeat="${model.points}">${item}</li>
+        <ul class="cmp-cta-banner-with-points__list ${!isEmpty && model.points.size > 2 ? 'cmp-cta-banner-with-points__list--columns' : ''}">
+            <li class="cmp-cta-banner-with-points__item" data-sly-repeat="${model.points}">${item.text}</li>
         </ul>
         <a class="cmp-cta-banner-with-points__button dhl-btn dhl-btn--primary"
            data-sly-attribute.data-analytics="${analytics.json}"
