@@ -41,20 +41,30 @@
                     "jcr:primaryType": "nt:unstructured",
                     "jcr:createdBy": "admin",
                     "imageFromPageImage": "false",
-                    "fileReference": "/content/dam/australia/desktop/home/DHL Barometer Masthead_Desktop 1920x998_NO LOGO-80.jpg",
+                    "fileReference": "/content/dam/australia/DHL_Indigenous_welcome_to_country.jpg",
                     "jcr:lastModifiedBy": "admin",
-                    "topTitle": "CTA Banner V2",
-                    "jcr:created": "Mon Jun 09 2025 22:34:28 GMT+0530",
-                    "title": "CTA Banner Title V2",
+                    "jcr:created": "Tue Jun 10 2025 16:11:47 GMT+0530",
+                    "title": "CTA Banner with Points V2",
+                    "buttonName": "Buy",
+                    "buttonLink": "/content/test",
                     "displayPopupTitle": "true",
                     "linkTarget": "_self",
-                    "buttonLink": "/content/test",
-                    "buttonName": "Buy",
-                    "jcr:lastModified": "Mon Jun 09 2025 22:43:16 GMT+0530",
+                    "jcr:lastModified": "Tue Jun 10 2025 16:12:23 GMT+0530",
                     "titleValueFromDAM": "true",
-                    "sling:resourceType": "dhl/components/content/cta-banner-v2",
+                    "sling:resourceType": "dhl/components/content/cta-banner-with-points-v2",
                     "isDecorative": "false",
                     "altValueFromDAM": "true",
+                    "points": {
+                      "jcr:primaryType": "nt:unstructured",
+                      "item0": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "text": "P1"
+                      },
+                      "item1": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "text": "P2"
+                      }
+                    },
                     "mobileImage": {
                       "jcr:primaryType": "nt:unstructured",
                       "fileReference": "/content/dam/australia/DHL_Indigenous_welcome_to_country.jpg",
@@ -63,18 +73,9 @@
                     },
                     "analytics": {
                       "jcr:primaryType": "nt:unstructured",
-                      "trackedInteractions": "basic",
+                      "trackedInteractions": "off",
                       "interactionType": "content",
-                      "name": "SUBSCRIBE TO OUR NEWSLETTER",
-                      "position": "position",
-                      "customAttributes": {
-                        "jcr:primaryType": "nt:unstructured",
-                        "item0": {
-                          "jcr:primaryType": "nt:unstructured",
-                          "name": "topic",
-                          "value": "subscription"
-                        }
-                      }
+                      "sling:resourceType": "dhl/analytics-node-configuration"
                     }
                   },
                   "cta_banner_subscribeNewsletter": {

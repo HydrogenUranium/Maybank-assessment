@@ -2208,7 +2208,7 @@
                     </policy_cta-banner>
                 </cta-banner>
                 <cta-banner-v2 jcr:primaryType="nt:unstructured">
-                    <policy_cta-banner-v2-blank
+                    <policy_cta-banner-v2
                             jcr:lastModified="{Date}2025-05-30T10:50:56.128+03:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
@@ -2280,10 +2280,10 @@
                                 </cq:styles>
                             </item1>
                         </cq:styleGroups>
-                    </policy_cta-banner-v2-blank>
+                    </policy_cta-banner-v2>
                 </cta-banner-v2>
                 <cta-banner-with-points-v2 jcr:primaryType="nt:unstructured">
-                    <policy_cta-banner-with-points-v2-blank
+                    <policy_cta-banner-with-points-v2
                             jcr:lastModified="{Date}2025-05-30T10:50:56.128+03:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
@@ -2355,7 +2355,7 @@
                                 </cq:styles>
                             </item1>
                         </cq:styleGroups>
-                    </policy_cta-banner-with-points-v2-blank>
+                    </policy_cta-banner-with-points-v2>
                 </cta-banner-with-points-v2>
                 <cta-banner-gray jcr:primaryType="nt:unstructured">
                     <policy_cta-banner-gray
@@ -5117,60 +5117,6 @@
                             titleValueFromDAM="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_hero-banner-v2-landing>
-                    <policy_hero-banner-v2-article
-                            jcr:lastModified="{Date}2025-05-30T10:50:56.128+03:00"
-                            jcr:lastModifiedBy="admin"
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Hero Banner V2 - Article Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            allowedRenditionWidths="[400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600]"
-                            altValueFromDAM="true"
-                            disableLazyLoading="false"
-                            displayPopupTitle="true"
-                            enableAssetDelivery="true"
-                            isDecorative="false"
-                            keyTakeaways="true"
-                            margin="true"
-                            roundedCorners="true"
-                            titleValueFromDAM="true">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </policy_hero-banner-v2-article>
-                    <policy_hero-banner-v2-blank-page
-                            jcr:lastModified="{Date}2025-05-30T10:50:56.128+03:00"
-                            jcr:lastModifiedBy="admin"
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Hero Banner V2 - Blank Page Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            allowedRenditionWidths="[400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600]"
-                            altValueFromDAM="true"
-                            disableLazyLoading="false"
-                            displayPopupTitle="true"
-                            enableAssetDelivery="true"
-                            isDecorative="false"
-                            keyTakeaways="true"
-                            margin="true"
-                            roundedCorners="true"
-                            titleValueFromDAM="true">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </policy_hero-banner-v2-blank-page>
-                    <policy_hero-banner-v2-article
-                            jcr:lastModified="{Date}2025-05-30T10:50:56.128+03:00"
-                            jcr:lastModifiedBy="admin"
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Hero Banner V2 - Article Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            allowedRenditionWidths="[400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600]"
-                            altValueFromDAM="true"
-                            disableLazyLoading="false"
-                            displayPopupTitle="true"
-                            enableAssetDelivery="true"
-                            isDecorative="false"
-                            keyTakeaways="true"
-                            margin="true"
-                            roundedCorners="true"
-                            titleValueFromDAM="true">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </policy_hero-banner-v2-article>
                     <policy_hero-banner-v2-article
                             jcr:lastModified="{Date}2025-05-30T10:50:56.128+03:00"
                             jcr:lastModifiedBy="admin"

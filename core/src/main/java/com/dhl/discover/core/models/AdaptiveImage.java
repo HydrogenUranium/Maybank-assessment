@@ -2,7 +2,6 @@ package com.dhl.discover.core.models;
 
 import com.adobe.cq.wcm.core.components.models.Image;
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.services.AssetUtilService;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
@@ -14,7 +13,6 @@ import org.apache.sling.models.annotations.injectorspecific.*;
 import org.apache.sling.models.factory.ModelFactory;
 
 import javax.annotation.PostConstruct;
-import java.util.UUID;
 
 /**
  * Abstract base class for Banner components that provides common functionality
@@ -48,17 +46,19 @@ public class AdaptiveImage {
     @ChildResource
     protected Resource tabletImage;
 
-    @ValueMapValue
-    protected String buttonName;
-
-    @ValueMapValue
-    protected String buttonLink;
-
-    protected final String id = "cta-banner_" + UUID.randomUUID();
+    @Self
+    private Image defaultImageModel;
 
     protected Image mobileImageModel;
     protected Image tabletImageModel;
     protected Image desktopImageModel;
+
+    @ValueMapValue
+    private String fileReference;
+
+    public String getSrc() {
+        return fileReference;
+    }
 
     @PostConstruct
     protected void initModel() {

@@ -30,7 +30,7 @@ import static org.mockito.Mockito.*;
 import static org.osgi.framework.Constants.SERVICE_RANKING;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
-class CtaBannerV2Test {
+class CtaBannerWithPointsV2Test {
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_OAK);
     private final MockSlingHttpServletRequest request = context.request();
@@ -47,13 +47,13 @@ class CtaBannerV2Test {
 
     @BeforeEach
     void setUp() {
-        context.load().json("/com/dhl/discover/core/models/CtaBannerV2/content.json", "/content");
+        context.load().json("/com/dhl/discover/core/models/CtaBannerWithPointsV2/content.json", "/content");
         mockInject(context, INJECT_SCRIPT_BINDINGS, "currentStyle", currentStyle);
 
         Page currentPage = Objects.requireNonNull(resourceResolver.getResource("/content/ctaBanner")).adaptTo(Page.class);
         context.currentPage(currentPage);
         context.addModelsForClasses(AdaptiveImage.class);
-        context.addModelsForClasses(CtaBannerV2.class);
+        context.addModelsForClasses(CtaBannerWithPointsV2.class);
 
         context.registerAdapter(SlingHttpServletRequest.class, Image.class, (Function<SlingHttpServletRequest, Image>) adaptableRequest -> {
             Image image = mock(Image.class);
@@ -89,13 +89,12 @@ class CtaBannerV2Test {
     @Test
     void init_ShouldInitPropertiesFromHomePage_WhenTypeIsCustom() {
         initRequest("/content/ctaBanner/small-business-advice/article/jcr:content/root/article_container/body/responsivegrid/cta_banner_custom");
-        CtaBannerV2 ctaBannerV2 = request.adaptTo(CtaBannerV2.class);
+        CtaBannerWithPointsV2 ctaBannerV2 = request.adaptTo(CtaBannerWithPointsV2.class);
 
         assertNotNull(ctaBannerV2);
-        assertEquals("CTA Banner Title V2", ctaBannerV2.getTitle());
-        assertEquals("CTA Banner V2", ctaBannerV2.getTopTitle());
-        assertEquals("/content/test", ctaBannerV2.getButtonLink());
+        assertEquals("CTA Banner with Points V2", ctaBannerV2.getTitle());
         assertEquals("Buy", ctaBannerV2.getButtonName());
+        assertEquals("P1", ctaBannerV2.getPoints().get(0).getText());
         assertNull(ctaBannerV2.getDesktopImageModel());
         assertNull(ctaBannerV2.getTabletImageModel());
         assertEquals("/content/dam/australia/DHL_Indigenous_welcome_to_country.jpg", ctaBannerV2.getMobileImageModel().getSrc());

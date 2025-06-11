@@ -10,10 +10,9 @@ import org.apache.sling.models.annotations.injectorspecific.*;
 
 import javax.annotation.PostConstruct;
 
+@Getter
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class},
         defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
-
-@Getter
 public class CtaBannerV2 extends AdaptiveImage {
 
     @ValueMapValue
@@ -23,6 +22,12 @@ public class CtaBannerV2 extends AdaptiveImage {
 
     @Self
     private Image defaultImageModel;
+
+    @ValueMapValue
+    protected String buttonName;
+
+    @ValueMapValue
+    protected String buttonLink;
 
     @PostConstruct
     protected void init() {

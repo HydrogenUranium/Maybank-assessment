@@ -23,43 +23,43 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class CtaBannerWithPointsTest {
-    private static final String COMPONENT_LOCATION = "/content/home/small-business-advice/article/jcr:content/root/article_container/body/responsivegrid";
+    private static final  String COMPONENT_LOCATION = "/content/home/small-business-advice/article/jcr:content/root/article_container/body/responsivegrid";
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
-    CtaBannerWithPointsV2 model = new CtaBannerWithPointsV2();
+    CtaBannerWithPoints model = new CtaBannerWithPoints();
     @BeforeEach
     void setUp() {
         context.load().json("/com/dhl/discover/core/models/CtaBannerWithPoints/content.json", "/content");
-        context.addModelsForClasses(CtaBannerWithPointsV2.class);
+        context.addModelsForClasses(CtaBannerWithPoints.class);
     }
 
     @Test
     void init_ShouldInitPropertiesFromHomePage_WhenTypeIsCustom() {
         Resource resource = context.resourceResolver().getResource(COMPONENT_LOCATION + "/cta_banner_custom");
 
-        CtaBannerWithPointsV2 ctaBannerWithPoints = resource.adaptTo(CtaBannerWithPointsV2.class);
+        CtaBannerWithPoints ctaBannerWithPoints = resource.adaptTo(CtaBannerWithPoints.class);
 
         assertEquals("CTA BANNER", ctaBannerWithPoints.getTitle());
         assertEquals("/content/test", ctaBannerWithPoints.getButtonLink());
         assertEquals("Buy", ctaBannerWithPoints.getButtonName());
-//        assertEquals("/content/dam/images/desktop.jpg", ctaBannerWithPoints.getDesktopBackgroundImage());
-//        assertEquals("/content/dam/images/tablet.jpg", ctaBannerWithPoints.getTabletBackgroundImage());
-//        assertEquals("/content/dam/images/mobile.jpg", ctaBannerWithPoints.getMobileBackgroundImage());
+        assertEquals("/content/dam/images/desktop.jpg", ctaBannerWithPoints.getDesktopBackgroundImage());
+        assertEquals("/content/dam/images/tablet.jpg", ctaBannerWithPoints.getTabletBackgroundImage());
+        assertEquals("/content/dam/images/mobile.jpg", ctaBannerWithPoints.getMobileBackgroundImage());
         assertEquals(new ArrayList<>(), ctaBannerWithPoints.getPoints());
     }
 
     @Test
     void init_ShouldExtractPointsFromMultifield_WhenPointsArePresent() {
         Resource resource = context.resourceResolver().getResource(COMPONENT_LOCATION + "/cta_banner_custom");
-        CtaBannerWithPointsV2 ctaBannerWithPoints = resource.adaptTo(CtaBannerWithPointsV2.class);
+        CtaBannerWithPoints ctaBannerWithPoints = resource.adaptTo(CtaBannerWithPoints.class);
 
         List<String> points = ctaBannerWithPoints.getPoints();
 
         assertEquals("CTA BANNER", ctaBannerWithPoints.getTitle());
-//        assertEquals("/content/dam/images/desktop.jpg", ctaBannerWithPoints.getDesktopBackgroundImage());
-//        assertEquals("/content/dam/images/tablet.jpg", ctaBannerWithPoints.getTabletBackgroundImage());
-//        assertEquals("/content/dam/images/mobile.jpg", ctaBannerWithPoints.getMobileBackgroundImage());
+        assertEquals("/content/dam/images/desktop.jpg", ctaBannerWithPoints.getDesktopBackgroundImage());
+        assertEquals("/content/dam/images/tablet.jpg", ctaBannerWithPoints.getTabletBackgroundImage());
+        assertEquals("/content/dam/images/mobile.jpg", ctaBannerWithPoints.getMobileBackgroundImage());
         assertEquals("Buy", ctaBannerWithPoints.getButtonName());
         assertEquals("/content/test", ctaBannerWithPoints.getButtonLink());
         assertEquals(0, points.size());
@@ -67,7 +67,7 @@ class CtaBannerWithPointsTest {
     @Test
     void extractPoints_ShouldReturnEmptyList_WhenPointsMultifieldIsNull() {
         Resource resource = context.resourceResolver().getResource(COMPONENT_LOCATION + "/cta_banner_businessAccount");
-        CtaBannerWithPointsV2 ctaBannerWithPoints = resource.adaptTo(CtaBannerWithPointsV2.class);
+        CtaBannerWithPoints ctaBannerWithPoints = resource.adaptTo(CtaBannerWithPoints.class);
         List<String> points = ctaBannerWithPoints.getPoints();
         assertNotNull(points);
         assertTrue(points.isEmpty());
