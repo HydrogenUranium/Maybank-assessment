@@ -19,6 +19,9 @@ def footersChecked = 0
 def footersWithCompanyLinks = 0
 def footersWithCookieLink = 0
 def footersModified = 0
+def filteredPath = []
+def wrongPaths = []
+def notPublished = []
 
 @Field DICTIONARY = [
         "en-IE": ["Cookie Settings": "Cookie Settings"],
@@ -144,6 +147,7 @@ sql2Query(QUERY).each { footer ->
                 }
             }
         }
+        filteredPath.push(footerPath.split('/root/footer')[0])
     } else {
         // CompanyLinks node doesn't exist
         println "  ✗ No companyLinks found in this footer"
@@ -188,6 +192,8 @@ sql2Query(QUERY).each { footer ->
 
                 println "  + Added new Cookie Settings link: ${translatedValue} as item${itemNumber}"
                 footersModified++
+
+                //filteredPath.push(footerPath)
             } else {
                 println "  + Would add new Cookie Settings link: ${translatedValue} (DRY RUN)"
             }
@@ -202,6 +208,53 @@ sql2Query(QUERY).each { footer ->
     }
 }
 
+def getJcrContent(path) {
+    return pageManager.getContainingPage(path).getContentResource();
+}
+
+def isPublished(path) {
+    def resource = getJcrContent(path)
+    def valueMap = resource.getValueMap()
+    def status = valueMap.get('cq:lastReplicationAction_publish', valueMap.get('cq:lastReplicationAction', ''))
+    return status.equals('Activate')
+}
+
+def filtered = filteredPath.stream()
+        .filter(path -> {
+            if(getResource(path) == null) {
+                wrongPaths.add(path)
+                return false
+            }
+            if(!isPublished(path)) {
+                notPublished.add(path)
+                return false;
+            }
+            return true
+        }).toList()
+
+println("""Wrong paths: ${wrongPaths.size()}""")
+println("""Not published: ${notPublished.size()}""")
+println("""Pages to publish: ${filtered.size()}""")
+
+def replicator = getService("com.day.cq.replication.Replicator")
+
+
+filtered.each({ path ->
+    if (!DRY_RUN) {
+        try {
+            def session = resourceResolver.adaptTo(Session)
+            if (session != null) {
+                replicator.replicate(session, ReplicationActionType.ACTIVATE, path)
+                println("Successfully published: ${path}")
+            } else {
+                println("Failed to adapt resourceResolver to Session")
+            }
+        } catch (Exception e) {
+            println("Replication failed for ${path}: ${e.message}")
+        }
+    }
+})
+
 // Print summary
 println "\n===== SUMMARY ====="
 println "Total footers checked: ${footersChecked}"
@@ -209,3 +262,4 @@ println "Footers with companyLinks: ${footersWithCompanyLinks}"
 println "Footers with Cookie links: ${footersWithCookieLink}"
 println "Footers modified (added Cookie link): ${footersModified}"
 println "DRY RUN: ${DRY_RUN}"
+println "filterd path: ${filteredPath}"
