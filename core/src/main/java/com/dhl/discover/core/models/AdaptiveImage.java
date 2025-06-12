@@ -15,7 +15,7 @@ import org.apache.sling.models.factory.ModelFactory;
 import javax.annotation.PostConstruct;
 
 /**
- * Abstract base class for Banner components that provides common functionality
+ * Abstract base class for Image components that provides common functionality to inherit Image features
  */
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
