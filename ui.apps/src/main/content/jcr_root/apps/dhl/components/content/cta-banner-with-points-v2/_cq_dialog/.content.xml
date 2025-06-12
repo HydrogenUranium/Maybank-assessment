@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
           jcr:primaryType="nt:unstructured"
-          jcr:title="Image"
+          jcr:title="CTA Banner With Points V2"
           sling:resourceType="cq/gui/components/authoring/dialog"
           extraClientlibs="[core.wcm.components.image.v3.editor,core.wcm.components.commons.editor.dialog.pageimagethumbnail.v1]"
           helpPath="https://www.adobe.com/go/aem_cmp_image_v3"
@@ -19,7 +19,6 @@
                     <properties
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Properties"
-                            granite:hide="${!cqDesign.keyTakeaways}"
                             sling:resourceType="granite/ui/components/coral/foundation/container"
                             margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
@@ -30,39 +29,32 @@
                                 <items jcr:primaryType="nt:unstructured">
                                     <column
                                             jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            sling:resourceType="granite/ui/components/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <keyTakeawaysFeature
+                                            <title
                                                     jcr:primaryType="nt:unstructured"
-                                                    granite:hide="${!cqDesign.keyTakeaways}"
-                                                    sling:resourceType="granite/ui/components/foundation/container">
-                                                <items jcr:primaryType="nt:unstructured">
-                                                    <summaryTitle
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                            fieldLabel="Summary Title"
-                                                            name="./summaryTitle"/>
-                                                    <summaryPoints
-                                                            jcr:primaryType="nt:unstructured"
-                                                            validation="multifield-quantity max-3"
-                                                            fieldLabel="Summary Points (Will only be displayed if you have 2 or more points)"
-                                                            composite="{Boolean}true"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
-                                                        <field sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                               jcr:primaryType="nt:unstructured"
-                                                               name="./summaryPoints">
-                                                            <items jcr:primaryType="nt:unstructured">
-                                                                <text
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                        fieldLabel="Point"
-                                                                        required="true"
-                                                                        name="./text"/>
-                                                            </items>
-                                                        </field>
-                                                    </summaryPoints>
-                                                </items>
-                                            </keyTakeawaysFeature>
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Title"
+                                                    emptyText="Subscribe To Our Newsletter And Be The First To Receive Exclusive Updates, Exciting Offers, And Insider Insights"
+                                                    name="./title"/>
+                                            <points
+                                                    jcr:primaryType="nt:unstructured"
+                                                    fieldLabel="Points"
+                                                    composite="{Boolean}true"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                       jcr:primaryType="nt:unstructured"
+                                                       name="./points">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <text
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldLabel="Point"
+                                                                required="true"
+                                                                name="./text"/>
+                                                    </items>
+                                                </field>
+                                            </points>
                                         </items>
                                     </column>
                                 </items>
@@ -84,44 +76,6 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <useVideo
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/switch"
-                                                    checked="{Boolean}false"
-                                                    name="./useVideo"
-                                                    fieldLabel="Video Banner"
-                                                    uncheckedValue="{Boolean}false"
-                                                    granite:class="cq-dialog-switch-showhide"
-                                                    value="{Boolean}true">
-                                                <granite:data
-                                                        jcr:primaryType="nt:unstructured"
-                                                        cq-dialog-switch-showhide-target=".video-config-showhide"/>
-                                            </useVideo>
-                                            <videoConfig
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                    granite:class="video-config-showhide"
-                                                    margin="{Boolean}false">
-                                                <granite:data
-                                                        jcr:primaryType="nt:unstructured"
-                                                        show-if-switch="checked"/>
-                                                <items jcr:primaryType="nt:unstructured">
-                                                    <loop
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/switch"
-                                                            checked="{Boolean}true"
-                                                            name="./loop"
-                                                            fieldLabel="Loop"
-                                                            uncheckedValue="{Boolean}false"
-                                                            value="{Boolean}true"/>
-                                                    <video
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                            name="./video"
-                                                            rootPath="/content/dam"
-                                                            fieldLabel="Video Path"/>
-                                                </items>
-                                            </videoConfig>
                                             <imageConfig
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -168,7 +122,7 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
                                                             name="./mobileImage/sling:resourceType"
-                                                            value="dhl/components/content/hero-banner-v2"/>
+                                                            value="dhl/components/content/cta-banner-with-points-v2"/>
                                                     <tabletImageFileReference
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
@@ -184,7 +138,7 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
                                                             name="./tabletImage/sling:resourceType"
-                                                            value="dhl/components/content/hero-banner-v2"/>
+                                                            value="dhl/components/content/cta-banner-with-points-v2"/>
                                                     <desktopImageFileReference
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
@@ -200,7 +154,7 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
                                                             name="./desktopImage/sling:resourceType"
-                                                            value="dhl/components/content/hero-banner-v2"/>
+                                                            value="dhl/components/content/cta-banner-with-points-v2"/>
                                                     <alternativeGroup
                                                             granite:class="cmp-image__editor-alt"
                                                             jcr:primaryType="nt:unstructured"
@@ -337,6 +291,18 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured" sling:hideChildren="[captionGroup,link]">
+                                            <buttonName
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Button Name"
+                                                    emptyText="Subscribe"
+                                                    name="./buttonName"/>
+                                            <buttonLink
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="Button Link"
+                                                    rootPath="/content/dhl"
+                                                    name="./buttonLink"/>
                                             <id
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -344,12 +310,23 @@
                                                     fieldLabel="ID"
                                                     name="./id"
                                                     validation="html-unique-id-validator"/>
+                                            <analytics
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="acs-commons/granite/ui/components/include"
+                                                    path="/apps/dhl/dialog-fragments/analytics/analytics"
+                                                    namespace="small"/>
                                         </items>
                                     </column>
                                 </items>
                             </columns>
                         </items>
                     </metadata>
+                    <analytics
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Analytics &amp; Reporting"
+                            sling:resourceType="granite/ui/components/foundation/include"
+                            path="/apps/dhl/dialog-fragments/analytics/dialog"
+                            namespace="analytics"/>
                     <styletab
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/include"

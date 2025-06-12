@@ -53,12 +53,14 @@
                 "dhl:culture-hype"
               ],
               "root": {
-                "article_container": {
-                  "body": {
-                    "responsivegrid": {
-                      "text": {
-                        "sling:resourceType": "dhl/components/content/text",
-                        "text": "<h2>Article Body the-future-of-cyber-sales</h2>"
+                "main": {
+                  "article_container": {
+                    "body": {
+                      "responsivegrid": {
+                        "text": {
+                          "sling:resourceType": "dhl/components/content/text",
+                          "text": "<h2>Article Body the-future-of-cyber-sales</h2>"
+                        }
                       }
                     }
                   }
@@ -75,12 +77,14 @@
               "sling:resourceType": "dhl/components/pages/editable-article",
               "jcr:primaryType": "cq:PageContent",
               "root": {
-                "article_container": {
-                  "body": {
-                    "responsivegrid": {
-                      "text": {
-                        "sling:resourceType": "dhl/components/content/text",
-                        "text": "<h2>Article Body ai-science-fiction-it-is-not</h2>"
+                "main": {
+                  "article_container": {
+                    "body": {
+                      "responsivegrid": {
+                        "text": {
+                          "sling:resourceType": "dhl/components/content/text",
+                          "text": "<h2>Article Body ai-science-fiction-it-is-not</h2>"
+                        }
                       }
                     }
                   }
