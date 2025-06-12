@@ -2,7 +2,7 @@
 <sly data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"></sly>
 
 <div class="cq-placeholder"
-     data-sly-set.isEmpty=${(!model.points || model.points.size == 0) && !model.title && !model.buttonName}
+     data-sly-set.isEmpty="${(!model.points || model.points.size == 0) && !model.title && !model.buttonName}"
      data-sly-test="${wcmmode.edit && isEmpty}"
      data-emptytext="${component.title}"></div>
 
