@@ -104,7 +104,7 @@ public class DiscoverRssFeed {
     }
 
     private String getArticleIntroduction() {
-        var par = getChildResource("/jcr:content/root/article_container/body/responsivegrid");
+        var par = getChildResource("/jcr:content/root/main/article_container/body/responsivegrid");
         if (par == null) {
             return "";
         }
