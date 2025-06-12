@@ -34,10 +34,11 @@
       width: 5.4rem;
       height: 5.4rem;
       border-radius: 50%;
+      margin-right: 1.5rem;
     }
 
     &-description {
-      padding-left: .5rem;
+      padding-left: 0;
 
       &__name {
         font-size: 1.6rem;
@@ -45,7 +46,7 @@
         font-weight: bold;
         color: map-get($palette, dhl-black);
         text-transform: capitalize;
-        padding-bottom: .5rem;
+        padding-bottom: 1rem;
       }
 
       &__title {
@@ -54,7 +55,9 @@
         color: map-get($palette, dhl-black);
         text-transform: capitalize;
         opacity: 0.6;
+        padding-bottom: 1rem;
       }
+
 
     }
   }
