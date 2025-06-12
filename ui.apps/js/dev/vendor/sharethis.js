@@ -1353,9 +1353,6 @@ Array.prototype.indexOf || (Array.prototype.indexOf = function(d, e) {
       mailru: "https://connect.mail.ru/share?" + st.qs({
         share_url: share_url
       }),
-      mailru: "https://connect.mail.ru/share?" + st.qs({
-        share_url: share_url
-      }),
       meneame: "https://meneame.net/submit.php?" + st.qs({
         url: share_url
       }),
@@ -2859,7 +2856,6 @@ st.embeds = st.getEmbeds();
     stackoverflow: img('stackoverflow-white.svg'),
     surfingbird: img('surfingbird-white.svg'),
     telegram: img('telegram-white.svg'),
-    telegram: img('telegram-white.svg'),
     tencentqq: img('tencentqq-white.svg'),
     threads: img('threads-white.svg'),
     threema: img('threema-white.svg'),
@@ -3598,7 +3594,7 @@ __stdos__.logger = {
                               var fpestid_cookie = __stdos__.data.parseCookie("fpestid", document.cookie);
                               try {
                                 if (!fpestid_cookie) {
-                                  localStorage.setItem("fpestid", res.fpestid,);
+                                  localStorage.setItem("fpestid", res.fpestid);
                                   var timestamp = Math.floor(Date.now() / 1000);
                                   localStorage.setItem("fpestid_timestamp", timestamp.toString());
                                 }
