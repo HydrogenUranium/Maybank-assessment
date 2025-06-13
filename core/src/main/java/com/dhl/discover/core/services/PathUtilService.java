@@ -50,7 +50,7 @@ public class PathUtilService {
             encodedPath = new URI(null, null, path, null).toASCIIString();
             encodedPath = encodeUnsupportedCharacters(encodedPath);
         } catch (UnsupportedEncodingException | URISyntaxException ex) {
-            log.error("An error occurred encoding URL path", ex);
+            log.error("An error occurred encoding URL path: {}", ex.getMessage());
         }
 
         return StringUtils.isBlank(encodedPath) ? path : encodedPath;
@@ -81,9 +81,9 @@ public class PathUtilService {
 
     public boolean isExternalLink(String link) {
         try {
-            var url = new URL(link);
+            var uri = new URI(link);
 
-            String host = url.getHost();
+            String host = uri.getHost();
 
             if (host == null || host.isEmpty()) {
                 return false;
@@ -93,7 +93,7 @@ public class PathUtilService {
             var envHostname = removeWwwPrefix(environmentConfiguration.getAkamaiHostname());
 
             return !host.equals(envHostname);
-        } catch (MalformedURLException e) {
+        } catch (URISyntaxException e) {
             return false;
         }
     }

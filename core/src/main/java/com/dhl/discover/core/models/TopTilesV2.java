@@ -44,7 +44,7 @@ public class TopTilesV2 {
         }
         tiles = tileResources.stream()
                 .map(resource -> modelFactory.createModelFromWrappedRequest(request, resource, Tile.class))
-                .collect(Collectors.toList());
+                .toList();
 
         for(var i = 0; i < tiles.size(); i++) {
             var tile = tiles.get(i);

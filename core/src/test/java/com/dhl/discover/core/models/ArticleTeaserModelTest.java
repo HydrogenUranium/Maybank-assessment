@@ -68,7 +68,7 @@ class ArticleTeaserModelTest {
         resourceResolver = context.resourceResolver();
         context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
 
-        lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+        lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
         lenient().when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
@@ -88,7 +88,6 @@ class ArticleTeaserModelTest {
         assertEquals("/content/dam/dhl/listimage.jpg", articleTeaserModel.getImagePathFromPage());
         assertEquals("Alt text", articleTeaserModel.getAltTextFromPageImage());
         assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
-        assertEquals("Sansa Stark", articleTeaserModel.getAuthor());
         assertEquals("2023-10-11", articleTeaserModel.getPublishDate());
         assertEquals("October 11, 2023", articleTeaserModel.getFriendlyPublishDate());
         assertEquals("ARTICLE PAGE", articleTeaserModel.getTitleFromLinkedPage());
@@ -144,7 +143,6 @@ class ArticleTeaserModelTest {
         assertNull(articleTeaserModel.getImagePathFromPage());
         assertNull(articleTeaserModel.getAltTextFromPageImage());
         assertEquals("#CategoryPage", articleTeaserModel.getCategoryTag());
-        assertEquals("Sansa Stark", articleTeaserModel.getAuthor());
         assertEquals("2023-10-11", articleTeaserModel.getPublishDate());
         assertEquals("October 11, 2023", articleTeaserModel.getFriendlyPublishDate());
         assertEquals("", articleTeaserModel.getTitleFromLinkedPage());

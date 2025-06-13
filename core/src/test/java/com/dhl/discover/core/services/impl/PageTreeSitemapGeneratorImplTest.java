@@ -87,8 +87,8 @@ public class PageTreeSitemapGeneratorImplTest {
     void testAlternative() throws SitemapException, NoSuchFieldException, IllegalAccessException {
         Page page = resource.adaptTo(Page.class);
         Map<Locale, Page> languageAlternatives = new LinkedHashMap<>();
-        languageAlternatives.put(new Locale("fr"), page);
-        languageAlternatives.put(new Locale("de"), page);
+        languageAlternatives.put(Locale.forLanguageTag("fr"), page);
+        languageAlternatives.put(Locale.forLanguageTag("de"), page);
 
         when(languageAlternativesService.getLanguageAlternatives(any(Page.class))).thenReturn(languageAlternatives);
         pageTreeSitemapGenerator = context.registerInjectActivateService(new PageTreeSitemapGeneratorImpl(),
@@ -108,7 +108,7 @@ public class PageTreeSitemapGeneratorImplTest {
     void testNoAlternative() throws SitemapException, NoSuchFieldException, IllegalAccessException {
         Page mockPage = mock(Page.class);
         Map<Locale, Page> languageAlternatives = new LinkedHashMap<>();
-        languageAlternatives.put(new Locale("fr"), mockPage);
+        languageAlternatives.put(Locale.forLanguageTag("fr"), mockPage);
 
         when(languageAlternativesService.getLanguageAlternatives(any(Page.class))).thenReturn(languageAlternatives);
         lenient().when(mockPage.getContentResource()).thenReturn(null);

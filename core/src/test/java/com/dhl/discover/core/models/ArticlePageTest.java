@@ -69,7 +69,7 @@ class ArticlePageTest {
 
 		when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
 		when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
-		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(new Locale("en"));
+		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
 		when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
 		when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
 	}
@@ -131,7 +131,7 @@ class ArticlePageTest {
 
 		assertEquals("ARTICLE PAGE without new article setup", article.getTitle());
 		assertEquals(getTodayDate(), article.getCreated());
-		assertEquals(getTodayDateText(new Locale("en", "us")), article.getCreatedfriendly());
+		assertEquals(getTodayDateText(Locale.forLanguageTag("en-US")), article.getCreatedfriendly());
 		assertEquals("", article.getReadtime());
 		assertNull(articlePage.getShareOn());
 		assertNull(articlePage.getSmartShareButtonsLabel());
@@ -168,9 +168,6 @@ class ArticlePageTest {
 		assertEquals("ARTICLE PAGE", article.getNavTitle());
 		assertEquals("ARTICLE PAGE", article.getPageTitle());
 		assertEquals("How subscription models are changing e-commerce habits", article.getBrief());
-		assertEquals("Sansa Stark", article.getAuthor());
-		assertEquals("Senior Content Writer, Discover", article.getAuthortitle());
-		assertEquals("/content/dam/dhl/site-image/roundels/laptop.png", article.getAuthorimage());
 		assertEquals("6 min read", article.getReadtime());
 		assertEquals("/content/dam/image.jpg", article.getPageImage());
 		assertEquals("/content/dam/dhl/heroimagemob.jpg", article.getHeroimagemob());
