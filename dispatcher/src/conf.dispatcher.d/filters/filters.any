@@ -1,25 +1,11 @@
 $include "./default_filters.any"
 
 ### CHECK
-/1000 {
-     /type "allow"
-     /path "/content/dhl/*"
-     /selectors "*"
-     /extension '(json|xml|html|txt)'
+/2000 {
+    /type "allow"
+    /method "GET"
+    /url "/libs/granite/csrf/token.json*"
 }
-
-### CHECK
-/2000 { /type "allow" /method "GET" /url "/libs/granite/csrf/token.json*" }
-
-### bespoke DHL api endpoints
-/3001 { /type "allow" /method "POST" /url "/apps/dhl/discoverdhlapi/*" } ## ??
-
-/3006 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/google*" }
-/3008 { /type "allow" /method "GET" /url "/apps/dhl/discoverdhlapi/suggestions*" }
-
-#/3009 { /type "allow" /method "POST" /url "/conf/dhl/servlet-handler/shipnow" }
-/3010 { /type "allow" /method "POST" /url "/apps/dhl/servlet-handler/*" }
-/3011 { /type "allow" /method "POST" /url "/conf/dhl/api/*" }
 
 # Allow forms submissions to AEM
 /3012 {
@@ -32,32 +18,52 @@ $include "./default_filters.any"
 /3013 {
     /type "allow"
     /method "POST"
-    /path "*/content/dhl/*"
-    /selectors 'enhanced-google-conversion'
-    /extension 'html' }  # allow POSTs to enhanced-google-conversion selectors under content
+    /path "/content/dhl/*"
+    /selectors '(enhanced-google-conversion)'
+    /extension '(html)'
+}  # allow POSTs to enhanced-google-conversion selectors under content
 
+# Allow Discover APIs
 /3014 {
     /type "allow"
     /method "GET"
-    /path '/content/dhl*'
-     /selectors '(suggestions|search|child-pages)'
-     /extension '(json)'
+    /path "/content/dhl*"
+    /selectors '(suggestions|search|child-pages)'
+    /extension '(json)'
 }
 
 # Allow AEM WCM Core Components sitemap
-/3020 { /type "allow" /path "/content/*" /selectors '(sitemap-index|sitemap)' /extension "xml" }
+/3020 {
+     /type "allow"
+     /path "/content/*"
+     /selectors '(sitemap-index|sitemap)'
+     /extension '(xml)'
+}
 
 # Allow RSS Feed generation requests
 /3030 {
      /type "allow"
-     /path '/content/dhl*'
+     /path "/content/dhl*"
      /selectors '(rss|all|element|thumb|319)'
      /extension '(xml|png)'
 }
 
 # Allow WEBP images
-/3100 { /type "allow" /method "GET" /extension '(webp)' /path "/content/*" }
-/3101 { /type "allow" /method "GET" /url "/adobe/dynamicmedia/*" }
+/3100 {
+    /type "allow"
+    /method "GET"
+    /extension '(webp)'
+    /path "/content/*"
+}
+/3101 {
+    /type "allow"
+    /method "GET"
+    /url "/adobe/dynamicmedia/*"
+}
 
 # Allow speculation rules JSON model
-/0104 { /type "allow" /method "GET" /url "/content/dam/speculation-rules/*.specrules" }
+/0104 {
+    /type "allow"
+    /method "GET"
+    /url "/content/dam/speculation-rules/*.specrules"
+}

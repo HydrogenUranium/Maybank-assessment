@@ -1,0 +1,94 @@
+{
+  "ctaBanner": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:content": {
+      "ctaBanner-article-subscribeToOurNewsletter-title": "Subscribe To Our Newsletter",
+      "ctaBanner-article-subscribeToOurNewsletter-topTitle": "Stay In The Loop!",
+      "ctaBanner-article-subscribeToOurNewsletter-desktopBackgroundImage": "/content/dam/images/desktop.jpg",
+      "ctaBanner-article-subscribeToOurNewsletter-buttonName": "Subscribe",
+      "ctaBanner-article-subscribeToOurNewsletter-tabletBackgroundImage": "/content/dam/images/tablet.jpg",
+      "ctaBanner-article-subscribeToOurNewsletter-mobileBackgroundImage": "/content/dam/images/mobile.jpg",
+      "ctaBanner-article-subscribeToOurNewsletter-buttonLink": "/content/dhl/openBusinessAccount",
+      "ctaBanner-article-bottom-disabled": "true"
+    },
+    "small-business-advice": {
+      "jcr:primaryType": "cq:Page",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "pageTitle": "Small Business Advice | Small Business Resources | Discover DHL",
+        "sling:resourceType": "dhl/components/pages/editable-category-page",
+        "navTitle": "Small Business advice"
+      },
+      "article": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+          "jcr:primaryType": "cq:PageContent",
+          "cq:template": "/conf/dhl/settings/wcm/templates/article",
+          "root": {
+            "jcr:primaryType": "nt:unstructured",
+            "layout": "responsiveGrid",
+            "sling:resourceType": "wcm/foundation/components/responsivegrid",
+            "article_container": {
+              "jcr:primaryType": "nt:unstructured",
+              "sling:resourceType": "dhl/components/content/article-container",
+              "body": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "responsivegrid": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                  "cta_banner_custom": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "imageFromPageImage": "false",
+                    "fileReference": "/content/dam/australia/desktop/home/DHL Barometer Masthead_Desktop 1920x998_NO LOGO-80.jpg",
+                    "jcr:lastModifiedBy": "admin",
+                    "topTitle": "CTA Banner V2",
+                    "jcr:created": "Mon Jun 09 2025 22:34:28 GMT+0530",
+                    "title": "CTA Banner Title V2",
+                    "displayPopupTitle": "true",
+                    "linkTarget": "_self",
+                    "buttonLink": "/content/test",
+                    "buttonName": "Buy",
+                    "jcr:lastModified": "Mon Jun 09 2025 22:43:16 GMT+0530",
+                    "titleValueFromDAM": "true",
+                    "sling:resourceType": "dhl/components/content/cta-banner-v2",
+                    "isDecorative": "false",
+                    "altValueFromDAM": "true",
+                    "mobileImage": {
+                      "jcr:primaryType": "nt:unstructured",
+                      "fileReference": "/content/dam/australia/DHL_Indigenous_welcome_to_country.jpg",
+                      "sling:resourceType": "dhl/components/content/cta-banner-v2",
+                      "altValueFromDAM": "true"
+                    },
+                    "analytics": {
+                      "jcr:primaryType": "nt:unstructured",
+                      "trackedInteractions": "basic",
+                      "interactionType": "content",
+                      "name": "SUBSCRIBE TO OUR NEWSLETTER",
+                      "position": "position",
+                      "customAttributes": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "item0": {
+                          "jcr:primaryType": "nt:unstructured",
+                          "name": "topic",
+                          "value": "subscription"
+                        }
+                      }
+                    }
+                  },
+                  "cta_banner_subscribeNewsletter": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "type": "subscribeNewsletter",
+                    "style": "adaptive",
+                    "sling:resourceType": "dhl/components/content/cta-banner-with-points"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
