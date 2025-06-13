@@ -114,8 +114,11 @@
     position: relative;
   }
 
-  label {
+  .mktoFieldWrap:has(input[type="checkbox"]) .mktoLabel {
     padding-left: 3.6rem;
+  }
+
+  label {
     font-size: 1.4rem;
     color: #212121;
     margin: 0;
