@@ -36,6 +36,12 @@
     grid-template-columns: auto 1fr;
     row-gap: 3px;
     align-items: center;
+    gap: 5px;
+
+    [dir="rtl"] & {
+      margin-right: auto;
+      margin-left: 0;
+    }
 
     @include respond(md) {
       padding-top: 2rem;
