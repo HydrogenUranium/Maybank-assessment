@@ -1,5 +1,5 @@
 {
-  "smtp.port:Integer":30125,
+  "smtp.port:Integer":"$[env:AEM_SMTP_PORT;default=30125]",
   "from.address":"discover.aem.service@dhl.com",
   "smtp.host":"$[env:AEM_PROXY_HOST;default=proxy.tunnel]"
 }
