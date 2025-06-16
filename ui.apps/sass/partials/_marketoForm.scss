@@ -70,7 +70,7 @@
     width: 100%!important;
   }
   .mktoRadioList {
-    padding-left: 3.6rem;
+    width: 100% !important;
     label,
     input {
       margin-top: 1rem;
@@ -78,6 +78,8 @@
       width: auto !important;
     }
     label {
+      font-size: 1.6rem;
+      line-height: 2.3rem;
       padding-left: 1rem;
       &:after {
         content:"";
@@ -114,8 +116,11 @@
     position: relative;
   }
 
-  label {
+  .mktoFieldWrap:has(input[type="checkbox"]) .mktoLabel {
     padding-left: 3.6rem;
+  }
+
+  label {
     font-size: 1.4rem;
     color: #212121;
     margin: 0;
