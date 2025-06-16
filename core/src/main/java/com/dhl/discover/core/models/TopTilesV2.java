@@ -74,6 +74,7 @@ public class TopTilesV2 {
         private PageUtilService pageUtilService;
 
         @ValueMapValue
+        @Getter
         private String linkURL;
 
         @ChildResource
