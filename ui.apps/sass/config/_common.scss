@@ -8,6 +8,7 @@
   border: none;
   border-radius: 4px;
   padding: 10px 32px;
+  text-shadow: none;
 
   &--primary {
     color: white;
@@ -54,4 +55,25 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+  background-color: rgba(0,0,0,0.01);
+}
+
+// below classes are used to fix accessibility issue related to Text Contrast
+// when text is placed on images or animated pages
+
+.text-on-image {
+  background-color: rgba(0,0,0,0.01);
+  text-shadow: 0 0 2rem #131313, .1rem .1rem #0006;
+}
+
+.text-on-animatedPages {
+  background-color: rgba(0,0,0,0.01) !important ;
+}
+
+.text-on-white-animatedPages {
+  color: map-get($palette, dark-yellow) !important;
+}
+
+.text-on-blue-animatedPages {
+  font-size: 1.9rem !important;
 }

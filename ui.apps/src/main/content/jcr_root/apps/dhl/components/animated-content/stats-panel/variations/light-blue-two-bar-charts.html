@@ -5,8 +5,8 @@
     <div class="row">
       <div class="col-12">
         <div class="statsPanel__parallaxBox statsPanel__parallaxBox--fashion">
-          <div class="col-lg-5 offset-lg-1">
-            <h2 class="statsPanel__title statsPanel__title--light">${properties.title}</h2>
+          <div class="col-lg-5 offset-lg-1 text-on-animatedPages">
+            <h2 class="statsPanel__title statsPanel__title--light ">${properties.title}</h2>
             <div class="statsPanel__copy statsPanel__copy--light">${properties.firstDescriptionPart @ context='html'}</div>
             <div class="d-none d-lg-block"><br></div>
             <div class="d-none d-lg-block">
@@ -16,7 +16,7 @@
           <div class="statsPanel__boxWrapper">
             <div class="col-6 offset-lg-2 col-lg-4">
               <div class="statsPanel__wrapper statsPanel__wrapper--alt">
-                <div class="statsPanel__statsWrapper statsPanel__statsWrapper--alt">
+                <div class="statsPanel__statsWrapper statsPanel__statsWrapper--alt text-on-animatedPages">
                   <div class="statsPanel__statsValue statsPanel__statsValue--light"
                       data-sly-test="${properties.hidePercentage != 'true'}" data-start="0"
                       data-end="${properties.leftBlockPercent}"
@@ -44,7 +44,7 @@
             </div>
             <div class="col-6 col-lg-4">
               <div class="statsPanel__wrapper statsPanel__wrapper--alt">
-                <div class="statsPanel__statsWrapper statsPanel__statsWrapper--altDown">
+                <div class="statsPanel__statsWrapper statsPanel__statsWrapper--altDown text-on-animatedPages">
                   <div class="statsPanel__statsValue statsPanel__statsValue--light"
                       data-sly-test="${properties.hidePercentage != 'true'}" data-start="0"
                       data-end="${properties.rightBlockPercent}" data-suffix="%"

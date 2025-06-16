@@ -4,7 +4,7 @@
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 <article id="${properties.id}" class="cmp-cta-banner" data-sly-test="${!isEmpty}">
-    <div class="cmp-cta-banner__body">
+    <div class="cmp-cta-banner__body text-on-image">
         <div class="cmp-cta-banner__top-title">${model.topTitle @ context = 'html'}</div>
         <div class="cmp-cta-banner__title">${model.title @ context = 'html'}</div>
         <a data-sly-attribute.data-analytics="${analytics.json}"
