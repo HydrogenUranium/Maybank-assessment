@@ -4,6 +4,12 @@
     margin-top: 2rem;
     display: flex;
     align-items: center;
+    gap: 5px;
+
+    [dir="rtl"] & {
+      margin-right: auto;
+      margin-left: 0;
+    }
   }
 
   &__author-image {
