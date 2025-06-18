@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Hero Banner - Properties"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <note
+                            jcr:primaryType="nt:unstructured"
+                            granite:hide="${!cqDesign.inheritImage}"
+                            sling:resourceType="granite/ui/components/coral/foundation/alert"
+                            jcr:title="Background Image"
+                            text="Utilize page properties to set up or adjust image settings."/>
+                    <customImage
+                            jcr:primaryType="nt:unstructured"
+                            granite:hide="${cqDesign.inheritImage}"
+                            sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <mobileBackgroundImage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./mobileBackgroundImage"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Mobile Background Image"/>
+                            <tabletBackgroundImage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./tabletBackgroundImage"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Tablet Background Image"/>
+                            <desktopBackgroundImage
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./desktopBackgroundImage"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Desktop Background Image"/>
+                            <backgroundImageAltText
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Hero Image Alt Text"
+                                    name="./backgroundImageAltText"
+                                    fieldDescription="Set Background image alt text for SEO"
+                                    emptyText="Background Image Alt Text Placeholder"/>
+                            <id
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="HTML ID attribute to apply to the component."
+                                    fieldLabel="ID"
+                                    name="./id"
+                                    validation="html-unique-id-validator"/>
+                        </items>
+                    </customImage>
+                    <useVideo
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/switch"
+                            checked="{Boolean}false"
+                            name="./useVideo"
+                            fieldLabel="Video Banner"
+                            uncheckedValue="{Boolean}false"
+                            granite:class="cq-dialog-switch-showhide"
+                            value="{Boolean}true">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                cq-dialog-switch-showhide-target=".video-config-showhide"/>
+                    </useVideo>
+                    <videoConfig
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            granite:class="video-config-showhide"
+                            margin="{Boolean}false">
+                        <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                show-if-switch="checked"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <loop
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/switch"
+                                    checked="{Boolean}true"
+                                    name="./loop"
+                                    fieldLabel="Loop"
+                                    uncheckedValue="{Boolean}false"
+                                    value="{Boolean}true"/>
+                            <video
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    name="./video"
+                                    rootPath="/content/dam"
+                                    fieldLabel="Video Path"/>
+                        </items>
+                    </videoConfig>
+                    <keyTakeawaysFeature
+                            jcr:primaryType="nt:unstructured"
+                            granite:hide="${!cqDesign.keyTakeaways}"
+                            sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <summaryTitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Summary Title"
+                                    name="./summaryTitle"/>
+                            <summaryPoints
+                                    jcr:primaryType="nt:unstructured"
+                                    validation="multifield-quantity max-3"
+                                    fieldLabel="Summary Points (Will only be displayed if you have 2 or more points)"
+                                    composite="{Boolean}true"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                <field sling:resourceType="granite/ui/components/coral/foundation/container"
+                                       jcr:primaryType="nt:unstructured"
+                                       name="./summaryPoints">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <text
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Point"
+                                                required="true"
+                                                name="./text"/>
+                                    </items>
+                                </field>
+                            </summaryPoints>
+                        </items>
+                    </keyTakeawaysFeature>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
