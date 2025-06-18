@@ -1,5 +1,6 @@
 import groovy.transform.Field
-import com.adobe.cq.dam.cfm.FragmentTemplate
+import com.adobe.cq.dam.cfm.FragmentTemplate;
+import org.apache.commons.lang3.StringUtils;
 
 @Field DRY_RUN = false;
 @Field CF_ROOT = '/content/dam/dhl/content-fragment';
@@ -36,6 +37,44 @@ def getOrCreateNode(node, child, type) {
     return node.hasNode(child) ? node.getNode(child) : node.addNode(child, type);
 }
 
+def getLocale(pagePath) {
+    return getPage(pagePath).getLanguage()
+}
+
+def getLanguage(locale) {
+    def language = locale.getLanguage();
+    if("en".equals(language)) {
+        return "en"
+    }
+
+    return locale.toString().toLowerCase();
+}
+
+
+def getDisplayLanguage(locale) {
+    def language = locale.getLanguage();
+    if("en".equals(language)) {
+        return "English [en]";
+    }
+
+    def langCode = """[${getLanguage(locale)}]""";
+    def lang = locale.getDisplayLanguage();
+    def country = locale.getDisplayCountry();
+    def wrapedCountry = country.isBlank() ? country : """(${country})""";
+    return StringUtils.joinWith(' ', lang, wrapedCountry, langCode );
+}
+
+
+def getOrCreateLanguageFolder(node, childNodeName, title) {
+    def folder = getOrCreateNode(node, childNodeName, 'sling:Folder');
+    if(!folder.hasNode("jcr:content")) {
+        def jcrContent = getOrCreateNode(folder, "jcr:content", 'nt:unstructured');
+        jcrContent.setProperty("jcr:title", title)
+        jcrContent.setProperty("cq:isTransCreated", true)
+    }
+    return folder;
+}
+
 def setPropertyIfEmpty(node, property, value) {
     if(!node.hasProperty(property) || node.getProperty(property).getString().isBlank()){
         node.setProperty(property, value);
@@ -54,9 +93,11 @@ def initStructure() {
     }
 }
 
-def createAuthor(lang, name, title, description, photo) {
+def createAuthor(locale, name, title, description, photo) {
     def node = getNode('/content/dam/dhl/content-fragments')
-    def langFolder = getOrCreateNode(node, lang, 'sling:Folder');
+    def lang = getLanguage(locale);
+    def langTitle = getDisplayLanguage(locale);
+    def langFolder = getOrCreateLanguageFolder(node, lang, langTitle);
     def fragmentName = normalize(name)
     def fragment;
     if(langFolder.hasNode(fragmentName)) {
@@ -71,10 +112,6 @@ def createAuthor(lang, name, title, description, photo) {
     setPropertyIfEmpty(master, "image", photo)
 
     return fragment;
-}
-
-def getLanguage(pagePath) {
-    return getPage(pagePath).getLanguage().getLanguage();
 }
 
 def getOrCreateCfComponent(node, child) {
@@ -97,11 +134,11 @@ getHomePages().each{page ->
 
         def cfNode = getOrCreateCfComponent(it, 'author-cf')
 
-        if(cfNode.hasProperty('fragmentPath')) {
-            return;
-        }
+        // if(cfNode.hasProperty('fragmentPath')) {
+        //     return;
+        // }
 
-        def lang = getLanguage(page);
+        def locale = getLocale(page);
         def name = properties.get("author", "")
         if(name.isBlank()) {
             return;
@@ -110,7 +147,7 @@ getHomePages().each{page ->
         def description = properties.get("authorBriefDescription", "")
         def photo = properties.get("authorimage", "")
 
-        def fragment = createAuthor(lang, name, title, description, photo);
+        def fragment = createAuthor(locale, name, title, description, photo);
         cfNode.setProperty('fragmentPath', fragment)
     }
     if(DRY_RUN) {
