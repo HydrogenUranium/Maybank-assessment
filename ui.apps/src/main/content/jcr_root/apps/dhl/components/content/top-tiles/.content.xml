@@ -3,4 +3,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Top tiles"
     sling:resourceSuperType="wcm/foundation/components/top-tiles"
-    componentGroup="DHL Components"/>
+    componentGroup=".hidden"/>
