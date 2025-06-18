@@ -89,15 +89,6 @@ println "Found ${banners.size()} total CTA Banner components"
 def skippedCount = 0
 
 getAllCtaBanners().each {
-    def componentPath = it.getPath()
-
-    // Skip components on animated-page template
-    if (isOnAnimatedPageTemplate(componentPath)) {
-        println "Skipping component on animated-page template: ${componentPath}"
-        skippedCount++
-        return
-    }
-
     processCtaBanner(it)
 }
 

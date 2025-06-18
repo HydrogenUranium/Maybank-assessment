@@ -16,25 +16,6 @@ def getAllCtaBanners() {
     """)
 }
 
-def isOnAnimatedPageTemplate(nodePath) {
-    // Extract the page path from the component path
-    def pagePath = nodePath
-    if (pagePath.contains("/jcr:content/")) {
-        pagePath = pagePath.substring(0, pagePath.indexOf("/jcr:content/"))
-    }
-
-    // Get the page's jcr:content node
-    def contentPath = pagePath + "/jcr:content"
-    if (session.nodeExists(contentPath)) {
-        def contentNode = session.getNode(contentPath)
-
-        if (contentNode.hasProperty("cq:template")) {
-            return contentNode.getProperty("cq:template").getString() == ANIMATED_PAGE_TEMPLATE
-        }
-    }
-    return false
-}
-
 def createNode(parent, nodeName) {
     return parent.hasNode(nodeName) ? parent.getNode(nodeName) : parent.addNode(nodeName);
 }
@@ -89,15 +70,6 @@ println "Found ${banners.size()} total CTA Banner components"
 def skippedCount = 0
 
 getAllCtaBanners().each {
-    def componentPath = it.getPath()
-
-    // Skip components on animated-page template
-    if (isOnAnimatedPageTemplate(componentPath)) {
-        println "Skipping component on animated-page template: ${componentPath}"
-        skippedCount++
-        return
-    }
-
     processCtaBanner(it)
 }
 
