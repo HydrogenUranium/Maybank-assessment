@@ -178,31 +178,6 @@
                 </editable-animated-page>
             </pages>
             <content jcr:primaryType="nt:unstructured">
-                <hero-banner jcr:primaryType="nt:unstructured">
-                    <policy_1701253431611
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Landing Page - Hero Banner - Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            enableAssetDelivery="true"
-                            inheritImage="false"
-                            keyTakeaways="false"
-                            margin="false"
-                            roundedCorners="false"
-                            topMargin="true">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </policy_1701253431611>
-                    <policy_108071559424200
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Article - Hero Banner - Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            enableAssetDelivery="true"
-                            inheritImage="true"
-                            keyTakeaways="true"
-                            margin="true"
-                            roundedCorners="true">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </policy_108071559424200>
-                </hero-banner>
                 <title jcr:primaryType="nt:unstructured">
                     <title_policy
                             jcr:primaryType="nt:unstructured"
@@ -1138,69 +1113,6 @@
                         </cq:styleGroups>
                     </article_embed_component_policy>
                 </embed>
-                <top-tiles jcr:primaryType="nt:unstructured">
-                    <policy_dhl_top-tiles
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="DHL Top Tiles Policy"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            enableAssetDelivery="true">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                        <cq:styleGroups jcr:primaryType="nt:unstructured">
-                            <item0
-                                    cq:styleGroupLabel="Margin Top"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="mt-large"
-                                            cq:styleId="1729042357900"
-                                            cq:styleLabel="Large"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item1
-                                            cq:styleClasses="mt-medium"
-                                            cq:styleId="1729045097701"
-                                            cq:styleLabel="Medium"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item2
-                                            cq:styleClasses="mt-small"
-                                            cq:styleId="1729045105010"
-                                            cq:styleLabel="Small"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item3
-                                            cq:styleClasses="mt-zero"
-                                            cq:styleId="1729045111413"
-                                            cq:styleLabel="No"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item0>
-                            <item1
-                                    cq:styleGroupLabel="Margin Bottom"
-                                    jcr:primaryType="nt:unstructured">
-                                <cq:styles jcr:primaryType="nt:unstructured">
-                                    <item0
-                                            cq:styleClasses="mb-large"
-                                            cq:styleId="1729045126103"
-                                            cq:styleLabel="Large"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item1
-                                            cq:styleClasses="mb-medium"
-                                            cq:styleId="1729045132395"
-                                            cq:styleLabel="Medium"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item2
-                                            cq:styleClasses="mb-small"
-                                            cq:styleId="1729045139172"
-                                            cq:styleLabel="Small"
-                                            jcr:primaryType="nt:unstructured"/>
-                                    <item3
-                                            cq:styleClasses="mb-zero"
-                                            cq:styleId="1729045144901"
-                                            cq:styleLabel="No"
-                                            jcr:primaryType="nt:unstructured"/>
-                                </cq:styles>
-                            </item1>
-                        </cq:styleGroups>
-                    </policy_dhl_top-tiles>
-                </top-tiles>
                 <top-tiles-v2 jcr:primaryType="nt:unstructured">
                     <policy_dhl_top-tiles-v2
                             jcr:primaryType="nt:unstructured"
