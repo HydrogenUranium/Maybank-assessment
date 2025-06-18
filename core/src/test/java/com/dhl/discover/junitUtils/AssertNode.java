@@ -1,6 +1,7 @@
 package com.dhl.discover.junitUtils;
 
 import junit.framework.Assert;
+import lombok.experimental.UtilityClass;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -8,6 +9,7 @@ import javax.jcr.RepositoryException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@UtilityClass
 public class AssertNode {
 
     public static void assertNodeStructureEquals(Node expected, Node actual) throws RepositoryException {

@@ -5205,4 +5205,31 @@
             </components>
         </foundation>
     </wcm>
+    <core jcr:primaryType="nt:unstructured">
+        <wcm jcr:primaryType="nt:unstructured">
+            <components jcr:primaryType="nt:unstructured">
+                <image jcr:primaryType="nt:unstructured">
+                    <v3 jcr:primaryType="nt:unstructured">
+                        <image jcr:primaryType="nt:unstructured">
+                            <policy_featuredimage
+                                    jcr:lastModified="{Date}2025-06-17T18:13:52.231+03:00"
+                                    jcr:lastModifiedBy="admin"
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Image Policy"
+                                    sling:resourceType="wcm/core/components/policy/policy"
+                                    allowedRenditionWidths="[200,400,600,800,1000,1200,1400,1600]"
+                                    enableAssetDelivery="true"
+                                    altValueFromDAM="true"
+                                    disableLazyLoading="false"
+                                    displayPopupTitle="true"
+                                    isDecorative="false"
+                                    titleValueFromDAM="true">
+                                <jcr:content jcr:primaryType="nt:unstructured"/>
+                            </policy_featuredimage>
+                        </image>
+                    </v3>
+                </image>
+            </components>
+        </wcm>
+    </core>
 </jcr:root>

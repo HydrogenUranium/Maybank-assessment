@@ -1078,5 +1078,9 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wcm/core/components/policies/mapping"/>
         </root>
+        <cq:featuredimage
+                cq:policy="core/wcm/components/image/v3/image/policy_featuredimage"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/core/components/policies/mapping"/>
     </jcr:content>
 </jcr:root>

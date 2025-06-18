@@ -3,6 +3,7 @@ package com.dhl.discover.core.servlets;
 import com.dhl.discover.core.models.search.SearchResultEntry;
 import com.dhl.discover.core.models.Article;
 import com.dhl.discover.core.services.*;
+import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.lenient;
@@ -76,6 +78,8 @@ class GetArticlesServletTest {
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);
+
+        mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));

@@ -5,6 +5,7 @@ import com.dhl.discover.core.injectors.HomePropertyInjector;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.TagUtilService;
+import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.commons.lang3.StringUtils;
@@ -29,6 +30,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import static com.dhl.discover.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
+import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -66,6 +68,8 @@ class ArticlePageTest {
 		context.addModelsForClasses(ArticlePage.class);
 
 		context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
+
+		mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
 
 		when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
 		when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");

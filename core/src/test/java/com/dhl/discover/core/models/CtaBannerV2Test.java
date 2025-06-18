@@ -4,6 +4,7 @@ import com.adobe.cq.wcm.core.components.models.Image;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.services.AssetUtilService;
+import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -45,10 +46,14 @@ class CtaBannerV2Test {
     @Mock
     private AssetUtilService assetUtilService;
 
+    @Mock
+    private Image mobileImageModel;
+
     @BeforeEach
     void setUp() {
         context.load().json("/com/dhl/discover/core/models/CtaBannerV2/content.json", "/content");
         mockInject(context, INJECT_SCRIPT_BINDINGS, "currentStyle", currentStyle);
+        mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "mobileImage", mobileImageModel);
 
         Page currentPage = Objects.requireNonNull(resourceResolver.getResource("/content/ctaBanner")).adaptTo(Page.class);
         context.currentPage(currentPage);
@@ -98,6 +103,6 @@ class CtaBannerV2Test {
         assertEquals("Buy", ctaBannerV2.getButtonName());
         assertNull(ctaBannerV2.getDesktopImageModel());
         assertNull(ctaBannerV2.getTabletImageModel());
-        assertEquals("/content/dam/australia/DHL_Indigenous_welcome_to_country.jpg", ctaBannerV2.getMobileImageModel().getSrc());
+        assertEquals(mobileImageModel, ctaBannerV2.getMobileImageModel());
     }
 }
