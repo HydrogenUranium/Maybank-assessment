@@ -47,7 +47,7 @@ public class NoFollowExternalLinkTransformer extends DefaultTransformer implemen
         }
 
         String hrefValue = attributes.getValue(hrefIndex);
-        if(pathUtilService.isExternalLink(hrefValue)) {
+        if(StringUtils.isNotBlank(hrefValue) && pathUtilService.isExternalLink(hrefValue)) {
 
             int relIndex = attributes.getIndex(relAttribute);
             String relValue = (relIndex != -1) ? attributes.getValue(relIndex) : null;
