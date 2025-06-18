@@ -59,21 +59,9 @@
 }
 
 // below classes are used to fix accessibility issue related to Text Contrast
-// when text is placed on images or animated pages
+// when text is placed on images
 
 .text-on-image {
   background-color: rgba(0,0,0,0.01);
   text-shadow: 0 0 2rem #131313, .1rem .1rem #0006;
-}
-
-.text-on-animatedPages {
-  background-color: rgba(0,0,0,0.01) !important ;
-}
-
-.text-on-white-animatedPages {
-  color: map-get($palette, dark-yellow) !important;
-}
-
-.text-on-blue-animatedPages {
-  font-size: 1.9rem !important;
 }

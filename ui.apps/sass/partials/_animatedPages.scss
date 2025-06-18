@@ -19,4 +19,21 @@
     padding: 1rem 0;
   }
 
+  //below classes are used for text-contrast issue
+
+  &__text-on-light-blue {
+    color: map-get($palette, navy-blue) !important ;
+
+    a {
+      color: map-get($palette, navy-blue) !important;
+    }
+  }
+
+  &__text-on-white {
+    color: map-get($palette, dark-yellow) !important;
+  }
+
+  &__text-on-blue {
+    font-size: 1.9rem !important;
+  }
 }
