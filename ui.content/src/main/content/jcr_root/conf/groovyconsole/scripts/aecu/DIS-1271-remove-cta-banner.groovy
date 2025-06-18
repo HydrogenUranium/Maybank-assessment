@@ -5,7 +5,9 @@ import org.apache.jackrabbit.commons.JcrUtils;
 @Field CTA_BANNER_V2_TYPE = 'dhl/components/content/cta-banner-v2';
 @Field ANIMATED_PAGE_TEMPLATE = '/conf/dhl/settings/wcm/templates/animated-page';
 
+// run it separately for /content/dhl and experience fragments
 @Field ROOT = '/content/dhl';
+//@Field ROOT = '/content/experience-fragments';
 @Field DRY_RUN = true;
 
 def getAllCtaBanners() {

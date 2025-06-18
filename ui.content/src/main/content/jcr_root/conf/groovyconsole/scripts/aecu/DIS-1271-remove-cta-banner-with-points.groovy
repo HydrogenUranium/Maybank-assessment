@@ -5,7 +5,9 @@ import org.apache.jackrabbit.commons.JcrUtils;
 @Field CTA_BANNER_V2_TYPE = 'dhl/components/content/cta-banner-with-points-v2';
 @Field ANIMATED_PAGE_TEMPLATE = '/conf/dhl/settings/wcm/templates/animated-page';
 
+// run it separately for /content/dhl and experience fragments
 @Field ROOT = '/content/dhl';
+//@Field ROOT = '/content/experience-fragments';
 @Field DRY_RUN = false;
 
 def getAllCtaBanners() {
@@ -14,25 +16,6 @@ def getAllCtaBanners() {
         WHERE ISDESCENDANTNODE('${ROOT}')
         AND [sling:resourceType] = '${CTA_BANNER_TYPE}'
     """)
-}
-
-def isOnAnimatedPageTemplate(nodePath) {
-    // Extract the page path from the component path
-    def pagePath = nodePath
-    if (pagePath.contains("/jcr:content/")) {
-        pagePath = pagePath.substring(0, pagePath.indexOf("/jcr:content/"))
-    }
-
-    // Get the page's jcr:content node
-    def contentPath = pagePath + "/jcr:content"
-    if (session.nodeExists(contentPath)) {
-        def contentNode = session.getNode(contentPath)
-
-        if (contentNode.hasProperty("cq:template")) {
-            return contentNode.getProperty("cq:template").getString() == ANIMATED_PAGE_TEMPLATE
-        }
-    }
-    return false
 }
 
 def createNode(parent, nodeName) {
