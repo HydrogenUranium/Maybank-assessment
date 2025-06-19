@@ -42,10 +42,6 @@
                                         cq:policy="dhl/components/content/article-carousel/article_carousel_policy"
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="wcm/core/components/policies/mapping"/>
-                                <top-tiles
-                                        cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="wcm/core/components/policies/mapping"/>
                                 <related-posts
                                         cq:policy="dhl/components/content/related-posts/policy_dhl_related-posts"
                                         jcr:primaryType="nt:unstructured"
@@ -293,10 +289,6 @@
                                     <content jcr:primaryType="nt:unstructured">
                                         <title
                                                 cq:policy="dhl/components/content/title/title_policy"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="wcm/core/components/policies/mapping"/>
-                                        <top-tiles
-                                                cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <related-posts
@@ -559,10 +551,6 @@
                                                 cq:policy="dhl/components/content/title/title_policy"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
-                                        <top-tiles
-                                                cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <related-posts
                                                 cq:policy="dhl/components/content/related-posts/policy_dhl_related-posts"
                                                 jcr:primaryType="nt:unstructured"
@@ -821,10 +809,6 @@
                                     <content jcr:primaryType="nt:unstructured">
                                         <title
                                                 cq:policy="dhl/components/content/title/title_policy"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="wcm/core/components/policies/mapping"/>
-                                        <top-tiles
-                                                cq:policy="dhl/components/content/top-tiles/policy_dhl_top-tiles"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <related-posts
