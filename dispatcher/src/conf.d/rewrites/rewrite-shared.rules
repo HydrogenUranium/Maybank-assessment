@@ -44,13 +44,11 @@ RewriteCond %{REQUEST_URI} !^/discover/(content/dam|apps/dhl|content/dhl|adobe/d
 RewriteRule ^/discover/(.+)$ https://%{HTTP_HOST}/discover/en-global/$1 [R=301,L]
 
 ### DYNAMIC PASS-THROUGH TO AEM ###
-# all custom endpoints in /apps
-RewriteRule ^/discover/apps/dhl/(servlet-handler|discoverdhlapi)/(.+)$ /apps/dhl/$1/$2 [PT,L,NC]
 # all assets in content/dam
 RewriteRule ^/discover/(content/dam)/(.+)$ /$1/$2 [PT,L,NC]
 # dynamic media
 RewriteRule ^/discover/adobe/dynamicmedia/deliver/(.+)$ /adobe/dynamicmedia/deliver/$1 [PT,L,NC]
-# Search Articles servlet
+# Discover APIs
 RewriteRule ^/discover/((\w{2})-(global|\w{2}).*)(\.search|\.suggestions|\.child-pages).json$ /content/dhl/$3/$1$4.json [PT,L,NC]
 # Adaptive Image servlet
 RewriteRule ^/discover/((\w{2})-(global|\w{2}).*/_jcr_content/.*coreimg.*)$ /content/dhl/$3/$1 [PT,L,NC]

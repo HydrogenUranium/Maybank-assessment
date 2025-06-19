@@ -13,11 +13,7 @@ def wrongPaths = []
 def notPublished = []
 
 @Field COMPONENTS = [
-        "dhl/components/content/cta-banner",
-        "dhl/components/content/cta-banner-with-points",
-        "dhl/components/content/button",
-        "dhl/components/content/cta-banner-gray",
-        "dhl/components/content/marketoForm",
+        "dhl/components/content/top-tiles-v2",
 ]
 
 def getHomePages() {
@@ -65,27 +61,12 @@ def filtered = list.stream()
             return true
         }).toList()
 
-println("Wrong paths: $wrongPaths.size")
-println("Not published: $notPublished.size")
-println("Pages to publish: $filtered.size")
+println("""Wrong paths: ${wrongPaths.size()}""")
+println("""Not published: ${notPublished.size()}""")
+println("""Pages to publish: ${filtered.size()}""")
 
-def getResourceResolver() {
-    def resourceResolverFactory = getService(ResourceResolverFactory)
-    def authInfo = Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, "yourSubServiceName")
-    return resourceResolverFactory.getServiceResourceResolver(authInfo)
-}
+def replicator = getService("com.day.cq.replication.Replicator")
 
-def getService(Class serviceClass) {
-    def bundleContext = FrameworkUtil.getBundle(serviceClass).getBundleContext()
-    ServiceReference serviceReference = bundleContext.getServiceReference(serviceClass.name)
-    return bundleContext.getService(serviceReference)
-}
-
-def resourceResolver = getResourceResolver()
-def replicator = getService(Replicator)
-
-filtered.each { path ->
-    if (!DRY_RUN) {
-        replicator.replicate(resourceResolver.adaptTo(Session), ReplicationActionType.ACTIVATE, path)
-    }
+if (!DRY_RUN) {
+    replicator.replicate(session, ReplicationActionType.ACTIVATE, filtered.toArray(new String[0]), null)
 }

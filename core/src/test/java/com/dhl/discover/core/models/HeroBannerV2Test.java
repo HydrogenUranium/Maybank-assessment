@@ -51,7 +51,9 @@ class HeroBannerV2Test {
 
         Page currentPage = Objects.requireNonNull(resourceResolver.getResource("/content/article")).adaptTo(Page.class);
         context.currentPage(currentPage);
+        context.addModelsForClasses(AdaptiveImage.class);
         context.addModelsForClasses(HeroBannerV2.class);
+
         context.registerAdapter(SlingHttpServletRequest.class, Image.class, (Function<SlingHttpServletRequest, Image>) adaptableRequest -> {
             Image image = mock(Image.class);
             String path = adaptableRequest.getResource().getValueMap().getOrDefault("fileReference", "").toString();
@@ -91,6 +93,7 @@ class HeroBannerV2Test {
     @Test
     void init_shouldInitPropertiesFromPage() {
         initRequest("/content/article/jcr:content/root/article_container/body/hero_banner");
+
         HeroBannerV2 heroBanner = request.adaptTo(HeroBannerV2.class);
 
         assertNotNull(heroBanner);

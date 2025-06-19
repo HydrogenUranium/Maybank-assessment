@@ -23,13 +23,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class CtaBannerWithPointsTest {
-    private final static String COMPONENT_LOCATION = "/content/home/small-business-advice/article/jcr:content/root/article_container/body/responsivegrid";
+    private static final  String COMPONENT_LOCATION = "/content/home/small-business-advice/article/jcr:content/root/article_container/body/responsivegrid";
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
     CtaBannerWithPoints model = new CtaBannerWithPoints();
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         context.load().json("/com/dhl/discover/core/models/CtaBannerWithPoints/content.json", "/content");
         context.addModelsForClasses(CtaBannerWithPoints.class);
     }
