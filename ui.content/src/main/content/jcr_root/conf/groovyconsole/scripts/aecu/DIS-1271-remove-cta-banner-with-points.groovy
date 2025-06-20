@@ -1,5 +1,6 @@
 import groovy.transform.Field;
 import org.apache.jackrabbit.commons.JcrUtils;
+import com.day.cq.replication.ReplicationActionType
 
 @Field CTA_BANNER_TYPE = 'dhl/components/content/cta-banner-with-points';
 @Field CTA_BANNER_V2_TYPE = 'dhl/components/content/cta-banner-with-points-v2';
@@ -9,6 +10,7 @@ import org.apache.jackrabbit.commons.JcrUtils;
 @Field ROOT = '/content/dhl';
 //@Field ROOT = '/content/experience-fragments';
 @Field DRY_RUN = false;
+@Field PUBLISH_IT = false;
 
 def getAllCtaBanners() {
     return sql2Query("""
@@ -84,6 +86,53 @@ if (session.nodeExists(specificPath)) {
 
 println "Skipped ${skippedCount} components on animated-page templates"
 println "Processed ${banners.size() - skippedCount} components"
+
+def getJcrContent(path) {
+    return pageManager.getContainingPage(path).getContentResource();
+}
+
+def isPublished(path) {
+    def resource = getJcrContent(path)
+    def valueMap = resource.getValueMap()
+    def status = valueMap.get('cq:lastReplicationAction_publish', valueMap.get('cq:lastReplicationAction', ''))
+    return status.equals('Activate')
+}
+
+def filtered = list.stream()
+        .filter(path -> {
+            if(getResource(path) == null) {
+                wrongPaths.add(path)
+                return false
+            }
+            if(!isPublished(path)) {
+                notPublished.add(path)
+                return false;
+            }
+            return true
+        }).toList()
+
+println("""Wrong paths: ${wrongPaths.size()}""")
+println("""Not published: ${notPublished.size()}""")
+println("""Pages to publish: ${filtered.size()}""")
+
+
+def replicator = getService("com.day.cq.replication.Replicator")
+
+if (PUBLISH_IT) {
+    filtered.each({
+        try {
+            def session = resourceResolver.adaptTo(Session)
+            if (session != null) {
+                replicator.replicate(session, ReplicationActionType.ACTIVATE, it)
+                println("Successfully published: ${it}")
+            } else {
+                println("Failed to adapt resourceResolver to Session")
+            }
+        } catch (Exception e) {
+            println("Replication failed for ${it}: ${e.message}")
+        }
+    })
+}
 
 if(DRY_RUN) {
     session.refresh(false)
