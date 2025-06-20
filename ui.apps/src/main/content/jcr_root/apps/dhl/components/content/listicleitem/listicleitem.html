@@ -27,6 +27,10 @@
         <div class="listicle__row__text">
             <h2 class="listicle__row__text__title" data-sly-element="${properties.type}">${properties.title}</h2>
             <p class="listicle__row__text__body">${properties.content @ context='html'}</p>
+            <a data-sly-test="${properties.buttonLabel}"
+               class="listicle__row__button dhl-btn dhl-btn--primary" href="${properties.buttonLink}.html" title="${properties.buttonLabel}">
+                <span>${properties.buttonLabel}</span>
+            </a>
         </div>
     </div>
 </div>
