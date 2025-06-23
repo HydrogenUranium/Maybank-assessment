@@ -1,6 +1,4 @@
 {
-  "customerId": "$[env:GOOGLE_CUSTOMER_ID]",
-  "developerToken": "$[secret:GOOGLE_DEVELOPER_TOKEN]",
   "clientId": "$[env:GOOGLE_CLIENT_ID]",
   "clientSecret": "$[secret:GOOGLE_CLIENT_SECRET]",
   "refreshToken": "$[secret:GOOGLE_REFRESH_TOKEN]"
