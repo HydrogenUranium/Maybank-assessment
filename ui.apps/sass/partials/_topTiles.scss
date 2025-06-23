@@ -78,7 +78,6 @@
     color: #FFFFFF;
     font-weight: bold;
     font-size: var(--font-size-xs);
-    text-shadow: 0 0 2rem #131313;
 
     @include respond(xl) {
       font-size: var(--font-size-sm);

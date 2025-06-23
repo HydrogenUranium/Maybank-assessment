@@ -5,27 +5,27 @@
     <div class="row">
       <div class="col-12">
         <div class="statsPanel__parallaxBox statsPanel__parallaxBox--fashion">
-          <div class="col-lg-5 offset-lg-1">
-            <h2 class="statsPanel__title statsPanel__title--light">${properties.title}</h2>
-            <div class="statsPanel__copy statsPanel__copy--light">${properties.firstDescriptionPart @ context='html'}</div>
+          <div class="col-lg-5 offset-lg-1 ">
+            <h2 class="statsPanel__title statsPanel__title--light animatedPages__text-on-light-blue ">${properties.title}</h2>
+            <div class="statsPanel__copy statsPanel__copy--light animatedPages__text-on-light-blue">${properties.firstDescriptionPart @ context='html'}</div>
             <div class="d-none d-lg-block"><br></div>
             <div class="d-none d-lg-block">
-              <div class="statsPanel__copy statsPanel__copy--light">${properties.secondDescriptionPart @ context='html'}</div>
+              <div class="statsPanel__copy statsPanel__copy--light animatedPages__text-on-light-blue">${properties.secondDescriptionPart @ context='html'}</div>
             </div>
           </div>
           <div class="statsPanel__boxWrapper">
             <div class="col-6 offset-lg-2 col-lg-4">
               <div class="statsPanel__wrapper statsPanel__wrapper--alt">
-                <div class="statsPanel__statsWrapper statsPanel__statsWrapper--alt">
-                  <div class="statsPanel__statsValue statsPanel__statsValue--light"
+                <div class="statsPanel__statsWrapper statsPanel__statsWrapper--alt ">
+                  <div class="statsPanel__statsValue statsPanel__statsValue--light animatedPages__text-on-light-blue"
                       data-sly-test="${properties.hidePercentage != 'true'}" data-start="0"
                       data-end="${properties.leftBlockPercent}"
                       data-suffix="%">${properties.leftBlockPercent}%</div>
-                  <div class="statsPanel__value statsPanel__value--light">${properties.leftBlockTitle}</div>
+                  <div class="statsPanel__value statsPanel__value--light animatedPages__text-on-light-blue">${properties.leftBlockTitle}</div>
                 </div>
                 <div class="boxFill" aria-label="${properties.leftBlockTitle}">
                   <div class="boxFill__shadow"></div>
-                  <div class="boxFill__fill boxFill__fillstat__${idModel.id}">
+                  <div class="boxFill__fill boxFill__fillstat__${idModel.id} ">
                     <style type="text/css">
                         .boxFill--show .boxFill__fillstat__${idModel.id @ context='styleToken'} {
                             height: calc((((100% - 32.4%) / 100) * ${properties.leftBlockPercent @ context='number'}) + 32.4%);
@@ -45,11 +45,11 @@
             <div class="col-6 col-lg-4">
               <div class="statsPanel__wrapper statsPanel__wrapper--alt">
                 <div class="statsPanel__statsWrapper statsPanel__statsWrapper--altDown">
-                  <div class="statsPanel__statsValue statsPanel__statsValue--light"
+                  <div class="statsPanel__statsValue statsPanel__statsValue--light animatedPages__text-on-light-blue"
                       data-sly-test="${properties.hidePercentage != 'true'}" data-start="0"
                       data-end="${properties.rightBlockPercent}" data-suffix="%"
                       data-duration="2.4">${properties.rightBlockPercent}%</div>
-                  <div class="statsPanel__value statsPanel__value--light">${properties.rightBlockTitle}</div>
+                  <div class="statsPanel__value statsPanel__value--light animatedPages__text-on-light-blue">${properties.rightBlockTitle}</div>
                 </div>
                 <div class="boxFill" aria-label="${properties.rightBlockTitle}">
                   <div class="boxFill__shadow"></div>
@@ -72,7 +72,7 @@
             </div>
           </div>
           <div class="col-12 d-lg-none">
-            <div class="statsPanel__copy statsPanel__copy--light">${properties.secondDescriptionPart @ context='html'}</div>
+            <div class="statsPanel__copy statsPanel__copy--light animatedPages__text-on-light-blue">${properties.secondDescriptionPart @ context='html'}</div>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@
        data-sly-attribute="${teaser.link.htmlAttributes}"
        data-sly-unwrap="${!teaser.link.valid || !teaser.actions.empty}"
        data-cmp-clickable="${teaser.data ? true : false}">
-        <div class="cmp-teaser__content">
+        <div class="cmp-teaser__content text-on-image">
             <sly data-sly-call="${pretitleTemplate.pretitle @ teaser=teaser}"></sly>
             <sly data-sly-test.titleFromLinkedPage="${articleTeaser.titleFromLinkedPage}" data-sly-call="${titleTemplate.titleFromPage @ teaser=teaser,articleTeaser=articleTeaser}"></sly>
             <sly data-sly-test="${!titleFromLinkedPage}" data-sly-call="${titleTemplate.title @ teaser=teaser}"></sly>

@@ -15,11 +15,11 @@
                 .short-banners {
                     #${model.id @ context='styleToken'} {
                     background-image: url('${backgroundImage.image @ context='uri'}');
-                }
+                  }
                 }
             </style>
         </div>
-        <div class="cmp-cta-banner-with-points__body">
+        <div class="cmp-cta-banner-with-points__body text-on-image">
             <div class="cmp-cta-banner-with-points__title" data-sly-test="${model.title}">${model.title}</div>
             <ul class="cmp-cta-banner-with-points__list ${model.points && model.points.size > 2 ? 'cmp-cta-banner-with-points__list--columns' : ''}" data-sly-test="${model.points && model.points.size > 0}">
                 <li class="cmp-cta-banner-with-points__item" data-sly-repeat="${model.points}">${item}</li>

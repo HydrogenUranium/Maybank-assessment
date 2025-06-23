@@ -15,7 +15,7 @@ exports[`ArticleCard should render component "ArticleCard" property 1`] = `
     tabIndex={-1}
   >
     <div
-      className="articleCardGroupTag"
+      className="articleCardGroupTag articleCardTextOnImage"
     >
       #LogisticsAdvice
     </div>

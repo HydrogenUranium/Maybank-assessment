@@ -35,7 +35,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             href={path}
             className={styles.articleCardImage}
             style={{ backgroundImage: `url(${pageImage})` }}>
-            <div className={styles.articleCardGroupTag}>{groupTag}</div>
+            <div className={`${styles.articleCardGroupTag} ${styles.articleCardTextOnImage}`}>{groupTag}</div>
         </a>
         <div className={styles.articleCardInfo}>
             <div className={styles.articleCardAuthor}>{[author, createdfriendly].filter(i => i).join(' | ')}</div>
