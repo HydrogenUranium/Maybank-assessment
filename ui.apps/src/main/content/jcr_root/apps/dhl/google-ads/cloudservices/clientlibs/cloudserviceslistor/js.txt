@@ -1,0 +1,2 @@
+js/createcloudservice.js
+js/publish.js

@@ -51,6 +51,8 @@ Export-Package: \
     com.dhl.discover.core.services;version="1.0.0", \
     com.dhl.discover.core.dto.general;version="1.0.0", \
     com.dhl.discover.core.dto.marketo;version="1.0.0", \
+    com.dhl.discover.google.services;version="1.0.0", \
+    com.dhl.discover.google.helpers;version="1.0.0", \
     com.akamai.edgegrid.signer;version="5.0.0", \
     com.akamai.edgegrid.signer.exceptions;version="5.0.0"
 
