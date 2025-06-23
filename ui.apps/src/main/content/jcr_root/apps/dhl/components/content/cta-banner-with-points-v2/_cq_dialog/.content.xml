@@ -36,7 +36,8 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldLabel="Title"
                                                     emptyText="Subscribe To Our Newsletter And Be The First To Receive Exclusive Updates, Exciting Offers, And Insider Insights"
-                                                    name="./title"/>
+                                                    name="./title"
+                                                    required="{Boolean}true"/>
                                             <points
                                                     jcr:primaryType="nt:unstructured"
                                                     fieldLabel="Points"
