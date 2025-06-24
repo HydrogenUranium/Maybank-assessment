@@ -2124,13 +2124,15 @@
                             jcr:lastModified="{Date}2025-05-30T10:50:56.128+03:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="CTA Banner V2 - Blank Policy"
+                            jcr:title="CTA Banner V2 - Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
                             allowedRenditionWidths="[400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600]"
                             altValueFromDAM="true"
                             disableLazyLoading="false"
                             displayPopupTitle="true"
-                            isDecorative="false">
+                            isDecorative="false"
+                            enableAssetDelivery="true"
+                            titleValueFromDAM="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
@@ -2193,12 +2195,14 @@
                             jcr:lastModified="{Date}2025-05-30T10:50:56.128+03:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="CTA Banner With Points V2 - Blank Policy"
+                            jcr:title="CTA Banner With Points V2 - Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
                             allowedRenditionWidths="[400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600]"
                             altValueFromDAM="true"
                             disableLazyLoading="false"
-                            isDecorative="false">
+                            isDecorative="false"
+                            enableAssetDelivery="true"
+                            titleValueFromDAM="true">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
                             <item0
