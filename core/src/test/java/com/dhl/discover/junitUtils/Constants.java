@@ -1,5 +1,8 @@
 package com.dhl.discover.junitUtils;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class Constants {
 
     public static final String NEW_CONTENT_STRUCTURE_JSON= "/com/dhl/discover/core/newContentStructure.json";
