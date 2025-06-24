@@ -232,3 +232,10 @@
     line-height: inherit;
   }
 }
+//mixin to apply fix for text contrast
+@mixin text-on-image {
+  background-color: rgba(0,0,0,0.01);
+  text-shadow: 0 0 2rem #131313, .1rem .1rem #0006;
+}
+
+
