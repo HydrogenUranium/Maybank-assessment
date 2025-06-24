@@ -72,15 +72,15 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping">
                                                 <mobileImage
-                                                        cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2-blank"
+                                                        cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2"
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="wcm/core/components/policies/mapping"/>
                                                 <tabletImage
-                                                        cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2-blank"
+                                                        cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2"
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="wcm/core/components/policies/mapping"/>
                                                 <desktopImage
-                                                        cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2-blank"
+                                                        cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2"
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="wcm/core/components/policies/mapping"/>
                                         </cta-banner-v2>
