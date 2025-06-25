@@ -1,0 +1,5 @@
+{
+    "apiKey": "$[secret:GENERATIVE_AI_API_KEY]",
+    "endpointUrl": "$[env:GENERATIVE_AI_ENDPOINT_URL;default=https://apihub-sandbox.dhl.com/genai-test/openai/deployments/gpt-4o-mini-2024-07-18/chat/completions]",
+    "apiVersion": "$[env:GENERATIVE_AI_API_VERSION;default=2024-10-21]"
+}

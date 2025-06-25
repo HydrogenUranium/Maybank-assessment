@@ -1,0 +1,4 @@
+#base=js
+spectrum-custom-icons.js
+input-toolbar-actions.js
+input-toolbar.js

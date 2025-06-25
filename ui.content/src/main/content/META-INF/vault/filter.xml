@@ -2,17 +2,23 @@
 <workspaceFilter version="1.0">
     <filter root="/conf/global/settings/cloudconfigs"/>
     <filter root="/conf/global/settings/translation/rules"/>
+
     <filter root="/conf/global/settings/workflow/models/request_for_activation"/>
     <filter root="/conf/global/settings/workflow/models/request_for_deletion"/>
     <filter root="/conf/global/settings/workflow/models/request_for_deactivation"/>
     <filter root="/conf/global/settings/workflow/models/request_to_complete_move_operation"/>
     <filter root="/conf/global/settings/workflow/models/request_for_page_deletion"/>
+    <filter root="/conf/global/settings/workflow/models/dam/image_description_generation"/>
+    <filter root="/conf/global/settings/workflow/launcher/config/asset_description"/>
     <filter root="/var/workflow/models" mode="update"/>
     <filter root="/var/workflow/models/request_for_activation"/>
     <filter root="/var/workflow/models/request_for_deletion"/>
     <filter root="/var/workflow/models/request_for_deactivation"/>
     <filter root="/var/workflow/models/request_to_complete_move_operation"/>
     <filter root="/var/workflow/models/request_for_page_deletion"/>
+    <filter root="/var/workflow/models/dam/image_description_generation"/>
+
+    <filter root="/conf/global/settings/dam/adminui-extension"/>
 
     <filter root="/content/cq:tags" mode="update"/>
     <filter root="/content/experience-fragments" mode="update"/>

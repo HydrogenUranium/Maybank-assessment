@@ -19,7 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
 
-import static com.dhl.discover.junitUtils.AssertRequest.assertRequestAndMockResponse;
+import static com.dhl.discover.junitUtils.AssertRequest.verifyPostRequest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -79,7 +79,7 @@ class GoogleAdsServiceTest {
         when(mockStatusLine.getStatusCode()).thenReturn(200);
         when(googleCloudProjectService.getAccessToken()).thenReturn("testAccessToken");
 
-        JsonObject result = assertRequestAndMockResponse(expectedUrl, expectedRequestBody, mockHttpResponse,
+        JsonObject result = verifyPostRequest(expectedUrl, expectedRequestBody, mockHttpResponse,
                 () -> service.uploadEnhancedConversion(developerToken, customerId, orderId, email, conversionActionId)
         );
 

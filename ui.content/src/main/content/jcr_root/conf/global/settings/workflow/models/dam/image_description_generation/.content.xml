@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          jcr:primaryType="cq:Page">
+    <jcr:content
+            cq:designPath="/libs/settings/wcm/designs/default"
+            cq:lastModified="{Date}2025-06-27T13:40:36.975+03:00"
+            cq:lastModifiedBy="admin"
+            cq:template="/libs/cq/workflow/templates/model"
+            jcr:primaryType="cq:PageContent"
+            jcr:title="Image Description Generation"
+            sling:resourceType="cq/workflow/components/pages/model"
+            lastSynced="{Date}2025-06-27T13:40:38.439+03:00">
+        <flow
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/parsys">
+            <process
+                    jcr:created="{Date}2025-06-21T15:07:11.859+03:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2025-06-27T13:39:05.857+03:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Description Generation"
+                    sling:resourceType="cq/workflow/components/model/process">
+                <metaData
+                        jcr:primaryType="nt:unstructured"
+                        PROCESS="com.dhl.discover.genai.workflow.exec.GenerateAssetDescriptionWorkflowProcess"
+                        PROCESS_AUTO_ADVANCE="true"/>
+            </process>
+            <process_1201621631
+                    jcr:created="{Date}2025-06-27T13:39:50.668+03:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2025-06-27T13:40:36.972+03:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Complete"
+                    sling:resourceType="cq/workflow/components/model/process">
+                <metaData
+                        jcr:primaryType="nt:unstructured"
+                        PROCESS="com.day.cq.dam.core.impl.process.DamUpdateAssetWorkflowCompletedProcess"
+                        PROCESS_AUTO_ADVANCE="true"/>
+            </process_1201621631>
+        </flow>
+    </jcr:content>
+</jcr:root>

@@ -64,6 +64,7 @@
                                     /conf/global/settings/cloudconfigs,
                                     /conf/global/settings/workflow/models,
                                     /conf/global/settings/translation,
+                                    /conf/global/settings/dam,
                                     /conf/dhl/settings,
                                     /conf/dhl/settings/dam,
                                     /conf/dhl/settings/dam/cfm,

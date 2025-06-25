@@ -40,7 +40,7 @@
                             sling:resourceType="cq/workflow/components/model/process">
                         <metaData
                                 jcr:primaryType="nt:unstructured"
-                                PROCESS="com.dhl.discover.core.services.impl.RemoveDeletedPageProperties"
+                                PROCESS="com.dhl.discover.core.workflow.exec.RemoveDeletedPageProperties"
                                 PROCESS_AUTO_ADVANCE="true"/>
                     </process_1572443172>
                     <process
@@ -53,7 +53,7 @@
                             sling:resourceType="cq/workflow/components/model/process">
                         <metaData
                                 jcr:primaryType="nt:unstructured"
-                                PROCESS="com.dhl.discover.core.services.impl.SetPendingDeletionThumbnail"
+                                PROCESS="com.dhl.discover.core.workflow.exec.thumbnail.SetPendingDeletionThumbnail"
                                 PROCESS_ARGS="deletedImageReference:/apps/dhl/clientlibs/discover/resources/img/pending-deletion.png"
                                 PROCESS_AUTO_ADVANCE="true"/>
                     </process>
@@ -83,7 +83,7 @@
                         <metaData
                                 jcr:primaryType="nt:unstructured"
                                 DO_NOTIFY="true"
-                                DYNAMIC_PARTICIPANT="com.dhl.discover.core.services.impl.ParticipantStepChooserForPublishReview"/>
+                                DYNAMIC_PARTICIPANT="com.dhl.discover.core.workflow.exec.ParticipantStepChooserForPublishReview"/>
                     </dynamic_participant>
                     <or
                             jcr:created="{Date}2025-04-30T17:10:34.721+03:00"
@@ -195,7 +195,7 @@
                                     sling:resourceType="cq/workflow/components/model/process">
                                 <metaData
                                         jcr:primaryType="nt:unstructured"
-                                        PROCESS="com.dhl.discover.core.services.impl.RemovePendingDeletionThumbnail"
+                                        PROCESS="com.dhl.discover.core.workflow.exec.thumbnail.RemovePendingDeletionThumbnail"
                                         PROCESS_ARGS="deletedImageReference:/apps/dhl/clientlibs/discover/resources/img/pending-deletion.png"
                                         PROCESS_AUTO_ADVANCE="true"/>
                             </process>
@@ -229,7 +229,7 @@
                             sling:resourceType="cq/workflow/components/model/process">
                         <metaData
                                 jcr:primaryType="nt:unstructured"
-                                PROCESS="com.dhl.discover.core.services.impl.PublisherPageRemovalNotification"
+                                PROCESS="com.dhl.discover.core.workflow.exec.notification.PublisherPageRemovalNotification"
                                 PROCESS_AUTO_ADVANCE="true"/>
                     </process>
                 </_x0032_>
