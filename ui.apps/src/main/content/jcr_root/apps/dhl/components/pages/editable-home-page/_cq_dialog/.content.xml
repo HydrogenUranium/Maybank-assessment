@@ -5,6 +5,10 @@
         <items jcr:primaryType="nt:unstructured">
             <tabs jcr:primaryType="nt:unstructured">
                 <items jcr:primaryType="nt:unstructured" sling:hideChildren="permissions">
+                    <cloudservices
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                            path="/mnt/override/apps/dhl/components/pages/editable-home-page/tabs/cloudservices"/>
                     <dhl
                             jcr:primaryType="nt:unstructured"
                             jcr:title="DHL Properties"

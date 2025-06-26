@@ -4,6 +4,7 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.models.search.SearchResultEntry;
 import com.dhl.discover.core.services.*;
+import com.dhl.discover.junitUtils.InjectorMock;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -84,6 +85,7 @@ class ArticleGridV2Test {
         mockInjectHomeProperty(context, "articleGrid-sortTitle", "Sort By");
         mockInjectHomeProperty(context, "articleGrid-latestOptionTitle", "Latest");
         mockInjectHomeProperty(context, "articleGrid-showTags", "false");
+        mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
     }
 
     private Article getArticle(String path) {

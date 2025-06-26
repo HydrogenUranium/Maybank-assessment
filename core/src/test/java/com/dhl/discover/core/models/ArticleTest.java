@@ -1,9 +1,11 @@
 package com.dhl.discover.core.models;
 
+import com.adobe.cq.wcm.core.components.models.Image;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import com.dhl.discover.core.services.TagUtilService;
+import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -20,6 +22,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.Locale;
 
+import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.lenient;
@@ -51,6 +54,9 @@ class ArticleTest {
     @Mock
     private AssetUtilService assetUtilService;
 
+    @Mock
+    private Image featuredImageModel;
+
     @BeforeEach
     void setUp() throws Exception {
         resourceResolver = context.resourceResolver();
@@ -62,6 +68,7 @@ class ArticleTest {
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);
+        mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", featuredImageModel);
 
         when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
@@ -110,6 +117,7 @@ class ArticleTest {
         assertEquals("What paperwork do I need for international shipping?", article.getDescription());
         assertEquals("2023-08-04", article.getCreated());
         assertEquals("August 4, 2023", article.getCreatedfriendly());
+        assertEquals(featuredImageModel, article.getFeaturedImageModel());
 
         checkGettersAndSetters(article);
     }

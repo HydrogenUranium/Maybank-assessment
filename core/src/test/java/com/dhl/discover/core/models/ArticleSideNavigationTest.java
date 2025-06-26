@@ -5,6 +5,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.services.*;
+import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -28,6 +29,7 @@ import java.util.Locale;
 import java.util.Date;
 import java.util.ArrayList;
 
+import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.any;
@@ -93,6 +95,7 @@ class ArticleSideNavigationTest {
         ctx.registerService(PathUtilService.class, pathUtilService);
         ctx.registerService(AssetUtilService.class, assetUtilService);
         ctx.addModelsForClasses(ArticleSideNavigation.class);
+        mockInject(ctx, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "featuredImageModel", null);
 
         when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));

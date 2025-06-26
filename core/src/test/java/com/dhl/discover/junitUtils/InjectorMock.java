@@ -1,6 +1,7 @@
 package com.dhl.discover.junitUtils;
 
 import io.wcm.testing.mock.aem.junit5.AemContext;
+import lombok.experimental.UtilityClass;
 import org.apache.sling.models.spi.Injector;
 
 import java.util.Collections;
@@ -9,12 +10,15 @@ import java.util.Map;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
+@UtilityClass
 public class InjectorMock {
 
-    public static String INJECT_ADAPTABLE = "adaptable";
-    public static String INJECT_SCRIPT_BINDINGS = "script-bindings";
-    public static String INJECT_REQUEST_ATTRIBUTES = "request-attributes";
-    public static String INJECT_HOME_PAGE_PROPERTY = "discover-home-property";
+    public static final String INJECT_ADAPTABLE = "adaptable";
+    public static final String INJECT_SELF = "self";
+    public static final String INJECT_SCRIPT_BINDINGS = "script-bindings";
+    public static final String INJECT_REQUEST_ATTRIBUTES = "request-attributes";
+    public static final String INJECT_HOME_PAGE_PROPERTY = "discover-home-property";
+    public static final String INJECT_CHILD_IMAGE_MODEL = "discover-child-image-model";
 
     public static void mockInjectHomeProperty(AemContext context, String name, Object value) {
         mockInject(context, INJECT_HOME_PAGE_PROPERTY, name, value);

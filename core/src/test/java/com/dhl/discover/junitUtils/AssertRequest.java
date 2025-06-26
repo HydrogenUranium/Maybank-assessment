@@ -1,5 +1,6 @@
 package com.dhl.discover.junitUtils;
 
+import lombok.experimental.UtilityClass;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@UtilityClass
 public class AssertRequest {
 
     public static <T> T assertRequestAndMockResponse(ThrowableConsumer<HttpPost> assertRequest, HttpResponse mockHttpResponse, ThrowableSupplier<T> methodToTest) {

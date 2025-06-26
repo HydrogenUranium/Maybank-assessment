@@ -7,6 +7,7 @@ import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,9 +57,8 @@ class ArticleShowcaseTest {
         context.addModelsForClasses(ArticleShowcase.class);
         context.currentPage(page);
         context.load().json("/com/dhl/discover/core/models/ArticleShowcase/content.json", "/content");
-        lenient().when(pageUtils.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        lenient().when(pageUtils.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
-        when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
     }
 
     private void initRequest(String path) {
@@ -72,6 +72,14 @@ class ArticleShowcaseTest {
         ArticleShowcase showcase = request.adaptTo(ArticleShowcase.class);
 
         assertEquals(4, showcase.getArticles().size());
+        assertEquals("Trending posts", showcase.getTitle());
+        assertEquals("horizontal", showcase.getDesignMode());
+        assertEquals("See All Latest Posts", showcase.getLinkName());
+        assertEquals("/content/dhl/au", showcase.getLinkPath());
+        assertEquals("h3", showcase.getArticlesTitleType());
+        assertEquals("h2", showcase.getTitleType());
+        assertEquals("customPick", showcase.getSource());
+        assertEquals("See All Latest Posts", showcase.getLinkName());
     }
 
     @Test
