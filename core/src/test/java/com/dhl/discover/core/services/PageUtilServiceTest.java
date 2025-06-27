@@ -1,13 +1,18 @@
 package com.dhl.discover.core.services;
 
+import com.day.cq.replication.ReplicationActionType;
+import com.day.cq.replication.ReplicationStatus;
 import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.dhl.discover.core.models.Article;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.factory.ModelFactory;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -269,4 +274,126 @@ class PageUtilServiceTest {
         assertEquals("/content/dhl/global/en-global", pageUtilService.getHomePagePath("/content/dhl/global/en-global/ship-with-dhl/services/optional-services"));
     }
 
+    @Test
+    void testIsPublished_NullPage() {
+        assertFalse(pageUtilService.isPublished(null));
+    }
+
+    @Test
+    void testIsPublished_PageHasNoContent() {
+        Page page = mock(Page.class);
+        when(page.hasContent()).thenReturn(false);
+        assertFalse(pageUtilService.isPublished(page));
+    }
+
+    @Test
+    void testIsPublished_PageNotPublished() {
+        Page page = mock(Page.class);
+        when(page.hasContent()).thenReturn(true);
+        Resource contentResource = mock(Resource.class);
+        when(page.getContentResource()).thenReturn(contentResource);
+        ReplicationStatus replicationStatus = mock(ReplicationStatus.class);
+        when(contentResource.adaptTo(ReplicationStatus.class)).thenReturn(replicationStatus);
+        when(replicationStatus.getLastReplicationAction()).thenReturn(ReplicationActionType.DEACTIVATE);
+
+        assertFalse(pageUtilService.isPublished(page));
+    }
+
+    @Test
+    void testIsPublished_PagePublished() {
+        Page page = mock(Page.class);
+        when(page.hasContent()).thenReturn(true);
+        Resource contentResource = mock(Resource.class);
+        when(page.getContentResource()).thenReturn(contentResource);
+        ReplicationStatus replicationStatus = mock(ReplicationStatus.class);
+        when(contentResource.adaptTo(ReplicationStatus.class)).thenReturn(replicationStatus);
+        when(replicationStatus.getLastReplicationAction()).thenReturn(ReplicationActionType.ACTIVATE);
+
+        assertTrue(pageUtilService.isPublished(page));
+    }
+
+    @Test
+    void testGetArticle_NullOrBlankPath() {
+        PageUtilService service = new PageUtilService();
+        assertNull(service.getArticle(null, mock(SlingHttpServletRequest.class)));
+        assertNull(service.getArticle("   ", mock(SlingHttpServletRequest.class)));
+    }
+
+    @Test
+    void testGetArticle_ResourceNotFound() {
+        PageUtilService service = new PageUtilService();
+        SlingHttpServletRequest request = mock(SlingHttpServletRequest.class);
+        ResourceResolver resolver = mock(ResourceResolver.class);
+        when(request.getResourceResolver()).thenReturn(resolver);
+        when(resolver.getResource("some/path")).thenReturn(null);
+
+        assertNull(service.getArticle("some/path", request));
+    }
+
+    @Test
+    void testGetArticle_ModelFactoryReturnsArticle() {
+        PageUtilService service = new PageUtilService();
+        ModelFactory modelFactory = mock(ModelFactory.class);
+        Resource resource = mock(Resource.class);
+        SlingHttpServletRequest request = mock(SlingHttpServletRequest.class);
+        ResourceResolver resolver = mock(ResourceResolver.class);
+        Article article = mock(Article.class);
+
+        when(request.getResourceResolver()).thenReturn(resolver);
+        when(resolver.getResource("valid/path")).thenReturn(resource);
+        when(modelFactory.createModelFromWrappedRequest(request, resource, Article.class)).thenReturn(article);
+
+        try {
+            var field = PageUtilService.class.getDeclaredField("modelFactory");
+            field.setAccessible(true);
+            field.set(service, modelFactory);
+        } catch (Exception e) {
+            fail("Failed to inject modelFactory: " + e.getMessage());
+        }
+
+        assertEquals(article, service.getArticle("valid/path", request));
+    }
+
+    @Test
+    void testHasNoIndex_CheckInheritanceFalse_DelegatesToHasNoIndex() {
+        Page page = mock(Page.class);
+        when(page.getProperties()).thenReturn(new org.apache.sling.api.wrappers.ValueMapDecorator(
+                java.util.Map.of("cq:robotsTags", new String[] {"noindex"})
+        ));
+
+        PageUtilService service = new PageUtilService();
+        boolean result = service.hasNoIndex(page, false);
+
+        assertTrue(result, "Expected hasNoIndex to return true when robotsTags contains 'noindex'");
+    }
+    @Test
+    void testGetHomePage_WithNullResource() {
+        PageUtilService service = new PageUtilService();
+        assertNull(service.getHomePage((Resource) null));
+    }
+
+    @Test
+    void testGetHomePage_WithValidResource() {
+        PageUtilService service = new PageUtilService();
+        ResourceResolver mockResolver = mock(ResourceResolver.class);
+        Resource mockResource = mock(Resource.class);
+        Page mockPage = mock(Page.class);
+
+        when(mockResource.getResourceResolver()).thenReturn(mockResolver);
+        PageManager mockPageManager = mock(PageManager.class);
+        when(mockResolver.adaptTo(PageManager.class)).thenReturn(mockPageManager);
+        when(mockPageManager.getContainingPage(mockResource)).thenReturn(mockPage);
+
+        PageUtilService spyService = spy(service);
+        Page expectedHomePage = mock(Page.class);
+        doReturn(expectedHomePage).when(spyService).getHomePage(mockPage);
+
+        assertEquals(expectedHomePage, spyService.getHomePage(mockResource));
+    }
+
+    @Test
+    void testIsHomePage_NullPage_ReturnsFalse() {
+        PageUtilService service = new PageUtilService();
+        assertFalse(service.isHomePage(null));
+    }
 }

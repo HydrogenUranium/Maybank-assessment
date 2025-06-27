@@ -75,14 +75,6 @@ class HeroBannerV2Test {
         ));
     }
 
-    private MockSlingHttpServletRequest mockRequest(Resource resource) {
-        MockSlingHttpServletRequest mockRequest = new MockSlingHttpServletRequest(context.resourceResolver(), context.bundleContext());
-        mockRequest.setResource(resource);
-        mockRequest.setPathInfo(resource.getPath());
-        return mockRequest;
-    }
-
-
     private void initRequest(String path) {
         request.setPathInfo(path);
         request.setResource(resourceResolver.getResource(path));
