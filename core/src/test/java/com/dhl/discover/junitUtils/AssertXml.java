@@ -1,10 +1,12 @@
 package com.dhl.discover.junitUtils;
 
+import lombok.experimental.UtilityClass;
 import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.Diff;
 
 import static junit.framework.Assert.assertFalse;
 
+@UtilityClass
 public class AssertXml {
     public static void assertXmlEquals(String expected, String actual) {
         Diff xmlDiff = DiffBuilder.compare(expected)

@@ -1,6 +1,6 @@
 <sly data-sly-use.model="com.dhl.discover.core.models.CtaBannerWithPointsV2"
      data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"
-     data-sly-test.isEmpty=${model.points.empty}></sly>
+     data-sly-test.isEmpty=${!model.title}></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 <article id="${properties.id}" class="cmp-cta-banner-with-points">

@@ -1,6 +1,7 @@
 package com.dhl.discover.core.models;
 
 import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junitx.framework.Assert.assertEquals;
@@ -44,6 +46,7 @@ class TopTilesV2Test {
         context.addModelsForClasses(TopTilesV2.Tile.class);
         context.registerService(ModelFactory.class, modelFactory, SERVICE_RANKING, Integer.MAX_VALUE);
         context.registerService(PageUtilService.class, pageUtilService);
+        mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
         when(modelFactory.createModelFromWrappedRequest(any(MockSlingHttpServletRequest.class), any(Resource.class), any()))
                 .thenAnswer(invocation -> {
                     Resource resource = invocation.getArgument(1);

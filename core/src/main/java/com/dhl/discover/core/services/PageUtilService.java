@@ -7,9 +7,11 @@ import com.day.cq.wcm.api.PageFilter;
 import com.day.cq.wcm.api.PageManager;
 import com.dhl.discover.core.models.Article;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.factory.ModelFactory;
 import org.jetbrains.annotations.Nullable;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -42,6 +44,9 @@ public class PageUtilService implements Serializable {
 
     @Reference
     private transient LaunchService launchService;
+
+    @Reference
+    private transient ModelFactory modelFactory;
 
     public int getHomePageLevel() {
         return HOME_PAGE_LEVEL;
@@ -208,6 +213,15 @@ public class PageUtilService implements Serializable {
                 .filter(StringUtils::isNoneBlank)
                 .map(resourceResolver::getResource)
                 .map(r -> r.adaptTo(Article.class))
+                .orElse(null);
+    }
+
+    @Nullable
+    public Article getArticle(String articlePagePath, SlingHttpServletRequest request) {
+        return Optional.ofNullable(articlePagePath)
+                .filter(StringUtils::isNoneBlank)
+                .map(path -> request.getResourceResolver().getResource(path))
+                .map(r -> modelFactory.createModelFromWrappedRequest(request, r, Article.class))
                 .orElse(null);
     }
 

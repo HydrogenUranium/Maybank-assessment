@@ -1,8 +1,10 @@
 package com.dhl.discover.core.models;
 
+import com.adobe.cq.wcm.core.components.models.Image;
 import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.constants.DiscoverConstants;
+import com.dhl.discover.core.injectors.InjectChildImageModel;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
@@ -14,26 +16,25 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Named;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
-import static com.day.cq.wcm.api.constants.NameConstants.*;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_CREATED;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_NAV_TITLE;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_MOD;
+import static com.day.cq.wcm.api.constants.NameConstants.PN_TITLE;
 import static com.day.cq.wcm.foundation.List.URL_EXTENSION;
 import static com.dhl.discover.core.services.PageUtilService.CATEGORY_PAGE_LEVEL;
 
@@ -41,10 +42,10 @@ import static com.dhl.discover.core.services.PageUtilService.CATEGORY_PAGE_LEVEL
  * It's a sling model of the 'article' piece of content
  */
 @Getter
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class Article {
 
-    @Self
+    @SlingObject
     private Resource resource;
 
     @OSGiService
@@ -110,6 +111,10 @@ public class Article {
     @Expose
     private String pageImage;
     private String pageImageAltText;
+
+    @InjectChildImageModel
+    @Named("jcr:content/cq:featuredimage")
+    private Image featuredImageModel;
 
     @Setter
     private String heroimagemob;
