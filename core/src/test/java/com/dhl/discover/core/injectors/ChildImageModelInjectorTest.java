@@ -83,9 +83,9 @@ class ChildImageModelInjectorTest {
     void testGetValue_ShouldReturnNull_WhenAdaptableIsNotSlingHttpServletRequest() {
         ChildImageModelInjector injector = new ChildImageModelInjector();
         Object adaptable = new Object();
-        AnnotatedElement annotatedElement = org.mockito.Mockito.mock(AnnotatedElement.class);
+        annotatedElement = org.mockito.Mockito.mock(AnnotatedElement.class);
         org.mockito.Mockito.when(annotatedElement.isAnnotationPresent(InjectChildImageModel.class)).thenReturn(true);
-        DisposalCallbackRegistry callbackRegistry = org.mockito.Mockito.mock(DisposalCallbackRegistry.class);
+        callbackRegistry = org.mockito.Mockito.mock(DisposalCallbackRegistry.class);
 
         Object result = injector.getValue(adaptable, "childName", Image.class, annotatedElement, callbackRegistry);
 
@@ -94,7 +94,7 @@ class ChildImageModelInjectorTest {
 
     @Test
     void testGetImageModel_ShouldReturnNull_WhenResourceIsNull() {
-        ChildImageModelInjector injector = new ChildImageModelInjector();
+        injector = new ChildImageModelInjector();
         SlingHttpServletRequest request = context.request();
 
         Image result = injector.getImageModel(request, null);

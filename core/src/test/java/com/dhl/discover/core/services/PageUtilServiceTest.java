@@ -334,7 +334,7 @@ class PageUtilServiceTest {
     void testGetArticle_ModelFactoryReturnsArticle() {
         PageUtilService service = new PageUtilService();
         ModelFactory modelFactory = mock(ModelFactory.class);
-        Resource resource = mock(Resource.class);
+        resource = mock(Resource.class);
         SlingHttpServletRequest request = mock(SlingHttpServletRequest.class);
         ResourceResolver resolver = mock(ResourceResolver.class);
         Article article = mock(Article.class);
