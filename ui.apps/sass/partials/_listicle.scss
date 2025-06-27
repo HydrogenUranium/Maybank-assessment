@@ -25,6 +25,19 @@
       margin-bottom: 3rem;
     }
 
+    &__button {
+      margin-top: 0;
+      padding: 2rem;
+      width: 100%;
+      line-height: 1.4rem;
+      font-size: 1.5rem;
+      color: #fff !important;
+      text-decoration: none !important;
+      @include respond(md) {
+        width: auto;
+        padding: 2rem 5rem;
+      }
+    }
     &__picture {
       width: 100%;
       padding-right: 0;
@@ -108,6 +121,11 @@
           }
           .listicle__row__text{
             width: 100%;
+
+            .listicle__row__button {
+              margin-top: 5px;
+              width: fit-content;
+            }
           }
         }
 

@@ -96,7 +96,7 @@ public class ArticleShowcase {
         }
     }
 
-    private void initCustomPick() {
+    protected void initCustomPick() {
         if( articleResources == null || articleResources.isEmpty()) {
             return;
         }

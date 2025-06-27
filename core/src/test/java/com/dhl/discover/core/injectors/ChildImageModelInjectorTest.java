@@ -3,6 +3,7 @@ package com.dhl.discover.core.injectors;
 import com.adobe.cq.wcm.core.components.models.Image;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.factory.ModelFactory;
 import org.apache.sling.models.spi.DisposalCallbackRegistry;
 import org.junit.jupiter.api.Test;
@@ -71,4 +72,34 @@ class ChildImageModelInjectorTest {
 
         assertNull(result, "Expected null when no child resource is found");
     }
+
+    @Test
+    void testGetName_ShouldReturnDiscoverChildImageModel() {
+        injector = new ChildImageModelInjector();
+        assertEquals("discover-child-image-model", injector.getName());
+    }
+
+    @Test
+    void testGetValue_ShouldReturnNull_WhenAdaptableIsNotSlingHttpServletRequest() {
+        injector = new ChildImageModelInjector();
+        Object adaptable = new Object();
+        annotatedElement = org.mockito.Mockito.mock(AnnotatedElement.class);
+        org.mockito.Mockito.when(annotatedElement.isAnnotationPresent(InjectChildImageModel.class)).thenReturn(true);
+        callbackRegistry = org.mockito.Mockito.mock(DisposalCallbackRegistry.class);
+
+        Object result = injector.getValue(adaptable, "childName", Image.class, annotatedElement, callbackRegistry);
+
+        assertNull(result, "Expected null when adaptable is not SlingHttpServletRequest");
+    }
+
+    @Test
+    void testGetImageModel_ShouldReturnNull_WhenResourceIsNull() {
+        injector = new ChildImageModelInjector();
+        SlingHttpServletRequest request = context.request();
+
+        Image result = injector.getImageModel(request, null);
+
+        assertNull(result, "Expected null when resource is null");
+    }
+
 }
