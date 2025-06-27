@@ -75,13 +75,13 @@ class ChildImageModelInjectorTest {
 
     @Test
     void testGetName_ShouldReturnDiscoverChildImageModel() {
-        ChildImageModelInjector injector = new ChildImageModelInjector();
+        injector = new ChildImageModelInjector();
         assertEquals("discover-child-image-model", injector.getName());
     }
 
     @Test
     void testGetValue_ShouldReturnNull_WhenAdaptableIsNotSlingHttpServletRequest() {
-        ChildImageModelInjector injector = new ChildImageModelInjector();
+        injector = new ChildImageModelInjector();
         Object adaptable = new Object();
         annotatedElement = org.mockito.Mockito.mock(AnnotatedElement.class);
         org.mockito.Mockito.when(annotatedElement.isAnnotationPresent(InjectChildImageModel.class)).thenReturn(true);
