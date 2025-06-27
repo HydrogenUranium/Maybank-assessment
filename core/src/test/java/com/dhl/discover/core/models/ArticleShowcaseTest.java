@@ -16,6 +16,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
@@ -94,5 +96,38 @@ class ArticleShowcaseTest {
         List<Article> articles = showcase.getArticles();
         assertEquals(1, articles.size());
         assertEquals(article, articles.get(0));
+    }
+
+    @Test
+    void initCustomPick_ShouldReturn_WhenArticleResourcesIsNull() throws IllegalAccessException {
+        ArticleShowcase showcase = new ArticleShowcase();
+        Field field = null;
+        try {
+            field = ArticleShowcase.class.getDeclaredField("articleResources");
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+        field.setAccessible(true);
+        field.set(showcase, null);
+
+        showcase.initCustomPick();
+
+        assertEquals(0, showcase.getArticles().size());
+    }
+    @Test
+    void initCustomPick_ShouldReturn_WhenArticleResourcesIsEmpty() throws IllegalAccessException {
+        ArticleShowcase showcase = new ArticleShowcase();
+        Field field = null;
+        try {
+            field = ArticleShowcase.class.getDeclaredField("articleResources");
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+        field.setAccessible(true);
+        field.set(showcase, new ArrayList<>());
+
+        showcase.initCustomPick();
+
+        assertEquals(0, showcase.getArticles().size());
     }
 }

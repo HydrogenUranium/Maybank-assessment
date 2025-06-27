@@ -7,7 +7,6 @@ import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -74,14 +73,6 @@ class HeroBannerV2Test {
                 "desktopImage", desktopImageModel
         ));
     }
-
-    private MockSlingHttpServletRequest mockRequest(Resource resource) {
-        MockSlingHttpServletRequest mockRequest = new MockSlingHttpServletRequest(context.resourceResolver(), context.bundleContext());
-        mockRequest.setResource(resource);
-        mockRequest.setPathInfo(resource.getPath());
-        return mockRequest;
-    }
-
 
     private void initRequest(String path) {
         request.setPathInfo(path);

@@ -76,6 +76,9 @@ public class PageUtilService implements Serializable {
     }
 
     public Page getHomePage(Resource resource) {
+        if (resource == null) {
+            return null;
+        }
         return getHomePage(getPage(resource));
     }
 
