@@ -277,7 +277,6 @@
             .global-icon {
               display: block;
               background-image: url("__prefix__/discover/resources/img/globe.png");
-              -webkit-mask: url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/globe.svg') no-repeat center/contain;
               mask: url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/globe.svg') no-repeat center/contain;
               background-color: #000;
               transition: background-color 0.2s;

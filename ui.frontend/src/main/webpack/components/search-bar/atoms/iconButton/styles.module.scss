@@ -16,7 +16,6 @@
             background-image: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/searchcloseicon.svg');
         }
         &Search {
-            -webkit-mask: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/searchicon.svg') no-repeat center/contain;
             mask: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/searchicon.svg') no-repeat center/contain;
             background-color: #000;
             transition: background-color 0.2s;
