@@ -277,12 +277,22 @@
             .global-icon {
               display: block;
               background-image: url("__prefix__/discover/resources/img/globe.png");
-              background-image: none,
+              mask-image: none,
                 url("__prefix__/discover/resources/img/globe.svg");
+              background-color: #000;
               @include backgroundImage(contain);
 
               width: 2rem;
               height: 2rem;
+
+              &:hover svg path {
+                fill: #d40511;
+              }
+
+              :hover {
+                background-color: #d40511;
+              }
+
             }
 
             .title {
