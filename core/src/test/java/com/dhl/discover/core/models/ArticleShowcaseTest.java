@@ -7,6 +7,7 @@ import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
@@ -56,9 +59,8 @@ class ArticleShowcaseTest {
         context.addModelsForClasses(ArticleShowcase.class);
         context.currentPage(page);
         context.load().json("/com/dhl/discover/core/models/ArticleShowcase/content.json", "/content");
-        lenient().when(pageUtils.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        lenient().when(pageUtils.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
-        when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
     }
 
     private void initRequest(String path) {
@@ -72,6 +74,14 @@ class ArticleShowcaseTest {
         ArticleShowcase showcase = request.adaptTo(ArticleShowcase.class);
 
         assertEquals(4, showcase.getArticles().size());
+        assertEquals("Trending posts", showcase.getTitle());
+        assertEquals("horizontal", showcase.getDesignMode());
+        assertEquals("See All Latest Posts", showcase.getLinkName());
+        assertEquals("/content/dhl/au", showcase.getLinkPath());
+        assertEquals("h3", showcase.getArticlesTitleType());
+        assertEquals("h2", showcase.getTitleType());
+        assertEquals("customPick", showcase.getSource());
+        assertEquals("See All Latest Posts", showcase.getLinkName());
     }
 
     @Test
@@ -86,5 +96,38 @@ class ArticleShowcaseTest {
         List<Article> articles = showcase.getArticles();
         assertEquals(1, articles.size());
         assertEquals(article, articles.get(0));
+    }
+
+    @Test
+    void initCustomPick_ShouldReturn_WhenArticleResourcesIsNull() throws IllegalAccessException {
+        ArticleShowcase showcase = new ArticleShowcase();
+        Field field = null;
+        try {
+            field = ArticleShowcase.class.getDeclaredField("articleResources");
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+        field.setAccessible(true);
+        field.set(showcase, null);
+
+        showcase.initCustomPick();
+
+        assertEquals(0, showcase.getArticles().size());
+    }
+    @Test
+    void initCustomPick_ShouldReturn_WhenArticleResourcesIsEmpty() throws IllegalAccessException {
+        ArticleShowcase showcase = new ArticleShowcase();
+        Field field = null;
+        try {
+            field = ArticleShowcase.class.getDeclaredField("articleResources");
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+        field.setAccessible(true);
+        field.set(showcase, new ArrayList<>());
+
+        showcase.initCustomPick();
+
+        assertEquals(0, showcase.getArticles().size());
     }
 }

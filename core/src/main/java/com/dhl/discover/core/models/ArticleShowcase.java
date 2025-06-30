@@ -4,44 +4,57 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.services.ArticleService;
 import com.dhl.discover.core.services.PageUtilService;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.models.annotations.*;
+import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Required;
 import org.apache.sling.models.annotations.injectorspecific.*;
+import org.apache.sling.models.factory.ModelFactory;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Getter
 @Slf4j
-@Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ArticleShowcase {
 
     @OSGiService
     @Required
+    @Getter(AccessLevel.NONE)
     private PageUtilService pageUtils;
+
+    @OSGiService
+    @Required
+    @Getter(AccessLevel.NONE)
+    private ModelFactory modelFactory;
 
     @ScriptVariable
     @Required
+    @Getter(AccessLevel.NONE)
     protected Style currentStyle;
 
     @OSGiService
     @Required
+    @Getter(AccessLevel.NONE)
     private ArticleService articleService;
 
     @ScriptVariable
     @Required
+    @Getter(AccessLevel.NONE)
     private Page currentPage;
 
-    @SlingObject
+    @Self
     @Required
-    private ResourceResolver resourceResolver;
+    @Getter(AccessLevel.NONE)
+    private SlingHttpServletRequest request;
 
     @ValueMapValue
     private String title;
@@ -70,15 +83,12 @@ public class ArticleShowcase {
 
     @ChildResource
     @Named("articles")
-    private Resource articleMultifield;
-
-    private boolean enableAssetDelivery;
+    private List<Resource> articleResources;
 
     private List<Article> articles = new ArrayList<>();
 
     @PostConstruct
     private void init() {
-        enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
         if (source.equals("customPick")) {
             initCustomPick();
         } else if (source.equals("latest")) {
@@ -86,16 +96,16 @@ public class ArticleShowcase {
         }
     }
 
-    private void initCustomPick() {
-        if (articleMultifield != null) {
-            Iterator<Resource> multifieldItems = articleMultifield.listChildren();
-            while (multifieldItems.hasNext()) {
-                var properties = multifieldItems.next().getValueMap();
-                String path = properties.get("articlePath", "");
-                var article = pageUtils.getArticle(path, resourceResolver);
-                if (article != null) {
-                    articles.add(article);
-                }
+    protected void initCustomPick() {
+        if( articleResources == null || articleResources.isEmpty()) {
+            return;
+        }
+
+        for (Resource articleResource : articleResources) {
+            String path = articleResource.getValueMap().get("articlePath", "");
+            var article = pageUtils.getArticle(path, request);
+            if (article != null) {
+                articles.add(article);
             }
         }
     }

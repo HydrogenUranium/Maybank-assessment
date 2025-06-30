@@ -4,6 +4,7 @@ import com.day.cq.tagging.InvalidTagFormatException;
 import com.day.cq.tagging.TagManager;
 import com.dhl.discover.core.models.Article;
 import com.dhl.discover.core.services.*;
+import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.dhl.discover.junitUtils.AssertXml.assertXmlEquals;
+import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -61,6 +63,8 @@ class RssFeedRenderServletTest {
         context.registerService(AssetUtilService.class, assetUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(ArticleService.class, articleService);
+
+        mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
 
         servlet = context.registerInjectActivateService(RssFeedRenderServlet.class,
                 "pageExtractor", pageExtractor,

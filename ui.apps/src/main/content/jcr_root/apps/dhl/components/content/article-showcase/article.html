@@ -1,0 +1,64 @@
+<template data-sly-template.card="${@ article, showTags, enableAssetDelivery, titleType}">
+  <article class="article-card">
+    <a tabindex="-1" href="${article.path}" aria-hidden="true" class="article-card__image-wrapper">
+      <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+           data-sly-call="${template.pictureWithModels @
+                 image=article.featuredImageModel,
+                 sizes='20rem',
+                 imgClass='article-card__image'
+             }"></sly>
+      <div class="article-card__group-tag">${article.groupTag}</div>
+    </a>
+    <div class="article-card__info">
+      <div class="article-card__author">
+        <span data-sly-test="${article.author}">${article.author}</span>
+        <time datetime="${article.created}" data-sly-test="${article.createdfriendly}">${article.createdfriendly}</time>
+      </div>
+      <h3 data-sly-element="${titleType}">
+        <a href="${article.path}" class="article-card__title">
+          ${article.pageTitleWithBr @ context='html'}
+        </a>
+      </h3>
+      <div class="article-card__description">${article.description}</div>
+      <div class="article-card__tags" data-sly-list="${article.tagsToShow @ begin = 0, end = 1}"
+           data-sly-test="${showTags}">
+        <div class="article-card__tag">${item}</div>
+      </div>
+    </div>
+  </article>
+</template>
+
+<template data-sly-template.row="${@ article, showTags, enableAssetDelivery, titleType}">
+  <article class="article-row">
+    <a tabindex="-1" href="${article.path}" aria-hidden="true" class="article-row__picture">
+      <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+           data-sly-call="${template.pictureWithModels @
+                         image=article.featuredImageModel,
+                         sizes='(max-width: 48rem) 8rem, (max-width: 1200px) 14rem, 20rem',
+                         imgClass='article-row__image'
+                     }"></sly>
+    </a>
+    <div class="article-row__info">
+      <a class="article-row__group-tag text-on-image" href="${article.groupPath}">${article.groupTag}</a>
+      <h3 data-sly-element="${titleType}" class="article-row__title-wrapper">
+        <a href="${article.path}" class="article-row__title">${article.pageTitleWithBr @ context='html'}</a>
+      </h3>
+      <div class="article-row__metadata">
+        <time datetime="${article.created}" data-sly-test="${article.createdfriendly}">${article.createdfriendly}</time>
+        <span data-sly-test="${article.readtime}">${article.readtime}</span>
+      </div>
+      <div class="article-row__description">${article.description}</div>
+      <div class="article-row__author">
+        <sly data-sly-test="${article.authorimage}"
+             data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+             data-sly-call="${template.picture @
+                             image = article.authorimage,
+                             imgClass='article-row__author-image',
+                             useWebOptimized=true,
+                             alt=article.author
+                         }"></sly>
+        <div data-sly-test="${article.author}" class="article-row__author-name">${article.author}</div>
+      </div>
+    </div>
+  </article>
+</template>

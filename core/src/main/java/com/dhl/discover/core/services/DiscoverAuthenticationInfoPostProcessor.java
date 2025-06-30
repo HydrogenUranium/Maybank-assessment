@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Slf4j
-@Component(name = "DiscoverInfoPostProcessor", service = AuthenticationInfoPostProcessor.class, immediate = true)
+@Component(service = AuthenticationInfoPostProcessor.class, immediate = true)
 public class DiscoverAuthenticationInfoPostProcessor implements AuthenticationInfoPostProcessor {
 
     @Reference

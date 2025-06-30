@@ -90,7 +90,7 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <cta-banner-v2
-                                                cq:policy="dhl/components/content/cta-banner/policy_cta-banner-v2"
+                                                cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <cta-banner-with-points
@@ -98,7 +98,7 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <cta-banner-with-points-v2
-                                                cq:policy="dhl/components/content/cta-banner-with-points/policy_cta-banner-with-points-v2"
+                                                cq:policy="dhl/components/content/cta-banner-with-points-v2/policy_cta-banner-with-points-v2"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <cta-banner-gray
@@ -352,7 +352,7 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <cta-banner-v2
-                                                cq:policy="dhl/components/content/cta-banner/policy_cta-banner-v2"
+                                                cq:policy="dhl/components/content/cta-banner-v2/policy_cta-banner-v2"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <cta-banner-with-points
@@ -360,7 +360,7 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <cta-banner-with-points-v2
-                                                cq:policy="dhl/components/content/cta-banner-with-points/policy_cta-banner-with-points-v2"
+                                                cq:policy="dhl/components/content/cta-banner-with-points-v2/policy_cta-banner-with-points-v2"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                                         <cta-banner-gray
@@ -584,5 +584,9 @@
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wcm/core/components/policies/mapping"/>
         </root>
+        <cq:featuredimage
+                cq:policy="core/wcm/components/image/v3/image/policy_featuredimage"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/core/components/policies/mapping"/>
     </jcr:content>
 </jcr:root>

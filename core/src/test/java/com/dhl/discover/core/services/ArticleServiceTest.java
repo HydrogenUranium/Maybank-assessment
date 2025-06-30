@@ -7,6 +7,7 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.models.Article;
+import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -29,6 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -83,6 +85,8 @@ class ArticleServiceTest {
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);
         context.addModelsForClasses(Article.class);
+
+        mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
 
         lenient().when(builder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(query);
         when(query.getResult()).thenReturn(searchResult);

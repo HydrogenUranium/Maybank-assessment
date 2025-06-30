@@ -5,6 +5,7 @@ import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import com.dhl.discover.core.services.TagUtilService;
+import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -60,6 +61,7 @@ class RelatedPostsTest {
         context.registerService(AssetUtilService.class, assetUtilService);
 
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
+        mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
         when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
         when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));

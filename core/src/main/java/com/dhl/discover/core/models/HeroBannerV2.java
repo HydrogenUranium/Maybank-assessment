@@ -2,6 +2,7 @@ package com.dhl.discover.core.models;
 
 import com.adobe.cq.wcm.core.components.models.Image;
 import com.day.cq.wcm.api.designer.Style;
+import com.dhl.discover.core.services.AssetUtilService;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -16,6 +17,8 @@ import java.util.List;
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 @Getter
 public class HeroBannerV2 extends AdaptiveImage {
+    @OSGiService
+    protected AssetUtilService assetUtilService;
 
     @ValueMapValue
     private String summaryTitle;
