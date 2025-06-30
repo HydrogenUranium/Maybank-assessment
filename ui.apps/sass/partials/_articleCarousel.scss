@@ -73,9 +73,7 @@
         bottom: 6.3rem;
         left: 3.5rem;
         color: map-get($palette, true-white);
-        text-shadow:
-          0 0 2rem #131313,
-          0 0 2.5rem #131313;
+        @include text-on-image;
         z-index: 1;
 
         @include respond(md) {
