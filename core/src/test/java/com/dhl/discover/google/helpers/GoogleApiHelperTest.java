@@ -1,24 +1,17 @@
 package com.dhl.discover.google.helpers;
 
-import com.dhl.discover.google.services.GoogleAdsService;
-import com.google.gson.JsonObject;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.entity.StringEntity;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-import static com.dhl.discover.junitUtils.AssertRequest.assertRequestAndMockResponse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
 class GoogleApiHelperTest {
