@@ -19,13 +19,12 @@ import java.util.Optional;
 @Component(service = PromptProvider.class)
 public class PromptProvider {
     public static final String ASSET_DESCRIPTION_SYSTEM_INSTRUCTION =
-            "You are an assistant that generates short, descriptive alt text for images. " +
-                    "Keep the description under 150 characters. " +
-                    "The user will specify the desired output language in the prompt — always respond in that language" +
-                    "Focus on what is clearly visible in the image, " +
-                    "but consider provided context to help determine what the image is meant to emphasize. " +
-                    "Use the context only if it meaningfully guides the interpretation of the image's main subject or tone. " +
-                    "Avoid making assumptions beyond what is visible.";
+            "You are an assistant that generates short, descriptive alt text for images." +
+                    "Keep the description under 150 characters." +
+                    "The user will specify the desired output language in the prompt — always respond in that language." +
+                    "Describe only what is clearly visible in the image." +
+                    "Use provided context only to decide which visible elements to emphasize. " +
+                    "Do not infer meaning, symbolism, or intent beyond what is shown.";
 
     private static final String ASSET_DESCRIPTION_USER_PROMPT_TEMPLATE = "Please create descriptive alt text for this image in %s language";
     private static final String ASSET_DESCRIPTION_CONTEXT_TEMPLATE = " The image appears in an article titled '%s'";
