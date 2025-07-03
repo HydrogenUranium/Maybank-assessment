@@ -9,7 +9,7 @@
     <filter root="/conf/global/settings/workflow/models/request_to_complete_move_operation"/>
     <filter root="/conf/global/settings/workflow/models/request_for_page_deletion"/>
     <filter root="/conf/global/settings/workflow/models/dam/image_description_generation"/>
-    <filter root="/conf/global/settings/workflow/launcher/config/asset_description"/>
+    <filter root="/conf/global/settings/workflow/launcher/config/image-description-generation-after-translation"/>
     <filter root="/var/workflow/models" mode="update"/>
     <filter root="/var/workflow/models/request_for_activation"/>
     <filter root="/var/workflow/models/request_for_deletion"/>
