@@ -1,0 +1,9 @@
+.discover-metaeditor-input-button-wrapper {
+  height:0;
+  display: block;
+}
+
+.discover-metaeditor-input-button-wrapper button {
+    margin-left: auto;
+    display: block;
+}

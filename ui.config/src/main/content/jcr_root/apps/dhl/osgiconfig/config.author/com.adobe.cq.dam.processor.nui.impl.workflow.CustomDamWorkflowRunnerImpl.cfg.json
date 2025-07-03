@@ -1,0 +1,5 @@
+{
+  "postProcWorkflowsByPath":[
+    "/content/dam:/var/workflow/models/dam/image_description_generation"
+  ]
+}

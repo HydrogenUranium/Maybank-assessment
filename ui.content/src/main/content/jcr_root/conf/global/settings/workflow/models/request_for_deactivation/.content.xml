@@ -24,7 +24,7 @@
                 <metaData
                     jcr:primaryType="nt:unstructured"
                     DO_NOTIFY="true"
-                    DYNAMIC_PARTICIPANT="com.dhl.discover.core.services.impl.ParticipantStepChooserForPublishReview"/>
+                    DYNAMIC_PARTICIPANT="com.dhl.discover.core.workflow.exec.ParticipantStepChooserForPublishReview"/>
             </dynamic_participant>
             <or_1130472575
                 jcr:lastModified="{Date}2024-05-13T15:40:00.156+03:00"

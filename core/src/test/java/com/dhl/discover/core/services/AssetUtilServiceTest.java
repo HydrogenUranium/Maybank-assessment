@@ -19,11 +19,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.imageio.ImageIO;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 
 import static com.adobe.cq.wcm.core.components.models.Page.NN_PAGE_FEATURED_IMAGE;
 import static com.dhl.discover.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
@@ -255,5 +258,36 @@ class AssetUtilServiceTest {
 
         String pageImageAltText = service.getPageImageAltText(res);
         assertEquals("Featured Image Alt Text", pageImageAltText);
+    }
+
+    @Test
+    void testGetBase64_NullAsset() {
+        String result = service.getBase64(null);
+        assertNull(result, "Expected null when asset is null");
+    }
+
+    @Test
+    void testGetBase64_ValidAsset() {
+        InputStream inputStream = AssetUtilService.class.getClassLoader()
+                .getResourceAsStream("com/dhl/discover/core/services/AssetUtilService/pixel.jpg");
+
+        when(asset.getRendition(any(RenditionPicker.class))).thenReturn(rendition);
+        when(rendition.getStream()).thenReturn(inputStream);
+        ImageIO.setUseCache(false);
+
+        String result = service.getBase64(asset);
+        assertNotNull(result, "Expected Base64 string when asset is valid");
+        assertTrue(result.startsWith("data:image/jpeg;base64,"), "Expected Base64 string to start with correct prefix");
+    }
+
+    @Test
+    void testGetBase64_ImageConversionFails() {
+        InputStream inputStream = new ByteArrayInputStream(new byte[]{});
+
+        when(asset.getRendition(any(RenditionPicker.class))).thenReturn(rendition);
+        when(rendition.getStream()).thenReturn(inputStream);
+
+        String result = service.getBase64(asset);
+        assertNull(result, "Expected null when image conversion fails");
     }
 }
