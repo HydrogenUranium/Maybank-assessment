@@ -15,7 +15,7 @@
                         srcset="${item.mobileImageModel.srcset}"
                         sizes="${item.sizes || item.mobileImageModel.sizes}"/>
                 <img
-                        src="${item.defaultImageModel.src}"
+                        src="${item.defaultImageModel.src || '/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg'}"
                         class="cmp-top-tiles__article-image"
                         srcset="${item.defaultImageModel.srcset}"
                         sizes="${item.sizes || item.defaultImageModel.sizes}"

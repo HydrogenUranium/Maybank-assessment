@@ -6,6 +6,7 @@ import com.day.cq.dam.api.DamConstants;
 import com.day.cq.dam.api.RenditionPicker;
 import com.dhl.discover.core.dam.RenditionPatternPicker;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.oak.commons.PropertiesUtil;
@@ -16,6 +17,11 @@ import org.apache.sling.commons.mime.MimeTypeService;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import javax.imageio.ImageIO;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -30,7 +36,8 @@ import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
 public class AssetUtilService {
 
     public static final String DEFAULT_DELIVERY_QUALITY = "82";
-    public static final RenditionPicker THUMBNAIL_PICKER = new RenditionPatternPicker("cq5dam.thumbnail.140.100.png");
+    public static final RenditionPicker THUMBNAIL_RENDITION = new RenditionPatternPicker("cq5dam.thumbnail.140.100.png");
+    public static final RenditionPicker WEB_RENDITION = new RenditionPatternPicker("cq5dam.web.1280.1280");
 
     @Reference
     protected MimeTypeService mimeTypeService;
@@ -93,7 +100,7 @@ public class AssetUtilService {
         return resolver.getResource(pathUtilService.decodePath(assetPath));
     }
 
-    private Asset getAsset(String assetPath, ResourceResolver resolver) {
+    public Asset getAsset(String assetPath, ResourceResolver resolver) {
         return adaptToAsset(getAssetResource(assetPath, resolver));
     }
 
@@ -107,7 +114,7 @@ public class AssetUtilService {
             if(asset == null) {
                 return "";
             }
-            var rendition = asset.getRendition(THUMBNAIL_PICKER);
+            var rendition = asset.getRendition(THUMBNAIL_RENDITION);
             return pathUtilService.map(rendition.getPath());
         }
     }
@@ -181,5 +188,53 @@ public class AssetUtilService {
 
     public String getPageImageAltText(Resource resource) {
         return getPageFeaturedImageAltText(resource);
+    }
+
+    /**
+     * Converts an asset to a Base64-encoded JPEG string.
+     *
+     * @param asset the asset to convert
+     * @return Base64-encoded JPEG string or null if conversion fails
+     */
+    public String getBase64(Asset asset) {
+        if (asset == null) {
+            return null;
+        }
+
+        var rendition = asset.getRendition(WEB_RENDITION);
+        try (var inputStream = rendition.getStream();
+             var outputStream = new ByteArrayOutputStream()) {
+
+            BufferedImage image = ImageIO.read(inputStream);
+            if (image == null) {
+                log.warn("Unsupported or corrupt image format.");
+                return null;
+            }
+
+            var rgbImage = new BufferedImage(
+                    image.getWidth(),
+                    image.getHeight(),
+                    BufferedImage.TYPE_INT_RGB
+            );
+
+            // Paint the original image onto the new RGB image (drops alpha)
+            Graphics2D g = rgbImage.createGraphics();
+            g.drawImage(image, 0, 0, Color.WHITE, null);
+            g.dispose();
+
+            boolean success = ImageIO.write(rgbImage, "jpg", outputStream);
+            if (!success) {
+                log.warn("Failed to encode image to JPEG");
+                return null;
+            }
+
+            // Encode to Base64
+            byte[] jpegBytes = outputStream.toByteArray();
+            return "data:image/jpeg;base64," + Base64.encodeBase64String(jpegBytes);
+
+        } catch (Exception e) {
+            log.error("Error while converting asset to Base64 JPEG: {}", e.getMessage(), e);
+            return null;
+        }
     }
 }

@@ -37,7 +37,7 @@
                 type="PROCESS">
             <metaData
                     jcr:primaryType="nt:unstructured"
-                    PROCESS="com.dhl.discover.core.services.impl.RemoveDeletedPageProperties"
+                    PROCESS="com.dhl.discover.core.workflow.exec.RemoveDeletedPageProperties"
                     PROCESS_AUTO_ADVANCE="true"/>
         </node3>
         <node4
@@ -46,7 +46,7 @@
                 type="PROCESS">
             <metaData
                     jcr:primaryType="nt:unstructured"
-                    PROCESS="com.dhl.discover.core.services.impl.SetPendingDeletionThumbnail"
+                    PROCESS="com.dhl.discover.core.workflow.exec.thumbnail.SetPendingDeletionThumbnail"
                     PROCESS_ARGS="deletedImageReference:/apps/dhl/clientlibs/discover/resources/img/pending-deletion.png"
                     PROCESS_AUTO_ADVANCE="true"/>
         </node4>
@@ -68,7 +68,7 @@
             <metaData
                     jcr:primaryType="nt:unstructured"
                     DO_NOTIFY="true"
-                    DYNAMIC_PARTICIPANT="com.dhl.discover.core.services.impl.ParticipantStepChooserForPublishReview"/>
+                    DYNAMIC_PARTICIPANT="com.dhl.discover.core.workflow.exec.ParticipantStepChooserForPublishReview"/>
         </node6>
         <node7
                 jcr:primaryType="cq:WorkflowNode"
@@ -145,7 +145,7 @@
                 type="PROCESS">
             <metaData
                     jcr:primaryType="nt:unstructured"
-                    PROCESS="com.dhl.discover.core.services.impl.RemovePendingDeletionThumbnail"
+                    PROCESS="com.dhl.discover.core.workflow.exec.thumbnail.RemovePendingDeletionThumbnail"
                     PROCESS_ARGS="deletedImageReference:/apps/dhl/clientlibs/discover/resources/img/pending-deletion.png"
                     PROCESS_AUTO_ADVANCE="true"/>
         </node15>
@@ -164,7 +164,7 @@
                 type="PROCESS">
             <metaData
                     jcr:primaryType="nt:unstructured"
-                    PROCESS="com.dhl.discover.core.services.impl.PublisherPageRemovalNotification"
+                    PROCESS="com.dhl.discover.core.workflow.exec.notification.PublisherPageRemovalNotification"
                     PROCESS_AUTO_ADVANCE="true"/>
         </node17>
         <node18
