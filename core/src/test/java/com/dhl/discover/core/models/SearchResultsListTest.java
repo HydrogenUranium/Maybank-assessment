@@ -78,7 +78,6 @@ class SearchResultsListTest {
 
 	@Test
 	void testSortByTitle() {
-
 		Page currentPage = ctx.pageManager().getPage("/content/dhl/country/en/search-results");
 		ctx.currentPage(currentPage);
 
