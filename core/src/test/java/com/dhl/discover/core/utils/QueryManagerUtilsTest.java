@@ -25,8 +25,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith({MockitoExtension.class, AemContextExtension.class})
 class QueryManagerUtilsTest {
-    private final AemContext context = new AemContext();
-
     @Mock
     private SlingHttpServletRequest request;
 

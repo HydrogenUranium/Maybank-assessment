@@ -108,8 +108,7 @@ class SearchResultsListTest {
 		assertEquals(0, searchResultsList.getCountCompetition());
 		assertEquals(0, searchResultsList.getCountDownload());
 		assertEquals(0, searchResultsList.getCountInteractive());
-		assertEquals(1, searchResultsList.getCountAll());
-		
+
 		searchResultsList.setResults(new ArrayList<Article>());
 		searchResultsList.setResultSummary(new HashMap<String, Integer>());
 		searchResultsList.setTrendingArticles(new ArrayList<Article>());

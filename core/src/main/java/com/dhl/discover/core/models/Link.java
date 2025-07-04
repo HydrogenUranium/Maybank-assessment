@@ -14,13 +14,13 @@ public class Link {
     public String name;
 
     @ValueMapValue
-    public String link;
+    public String url;
     
     /**
 	 * 
 	 */
-    public Link(String name, String link) {
-    		this.link = link;
+    public Link(String name, String url) {
+    		this.url = url;
     		this.name = name;
     }
 }

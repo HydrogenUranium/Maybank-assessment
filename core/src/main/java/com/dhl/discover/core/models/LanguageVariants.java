@@ -200,7 +200,16 @@ public class LanguageVariants {
 				}
 			}
 
-			var newItem = new LanguageVariant(language, title, newHomepage, newExactPath, langCode, deflt, path.contains(homepage.getPath()), exactPathExists);
+			var newItem = LanguageVariant.builder()
+					.name(language)
+					.title(title)
+					.home(newHomepage)
+					.link(newExactPath)
+					.langCode(langCode)
+					.deflt(deflt)
+					.current(path.contains(homepage.getPath()))
+					.exact(exactPathExists)
+					.build();
 			if (!variants.containsKey(region)) {
 				ArrayList<LanguageVariant> languages = new ArrayList<>();
 				variants.put(region, languages);
