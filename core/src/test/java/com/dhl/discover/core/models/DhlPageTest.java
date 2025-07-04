@@ -59,8 +59,7 @@ class DhlPageTest {
 		ctx.currentResource("/content/dhl/standardpage");
 		
 		DhlPage dhlPage = ctx.request().adaptTo(DhlPage.class);
-		
-		// assertTrue(tagList.getTags().size() == 0);
+
 		assert dhlPage != null;
 		assertEquals("https://www.dhl.com/content/dhl/standardpage", dhlPage.getFullUrl());
 		assertEquals("/content/dhl/business/finding-new-customers/The-subscription-economy/The-Subscription-Economy", dhlPage.getAmparticlepath());
