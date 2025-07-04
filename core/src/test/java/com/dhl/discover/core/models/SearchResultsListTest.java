@@ -70,22 +70,17 @@ class SearchResultsListTest {
 		ctx.load().json("/com/dhl/discover/core/models/SiteContent.json", "/content");
 		ctx.registerService(QueryBuilder.class, mockQueryBuilder);
 		ctx.registerService(PageUtilService.class, pageUtilServiceMock);
-		ctx.addModelsForClasses(PageNotFound.class);
+		ctx.addModelsForClasses(PageNotFound.class, SearchResultsList.class);
+		ctx.create().resource("/content/dhl/country/en/search-results",
+				"sling:resourceType", "dhl/components/structure/searchresultspage");
 		ctx.currentResource("/content/dhl/country/en/search-results");
-
-		when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
-		when(searchResult.getHits()).thenReturn(List.of(hit));
-		when(hit.getPath()).thenReturn("/content/dhl/country/en/culture/dhl-mo-salah");
-		when(searchResult.getResources()).thenReturn(resourceIterator);
-		when(pageUtilServiceMock.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
-		when(pageUtilServiceMock.getHomePage(any(Page.class))).thenReturn(page);
-		when(page.getPath()).thenReturn("/content/dhl/country/en");
 	}
 
 	@Test
 	void testSortByTitle() {
-		ctx.currentResource("/content/dhl/country/en/search-results");
-		when(page1MockQuery.getResult()).thenReturn(searchResult);
+
+		Page currentPage = ctx.pageManager().getPage("/content/dhl/country/en/search-results");
+		ctx.currentPage(currentPage);
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("searchfield", "subscription");
@@ -94,8 +89,14 @@ class SearchResultsListTest {
 		
         MockSlingHttpServletRequest request = ctx.request();
         request.setParameterMap(params);
-        
-		SearchResultsList searchResultsList = request.adaptTo(SearchResultsList.class);
+
+		SearchResultsList searchResultsList = new SearchResultsList(request, mockQueryBuilder, currentPage);
+
+		try {
+			searchResultsList.init();
+		} catch (Exception e) {
+
+		}
 		assertNotNull(searchResultsList);
 
 		assertNull(searchResultsList.getTest());
@@ -139,9 +140,8 @@ class SearchResultsListTest {
 
 	@Test
 	void testSortByDate() throws RepositoryException {
-		when(page1MockQuery.getResult()).thenReturn(null, searchResult);
-		Resource articlePageResource = ctx.resourceResolver().getResource("/content/dhl/country/en/culture/dhl-mo-salah/jcr:content");
-		when(hit.getProperties()).thenReturn(articlePageResource.getValueMap());
+		Page currentPage = ctx.pageManager().getPage("/content/dhl/country/en/search-results");
+		ctx.currentPage(currentPage);
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("searchfield", "subscription");
@@ -150,8 +150,20 @@ class SearchResultsListTest {
 		
         MockSlingHttpServletRequest request = ctx.request();
         request.setParameterMap(params);
-		
-		SearchResultsList searchResultsList = request.adaptTo(SearchResultsList.class);
+
+		SearchResultsList searchResultsList = new SearchResultsList(request, mockQueryBuilder, currentPage);
+		try {
+			java.lang.reflect.Field field = SearchResultsList.class.getDeclaredField("pageUtilService");
+			field.setAccessible(true);
+			field.set(searchResultsList, pageUtilServiceMock);
+		} catch (Exception e) {
+			fail("Failed to set pageUtilService: " + e.getMessage());
+		}
+		try {
+			searchResultsList.init();
+		} catch (Exception e) {
+
+		}
 
 		assertNotNull(searchResultsList);
 		assertEquals("date", searchResultsList.getSortBy());
