@@ -7,7 +7,7 @@
         "create service user sling-distribution-importer",
 
         "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/jcr:content(nt:unstructured)",
-        "set properties on /content/dhl/jcr:content \n set cq:allowedTemplates{String[]} to /conf/dhl/settings/wcm/templates/.* \n set sling:resourceType to dhl/components/pages/editable-standard\nend",
+        "set properties on /content/dhl/jcr:content \n set cq:allowedTemplates{String[]} to /conf/dhl/settings/wcm/templates/article,/conf/dhl/settings/wcm/templates/home-page,/conf/dhl/settings/wcm/templates/category-page,/conf/dhl/settings/wcm/templates/thank-you-page,/conf/dhl/settings/wcm/templates/right-aligned-marketo-form,/conf/dhl/settings/wcm/templates/error-page,/conf/dhl/settings/wcm/templates/landing-page,/conf/dhl/settings/wcm/templates/blank-page,/conf/dhl/settings/wcm/templates/general-page,/conf/dhl/settings/wcm/templates/register-page,/conf/dhl/settings/wcm/templates/landing-page-two-columns,/conf/dhl/settings/wcm/templates/search-result-page,/conf/dhl/settings/wcm/templates/animated-page \n set sling:resourceType to dhl/components/pages/editable-standard\nend",
 
         "create path (rep:root)/content(sling:OrderedFolder)/dam(sling:Folder)/jcr:content(nt:unstructured)",
         "set properties on /content/dam/jcr:content \n set metadataSchema{String} to /conf/global/settings/dam/adminui-extension/metadataschema/discover\nend",
