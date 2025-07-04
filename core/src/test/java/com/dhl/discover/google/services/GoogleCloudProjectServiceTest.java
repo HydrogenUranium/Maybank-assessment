@@ -11,7 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
 
-import static com.dhl.discover.junitUtils.AssertRequest.assertRequestAndMockResponse;
+import static com.dhl.discover.junitUtils.AssertRequest.verifyPostRequest;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
@@ -56,7 +56,7 @@ class GoogleCloudProjectServiceTest {
         when(mockHttpResponse.getStatusLine()).thenReturn(mockStatusLine);
         when(mockStatusLine.getStatusCode()).thenReturn(200);
 
-        String result = assertRequestAndMockResponse(expectedUrl, expectedRequestBody, mockHttpResponse,
+        String result = verifyPostRequest(expectedUrl, expectedRequestBody, mockHttpResponse,
                 googleCloudProjectService::getAccessToken
         );
 

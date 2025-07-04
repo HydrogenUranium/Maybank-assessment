@@ -9,6 +9,9 @@
         "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/jcr:content(nt:unstructured)",
         "set properties on /content/dhl/jcr:content \n set cq:allowedTemplates{String[]} to /apps/dhl/templates/dhl-article-group-page,/apps/dhl/templates/dhl-blank-page,/apps/dhl/templates/dhl-general-page,/apps/dhl/templates/dhl-landing-page-twocol,/apps/dhl/templates/dhl-register-page,/conf/dhl/settings/wcm/templates/.* \n set sling:resourceType to dhl/components/pages/editable-standard\nend",
 
+        "create path (rep:root)/content(sling:OrderedFolder)/dam(sling:Folder)/jcr:content(nt:unstructured)",
+        "set properties on /content/dam/jcr:content \n set metadataSchema{String} to /conf/global/settings/dam/adminui-extension/metadataschema/discover\nend",
+
         "create path (nt:unstructured) /conf/dhl/appdata/countries/af",
         "set properties on /conf/dhl/appdata/countries/af\n set countryName{String} to Afghanistan\n set currency{String} to USD\n set callingCode{Long} to 93 \n end",
 
