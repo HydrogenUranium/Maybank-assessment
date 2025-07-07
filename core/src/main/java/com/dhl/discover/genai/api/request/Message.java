@@ -30,9 +30,7 @@ public class Message {
 
     public static class MessageBuilder {
         private Role role = Role.USER;
-        private String stringContent;
-        private JsonArray jsonArrayContent;
-        private boolean useJsonArray = false;
+        private final JsonArray jsonArrayContent = new JsonArray();
 
         public MessageBuilder setRole(Role role) {
             this.role = role;
@@ -63,18 +61,7 @@ public class Message {
             if (role == null) {
                 throw new IllegalStateException("Role must be specified");
             }
-
-            if (useJsonArray) {
-                if (jsonArrayContent == null) {
-                    throw new IllegalStateException("JSON array content is null");
-                }
-                return new Message(role, jsonArrayContent);
-            } else {
-                if (stringContent == null) {
-                    throw new IllegalStateException("String content is null");
-                }
-                return new Message(role, stringContent);
-            }
+            return new Message(role, jsonArrayContent);
         }
     }
 }
