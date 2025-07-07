@@ -76,7 +76,7 @@ class SearchResultsListTest {
 	}
 
 	@Test
-	void testSortByTitle() throws UnsupportedEncodingException, RepositoryException, NullPointerException {
+	void testSortByTitle() throws UnsupportedEncodingException, RepositoryException {
 		Page currentPage = ctx.pageManager().getPage("/content/dhl/country/en/search-results");
 		ctx.currentPage(currentPage);
 
@@ -143,7 +143,7 @@ class SearchResultsListTest {
 	}
 
 	@Test
-	void testSortByDate() throws  Exception {
+	void testSortByDate() throws  UnsupportedEncodingException,RepositoryException {
 		Page currentPage = ctx.pageManager().getPage("/content/dhl/country/en/search-results");
 		ctx.currentPage(currentPage);
 
