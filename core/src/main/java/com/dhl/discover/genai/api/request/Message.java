@@ -29,25 +29,13 @@ public class Message {
     }
 
     public static class MessageBuilder {
-        private Role role;
+        private Role role = Role.USER;
         private String stringContent;
         private JsonArray jsonArrayContent;
         private boolean useJsonArray = false;
 
-        public MessageBuilder withRole(Role role) {
+        public MessageBuilder setRole(Role role) {
             this.role = role;
-            return this;
-        }
-
-        public MessageBuilder withContent(String content) {
-            this.stringContent = content;
-            this.useJsonArray = false;
-            return this;
-        }
-
-        public MessageBuilder withContent(JsonArray content) {
-            this.jsonArrayContent = content;
-            this.useJsonArray = true;
             return this;
         }
 
@@ -64,7 +52,7 @@ public class Message {
             imageObject.addProperty("type", "image_url");
 
             JsonObject imageUrl = new JsonObject();
-            imageUrl.addProperty("url", "data:image/jpeg;base64," + base64);
+            imageUrl.addProperty("url", base64);
 
             imageObject.add("image_url", imageUrl);
             jsonArrayContent.add(imageObject);
