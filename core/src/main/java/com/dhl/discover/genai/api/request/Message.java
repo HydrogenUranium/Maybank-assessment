@@ -27,4 +27,66 @@ public class Message {
     public JsonObject asJsonObject() {
         return jsonObject.deepCopy();
     }
+
+    public static class MessageBuilder {
+        private Role role;
+        private String stringContent;
+        private JsonArray jsonArrayContent;
+        private boolean useJsonArray = false;
+
+        public MessageBuilder withRole(Role role) {
+            this.role = role;
+            return this;
+        }
+
+        public MessageBuilder withContent(String content) {
+            this.stringContent = content;
+            this.useJsonArray = false;
+            return this;
+        }
+
+        public MessageBuilder withContent(JsonArray content) {
+            this.jsonArrayContent = content;
+            this.useJsonArray = true;
+            return this;
+        }
+
+        public MessageBuilder addText(String text) {
+            JsonObject textObject = new JsonObject();
+            textObject.addProperty("type", "text");
+            textObject.addProperty("text", text);
+            jsonArrayContent.add(textObject);
+            return this;
+        }
+
+        public MessageBuilder addImage(String base64) {
+            JsonObject imageObject = new JsonObject();
+            imageObject.addProperty("type", "image_url");
+
+            JsonObject imageUrl = new JsonObject();
+            imageUrl.addProperty("url", "data:image/jpeg;base64," + base64);
+
+            imageObject.add("image_url", imageUrl);
+            jsonArrayContent.add(imageObject);
+            return this;
+        }
+
+        public Message build() {
+            if (role == null) {
+                throw new IllegalStateException("Role must be specified");
+            }
+
+            if (useJsonArray) {
+                if (jsonArrayContent == null) {
+                    throw new IllegalStateException("JSON array content is null");
+                }
+                return new Message(role, jsonArrayContent);
+            } else {
+                if (stringContent == null) {
+                    throw new IllegalStateException("String content is null");
+                }
+                return new Message(role, stringContent);
+            }
+        }
+    }
 }

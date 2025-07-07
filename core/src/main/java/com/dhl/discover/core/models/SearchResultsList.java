@@ -483,19 +483,21 @@ public class SearchResultsList {
                 map.put("p.guessTotal", "true");
 
                 Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
-                SearchResult searchResult = query.getResult();
-                if (searchResult != null) {
-                    int count = 0;
-                    for (Article article: receiveTrendingArticleResults(searchResult)) {
-                        trendingArticles.add(article);
+                if(query != null) {
+                    SearchResult searchResult = query.getResult();
+                    if (searchResult != null) {
+                        int count = 0;
+                        for (Article article : receiveTrendingArticleResults(searchResult)) {
+                            trendingArticles.add(article);
 
-                        count++;
-                        if (count > 2) break;
-                    }
+                            count++;
+                            if (count > 2) break;
+                        }
 
-                    Iterator<Resource> resources = searchResult.getResources();
-                    if (resources.hasNext()) {
-                        resources.next().getResourceResolver().close();
+                        Iterator<Resource> resources = searchResult.getResources();
+                        if (resources.hasNext()) {
+                            resources.next().getResourceResolver().close();
+                        }
                     }
                 }
 
