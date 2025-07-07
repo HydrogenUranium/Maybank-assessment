@@ -1,10 +1,10 @@
 package com.dhl.discover.core.models;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 import java.util.*;
 
 import javax.jcr.RepositoryException;
@@ -24,7 +24,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 
@@ -66,7 +65,7 @@ class SearchResultsListTest {
 	private Page page;
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() {
 		ctx.load().json("/com/dhl/discover/core/models/SiteContent.json", "/content");
 		ctx.registerService(QueryBuilder.class, mockQueryBuilder);
 		ctx.registerService(PageUtilService.class, pageUtilServiceMock);
@@ -77,7 +76,7 @@ class SearchResultsListTest {
 	}
 
 	@Test
-	void testSortByTitle() {
+	void testSortByTitle() throws UnsupportedEncodingException, RepositoryException {
 		Page currentPage = ctx.pageManager().getPage("/content/dhl/country/en/search-results");
 		ctx.currentPage(currentPage);
 
@@ -92,10 +91,16 @@ class SearchResultsListTest {
 		SearchResultsList searchResultsList = new SearchResultsList(request, mockQueryBuilder, currentPage);
 
 		try {
-			searchResultsList.init();
-		} catch (Exception e) {
+			Field pageUtilServiceField = SearchResultsList.class.getDeclaredField("pageUtilService");
+			pageUtilServiceField.setAccessible(true);
+			pageUtilServiceField.set(searchResultsList, pageUtilServiceMock);
 
+			lenient().when(pageUtilServiceMock.getHomePage(any(Page.class))).thenReturn(currentPage);
+		} catch (Exception e) {
+			fail("Failed to set pageUtilService: " + e.getMessage());
 		}
+		searchResultsList.init();
+
 		assertNotNull(searchResultsList);
 
 		assertNull(searchResultsList.getTest());
@@ -138,7 +143,7 @@ class SearchResultsListTest {
 	}
 
 	@Test
-	void testSortByDate() throws RepositoryException {
+	void testSortByDate() throws  UnsupportedEncodingException,RepositoryException {
 		Page currentPage = ctx.pageManager().getPage("/content/dhl/country/en/search-results");
 		ctx.currentPage(currentPage);
 
@@ -158,13 +163,9 @@ class SearchResultsListTest {
 		} catch (Exception e) {
 			fail("Failed to set pageUtilService: " + e.getMessage());
 		}
-		try {
-			searchResultsList.init();
-		} catch (Exception e) {
+        searchResultsList.init();
 
-		}
-
-		assertNotNull(searchResultsList);
+        assertNotNull(searchResultsList);
 		assertEquals("date", searchResultsList.getSortBy());
 	}
 }
