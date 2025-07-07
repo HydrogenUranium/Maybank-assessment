@@ -15,6 +15,10 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 //@Deprecated(since = "2.1", forRemoval = true)
 @Model(adaptables=Resource.class)
 public class HomepageCarousel {
+
+	private HomepageCarousel() {
+
+	}
 	@ValueMapValue
 	@Named("items")
 	private static Resource linksResource;

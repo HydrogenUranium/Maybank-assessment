@@ -44,10 +44,10 @@ class MeganavTest {
 	}
 
 	@Test
-	void test() {
-        Mockito.when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
+	void testMeganavProperties() {
+		Mockito.when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
 		ctx.currentResource("/content/dhl/country/en/ship-now");
-		
+
 		Meganav meganav = ctx.request().adaptTo(Meganav.class);
 		assertNotNull(meganav);
 		assertEquals("E-commerce business & global logistics advice | Discover DHL", meganav.getSiteTitle());
@@ -57,16 +57,32 @@ class MeganavTest {
 		assertEquals("/apps/dhl/discoverdhlapi/searchsuggest/index.json", meganav.getTopsearchesUrl());
 		assertEquals(3, meganav.getPanels().size());
 		assertEquals(5, meganav.getLinksSocial().size());
-		
+	}
+
+	@Test
+	void testMeganavPanel() {
+		Mockito.when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
+		ctx.currentResource("/content/dhl/country/en/ship-now");
+
+		Meganav meganav = ctx.request().adaptTo(Meganav.class);
 		MeganavPanel meganavPanel = meganav.getPanels().get(0);
+
 		assertEquals(7, meganavPanel.getPanels().size());
 		assertEquals(0, meganavPanel.getArticleCategories().size());
 		assertEquals(0, meganavPanel.getIndex());
 		assertEquals(false, meganavPanel.getCurrent());
 		assertNotNull(meganavPanel.getPage());
-
 		assertEquals("/content/dhl/country/en/business.html", meganavPanel.url());
 		assertEquals("Business", meganavPanel.navigationTitle());
+	}
+
+	@Test
+	void testMeganavPanelSetters() {
+		Mockito.when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
+		ctx.currentResource("/content/dhl/country/en/ship-now");
+
+		Meganav meganav = ctx.request().adaptTo(Meganav.class);
+		MeganavPanel meganavPanel = meganav.getPanels().get(0);
 
 		meganavPanel.setPanels(new ArrayList<MeganavPanel>());
 		meganavPanel.setArticleCategories(new ArrayList<ArticleCategory>());
@@ -79,36 +95,32 @@ class MeganavTest {
 		assertEquals(0, meganavPanel.getIndex());
 		assertEquals(false, meganavPanel.getCurrent());
 		assertNull(meganavPanel.getPage());
-		
+	}
+
+	@Test
+	void testSocialLinks() {
+		Mockito.when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
+		ctx.currentResource("/content/dhl/country/en/ship-now");
+
+		Meganav meganav = ctx.request().adaptTo(Meganav.class);
 		for (SocialLink socialLink: meganav.getLinksSocial()) {
 			switch(socialLink.category) {
-	    		case "youtube": 
-	    			assertEquals("yt", socialLink.categoryshort());
-	    			break;
-	    			
-	    		case "facebook": 
-	    			assertEquals("fb", socialLink.categoryshort());
-	    			break;
-	    			
-	    		case "instagram": 
-	    			assertEquals("ig", socialLink.categoryshort());
-	    			break;
-	    			
-	    		case "linkedin": 
-	    			assertEquals("li", socialLink.categoryshort());
-	    			break;
-	    			
-	    		case "twitter": 
-	    			assertEquals("tw", socialLink.categoryshort());
-	    			break;
-	    			
-	    		default: 
-	    			assertEquals("", socialLink.categoryshort());
-	    			break;
-	    			
+				case "youtube": assertEquals("yt", socialLink.categoryshort()); break;
+				case "facebook": assertEquals("fb", socialLink.categoryshort()); break;
+				case "instagram": assertEquals("ig", socialLink.categoryshort()); break;
+				case "linkedin": assertEquals("li", socialLink.categoryshort()); break;
+				case "twitter": assertEquals("tw", socialLink.categoryshort()); break;
+				default: assertEquals("", socialLink.categoryshort()); break;
 			}
 		}
+	}
 
+	@Test
+	void testMeganavSetters() {
+		Mockito.when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
+		ctx.currentResource("/content/dhl/country/en/ship-now");
+
+		Meganav meganav = ctx.request().adaptTo(Meganav.class);
 		meganav.setSiteTitle("");
 		meganav.setHomeUrl("");
 		meganav.setSearchResultsPage("");

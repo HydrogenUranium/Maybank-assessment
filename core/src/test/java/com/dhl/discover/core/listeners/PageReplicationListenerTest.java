@@ -49,8 +49,6 @@ class PageReplicationListenerTest {
     @Mock
     private Job job;
 
-    private static final String DUMMY_PATH = "/content/dhl/global/en-global/test-page";
-
     @BeforeEach
     void setUp() {
         context.registerService(AkamaiFlushConfigReader.class,akamaiFlushConfigReader);
