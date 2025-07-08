@@ -2,10 +2,7 @@ package com.dhl.discover.core.models;
 
 import javax.inject.Named;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
@@ -17,6 +14,7 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class LanguageVariant {
     @Setter
     public String region;
@@ -46,14 +44,4 @@ public class LanguageVariant {
     @ValueMapValue
     public boolean exact;
 
-    public LanguageVariant(String name, String title, String home, String link, String langCode, boolean deflt, boolean current, boolean exact) {
-        this.home = home;
-        this.title = title;
-        this.link = link;
-        this.langCode = langCode;
-        this.name = name;
-        this.deflt = deflt;
-        this.current = current;
-        this.exact = exact;
-    }
 }

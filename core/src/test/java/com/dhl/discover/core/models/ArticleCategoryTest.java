@@ -36,8 +36,6 @@ class ArticleCategoryTest {
 
 	@Test
 	void test() {
-		ArticleCategory blankArticleCategory = new ArticleCategory();
-		
         ArticleCategory articleCategory = new ArticleCategory("/content/dhl/country/en/business", ctx.resourceResolver());
         assertEquals("/content/dhl/country/en/business", articleCategory.path);
         assertEquals(false, articleCategory.getExternal());

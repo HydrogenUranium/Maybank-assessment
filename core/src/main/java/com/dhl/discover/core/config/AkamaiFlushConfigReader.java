@@ -10,9 +10,9 @@ import java.util.List;
 public interface AkamaiFlushConfigReader {
 
     /**
-     * Method to provide the Akamai Client Secret
+     * Method to provide the authentication credential
      *
-     * @return clientSecret - {@link String}
+     * @return authentication credential - {@link String}
      */
     String getClientSecret();
 

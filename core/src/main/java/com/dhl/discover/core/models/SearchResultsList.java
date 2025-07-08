@@ -43,17 +43,21 @@ public class SearchResultsList {
     protected static final Integer RESULTS_PER_PAGE = 8;
     protected static final Integer MAX_TERMS_ALLOWED = 5;
 
-    @Inject
-    private SlingHttpServletRequest request;
+    private final SlingHttpServletRequest request;
+
+    private final ResourceResolver resourceResolver;
+
+    private final QueryBuilder builder;
+
+    private final Page currentPage;
 
     @Inject
-    private ResourceResolver resourceResolver;
-
-    @Inject
-    private QueryBuilder builder;
-
-    @Inject
-    private Page currentPage;
+    public SearchResultsList(SlingHttpServletRequest request,QueryBuilder builder, Page currentPage) {
+        this.request = request;
+        this.resourceResolver = request.getResourceResolver();
+        this.builder=builder;
+        this.currentPage=currentPage;
+    }
 
     @OSGiService
     private PageUtilService pageUtilService;
@@ -461,29 +465,29 @@ public class SearchResultsList {
                 }
             }
 
-            if (results.isEmpty()) {
-                if (builder != null) {
-                    Map<String, String> map = new HashMap<>();
-                    map.put("type", NT_PAGE);
-                    map.put("group.p.or", "true");
+            if (results.isEmpty() && builder != null) {
+                Map<String, String> map = new HashMap<>();
+                map.put("type", NT_PAGE);
+                map.put("group.p.or", "true");
 
-                    List<String> articleTypes = Article.getArticlePageTypes();
-                    for (int x = 0; x < articleTypes.size(); x++) {
-                        map.put(String.format("group.%1$s_property", (x + 1)), "jcr:content/sling:resourceType");
-                        map.put(String.format("group.%1$s_property.value", (x + 1)), String.format("dhl/components/pages/%1$s", articleTypes.get(x)));
-                        map.put(String.format("group.%1$s_property.operation", (x + 1)), "like");
-                    }
+                List<String> articleTypes = Article.getArticlePageTypes();
+                for (int x = 0; x < articleTypes.size(); x++) {
+                    map.put(String.format("group.%1$s_property", (x + 1)), "jcr:content/sling:resourceType");
+                    map.put(String.format("group.%1$s_property.value", (x + 1)), String.format("dhl/components/pages/%1$s", articleTypes.get(x)));
+                    map.put(String.format("group.%1$s_property.operation", (x + 1)), "like");
+                }
 
-                    map.put("orderby", "@jcr:content/custompublishdate");
-                    map.put("orderby.sort", "desc");
-                    map.put("p.limit", "10");
-                    map.put("p.guessTotal", "true");
+                map.put("orderby", "@jcr:content/custompublishdate");
+                map.put("orderby.sort", "desc");
+                map.put("p.limit", "10");
+                map.put("p.guessTotal", "true");
 
-                    Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
+                Query query = builder.createQuery(PredicateGroup.create(map), resourceResolver.adaptTo(Session.class));
+                if(query != null) {
                     SearchResult searchResult = query.getResult();
                     if (searchResult != null) {
                         int count = 0;
-                        for (Article article: receiveTrendingArticleResults(searchResult)) {
+                        for (Article article : receiveTrendingArticleResults(searchResult)) {
                             trendingArticles.add(article);
 
                             count++;
@@ -496,6 +500,7 @@ public class SearchResultsList {
                         }
                     }
                 }
+
             }
         }
     }
@@ -582,13 +587,7 @@ public class SearchResultsList {
     public Integer getCountInteractive() {
         return getCategoryCount("interactive");
     }
-    
-    /**
-     * 
-     */
-    public Integer getCountAll() {
-        return totalResults;
-    }
+
     
     /**
      * 

@@ -1,6 +1,5 @@
 package com.dhl.discover.core.utils;
 
-import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -25,8 +24,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith({MockitoExtension.class, AemContextExtension.class})
 class QueryManagerUtilsTest {
-    private final AemContext context = new AemContext();
-
     @Mock
     private SlingHttpServletRequest request;
 

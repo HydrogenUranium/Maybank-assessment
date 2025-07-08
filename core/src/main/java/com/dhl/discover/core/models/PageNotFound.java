@@ -34,11 +34,9 @@ public class PageNotFound {
 	@OSGiService
 	private PageUtilService pageUtilService;
 
-    @Inject
-    private QueryBuilder builder;
+	private final QueryBuilder builder;
 
-	@Inject
-	private ResourceResolver resourceResolver;
+	private final ResourceResolver resourceResolver;
 
 	@Getter
 	@Setter
@@ -47,8 +45,14 @@ public class PageNotFound {
 	@Getter
 	@Setter
 	private List<Article> trendingArticles;
-	
-	@PostConstruct
+
+	@Inject
+	public PageNotFound(QueryBuilder builder, SlingHttpServletRequest request) {
+		this.builder = builder;
+		this.resourceResolver = request.getResourceResolver();
+	}
+
+    @PostConstruct
     protected void init() throws RepositoryException {
         if (builder != null) {
 			searchResultsPage = receiveSearchResultsPage();

@@ -12,7 +12,7 @@ class MessageBuilderTest {
     @Test
     void testAddImage() {
         String imageUrl = "http://example.com/image.jpg";
-        MessageBuilder builder = new MessageBuilder();
+        Message.MessageBuilder builder = new Message.MessageBuilder();
         builder.addImage(imageUrl);
 
         Message message = builder.build();
@@ -27,7 +27,7 @@ class MessageBuilderTest {
     @Test
     void testAddText() {
         String text = "This is a test message.";
-        MessageBuilder builder = new MessageBuilder();
+        Message.MessageBuilder builder = new Message.MessageBuilder();
         builder.addText(text);
 
         Message message = builder.build();
@@ -41,7 +41,7 @@ class MessageBuilderTest {
 
     @Test
     void testSetRole() {
-        MessageBuilder builder = new MessageBuilder();
+        Message.MessageBuilder builder = new Message.MessageBuilder();
         builder.setRole(Role.ASSISTANT);
 
         Message message = builder.build();
@@ -52,7 +52,7 @@ class MessageBuilderTest {
     void testBuildWithMultipleEntries() {
         String imageUrl = "http://example.com/image.jpg";
         String text = "This is a test message.";
-        MessageBuilder builder = new MessageBuilder();
+        Message.MessageBuilder builder = new Message.MessageBuilder();
         builder.addImage(imageUrl).addText(text).setRole(Role.SYSTEM);
 
         Message message = builder.build();
