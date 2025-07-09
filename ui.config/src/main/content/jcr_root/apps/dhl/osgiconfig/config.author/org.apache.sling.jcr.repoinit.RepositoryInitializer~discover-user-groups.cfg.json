@@ -18,20 +18,26 @@
         "create group dhl-tag-editor",
 
         "# *** Remove ACL is used to guarantee acess order (prevent potential problems of manual access changes) ***",
-        "remove ACE for author-language-copies,author-language-master\ndeny jcr:all on /content/dhl restriction(rep:glob,/language-masters/en-master)\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
+        "remove ACE for author-language-copies,author-language-master\ndeny jcr:all,jcr:write on /content/dhl restriction(rep:glob,/language-masters/en-master)\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
 
         "set properties on authorizable(author-language-copies)/profile\n set givenName to \"Author - Language Copies\"\n end",
+        "add author-language-copies to group projects-administrators",
+        "set ACL for author-language-copies\nallow jcr:read on /conf/global\nend",
         "set ACL for author-language-copies\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
         "set ACL for author-language-copies\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/language-masters)\nend",
-        "set ACL for author-language-copies\ndeny jcr:all on /content/dhl restriction(rep:glob,/language-masters/en-master)\nend",
+        "set ACL for author-language-copies\ndeny jcr:addChildNodes,jcr:modifyProperties on /content/dhl restriction(rep:globs,/language-masters/en-master/*/jcr:content,/language-masters/en-master/jcr:content)\nend",
+        "set ACL for author-language-copies\ndeny jcr:removeChildNodes,jcr:removeNode,jcr:lockManagement,jcr:versionManagement,crx:replicate on /content/dhl restriction(rep:glob,/language-masters/en-master)\nend",
         "set ACL for author-language-copies\nallow jcr:read on home(author-language-copies)\nend",
+
+        "# *** Update Access Rights. The removal can be deleted from the script in next releases ***",
+        "remove ACE for author-language-master\nallow jcr:all on /conf/global\nend",
 
         "set properties on authorizable(author-language-master)/profile\n set givenName to \"Author - Language Master\"\n end",
         "add author-language-master to group projects-administrators",
         "set ACL for author-language-master\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
         "set ACL for author-language-master\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/language-masters)\nend",
-        "set ACL for author-language-master\nallow jcr:all on /conf/global\nend",
-        "set ACL for author-language-master\nallow jcr:read,rep:write on /content/dhl restriction(rep:glob,/*/*)\nend",
+        "set ACL for author-language-master\nallow jcr:read on /conf/global\nend",
+        "set ACL for author-language-master\nallow jcr:read,rep:write,jcr:lockManagement,jcr:versionManagement on /content/dhl restriction(rep:glob,/*/*)\nend",
         "set ACL for author-language-master\nallow jcr:read on home(author-language-master)\nend",
 
         "create group discover-publisher-user",
@@ -43,9 +49,11 @@
 
         "create group discover-base-user",
 
+        "# *** Remove discover-base-user group from author-language-master. The removal can be deleted from the script in next releases ***",
+        "remove discover-base-user from group author-language-master",
+
         "set properties on authorizable(discover-base-user)/profile\n set givenName to \"Discover Base User\"\n set aboutMe to \"Common user group with basic access rights\"\n end",
         "add discover-base-user to group author-language-copies",
-        "add discover-base-user to group author-language-master",
         "add discover-base-user to group experience-fragments-editors",
         "add discover-base-user to group contributor",
         "add discover-base-user to group workflow-users",
