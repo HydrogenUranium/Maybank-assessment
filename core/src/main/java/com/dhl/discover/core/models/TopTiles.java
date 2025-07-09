@@ -26,9 +26,6 @@ import java.util.List;
 public class TopTiles {
 
     @OSGiService
-    private PageUtilService pageUtilService;
-
-    @OSGiService
     private ArticleUtilService articleUtilService;
 
     @SlingObject

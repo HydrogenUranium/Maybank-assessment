@@ -38,9 +38,6 @@ class TopTilesV2Test {
     private Article article;
 
     @Mock
-    private PageUtilService pageUtilService;
-
-    @Mock
     private ArticleUtilService articleUtilService;
 
     @BeforeEach
@@ -49,7 +46,7 @@ class TopTilesV2Test {
         context.addModelsForClasses(TopTilesV2.class);
         context.addModelsForClasses(TopTilesV2.Tile.class);
         context.registerService(ModelFactory.class, modelFactory, SERVICE_RANKING, Integer.MAX_VALUE);
-        context.registerService(PageUtilService.class, pageUtilService);
+        context.registerService(ArticleUtilService.class, articleUtilService);
         mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
         when(modelFactory.createModelFromWrappedRequest(any(MockSlingHttpServletRequest.class), any(Resource.class), any()))
                 .thenAnswer(invocation -> {

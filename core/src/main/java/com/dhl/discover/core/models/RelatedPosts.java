@@ -22,8 +22,6 @@ import java.util.List;
 
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class RelatedPosts {
-    @OSGiService
-    private PageUtilService pageUtilService;
 
     @OSGiService
     private ArticleUtilService articleUtilService;

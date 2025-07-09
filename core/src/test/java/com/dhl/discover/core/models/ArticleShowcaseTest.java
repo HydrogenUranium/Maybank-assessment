@@ -60,6 +60,7 @@ class ArticleShowcaseTest {
         context.registerService(PageUtilService.class, pageUtils);
         context.registerService(ArticleService.class, articleService);
         context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(ArticleUtilService.class, articleUtilService);
         context.addModelsForClasses(ArticleShowcase.class);
         context.currentPage(page);
         context.load().json("/com/dhl/discover/core/models/ArticleShowcase/content.json", "/content");

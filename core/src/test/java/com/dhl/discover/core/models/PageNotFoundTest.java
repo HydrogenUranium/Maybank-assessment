@@ -47,9 +47,6 @@ class PageNotFoundTest {
     private Hit hit;
 
     @Mock
-    private PageUtilService pageUtilServiceMock;
-
-    @Mock
     private ArticleUtilService articleUtilServiceMock;
 
     @Mock
@@ -62,7 +59,7 @@ class PageNotFoundTest {
 	void setUp() throws Exception {
 	    ctx.load().json("/com/dhl/discover/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
-        ctx.registerService(PageUtilService.class, pageUtilServiceMock);
+        ctx.registerService(ArticleUtilService.class, articleUtilServiceMock);
 	    ctx.addModelsForClasses(PageNotFound.class);
 	}
 

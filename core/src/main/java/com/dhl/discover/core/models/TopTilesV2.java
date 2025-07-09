@@ -65,9 +65,6 @@ public class TopTilesV2 {
         private ResourceResolver resourceResolver;
 
         @OSGiService
-        private PageUtilService pageUtilService;
-
-        @OSGiService
         private ArticleUtilService articleUtilService;
 
         @ValueMapValue

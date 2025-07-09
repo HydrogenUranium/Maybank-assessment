@@ -33,8 +33,6 @@ import static com.day.cq.wcm.api.constants.NameConstants.PN_HIDE_IN_NAV;
 
 @Model(adaptables=SlingHttpServletRequest.class)
 public class PageNotFound {
-	@OSGiService
-	private PageUtilService pageUtilService;
 
 	@OSGiService
 	private ArticleUtilService articleUtilService;

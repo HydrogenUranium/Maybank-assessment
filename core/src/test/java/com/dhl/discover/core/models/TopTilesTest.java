@@ -53,6 +53,7 @@ class TopTilesTest {
         context.load().json("/com/dhl/discover/core/models/TopTiles/content.json", "/content");
 
         context.registerService(PageUtilService.class, pageUtilService);
+        context.registerService(ArticleUtilService.class, articleUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);

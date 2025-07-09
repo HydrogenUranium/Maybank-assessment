@@ -33,9 +33,6 @@ public class LandingPageTwoColumn {
 	private PathUtilService pathUtilService;
 
 	@OSGiService
-	private PageUtilService pageUtilService;
-
-	@OSGiService
 	private ArticleUtilService articleUtilService;
 
 	@SlingObject

@@ -94,6 +94,7 @@ class ArticleSideNavigationTest {
         ctx.registerService(CategoryFinder.class, categoryFinder);
         ctx.registerService(ResourceResolverHelper.class, resourceResolverHelper);
         ctx.registerService(PageUtilService.class, pageUtilService);
+        ctx.registerService(ArticleUtilService.class, articleUtilService);
         ctx.registerService(TagUtilService.class, tagUtilService);
         ctx.registerService(PathUtilService.class, pathUtilService);
         ctx.registerService(AssetUtilService.class, assetUtilService);

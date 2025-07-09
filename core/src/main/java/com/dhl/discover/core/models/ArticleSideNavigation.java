@@ -38,9 +38,6 @@ public class ArticleSideNavigation {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleSideNavigation.class);
 
 	@OSGiService
-	private PageUtilService pageUtilService;
-
-	@OSGiService
 	private ArticleUtilService articleUtilService;
 
 	@OSGiService
