@@ -67,3 +67,12 @@ $include "./default_filters.any"
     /method "GET"
     /url "/content/dam/speculation-rules/*.specrules"
 }
+
+#csrf token
+/0120 {
+    /type "allow"
+    /method "GET"
+    /url "/libs/granite/csrf/token.json"
+}
+
+
