@@ -1,7 +1,11 @@
 package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.dhl.discover.core.services.*;
+import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.ArticleUtilService;
+import com.dhl.discover.core.services.TagUtilService;
+import com.dhl.discover.core.services.PathUtilService;
+import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
