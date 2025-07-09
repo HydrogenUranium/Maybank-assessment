@@ -4,7 +4,7 @@ $include "./default_filters.any"
 /2000 {
     /type "allow"
     /method "GET"
-    /url "/libs/granite/csrf/token.json"
+    /url "/libs/granite/csrf/token.json*"
 }
 
 # Allow forms submissions to AEM
