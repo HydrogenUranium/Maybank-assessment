@@ -18,7 +18,6 @@ RewriteRule ^/discover/sitemap-index\.xml$ /content/dhl.sitemap-index.xml [PT,L,
 RewriteRule ^/discover/sitemap\.xml$ /content/dhl.sitemap.xml [PT,L,NC]
 RewriteRule ^/discover/(\w{2})-(global|\w{2})/sitemap\.xml$ /content/dhl.sitemap.$2-$1-$2-sitemap.xml [PT,L,NC]
 RewriteRule ^(/discover)?/favicon\.ico$ /etc.clientlibs/dhl/clientlibs/discover/resources/favicon.ico [PT,L,NC]
-RewriteRule ^(/discover)?/libs/granite/csrf/token\.json$ /libs/granite/csrf/token.json [PT,L,NC]
 
 ### Remove trailing slash (if present) for head & get requests (https://jira.dhl.com/browse/DIS-168)
 RewriteCond %{REQUEST_METHOD} (GET|HEAD)
