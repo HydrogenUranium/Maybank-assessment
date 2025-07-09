@@ -4,7 +4,7 @@ $include "./default_filters.any"
 /2000 {
     /type "allow"
     /method "GET"
-    /url "/libs/granite/csrf/token.json*"
+    /url "/libs/granite/csrf/token.json"
 }
 
 # Allow forms submissions to AEM
@@ -68,8 +68,6 @@ $include "./default_filters.any"
     /url "/content/dam/speculation-rules/*.specrules"
 }
 
-# Allow CSRF token endpoint on Publish
-/0106 { /type "allow" /method "GET" /url "/libs/granite/csrf/token.json" }
 
 
 
