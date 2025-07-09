@@ -23,6 +23,23 @@
         <div data-marketo-visible-form>
           <form id="mktoForm_${cmf.marketoformid}"></form>
           <script src="${cmf.getVisibleFormHost}/js/forms2/js/forms2.min.js"></script>
+            <script>
+                MktoForms2.whenReady(function(form) {
+                    fetch('/libs/granite/csrf/token.json')
+                        .then(function(response) {
+                            return response.json();
+                        })
+                        .then(function(data) {
+                            var csrfToken = data.token;
+                            console.log("CSRF token from AEM:", csrfToken);
+                            form.onSubmit(function() {
+                                form.addHiddenFields({
+                                    ':cq_csrf_token': csrfToken
+                                });
+                            });
+                        });
+                });
+            </script>
         </div>
       </div>
     </div>

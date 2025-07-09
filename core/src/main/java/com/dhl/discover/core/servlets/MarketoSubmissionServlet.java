@@ -55,6 +55,10 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
 		boolean canProceed = canProceed(request);
+
+		String postedToken = request.getParameter(":cq_csrf_token");
+		log.info("CSRF token received from client: " + postedToken);
+
 		if(canProceed){
 			log.info("OSGi configuration sets Marketo Hidden form submission to 'enabled'. Proceeding ...");
 			int formId = inputParamHelper.getFormId(request);
