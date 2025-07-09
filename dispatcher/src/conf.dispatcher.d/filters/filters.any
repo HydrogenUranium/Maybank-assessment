@@ -69,7 +69,6 @@ $include "./default_filters.any"
 }
 
 # Allow CSRF token endpoint on Publish
-/0105 { /type "allow" /url "/libs/granite/csrf/token.json*" /method "GET" }
 /0106 { /type "allow" /method "GET" /url "/libs/granite/csrf/token.json" }
 
 
