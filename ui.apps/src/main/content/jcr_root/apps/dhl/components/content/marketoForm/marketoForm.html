@@ -1,7 +1,7 @@
 <sly data-sly-use.accountactions="com.dhl.discover.core.models.AccountActions"
      data-sly-use.cmf="com.dhl.discover.core.models.ConfigurableMarketoForm"
      data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"
-     data-sly-set.isEmpty="${!cmf.marketoformid}" xmlns="http://www.w3.org/1999/html"></sly>
+     data-sly-set.isEmpty="${!cmf.marketoformid}"></sly>
 
 <div class="cq-placeholder" data-sly-test="${wcmmode.edit && isEmpty}" data-emptytext="${component.title}"></div>
 
@@ -23,33 +23,6 @@
         <div data-marketo-visible-form>
           <form id="mktoForm_${cmf.marketoformid}"></form>
           <script src="${cmf.getVisibleFormHost}/js/forms2/js/forms2.min.js"></script>
-            <script>
-                MktoForms2.whenReady(function(form) {
-                    fetch('/libs/granite/csrf/token.json')
-                        .then(function(response) {
-                            if (!response.ok) {
-                                throw new Error("Network response was not ok: " + response.status);
-                            }
-                            const contentType = response.headers.get("content-type") || "";
-                            if (!contentType.includes("application/json")) {
-                                throw new Error("Expected JSON, got: " + contentType);
-                            }
-                            return response.json();
-                        })
-                        .then(function(data) {
-                            var csrfToken = data.token;
-                            console.log("CSRF token from AEM:", csrfToken);
-                            form.onSubmit(function() {
-                                form.addHiddenFields({
-                                    ':cq_csrf_token': csrfToken
-                                });
-                            });
-                        })
-                        .catch(function(error) {
-                            console.error("Failed to get CSRF token:", error);
-                        });
-                });
-            </script>
         </div>
       </div>
     </div>

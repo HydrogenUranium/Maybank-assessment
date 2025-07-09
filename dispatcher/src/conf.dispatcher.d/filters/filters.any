@@ -67,7 +67,3 @@ $include "./default_filters.any"
     /method "GET"
     /url "/content/dam/speculation-rules/*.specrules"
 }
-
-
-
-
