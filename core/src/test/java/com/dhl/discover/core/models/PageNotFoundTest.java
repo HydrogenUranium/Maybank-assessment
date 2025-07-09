@@ -10,6 +10,7 @@ import javax.jcr.Session;
 
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -49,6 +50,9 @@ class PageNotFoundTest {
     private PageUtilService pageUtilServiceMock;
 
     @Mock
+    private ArticleUtilService articleUtilServiceMock;
+
+    @Mock
     private Article article;
 
     @Mock
@@ -73,7 +77,7 @@ class PageNotFoundTest {
         when(hit.getProperties()).thenReturn(articlePageResource.getValueMap());
         when(hit.getPath()).thenReturn("/content/dhl/country/en/culture/dhl-mo-salah");
         when(searchResult.getResources()).thenReturn(resourceIterator);
-        when(pageUtilServiceMock.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilServiceMock.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
         Map<String, Object> params = new HashMap<String, Object>();
 		params.put("mode", "latest");

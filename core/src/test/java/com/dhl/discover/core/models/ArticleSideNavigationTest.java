@@ -74,6 +74,9 @@ class ArticleSideNavigationTest {
     private PageUtilService pageUtilService;
 
     @Mock
+    private ArticleUtilService articleUtilService;
+
+    @Mock
     private TagUtilService tagUtilService;
 
     @Mock
@@ -119,7 +122,7 @@ class ArticleSideNavigationTest {
         // following when-then gymnastics is related to Article model class,that's called from ArticleSideNavigation
         Page articlePage = setUpArticlePage();
         Article article = createArticleModel(ctx.resourceResolver().getResource(articlePage.getPath()));
-        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
         ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
 
@@ -142,7 +145,7 @@ class ArticleSideNavigationTest {
         when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resourceResolver);
 
         Article article = createArticleModel(ctx.resourceResolver().getResource("/content/dhl/en-global/business/entrepreneurship/effective-entrepreneurs"));
-        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
         Map<String, Object> params = new HashMap<>();
         params.put("mode", "latest");

@@ -1,10 +1,7 @@
 package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.designer.Style;
-import com.dhl.discover.core.services.AssetUtilService;
-import com.dhl.discover.core.services.PageUtilService;
-import com.dhl.discover.core.services.PathUtilService;
-import com.dhl.discover.core.services.TagUtilService;
+import com.dhl.discover.core.services.*;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -38,6 +35,9 @@ class RelatedPostsTest {
 
     @Mock
     private PageUtilService pageUtilService;
+
+    @Mock
+    private ArticleUtilService  articleUtilService;
 
     @Mock
     private TagUtilService tagUtilService;
@@ -77,7 +77,7 @@ class RelatedPostsTest {
     @Test
     void init_ShouldInitRelatedPosts_WhenContainsCustomTitle() {
         Article article = createArticleModel(context.resourceResolver().getResource("/content/home"));
-        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
         initRequest("/content/home/jcr:content/par/related_posts_with_title");
         mockInjectHomeProperty(context, "relatedPosts-title" ,"");
@@ -91,7 +91,7 @@ class RelatedPostsTest {
     @Test
     void init_ShouldInitRelatedPosts_WhenDoNotContainTitle() {
         Article article = createArticleModel(context.resourceResolver().getResource("/content/home"));
-        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
         initRequest("/content/home/jcr:content/par/related_posts_without_title");
         mockInjectHomeProperty(context, "relatedPosts-title" ,"Related Posts");

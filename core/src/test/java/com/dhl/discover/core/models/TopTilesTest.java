@@ -1,9 +1,6 @@
 package com.dhl.discover.core.models;
 
-import com.dhl.discover.core.services.AssetUtilService;
-import com.dhl.discover.core.services.PageUtilService;
-import com.dhl.discover.core.services.PathUtilService;
-import com.dhl.discover.core.services.TagUtilService;
+import com.dhl.discover.core.services.*;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -47,6 +44,9 @@ class TopTilesTest {
     @Mock
     private AssetUtilService assetUtilService;
 
+    @Mock
+    private ArticleUtilService articleUtilService;
+
     @BeforeEach
     void setUp() throws Exception {
         context.addModelsForClasses(TopTiles.class);
@@ -64,7 +64,7 @@ class TopTilesTest {
         mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
         when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
         when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
-        lenient().when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class)))
+        lenient().when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class)))
                 .thenAnswer(invocationOnMock -> createArticleModel(context.resourceResolver().getResource("/content/article_1")));
     }
 

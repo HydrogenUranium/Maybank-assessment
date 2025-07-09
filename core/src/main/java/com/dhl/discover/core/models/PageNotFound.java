@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,7 @@ import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.osgi.service.component.annotations.Reference;
 
 import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_HIDE_IN_NAV;
@@ -33,6 +35,9 @@ import static com.day.cq.wcm.api.constants.NameConstants.PN_HIDE_IN_NAV;
 public class PageNotFound {
 	@OSGiService
 	private PageUtilService pageUtilService;
+
+	@OSGiService
+	private ArticleUtilService articleUtilService;
 
 	private final QueryBuilder builder;
 
@@ -107,7 +112,7 @@ public class PageNotFound {
 	private Article getArticle(Hit hit) throws RepositoryException {
 		ValueMap hitProperties = hit.getProperties();
 		boolean hideInNav = hitProperties.get(PN_HIDE_IN_NAV, false);
-		return !hideInNav ? pageUtilService.getArticle(hit.getPath(), resourceResolver) : null;
+		return !hideInNav ? articleUtilService.getArticle(hit.getPath(), resourceResolver) : null;
 	}
 
 	private Map<String, String> getArticlesPageTypeQueryMap() {

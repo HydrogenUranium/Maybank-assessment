@@ -14,6 +14,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import com.day.cq.wcm.api.Page;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -61,6 +62,9 @@ public class SearchResultsList {
 
     @OSGiService
     private PageUtilService pageUtilService;
+
+    @OSGiService
+    private ArticleUtilService articleUtilService;
 
     private List<Article> results;
     private Map<String, Integer> resultSummary;
@@ -506,7 +510,7 @@ public class SearchResultsList {
     }
 
     private int putArticleToResult(Hit hit, int count) throws RepositoryException {
-        var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+        var article = articleUtilService.getArticle(hit.getPath(), resourceResolver);
         if (article != null) {
             if (!resultSummary.containsKey(article.getIcon())) {
                 resultSummary.put(article.getIcon(), 0);
@@ -543,7 +547,7 @@ public class SearchResultsList {
                 continue;
             }
 
-            var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+            var article = articleUtilService.getArticle(hit.getPath(), resourceResolver);
             if (article != null) {
                 article.setIndex(count++);
                 result.add(article);

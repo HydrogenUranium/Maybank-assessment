@@ -43,6 +43,9 @@ class ArticleServiceTest {
     private PageUtilService pageUtilService;
 
     @Mock
+    private ArticleUtilService articleUtilService;
+
+    @Mock
     private TagUtilService tagUtilService;
 
     @Mock
@@ -104,8 +107,8 @@ class ArticleServiceTest {
 
         Article article1 = createArticleModel(context.resourceResolver().getResource("/content/home/article_1"));
         Article article2 = createArticleModel(context.resourceResolver().getResource("/content/home/article_2"));
-        lenient().when(pageUtilService.getArticle(eq("/content/home/article_1"), any(ResourceResolver.class))).thenReturn(article1);
-        lenient().when(pageUtilService.getArticle(eq("/content/home/article_2"), any(ResourceResolver.class))).thenReturn(article2);
+        lenient().when(articleUtilService.getArticle(eq("/content/home/article_1"), any(ResourceResolver.class))).thenReturn(article1);
+        lenient().when(articleUtilService.getArticle(eq("/content/home/article_2"), any(ResourceResolver.class))).thenReturn(article2);
     }
 
     private Article createArticleModel(Resource resource) {

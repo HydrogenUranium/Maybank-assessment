@@ -205,30 +205,6 @@ public class PageUtilService implements Serializable {
     }
 
     /**
-     * This method allows get {@link Article} model object by path.
-     * @param articlePagePath is a path of the Article {@link Page}
-     * @param resourceResolver is a {@link ResourceResolver}
-     * @return {@code Article} if the articlePagePath links to the Article otherwise {@code null}
-     */
-    @Nullable
-    public Article getArticle(String articlePagePath, ResourceResolver resourceResolver) {
-        return Optional.ofNullable(articlePagePath)
-                .filter(StringUtils::isNoneBlank)
-                .map(resourceResolver::getResource)
-                .map(r -> r.adaptTo(Article.class))
-                .orElse(null);
-    }
-
-    @Nullable
-    public Article getArticle(String articlePagePath, SlingHttpServletRequest request) {
-        return Optional.ofNullable(articlePagePath)
-                .filter(StringUtils::isNoneBlank)
-                .map(path -> request.getResourceResolver().getResource(path))
-                .map(r -> modelFactory.createModelFromWrappedRequest(request, r, Article.class))
-                .orElse(null);
-    }
-
-    /**
      * Checks if a given AEM page is published.
      *
      * @param page the AEM `Page` object to check for publication status. May be null.

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import lombok.Getter;
@@ -33,6 +34,9 @@ public class LandingPageTwoColumn {
 
 	@OSGiService
 	private PageUtilService pageUtilService;
+
+	@OSGiService
+	private ArticleUtilService articleUtilService;
 
 	@SlingObject
 	private ResourceResolver resourceResolver;
@@ -97,7 +101,7 @@ public class LandingPageTwoColumn {
 				if (props != null) {
 					String url = props.get("url", "");
 					
-					var article = pageUtilService.getArticle(url, resourceResolver);
+					var article = articleUtilService.getArticle(url, resourceResolver);
 					if (article != null) {
 						relatedArticles.add(article);
 					}

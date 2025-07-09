@@ -1,5 +1,6 @@
 package com.dhl.discover.core.models;
 
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -39,6 +40,9 @@ class TopTilesV2Test {
     @Mock
     private PageUtilService pageUtilService;
 
+    @Mock
+    private ArticleUtilService articleUtilService;
+
     @BeforeEach
     void setUp() {
         context.load().json("/com/dhl/discover/core/models/TopTilesV2/content.json", "/content");
@@ -56,7 +60,7 @@ class TopTilesV2Test {
 
         when(article.getPageTitleWithBr()).thenReturn("Article Title");
         when(article.getGroupTag()).thenReturn("#GroupTag");
-        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
         request.setPathInfo("/content/top_tiles");
         request.setResource(resolver.getResource("/content/top_tiles"));

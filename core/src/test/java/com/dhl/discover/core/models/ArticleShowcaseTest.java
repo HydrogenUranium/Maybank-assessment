@@ -3,6 +3,7 @@ package com.dhl.discover.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.services.ArticleService;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -51,6 +52,9 @@ class ArticleShowcaseTest {
     @Mock
     private PathUtilService pathUtilService;
 
+    @Mock
+    private ArticleUtilService articleUtilService;
+
     @BeforeEach
     void setUp() throws Exception {
         context.registerService(PageUtilService.class, pageUtils);
@@ -59,7 +63,7 @@ class ArticleShowcaseTest {
         context.addModelsForClasses(ArticleShowcase.class);
         context.currentPage(page);
         context.load().json("/com/dhl/discover/core/models/ArticleShowcase/content.json", "/content");
-        lenient().when(pageUtils.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
+        lenient().when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
     }
 
