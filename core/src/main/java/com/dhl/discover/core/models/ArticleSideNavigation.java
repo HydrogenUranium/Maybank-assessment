@@ -7,7 +7,6 @@ import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.constants.DiscoverConstants;
 import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.CategoryFinder;
-import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.ResourceResolverHelper;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;

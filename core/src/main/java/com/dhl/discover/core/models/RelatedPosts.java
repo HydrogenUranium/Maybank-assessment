@@ -3,7 +3,6 @@ package com.dhl.discover.core.models;
 import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.injectors.InjectHomeProperty;
 import com.dhl.discover.core.services.ArticleUtilService;
-import com.dhl.discover.core.services.PageUtilService;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;

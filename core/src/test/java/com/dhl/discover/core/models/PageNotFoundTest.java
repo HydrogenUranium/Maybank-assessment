@@ -11,7 +11,6 @@ import javax.jcr.Session;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.dhl.discover.core.services.ArticleUtilService;
-import com.dhl.discover.core.services.PageUtilService;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;

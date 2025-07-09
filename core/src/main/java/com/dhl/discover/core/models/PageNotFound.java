@@ -12,7 +12,6 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import com.dhl.discover.core.services.ArticleUtilService;
-import com.dhl.discover.core.services.PageUtilService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
@@ -26,7 +25,6 @@ import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.osgi.service.component.annotations.Reference;
 
 import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 import static com.day.cq.wcm.api.constants.NameConstants.PN_HIDE_IN_NAV;

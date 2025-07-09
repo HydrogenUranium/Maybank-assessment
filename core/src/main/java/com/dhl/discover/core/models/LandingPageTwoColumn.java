@@ -7,7 +7,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import com.dhl.discover.core.services.ArticleUtilService;
-import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import lombok.Getter;
 import lombok.Setter;

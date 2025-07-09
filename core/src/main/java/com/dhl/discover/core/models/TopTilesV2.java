@@ -3,7 +3,6 @@ package com.dhl.discover.core.models;
 import com.adobe.cq.wcm.core.components.models.Image;
 import com.dhl.discover.core.injectors.InjectChildImageModel;
 import com.dhl.discover.core.services.ArticleUtilService;
-import com.dhl.discover.core.services.PageUtilService;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,6 @@
 package com.dhl.discover.core.models;
 
 import com.dhl.discover.core.services.ArticleUtilService;
-import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;

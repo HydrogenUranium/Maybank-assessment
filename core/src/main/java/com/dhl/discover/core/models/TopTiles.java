@@ -2,7 +2,6 @@ package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.services.ArticleUtilService;
-import com.dhl.discover.core.services.PageUtilService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
