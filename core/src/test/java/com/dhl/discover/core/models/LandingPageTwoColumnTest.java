@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -32,20 +33,26 @@ class LandingPageTwoColumnTest {
     @Mock
     private PathUtilService pathUtilService;
 
+    @Mock
+    private ArticleUtilService articleUtilService;
+
     @BeforeEach
 	void setUp() throws Exception {
 	    ctx.load().json("/com/dhl/discover/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
         ctx.registerService(PageUtilService.class, new PageUtilService());
         ctx.registerService(PathUtilService.class, pathUtilService);
+        ctx.registerService(ArticleUtilService.class, articleUtilService);
         ctx.addModelsForClasses(LandingPageTwoColumn.class);
     }
 
 	@Test
 	void test() {
 		ctx.currentResource("/content/dhl/country/en/open-an-account-offer");
+        assertNotNull(ctx.currentResource(), "Resource should exist in the test context");
+        ctx.request().setResource(ctx.currentResource());
 
-		LandingPageTwoColumn landingPageTwoColumn = ctx.request().adaptTo(LandingPageTwoColumn.class);
+        LandingPageTwoColumn landingPageTwoColumn = ctx.request().adaptTo(LandingPageTwoColumn.class);
         assertNotNull(landingPageTwoColumn);
 
         assertEquals("Get up to 10% off your shipping costs", landingPageTwoColumn.getFullTitle());

@@ -55,6 +55,7 @@ class PageUtilServiceTest {
         resource = resourceResolver.getResource(PAGE_PATH);
         var launchService = context.registerService(LaunchService.class, new LaunchService());
         pageUtilService = context.registerInjectActivateService(PageUtilService.class, "launchService", launchService);
+        articleUtilService = context.registerInjectActivateService(new ArticleUtilService());
     }
 
     @Test
@@ -345,7 +346,7 @@ class PageUtilServiceTest {
         when(modelFactory.createModelFromWrappedRequest(request, resource, Article.class)).thenReturn(article);
 
         try {
-            var field = PageUtilService.class.getDeclaredField("modelFactory");
+            var field = ArticleUtilService.class.getDeclaredField("modelFactory");
             field.setAccessible(true);
             field.set(service, modelFactory);
         } catch (Exception e) {
