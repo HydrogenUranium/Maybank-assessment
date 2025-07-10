@@ -7,6 +7,7 @@ import com.dhl.discover.core.dto.marketo.FormInputBase;
 import com.dhl.discover.core.dto.marketo.FormSubmissionErrors;
 import com.dhl.discover.core.dto.marketo.FormSubmissionResponse;
 import com.dhl.discover.core.dto.marketo.MarketoSubmissionResult;
+import com.dhl.discover.core.utils.LogUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -54,7 +55,6 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
 		boolean canProceed = canProceed(request);
-
 		if(canProceed){
 			log.info("OSGi configuration sets Marketo Hidden form submission to 'enabled'. Proceeding ...");
 			int formId = inputParamHelper.getFormId(request);
@@ -72,7 +72,7 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 				provideResponse(formSubmissionResponse, pw);
 			} else {
 				log.error("The Marketo hidden form submission was failed");
-				pw.write(escapeHtml("KO"));
+				pw.write("KO");
 				canProceed = false;
 			}
 		} else {
@@ -96,27 +96,18 @@ public class MarketoSubmissionServlet extends SlingAllMethodsServlet{
 								"but the response from the Marketo shows that the second request was not accepted " +
 								"because the sender used IPv6 address");
 					}
-					log.info("Marketo form submission status code: {}, text: {}", statusCode, escapeHtml(status));
+					log.info("Marketo form submission status code: {}, text: {}", statusCode, status);
 				}
 			}
-			printWriter.write(escapeHtml("OK"));
+			printWriter.write("OK");
 		} else {
 			List<FormSubmissionErrors> errors = formSubmissionResponse.getFormSubmissionErrors();
 			for (FormSubmissionErrors formSubmissionErrors : errors) {
 				log.error("Error has occurred when submitting Marketo form. Status code: {}, Message: {}",
-						escapeHtml(formSubmissionErrors.getCode()), escapeHtml(formSubmissionErrors.getMessage()));
+						LogUtils.encode(formSubmissionErrors.getCode()), LogUtils.encode(formSubmissionErrors.getMessage()));
 			}
-			printWriter.write(escapeHtml("KO"));
+			printWriter.write("KO");
 		}
-	}
-
-	private String escapeHtml(String input) {
-		if (input == null) return "";
-		return input.replace("&", "&amp;")
-				.replace("<", "&lt;")
-				.replace(">", "&gt;")
-				.replace("\"", "&quot;")
-				.replace("'", "&#x27;");
 	}
 
 	/**
