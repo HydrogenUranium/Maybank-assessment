@@ -7,7 +7,6 @@ import com.dhl.discover.core.dto.marketo.FormInputBase;
 import com.dhl.discover.core.dto.marketo.FormSubmissionErrors;
 import com.dhl.discover.core.dto.marketo.FormSubmissionResponse;
 import com.dhl.discover.core.dto.marketo.MarketoSubmissionResult;
-import com.dhl.discover.core.utils.LogUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
