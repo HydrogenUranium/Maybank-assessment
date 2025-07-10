@@ -2,6 +2,7 @@ package com.dhl.discover.core.models;
 
 import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.Page;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
@@ -33,6 +34,9 @@ public class ArticleTeaserModel {
 
     @OSGiService
     private PageUtilService pageUtilService;
+
+    @OSGiService
+    private ArticleUtilService articleUtilService;
 
     @OSGiService
     private PathUtilService pathUtilService;
@@ -85,7 +89,7 @@ public class ArticleTeaserModel {
     private static final String DEFAULT_PAGE_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
     @PostConstruct
     protected void init() {
-        var article = pageUtilService.getArticle(linkURL, resourceResolver);
+        var article = articleUtilService.getArticle(linkURL, resourceResolver);
 
         if (article != null) {
             imageFromPage = Boolean.parseBoolean(imageFromPageImage) && !StringUtils.isBlank(linkURL);

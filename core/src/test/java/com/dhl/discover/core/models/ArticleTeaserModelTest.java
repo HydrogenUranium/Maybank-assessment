@@ -1,10 +1,11 @@
 package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.PageUtilService;
-import com.dhl.discover.core.services.PathUtilService;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.TagUtilService;
+import com.dhl.discover.core.services.PathUtilService;
+import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
@@ -51,6 +52,9 @@ class ArticleTeaserModelTest {
     private PageUtilService pageUtilService;
 
     @Mock
+    private ArticleUtilService articleUtilService;
+
+    @Mock
     private TagUtilService tagUtilService;
 
     @Mock
@@ -62,6 +66,7 @@ class ArticleTeaserModelTest {
     @BeforeEach
     void setUp() {
         context.registerService(PageUtilService.class, pageUtilService);
+        context.registerService(ArticleUtilService.class, articleUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);
@@ -81,7 +86,7 @@ class ArticleTeaserModelTest {
     @Test
     void test_articleTeaserFromLinkedArticlePage() {
         Article article = createModel(getResource(ARTICLE_PAGE_RESOURCE_PATH));
-        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
         when(pageUtilService.getPage(any(), any())).thenReturn(getPage(ARTICLE_PAGE_RESOURCE_PATH));
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_FROM_LINKED_ARTICLE_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
@@ -99,7 +104,7 @@ class ArticleTeaserModelTest {
     @Test
     void test_articleTeaserFromLinkedCategoryPage() {
         Article article = createModel(getResource(SUBCATEGORY_PAGE_RESOURCE_PATH));
-        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
         when(pageUtilService.getPage(any(), any())).thenReturn(getPage(SUBCATEGORY_PAGE_RESOURCE_PATH));
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_FROM_LINKED_SUBCATEGORY_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
@@ -118,7 +123,7 @@ class ArticleTeaserModelTest {
     @Test
     void test_articleTeaserFromLinkedHomePage() {
         Article article = createModel(getResource(HOME_PAGE_RESOURCE_PATH));
-        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
         when(pageUtilService.getPage(any(), any())).thenReturn(getPage(HOME_PAGE_RESOURCE_PATH));
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_FROM_LINKED_HOME_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
@@ -137,7 +142,7 @@ class ArticleTeaserModelTest {
     @Test
     void test_articleTeaserCustomTitleAndImageSetup() {
         Article article = createModel(getResource(ARTICLE_PAGE_RESOURCE_PATH));
-        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_WITH_CUSTOM_SETUP_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
@@ -153,7 +158,7 @@ class ArticleTeaserModelTest {
 
     @Test
     void test_articleTeaserEmptySetup() {
-        when(pageUtilService.getArticle(any(), any(ResourceResolver.class))).thenReturn(null);
+        when(articleUtilService.getArticle(any(), any(ResourceResolver.class))).thenReturn(null);
 
         ArticleTeaserModel articleTeaserModel = getResource(ARTICLE_TEASER_COMPONENT_EMPTY_SETUP_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);

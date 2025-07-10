@@ -45,6 +45,7 @@ class PageUtilServiceTest {
     private ResourceResolver resourceResolver;
     private Resource resource;
     private PageUtilService pageUtilService;
+    private ArticleUtilService articleUtilService;
 
     @BeforeEach
     void setUp() {
@@ -54,6 +55,7 @@ class PageUtilServiceTest {
         resource = resourceResolver.getResource(PAGE_PATH);
         var launchService = context.registerService(LaunchService.class, new LaunchService());
         pageUtilService = context.registerInjectActivateService(PageUtilService.class, "launchService", launchService);
+        articleUtilService = context.registerInjectActivateService(new ArticleUtilService());
     }
 
     @Test
@@ -179,7 +181,7 @@ class PageUtilServiceTest {
 
         when(mockResourceResolver.getResource(anyString())).thenReturn(mockResource);
         when(mockResource.adaptTo(Article.class)).thenReturn(article);
-        assertNotNull(pageUtilService.getArticle(ES_US_ARTICLE_PAGE_PATH, mockResourceResolver));
+        assertNotNull(articleUtilService.getArticle(ES_US_ARTICLE_PAGE_PATH, mockResourceResolver));
     }
 
     private Page getPage(String pagePath) {
@@ -314,14 +316,14 @@ class PageUtilServiceTest {
 
     @Test
     void testGetArticle_NullOrBlankPath() {
-        PageUtilService service = new PageUtilService();
+        ArticleUtilService service = new ArticleUtilService();
         assertNull(service.getArticle(null, mock(SlingHttpServletRequest.class)));
         assertNull(service.getArticle("   ", mock(SlingHttpServletRequest.class)));
     }
 
     @Test
     void testGetArticle_ResourceNotFound() {
-        PageUtilService service = new PageUtilService();
+        ArticleUtilService service = new ArticleUtilService();
         SlingHttpServletRequest request = mock(SlingHttpServletRequest.class);
         ResourceResolver resolver = mock(ResourceResolver.class);
         when(request.getResourceResolver()).thenReturn(resolver);
@@ -332,7 +334,7 @@ class PageUtilServiceTest {
 
     @Test
     void testGetArticle_ModelFactoryReturnsArticle() {
-        PageUtilService service = new PageUtilService();
+        ArticleUtilService service = new ArticleUtilService();
         ModelFactory modelFactory = mock(ModelFactory.class);
         resource = mock(Resource.class);
         SlingHttpServletRequest request = mock(SlingHttpServletRequest.class);
@@ -344,7 +346,7 @@ class PageUtilServiceTest {
         when(modelFactory.createModelFromWrappedRequest(request, resource, Article.class)).thenReturn(article);
 
         try {
-            var field = PageUtilService.class.getDeclaredField("modelFactory");
+            var field = ArticleUtilService.class.getDeclaredField("modelFactory");
             field.setAccessible(true);
             field.set(service, modelFactory);
         } catch (Exception e) {

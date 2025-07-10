@@ -2,7 +2,7 @@ package com.dhl.discover.core.models;
 
 import com.adobe.cq.wcm.core.components.models.Image;
 import com.dhl.discover.core.injectors.InjectChildImageModel;
-import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.ArticleUtilService;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +13,7 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.*;
 import org.apache.sling.models.factory.ModelFactory;
+import org.osgi.service.component.annotations.Reference;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -63,7 +64,7 @@ public class TopTilesV2 {
         private ResourceResolver resourceResolver;
 
         @OSGiService
-        private PageUtilService pageUtilService;
+        private ArticleUtilService articleUtilService;
 
         @ValueMapValue
         @Getter
@@ -99,7 +100,7 @@ public class TopTilesV2 {
 
         @PostConstruct
         private void init() {
-            var article = pageUtilService.getArticle(linkURL, resourceResolver);
+            var article = articleUtilService.getArticle(linkURL, resourceResolver);
             if (article == null) {
                 return;
             }

@@ -5,8 +5,8 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.constants.DiscoverConstants;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.CategoryFinder;
-import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.ResourceResolverHelper;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -37,7 +37,7 @@ public class ArticleSideNavigation {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleSideNavigation.class);
 
 	@OSGiService
-	private PageUtilService pageUtilService;
+	private ArticleUtilService articleUtilService;
 
 	@OSGiService
 	private CategoryFinder categoryFinder;
@@ -79,7 +79,7 @@ public class ArticleSideNavigation {
 				if (props != null) {
 					String url = props.get("url", "");
 
-					var article = pageUtilService.getArticle(url, resourceResolver);
+					var article = articleUtilService.getArticle(url, resourceResolver);
 					if (article != null && article.isValid()) {
 						articleList.add(article);
 					}
@@ -107,7 +107,7 @@ public class ArticleSideNavigation {
 				ValueMap properties = hit.getProperties();
 				boolean hideInNav = properties.get("hideInNav", false);
 				if (!hideInNav && !currentPage.getPath().equals(hit.getPath())) {
-					var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+					var article = articleUtilService.getArticle(hit.getPath(), resourceResolver);
 					if (article != null && article.isValid()) {
 						article.setIndex(count);
 						article.setThird(article.getIndex() % 3 == 0);

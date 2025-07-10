@@ -3,6 +3,7 @@ package com.dhl.discover.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.services.ArticleService;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -30,6 +31,9 @@ public class ArticleShowcase {
     @Required
     @Getter(AccessLevel.NONE)
     private PageUtilService pageUtils;
+
+    @OSGiService
+    private ArticleUtilService  articleUtilService;
 
     @OSGiService
     @Required
@@ -103,7 +107,7 @@ public class ArticleShowcase {
 
         for (Resource articleResource : articleResources) {
             String path = articleResource.getValueMap().get("articlePath", "");
-            var article = pageUtils.getArticle(path, request);
+            var article = articleUtilService.getArticle(path, request);
             if (article != null) {
                 articles.add(article);
             }
