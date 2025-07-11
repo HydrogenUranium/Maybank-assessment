@@ -144,27 +144,23 @@ public class SuggestionsServiceImplTest {
         Resource mockResource = mock(Resource.class);
         when(resolverMock.getResource(eq(TEST_HOME_PATH))).thenReturn(mockResource);
         try (MockedStatic<QueryManagerUtils> queryManagerUtils = mockStatic(QueryManagerUtils.class)) {
-            // Mock the static QueryManagerUtils methods with the resolverMock
+
             queryManagerUtils.when(() -> QueryManagerUtils.getQueryManager(resolverMock)).thenReturn(queryManager);
             queryManagerUtils.when(() -> QueryManagerUtils.getSuggestedWords(eq(TEST_QUERY), eq("suggest"), eq(TEST_INDEX), eq(queryManager)))
                     .thenReturn(Arrays.asList("shipping cost", "shipping rates"));
             queryManagerUtils.when(() -> QueryManagerUtils.getSuggestedWords(eq(TEST_QUERY), eq("spellcheck"), eq(TEST_INDEX), eq(queryManager)))
                     .thenReturn(Collections.singletonList("shipment"));
 
-            // Mock the tag service with the resolverMock
             when(tagUtilService.getTagLocalizedSuggestionsByQuery(
                     eq(resolverMock), eq(TEST_QUERY), eq("dhl:"), eq(Locale.ENGLISH), eq(5)))
                     .thenReturn(Arrays.asList("dhl shipping", "express shipping"));
 
-            // Mock IndexUtils for getSuggestionIndexName
             try (MockedStatic<IndexUtils> indexUtils = mockStatic(IndexUtils.class)) {
                 indexUtils.when(() -> IndexUtils.getSuggestionIndexName(eq(TEST_HOME_PATH), eq(resolverMock)))
                         .thenReturn(TEST_INDEX);
 
-                // Call the method under test
                 Set<String> suggestions = suggestionService.collectSuggestions(resolverMock, TEST_QUERY, TEST_HOME_PATH, TEST_INDEX);
 
-                // Verify results
                 assertTrue(suggestions.size() >= 5, "Should have at least 5 suggestions");
                 assertTrue(suggestions.contains("dhl shipping"));
                 assertTrue(suggestions.contains("express shipping"));
