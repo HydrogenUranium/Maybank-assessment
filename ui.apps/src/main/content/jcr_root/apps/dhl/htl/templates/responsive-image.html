@@ -16,7 +16,7 @@
 </template>
 
 <template data-sly-template.pictureWithModels="${@image, desktop, tablet, mobile, imgClass, pictureClass, priority, sizes}">
-  <picture class="${pictureClass}">
+  <picture data-sly-test="${image && (image.fileReference || image.src)}" class="${pictureClass}">
     <source data-sly-test="${desktop && desktop.src}"
             media="(min-width: 75rem)"
             srcset="${desktop.srcset || desktop.src}"

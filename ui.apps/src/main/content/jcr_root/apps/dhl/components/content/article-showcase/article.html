@@ -7,7 +7,7 @@
                  sizes='20rem',
                  imgClass='article-card__image'
              }"></sly>
-      <div class="article-card__group-tag">${article.groupTag}</div>
+      <div class="article-card__group-tag text-on-image">${article.groupTag}</div>
     </a>
     <div class="article-card__info">
       <div class="article-card__author">
@@ -39,7 +39,7 @@
                      }"></sly>
     </a>
     <div class="article-row__info">
-      <a class="article-row__group-tag text-on-image" href="${article.groupPath}">${article.groupTag}</a>
+      <a class="article-row__group-tag" href="${article.groupPath}">${article.groupTag}</a>
       <h3 data-sly-element="${titleType}" class="article-row__title-wrapper">
         <a href="${article.path}" class="article-row__title">${article.pageTitleWithBr @ context='html'}</a>
       </h3>
