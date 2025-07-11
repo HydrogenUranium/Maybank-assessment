@@ -13,8 +13,9 @@
       right: unset;
       left: 0;
     }
-    @media screen and (min-width: 76.8rem) {
+    @media screen and (min-width: 48rem) {
         width: 50rem;
+        margin: 0;
     }
 
     input {

@@ -9,7 +9,7 @@ exports[`Article should render "Article" component property 1`] = `
     href="/discover/en-global/logistics-advice/essential-guides/what-is-reverse-logistics"
     style={
       {
-        "backgroundImage": "url(/discover/content/dam/global-master/4-logistics-advice/essential-guides/wec0787-what-is-reverse-logistics/Mobile_991x558_V02.jpg)",
+        "backgroundImage": "url(/discover/content/dam/global-master/4-logistics-advice/essential-guides/wec0787-what-is-reverse-logistics/Mobile_991x558_V02.jpg), url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg')",
       }
     }
     tabIndex={-1}
