@@ -1,11 +1,9 @@
 package com.dhl.discover.core.servlets;
 
-import com.dhl.discover.core.services.PageUtilService;
-import com.dhl.discover.core.services.ResourceResolverHelper;
-import com.dhl.discover.core.services.TagUtilService;
+import com.dhl.discover.core.services.*;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
@@ -17,10 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.jcr.query.Query;
+import javax.jcr.RepositoryException;
 import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,27 +36,18 @@ class GetSuggestionsServletTest {
     private GetSuggestionsServlet servlet;
 
     @Mock
-    private PageUtilService pageUtilService;
-
-    @Mock
-    private TagUtilService tagUtilService;
-
-    @Mock
-    private ResourceResolverHelper resourceResolverHelper;
-
-    @Mock
-    private ResourceResolver resolverMock;
+    private SuggestionsService suggestionService;
 
     @BeforeEach
     void setUp() {
-        lenient().when(tagUtilService.getTagLocalizedSuggestionsByQuery(any(), anyString(), anyString(), any(), anyInt()))
-                .thenReturn(List.of("Global Logistics", "Global Business"));
         context.build().resource("/content");
-        lenient().when(pageUtilService.getLocale((Resource) any())).thenReturn(Locale.ENGLISH);
 
-        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolverMock);
-        when(resolverMock.findResources(anyString(), anyString())).thenAnswer(invocationOnMock ->
-                resolver.findResources(invocationOnMock.getArgument(0), Query.JCR_SQL2));
+        try {
+            lenient().when(suggestionService.processRequest(any(SlingHttpServletRequest.class)))
+                    .thenReturn("{\"status\":\"ok\",\"term\":\"global\",\"results\":[\"Global Logistics\",\"Global Business\"]}");
+        } catch (RepositoryException exp) {
+            throw new RuntimeException(exp);
+        }
     }
 
     @Test
@@ -79,6 +66,12 @@ class GetSuggestionsServletTest {
     void test_withInvalidRequestParameter() throws IOException {
         request.setParameterMap(Map.of("s", "<XSS-injection>", "homepagepath", "/content"));
 
+        try {
+            when(suggestionService.processRequest(request))
+                    .thenReturn("{\"status\":\"ok\",\"term\":\"\",\"results\":[]}");
+        } catch (RepositoryException exp) {
+            throw new RuntimeException(exp);
+        }
         servlet.doGet(request, response);
 
         String responseBody = context.response().getOutputAsString();
