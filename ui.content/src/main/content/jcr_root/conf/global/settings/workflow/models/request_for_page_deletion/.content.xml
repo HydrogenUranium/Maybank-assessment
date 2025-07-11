@@ -3,13 +3,13 @@
           jcr:primaryType="cq:Page">
     <jcr:content
             cq:designPath="/libs/settings/wcm/designs/default"
-            cq:lastModified="{Date}2025-05-02T17:08:46.052+03:00"
+            cq:lastModified="{Date}2025-07-11T12:40:50.733+03:00"
             cq:lastModifiedBy="admin"
             cq:template="/libs/cq/workflow/templates/model"
             jcr:primaryType="cq:PageContent"
             jcr:title="Request for Page Deletion"
             sling:resourceType="cq/workflow/components/pages/model"
-            lastSynced="{Date}2025-05-02T17:08:47.271+03:00">
+            lastSynced="{Date}2025-07-11T12:40:53.310+03:00">
         <flow
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="foundation/components/parsys">
@@ -57,20 +57,6 @@
                                 PROCESS_ARGS="deletedImageReference:/apps/dhl/clientlibs/discover/resources/img/pending-deletion.png"
                                 PROCESS_AUTO_ADVANCE="true"/>
                     </process>
-                    <lockpayloadprocess
-                            jcr:created="{Date}2025-04-30T15:29:50.651+03:00"
-                            jcr:createdBy="admin"
-                            jcr:description="A process to lock the payload."
-                            jcr:lastModified="{Date}2025-04-30T15:29:50.651+03:00"
-                            jcr:lastModifiedBy="admin"
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Lock Payload Process"
-                            sling:resourceType="cq/workflow/components/workflow/lockpayloadprocess">
-                        <metaData
-                                jcr:primaryType="nt:unstructured"
-                                PROCESS="com.day.cq.workflow.impl.process.LockProcess"
-                                PROCESS_AUTO_ADVANCE="true"/>
-                    </lockpayloadprocess>
                     <dynamic_participant
                             jcr:created="{Date}2025-04-29T13:49:24.504+03:00"
                             jcr:createdBy="admin"
@@ -113,20 +99,6 @@
                                         PROCESS="/libs/workflow/scripts/noop.ecma"
                                         PROCESS_AUTO_ADVANCE="true"/>
                             </noopprocess>
-                            <unlockpayloadprocess
-                                    jcr:created="{Date}2025-04-30T15:30:01.549+03:00"
-                                    jcr:createdBy="admin"
-                                    jcr:description="A process to unlock the payload."
-                                    jcr:lastModified="{Date}2025-04-30T15:30:01.549+03:00"
-                                    jcr:lastModifiedBy="admin"
-                                    jcr:primaryType="nt:unstructured"
-                                    jcr:title="Unlock Payload Process"
-                                    sling:resourceType="cq/workflow/components/workflow/unlockpayloadprocess">
-                                <metaData
-                                        jcr:primaryType="nt:unstructured"
-                                        PROCESS="com.day.cq.workflow.impl.process.UnlockProcess"
-                                        PROCESS_AUTO_ADVANCE="true"/>
-                            </unlockpayloadprocess>
                             <process
                                     jcr:created="{Date}2025-04-29T13:51:43.480+03:00"
                                     jcr:createdBy="admin"
@@ -171,20 +143,6 @@
                                         PROCESS="/libs/workflow/scripts/noop.ecma"
                                         PROCESS_AUTO_ADVANCE="true"/>
                             </noopprocess>
-                            <unlockpayloadprocess
-                                    jcr:created="{Date}2025-04-30T15:30:01.549+03:00"
-                                    jcr:createdBy="admin"
-                                    jcr:description="A process to unlock the payload."
-                                    jcr:lastModified="{Date}2025-04-30T15:30:01.549+03:00"
-                                    jcr:lastModifiedBy="admin"
-                                    jcr:primaryType="nt:unstructured"
-                                    jcr:title="Unlock Payload Process"
-                                    sling:resourceType="cq/workflow/components/workflow/unlockpayloadprocess">
-                                <metaData
-                                        jcr:primaryType="nt:unstructured"
-                                        PROCESS="com.day.cq.workflow.impl.process.UnlockProcess"
-                                        PROCESS_AUTO_ADVANCE="true"/>
-                            </unlockpayloadprocess>
                             <process
                                     jcr:created="{Date}2025-04-30T17:18:10.591+03:00"
                                     jcr:createdBy="admin"
