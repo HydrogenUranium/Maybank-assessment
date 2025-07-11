@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.RepositoryException;
@@ -21,8 +22,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class GetSuggestionsServletTest {
@@ -32,6 +32,7 @@ class GetSuggestionsServletTest {
     private final MockSlingHttpServletResponse response = context.response();
     private final ResourceResolver resolver = context.resourceResolver();
 
+    @Spy
     @InjectMocks
     private GetSuggestionsServlet servlet;
 
@@ -41,12 +42,11 @@ class GetSuggestionsServletTest {
     @BeforeEach
     void setUp() {
         context.build().resource("/content");
-
         try {
-            lenient().when(suggestionService.processRequest(any(SlingHttpServletRequest.class)))
-                    .thenReturn("{\"status\":\"ok\",\"term\":\"global\",\"results\":[\"Global Logistics\",\"Global Business\"]}");
-        } catch (RepositoryException exp) {
-            throw new RuntimeException(exp);
+            doReturn("{\"status\":\"ok\",\"term\":\"global\",\"results\":[\"Global Logistics\",\"Global Business\"]}")
+                    .when(servlet).processRequest(any(SlingHttpServletRequest.class));
+        } catch (RepositoryException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -67,7 +67,7 @@ class GetSuggestionsServletTest {
         request.setParameterMap(Map.of("s", "<XSS-injection>", "homepagepath", "/content"));
 
         try {
-            when(suggestionService.processRequest(request))
+            when(servlet.processRequest(request))
                     .thenReturn("{\"status\":\"ok\",\"term\":\"\",\"results\":[]}");
         } catch (RepositoryException exp) {
             throw new RuntimeException(exp);
@@ -79,4 +79,5 @@ class GetSuggestionsServletTest {
         String expected = "{\"status\":\"ok\",\"term\":\"\",\"results\":[]}";
         assertEquals(expected, responseBody);
     }
+
 }

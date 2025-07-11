@@ -6,13 +6,9 @@ import com.dhl.discover.core.services.SuggestionsService;
 import com.dhl.discover.core.services.TagUtilService;
 import com.dhl.discover.core.utils.IndexUtils;
 import com.dhl.discover.core.utils.QueryManagerUtils;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.text.StringEscapeUtils;
-import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -42,24 +38,12 @@ public class SuggestionsServiceImpl implements SuggestionsService {
     private transient ResourceResolverHelper resolverHelper;
 
     @Override
-    public String processRequest(SlingHttpServletRequest request) throws RepositoryException {
-        String query = isValid(request.getParameter("s"));
-        String homePagePath = request.getRequestPathInfo().getResourcePath();
-        String indexName = getSuggestionIndexName(homePagePath);
-
-        Set<String> suggestions = collectSuggestions(request, query, homePagePath, indexName);
-
-        return buildJsonResponse(query, suggestions);
-
-    }
-
-    @Override
-    public  Set<String> collectSuggestions(SlingHttpServletRequest request, String query,
+    public  Set<String> collectSuggestions(ResourceResolver resourceResolver, String query,
                                            String homePagePath, String indexName) throws RepositoryException {
-        var queryManager = QueryManagerUtils.getQueryManager(request);
+        var queryManager = QueryManagerUtils.getQueryManager(resourceResolver);
         Set<String> allSuggestions = new LinkedHashSet<>();
 
-        List<String> tags = getTagsNamesByQuery(request, query, homePagePath);
+        List<String> tags = getTagsNamesByQuery(resourceResolver, query, homePagePath);
         allSuggestions.addAll(tags);
 
         if(allSuggestions.size() < MAX_SUGGESTIONS) {
@@ -74,28 +58,17 @@ public class SuggestionsServiceImpl implements SuggestionsService {
         return allSuggestions;
     }
 
-    private String buildJsonResponse(String query, Set<String> suggestions) {
-        var responseJson = new JsonObject();
-        responseJson.addProperty("status", "ok");
-        responseJson.addProperty("term", StringEscapeUtils.escapeHtml4(query));
-
-        var results = new JsonArray();
-        for (String suggestion : suggestions) {
-            results.add(new JsonPrimitive(StringEscapeUtils.escapeHtml4(suggestion)));
-        }
-        responseJson.add("results", results);
-
-        return responseJson.toString();
-    }
 
     @Override
-    public List<String> getTagsNamesByQuery(SlingHttpServletRequest request, String query, String homePagePath) {
+    public List<String> getTagsNamesByQuery(ResourceResolver resolver, String query, String homePagePath) {
         if (StringUtils.isBlank(query)) {
             return Collections.emptyList();
         }
-
-        var resolver = request.getResourceResolver();
         var resource = resolver.getResource(homePagePath);
+        if (resource == null) {
+            log.warn("Resource not found for path: {}", homePagePath);
+            return Collections.emptyList();
+        }
         var locale = pageUtilService.getLocale(resource);
 
         return tagUtilService.getTagLocalizedSuggestionsByQuery(resolver, query, "dhl:", locale, MAX_SUGGESTIONS);
