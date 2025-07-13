@@ -7,7 +7,6 @@ import com.google.gson.JsonPrimitive;
 import org.apache.commons.text.StringEscapeUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.jetbrains.annotations.NotNull;
 import org.osgi.framework.Constants;

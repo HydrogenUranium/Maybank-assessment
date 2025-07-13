@@ -1,7 +1,6 @@
 package com.dhl.discover.core.services;
 
 
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 
 import javax.jcr.RepositoryException;

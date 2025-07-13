@@ -1,9 +1,9 @@
 package com.dhl.discover.core.services;
 
+import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.services.impl.SuggestionsServiceImpl;
 import com.dhl.discover.core.utils.IndexUtils;
 import com.dhl.discover.core.utils.QueryManagerUtils;
-import com.google.gson.JsonParser;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.Resource;
@@ -19,8 +19,6 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.jcr.Session;
-import javax.jcr.Workspace;
 import javax.jcr.query.QueryManager;
 
 import java.util.*;
@@ -36,7 +34,6 @@ public class SuggestionsServiceImplTest {
 
     private final MockSlingHttpServletRequest request = context.request();
     private final MockSlingHttpServletResponse response = context.response();
-    private final ResourceResolver resourceResolver = context.resourceResolver();
 
     @Mock
     private TagUtilService tagUtilService;
@@ -90,10 +87,10 @@ public class SuggestionsServiceImplTest {
     @Test
     void testGetTagsNamesByQuery() {
         Resource mockResource = mock(Resource.class);
-        when(resolverMock.getResource(eq(TEST_HOME_PATH))).thenReturn(mockResource);
+        when(resolverMock.getResource(TEST_HOME_PATH)).thenReturn(mockResource);
 
         when(tagUtilService.getTagLocalizedSuggestionsByQuery(
-                eq(resolverMock), eq(TEST_QUERY), eq("dhl:"), eq(Locale.ENGLISH), eq(5)))
+                resolverMock, TEST_QUERY, "dhl:", Locale.ENGLISH, 5))
                 .thenReturn(Arrays.asList("shipping services", "shipping rates"));
 
         List<String> results = suggestionService.getTagsNamesByQuery(resolverMock, TEST_QUERY, TEST_HOME_PATH);
@@ -103,6 +100,18 @@ public class SuggestionsServiceImplTest {
 
         results = suggestionService.getTagsNamesByQuery(resolverMock, "", TEST_HOME_PATH);
         assertTrue(results.isEmpty());
+    }
+
+    @Test
+    void testGetTagsNamesByQuery_WithNullResource() {
+        when(resolverMock.getResource(TEST_HOME_PATH)).thenReturn(null);
+
+        List<String> results = suggestionService.getTagsNamesByQuery(resolverMock, TEST_QUERY, TEST_HOME_PATH);
+
+        assertTrue(results.isEmpty(), "Should return empty list when resource is null");
+        verify(resolverMock).getResource(TEST_HOME_PATH);
+        verify(pageUtilService, never()).getLocale((Page) any());
+        verify(tagUtilService, never()).getTagLocalizedSuggestionsByQuery(any(), anyString(), anyString(), any(), anyInt());
     }
 
     @Test
@@ -142,7 +151,7 @@ public class SuggestionsServiceImplTest {
     @Test
     void testCollectSuggestions() throws Exception {
         Resource mockResource = mock(Resource.class);
-        when(resolverMock.getResource(eq(TEST_HOME_PATH))).thenReturn(mockResource);
+        when(resolverMock.getResource(TEST_HOME_PATH)).thenReturn(mockResource);
         try (MockedStatic<QueryManagerUtils> queryManagerUtils = mockStatic(QueryManagerUtils.class)) {
 
             queryManagerUtils.when(() -> QueryManagerUtils.getQueryManager(resolverMock)).thenReturn(queryManager);
@@ -152,7 +161,7 @@ public class SuggestionsServiceImplTest {
                     .thenReturn(Collections.singletonList("shipment"));
 
             when(tagUtilService.getTagLocalizedSuggestionsByQuery(
-                    eq(resolverMock), eq(TEST_QUERY), eq("dhl:"), eq(Locale.ENGLISH), eq(5)))
+                    resolverMock, TEST_QUERY, "dhl:", Locale.ENGLISH, 5))
                     .thenReturn(Arrays.asList("dhl shipping", "express shipping"));
 
             try (MockedStatic<IndexUtils> indexUtils = mockStatic(IndexUtils.class)) {
