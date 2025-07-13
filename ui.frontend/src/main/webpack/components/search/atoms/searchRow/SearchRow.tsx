@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { SearchRow as SearchRowType } from 'src/main/webpack/types/article';
-
-import styles from './styles.module.scss';
 import { highlightMatches, sanitizeHtml } from 'src/main/webpack/utils';
 
+import styles from './styles.module.scss';
 
 type SearchRowProps = {
   searchRow: SearchRowType;
@@ -19,7 +18,7 @@ export const SearchRow: React.FC<SearchRowProps> = ({ searchRow: { article, exce
   return (
     <div className={styles.article}>
       <a tabIndex={-1} href={`${article.path}`} className={styles.articleImage}
-        style={{ backgroundImage: `url(${article.pageImage})` }}></a>
+        style={{ backgroundImage: `url(${article.pageImage}), url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg')` }}></a>
       <div className={styles.articleInfo}>
         <div className={styles.articleInfoGroupTag}>{article.groupTag}</div>
         <a href={`${article.path}`} className={styles.articleInfoTitle}>
