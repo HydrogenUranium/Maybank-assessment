@@ -274,6 +274,12 @@
             cursor: pointer;
             gap: .5rem;
 
+            &:hover {
+              .global-icon {
+                background-color: #d40511;
+              }
+            }
+
             .global-icon {
               display: block;
               background-image: url("__prefix__/discover/resources/img/globe.png");

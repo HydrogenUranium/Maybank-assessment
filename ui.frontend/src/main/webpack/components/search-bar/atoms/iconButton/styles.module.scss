@@ -5,6 +5,12 @@
     width: 4.5rem;
     height: 4.5rem;
     padding: 1.2rem;
+
+    &:hover {
+      .searchButtonImageSearch {
+        background-color: #d40511;
+      }
+    }
     &Image {
         background-size: contain;
         background-position: center center;
@@ -19,10 +25,6 @@
             mask: url('/etc.clientlibs/dhl/clientlibs/discover-react-common/resources/searchicon.svg') no-repeat center/contain;
             background-color: #000;
             transition: background-color 0.2s;
-
-            &:hover {
-                background-color: #d40511;
-            }
         }
 
     }
