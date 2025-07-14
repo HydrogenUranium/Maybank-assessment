@@ -1,6 +1,7 @@
 package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.components.Component;
+import com.dhl.discover.core.resource.CoreResourceWrapper;
 import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.AssetUtilService;
 import lombok.Getter;
@@ -8,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ResourceWrapper;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -18,6 +18,7 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
+import java.util.Map;
 
 @Model(adaptables= SlingHttpServletRequest.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class ArticleTeaserModel {
@@ -74,11 +75,10 @@ public class ArticleTeaserModel {
             friendlyPublishDate = article.getCreatedfriendly();
         }
 
-        imageResource = new ResourceWrapper(request.getResource()) {
-            @Override
-            public String getResourceType() {
-                return component.getProperties().get("imageDelegate", String.class);
-            }
-        };
+        var overriddenResourceType =  component.getProperties().get("imageDelegate", "");
+        Map<String, Object> overriddenProperties = Map.of("imageLinkHidden" ,Boolean.TRUE.toString());
+
+
+        imageResource = new CoreResourceWrapper(request.getResource(), overriddenResourceType, null, overriddenProperties);
     }
 }
