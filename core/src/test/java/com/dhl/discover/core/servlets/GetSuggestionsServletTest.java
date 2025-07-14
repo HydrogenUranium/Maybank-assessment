@@ -38,7 +38,6 @@ class GetSuggestionsServletTest {
 
     private final MockSlingHttpServletRequest request = context.request();
     private final MockSlingHttpServletResponse response = context.response();
-    private final ResourceResolver resolver = context.resourceResolver();
 
     @Spy
     @InjectMocks
@@ -50,7 +49,6 @@ class GetSuggestionsServletTest {
     @BeforeEach
     void setUp() {
         context.build().resource("/content");
-
     }
 
     @Test
