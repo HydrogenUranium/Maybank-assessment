@@ -84,7 +84,10 @@ public class ServicePointLocatorModel {
                     .toString()
                     .concat(additionalUrlParamOrSuffix);
         } catch (IllegalAccessException | URISyntaxException ex) {
-            log.error("An error occurred preparing URL for Service Point Locator", ex);
+            log.error("An error occurred preparing URL for Service Point Locator");
+            if(log.isDebugEnabled()){
+                log.debug("URL preparation failed for domain: {}", domain != null ? "configured" : "not configured");
+            }
         }
     }
 

@@ -97,9 +97,15 @@ public class AkamaiFlush {
 				return initUtil.getObjectMapper().readValue(response.getJsonResponse(),FlushResponse.class);
 			}
 		} catch (HttpRequestException e) {
-			log.error("Akamai Flush: Http request to Akamai failed with error message: {}", e.getMessage());
+			log.error("Akamai Flush: Http request to Akamai failed");
+			if (log.isDebugEnabled()) {
+				log.debug("Akamai Flush: Http request to Akamai failed with error message: {}", e.getMessage());
+			}
 		} catch (JsonProcessingException e) {
-			log.error("Akamai Flush: Failed to parse the json response from Akamai. Error message was: {}", e.getMessage());
+			log.error("Akamai Flush: Failed to parse JSON response from Akamai");
+			if (log.isDebugEnabled()) {
+				log.debug("Akamai Flush: Failed to parse the json response from Akamai. Error message was: {}", e.getMessage());
+			}
 		}
 		return null;
 	}

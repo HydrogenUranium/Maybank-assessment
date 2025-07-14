@@ -151,7 +151,10 @@ public class InputParamHelperImpl implements InputParamHelper {
 			var address = InetAddress.getByName(ip);
 			ip = address instanceof Inet4Address ? ip : InetAddress.getByName(KEY_LOCALHOST).getHostAddress();
 		} catch (UnknownHostException e) {
-			LOGGER.error("Unable to read IP address: {}", e.getMessage());
+			LOGGER.error("Unable to read IP address");
+			if(LOGGER.isDebugEnabled()) {
+				LOGGER.debug("Unable to read IP address: {}", e.getMessage());
+			}
 		}
 
 		return ip;

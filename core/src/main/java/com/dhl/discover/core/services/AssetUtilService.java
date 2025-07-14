@@ -87,7 +87,10 @@ public class AssetUtilService {
                 log.error("Failed to optimize image because of image: {} and asset: {}.", imageResource, asset);
             }
         } catch(Exception e) {
-            log.error("Failed to optimize image", e);
+            log.error("Failed to optimize image");
+            if (log.isDebugEnabled()) {
+                log.debug("Failed to optimize image", e);
+            }
         }
 
         return assetPath;
