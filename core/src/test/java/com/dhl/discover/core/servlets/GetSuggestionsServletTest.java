@@ -38,7 +38,6 @@ class GetSuggestionsServletTest {
 
     private final MockSlingHttpServletRequest request = context.request();
     private final MockSlingHttpServletResponse response = context.response();
-    private final ResourceResolver resolver = context.resourceResolver();
 
     @Spy
     @InjectMocks
@@ -51,6 +50,9 @@ class GetSuggestionsServletTest {
     void setUp() {
         context.build().resource("/content");
 
+        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolverMock);
+        when(resolverMock.findResources(anyString(), anyString())).thenAnswer(invocationOnMock ->
+                context.resourceResolver().findResources(invocationOnMock.getArgument(0), Query.JCR_SQL2));
     }
 
     @Test
