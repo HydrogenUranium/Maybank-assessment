@@ -282,7 +282,6 @@
 
             .global-icon {
               display: block;
-              background-image: url("__prefix__/discover/resources/img/globe.png");
               mask: url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/globe.svg') no-repeat center/contain;
               background-color: #000;
               transition: background-color 0.2s;
@@ -290,10 +289,6 @@
 
               width: 2rem;
               height: 2rem;
-
-              &:hover {
-                background-color: #d40511;
-              }
 
             }
 
