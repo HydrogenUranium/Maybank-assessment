@@ -49,10 +49,6 @@ class GetSuggestionsServletTest {
     @BeforeEach
     void setUp() {
         context.build().resource("/content");
-
-        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolverMock);
-        when(resolverMock.findResources(anyString(), anyString())).thenAnswer(invocationOnMock ->
-                context.resourceResolver().findResources(invocationOnMock.getArgument(0), Query.JCR_SQL2));
     }
 
     @Test
