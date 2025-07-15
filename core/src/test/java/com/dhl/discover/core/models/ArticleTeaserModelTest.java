@@ -1,16 +1,14 @@
 package com.dhl.discover.core.models;
 
-import com.dhl.discover.core.services.PageUtilService;
-import com.dhl.discover.core.services.ArticleUtilService;
-import com.dhl.discover.core.services.TagUtilService;
-import com.dhl.discover.core.services.PathUtilService;
-import com.dhl.discover.core.services.AssetUtilService;
+import com.day.cq.wcm.api.components.Component;
+import com.dhl.discover.core.services.*;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.factory.ModelFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,13 +19,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.Locale;
 
+import static com.dhl.discover.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
-import static com.dhl.discover.junitUtils.Constants.NEW_CONTENT_STRUCTURE_JSON;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleTeaserModelTest {
@@ -63,6 +61,12 @@ class ArticleTeaserModelTest {
     @Mock
     private AssetUtilService assetUtilService;
 
+    @Mock
+    private ValueMap ComponentValueMap;
+
+    @Mock
+    private Component component;
+
     @BeforeEach
     void setUp() {
         context.registerService(PageUtilService.class, pageUtilService);
@@ -71,10 +75,14 @@ class ArticleTeaserModelTest {
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(AssetUtilService.class, assetUtilService);
         mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
+        mockInject(context, InjectorMock.INJECT_SCRIPT_BINDINGS, "component", component);
 
         context.addModelsForClasses(ArticleTeaserModel.class);
         resourceResolver = context.resourceResolver();
         context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
+
+        lenient().when(component.getProperties()).thenReturn(ComponentValueMap);
+        lenient().when(ComponentValueMap.get("imageDelegate", "")).thenReturn("components/image");
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
