@@ -68,9 +68,9 @@ public class CoreResourceWrapper extends ResourceWrapper {
     }
 
     @Override
-    public <AdapterType> AdapterType adaptTo(Class<AdapterType> type) {
+    public <T> T adaptTo(Class<T> type) {
         if (type == ValueMap.class) {
-            return (AdapterType) valueMap;
+            return (T) valueMap;
         }
         return super.adaptTo(type);
     }

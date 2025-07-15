@@ -59,7 +59,10 @@ public class DiscoverAuthenticationInfoPostProcessor implements AuthenticationIn
                 session.logout();
 
             } catch (Exception e) {
-                log.error("Error in CustomAuthenticationInfoPostProcessor" + e.getMessage());
+                log.error("Error in CustomAuthenticationInfoPostProcessor");
+                if(log.isDebugEnabled()){
+                    log.debug("Error in CustomAuthenticationInfoPostProcessor:{}", e.getMessage());
+                }
             }
         }
     }
