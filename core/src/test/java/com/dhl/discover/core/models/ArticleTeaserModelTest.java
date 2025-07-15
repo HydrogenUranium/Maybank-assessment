@@ -62,7 +62,7 @@ class ArticleTeaserModelTest {
     private AssetUtilService assetUtilService;
 
     @Mock
-    private ValueMap ComponentValueMap;
+    private ValueMap componentValueMap;
 
     @Mock
     private Component component;
@@ -81,8 +81,8 @@ class ArticleTeaserModelTest {
         resourceResolver = context.resourceResolver();
         context.load().json(NEW_CONTENT_STRUCTURE_JSON, ROOT_TEST_PAGE_PATH);
 
-        lenient().when(component.getProperties()).thenReturn(ComponentValueMap);
-        lenient().when(ComponentValueMap.get("imageDelegate", "")).thenReturn("components/image");
+        lenient().when(component.getProperties()).thenReturn(componentValueMap);
+        lenient().when(componentValueMap.get("imageDelegate", "")).thenReturn("components/image");
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
