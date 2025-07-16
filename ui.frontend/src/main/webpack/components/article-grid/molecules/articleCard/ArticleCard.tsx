@@ -34,7 +34,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         <a tabIndex={-1}
             href={path}
             className={styles.articleCardImage}
-            style={{ backgroundImage: `url(${pageImage})` }}>
+            style={{ backgroundImage: `url(${pageImage}), url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg')` }}>
             <div className={`${styles.articleCardGroupTag} ${styles.articleCardTextOnImage}`}>{groupTag}</div>
         </a>
         <div className={styles.articleCardInfo}>

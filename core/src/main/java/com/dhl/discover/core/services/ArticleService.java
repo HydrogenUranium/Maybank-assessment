@@ -57,6 +57,9 @@ public class ArticleService {
     protected PageUtilService pageUtilService;
 
     @Reference
+    protected ArticleUtilService articleUtilService;
+
+    @Reference
     protected TagUtilService tagUtilService;
 
     @Reference
@@ -331,7 +334,7 @@ public class ArticleService {
         List<SearchResultEntry> resources = new ArrayList<>();
         hits.forEach(hit -> {
             try {
-                var article = pageUtilService.getArticle(hit.getPath(), resourceResolver);
+                var article = articleUtilService.getArticle(hit.getPath(), resourceResolver);
                 var excerpt = "... " + hit.getExcerpt();
                 if (article != null && article.isValid()) {
                     resources.add(new SearchResultEntry(article, excerpt));

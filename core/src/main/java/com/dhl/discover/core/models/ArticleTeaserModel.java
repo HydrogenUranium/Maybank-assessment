@@ -1,29 +1,26 @@
 package com.dhl.discover.core.models;
 
-import com.day.cq.dam.api.Asset;
-import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.components.Component;
+import com.dhl.discover.core.resource.CoreResourceWrapper;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.AssetUtilService;
-import com.dhl.discover.core.services.PageUtilService;
-import com.dhl.discover.core.services.PathUtilService;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Named;
-import java.util.Optional;
+import java.util.Map;
 
-import static com.day.cq.commons.jcr.JcrConstants.JCR_TITLE;
-import static com.day.cq.dam.api.DamConstants.DC_DESCRIPTION;
-
-@Model(adaptables= Resource.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables= SlingHttpServletRequest.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class ArticleTeaserModel {
     @SlingObject
     private ResourceResolver resourceResolver;
@@ -32,40 +29,23 @@ public class ArticleTeaserModel {
     protected AssetUtilService assetUtilService;
 
     @OSGiService
-    private PageUtilService pageUtilService;
+    private ArticleUtilService articleUtilService;
 
-    @OSGiService
-    private PathUtilService pathUtilService;
+    @ScriptVariable
+    private Component component;
 
-    @ValueMapValue
-    private String imageFromPageImage;
+    @Self
+    private SlingHttpServletRequest request;
+
+    @Getter
+    private Resource imageResource;
 
     @ValueMapValue
     @Getter
     private String linkURL;
 
     @ValueMapValue
-    @Default(values = "true")
-    private String altValueFromPageImage;
-
-    @ValueMapValue
-    private String alt;
-
-    @ValueMapValue
     private String titleFromPage;
-
-    @ValueMapValue
-    @Named(JCR_TITLE)
-    private String title;
-
-    @Getter
-    private boolean imageFromPage;
-
-    @Getter
-    private String imagePathFromPage;
-
-    @Getter
-    private String altTextFromPageImage;
 
     @Getter
     private String categoryTag;
@@ -82,35 +62,23 @@ public class ArticleTeaserModel {
     @Getter
     private String titleFromLinkedPage;
 
-    private static final String DEFAULT_PAGE_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
     @PostConstruct
     protected void init() {
-        var article = pageUtilService.getArticle(linkURL, resourceResolver);
+        var article = articleUtilService.getArticle(linkURL, resourceResolver);
 
         if (article != null) {
-            imageFromPage = Boolean.parseBoolean(imageFromPageImage) && !StringUtils.isBlank(linkURL);
             titleFromLinkedPage = Boolean.parseBoolean(titleFromPage) ? article.getNavTitle() : StringUtils.EMPTY;
-            if (imageFromPage) {
-                imagePathFromPage = Optional.ofNullable(linkURL)
-                        .map(link -> pageUtilService.getPage(link, resourceResolver))
-                        .map(Page::getContentResource)
-                        .map(res -> assetUtilService.getPageImagePath(res))
-                        .filter(StringUtils::isNotBlank)
-                        .orElse(DEFAULT_PAGE_IMAGE);
-
-                altTextFromPageImage = !Boolean.parseBoolean(altValueFromPageImage)
-                        ? alt
-                        : Optional.of(imagePathFromPage)
-                        .map(resourceResolver::getResource)
-                        .map(r -> r.adaptTo(Asset.class))
-                        .map(a -> a.getMetadataValue(DC_DESCRIPTION))
-                        .orElse(StringUtils.defaultIfBlank(titleFromLinkedPage, title));
-            }
 
             categoryTag = article.getGroupTag();
             author = article.getAuthor();
             publishDate = article.getCreated();
             friendlyPublishDate = article.getCreatedfriendly();
         }
+
+        var overriddenResourceType =  component.getProperties().get("imageDelegate", "");
+        Map<String, Object> overriddenProperties = Map.of("imageLinkHidden" ,Boolean.TRUE.toString());
+
+
+        imageResource = new CoreResourceWrapper(request.getResource(), overriddenResourceType, null, overriddenProperties);
     }
 }

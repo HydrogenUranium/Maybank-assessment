@@ -10,7 +10,7 @@ import javax.jcr.Session;
 
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
-import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.ArticleUtilService;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -46,7 +46,7 @@ class PageNotFoundTest {
     private Hit hit;
 
     @Mock
-    private PageUtilService pageUtilServiceMock;
+    private ArticleUtilService articleUtilServiceMock;
 
     @Mock
     private Article article;
@@ -58,7 +58,7 @@ class PageNotFoundTest {
 	void setUp() throws Exception {
 	    ctx.load().json("/com/dhl/discover/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
-        ctx.registerService(PageUtilService.class, pageUtilServiceMock);
+        ctx.registerService(ArticleUtilService.class, articleUtilServiceMock);
 	    ctx.addModelsForClasses(PageNotFound.class);
 	}
 
@@ -73,7 +73,7 @@ class PageNotFoundTest {
         when(hit.getProperties()).thenReturn(articlePageResource.getValueMap());
         when(hit.getPath()).thenReturn("/content/dhl/country/en/culture/dhl-mo-salah");
         when(searchResult.getResources()).thenReturn(resourceIterator);
-        when(pageUtilServiceMock.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilServiceMock.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
 
         Map<String, Object> params = new HashMap<String, Object>();
 		params.put("mode", "latest");

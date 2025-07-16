@@ -1,7 +1,7 @@
 package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.designer.Style;
-import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.ArticleUtilService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -25,7 +25,7 @@ import java.util.List;
 public class TopTiles {
 
     @OSGiService
-    private PageUtilService pageUtilService;
+    private ArticleUtilService articleUtilService;
 
     @SlingObject
     private ResourceResolver resourceResolver;
@@ -55,7 +55,7 @@ public class TopTiles {
                 String path = properties.get("articlePath", "");
                 String mobileImage = properties.get("mobileImage", "");
                 String desktopImage = properties.get("desktopImage", "");
-                var article = pageUtilService.getArticle(path, resourceResolver);
+                var article = articleUtilService.getArticle(path, resourceResolver);
                 if (article != null) {
                     articles.add(article);
                     log.debug("Article Page Image: {}", article.getPageImage());

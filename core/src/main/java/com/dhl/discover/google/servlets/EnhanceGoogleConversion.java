@@ -48,10 +48,16 @@ public class EnhanceGoogleConversion extends SlingAllMethodsServlet {
             JsonObject responseObject = processEnhancementRequest(request);
             writeResponse(response, responseObject);
         } catch (HttpRequestException e) {
-            log.error("HTTP request error processing enhancement request", e);
+            log.error("HTTP request error processing enhancement request");
+            if(log.isDebugEnabled()){
+                log.debug("HTTP request error processing enhancement request: {}", e.getMessage());
+            }
             writeErrorResponse(response, HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
         } catch (Exception e) {
-            log.error("Error processing enhancement request", e);
+            log.error("Error processing enhancement request");
+            if(log.isDebugEnabled()) {
+                log.debug("Error processing enhancement request", e);
+            }
             writeErrorResponse(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Internal Server Error");
         }
     }
