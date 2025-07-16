@@ -15,7 +15,7 @@
     </picture>
 </template>
 
-<template data-sly-template.pictureWithModels="${@image, desktop, tablet, mobile, imgClass, pictureClass, priority, sizes, forceRender}">
+<template data-sly-template.pictureWithModels="${@image, desktop, tablet, mobile, imgClass, pictureClass, priority, sizes}">
   <picture data-sly-set.hasDefaultImage="${image && (image.fileReference || image.src)}"
            data-sly-set.hasOverriding="${
            (desktop && (desktop.src || desktop.fileReference))
