@@ -15,8 +15,13 @@
     </picture>
 </template>
 
-<template data-sly-template.pictureWithModels="${@image, desktop, tablet, mobile, imgClass, pictureClass, priority, sizes}">
-  <picture data-sly-test="${image && (image.fileReference || image.src)}" class="${pictureClass}">
+<template data-sly-template.pictureWithModels="${@image, desktop, tablet, mobile, imgClass, pictureClass, priority, sizes, forceRender}">
+  <picture data-sly-set.hasDefaultImage="${image && (image.fileReference || image.src)}"
+           data-sly-set.hasOverriding="${
+           (desktop && (desktop.src || desktop.fileReference))
+           || (tablet && (tablet.src || tablet.fileReference))
+           || (mobile && (mobile.src || mobile.fileReference))}"
+          data-sly-test="${hasDefaultImage || hasOverriding}" class="${pictureClass}">
     <source data-sly-test="${desktop && desktop.src}"
             media="(min-width: 75rem)"
             srcset="${desktop.srcset || desktop.src}"
