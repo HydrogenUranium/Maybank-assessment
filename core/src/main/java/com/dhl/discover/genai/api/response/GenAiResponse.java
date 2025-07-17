@@ -1,5 +1,6 @@
 package com.dhl.discover.genai.api.response;
 
+import com.dhl.discover.genai.exception.AiException;
 import com.google.gson.JsonObject;
 import lombok.Getter;
 
@@ -25,5 +26,13 @@ public class GenAiResponse {
                 choice -> choices.add(new Choice(choice.getAsJsonObject())));
 
         }
+    }
+
+    public String getFirstChoiceText() throws AiException {
+        if (choices == null || choices.isEmpty()) {
+            throw new AiException("No choices returned from AI response");
+        }
+
+        return choices.getFirst().getText();
     }
 }
