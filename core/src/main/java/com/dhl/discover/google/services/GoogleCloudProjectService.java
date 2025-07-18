@@ -61,7 +61,7 @@ public class GoogleCloudProjectService {
 
             List<NameValuePair> params = new ArrayList<>();
             params.add(new BasicNameValuePair("client_id", clientId));
-            params.add(new BasicNameValuePair("client_secret", clientSecret)); // Do NOT log params
+            params.add(new BasicNameValuePair("client_secret", clientSecret));
             params.add(new BasicNameValuePair("refresh_token", refreshToken));
             params.add(new BasicNameValuePair("grant_type", "refresh_token"));
 
