@@ -43,10 +43,14 @@ public class GoogleCloudProjectService {
 
     public String getAccessToken() throws IOException {
         if (accessToken == null || System.currentTimeMillis() > accessTokenExpiryTime - 60_000) {
-            var tokenResponse = requestNewAccessToken(clientId, clientSecret, refreshToken);
-            accessToken = tokenResponse.get("access_token").getAsString();
-            var expiresIn = tokenResponse.get("expires_in").getAsInt();
-            accessTokenExpiryTime = System.currentTimeMillis() + (expiresIn * 1000L);
+            try {
+                var tokenResponse = requestNewAccessToken(clientId, clientSecret, refreshToken);
+                accessToken = tokenResponse.get("access_token").getAsString();
+                var expiresIn = tokenResponse.get("expires_in").getAsInt();
+                accessTokenExpiryTime = System.currentTimeMillis() + (expiresIn * 1000L);
+            }catch (Exception e) {
+                throw new IOException("Failed to refresh access token: " + e.getMessage());
+            }
         }
         return accessToken;
     }
@@ -57,7 +61,7 @@ public class GoogleCloudProjectService {
 
             List<NameValuePair> params = new ArrayList<>();
             params.add(new BasicNameValuePair("client_id", clientId));
-            params.add(new BasicNameValuePair("client_secret", clientSecret));
+            params.add(new BasicNameValuePair("client_secret", clientSecret)); // Do NOT log params
             params.add(new BasicNameValuePair("refresh_token", refreshToken));
             params.add(new BasicNameValuePair("grant_type", "refresh_token"));
 
@@ -70,9 +74,11 @@ public class GoogleCloudProjectService {
                 if (statusCode == 200) {
                     return JsonParser.parseString(responseString).getAsJsonObject();
                 } else {
-                    throw new IOException("Failed to get access token (HTTP " + statusCode + "): " + responseString);
+                    throw new IOException("Failed to get google cloud access token (HTTP " + statusCode + ")");
                 }
             }
+        } catch (Exception e) {
+            throw new IOException("Error while requesting new access token: " + e.getMessage());
         }
     }
 
