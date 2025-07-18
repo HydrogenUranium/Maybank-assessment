@@ -3,12 +3,20 @@ package com.dhl.discover.core.models;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import com.day.cq.search.result.Hit;
+import com.day.cq.search.result.SearchResult;
+import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.LaunchService;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.api.wrappers.ValueMapDecorator;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,7 +47,8 @@ class MeganavTest {
 	    ctx.load().json("/com/dhl/discover/core/models/SiteContent.json", "/content");
         ctx.registerService(QueryBuilder.class, mockQueryBuilder);
 		var launchService = ctx.registerService(LaunchService.class, new LaunchService());
-		ctx.registerInjectActivateService(PageUtilService.class, "launchService", launchService);
+		PageUtilService pageUtilService = mock(PageUtilService.class);
+		ctx.registerService(PageUtilService.class, pageUtilService);
 	    ctx.addModelsForClasses(Meganav.class, MeganavPanel.class);
 	}
 
@@ -77,24 +86,190 @@ class MeganavTest {
 	}
 
 	@Test
-	void testMeganavPanelSetters() {
-		Mockito.when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(page1MockQuery);
-		ctx.currentResource("/content/dhl/country/en/ship-now");
+	void testMeganavPanelSetters() throws RepositoryException {
+		int index = 0;
 
-		Meganav meganav = ctx.request().adaptTo(Meganav.class);
-		MeganavPanel meganavPanel = meganav.getPanels().get(0);
+		// Create mock page with necessary behavior
+		com.day.cq.wcm.api.Page page = mock(com.day.cq.wcm.api.Page.class);
+		when(page.getPath()).thenReturn("/content/path/to/page");
+		when(page.listChildren()).thenReturn(Collections.emptyIterator());
 
-		meganavPanel.setPanels(new ArrayList<MeganavPanel>());
-		meganavPanel.setArticleCategories(new ArrayList<ArticleCategory>());
+		// Mock root page with required behavior
+		com.day.cq.wcm.api.Page rootPage = mock(com.day.cq.wcm.api.Page.class);
+		when(rootPage.getPath()).thenReturn("/content/path/to/root");
+
+		// Mock Query and SearchResult objects
+		Query mockQuery = mock(Query.class);
+		SearchResult mockSearchResult = mock(SearchResult.class);
+		when(mockQuery.getResult()).thenReturn(mockSearchResult);
+		when(mockSearchResult.getHits()).thenReturn(Collections.emptyList());
+		when(mockSearchResult.getResources()).thenReturn(Collections.emptyIterator());
+
+		// Configure QueryBuilder to return the mock query
+		when(mockQueryBuilder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(mockQuery);
+
+		// Get resource resolver from context
+		org.apache.sling.api.resource.ResourceResolver resourceResolver = ctx.resourceResolver();
+
+		// Create MeganavPanel with the required constructor arguments
+		MeganavPanel meganavPanel = new MeganavPanel(index, page, rootPage, mockQueryBuilder, resourceResolver);
+
+		// Test setters
+		meganavPanel.setPanels(new ArrayList<>());
+		meganavPanel.setArticleCategories(new ArrayList<>());
 		meganavPanel.setIndex(0);
 		meganavPanel.setCurrent(false);
 		meganavPanel.setPage(null);
 
+		// Assert values
 		assertEquals(0, meganavPanel.getPanels().size());
 		assertEquals(0, meganavPanel.getArticleCategories().size());
 		assertEquals(0, meganavPanel.getIndex());
 		assertEquals(false, meganavPanel.getCurrent());
 		assertNull(meganavPanel.getPage());
+	}
+
+	@Test
+	void testSearchResultProcessing() throws RepositoryException {
+		// Setup
+		int index = 0;
+		Page page = mock(Page.class);
+		Page rootPage = mock(Page.class);
+		when(page.getPath()).thenReturn("/content/test");
+		when(page.listChildren()).thenReturn(Collections.emptyIterator());
+		when(rootPage.getPath()).thenReturn("/content/root");
+
+		// Mock QueryBuilder and related objects
+		QueryBuilder queryBuilder = mock(QueryBuilder.class);
+		Query mockQuery = mock(Query.class);
+		SearchResult mockSearchResult = mock(SearchResult.class);
+
+		// Mock search hits
+		Hit hit1 = mock(Hit.class);
+		Hit hit2 = mock(Hit.class);
+		Hit hit3 = mock(Hit.class);
+		List<Hit> hits = Arrays.asList(hit1, hit2, hit3);
+
+		// Setup hit1 - Should be included (showInMeganav=true, hideInNav=false)
+		ValueMap hit1Properties = new ValueMapDecorator(new HashMap<>());
+		hit1Properties.put("hideInNav", false);
+		when(hit1.getProperties()).thenReturn(hit1Properties);
+		when(hit1.getPath()).thenReturn("/content/hit1");
+
+		Resource hit1Resource = mock(Resource.class);
+		ValueMap hit1ResourceProps = new ValueMapDecorator(new HashMap<>());
+		hit1ResourceProps.put("jcr:content/showinmeganav", true);
+		hit1ResourceProps.put("jcr:content/jcr:title", "Title 1");
+		hit1ResourceProps.put("jcr:content/navTitle", "Nav Title 1");
+		hit1ResourceProps.put("jcr:content/cq:featuredimage/fileReference", "/content/dam/image1.jpg");
+		when(hit1Resource.adaptTo(ValueMap.class)).thenReturn(hit1ResourceProps);
+
+		// Setup hit2 - Should be included with external URL
+		ValueMap hit2Properties = new ValueMapDecorator(new HashMap<>());
+		hit2Properties.put("hideInNav", false);
+		when(hit2.getProperties()).thenReturn(hit2Properties);
+		when(hit2.getPath()).thenReturn("/content/hit2");
+
+		Resource hit2Resource = mock(Resource.class);
+		ValueMap hit2ResourceProps = new ValueMapDecorator(new HashMap<>());
+		hit2ResourceProps.put("jcr:content/showinmeganav", true);
+		hit2ResourceProps.put("jcr:content/jcr:title", "Title 2");
+		hit2ResourceProps.put("jcr:content/externalurl", "https://example.com");
+		when(hit2Resource.adaptTo(ValueMap.class)).thenReturn(hit2ResourceProps);
+
+		// Setup hit3 - Should be excluded (hideInNav=true)
+		ValueMap hit3Properties = new ValueMapDecorator(new HashMap<>());
+		hit3Properties.put("hideInNav", true);
+		when(hit3.getProperties()).thenReturn(hit3Properties);
+
+		// Setup ResourceResolver
+		ResourceResolver resourceResolver = mock(ResourceResolver.class);
+		when(resourceResolver.getResource("/content/hit1")).thenReturn(hit1Resource);
+		when(resourceResolver.getResource("/content/hit2")).thenReturn(hit2Resource);
+
+		// Setup searchResult with mocked hits
+		when(mockSearchResult.getHits()).thenReturn(hits);
+
+		// Setup resources iterator for closing
+		Resource mockIteratorResource = mock(Resource.class);
+		ResourceResolver mockIteratorResourceResolver = mock(ResourceResolver.class);
+		when(mockIteratorResource.getResourceResolver()).thenReturn(mockIteratorResourceResolver);
+		Iterator<Resource> resourceIterator = Collections.singletonList(mockIteratorResource).iterator();
+		when(mockSearchResult.getResources()).thenReturn(resourceIterator);
+
+		// Connect query to search result
+		when(mockQuery.getResult()).thenReturn(mockSearchResult);
+
+		// Connect QueryBuilder to query
+		lenient().when(queryBuilder.createQuery(any(), any())).thenReturn(mockQuery);
+		// Execute
+		MeganavPanel meganavPanel = new MeganavPanel(index, page, rootPage, queryBuilder, resourceResolver);
+
+		// Verify
+		List<ArticleCategory> articleCategories = meganavPanel.getArticleCategories();
+
+		// Should have 2 article categories (hit1 and hit2, not hit3)
+		assertEquals(2, articleCategories.size());
+
+		// Verify first article category (hit1)
+		ArticleCategory category1 = articleCategories.get(0);
+		assertEquals("/content/hit1", category1.path);
+		assertEquals("Nav Title 1", category1.getTitle());
+		assertEquals("/content/dam/image1.jpg", category1.getPageImage());
+		assertFalse(category1.getExternal());
+
+		// Verify second article category (hit2)
+		ArticleCategory category2 = articleCategories.get(1);
+		assertEquals("https://example.com", category2.path);
+		assertEquals("Title 2", category2.getTitle());
+		assertTrue(category2.getExternal());
+
+		// Verify the resourceResolver was closed
+		verify(mockIteratorResourceResolver).close();
+	}
+	@Test
+	void testNavigationTitle() {
+
+		int index = 0;
+		Page mockPage = mock(Page.class);
+		Page rootPage = mock(Page.class);
+		when(mockPage.getPath()).thenReturn("/content/test");
+		when(mockPage.listChildren()).thenReturn(Collections.emptyIterator());
+		when(rootPage.getPath()).thenReturn("/content/root");
+
+		// Setup ValueMap with different scenarios
+		ValueMap valueMap = new ValueMapDecorator(new HashMap<>());
+
+		// Configure the mock page to return our ValueMap
+		when(mockPage.adaptTo(ValueMap.class)).thenReturn(valueMap);
+
+		// Create MeganavPanel instance with the mock page
+		MeganavPanel meganavPanel = new MeganavPanel(index, mockPage, rootPage, mockQueryBuilder, resourceResolver);
+		meganavPanel.setPage(mockPage);
+
+		// Test Case 1: Both navTitle and jcr:title are empty
+		assertEquals("", meganavPanel.navigationTitle(), "Should return empty string when no titles are set");
+
+		// Test Case 2: Only jcr:title is set
+		valueMap.put("jcr:content/jcr:title", "Page Title");
+		assertEquals("Page Title", meganavPanel.navigationTitle(), "Should return jcr:title when navTitle is empty");
+
+		// Test Case 3: Both navTitle and jcr:title are set
+		valueMap.put("jcr:content/navTitle", "Nav Title");
+		assertEquals("Nav Title", meganavPanel.navigationTitle(), "Should return navTitle when both are set");
+
+		// Test Case 4: Only navTitle is set (clear jcr:title)
+		valueMap.remove("jcr:content/jcr:title");
+		assertEquals("Nav Title", meganavPanel.navigationTitle(), "Should return navTitle when only navTitle is set");
+
+		// Test Case 5: navTitle is whitespace, jcr:title is set
+		valueMap.put("jcr:content/navTitle", "  ");
+		valueMap.put("jcr:content/jcr:title", "Page Title");
+		assertEquals("Page Title", meganavPanel.navigationTitle(), "Should return jcr:title when navTitle is whitespace");
+
+		// Test Case 6: page.adaptTo returns null
+		when(mockPage.adaptTo(ValueMap.class)).thenReturn(null);
+		assertEquals("", meganavPanel.navigationTitle(), "Should return empty string when page.adaptTo returns null");
 	}
 
 	@Test
