@@ -12,6 +12,7 @@ import com.dhl.discover.core.models.search.SearchResultEntry;
 import com.dhl.discover.core.helpers.FullTextSearchHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -99,11 +100,32 @@ public class ArticleService {
         }
     }
 
+    private List<Article> getArticles(Map<String, String> customProps, SlingHttpServletRequest request) {
+        Map<String, String> props = new HashMap<>();
+        props.put("type", NT_PAGE);
+        props.put("p.excerpt", "true");
+        props.put("group.p.or", "true");
+        props.put(GROUP_ONE_PROPERTY, JCR_CONTENT_CQ_TEMPLATE);
+        props.put(GROUP_ONE_PROPERTY_VALUE, "/conf/dhl/settings/wcm/templates/article");
+        props.put(GROUP_THREE_PROPERTY, JCR_CONTENT_CQ_TEMPLATE);
+        props.put(GROUP_THREE_PROPERTY_VALUE, "/conf/dhl/settings/wcm/templates/animated-page");
+        props.putAll(customProps);
+
+        return getArticlesFromSearchResultEntries(searchArticles(props, request));
+    }
+
     public List<Article> getAllArticles(Page parent) {
         return getArticles(Map.of(
                 P_LIMIT, "-1",
                 "path", parent.getPath()
         ));
+    }
+
+    public List<Article> getAllArticles(Page parent, SlingHttpServletRequest request) {
+        return getArticles(Map.of(
+                P_LIMIT, "-1",
+                "path", parent.getPath()
+        ), request);
     }
 
     public List<Article> getLatestArticles(Page parent, int limit) {
@@ -330,11 +352,37 @@ public class ArticleService {
                 .orElse(new ArrayList<>());
     }
 
+    private List<SearchResultEntry> searchArticles(Map<String, String> props, SlingHttpServletRequest request) {
+        Session session = request.getResourceResolver().adaptTo(Session.class);
+        return java.util.Optional.ofNullable(builder)
+                .map(queryBuilder -> queryBuilder.createQuery(PredicateGroup.create(props), session))
+                .map(Query::getResult)
+                .map(SearchResult::getHits)
+                .map(hits -> getSearchResultEntriesFromHits(hits, request))
+                .orElse(new ArrayList<>());
+    }
+
     private List<SearchResultEntry> getSearchResultEntriesFromHits(List<Hit> hits, ResourceResolver resourceResolver) {
         List<SearchResultEntry> resources = new ArrayList<>();
         hits.forEach(hit -> {
             try {
                 var article = articleUtilService.getArticle(hit.getPath(), resourceResolver);
+                var excerpt = "... " + hit.getExcerpt();
+                if (article != null && article.isValid()) {
+                    resources.add(new SearchResultEntry(article, excerpt));
+                }
+            } catch (RepositoryException exception) {
+                log.warn("Failed to get path from sql response", exception);
+            }
+        });
+        return resources;
+    }
+
+    private List<SearchResultEntry> getSearchResultEntriesFromHits(List<Hit> hits, SlingHttpServletRequest request) {
+        List<SearchResultEntry> resources = new ArrayList<>();
+        hits.forEach(hit -> {
+            try {
+                var article = articleUtilService.getArticle(hit.getPath(), request);
                 var excerpt = "... " + hit.getExcerpt();
                 if (article != null && article.isValid()) {
                     resources.add(new SearchResultEntry(article, excerpt));
