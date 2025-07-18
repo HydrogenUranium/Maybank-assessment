@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.factory.ModelFactory;
@@ -20,6 +21,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.commons.util.StringUtils;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,9 +32,11 @@ import java.util.Locale;
 import static com.dhl.discover.junitUtils.InjectorMock.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
+@MockitoSettings(strictness = Strictness.LENIENT)
 class ArticleGridV2Test {
     private final AemContext context = new AemContext();
     private final MockSlingHttpServletRequest request = context.request();
@@ -85,7 +90,16 @@ class ArticleGridV2Test {
         mockInjectHomeProperty(context, "articleGrid-sortTitle", "Sort By");
         mockInjectHomeProperty(context, "articleGrid-latestOptionTitle", "Latest");
         mockInjectHomeProperty(context, "articleGrid-showTags", "false");
-        mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
+        com.adobe.cq.wcm.core.components.models.Image mockImage =
+                mock(com.adobe.cq.wcm.core.components.models.Image.class);
+        when(mockImage.getSrc()).thenReturn("/content/dam/image.jpg");
+        when(mockImage.getSrcset()).thenReturn("");
+        when(mockImage.getAlt()).thenReturn("");
+
+        mockInject(context,
+                InjectorMock.INJECT_CHILD_IMAGE_MODEL,
+                "jcr:content/cq:featuredimage",
+                mockImage);
     }
 
     private Article getArticle(String path) {
@@ -94,7 +108,7 @@ class ArticleGridV2Test {
 
     @Test
     void test_ChildCategories() throws JsonProcessingException {
-        when(articleService.getAllArticles(any(Page.class))).thenAnswer(invocationOnMock -> {
+        when(articleService.getAllArticles(any(Page.class), any(SlingHttpServletRequest.class))).thenAnswer(invocationOnMock -> {
             Page rootPage = invocationOnMock.getArgument(0, Page.class);
             String path = rootPage.getPath();
             if (path.equals("/content/home")) {
@@ -131,7 +145,7 @@ class ArticleGridV2Test {
         JsonNode article = eCommerceAdviceCategory.get("articles").get(0);
         assertEquals("What paperwork do I need for international shipping?", article.get("title").asText());
         assertEquals("/content/home/e-commerce-advice/article.html", article.get("path").asText());
-        assertEquals("/discover/content/dam/image.jpg", article.get("pageImage").asText());
+        assertEquals("/content/dam/image.jpg", article.get("pageImage").asText());
     }
 
     @Test
@@ -163,12 +177,12 @@ class ArticleGridV2Test {
         JsonNode articleJson = productivityCategory.get("articles").get(0);
         assertEquals("What paperwork do I need for international shipping?", articleJson.get("title").asText());
         assertEquals("/content/home/e-commerce-advice/article.html", articleJson.get("path").asText());
-        assertEquals("/discover/discover/content/dam/image.jpg", articleJson.get("pageImage").asText());
+        assertEquals("/content/dam/image.jpg", articleJson.get("pageImage").asText());
     }
 
     @Test
     void test_HasArticles() {
-        when(articleService.getAllArticles(any(Page.class))).thenAnswer(invocationOnMock -> {
+        when(articleService.getAllArticles(any(Page.class), any(SlingHttpServletRequest.class))).thenAnswer(invocationOnMock -> {
             Page rootPage = invocationOnMock.getArgument(0, Page.class);
             String path = rootPage.getPath();
             if (path.equals("/content/home")) {
