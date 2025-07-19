@@ -3,6 +3,7 @@ package com.dhl.discover.core.models;
 import com.dhl.discover.core.models.common.Tab;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,5 +29,17 @@ class TabsTest {
         assertNotNull(tabs);
         assertEquals(2, tabs.getTabList().size());
         assertEquals("h3", tabs.getTitleElement());
+    }
+
+    @Test
+    void testInitWithNullTabList() throws Exception {
+        Resource emptyResource = context.create().resource("/content/tabs/empty");
+
+        Tabs tabs = emptyResource.adaptTo(Tabs.class);
+
+        assertNotNull(tabs);
+
+        assertNotNull(tabs.getTabList());
+        assertTrue(tabs.getTabList().isEmpty());
     }
 }
