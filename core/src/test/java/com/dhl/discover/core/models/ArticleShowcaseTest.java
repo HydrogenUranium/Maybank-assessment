@@ -18,15 +18,15 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleShowcaseTest {
@@ -83,6 +83,7 @@ class ArticleShowcaseTest {
         assertEquals("horizontal", showcase.getDesignMode());
         assertEquals("See All Latest Posts", showcase.getLinkName());
         assertEquals("/content/dhl/au", showcase.getLinkPath());
+        assertNull(showcase.getShowTags());
         assertEquals("h3", showcase.getArticlesTitleType());
         assertEquals("h2", showcase.getTitleType());
         assertEquals("customPick", showcase.getSource());
@@ -104,20 +105,24 @@ class ArticleShowcaseTest {
     }
 
     @Test
-    void initCustomPick_ShouldReturn_WhenArticleResourcesIsNull() throws IllegalAccessException {
+    void initCustomPick_ShouldReturn_WhenArticleResourcesIsNull() throws IllegalAccessException, NoSuchFieldException {
         ArticleShowcase showcase = new ArticleShowcase();
-        Field field = null;
-        try {
-            field = ArticleShowcase.class.getDeclaredField("articleResources");
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        }
-        field.setAccessible(true);
-        field.set(showcase, null);
+        Field articlesField = ArticleShowcase.class.getDeclaredField("articles");
+        articlesField.setAccessible(true);
+        articlesField.set(showcase, new ArrayList<>());
+
+        Field articleResourcesField = ArticleShowcase.class.getDeclaredField("articleResources");
+        articleResourcesField.setAccessible(true);
+        articleResourcesField.set(showcase, null);
+
+        Field articleUtilServiceField = ArticleShowcase.class.getDeclaredField("articleUtilService");
+        articleUtilServiceField.setAccessible(true);
+        articleUtilServiceField.set(showcase, articleUtilService);
 
         showcase.initCustomPick();
 
-        assertEquals(0, showcase.getArticles().size());
+        assertEquals(0, showcase.getArticles().size(), "Articles list should remain empty when articleResources is null");
+        verify(articleUtilService, never()).getArticle(anyString(), any(SlingHttpServletRequest.class));
     }
     @Test
     void initCustomPick_ShouldReturn_WhenArticleResourcesIsEmpty() throws IllegalAccessException {
@@ -135,4 +140,5 @@ class ArticleShowcaseTest {
 
         assertEquals(0, showcase.getArticles().size());
     }
+
 }
