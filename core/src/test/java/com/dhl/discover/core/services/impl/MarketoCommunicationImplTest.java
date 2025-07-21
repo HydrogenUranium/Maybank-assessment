@@ -158,14 +158,14 @@ class MarketoCommunicationImplTest {
 		if(needHttpClient){
 			when(initUtil.getHttpClient()).thenReturn(client);
 		}
-		when(initUtil.getObjectMapper()).thenReturn(objectMapper);
-		when(marketoSubmissionConfigReader.getMarketoHost()).thenReturn("https://marketo-host.com");
-		when(marketoSubmissionConfigReader.getMarketoClientId()).thenReturn("marketo-client-id");
-		when(marketoSubmissionConfigReader.getMarketoClientSecret()).thenReturn("marketo-client-secret");
-		when(marketoSubmissionConfigReader.getMarketoAuthenticationAPIEndpoint()).thenReturn("marketo-authentication-endpoint");
-		when(marketoSubmissionConfigReader.getMarketoFormSubmissionAPIEndpoint()).thenReturn("marketo-form-submission-endpoint");
-		when(marketoSubmissionConfigReader.getMarketoFormDescriptionAPIEndpoint()).thenReturn("marketo-form-description-endpoint");
-		when(marketoSubmissionConfigReader.getMarketoFormFieldsAPIEndpoint()).thenReturn("marketo-form-fields-endpoint");
+		lenient().when(initUtil.getObjectMapper()).thenReturn(objectMapper);
+		lenient().when(marketoSubmissionConfigReader.getMarketoHost()).thenReturn("https://marketo-host.com");
+		lenient().when(marketoSubmissionConfigReader.getMarketoClientId()).thenReturn("marketo-client-id");
+		lenient().when(marketoSubmissionConfigReader.getMarketoClientSecret()).thenReturn("marketo-client-secret");
+		lenient().when(marketoSubmissionConfigReader.getMarketoAuthenticationAPIEndpoint()).thenReturn("marketo-authentication-endpoint");
+		lenient().when(marketoSubmissionConfigReader.getMarketoFormSubmissionAPIEndpoint()).thenReturn("marketo-form-submission-endpoint");
+		lenient().when(marketoSubmissionConfigReader.getMarketoFormDescriptionAPIEndpoint()).thenReturn("marketo-form-description-endpoint");
+		lenient().when(marketoSubmissionConfigReader.getMarketoFormFieldsAPIEndpoint()).thenReturn("marketo-form-fields-endpoint");
 	}
 
 	@Test
@@ -205,5 +205,83 @@ class MarketoCommunicationImplTest {
 		List<String> testResult = underTest.getFormFields(authToken,1111);
 		assertNotNull(testResult);
 	}
+
+
+	@Test
+	void getAvailableFormFieldNames_ShouldHandleException_WhenJsonParsingFails() throws IOException, HttpRequestException {
+		this.commonStubbing(false);
+		String authToken = "valid-auth-token";
+
+		when(httpCommunication.sendGetMessage(anyString(), anyString()))
+				.thenReturn("invalid json response");
+		when(objectMapper.readValue(anyString(), eq(FormDescriptionResponse.class)))
+				.thenThrow(new JsonProcessingException("Invalid JSON") {});
+
+		List<String> result = underTest.getAvailableFormFieldNames(authToken);
+
+		assertTrue(result.isEmpty(), "Should return empty list when JSON parsing fails");
+	}
+
+	@Test
+	void requestNewToken_ShouldHandleHttpRequestException() throws IOException, HttpRequestException {
+		this.commonStubbing(true);
+		MarketoConnectionData marketoConnectionData = MarketoConnectionData.builder()
+				.clientId("client-id")
+				.secretId("secret-id")
+				.url("https://marketo-host.com")
+				.authAPIPath("marketo-authentication-endpoint")
+				.build();
+
+		when(httpCommunication.sendPostMessage(
+				anyString(),
+				anyString(),
+				isNull(),
+				anyList(),
+				any(CloseableHttpClient.class)
+		)).thenThrow(new HttpRequestException("Connection failed"));
+
+		Exception exception = assertThrows(HttpRequestException.class, () -> {
+			underTest.requestNewToken(marketoConnectionData);
+		});
+
+		assertEquals(
+				"Unsuccessful request to get the Marketo token - unable to get Marketo communication information (such as hostname / clientId / secretId)",
+				exception.getMessage()
+		);
+
+		verify(httpCommunication).sendPostMessage(
+				anyString(),
+				anyString(),
+				isNull(),
+				anyList(),
+				any(CloseableHttpClient.class)
+		);
+	}
+
+	@Test
+	void getFormFields_ShouldHandleExceptions() throws IOException, HttpRequestException {
+		// Arrange
+		this.commonStubbing(false);
+		String authToken = "valid-auth-token";
+		int formId = 12345;
+
+		// Configure mocks to use doReturn/when style to avoid strict stubbing issues
+		doReturn("invalid json response").when(httpCommunication).sendGetMessage(anyString(), anyString());
+		// Use doThrow instead of when().thenThrow() to avoid strict stubbing problems
+		doThrow(new JsonProcessingException("Invalid JSON") {}).when(objectMapper)
+				.readValue(anyString(), eq(FormFieldsResponse.class));
+
+		// Act
+		List<String> result = underTest.getFormFields(authToken, formId);
+
+		// Assert
+		assertTrue(result.isEmpty(), "Should return empty list when JSON parsing fails");
+
+		// Verify methods were called
+		verify(httpCommunication).sendGetMessage(anyString(), anyString());
+		verify(objectMapper).readValue(anyString(), eq(FormFieldsResponse.class));
+	}
+
+
 
 }
