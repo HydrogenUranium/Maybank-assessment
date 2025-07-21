@@ -1,6 +1,5 @@
 package com.dhl.discover.core.models;
 
-import org.apache.log4j.Logger;
 import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

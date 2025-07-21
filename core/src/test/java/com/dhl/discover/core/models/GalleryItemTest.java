@@ -25,8 +25,6 @@ class GalleryItemTest {
     @InjectMocks
     private GalleryItem galleryItem;
 
-    private ValueMap valueMap;
-
     @BeforeEach
     void setUp() {
         Map<String, Object> properties = new HashMap<>();
@@ -36,7 +34,6 @@ class GalleryItemTest {
         properties.put("imagetab", "/content/dam/image-tablet.jpg");
         properties.put("imagedt", "/content/dam/image-desktop.jpg");
 
-        valueMap = new ValueMapDecorator(properties);
     }
 
     @Test
