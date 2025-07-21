@@ -32,7 +32,7 @@ class TabsTest {
     }
 
     @Test
-    void testInitWithNullTabList() throws Exception {
+    void testInitWithNullTabList() {
         Resource emptyResource = context.create().resource("/content/tabs/empty");
 
         Tabs tabs = emptyResource.adaptTo(Tabs.class);

@@ -16,10 +16,9 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class GalleryItemTest {
+class GalleryItemTest {
     @Mock
     private Resource resource;
 
@@ -76,8 +75,10 @@ public class GalleryItemTest {
     }
 
     @Test
-    void testPostConstructMethod() throws Exception {
+    void testPostConstructMethod() {
+        galleryItem.setIndex(3);
         galleryItem.init();
+        assertEquals(3, galleryItem.getIndex(), "The index value should be preserved after initialization");
 
     }
 
