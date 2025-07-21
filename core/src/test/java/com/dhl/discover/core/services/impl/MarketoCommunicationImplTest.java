@@ -217,13 +217,13 @@ class MarketoCommunicationImplTest {
 		when(objectMapper.readValue(anyString(), eq(FormDescriptionResponse.class)))
 				.thenThrow(new JsonProcessingException("Invalid JSON") {});
 
-		List<String> result = underTest.getAvailableFormFieldNames(authToken);
+		List<String> results = underTest.getAvailableFormFieldNames(authToken);
 
-		assertTrue(result.isEmpty(), "Should return empty list when JSON parsing fails");
+		assertTrue(results.isEmpty(), "Should return empty list when JSON parsing fails");
 	}
 
 	@Test
-	void requestNewToken_ShouldHandleHttpRequestException() throws IOException, HttpRequestException {
+	void requestNewToken_ShouldHandleHttpRequestException() throws HttpRequestException {
 		this.commonStubbing(true);
 		MarketoConnectionData marketoConnectionData = MarketoConnectionData.builder()
 				.clientId("client-id")
