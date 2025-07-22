@@ -272,10 +272,10 @@ class MarketoCommunicationImplTest {
 				.readValue(anyString(), eq(FormFieldsResponse.class));
 
 		// Act
-		List<String> result = underTest.getFormFields(authToken, formId);
+		List<String> results = underTest.getFormFields(authToken, formId);
 
 		// Assert
-		assertTrue(result.isEmpty(), "Should return empty list when JSON parsing fails");
+		assertTrue(results.isEmpty(), "Should return empty list when JSON parsing fails");
 
 		// Verify methods were called
 		verify(httpCommunication).sendGetMessage(anyString(), anyString());

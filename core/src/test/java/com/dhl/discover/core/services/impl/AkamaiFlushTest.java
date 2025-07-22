@@ -334,7 +334,7 @@ class AkamaiFlushTest {
 		when(initUtil.getObjectMapper()).thenReturn(mockMapper);
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setDetail("Invalid request");
-		when(mockMapper.readValue(eq(errorResponseJson), eq(ErrorResponse.class)))
+		when(mockMapper.readValue(errorResponseJson, ErrorResponse.class))
 				.thenReturn(errorResponse);
 
 		// Act
@@ -343,7 +343,7 @@ class AkamaiFlushTest {
 		// Assert
 		assertEquals(AkamaiInvalidationResult.REJECTED, result);
 		verify(httpCommunication).sendPostMessage(anyString(), any(FlushRequest.class), any(CloseableHttpClient.class));
-		verify(mockMapper).readValue(eq(errorResponseJson), eq(ErrorResponse.class));
+		verify(mockMapper).readValue(errorResponseJson, ErrorResponse.class);
 		// Verify the log error was called (optional if you have a way to capture logs)
 	}
 
