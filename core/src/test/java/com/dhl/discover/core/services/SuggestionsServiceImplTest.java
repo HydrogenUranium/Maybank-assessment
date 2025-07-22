@@ -10,7 +10,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
-import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,12 +27,11 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
-public class SuggestionsServiceImplTest {
+class SuggestionsServiceImplTest {
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
     private final MockSlingHttpServletRequest request = context.request();
-    private final MockSlingHttpServletResponse response = context.response();
 
     @Mock
     private TagUtilService tagUtilService;

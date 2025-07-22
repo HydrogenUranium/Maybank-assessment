@@ -17,8 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class DownloadAssetTest {
-    private static final Logger log = Logger.getLogger(DownloadAssetTest.class);
+class DownloadAssetTest {
     @Mock
     private Resource resource;
 

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ConfigurableMarketoFormTest {
+class ConfigurableMarketoFormTest {
     @Mock
     private Resource resource;
 
