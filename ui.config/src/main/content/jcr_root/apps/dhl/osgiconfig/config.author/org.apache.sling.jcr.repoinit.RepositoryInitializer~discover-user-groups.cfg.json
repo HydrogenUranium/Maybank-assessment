@@ -3,6 +3,7 @@
         "create path /(rep:root)",
         "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/jcr:content(nt:unstructured)",
         "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/language-masters(cq:Page)/jcr:content(nt:unstructured)",
+        "create path (rep:root)/content(sling:OrderedFolder)/dhl(cq:Page)/language-masters(cq:Page)/en-master(cq:Page)/jcr:content(nt:unstructured)",
         "create path (rep:root)/content(sling:OrderedFolder)/experience-fragments(sling:Folder)/dhl(sling:OrderedFolder)/jcr:content(nt:unstructured)",
         "create path /etc(sling:Folder)/designs(nt:folder)",
         "create path (rep:root)/content(sling:OrderedFolder)/cq:tags(sling:Folder)/dhl(cq:Tag)",
@@ -42,6 +43,7 @@
         "set ACL for author-language-master\nallow jcr:read,jcr:versionManagement,rep:write,jcr:lockManagement on /content/dhl restriction(rep:glob,/language-masters)\nend",
         "set ACL for author-language-master\nallow jcr:read on /content/experience-fragments/dhl restriction(rep:glob,/language-masters)\nend",
         "set ACL for author-language-master\nallow jcr:read on /conf/global\nend",
+        "set ACL for author-language-master\nallow jcr:read,rep:write,jcr:lockManagement,jcr:versionManagement on /content/dhl/language-masters/en-master\nend",
         "set ACL for author-language-master\nallow jcr:read,rep:write,jcr:lockManagement,jcr:versionManagement on /content/dhl restriction(rep:glob,/*/*)\nend",
         "set ACL for author-language-master\nallow jcr:read on home(author-language-master)\nend",
 
