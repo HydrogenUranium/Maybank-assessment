@@ -29,13 +29,13 @@ public class SuggestionsServiceImpl implements SuggestionsService {
     private static final int MAX_SUGGESTIONS = 5;
 
     @Reference
-    private transient TagUtilService tagUtilService;
+    private TagUtilService tagUtilService;
 
     @Reference
-    private transient PageUtilService pageUtilService;
+    private PageUtilService pageUtilService;
 
     @Reference
-    private transient ResourceResolverHelper resolverHelper;
+    private ResourceResolverHelper resolverHelper;
 
     @Override
     public  Set<String> collectSuggestions(ResourceResolver resourceResolver, String query,
