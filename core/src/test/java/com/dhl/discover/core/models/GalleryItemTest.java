@@ -1,8 +1,6 @@
 package com.dhl.discover.core.models;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.api.wrappers.ValueMapDecorator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,17 +14,14 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class GalleryItemTest {
+class GalleryItemTest {
     @Mock
     private Resource resource;
 
     @InjectMocks
     private GalleryItem galleryItem;
-
-    private ValueMap valueMap;
 
     @BeforeEach
     void setUp() {
@@ -37,7 +32,6 @@ public class GalleryItemTest {
         properties.put("imagetab", "/content/dam/image-tablet.jpg");
         properties.put("imagedt", "/content/dam/image-desktop.jpg");
 
-        valueMap = new ValueMapDecorator(properties);
     }
 
     @Test
@@ -76,8 +70,10 @@ public class GalleryItemTest {
     }
 
     @Test
-    void testPostConstructMethod() throws Exception {
+    void testPostConstructMethod() {
+        galleryItem.setIndex(3);
         galleryItem.init();
+        assertEquals(3, galleryItem.getIndex(), "The index value should be preserved after initialization");
 
     }
 
