@@ -47,15 +47,13 @@ class SearchTest {
     }
 
     @Test
-    void test() throws InvalidTagFormatException{
+    void test() {
         List<String> mockTopics = Arrays.asList("Business", "China");
         when(tagUtilService.getTrendingTopics(any(Resource.class))).thenReturn(mockTopics);
 
-        // Adapt resource to the model
         Resource resource = context.resourceResolver().getResource("/content/search");
         Search search = resource.adaptTo(Search.class);
 
-        // Verify the model is properly initialized
         assertNotNull(search);
         assertEquals("Search Results", search.getTitle());
         assertEquals("<p>Browse search results for <b>{0}</b> (Showing {1} of {2} results)</p>", search.getDescriptionFormat());
@@ -68,10 +66,8 @@ class SearchTest {
         assertEquals("Search", search.getSearchButtonAriaLabel());
         assertEquals("Enter search term", search.getSearchInputAriaLabel());
 
-        // Verify service interaction
         verify(tagUtilService).getTrendingTopics(resource);
 
-        // Verify popular topics JSON
         String expectedJson = new Gson().toJson(mockTopics);
         assertEquals(expectedJson, search.getPopularTopics());
     }
