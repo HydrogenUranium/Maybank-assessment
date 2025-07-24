@@ -1,7 +1,9 @@
 package com.dhl.discover.core.services.impl;
 
+import com.dhl.discover.core.dto.marketo.formfields.FormFieldsResponse;
 import com.dhl.discover.core.exceptions.HttpRequestException;
 import com.dhl.discover.core.services.InitUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.dhl.discover.core.dto.marketo.FormInputData;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -285,4 +287,85 @@ class HttpCommunicationImplTest {
 	private boolean checkContentType(Header[] headers, String expectedValue){
 		return checkHeaderValue(headers, HttpHeaders.CONTENT_TYPE, expectedValue);
 	}
+
+	@Test
+	void testInvalidUrl_shouldThrowHttpRequestException() throws IOException {
+		// Given
+		String invalidUrl = "not-a-valid-url";
+
+		// When/Then
+		HttpRequestException exception = assertThrows(HttpRequestException.class, () -> {
+			underTest.sendPostMessage(invalidUrl, "authToken", formInputData, null, client);
+		});
+
+		// Verify exception message contains the invalid URL
+		String expectedMessage = "Provided string " + invalidUrl + " does not appear to represent a valid URL.";
+		assertEquals(expectedMessage, exception.getMessage());
+
+		// Verify that isValidUrl was called (through the test's mock behavior)
+		verify(client, never()).execute(any(HttpPost.class));
+	}
+
+	@Test
+	void testInvalidUrlInPostWithoutToken_shouldThrowHttpRequestException() {
+		// Given
+		String invalidUrl = "file:///etc/passwd";
+
+		// When/Then
+		HttpRequestException exception = assertThrows(HttpRequestException.class, () -> {
+			underTest.sendPostMessage(invalidUrl, formInputData, client);
+		});
+
+		// Verify exception message contains the invalid URL
+		String expectedMessage = "Provided string " + invalidUrl + " does not appear to represent a valid URL.";
+		assertEquals(expectedMessage, exception.getMessage());
+	}
+
+	@Test
+	void testGetQueryParams_shouldCreateCorrectQueryParams() {
+		// Given
+		String clientId = "test-client-id";
+		String secret = "test-secret-123";
+
+		// When
+		List<NameValuePair> queryParams = underTest.getQueryParams(clientId, secret);
+
+		// Then
+		assertNotNull(queryParams, "Query params should not be null");
+		assertEquals(3, queryParams.size(), "Should have 3 parameters");
+
+		// Verify each parameter name and value is correct
+		assertEquals("client_id", queryParams.get(0).getName());
+		assertEquals(clientId, queryParams.get(0).getValue());
+
+		assertEquals("client_secret", queryParams.get(1).getName());
+		assertEquals(secret, queryParams.get(1).getValue());
+
+		assertEquals("grant_type", queryParams.get(2).getName());
+		assertEquals("client_credentials", queryParams.get(2).getValue());
+	}
+
+	@Test
+	void testGetRequestResponse_shouldThrowExceptionForNonSuccessResponse() throws IOException {
+		// Given
+		when(statusLine.getStatusCode()).thenReturn(HttpStatus.SC_INTERNAL_SERVER_ERROR);
+		when(statusLine.getReasonPhrase()).thenReturn("Internal Server Error");
+		when(closeableHttpResponse.getStatusLine()).thenReturn(statusLine);
+		when(closeableHttpResponse.getEntity()).thenReturn(httpEntity);
+
+		// When/Then
+		HttpRequestException exception = assertThrows(HttpRequestException.class, () -> {
+			underTest.getRequestResponse(closeableHttpResponse);
+		});
+
+		// Verify the exception message is correctly formatted
+		String expectedMessage = "Backend returned status code '500' with error message 'Internal Server Error'";
+		assertEquals(expectedMessage, exception.getMessage());
+
+		// Verify entity was consumed - correct verification for EntityUtils.consume
+		verify(httpEntity, times(1)).isStreaming();
+
+		// No need to verify getContent() since it's not being called directly
+	}
+
 }
