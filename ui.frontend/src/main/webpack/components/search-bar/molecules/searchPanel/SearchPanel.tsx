@@ -44,6 +44,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const [searchRows] = useDataFetching(articlesQuery, getArticles);
   const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
+  const [fadeOut, setFadeOut] = useState(false);
 
   const recentSearches = useMemo(() => getRecentSearches(), []);
 
@@ -165,10 +166,18 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
 
   const focusInput = (): void => inputRef.current?.focus();
 
+  const handleClose = () => {
+    setFadeOut(true);
+
+    setTimeout(() => {
+      handleCloseSearch();
+    }, 100);
+  };
+
   const renderSearchResults = () => {
     return (!!(suggestions.length || searchRows.length) &&
       <StrictMode>
-        <div className={styles.searchResult}>
+        <div className={classNames(styles.searchResult, { [styles['fade-out']]: fadeOut })}>
           <SearchSection
             items={suggestions}
             title=''
@@ -233,7 +242,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
     }
 
     return (
-      <div className={styles.searchResult}>
+      <div className={classNames(styles.searchResult, { [styles['fade-out']]: fadeOut })}>
         <SearchSection
           items={recentSearches}
           title={recentSearchesTitle}
@@ -306,8 +315,9 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   };
 
   return (
-    <div className={styles.search} ref={searchRef}>
+      <div className={classNames(styles.search)} ref={searchRef}>
       <input
+        className={classNames({ [styles['fade-out']]: fadeOut })}
         aria-label={searchInputAriaLabel}
         role="combobox"
         type="search"
@@ -335,7 +345,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
         dataTestId='close-search'
         ariaLabel={closeAriaLabel}
         className={styles.absoluteRight}
-        onClick={handleCloseSearch} />
+        onClick={handleClose} />
     </div>
   );
 };
