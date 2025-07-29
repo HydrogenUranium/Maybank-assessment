@@ -1,6 +1,7 @@
 package com.dhl.discover.core.services;
 
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,8 +11,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import javax.jcr.Session;
+
 import static junit.framework.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -76,11 +81,41 @@ class ResourceResolverHelperTest {
     @Test
     void testGetResourceResolverWithLoginException() throws Exception {
         // Mock the exception
-        when(resourceResolverFactory.getServiceResourceResolver(any())).thenThrow(new org.apache.sling.api.resource.LoginException("Login failed"));
+        when(resourceResolverFactory.getServiceResourceResolver(any())).thenThrow(new LoginException("Login failed"));
 
         ResourceResolver result = resourceResolverHelper.getUserManagerResourceResolver();
 
         assertNull(result); // Ensure null is returned when an exception occurs
         verify(resourceResolverFactory, times(1)).getServiceResourceResolver(any());
+    }
+
+    @Test
+    void testGetResourceResolverFromSession() throws Exception {
+        Session mockSession = mock(Session.class);
+        ResourceResolver mockResourceResolver = mock(ResourceResolver.class);
+
+        when(resourceResolverFactory.getResourceResolver(
+                argThat(map -> map.containsKey("user.jcr.session") &&
+                        map.get("user.jcr.session") == mockSession)))
+                .thenReturn(mockResourceResolver);
+
+        ResourceResolver result = resourceResolverHelper.getResourceResolver(mockSession);
+
+        assertNotNull(result);
+        assertEquals(mockResourceResolver, result);
+        verify(resourceResolverFactory, times(1))
+                .getResourceResolver(argThat(map -> map.containsKey("user.jcr.session")));
+    }
+
+    @Test
+    void testGetResourceResolverFromSessionWithLoginException() throws Exception {
+        Session mockSession = mock(Session.class);
+
+        when(resourceResolverFactory.getResourceResolver(any()))
+                .thenThrow(new LoginException("Test login exception"));
+        ResourceResolver result = resourceResolverHelper.getResourceResolver(mockSession);
+
+        assertNull(result);
+        verify(resourceResolverFactory, times(1)).getResourceResolver(any());
     }
 }
