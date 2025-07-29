@@ -153,7 +153,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   };
 
   const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
-    const query = event.target.value;
+    const query = sanitizeHtml(event.target.value);
     setInputValue(query);
     setArticlesQuery(query);
     setSuggestionQuery(query);
