@@ -58,9 +58,6 @@ public class DhlPage {
 
 	@InjectHomeProperty
 	@Default(values = "")
-	private String trackingid;
-	@InjectHomeProperty
-	@Default(values = "")
 	private String gtmtrackingid;
 	@InjectHomeProperty
 	@Default(values = "ltr")

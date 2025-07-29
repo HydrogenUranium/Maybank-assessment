@@ -1,11 +1,18 @@
 <template data-sly-template.card="${@ article, showTags, enableAssetDelivery, titleType}">
-  <article class="article-card">
+  <article class="article-card" data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html">
     <a tabindex="-1" href="${article.path}" aria-hidden="true" class="article-card__image-wrapper">
-      <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+      <sly data-sly-test="${article.featuredImageModel}"
            data-sly-call="${template.pictureWithModels @
                  image=article.featuredImageModel,
                  sizes='20rem',
                  imgClass='article-card__image'
+             }"></sly>
+      <sly data-sly-test="${!article.featuredImageModel}"
+              data-sly-call="${template.picture @
+                 image=article.pageImage,
+                 useWebOptimized=enableAssetDelivery,
+                 imgClass='article-card__image',
+                 alt=article.pageImageAltText
              }"></sly>
       <div class="article-card__group-tag text-on-image">${article.groupTag}</div>
     </a>
@@ -29,13 +36,20 @@
 </template>
 
 <template data-sly-template.row="${@ article, showTags, enableAssetDelivery, titleType}">
-  <article class="article-row">
+  <article class="article-row" data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html">
     <a tabindex="-1" href="${article.path}" aria-hidden="true" class="article-row__picture">
-      <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
-           data-sly-call="${template.pictureWithModels @
+      <sly data-sly-test="${article.featuredImageModel}"
+              data-sly-call="${template.pictureWithModels @
                          image=article.featuredImageModel,
                          sizes='(max-width: 48rem) 8rem, (max-width: 1200px) 14rem, 20rem',
                          imgClass='article-row__image'
+                     }"></sly>
+      <sly data-sly-test="${!article.featuredImageModel}"
+           data-sly-call="${template.picture @
+                         image=article.pageImage,
+                         useWebOptimized=enableAssetDelivery,
+                         imgClass='article-row__image',
+                         alt=article.pageImageAltText
                      }"></sly>
     </a>
     <div class="article-row__info">

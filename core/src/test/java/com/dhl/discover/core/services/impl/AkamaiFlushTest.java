@@ -4,11 +4,14 @@ import com.akamai.edgegrid.signer.ClientCredential;
 import com.dhl.discover.core.components.EnvironmentConfiguration;
 import com.dhl.discover.core.config.AkamaiFlushConfigReader;
 import com.dhl.discover.core.constants.AkamaiInvalidationResult;
+import com.dhl.discover.core.dto.akamai.ErrorResponse;
+import com.dhl.discover.core.dto.akamai.FlushResponse;
 import com.dhl.discover.core.exceptions.HttpRequestException;
 import com.dhl.discover.core.services.HttpCommunication;
 import com.dhl.discover.core.services.InitUtil;
 import com.dhl.discover.core.services.RepositoryChecks;
 import com.dhl.discover.core.services.ResourceResolverHelper;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.dhl.discover.core.dto.akamai.FlushRequest;
 import com.dhl.discover.core.dto.general.HttpApiResponse;
@@ -234,6 +237,114 @@ class AkamaiFlushTest {
 		when(akamaiFlushConfigReader.getClientToken()).thenReturn("dummy-client-token");
 		when(akamaiFlushConfigReader.getAccessToken()).thenReturn("dummy-access-token");
 		when(akamaiFlushConfigReader.getApiPath()).thenReturn("/dummy/api/path");
+	}
+
+	@Test
+	void invalidateItemFromAkamai_ShouldHandleHttpRequestException() throws HttpRequestException {
+		// Arrange
+		List<String> allowedContentPaths = List.of("/content/dhl");
+		List<String> allowedContentTypes = List.of("cq:Page");
+
+		// Setup common stubs
+		this.akamaiStubbing();
+		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(context.resourceResolver());
+		when(akamaiFlushConfigReader.getAllowedContentPaths()).thenReturn(allowedContentPaths);
+		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
+		when(environmentConfiguration.getAkamaiHostname()).thenReturn("uat1.dhl.dhl");
+		when(repositoryChecks.getResourceType(anyString(), any(ResourceResolver.class))).thenReturn("cq:Page");
+		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
+
+		// Force HttpRequestException
+		doThrow(new HttpRequestException("Network error"))
+				.when(httpCommunication)
+				.sendPostMessage(anyString(), any(FlushRequest.class), any(CloseableHttpClient.class));
+
+		// Act
+		AkamaiInvalidationResult result = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", StringUtils.EMPTY);
+
+		// Assert
+		assertEquals(AkamaiInvalidationResult.REJECTED, result);
+		verify(httpCommunication).sendPostMessage(anyString(), any(FlushRequest.class), any(CloseableHttpClient.class));
+	}
+	@Test
+	void invalidateItemFromAkamai_ShouldHandleJsonProcessingException() throws HttpRequestException, JsonProcessingException {
+		// Arrange
+		List<String> allowedContentPaths = List.of("/content/dhl");
+		List<String> allowedContentTypes = List.of("cq:Page");
+
+		// Setup common stubs
+		this.akamaiStubbing();
+		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(context.resourceResolver());
+		when(akamaiFlushConfigReader.getAllowedContentPaths()).thenReturn(allowedContentPaths);
+		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
+		when(environmentConfiguration.getAkamaiHostname()).thenReturn("uat1.dhl.dhl");
+		when(repositoryChecks.getResourceType(anyString(), any(ResourceResolver.class))).thenReturn("cq:Page");
+		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
+		when(initUtil.getObjectMapper()).thenReturn(new ObjectMapper());
+
+		// HTTP request succeeds but JSON parsing fails
+		doReturn(HttpApiResponse.builder()
+				.httpStatus(201)
+				.jsonResponse("invalid json")
+				.build())
+				.when(httpCommunication)
+				.sendPostMessage(anyString(), any(FlushRequest.class), any(CloseableHttpClient.class));
+
+		// Make JSON parsing throw exception
+		ObjectMapper mockMapper = mock(ObjectMapper.class);
+		when(initUtil.getObjectMapper()).thenReturn(mockMapper);
+		when(mockMapper.readValue(anyString(), eq(FlushResponse.class)))
+				.thenThrow(new JsonProcessingException("Invalid JSON") {});
+
+		// Act
+		AkamaiInvalidationResult result = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", StringUtils.EMPTY);
+
+		// Assert
+		assertEquals(AkamaiInvalidationResult.REJECTED, result);
+		verify(httpCommunication).sendPostMessage(anyString(), any(FlushRequest.class), any(CloseableHttpClient.class));
+		verify(mockMapper).readValue(anyString(), eq(FlushResponse.class));
+	}
+
+	@Test
+	void invalidateItemFromAkamai_ShouldHandleError400Response() throws HttpRequestException, JsonProcessingException {
+		// Arrange
+		List<String> allowedContentPaths = List.of("/content/dhl");
+		List<String> allowedContentTypes = List.of("cq:Page");
+		String errorResponseJson = "{\"type\":\"error\",\"title\":\"Bad Request\",\"detail\":\"Invalid request\"}";
+
+		// Setup common stubs
+		this.akamaiStubbing();
+		when(resourceResolverHelper.getReadResourceResolver()).thenReturn(context.resourceResolver());
+		when(akamaiFlushConfigReader.getAllowedContentPaths()).thenReturn(allowedContentPaths);
+		when(akamaiFlushConfigReader.getAllowedContentTypes()).thenReturn(allowedContentTypes);
+		when(environmentConfiguration.getAkamaiHostname()).thenReturn("uat1.dhl.dhl");
+		when(repositoryChecks.getResourceType(anyString(), any(ResourceResolver.class))).thenReturn("cq:Page");
+		when(initUtil.getAkamaiClient(any(ClientCredential.class))).thenReturn(closeableHttpClient);
+
+		// Return a 400 error response from the HTTP call
+		doReturn(HttpApiResponse.builder()
+				.httpStatus(400)
+				.jsonResponse(errorResponseJson)
+				.build())
+				.when(httpCommunication)
+				.sendPostMessage(anyString(), any(FlushRequest.class), any(CloseableHttpClient.class));
+
+		// Setup the ObjectMapper to return an ErrorResponse
+		ObjectMapper mockMapper = mock(ObjectMapper.class);
+		when(initUtil.getObjectMapper()).thenReturn(mockMapper);
+		ErrorResponse errorResponse = new ErrorResponse();
+		errorResponse.setDetail("Invalid request");
+		when(mockMapper.readValue(errorResponseJson, ErrorResponse.class))
+				.thenReturn(errorResponse);
+
+		// Act
+		AkamaiInvalidationResult result = underTest.invalidateAkamaiCache("/content/dhl/dummy-path", StringUtils.EMPTY);
+
+		// Assert
+		assertEquals(AkamaiInvalidationResult.REJECTED, result);
+		verify(httpCommunication).sendPostMessage(anyString(), any(FlushRequest.class), any(CloseableHttpClient.class));
+		verify(mockMapper).readValue(errorResponseJson, ErrorResponse.class);
+		// Verify the log error was called (optional if you have a way to capture logs)
 	}
 
 }
