@@ -1,5 +1,6 @@
 package com.dhl.discover.core.models;
 
+import com.adobe.cq.wcm.core.components.models.Image;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.injectors.InjectHomeProperty;
@@ -169,14 +170,15 @@ public class ArticleGridV2 {
         categoryArticleMap.forEach((category, articles) -> {
             JsonArrayBuilder articlesJson = Json.createArrayBuilder();
             articles.forEach(article -> {
+                var featuredImageModel = article.getFeaturedImageModel();
                 JsonObject articleJson = Json.createObjectBuilder()
                         .add(PAGE_TITLE_PARAM, article.getNavTitle())
                         .add("path", article.getPath())
                         .add("description", article.getDescription())
-                        .add("pageImage", StringUtils.defaultIfBlank(article.getFeaturedImageModel().getSrc(), "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"))
-                        .add("imageSrcSet", StringUtils.defaultIfBlank(article.getFeaturedImageModel().getSrcset(), ""))
+                        .add("pageImage", StringUtils.defaultIfBlank(featuredImageModel.getSrc(), "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"))
+                        .add("imageSrcSet", StringUtils.defaultString(featuredImageModel.getSrcset()))
                         .add("imageSize", "")
-                        .add("imageAlt", StringUtils.defaultIfBlank(article.getFeaturedImageModel().getAlt(), ""))
+                        .add("imageAlt", StringUtils.defaultString(featuredImageModel.getAlt()))
                         .add("createdfriendly", article.getCreatedfriendly())
                         .add("createdMilliseconds", article.getCreatedMilliseconds())
                         .add("author", article.getAuthor())
