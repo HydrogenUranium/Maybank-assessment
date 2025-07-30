@@ -126,67 +126,47 @@ class PathUtilServiceTest {
         // Create a test input that should trigger the exception handling
         // Using a null string might trigger a NullPointerException
         String nullPath = null;
-
-        // When
         String result = pathUtilService.encodePath(nullPath);
-
-        // Then - verify null is returned
         assertEquals(nullPath, result);
     }
 
     @Test
     void testMap() throws Exception {
-        // Test case 1: null path
         assertNull(pathUtilService.map(null));
-
-        // Set up mock for resource resolver
         ResourceResolver mockResolver = mock(ResourceResolver.class);
         when(resourceResolverHelper.getReadResourceResolver()).thenReturn(mockResolver);
-
-        // Test case 2: normal path mapping
         String inputPath = "/content/discover/path";
         String mappedPath = "/mapped/discover/path";
-
-        // Configure mock behavior
         when(mockResolver.map(inputPath)).thenReturn(mappedPath);
 
-        // Call method under test
         String result = pathUtilService.map(inputPath);
 
-        // Verify expected result
         assertEquals(mappedPath, result);
 
-        // Test case 3: path with characters that need encoding
         String pathWithSpecialChars = "/content/path(with)'special'chars";
         String mappedSpecialPath = "/mapped/path(with)'special'chars";
         String expectedEncodedPath = "/mapped/path%28with%29%27special%27chars";
 
-        when(mockResolver.map(pathWithSpecialChars)).thenReturn(mappedSpecialPath);
+        lenient().when(mockResolver.map(pathWithSpecialChars)).thenReturn(mappedSpecialPath);
 
         assertEquals(expectedEncodedPath, pathUtilService.map(pathWithSpecialChars));
 
-        // Test case 4: exception handling
         String exceptionPath = "/exception/path";
         when(mockResolver.map(exceptionPath)).thenReturn("/mapped/exception/path");
 
-        // Create partial mock to throw exception when encodeUnsupportedCharacters is called
         PathUtilService spyService = spy(pathUtilService);
         doThrow(new UnsupportedEncodingException("Test encoding exception"))
                 .when(spyService).encodeUnsupportedCharacters(any());
 
-        // Method should return original path when exception occurs
         assertEquals(exceptionPath, spyService.map(exceptionPath));
 
-        // Verify logging (requires making log accessible or using a logging test framework)
         verify(spyService, times(1)).encodeUnsupportedCharacters(any());
     }
 
     @Test
     void test_getFullMappedPathNullPath() {
-        // Test case 1: null path handling
         assertNull(pathUtilService.getFullMappedPath(null, context.request()));
 
-        // Original test code for non-null path
         try(MockedStatic<RequestUtils> mockedStatic = mockStatic(RequestUtils.class)){
             mockedStatic.when(() -> RequestUtils.getUrlPrefix(any())).thenReturn("https://dhl.com");
 

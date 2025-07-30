@@ -23,41 +23,30 @@ public class FormFieldsResponseTest {
 
     @Test
     void testGetFormFields_withNullResult_shouldReturnEmptyList() {
-        // Given
         formFieldsResponse.setResult(null);
-
-        // When
         List<String> formFields = formFieldsResponse.getFormFields();
 
-        // Then
         assertNotNull(formFields, "Form fields list should not be null");
         assertTrue(formFields.isEmpty(), "Form fields list should be empty");
     }
 
     @Test
     void testGetFormFields_withEmptyResult_shouldReturnEmptyList() {
-        // Given
         formFieldsResponse.setResult(Collections.emptyList());
 
-        // When
         List<String> formFields = formFieldsResponse.getFormFields();
 
-        // Then
         assertNotNull(formFields, "Form fields list should not be null");
         assertTrue(formFields.isEmpty(), "Form fields list should be empty");
     }
 
     @Test
     void testGetFormFields_withSingleResult_shouldReturnSingleField() {
-        // Given
         Result result = new Result();
         result.setId("firstName");
         formFieldsResponse.setResult(Collections.singletonList(result));
-
-        // When
         List<String> formFields = formFieldsResponse.getFormFields();
 
-        // Then
         assertNotNull(formFields, "Form fields list should not be null");
         assertEquals(1, formFields.size(), "Form fields list should have one entry");
         assertEquals("firstName", formFields.get(0), "Form field should match the input ID");
@@ -65,7 +54,6 @@ public class FormFieldsResponseTest {
 
     @Test
     void testGetFormFields_withMultipleResults_shouldReturnAllFields() {
-        // Given
         List<Result> results = new ArrayList<>();
         Result result1 = new Result();
         result1.setId("firstName");
@@ -77,11 +65,8 @@ public class FormFieldsResponseTest {
         results.add(result2);
         results.add(result3);
         formFieldsResponse.setResult(results);
-
-        // When
         List<String> formFields = formFieldsResponse.getFormFields();
 
-        // Then
         assertNotNull(formFields, "Form fields list should not be null");
         assertEquals(3, formFields.size(), "Form fields list should have three entries");
         assertEquals(Arrays.asList("firstName", "lastName", "email"), formFields,
@@ -90,16 +75,13 @@ public class FormFieldsResponseTest {
 
     @Test
     void testGetterAndSetter_forResult() {
-        // Given
         List<Result> results = new ArrayList<>();
         Result result = new Result();
         result.setId("testField");
         results.add(result);
 
-        // When
         formFieldsResponse.setResult(results);
 
-        // Then
         assertSame(results, formFieldsResponse.getResult(), "Getter should return the same list that was set");
         assertEquals(1, formFieldsResponse.getResult().size(), "Result list should have one entry");
         assertEquals("testField", formFieldsResponse.getResult().get(0).getId(), "Result ID should match");
@@ -107,10 +89,8 @@ public class FormFieldsResponseTest {
 
     @Test
     void testJacksonization_defaultValues() {
-        // Given
         FormFieldsResponse response = new FormFieldsResponse();
 
-        // Then
         assertNull(response.getResult(), "Default result should be null");
     }
 }

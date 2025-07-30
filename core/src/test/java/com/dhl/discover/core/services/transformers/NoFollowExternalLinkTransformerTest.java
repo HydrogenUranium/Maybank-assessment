@@ -22,22 +22,16 @@ class NoFollowExternalLinkTransformerTest {
 
     @Test
     void testExternalLink_withoutRelAttribute_shouldAddNofollow() {
-        // Given
         when(pathUtilService.isExternalLink(anyString())).thenReturn(true);
         AttributesImpl attributes = new AttributesImpl();
         attributes.addAttribute("", "href", "href", "CDATA", "https://www.dhl.com");
-
-        // When
         NoFollowExternalLinkTransformer transformer = new NoFollowExternalLinkTransformer(pathUtilService);
         Attributes result = transformer.modifyAttributes("a", attributes);
-
-        // Then
         assertEquals("nofollow", result.getValue("rel"), "External link should have nofollow attribute");
     }
 
     @Test
     void testExternalLink_withExistingRelAttribute_shouldAppendNofollow() {
-        // Given
         when(pathUtilService.isExternalLink(anyString())).thenReturn(true);
         AttributesImpl attributes = new AttributesImpl();
         attributes.addAttribute("", "href", "href", "CDATA", "https://www.google.com");
@@ -45,56 +39,42 @@ class NoFollowExternalLinkTransformerTest {
         NoFollowExternalLinkTransformer transformer = new NoFollowExternalLinkTransformer(pathUtilService);
         Attributes result = transformer.modifyAttributes("a", attributes);
 
-        // Then
         assertEquals("external nofollow", result.getValue("rel"), "Nofollow should be appended to existing rel value");
     }
 
     @Test
     void testExternalLink_withBlankHref_shouldNotModify() {
-        // Given
         AttributesImpl attributes = new AttributesImpl();
         attributes.addAttribute("", "href", "href", "CDATA", "  ");
         NoFollowExternalLinkTransformer transformer = new NoFollowExternalLinkTransformer(pathUtilService);
         Attributes result = transformer.modifyAttributes("a", attributes);
-
-        // Then
         assertNull(result.getValue("rel"), "Links with blank href should not have rel attribute added");
     }
 
     @Test
     void testLinkWithoutHref_shouldNotModify() {
-        // Given
         AttributesImpl attributes = new AttributesImpl();
         NoFollowExternalLinkTransformer transformer = new NoFollowExternalLinkTransformer(pathUtilService);
         Attributes result = transformer.modifyAttributes("a", attributes);
-
-        // Then
         assertNull(result.getValue("rel"), "Links without href should not have rel attribute added");
     }
 
     @Test
     void testInternalLink_shouldNotModify() {
-        // Given
         when(pathUtilService.isExternalLink(anyString())).thenReturn(false);
         AttributesImpl attributes = new AttributesImpl();
         attributes.addAttribute("", "href", "href", "CDATA", "/content/dhl/page");
         NoFollowExternalLinkTransformer transformer = new NoFollowExternalLinkTransformer(pathUtilService);
         Attributes result = transformer.modifyAttributes("a", attributes);
-
-        // Then
         assertNull(result.getValue("rel"), "Internal links should not have rel attribute added");
     }
 
     @Test
     void testNonLinkElement_shouldNotModify() {
-        // Given
         AttributesImpl attributes = new AttributesImpl();
         attributes.addAttribute("", "href", "href", "CDATA", "https://www.google.com");
         NoFollowExternalLinkTransformer transformer = new NoFollowExternalLinkTransformer(pathUtilService);
         Attributes result = transformer.modifyAttributes("div", attributes);
-
-        // Then
-        // Should not modify attributes for non-anchor elements
         assertEquals(attributes.getValue("href"), result.getValue("href"));
         assertNull(result.getValue("rel"), "Non-link elements should not have rel attribute added");
     }

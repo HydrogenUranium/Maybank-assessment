@@ -132,16 +132,13 @@ class HttpCommunicationImplTest {
 		verify(client,times(1)).execute(any(HttpPost.class));
 		HttpPost actual = postArgumentCaptor.getValue();
 
-		// post request body validation
 		HttpEntity postEntity = actual.getEntity();
 		String postBody = new String(postEntity.getContent().readAllBytes(), StandardCharsets.UTF_8);
 		assertEquals(postBody, postRequestBody);
 
-		// post request query params validation
 		String requestQueryParameters = actual.getURI().getQuery();
 		assertEquals("client_id=dummyValue", requestQueryParameters);
 
-		// http headers validation
 		if(null == authTokenInput){
 			assertFalse(checkHeaderValue(actual.getAllHeaders(), HttpHeaders.AUTHORIZATION, "Bearer authorization-token"));
 		} else if(authTokenInput.isBlank()){
@@ -187,12 +184,10 @@ class HttpCommunicationImplTest {
 		verify(client,times(1)).execute(any(HttpPost.class));
 		HttpPost actual = postArgumentCaptor.getValue();
 
-		// post request body validation
 		HttpEntity postEntity = actual.getEntity();
 		String postBody = new String(postEntity.getContent().readAllBytes(), StandardCharsets.UTF_8);
 		assertEquals(postBody, postRequestBody);
 
-		// request headers validation
 		assertTrue(checkContentType(actual.getAllHeaders(), ContentType.APPLICATION_JSON.getMimeType()));
 	}
 
@@ -222,7 +217,6 @@ class HttpCommunicationImplTest {
 		verify(client,times(1)).execute(any(HttpGet.class));
 		HttpGet actual = httpGetArgumentCaptor.getValue();
 
-		// http headers validation
 		if(null == authTokenInput){
 			assertFalse(checkHeaderValue(actual.getAllHeaders(), HttpHeaders.AUTHORIZATION, "Bearer authorization-token" ));
 		} else if(authTokenInput.isBlank()){
@@ -290,51 +284,35 @@ class HttpCommunicationImplTest {
 
 	@Test
 	void testInvalidUrl_shouldThrowHttpRequestException() throws IOException {
-		// Given
 		String invalidUrl = "not-a-valid-url";
-
-		// When/Then
 		HttpRequestException exception = assertThrows(HttpRequestException.class, () -> {
 			underTest.sendPostMessage(invalidUrl, "authToken", formInputData, null, client);
 		});
-
-		// Verify exception message contains the invalid URL
 		String expectedMessage = "Provided string " + invalidUrl + " does not appear to represent a valid URL.";
 		assertEquals(expectedMessage, exception.getMessage());
-
-		// Verify that isValidUrl was called (through the test's mock behavior)
 		verify(client, never()).execute(any(HttpPost.class));
 	}
 
 	@Test
 	void testInvalidUrlInPostWithoutToken_shouldThrowHttpRequestException() {
-		// Given
 		String invalidUrl = "file:///etc/passwd";
-
-		// When/Then
 		HttpRequestException exception = assertThrows(HttpRequestException.class, () -> {
 			underTest.sendPostMessage(invalidUrl, formInputData, client);
 		});
-
-		// Verify exception message contains the invalid URL
 		String expectedMessage = "Provided string " + invalidUrl + " does not appear to represent a valid URL.";
 		assertEquals(expectedMessage, exception.getMessage());
 	}
 
 	@Test
 	void testGetQueryParams_shouldCreateCorrectQueryParams() {
-		// Given
 		String clientId = "test-client-id";
 		String secret = "test-secret-123";
 
-		// When
 		List<NameValuePair> queryParams = underTest.getQueryParams(clientId, secret);
 
-		// Then
 		assertNotNull(queryParams, "Query params should not be null");
 		assertEquals(3, queryParams.size(), "Should have 3 parameters");
 
-		// Verify each parameter name and value is correct
 		assertEquals("client_id", queryParams.get(0).getName());
 		assertEquals(clientId, queryParams.get(0).getValue());
 
@@ -347,25 +325,18 @@ class HttpCommunicationImplTest {
 
 	@Test
 	void testGetRequestResponse_shouldThrowExceptionForNonSuccessResponse() throws IOException {
-		// Given
 		when(statusLine.getStatusCode()).thenReturn(HttpStatus.SC_INTERNAL_SERVER_ERROR);
 		when(statusLine.getReasonPhrase()).thenReturn("Internal Server Error");
 		when(closeableHttpResponse.getStatusLine()).thenReturn(statusLine);
 		when(closeableHttpResponse.getEntity()).thenReturn(httpEntity);
-
-		// When/Then
 		HttpRequestException exception = assertThrows(HttpRequestException.class, () -> {
 			underTest.getRequestResponse(closeableHttpResponse);
 		});
 
-		// Verify the exception message is correctly formatted
 		String expectedMessage = "Backend returned status code '500' with error message 'Internal Server Error'";
 		assertEquals(expectedMessage, exception.getMessage());
 
-		// Verify entity was consumed - correct verification for EntityUtils.consume
 		verify(httpEntity, times(1)).isStreaming();
-
-		// No need to verify getContent() since it's not being called directly
 	}
 
 }
