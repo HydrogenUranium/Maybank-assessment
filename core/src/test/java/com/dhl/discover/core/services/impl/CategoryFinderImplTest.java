@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class CategoryFinderImplTest {
+class CategoryFinderImplTest {
     @Mock
     private QueryBuilder queryBuilder;
 
@@ -51,21 +51,21 @@ public class CategoryFinderImplTest {
     @InjectMocks
     private CategoryFinderImpl categoryFinder;
 
-    private final String TEST_RESOURCE_TYPE = "test/resource/type";
-    private final String TEST_PAGE_PATH = "/content/test/page";
+    private final String testResourceType = "test/resource/type";
+    private final String testPagePath = "/content/test/page";
 
     @BeforeEach
     void setUp() {
-        lenient().when(page.getPath()).thenReturn(TEST_PAGE_PATH);
+        lenient().when(page.getPath()).thenReturn(testPagePath);
         lenient().when(page.getProperties()).thenReturn(valueMap);
     }
 
     @Test
     void getGroupPage_withMatchingResourceType_returnsCurrentPage() {
         when(valueMap.containsKey(ResourceResolver.PROPERTY_RESOURCE_TYPE)).thenReturn(true);
-        when(valueMap.get(eq(ResourceResolver.PROPERTY_RESOURCE_TYPE), anyString())).thenReturn(TEST_RESOURCE_TYPE);
+        when(valueMap.get(eq(ResourceResolver.PROPERTY_RESOURCE_TYPE), anyString())).thenReturn(testResourceType);
 
-        Page result = categoryFinder.getGroupPage(TEST_RESOURCE_TYPE, page);
+        Page result = categoryFinder.getGroupPage(testResourceType, page);
         assertSame(page, result);
     }
 
@@ -78,8 +78,8 @@ public class CategoryFinderImplTest {
         ValueMap parentValueMap = mock(ValueMap.class);
         when(parentPage.getProperties()).thenReturn(parentValueMap);
         when(parentValueMap.containsKey(ResourceResolver.PROPERTY_RESOURCE_TYPE)).thenReturn(true);
-        when(parentValueMap.get(eq(ResourceResolver.PROPERTY_RESOURCE_TYPE), anyString())).thenReturn(TEST_RESOURCE_TYPE);
-        Page result = categoryFinder.getGroupPage(TEST_RESOURCE_TYPE, page);
+        when(parentValueMap.get(eq(ResourceResolver.PROPERTY_RESOURCE_TYPE), anyString())).thenReturn(testResourceType);
+        Page result = categoryFinder.getGroupPage(testResourceType, page);
         assertSame(parentPage, result);
     }
 
@@ -88,26 +88,26 @@ public class CategoryFinderImplTest {
         when(valueMap.containsKey(ResourceResolver.PROPERTY_RESOURCE_TYPE)).thenReturn(true);
         when(valueMap.get(eq(ResourceResolver.PROPERTY_RESOURCE_TYPE), anyString())).thenReturn("different/type");
         when(page.getParent()).thenReturn(null);
-        Page result = categoryFinder.getGroupPage(TEST_RESOURCE_TYPE, page);
+        Page result = categoryFinder.getGroupPage(testResourceType, page);
         assertNull(result);
     }
 
     @Test
     void getGroupPageWithArray_withMatchingFirstResourceType_returnsPage() {
-        String[] resourceTypes = new String[] { TEST_RESOURCE_TYPE, "other/type" };
+        String[] resourceTypes = new String[] { testResourceType, "other/type" };
         when(valueMap.containsKey(ResourceResolver.PROPERTY_RESOURCE_TYPE)).thenReturn(true);
-        when(valueMap.get(eq(ResourceResolver.PROPERTY_RESOURCE_TYPE), anyString())).thenReturn(TEST_RESOURCE_TYPE);
+        when(valueMap.get(eq(ResourceResolver.PROPERTY_RESOURCE_TYPE), anyString())).thenReturn(testResourceType);
         Page result = categoryFinder.getGroupPage(resourceTypes, page);
         assertSame(page, result);
     }
 
     @Test
     void getGroupPageWithArray_withMatchingSecondResourceType_returnsPage() {
-        String[] resourceTypes = new String[] { "other/type", TEST_RESOURCE_TYPE };
+        String[] resourceTypes = new String[] { "other/type", testResourceType };
         when(valueMap.containsKey(ResourceResolver.PROPERTY_RESOURCE_TYPE)).thenReturn(true);
         when(valueMap.get(eq(ResourceResolver.PROPERTY_RESOURCE_TYPE), anyString()))
                 .thenReturn("not-matching")
-                .thenReturn(TEST_RESOURCE_TYPE);
+                .thenReturn(testResourceType);
 
         Page result = categoryFinder.getGroupPage(resourceTypes, page);
 
