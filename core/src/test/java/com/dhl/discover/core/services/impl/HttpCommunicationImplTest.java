@@ -1,9 +1,7 @@
 package com.dhl.discover.core.services.impl;
 
-import com.dhl.discover.core.dto.marketo.formfields.FormFieldsResponse;
 import com.dhl.discover.core.exceptions.HttpRequestException;
 import com.dhl.discover.core.services.InitUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.dhl.discover.core.dto.marketo.FormInputData;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -324,7 +322,7 @@ class HttpCommunicationImplTest {
 	}
 
 	@Test
-	void testGetRequestResponse_shouldThrowExceptionForNonSuccessResponse() throws IOException {
+	void testGetRequestResponse_shouldThrowExceptionForNonSuccessResponse(){
 		when(statusLine.getStatusCode()).thenReturn(HttpStatus.SC_INTERNAL_SERVER_ERROR);
 		when(statusLine.getReasonPhrase()).thenReturn("Internal Server Error");
 		when(closeableHttpResponse.getStatusLine()).thenReturn(statusLine);
