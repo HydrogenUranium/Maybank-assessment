@@ -1,6 +1,5 @@
 package com.dhl.discover.core.models;
 
-import org.apache.log4j.Logger;
 import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,8 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class DownloadAssetTest {
-    private static final Logger log = Logger.getLogger(DownloadAssetTest.class);
+class DownloadAssetTest {
     @Mock
     private Resource resource;
 
