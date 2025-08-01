@@ -7,9 +7,11 @@ import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.models.Article;
+import com.dhl.discover.core.models.search.SearchResultEntry;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.factory.ModelFactory;
@@ -80,6 +82,9 @@ class ArticleServiceTest {
 
     private ResourceResolver resolver;
 
+    @Mock
+    private SlingHttpServletRequest request;
+
     @BeforeEach
     void setUp() throws RepositoryException {
         context.load().json("/com/dhl/discover/core/services/ArticleServiceTest/content.json", "/content");
@@ -92,10 +97,10 @@ class ArticleServiceTest {
         mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
 
         lenient().when(builder.createQuery(any(PredicateGroup.class), any(Session.class))).thenReturn(query);
-        when(query.getResult()).thenReturn(searchResult);
-        when(hitOne.getPath()).thenReturn("/content/home/article_1");
-        when(hitTwo.getPath()).thenReturn("/content/home/article_2");
-        when(searchResult.getHits()).thenReturn(List.of(hitOne, hitTwo));
+        lenient().when(query.getResult()).thenReturn(searchResult);
+        lenient().when(hitOne.getPath()).thenReturn("/content/home/article_1");
+        lenient().when(hitTwo.getPath()).thenReturn("/content/home/article_2");
+        lenient().when(searchResult.getHits()).thenReturn(List.of(hitOne, hitTwo));
         resolver = spy(context.resourceResolver());
         lenient().doNothing().when(resolver).close();
         lenient().when(resolverHelper.getReadResourceResolver()).thenReturn(resolver);
@@ -109,6 +114,8 @@ class ArticleServiceTest {
         Article article2 = createArticleModel(context.resourceResolver().getResource("/content/home/article_2"));
         lenient().when(articleUtilService.getArticle(eq("/content/home/article_1"), any(ResourceResolver.class))).thenReturn(article1);
         lenient().when(articleUtilService.getArticle(eq("/content/home/article_2"), any(ResourceResolver.class))).thenReturn(article2);
+        lenient().when(articleUtilService.getArticle(eq("/content/home/article_1"), any(SlingHttpServletRequest.class))).thenReturn(article1);
+        lenient().when(articleUtilService.getArticle(eq("/content/home/article_2"), any(SlingHttpServletRequest.class))).thenReturn(article2);
     }
 
     private Article createArticleModel(Resource resource) {
@@ -284,5 +291,55 @@ class ArticleServiceTest {
         articleService.findArticlesByTag(List.of("dhl:business-advice", "dhl:innovation"), "/content/home", resolver);
 
         verifyQuery(expectedQuery);
+    }
+
+    @Test
+    void testGetSearchResultEntriesFromHits_WithResourceResolver() throws RepositoryException {
+        // Arrange
+        String hitPath = "/content/article";
+        Article article = mock(Article.class);
+        when(hitOne.getPath()).thenReturn(hitPath);
+        when(articleUtilService.getArticle(hitPath, resolver)).thenReturn(article);
+        when(article.isValid()).thenReturn(true);
+
+        // Act
+        List<SearchResultEntry> result = articleService.getSearchResultEntriesFromHits(List.of(hitOne), resolver);
+
+        // Assert
+        assertEquals(1, result.size());
+        assertEquals(article, result.get(0).getArticle());
+        verify(articleUtilService).getArticle(hitPath, resolver);
+    }
+
+    @Test
+    void testGetSearchResultEntriesFromHits_WithRequest() throws RepositoryException {
+        // Arrange
+        String hitPath = "/content/home/article_1"; // Define hitPath
+        Article article = mock(Article.class);
+        when(hitOne.getPath()).thenReturn(hitPath);
+        when(articleUtilService.getArticle(hitPath, request)).thenReturn(article);
+        when(article.isValid()).thenReturn(true);
+
+        // Act
+        List<SearchResultEntry> result = articleService.getSearchResultEntriesFromHits(List.of(hitOne), request);
+
+        // Assert
+        assertEquals(1, result.size());
+        assertEquals(article, result.get(0).getArticle());
+        verify(articleUtilService).getArticle(hitPath, request);
+    }
+
+    @Test
+    void testGetSearchResultEntriesFromHits_WithRepositoryException() throws RepositoryException {
+        // Arrange
+        String hitPath = "/content/home/article_1";
+        when(hitOne.getPath()).thenThrow(new RepositoryException("Test exception"));
+
+        // Act
+        List<SearchResultEntry> result = articleService.getSearchResultEntriesFromHits(List.of(hitOne), resolver);
+
+        // Assert
+        assertEquals(0, result.size());
+        verify(articleUtilService, never()).getArticle(anyString(), any(ResourceResolver.class));
     }
 }

@@ -378,7 +378,7 @@ public class ArticleService {
         return resources;
     }
 
-    private List<SearchResultEntry> getSearchResultEntriesFromHits(List<Hit> hits, ResourceResolver resourceResolver) {
+    public List<SearchResultEntry> getSearchResultEntriesFromHits(List<Hit> hits, ResourceResolver resourceResolver) {
         return processHits(hits, hit -> {
             try {
                 return articleUtilService.getArticle(hit.getPath(), resourceResolver);
@@ -389,7 +389,7 @@ public class ArticleService {
         });
     }
 
-    private List<SearchResultEntry> getSearchResultEntriesFromHits(List<Hit> hits, SlingHttpServletRequest request) {
+    public List<SearchResultEntry> getSearchResultEntriesFromHits(List<Hit> hits, SlingHttpServletRequest request) {
         return processHits(hits, hit -> {
             try {
                 return articleUtilService.getArticle(hit.getPath(), request);
