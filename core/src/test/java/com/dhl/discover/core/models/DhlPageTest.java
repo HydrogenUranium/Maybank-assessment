@@ -46,7 +46,10 @@ class DhlPageTest {
 		mockInjectHomeProperty(ctx, Map.of(
 				"gtmtrackingid", "gmt-tracking-id",
 				"assetprefix", "/discover",
-				"direction", "rtl"
+				"direction", "rtl",
+				"robotsTags", "",
+				"brandSlug",""
+
 		));
 
 		when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
@@ -71,6 +74,9 @@ class DhlPageTest {
 		assertEquals("https://www.dhl.com/discover/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/Header_AOB_Mobile_991x558.jpg", dhlPage.getOgtagimage());
 		assertEquals("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg", dhlPage.getPageImage());
 		assertEquals("", dhlPage.getSeoTitle());
+		assertEquals("www.dhl.com",dhlPage.getAkamaiHostname());
+		assertEquals(null,dhlPage.getAdobeDtmLink());
+		assertEquals(null,dhlPage.getGtmDelayEnabled());
 	}
 
 	@Test
