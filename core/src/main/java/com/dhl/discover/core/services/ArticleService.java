@@ -343,7 +343,7 @@ public class ArticleService {
         return map;
     }
 
-    private List<SearchResultEntry> searchArticlesInternal(Map<String, String> props, Session session, Function<List<Hit>, List<SearchResultEntry>> hitProcessor) {
+    public List<SearchResultEntry> searchArticlesInternal(Map<String, String> props, Session session, Function<List<Hit>, List<SearchResultEntry>> hitProcessor) {
         return java.util.Optional.ofNullable(builder)
                 .map(queryBuilder -> queryBuilder.createQuery(PredicateGroup.create(props), session))
                 .map(Query::getResult)
@@ -352,12 +352,12 @@ public class ArticleService {
                 .orElse(new ArrayList<>());
     }
 
-    private List<SearchResultEntry> searchArticles(Map<String, String> props, ResourceResolver resolver) {
+    public List<SearchResultEntry> searchArticles(Map<String, String> props, ResourceResolver resolver) {
         Session session = resolver.adaptTo(Session.class);
         return searchArticlesInternal(props, session, hits -> getSearchResultEntriesFromHits(hits, resolver));
     }
 
-    private List<SearchResultEntry> searchArticles(Map<String, String> props, SlingHttpServletRequest request) {
+    public List<SearchResultEntry> searchArticles(Map<String, String> props, SlingHttpServletRequest request) {
         Session session = request.getResourceResolver().adaptTo(Session.class);
         return searchArticlesInternal(props, session, hits -> getSearchResultEntriesFromHits(hits, request));
     }
