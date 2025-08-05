@@ -8,6 +8,7 @@ exports[`SearchPanel should render component "SearchPanel" property 1`] = `
     aria-activedescendant={null}
     aria-autocomplete="list"
     aria-expanded="true"
+    className=""
     data-testid="search-bar-input"
     onChange={[Function]}
     onKeyDown={[Function]}

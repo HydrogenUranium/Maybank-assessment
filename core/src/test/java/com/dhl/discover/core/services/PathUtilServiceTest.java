@@ -18,8 +18,9 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.io.UnsupportedEncodingException;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -106,6 +107,7 @@ class PathUtilServiceTest {
             "https://www.dhl.com/some-page, false",
             "#section, false",
             "https://www.google.com, true",
+            "http://example.com/invalid uri\\with\\illegal\"chars, false",
     })
     void test_isExternalLink(String link, boolean isExternal) {
         lenient().when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
@@ -113,5 +115,66 @@ class PathUtilServiceTest {
         boolean result = pathUtilService.isExternalLink(link);
 
         assertEquals(isExternal, result);
+    }
+
+    @Test
+    void testEncodePath_shouldHandleExceptionCorrectly() {
+        // Create a test input that should trigger the exception handling
+        // Using a null string might trigger a NullPointerException
+        String nullPath = null;
+        String result = pathUtilService.encodePath(nullPath);
+        assertEquals(nullPath, result);
+    }
+
+    @Test
+    void testMap() throws Exception {
+        assertNull(pathUtilService.map(null));
+        ResourceResolver mockResolver = mock(ResourceResolver.class);
+        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(mockResolver);
+        String inputPath = "/content/discover/path";
+        String mappedPath = "/mapped/discover/path";
+        when(mockResolver.map(inputPath)).thenReturn(mappedPath);
+
+        String result = pathUtilService.map(inputPath);
+
+        assertEquals(mappedPath, result);
+
+        String pathWithSpecialChars = "/content/path(with)'special'chars";
+        String mappedSpecialPath = "/mapped/path(with)'special'chars";
+        String expectedEncodedPath = "/mapped/path%28with%29%27special%27chars";
+
+        lenient().when(mockResolver.map(pathWithSpecialChars)).thenReturn(mappedSpecialPath);
+
+        assertEquals(expectedEncodedPath, pathUtilService.map(pathWithSpecialChars));
+
+        String exceptionPath = "/exception/path";
+        when(mockResolver.map(exceptionPath)).thenReturn("/mapped/exception/path");
+
+        PathUtilService spyService = spy(pathUtilService);
+        doThrow(new UnsupportedEncodingException("Test encoding exception"))
+                .when(spyService).encodeUnsupportedCharacters(any());
+
+        assertEquals(exceptionPath, spyService.map(exceptionPath));
+
+        verify(spyService, times(1)).encodeUnsupportedCharacters(any());
+    }
+
+    @Test
+    void test_getFullMappedPathNullPath() {
+        assertNull(pathUtilService.getFullMappedPath(null, context.request()));
+
+        try(MockedStatic<RequestUtils> mockedStatic = mockStatic(RequestUtils.class)){
+            mockedStatic.when(() -> RequestUtils.getUrlPrefix(any())).thenReturn("https://dhl.com");
+
+            when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
+            lenient().when(resolver.map(anyString())).thenAnswer(invocationOnMock -> {
+                String path = invocationOnMock.getArgument(0, String.class);
+                return StringUtils.isNotBlank(path) ? "/discover" + invocationOnMock.getArgument(0, String.class) : "";
+            });
+
+            String path = pathUtilService.getFullMappedPath(PATH_WITH_UNSUPPORTED_CHARACTERS, context.request());
+
+            assertEquals(MAPPED_ABSOLUTE_PATH, path);
+        }
     }
 }
