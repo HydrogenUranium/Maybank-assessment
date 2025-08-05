@@ -103,6 +103,15 @@ class ArticleTeaserModelTest {
         assertEquals("2023-10-11", articleTeaserModel.getPublishDate());
         assertEquals("October 11, 2023", articleTeaserModel.getFriendlyPublishDate());
         assertEquals("ARTICLE PAGE", articleTeaserModel.getTitleFromLinkedPage());
+        Resource imageResource = articleTeaserModel.getImageResource();
+        assertNotNull(imageResource, "Image resource should not be null");
+
+        assertEquals("/content/dam/dhl/listimage.jpg",
+                assetUtilService.getPageImagePath(imageResource),
+                "Image resource path should match the expected path");
+
+        assertEquals("/content/dhl/global/en-global/category-page/article-page-with-new-article-setup",
+                articleTeaserModel.getLinkURL());
     }
 
     @Test

@@ -69,7 +69,14 @@
             $(configCreateActivator)[0].removeAttribute("hidden");
         }
     }
-
+  function isSafeRedirectUrl(url) {
+    try {
+      const parsed = new URL(url, window.location.origin);
+      return parsed.origin === window.location.origin;
+    } catch (e) {
+      return false;
+    }
+  }
     function createCloudService(e) {
 
         var configParent = $(columnViewSelector).attr(selectedColumnId);
@@ -82,7 +89,11 @@
             type: "post",
             data: data,
                 success: function(response) {
+                  if (response.href && isSafeRedirectUrl(response.href)) {
                     window.location.href = response.href;
+                  } else {
+                    showDialog("error", "error", "Invalid redirect", "The redirect URL is invalid or not allowed.");
+                  }
                 },
                 error: function(xhr) {
                     showDialog("error", "error", Granite.I18n.get("Failed"), Granite.I18n.get("Failed to create cloud service"), footer);
