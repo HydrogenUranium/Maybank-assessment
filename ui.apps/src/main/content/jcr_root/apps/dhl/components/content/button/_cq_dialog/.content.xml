@@ -72,9 +72,6 @@
                         </items>
                     </properties>
                     <accessibility jcr:primaryType="nt:unstructured"/>
-                    <styletab
-                        jcr:primaryType="nt:unstructured"
-                        sling:hideResource="{Boolean}true"/>
                     <analytics
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Analytics &amp; Reporting"
