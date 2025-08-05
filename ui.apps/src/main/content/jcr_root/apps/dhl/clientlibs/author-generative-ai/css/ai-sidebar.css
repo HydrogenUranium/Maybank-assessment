@@ -1,0 +1,31 @@
+.form--with-columns {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.form__internal-wrapper {
+  display: flex;
+  flex: auto;
+  flex: 1;
+  flex-direction: column;
+}
+
+.ai-asst__chat-display {
+  min-width: 350px;
+  background-color: #F1F1F1;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.ai-asst__chat-display {
+  display: none;
+}
+
+.ai-asst--shown .ai-asst__chat-display {
+  display: flex;
+}
+
+.ai-asst--shown .ai-asst__target-input--active {
+  border-color: #2680eb !important;
+}

@@ -23,6 +23,10 @@ public class GenAiRequest {
         messages.add(message);
     }
 
+    public void addMessages(List<Message> messages) {
+        this.messages.addAll(messages);
+    }
+
     public JsonArray getMessagesJsonArray() {
         var array = new JsonArray();
         messages.forEach(m -> array.add(m.asJsonObject()));

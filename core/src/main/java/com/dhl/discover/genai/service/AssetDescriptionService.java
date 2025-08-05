@@ -51,15 +51,6 @@ public class AssetDescriptionService {
         request.setTemperature(0.5);
         var response = client.generateContent(request);
 
-        return extractDescription(response);
-    }
-
-    private String extractDescription(GenAiResponse response) throws AiException {
-        List<Choice> choices = response.getChoices();
-        if (choices == null || choices.isEmpty()) {
-            throw new AiException("No choices returned from AI response");
-        }
-
-        return choices.getFirst().getText();
+        return response.getFirstChoiceText();
     }
 }
