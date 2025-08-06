@@ -27,14 +27,24 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         groupTag,
         path,
         tagsToShow,
-        title
+        title,
+        imageSrcSet,
+        imageSizes,
+        imageAlt
     }
 }) => (
     <article className={styles.articleCard}>
         <a tabIndex={-1}
             href={path}
-            className={styles.articleCardImage}
-            style={{ backgroundImage: `url(${pageImage}), url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg')` }}>
+            className={styles.articleCardLink}>
+            <picture className={styles.articleCardImageWrapper}>
+                <img
+                    src={pageImage}
+                    alt={imageAlt}
+                    srcSet={imageSrcSet}
+                    sizes={imageSizes}
+                    className={styles.articleCardImage}/>
+            </picture>
             <div className={`${styles.articleCardGroupTag} ${styles.articleCardTextOnImage}`}>{groupTag}</div>
         </a>
         <div className={styles.articleCardInfo}>
