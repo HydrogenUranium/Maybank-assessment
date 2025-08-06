@@ -216,13 +216,7 @@ public class LanguageVariants {
 			}
 
 			ArrayList<LanguageVariant> languages = variants.get(region);
-			if(region.equals("Global")) {
-				if(newItem.langCode.equals("en")){
-					languages.add(newItem);
-				}
-			}else {
-				languages.add(newItem);
-			}
+			languages.add(newItem);
 
 			String countryCode = pageUtilService.getCountryCodeByPagePath(homepage);
 			setCountries(countryCode, currentCountryCode, deflt, region, newItem);
@@ -231,9 +225,13 @@ public class LanguageVariants {
 	}
 
 	private void setCountries(String countryCode, String currentCountryCode, boolean deflt, String region, LanguageVariant newItem) {
-		if (!StringUtils.isBlank(countryCode) && !countryCode.equals(currentCountryCode) && (!countries.containsKey(countryCode) || deflt)) {
+		if (!StringUtils.isBlank(countryCode) && countryCode.equals("global") && !countries.containsKey("aa") && deflt) {
 			newItem.setRegion(region);
 			countries.put(countryCode.equals("global") ? "aa" : countryCode, newItem);
+		}
+		else if (!StringUtils.isBlank(countryCode) && !countryCode.equals(currentCountryCode) && !countryCode.equals("global") && (!countries.containsKey(countryCode) || deflt)) {
+			newItem.setRegion(region);
+			countries.put(countryCode, newItem);
 		}
 	}
 
