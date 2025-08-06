@@ -216,7 +216,13 @@ public class LanguageVariants {
 			}
 
 			ArrayList<LanguageVariant> languages = variants.get(region);
-			languages.add(newItem);
+			if(region.equals("Global")) {
+				if(newItem.langCode.equals("en")){
+					languages.add(newItem);
+				}
+			}else {
+				languages.add(newItem);
+			}
 
 			String countryCode = pageUtilService.getCountryCodeByPagePath(homepage);
 			setCountries(countryCode, currentCountryCode, deflt, region, newItem);
