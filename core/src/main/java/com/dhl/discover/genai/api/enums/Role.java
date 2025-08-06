@@ -1,5 +1,8 @@
 package com.dhl.discover.genai.api.enums;
 
+import com.dhl.discover.genai.exception.InvalidRoleException;
+import lombok.Getter;
+
 /**
  * Enum representing the roles used in GenAI API interactions.
  * <p>
@@ -12,14 +15,20 @@ public enum Role {
     ASSISTANT("assistant"),
     SYSTEM("system");
 
+    @Getter
     private final String value;
 
     Role(String value) {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
+    public static Role fromString(String value) throws InvalidRoleException {
+        for (Role role : Role.values()) {
+            if (role.value.equalsIgnoreCase(value)) {
+                return role;
+            }
+        }
+        throw new InvalidRoleException("Invalid role: " + value);
     }
 
     @Override
