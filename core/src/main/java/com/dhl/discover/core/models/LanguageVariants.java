@@ -225,14 +225,13 @@ public class LanguageVariants {
 	}
 
 	private void setCountries(String countryCode, String currentCountryCode, boolean deflt, String region, LanguageVariant newItem) {
-		if (!StringUtils.isBlank(countryCode)) {
-			if (countryCode.equals("global") && !countries.containsKey("aa") && deflt) {
-				newItem.setRegion(region);
-				countries.put("aa", newItem);
-			} else if (!countryCode.equals(currentCountryCode) && !countryCode.equals("global") && (!countries.containsKey(countryCode) || deflt)) {
-				newItem.setRegion(region);
-				countries.put(countryCode, newItem);
-			}
+		if(StringUtils.isBlank(countryCode) || currentCountryCode.equals(countryCode)) {
+			return;
+		}
+		var normalizedCountryCode = countryCode.equals("global") ? "aa" : countryCode;
+		if (!countries.containsKey(normalizedCountryCode) || deflt) {
+			newItem.setRegion(region);
+			countries.put(normalizedCountryCode, newItem);
 		}
 	}
 
