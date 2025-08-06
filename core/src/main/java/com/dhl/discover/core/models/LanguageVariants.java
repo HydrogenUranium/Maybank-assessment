@@ -225,13 +225,14 @@ public class LanguageVariants {
 	}
 
 	private void setCountries(String countryCode, String currentCountryCode, boolean deflt, String region, LanguageVariant newItem) {
-		if (!StringUtils.isBlank(countryCode) && countryCode.equals("global") && !countries.containsKey("aa") && deflt) {
-			newItem.setRegion(region);
-			countries.put(countryCode.equals("global") ? "aa" : countryCode, newItem);
-		}
-		else if (!StringUtils.isBlank(countryCode) && !countryCode.equals(currentCountryCode) && !countryCode.equals("global") && (!countries.containsKey(countryCode) || deflt)) {
-			newItem.setRegion(region);
-			countries.put(countryCode, newItem);
+		if (!StringUtils.isBlank(countryCode)) {
+			if (countryCode.equals("global") && !countries.containsKey("aa") && deflt) {
+				newItem.setRegion(region);
+				countries.put("aa", newItem);
+			} else if (!countryCode.equals(currentCountryCode) && !countryCode.equals("global") && (!countries.containsKey(countryCode) || deflt)) {
+				newItem.setRegion(region);
+				countries.put(countryCode, newItem);
+			}
 		}
 	}
 
