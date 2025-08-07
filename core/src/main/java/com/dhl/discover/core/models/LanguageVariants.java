@@ -229,10 +229,13 @@ public class LanguageVariants {
 			return;
 		}
 		var normalizedCountryCode = countryCode.equals("global") ? "aa" : countryCode;
-		if (!countries.containsKey(normalizedCountryCode) || deflt) {
-			newItem.setRegion(region);
-			countries.put(normalizedCountryCode, newItem);
-		}
+		countries.compute(normalizedCountryCode, (key, existingValue) -> {
+			if (existingValue == null || deflt) {
+				newItem.setRegion(region);
+				return newItem;
+			}
+			return existingValue;
+		});
 	}
 
 	public Map<String, LanguageVariant> getCountries() {
