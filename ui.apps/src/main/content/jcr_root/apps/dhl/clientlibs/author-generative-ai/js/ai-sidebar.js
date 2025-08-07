@@ -173,7 +173,7 @@ class MessagesDisplay extends Component {
 class SettingsDisplay extends Component {
     constructor() {
         super("div", "ai-asst__settings-display");
-        
+
         this.drawer = new Coral.Drawer();
 
         this.usePageBodyCheckbox = new Coral.Checkbox().set({
@@ -350,7 +350,7 @@ class DialogInput {
         if (!parent) return null;
 
         // Look for tooltip inside the same container
-        const tooltip = parent.querySelector("coral-tooltip").textContent.trim();
+        const tooltip = parent.querySelector("coral-tooltip")?.textContent.trim();
         return tooltip || null;
     }
 
