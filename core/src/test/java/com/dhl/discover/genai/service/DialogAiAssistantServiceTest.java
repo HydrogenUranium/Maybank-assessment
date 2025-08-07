@@ -92,7 +92,7 @@ class DialogAiAssistantServiceTest {
         when(pageUtilService.getPage(any(Resource.class))).thenReturn(page);
         when(page.getTitle()).thenReturn("Test Page");
         when(page.getDescription()).thenReturn("This is a test page.");
-        when(page.getLanguage()).thenReturn(new Locale("en"));
+        when(page.getLanguage()).thenReturn(Locale.forLanguageTag("en"));
         when(pageContentExtractorService.extract(any(Page.class))).thenReturn("Full body content of the page.");
         when(client.generateContent(any(GenAiRequest.class))).thenReturn(response);
         when(response.getFirstChoiceText()).thenReturn("Generated response");
