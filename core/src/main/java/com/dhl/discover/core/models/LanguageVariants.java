@@ -237,6 +237,7 @@ public class LanguageVariants {
 			return existingValue;
 		});
 	}
+
 	public Map<String, LanguageVariant> getCountries() {
 		Map<String, LanguageVariant> countriesOrderedByRegionWithGlobalOnFirstPosition = getCountriesOrderedByRegion();
 		Map<String, LanguageVariant> copy = new LinkedHashMap<>(countriesOrderedByRegionWithGlobalOnFirstPosition);
