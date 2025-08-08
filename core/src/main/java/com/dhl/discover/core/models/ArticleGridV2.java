@@ -148,6 +148,7 @@ public class ArticleGridV2 {
                 categoryArticleMap.put(categoryTitle, categoryArticles);
             }
         });
+        log.debug("TEST");
     }
 
     private List<Page> getSubCategories() {
@@ -175,7 +176,10 @@ public class ArticleGridV2 {
                         .add(PAGE_TITLE_PARAM, article.getNavTitle())
                         .add("path", article.getPath())
                         .add("description", article.getDescription())
-                        .add("pageImage", StringUtils.defaultIfBlank(featuredImageModel.getSrc(), "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"))
+//                        .add("pageImage", StringUtils.defaultIfBlank("/discover" + featuredImageModel.getSrc(), "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"))
+                        .add("pageImage", StringUtils.defaultIfBlank(featuredImageModel.getSrc(), "").isEmpty()
+                                ? "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"
+                                : "/discover" + featuredImageModel.getSrc())
                         .add("imageSrcSet", StringUtils.defaultString(featuredImageModel.getSrcset()))
                         .add("imageSize", "")
                         .add("imageAlt", StringUtils.defaultString(featuredImageModel.getAlt()))
