@@ -3,7 +3,6 @@ package com.dhl.discover.core.models;
 import com.adobe.cq.wcm.core.components.models.Image;
 import com.adobe.cq.wcm.spi.AssetDelivery;
 import com.day.cq.wcm.api.Page;
-import com.dhl.discover.core.constants.DiscoverConstants;
 import com.dhl.discover.core.injectors.InjectChildImageModel;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.PageUtilService;
@@ -11,19 +10,18 @@ import com.dhl.discover.core.services.PathUtilService;
 import com.dhl.discover.core.services.TagUtilService;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -55,76 +53,61 @@ public class Article {
     private PathUtilService pathUtilService;
 
     @OSGiService
-    @Getter(AccessLevel.NONE)
     private AssetUtilService assetUtilService;
 
     @OSGiService
     private TagUtilService tagUtilService;
 
-    @OSGiService(
-            injectionStrategy = InjectionStrategy.OPTIONAL
-    )
+    @OSGiService
     protected AssetDelivery assetDelivery;
 
-    @Setter
-    private boolean valid;
-
-    @Setter
-    private boolean current;
-
-    @Setter
-    private int index;
-
-    @Setter
-    private boolean third;
-
-    @Setter
-    private boolean fourth;
-
+    private Date createdDate;
     @Expose
     private String createdfriendly;
     @Expose
     private String created;
-    private Date createdDate;
     @Expose
     private long createdMilliseconds;
-    private String icon;
-    private String grouptitle;
+
     @Expose
     private String groupTag;
+    private String grouptitle;
     private String groupPath;
+
+    @ValueMapValue(name = "jcr:content/jcr:title")
     private String title;
     private String pageTitle;
     @SerializedName("title")
     @Expose
     private String navTitle;
     @Expose
+    @ValueMapValue(name ="jcr:content/jcr:description")
+    @Default(values = "")
     private String description;
-    private String brief;
+
     @Expose
     private String author = StringUtils.EMPTY;
     private String authortitle = StringUtils.EMPTY;
     private String authorBriefDescription = StringUtils.EMPTY;
     private String authorimage = StringUtils.EMPTY;
-    @Expose
-    private String readtime;
-    @Expose
-    private String pageImage;
-    private String pageImageAltText;
 
+    @Expose
+    @ValueMapValue(name = "jcr:content/readtime")
+    @Default(values = "")
+    private String readtime;
+
+    /**
+     * The image model can only be initialized when adapted from a SlingHttpServletRequest.
+     * If adapted from a Resource, the featured image model will remain null.
+     */
     @InjectChildImageModel
     @Named("jcr:content/cq:featuredimage")
+    @Expose
     private Image featuredImageModel;
 
-    @Setter
-    private String heroimagemob;
-    @Setter
-    private String heroimagetab;
-    @Setter
-    private String heroimagedt;
-    private String heroimageAltText;
+    @ValueMapValue(name = "jcr:content/mediatype")
+    private String mediaType;
 
-    private List<TagWrapper> tags;
     @Expose
     private List<String> tagsToShow = new ArrayList<>();
     private List<String> highlights = new ArrayList<>();
@@ -134,100 +117,46 @@ public class Article {
     private String jcrPath;
     private ValueMap valueMap;
 
-    @Expose
-    private String thumbnail;
-
-    private String getMappedValue(String path, boolean enableAssetDelivery, Map<String, Object> props) {
-        return enableAssetDelivery ? assetUtilService.getMappedDeliveryUrl(path, props, assetDelivery) : pathUtilService.map(path);
-    }
-
     public String getPageTitleWithBr() {
         return pageTitle.replaceAll("(\r\n|\n)", "<br>");
     }
 
-    /**
-     * This method updates all asset paths. If the article is used in HTL, all link transformations will
-     * be processed by the link transformer, and link optimization will be processed in the HTL template. However,
-     * if the article is used outside HTL, this method can transform and optimize links.
-     *
-     * @param enableAssetDelivery enable dynamic media asset optimization
-     * @param props               dynamic media parameters
-     */
-    public void initAssetDeliveryProperties(boolean enableAssetDelivery, Map<String, Object> props) {
-        pageImage = getMappedValue(pageImage, enableAssetDelivery, props);
-        heroimagemob = getMappedValue(heroimagemob, enableAssetDelivery, props);
-        heroimagetab = getMappedValue(heroimagetab, enableAssetDelivery, props);
-        heroimagedt = getMappedValue(heroimagedt, enableAssetDelivery, props);
-        authorimage = getMappedValue(authorimage, enableAssetDelivery, props);
-        thumbnail = pathUtilService.map(thumbnail);
-    }
-
-    public void initAssetDeliveryProperties(boolean enableAssetDelivery) {
-        initAssetDeliveryProperties(enableAssetDelivery, new HashMap<>());
-    }
-
-    public void initAssetDeliveryProperties(boolean enableAssetDelivery, String quality) {
-        if (quality == null) {
-            initAssetDeliveryProperties(enableAssetDelivery);
-        } else {
-            initAssetDeliveryProperties(enableAssetDelivery, Map.of("quality", quality));
-        }
-
-    }
-
-    /**
-     * Returns the article category types
-     *
-     * @return a {@link List} of {@code String}s where each element represents one category type
-     */
-    public static List<String> getArticlePageTypes() {
-        return DiscoverConstants.getCategoryTypes();
-    }
-
     @PostConstruct
     protected void init() {
-        valid = false;
         valueMap = resource.getValueMap();
-
         locale = pageUtilService.getLocale(resource);
+        jcrPath = resource.getPath();
+        path = resource.getResourceResolver().map(resource.getPath().concat(URL_EXTENSION));
+
+        initDates();
+        initTitles();
+        initAuthor();
+        initCategoryData();
+        initTags();
+    }
+
+    private void initTags() {
+        tagsToShow = tagUtilService.getExternalTags(resource);
+        highlights = tagUtilService.getHighlightsTags(resource);
+    }
+
+    private void initCategoryData() {
+        grouptitle = getGroupTitle(resource);
+        groupPath = getGroupPath(resource);
+        groupTag = tagUtilService.transformToHashtag(grouptitle);
+    }
+
+    private void initTitles() {
+        navTitle = valueMap.get("jcr:content/navTitle", title);
+        pageTitle = valueMap.get("jcr:content/pageTitle", title);
+        description = valueMap.get("jcr:content/jcr:description", "");
+    }
+
+    private void initDates() {
         createdDate = getPublishDate(valueMap);
         createdMilliseconds = createdDate.getTime();
         created = (new SimpleDateFormat("yyyy-MM-dd")).format(createdDate);
         createdfriendly = DateFormat.getDateInstance(DateFormat.LONG, locale).format(createdDate);
-        icon = valueMap.get("jcr:content/mediatype", "");
-        grouptitle = getGroupTitle(resource);
-        groupPath = getGroupPath(resource);
-        groupTag = tagUtilService.transformToHashtag(grouptitle);
-
-        title = valueMap.get("jcr:content/jcr:title", "");
-        navTitle = valueMap.get("jcr:content/navTitle", title);
-        pageTitle = valueMap.get("jcr:content/pageTitle", title);
-        description = valueMap.get("jcr:content/jcr:description", "");
-        brief = valueMap.get("jcr:content/listbrief", "");
-        if (brief.length() > 120) {
-            brief = brief.substring(0, 120).concat("...");
-        }
-
-        pageImage = assetUtilService.getPageImagePath(resource);
-        pageImageAltText = assetUtilService.getPageImageAltText(resource);
-        heroimagemob = valueMap.get("jcr:content/heroimagemob", "");
-        heroimagetab = valueMap.get("jcr:content/heroimagetab", "");
-        heroimagedt = valueMap.get("jcr:content/heroimagedt", "");
-        heroimageAltText = valueMap.get("jcr:content/heroimageAltText", "");
-        thumbnail = assetUtilService.getThumbnailLink(pageImage);
-
-        readtime = valueMap.get("jcr:content/readtime", "");
-
-        initAuthor();
-
-        tags = new ArrayList<>();
-        tagsToShow = tagUtilService.getExternalTags(resource);
-        highlights = tagUtilService.getHighlightsTags(resource);
-
-        jcrPath = resource.getPath();
-        path = resource.getResourceResolver().map(resource.getPath().concat(URL_EXTENSION));
-
-        valid = true;
     }
 
     private ValueMap getAuthorContentFragmentData() {
@@ -253,9 +182,6 @@ public class Article {
         return (new SimpleDateFormat(pattern)).format(createdDate);
     }
 
-    /**
-     *
-     */
     private String getGroupTitle(Resource self) {
         return Optional.ofNullable(self)
                 .map(r -> r.adaptTo(Page.class))
@@ -265,9 +191,6 @@ public class Article {
                 .orElse("");
     }
 
-    /**
-     *
-     */
     private String getGroupPath(Resource self) {
         return Optional.ofNullable(self)
                 .map(r -> r.adaptTo(Page.class))

@@ -94,7 +94,7 @@ class ArticleTeaserModelTest {
     @Test
     void test_articleTeaserFromLinkedArticlePage() {
         Article article = createModel(getResource(ARTICLE_PAGE_RESOURCE_PATH));
-        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
 
         ArticleTeaserModel articleTeaserModel = getRequest(ARTICLE_TEASER_COMPONENT_FROM_LINKED_ARTICLE_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
@@ -117,7 +117,7 @@ class ArticleTeaserModelTest {
     @Test
     void test_articleTeaserFromLinkedCategoryPage() {
         Article article = createModel(getResource(SUBCATEGORY_PAGE_RESOURCE_PATH));
-        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
 
         ArticleTeaserModel articleTeaserModel = getRequest(ARTICLE_TEASER_COMPONENT_FROM_LINKED_SUBCATEGORY_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
@@ -132,7 +132,7 @@ class ArticleTeaserModelTest {
     @Test
     void test_articleTeaserFromLinkedHomePage() {
         Article article = createModel(getResource(HOME_PAGE_RESOURCE_PATH));
-        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
 
         ArticleTeaserModel articleTeaserModel = getRequest(ARTICLE_TEASER_COMPONENT_FROM_LINKED_HOME_PAGE_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
@@ -147,7 +147,7 @@ class ArticleTeaserModelTest {
     @Test
     void test_articleTeaserCustomTitleAndImageSetup() {
         Article article = createModel(getResource(ARTICLE_PAGE_RESOURCE_PATH));
-        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
 
         ArticleTeaserModel articleTeaserModel = getRequest(ARTICLE_TEASER_COMPONENT_WITH_CUSTOM_SETUP_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);
@@ -160,7 +160,7 @@ class ArticleTeaserModelTest {
 
     @Test
     void test_articleTeaserEmptySetup() {
-        when(articleUtilService.getArticle(any(), any(ResourceResolver.class))).thenReturn(null);
+        when(articleUtilService.getArticle(any(), any(SlingHttpServletRequest.class))).thenReturn(null);
 
         ArticleTeaserModel articleTeaserModel = getRequest(ARTICLE_TEASER_COMPONENT_EMPTY_SETUP_RESOURCE_PATH).adaptTo(ArticleTeaserModel.class);
         assertNotNull(articleTeaserModel);

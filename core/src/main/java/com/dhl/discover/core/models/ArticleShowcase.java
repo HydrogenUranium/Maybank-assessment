@@ -2,7 +2,7 @@ package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
-import com.dhl.discover.core.services.ArticleService;
+import com.dhl.discover.core.services.ArticleSearchService;
 import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import lombok.AccessLevel;
@@ -48,7 +48,7 @@ public class ArticleShowcase {
     @OSGiService
     @Required
     @Getter(AccessLevel.NONE)
-    private ArticleService articleService;
+    private ArticleSearchService articleSearchService;
 
     @ScriptVariable
     @Required
@@ -115,7 +115,7 @@ public class ArticleShowcase {
     }
 
     private void initLatestArticles() {
-        articles = articleService.getLatestArticles(pageUtils.getHomePage(currentPage), 4, request);
+        articles = articleSearchService.getLatestArticles(pageUtils.getHomePage(currentPage), 4, request);
     }
 
 }

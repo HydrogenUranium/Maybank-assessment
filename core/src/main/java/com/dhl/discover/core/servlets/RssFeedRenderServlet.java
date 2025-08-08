@@ -1,7 +1,7 @@
 package com.dhl.discover.core.servlets;
 
 import com.dhl.discover.core.models.Article;
-import com.dhl.discover.core.services.ArticleService;
+import com.dhl.discover.core.services.ArticleSearchService;
 import com.dhl.discover.core.services.PageContentExtractorService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.rss.DiscoverRssFeed;
@@ -40,7 +40,7 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
     private PageUtilService pageUtilService;
 
     @Reference
-    protected transient ArticleService articleService;
+    protected transient ArticleSearchService articleSearchService;
 
     @Override
     protected void doGet(@NotNull SlingHttpServletRequest req, @NotNull SlingHttpServletResponse resp) throws ServletException {
@@ -61,7 +61,7 @@ public class RssFeedRenderServlet extends SlingSafeMethodsServlet {
             feed.printHeader();
 
             String rootPath = req.getResource().getPath();
-            List<String> paths = articleService.getLatestArticles(rootPath, isAll ? SUB_REQUEST_LIMITATION : MAX_PAGES)
+            List<String> paths = articleSearchService.getLatestArticles(rootPath, isAll ? SUB_REQUEST_LIMITATION : MAX_PAGES)
                     .stream().map(Article::getJcrPath).toList();
             feed.printEntries(paths, isFullBody);
 

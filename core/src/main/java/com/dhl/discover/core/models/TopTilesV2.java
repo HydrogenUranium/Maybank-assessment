@@ -60,8 +60,8 @@ public class TopTilesV2 {
     @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
     public static class Tile {
 
-        @SlingObject
-        private ResourceResolver resourceResolver;
+        @Self
+        private SlingHttpServletRequest request;
 
         @OSGiService
         private ArticleUtilService articleUtilService;
@@ -100,7 +100,7 @@ public class TopTilesV2 {
 
         @PostConstruct
         private void init() {
-            var article = articleUtilService.getArticle(linkURL, resourceResolver);
+            var article = articleUtilService.getArticle(linkURL, request);
             if (article == null) {
                 return;
             }

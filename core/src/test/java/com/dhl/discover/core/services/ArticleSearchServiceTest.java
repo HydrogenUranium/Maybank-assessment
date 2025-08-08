@@ -16,7 +16,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.factory.ModelFactory;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,7 +38,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
-class ArticleServiceTest {
+class ArticleSearchServiceTest {
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
     private static final String HIT_PATH = "/content/home/article_1";
@@ -81,7 +80,7 @@ class ArticleServiceTest {
     private ArgumentCaptor<PredicateGroup> predicateGroupCaptor;
 
     @InjectMocks
-    private ArticleService articleService;
+    private ArticleSearchService articleSearchService;
 
     private ResourceResolver resolver;
 
@@ -110,7 +109,6 @@ class ArticleServiceTest {
         resolver = spy(context.resourceResolver());
         lenient().doNothing().when(resolver).close();
         lenient().when(resolverHelper.getReadResourceResolver()).thenReturn(resolver);
-        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
 
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
@@ -128,7 +126,6 @@ class ArticleServiceTest {
         lenient().when(hitOne.getPath()).thenReturn(HIT_PATH);
         lenient().when(articleUtilService.getArticle(HIT_PATH, request)).thenReturn(article);
         lenient().when(articleUtilService.getArticle(HIT_PATH, resolver)).thenReturn(article);
-        lenient().when(article.isValid()).thenReturn(true);
         lenient().when(searchResult.getHits()).thenReturn(List.of(hitOne));
     }
 
@@ -187,7 +184,7 @@ class ArticleServiceTest {
             ]
             """;
 
-        articleService.getLatestArticles("/content/home", 2);
+        articleSearchService.getLatestArticles("/content/home", 2);
 
         verifyQuery(expectedFirstQuery, expectedSecondQuery, expectedThirdQuery);
     }
@@ -204,7 +201,7 @@ class ArticleServiceTest {
                 {type=type: type=cq:Page}
             ]
             """;
-        articleService.getAllArticles(resolver.getResource("/content/home").adaptTo(Page.class));
+        articleSearchService.getAllArticles(resolver.getResource("/content/home").adaptTo(Page.class));
 
         verifyQuery(expectedQuery);
     }
@@ -236,7 +233,7 @@ class ArticleServiceTest {
             ]}
         ]
         """;
-        articleService.findArticlesByPageProperties("dhl", "/content/home", resolver);
+        articleSearchService.findArticlesByPageProperties("dhl", "/content/home", resolver);
 
         verifyQuery(expectedQuery);
     }
@@ -278,7 +275,7 @@ class ArticleServiceTest {
         ]
         """;
 
-        articleService.findArticlesByFullText("business advice", "/content/home", resolver);
+        articleSearchService.findArticlesByFullText("business advice", "/content/home", request);
 
         verifyQuery(expectedFirstQuery, expectedSecondQuery);
     }
@@ -302,7 +299,7 @@ class ArticleServiceTest {
         ]
         """;
 
-        articleService.findArticlesByTag(List.of("dhl:business-advice", "dhl:innovation"), "/content/home", request);
+        articleSearchService.findArticlesByTag(List.of("dhl:business-advice", "dhl:innovation"), "/content/home", request);
 
         verifyQuery(expectedQuery);
     }
@@ -313,7 +310,7 @@ class ArticleServiceTest {
         Map<String, String> props = Map.of("path", "/content/home");
 
         // Act
-        List<SearchResultEntry> result = articleService.searchArticles(props, request);
+        List<SearchResultEntry> result = articleSearchService.searchArticles(props, request);
 
         // Assert
         assertEquals(1, result.size());
@@ -327,7 +324,7 @@ class ArticleServiceTest {
         Map<String, String> props = Map.of("path", "/content/home");
 
         // Act
-        List<SearchResultEntry> result = articleService.searchArticles(props, resolver);
+        List<SearchResultEntry> result = articleSearchService.searchArticles(props, resolver);
 
         // Assert
         assertEquals(1, result.size());
@@ -338,7 +335,7 @@ class ArticleServiceTest {
     void testGetSearchResultEntriesFromHits_WithResourceResolver() {
 
         // Act
-        List<SearchResultEntry> result = articleService.getSearchResultEntriesFromHits(List.of(hitOne), resolver);
+        List<SearchResultEntry> result = articleSearchService.getSearchResultEntriesFromHits(List.of(hitOne), resolver);
 
         // Assert
         assertEquals(1, result.size());
@@ -350,7 +347,7 @@ class ArticleServiceTest {
     void testGetSearchResultEntriesFromHits_WithRequest()  {
 
         // Act
-        List<SearchResultEntry> result = articleService.getSearchResultEntriesFromHits(List.of(hitOne), request);
+        List<SearchResultEntry> result = articleSearchService.getSearchResultEntriesFromHits(List.of(hitOne), request);
 
         // Assert
         assertEquals(1, result.size());
@@ -364,7 +361,7 @@ class ArticleServiceTest {
         when(hitOne.getPath()).thenThrow(new RepositoryException("Test exception"));
 
         // Act
-        List<SearchResultEntry> result = articleService.getSearchResultEntriesFromHits(List.of(hitOne), resolver);
+        List<SearchResultEntry> result = articleSearchService.getSearchResultEntriesFromHits(List.of(hitOne), resolver);
 
         // Assert
         assertEquals(0, result.size());

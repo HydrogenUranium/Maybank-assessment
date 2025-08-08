@@ -1,19 +1,17 @@
 package com.dhl.discover.core.services.schema.impl;
 
-import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.models.Article;
-import com.google.gson.JsonObject;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import com.dhl.discover.core.services.schema.AbstractSchemaAdapter;
 import com.dhl.discover.core.services.schema.SchemaAdapter;
+import com.google.gson.JsonObject;
 import org.apache.commons.text.StringEscapeUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-
-import java.util.Optional;
 
 import static com.day.cq.commons.jcr.JcrConstants.JCR_PRIMARYTYPE;
 import static com.dhl.discover.core.constants.SchemaMarkupType.*;
@@ -30,6 +28,9 @@ public class BlogPostingSchemaAdapter extends AbstractSchemaAdapter {
     @Reference
     private PageUtilService pageUtilService;
 
+    @Reference
+    private ArticleUtilService articleUtilService;
+
     @Override
     public boolean canHandle(Resource resource) {
         var valueMap = resource.getValueMap();
@@ -37,19 +38,23 @@ public class BlogPostingSchemaAdapter extends AbstractSchemaAdapter {
                 && valueMap.get(JCR_PRIMARYTYPE, "").equals("cq:PageContent");
     }
 
+    private Article getArticle(SlingHttpServletRequest request) {
+        String requestedPath = request.getResource().getPath();
+        String pagePath = requestedPath.replaceAll("/jcr:content.*", "");
+        return articleUtilService.getArticle(pagePath, request);
+    }
+
     @Override
     public JsonObject toJson(Resource resource, SlingHttpServletRequest request) {
-        var article = Optional.ofNullable(pageUtilService.getPage(resource))
-                .map(Page::getContentResource)
-                .map(Resource::getParent)
-                .map(page -> page.adaptTo(Article.class)).orElse(null);
+        var article = getArticle(request);
         var homePage = pageUtilService.getHomePage(resource);
 
         if(article == null || homePage == null) {
             return null;
         }
 
-        var valueMap = homePage.getProperties();
+        var homePageProperties = homePage.getProperties();
+        var featuredImage = article.getFeaturedImageModel();
 
         JsonObject blogPosting = createSchema(BLOG_POSTING);
 
@@ -59,10 +64,12 @@ public class BlogPostingSchemaAdapter extends AbstractSchemaAdapter {
 
         blogPosting.addProperty("headline", StringEscapeUtils.escapeHtml4(article.getTitle()));
         blogPosting.addProperty("description", StringEscapeUtils.escapeHtml4(article.getDescription()));
-        blogPosting.addProperty("image", pathUtilService.getFullMappedPath(article.getHeroimagemob(), request));
+        if(featuredImage != null) {
+            blogPosting.addProperty("image", pathUtilService.getFullMappedPath(featuredImage.getSrc(), request));
+        }
 
         JsonObject author = createType(ORGANIZATION);
-        author.addProperty("name", "DHL " + valueMap.get(COUNTRY_FIELD, ""));
+        author.addProperty("name", "DHL " + homePageProperties.get(COUNTRY_FIELD, ""));
         author.addProperty("url", pathUtilService.getFullMappedPath(homePage.getPath(), request));
         blogPosting.add("author", author);
 

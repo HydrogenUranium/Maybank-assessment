@@ -46,7 +46,7 @@ class ArticleGridV2Test {
     protected Style currentStyle;
 
     @Mock
-    private ArticleService articleService;
+    private ArticleSearchService articleSearchService;
 
     @Mock
     private PageUtilService pageUtilService;
@@ -108,7 +108,7 @@ class ArticleGridV2Test {
 
     @Test
     void test_ChildCategories() throws JsonProcessingException {
-        when(articleService.getAllArticles(any(Page.class), any(SlingHttpServletRequest.class))).thenAnswer(invocationOnMock -> {
+        when(articleSearchService.getAllArticles(any(Page.class), any(SlingHttpServletRequest.class))).thenAnswer(invocationOnMock -> {
             Page rootPage = invocationOnMock.getArgument(0, Page.class);
             String path = rootPage.getPath();
             if (path.equals("/content/home")) {
@@ -151,7 +151,7 @@ class ArticleGridV2Test {
     @Test
     void test_TagBasedCategories() throws JsonProcessingException {
         Article article = getArticle("/content/home/e-commerce-advice/article");
-        when(articleService.findArticlesByTag(anyList(), anyString(), any(SlingHttpServletRequest.class)))
+        when(articleSearchService.findArticlesByTag(anyList(), anyString(), any(SlingHttpServletRequest.class)))
                 .thenReturn(List.of(new SearchResultEntry(article)));
         when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
@@ -182,7 +182,7 @@ class ArticleGridV2Test {
 
     @Test
     void test_HasArticles() {
-        when(articleService.getAllArticles(any(Page.class), any(SlingHttpServletRequest.class))).thenAnswer(invocationOnMock -> {
+        when(articleSearchService.getAllArticles(any(Page.class), any(SlingHttpServletRequest.class))).thenAnswer(invocationOnMock -> {
             Page rootPage = invocationOnMock.getArgument(0, Page.class);
             String path = rootPage.getPath();
             if (path.equals("/content/home")) {
