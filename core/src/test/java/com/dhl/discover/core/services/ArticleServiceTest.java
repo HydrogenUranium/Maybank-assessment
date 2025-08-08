@@ -302,7 +302,7 @@ class ArticleServiceTest {
         ]
         """;
 
-        articleService.findArticlesByTag(List.of("dhl:business-advice", "dhl:innovation"), "/content/home", resolver);
+        articleService.findArticlesByTag(List.of("dhl:business-advice", "dhl:innovation"), "/content/home", request);
 
         verifyQuery(expectedQuery);
     }

@@ -125,7 +125,7 @@ public class ArticleGridV2 {
             return;
         }
         tabs.forEach(tab -> {
-            var results = articleService.findArticlesByTag(tab.getTags(), contentSource, resolver);
+            var results = articleService.findArticlesByTag(tab.getTags(), contentSource, request);
             var articles = results.stream()
                     .map(SearchResultEntry::getArticle)
                     .peek(article -> article.initAssetDeliveryProperties(enableAssetDelivery))
