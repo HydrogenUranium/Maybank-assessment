@@ -115,7 +115,7 @@ public class ArticleShowcase {
     }
 
     private void initLatestArticles() {
-        articles = articleService.getLatestArticles(pageUtils.getHomePage(currentPage), 4);
+        articles = articleService.getLatestArticles(pageUtils.getHomePage(currentPage), 4, request);
     }
 
 }
