@@ -1,0 +1,16 @@
+.ai-asst__settings-display {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    background-color: inherit;
+    border-radius: 10px;;
+    z-index: 5;
+}
+
+.ai-asst__settings-display coral-drawer {
+    margin-top: 0;
+}
+
+.ai-asst__settings-display coral-drawer:not([open]) {
+  border: none;   
+}
