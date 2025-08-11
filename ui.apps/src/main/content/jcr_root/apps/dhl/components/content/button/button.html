@@ -17,7 +17,7 @@
      data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"
      data-sly-use.iconTemplate="icon.html"></sly>
 
-<sly data-sly-test="${button.link}">
+<sly data-sly-test="${button.link && button.text}">
     <button data-sly-element="${button.buttonLink.valid ? 'a' : 'button'}"
             type="${button.buttonLink.valid ? '' : 'button'}"
             id="${properties.id}"
@@ -33,6 +33,6 @@
     </button>
 </sly>
 
-<sly data-sly-test="${!button.link}">
+<sly data-sly-test="${!button.link || !button.text}">
     <div class="cq-placeholder" data-emptytext="${component.title}"></div>
 </sly>
