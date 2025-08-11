@@ -13,19 +13,26 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
-<button data-sly-use.button="com.adobe.cq.wcm.core.components.models.Button"
-        data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"
-        data-sly-use.iconTemplate="icon.html"
-        data-sly-element="${button.buttonLink.valid ? 'a' : 'button'}"
-        type="${button.buttonLink.valid ? '' : 'button'}"
-        id="${properties.id}"
-        class="cmp-button dhl-btn dhl-btn--primary"
-        data-sly-attribute.data-analytics="${analytics.json}"
-        data-sly-attribute="${button.buttonLink.htmlAttributes}"
-        aria-label="${button.accessibilityLabel}"
-        title="${button.text ? '' : button.accessibilityLabel}"
-        data-cmp-clickable="${button.data ? true : false}"
-        data-cmp-data-layer="${button.data.json}">
-    <sly data-sly-call="${iconTemplate.icon @ icon=button.icon}"></sly>
-    <span data-sly-test="${button.text}" class="cmp-button__text">${button.text}</span>
-</button>
+<sly data-sly-use.button="com.adobe.cq.wcm.core.components.models.Button"
+     data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"
+     data-sly-use.iconTemplate="icon.html"></sly>
+
+<sly data-sly-test="${button.link && button.text}">
+    <button data-sly-element="${button.buttonLink.valid ? 'a' : 'button'}"
+            type="${button.buttonLink.valid ? '' : 'button'}"
+            id="${properties.id}"
+            class="cmp-button dhl-btn dhl-btn--primary"
+            data-sly-attribute.data-analytics="${analytics.json}"
+            data-sly-attribute="${button.buttonLink.htmlAttributes}"
+            aria-label="${button.accessibilityLabel}"
+            title="${button.text ? '' : button.accessibilityLabel}"
+            data-cmp-clickable="${button.data ? true : false}"
+            data-cmp-data-layer="${button.data.json}">
+        <sly data-sly-call="${iconTemplate.icon @ icon=button.icon}"></sly>
+        <span data-sly-test="${button.text}" class="cmp-button__text">${button.text}</span>
+    </button>
+</sly>
+
+<sly data-sly-test="${!button.link || !button.text}">
+    <div class="cq-placeholder" data-emptytext="${component.title}"></div>
+</sly>
