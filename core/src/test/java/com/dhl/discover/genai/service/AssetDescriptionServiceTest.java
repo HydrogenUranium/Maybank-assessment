@@ -4,7 +4,6 @@ import com.day.cq.dam.api.Asset;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.genai.api.GenAiClient;
 import com.dhl.discover.genai.api.request.GenAiRequest;
-import com.dhl.discover.genai.api.response.Choice;
 import com.dhl.discover.genai.api.response.GenAiResponse;
 import com.dhl.discover.genai.exception.AiException;
 import com.dhl.discover.genai.exception.UnsupportedLanguageException;
@@ -17,12 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AssetDescriptionServiceTest {
@@ -45,9 +40,6 @@ class AssetDescriptionServiceTest {
     @Mock
     private GenAiResponse response;
 
-    @Mock
-    private Choice choice;
-
     @InjectMocks
     private AssetDescriptionService assetDescriptionService;
 
@@ -63,8 +55,7 @@ class AssetDescriptionServiceTest {
     @Test
     void testGenerateDescriptionWithAsset() throws UnsupportedLanguageException, AiException {
         when(promptProvider.getAssetDescriptionPrompt(asset)).thenReturn(PROMPT);
-        when(response.getChoices()).thenReturn(List.of(choice));
-        when(choice.getText()).thenReturn(DESCRIPTION);
+        when(response.getFirstChoiceText()).thenReturn(DESCRIPTION);
 
         when(client.generateContent(any(GenAiRequest.class))).thenReturn(response);
 
@@ -79,8 +70,7 @@ class AssetDescriptionServiceTest {
     @Test
     void testGenerateDescriptionWithAssetAndResource() throws UnsupportedLanguageException, AiException {
         when(promptProvider.getAssetDescriptionPrompt(resource)).thenReturn(PROMPT);
-        when(response.getChoices()).thenReturn(List.of(choice));
-        when(choice.getText()).thenReturn(DESCRIPTION);
+        when(response.getFirstChoiceText()).thenReturn(DESCRIPTION);
 
         when(client.generateContent(any(GenAiRequest.class))).thenReturn(response);
 

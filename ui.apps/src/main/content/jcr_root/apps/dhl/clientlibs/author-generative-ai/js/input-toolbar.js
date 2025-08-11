@@ -54,11 +54,12 @@ function buildToolbar(inputEl, foundationRegistry) {
   }, inputEl))
 
   document.addEventListener("click", function handleClick(e) {
+    // If the click is outside the toolbar and input wrapper, remove the toolbar
     if (toolbar && !inputWrapper.contains(e.target)) {
       toolbar.remove();
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener("click", handleClick, true);
     }
-  });
+  }, true);
 
   inputEl.insertAdjacentElement("beforebegin", toolbar);
   positionToolbar(inputEl, inputWrapper, toolbar);
@@ -72,5 +73,5 @@ function positionToolbar(inputEl, inputWrapperEl, toolbar) {
   const inputRect = inputEl.getBoundingClientRect();
 
   toolbar.style.top = `${inputRect.top - inputWrapperRect.top - toolbarRect.height - bottomOffset}px`;
-  toolbar.style.left = `${inputWrapperRect.left - inputRect.left}px`;
+  toolbar.style.left = `${inputRect.left - inputWrapperRect.left}px`;
 }

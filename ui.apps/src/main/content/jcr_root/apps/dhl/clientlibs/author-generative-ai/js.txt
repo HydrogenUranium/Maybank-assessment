@@ -1,4 +1,5 @@
 #base=js
 spectrum-custom-icons.js
+ai-sidebar.js
 input-toolbar-actions.js
 input-toolbar.js

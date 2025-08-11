@@ -6,8 +6,6 @@ import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.genai.api.GenAiClient;
 import com.dhl.discover.genai.api.request.Message;
 import com.dhl.discover.genai.api.request.GenAiRequest;
-import com.dhl.discover.genai.api.response.Choice;
-import com.dhl.discover.genai.api.response.GenAiResponse;
 import com.dhl.discover.genai.exception.AiException;
 import com.dhl.discover.genai.exception.UnsupportedLanguageException;
 import com.dhl.discover.genai.prompt.PromptProvider;
@@ -15,7 +13,6 @@ import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import java.util.List;
 
 @Component(service = AssetDescriptionService.class)
 public class AssetDescriptionService {
@@ -51,15 +48,6 @@ public class AssetDescriptionService {
         request.setTemperature(0.5);
         var response = client.generateContent(request);
 
-        return extractDescription(response);
-    }
-
-    private String extractDescription(GenAiResponse response) throws AiException {
-        List<Choice> choices = response.getChoices();
-        if (choices == null || choices.isEmpty()) {
-            throw new AiException("No choices returned from AI response");
-        }
-
-        return choices.getFirst().getText();
+        return response.getFirstChoiceText();
     }
 }

@@ -12,6 +12,7 @@ import com.dhl.discover.core.models.search.SearchResultEntry;
 import com.dhl.discover.core.helpers.FullTextSearchHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
@@ -71,7 +73,7 @@ public class ArticleService {
             result = Optional.ofNullable(resourceResolver)
                     .map(resolver -> resolver.getResource(parentPath))
                     .map(resource -> resource.adaptTo(Page.class))
-                    .map(page -> getLatestArticles(page, limit))
+                    .map(page -> getLatestArticles(page, limit, null))
                     .orElse(new ArrayList<>());
         }
 
@@ -83,30 +85,55 @@ public class ArticleService {
                 .toList();
     }
 
+    private Map<String, String> getDefaultArticleSearchProps() {
+        Map<String, String> props = new HashMap<>();
+        props.put("type", NT_PAGE);
+        props.put("p.excerpt", "true");
+        props.put("group.p.or", "true");
+        props.put(GROUP_ONE_PROPERTY, JCR_CONTENT_CQ_TEMPLATE);
+        props.put(GROUP_ONE_PROPERTY_VALUE, "/conf/dhl/settings/wcm/templates/article");
+        props.put(GROUP_THREE_PROPERTY, JCR_CONTENT_CQ_TEMPLATE);
+        props.put(GROUP_THREE_PROPERTY_VALUE, "/conf/dhl/settings/wcm/templates/animated-page");
+        return props;
+    }
+
     private List<Article> getArticles(Map<String, String> customProps) {
         try (var resolver = resolverHelper.getReadResourceResolver()) {
-            Map<String, String> props = new HashMap<>();
-            props.put("type", NT_PAGE);
-            props.put("p.excerpt", "true");
-            props.put("group.p.or", "true");
-            props.put(GROUP_ONE_PROPERTY, JCR_CONTENT_CQ_TEMPLATE);
-            props.put(GROUP_ONE_PROPERTY_VALUE, "/conf/dhl/settings/wcm/templates/article");
-            props.put(GROUP_THREE_PROPERTY, JCR_CONTENT_CQ_TEMPLATE);
-            props.put(GROUP_THREE_PROPERTY_VALUE, "/conf/dhl/settings/wcm/templates/animated-page");
+            Map<String, String> props = getDefaultArticleSearchProps();
             props.putAll(customProps);
 
             return getArticlesFromSearchResultEntries(searchArticles(props, resolver));
         }
     }
 
-    public List<Article> getAllArticles(Page parent) {
-        return getArticles(Map.of(
-                P_LIMIT, "-1",
-                "path", parent.getPath()
-        ));
+    private List<Article> getArticles(Map<String, String> customProps, SlingHttpServletRequest request) {
+        if(request == null) {
+            return getArticles(customProps);
+        }
+
+        Map<String, String> props = getDefaultArticleSearchProps();
+        props.putAll(customProps);
+
+        return getArticlesFromSearchResultEntries(searchArticles(props, request));
     }
 
-    public List<Article> getLatestArticles(Page parent, int limit) {
+    private List<Article> getAllArticlesInternal(Page parent, SlingHttpServletRequest request) {
+        Map<String, String> props = Map.of(
+                P_LIMIT, "-1",
+                "path", parent.getPath()
+        );
+        return request == null ? getArticles(props) : getArticles(props, request);
+    }
+
+    public List<Article> getAllArticles(Page parent) {
+        return getAllArticlesInternal(parent, null);
+    }
+
+    public List<Article> getAllArticles(Page parent, SlingHttpServletRequest request) {
+        return getAllArticlesInternal(parent, request);
+    }
+
+    public List<Article> getLatestArticles(Page parent, int limit, SlingHttpServletRequest request) {
         Map<String, String> customPublishProp = Map.of(
                 "path", parent.getPath(),
                 "1_property", "jcr:content/custompublishdate",
@@ -127,9 +154,9 @@ public class ArticleService {
         Map<String, Article> uniqueArticlesMap = new HashMap<>();
 
         Consumer<Article> addUniqueArticle = article -> uniqueArticlesMap.put(article.getPath(), article);
-        getArticles(customPublishProp).forEach(addUniqueArticle);
-        getArticles(createdProp).forEach(addUniqueArticle);
-        getArticles(lastModifiedProp).forEach(addUniqueArticle);
+        getArticles(customPublishProp, request).forEach(addUniqueArticle);
+        getArticles(createdProp, request).forEach(addUniqueArticle);
+        getArticles(lastModifiedProp, request).forEach(addUniqueArticle);
 
         List<Article> articles = new ArrayList<>(uniqueArticlesMap.values());
         articles.sort((o1, o2) -> o2.getCreatedDate().compareTo(o1.getCreatedDate()));
@@ -320,21 +347,30 @@ public class ArticleService {
         return map;
     }
 
-    private List<SearchResultEntry> searchArticles(Map<String, String> props, ResourceResolver resolver) {
-        Session session = resolver.adaptTo(Session.class);
+    public List<SearchResultEntry> searchArticlesInternal(Map<String, String> props, Session session, Function<List<Hit>, List<SearchResultEntry>> hitProcessor) {
         return java.util.Optional.ofNullable(builder)
                 .map(queryBuilder -> queryBuilder.createQuery(PredicateGroup.create(props), session))
                 .map(Query::getResult)
                 .map(SearchResult::getHits)
-                .map(hits -> getSearchResultEntriesFromHits(hits, resolver))
+                .map(hitProcessor)
                 .orElse(new ArrayList<>());
     }
 
-    private List<SearchResultEntry> getSearchResultEntriesFromHits(List<Hit> hits, ResourceResolver resourceResolver) {
+    public List<SearchResultEntry> searchArticles(Map<String, String> props, ResourceResolver resolver) {
+        Session session = resolver.adaptTo(Session.class);
+        return searchArticlesInternal(props, session, hits -> getSearchResultEntriesFromHits(hits, resolver));
+    }
+
+    public List<SearchResultEntry> searchArticles(Map<String, String> props, SlingHttpServletRequest request) {
+        Session session = request.getResourceResolver().adaptTo(Session.class);
+        return searchArticlesInternal(props, session, hits -> getSearchResultEntriesFromHits(hits, request));
+    }
+
+    private List<SearchResultEntry> processHits(List<Hit> hits, Function<Hit, Article> articleRetriever) {
         List<SearchResultEntry> resources = new ArrayList<>();
         hits.forEach(hit -> {
             try {
-                var article = articleUtilService.getArticle(hit.getPath(), resourceResolver);
+                var article = articleRetriever.apply(hit);
                 var excerpt = "... " + hit.getExcerpt();
                 if (article != null && article.isValid()) {
                     resources.add(new SearchResultEntry(article, excerpt));
@@ -344,5 +380,27 @@ public class ArticleService {
             }
         });
         return resources;
+    }
+
+    public List<SearchResultEntry> getSearchResultEntriesFromHits(List<Hit> hits, ResourceResolver resourceResolver) {
+        return processHits(hits, hit -> {
+            try {
+                return articleUtilService.getArticle(hit.getPath(), resourceResolver);
+            } catch (RepositoryException exception) {
+                log.warn("Failed to get path from hit", exception);
+                return null;
+            }
+        });
+    }
+
+    public List<SearchResultEntry> getSearchResultEntriesFromHits(List<Hit> hits, SlingHttpServletRequest request) {
+        return processHits(hits, hit -> {
+            try {
+                return articleUtilService.getArticle(hit.getPath(), request);
+            } catch (RepositoryException exception) {
+                log.warn("Failed to get path from hit", exception);
+                return null;
+            }
+        });
     }
 }
