@@ -151,7 +151,7 @@ class ArticleGridV2Test {
     @Test
     void test_TagBasedCategories() throws JsonProcessingException {
         Article article = getArticle("/content/home/e-commerce-advice/article");
-        when(articleService.findArticlesByTag(anyList(), anyString(), any(ResourceResolver.class)))
+        when(articleService.findArticlesByTag(anyList(), anyString(), any(SlingHttpServletRequest.class)))
                 .thenReturn(List.of(new SearchResultEntry(article)));
         when(pathUtilService.map(anyString())).thenAnswer(invocationOnMock -> {
             String path = invocationOnMock.getArgument(0, String.class);
