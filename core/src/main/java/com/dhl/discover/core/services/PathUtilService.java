@@ -18,6 +18,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component(service = PathUtilService.class)
 @Slf4j
@@ -67,11 +68,23 @@ public class PathUtilService {
         if(path == null) {
             return null;
         }
-        try (var resolver = resourceResolverHelper.getReadResourceResolver()) {
-            return encodeUnsupportedCharacters(resolver.map(decodePath(path)));
-        } catch (UnsupportedEncodingException e) {
-            log.error("An error occurred encoding URL path", e);
-            return path;
+        if (!path.contains(",")) {
+            try (var resolver = resourceResolverHelper.getReadResourceResolver()) {
+                return encodeUnsupportedCharacters(resolver.map(decodePath(path)));
+            } catch (UnsupportedEncodingException e) {
+                log.error("An error occurred encoding URL path", e);
+                return path;
+            }
+        } else {
+            return Arrays.stream(path.split(","))
+                    .map(String::trim)
+                    .map(item -> {
+                        int spaceIndex = item.lastIndexOf(' ');
+                        String url = spaceIndex > 0 ? item.substring(0, spaceIndex) : item;
+                        String descriptor = spaceIndex > 0 ? item.substring(spaceIndex + 1) : "";
+                        return map(url) + (StringUtils.isNotBlank(descriptor) ? " " + descriptor : "");
+                    })
+                    .collect(Collectors.joining(", "));
         }
     }
 
@@ -107,4 +120,6 @@ public class PathUtilService {
         }
         return domain;
     }
+
+
 }

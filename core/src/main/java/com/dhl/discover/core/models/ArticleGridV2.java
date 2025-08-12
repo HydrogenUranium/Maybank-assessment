@@ -6,6 +6,7 @@ import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.injectors.InjectHomeProperty;
 import com.dhl.discover.core.models.search.SearchResultEntry;
 import com.dhl.discover.core.services.ArticleService;
+import com.dhl.discover.core.services.PathUtilService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -48,6 +49,10 @@ public class ArticleGridV2 {
     @OSGiService
     @Required
     private ArticleService articleService;
+
+    @OSGiService
+    @Required
+    private PathUtilService pathUtilService;
 
     @SlingObject
     @Required
@@ -175,8 +180,8 @@ public class ArticleGridV2 {
                         .add(PAGE_TITLE_PARAM, article.getNavTitle())
                         .add("path", article.getPath())
                         .add("description", article.getDescription())
-                        .add("pageImage", StringUtils.defaultIfBlank(featuredImageModel.getSrc(), "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"))
-                        .add("imageSrcSet", StringUtils.defaultString(featuredImageModel.getSrcset()))
+                        .add("pageImage", StringUtils.defaultIfBlank(pathUtilService.map(featuredImageModel.getSrc()), "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"))
+                        .add("imageSrcSet", StringUtils.defaultString(pathUtilService.map(featuredImageModel.getSrcset())))
                         .add("imageSize", "")
                         .add("imageAlt", StringUtils.defaultString(featuredImageModel.getAlt()))
                         .add("createdfriendly", article.getCreatedfriendly())

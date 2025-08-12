@@ -145,7 +145,7 @@ class ArticleGridV2Test {
         JsonNode article = eCommerceAdviceCategory.get("articles").get(0);
         assertEquals("What paperwork do I need for international shipping?", article.get("title").asText());
         assertEquals("/content/home/e-commerce-advice/article.html", article.get("path").asText());
-        assertEquals("/content/dam/image.jpg", article.get("pageImage").asText());
+        assertEquals("/discover/content/dam/image.jpg", article.get("pageImage").asText());
     }
 
     @Test
@@ -177,7 +177,7 @@ class ArticleGridV2Test {
         JsonNode articleJson = productivityCategory.get("articles").get(0);
         assertEquals("What paperwork do I need for international shipping?", articleJson.get("title").asText());
         assertEquals("/content/home/e-commerce-advice/article.html", articleJson.get("path").asText());
-        assertEquals("/content/dam/image.jpg", articleJson.get("pageImage").asText());
+        assertEquals("/discover/content/dam/image.jpg", articleJson.get("pageImage").asText());
     }
 
     @Test
