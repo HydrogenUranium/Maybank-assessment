@@ -73,7 +73,7 @@ public class ArticleService {
             result = Optional.ofNullable(resourceResolver)
                     .map(resolver -> resolver.getResource(parentPath))
                     .map(resource -> resource.adaptTo(Page.class))
-                    .map(page -> getLatestArticles(page, limit))
+                    .map(page -> getLatestArticles(page, limit, null))
                     .orElse(new ArrayList<>());
         }
 
@@ -107,6 +107,10 @@ public class ArticleService {
     }
 
     private List<Article> getArticles(Map<String, String> customProps, SlingHttpServletRequest request) {
+        if(request == null) {
+            return getArticles(customProps);
+        }
+
         Map<String, String> props = getDefaultArticleSearchProps();
         props.putAll(customProps);
 
@@ -129,7 +133,7 @@ public class ArticleService {
         return getAllArticlesInternal(parent, request);
     }
 
-    public List<Article> getLatestArticles(Page parent, int limit) {
+    public List<Article> getLatestArticles(Page parent, int limit, SlingHttpServletRequest request) {
         Map<String, String> customPublishProp = Map.of(
                 "path", parent.getPath(),
                 "1_property", "jcr:content/custompublishdate",
@@ -150,9 +154,9 @@ public class ArticleService {
         Map<String, Article> uniqueArticlesMap = new HashMap<>();
 
         Consumer<Article> addUniqueArticle = article -> uniqueArticlesMap.put(article.getPath(), article);
-        getArticles(customPublishProp).forEach(addUniqueArticle);
-        getArticles(createdProp).forEach(addUniqueArticle);
-        getArticles(lastModifiedProp).forEach(addUniqueArticle);
+        getArticles(customPublishProp, request).forEach(addUniqueArticle);
+        getArticles(createdProp, request).forEach(addUniqueArticle);
+        getArticles(lastModifiedProp, request).forEach(addUniqueArticle);
 
         List<Article> articles = new ArrayList<>(uniqueArticlesMap.values());
         articles.sort((o1, o2) -> o2.getCreatedDate().compareTo(o1.getCreatedDate()));

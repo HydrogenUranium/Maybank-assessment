@@ -93,7 +93,7 @@ class ArticleShowcaseTest {
     @Test
     void init_ShouldInitArticles_WhenArticlesAreConfiguredToUseLatestPosts() {
         when(pageUtils.getHomePage(any(Page.class))).thenReturn(page);
-        when(articleService.getLatestArticles(any(Page.class), anyInt())).thenReturn(List.of(article));
+        when(articleService.getLatestArticles(any(Page.class), anyInt(), any(SlingHttpServletRequest.class))).thenReturn(List.of(article));
         initRequest("/content/home/jcr:content/par/article-showcase_latest-posts");
 
         ArticleShowcase showcase = request.adaptTo(ArticleShowcase.class);
