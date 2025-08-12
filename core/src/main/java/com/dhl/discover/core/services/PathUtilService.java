@@ -68,7 +68,6 @@ public class PathUtilService {
         if(path == null) {
             return null;
         }
-        //check if single URL or multiple URLs (e.g. srcset)
         if (!path.contains(",")) {
             try (var resolver = resourceResolverHelper.getReadResourceResolver()) {
                 return encodeUnsupportedCharacters(resolver.map(decodePath(path)));
@@ -80,7 +79,6 @@ public class PathUtilService {
             return Arrays.stream(path.split(","))
                     .map(String::trim)
                     .map(item -> {
-                        // split URL from descriptor ("200w", "2x", etc.)
                         int spaceIndex = item.lastIndexOf(' ');
                         String url = spaceIndex > 0 ? item.substring(0, spaceIndex) : item;
                         String descriptor = spaceIndex > 0 ? item.substring(spaceIndex + 1) : "";
