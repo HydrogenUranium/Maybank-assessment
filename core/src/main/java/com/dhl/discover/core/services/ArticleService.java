@@ -169,7 +169,7 @@ public class ArticleService {
                 : findArticlesByPageProperties(searchQuery, searchScope, resourceResolver);
     }
 
-    public List<SearchResultEntry> findArticlesByTag(List<String> tagIds, String searchScope, ResourceResolver resourceResolver) {
+    public List<SearchResultEntry> findArticlesByTag(List<String> tagIds, String searchScope, SlingHttpServletRequest request) {
         if(tagIds == null || tagIds.isEmpty()) {
             return new ArrayList<>();
         }
@@ -185,7 +185,7 @@ public class ArticleService {
         setOrderingAndLimiting(props);
         props.put(ORDERBY, "@jcr:content/jcr:created");
 
-        return searchArticles(props, resourceResolver);
+        return searchArticles(props, request);
     }
 
     public List<SearchResultEntry> findArticlesByFullText(String searchQuery, String searchScope, ResourceResolver resourceResolver) {
