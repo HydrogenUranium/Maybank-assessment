@@ -146,15 +146,46 @@ public class InputParamHelperImpl implements InputParamHelper {
 	 */
 	private String getIp(SlingHttpServletRequest request)  {
 		String ip = request.getRemoteAddr();
+		boolean isValidatedAddress = false;
 
 		try {
-			var address = InetAddress.getByName(ip);
-			ip = address instanceof Inet4Address ? ip : InetAddress.getByName(KEY_LOCALHOST).getHostAddress();
-		} catch (UnknownHostException e) {
-			LOGGER.error("Unable to read IP address");
-			if(LOGGER.isDebugEnabled()) {
-				LOGGER.debug("Unable to read IP address: {}", e.getMessage());
+			if (ip == null) {
+				LOGGER.warn("Remote address is null, using default IPv4 address");
+				return InetAddress.getByName(KEY_LOCALHOST).getHostAddress();
 			}
+			InetAddress address = InetAddress.getByName(ip);
+			if (address instanceof Inet4Address) {
+				String hostname = address.getHostName();
+				if (!hostname.equals(ip)) { // If reverse DNS succeeded
+					InetAddress forwardLookup = InetAddress.getByName(hostname);
+					String forwardIp = forwardLookup.getHostAddress();
+
+					if (ip.equals(forwardIp)) {
+						isValidatedAddress = true;
+						LOGGER.debug("IP address {} validated with matching forward/reverse DNS", ip);
+					} else {
+						LOGGER.warn("Forward/reverse DNS mismatch: {} resolves to {} which resolves to {}",
+								ip, hostname, forwardIp);
+					}
+				}
+			} else {
+				LOGGER.warn("IP address {} is not an IPv4 address", ip);
+				ip = "192.168.29.175";
+				address = InetAddress.getByName(ip);
+			}
+		} catch (UnknownHostException e) {
+			LOGGER.error("Unable to resolve IP address: {}", ip);
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("Unable to resolve IP address: {}", e.getMessage());
+			}
+		}
+
+		// Add validation flag to context - can be used by authentication system
+		request.setAttribute("ipValidated", isValidatedAddress);
+
+		// Include a warning about not using this for primary authentication
+		if (isValidatedAddress) {
+			LOGGER.debug("IP validation succeeded, but should not be used as primary authentication method");
 		}
 
 		return ip;
