@@ -9,6 +9,7 @@ import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.factory.ModelFactory;
@@ -67,8 +68,6 @@ class RelatedPostsTest {
 
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
         mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
-        when(currentStyle.get("enableAssetDelivery", false)).thenReturn(false);
-        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
@@ -82,7 +81,7 @@ class RelatedPostsTest {
     @Test
     void init_ShouldInitRelatedPosts_WhenContainsCustomTitle() {
         Article article = createArticleModel(context.resourceResolver().getResource("/content/home"));
-        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
 
         initRequest("/content/home/jcr:content/par/related_posts_with_title");
         mockInjectHomeProperty(context, "relatedPosts-title" ,"");
@@ -96,7 +95,7 @@ class RelatedPostsTest {
     @Test
     void init_ShouldInitRelatedPosts_WhenDoNotContainTitle() {
         Article article = createArticleModel(context.resourceResolver().getResource("/content/home"));
-        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
 
         initRequest("/content/home/jcr:content/par/related_posts_without_title");
         mockInjectHomeProperty(context, "relatedPosts-title" ,"Related Posts");

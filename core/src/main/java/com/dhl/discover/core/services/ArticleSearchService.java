@@ -33,9 +33,9 @@ import java.util.stream.Collectors;
 
 import static com.day.cq.wcm.api.constants.NameConstants.NT_PAGE;
 
-@Component(service = ArticleService.class)
+@Component(service = ArticleSearchService.class)
 @Slf4j
-public class ArticleService {
+public class ArticleSearchService {
     protected static final int MAX_SEARCH_TERMS_ALLOWED = 5;
     protected static final int MIN_SEARCH_TERM_CHARACTERS_ALLOWED = 3;
 
@@ -163,10 +163,10 @@ public class ArticleService {
         return articles.subList(0, Math.min(limit, articles.size()));
     }
 
-    public List<SearchResultEntry> findArticles(String searchQuery, String searchScope, ResourceResolver resourceResolver, boolean fulltextSearch) {
+    public List<SearchResultEntry> findArticles(String searchQuery, String searchScope, SlingHttpServletRequest request, boolean fulltextSearch) {
         return fulltextSearch
-                ? findArticlesByFullText(searchQuery, searchScope, resourceResolver)
-                : findArticlesByPageProperties(searchQuery, searchScope, resourceResolver);
+                ? findArticlesByFullText(searchQuery, searchScope, request)
+                : findArticlesByPageProperties(searchQuery, searchScope, request.getResourceResolver());
     }
 
     public List<SearchResultEntry> findArticlesByTag(List<String> tagIds, String searchScope, SlingHttpServletRequest request) {
@@ -188,7 +188,8 @@ public class ArticleService {
         return searchArticles(props, request);
     }
 
-    public List<SearchResultEntry> findArticlesByFullText(String searchQuery, String searchScope, ResourceResolver resourceResolver) {
+    public List<SearchResultEntry> findArticlesByFullText(String searchQuery, String searchScope, SlingHttpServletRequest request) {
+        ResourceResolver resourceResolver = request.getResourceResolver();
         List<List<String>> termGroups = FullTextSearchHelper.getFullTextSpellcheckedSearchTerms(searchQuery, searchScope, resourceResolver);
         var locale = pageUtilService.getLocale(searchScope, resourceResolver);
         Map<String, Tag> tagMap = tagUtilService.getLocalizedTagMap(resourceResolver, "dhl:", locale);
@@ -201,7 +202,7 @@ public class ArticleService {
                 break;
             }
 
-            List<SearchResultEntry> entries = findArticlesByFullText(terms, searchScope, tagMap, resourceResolver);
+            List<SearchResultEntry> entries = findArticlesByFullText(terms, searchScope, tagMap, request);
             for (SearchResultEntry entry : entries) {
                 if (uniqueSearchResultEntries.size() < MAX_RESULTS && uniquePaths.add(entry.getArticle().getPath())) {
                     uniqueSearchResultEntries.add(entry);
@@ -212,7 +213,7 @@ public class ArticleService {
         return uniqueSearchResultEntries;
     }
 
-    public List<SearchResultEntry> findArticlesByFullText(List<String> terms, String searchScope, Map<String, Tag> tagMap, ResourceResolver resourceResolver) {
+    public List<SearchResultEntry> findArticlesByFullText(List<String> terms, String searchScope, Map<String, Tag> tagMap, SlingHttpServletRequest request) {
         Map<String, String> map = new HashMap<>();
         map.put("path", searchScope);
         map.put("type", NT_PAGE);
@@ -222,7 +223,7 @@ public class ArticleService {
 
         setOrderingAndLimiting(map);
 
-        return searchArticles(map, resourceResolver);
+        return searchArticles(map, request);
     }
 
     private void setFullTextTerms(List<String> terms, Map<String, Tag> tagMap, Map<String, String> searchParams) {
@@ -372,7 +373,7 @@ public class ArticleService {
             try {
                 var article = articleRetriever.apply(hit);
                 var excerpt = "... " + hit.getExcerpt();
-                if (article != null && article.isValid()) {
+                if (article != null) {
                     resources.add(new SearchResultEntry(article, excerpt));
                 }
             } catch (RepositoryException exception) {

@@ -39,7 +39,7 @@
 
                     <title
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                         fieldLabel="Title"
                         name="./title"/>
                     <firstDescriptionPart
@@ -50,12 +50,12 @@
                         name="./firstDescriptionPart"/>
                     <previousTitle
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="'Previous' Title"
                             name="./previousTitle"/>
                     <nextTitle
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="'Next' Title"
                             name="./nextTitle"/>
                     <secondDescriptionPart
@@ -66,17 +66,17 @@
                             name="./secondDescriptionPart"/>
                     <firstItemTitle
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="First Item Title"
                             name="./firstItemTitle"/>
                     <secondItemTitle
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Second Title"
                             name="./secondItemTitle"/>
                     <thirdItemTitle
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Third Title"
                             name="./thirdItemTitle"/>
                     <localizationImgAltOptions
@@ -89,7 +89,7 @@
                             <items jcr:primaryType="nt:unstructured">
                                 <imgAltText1
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Alt Text for Vodka Berlin"
                                         name="./imgAltText1"
                                         fieldDescription="Set carousel image alt text for SEO"
@@ -97,7 +97,7 @@
                                 </imgAltText1>
                                 <imgAltText2
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Alt Text for Vodka Korea"
                                         name="./imgAltText2"
                                         fieldDescription="Set carousel image alt text for SEO"
@@ -105,7 +105,7 @@
                                 </imgAltText2>
                                 <imgAltText3
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="Alt Text for Vodka BuenosAires"
                                         name="./imgAltText3"
                                         fieldDescription="Set carousel image alt text for SEO"
@@ -123,7 +123,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText4
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Alt Text for Black Watch"
                                     name="./imgAltText4"
                                     fieldDescription="Set carousel image alt text for SEO"
@@ -131,7 +131,7 @@
                             </imgAltText4>
                             <imgAltText5
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Alt Text for Black Color Strap"
                                     name="./imgAltText5"
                                     fieldDescription="Set carousel image alt text for SEO"
@@ -139,7 +139,7 @@
                             </imgAltText5>
                             <imgAltText6
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Alt Text for Pink Color Strap"
                                     name="./imgAltText6"
                                     fieldDescription="Set carousel image alt text for SEO"
