@@ -1,4 +1,4 @@
-<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<!--
   ~ Copyright 2019 Adobe
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +12,7 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+ -->
 <%@ page session="false" contentType="text/html" pageEncoding="utf-8" %>
 <%@include file="/libs/foundation/global.jsp" %>
 <c:redirect url="/apps/dhl/google-ads/gui/content/cloudservices.html"/>
