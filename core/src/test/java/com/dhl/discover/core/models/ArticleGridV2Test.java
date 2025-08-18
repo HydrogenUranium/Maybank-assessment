@@ -72,7 +72,7 @@ class ArticleGridV2Test {
     @BeforeEach
     void setUp() {
         context.addModelsForClasses(ArticleGridV2.class);
-        context.registerService(ArticleService.class, articleService);
+        context.registerService(ArticleSearchService.class, articleSearchService);
         context.registerService(AssetUtilService.class, assetUtilService);
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(PageUtilService.class, pageUtilService);
