@@ -1,0 +1,2 @@
+#base=js
+spectrum-custom-icons.js
