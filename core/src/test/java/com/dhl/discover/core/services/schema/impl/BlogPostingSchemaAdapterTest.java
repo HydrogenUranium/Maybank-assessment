@@ -20,6 +20,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import static com.dhl.discover.core.utils.SchemaMarkupUtils.createSchema;
@@ -67,13 +69,28 @@ class BlogPostingSchemaAdapterTest {
 
     @Test
     void testCanHandle() {
+        context.create().page("/content/home/category", "", "cq:Page", "");
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("mediatype", "blogPost");
+        properties.put("jcr:primaryType", "cq:PageContent");
+        context.create().page("/content/home/category/article", "", properties);
+
         assertFalse(blogPostingSchemaAdapter.canHandle(resolver.getResource("/content/home")));
         assertTrue(blogPostingSchemaAdapter.canHandle(resolver.getResource(RESOURCE_PATH)));
     }
 
     @Test
     void testToJson() {
-        context.request().setResource(resolver.getResource(ARTICLE_PATH));
+        if (resolver.getResource(ARTICLE_PATH) == null) {
+            context.create().page("/content/home/category/article", "", "cq:Page", "");
+        }
+        if (resolver.getResource(RESOURCE_PATH) == null) {
+            context.create().resource(RESOURCE_PATH, "jcr:primaryType", "nt:unstructured");
+        }
+        Resource articleResource = resolver.getResource(ARTICLE_PATH);
+        context.request().setResource(articleResource);
+
         when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
         when(article.getPath()).thenReturn(ARTICLE_PATH);
         when(article.getFeaturedImageModel()).thenReturn(featuredImage);
