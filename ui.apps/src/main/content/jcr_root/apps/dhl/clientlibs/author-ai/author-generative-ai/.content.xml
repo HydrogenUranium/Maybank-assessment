@@ -6,4 +6,4 @@
         categories="cq.authoring.dialog.all"
         jsProcessor="[min:gcc;languageIn=ECMASCRIPT_NEXT;languageOut=ECMASCRIPT5]"
         embed="[]"
-        dependencies="[]"/>
+        dependencies="[discover.spectrum.icons]"/>
