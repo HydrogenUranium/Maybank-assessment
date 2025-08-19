@@ -192,6 +192,12 @@
             object-fit: contain;
           }
         }
+
+        &__item> {
+          .logo__image {
+            display: none;
+          }
+        }
       }
     }
 
