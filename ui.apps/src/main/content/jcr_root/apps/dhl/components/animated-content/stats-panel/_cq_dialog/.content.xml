@@ -61,7 +61,7 @@
                     </type>
                     <title
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Title"
                             name="./title"/>
                     <firstDescriptionPart
@@ -85,7 +85,7 @@
                             name="./leftBlockPercent"/>
                     <leftBlockTitle
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Left Block"
                             name="./leftBlockTitle"/>
                     <rightBlockPercent
@@ -97,7 +97,7 @@
                             name="./rightBlockPercent"/>
                     <rightBlockTitle
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Right Block"
                             name="./rightBlockTitle"/>
                     <hidePercentage

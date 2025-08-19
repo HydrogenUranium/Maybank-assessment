@@ -1,13 +1,16 @@
 package com.dhl.discover.core.services.schema.impl;
 
+import com.adobe.cq.wcm.core.components.models.Image;
 import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.constants.SchemaMarkupType;
 import com.dhl.discover.core.models.Article;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.google.gson.JsonObject;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,11 +43,17 @@ class BlogPostingSchemaAdapterTest {
     @Mock
     private PageUtilService pageUtilService;
 
+    @Mock
+    private ArticleUtilService articleUtilService;
+
     @InjectMocks
     private BlogPostingSchemaAdapter blogPostingSchemaAdapter;
 
     @Mock
     private Article article;
+
+    @Mock
+    private Image featuredImage;
 
     private Page homePage;
     private Page articlePage;
@@ -66,14 +75,16 @@ class BlogPostingSchemaAdapterTest {
 
     @Test
     void testToJson() {
+        context.request().setResource(resolver.getResource(ARTICLE_PATH));
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
         when(article.getPath()).thenReturn(ARTICLE_PATH);
+        when(article.getFeaturedImageModel()).thenReturn(featuredImage);
+        when(featuredImage.getSrc()).thenReturn("/content/dam/sample.jpg");
         when(article.getTitle()).thenReturn("Sample Blog Title");
         when(article.getDescription()).thenReturn("Sample Blog Description");
-        when(article.getHeroimagemob()).thenReturn("/content/dam/sample.jpg");
         when(pathUtilService.getFullMappedPath(anyString(), any()))
                 .thenAnswer(invocationOnMock -> "https://www.example.com" + invocationOnMock.getArgument(0));
         when(pageUtilService.getHomePage(any(Resource.class))).thenReturn(homePage);
-        when(pageUtilService.getPage(any())).thenReturn(articlePage);
 
         Resource resource = resolver.resolve(RESOURCE_PATH);
 

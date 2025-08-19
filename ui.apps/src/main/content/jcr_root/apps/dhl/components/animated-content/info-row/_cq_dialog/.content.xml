@@ -102,7 +102,7 @@
                     </type>
                     <title
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Title"
                             name="./title"/>
                     <firstDescriptionPart
@@ -127,7 +127,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText1
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Info-row Image Alt Text"
                                     name="./imgAltText1"
                                     fieldDescription="Set Info-row image alt text for SEO"
@@ -145,7 +145,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText2
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Info-row Image Alt Text"
                                     name="./imgAltText2"
                                     fieldDescription="Set Info-row image alt text for SEO"
@@ -163,7 +163,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText3
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Info-row Image Alt Text"
                                     name="./imgAltText3"
                                     fieldDescription="Set Info-row image alt text for SEO"
@@ -181,7 +181,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText4
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Info-row Image Alt Text"
                                     name="./imgAltText4"
                                     fieldDescription="Set Info-row image alt text for SEO"
@@ -199,7 +199,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText5
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Info-row Image Alt Text"
                                     name="./imgAltText5"
                                     fieldDescription="Set Info-row image alt text for SEO"
@@ -217,7 +217,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText6
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Info-row Image Alt Text"
                                     name="./imgAltText6"
                                     fieldDescription="Set Info-row image alt text for SEO"
@@ -235,7 +235,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText7
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Info-row Image Alt Text"
                                     name="./imgAltText7"
                                     fieldDescription="Set Info-row image alt text for SEO"
@@ -253,7 +253,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText8
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Info-row Image Alt Text"
                                     name="./imgAltText8"
                                     fieldDescription="Set Info-row image alt text for SEO"
@@ -271,7 +271,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText9
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Info-row Image Alt Text"
                                     name="./imgAltText9"
                                     fieldDescription="Set Info-row image alt text for SEO"
@@ -289,7 +289,7 @@
                         <items jcr:primaryType="nt:unstructured">
                             <imgAltText10
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Info-row Image Alt Text"
                                     name="./imgAltText10"
                                     fieldDescription="Set Info-row image alt text for SEO"

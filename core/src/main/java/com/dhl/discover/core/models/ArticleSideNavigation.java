@@ -16,6 +16,7 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,6 +39,9 @@ public class ArticleSideNavigation {
 
 	@OSGiService
 	private ArticleUtilService articleUtilService;
+
+	@Self
+	private SlingHttpServletRequest request;
 
 	@OSGiService
 	private CategoryFinder categoryFinder;
@@ -67,7 +71,7 @@ public class ArticleSideNavigation {
 		this.articles = new ArrayList<>(articles);
 	}
 
-	private List<Article> processItems(Page page, ResourceResolver resourceResolver){
+	private List<Article> processItems(Page page){
 		List<Article> articleList = new ArrayList<>();
 		var relatedArticlePaths = page.getContentResource("items");
 		if (relatedArticlePaths != null) {
@@ -79,8 +83,8 @@ public class ArticleSideNavigation {
 				if (props != null) {
 					String url = props.get("url", "");
 
-					var article = articleUtilService.getArticle(url, resourceResolver);
-					if (article != null && article.isValid()) {
+					var article = articleUtilService.getArticle(url, request);
+					if (article != null) {
 						articleList.add(article);
 					}
 				}
@@ -99,20 +103,16 @@ public class ArticleSideNavigation {
 		return categoryFinder.executeQuery(predicatesMap,resourceResolver);
 	}
 
-	private List<Article> processSearchResult(SearchResult searchResult, ResourceResolver resourceResolver){
+	private List<Article> processSearchResult(SearchResult searchResult){
 		List<Article> articleList = new ArrayList<>();
-		var count = 0;
 		try {
 			for (Hit hit: searchResult.getHits()) {
 				ValueMap properties = hit.getProperties();
 				boolean hideInNav = properties.get("hideInNav", false);
 				if (!hideInNav && !currentPage.getPath().equals(hit.getPath())) {
-					var article = articleUtilService.getArticle(hit.getPath(), resourceResolver);
-					if (article != null && article.isValid()) {
-						article.setIndex(count);
-						article.setThird(article.getIndex() % 3 == 0);
+					var article = articleUtilService.getArticle(hit.getPath(), request);
+					if (article != null) {
 						articleList.add(article);
-						count++;
 					}
 				}
 			}
@@ -132,7 +132,7 @@ public class ArticleSideNavigation {
 		try (var resourceResolver = resourceResolverHelper.getReadResourceResolver()){
 			articles = new ArrayList<>();
 			if (null != resourceResolver) {
-				articles.addAll(processItems(currentPage, resourceResolver));
+				articles.addAll(processItems(currentPage));
 
 				if (articles.isEmpty() && null != builder) {
 					var parentPage = currentPage.getParent();
@@ -140,7 +140,7 @@ public class ArticleSideNavigation {
 						var categoryPage = categoryFinder.getGroupPage(CATEGORY_PAGE_DYNAMIC_RESOURCE_TYPE,parentPage);
 						if(null != categoryPage){
 							var searchResult = runQuery(categoryPage,resourceResolver);
-							articles.addAll(processSearchResult(searchResult,resourceResolver ));
+							articles.addAll(processSearchResult(searchResult));
 						}
 					}
 				}

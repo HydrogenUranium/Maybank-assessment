@@ -45,7 +45,7 @@ class RssFeedRenderServletTest {
     private TagUtilService tagUtilService;
 
     @Mock
-    private ArticleService articleService;
+    private ArticleSearchService articleSearchService;
 
     private RssFeedRenderServlet servlet;
 
@@ -62,14 +62,14 @@ class RssFeedRenderServletTest {
         var pageExtractor = context.registerService(PageContentExtractorService.class, new PageContentExtractorService());
         context.registerService(AssetUtilService.class, assetUtilService);
         context.registerService(TagUtilService.class, tagUtilService);
-        context.registerService(ArticleService.class, articleService);
+        context.registerService(ArticleSearchService.class, articleSearchService);
 
         mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
 
         servlet = context.registerInjectActivateService(RssFeedRenderServlet.class,
                 "pageExtractor", pageExtractor,
                 "pageUtilService", pageUtilService,
-                "articleService", articleService
+                "articleService", articleSearchService
 
         );
 
@@ -77,8 +77,6 @@ class RssFeedRenderServletTest {
         TagManager tagManager = context.resourceResolver().adaptTo(TagManager.class);
         tagManager.createTag("dhl:tech-futures", "Tech Futures", "description");
         tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
-
-        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
     }
 
 
@@ -93,7 +91,7 @@ class RssFeedRenderServletTest {
         List<Article> articles = new ArrayList<>();
         articles.add(request.getResourceResolver().getResource("/content/dhl/country/en-global/business/productivity/ai-science-fiction-it-is-not").adaptTo(Article.class));
         articles.add(request.getResourceResolver().getResource("/content/dhl/country/en-global/business/productivity/the-future-of-cyber-sales").adaptTo(Article.class));
-        when(articleService.getLatestArticles(any(String.class), anyInt())).thenReturn(articles);
+        when(articleSearchService.getLatestArticles(any(String.class), anyInt())).thenReturn(articles);
 
         when(dispatcherFactory.getRequestDispatcher(any(String.class), any())).thenAnswer(getRequestDispatcherInvocation -> {
             String pathWithExtension = getRequestDispatcherInvocation.getArgument(0, String.class);

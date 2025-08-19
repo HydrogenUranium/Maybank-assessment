@@ -19,6 +19,7 @@ import org.apache.sling.models.annotations.Model;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 /**
@@ -31,11 +32,11 @@ public class LandingPageTwoColumn {
 	@OSGiService
 	private PathUtilService pathUtilService;
 
+	@Self
+	private SlingHttpServletRequest request;
+
 	@OSGiService
 	private ArticleUtilService articleUtilService;
-
-	@SlingObject
-	private ResourceResolver resourceResolver;
 
 	@ScriptVariable
 	private Page currentPage;
@@ -97,7 +98,7 @@ public class LandingPageTwoColumn {
 				if (props != null) {
 					String url = props.get("url", "");
 					
-					var article = articleUtilService.getArticle(url, resourceResolver);
+					var article = articleUtilService.getArticle(url, request);
 					if (article != null) {
 						relatedArticles.add(article);
 					}

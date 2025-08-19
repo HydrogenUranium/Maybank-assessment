@@ -8,6 +8,7 @@ import com.dhl.discover.core.services.*;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
@@ -101,7 +102,6 @@ class ArticleSideNavigationTest {
         ctx.addModelsForClasses(ArticleSideNavigation.class);
         mockInject(ctx, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "featuredImageModel", null);
 
-        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
@@ -123,7 +123,7 @@ class ArticleSideNavigationTest {
         // following when-then gymnastics is related to Article model class,that's called from ArticleSideNavigation
         Page articlePage = setUpArticlePage();
         Article article = createArticleModel(ctx.resourceResolver().getResource(articlePage.getPath()));
-        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
 
         ctx.currentResource("/content/dhl/country/en/culture/dhl-mo-salah");
 
@@ -146,7 +146,7 @@ class ArticleSideNavigationTest {
         when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resourceResolver);
 
         Article article = createArticleModel(ctx.resourceResolver().getResource("/content/dhl/en-global/business/entrepreneurship/effective-entrepreneurs"));
-        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
 
         Map<String, Object> params = new HashMap<>();
         params.put("mode", "latest");
