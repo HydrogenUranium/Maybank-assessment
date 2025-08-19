@@ -56,7 +56,6 @@ class BlogPostingSchemaAdapterTest {
     private Image featuredImage;
 
     private Page homePage;
-    private Page articlePage;
 
     @BeforeEach
     void setUp() {
@@ -64,7 +63,6 @@ class BlogPostingSchemaAdapterTest {
         context.registerAdapter(Resource.class, Article.class, (Function<Resource, Article>) r -> article);
 
         homePage = context.create().page("/content//home", "", "siteregion", "Global");
-        articlePage = context.create().page(ARTICLE_PATH, "", "mediatype", "blogPost");
     }
 
     @Test
