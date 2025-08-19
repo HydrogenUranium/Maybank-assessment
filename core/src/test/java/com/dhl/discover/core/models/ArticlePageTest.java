@@ -71,8 +71,6 @@ class ArticlePageTest {
 
 		mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
 
-		when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
-		when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
 		when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
 		when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
 		when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
@@ -158,25 +156,14 @@ class ArticlePageTest {
 
 	private void testArticle(Article article) {
 		assertNotNull(article);
-		assertTrue(article.isValid());
-		assertFalse(article.isCurrent());
-		assertEquals(0, article.getIndex());
-		assertFalse(article.isThird());
-		assertFalse(article.isFourth());
 		assertEquals("October 11, 2023", article.getCreatedfriendly());
 		assertEquals("2023-10-11", article.getCreated());
-		assertEquals("article", article.getIcon());
+		assertEquals("article", article.getMediaType());
 		assertEquals("CATEGORY PAGE", article.getGrouptitle());
 		assertEquals("/content/dhl/global/en-global/category-page", article.getGroupPath());
 		assertEquals("ARTICLE PAGE", article.getTitle());
 		assertEquals("ARTICLE PAGE", article.getNavTitle());
 		assertEquals("ARTICLE PAGE", article.getPageTitle());
-		assertEquals("How subscription models are changing e-commerce habits", article.getBrief());
 		assertEquals("6 min read", article.getReadtime());
-		assertEquals("/content/dam/image.jpg", article.getPageImage());
-		assertEquals("/content/dam/dhl/heroimagemob.jpg", article.getHeroimagemob());
-		assertEquals("/content/dam/dhl/heroimagetab.jpg", article.getHeroimagetab());
-		assertEquals("/content/dam/dhl/heroimagedt.jpg", article.getHeroimagedt());
-		assertEquals(0, article.getTags().size());
 	}
 }

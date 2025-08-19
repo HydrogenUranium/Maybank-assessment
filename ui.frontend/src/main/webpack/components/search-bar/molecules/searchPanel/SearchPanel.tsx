@@ -223,7 +223,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
               <a href={`${article.path}`} className={styles.article} key={article.path}
                 tabIndex={-1}
                 onClick={() => putRecentSearch(inputRef.current?.value)}>
-                {showThumbnail && <div className={styles.articleImage} style={{ backgroundImage: `url(${article.thumbnail}), url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg')` }}></div>}
+                {showThumbnail && <div className={styles.articleImage} style={{ backgroundImage: `url(${article.featuredImageModel?.src}), url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg')` }}></div>}
                 <div className={styles.articleInfo}>
                   <div className={styles.articleInfoTitle}>{article.title}</div>
                   <div className={styles.articleInfoMetadata}>{article.createdfriendly}</div>

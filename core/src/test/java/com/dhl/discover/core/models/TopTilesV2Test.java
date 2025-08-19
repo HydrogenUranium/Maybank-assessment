@@ -4,6 +4,7 @@ import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.factory.ModelFactory;
@@ -56,7 +57,7 @@ class TopTilesV2Test {
 
         when(article.getPageTitleWithBr()).thenReturn("Article Title");
         when(article.getGroupTag()).thenReturn("#GroupTag");
-        when(articleUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
 
         request.setPathInfo("/content/top_tiles");
         request.setResource(resolver.getResource("/content/top_tiles"));

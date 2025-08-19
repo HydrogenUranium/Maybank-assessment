@@ -11,10 +11,10 @@
         <article class="article-container__article" data-sly-repeat="${articles}">
             <a href="${item.path}" tabindex="-1" aria-hidden="true" class="article-container__article__image-wrapper">
                 <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
-                     data-sly-call="${template.picture @
-                     image=item.pageImage,
-                     useWebOptimized=model.enableAssetDelivery,
+                     data-sly-call="${template.pictureWithModels @
+                     image=item.featuredImageModel,
                      imgClass='article-container__article__image-wrapper__image',
+                     sizes='20rem',
                      alt=item.pageImageAltText
                 }"></sly>
             </a>
