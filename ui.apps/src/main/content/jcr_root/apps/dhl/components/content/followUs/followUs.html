@@ -5,9 +5,11 @@
     <sly data-sly-repeat="${model.socialLinks}">
         <a class="followUs__item" data-sly-test="${item.linkPath}" href="${item.linkPath}">
             <img class="logo__image"
+                 data-sly-test="${item.linkIcon}"
                  src="${item.linkIcon}"
                  title="${item.linkName}"
                  alt="${item.linkName}"/>
+            <span data-sly-test="${!item.linkIcon}">${item.linkName}</span>
         </a>
     </sly>
 </div>
