@@ -70,8 +70,7 @@
                                     sling:resourceType="dam/gui/components/admin/schemafield"
                                     fieldLabel="Description Source"
                                     name="./jcr:content/metadata/descriptionSource"
-                                    granite:class="discover-asset-description-source--displayed"
-                                    disabled="{Boolean}true"
+                                    granite:class="discover-asset-description-source"
                                     value="UNDEFINED"
                                     resourceType="granite/ui/components/coral/foundation/form/textfield">
                                     <granite:data
@@ -81,21 +80,6 @@
                                         requiredCascading="default"
                                         visibilityCascading="default"/>
                                 </descriptionSource>
-                                <descriptionSourceHidden
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="dam/gui/components/admin/schemafield"
-                                        fieldLabel="Description Source Hidden"
-                                        name="./jcr:content/metadata/descriptionSource"
-                                        granite:class="discover-asset-description-source--hidden"
-                                        resourceType="granite/ui/components/coral/foundation/form/hidden"
-                                        value="UNDEFINED">
-                                    <granite:data
-                                            jcr:primaryType="nt:unstructured"
-                                            cq-msm-lockable="./metadata/descriptionSource"
-                                            metaType="text"
-                                            requiredCascading="default"
-                                            visibilityCascading="default"/>
-                                </descriptionSourceHidden>
                                 <format
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="dam/gui/components/admin/schemafield"

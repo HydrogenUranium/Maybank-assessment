@@ -4,7 +4,6 @@ import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.LanguageManager;
 import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.services.PageUtilService;
-import com.dhl.discover.genai.exception.UnsupportedLanguageException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
@@ -89,11 +88,11 @@ public class PromptProvider {
     @Reference
     private PageUtilService pageUtilService;
 
-    public String getAssetDescriptionPrompt(Asset asset) throws UnsupportedLanguageException {
+    public String getAssetDescriptionPrompt(Asset asset) {
         return getAssetDescriptionPrompt(asset.adaptTo(Resource.class));
     }
 
-    public String getAssetDescriptionPrompt(Resource resource) throws UnsupportedLanguageException {
+    public String getAssetDescriptionPrompt(Resource resource) {
         var locale = languageManager.getLanguage(resource);
         return getAssetDescriptionPrompt(locale) + getContext(resource);
     }
@@ -115,9 +114,9 @@ public class PromptProvider {
                 .orElse(StringUtils.EMPTY);
     }
 
-    public String getAssetDescriptionPrompt(Locale locale) throws UnsupportedLanguageException {
+    public String getAssetDescriptionPrompt(Locale locale) {
         if (locale == null) {
-            throw new UnsupportedLanguageException("Asset does not have a valid language set.");
+            locale = Locale.ENGLISH;
         }
         return String.format(ASSET_DESCRIPTION_USER_PROMPT_TEMPLATE, locale);
     }
