@@ -29,37 +29,85 @@
         }
 
         const inputWrapper = inputEl.closest(".cmp-image__editor-alt");
-        inputWrapper.classList.add("input-wrapper--loading");
 
-        const loader = new Coral.Wait();
-        loader.classList.add("input-generative-ai-loader");
-        inputWrapper.appendChild(loader);
-
-        fetch(url).then(response => {
-             return response.json().then(data => {
-                 if (!response.ok) {
-                     const errorMessage = data.errorMessage || "Failed to generate alt text";
-                     toast("error", errorMessage);
-                     throw new Error(errorMessage);
-                 }
-                 return data;
-             });
-         })
-         .then(data => {
-             inputEl.value = data.result;
-             inputEl.dispatchEvent(new Event('change', { bubbles: true }));
-             inputWrapper.classList.remove("input-wrapper--loading");
-             loader.remove();
-         })
-         .catch(e => {
-             console.error("Error fetching video data:", e);
-             inputWrapper.classList.remove("input-wrapper--loading");
-             loader.remove();
-             return null;
-         });
+        generateAlt(url, inputEl, inputWrapper)
        }
     });
+
+    foundationRegistry.register('input.action', {
+          selector: 'input[name="./jcr:content/metadata/dc:description"]',
+          text: 'Generate',
+          icon: 'openAi',
+          title: 'Generate Alt Text',
+          onClick: (inputEl) => {
+            const currentUrl = new URL(window.location.href);
+            const assetPath = currentUrl.searchParams.get("item");
+            if(!assetPath) {
+              return;
+            }
+
+            const locale = document.querySelector('input[name="./jcr:content/metadata/dc:language"]')?.value;
+            let url = `${assetPath}.generateImageDescription.json`;
+            if(locale) {
+              url += `?locale=${locale}`;
+            }
+            if(!assetPath) {
+              toast("info", "Asset Path is not configured");
+              return;
+            }
+
+
+            const inputWrapper = inputEl.closest(".coral-Form-fieldwrapper");
+
+            generateAlt(url, inputEl, inputWrapper, () => {
+              $(".discover-asset-description-source")?.val("AI").trigger("change");
+            })
+           }
+        });
 })($);
+
+function withLoader(inputWrapper, work, callback) {
+  inputWrapper.classList.add("input-wrapper--loading");
+
+  const loader = new Coral.Wait();
+  loader.classList.add("input-generative-ai-loader");
+  inputWrapper.appendChild(loader);
+
+  const done = () => {
+    inputWrapper.classList.remove("input-wrapper--loading");
+    loader.remove();
+  };
+
+  return Promise.resolve()
+    .then(work)
+    .then(done)
+    .then(callback)
+    .catch((e) => {
+      console.error("Error generating alt text:", e);
+      done();
+    });
+}
+
+function generateAlt(url, inputEl, inputWrapper, callback) {
+  return withLoader(inputWrapper, () =>
+    fetch(url).then((response) =>
+      response.json().then((data) => {
+        if (!response.ok) {
+          const errorMessage = data.errorMessage || "Failed to generate alt text";
+          toast("error", errorMessage);
+          throw new Error(errorMessage);
+        }
+        inputEl.value = data.result || "";
+        inputEl.dispatchEvent(new Event("change", { bubbles: true }));
+      })
+    ),
+    () => {
+      if(typeof callback === "function") {
+        callback(inputEl.value);
+      }
+    }
+  );
+}
 
 function toast(variant, text) {
     const toast = document.createElement("coral-toast");

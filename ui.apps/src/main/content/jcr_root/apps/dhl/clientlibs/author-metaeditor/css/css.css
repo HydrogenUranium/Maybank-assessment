@@ -7,3 +7,10 @@
     margin-left: auto;
     display: block;
 }
+
+.coral-Form-field.discover-asset-description-source {
+    pointer-events: none;
+    background-color: #eaeaea !important;
+    border-color: transparent;
+    color: #b3b3b3;
+}
