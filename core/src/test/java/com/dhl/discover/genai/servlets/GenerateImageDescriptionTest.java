@@ -1,9 +1,10 @@
 package com.dhl.discover.genai.servlets;
 
 import com.day.cq.dam.api.Asset;
+import com.day.cq.wcm.api.LanguageManager;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.ResourceResolverHelper;
-import com.dhl.discover.genai.exception.UnsupportedLanguageException;
+import com.dhl.discover.genai.exception.AiException;
 import com.dhl.discover.genai.service.AssetDescriptionService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -17,7 +18,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Locale;
 
 import static org.mockito.Mockito.*;
 
@@ -32,6 +35,9 @@ class GenerateImageDescriptionTest {
 
     @Mock
     private ResourceResolverHelper resourceResolverHelper;
+
+    @Mock
+    private LanguageManager languageManager;
 
     @Mock
     private SlingHttpServletRequest request;
@@ -65,9 +71,25 @@ class GenerateImageDescriptionTest {
 
     @Test
     void testDoGetWithValidAssetPath() throws Exception {
+        when(languageManager.getLanguage(any(Resource.class))).thenReturn(Locale.ENGLISH);
         when(request.getParameter("assetPath")).thenReturn(ASSET_PATH);
         when(assetUtilService.getAsset(eq(ASSET_PATH), any())).thenReturn(asset);
-        when(assetDescriptionService.generateDescription(any(), eq(resource))).thenReturn(GENERATED_DESCRIPTION);
+        when(assetDescriptionService.generateDescription(any(), any(Locale.class))).thenReturn(GENERATED_DESCRIPTION);
+
+        servlet.doGet(request, response);
+
+        verify(response).setStatus(HttpServletResponse.SC_OK);
+        verify(printWriter).write(contains("\"status\":\"Success\""));
+        verify(printWriter).write(contains("\"result\":\"Generated description\""));
+    }
+
+    @Test
+    void testDoGetByAssetAndLanguage() throws AiException, IOException {
+        when(request.getParameter("locale")).thenReturn("en");
+        when(resource.getResourceType()).thenReturn("dam:Asset");
+        when(resource.getPath()).thenReturn(ASSET_PATH);
+        when(assetUtilService.getAsset(eq(ASSET_PATH), any())).thenReturn(asset);
+        when(assetDescriptionService.generateDescription(any(), any(Locale.class))).thenReturn(GENERATED_DESCRIPTION);
 
         servlet.doGet(request, response);
 
@@ -87,19 +109,6 @@ class GenerateImageDescriptionTest {
         verify(response).setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         verify(printWriter).write(contains("\"status\":\"Error\""));
         verify(printWriter).write(contains("\"errorMessage\":\"Failed to retrieve asset. Asset is not configured."));
-    }
-
-    @Test
-    void testDoGetWithUnsupportedLanguageException() throws Exception {
-        when(request.getParameter("assetPath")).thenReturn(ASSET_PATH);
-        when(assetUtilService.getAsset(eq(ASSET_PATH), any())).thenReturn(mock(com.day.cq.dam.api.Asset.class));
-        when(assetDescriptionService.generateDescription(any(), eq(resource))).thenThrow(new UnsupportedLanguageException("Language not supported"));
-
-        servlet.doGet(request, response);
-
-        verify(response).setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        verify(printWriter).write(contains("\"status\":\"Error\""));
-        verify(printWriter).write(contains("\"errorMessage\":\"Unsupported language for asset description generation: Language not supported\""));
     }
 
     @Test

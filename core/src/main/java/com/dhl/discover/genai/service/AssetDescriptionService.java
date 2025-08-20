@@ -13,6 +13,8 @@ import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import java.util.Locale;
+
 
 @Component(service = AssetDescriptionService.class)
 public class AssetDescriptionService {
@@ -31,8 +33,13 @@ public class AssetDescriptionService {
         return generateDescription(prompt, asset);
     }
 
-    public String generateDescription(Asset asset, Resource location) throws UnsupportedLanguageException, AiException {
+    public String generateDescription(Asset asset, Resource location) throws AiException {
         String prompt = promptProvider.getAssetDescriptionPrompt(location);
+        return generateDescription(prompt, asset);
+    }
+
+    public String generateDescription(Asset asset, Locale locale) throws AiException {
+        String prompt = promptProvider.getAssetDescriptionPrompt(locale);
         return generateDescription(prompt, asset);
     }
 

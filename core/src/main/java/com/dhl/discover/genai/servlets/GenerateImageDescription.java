@@ -1,5 +1,6 @@
 package com.dhl.discover.genai.servlets;
 
+import com.day.cq.wcm.api.LanguageManager;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.ResourceResolverHelper;
 import com.dhl.discover.genai.exception.AiException;
@@ -19,12 +20,13 @@ import javax.jcr.RepositoryException;
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Locale;
 
 import static org.apache.sling.api.servlets.HttpConstants.METHOD_GET;
 
 @Component(service = Servlet.class)
 @SlingServletResourceTypes(
-        resourceTypes = "core/wcm/components/image",
+        resourceTypes = {"core/wcm/components/image", "dam/Asset"},
         methods = METHOD_GET,
         extensions = "json",
         selectors = "generateImageDescription"
@@ -37,6 +39,9 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
 
     @Reference
     private transient AssetUtilService assetUtilService;
+
+    @Reference
+    private LanguageManager languageManager;
 
     @Reference
     private ResourceResolverHelper resourceResolverHelper;
@@ -66,18 +71,29 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
     }
 
     private String getAssetPath(SlingHttpServletRequest request) {
+        var resource = request.getResource();
+        if("dam:Asset".equals(resource.getResourceType())) {
+            return resource.getPath();
+        }
+
         String assetPathParameter = request.getParameter("assetPath");
         if (StringUtils.isNotBlank(assetPathParameter)) {
             return assetPathParameter;
         }
-        var resource = request.getResource();
 
         return resource.getValueMap().get("fileReference", String.class);
     }
 
-    private JsonObject processRequest(SlingHttpServletRequest request) throws RepositoryException, UnsupportedLanguageException, AiException {
-        var resource = request.getResource();
+    private Locale getLocale(SlingHttpServletRequest request) {
+        String localeParam = request.getParameter("locale");
+        if (StringUtils.isNotBlank(localeParam)) {
+            return Locale.forLanguageTag(localeParam);
+        }
 
+        return languageManager.getLanguage(request.getResource());
+    }
+
+    private JsonObject processRequest(SlingHttpServletRequest request) throws RepositoryException, UnsupportedLanguageException, AiException {
         String assetPath = getAssetPath(request);
 
         if (StringUtils.isBlank(assetPath)) {
@@ -88,7 +104,9 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
         if(asset == null) {
             throw new RepositoryException("Asset not found at path: " + assetPath);
         }
-        String description = assetDescriptionService.generateDescription(asset, resource);
+        var locale = getLocale(request);
+
+        String description = assetDescriptionService.generateDescription(asset, locale);
 
         var jsonResponse = new JsonObject();
         jsonResponse.addProperty("result", description);

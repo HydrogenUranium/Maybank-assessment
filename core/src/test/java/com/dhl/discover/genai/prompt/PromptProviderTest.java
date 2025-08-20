@@ -48,7 +48,7 @@ class PromptProviderTest {
     }
 
     @Test
-    void testGetAssetDescriptionPromptWithValidLocaleFromPage() throws UnsupportedLanguageException {
+    void testGetAssetDescriptionPromptWithValidLocaleFromPage() {
         String expectedPrompt = "Please create descriptive alt text for this image in en language " +
                 "The image appears in an article titled 'Page Title'";
         when(resource.getPath()).thenReturn("/content/dhl/page");
@@ -62,15 +62,15 @@ class PromptProviderTest {
 
     @Test
     void testGetAssetDescriptionPromptWithNullLocale() {
-        when(languageManager.getLanguage(resource)).thenReturn(null);
+        String expectedPrompt = "Please create descriptive alt text for this image in en language";
 
-        assertThrows(UnsupportedLanguageException.class, () -> {
-            promptProvider.getAssetDescriptionPrompt(resource);
-        });
+        String actualPrompt = promptProvider.getAssetDescriptionPrompt((Locale) null);
+
+        assertEquals(expectedPrompt, actualPrompt);
     }
 
     @Test
-    void testGetAssetDescriptionPromptWithAsset() throws UnsupportedLanguageException {
+    void testGetAssetDescriptionPromptWithAsset() {
         when(asset.adaptTo(Resource.class)).thenReturn(resource);
         when(resource.getPath()).thenReturn("/content/dam/image");
         String expectedPrompt = "Please create descriptive alt text for this image in en language";
