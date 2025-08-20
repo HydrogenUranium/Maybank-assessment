@@ -82,7 +82,7 @@ class InputParamHelperImplTest {
 	void ipV6(){
 		request.setRemoteAddr("2601:243:ce7e:3c90:65a8:2864:2e12:348e");
 		FormInputBase formInputBase = underTest.buildForm(request, permittedFormFields, formFields);
-		assertEquals("127.0.0.1", formInputBase.getFormInputData().get(0).getVisitorData().get("leadClientIpAddress"));
+		assertEquals("2601:243:ce7e:3c90:65a8:2864:2e12:348e", formInputBase.getFormInputData().get(0).getVisitorData().get("leadClientIpAddress"));
 	}
 
 	@Test
