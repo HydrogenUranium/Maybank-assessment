@@ -170,7 +170,6 @@ public class InputParamHelperImpl implements InputParamHelper {
 				}
 			} else {
 				LOGGER.warn("IP address {} is not an IPv4 address", ip);
-				address = InetAddress.getByName(ip);
 			}
 		} catch (UnknownHostException e) {
 			LOGGER.error("Unable to resolve IP address: {}", ip);
