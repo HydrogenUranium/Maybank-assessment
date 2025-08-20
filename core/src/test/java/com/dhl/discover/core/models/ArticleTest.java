@@ -15,7 +15,6 @@ import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.platform.commons.util.StringUtils;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -25,7 +24,6 @@ import java.util.Locale;
 import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -73,23 +71,6 @@ class ArticleTest {
         when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"));
         when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#SmallBusinessAdvice");
-        when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/image.jpg");
-        when(assetUtilService.getPageImageAltText(any(Resource.class))).thenReturn("Page Image Alt Text");
-    }
-
-    @Test
-    void initAssetDeliveryProperties() {
-        lenient().when(assetUtilService.getMappedDeliveryUrl(anyString(), anyMap(), any())).thenAnswer(invocationOnMock -> {
-            String path = invocationOnMock.getArgument(0, String.class);
-            return StringUtils.isNotBlank(path) ? "/adobe/dynamicmedia/deliver" + invocationOnMock.getArgument(0, String.class) : "";
-        });
-        Article article = createModel(getResource(ARTICLE_PAGE_PATH));
-        article.initAssetDeliveryProperties(true);
-
-        checkModel(article);
-        assertEquals("/adobe/dynamicmedia/deliver/content/dam/desktop.jpg", article.getHeroimagedt());
-        assertEquals("/adobe/dynamicmedia/deliver/content/dam/mobile.jpg", article.getHeroimagemob());
-        assertEquals("/adobe/dynamicmedia/deliver/content/dam/tablet.jpg", article.getHeroimagetab());
     }
 
     @Test
@@ -103,17 +84,11 @@ class ArticleTest {
         assertEquals("#SmallBusinessAdvice", article.getGroupTag());
         assertEquals("/content/dhl/global/home/small-business-advice", article.getGroupPath());
         assertEquals("Small Business advice", article.getGrouptitle());
-        assertEquals("/content/dam/desktop.jpg", article.getHeroimagedt());
-        assertEquals("/content/dam/mobile.jpg", article.getHeroimagemob());
-        assertEquals("/content/dam/tablet.jpg", article.getHeroimagetab());
-        assertEquals("infographic", article.getIcon());
+        assertEquals("infographic", article.getMediaType());
         assertEquals("4 min read", article.getReadtime());
         assertEquals("en", article.getLocale().toString());
         assertEquals("/content/dhl/global/home/small-business-advice/article.html", article.getPath());
-        assertEquals("/content/dam/image.jpg", article.getPageImage());
-        assertEquals("Page Image Alt Text", article.getPageImageAltText());
         assertArrayEquals(new String[]{"#BusinessAdvice", "#eCommerceAdvice", "#InternationalShipping"}, article.getTagsToShow().toArray());
-        assertEquals("From Waybills to Export Licenses, this guide breaks down the jargon to help you navigate customs seamlessly. ", article.getBrief());
         assertEquals("What paperwork do I need for international shipping?", article.getDescription());
         assertEquals("2023-08-04", article.getCreated());
         assertEquals("August 4, 2023", article.getCreatedfriendly());
@@ -144,24 +119,7 @@ class ArticleTest {
     }
 
     private void checkGettersAndSetters(Article article) {
-        assertTrue(article.isValid());
-        assertEquals(0, article.getTags().size());
         assertNotNull(article.getCreatedDate());
-
-        article.setValid(false);
-        assertFalse(article.isValid());
-
-        article.setCurrent(true);
-        assertTrue(article.isCurrent());
-
-        article.setThird(true);
-        assertTrue(article.isThird());
-
-        article.setFourth(true);
-        assertTrue(article.isFourth());
-
-        article.setIndex(1);
-        assertEquals(1, article.getIndex());
     }
 
     private Resource getResource(String path) {

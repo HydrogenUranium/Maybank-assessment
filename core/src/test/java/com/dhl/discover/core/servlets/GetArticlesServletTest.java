@@ -6,6 +6,7 @@ import com.dhl.discover.core.services.*;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.factory.ModelFactory;
@@ -48,7 +49,7 @@ class GetArticlesServletTest {
     private GetArticlesServlet servlet;
 
     @Mock
-    private ArticleService articleService;
+    private ArticleSearchService articleSearchService;
 
     @Mock
     private PageUtilService pageUtilService;
@@ -84,12 +85,10 @@ class GetArticlesServletTest {
         lenient().when(pageUtilService.getLocale(any(Resource.class))).thenReturn(Locale.forLanguageTag("en"));
         lenient().when(tagUtilService.getExternalTags(any(Resource.class))).thenReturn(Arrays.asList("#CategoryPage"));
         lenient().when(tagUtilService.transformToHashtag(any(String.class))).thenReturn("#CategoryPage");
-        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
-        when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg");
 
         Article article1 = createArticleModel(context.resourceResolver().getResource("/content/home/article_1"));
         Article article2 = createArticleModel(context.resourceResolver().getResource("/content/home/article_2"));
-        lenient().when(articleService.findArticles(anyString(), anyString(), any(ResourceResolver.class), anyBoolean()))
+        lenient().when(articleSearchService.findArticles(anyString(), anyString(), any(SlingHttpServletRequest.class), anyBoolean()))
                 .thenReturn(List.of(new SearchResultEntry(article1), new SearchResultEntry(article2)));
 
         when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolverMock);
@@ -126,10 +125,8 @@ class GetArticlesServletTest {
                         "\"description\":\"What paperwork do I need for international shipping?\"," +
                         "\"author\":\"Adam Riley\"," +
                         "\"readtime\":\"4 min read\"," +
-                        "\"pageImage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                         "\"tagsToShow\":[\"#CategoryPage\"]," +
-                        "\"path\":\"/content/home/article_1.html\"," +
-                        "\"thumbnail\":\"/discover/thumbnail.png\"" +
+                        "\"path\":\"/content/home/article_1.html\"" +
                     "}," +
                     "\"excerpt\":\"\"" +
                 "}," +
@@ -143,10 +140,8 @@ class GetArticlesServletTest {
                         "\"description\":\"What paperwork do I need for international shipping?\"," +
                         "\"author\":\"Adam Riley\"," +
                         "\"readtime\":\"4 min read\"," +
-                        "\"pageImage\":\"/discover/content/dam/global-master/4-logistics-advice/essential-guides/dis0880-what-paperwork-do-i-need-for-international-shipping-/Mobile_991x558_V01.jpg\"," +
                         "\"tagsToShow\":[\"#CategoryPage\"]," +
-                        "\"path\":\"/content/home/article_2.html\"," +
-                        "\"thumbnail\":\"/discover/thumbnail.png\"" +
+                        "\"path\":\"/content/home/article_2.html\"" +
                     "}," +
                     "\"excerpt\":\"\"" +
                 "}" +

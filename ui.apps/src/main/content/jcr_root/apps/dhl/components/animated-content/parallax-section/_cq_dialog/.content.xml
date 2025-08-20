@@ -83,7 +83,7 @@
                     </type>
                     <title
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Title"
                             name="./title"/>
                     <firstDescriptionPart
@@ -94,7 +94,7 @@
                             name="./firstDescriptionPart"/>
                     <secondTitle
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Title For Second Part"
                             name="./secondTitle"/>
                     <secondDescriptionPart
@@ -114,14 +114,14 @@
                         <items jcr:primaryType="nt:unstructured">
                             <bkgroundImageAreaLabel1
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Wooden Guitar"
                                     name="./bkImgAreaLabel1"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"
                                     emptyText="Parallax-section aria-label placeholder for Wooden Guitar"/>
                             <bkgroundImageAreaLabel2
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Parallax-section background image aria-label for Chello"
                                     name="./bkImgAreaLabel2"
                                     fieldDescription="Set Parallax-section image aria-label for Accessibility"

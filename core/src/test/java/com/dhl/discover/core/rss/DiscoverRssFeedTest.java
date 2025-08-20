@@ -79,7 +79,6 @@ class DiscoverRssFeedTest {
         tagManager.createTag("dhl:tech-futures", "Tech Futures", "description");
         tagManager.createTag("dhl:culture-hype", "Culture Hype", "description");
 
-        when(assetUtilService.getThumbnailLink(any())).thenReturn("/thumbnail.png");
         lenient().when(launchService.resolveOutOfScopeLaunchPage(any(Page.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
     }
