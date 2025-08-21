@@ -4,7 +4,6 @@ import com.day.cq.wcm.api.LanguageManager;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.ResourceResolverHelper;
 import com.dhl.discover.genai.exception.AiException;
-import com.dhl.discover.genai.exception.UnsupportedLanguageException;
 import com.dhl.discover.genai.service.AssetDescriptionService;
 import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +40,7 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
     private transient AssetUtilService assetUtilService;
 
     @Reference
-    private LanguageManager languageManager;
+    private transient LanguageManager languageManager;
 
     @Reference
     private ResourceResolverHelper resourceResolverHelper;
@@ -56,16 +55,10 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write(responseBody.toString());
         } catch (RepositoryException e) {
-            handleError(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    "Failed to retrieve asset. " + e.getMessage());
+            handleError(response, "Failed to retrieve asset. " + e.getMessage());
             log.error("Failed to retrieve asset for description generation: {}", e.getMessage(), e);
-        } catch (UnsupportedLanguageException e) {
-            handleError(response, HttpServletResponse.SC_BAD_REQUEST,
-                    "Unsupported language for asset description generation: " + e.getMessage());
-            log.warn("Unsupported language for asset description generation: {}", e.getMessage(), e);
         } catch (AiException e) {
-            handleError(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    "Exception: " + e.getMessage());
+            handleError(response, "Exception: " + e.getMessage());
             log.error("AI exception during asset description generation: {}", e.getMessage(), e);
         }
     }
@@ -93,7 +86,7 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
         return languageManager.getLanguage(request.getResource());
     }
 
-    private JsonObject processRequest(SlingHttpServletRequest request) throws RepositoryException, UnsupportedLanguageException, AiException {
+    private JsonObject processRequest(SlingHttpServletRequest request) throws RepositoryException, AiException {
         String assetPath = getAssetPath(request);
 
         if (StringUtils.isBlank(assetPath)) {
@@ -114,8 +107,8 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
         return jsonResponse;
     }
 
-    private void handleError(SlingHttpServletResponse response, int statusCode, String errorMessage) throws IOException {
-        response.setStatus(statusCode);
+    private void handleError(SlingHttpServletResponse response, String errorMessage) throws IOException {
+        response.setStatus(HttpServletResponse. SC_INTERNAL_SERVER_ERROR);
         var errorResponse = new JsonObject();
         errorResponse.addProperty("status", "Error");
         errorResponse.addProperty("errorMessage", errorMessage);
