@@ -3,6 +3,7 @@ package com.dhl.discover.core.servlets;
 import com.adobe.cq.wcm.core.components.models.Image;
 import com.dhl.discover.core.models.search.SearchResultEntry;
 import com.dhl.discover.core.services.ArticleSearchService;
+import com.dhl.discover.core.services.PathUtilService;
 import com.google.gson.*;
 import com.dhl.discover.core.services.ResourceResolverHelper;
 import com.dhl.discover.core.utils.IndexUtils;
@@ -33,9 +34,13 @@ import static org.apache.commons.codec.CharEncoding.UTF_8;
         selectors = "search")
 public class GetArticlesServlet extends SlingSafeMethodsServlet {
     private static final long serialVersionUID = 5380383600055940736L;
+    private static final String DEFAULT_IMAGE_SRC = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg";
 
     @Reference
     protected transient ArticleSearchService articleSearchService;
+
+    @Reference
+    private transient PathUtilService pathUtilService;
 
     @Reference
     private ResourceResolverHelper resolverHelper;
@@ -56,9 +61,10 @@ public class GetArticlesServlet extends SlingSafeMethodsServlet {
         var gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .registerTypeAdapter(Image.class, (JsonSerializer<Image>) (image, type, context) -> {
-                    JsonObject obj = new JsonObject();
-                    obj.addProperty("src", image.getSrc());
-                    obj.addProperty("srcset", image.getSrcset());
+                    var obj = new JsonObject();
+                    String imagePath = StringUtils.defaultIfBlank(pathUtilService.map(image.getSrc()), DEFAULT_IMAGE_SRC);
+                    obj.addProperty("src", imagePath);
+                    obj.addProperty("srcset", pathUtilService.map(image.getSrcset()));
                     obj.addProperty("alt", image.getAlt());
                     obj.addProperty("title", image.getTitle());
                     return obj;
