@@ -4,7 +4,6 @@ import com.day.cq.dam.api.Asset;
 import com.day.cq.wcm.api.LanguageManager;
 import com.day.cq.wcm.api.Page;
 import com.dhl.discover.core.services.PageUtilService;
-import com.dhl.discover.genai.exception.UnsupportedLanguageException;
 import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
