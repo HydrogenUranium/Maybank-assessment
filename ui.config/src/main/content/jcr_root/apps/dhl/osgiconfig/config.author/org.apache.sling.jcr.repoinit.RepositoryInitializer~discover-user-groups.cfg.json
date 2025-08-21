@@ -87,6 +87,8 @@
 
         "set ACL for discover-base-user\ndeny jcr:write on /content restriction(rep:glob,/cq:tags/dhl)\nend",
 
+        "set ACL for discover-base-user\ndeny crx:replicate on /content/dhl/language-masters\nend",
+
         "create group author-all-countries",
         "add author-all-countries to group discover-base-user",
         "add author-all-countries to group author-language-master",
