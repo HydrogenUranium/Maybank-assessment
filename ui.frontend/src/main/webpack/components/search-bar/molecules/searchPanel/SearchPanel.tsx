@@ -49,35 +49,43 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const recentSearches = useMemo(() => getRecentSearches(), []);
 
   const handleKeyUp = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') { handleCloseSearch(); }
+    if (event.key === 'Escape') { handleClose(); }
   };
 
   const handleWindowScroll = () => {
-    handleCloseSearch();
+    handleClose();
   };
 
   function preventScroll(event) {
     event.preventDefault();
   }
 
+  const handleClose = () => {
+    setFadeOut(true);
+
+    setTimeout(() => {
+      handleCloseSearch();
+    }, 100);
+  };
+
   useEffect(() => {
     focusInput();
     searchRef.current?.addEventListener('mousedown', stopPropagation);
     searchRef.current?.addEventListener('touchmove', preventScroll);
-    window.addEventListener('mousedown', handleCloseSearch);
+    window.addEventListener('mousedown', handleClose);
     window.addEventListener('click', stopPropagation);
     window.addEventListener('keyup', handleKeyUp);
     window.addEventListener('scroll', handleWindowScroll);
     return () => {
       searchRef.current?.removeEventListener('mousedown', stopPropagation);
       searchRef.current?.removeEventListener('touchmove', preventScroll);
-      window.removeEventListener('mousedown', handleCloseSearch);
+      window.removeEventListener('mousedown', handleClose);
       window.removeEventListener('click', stopPropagation);
-      window.removeEventListener('keyup', handleCloseSearch);
+      window.removeEventListener('keyup', handleClose);
       window.removeEventListener('keyup', handleKeyUp);
       window.removeEventListener('scroll', handleWindowScroll);
     };
-  }, [handleCloseSearch]);
+  }, [handleClose]);
 
   const getSuggestionLength = () => {
     return suggestionQuery.length
@@ -166,14 +174,6 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
 
   const focusInput = (): void => inputRef.current?.focus();
 
-  const handleClose = () => {
-    setFadeOut(true);
-
-    setTimeout(() => {
-      handleCloseSearch();
-    }, 100);
-  };
-
   const renderSearchResults = () => {
     return (!!(suggestions.length || searchRows.length) &&
       <StrictMode>
@@ -223,7 +223,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
               <a href={`${article.path}`} className={styles.article} key={article.path}
                 tabIndex={-1}
                 onClick={() => putRecentSearch(inputRef.current?.value)}>
-                {showThumbnail && <div className={styles.articleImage} style={{ backgroundImage: `url(${article.thumbnail}), url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg')` }}></div>}
+                {showThumbnail && <div className={styles.articleImage} style={{ backgroundImage: `url(${article.featuredImageModel?.src}), url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg')` }}></div>}
                 <div className={styles.articleInfo}>
                   <div className={styles.articleInfoTitle}>{article.title}</div>
                   <div className={styles.articleInfoMetadata}>{article.createdfriendly}</div>

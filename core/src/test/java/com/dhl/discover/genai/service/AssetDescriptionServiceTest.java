@@ -16,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Locale;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -63,6 +65,21 @@ class AssetDescriptionServiceTest {
 
         assertEquals(DESCRIPTION, result);
         verify(promptProvider).getAssetDescriptionPrompt(asset);
+        verify(assetUtilService).getBase64(asset);
+        verify(client).generateContent(any(GenAiRequest.class));
+    }
+
+    @Test
+    void testGenerateDescriptionWithAssetAndLocale() throws AiException {
+        when(promptProvider.getAssetDescriptionPrompt(Locale.ENGLISH)).thenReturn(PROMPT);
+        when(response.getFirstChoiceText()).thenReturn(DESCRIPTION);
+
+        when(client.generateContent(any(GenAiRequest.class))).thenReturn(response);
+
+        String result = assetDescriptionService.generateDescription(asset, Locale.ENGLISH);
+
+        assertEquals(DESCRIPTION, result);
+        verify(promptProvider).getAssetDescriptionPrompt(Locale.ENGLISH);
         verify(assetUtilService).getBase64(asset);
         verify(client).generateContent(any(GenAiRequest.class));
     }

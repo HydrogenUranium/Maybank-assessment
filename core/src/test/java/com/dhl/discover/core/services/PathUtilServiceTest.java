@@ -34,6 +34,8 @@ class PathUtilServiceTest {
     public static final String PATH_WITH_UNSUPPORTED_CHARACTERS = "/content/dam/path()'/img.jpg";
     public static final String MAPPED_PATH = "/discover/content/dam/path%28%29%27/img.jpg";
     public static final String MAPPED_ABSOLUTE_PATH = "https://dhl.com/discover/content/dam/path%28%29%27/img.jpg";
+    public static final String PATH_WITH_MULTIPLE_URLS = "/content/path1.jpg, /content/path2.jpg 200w, /content/path3.jpg 2x";
+    public static final String MAPPED_MULTIPLE_URL_PATH = "/discover/content/path1.jpg, /discover/content/path2.jpg 200w, /discover/content/path3.jpg 2x";
 
     AemContext context = new AemContext();
 
@@ -82,6 +84,20 @@ class PathUtilServiceTest {
         String path = pathUtilService.map(PATH_WITH_UNSUPPORTED_CHARACTERS);
 
         assertEquals(MAPPED_PATH, path);
+    }
+
+    //test_map with path contain ","
+    @Test
+    void test_mapWithMultipleUrls() {
+        when(resourceResolverHelper.getReadResourceResolver()).thenReturn(resolver);
+        lenient().when(resolver.map(anyString())).thenAnswer(invocationOnMock -> {
+            String path = invocationOnMock.getArgument(0, String.class);
+            return StringUtils.isNotBlank(path) ? "/discover" + path : "";
+        });
+
+        String result = pathUtilService.map(PATH_WITH_MULTIPLE_URLS);
+
+        assertEquals(MAPPED_MULTIPLE_URL_PATH, result);
     }
 
     @Test

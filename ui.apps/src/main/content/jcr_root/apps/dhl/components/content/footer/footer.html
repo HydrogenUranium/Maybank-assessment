@@ -32,9 +32,10 @@
             <div class="links-group">
               <h2 data-sly-test="${footer.socialLinksLabel}" data-sly-element="${footer.sectionTitle ? 'h3' : 'h2'}" class="links-group__title">${footer.socialLinksLabel}</h2>
               <ul class="links-group__items" data-sly-list="${footer.socialLinks}">
-                  <li><a class="links-group__item" href="${item.linkPath}">
+                  <li><a class="links-group__item" data-sly-test="${item.linkPath}" href="${item.linkPath}">
                       <span class="not-mobile-only">${item.linkName}</span>
                       <img class="logo__image mobile-only"
+                           data-sly-test="${item.linkIcon}"
                            src="${item.linkIcon}"
                            title="${item.linkName}"
                            alt="${item.linkName}"/>

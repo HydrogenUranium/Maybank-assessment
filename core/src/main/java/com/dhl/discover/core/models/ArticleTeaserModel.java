@@ -8,13 +8,11 @@ import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.annotation.PostConstruct;
@@ -22,8 +20,6 @@ import java.util.Map;
 
 @Model(adaptables= SlingHttpServletRequest.class, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class ArticleTeaserModel {
-    @SlingObject
-    private ResourceResolver resourceResolver;
 
     @OSGiService
     protected AssetUtilService assetUtilService;
@@ -64,7 +60,7 @@ public class ArticleTeaserModel {
 
     @PostConstruct
     protected void init() {
-        var article = articleUtilService.getArticle(linkURL, resourceResolver);
+        var article = articleUtilService.getArticle(linkURL, request);
 
         if (article != null) {
             titleFromLinkedPage = Boolean.parseBoolean(titleFromPage) ? article.getNavTitle() : StringUtils.EMPTY;

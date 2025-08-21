@@ -29,7 +29,7 @@ public class GenAiResponse {
     }
 
     public String getFirstChoiceText() throws AiException {
-        if (choices == null || choices.isEmpty()) {
+        if (choices.isEmpty()) {
             throw new AiException("No choices returned from AI response");
         }
 

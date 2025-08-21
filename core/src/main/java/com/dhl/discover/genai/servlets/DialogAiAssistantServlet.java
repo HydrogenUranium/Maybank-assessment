@@ -30,7 +30,7 @@ import java.io.IOException;
 public class DialogAiAssistantServlet extends SlingAllMethodsServlet {
 
     @Reference
-    private DialogAiAssistantService dialogAiAssistantService;
+    private transient DialogAiAssistantService dialogAiAssistantService;
 
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {

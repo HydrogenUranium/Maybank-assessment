@@ -2,7 +2,7 @@ package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
-import com.dhl.discover.core.services.ArticleService;
+import com.dhl.discover.core.services.ArticleSearchService;
 import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
@@ -18,8 +18,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +36,7 @@ class ArticleShowcaseTest {
     private PageUtilService pageUtils;
 
     @Mock
-    private ArticleService articleService;
+    private ArticleSearchService articleSearchService;
 
     @Mock
     private Page page;
@@ -58,7 +56,7 @@ class ArticleShowcaseTest {
     @BeforeEach
     void setUp() throws Exception {
         context.registerService(PageUtilService.class, pageUtils);
-        context.registerService(ArticleService.class, articleService);
+        context.registerService(ArticleSearchService.class, articleSearchService);
         context.registerService(PathUtilService.class, pathUtilService);
         context.registerService(ArticleUtilService.class, articleUtilService);
         context.addModelsForClasses(ArticleShowcase.class);
@@ -93,7 +91,7 @@ class ArticleShowcaseTest {
     @Test
     void init_ShouldInitArticles_WhenArticlesAreConfiguredToUseLatestPosts() {
         when(pageUtils.getHomePage(any(Page.class))).thenReturn(page);
-        when(articleService.getLatestArticles(any(Page.class), anyInt())).thenReturn(List.of(article));
+        when(articleSearchService.getLatestArticles(any(Page.class), anyInt(), any(SlingHttpServletRequest.class))).thenReturn(List.of(article));
         initRequest("/content/home/jcr:content/par/article-showcase_latest-posts");
 
         ArticleShowcase showcase = request.adaptTo(ArticleShowcase.class);
