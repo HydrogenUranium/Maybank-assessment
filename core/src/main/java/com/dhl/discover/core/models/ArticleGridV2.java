@@ -38,7 +38,7 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 @Slf4j
 public class ArticleGridV2 {
-    private final static String FALLBACK_IMAGE_SRC = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg";
+    private static final String FALLBACK_IMAGE_SRC = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg";
     @ScriptVariable
     @Required
     private Page currentPage;
