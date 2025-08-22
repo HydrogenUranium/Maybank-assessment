@@ -7,7 +7,6 @@ import com.dhl.discover.genai.api.GenAiClient;
 import com.dhl.discover.genai.api.request.Message;
 import com.dhl.discover.genai.api.request.GenAiRequest;
 import com.dhl.discover.genai.exception.AiException;
-import com.dhl.discover.genai.exception.UnsupportedLanguageException;
 import com.dhl.discover.genai.prompt.PromptProvider;
 import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
@@ -28,7 +27,7 @@ public class AssetDescriptionService {
     @Reference
     private AssetUtilService assetUtilService;
 
-    public String generateDescription(Asset asset) throws UnsupportedLanguageException, AiException {
+    public String generateDescription(Asset asset) throws AiException {
         String prompt = promptProvider.getAssetDescriptionPrompt(asset);
         return generateDescription(prompt, asset);
     }

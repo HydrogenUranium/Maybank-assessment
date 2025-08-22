@@ -9,7 +9,6 @@ import com.day.cq.workflow.metadata.MetaDataMap;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.ResourceResolverHelper;
 import com.dhl.discover.genai.exception.AiException;
-import com.dhl.discover.genai.exception.UnsupportedLanguageException;
 import com.dhl.discover.genai.service.AssetDescriptionService;
 import com.drew.lang.annotations.NotNull;
 import lombok.extern.slf4j.Slf4j;
@@ -56,8 +55,6 @@ public class GenerateAssetDescriptionWorkflowProcess implements WorkflowProcess 
             session.save();
         } catch (RepositoryException e) {
             log.warn("Error processing GenerateAssetDescriptionWorkflow at: {}", item.getWorkflowData().getPayload(), e);
-        } catch (UnsupportedLanguageException e) {
-            log.debug("Skipp asset description generation since the language is not specified: {}", item.getWorkflowData().getPayload(), e);
         } catch (AiException e) {
             log.warn("Error generating asset description for: {}", item.getWorkflowData().getPayload(), e);
         }
