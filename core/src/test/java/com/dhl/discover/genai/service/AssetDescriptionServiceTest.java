@@ -6,7 +6,6 @@ import com.dhl.discover.genai.api.GenAiClient;
 import com.dhl.discover.genai.api.request.GenAiRequest;
 import com.dhl.discover.genai.api.response.GenAiResponse;
 import com.dhl.discover.genai.exception.AiException;
-import com.dhl.discover.genai.exception.UnsupportedLanguageException;
 import com.dhl.discover.genai.prompt.PromptProvider;
 import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,7 +54,7 @@ class AssetDescriptionServiceTest {
     }
 
     @Test
-    void testGenerateDescriptionWithAsset() throws UnsupportedLanguageException, AiException {
+    void testGenerateDescriptionWithAsset() throws AiException {
         when(promptProvider.getAssetDescriptionPrompt(asset)).thenReturn(PROMPT);
         when(response.getFirstChoiceText()).thenReturn(DESCRIPTION);
 
@@ -85,7 +84,7 @@ class AssetDescriptionServiceTest {
     }
 
     @Test
-    void testGenerateDescriptionWithAssetAndResource() throws UnsupportedLanguageException, AiException {
+    void testGenerateDescriptionWithAssetAndResource() throws AiException {
         when(promptProvider.getAssetDescriptionPrompt(resource)).thenReturn(PROMPT);
         when(response.getFirstChoiceText()).thenReturn(DESCRIPTION);
 
