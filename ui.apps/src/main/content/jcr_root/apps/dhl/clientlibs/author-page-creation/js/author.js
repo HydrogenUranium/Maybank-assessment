@@ -1,13 +1,79 @@
 (function(document, $) {
     "use strict";
     $(document).on("foundation-contentloaded", function(e) {
+      debugger;
         Coral.commons.ready(function() {
             const url = window.location.href;
-            if (!url.includes("createpagewizard.html")) return;
-            let inputs = $(".author-cf-input", e.target)
-            handler(inputs);
+            if (!url.includes("createpagewizard.html") && !url.includes("properties.html")) return;
+            try {
+              const urlObj = new URL(url);
+              const domain = `${urlObj.protocol}//${urlObj.hostname}${urlObj.port ? ':' + urlObj.port : ''}`;
+
+              let contentPath;
+              if (url.includes("createpagewizard.html")) {
+                contentPath = url.split("createpagewizard.html")[1];
+              } else if (url.includes("properties.html")) {
+                contentPath = url.split("properties.html")[1];
+                if (contentPath.includes("?item=")) {
+                  contentPath = decodeURIComponent(contentPath.split("?item=")[1]);
+                }
+              }
+              if (!contentPath.startsWith("/content")) return;
+
+              let inputs = $(".author-content-fragment-input", e.target)
+              if (url.includes("createpagewizard.html")) {
+                handler(inputs);
+              }
+              if (contentPath) {
+                $.ajax({
+                  url: `${domain}/${contentPath}.model.json`,
+                  dataType: 'json',
+                  success: function (data) {
+                    if (data && data.language) {
+                      const pageLanguage = data.language;
+                      addAuthorFragmentLink(inputs, domain, pageLanguage);
+                    } else {
+                      console.log("Language not found in response, use getPageLanguage()");
+                    }
+                  },
+                  error: function (xhr, status, error) {
+                    console.error("Could not fetch page properties:", error);
+                  }
+                });
+
+              }
+            } catch (error) {
+                console.error("Error processing author functionality:", error);
+              }
         });
     });
+
+    function addAuthorFragmentLink(inputs, domain, languageCode) {
+      if (!inputs || inputs.length === 0) return;
+
+      const authorSection = inputs[0].closest("section");
+      if (!authorSection) return;
+
+      const existingLink = authorSection.querySelector('a.author-fragment-link');
+      if (existingLink) return;
+
+      const link = document.createElement("a");
+      if (!languageCode || languageCode.trim() === "") {
+        link.href = `${domain}/assets.html/content/dam/dhl/content-fragments`;
+      } else {
+        if (languageCode && languageCode.includes("-")) {
+          languageCode = languageCode.split("-")[0];
+        }
+        link.href = `${domain}/assets.html/content/dam/dhl/content-fragments/${languageCode}`;
+      }
+      link.textContent = "Create a new author fragment";
+      link.target = "_blank";
+      link.style.display = "block";
+      link.style.marginTop = "10px";
+      link.classList.add("author-fragment-link");
+
+      authorSection.appendChild(link);
+    }
 
     function handler(el) {
         el.each(function(i, element) {
@@ -22,7 +88,7 @@
             const storageKey = `author-cf-selection-${branch}`;
 
             const preselectedValue = localStorage.getItem(storageKey);
-            const input = document.querySelector(".author-cf-input");
+            const input = document.querySelector(".author-content-fragment-input");
 
             if (input && preselectedValue) {
                 input.value = preselectedValue;

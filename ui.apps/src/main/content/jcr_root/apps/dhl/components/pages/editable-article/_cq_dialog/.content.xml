@@ -52,7 +52,7 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="dam/cfm/components/cfpicker"
                                                             emptyText="Enter or select Content Fragment"
-                                                            granite:class="author-cf-input"
+                                                            granite:class="author-content-fragment-input"
                                                             fieldDescription="Path to the Content Fragment to display."
                                                             cq:showOnCreate="{Boolean}true"
                                                             fieldLabel="Content Fragment"
