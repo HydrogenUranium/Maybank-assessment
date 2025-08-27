@@ -62,7 +62,6 @@ class PageListServletTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
         request = context.request();
         response = context.response();
         when(mockConfig.pageListServletEnabled()).thenReturn(true);
