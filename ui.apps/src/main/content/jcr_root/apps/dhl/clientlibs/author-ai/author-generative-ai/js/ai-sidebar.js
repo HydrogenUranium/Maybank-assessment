@@ -20,8 +20,6 @@
     return el.matches(joined) ? el : el.closest(joined);
   };
 
-
-
     $(document).on("foundation-contentloaded", function (e) {
         const isEnabled = localStorage.getItem('enableAiAssistant') === 'true';
         if (!isEnabled) return;
