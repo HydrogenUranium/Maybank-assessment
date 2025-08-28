@@ -38,6 +38,7 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 @Slf4j
 public class ArticleGridV2 {
+    private static final String FALLBACK_IMAGE_SRC = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg";
     @ScriptVariable
     @Required
     private Page currentPage;
@@ -167,6 +168,27 @@ public class ArticleGridV2 {
         return subCategories;
     }
 
+    private String getImageSrc(Image imageModel) {
+        if(imageModel == null || StringUtils.isBlank(imageModel.getSrc())) {
+            return FALLBACK_IMAGE_SRC;
+        }
+        return pathUtilService.map(imageModel.getSrc());
+    }
+
+    private String getImageSrcSet(Image imageModel) {
+        if (imageModel == null || StringUtils.isBlank(imageModel.getSrcset())) {
+            return "";
+        }
+        return pathUtilService.map(imageModel.getSrcset());
+    }
+
+    private String getImageAlt(Image imageModel) {
+        if (imageModel == null || StringUtils.isBlank(imageModel.getAlt())) {
+            return "";
+        }
+        return imageModel.getAlt();
+    }
+
     public String toJson() {
         JsonArrayBuilder categories = Json.createArrayBuilder();
         categoryArticleMap.forEach((category, articles) -> {
@@ -177,10 +199,10 @@ public class ArticleGridV2 {
                         .add(PAGE_TITLE_PARAM, article.getNavTitle())
                         .add("path", article.getPath())
                         .add("description", article.getDescription())
-                        .add("pageImage", StringUtils.defaultIfBlank(pathUtilService.map(featuredImageModel.getSrc()), "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg"))
-                        .add("imageSrcSet", StringUtils.defaultString(pathUtilService.map(featuredImageModel.getSrcset())))
+                        .add("pageImage", getImageSrc(featuredImageModel))
+                        .add("imageSrcSet", getImageSrcSet(featuredImageModel))
                         .add("imageSize", "")
-                        .add("imageAlt", StringUtils.defaultString(featuredImageModel.getAlt()))
+                        .add("imageAlt", getImageAlt(featuredImageModel))
                         .add("createdfriendly", article.getCreatedfriendly())
                         .add("createdMilliseconds", article.getCreatedMilliseconds())
                         .add("author", article.getAuthor())

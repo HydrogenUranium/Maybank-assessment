@@ -14,7 +14,7 @@ describe('Global Thank You Page Open An Account', () => {
     followUsFacebook: '.followUs__items > [href="https://www.facebook.com/DHLexpress/"]',
     followUsYoutube: '.followUs__items > [href="https://www.youtube.com/user/dhl"]',
     followUsInstagram: '.followUs__items > [href="https://www.instagram.com/discoverbydhl/"]',
-    followUsLinkedIn: '.followUs__items > [href="https://www.linkedin.com/company/dhlexpress"]',
+    followUsLinkedIn: '.followUs__items > [href="https://www.linkedin.com/company/dhlexpress/"]',
     followUsTwitter: '.followUs__items > [href="https://twitter.com/DHLexpress"]'
   };
 

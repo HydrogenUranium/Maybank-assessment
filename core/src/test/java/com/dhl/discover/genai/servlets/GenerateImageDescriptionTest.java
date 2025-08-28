@@ -85,7 +85,7 @@ class GenerateImageDescriptionTest {
 
     @Test
     void testDoGetByAssetAndLanguage() throws AiException, IOException {
-        when(request.getParameter("locale")).thenReturn("en");
+        when(request.getParameter("locale")).thenReturn("en_au");
         when(resource.getResourceType()).thenReturn("dam:Asset");
         when(resource.getPath()).thenReturn(ASSET_PATH);
         when(assetUtilService.getAsset(eq(ASSET_PATH), any())).thenReturn(asset);

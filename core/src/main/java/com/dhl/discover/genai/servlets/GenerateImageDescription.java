@@ -80,7 +80,7 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
     private Locale getLocale(SlingHttpServletRequest request) {
         String localeParam = request.getParameter("locale");
         if (StringUtils.isNotBlank(localeParam)) {
-            return Locale.forLanguageTag(localeParam);
+            return Locale.of(localeParam);
         }
 
         return languageManager.getLanguage(request.getResource());
