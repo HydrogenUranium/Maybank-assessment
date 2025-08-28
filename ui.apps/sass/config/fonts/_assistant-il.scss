@@ -3,54 +3,72 @@
   font-family: "Delivery";
   font-weight: 200; /* ExtraLight */
   font-stretch: condensed;
-  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-ExtraLight.ttf') format('truetype');
+  src:
+    url('__prefix__/discover/resources/fonts/assistant-il/Assistant-ExtraLight.woff2') format("woff2"),
+    url('__prefix__/discover/resources/fonts/assistant-il/Assistant-ExtraLight.woff') format("woff");
   unicode-range:  U+0590-05FF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Light */
 @font-face {
   font-family: "Delivery";
   font-weight: 300; /* Light */
-  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Light.ttf') format('truetype');
+  src:
+    url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Light.woff2') format("woff2"),
+    url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Light.woff') format("woff");
   unicode-range:  U+0590-05FF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Regular */
 @font-face {
   font-family: "Delivery";
   font-weight: normal; /* 400 */
-  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Regular.ttf') format('truetype');
+  src:
+    url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Regular.woff2') format("woff2"),
+    url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Regular.woff') format("woff");
   unicode-range:  U+0590-05FF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Medium */
 @font-face {
   font-family: "Delivery";
   font-weight: 500;
-  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Medium.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Medium.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Medium.woff') format("woff");
   unicode-range:  U+0590-05FF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* SemiBold */
 @font-face {
   font-family: "Delivery";
   font-weight: 600;
-  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-SemiBold.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/assistant-il/Assistant-SemiBold.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/assistant-il/Assistant-SemiBold.woff') format("woff");
   unicode-range:  U+0590-05FF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Bold */
 @font-face {
   font-family: "Delivery";
   font-weight: bold; /* 700 */
-  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Bold.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Bold.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/assistant-il/Assistant-Bold.woff') format("woff");
   unicode-range:  U+0590-05FF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Condensed ExtraBold */
@@ -58,8 +76,11 @@
   font-family: "Delivery";
   font-weight: 800;
   font-stretch: condensed;
-  src: url('__prefix__/discover/resources/fonts/assistant-il/Assistant-ExtraBold.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/assistant-il/Assistant-ExtraBold.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/assistant-il/Assistant-ExtraBold.woff') format("woff");
   unicode-range:  U+0590-05FF;
   font-synthesis: style;
+  font-display: swap;
 }
 

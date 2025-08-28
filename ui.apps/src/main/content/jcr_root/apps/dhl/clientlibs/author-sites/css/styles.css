@@ -1,0 +1,9 @@
+.ref-dialog {
+    min-width: 510px;
+}
+
+.ref-dialog ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
