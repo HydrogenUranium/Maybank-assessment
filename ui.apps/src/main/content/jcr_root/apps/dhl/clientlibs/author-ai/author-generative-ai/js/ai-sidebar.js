@@ -1,4 +1,25 @@
 (function ($) {
+  const FIELD_SELECTORS = [
+    'input.coral-Form-field',
+    "div[data-cq-richtext-editable='true']",
+    'textarea'
+  ];
+  const EXCLUDE_SELECTORS = [
+    'foundation-autocomplete',
+  ];
+
+
+  const fieldMatcher = (el) => {
+    if (!(el instanceof Element)) return null;
+
+    if (EXCLUDE_SELECTORS.some(sel => el.matches(sel) || el.closest(sel))) {
+      return null;
+    }
+
+    const joined = FIELD_SELECTORS.join(',');
+    return el.matches(joined) ? el : el.closest(joined);
+  };
+
     $(document).on("foundation-contentloaded", function (e) {
         const isEnabled = localStorage.getItem('enableAiAssistant') === 'true';
         if (!isEnabled) return;
@@ -14,7 +35,7 @@
             if (!formWrapper) return;
 
             formWrapper.addEventListener("focusin", function (event) {
-                const input = event.target.closest("input, textarea, div[data-cq-richtext-editable='true']");
+                const input = fieldMatcher(event.target);
                 if (input) {
                     aiAssistantSidebar.updateActiveInput(input);
                 }
