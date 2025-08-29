@@ -48,8 +48,7 @@ class PromptProviderTest {
 
     @Test
     void testGetAssetDescriptionPromptWithValidLocaleFromPage() {
-        String expectedPrompt = "Please create descriptive alt text for this image in en language " +
-                "The image appears in an article titled 'Page Title'";
+        String expectedPrompt = "Please create descriptive alt text for this image in en language. Page context: Title - Page Title.";
         when(resource.getPath()).thenReturn("/content/dhl/page");
         when(pageUtilService.getPage(any(Resource.class))).thenReturn(page);
         when(page.getTitle()).thenReturn("Page Title");
@@ -61,7 +60,7 @@ class PromptProviderTest {
 
     @Test
     void testGetAssetDescriptionPromptWithNullLocale() {
-        String expectedPrompt = "Please create descriptive alt text for this image in en language";
+        String expectedPrompt = "Please create descriptive alt text for this image in en language.";
 
         String actualPrompt = promptProvider.getAssetDescriptionPrompt((Locale) null);
 
@@ -72,7 +71,7 @@ class PromptProviderTest {
     void testGetAssetDescriptionPromptWithAsset() {
         when(asset.adaptTo(Resource.class)).thenReturn(resource);
         when(resource.getPath()).thenReturn("/content/dam/image");
-        String expectedPrompt = "Please create descriptive alt text for this image in en language";
+        String expectedPrompt = "Please create descriptive alt text for this image in en language. ";
 
         String actualPrompt = promptProvider.getAssetDescriptionPrompt(asset);
 

@@ -65,7 +65,7 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
 
     private String getAssetPath(SlingHttpServletRequest request) {
         var resource = request.getResource();
-        if("dam:Asset".equals(resource.getResourceType())) {
+        if ("dam:Asset".equals(resource.getResourceType())) {
             return resource.getPath();
         }
 
@@ -83,10 +83,10 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
             return Locale.of(localeParam);
         }
 
-        return languageManager.getLanguage(request.getResource());
+        return null;
     }
 
-    private JsonObject processRequest(SlingHttpServletRequest request) throws RepositoryException, AiException {
+    private String getDescription(SlingHttpServletRequest request) throws AiException, RepositoryException {
         String assetPath = getAssetPath(request);
 
         if (StringUtils.isBlank(assetPath)) {
@@ -94,12 +94,21 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
         }
 
         var asset = assetUtilService.getAsset(assetPath, resourceResolverHelper.getReadResourceResolver());
-        if(asset == null) {
+        if (asset == null) {
             throw new RepositoryException("Asset not found at path: " + assetPath);
         }
-        var locale = getLocale(request);
 
-        String description = assetDescriptionService.generateDescription(asset, locale);
+        var locale = getLocale(request);
+        if (locale != null) {
+            return assetDescriptionService.generateDescription(asset, locale);
+        }
+
+        return assetDescriptionService.generateDescription(asset, request.getResource());
+    }
+
+    private JsonObject processRequest(SlingHttpServletRequest request) throws RepositoryException, AiException {
+
+        var description = getDescription(request);
 
         var jsonResponse = new JsonObject();
         jsonResponse.addProperty("result", description);
@@ -108,7 +117,7 @@ public class GenerateImageDescription extends SlingSafeMethodsServlet {
     }
 
     private void handleError(SlingHttpServletResponse response, String errorMessage) throws IOException {
-        response.setStatus(HttpServletResponse. SC_INTERNAL_SERVER_ERROR);
+        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         var errorResponse = new JsonObject();
         errorResponse.addProperty("status", "Error");
         errorResponse.addProperty("errorMessage", errorMessage);

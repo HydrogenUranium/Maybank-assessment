@@ -3,9 +3,12 @@
   font-family: "Delivery";
   font-weight: 100; /* Thin */
   font-stretch: condensed;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Thin.ttf') format('truetype');
+  src:
+        url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Thin.woff2') format("woff2"),
+        url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Thin.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Condensed ExtraLight */
@@ -13,54 +16,72 @@
   font-family: "Delivery";
   font-weight: 200; /* ExtraLight */
   font-stretch: condensed;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraLight.ttf') format('truetype');
+  src:
+        url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraLight.woff2') format("woff2"),
+        url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraLight.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Light */
 @font-face {
   font-family: "Delivery";
   font-weight: 300; /* Light */
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Light.ttf') format('truetype');
+  src:
+        url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Light.woff2') format("woff2"),
+        url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Light.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Regular */
 @font-face {
   font-family: "Delivery";
   font-weight: normal; /* 400 */
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Regular.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Regular.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Regular.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Medium */
 @font-face {
   font-family: "Delivery";
   font-weight: 500;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Medium.ttf') format('truetype');
+  src:
+    url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Medium.woff2') format("woff2"),
+    url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Medium.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* SemiBold */
 @font-face {
   font-family: "Delivery";
   font-weight: 600;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-SemiBold.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-SemiBold.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-SemiBold.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Bold */
 @font-face {
   font-family: "Delivery";
   font-weight: bold; /* 700 */
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Bold.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Bold.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Bold.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Condensed ExtraBold */
@@ -68,9 +89,12 @@
   font-family: "Delivery";
   font-weight: 800;
   font-stretch: condensed;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraBold.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraBold.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraBold.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Condensed Black */
@@ -78,9 +102,12 @@
   font-family: "Delivery";
   font-weight: 900;
   font-stretch: condensed;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Black.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Black.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Black.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Condensed Thin */
@@ -88,9 +115,12 @@
   font-family: "Delivery-ja";
   font-weight: 100; /* Thin */
   font-stretch: condensed;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Thin.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Thin.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Thin.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF, U+0030-0039;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Condensed ExtraLight */
@@ -98,54 +128,72 @@
   font-family: "Delivery-ja";
   font-weight: 200; /* ExtraLight */
   font-stretch: condensed;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraLight.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraLight.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraLight.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF, U+0030-0039;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Light */
 @font-face {
   font-family: "Delivery-ja";
   font-weight: 300; /* Light */
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Light.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Light.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Light.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF, U+0030-0039;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Regular */
 @font-face {
   font-family: "Delivery-ja";
   font-weight: normal; /* 400 */
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Regular.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Regular.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Regular.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF, U+0030-0039;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Medium */
 @font-face {
   font-family: "Delivery-ja";
   font-weight: 500;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Medium.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Medium.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Medium.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF, U+0030-0039;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* SemiBold */
 @font-face {
   font-family: "Delivery-ja";
   font-weight: 600;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-SemiBold.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-SemiBold.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-SemiBold.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF, U+0030-0039;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Bold */
 @font-face {
   font-family: "Delivery-ja";
   font-weight: bold; /* 700 */
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Bold.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Bold.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Bold.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF, U+0030-0039;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Condensed ExtraBold */
@@ -153,9 +201,12 @@
   font-family: "Delivery-ja";
   font-weight: 800;
   font-stretch: condensed;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraBold.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraBold.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-ExtraBold.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF, U+0030-0039;
   font-synthesis: style;
+  font-display: swap;
 }
 
 /* Condensed Black */
@@ -163,7 +214,10 @@
   font-family: "Delivery-ja";
   font-weight: 900;
   font-stretch: condensed;
-  src: url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Black.ttf') format('truetype');
+  src:
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Black.woff2') format("woff2"),
+      url('__prefix__/discover/resources/fonts/noto-sans-jp/NotoSansJP-Black.woff') format("woff");
   unicode-range: U+3000-303F, U+30A0-30FF, U+3040-309F, U+FF00-FFEF, U+4E00-9FFF, U+0030-0039;
   font-synthesis: style;
+  font-display: swap;
 }
