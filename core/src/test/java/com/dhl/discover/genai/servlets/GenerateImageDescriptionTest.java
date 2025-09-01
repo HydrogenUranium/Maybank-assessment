@@ -71,10 +71,9 @@ class GenerateImageDescriptionTest {
 
     @Test
     void testDoGetWithValidAssetPath() throws Exception {
-        when(languageManager.getLanguage(any(Resource.class))).thenReturn(Locale.ENGLISH);
         when(request.getParameter("assetPath")).thenReturn(ASSET_PATH);
         when(assetUtilService.getAsset(eq(ASSET_PATH), any())).thenReturn(asset);
-        when(assetDescriptionService.generateDescription(any(), any(Locale.class))).thenReturn(GENERATED_DESCRIPTION);
+        when(assetDescriptionService.generateDescription(any(), any(Resource.class))).thenReturn(GENERATED_DESCRIPTION);
 
         servlet.doGet(request, response);
 
