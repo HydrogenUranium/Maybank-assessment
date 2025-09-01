@@ -1,7 +1,6 @@
 (function(document, $) {
     "use strict";
     $(document).on("foundation-contentloaded", function(e) {
-      debugger;
         Coral.commons.ready(function() {
             const url = window.location.href;
             if (!url.includes("createpagewizard.html") && !url.includes("properties.html")) return;
