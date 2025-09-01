@@ -1,0 +1,13 @@
+name: 'Publish to Artifactory'
+description: 'Builds, tests, and deploys the Maven artifact to Artifactory.'
+runs:
+  using: "composite"
+  steps:
+    - name: Deploy to Artifactory
+      shell: bash
+      run: mvn clean deploy -B
+    - name: Upload Maven Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: application-jar
+        path: target/*.jar
