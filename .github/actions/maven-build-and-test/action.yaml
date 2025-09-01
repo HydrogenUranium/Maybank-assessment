@@ -1,0 +1,16 @@
+name: 'Maven Build and Test'
+description: 'Runs mvn clean verify and uploads JaCoCo coverage results.'
+runs:
+  using: "composite"
+  steps:
+    - name: Build and Test
+      shell: bash
+      run: mvn clean verify -B
+    - name: Upload JaCoCo code coverage results
+      uses: actions/upload-artifact@v3
+      with:
+        name: jacoco-result
+        path: |
+          target/site/
+          target/jacoco.exec
+          target/surefire-reports
