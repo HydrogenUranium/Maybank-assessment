@@ -42,7 +42,7 @@ public class ProtocolNormalizationTransformer extends DefaultTransformer impleme
 
         String hrefValue = attributes.getValue(hrefIndex);
         if(StringUtils.isNotBlank(hrefValue) && hrefValue.startsWith("http://www.dhl.com")) {
-            String updatedHref = hrefValue.replaceFirst("http://www.dhl.com", "httpa://www.dhl.com");
+            String updatedHref = hrefValue.replaceFirst("http://www.dhl.com", "https://www.dhl.com");
             attributes.setValue(hrefIndex, updatedHref);
         }
     }
