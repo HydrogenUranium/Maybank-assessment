@@ -19,6 +19,6 @@ public class ProtocolNormalizationTransformerFactory implements TransformerFacto
 
     @Override
     public Transformer createTransformer() {
-        return new NoFollowExternalLinkTransformer();
+        return new ProtocolNormalizationTransformer();
     }
 }
