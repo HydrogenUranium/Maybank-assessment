@@ -11,7 +11,7 @@ import org.xml.sax.helpers.AttributesImpl;
 
 import java.io.IOException;
 
-public class ProtocolNormalizationTransformer extends DefaultTransformer implements Transformer {
+public class HttpsLinkTransformer extends DefaultTransformer implements Transformer {
 
 
     @Override
