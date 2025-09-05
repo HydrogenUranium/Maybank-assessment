@@ -143,7 +143,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     }
 
     private boolean shouldInclude(Page page) {
-        return isPublished(page) && !isNoIndex(page) && !isRedirect(page) && !isProtected(page) && isCanonical(page);
+        return isPublished(page) && !isNoIndex(page) && !isRedirect(page) && !isProtected(page) && isCanonical(page) && page.getContentResource() != null;
     }
 
     public boolean isCanonical(Page page) {
