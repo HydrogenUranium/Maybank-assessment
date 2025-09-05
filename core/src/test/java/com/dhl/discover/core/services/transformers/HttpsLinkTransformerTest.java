@@ -23,7 +23,7 @@ class HttpsLinkTransformerTest {
     private ContentHandler contentHandler;
 
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         transformer = new HttpsLinkTransformer();
         transformer.setContentHandler(contentHandler);
