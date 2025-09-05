@@ -9,7 +9,7 @@ import org.osgi.service.metatype.annotations.Designate;
         immediate = true,
         service = TransformerFactory.class,
         property = {
-                "pipeline.type=protocol-normalization"
+                "pipeline.type=https-transformer"
         }
 )
 @Designate(ocd = LinkTransformerFactory.Configuration.class)
