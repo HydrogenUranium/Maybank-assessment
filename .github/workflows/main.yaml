@@ -95,6 +95,7 @@ on:
         required: false
         default: false
 
+jobs:
   print-workflow-inputs:
     name: Workflow Inputs
     runs-on: ${{ vars.ACTION_RUNNER_NAME }}
