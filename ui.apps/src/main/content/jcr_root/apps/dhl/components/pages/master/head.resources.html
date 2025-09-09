@@ -51,7 +51,4 @@
 <template data-sly-template.dhlResources="${ @ dhlpage, accountactions}">
     <meta name="dhl-path-prefix" content="${dhlpage.assetprefix}" />
     <meta name="dhl-path-home" content="${accountactions.mappedHomeUrl}" />
-    <sly data-sly-unwrap data-sly-test="${(dhlpage.amparticlepath.length > 0)}">
-        <link rel="amphtml" href="${dhlpage.amparticlepath}.html">
-    </sly>
 </template>
