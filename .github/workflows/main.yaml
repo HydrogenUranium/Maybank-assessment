@@ -1,9 +1,6 @@
 name: Main Workflow
 
 on:
-#  repository_dispatch:
-#    types: [ run-main-workflow ]
-
   workflow_dispatch:
     inputs:
       environment_name:
@@ -97,21 +94,6 @@ on:
         type: boolean
         required: false
         default: false
-
-#  workflow_run:
-#    workflows: ["Matrix Build"]
-#    types: [completed]
-jobs:
-#  main-job:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#
-#      - name: Print matrix info
-#        run: echo "Matrix job ran on ${{ github.event.client_payload.matrix_os }} with Node ${{ github.event.client_payload.node_version }} and finished with status ${{ github.event.client_payload.matrix_status }}"
-#
-#      - name: Run main workflow
-#      - run: echo "Running main workflow"
 
   print-workflow-inputs:
     name: Workflow Inputs
