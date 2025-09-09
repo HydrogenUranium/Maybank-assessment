@@ -98,7 +98,7 @@ on:
         required: false
         default: false
 
-  wrokflow_run:
+  workflow_run:
     workflows: ["Matrix Build"]
     types: [completed]
 jobs:
