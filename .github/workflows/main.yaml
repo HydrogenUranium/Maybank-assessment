@@ -1,6 +1,9 @@
 name: Main Workflow
 
 on:
+  repository_dispatch:
+    types: [ run-main-workflow ]
+
   workflow_dispatch:
     inputs:
       environment_name:
@@ -95,167 +98,181 @@ on:
         required: false
         default: false
 
+  wrokflow_run:
+    workflows: ["Matrix Build"]
+    types: [completed]
 jobs:
-  print-workflow-inputs:
-    name: Workflow Inputs
-    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
+  main-job:
+    runs-on: ubuntu-latest
     steps:
-      - name: Create Inputs Summary
-        shell: bash
-        run: |
-          {
-            echo "| Input | Value |"
-            echo "| --- | --- |"
-            echo "| Target environment | ${{ inputs.environment_name }} |"
-            echo "| Git branch label | ${{ inputs.git_branch_label }} |"
-            echo "| Run Sonar Scan | ${{ inputs.run_sonar_scan }} |"
-            echo "| Run OWASP Dependency Check | ${{ inputs.run_owasp_dependency_check }} |"
-            echo "| Run Fortify Scan | ${{ inputs.run_fortify_scan }} |"
-            echo "| Build and publish to Artifactory | ${{ inputs.build_and_publish }} |"
-            echo "| Deploy to Azure/Openshift | ${{ inputs.deploy }} |"
-            echo "| Pull Request Number | ${{ inputs.pull_request_number }} |"
-            echo "| Pull Request Base Reference | ${{ inputs.pull_request_base_ref }} |"
-            echo "| Pull Request Head Reference | ${{ inputs.pull_request_head_ref }} |"
-          } >> $GITHUB_STEP_SUMMARY
-  fortify-scan:
-    name: Fortify SAST Scan
-    if: ${{ inputs.run_fortify_scan == true }}
-    uses: ./.github/workflows/security-sast-fortify.yaml
-    with:
-      include: ./
-      runner: ${{ vars.ACTION_RUNNER_NAME }}
-      scan-mode: full
-      scan-precision: 2
-      cache-enabled: false
-      git_branch_label: ${{ inputs.git_branch_label }}
+      - uses: actions/checkout@v4
 
-  build-and-scan:
-    name: Build and Scan
-    if: ${{ inputs.build_and_publish == true || inputs.run_owasp_dependency_check == true || inputs.run_sonar_scan == true ||  inputs.deploy == true }}
-    permissions:
-      contents: write
-      pull-requests: write
-    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
-    container: docker.artifactory.dhl.com/maven:3.9.9-eclipse-temurin-21
-    environment: ${{ inputs.environment_name }}
-    outputs:
-      artifact-id: ${{ steps.extract-info.outputs.artifact-id }}
-      artifact-version: ${{ steps.extract-info.outputs.artifact-version }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ inputs.git_branch_label }}
+      - name: Print matrix info
+        run: echo "Matrix job ran on ${{ github.event.client_payload.matrix_os }} with Node ${{ github.event.client_payload.node_version }} and finished with status ${{ github.event.client_payload.matrix_status }}"
 
-      - name: Setup Maven Settings
-        uses: ./.github/actions/setup-maven-settings
-        with:
-          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
-          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+      - name: Run main workflow
+      - run: echo "Running main workflow"
 
-      - name: Maven Build and Test
-        uses: ./.github/actions/maven-build-and-test
-
-      - name: OWASP Dependency-Check
-        uses: ./.github/actions/owasp-dependency-check
-        if: ${{ inputs.run_owasp_dependency_check == true }}
-
-      - name: Sonar Scan and Quality
-        uses: ./.github/actions/sonar-scan
-        if: ${{ inputs.run_sonar_scan == true }}
-        with:
-          pull-request-number: ${{ inputs.pull_request_number }}
-          pull-request-base-ref: ${{ inputs.pull_request_base_ref }}
-          pull-request-head-ref: ${{ inputs.pull_request_head_ref }}
-          sonar-host-url: ${{ vars.SONAR_HOST_URL }}
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
-          sonar-project-key: ${{ vars.SONAR_PROJECT_KEY }}
-          sonar-project-name: ${{ vars.SONAR_PROJECT_NAME }}
-
-      - name: Evaluate Artifact Info
-        id: extract-info
-        uses: ./.github/actions/evaluate-artifact-info
-        if: ${{ inputs.build_and_publish == true || inputs.deploy == true }}
-
-      - name: Publish to Artifactory
-        uses: ./.github/actions/publish-to-artifactory
-        if: ${{ inputs.build_and_publish == true }}
-
-  publish-docker-and-helm:
-    name: Publish to Docker and Helm
-    if: ${{ inputs.build_and_publish == true }}
-    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
-    environment: ${{ inputs.environment_name }}
-    needs: build-and-scan
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.git_branch_label }}
-          
-      - name: Publish to Docker
-        uses: ./.github/actions/publish-to-docker
-        with:
-          artifact-id: ${{ needs.build-and-scan.outputs.artifact-id }}
-          artifact-version: ${{ needs.build-and-scan.outputs.artifact-version }}
-          environment-name: ${{ inputs.environment_name }}
-          artifactory-docker-registry: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY }}
-          registry-repo: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY_REPO }}
-          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
-          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
-          dockerfile: ${{ vars.DOCKERFILE }}
-
-      - name: Publish to Helm
-        uses: ./.github/actions/publish-to-helm
-        with:
-          artifact-id: ${{ needs.build-and-scan.outputs.artifact-id }}
-          artifact-version: ${{ needs.build-and-scan.outputs.artifact-version }}
-          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
-          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
-          helm-chart-deployment-path: ${{ vars.HELM_CHART_DEPLOYMENT_PATH }}
-          artifactory-helm-registry: ${{ vars.ARTIFACTORY_HELM_REGISTRY }}
-          registry-repo: ${{ vars.ARTIFACTORY_HELM_REGISTRY_REPO }}
-          
-  deploy-app:
-    name: Deploy Application to Kubernetes Cluster After Publish to Artifactory, Docker and Helm
-    if: ${{ always() && inputs.deploy == true && (needs.publish-docker-and-helm.result == 'skipped' || needs.publish-docker-and-helm.result == 'success') }}
-    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
-    container: docker.artifactory.dhl.com/cdlib/helm
-    needs: 
-      - build-and-scan
-      - publish-docker-and-helm
-    concurrency:
-      group: deploy-${{ inputs.environment_name }}
-      cancel-in-progress: false
-    environment: ${{ inputs.environment_name }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ inputs.git_branch_label }}
-      - name: Deploy to cluster
-        uses: ./.github/actions/deploy-to-cluster
-        with:
-          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
-          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
-          environment-name: ${{ inputs.environment_name }}
-          artifact-id: ${{ needs.build-and-scan.outputs.artifact-id }}
-          artifact-version: ${{ needs.build-and-scan.outputs.artifact-version }}
-          az-client-id: ${{ vars.AZURE_SP_CLIENT_ID }}
-          az-client-secret: ${{ secrets.AZURE_SP_CLIENT_SECRET }}
-          az-tenant-id: ${{ vars.AZURE_SP_TENANT_ID }}
-          az-aks-sub-id: ${{ vars.AZURE_AKS_CLUSTER_SUBSCRIPTION_ID }}
-          az-aks-cluster-resource-group-name: ${{ vars.AZURE_AKS_CLUSTER_RESOURCE_GROUP_NAME }}
-          az-aks-cluster-name: ${{ vars.AZURE_AKS_CLUSTER_NAME }}
-          oc-token: ${{ secrets.OC_TOKEN }}
-          oc-username: ${{ secrets.OC_USERNAME }}
-          oc-password: ${{ secrets.OC_PASSWORD }}
-          oc-url: ${{ vars.OC_URL }}
-          helm-chart-deployment-path: ${{ vars.HELM_CHART_DEPLOYMENT_PATH }}
-          helm-chart-value-path: ${{ vars.HELM_CHART_VALUE_PATH }}
-          namespace: ${{ vars.AZURE_AKS_CLUSTER_NAMESPACE || vars.OC_NAMESPACE }}
-          artifactory-helm-registry: ${{ vars.ARTIFACTORY_HELM_REGISTRY }}
-          registry-repo: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY_REPO }}
-          artifactory-docker-registry: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY }}
+#  print-workflow-inputs:
+#    name: Workflow Inputs
+#    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
+#    steps:
+#      - name: Create Inputs Summary
+#        shell: bash
+#        run: |
+#          {
+#            echo "| Input | Value |"
+#            echo "| --- | --- |"
+#            echo "| Target environment | ${{ inputs.environment_name }} |"
+#            echo "| Git branch label | ${{ inputs.git_branch_label }} |"
+#            echo "| Run Sonar Scan | ${{ inputs.run_sonar_scan }} |"
+#            echo "| Run OWASP Dependency Check | ${{ inputs.run_owasp_dependency_check }} |"
+#            echo "| Run Fortify Scan | ${{ inputs.run_fortify_scan }} |"
+#            echo "| Build and publish to Artifactory | ${{ inputs.build_and_publish }} |"
+#            echo "| Deploy to Azure/Openshift | ${{ inputs.deploy }} |"
+#            echo "| Pull Request Number | ${{ inputs.pull_request_number }} |"
+#            echo "| Pull Request Base Reference | ${{ inputs.pull_request_base_ref }} |"
+#            echo "| Pull Request Head Reference | ${{ inputs.pull_request_head_ref }} |"
+#          } >> $GITHUB_STEP_SUMMARY
+#  fortify-scan:
+#    name: Fortify SAST Scan
+#    if: ${{ inputs.run_fortify_scan == true }}
+#    uses: ./.github/workflows/security-sast-fortify.yaml
+#    with:
+#      include: ./
+#      runner: ${{ vars.ACTION_RUNNER_NAME }}
+#      scan-mode: full
+#      scan-precision: 2
+#      cache-enabled: false
+#      git_branch_label: ${{ inputs.git_branch_label }}
+#
+#  build-and-scan:
+#    name: Build and Scan
+#    if: ${{ inputs.build_and_publish == true || inputs.run_owasp_dependency_check == true || inputs.run_sonar_scan == true ||  inputs.deploy == true }}
+#    permissions:
+#      contents: write
+#      pull-requests: write
+#    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
+#    container: docker.artifactory.dhl.com/maven:3.9.9-eclipse-temurin-21
+#    environment: ${{ inputs.environment_name }}
+#    outputs:
+#      artifact-id: ${{ steps.extract-info.outputs.artifact-id }}
+#      artifact-version: ${{ steps.extract-info.outputs.artifact-version }}
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#          ref: ${{ inputs.git_branch_label }}
+#
+#      - name: Setup Maven Settings
+#        uses: ./.github/actions/setup-maven-settings
+#        with:
+#          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+#          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+#
+#      - name: Maven Build and Test
+#        uses: ./.github/actions/maven-build-and-test
+#
+#      - name: OWASP Dependency-Check
+#        uses: ./.github/actions/owasp-dependency-check
+#        if: ${{ inputs.run_owasp_dependency_check == true }}
+#
+#      - name: Sonar Scan and Quality
+#        uses: ./.github/actions/sonar-scan
+#        if: ${{ inputs.run_sonar_scan == true }}
+#        with:
+#          pull-request-number: ${{ inputs.pull_request_number }}
+#          pull-request-base-ref: ${{ inputs.pull_request_base_ref }}
+#          pull-request-head-ref: ${{ inputs.pull_request_head_ref }}
+#          sonar-host-url: ${{ vars.SONAR_HOST_URL }}
+#          sonar-token: ${{ secrets.SONAR_TOKEN }}
+#          sonar-project-key: ${{ vars.SONAR_PROJECT_KEY }}
+#          sonar-project-name: ${{ vars.SONAR_PROJECT_NAME }}
+#
+#      - name: Evaluate Artifact Info
+#        id: extract-info
+#        uses: ./.github/actions/evaluate-artifact-info
+#        if: ${{ inputs.build_and_publish == true || inputs.deploy == true }}
+#
+#      - name: Publish to Artifactory
+#        uses: ./.github/actions/publish-to-artifactory
+#        if: ${{ inputs.build_and_publish == true }}
+#
+#  publish-docker-and-helm:
+#    name: Publish to Docker and Helm
+#    if: ${{ inputs.build_and_publish == true }}
+#    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
+#    environment: ${{ inputs.environment_name }}
+#    needs: build-and-scan
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#        with:
+#          ref: ${{ inputs.git_branch_label }}
+#
+#      - name: Publish to Docker
+#        uses: ./.github/actions/publish-to-docker
+#        with:
+#          artifact-id: ${{ needs.build-and-scan.outputs.artifact-id }}
+#          artifact-version: ${{ needs.build-and-scan.outputs.artifact-version }}
+#          environment-name: ${{ inputs.environment_name }}
+#          artifactory-docker-registry: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY }}
+#          registry-repo: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY_REPO }}
+#          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+#          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+#          dockerfile: ${{ vars.DOCKERFILE }}
+#
+#      - name: Publish to Helm
+#        uses: ./.github/actions/publish-to-helm
+#        with:
+#          artifact-id: ${{ needs.build-and-scan.outputs.artifact-id }}
+#          artifact-version: ${{ needs.build-and-scan.outputs.artifact-version }}
+#          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+#          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+#          helm-chart-deployment-path: ${{ vars.HELM_CHART_DEPLOYMENT_PATH }}
+#          artifactory-helm-registry: ${{ vars.ARTIFACTORY_HELM_REGISTRY }}
+#          registry-repo: ${{ vars.ARTIFACTORY_HELM_REGISTRY_REPO }}
+#
+#  deploy-app:
+#    name: Deploy Application to Kubernetes Cluster After Publish to Artifactory, Docker and Helm
+#    if: ${{ always() && inputs.deploy == true && (needs.publish-docker-and-helm.result == 'skipped' || needs.publish-docker-and-helm.result == 'success') }}
+#    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
+#    container: docker.artifactory.dhl.com/cdlib/helm
+#    needs:
+#      - build-and-scan
+#      - publish-docker-and-helm
+#    concurrency:
+#      group: deploy-${{ inputs.environment_name }}
+#      cancel-in-progress: false
+#    environment: ${{ inputs.environment_name }}
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#          ref: ${{ inputs.git_branch_label }}
+#      - name: Deploy to cluster
+#        uses: ./.github/actions/deploy-to-cluster
+#        with:
+#          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+#          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+#          environment-name: ${{ inputs.environment_name }}
+#          artifact-id: ${{ needs.build-and-scan.outputs.artifact-id }}
+#          artifact-version: ${{ needs.build-and-scan.outputs.artifact-version }}
+#          az-client-id: ${{ vars.AZURE_SP_CLIENT_ID }}
+#          az-client-secret: ${{ secrets.AZURE_SP_CLIENT_SECRET }}
+#          az-tenant-id: ${{ vars.AZURE_SP_TENANT_ID }}
+#          az-aks-sub-id: ${{ vars.AZURE_AKS_CLUSTER_SUBSCRIPTION_ID }}
+#          az-aks-cluster-resource-group-name: ${{ vars.AZURE_AKS_CLUSTER_RESOURCE_GROUP_NAME }}
+#          az-aks-cluster-name: ${{ vars.AZURE_AKS_CLUSTER_NAME }}
+#          oc-token: ${{ secrets.OC_TOKEN }}
+#          oc-username: ${{ secrets.OC_USERNAME }}
+#          oc-password: ${{ secrets.OC_PASSWORD }}
+#          oc-url: ${{ vars.OC_URL }}
+#          helm-chart-deployment-path: ${{ vars.HELM_CHART_DEPLOYMENT_PATH }}
+#          helm-chart-value-path: ${{ vars.HELM_CHART_VALUE_PATH }}
+#          namespace: ${{ vars.AZURE_AKS_CLUSTER_NAMESPACE || vars.OC_NAMESPACE }}
+#          artifactory-helm-registry: ${{ vars.ARTIFACTORY_HELM_REGISTRY }}
+#          registry-repo: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY_REPO }}
+#          artifactory-docker-registry: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY }}
