@@ -1,0 +1,12 @@
+{
+  "alloworigin": [
+  ],
+  "alloworiginregexp": [
+    "^https://([a-z0-9-]+\\.)*google\\.[a-z.]+$",
+    "^https://([a-z0-9-]+\\.)*adobeaemcloud\\.com$",
+    "^https://([a-z0-9-]+\\.)*dhl\\.[a-z.]+$"
+  ],
+  "allowedpaths": [
+    "/content/.*\\.enhanced-google-conversion\\.html"
+  ]
+}
