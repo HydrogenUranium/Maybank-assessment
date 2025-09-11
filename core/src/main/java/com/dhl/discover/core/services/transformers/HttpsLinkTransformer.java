@@ -14,8 +14,15 @@ import java.io.IOException;
 public class HttpsLinkTransformer extends DefaultTransformer implements Transformer {
 
 
+    /**
+     *
+     * @param context
+     * @param configuration
+     * @throws IOException
+     */
     @Override
     public void init(ProcessingContext context, ProcessingComponentConfiguration configuration) throws IOException {
+        //default implementation ignored
     }
 
     @Override
