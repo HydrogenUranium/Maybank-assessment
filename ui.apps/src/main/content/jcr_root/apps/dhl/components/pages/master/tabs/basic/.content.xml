@@ -136,7 +136,9 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Subtitle"
                                 name="./subtitle"
-                                renderReadOnly="{Boolean}true">
+                                renderReadOnly="{Boolean}true"
+                                granite:hide="{Boolean}true">
+
                             <granite:data
                                     jcr:primaryType="nt:unstructured"
                                     allowBulkEdit="{Boolean}true"

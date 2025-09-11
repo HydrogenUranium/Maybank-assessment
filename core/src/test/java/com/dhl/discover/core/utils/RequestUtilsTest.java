@@ -8,6 +8,8 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import javax.jcr.Session;
 
@@ -22,40 +24,22 @@ class RequestUtilsTest {
 
     private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
-    @Test
-    void testGetUrlPrefix_http() {
+    @ParameterizedTest
+    @CsvSource({
+            "http,www.example.com,8080,/content/example,http://www.example.com:8080/content/example",
+            "https,www.example.com,443,/content/example,https://www.example.com/content/example",
+            "http,www.example.com,80,/content/example,http://www.example.com/content/example"
+    })
+
+    void testGetUrlPrefix(String scheme, String serverName, int port, String contextPath, String expected) {
         SlingHttpServletRequest request = mock(SlingHttpServletRequest.class);
-        when(request.getScheme()).thenReturn("http");
-        when(request.getServerName()).thenReturn("www.example.com");
-        when(request.getServerPort()).thenReturn(8080);
-        when(request.getContextPath()).thenReturn("/content/example");
+        when(request.getScheme()).thenReturn(scheme);
+        when(request.getServerName()).thenReturn(serverName);
+        when(request.getServerPort()).thenReturn(port);
+        when(request.getContextPath()).thenReturn(contextPath);
 
         String urlPrefix = RequestUtils.getUrlPrefix(request);
-        assertEquals("http://www.example.com:8080/content/example", urlPrefix);
-    }
-
-    @Test
-    void testGetUrlPrefix_https() {
-        SlingHttpServletRequest request = mock(SlingHttpServletRequest.class);
-        when(request.getScheme()).thenReturn("https");
-        when(request.getServerName()).thenReturn("www.example.com");
-        when(request.getServerPort()).thenReturn(443);
-        when(request.getContextPath()).thenReturn("/content/example");
-
-        String urlPrefix = RequestUtils.getUrlPrefix(request);
-        assertEquals("https://www.example.com/content/example", urlPrefix);
-    }
-
-    @Test
-    void testGetUrlPrefix_defaultPort() {
-        SlingHttpServletRequest request = mock(SlingHttpServletRequest.class);
-        when(request.getScheme()).thenReturn("http");
-        when(request.getServerName()).thenReturn("www.example.com");
-        when(request.getServerPort()).thenReturn(80);
-        when(request.getContextPath()).thenReturn("/content/example");
-
-        String urlPrefix = RequestUtils.getUrlPrefix(request);
-        assertEquals("http://www.example.com/content/example", urlPrefix);
+        assertEquals(expected, urlPrefix);
     }
 
     @Test

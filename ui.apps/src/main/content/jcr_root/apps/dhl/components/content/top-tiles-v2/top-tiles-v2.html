@@ -5,23 +5,16 @@
 <div id="${properties.id}" class="cmp-top-tiles">
     <a href="${item.linkURL}" class="cmp-top-tiles__tile" data-sly-repeat="${model.tiles}" title="${item.pageTitle}">
         <div class="cmp-top-tiles__article">
-              <picture>
-                <source data-sly-test="${item.desktopImageModel}"
-                        media="(min-width: 48rem)"
-                        srcset="${item.desktopImageModel.srcset}"
-                        sizes="${item.sizes || item.desktopImageModel.sizes}"/>
-                <source data-sly-test="${item.mobileImageModel}"
-                        media="(max-width: 47.999rem)"
-                        srcset="${item.mobileImageModel.srcset}"
-                        sizes="${item.sizes || item.mobileImageModel.sizes}"/>
-                <img
-                        src="${item.defaultImageModel.src}"
-                        class="cmp-top-tiles__article-image"
-                        srcset="${item.defaultImageModel.srcset}"
-                        sizes="${item.sizes || item.defaultImageModel.sizes}"
-                        alt="${item.defaultImageModel.alt}"
-                        fetchpriority="${item.fetchPriority}"/>
-              </picture>
+          <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
+                       data-sly-call="${template.pictureWithModels @
+                       mobile=item.mobileImageModel,
+                       tablet=item.desktopImageModel,
+                       desktop=item.desktopImageModel,
+                       image=item.defaultImageModel,
+                       imgClass='cmp-top-tiles__article-image',
+                       priority=item.fetchPriority,
+                       sizes=item.sizes
+            }"></sly>
             <div class="cmp-top-tiles__article-info text-on-image">
                 <div class="cmp-top-tiles__article-title">${item.title @ context='html'}</div>
                 <div class="cmp-top-tiles__article-tag">${item.tag}</div>
@@ -29,4 +22,3 @@
         </div>
     </a>
 </div>
-

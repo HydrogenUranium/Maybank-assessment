@@ -2,7 +2,8 @@ package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.designer.Style;
-import com.dhl.discover.core.services.ArticleService;
+import com.dhl.discover.core.services.ArticleSearchService;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
@@ -21,11 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.dhl.discover.junitUtils.InjectorMock.mockInject;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 class ArticleShowcaseTest {
@@ -37,7 +36,7 @@ class ArticleShowcaseTest {
     private PageUtilService pageUtils;
 
     @Mock
-    private ArticleService articleService;
+    private ArticleSearchService articleSearchService;
 
     @Mock
     private Page page;
@@ -51,15 +50,19 @@ class ArticleShowcaseTest {
     @Mock
     private PathUtilService pathUtilService;
 
+    @Mock
+    private ArticleUtilService articleUtilService;
+
     @BeforeEach
     void setUp() throws Exception {
         context.registerService(PageUtilService.class, pageUtils);
-        context.registerService(ArticleService.class, articleService);
+        context.registerService(ArticleSearchService.class, articleSearchService);
         context.registerService(PathUtilService.class, pathUtilService);
+        context.registerService(ArticleUtilService.class, articleUtilService);
         context.addModelsForClasses(ArticleShowcase.class);
         context.currentPage(page);
         context.load().json("/com/dhl/discover/core/models/ArticleShowcase/content.json", "/content");
-        lenient().when(pageUtils.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
+        lenient().when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
         mockInject(context, "script-bindings", "currentStyle", currentStyle);
     }
 
@@ -78,6 +81,7 @@ class ArticleShowcaseTest {
         assertEquals("horizontal", showcase.getDesignMode());
         assertEquals("See All Latest Posts", showcase.getLinkName());
         assertEquals("/content/dhl/au", showcase.getLinkPath());
+        assertNull(showcase.getShowTags());
         assertEquals("h3", showcase.getArticlesTitleType());
         assertEquals("h2", showcase.getTitleType());
         assertEquals("customPick", showcase.getSource());
@@ -87,7 +91,7 @@ class ArticleShowcaseTest {
     @Test
     void init_ShouldInitArticles_WhenArticlesAreConfiguredToUseLatestPosts() {
         when(pageUtils.getHomePage(any(Page.class))).thenReturn(page);
-        when(articleService.getLatestArticles(any(Page.class), anyInt())).thenReturn(List.of(article));
+        when(articleSearchService.getLatestArticles(any(Page.class), anyInt(), any(SlingHttpServletRequest.class))).thenReturn(List.of(article));
         initRequest("/content/home/jcr:content/par/article-showcase_latest-posts");
 
         ArticleShowcase showcase = request.adaptTo(ArticleShowcase.class);
@@ -99,20 +103,24 @@ class ArticleShowcaseTest {
     }
 
     @Test
-    void initCustomPick_ShouldReturn_WhenArticleResourcesIsNull() throws IllegalAccessException {
+    void initCustomPick_ShouldReturn_WhenArticleResourcesIsNull() throws IllegalAccessException, NoSuchFieldException {
         ArticleShowcase showcase = new ArticleShowcase();
-        Field field = null;
-        try {
-            field = ArticleShowcase.class.getDeclaredField("articleResources");
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        }
-        field.setAccessible(true);
-        field.set(showcase, null);
+        Field articlesField = ArticleShowcase.class.getDeclaredField("articles");
+        articlesField.setAccessible(true);
+        articlesField.set(showcase, new ArrayList<>());
+
+        Field articleResourcesField = ArticleShowcase.class.getDeclaredField("articleResources");
+        articleResourcesField.setAccessible(true);
+        articleResourcesField.set(showcase, null);
+
+        Field articleUtilServiceField = ArticleShowcase.class.getDeclaredField("articleUtilService");
+        articleUtilServiceField.setAccessible(true);
+        articleUtilServiceField.set(showcase, articleUtilService);
 
         showcase.initCustomPick();
 
-        assertEquals(0, showcase.getArticles().size());
+        assertEquals(0, showcase.getArticles().size(), "Articles list should remain empty when articleResources is null");
+        verify(articleUtilService, never()).getArticle(anyString(), any(SlingHttpServletRequest.class));
     }
     @Test
     void initCustomPick_ShouldReturn_WhenArticleResourcesIsEmpty() throws IllegalAccessException {
@@ -130,4 +138,5 @@ class ArticleShowcaseTest {
 
         assertEquals(0, showcase.getArticles().size());
     }
+
 }

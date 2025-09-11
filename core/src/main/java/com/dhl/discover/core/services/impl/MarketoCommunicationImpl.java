@@ -49,7 +49,10 @@ public class MarketoCommunicationImpl implements MarketoCommunication {
 				return requestNewToken(marketoConnectionData);
 			}
 		} catch (HttpRequestException e) {
-			LOGGER.error("Unable to get Marketo authentication token, details (if available): {}", e.getMessage());
+			LOGGER.error("Unable to get Marketo authentication token");
+			if(LOGGER.isDebugEnabled()){
+				LOGGER.debug("Unable to get Marketo authentication token, details (if available): {}", e.getMessage());
+			}
 		}
 			return null;
 	}
@@ -113,7 +116,10 @@ public class MarketoCommunicationImpl implements MarketoCommunication {
 					return authenticationResponse.getAccessToken();
 				}
 			} catch (HttpRequestException e) {
-				LOGGER.error("Form submission error has occurred. Unable to get authentication token from Marketo backend. Details (if available): {}", e.getMessage());
+				LOGGER.error("Form submission error has occurred. Unable to get authentication token from Marketo backend");
+				if(LOGGER.isDebugEnabled()) {
+					LOGGER.debug("Form submission error has occurred. Unable to get authentication token from Marketo backend. Details (if available): {}", e.getMessage());
+				}
 			} catch (JsonProcessingException e) {
 				LOGGER.error("Unable to parse the message received from authentication backend ({}). Underlying error was: {}",hostname, e.getMessage());
 			}

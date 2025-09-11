@@ -5,15 +5,18 @@ exports[`ArticleCard should render component "ArticleCard" property 1`] = `
   className="articleCard"
 >
   <a
-    className="articleCardImage"
+    className="articleCardLink"
     href="/discover/en-global/logistics-advice/essential-guides/what-is-reverse-logistics"
-    style={
-      {
-        "backgroundImage": "url(/discover/content/dam/global-master/4-logistics-advice/essential-guides/wec0787-what-is-reverse-logistics/Mobile_991x558_V02.jpg)",
-      }
-    }
     tabIndex={-1}
   >
+    <picture
+      className="articleCardImageWrapper"
+    >
+      <img
+        className="articleCardImage"
+        src="/discover/content/dam/global-master/4-logistics-advice/essential-guides/wec0787-what-is-reverse-logistics/Mobile_991x558_V02.jpg"
+      />
+    </picture>
     <div
       className="articleCardGroupTag articleCardTextOnImage"
     >

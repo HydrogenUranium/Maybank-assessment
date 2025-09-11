@@ -19,7 +19,10 @@ export type Article = {
     tagsToShow: string[],
     title: string,
     readtime: string,
-    highlights: string[]
+    highlights: string[],
+    imageSrcSet: string,
+    imageSizes: string,
+    imageAlt: string
 }
 
 export type SearchRow = {

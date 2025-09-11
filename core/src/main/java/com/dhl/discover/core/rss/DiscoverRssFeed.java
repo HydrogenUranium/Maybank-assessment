@@ -61,7 +61,7 @@ public class DiscoverRssFeed {
             throw new ResourceNotFoundException("No data to render.");
         }
 
-        Article article = resource.adaptTo(Article.class);
+        Article article = request.adaptTo(Article.class);
         if (article == null) {
             throw new ResourceNotFoundException("Failed to adapt resource to article");
         }
@@ -85,11 +85,11 @@ public class DiscoverRssFeed {
     }
 
     private String getThumbnailImageUrl(Article article) {
-        String image = article.getPageImage();
-        if(StringUtils.isBlank(image)) {
+        var featuredImage = article.getFeaturedImageModel();
+        if(featuredImage == null || StringUtils.isBlank(featuredImage.getSrc())) {
             return null;
         }
-        String resolvedImagePath = request.getResourceResolver().map(image);
+        String resolvedImagePath = request.getResourceResolver().map(featuredImage.getSrc());
 
         return urlPrefix.concat(resolvedImagePath);
     }

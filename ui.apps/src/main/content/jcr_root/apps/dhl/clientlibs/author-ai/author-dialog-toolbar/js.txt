@@ -1,0 +1,3 @@
+#base=js
+input-toolbar-actions.js
+input-toolbar.js

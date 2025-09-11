@@ -6,20 +6,19 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.core.services.PathUtilService;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Model;
 
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 
 /**
  *
@@ -31,11 +30,11 @@ public class LandingPageTwoColumn {
 	@OSGiService
 	private PathUtilService pathUtilService;
 
-	@OSGiService
-	private PageUtilService pageUtilService;
+	@Self
+	private SlingHttpServletRequest request;
 
-	@SlingObject
-	private ResourceResolver resourceResolver;
+	@OSGiService
+	private ArticleUtilService articleUtilService;
 
 	@ScriptVariable
 	private Page currentPage;
@@ -97,7 +96,7 @@ public class LandingPageTwoColumn {
 				if (props != null) {
 					String url = props.get("url", "");
 					
-					var article = pageUtilService.getArticle(url, resourceResolver);
+					var article = articleUtilService.getArticle(url, request);
 					if (article != null) {
 						relatedArticles.add(article);
 					}

@@ -3,7 +3,7 @@
     position: absolute;
     padding: 2rem;
     top: 5.6rem;
-    @media screen and (min-width: 76.8rem) {
+    @media screen and (min-width: 48rem) {
         top: 7.6rem;
     }
     width: 100%;
@@ -21,7 +21,7 @@
             }
             font-size: 1.6rem;
             line-height: 2.5rem;
-            @media screen and (min-width: 76.8rem) {
+            @media screen and (min-width: 48rem) {
               line-height: 3.5rem;
               font-size: 2rem;
             }
@@ -72,7 +72,7 @@
     height: 1.6rem;
     margin-top: 4px;
     margin-right: 4px;
-    @media screen and (min-width: 76.8rem) {
+    @media screen and (min-width: 48rem) {
         width: 2rem;
         height: 2rem;
     }  

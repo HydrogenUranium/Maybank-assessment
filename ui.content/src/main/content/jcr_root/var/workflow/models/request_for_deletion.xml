@@ -45,7 +45,7 @@
                 type="PROCESS">
             <metaData
                     jcr:primaryType="nt:unstructured"
-                    PROCESS="com.dhl.discover.core.services.impl.PublisherPageRemovalNotification"
+                    PROCESS="com.dhl.discover.core.workflow.exec.notification.PublisherPageRemovalNotification"
                     PROCESS_AUTO_ADVANCE="true"/>
         </node3>
         <node4

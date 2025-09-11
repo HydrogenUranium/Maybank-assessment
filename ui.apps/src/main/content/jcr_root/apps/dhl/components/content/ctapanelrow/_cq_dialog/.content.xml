@@ -28,7 +28,7 @@
                         rootPath="/content/dam"/>
                     <title
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                         fieldLabel="Title"
                         name="./title"/>
                     <content
@@ -39,7 +39,7 @@
                         name="./content"/>
                     <ctatitle
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                         fieldLabel="CTA Title"
                         name="./ctatitle"/>
                     <ctalink

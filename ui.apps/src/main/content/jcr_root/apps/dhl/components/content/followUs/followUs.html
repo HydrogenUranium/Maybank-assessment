@@ -2,10 +2,13 @@
 
 <div class="followUs__title">${model.socialLinksLabel}</div>
 <div id="${properties.id}" class="followUs__items">
-    <a class="followUs__item" data-sly-repeat="${model.socialLinks}" href="${item.linkPath}">
-        <img class="logo__image"
-             src="${item.linkIcon}"
-             title="${item.linkName}"
-             alt="${item.linkName}"/>
-    </a>
+    <sly data-sly-repeat="${model.socialLinks}">
+        <a class="followUs__item" data-sly-test="${item.linkPath}" href="${item.linkPath}">
+            <img class="logo__image"
+                 data-sly-test="${item.linkIcon}"
+                 src="${item.linkIcon}"
+                 title="${item.linkName}"
+                 alt="${item.linkName}"/>
+        </a>
+    </sly>
 </div>

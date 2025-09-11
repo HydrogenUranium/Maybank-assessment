@@ -1,13 +1,13 @@
 <template data-sly-template.card="${@ article, showTags, enableAssetDelivery, titleType}">
-  <article class="article-card">
+  <article class="article-card" data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html">
     <a tabindex="-1" href="${article.path}" aria-hidden="true" class="article-card__image-wrapper">
-      <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
-           data-sly-call="${template.pictureWithModels @
+      <sly data-sly-call="${template.pictureWithModels @
                  image=article.featuredImageModel,
-                 sizes='20rem',
+                 forceRender=true,
+                 sizes='30rem',
                  imgClass='article-card__image'
              }"></sly>
-      <div class="article-card__group-tag">${article.groupTag}</div>
+      <div class="article-card__group-tag text-on-image">${article.groupTag}</div>
     </a>
     <div class="article-card__info">
       <div class="article-card__author">
@@ -29,17 +29,17 @@
 </template>
 
 <template data-sly-template.row="${@ article, showTags, enableAssetDelivery, titleType}">
-  <article class="article-row">
+  <article class="article-row" data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html">
     <a tabindex="-1" href="${article.path}" aria-hidden="true" class="article-row__picture">
-      <sly data-sly-use.template="/apps/dhl/htl/templates/responsive-image.html"
-           data-sly-call="${template.pictureWithModels @
+      <sly data-sly-call="${template.pictureWithModels @
                          image=article.featuredImageModel,
-                         sizes='(max-width: 48rem) 8rem, (max-width: 1200px) 14rem, 20rem',
+                         forceRender=true,
+                         sizes='(max-width: 48rem) 16rem, (max-width: 75rem) 25rem, 30rem',
                          imgClass='article-row__image'
                      }"></sly>
     </a>
     <div class="article-row__info">
-      <a class="article-row__group-tag text-on-image" href="${article.groupPath}">${article.groupTag}</a>
+      <a class="article-row__group-tag" href="${article.groupPath}">${article.groupTag}</a>
       <h3 data-sly-element="${titleType}" class="article-row__title-wrapper">
         <a href="${article.path}" class="article-row__title">${article.pageTitleWithBr @ context='html'}</a>
       </h3>

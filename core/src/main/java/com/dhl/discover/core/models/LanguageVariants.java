@@ -200,7 +200,16 @@ public class LanguageVariants {
 				}
 			}
 
-			var newItem = new LanguageVariant(language, title, newHomepage, newExactPath, langCode, deflt, path.contains(homepage.getPath()), exactPathExists);
+			var newItem = LanguageVariant.builder()
+					.name(language)
+					.title(title)
+					.home(newHomepage)
+					.link(newExactPath)
+					.langCode(langCode)
+					.deflt(deflt)
+					.current(path.contains(homepage.getPath()))
+					.exact(exactPathExists)
+					.build();
 			if (!variants.containsKey(region)) {
 				ArrayList<LanguageVariant> languages = new ArrayList<>();
 				variants.put(region, languages);
@@ -216,10 +225,17 @@ public class LanguageVariants {
 	}
 
 	private void setCountries(String countryCode, String currentCountryCode, boolean deflt, String region, LanguageVariant newItem) {
-		if (!StringUtils.isBlank(countryCode) && !countryCode.equals(currentCountryCode) && (!countries.containsKey(countryCode) || deflt)) {
-			newItem.setRegion(region);
-			countries.put(countryCode.equals("global") ? "aa" : countryCode, newItem);
+		if(StringUtils.isBlank(countryCode) || currentCountryCode.equals(countryCode)) {
+			return;
 		}
+		var normalizedCountryCode = countryCode.equals("global") ? "aa" : countryCode;
+		countries.compute(normalizedCountryCode, (key, existingValue) -> {
+			if (existingValue == null || deflt) {
+				newItem.setRegion(region);
+				return newItem;
+			}
+			return existingValue;
+		});
 	}
 
 	public Map<String, LanguageVariant> getCountries() {

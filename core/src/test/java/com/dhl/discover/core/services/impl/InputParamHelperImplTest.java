@@ -72,8 +72,8 @@ class InputParamHelperImplTest {
 		Map<String,Object> requestParamMap = getParametersMap();
 		request.setParameterMap(requestParamMap);
 		List<String> availableFields = getAvailableFields();
-		List<String> formFields = getFormFields();
-		FormInputBase formInputBase = underTest.buildForm(request, availableFields, formFields);
+		List<String> allFormFields = getFormFields();
+		FormInputBase formInputBase = underTest.buildForm(request, availableFields, allFormFields);
 		assertTrue(formInputBase.isOk());
 		assertEquals(2, formInputBase.getFormInputData().get(0).getLeadFormFields().size());
 	}
@@ -82,7 +82,7 @@ class InputParamHelperImplTest {
 	void ipV6(){
 		request.setRemoteAddr("2601:243:ce7e:3c90:65a8:2864:2e12:348e");
 		FormInputBase formInputBase = underTest.buildForm(request, permittedFormFields, formFields);
-		assertEquals("127.0.0.1", formInputBase.getFormInputData().get(0).getVisitorData().get("leadClientIpAddress"));
+		assertEquals("2601:243:ce7e:3c90:65a8:2864:2e12:348e", formInputBase.getFormInputData().get(0).getVisitorData().get("leadClientIpAddress"));
 	}
 
 	@Test
@@ -118,10 +118,10 @@ class InputParamHelperImplTest {
 	void buildForm(){
 		Map<String,Object> requestParamMap = getParametersMap();
 		List<String> availableFields = getAvailableFields();
-		List<String> formFields = getFormFields();
+		List<String> buildFormFields = getFormFields();
 
 		request.setParameterMap(requestParamMap);
-		FormInputBase form = underTest.buildForm(request,availableFields,formFields);
+		FormInputBase form = underTest.buildForm(request,availableFields,buildFormFields);
 		List<FormInputData> formInputData = form.getFormInputData();
 		assertEquals(2, formInputData.get(0).getLeadFormFields().size());
 		assertTrue(form.isOk());
@@ -152,10 +152,10 @@ class InputParamHelperImplTest {
 	}
 
 	private List<String> getFormFields(){
-		List<String> formFields = new ArrayList<>();
-		formFields.add("FirstName");
-		formFields.add("Email");
-		return formFields;
+		List<String> lstFormFields = new ArrayList<>();
+		lstFormFields.add("FirstName");
+		lstFormFields.add("Email");
+		return lstFormFields;
 	}
 
 	private Map<String,Object> getParametersMap(){

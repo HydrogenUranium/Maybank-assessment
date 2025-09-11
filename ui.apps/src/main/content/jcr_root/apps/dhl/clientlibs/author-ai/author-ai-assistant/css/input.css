@@ -1,0 +1,39 @@
+.ai-asst__input-display {
+    position: relative;
+}
+
+.ai-asst__input-display .ai-asst__send-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #8B8B8B;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.ai-asst__input-display textarea {
+    width: 100%;
+    resize: none;
+    height: 100%;
+    padding: 10px;
+    border-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-bottom: 40px;
+    border: none;
+    outline: none;
+    border: 1px solid #c1c1c1;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+}
+
+.ai-asst__input-meta-information {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #b9b9b9;
+}

@@ -10,6 +10,11 @@ import java.util.Map;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Utility class for mocking Sling Model injectors in unit tests using {@link AemContext}.
+ * <p>
+ * Supports mocking values returned by injectors with a specific name (e.g., "adaptable", "self").
+ */
 @UtilityClass
 public class InjectorMock {
 
@@ -40,6 +45,13 @@ public class InjectorMock {
         mockInject(context, INJECT_ADAPTABLE, map);
     }
 
+    /**
+     * Mocks multiple injected properties using a named injector and registers it in the given AEM context.
+     *
+     * @param context      the AemContext
+     * @param injectorName the name of the injector to register
+     * @param map          a map of property names and values to inject
+     */
     public static void mockInject(AemContext context, String injectorName, Map<String, Object> map) {
         Injector injector = mock(Injector.class);
 

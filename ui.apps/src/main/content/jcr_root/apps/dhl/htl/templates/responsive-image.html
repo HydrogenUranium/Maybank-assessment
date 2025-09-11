@@ -15,8 +15,13 @@
     </picture>
 </template>
 
-<template data-sly-template.pictureWithModels="${@image, desktop, tablet, mobile, imgClass, pictureClass, priority, sizes}">
-  <picture class="${pictureClass}">
+<template data-sly-template.pictureWithModels="${@image, desktop, tablet, mobile, imgClass, pictureClass, priority, sizes, forceRender}">
+  <picture data-sly-set.hasDefaultImage="${image && (image.fileReference || image.src)}"
+           data-sly-set.hasOverriding="${
+           (desktop && (desktop.src || desktop.fileReference))
+           || (tablet && (tablet.src || tablet.fileReference))
+           || (mobile && (mobile.src || mobile.fileReference))}"
+          data-sly-test="${hasDefaultImage || hasOverriding || forceRender}" class="${pictureClass}">
     <source data-sly-test="${desktop && desktop.src}"
             media="(min-width: 75rem)"
             srcset="${desktop.srcset || desktop.src}"
@@ -30,7 +35,7 @@
             srcset="${mobile.srcset || mobile.src}"
             sizes="${sizes || mobile.sizes}"/>
     <img
-            src="${image.src}"
+            src="${image.src || '/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg'}"
             class="${imgClass}"
             srcset="${image.srcset}"
             sizes="${sizes || image.sizes}"

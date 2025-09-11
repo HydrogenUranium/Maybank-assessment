@@ -1,8 +1,10 @@
 package com.dhl.discover.core.servlets;
 
+import com.adobe.cq.wcm.core.components.models.Image;
 import com.dhl.discover.core.models.search.SearchResultEntry;
-import com.dhl.discover.core.services.ArticleService;
-import com.google.gson.GsonBuilder;
+import com.dhl.discover.core.services.ArticleSearchService;
+import com.dhl.discover.core.services.PathUtilService;
+import com.google.gson.*;
 import com.dhl.discover.core.services.ResourceResolverHelper;
 import com.dhl.discover.core.utils.IndexUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +19,7 @@ import org.osgi.service.component.annotations.Reference;
 
 import javax.servlet.Servlet;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +34,13 @@ import static org.apache.commons.codec.CharEncoding.UTF_8;
         selectors = "search")
 public class GetArticlesServlet extends SlingSafeMethodsServlet {
     private static final long serialVersionUID = 5380383600055940736L;
+    private static final String DEFAULT_IMAGE_SRC = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg";
 
     @Reference
-    protected transient ArticleService articleService;
+    protected transient ArticleSearchService articleSearchService;
+
+    @Reference
+    private transient PathUtilService pathUtilService;
 
     @Reference
     private ResourceResolverHelper resolverHelper;
@@ -45,22 +52,25 @@ public class GetArticlesServlet extends SlingSafeMethodsServlet {
 
         var searchTerm = request.getParameter("s");
         var searchScope = request.getRequestPathInfo().getResourcePath();
-        var useWebOptimized = Boolean.parseBoolean(request.getParameter("optimized"));
-        var imgQuality = request.getParameter("imgquality");
         var fullTextSearch = hasFullTextIndex(searchScope);
 
-        try (var resolver = resolverHelper.getReadResourceResolver()) {
-            List<SearchResultEntry> searchResultEntries = StringUtils.isAnyBlank(searchTerm, searchScope)
-                    ? new ArrayList<>()
-                    : articleService.findArticles(searchTerm, searchScope, resolver, fullTextSearch);
+        List<SearchResultEntry> searchResultEntries = StringUtils.isAnyBlank(searchTerm, searchScope)
+                ? new ArrayList<>()
+                : articleSearchService.findArticles(searchTerm, searchScope, request, fullTextSearch);
 
-            searchResultEntries.forEach(entry -> entry.getArticle().initAssetDeliveryProperties(useWebOptimized, imgQuality));
-
-            var gson = new GsonBuilder()
-                    .excludeFieldsWithoutExposeAnnotation()
-                    .create();
-            response.getWriter().write(gson.toJson(searchResultEntries));
-        }
+        var gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .registerTypeAdapter(Image.class, (JsonSerializer<Image>) (image, type, context) -> {
+                    var obj = new JsonObject();
+                    String imagePath = StringUtils.defaultIfBlank(pathUtilService.map(image.getSrc()), DEFAULT_IMAGE_SRC);
+                    obj.addProperty("src", imagePath);
+                    obj.addProperty("srcset", pathUtilService.map(image.getSrcset()));
+                    obj.addProperty("alt", image.getAlt());
+                    obj.addProperty("title", image.getTitle());
+                    return obj;
+                })
+                .create();
+        response.getWriter().write(gson.toJson(searchResultEntries));
     }
 
     private boolean hasFullTextIndex(String searchScope) {

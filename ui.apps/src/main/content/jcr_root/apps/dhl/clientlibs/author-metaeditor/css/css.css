@@ -1,0 +1,16 @@
+.discover-metaeditor-input-button-wrapper {
+  height:0;
+  display: block;
+}
+
+.discover-metaeditor-input-button-wrapper button {
+    margin-left: auto;
+    display: block;
+}
+
+.coral-Form-field.discover-asset-description-source {
+    pointer-events: none;
+    background-color: #eaeaea !important;
+    border-color: transparent;
+    color: #b3b3b3;
+}

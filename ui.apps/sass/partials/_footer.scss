@@ -172,6 +172,13 @@
           @include respond(md) {
             flex-direction: column;
           }
+
+          li {
+            > .logo__image.mobile-only {
+              display: none;
+            }
+          }
+
         }
 
         &__item {

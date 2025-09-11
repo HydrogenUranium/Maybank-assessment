@@ -3,7 +3,7 @@
           jcr:primaryType="cq:Page">
     <jcr:content
             cq:designPath="/libs/settings/wcm/designs/default"
-            cq:lastModified="{Date}2024-05-13T15:34:37.126+03:00"
+            cq:lastModified="{Date}2025-08-12T11:49:06.807+08:00"
             cq:lastModifiedBy="admin"
             cq:template="/libs/cq/workflow/templates/model"
             jcr:primaryType="cq:PageContent"
@@ -16,7 +16,7 @@
             <or
                     jcr:created="{Date}2024-05-10T17:59:18.713+03:00"
                     jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2024-05-13T15:34:36.831+03:00"
+                    jcr:lastModified="{Date}2025-08-12T11:10:40.994+08:00"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Asset OR Page "
@@ -47,106 +47,144 @@
                 <_x0032_
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="cq/flow/components/parsys">
-                    <dynamic_participant
-                            jcr:lastModified="{Date}2023-06-01T20:22:17.972+03:00"
+                    <or
+                            jcr:created="{Date}2025-08-12T11:04:25.532+08:00"
+                            jcr:createdBy="admin"
+                            jcr:lastModified="{Date}2025-08-12T11:11:44.072+08:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="Review"
-                            sling:resourceType="cq/workflow/components/model/dynamic_participant">
-                        <metaData
-                                jcr:primaryType="nt:unstructured"
-                                DO_NOTIFY="true"
-                                DYNAMIC_PARTICIPANT="com.dhl.discover.core.services.impl.ParticipantStepChooserForPublishReview"/>
-                    </dynamic_participant>
-                    <or_1130472575
-                            jcr:lastModified="{Date}2024-05-10T18:43:30.872+03:00"
-                            jcr:lastModifiedBy="admin"
-                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Page"
                             sling:resourceType="cq/workflow/components/model/or"
                             branches="2"
-                            branchName1="Approve"
-                            branchName2="Reject"
+                            branchName1="Language Master"
+                            branchName2="Non Language Master"
                             branchOrder="[0,1]"
-                            default2="true"
-                            orSplit="true">
+                            orSplit="true"
+                            script1="function check() {&#xd;&#xa;    var p = workflowData.getPayload().toString();&#xd;&#xa;    return p.startsWith(&quot;/content/dhl/language-masters&quot;);&#xd;&#xa;}"
+                            script2="function check() {&#xd;&#xa;    var p = workflowData.getPayload().toString();&#xd;&#xa;    return !p.startsWith(&quot;/content/dhl/language-masters&quot;);&#xd;&#xa;}">
                         <_x0031_
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/flow/components/parsys">
-                            <activateresourceproc
-                                    jcr:description="A process to activate a page"
-                                    jcr:lastModified="{Date}2023-05-29T20:53:01.473+03:00"
+                            <noopprocess
+                                    jcr:created="{Date}2025-08-12T11:09:38.595+08:00"
+                                    jcr:createdBy="admin"
+                                    jcr:description="A no operation process"
+                                    jcr:lastModified="{Date}2025-08-12T11:12:14.174+08:00"
                                     jcr:lastModifiedBy="admin"
                                     jcr:primaryType="nt:unstructured"
-                                    jcr:title="Publish"
-                                    sling:resourceType="wcm/workflow/components/workflow/activateresourceprocess">
+                                    jcr:title="Close"
+                                    sling:resourceType="cq/workflow/components/workflow/noopprocess">
                                 <metaData
                                         jcr:primaryType="nt:unstructured"
-                                        PROCESS="com.day.cq.wcm.workflow.process.ActivatePageProcess"
+                                        PROCESS="/libs/workflow/scripts/noop.ecma"
                                         PROCESS_AUTO_ADVANCE="true"/>
-                            </activateresourceproc>
+                            </noopprocess>
                         </_x0031_>
                         <_x0032_
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="cq/flow/components/parsys">
-                            <dynamic_participant
-                                    jcr:description="Reviewers rejected publishing"
-                                    jcr:lastModified="{Date}2023-05-30T11:34:30.695+03:00"
+                            <dynamic_participant_
+                                    jcr:lastModified="{Date}2023-06-01T20:22:17.972+03:00"
                                     jcr:lastModifiedBy="admin"
                                     jcr:primaryType="nt:unstructured"
-                                    jcr:title="Reject"
+                                    jcr:title="Review"
                                     sling:resourceType="cq/workflow/components/model/dynamic_participant">
                                 <metaData
                                         jcr:primaryType="nt:unstructured"
                                         DO_NOTIFY="true"
-                                        DYNAMIC_PARTICIPANT="/libs/workflow/scripts/initiator-participant-chooser.ecma"/>
-                            </dynamic_participant>
-                            <or
-                                    jcr:lastModified="{Date}2023-06-01T20:24:05.272+03:00"
+                                        DYNAMIC_PARTICIPANT="com.dhl.discover.core.workflow.exec.ParticipantStepChooserForPublishReview"/>
+                            </dynamic_participant_>
+                            <or_1130472575
+                                    jcr:lastModified="{Date}2024-05-10T18:43:30.872+03:00"
                                     jcr:lastModifiedBy="admin"
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="cq/workflow/components/model/or"
                                     branches="2"
-                                    branchName1="Submit for review"
-                                    branchName2="Close"
+                                    branchName1="Approve"
+                                    branchName2="Reject"
                                     branchOrder="[0,1]"
+                                    default2="true"
                                     orSplit="true">
                                 <_x0031_
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="cq/flow/components/parsys">
-                                    <goto
-                                            jcr:description="This option will return the task for review"
-                                            jcr:lastModified="{Date}2024-05-10T18:16:10.355+03:00"
+                                    <activateresourceproc
+                                            jcr:description="A process to activate a page"
+                                            jcr:lastModified="{Date}2023-05-29T20:53:01.473+03:00"
                                             jcr:lastModifiedBy="admin"
                                             jcr:primaryType="nt:unstructured"
-                                            jcr:title="Submit for Review"
-                                            sling:resourceType="cq/workflow/components/model/goto">
+                                            jcr:title="Publish"
+                                            sling:resourceType="wcm/workflow/components/workflow/activateresourceprocess">
                                         <metaData
                                                 jcr:primaryType="nt:unstructured"
-                                                PROCESS="com.adobe.granite.workflow.core.process.GotoProcess"
-                                                PROCESS_AUTO_ADVANCE="false"
-                                                script="function check() {&#xd;&#xa;  return true;&#xd;&#xa;}"
-                                                TARGET_NODE_PATH="/conf/global/settings/workflow/models/request_for_activation/jcr:content/flow/or/2/dynamic_participant"/>
-                                    </goto>
+                                                PROCESS="com.day.cq.wcm.workflow.process.ActivatePageProcess"
+                                                PROCESS_AUTO_ADVANCE="true"/>
+                                    </activateresourceproc>
                                 </_x0031_>
                                 <_x0032_
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="cq/flow/components/parsys">
-                                    <noopprocess
-                                            jcr:description="A no operation process"
-                                            jcr:lastModified="{Date}2023-05-29T18:22:49.842+03:00"
+                                    <dynamic_participant
+                                            jcr:description="Reviewers rejected publishing"
+                                            jcr:lastModified="{Date}2025-08-12T11:02:57.479+08:00"
                                             jcr:lastModifiedBy="admin"
                                             jcr:primaryType="nt:unstructured"
-                                            jcr:title="Close"
-                                            sling:resourceType="cq/workflow/components/workflow/noopprocess">
+                                            jcr:title="Reject"
+                                            sling:resourceType="cq/workflow/components/model/dynamic_participant">
                                         <metaData
                                                 jcr:primaryType="nt:unstructured"
-                                                PROCESS="/libs/workflow/scripts/noop.ecma"
-                                                PROCESS_AUTO_ADVANCE="true"/>
-                                    </noopprocess>
+                                                DO_NOTIFY="true"
+                                                DYNAMIC_PARTICIPANT="/libs/workflow/scripts/initiator-participant-chooser.ecma"/>
+                                    </dynamic_participant>
+                                    <or
+                                            jcr:lastModified="{Date}2023-06-01T20:24:05.272+03:00"
+                                            jcr:lastModifiedBy="admin"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/workflow/components/model/or"
+                                            branches="2"
+                                            branchName1="Submit for review"
+                                            branchName2="Close"
+                                            branchOrder="[0,1]"
+                                            orSplit="true">
+                                        <_x0031_
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/flow/components/parsys">
+                                            <goto
+                                                    jcr:description="This option will return the task for review"
+                                                    jcr:lastModified="{Date}2025-08-12T11:49:06.802+08:00"
+                                                    jcr:lastModifiedBy="admin"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    jcr:title="Submit for Review"
+                                                    sling:resourceType="cq/workflow/components/model/goto">
+                                                <metaData
+                                                        jcr:primaryType="nt:unstructured"
+                                                        PROCESS="com.adobe.granite.workflow.core.process.GotoProcess"
+                                                        PROCESS_AUTO_ADVANCE="false"
+                                                        script="function check() {&#xd;&#xa;  return true;&#xd;&#xa;}"
+                                                        TARGET_NODE_PATH="/conf/global/settings/workflow/models/request_for_activation/jcr:content/flow/or/2/or/2/dynamic_participant_"/>
+                                            </goto>
+                                        </_x0031_>
+                                        <_x0032_
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/flow/components/parsys">
+                                            <noopprocess
+                                                    jcr:description="A no operation process"
+                                                    jcr:lastModified="{Date}2025-08-12T11:03:20.876+08:00"
+                                                    jcr:lastModifiedBy="admin"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    jcr:title="Close"
+                                                    sling:resourceType="cq/workflow/components/workflow/noopprocess">
+                                                <metaData
+                                                        jcr:primaryType="nt:unstructured"
+                                                        PROCESS="/libs/workflow/scripts/noop.ecma"
+                                                        PROCESS_AUTO_ADVANCE="true"/>
+                                            </noopprocess>
+                                        </_x0032_>
+                                    </or>
                                 </_x0032_>
-                            </or>
+                            </or_1130472575>
                         </_x0032_>
-                    </or_1130472575>
+                    </or>
                 </_x0032_>
             </or>
         </flow>

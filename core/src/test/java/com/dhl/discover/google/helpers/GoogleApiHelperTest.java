@@ -12,7 +12,6 @@ import java.security.NoSuchAlgorithmException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 @ExtendWith(MockitoExtension.class)
 class GoogleApiHelperTest {
 

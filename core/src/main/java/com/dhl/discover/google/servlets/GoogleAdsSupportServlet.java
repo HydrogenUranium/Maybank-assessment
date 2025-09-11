@@ -52,7 +52,10 @@ public class GoogleAdsSupportServlet extends SlingAllMethodsServlet {
             resolver.commit();
             writeSuccessResponse(response, page.getPath());
         } catch (Exception e) {
-            log.error("Failed to create cloud config", e);
+            log.error("Failed to create cloud config");
+            if(log.isDebugEnabled()) {
+                log.debug("Failed to create cloud config", e);
+            }
             writeErrorResponse(response, e.getMessage());
         }
     }

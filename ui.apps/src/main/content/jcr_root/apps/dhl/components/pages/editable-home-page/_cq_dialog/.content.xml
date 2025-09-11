@@ -45,7 +45,7 @@
                                         <items jcr:primaryType="nt:unstructured">
                                             <gtmtrackingid
                                                     jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldLabel="GTM Tracking ID (i.e. 'GTM-PZ5NFTR', etc)"
                                                     name="./gtmtrackingid"/>
                                             <signupemailprivacymessage
@@ -105,7 +105,7 @@
                                         <items jcr:primaryType="nt:unstructured">
                                             <siteregion
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Site Region (i.e. the English region name)"
                                                 name="./siteregion">
                                             <granite:data
@@ -114,7 +114,7 @@
                                             </siteregion>
                                             <sitelanguage
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Site Language (i.e. the Language code to appear in the menu)"
                                                 name="./sitelanguage">
                                             <granite:data
@@ -145,7 +145,7 @@
                                             </siteenabled>
                                             <acceptlanguages
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Accepts Language (i.e. comma separate the ISO language code(s) targetted by this site)"
                                                 name="./acceptlanguages">
                                             <granite:data
@@ -249,19 +249,22 @@
                                                                                 jcr:primaryType="nt:unstructured"
                                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                                 fieldLabel="Label"
-                                                                                name="./linkName"/>
+                                                                                name="./linkName"
+                                                                                required="{Boolean}true"/>
                                                                         <linkPath
                                                                                 jcr:primaryType="nt:unstructured"
                                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                                 fieldLabel="Path"
                                                                                 rootPath="/content/dhl"
-                                                                                name="./linkPath"/>
+                                                                                name="./linkPath"
+                                                                                required="{Boolean}true"/>
                                                                         <icon
                                                                                 jcr:primaryType="nt:unstructured"
                                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                                 fieldLabel="Icon (for Mobile only) "
                                                                                 rootPath="/content/dam"
-                                                                                name="./linkIcon"/>
+                                                                                name="./linkIcon"
+                                                                                required="{Boolean}true"/>
                                                                         <hidden
                                                                                 jcr:primaryType="nt:unstructured"
                                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
@@ -330,7 +333,7 @@
                                                                 <items jcr:primaryType="nt:unstructured">
                                                                     <shareOn
                                                                             jcr:primaryType="nt:unstructured"
-                                                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="Label (Desktop only)"
                                                                             emptyText="Share on"
                                                                             name="./articleHeader-shareOn">
@@ -388,7 +391,7 @@
                                                                     </socialNetwork>
                                                                     <smartShareButtonsLabel
                                                                             jcr:primaryType="nt:unstructured"
-                                                                            sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                             fieldLabel="'Smart Share Buttons' label"
                                                                             fieldDescription="Add label for the 'Smart Share Buttons' icon to be displayed on the right side.
                                                                                               This 'Smart Share Buttons' to help refer social channels

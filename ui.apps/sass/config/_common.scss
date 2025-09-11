@@ -64,3 +64,12 @@
 .text-on-image {
   @include text-on-image;
 }
+
+.direction--rtl {
+  direction: rtl;
+}
+
+.direction--ltr {
+  direction: ltr;
+}
+

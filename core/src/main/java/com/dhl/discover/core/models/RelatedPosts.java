@@ -1,13 +1,11 @@
 package com.dhl.discover.core.models;
 
-import com.day.cq.wcm.api.designer.Style;
 import com.dhl.discover.core.injectors.InjectHomeProperty;
-import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.ArticleUtilService;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -21,18 +19,16 @@ import java.util.List;
 
 @Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy= DefaultInjectionStrategy.OPTIONAL)
 public class RelatedPosts {
-    @OSGiService
-    private PageUtilService pageUtilService;
 
-    @ScriptVariable
-    protected Style currentStyle;
+    @OSGiService
+    private ArticleUtilService articleUtilService;
+
+    @Self
+    private SlingHttpServletRequest request;
 
     @InjectHomeProperty
     @Named("relatedPosts-title")
     private String homePropertyTitle;
-
-    @SlingObject
-    private ResourceResolver resourceResolver;
 
     @ValueMapValue
     @Getter
@@ -47,9 +43,6 @@ public class RelatedPosts {
     private Resource articleMultifield;
 
     @Getter
-    private boolean enableAssetDelivery;
-
-    @Getter
     private final List<Article> articles = new ArrayList<>();
 
     @PostConstruct
@@ -60,12 +53,11 @@ public class RelatedPosts {
             while (multifieldItems.hasNext()) {
                 var properties = multifieldItems.next().getValueMap();
                 String path = properties.get("articlePath", "");
-                var article = pageUtilService.getArticle(path, resourceResolver);
+                var article = articleUtilService.getArticle(path, request);
                 if (article != null) {
                     articles.add(article);
                 }
             }
         }
-        enableAssetDelivery = currentStyle.get("enableAssetDelivery", false);
     }
 }

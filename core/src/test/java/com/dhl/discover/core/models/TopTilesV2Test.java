@@ -1,9 +1,10 @@
 package com.dhl.discover.core.models;
 
-import com.dhl.discover.core.services.PageUtilService;
+import com.dhl.discover.core.services.ArticleUtilService;
 import com.dhl.discover.junitUtils.InjectorMock;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.factory.ModelFactory;
@@ -37,7 +38,7 @@ class TopTilesV2Test {
     private Article article;
 
     @Mock
-    private PageUtilService pageUtilService;
+    private ArticleUtilService articleUtilService;
 
     @BeforeEach
     void setUp() {
@@ -45,7 +46,7 @@ class TopTilesV2Test {
         context.addModelsForClasses(TopTilesV2.class);
         context.addModelsForClasses(TopTilesV2.Tile.class);
         context.registerService(ModelFactory.class, modelFactory, SERVICE_RANKING, Integer.MAX_VALUE);
-        context.registerService(PageUtilService.class, pageUtilService);
+        context.registerService(ArticleUtilService.class, articleUtilService);
         mockInject(context, InjectorMock.INJECT_CHILD_IMAGE_MODEL, "jcr:content/cq:featuredimage", null);
         when(modelFactory.createModelFromWrappedRequest(any(MockSlingHttpServletRequest.class), any(Resource.class), any()))
                 .thenAnswer(invocation -> {
@@ -56,7 +57,7 @@ class TopTilesV2Test {
 
         when(article.getPageTitleWithBr()).thenReturn("Article Title");
         when(article.getGroupTag()).thenReturn("#GroupTag");
-        when(pageUtilService.getArticle(anyString(), any(ResourceResolver.class))).thenReturn(article);
+        when(articleUtilService.getArticle(anyString(), any(SlingHttpServletRequest.class))).thenReturn(article);
 
         request.setPathInfo("/content/top_tiles");
         request.setResource(resolver.getResource("/content/top_tiles"));

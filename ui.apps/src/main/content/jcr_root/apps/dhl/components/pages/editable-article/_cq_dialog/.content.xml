@@ -36,62 +36,9 @@
                                         jcr:title="DHL Article properties"
                                         sling:resourceType="granite/ui/components/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <heroImages
-                                                    jcr:primaryType="nt:unstructured"
-                                                    jcr:title="Hero Images"
-                                                    sling:resourceType="granite/ui/components/foundation/form/fieldset">
-                                                <items jcr:primaryType="nt:unstructured">
-                                                    <note
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/alert"
-                                                            text="The configuration for the Hero image has been moved to the Hero Image component. Please edit the component on the page if you want to override the Hero banner image."/>
-                                                    <heroimagemob
-                                                            jcr:primaryType="nt:unstructured"
-                                                            disabled="{Boolean}true"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                            allowBulkEdit="{Boolean}true"
-                                                            fieldLabel="⚠️ Article 'Hero' Image (mobile)"
-                                                            name="./heroimagemob"
-                                                            rootPath="/content/dam"
-                                                            required="{Boolean}true"/>
-                                                    <heroimagetab
-                                                            jcr:primaryType="nt:unstructured"
-                                                            disabled="{Boolean}true"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                            allowBulkEdit="{Boolean}true"
-                                                            fieldLabel="⚠️ Article 'Hero' Image (tablet)"
-                                                            name="./heroimagetab"
-                                                            rootPath="/content/dam"
-                                                            required="{Boolean}true"/>
-                                                    <heroimagedt
-                                                            jcr:primaryType="nt:unstructured"
-                                                            disabled="{Boolean}true"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                            allowBulkEdit="{Boolean}true"
-                                                            fieldLabel="⚠️ Article 'Hero' Image (desktop)"
-                                                            name="./heroimagedt"
-                                                            rootPath="/content/dam"
-                                                            required="{Boolean}true"/>
-                                                    <heroimageAltText
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                            fieldLabel="⚠️ Hero Image Alt Text"
-                                                            disabled="{Boolean}true"
-                                                            name="./heroimageAltText"
-                                                            fieldDescription="Set Hero image alt text for SEO"
-                                                            emptyText="Hero Image Alt Text Placeholder"/>
-                                                </items>
-                                            </heroImages>
-                                            <description
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/textarea"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Brief Description"
-                                                name="./listbrief"
-                                                required="{Boolean}true"/>
                                             <readtime
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 allowBulkEdit="{Boolean}true"
                                                 fieldLabel="Read time"
                                                 name="./readtime"
@@ -105,7 +52,7 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="dam/cfm/components/cfpicker"
                                                             emptyText="Enter or select Content Fragment"
-                                                            granite:class="author-cf-input"
+                                                            granite:class="author-content-fragment-input"
                                                             fieldDescription="Path to the Content Fragment to display."
                                                             cq:showOnCreate="{Boolean}true"
                                                             fieldLabel="Content Fragment"
@@ -132,7 +79,7 @@
 
                                             <mediatype
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/foundation/form/select"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                                 allowBulkEdit="{Boolean}true"
                                                 fieldLabel="Media Category"
                                                 name="./mediatype"

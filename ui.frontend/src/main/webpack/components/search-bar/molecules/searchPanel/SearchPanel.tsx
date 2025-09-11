@@ -44,39 +44,48 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const [searchRows] = useDataFetching(articlesQuery, getArticles);
   const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
+  const [fadeOut, setFadeOut] = useState(false);
 
   const recentSearches = useMemo(() => getRecentSearches(), []);
 
   const handleKeyUp = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') { handleCloseSearch(); }
+    if (event.key === 'Escape') { handleClose(); }
   };
 
   const handleWindowScroll = () => {
-    handleCloseSearch();
+    handleClose();
   };
 
   function preventScroll(event) {
     event.preventDefault();
   }
 
+  const handleClose = () => {
+    setFadeOut(true);
+
+    setTimeout(() => {
+      handleCloseSearch();
+    }, 100);
+  };
+
   useEffect(() => {
     focusInput();
     searchRef.current?.addEventListener('mousedown', stopPropagation);
     searchRef.current?.addEventListener('touchmove', preventScroll);
-    window.addEventListener('mousedown', handleCloseSearch);
+    window.addEventListener('mousedown', handleClose);
     window.addEventListener('click', stopPropagation);
     window.addEventListener('keyup', handleKeyUp);
     window.addEventListener('scroll', handleWindowScroll);
     return () => {
       searchRef.current?.removeEventListener('mousedown', stopPropagation);
       searchRef.current?.removeEventListener('touchmove', preventScroll);
-      window.removeEventListener('mousedown', handleCloseSearch);
+      window.removeEventListener('mousedown', handleClose);
       window.removeEventListener('click', stopPropagation);
-      window.removeEventListener('keyup', handleCloseSearch);
+      window.removeEventListener('keyup', handleClose);
       window.removeEventListener('keyup', handleKeyUp);
       window.removeEventListener('scroll', handleWindowScroll);
     };
-  }, [handleCloseSearch]);
+  }, [handleClose]);
 
   const getSuggestionLength = () => {
     return suggestionQuery.length
@@ -153,7 +162,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   };
 
   const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
-    const query = event.target.value;
+    const query = sanitizeHtml(event.target.value);
     setInputValue(query);
     setArticlesQuery(query);
     setSuggestionQuery(query);
@@ -168,7 +177,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   const renderSearchResults = () => {
     return (!!(suggestions.length || searchRows.length) &&
       <StrictMode>
-        <div className={styles.searchResult}>
+        <div className={classNames(styles.searchResult, { [styles['fade-out']]: fadeOut })}>
           <SearchSection
             items={suggestions}
             title=''
@@ -214,7 +223,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
               <a href={`${article.path}`} className={styles.article} key={article.path}
                 tabIndex={-1}
                 onClick={() => putRecentSearch(inputRef.current?.value)}>
-                {showThumbnail && <div className={styles.articleImage} style={{ backgroundImage: `url(${article.thumbnail})` }}></div>}
+                {showThumbnail && <div className={styles.articleImage} style={{ backgroundImage: `url(${article.featuredImageModel?.src}), url('/etc.clientlibs/dhl/clientlibs/discover/resources/img/articleHeroHomepage-desk.jpg')` }}></div>}
                 <div className={styles.articleInfo}>
                   <div className={styles.articleInfoTitle}>{article.title}</div>
                   <div className={styles.articleInfoMetadata}>{article.createdfriendly}</div>
@@ -233,7 +242,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
     }
 
     return (
-      <div className={styles.searchResult}>
+      <div className={classNames(styles.searchResult, { [styles['fade-out']]: fadeOut })}>
         <SearchSection
           items={recentSearches}
           title={recentSearchesTitle}
@@ -306,8 +315,9 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
   };
 
   return (
-    <div className={styles.search} ref={searchRef}>
+      <div className={classNames(styles.search)} ref={searchRef}>
       <input
+        className={classNames({ [styles['fade-out']]: fadeOut })}
         aria-label={searchInputAriaLabel}
         role="combobox"
         type="search"
@@ -335,7 +345,7 @@ export const SearchPanel: React.FC<SearchPanelProps> = ({
         dataTestId='close-search'
         ariaLabel={closeAriaLabel}
         className={styles.absoluteRight}
-        onClick={handleCloseSearch} />
+        onClick={handleClose} />
     </div>
   );
 };

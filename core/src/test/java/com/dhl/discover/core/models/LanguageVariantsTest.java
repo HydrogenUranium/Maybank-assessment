@@ -83,7 +83,18 @@ class LanguageVariantsTest {
 
     @Test
     void test_constructor() {
-        LanguageVariant variant = new LanguageVariant("name", "title", "/home", "link", "EN", false, false, false);
+        LanguageVariant variant =
+                LanguageVariant.builder()
+                        .name("name")
+                        .title("title")
+                        .home("/home")
+                        .link("link")
+                        .langCode("EN")
+                        .deflt(false)
+                        .current(false)
+                        .exact(false)
+                        .build();
+
         variant.setRegion("global");
 
         assertEquals("name", variant.getName());

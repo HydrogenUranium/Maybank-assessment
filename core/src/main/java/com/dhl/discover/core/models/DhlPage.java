@@ -47,7 +47,6 @@ public class DhlPage {
 
 	private String fullUrl;
 	private String fullarticlepath;
-	private String amparticlepath;
 	private String assetprefix;
 	private String akamaiHostname;
 	private String ogtagimage;
@@ -56,9 +55,6 @@ public class DhlPage {
 	private String adobeDtmLink;
 	private String gtmDelayEnabled;
 
-	@InjectHomeProperty
-	@Default(values = "")
-	private String trackingid;
 	@InjectHomeProperty
 	@Default(values = "")
 	private String gtmtrackingid;
@@ -96,7 +92,6 @@ public class DhlPage {
 
 		ValueMap properties = currentPage.getProperties();
 		fullarticlepath = properties.get("fullarticlepath", "");
-		amparticlepath = properties.get("amparticlepath", "");
 		pageImage = assetUtilService.getPageImagePath(currentPage.getContentResource());
 		seoTitle = properties.get("seoTitle", "");
 
