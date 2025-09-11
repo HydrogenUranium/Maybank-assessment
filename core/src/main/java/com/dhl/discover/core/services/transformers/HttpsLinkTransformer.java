@@ -13,7 +13,10 @@ import java.io.IOException;
 
 public class HttpsLinkTransformer extends DefaultTransformer implements Transformer {
 
-
+    private static final String HREF_ATTRIBUTE = "href";
+    private static final String ANCHOR_TAG = "a";
+    private static final String HTTP_PREFIX = "http://www.dhl.com";
+    private static final String HTTPS_PREFIX = "https://www.dhl.com";
     /**
      *
      * @param context
@@ -31,26 +34,20 @@ public class HttpsLinkTransformer extends DefaultTransformer implements Transfor
     }
 
     public Attributes modifyAttributes(String qName, Attributes attributes) {
-        if(!qName.equalsIgnoreCase("a")) {
+        if(!ANCHOR_TAG.equalsIgnoreCase(qName)) {
             return attributes;
         }
         var modifiedAttributes = new AttributesImpl(attributes);
-        updateProtocol(modifiedAttributes);
+        int hrefIndex = modifiedAttributes.getIndex(HREF_ATTRIBUTE);
+
+        if(hrefIndex != -1) {
+            String hrefValue = modifiedAttributes.getValue(hrefIndex);
+            if(StringUtils.isNotBlank(hrefValue) && hrefValue.startsWith(HTTP_PREFIX)) {
+                String updatedHref = hrefValue.replaceFirst(HTTP_PREFIX, HTTPS_PREFIX);
+                modifiedAttributes.setValue(hrefIndex, updatedHref);
+            }
+        }
         return modifiedAttributes;
     }
 
-    private void updateProtocol(AttributesImpl attributes) {
-        var hrefAttribute  = "href";
-
-        int hrefIndex = attributes.getIndex(hrefAttribute);
-        if(hrefIndex == -1) {
-            return;
-        }
-
-        String hrefValue = attributes.getValue(hrefIndex);
-        if(StringUtils.isNotBlank(hrefValue) && hrefValue.startsWith("http://www.dhl.com")) {
-            String updatedHref = hrefValue.replaceFirst("http://www.dhl.com", "https://www.dhl.com");
-            attributes.setValue(hrefIndex, updatedHref);
-        }
-    }
 }
