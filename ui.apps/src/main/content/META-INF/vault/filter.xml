@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
     <filter root="/apps/cq/core/content/nav/tools/cloudservices/google-ads"/>
+    <filter root="/apps/wcm/core/content/sites"/>
     <filter root="/apps/dhl/clientlibs"/>
     <filter root="/apps/dhl/components"/>
     <filter root="/apps/dhl/dialog-fragments"/>

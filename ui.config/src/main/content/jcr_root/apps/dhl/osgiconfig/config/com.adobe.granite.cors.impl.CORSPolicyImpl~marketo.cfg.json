@@ -1,0 +1,5 @@
+{
+  "allowedpaths": [
+    "/content/dhl/.*\\.form\\.html"
+  ]
+}
