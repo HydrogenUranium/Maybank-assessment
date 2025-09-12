@@ -1,0 +1,412 @@
+# Fortify SAST Workflow for GitHub Actions
+#
+# Overview:
+#   This workflow performs a Static Application Security Test (SAST) using Fortify Static Code Analyzer.
+#   Steps include:
+#     - Translate source code
+#     - Run static scan
+#     - List found issues
+#     - Generate a security report (PDF, DOC, HTML, XLS)
+#     - Archive scan artifacts
+#     - Summarize scan results in GitHub Actions UI
+#
+# Recommended Usage:
+#   - On pull requests to protected branches (e.g., main, develop) to detect vulnerabilities before merge
+#   - On a nightly schedule to monitor codebase health over time
+#   - Before major releases to ensure security baselines are met
+#   - During internal or external audits to produce up-to-date security evidence (FPR + formal report)
+#
+# Advanced Features:
+#   - Quick Scan Mode: Fast scanning for high/critical issues only
+#   - Full Scan Mode: Complete analysis for all severities
+#   - Scan Precision Control: Tune scan depth from 1 (fastest) to 5 (most thorough)
+#   - Optional caching of Fortify translation data to speed up builds
+name: SAST Fortify Workflow
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        type: string
+        default: arc-small-container
+        required: false
+        description: "GitHub Actions runner label where the workflow should run (default: arc-small-container)."
+      container:
+        type: string
+        default: "sdm-proj-prg-docker.artifactory.dhl.com/cdlib/fortify:2.latest"
+        required: false
+        description: "Docker container image with Fortify Static Code Analyzer tools installed."
+      git_branch_label:
+        type: string
+        description: 'Git branch label'
+        required: true
+        default: 'master'
+      exclude:
+        type: string
+        default: ""
+        required: false
+        description: "Optional paths or patterns to exclude from the translation phase."
+      include:
+        type: string
+        required: true
+        description: "Source files or paths to include for the translation phase (required)."
+      reportFormat:
+        type: string
+        default: "pdf"
+        required: false
+        description: "Format of the generated report. Valid values: pdf, doc, html, xls (default: pdf)."
+      reportTemplate:
+        type: string
+        default: "Developer Workbook"
+        required: false
+        description: "Template used for report generation. Example values: Developer Workbook, OWASP Top 10, CWE Top 25 2019, etc."
+      scanOptions:
+        type: string
+        default: ""
+        required: false
+        description: "Optional additional command-line options for the scan phase."
+      translationOptions:
+        type: string
+        default: ""
+        required: false
+        description: "Optional additional command-line options for the translation phase."
+      retention-days:
+        type: number
+        default: 14
+        required: false
+        description: "Number of days to retain artifacts (default: 14)."
+      maxIssuesAllowed:
+        type: number
+        default: -1
+        required: false
+        description: "Maximum number of issues allowed before failing the workflow (0 = no issues allowed, -1 = unlimited)."
+      timeout-minutes:
+        type: number
+        default: 60
+        required: false
+        description: "Timeout for the Fortify SAST scan job in minutes (default: 60)."
+      cache-enabled:
+        type: boolean
+        default: true
+        required: false
+        description: "Enable or disable caching (default: true)."
+      scan-mode:
+        type: string
+        required: false
+        default: full
+        description: "Scan mode to use: 'quick' for high/critical issues only, 'full' for full analysis. Default: full."
+      scan-precision:
+        type: number
+        required: false
+        default: 2
+        description: "Scan precision level (1 = fastest, 5 = most thorough). Default: 2."
+
+    outputs:
+      fpr_file:
+        description: "URL to the generated Fortify FPR file."
+        value: ${{ jobs.sast-fortify.outputs.fpr_file }}
+      report_file:
+        description: "URL to the generated Fortify report file."
+        value: ${{ jobs.sast-fortify.outputs.report_file }}
+      issues_found:
+        description: "Number of issues found during the scan."
+        value: ${{ jobs.sast-fortify.outputs.issues_found }}
+      critical_issues:
+        description: "Number of critical severity issues found."
+        value: ${{ jobs.sast-fortify.outputs.critical_issues }}
+      high_issues:
+        description: "Number of high severity issues found."
+        value: ${{ jobs.sast-fortify.outputs.high_issues }}
+      medium_issues:
+        description: "Number of medium severity issues found."
+        value: ${{ jobs.sast-fortify.outputs.medium_issues }}
+      low_issues:
+        description: "Number of low severity issues found."
+        value: ${{ jobs.sast-fortify.outputs.low_issues }}
+      scan_status:
+        description: "Scan status (success or failure)."
+        value: ${{ jobs.sast-fortify.outputs.scan_status }}
+
+jobs:
+  sast-fortify:
+    name: Fortify SAST Scan
+    runs-on: ${{ inputs.runner }}
+    timeout-minutes: ${{ inputs.timeout-minutes }}
+    outputs:
+      fpr_file: ${{ steps.summarize.outputs.fpr_file }}
+      report_file: ${{ steps.summarize.outputs.report_file }}
+      issues_found: ${{ steps.summarize.outputs.issues_found }}
+      critical_issues: ${{ steps.summarize.outputs.critical_issues }}
+      high_issues: ${{ steps.summarize.outputs.high_issues }}
+      medium_issues: ${{ steps.summarize.outputs.medium_issues }}
+      low_issues: ${{ steps.summarize.outputs.low_issues }}
+      scan_status: ${{ steps.summarize.outputs.scan_status }}
+    container: ${{ inputs.container }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          ref: ${{ inputs.git_branch_label }}
+
+      - name: Validate inputs
+        run: |
+          if ! [[ "${{ inputs.reportFormat }}" =~ ^(pdf|doc|html|xls)$ ]]; then
+            echo "[ERROR] Unsupported reportFormat: ${{ inputs.reportFormat }}"
+            exit 1
+          fi
+
+          if [ -z "${{ inputs.include }}" ]; then
+            echo "[ERROR] Included path is empty"
+            exit 1
+          fi
+
+          if [ "${{ inputs.scan-precision }}" -lt 1 ] || [ "${{ inputs.scan-precision }}" -gt 5 ]; then
+            echo "[ERROR] scan-precision must be between 1 and 5"
+            exit 1
+          fi
+
+          if ! [[ "${{ inputs.scan-mode }}" =~ ^(quick|full)$ ]]; then
+            echo "[ERROR] Unsupported scan-mode: ${{ inputs.scan-mode }}"
+            exit 1
+          fi
+
+        shell: bash
+
+      - name: Verify Fortify CLI tools
+        run: |
+          export PATH="/opt/fortify/bin:/opt/fortifyApps/bin:$PATH"
+          command -v sourceanalyzer >/dev/null || { echo "sourceanalyzer missing"; exit 1; }
+          command -v FPRUtility >/dev/null || { echo "FPRUtility missing"; exit 1; }
+          command -v BIRTReportGenerator >/dev/null || { echo "BIRTReportGenerator missing"; exit 1; }
+
+      - name: Cache Fortify translation data
+        if: ${{ inputs.cache-enabled }}
+        uses: actions/cache@v4
+        with:
+          path: /opt/fortify/.fortify
+          key: fortify-${{ github.sha }}
+          restore-keys: |
+            fortify-
+
+      - name: Clean Fortify session
+        run: |
+          echo "[INFO] Clean phase..."
+          export PATH="/opt/fortify/bin:/opt/fortifyApps/bin:$PATH"
+          sourceanalyzer -b "fortify_${{ github.sha }}_${{ github.run_id }}" -clean
+
+      - name: Translate sources
+        run: |
+          echo "[INFO] Starting translation phase..."
+          export PATH="/opt/fortify/bin:/opt/fortifyApps/bin:$PATH"
+          sourceanalyzer \
+          -b "fortify_${{ github.sha }}_${{ github.run_id }}" \
+          -logfile "fortify_${{ github.sha }}_${{ github.run_id }}.log" \
+          ${{ inputs.exclude }} \
+          "${{ inputs.include }}" \
+          ${{ inputs.translationOptions }}
+
+      - name: Show translated files
+        run: |
+          echo "[INFO] Listing translated files..."
+          export PATH="/opt/fortify/bin:/opt/fortifyApps/bin:$PATH"
+          sourceanalyzer \
+          -b "fortify_${{ github.sha }}_${{ github.run_id }}" \
+          -show-files
+
+      - name: Perform scan
+        run: |
+          set -euo pipefail
+          echo "[INFO] Starting scan phase (mode: ${{ inputs.scan-mode }})..."
+          export PATH="/opt/fortify/bin:/opt/fortifyApps/bin:$PATH"
+
+          scan_mode="${{ inputs.scan-mode }}"
+          scan_precision="${{ inputs.scan-precision }}"
+          scan_options="${{ inputs.scanOptions }}"
+
+          SCAN_CMD="sourceanalyzer \
+            -b fortify_${{ github.sha }}_${{ github.run_id }} \
+            -logfile fortify_${{ github.sha }}_${{ github.run_id }}.log \
+            -build-version fortify_${{ github.sha }}_${{ github.run_id }} \
+            -f fortify_${{ github.sha }}_${{ github.run_id }}.fpr \
+            $scan_options \
+            -scan-precision $scan_precision"
+
+          if [ "$scan_mode" = "quick" ]; then
+            SCAN_CMD="$SCAN_CMD -quick"
+          fi
+
+          $SCAN_CMD -scan
+
+      - name: List issues
+        run: |
+          echo "[INFO] Listing issues..."
+          export PATH="/opt/fortify/bin:/opt/fortifyApps/bin:$PATH"
+          FPRUtility \
+          -information \
+          -listIssues \
+          -search \
+          -queryAll \
+          -outputFormat CSV \
+          -project "fortify_${{ github.sha }}_${{ github.run_id }}.fpr" \
+           > fortify_${{ github.sha }}_${{ github.run_id }}_issues.csv
+
+      - name: Generate report
+        run: |
+          echo "[INFO] Generating report..."
+          export PATH="/opt/fortify/bin:/opt/fortifyApps/bin:$PATH"
+          BIRTReportGenerator \
+          -ShowRemoved \
+          -template "${{ inputs.reportTemplate }}" \
+          -source "fortify_${{ github.sha }}_${{ github.run_id }}.fpr" \
+          -format "${{ inputs.reportFormat }}" \
+          -output "fortify_${{ github.sha }}_${{ github.run_id }}.${{ inputs.reportFormat }}"
+
+      - name: List severity counts
+        id: list_severity_counts
+        run: |
+          echo "[INFO] Listing severity counts..."
+          export PATH="/opt/fortify/bin:/opt/fortifyApps/bin:$PATH"
+          
+          # Extract counts with proper error handling and default values
+          critical_count=$(FPRUtility -project "fortify_${{ github.sha }}_${{ github.run_id }}.fpr" -information -search -query "[fortify priority order]:critical" | grep -oP '^\d+' || echo "0")
+          high_count=$(FPRUtility -project "fortify_${{ github.sha }}_${{ github.run_id }}.fpr" -information -search -query "[fortify priority order]:high" | grep -oP '^\d+' || echo "0")
+          medium_count=$(FPRUtility -project "fortify_${{ github.sha }}_${{ github.run_id }}.fpr" -information -search -query "[fortify priority order]:medium" | grep -oP '^\d+' || echo "0")
+          low_count=$(FPRUtility -project "fortify_${{ github.sha }}_${{ github.run_id }}.fpr" -information -search -query "[fortify priority order]:low" | grep -oP '^\d+' || echo "0")
+
+          echo "Critical issues: $critical_count"
+          echo "High issues: $high_count"
+          echo "Medium issues: $medium_count"
+          echo "Low issues: $low_count"
+
+          {
+            echo "critical_count=$critical_count"
+            echo "high_count=$high_count"
+            echo "medium_count=$medium_count"
+            echo "low_count=$low_count"
+          } >> $GITHUB_OUTPUT
+
+      - name: Upload fpr
+        id: upload_fpr
+        uses: actions/upload-artifact@v3
+        with:
+          name: sast-fortify-fpr-${{ github.sha }}-${{ github.run_id }}
+          path: fortify_${{ github.sha }}_${{ github.run_id }}.fpr
+          retention-days: ${{ inputs.retention-days }}
+
+      - name: Upload report
+        id: upload_report
+        uses: actions/upload-artifact@v3
+        with:
+          name: sast-fortify-report-${{ github.sha }}-${{ github.run_id }}
+          path: fortify_${{ github.sha }}_${{ github.run_id }}.${{ inputs.reportFormat }}
+          retention-days: ${{ inputs.retention-days }}
+
+      - name: Upload issues
+        id: upload_issues
+        uses: actions/upload-artifact@v3
+        with:
+          name: sast-fortify-issues-${{ github.sha }}-${{ github.run_id }}
+          path: fortify_${{ github.sha }}_${{ github.run_id }}_issues.csv
+          retention-days: ${{ inputs.retention-days }}
+
+      - name: Upload archive results
+        id: upload_archive
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: sast-fortify-archive-${{ github.sha }}-${{ github.run_id }}
+          path: "fortify_${{ github.sha }}_${{ github.run_id }}*"
+          retention-days: ${{ inputs.retention-days }}
+
+      - name: Upload scan log
+        id: upload_log
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: sast-fortify-log-${{ github.sha }}-${{ github.run_id }}
+          path: fortify_${{ github.sha }}_${{ github.run_id }}.log
+          retention-days: ${{ inputs.retention-days }}
+
+      - name: Summarize and Set Outputs
+        id: summarize
+        if: always()
+        run: |
+          set -euo pipefail
+
+          echo "## Fortify SAST Scan Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Build Version: fortify_${{ github.sha }}_${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Scan Mode Used: ${{ inputs.scan-mode }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Scan Precision Level: ${{ inputs.scan-precision }}" >> $GITHUB_STEP_SUMMARY
+
+          FPR_FILE="fortify_${{ github.sha }}_${{ github.run_id }}.fpr"
+          REPORT_FILE="fortify_${{ github.sha }}_${{ github.run_id }}.${{ inputs.reportFormat }}"
+          ISSUE_CSV="fortify_${{ github.sha }}_${{ github.run_id }}_issues.csv"
+          ISSUE_COUNT=0
+          CRITICAL_COUNT="${{ steps.list_severity_counts.outputs.critical_count || '0' }}"
+          HIGH_COUNT="${{ steps.list_severity_counts.outputs.high_count || '0' }}"
+          MEDIUM_COUNT="${{ steps.list_severity_counts.outputs.medium_count || '0' }}"
+          LOW_COUNT="${{ steps.list_severity_counts.outputs.low_count || '0' }}"
+          SCAN_STATUS="success"
+          MAX_ISSUES_ALLOWED="${{ inputs.maxIssuesAllowed }}"
+          ARTIFACTS_URL="https://git.dhl.com/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts"
+
+          if [ -f "$FPR_FILE" ]; then
+            echo "- [Download FPR (Expired in ${{ inputs.retention-days }} Days)]($ARTIFACTS_URL)" >> $GITHUB_STEP_SUMMARY
+            # echo "- [Download FPR URL Unavailable](${{ steps.upload_fpr.outputs.artifact-url }})" >> $GITHUB_STEP_SUMMARY
+
+          else
+            echo "- FPR File: Not generated" >> $GITHUB_STEP_SUMMARY
+            SCAN_STATUS="failure"
+          fi
+
+          if [ -f "$REPORT_FILE" ]; then
+            echo "- [Download Report (Expired in ${{ inputs.retention-days }} Days)]($ARTIFACTS_URL)" >> $GITHUB_STEP_SUMMARY
+            # echo "- [Download Report URL Unavailable](${{ steps.upload_report.outputs.artifact-url }})" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- Report File: Not generated" >> $GITHUB_STEP_SUMMARY
+            SCAN_STATUS="failure"
+          fi
+
+          if [ -f "$ISSUE_CSV" ]; then
+            ISSUE_COUNT=$(($(wc -l < "$ISSUE_CSV") - 1))
+            echo "- Number of Issues Found: $ISSUE_COUNT" >> $GITHUB_STEP_SUMMARY
+            echo "- **Severity Breakdown:**" >> $GITHUB_STEP_SUMMARY
+            echo "  - Critical: $CRITICAL_COUNT" >> $GITHUB_STEP_SUMMARY
+            echo "  - High: $HIGH_COUNT" >> $GITHUB_STEP_SUMMARY
+            echo "  - Medium: $MEDIUM_COUNT" >> $GITHUB_STEP_SUMMARY
+            echo "  - Low: $LOW_COUNT" >> $GITHUB_STEP_SUMMARY
+          else
+            ISSUE_COUNT=0
+            echo "- Number of Issues Found: Not available" >> $GITHUB_STEP_SUMMARY
+            SCAN_STATUS="failure"
+          fi
+
+          if [ "$MAX_ISSUES_ALLOWED" -ge 0 ]; then
+            echo "- Issue threshold set to: $MAX_ISSUES_ALLOWED" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "$MAX_ISSUES_ALLOWED" -ge 0 ] && [ "$ISSUE_COUNT" -gt "$MAX_ISSUES_ALLOWED" ]; then
+            echo "- Issue count ($ISSUE_COUNT) exceeds allowed maximum ($MAX_ISSUES_ALLOWED)" >> $GITHUB_STEP_SUMMARY
+            SCAN_STATUS="failure"
+          fi
+
+          {
+            echo "fpr_file=$FPR_FILE"
+            # echo "fpr_file=Unavailable"
+            echo "report_file=$REPORT_FILE"
+            # echo "report_file=Unavailable"
+            echo "issues_found=$ISSUE_COUNT"
+            echo "critical_issues=$CRITICAL_COUNT"
+            echo "high_issues=$HIGH_COUNT"
+            echo "medium_issues=$MEDIUM_COUNT"
+            echo "low_issues=$LOW_COUNT"
+            echo "scan_status=$SCAN_STATUS"
+          } >> $GITHUB_OUTPUT
+
+          if [ "$SCAN_STATUS" = "failure" ]; then
+            echo "[ERROR] Fortify scan failed due to unmet conditions."
+            exit 1
+          fi
+
+        shell: bash

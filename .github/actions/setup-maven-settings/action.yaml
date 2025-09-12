@@ -1,0 +1,22 @@
+name: 'Setup Maven Settings'
+description: 'Configures Maven settings for Artifactory.'
+inputs:
+  artifactory-username:
+    description: 'Artifactory username'
+    required: true
+  artifactory-password:
+    description: 'Artifactory password'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Move settings.xml to appropriate folder
+      shell: bash
+      run: |
+        echo "Updating settings.xml with credentials..."
+        settings_xml_content=$(cat "settings.xml")
+        updated_settings_xml=$(echo "$settings_xml_content" | sed 's|<username>.*</username>|<username>'"${{ inputs.artifactory-username }}"'</username>|g' | sed 's|<password>.*</password>|<password>'"${{ inputs.artifactory-password }}"'</password>|g')
+        echo "$updated_settings_xml" > "settings.xml"
+        mkdir -p /root/.m2
+        cp settings.xml /root/.m2/
+        echo "settings.xml updated and moved to /root/.m2/"
