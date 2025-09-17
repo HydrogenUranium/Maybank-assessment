@@ -29,7 +29,8 @@
                             jcr:title="In the Current Page Properties"
                             text="- Author Name &lt;br&gt;
                                   - Author Title &lt;br&gt;
-                                  - Author Image &lt;br&gt; "/>
+                                  - Author Image &lt;br&gt;
+                                  Configure in Content Fragment"/>
                 </items>
             </column>
             <tabs
