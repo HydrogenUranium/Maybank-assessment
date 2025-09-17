@@ -10,12 +10,10 @@ on:
         type: choice
         options:
           - dev
-          - staging
-          - prod
       git_branch_label:
         description: 'Git branch label'
         required: true
-        default: 'master'
+        default: 'develop'
       run_sonar_scan:
         description: 'Run Sonar Scan'
         type: boolean
@@ -33,11 +31,6 @@ on:
         default: false
       build_and_publish:
         description: 'Build and publish to Artifactory'
-        type: boolean
-        required: true
-        default: false
-      deploy:
-        description: 'Deploy to Azure/Openshift'
         type: boolean
         required: true
         default: false
@@ -89,11 +82,6 @@ on:
         type: boolean
         required: false
         default: false
-      deploy:
-        description: 'Deploy to Azure/Openshift'
-        type: boolean
-        required: false
-        default: false
 
 jobs:
   print-workflow-inputs:
@@ -112,7 +100,6 @@ jobs:
             echo "| Run OWASP Dependency Check | ${{ inputs.run_owasp_dependency_check }} |"
             echo "| Run Fortify Scan | ${{ inputs.run_fortify_scan }} |"
             echo "| Build and publish to Artifactory | ${{ inputs.build_and_publish }} |"
-            echo "| Deploy to Azure/Openshift | ${{ inputs.deploy }} |"
             echo "| Pull Request Number | ${{ inputs.pull_request_number }} |"
             echo "| Pull Request Base Reference | ${{ inputs.pull_request_base_ref }} |"
             echo "| Pull Request Head Reference | ${{ inputs.pull_request_head_ref }} |"
@@ -181,81 +168,3 @@ jobs:
       - name: Publish to Artifactory
         uses: ./.github/actions/publish-to-artifactory
         if: ${{ inputs.build_and_publish == true }}
-
-  publish-docker-and-helm:
-    name: Publish to Docker and Helm
-    if: ${{ inputs.build_and_publish == true }}
-    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
-    environment: ${{ inputs.environment_name }}
-    needs: build-and-scan
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.git_branch_label }}
-
-      - name: Publish to Docker
-        uses: ./.github/actions/publish-to-docker
-        with:
-          artifact-id: ${{ needs.build-and-scan.outputs.artifact-id }}
-          artifact-version: ${{ needs.build-and-scan.outputs.artifact-version }}
-          environment-name: ${{ inputs.environment_name }}
-          artifactory-docker-registry: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY }}
-          registry-repo: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY_REPO }}
-          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
-          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
-          dockerfile: ${{ vars.DOCKERFILE }}
-
-      - name: Publish to Helm
-        uses: ./.github/actions/publish-to-helm
-        with:
-          artifact-id: ${{ needs.build-and-scan.outputs.artifact-id }}
-          artifact-version: ${{ needs.build-and-scan.outputs.artifact-version }}
-          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
-          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
-          helm-chart-deployment-path: ${{ vars.HELM_CHART_DEPLOYMENT_PATH }}
-          artifactory-helm-registry: ${{ vars.ARTIFACTORY_HELM_REGISTRY }}
-          registry-repo: ${{ vars.ARTIFACTORY_HELM_REGISTRY_REPO }}
-
-  deploy-app:
-    name: Deploy Application to Kubernetes Cluster After Publish to Artifactory, Docker and Helm
-    if: ${{ always() && inputs.deploy == true && (needs.publish-docker-and-helm.result == 'skipped' || needs.publish-docker-and-helm.result == 'success') }}
-    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
-    container: docker.artifactory.dhl.com/cdlib/helm
-    needs:
-      - build-and-scan
-      - publish-docker-and-helm
-    concurrency:
-      group: deploy-${{ inputs.environment_name }}
-      cancel-in-progress: false
-    environment: ${{ inputs.environment_name }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ inputs.git_branch_label }}
-      - name: Deploy to cluster
-        uses: ./.github/actions/deploy-to-cluster
-        with:
-          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
-          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
-          environment-name: ${{ inputs.environment_name }}
-          artifact-id: ${{ needs.build-and-scan.outputs.artifact-id }}
-          artifact-version: ${{ needs.build-and-scan.outputs.artifact-version }}
-          az-client-id: ${{ vars.AZURE_SP_CLIENT_ID }}
-          az-client-secret: ${{ secrets.AZURE_SP_CLIENT_SECRET }}
-          az-tenant-id: ${{ vars.AZURE_SP_TENANT_ID }}
-          az-aks-sub-id: ${{ vars.AZURE_AKS_CLUSTER_SUBSCRIPTION_ID }}
-          az-aks-cluster-resource-group-name: ${{ vars.AZURE_AKS_CLUSTER_RESOURCE_GROUP_NAME }}
-          az-aks-cluster-name: ${{ vars.AZURE_AKS_CLUSTER_NAME }}
-          oc-token: ${{ secrets.OC_TOKEN }}
-          oc-username: ${{ secrets.OC_USERNAME }}
-          oc-password: ${{ secrets.OC_PASSWORD }}
-          oc-url: ${{ vars.OC_URL }}
-          helm-chart-deployment-path: ${{ vars.HELM_CHART_DEPLOYMENT_PATH }}
-          helm-chart-value-path: ${{ vars.HELM_CHART_VALUE_PATH }}
-          namespace: ${{ vars.AZURE_AKS_CLUSTER_NAMESPACE || vars.OC_NAMESPACE }}
-          artifactory-helm-registry: ${{ vars.ARTIFACTORY_HELM_REGISTRY }}
-          registry-repo: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY_REPO }}
-          artifactory-docker-registry: ${{ vars.ARTIFACTORY_DOCKER_REGISTRY }}
