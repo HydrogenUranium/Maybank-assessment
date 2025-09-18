@@ -39,7 +39,7 @@ on:
         type: string
         description: 'Git branch label'
         required: true
-        default: 'master'
+        default: 'develop'
       exclude:
         type: string
         default: ""

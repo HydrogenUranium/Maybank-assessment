@@ -73,6 +73,7 @@
         <sonar.javascript.lcov.reportPaths>${project.basedir}/coverage/lcov.info</sonar.javascript.lcov.reportPaths>
         <sonar.junit.reportsPath>${project.basedir}/target/surefire-reports</sonar.junit.reportsPath>
         <baseline.skip>false</baseline.skip>
+        <dependency-check.version>12.1.1</dependency-check.version>
     </properties>
 
     <build>
@@ -155,6 +156,25 @@
                             <version>1.18.30</version>
                         </path>
                     </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${dependency-check.version}</version>
+                <configuration>
+                    <formats>
+                        <format>HTML</format>
+                        <format>JSON</format>
+                        <format>XML</format>
+                    </formats>
+                    <nodeAuditAnalyzerEnabled>false</nodeAuditAnalyzerEnabled>
+                    <ossindexAnalyzerEnabled>false</ossindexAnalyzerEnabled>
+                    <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                    <hostedSuppressionsEnabled>false</hostedSuppressionsEnabled>
+                    <retireJsUrl>https://artifactory.dhl.com/artifactory/nvd-local/jsrepository.json</retireJsUrl>
+                    <nvdDatafeedUrl>https://artifactory.dhl.com/artifactory/nvd-local/nvdcve-{0}.json.gz</nvdDatafeedUrl>
+                    <knownExploitedUrl>https://artifactory.dhl.com/artifactory/nvd-local/known_exploited_vulnerabilities.json</knownExploitedUrl>
                 </configuration>
             </plugin>
         </plugins>
