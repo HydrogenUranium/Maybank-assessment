@@ -74,7 +74,8 @@
 }
 
 .sidebar-cmp-with-sticky-element{
-    //position: sticky;
-    //top: 2rem;
+    position: sticky;
+    top: 2rem;
+    transition: top 0.1s ease-out, opacity 0.2s ease-out, transform 0.2s ease-out;
 }
 
