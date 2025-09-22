@@ -11,7 +11,6 @@ import LanguageDetect from './Components/LanguageDetect';
 import Shared from './Components/Shared';
 import HorizontalScroll from './Components/HorizontalScroll';
 import Accordion from "./Components/Accordion";
-import StickySidebar from "./Components/StickySidebar";
 
 $(document).ready(() => {
   try {
