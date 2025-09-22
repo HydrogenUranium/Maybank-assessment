@@ -34,5 +34,4 @@ $(document).ready(() => {
   Shared.init();
   HorizontalScroll.init();
   Accordion.init();
-  StickySidebar.init();
 });
