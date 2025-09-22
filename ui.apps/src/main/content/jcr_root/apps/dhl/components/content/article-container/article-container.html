@@ -5,8 +5,13 @@
             </div>
         <aside class="cmp-article-container__sidebar-wrapper short-banners"
                data-sly-test="${properties.showSidebar}">
+            <div class="sidebar-cmp-with-author-banner"
+                 data-sly-resource="${'sidebar.article_author_banner' @ resourceType='dhl/components/content/article-author-banner'}">
+            </div>
+
+            <!-- Sticky Container Section -->
             <div class="sidebar-cmp-with-sticky-element"
-                 data-sly-resource="${'sidebar' @ resourceType='wcm/foundation/components/responsivegrid'}">
+                 data-sly-resource="${'sidebar.sticky_container' @ resourceType='wcm/foundation/components/responsivegrid'}">
             </div>
         </aside>
     </div>

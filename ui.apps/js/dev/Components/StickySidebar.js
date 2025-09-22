@@ -20,9 +20,7 @@ class StickySidebar {
       const sidebarTop = sidebarRect.getBoundingClientRect().top + scrollY;
 
       if(scrollY >= contentHeight - viewportHeight +sidebarTop) {
-        //sidebarContent.style.position = 'sticky';
         sidebarContent.style.top = `${currentTopOffset}px`;
-        //sidebarContent.style.transition = 'top 0.1s ease-out, opacity 0.2s ease-out, transform 0.2s ease-out';
         sidebarContent.style.overflowY = 'auto';
         sidebarContent.style.height = 'fit-content';
         sidebarContent.style.zIndex = '10';
