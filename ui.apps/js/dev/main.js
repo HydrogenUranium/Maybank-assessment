@@ -11,6 +11,8 @@ import LanguageDetect from './Components/LanguageDetect';
 import Shared from './Components/Shared';
 import HorizontalScroll from './Components/HorizontalScroll';
 import Accordion from "./Components/Accordion";
+import StickySidebar from "./Components/StickySidebar";
+import GoToTopButton from "./Components/GoToTopButton";
 
 $(document).ready(() => {
   try {
@@ -33,4 +35,9 @@ $(document).ready(() => {
   Shared.init();
   HorizontalScroll.init();
   Accordion.init();
+  StickySidebar.init();
+
+  // Initialize Go to Top Button
+  const goToTopButton = new GoToTopButton();
+  goToTopButton.init();
 });
