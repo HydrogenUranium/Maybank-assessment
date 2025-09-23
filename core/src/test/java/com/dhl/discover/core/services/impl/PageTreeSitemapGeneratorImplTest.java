@@ -6,6 +6,8 @@ import com.dhl.discover.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.ModifiableValueMap;
+import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.sitemap.SitemapException;
@@ -126,8 +128,23 @@ public class PageTreeSitemapGeneratorImplTest {
         pageTreeSitemapGenerator.addResource(StringUtils.EMPTY, sitemap, resource);
 
         verication(sitemap, EXPECTED_LOCATION, EXPECTED_LAST_MODIFIED);
+
+        setCanonicalURL(page);
+        verication(sitemap, EXPECTED_LOCATION, EXPECTED_LAST_MODIFIED);
     }
 
+    void setCanonicalURL(Page page) {
+        context.create().page("/content/test");
+        page = context.pageManager().getPage("/content/test");
+        Resource contentResource = page.getContentResource();
+        ModifiableValueMap mvm = contentResource.adaptTo(ModifiableValueMap.class);
+        mvm.put("cq:canonicalUrl", "https://www.example.com/test");
+        try {
+            context.resourceResolver().commit();
+        } catch (PersistenceException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @Test
     void testNoAlternative() throws SitemapException, NoSuchFieldException, IllegalAccessException {
         Page mockPage = mock(Page.class);
