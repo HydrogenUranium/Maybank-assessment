@@ -86,7 +86,7 @@
                     </body>
                     <sidebar
                             jcr:primaryType="nt:unstructured"
-                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                            sling:resourceType="dhl/components/content/article-sidebar">
                         <article_author_banner
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="dhl/components/content/article-author-banner"
