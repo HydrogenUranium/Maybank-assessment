@@ -25,7 +25,7 @@ on:
         description: 'Run Sonar Scan'
         type: boolean
         required: true
-        default: false
+        default: true
       run_owasp_dependency_check:
         description: 'Run OWASP Dependency Check'
         type: boolean
