@@ -83,6 +83,37 @@ public class PageTreeSitemapGeneratorImplTest {
         assertTrue(pageTreeSitemapGenerator.shouldInclude(resource));
     }
 
+    private void setPrivateField(Object target, String fieldName, Object value) {
+        try {
+            Field field = target.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(target, value);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private PageTreeSitemapGeneratorImpl createGeneratorWithConfig(boolean enableLastModified, String lastModifiedSource,
+            boolean enableChangefreq, String changefreqDefaultValue,
+            boolean enablePriority, String priorityDefaultValue,
+            boolean enableLanguageAlternates) {
+        PageTreeSitemapGeneratorImpl generator = new PageTreeSitemapGeneratorImpl();
+        setPrivateField(generator, "pageUtilService", pageUtilService);
+        setPrivateField(generator, "replicationStatusCheck", replicationStatusCheck);
+        setPrivateField(generator, "languageAlternativesService", languageAlternativesService);
+        generator.activate(new PageTreeSitemapGeneratorImpl.Configuration() {
+            public boolean enableLastModified() { return enableLastModified; }
+            public String lastModifiedSource() { return lastModifiedSource; }
+            public boolean enableChangefreq() { return enableChangefreq; }
+            public String changefreqDefaultValue() { return changefreqDefaultValue; }
+            public boolean enablePriority() { return enablePriority; }
+            public String priorityDefaultValue() { return priorityDefaultValue; }
+            public boolean enableLanguageAlternates() { return enableLanguageAlternates; }
+            public Class<? extends java.lang.annotation.Annotation> annotationType() { return PageTreeSitemapGeneratorImpl.Configuration.class; }
+        });
+        return generator;
+    }
+
     @Test
     void testAlternative() throws SitemapException, NoSuchFieldException, IllegalAccessException {
         Page page = resource.adaptTo(Page.class);
@@ -91,14 +122,7 @@ public class PageTreeSitemapGeneratorImplTest {
         languageAlternatives.put(Locale.forLanguageTag("de"), page);
 
         when(languageAlternativesService.getLanguageAlternatives(any(Page.class))).thenReturn(languageAlternatives);
-        pageTreeSitemapGenerator = context.registerInjectActivateService(new PageTreeSitemapGeneratorImpl(),
-                "enableLastModified", true,
-                "lastModifiedSource", PN_PAGE_LAST_MOD,
-                "enableChangefreq", true,
-                "changefreqDefaultValue", "always",
-                "enablePriority", true,
-                "priorityDefaultValue", "pageDepth",
-                "enableLanguageAlternates", true);
+        pageTreeSitemapGenerator = createGeneratorWithConfig(true, PN_PAGE_LAST_MOD, true, "always", true, "pageDepth", true);
         pageTreeSitemapGenerator.addResource(StringUtils.EMPTY, sitemap, resource);
 
         verication(sitemap, EXPECTED_LOCATION, EXPECTED_LAST_MODIFIED);
@@ -112,14 +136,7 @@ public class PageTreeSitemapGeneratorImplTest {
 
         when(languageAlternativesService.getLanguageAlternatives(any(Page.class))).thenReturn(languageAlternatives);
         lenient().when(mockPage.getContentResource()).thenReturn(null);
-        pageTreeSitemapGenerator = context.registerInjectActivateService(new PageTreeSitemapGeneratorImpl(),
-                "enableLastModified", true,
-                "lastModifiedSource", PN_PAGE_LAST_MOD,
-                "enableChangefreq", true,
-                "changefreqDefaultValue", "always",
-                "enablePriority", true,
-                "priorityDefaultValue", "pageDepth",
-                "enableLanguageAlternates", true);
+        pageTreeSitemapGenerator = createGeneratorWithConfig(true, PN_PAGE_LAST_MOD, true, "always", true, "pageDepth", true);
         pageTreeSitemapGenerator.addResource(StringUtils.EMPTY, sitemap, resource);
 
         verication(sitemap, EXPECTED_LOCATION, EXPECTED_LAST_MODIFIED);
@@ -127,14 +144,7 @@ public class PageTreeSitemapGeneratorImplTest {
 
     @Test
     void testLastModified() throws SitemapException, NoSuchFieldException, IllegalAccessException {
-        pageTreeSitemapGenerator = context.registerInjectActivateService(new PageTreeSitemapGeneratorImpl(),
-                "enableLastModified", true,
-                "lastModifiedSource", PN_PAGE_LAST_MOD,
-                "enableChangefreq", true,
-                "changefreqDefaultValue", "always",
-                "enablePriority", true,
-                "priorityDefaultValue", "pageDepth",
-                "enableLanguageAlternates", true);
+        pageTreeSitemapGenerator = createGeneratorWithConfig(true, PN_PAGE_LAST_MOD, true, "always", true, "pageDepth", true);
         pageTreeSitemapGenerator.addResource(StringUtils.EMPTY, sitemap, resource);
 
         verication(sitemap, EXPECTED_LOCATION, EXPECTED_LAST_MODIFIED);
@@ -142,14 +152,7 @@ public class PageTreeSitemapGeneratorImplTest {
 
     @Test
     void testLastReplicated() throws SitemapException, NoSuchFieldException, IllegalAccessException {
-        pageTreeSitemapGenerator = context.registerInjectActivateService(new PageTreeSitemapGeneratorImpl(),
-                "enableLastModified", true,
-                "lastModifiedSource", PN_PAGE_LAST_REPLICATED,
-                "enableChangefreq", true,
-                "changefreqDefaultValue", "always",
-                "enablePriority", true,
-                "priorityDefaultValue", "pageDepth",
-                "enableLanguageAlternates", true);
+        pageTreeSitemapGenerator = createGeneratorWithConfig(true, PN_PAGE_LAST_REPLICATED, true, "always", true, "pageDepth", true);
         pageTreeSitemapGenerator.addResource(StringUtils.EMPTY, sitemap, resource);
 
         verication(sitemap, EXPECTED_LOCATION, null);
