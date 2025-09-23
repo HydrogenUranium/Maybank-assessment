@@ -73,10 +73,15 @@
   direction: ltr;
 }
 
+.with-sticky {
+  position: relative;
+  height: 100%;
+  top: 0;
+}
 .sidebar-cmp-with-sticky-element{
     position: sticky;
     top: 2rem;
-    transition: top 0.1s ease-out, opacity 0.2s ease-out, transform 0.2s ease-out;
+    transition: top 0.3s ease-out, opacity 0.2s ease-out, transform 0.2s ease-out;
 }
 
 
