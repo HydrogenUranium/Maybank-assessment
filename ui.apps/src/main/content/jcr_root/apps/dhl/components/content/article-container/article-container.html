@@ -1,11 +1,13 @@
 <div class="cmp-article-container">
     <div class="cmp-article-container__grid">
-        <div class="cmp-article-container__body-wrapper"
-             data-sly-resource="${'body' @ resourceType='wcm/foundation/components/responsivegrid'}">
-        </div>
-        <aside class="cmp-article-container__sidebar-wrapper short-banners"
-               data-sly-test="${properties.showSidebar}"
-               data-sly-resource="${'sidebar' @ resourceType='dhl/components/content/article-sidebar'}">
+            <div class="cmp-article-container__body-wrapper"
+                 data-sly-resource="${'body' @ resourceType='wcm/foundation/components/responsivegrid'}">
+            </div>
+        <aside class="cmp-article-container__sidebar-wrapper short-banners with-sticky"
+               data-sly-test="${properties.showSidebar}">
+                <div class ="sidebar-cmp-with-sticky-element"
+                 data-sly-resource="${'sidebar' @ resourceType='wcm/foundation/components/responsivegrid'}">
+                </div>
         </aside>
     </div>
 </div>

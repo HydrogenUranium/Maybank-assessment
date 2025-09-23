@@ -73,12 +73,6 @@
   direction: ltr;
 }
 
-.sidebar-cmp-with-author-banner {
-    &.non-sticky {
-        position: static;
-    }
-}
-
 .sidebar-cmp-with-sticky-element{
     position: sticky;
     top: 2rem;
