@@ -6,12 +6,10 @@ import com.dhl.discover.core.services.PageUtilService;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.resource.ModifiableValueMap;
-import org.apache.sling.api.resource.PersistenceException;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.*;
 import org.apache.sling.sitemap.SitemapException;
 import org.apache.sling.sitemap.builder.Url;
+import org.apache.sling.sitemap.builder.extensions.AlternateLanguageExtension;
 import org.apache.sling.sitemap.impl.builder.SitemapImpl;
 import org.apache.sling.sitemap.impl.builder.extensions.ExtensionProviderManager;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -24,15 +22,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.Writer;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.time.Instant;
-import java.util.LinkedHashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
-import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_MOD;
-import static com.day.cq.wcm.api.constants.NameConstants.PN_PAGE_LAST_REPLICATED;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.day.cq.wcm.api.constants.NameConstants.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -96,9 +91,9 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     private PageTreeSitemapGeneratorImpl createGeneratorWithConfig(boolean enableLastModified, String lastModifiedSource,
-            boolean enableChangefreq, String changefreqDefaultValue,
-            boolean enablePriority, String priorityDefaultValue,
-            boolean enableLanguageAlternates) {
+                                                                   boolean enableChangefreq, String changefreqDefaultValue,
+                                                                   boolean enablePriority, String priorityDefaultValue,
+                                                                   boolean enableLanguageAlternates) {
         PageTreeSitemapGeneratorImpl generator = new PageTreeSitemapGeneratorImpl();
         setPrivateField(generator, "pageUtilService", pageUtilService);
         setPrivateField(generator, "replicationStatusCheck", replicationStatusCheck);
@@ -202,4 +197,72 @@ public class PageTreeSitemapGeneratorImplTest {
         pendingUrl.setAccessible(true);
         return (Url) pendingUrl.get(sitemap);
     }
+
+    @Test
+    public void testGetLastmodDt_CreatedDtOnly() throws Exception {
+        Page mockPage = mock(Page.class);
+        Resource mockContentResource = mock(Resource.class);
+        ValueMap mockValueMap = mock(ValueMap.class);
+
+        Calendar createdDate = Calendar.getInstance();
+        createdDate.set(2022, Calendar.JANUARY, 15, 10, 30, 0);
+
+        when(mockPage.hasContent()).thenReturn(true);
+        when(mockPage.getContentResource()).thenReturn(mockContentResource);
+        when(mockContentResource.getValueMap()).thenReturn(mockValueMap);
+        when(mockValueMap.get(PN_CREATED, Calendar.class)).thenReturn(createdDate);
+        when(mockPage.getLastModified()).thenReturn(null);
+
+        pageTreeSitemapGenerator = createGeneratorWithConfig(
+                true,
+                PN_PAGE_LAST_MOD,
+                false, "", false, "", false);
+
+        Method getLastmodDateMethod = PageTreeSitemapGeneratorImpl.class.getDeclaredMethod("getLastmodDate", Page.class);
+        getLastmodDateMethod.setAccessible(true);
+        Calendar result = (Calendar) getLastmodDateMethod.invoke(pageTreeSitemapGenerator, mockPage);
+
+        assertNotNull(result);
+        assertEquals(createdDate, result);
+
+        verify(mockPage).hasContent();
+        verify(mockPage).getContentResource();
+        verify(mockContentResource).getValueMap();
+        verify(mockValueMap).get(PN_CREATED, Calendar.class);
+        verify(mockPage).getLastModified();
+    }
+
+    @Test
+    public void testSetLanguageAlternates() throws Exception {
+        Page mockPage = mock(Page.class);
+
+        pageTreeSitemapGenerator = spy(createGeneratorWithConfig(
+                true, PN_PAGE_LAST_MOD,
+                false, "",
+                false, "",
+                true)); // Enable language alternates
+
+        Map<Locale, String> alternateLinks = new LinkedHashMap<>();
+        alternateLinks.put(Locale.ENGLISH, "https://example.com/en");
+        alternateLinks.put(Locale.GERMAN, "https://example.com/de");
+        doReturn(alternateLinks).when(pageTreeSitemapGenerator).getAlternateLanguageLinks(mockPage);
+
+        Url mockUrl = mock(Url.class);
+
+        AlternateLanguageExtension mockExtension = mock(AlternateLanguageExtension.class);
+        when(mockUrl.addExtension(AlternateLanguageExtension.class)).thenReturn(mockExtension);
+
+        Method setLanguageAlternatesMethod = PageTreeSitemapGeneratorImpl.class.getDeclaredMethod(
+                "setLanguageAlternates", Url.class, Page.class);
+        setLanguageAlternatesMethod.setAccessible(true);
+        setLanguageAlternatesMethod.invoke(pageTreeSitemapGenerator, mockUrl, mockPage);
+
+        verify(mockUrl, times(2)).addExtension(AlternateLanguageExtension.class); // Should be called twice, once for each locale
+        verify(mockExtension).setDefaultLocale(); // Should be called for the English locale
+        verify(mockExtension).setLocale(Locale.GERMAN); // Should be called for the German locale
+        verify(mockExtension, times(2)).setHref(anyString()); // Should be called twice, once for each locale
+        verify(mockExtension).setHref("https://example.com/en");
+        verify(mockExtension).setHref("https://example.com/de");
+    }
+
 }

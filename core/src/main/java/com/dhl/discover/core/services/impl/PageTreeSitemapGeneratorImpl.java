@@ -60,7 +60,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     private String changefreqDefaultValue;
     private boolean priorityEnabled;
     private String priorityDefaultValue;
-    private boolean languageAlternatesEnabled;
+    boolean languageAlternatesEnabled;
 
     @Reference
     private PageUtilService pageUtilService;
