@@ -91,9 +91,10 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="dhl/components/content/article-author-banner"
                                 editable="{Boolean}true"/>
-                        <sticky_container
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <sticky-container
+                                cq:styleIds="[1758631355210]"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/foundation/components/responsivegrid">
                             <experiencefragment
                                     jcr:created="{Date}2024-11-26T17:27:27.550+02:00"
                                     jcr:createdBy="admin"
@@ -113,7 +114,7 @@
                                     editable="{Boolean}true">
                                 <cq:responsive jcr:primaryType="nt:unstructured"/>
                             </responsivegrid>
-                        </sticky_container>
+                        </sticky-container>
                     </sidebar>
                 </article_container>
                 <article_container_two
