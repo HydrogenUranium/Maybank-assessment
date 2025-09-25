@@ -298,7 +298,7 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     @Test
-    void testGetCanonicalUrl_WithAbsoluteUrl() throws Exception {
+    void testGetCanonicalUrl_WithAbsoluteUrl() {
         Page mockPage = mock(Page.class);
         Resource mockPageResource = mock(Resource.class);
         when(mockPage.adaptTo(Resource.class)).thenReturn(mockPageResource);
@@ -407,11 +407,11 @@ public class PageTreeSitemapGeneratorImplTest {
             PageTreeSitemapGeneratorImpl spyGenerator = spy(pageTreeSitemapGenerator);
             doReturn(false).when(spyGenerator).isCanonicalUrl(eq(mockPage), anyString());
             doReturn("https://example.com/content/some/path.html").when(spyGenerator)
-                    .externalize(eq(mockCanonicalResource), eq(HTML_EXTENSION));
+                    .externalize(mockCanonicalResource, HTML_EXTENSION);
             String result = spyGenerator.getCanonicalUrl(mockPage);
             assertEquals("https://example.com/content/some/path.html", result);
             verify(mockCanonicalResource).getResourceMetadata();
-            verify(spyGenerator).externalize(eq(mockCanonicalResource), eq(HTML_EXTENSION));
+            verify(spyGenerator).externalize(mockCanonicalResource, HTML_EXTENSION);
         }
     }
 
