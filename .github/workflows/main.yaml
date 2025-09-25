@@ -57,13 +57,13 @@ on:
       run_sonar_scan:
         description: 'Run Sonar Scan'
         type: boolean
-        required: false
-        default: false
+        required: true
+        default: true
       run_owasp_dependency_check:
         description: 'Run OWASP Dependency Check'
         type: boolean
-        required: false
-        default: false
+        required: true
+        default: true
       run_fortify_scan:
         description: 'Run Fortify Scan'
         type: boolean
@@ -87,7 +87,7 @@ on:
       build_and_publish:
         description: 'Build and publish to Artifactory'
         type: boolean
-        required: false
+        required: true
         default: true
 
 jobs:
@@ -170,11 +170,9 @@ jobs:
       - name: Evaluate Artifact Info
         id: extract-info
         uses: ./.github/actions/evaluate-artifact-info
-        if: ${{ inputs.build_and_publish == true }}
 
       - name: Publish to Artifactory
         uses: ./.github/actions/publish-to-artifactory
-        if: ${{ inputs.build_and_publish == true }}
         with:
           artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
@@ -182,7 +180,6 @@ jobs:
 
       - name: OWASP Dependency-Check
         uses: ./.github/actions/owasp-dependency-check
-        if: ${{ inputs.run_owasp_dependency_check == true }}
         env:
           artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
@@ -190,7 +187,6 @@ jobs:
 
       - name: Sonar Scan and Quality
         uses: ./.github/actions/sonar-scan
-        if: ${{ inputs.run_sonar_scan == true }}
         with:
           pull-request-number: ${{ inputs.pull_request_number }}
           pull-request-base-ref: ${{ inputs.pull_request_base_ref }}
