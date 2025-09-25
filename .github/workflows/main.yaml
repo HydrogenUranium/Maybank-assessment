@@ -87,7 +87,7 @@ on:
       build_and_publish:
         description: 'Build and publish to Artifactory'
         type: boolean
-        required: true
+        required: false
         default: true
 
 jobs:
