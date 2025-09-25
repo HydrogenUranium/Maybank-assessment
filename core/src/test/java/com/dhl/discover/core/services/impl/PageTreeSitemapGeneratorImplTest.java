@@ -7,6 +7,7 @@ import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.*;
+import org.apache.sling.fsprovider.internal.mapper.valuemap.ValueMapDecorator;
 import org.apache.sling.sitemap.SitemapException;
 import org.apache.sling.sitemap.builder.Url;
 import org.apache.sling.sitemap.builder.extensions.AlternateLanguageExtension;
@@ -26,6 +27,7 @@ import java.lang.reflect.Method;
 import java.time.Instant;
 import java.util.*;
 
+import static com.adobe.aem.wcm.seo.SeoTags.PN_CANONICAL_URL;
 import static com.day.cq.wcm.api.constants.NameConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -199,7 +201,7 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     @Test
-    public void testGetLastmodDt_CreatedDtOnly() throws Exception {
+    void testGetLastmodDt_CreatedDtOnly() throws Exception {
         Page mockPage = mock(Page.class);
         Resource mockContentResource = mock(Resource.class);
         ValueMap mockValueMap = mock(ValueMap.class);
@@ -233,7 +235,7 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     @Test
-    public void testSetLanguageAlternates() throws Exception {
+    void testSetLanguageAlternates() throws Exception {
         Page mockPage = mock(Page.class);
 
         pageTreeSitemapGenerator = spy(createGeneratorWithConfig(
@@ -263,6 +265,33 @@ public class PageTreeSitemapGeneratorImplTest {
         verify(mockExtension, times(2)).setHref(anyString()); // Should be called twice, once for each locale
         verify(mockExtension).setHref("https://example.com/en");
         verify(mockExtension).setHref("https://example.com/de");
+    }
+    @Test
+    void testGetCanonicalUrl_WithReSrcPathInfo(){
+        Page mockPage = mock(Page.class);
+        Resource mockPageResource = mock(Resource.class);
+        ResourceResolver mockResolver = mock(ResourceResolver.class);
+        Resource mockCanonicalResource = mock(Resource.class);
+        ResourceMetadata mockMetadata = new ResourceMetadata();
+        mockMetadata.setResolutionPathInfo(".selector.html");
+
+        when(mockPage.adaptTo(Resource.class)).thenReturn(mockPageResource);
+        when(mockPageResource.getValueMap()).thenReturn(new ValueMapDecorator(Collections.singletonMap(
+                PN_CANONICAL_URL, "/content/some/path")));
+        when(mockPage.hasContent()).thenReturn(true);
+        when(mockPage.getContentResource()).thenReturn(mockPageResource);
+        when(mockPageResource.getResourceResolver()).thenReturn(mockResolver);
+        when(mockResolver.resolve("/content/some/path")).thenReturn(mockCanonicalResource);
+        when(mockCanonicalResource.getResourceMetadata()).thenReturn(mockMetadata);
+
+        PageTreeSitemapGeneratorImpl spyGenerator = spy(pageTreeSitemapGenerator);
+        doReturn("https://example.com/content/some/path.selector.html").when(spyGenerator)
+                .externalize(mockCanonicalResource, ".selector.html");
+
+        String result = spyGenerator.getCanonicalUrl(mockPage);
+
+        assertEquals("https://example.com/content/some/path.selector.html", result);
+        verify(mockCanonicalResource).getResourceMetadata();
     }
 
 }

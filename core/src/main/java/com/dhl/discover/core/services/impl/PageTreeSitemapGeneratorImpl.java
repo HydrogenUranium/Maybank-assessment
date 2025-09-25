@@ -263,7 +263,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
         return null;
     }
 
-    private String externalize(Resource resource, String selectorExtensionSuffix) {
+    String externalize(Resource resource, String selectorExtensionSuffix) {
         return resource != null ? externalize(resource.getResourceResolver(), resource.getPath(), selectorExtensionSuffix) : StringUtils.EMPTY;
     }
 
@@ -272,7 +272,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
         return resourceResolver.map(path);
     }
 
-    private Optional<ResourceResolver> getResourceResolver(Page page) {
+    Optional<ResourceResolver> getResourceResolver(Page page) {
         return Optional.ofNullable(page)
                 .filter(Page::hasContent)
                 .map(Page::getContentResource)
