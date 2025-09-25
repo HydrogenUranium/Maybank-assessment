@@ -178,6 +178,7 @@ jobs:
         with:
           artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          artifactory-url: ${{ vars.ARTIFACTORY_URL }}
 
       - name: OWASP Dependency-Check
         uses: ./.github/actions/owasp-dependency-check
