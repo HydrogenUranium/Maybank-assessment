@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.*;
 import org.apache.sling.fsprovider.internal.mapper.valuemap.ValueMapDecorator;
 import org.apache.sling.sitemap.SitemapException;
+import org.apache.sling.sitemap.builder.Sitemap;
 import org.apache.sling.sitemap.builder.Url;
 import org.apache.sling.sitemap.builder.extensions.AlternateLanguageExtension;
 import org.apache.sling.sitemap.impl.builder.SitemapImpl;
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.Writer;
@@ -29,6 +31,7 @@ import java.util.*;
 
 import static com.adobe.aem.wcm.seo.SeoTags.PN_CANONICAL_URL;
 import static com.day.cq.wcm.api.constants.NameConstants.*;
+import static com.dhl.discover.core.services.impl.PageTreeSitemapGeneratorImpl.HTML_EXTENSION;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -36,7 +39,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
 public class PageTreeSitemapGeneratorImplTest {
     public static final String PAGE_PATH = "/content/dhl/page";
-    public static final String EXPECTED_LOCATION = PAGE_PATH + PageTreeSitemapGeneratorImpl.HTML_EXTENSION;
+    public static final String EXPECTED_LOCATION = PAGE_PATH + HTML_EXTENSION;
     public static final Instant EXPECTED_LAST_MODIFIED = Instant.parse("2021-10-18T11:21:08Z");
     public static final String TEST_RESOURCE_PATH = "/com/dhl/discover/core/services/impl/PageTreeSitemapGeneratorImplTest/page_resource.json";
 
@@ -293,5 +296,178 @@ public class PageTreeSitemapGeneratorImplTest {
         assertEquals("https://example.com/content/some/path.selector.html", result);
         verify(mockCanonicalResource).getResourceMetadata();
     }
+
+    @Test
+    public void testGetCanonicalUrl_WithAbsoluteUrl() throws Exception {
+        Page mockPage = mock(Page.class);
+        Resource mockPageResource = mock(Resource.class);
+        when(mockPage.adaptTo(Resource.class)).thenReturn(mockPageResource);
+        when(mockPageResource.getValueMap()).thenReturn(new ValueMapDecorator(Collections.singletonMap(
+                PN_CANONICAL_URL, "https://example.com/absolute/path")));
+
+        PageTreeSitemapGeneratorImpl spyGenerator = spy(pageTreeSitemapGenerator);
+        doReturn(false).when(spyGenerator).isCanonicalUrl(eq(mockPage), anyString());
+        String result = spyGenerator.getCanonicalUrl(mockPage);
+        assertEquals("https://example.com/absolute/path", result);
+        verify(mockPage).adaptTo(Resource.class);
+        verify(mockPageResource).getValueMap();
+    }
+
+    @Test
+    public void testGetCanonicalUrl_WithEmptyResourceResolver() {
+        Page mockPage = mock(Page.class);
+        Resource mockPageResource = mock(Resource.class);
+        when(mockPage.adaptTo(Resource.class)).thenReturn(mockPageResource);
+        when(mockPageResource.getValueMap()).thenReturn(new ValueMapDecorator(Collections.singletonMap(
+                PN_CANONICAL_URL, "/content/some/path")));
+
+        PageTreeSitemapGeneratorImpl spyGenerator = spy(pageTreeSitemapGenerator);
+        doReturn(false).when(spyGenerator).isCanonicalUrl(eq(mockPage), anyString());
+        doReturn(Optional.empty()).when(spyGenerator).getResourceResolver(mockPage);
+        String result = spyGenerator.getCanonicalUrl(mockPage);
+        assertEquals("", result);
+        verify(spyGenerator).getResourceResolver(mockPage);
+    }
+
+    @Test
+    public void testGetCanonicalUrl_WithNonExistingResource() {
+        Page mockPage = mock(Page.class);
+        Resource mockPageResource = mock(Resource.class);
+        ResourceResolver mockResolver = mock(ResourceResolver.class);
+        Resource mockNonExistingResource = mock(Resource.class);
+        when(mockPage.adaptTo(Resource.class)).thenReturn(mockPageResource);
+        when(mockPageResource.getValueMap()).thenReturn(new ValueMapDecorator(Collections.singletonMap(
+                PN_CANONICAL_URL, "/content/non/existing/path")));
+        when(mockPage.hasContent()).thenReturn(true);
+        when(mockPage.getContentResource()).thenReturn(mockPageResource);
+        when(mockPageResource.getResourceResolver()).thenReturn(mockResolver);
+        when(mockResolver.resolve("/content/non/existing/path")).thenReturn(mockNonExistingResource);
+        try (MockedStatic<ResourceUtil> resourceUtilMock = mockStatic(ResourceUtil.class)) {
+            resourceUtilMock.when(() -> ResourceUtil.isNonExistingResource(mockNonExistingResource)).thenReturn(true);
+
+            PageTreeSitemapGeneratorImpl spyGenerator = spy(pageTreeSitemapGenerator);
+            doReturn(false).when(spyGenerator).isCanonicalUrl(eq(mockPage), anyString());
+            doReturn("https://example.com/content/non/existing/path.html").when(spyGenerator)
+                    .externalize(eq(mockNonExistingResource), anyString());
+
+            String result = spyGenerator.getCanonicalUrl(mockPage);
+            assertEquals("https://example.com/content/non/existing/path.html", result);
+            verify(spyGenerator).externalize(eq(mockNonExistingResource), anyString());
+        }
+    }
+
+
+    @Test
+    public void testGetCanonicalUrl_WithNonExistingResourceWithExtension() {
+        Page mockPage = mock(Page.class);
+        Resource mockPageResource = mock(Resource.class);
+        ResourceResolver mockResolver = mock(ResourceResolver.class);
+        Resource mockNonExistingResource = mock(Resource.class);
+
+        when(mockPage.adaptTo(Resource.class)).thenReturn(mockPageResource);
+        when(mockPageResource.getValueMap()).thenReturn(new ValueMapDecorator(Collections.singletonMap(
+                PN_CANONICAL_URL, "/content/path/with/extension.pdf")));
+
+        when(mockPage.hasContent()).thenReturn(true);
+        when(mockPage.getContentResource()).thenReturn(mockPageResource);
+        when(mockPageResource.getResourceResolver()).thenReturn(mockResolver);
+
+        when(mockResolver.resolve("/content/path/with/extension.pdf")).thenReturn(mockNonExistingResource);
+        try (MockedStatic<ResourceUtil> resourceUtilMock = mockStatic(ResourceUtil.class)) {
+            resourceUtilMock.when(() -> ResourceUtil.isNonExistingResource(mockNonExistingResource)).thenReturn(true);
+            PageTreeSitemapGeneratorImpl spyGenerator = spy(pageTreeSitemapGenerator);
+            doReturn(false).when(spyGenerator).isCanonicalUrl(eq(mockPage), anyString());
+            doReturn("https://example.com/content/path/with/extension.pdf").when(spyGenerator)
+                    .externalize(eq(mockNonExistingResource), anyString());
+
+            String result = spyGenerator.getCanonicalUrl(mockPage);
+            assertEquals("https://example.com/content/path/with/extension.pdf", result);
+            verify(spyGenerator).externalize(eq(mockNonExistingResource), anyString());
+        }
+    }
+
+    @Test
+    void testGetCanonicalUrl_WithBlankResolutionPathInfo() {
+        Page mockPage = mock(Page.class);
+        Resource mockPageResource = mock(Resource.class);
+        ResourceResolver mockResolver = mock(ResourceResolver.class);
+        Resource mockCanonicalResource = mock(Resource.class);
+        ResourceMetadata mockMetadata = new ResourceMetadata();
+        when(mockPage.adaptTo(Resource.class)).thenReturn(mockPageResource);
+        when(mockPageResource.getValueMap()).thenReturn(new ValueMapDecorator(Collections.singletonMap(
+                PN_CANONICAL_URL, "/content/some/path")));
+        when(mockPage.hasContent()).thenReturn(true);
+        when(mockPage.getContentResource()).thenReturn(mockPageResource);
+        when(mockPageResource.getResourceResolver()).thenReturn(mockResolver);
+        when(mockResolver.resolve("/content/some/path")).thenReturn(mockCanonicalResource);
+
+        try (MockedStatic<ResourceUtil> resourceUtilMock = mockStatic(ResourceUtil.class)) {
+            resourceUtilMock.when(() -> ResourceUtil.isNonExistingResource(mockCanonicalResource)).thenReturn(false);
+            when(mockCanonicalResource.getResourceMetadata()).thenReturn(mockMetadata);
+            PageTreeSitemapGeneratorImpl spyGenerator = spy(pageTreeSitemapGenerator);
+            doReturn(false).when(spyGenerator).isCanonicalUrl(eq(mockPage), anyString());
+            doReturn("https://example.com/content/some/path.html").when(spyGenerator)
+                    .externalize(eq(mockCanonicalResource), eq(HTML_EXTENSION));
+            String result = spyGenerator.getCanonicalUrl(mockPage);
+            assertEquals("https://example.com/content/some/path.html", result);
+            verify(mockCanonicalResource).getResourceMetadata();
+            verify(spyGenerator).externalize(eq(mockCanonicalResource), eq(HTML_EXTENSION));
+        }
+    }
+
+    @Test
+    public void testAddResource_WithNonPageResource() throws SitemapException {
+        Resource mockResource = mock(Resource.class);
+        Sitemap mockSitemap = mock(Sitemap.class);
+
+        when(mockResource.adaptTo(Page.class)).thenReturn(null);
+        when(mockResource.getPath()).thenReturn("/content/non-page-resource");
+
+        pageTreeSitemapGenerator.addResource("testName", mockSitemap, mockResource);
+
+        verifyNoInteractions(mockSitemap);
+        verify(mockResource).getPath();
+        verify(mockResource).adaptTo(Page.class);
+        verifyNoMoreInteractions(mockResource);
+    }
+
+    @Test
+    public void testAddResource_WithBlankLocation() throws SitemapException {
+        Resource mockResource = mock(Resource.class);
+        Page mockPage = mock(Page.class);
+        Sitemap mockSitemap = mock(Sitemap.class);
+
+        when(mockResource.adaptTo(Page.class)).thenReturn(mockPage);
+        when(mockResource.getPath()).thenReturn("/content/test/page");
+
+        PageTreeSitemapGeneratorImpl spyGenerator = spy(pageTreeSitemapGenerator);
+        doReturn("").when(spyGenerator).getCanonicalUrl(mockPage);
+        spyGenerator.addResource("testName", mockSitemap, mockResource);
+
+        verifyNoInteractions(mockSitemap);
+        verify(spyGenerator).getCanonicalUrl(mockPage);
+        verify(mockResource).getPath();
+    }
+
+    @Test
+    public void testAddResource_WithNullLocation() throws SitemapException {
+        Resource mockResource = mock(Resource.class);
+        Page mockPage = mock(Page.class);
+        Sitemap mockSitemap = mock(Sitemap.class);
+
+        when(mockResource.adaptTo(Page.class)).thenReturn(mockPage);
+        when(mockResource.getPath()).thenReturn("/content/test/page");
+
+        PageTreeSitemapGeneratorImpl spyGenerator = spy(pageTreeSitemapGenerator);
+        doReturn(null).when(spyGenerator).getCanonicalUrl(mockPage);
+
+        spyGenerator.addResource("testName", mockSitemap, mockResource);
+
+        verifyNoInteractions(mockSitemap);
+        verify(spyGenerator).getCanonicalUrl(mockPage);
+        verify(mockResource).getPath();
+    }
+
+
 
 }
