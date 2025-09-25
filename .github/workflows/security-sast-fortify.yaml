@@ -21,7 +21,7 @@
 #   - Full Scan Mode: Complete analysis for all severities
 #   - Scan Precision Control: Tune scan depth from 1 (fastest) to 5 (most thorough)
 #   - Optional caching of Fortify translation data to speed up builds
-
+name: SAST Fortify Workflow
 on:
   workflow_call:
     inputs:
