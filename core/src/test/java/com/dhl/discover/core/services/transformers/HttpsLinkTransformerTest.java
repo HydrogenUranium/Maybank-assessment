@@ -90,7 +90,7 @@ class HttpsLinkTransformerTest {
     }
 
     @Test
-    void testInit_DefaultImplementation_NoExceptions() throws IOException {
+    void testInit_DefaultImplementation_NoExceptions() {
         ProcessingContext mockContext = mock(ProcessingContext.class);
         ProcessingComponentConfiguration mockConfig = mock(ProcessingComponentConfiguration.class);
         assertDoesNotThrow(() -> transformer.init(mockContext, mockConfig));
