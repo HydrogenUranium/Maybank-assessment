@@ -30,7 +30,7 @@ on:
         description: 'Run OWASP Dependency Check'
         type: boolean
         required: true
-        default: false
+        default: true
       run_fortify_scan:
         description: 'Run Fortify Scan'
         type: boolean
@@ -140,8 +140,7 @@ jobs:
         github.event_name == 'push' ||
         inputs.build_and_publish == true ||
         inputs.run_owasp_dependency_check == true ||
-        inputs.run_sonar_scan == true ||
-        inputs.deploy == true
+        inputs.run_sonar_scan == true
       }}
     permissions:
       contents: write
@@ -171,7 +170,7 @@ jobs:
       - name: Evaluate Artifact Info
         id: extract-info
         uses: ./.github/actions/evaluate-artifact-info
-        if: ${{ inputs.build_and_publish == true || inputs.deploy == true }}
+        if: ${{ inputs.build_and_publish == true }}
 
       - name: Publish to Artifactory
         uses: ./.github/actions/publish-to-artifactory
