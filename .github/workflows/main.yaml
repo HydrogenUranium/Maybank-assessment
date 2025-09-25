@@ -57,12 +57,12 @@ on:
       run_sonar_scan:
         description: 'Run Sonar Scan'
         type: boolean
-        required: true
+        required: false
         default: true
       run_owasp_dependency_check:
         description: 'Run OWASP Dependency Check'
         type: boolean
-        required: true
+        required: false
         default: true
       run_fortify_scan:
         description: 'Run Fortify Scan'
