@@ -64,6 +64,13 @@
                                     textIsRich="true"/>
                         </responsivegrid>
                     </body>
+                    <sidebar
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="wcm/foundation/components/responsivegrid">
+                        <article_author_banner
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dhl/components/content/article-author-banner"/>
+                    </sidebar>
                 </article_container>
                 <responsivegrid
                         jcr:primaryType="nt:unstructured"
