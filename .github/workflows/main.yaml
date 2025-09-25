@@ -134,17 +134,13 @@ jobs:
 
   build-and-scan:
     name: Build and Scan
-    env:
-      RUN_SONAR_SCAN: ${{ inputs.run_sonar_scan != '' && inputs.run_sonar_scan || 'true' }}
-      RUN_OWASP_DEPENDENCY_CHECK: ${{ inputs.run_owasp_dependency_check != '' && inputs.run_owasp_dependency_check || 'true' }}
-      BUILD_AND_PUBLISH: ${{ inputs.build_and_publish != '' && inputs.build_and_publish || 'true' }}
     if: >-
       ${{
         github.event_name == 'pull_request' ||
         github.event_name == 'push' ||
-        env.BUILD_AND_PUBLISH == 'true' ||
-        env.RUN_OWASP_DEPENDENCY_CHECK == 'true' ||
-        env.RUN_SONAR_SCAN == 'true'
+        inputs.build_and_publish == true ||
+        inputs.run_owasp_dependency_check == true ||
+        inputs.run_sonar_scan == true
       }}
     permissions:
       contents: write
@@ -174,11 +170,11 @@ jobs:
       - name: Evaluate Artifact Info
         id: extract-info
         uses: ./.github/actions/evaluate-artifact-info
-        if: ${{ env.BUILD_AND_PUBLISH == true }}
+        if: ${{ inputs.build_and_publish == true }}
 
       - name: Publish to Artifactory
         uses: ./.github/actions/publish-to-artifactory
-        if: ${{ env.BUILD_AND_PUBLISH == true }}
+        if: ${{ inputs.build_and_publish == true }}
         with:
           artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
@@ -186,7 +182,7 @@ jobs:
 
       - name: OWASP Dependency-Check
         uses: ./.github/actions/owasp-dependency-check
-        if: ${{ env.RUN_OWASP_DEPENDENCY_CHECK == true }}
+        if: ${{ inputs.run_owasp_dependency_check == true }}
         env:
           artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
@@ -194,7 +190,7 @@ jobs:
 
       - name: Sonar Scan and Quality
         uses: ./.github/actions/sonar-scan
-        if: ${{ env.RUN_SONAR_SCAN == true }}
+        if: ${{ inputs.run_sonar_scan == true }}
         with:
           pull-request-number: ${{ inputs.pull_request_number }}
           pull-request-base-ref: ${{ inputs.pull_request_base_ref }}
