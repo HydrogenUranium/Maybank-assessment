@@ -298,7 +298,7 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     @Test
-    public void testGetCanonicalUrl_WithAbsoluteUrl() throws Exception {
+    void testGetCanonicalUrl_WithAbsoluteUrl() throws Exception {
         Page mockPage = mock(Page.class);
         Resource mockPageResource = mock(Resource.class);
         when(mockPage.adaptTo(Resource.class)).thenReturn(mockPageResource);
@@ -314,7 +314,7 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     @Test
-    public void testGetCanonicalUrl_WithEmptyResourceResolver() {
+    void testGetCanonicalUrl_WithEmptyResourceResolver() {
         Page mockPage = mock(Page.class);
         Resource mockPageResource = mock(Resource.class);
         when(mockPage.adaptTo(Resource.class)).thenReturn(mockPageResource);
@@ -330,7 +330,7 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     @Test
-    public void testGetCanonicalUrl_WithNonExistingResource() {
+    void testGetCanonicalUrl_WithNonExistingResource() {
         Page mockPage = mock(Page.class);
         Resource mockPageResource = mock(Resource.class);
         ResourceResolver mockResolver = mock(ResourceResolver.class);
@@ -358,7 +358,7 @@ public class PageTreeSitemapGeneratorImplTest {
 
 
     @Test
-    public void testGetCanonicalUrl_WithNonExistingResourceWithExtension() {
+    void testGetCanonicalUrl_WithNonExistingResourceWithExtension() {
         Page mockPage = mock(Page.class);
         Resource mockPageResource = mock(Resource.class);
         ResourceResolver mockResolver = mock(ResourceResolver.class);
@@ -416,7 +416,7 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     @Test
-    public void testAddResource_WithNonPageResource() throws SitemapException {
+    void testAddResource_WithNonPageResource() throws SitemapException {
         Resource mockResource = mock(Resource.class);
         Sitemap mockSitemap = mock(Sitemap.class);
 
@@ -432,7 +432,7 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     @Test
-    public void testAddResource_WithBlankLocation() throws SitemapException {
+    void testAddResource_WithBlankLocation() throws SitemapException {
         Resource mockResource = mock(Resource.class);
         Page mockPage = mock(Page.class);
         Sitemap mockSitemap = mock(Sitemap.class);
@@ -450,7 +450,7 @@ public class PageTreeSitemapGeneratorImplTest {
     }
 
     @Test
-    public void testAddResource_WithNullLocation() throws SitemapException {
+    void testAddResource_WithNullLocation() throws SitemapException {
         Resource mockResource = mock(Resource.class);
         Page mockPage = mock(Page.class);
         Sitemap mockSitemap = mock(Sitemap.class);
