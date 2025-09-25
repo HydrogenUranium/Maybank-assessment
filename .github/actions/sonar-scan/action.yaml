@@ -1,0 +1,95 @@
+name: 'Sonar Scan and Quality Gate'
+description: 'Runs SonarQube scan with pull request analysis and checks quality gate.'
+inputs:
+  pull-request-number:
+    description: 'Pull Request Number'
+    required: false
+  pull-request-base-ref:
+    description: 'Pull Request Base Reference'
+    required: false
+  pull-request-head-ref:
+    description: 'Pull Request Head Reference'
+    required: false
+  sonar-host-url:
+    description: 'SonarQube host URL'
+    required: true
+  sonar-token:
+    description: 'SonarQube token'
+    required: true
+  sonar-project-key:
+    description: 'SonarQube project key'
+    required: true
+  sonar-project-name:
+    description: 'SonarQube project name'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Add additional parameters for PullRequest Analysis
+      if: ${{ inputs.pull-request-number != '' }}
+      shell: bash
+      run: |
+        echo "SONAR_BRANCH_ANALYSIS=-Dsonar.pullrequest.key=${{ inputs.pull-request-number }} -Dsonar.pullrequest.base=${{ inputs.pull-request-base-ref }} -Dsonar.pullrequest.branch=${{ inputs.pull-request-head-ref }}" >> $GITHUB_ENV
+    - name: Sonar Scan and Quality
+      id: quality-gate
+      shell: bash
+      run: >-
+        mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:5.0.0.4389:sonar
+        ${{ env.SONAR_BRANCH_ANALYSIS }}
+        -s /root/.m2/settings.xml
+        -Dsonar.qualitygate.wait=true
+        -Dsonar.qualitygate.timeout=600
+        -Dsonar.host.url=${{ inputs.sonar-host-url }}
+        -Dsonar.token=${{ inputs.sonar-token }}
+        -Dsonar.projectKey=${{ inputs.sonar-project-key }}
+        -Dsonar.projectName="${{ inputs.sonar-project-name }}"
+        -Dsonar.inclusions=**/*.java
+        -Dsonar.exclusions=**/*.properties,**/.dtd,**/.pem,**/.htm,**/*.ctl
+        -Dsonar.junit.reportPaths=target/surefire-reports
+        -Dsonar.cpd.exclusions=**/*.Designer.cs
+        -Dsonar.findbugs.excludes=**/*.jar
+        -Dsonar.coverage.exclusions=**/Generated*,**/*Test*
+        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+      continue-on-error: true
+      env:
+        # Cypress-specific proxy settings
+        CYPRESS_PROXY: http://b2b-http.dhl.com:8080
+        npm_config_proxy: http://b2b-http.dhl.com:8080
+        npm_config_https_proxy: http://b2b-http.dhl.com:8080
+
+        # Additional Cypress environment variables for troubleshooting
+        CYPRESS_CACHE_FOLDER: ./node_modules/cypress_cache
+        CYPRESS_INSTALL_BINARY: 0 # Set to 0 to skip binary download during npm install, then control it manually
+    - name: Log SonarQube Scan Result and Create GitHub Comment If SonarQube Quality Gate Failed
+      uses: actions/github-script@v7
+      with:
+        script: |
+          var url;
+          if ('${{ inputs.pull-request-number }}' != '') {
+            url = `${{ inputs.sonar-host-url }}/dashboard?id=${{ inputs.sonar-project-key }}&pullRequest=${{ inputs.pull-request-number }}`;
+          } else {
+            url = `${{ inputs.sonar-host-url }}/dashboard?id=${{ inputs.sonar-project-key }}&branch=${{ github.ref_name }}`;
+          }
+          if (${{ steps.quality-gate.outcome != 'success' }}) {
+            if ('${{ github.event_name }}' == 'pull_request') {
+              var message = `${{ format('@{0} Your commit(s)', github.actor) }} failed SonarQube Quality Gate.\nView details on ${url}.`;
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: message
+              })
+            } else {
+              var message = `Your repository failed SonarQube Quality Gate.\nView details on ${url}.`;
+              github.rest.repos.createCommitComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                commit_sha: context.sha,
+                body: message
+              });
+            }
+            core.setFailed('QUALITY GATE STATUS: FAILED');
+            core.summary.addHeading("SonarQube Scan Summary").addRaw('QUALITY GATE STATUS: FAILED - View details on ').addLink(`${url}`, `${url}`).addEOL().write();
+          } else {
+            core.summary.addHeading("SonarQube Scan Summary").addRaw('QUALITY GATE STATUS: PASSED - View details on ').addLink(`${url}`, `${url}`).addEOL().write();
+          }

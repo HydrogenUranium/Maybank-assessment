@@ -60,7 +60,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
     private String changefreqDefaultValue;
     private boolean priorityEnabled;
     private String priorityDefaultValue;
-    private boolean languageAlternatesEnabled;
+    boolean languageAlternatesEnabled;
 
     @Reference
     private PageUtilService pageUtilService;
@@ -150,7 +150,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
         return isCanonicalUrl(page, getCustomCanonicalUrl(page));
     }
 
-    private boolean isCanonicalUrl(Page page, String customCanonicalUrl) {
+    boolean isCanonicalUrl(Page page, String customCanonicalUrl) {
         Optional<ResourceResolver> resourceResolver = getResourceResolver(page);
         return StringUtils.isBlank(customCanonicalUrl) || (resourceResolver.isPresent() &&
                 (customCanonicalUrl.equals(getExternalizedLink(page, resourceResolver.get())) || customCanonicalUrl.equals(page.getPath())));
@@ -263,7 +263,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
         return null;
     }
 
-    private String externalize(Resource resource, String selectorExtensionSuffix) {
+    String externalize(Resource resource, String selectorExtensionSuffix) {
         return resource != null ? externalize(resource.getResourceResolver(), resource.getPath(), selectorExtensionSuffix) : StringUtils.EMPTY;
     }
 
@@ -272,7 +272,7 @@ public class PageTreeSitemapGeneratorImpl extends ResourceTreeSitemapGenerator {
         return resourceResolver.map(path);
     }
 
-    private Optional<ResourceResolver> getResourceResolver(Page page) {
+    Optional<ResourceResolver> getResourceResolver(Page page) {
         return Optional.ofNullable(page)
                 .filter(Page::hasContent)
                 .map(Page::getContentResource)
