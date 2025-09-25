@@ -174,11 +174,11 @@ jobs:
       - name: Evaluate Artifact Info
         id: extract-info
         uses: ./.github/actions/evaluate-artifact-info
-        if: ${{ env.BUILD_AND_PUBLISH == 'true' }}
+        if: ${{ env.BUILD_AND_PUBLISH == true }}
 
       - name: Publish to Artifactory
         uses: ./.github/actions/publish-to-artifactory
-        if: ${{ env.BUILD_AND_PUBLISH == 'true' }}
+        if: ${{ env.BUILD_AND_PUBLISH == true }}
         with:
           artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
@@ -186,7 +186,7 @@ jobs:
 
       - name: OWASP Dependency-Check
         uses: ./.github/actions/owasp-dependency-check
-        if: ${{ env.RUN_OWASP_DEPENDENCY_CHECK == 'true' }}
+        if: ${{ env.RUN_OWASP_DEPENDENCY_CHECK == true }}
         env:
           artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
@@ -194,7 +194,7 @@ jobs:
 
       - name: Sonar Scan and Quality
         uses: ./.github/actions/sonar-scan
-        if: ${{ env.RUN_SONAR_SCAN == 'true' }}
+        if: ${{ env.RUN_SONAR_SCAN == true }}
         with:
           pull-request-number: ${{ inputs.pull_request_number }}
           pull-request-base-ref: ${{ inputs.pull_request_base_ref }}
