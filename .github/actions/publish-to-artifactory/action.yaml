@@ -10,7 +10,6 @@ inputs:
   artifactory-url:
     description: 'Artifactory repository URL'
     required: true
-    default: 'https://artifactory.dhl.com/artifactory/discover-proj-prg-local'
 runs:
   using: "composite"
   steps:
