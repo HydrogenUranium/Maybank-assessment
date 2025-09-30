@@ -11,6 +11,7 @@ import LanguageDetect from './Components/LanguageDetect';
 import Shared from './Components/Shared';
 import HorizontalScroll from './Components/HorizontalScroll';
 import Accordion from "./Components/Accordion";
+import Chatbot from "./Components/Chatbot";
 
 $(document).ready(() => {
   try {
@@ -33,4 +34,5 @@ $(document).ready(() => {
   Shared.init();
   HorizontalScroll.init();
   Accordion.init();
+  Chatbot.init()
 });
