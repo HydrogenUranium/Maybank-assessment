@@ -22,15 +22,13 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/alert"
                             jcr:title="In the Home Page Properties"
-                            text="- Banner Title &lt;br&gt; "/>
+                            text="- DHL Component Configuration > Article Related Components
+                            > Article Author Banner Title. "/>
                     <currentPageProperties
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/alert"
                             jcr:title="In the Current Page Properties"
-                            text="- Author Name &lt;br&gt;
-                                  - Author Title &lt;br&gt;
-                                  - Author Image &lt;br&gt;
-                                  Configure in Content Fragment"/>
+                            text="- Author Name, Title, and Image are managed via a Content Fragment. Select or update the Content Fragment under DHL Properties > Author."/>
                 </items>
             </column>
             <tabs
