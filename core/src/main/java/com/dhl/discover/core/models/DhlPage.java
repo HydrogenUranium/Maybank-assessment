@@ -164,10 +164,21 @@ public class DhlPage {
 		currentResource = resourceResolver.resolve(request.getRequestPathInfo().getResourcePath());
 		ContentPolicyManager contentPolicyManager = resourceResolver.adaptTo(ContentPolicyManager.class);
 		ContentPolicy contentPolicy = contentPolicyManager.getPolicy(currentResource);
-		String chatbotEnabledTemplate = contentPolicy.getProperties().get("isChatbotEnabledTemplate", String.class);
+
+		if (contentPolicy == null) {
+			return CHAT_DISABLED_STRING;
+		}
+
+		ValueMap properties = contentPolicy.getProperties();
+		if (properties == null) {
+			return CHAT_DISABLED_STRING;
+		}
+
+		String chatbotEnabledTemplate = properties.get("isChatbotEnabledTemplate", String.class);
 		if (chatbotEnabledTemplate == null) {
 			return CHAT_DISABLED_STRING;
 		}
+
 		return chatbotEnabledTemplate.equals(CHAT_ENABLED_STRING) ? CHAT_ENABLED_STRING : CHAT_DISABLED_STRING;
 	}
 

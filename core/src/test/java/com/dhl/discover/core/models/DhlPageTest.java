@@ -42,14 +42,15 @@ class DhlPageTest {
 		ctx.registerService(EnvironmentConfiguration.class, environmentConfiguration);
 		ctx.registerService(PageUtilService.class, pageUtilService);
 		ctx.registerService(AssetUtilService.class, assetUtilService);
-	    ctx.addModelsForClasses(DhlPage.class);
+		ctx.addModelsForClasses(DhlPage.class);
 		mockInjectHomeProperty(ctx, Map.of(
 				"gtmtrackingid", "gmt-tracking-id",
 				"assetprefix", "/discover",
 				"direction", "rtl",
 				"robotsTags", "",
-				"brandSlug",""
-
+				"brandSlug", "",
+				"isChatbotEnabledHomepage", "enabled",
+				"chatbotId", ""
 		));
 
 		when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
@@ -77,6 +78,12 @@ class DhlPageTest {
 		assertEquals("www.dhl.com",dhlPage.getAkamaiHostname());
 		assertEquals(null,dhlPage.getAdobeDtmLink());
 		assertEquals(null,dhlPage.getGtmDelayEnabled());
+		assertEquals("enabled", dhlPage.getIsChatbotEnabledHomepage());
+		assertEquals("", dhlPage.getChatbotId());
+		assertEquals("inherit", dhlPage.getIsChatbotEnabledPage());
+		assertEquals("disabled", dhlPage.getIsChatbotEnabledTemplate());
+		assertEquals(false, dhlPage.getChatbotEnabled());
+
 	}
 
 	@Test
