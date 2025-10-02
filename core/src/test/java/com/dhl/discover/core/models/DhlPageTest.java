@@ -6,10 +6,15 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
+import com.day.cq.wcm.api.policies.ContentPolicy;
+import com.day.cq.wcm.api.policies.ContentPolicyManager;
 import com.dhl.discover.core.components.EnvironmentConfiguration;
 import com.dhl.discover.core.services.AssetUtilService;
 import com.dhl.discover.core.services.PageUtilService;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.api.wrappers.ValueMapDecorator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +24,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.dhl.discover.junitUtils.InjectorMock.mockInjectHomeProperty;
@@ -35,6 +41,12 @@ class DhlPageTest {
 
 	@Mock
 	private AssetUtilService assetUtilService;
+
+	@Mock
+	private ContentPolicy contentPolicy;
+
+	@Mock
+	private ContentPolicyManager contentPolicyManager;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -53,9 +65,9 @@ class DhlPageTest {
 				"chatbotId", ""
 		));
 
-		when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
+		lenient().when(environmentConfiguration.getAkamaiHostname()).thenReturn("www.dhl.com");
 		lenient().when(environmentConfiguration.getAssetPrefix()).thenReturn("/discover");
-		when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg");
+		lenient().when(assetUtilService.getPageImagePath(any(Resource.class))).thenReturn("/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg");
 	}
 
 	@Test
@@ -120,4 +132,47 @@ class DhlPageTest {
 				"https://www.dhl.com/discover/content/dam/dhl/business-matters/4_finding-new-customers/consumer-insight--the-subscription-economy/1-Header-AOB-Mobile-991X558.jpg",
 				basePrefix.getOgtagimage());
 	}
+
+	@Test
+	void test_enabledChatbot() {
+		ctx.load().json("/com/dhl/discover/core/models/ArticleTemplatePolicy.json", "/conf/dhl/settings/wcm/policies/dhl/components/pages/editable-article/policy");
+		ValueMap policyProperties = ctx.currentResource("/conf/dhl/settings/wcm/policies/dhl/components/pages/editable-article/policy").getValueMap();
+		lenient().when(contentPolicyManager.getPolicy(ctx.currentResource("/conf/dhl/settings/wcm/policies/dhl/components/pages/editable-article/policy"))).thenReturn(contentPolicy);
+		lenient().when(contentPolicy.getProperties()).thenReturn(policyProperties);
+		lenient().when(contentPolicyManager.getPolicy(any(Resource.class))).thenReturn(contentPolicy);
+
+		ctx.registerAdapter(ResourceResolver.class, ContentPolicyManager.class, contentPolicyManager);
+
+		ctx.currentResource("/content/dhl/standardpage");
+		DhlPage dhlPage = ctx.request().adaptTo(DhlPage.class);
+
+		assertNotNull(dhlPage);
+		assertEquals("", dhlPage.getChatbotId());
+		assertEquals("inherit",dhlPage.getIsChatbotEnabledPage());
+		assertEquals("enabled",dhlPage.getIsChatbotEnabledTemplate());
+		assertEquals("enabled",dhlPage.getIsChatbotEnabledHomepage());
+		assertEquals(Boolean.TRUE, dhlPage.getChatbotEnabled());
+	}
+
+	@Test
+	void test_disabledChatbotByTemplate() {
+		ValueMap policyProperties = new ValueMapDecorator(new HashMap<>());
+		policyProperties.put("isChatbotEnabledTemplate", "disabled");
+
+		lenient().when(contentPolicy.getProperties()).thenReturn(policyProperties);
+		lenient().when(contentPolicyManager.getPolicy(any(Resource.class))).thenReturn(contentPolicy);
+
+		ctx.registerAdapter(ResourceResolver.class, ContentPolicyManager.class, contentPolicyManager);
+
+		ctx.currentResource("/content/dhl/standardpage");
+		DhlPage dhlPage = ctx.request().adaptTo(DhlPage.class);
+
+		assertNotNull(dhlPage);
+		assertEquals("", dhlPage.getChatbotId());
+		assertEquals("inherit",dhlPage.getIsChatbotEnabledPage());
+		assertEquals("disabled",dhlPage.getIsChatbotEnabledTemplate());
+		assertEquals("enabled",dhlPage.getIsChatbotEnabledHomepage());
+		assertEquals(Boolean.FALSE, dhlPage.getChatbotEnabled());
+	}
+
 }
