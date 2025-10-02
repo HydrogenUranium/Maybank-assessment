@@ -91,25 +91,30 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="dhl/components/content/article-author-banner"
                                 editable="{Boolean}true"/>
-                        <experiencefragment
-                                jcr:created="{Date}2024-11-26T17:27:27.550+02:00"
-                                jcr:createdBy="admin"
-                                jcr:lastModified="{Date}2024-11-26T17:28:09.303+02:00"
-                                jcr:lastModifiedBy="admin"
+                        <sticky-container
+                                cq:styleIds="[1758631355210]"
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="dhl/components/content/experiencefragment"
-                                id="sidebar-cta-section"
-                                fragmentVariationPath="/content/experience-fragments/dhl/language-masters/en-master/template-fragments/article/sidebar/master"/>
-                        <responsivegrid
-                                jcr:created="{Date}2023-10-10T14:07:50.160+03:00"
-                                jcr:createdBy="admin"
-                                jcr:lastModified="{Date}2023-10-10T14:07:50.160+03:00"
-                                jcr:lastModifiedBy="admin"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="wcm/foundation/components/responsivegrid"
-                                editable="{Boolean}true">
-                            <cq:responsive jcr:primaryType="nt:unstructured"/>
-                        </responsivegrid>
+                                sling:resourceType="wcm/foundation/components/responsivegrid">
+                            <experiencefragment
+                                    jcr:created="{Date}2024-11-26T17:27:27.550+02:00"
+                                    jcr:createdBy="admin"
+                                    jcr:lastModified="{Date}2024-11-26T17:28:09.303+02:00"
+                                    jcr:lastModifiedBy="admin"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dhl/components/content/experiencefragment"
+                                    id="sidebar-cta-section"
+                                    fragmentVariationPath="/content/experience-fragments/dhl/language-masters/en-master/template-fragments/article/sidebar/master"/>
+                            <responsivegrid
+                                    jcr:created="{Date}2023-10-10T14:07:50.160+03:00"
+                                    jcr:createdBy="admin"
+                                    jcr:lastModified="{Date}2023-10-10T14:07:50.160+03:00"
+                                    jcr:lastModifiedBy="admin"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="wcm/foundation/components/responsivegrid"
+                                    editable="{Boolean}true">
+                                <cq:responsive jcr:primaryType="nt:unstructured"/>
+                            </responsivegrid>
+                        </sticky-container>
                     </sidebar>
                 </article_container>
                 <article_container_two

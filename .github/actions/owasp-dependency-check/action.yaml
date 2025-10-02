@@ -1,0 +1,51 @@
+name: 'OWASP Dependency-Check'
+description: 'Runs OWASP scan, uploads report, and comments on PR/commit.'
+runs:
+  using: "composite"
+  steps:
+    - name: OWASP Dependency-Check
+      shell: bash
+      run: mvn dependency-check:check -B
+    - name: Upload OWASP Dependency-Check results
+      uses: actions/upload-artifact@v3
+      with:
+        name: dependency-check-result
+        path: |
+          target/dependency-check-report.xml
+          target/dependency-check-report.html
+          target/dependency-check-report.json
+    - name: Log OWASP Dependency-Check Result and Create Comment If Vulnerabilities Found
+      uses: actions/github-script@v7
+      continue-on-error: true
+      with:
+        script: |
+          const fs = require('fs');
+          const html = fs.readFileSync('target/dependency-check-report.html', 'utf8');
+          const scanInfoMatch = html.match(/<ul class="indent">([\s\S]*?)<\/ul>/);
+          const scanInfo = scanInfoMatch ? scanInfoMatch[1] : null;
+          console.log(scanInfo);
+          core.summary.addHeading("OWASP Dependency Check Scan Info").addRaw(scanInfo).addEOL().write();
+          const vulnerableCountMatch = html.match(/<span id="vulnerableCount">([^<]*)<\/span>/);
+          const vulnerableCount = vulnerableCountMatch ? vulnerableCountMatch[1] : null;
+          if (vulnerableCount === '0') {
+            console.log("No vulnerabilities found. Good job");
+          } else {
+            core.setFailed(`Vulnerabilities found: ${vulnerableCount}`);
+            if ('${{ github.event_name }}' == 'pull_request') {
+              var message = `${{ format('@{0} Your commit(s)', github.actor) }} has known Vulnerable Dependencies.\nPlease update the dependencies and the pipeline will run again.\nDetailed Dependency-Check report is available in the job artifacts (dependency-check-reports).\n\nScan Info:\n${scanInfo}`;
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: message
+              })
+            } else {
+              var message = `Your repository has known Vulnerable Dependencies.\nPlease update the dependencies and the pipeline will run again.\nDetailed Dependency-Check report is available in the job artifacts (dependency-check-reports).\n\nScan Info:\n${scanInfo}`;
+              github.rest.repos.createCommitComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                commit_sha: context.sha,
+                body: message
+              });
+            }
+          }

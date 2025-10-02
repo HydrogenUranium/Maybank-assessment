@@ -1,0 +1,70 @@
+name: 'Publish to Artifactory'
+description: 'Builds, tests, and deploys the Maven artifact to Artifactory.'
+inputs:
+  artifactory-username:
+    description: 'Username for Artifactory'
+    required: true
+  artifactory-password:
+    description: 'Password for Artifactory'
+    required: true
+  artifactory-url:
+    description: 'Artifactory repository URL'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Configure Maven settings
+      shell: bash
+      run: |
+        mkdir -p ~/.m2
+        cat > ~/.m2/settings.xml << EOF
+        <settings>
+        <servers>
+        <server>
+        <id>artifactory</id>
+        <username>${{ inputs.artifactory-username }}</username>
+        <password>${{ inputs.artifactory-password }}</password>
+        </server>
+        </servers>
+        <proxies>
+        <proxy>
+        <id>dhl-proxy</id>
+        <active>true</active>
+        <protocol>http</protocol>
+        <host>b2b-http.dhl.com</host>
+        <port>8080</port>
+        <nonProxyHosts>localhost|127.0.0.1|artifactory.dhl.com</nonProxyHosts>
+        </proxy>
+        </proxies>
+        </settings>
+        EOF
+    - name: Deploy to Artifactory
+      shell: bash
+      run: |
+        echo "Testing connection to Artifactory..."
+        curl -I -u ${{ inputs.artifactory-username }}:${{ inputs.artifactory-password }} ${{ inputs.artifactory-url }}
+        
+        echo "Deploying artifact to ${{ inputs.artifactory-url }}"
+        mvn clean deploy -B \
+          -DaltDeploymentRepository=artifactory::default::${{ inputs.artifactory-url }} \
+          -Dmaven.wagon.http.ssl.insecure=true \
+          -Dmaven.wagon.http.ssl.allowall=true
+      env:
+        MAVEN_OPTS: "-Dhttps.proxyHost=b2b-http.dhl.com -Dhttps.proxyPort=8080 -Dhttp.proxyHost=b2b-http.dhl.com -Dhttp.proxyPort=8080"
+        # Proxy settings for Maven
+        HTTP_PROXY: http://b2b-http.dhl.com:8080
+        HTTPS_PROXY: http://b2b-http.dhl.com:8080
+        NO_PROXY: "localhost,127.0.0.1,artifactory.dhl.com"
+        # Cypress-specific proxy settings
+        CYPRESS_PROXY: http://b2b-http.dhl.com:8080
+        npm_config_proxy: http://b2b-http.dhl.com:8080
+        npm_config_https_proxy: http://b2b-http.dhl.com:8080
+
+        # Additional Cypress environment variables for troubleshooting
+        CYPRESS_CACHE_FOLDER: ./node_modules/cypress_cache
+        CYPRESS_INSTALL_BINARY: 0 # Set to 0 to skip binary download during npm install, then control it manually
+    - name: Upload Maven Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: application-jar
+        path: target/*.jar
