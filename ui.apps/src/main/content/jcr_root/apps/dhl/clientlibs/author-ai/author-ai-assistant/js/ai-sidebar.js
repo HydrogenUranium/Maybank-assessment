@@ -358,6 +358,9 @@ class DialogInput {
     setValue(value) {
         if (this.isRichTextInput()) {
             this.element.innerHTML = DOMPurify.sanitize(value.innerHTML);
+            const links = this.element.querySelectorAll("a");
+            links.forEach(link => link.setAttribute("_rte_href", link.getAttribute("href")));
+
             this.element.dispatchEvent(new Event("change", { bubbles: true }));
         }
         else {

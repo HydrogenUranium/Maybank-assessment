@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:mixinTypes="[sling:VanityPath]"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Sites"
+        sling:resourceType="granite/ui/components/shell/collectionpage"
+        sling:vanityOrder="{Long}301"
+        sling:vanityPath="/sites"
+        consoleId="cq-sites-pages-pages"
+        modeGroup="cq-siteadmin-admin-childpages"
+        omnisearchLocationPath="/libs/granite/omnisearch/content/metadata/site"
+        pageURITemplate="/sites.html{+id}${empty param.rootpath ? &quot;&quot;: granite:concat(&quot;?rootpath=&quot;, param.rootpath)}"
+        targetCollection=".cq-siteadmin-admin-childpages">
+        <actions jcr:primaryType="nt:unstructured">
+            <selection jcr:primaryType="nt:unstructured">
+                <references
+                    granite:rel="cq-siteadmin-admin-actions-properties-activator"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                    action="discover.page.references"
+                    activeSelectionCount="single"
+                    icon="CollectionLink"
+                    target=".cq-siteadmin-admin-childpages"
+                    text="References"
+                    variant="actionBar"/>
+            </selection>
+        </actions>
+    </jcr:content>
+</jcr:root>

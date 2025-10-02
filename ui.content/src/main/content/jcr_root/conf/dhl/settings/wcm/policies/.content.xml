@@ -6231,6 +6231,27 @@
                             components="[group:DHL Components,group:DHL Page Structure]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_dhl-experience-fragments>
+                    <policy_509377564639600
+                            jcr:lastModified="{Date}2025-09-23T15:42:54.948+03:00"
+                            jcr:lastModifiedBy="admin"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="sticky container"
+                            sling:resourceType="wcm/core/components/policy/policy">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                        <cq:styleGroups jcr:primaryType="nt:unstructured">
+                            <item0
+                                    cq:styleGroupLabel="Features"
+                                    jcr:primaryType="nt:unstructured">
+                                <cq:styles jcr:primaryType="nt:unstructured">
+                                    <item0
+                                            cq:styleClasses="sticky"
+                                            cq:styleId="1758631355210"
+                                            cq:styleLabel="Sticky"
+                                            jcr:primaryType="nt:unstructured"/>
+                                </cq:styles>
+                            </item0>
+                        </cq:styleGroups>
+                    </policy_509377564639600>
                 </responsivegrid>
             </components>
         </foundation>

@@ -1,0 +1,197 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - develop  # Change this to your specific branch name
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - develop
+  workflow_dispatch:
+    inputs:
+      environment_name:
+        description: 'Target environment (dev, staging, prod)'
+        required: true
+        default: dev
+        type: choice
+        options:
+          - dev
+      git_branch_label:
+        description: 'Git branch label'
+        required: true
+        default: 'develop'
+      run_sonar_scan:
+        description: 'Run Sonar Scan'
+        type: boolean
+        required: true
+        default: true
+      run_owasp_dependency_check:
+        description: 'Run OWASP Dependency Check'
+        type: boolean
+        required: true
+        default: true
+      run_fortify_scan:
+        description: 'Run Fortify Scan'
+        type: boolean
+        required: true
+        default: false
+      build_and_publish:
+        description: 'Build and publish to Artifactory'
+        type: boolean
+        required: true
+        default: true
+
+  workflow_call:
+    inputs:
+      environment_name:
+        description: 'Target environment'
+        required: true
+        type: string
+        default: 'dev'
+      git_branch_label:
+        description: 'Git branch label'
+        required: true
+        type: string
+        default: 'develop'
+      run_sonar_scan:
+        description: 'Run Sonar Scan'
+        type: boolean
+        required: true
+        default: true
+      run_owasp_dependency_check:
+        description: 'Run OWASP Dependency Check'
+        type: boolean
+        required: true
+        default: true
+      run_fortify_scan:
+        description: 'Run Fortify Scan'
+        type: boolean
+        required: false
+        default: false
+      pull_request_number:
+        description: 'Pull Request Number'
+        type: string
+        required: false
+        default: ''
+      pull_request_base_ref:
+        description: 'Pull Request Base Reference'
+        type: string
+        required: false
+        default: ''
+      pull_request_head_ref:
+        description: 'Pull Request Head Reference'
+        type: string
+        required: false
+        default: ''
+      build_and_publish:
+        description: 'Build and publish to Artifactory'
+        type: boolean
+        required: true
+        default: true
+
+jobs:
+  debug-workflow-trigger:
+    runs-on: ${{ vars.ACTION_RUNNER_NAME || 'ubuntu-latest' }}  # Fallback to GitHub-hosted runner
+    steps:
+      - name: Debug workflow trigger
+        run: |
+          echo "Workflow triggered!"
+          echo "Event name: ${{ github.event_name }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Pull request number: ${{ github.event.pull_request.number || 'Not a PR' }}"
+  print-workflow-inputs:
+    name: Workflow Inputs
+    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
+    steps:
+      - name: Create Inputs Summary
+        shell: bash
+        run: |
+          {
+            echo "| Input | Value |"
+            echo "| --- | --- |"
+            echo "| Target environment | ${{ inputs.environment_name }} |"
+            echo "| Git branch label | ${{ inputs.git_branch_label }} |"
+            echo "| Run Sonar Scan | ${{ inputs.run_sonar_scan }} |"
+            echo "| Run OWASP Dependency Check | ${{ inputs.run_owasp_dependency_check }} |"
+            echo "| Run Fortify Scan | ${{ inputs.run_fortify_scan }} |"
+            echo "| Build and publish to Artifactory | ${{ inputs.build_and_publish }} |"
+            echo "| Pull Request Number | ${{ inputs.pull_request_number }} |"
+            echo "| Pull Request Base Reference | ${{ inputs.pull_request_base_ref }} |"
+            echo "| Pull Request Head Reference | ${{ inputs.pull_request_head_ref }} |"
+          } >> $GITHUB_STEP_SUMMARY
+  fortify-scan:
+    name: Fortify SAST Scan
+    if: ${{ inputs.run_fortify_scan == true }}
+    uses: ./.github/workflows/security-sast-fortify.yaml
+    with:
+      include: ./
+      runner: ${{ vars.ACTION_RUNNER_NAME }}
+      scan-mode: full
+      scan-precision: 2
+      cache-enabled: false
+      git_branch_label: ${{ inputs.git_branch_label }}
+
+  build-and-scan:
+    name: Build and Scan
+    if: >-
+      ${{
+        github.event_name == 'pull_request' ||
+        github.event_name == 'push' ||
+        inputs.build_and_publish == true ||
+        inputs.run_owasp_dependency_check == true ||
+        inputs.run_sonar_scan == true
+      }}
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ${{ vars.ACTION_RUNNER_NAME }}
+    container: docker.artifactory.dhl.com/maven:3.9.9-eclipse-temurin-21
+    environment: ${{ inputs.environment_name }}
+    outputs:
+      artifact-id: ${{ steps.extract-info.outputs.artifact-id }}
+      artifact-version: ${{ steps.extract-info.outputs.artifact-version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.git_branch_label }}
+
+      - name: Setup Maven Settings
+        uses: ./.github/actions/setup-maven-settings
+        with:
+          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+
+      - name: Maven Build and Test
+        uses: ./.github/actions/maven-build-and-test
+
+      - name: Evaluate Artifact Info
+        id: extract-info
+        uses: ./.github/actions/evaluate-artifact-info
+
+      - name: Publish to Artifactory
+        uses: ./.github/actions/publish-to-artifactory
+        with:
+          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          artifactory-url: ${{ vars.ARTIFACTORY_URL }}
+
+      - name: OWASP Dependency-Check
+        uses: ./.github/actions/owasp-dependency-check
+        env:
+          artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+          artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          artifactory-url: ${{ vars.ARTIFACTORY_URL }}
+
+      - name: Sonar Scan and Quality
+        uses: ./.github/actions/sonar-scan
+        with:
+          pull-request-number: ${{ inputs.pull_request_number }}
+          pull-request-base-ref: ${{ inputs.pull_request_base_ref }}
+          pull-request-head-ref: ${{ inputs.pull_request_head_ref }}
+          sonar-host-url: ${{ vars.SONAR_HOST_URL }}
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          sonar-project-key: ${{ vars.SONAR_PROJECT_KEY }}
+          sonar-project-name: ${{ vars.SONAR_PROJECT_NAME }}

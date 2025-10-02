@@ -215,13 +215,15 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Link Name"
-                                                name="./linkName"/>
+                                                name="./linkName"
+                                                required="{Boolean}true"/>
                                         <linkPath
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                 fieldLabel="Link Path"
                                                 rootPath="/content/dhl"
-                                                name="./linkPath"/>
+                                                name="./linkPath"
+                                                required="{Boolean}true"/>
                                     </items>
                                 </field>
                             </companyLinksList>
