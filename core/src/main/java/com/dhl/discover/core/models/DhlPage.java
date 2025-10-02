@@ -157,7 +157,7 @@ public class DhlPage {
 		}
 	}
 
-	private String getEnabledChatbotTemplate() {
+	public String getEnabledChatbotTemplate() {
 		resourceResolver = request.getResourceResolver();
 		currentResource = resourceResolver.resolve(request.getRequestPathInfo().getResourcePath());
 		ContentPolicyManager contentPolicyManager = resourceResolver.adaptTo(ContentPolicyManager.class);

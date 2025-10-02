@@ -1,7 +1,6 @@
 package com.dhl.discover.core.models;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
@@ -180,13 +179,58 @@ class DhlPageTest {
 	}
 
 	@Test
-	void testCurrentPageInjection() {
-		ctx.currentResource("/content/dhl/standardpage");
-		Page currentPage = ctx.pageManager().getPage("/content/dhl/standardpage");
+	void testGetEnabledChatbotTemplate() {
+		// Mock ContentPolicyManager and ContentPolicy
+		lenient().when(contentPolicyManager.getPolicy(any(Resource.class))).thenReturn(contentPolicy);
 
+		// Case 1: ContentPolicy is null
+		lenient().when(contentPolicyManager.getPolicy(any(Resource.class))).thenReturn(null);
+		ctx.registerAdapter(ResourceResolver.class, ContentPolicyManager.class, contentPolicyManager);
+
+		ctx.currentResource("/content/dhl/standardpage");
 		DhlPage dhlPage = ctx.request().adaptTo(DhlPage.class);
 
 		assertNotNull(dhlPage);
-		assertEquals(currentPage, dhlPage.getCurrentPage());
+		assertEquals("disabled", dhlPage.getEnabledChatbotTemplate());
+
+		// Case 2: ContentPolicy properties are null
+		lenient().when(contentPolicy.getProperties()).thenReturn(null);
+		lenient().when(contentPolicyManager.getPolicy(any(Resource.class))).thenReturn(contentPolicy);
+
+		ctx.currentResource("/content/dhl/standardpage");
+		dhlPage = ctx.request().adaptTo(DhlPage.class);
+
+		assertNotNull(dhlPage);
+		assertEquals("disabled", dhlPage.getEnabledChatbotTemplate());
+
+		// Case 3: isChatbotEnabledTemplate property is null
+		ValueMap policyProperties = new ValueMapDecorator(new HashMap<>());
+		lenient().when(contentPolicy.getProperties()).thenReturn(policyProperties);
+
+		ctx.currentResource("/content/dhl/standardpage");
+		dhlPage = ctx.request().adaptTo(DhlPage.class);
+
+		assertNotNull(dhlPage);
+		assertEquals("disabled", dhlPage.getEnabledChatbotTemplate());
+
+		// Case 4: isChatbotEnabledTemplate is "enabled"
+		policyProperties.put("isChatbotEnabledTemplate", "enabled");
+		lenient().when(contentPolicy.getProperties()).thenReturn(policyProperties);
+
+		ctx.currentResource("/content/dhl/standardpage");
+		dhlPage = ctx.request().adaptTo(DhlPage.class);
+
+		assertNotNull(dhlPage);
+		assertEquals("enabled", dhlPage.getEnabledChatbotTemplate());
+
+		// Case 5: isChatbotEnabledTemplate is "disabled"
+		policyProperties.put("isChatbotEnabledTemplate", "disabled");
+		lenient().when(contentPolicy.getProperties()).thenReturn(policyProperties);
+
+		ctx.currentResource("/content/dhl/standardpage");
+		dhlPage = ctx.request().adaptTo(DhlPage.class);
+
+		assertNotNull(dhlPage);
+		assertEquals("disabled", dhlPage.getEnabledChatbotTemplate());
 	}
 }
