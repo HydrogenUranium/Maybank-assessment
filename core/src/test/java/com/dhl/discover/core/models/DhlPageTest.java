@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
+import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.policies.ContentPolicy;
 import com.day.cq.wcm.api.policies.ContentPolicyManager;
 import com.dhl.discover.core.components.EnvironmentConfiguration;
@@ -47,6 +48,8 @@ class DhlPageTest {
 
 	@Mock
 	private ContentPolicyManager contentPolicyManager;
+	@Mock
+	private ResourceResolver resourceResolver;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -153,6 +156,8 @@ class DhlPageTest {
 		assertEquals(Boolean.TRUE, dhlPage.getChatbotEnabled());
 	}
 
+
+
 	@Test
 	void test_disabledChatbotByTemplate() {
 		ValueMap policyProperties = new ValueMapDecorator(new HashMap<>());
@@ -174,4 +179,14 @@ class DhlPageTest {
 		assertEquals(Boolean.FALSE, dhlPage.getChatbotEnabled());
 	}
 
+	@Test
+	void testCurrentPageInjection() {
+		ctx.currentResource("/content/dhl/standardpage");
+		Page currentPage = ctx.pageManager().getPage("/content/dhl/standardpage");
+
+		DhlPage dhlPage = ctx.request().adaptTo(DhlPage.class);
+
+		assertNotNull(dhlPage);
+		assertEquals(currentPage, dhlPage.getCurrentPage());
+	}
 }
