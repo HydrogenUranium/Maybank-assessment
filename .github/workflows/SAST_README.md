@@ -2,7 +2,7 @@
 
 This workflow performs a comprehensive **Static Application Security Testing (SAST)** scan using the **Fortify Static Code Analyzer**. It is designed as a reusable workflow (`workflow_call`) to be integrated into other CI/CD pipelines.
 
-You can view the source `security-sast-fortify.yaml` workflow file [here](./security-sast-fortify.yaml).
+You can view the source `security-sast-fortify.yaml` workflow file [here](sast-be.yaml).
 
 ## Overview
 
@@ -34,7 +34,7 @@ jobs:
     runs-on: arc-small-container
     steps:
       - name: Run Fortify SAST Scan
-        uses: ./.github/workflows/security-sast-fortify.yaml
+        uses: ./.github/workflows/sast-be.yaml
         with:
           git_branch_label: ${{ github.ref_name }}
           include: 'src' # Path to your source code

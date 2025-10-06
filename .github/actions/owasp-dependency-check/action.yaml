@@ -6,13 +6,6 @@ runs:
     - name: OWASP Dependency-Check
       shell: bash
       run: mvn dependency-check:check -B
-      env:
-        # Proxy settings for Maven
-        HTTP_PROXY: http://b2b-http.dhl.com:8080
-        HTTPS_PROXY: http://b2b-http.dhl.com:8080
-        NO_PROXY: "localhost,127.0.0.1,artifactory.dhl.com"
-        npm_config_proxy: http://b2b-http.dhl.com:8080
-        npm_config_https_proxy: http://b2b-http.dhl.com:8080
     - name: Upload OWASP Dependency-Check results
       uses: actions/upload-artifact@v3
       with:

@@ -10,7 +10,7 @@
         "/bin/unifiedshell/discovery",
         "/content/graphql/endpoint"
     ],
-    "filter.methods": [ "PUT", "DELETE", "POST" ],
+    "filter.methods": [ "PUT", "DELETE" ],
     "filter.safe.user.agents": [
         "Apache-HttpClient/*",
         "Jakarta Commons-HttpClient/*",

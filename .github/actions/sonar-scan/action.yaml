@@ -52,10 +52,6 @@ runs:
         -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
       continue-on-error: true
       env:
-        # Proxy settings for Maven
-        #HTTP_PROXY: http://b2b-http.dhl.com:8080
-        #HTTPS_PROXY: http://b2b-http.dhl.com:8080
-        #NO_PROXY: "localhost,127.0.0.1,artifactory.dhl.com"
         # Cypress-specific proxy settings
         CYPRESS_PROXY: http://b2b-http.dhl.com:8080
         npm_config_proxy: http://b2b-http.dhl.com:8080

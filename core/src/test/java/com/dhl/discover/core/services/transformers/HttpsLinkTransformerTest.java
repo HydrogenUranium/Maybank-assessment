@@ -1,5 +1,7 @@
 package com.dhl.discover.core.services.transformers;
 
+import org.apache.sling.rewriter.ProcessingComponentConfiguration;
+import org.apache.sling.rewriter.ProcessingContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -9,8 +11,11 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class HttpsLinkTransformerTest {
@@ -83,4 +88,43 @@ class HttpsLinkTransformerTest {
         Attributes result = transformer.modifyAttributes(qName, attributes);
         assertSame(attributes, result);
     }
+
+    @Test
+    void testInit_DefaultImplementation_NoExceptions() {
+        ProcessingContext mockContext = mock(ProcessingContext.class);
+        ProcessingComponentConfiguration mockConfig = mock(ProcessingComponentConfiguration.class);
+        assertDoesNotThrow(() -> transformer.init(mockContext, mockConfig));
+    }
+
+    @Test
+    void testModifyAttributes_AnchorWithoutHrefAttribute_ReturnsUnchangedAttributes() {
+        String qName = "a";
+        AttributesImpl attributes = new AttributesImpl();
+        attributes.addAttribute("", "class", "class", "CDATA", "button");
+
+        Attributes result = transformer.modifyAttributes(qName, attributes);
+
+        assertEquals(attributes.getLength(), result.getLength());
+        assertEquals("button", result.getValue(0));
+    }
+
+    @Test
+    void testModifyAttributes_AnchorWithEmptyHrefAttribute_ReturnsUnchangedAttributes() {
+        String qName = "a";
+        AttributesImpl attributes = new AttributesImpl();
+        attributes.addAttribute("", "href", "href", "CDATA", "");
+        Attributes result = transformer.modifyAttributes(qName, attributes);
+        assertEquals("", result.getValue(0));
+    }
+
+    @Test
+    void testModifyAttributes_AnchorWithNonDhlLink_ReturnsUnchangedAttributes() {
+        String qName = "a";
+        AttributesImpl attributes = new AttributesImpl();
+        attributes.addAttribute("", "href", "href", "CDATA", "https://example.com");
+
+        Attributes result = transformer.modifyAttributes(qName, attributes);
+        assertEquals("https://example.com", result.getValue(0));
+    }
+
 }
