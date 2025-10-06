@@ -1,0 +1,160 @@
+# Github Actions workflow to perform Fortify scan using maven build and scan for open source vulnerabilities using OWASP Dependency Check
+
+# Make sure the Agent labels matches with the Fortify runner configured for your GIT organization.
+
+# Once the Fortify scan is successful, a PDF report will be published.
+# Once the OWASP Dependency check scan is successful, a HTML report will be published.
+
+# Specify the Fortify ASG Project ID to upload the scan results.
+
+name: Fortify ASG scan Frontend
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        type: string
+        default: fortify_agent
+        required: false
+        description: "GitHub Actions runner label where the workflow should run (default: fortify_agent)."
+      git_branch_label:
+        type: string
+        description: 'Git branch label'
+        required: true
+        default: 'develop'
+      exclude:
+        type: string
+        default: ""
+        required: false
+        description: "Optional paths or patterns to exclude from the translation phase."
+      include:
+        type: string
+        required: true
+        description: "Source files or paths to include for the translation phase (required)."
+      reportFormat:
+        type: string
+        default: "pdf"
+        required: false
+        description: "Format of the generated report. Valid values: pdf, doc, html, xls (default: pdf)."
+      reportTemplate:
+        type: string
+        default: "Developer Workbook"
+        required: false
+        description: "Template used for report generation. Example values: Developer Workbook, OWASP Top 10, CWE Top 25 2019, etc."
+      scanOptions:
+        type: string
+        default: ""
+        required: false
+        description: "Optional additional command-line options for the scan phase."
+      translationOptions:
+        type: string
+        default: ""
+        required: false
+        description: "Optional additional command-line options for the translation phase."
+      retention-days:
+        type: number
+        default: 14
+        required: false
+        description: "Number of days to retain artifacts (default: 14)."
+      maxIssuesAllowed:
+        type: number
+        default: -1
+        required: false
+        description: "Maximum number of issues allowed before failing the workflow (0 = no issues allowed, -1 = unlimited)."
+      timeout-minutes:
+        type: number
+        default: 60
+        required: false
+        description: "Timeout for the Fortify SAST scan job in minutes (default: 60)."
+      cache-enabled:
+        type: boolean
+        default: true
+        required: false
+        description: "Enable or disable caching (default: true)."
+      scan-mode:
+        type: string
+        required: false
+        default: full
+        description: "Scan mode to use: 'quick' for high/critical issues only, 'full' for full analysis. Default: full."
+      scan-precision:
+        type: number
+        required: false
+        default: 2
+        description: "Scan precision level (1 = fastest, 5 = most thorough). Default: 2."
+
+    outputs:
+      fpr_file:
+        description: "URL to the generated Fortify FPR file."
+        value: ${{ jobs.sast-fortify.outputs.fpr_file }}
+      report_file:
+        description: "URL to the generated Fortify report file."
+        value: ${{ jobs.sast-fortify.outputs.report_file }}
+      issues_found:
+        description: "Number of issues found during the scan."
+        value: ${{ jobs.sast-fortify.outputs.issues_found }}
+      critical_issues:
+        description: "Number of critical severity issues found."
+        value: ${{ jobs.sast-fortify.outputs.critical_issues }}
+      high_issues:
+        description: "Number of high severity issues found."
+        value: ${{ jobs.sast-fortify.outputs.high_issues }}
+      medium_issues:
+        description: "Number of medium severity issues found."
+        value: ${{ jobs.sast-fortify.outputs.medium_issues }}
+      low_issues:
+        description: "Number of low severity issues found."
+        value: ${{ jobs.sast-fortify.outputs.low_issues }}
+      scan_status:
+        description: "Scan status (success or failure)."
+        value: ${{ jobs.sast-fortify.outputs.scan_status }}
+  workflow_dispatch:
+    inputs:
+      FortifyProjectVersionID:
+        required: true
+        type: string
+        default: '402035515'
+
+jobs:
+  sast:
+
+    runs-on: [ self-hosted, fortify, linux]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fortify - Scan
+        run: |
+          mvn -f pom.xml com.fortify.sca.plugins.maven:sca-maven-plugin:clean com.fortify.sca.plugins.maven:sca-maven-plugin:translate com.fortify.sca.plugins.maven:sca-maven-plugin:scan
+
+      - name: Fortify - Generate Report
+        if: success()
+        run: BIRTReportGenerator -template "Developer Workbook" --IncludeDescOfKeyTerminology -source  ${{github.workspace}}/target/fortify/*.fpr -format PDF -format PDF -output Dev_Workbook.pdf
+
+      - name: Fortify - Publish Report
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: SAST Scan Report
+          path: ${{github.workspace}}/*.pdf
+
+      - name: Fortify - ASG
+        id: asg
+        if: success()
+        run: |
+          export EXCLUDE=file1:**/*.java:**/*.xml
+          /fortify/scripts/FortifyASG.sh ${{inputs.FortifyProjectVersionID}}
+
+      - name: Depdendency Check - Scan
+        id: depcheck
+        if: always()
+
+        run: |
+          export MAVEN_OPTS="-DretireJsUrl=https://artifactory.dhl.com/artifactory/nvd/jsrepository.json -Dformats=ALL -DcveUrlModified=https://artifactory.dhl.com/nvd/nvdcve-1.1-modified.json.gz -DcveUrlBase=https://artifactory.dhl.com/nvd/nvdcve-1.1-%d.json.gz -Dhttp.proxyHost=b2b-http.dhl.com -Dhttp.proxyPort=8080 -Dhttps.proxyHost=b2b-http.dhl.com -Dhttps.proxyPort=8080 -Dhttp.nonProxyHosts=*.dhl.com -DknownExploitedUrl=https://artifactory.dhl.com/artifactory/nvd-local/known_exploited_vulnerabilities.json -DossindexAnalyzerEnabled=false"
+          mvn -f pom.xml org.owasp:dependency-check-maven:aggregate $MAVEN_OPTS
+
+      - name: Dependency Check - Publish Report
+        if: always() && steps.depcheck.outcome == 'success'
+        uses: actions/upload-artifact@v3
+        with:
+          name: Dependency Check Report
+          path: ${{github.workspace}}/target/dependency-check-report.html
