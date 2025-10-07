@@ -1,0 +1,46 @@
+.c-go-to-top-button {
+    position: fixed;
+    align-items: center;
+    background-clip: border-box;
+    background-origin: padding-box;
+    bottom: 42px;
+    right: 45px;
+    z-index: 1000;
+    border: none;
+    outline: none;
+    background-color: #d40511;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0.7rem 1.54rem;
+    border: 1rem;
+    overflow: hidden;
+    border-radius: 0;
+    display: none;
+    font-size: 18px;
+    opacity: 1;
+    transition: opacity 0.3s, display 0.3s;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+  vertical-align: middle;
+  pointer-events: all;
+}
+
+.c-go-to-top-button.visible {
+    display: block;
+    opacity: 1;
+}
+
+.c-go-to-top-button:hover {
+    background-color: #800404;
+}
+
+.icon-chevron-up::before {
+    content: '^';
+    display: inline-block;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    text-align: center;
+    line-height: 42px;
+    transform: scaleX(1.5);
+}

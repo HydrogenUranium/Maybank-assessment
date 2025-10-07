@@ -13,6 +13,7 @@ import HorizontalScroll from './Components/HorizontalScroll';
 import Accordion from "./Components/Accordion";
 import StickySidebar from "./Components/StickySidebar";
 import Chatbot from "./Components/Chatbot";
+import GoToTopButton from "./Components/GoToTopButton";
 
 $(document).ready(() => {
   try {
@@ -36,5 +37,6 @@ $(document).ready(() => {
   HorizontalScroll.init();
   Accordion.init();
   StickySidebar.init();
-  Chatbot.init()
+  Chatbot.init();
+  GoToTopButton.init();
 });
