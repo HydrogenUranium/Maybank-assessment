@@ -12,6 +12,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="DHL Category Template Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
+                            isChatbotEnabledTemplate="enabled"
                             clientlibs="[dhl.category-page]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </category_page_policy>
@@ -22,6 +23,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Article Page Policy"
+                            isChatbotEnabledTemplate="enabled"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1169514762602900>
@@ -32,6 +34,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Home Page Policy"
+                            isChatbotEnabledTemplate="enabled"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1169514762602901>
@@ -42,7 +45,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Right Aligned Marketo Form Page Policy"
-                            cq:styleDefaultClasses="digital-assistant--hidden"
+                            isChatbotEnabledTemplate="disabled"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
@@ -71,6 +74,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Error Page Policy"
+                            isChatbotEnabledTemplate="enabled"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1700814075949>
@@ -79,7 +83,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Landing Page - Two Columns Page Policy"
-                            cq:styleDefaultClasses="digital-assistant--hidden"
+                            isChatbotEnabledTemplate="disabled"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
@@ -105,7 +109,7 @@
                             jcr:lastModified="{Date}2023-11-28T14:53:02.015+02:00"
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
-                            cq:styleDefaultClasses="digital-assistant--hidden"
+                            isChatbotEnabledTemplate="disabled"
                             jcr:title="Landing Page - One Column Page Policy"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
@@ -133,7 +137,7 @@
                             jcr:lastModifiedBy="admin"
                             jcr:primaryType="nt:unstructured"
                             jcr:title="General Page Properties"
-                            cq:styleDefaultClasses="digital-assistant--hidden"
+                            isChatbotEnabledTemplate="disabled"
                             sling:resourceType="wcm/core/components/policy/policy">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                         <cq:styleGroups jcr:primaryType="nt:unstructured">
@@ -161,6 +165,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Search Result Page Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
+                            isChatbotEnabledTemplate="enabled"
                             clientlibs="[dhl.search-result-page]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1704781633995>
@@ -172,6 +177,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Animated Page Policy"
                             sling:resourceType="wcm/core/components/policy/policy"
+                            isChatbotEnabledTemplate="enabled"
                             clientlibs="[dhl.animatedpages]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1705397229637>
