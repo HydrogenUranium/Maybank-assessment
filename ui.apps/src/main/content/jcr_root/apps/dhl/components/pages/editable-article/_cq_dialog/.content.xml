@@ -138,6 +138,27 @@
                                                 rootPath="/content/dam"/>
                                         </items>
                                     </dhlsocial>
+                                    <dhlchatbot
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="DHL Chatbot"
+                                            sling:resourceType="granite/ui/components/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <chatbot
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    allowBulkEdit="{Boolean}false"
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    fieldLabel="Enable Chatbot in Page?"
+                                                    name="./isChatbotEnabledPage">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <enabled jcr:primaryType="nt:unstructured" text="Enable" selected="enabled" value="enabled"/>
+                                                    <disabled jcr:primaryType="nt:unstructured" text="Disable" value="disabled" />
+                                                    <inherit jcr:primaryType="nt:unstructured" text="Inherit from Home Page settings" value="inherit" />
+                                                </items>
+                                            </chatbot>
+                                        </items>
+                                    </dhlchatbot>
+
                                 </items>
                             </column>
                         </items>

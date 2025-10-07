@@ -2,6 +2,8 @@ package com.dhl.discover.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
+import com.day.cq.wcm.api.policies.ContentPolicy;
+import com.day.cq.wcm.api.policies.ContentPolicyManager;
 import com.dhl.discover.core.components.EnvironmentConfiguration;
 import com.dhl.discover.core.injectors.InjectHomeProperty;
 import com.dhl.discover.core.services.AssetUtilService;
@@ -11,6 +13,8 @@ import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
@@ -35,6 +39,12 @@ public class DhlPage {
 	
 	@SlingObject
 	private SlingHttpServletResponse response;
+
+	@SlingObject
+	private Resource currentResource;
+
+	@SlingObject
+	private ResourceResolver resourceResolver;
 	
 	@ScriptVariable
 	private Page currentPage;
@@ -54,6 +64,9 @@ public class DhlPage {
 	private String seoTitle;
 	private String adobeDtmLink;
 	private String gtmDelayEnabled;
+	private Boolean chatbotEnabled;
+	private String isChatbotEnabledPage;
+	private String isChatbotEnabledTemplate;
 
 	@InjectHomeProperty
 	@Default(values = "")
@@ -67,9 +80,20 @@ public class DhlPage {
 	private static final String DEFAULT_PAGE_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/categoryCarouselImage-desk.jpg";
 	private static final String DEFAULT_OG_IMAGE = "/etc.clientlibs/dhl/clientlibs/discover/resources/img/icons/200.png";
 
+	private static final String CHAT_ENABLED_STRING = "enabled";
+	private static final String CHAT_DISABLED_STRING = "disabled";
+
 	@InjectHomeProperty
 	@Default(values = "")
 	private String brandSlug;
+
+	@InjectHomeProperty
+	@Default(values = CHAT_ENABLED_STRING)
+	private String isChatbotEnabledHomepage;
+
+	@InjectHomeProperty
+	@Default(values = "")
+	private String chatbotId;
 
 	@PostConstruct
     protected void init() {
@@ -119,6 +143,41 @@ public class DhlPage {
 		if (StringUtils.isNotBlank(brandSlug) && brandSlug.contains("DHL")) {
 			brandSlug = brandSlug.replace("DHL ", "");
 		}
+
+		chatbotId = StringUtils.trimToEmpty(chatbotId);
+
+		isChatbotEnabledPage = properties.get("isChatbotEnabledPage", "inherit");
+
+		isChatbotEnabledTemplate = getEnabledChatbotTemplate();
+
+		if (isChatbotEnabledTemplate.equals(CHAT_ENABLED_STRING) && isChatbotEnabledHomepage.equals(CHAT_ENABLED_STRING) && (isChatbotEnabledPage.equals(CHAT_ENABLED_STRING) || isChatbotEnabledPage.equals("inherit"))) {
+			chatbotEnabled = Boolean.TRUE;
+		} else  {
+			chatbotEnabled = Boolean.FALSE;
+		}
+	}
+
+	public String getEnabledChatbotTemplate() {
+		resourceResolver = request.getResourceResolver();
+		currentResource = resourceResolver.resolve(request.getRequestPathInfo().getResourcePath());
+		ContentPolicyManager contentPolicyManager = resourceResolver.adaptTo(ContentPolicyManager.class);
+		ContentPolicy contentPolicy = contentPolicyManager.getPolicy(currentResource);
+
+		if (contentPolicy == null) {
+			return CHAT_DISABLED_STRING;
+		}
+
+		ValueMap properties = contentPolicy.getProperties();
+		if (properties == null) {
+			return CHAT_DISABLED_STRING;
+		}
+
+		String chatbotEnabledTemplate = properties.get("isChatbotEnabledTemplate", String.class);
+		if (chatbotEnabledTemplate == null) {
+			return CHAT_DISABLED_STRING;
+		}
+
+		return chatbotEnabledTemplate.equals(CHAT_ENABLED_STRING) ? CHAT_ENABLED_STRING : CHAT_DISABLED_STRING;
 	}
 
 	private String getRobotTags(Page page) {
