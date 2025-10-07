@@ -1,7 +1,9 @@
 class GoToTopButton {
   constructor(element) {
     this.element = element;
-    console.log('GoToTopButton initialized with element:', this.element);
+    this.lastScrollTop = 0;
+    this.isMobile = window.innerWidth < 768;
+    window.addEventListener('resize', this.updateDeviceType.bind(this));
     this.initEventListeners();
   }
 
@@ -10,6 +12,10 @@ class GoToTopButton {
     if (goToTopButton) {
       new GoToTopButton(goToTopButton);
     }
+  }
+
+  updateDeviceType() {
+    this.isMobile = window.innerWidth < 768;
   }
 
   initEventListeners() {
@@ -23,11 +29,24 @@ class GoToTopButton {
 
   toggleVisibility() {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollingUp = scrollPosition < this.lastScrollTop;
+
     if (scrollPosition > 500) {
-      this.element.classList.add('visible');
+      // For mobile: only show when scrolling up
+      if (this.isMobile) {
+        if (scrollingUp) {
+          this.element.classList.add('visible');
+        } else {
+          this.element.classList.remove('visible');
+        }
+      } else {
+        this.element.classList.add('visible');
+      }
     } else {
       this.element.classList.remove('visible');
     }
+
+    this.lastScrollTop = scrollPosition;
   }
 
   scrollToTop(e) {
