@@ -1,0 +1,120 @@
+name: 'Deploy to Kubernetes Cluster'
+description: 'Logs in to Kubernetes, pulls Helm chart, and deploys the application.'
+inputs:
+  artifactory-username:
+    description: 'Artifactory username'
+    required: true
+  artifactory-password:
+    description: 'Artifactory password'
+    required: true
+  git-branch-label:
+    description: 'Git branch label'
+    required: true
+  environment-name:
+    description: 'Target environment name'
+    required: true
+  artifact-id:
+    description: 'Maven artifact ID'
+    required: true
+  artifact-version:
+    description: 'Maven artifact version'
+    required: true
+  az-client-id: { description: 'Azure Client ID', required: false }
+  az-client-secret: { description: 'Azure Client Secret', required: false }
+  az-tenant-id: { description: 'Azure Tenant ID', required: false }
+  az-aks-sub-id: { description: 'Azure Subscription ID', required: false }
+  az-aks-cluster-resource-group-name: { description: 'Azure Cluster Resource Group', required: false }
+  az-aks-cluster-name: { description: 'Azure Cluster Name', required: false }
+  oc-token: { description: 'OpenShift Token', required: false }
+  oc-username: { description: 'OpenShift Username', required: false }
+  oc-password: { description: 'OpenShift Password', required: false }
+  oc-url: { description: 'OpenShift URL', required: false }
+  helm-chart-deployment-path: { description: 'Helm Chart Deployment Path', required: true }
+  helm-chart-value-path: { description: 'Helm Chart Value Path', required: true }
+  namespace: { description: 'Kubernetes Namespace', required: true }
+  artifactory-helm-registry: { description: 'Artifactory Helm Registry', required: true }
+  registry-repo: { description: 'Registry Repo', required: true }
+  artifactory-docker-registry: { description: 'Artifactory Docker Registry', required: true }
+runs:
+  using: "composite"
+  steps:
+    - name: Login and Namespace Setup
+      shell: bash
+      env:
+        AZ_CLIENT_ID: ${{ inputs.az-client-id }}
+        AZ_CLIENT_SECRET: ${{ inputs.az-client-secret }}
+        AZ_TENANT_ID: ${{ inputs.az-tenant-id }}
+        AZ_AKS_SUB_ID: ${{ inputs.az-aks-sub-id }}
+        AZ_AKS_CLUSTER_RESOURCE_GROUP_NAME: ${{ inputs.az-aks-cluster-resource-group-name }}
+        AZ_AKS_CLUSTER_NAME: ${{ inputs.az-aks-cluster-name }}
+        OC_TOKEN: ${{ inputs.oc-token }}
+        OC_USERNAME: ${{ inputs.oc-username }}
+        OC_PASSWORD: ${{ inputs.oc-password }}
+        OC_URL: ${{ inputs.oc-url }}
+        NAMESPACE: ${{ inputs.namespace }}
+      run: |
+        if [ "${{ env.AZ_CLIENT_ID }}" != "" ] && [ "${{ env.AZ_CLIENT_SECRET }}" != "" ] && [ "${{ env.AZ_TENANT_ID }}" != "" ] && [ "${{ env.AZ_AKS_SUB_ID }}" != "" ]; then
+          echo "Logging in to Azure..."
+          az login --service-principal -u ${{ env.AZ_CLIENT_ID }} -p ${{ env.AZ_CLIENT_SECRET }} --tenant ${{ env.AZ_TENANT_ID }}
+          az account set --subscription ${{ env.AZ_AKS_SUB_ID }}
+          az aks get-credentials --resource-group ${{ env.AZ_AKS_CLUSTER_RESOURCE_GROUP_NAME }} --name ${{ env.AZ_AKS_CLUSTER_NAME }} --overwrite-existing --format azure
+          kubelogin convert-kubeconfig -l azurecli
+          kubectl config set-context --current --namespace=${{ env.NAMESPACE }}
+        elif [ "${{ env.OC_TOKEN }}" != "" ] && [ "${{ env.OC_URL }}" != "" ]; then
+          echo "Logging in to OpenShift..."
+          oc login --token=${{ env.OC_TOKEN }} --server=${{ env.OC_URL }}
+          oc project ${{ env.NAMESPACE }}
+        elif [ "${{ env.OC_USERNAME }}" != "" ] && [ "${{ env.OC_PASSWORD }}" != "" ] && [ "${{ env.OC_URL }}" != "" ]; then
+          echo "Logging in to OpenShift..."
+          oc login -u ${{ env.OC_USERNAME }} -p ${{ env.OC_PASSWORD }} --server=${{ env.OC_URL }}
+          oc project ${{ env.NAMESPACE }}
+        else
+          echo "::error title=Login Error::No Azure or OpenShift credentials provided."
+          exit 1
+        fi
+    - name: Login to Helm Registry
+      shell: bash
+      run: helm registry login --username ${{ inputs.artifactory-username }} --password ${{ inputs.artifactory-password }} ${{ inputs.artifactory-helm-registry }}
+    - name: Pull Helm Chart
+      shell: bash
+      run: |
+        helm pull oci://${{ inputs.artifactory-helm-registry }}${{ inputs.registry-repo && format('/{0}', inputs.registry-repo) || '' }}/helm/${{ inputs.artifact-id }} \
+        --version ${{ inputs.artifact-version }} \
+        --untar \
+        --username ${{ inputs.artifactory-username }} \
+        --password ${{ inputs.artifactory-password }}
+    - name: Deploy using Helm
+      shell: bash
+      run: |
+        unset HTTP_PROXY && unset HTTPS_PROXY 
+        unset http_proxy && unset https_proxy    
+        helm upgrade --install ${{ inputs.artifact-id }} ${{ inputs.helm-chart-deployment-path }}/ --debug \
+        --namespace "${{ inputs.namespace }}" \
+        --wait --timeout 10m \
+        -f ${{ inputs.helm-chart-value-path }}/values-${{ inputs.environment-name }}.yaml \
+        --set registry.host=${{ inputs.artifactory-docker-registry }}
+    - name: Get Helm Status
+      shell: bash
+      run: |
+        helm history ${{ inputs.artifact-id }}
+        helm status ${{ inputs.artifact-id }} >> $GITHUB_STEP_SUMMARY
+    - name: Get Deployment Details
+      shell: bash
+      run: |
+        kubectl rollout status deployment/${{ inputs.artifact-id }}-deployment
+        kubectl get pods -l app=${{ inputs.artifact-id }} -o yaml
+        kubectl get services -l app=${{ inputs.artifact-id }} -o yaml
+    - name: Logout
+      shell: bash
+      run: |
+        if [ "${{ inputs.az-client-id }}" != "" ] && [ "${{ inputs.az-client-secret }}" != "" ] || [ "${{ inputs.az-tenant-id }}" != "" ] || [ "${{ inputs.az-aks-sub-id }}" != "" ]; then
+          echo "Logging out from Azure..."
+          kubectl config unset current-context
+          az logout
+        elif [ "${{ inputs.oc-token }}" != "" ] || [ "${{ inputs.oc-url }}" != "" ]; then
+          echo "Logging out from OpenShift..."
+          oc logout
+        elif [ "${{ inputs.oc-username }}" != "" ] || [ "${{ inputs.oc-password }}" != "" ] || [ "${{ inputs.oc-url }}" != "" ]; then
+          echo "Logging out from OpenShift..."
+          oc logout
+        fi

@@ -1,0 +1,44 @@
+name: 'Publish to Helm'
+description: 'Packages and pushes the Helm chart to the registry.'
+inputs:
+  git-branch-label:
+    description: 'The git branch to checkout'
+    required: true
+  artifact-id:
+    description: 'Maven artifact ID'
+    required: true
+  artifact-version:
+    description: 'Maven artifact version'
+    required: true
+  artifactory-username:
+    description: 'Artifactory username'
+    required: true
+  artifactory-password:
+    description: 'Artifactory password'
+    required: true
+  helm-chart-deployment-path:
+    description: 'Path to the Helm chart'
+    required: true
+  artifactory-helm-registry:
+    description: 'Artifactory Helm registry URL'
+    required: true
+  registry-repo:
+    description: 'Registry repository name'
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Helm
+      uses: azure/setup-helm@v4.3.0
+      with:
+        version: 'v3.18.3'
+        downloadBaseURL: 'https://artifactory.dhl.com/artifactory/helm-client/'
+    - name: Package Helm Chart
+      shell: bash
+      run: helm package ${{ inputs.helm-chart-deployment-path }} --version ${{ inputs.artifact-version }}
+    - name: Login to Helm Registry
+      shell: bash
+      run: helm registry login --username ${{ inputs.artifactory-username }} --password ${{ inputs.artifactory-password }} ${{ inputs.artifactory-helm-registry }}
+    - name: Push Helm Chart to Registry
+      shell: bash
+      run: helm push ${{ inputs.artifact-id }}-${{ inputs.artifact-version }}.tgz oci://${{ inputs.artifactory-helm-registry }}${{ inputs.registry-repo && format('/{0}', inputs.registry-repo) || '' }}/helm
