@@ -17,7 +17,7 @@ class CarouselItemValidatorTest {
     private ResourceResolver resourceResolver;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         validator = new CarouselItemValidator();
         resourceResolver = mock(ResourceResolver.class);
         validator.setResourceResolver(resourceResolver);
