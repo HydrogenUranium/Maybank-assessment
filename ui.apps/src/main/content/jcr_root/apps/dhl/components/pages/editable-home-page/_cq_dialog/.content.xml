@@ -48,6 +48,23 @@
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldLabel="GTM Tracking ID (i.e. 'GTM-PZ5NFTR', etc)"
                                                     name="./gtmtrackingid"/>
+                                            <chatbot
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    allowBulkEdit="{Boolean}false"
+                                                    fieldLabel="Enable Chatbot?"
+                                                    fieldDescription="Enable/Disable the Chatbot on all pages in Country. Please make sure chatbot is also enabled on Template level"
+                                                    name="./isChatbotEnabledHomepage">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <enabled jcr:primaryType="nt:unstructured" text="Enable" selected="enabled" value="enabled" />
+                                                    <disabled jcr:primaryType="nt:unstructured" text="Disable" value="disabled" />
+                                                </items>
+                                            </chatbot>
+                                            <chatbotId
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Chatbot ID (i.e. 'express-cs-ap/discover/xx/xx')"
+                                                    name="./chatbotId"/>
                                             <signupemailprivacymessage
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"

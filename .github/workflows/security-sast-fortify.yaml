@@ -22,6 +22,7 @@
 #   - Scan Precision Control: Tune scan depth from 1 (fastest) to 5 (most thorough)
 #   - Optional caching of Fortify translation data to speed up builds
 name: SAST Fortify Workflow
+
 on:
   workflow_call:
     inputs:
@@ -39,7 +40,7 @@ on:
         type: string
         description: 'Git branch label'
         required: true
-        default: 'develop'
+        default: 'master'
       exclude:
         type: string
         default: ""

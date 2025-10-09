@@ -120,13 +120,25 @@ jobs:
             echo "| Pull Request Base Reference | ${{ inputs.pull_request_base_ref }} |"
             echo "| Pull Request Head Reference | ${{ inputs.pull_request_head_ref }} |"
           } >> $GITHUB_STEP_SUMMARY
-  fortify-scan:
-    name: Fortify SAST Scan
+  fortify-scan-be:
+    name: Fortify SAST Scan Backend
     if: ${{ inputs.run_fortify_scan == true }}
-    uses: ./.github/workflows/security-sast-fortify.yaml
+    uses: ./.github/workflows/sast-be.yaml
     with:
       include: ./
-      runner: ${{ vars.ACTION_RUNNER_NAME }}
+      runner: ${{ vars.FORTIFY_ACTION_RUNNER_NAME }}
+      scan-mode: full
+      scan-precision: 2
+      cache-enabled: false
+      git_branch_label: ${{ inputs.git_branch_label }}
+
+  fortify-scan-fe:
+    name: Fortify SAST Scan Frontend
+    if: ${{ inputs.run_fortify_scan == true }}
+    uses: ./.github/workflows/sast-fe.yaml
+    with:
+      include: ./
+      runner: ${{ vars.FORTIFY_ACTION_RUNNER_NAME }}
       scan-mode: full
       scan-precision: 2
       cache-enabled: false
@@ -170,11 +182,9 @@ jobs:
       - name: Evaluate Artifact Info
         id: extract-info
         uses: ./.github/actions/evaluate-artifact-info
-        if: ${{ inputs.build_and_publish == true }}
 
       - name: Publish to Artifactory
         uses: ./.github/actions/publish-to-artifactory
-        if: ${{ inputs.build_and_publish == true }}
         with:
           artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
@@ -182,7 +192,6 @@ jobs:
 
       - name: OWASP Dependency-Check
         uses: ./.github/actions/owasp-dependency-check
-        if: ${{ inputs.run_owasp_dependency_check == true }}
         env:
           artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
@@ -190,7 +199,6 @@ jobs:
 
       - name: Sonar Scan and Quality
         uses: ./.github/actions/sonar-scan
-        if: ${{ inputs.run_sonar_scan == true }}
         with:
           pull-request-number: ${{ inputs.pull_request_number }}
           pull-request-base-ref: ${{ inputs.pull_request_base_ref }}
