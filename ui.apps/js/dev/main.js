@@ -14,6 +14,7 @@ import Accordion from "./Components/Accordion";
 import StickySidebar from "./Components/StickySidebar";
 import Chatbot from "./Components/Chatbot";
 import GoToTopButton from "./Components/GoToTopButton";
+import FloatingIconsWrapper from "./Components/FloatingIconsWrapper";
 
 $(document).ready(() => {
   try {
@@ -23,7 +24,7 @@ $(document).ready(() => {
     // nothing
   }
   if ((window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone)) $('html').addClass('pwa');
-  // Initiate components
+
   LanguageDetect.init();
   IEDetector.init();
   Header.init();
@@ -39,4 +40,5 @@ $(document).ready(() => {
   StickySidebar.init();
   Chatbot.init();
   GoToTopButton.init();
+  FloatingIconsWrapper.init();
 });
