@@ -34,7 +34,7 @@ import groovy.transform.Field
         "id-id" : "express-cs-ap-3/discover/id/766da848-895d-4536-8b78-34483f77d977"
 ]
 
-@Field modifiedNodes = [];
+@Field homePagePathArray = [];
 
 def getHomePages() {
     return sql2Query("""
@@ -61,10 +61,10 @@ def updateChatbotId() {
             def propertyValue = CHATBOT_ID_MAPPING[languageCountryCode];
             def homePageNode = session.getNode(homePageNodePath);
             homePageNode.setProperty(PROPERTIES, propertyValue);
-            modifiedNodes.add(homePageNodePath);
+            homePagePathArray.add(homePagePath);
             if(DRY_RUN) {
                 println "Page: ${languageCountryCode.toString()}" + " -------- " + "Chatbot Id: ${propertyValue}";
-                println "Add property '${PROPERTIES}' to '${propertyValue}' on node '${homePageNodePath}'";
+                println "Add property '${PROPERTIES}' with value '${propertyValue}' on node '${homePageNodePath}'";
 
             }
         }
@@ -75,8 +75,9 @@ def updateChatbotId() {
 def main() {
     if(!DRY_RUN) {
         updateChatbotId();
-        modifiedNodes.each { node ->
-            println "Modified Node: ${node}";
+        println "Modified Node:"
+        homePagePathArray.each { node ->
+            println "\"${node}\",";
         }
         session.save();
     } else {
