@@ -25,6 +25,10 @@
   height: 4.2rem;
   text-align: center;
   vertical-align: middle;
+
+  @media (max-width: 768px) {
+    margin-left: 20px;
+  }
 }
 
 .c-go-to-top-button.visible {
@@ -65,4 +69,3 @@
 .button.base-button {
   display: inline-block;
 }
-
