@@ -1,6 +1,7 @@
 {
   "user.mapping": [
     "discover.core:discoverReader=[discover-reader]",
+    "discover.core:discoverWriter=[discover-writer]",
     "discover.core:discoverUserManager=[discover-user-manager]"
   ]
 }

@@ -476,9 +476,14 @@
         "set ACL for discover-reader\nallow jcr:read on /content/dam\nend",
         "set ACL for discover-reader\nallow jcr:read on /content/cq:tags\nend",
         "set ACL for discover-reader\nallow jcr:read on /conf\nend",
+        "set ACL for discover-reader\nallow jcr:read on /var\nend",
+        "set ACL for discover-reader\nallow jcr:read on /jcr:system/jcr:versionStorage\nend",
         "set ACL for discover-reader\nallow jcr:read on /oak:index\nend",
-        "set ACL for discover-writer\nallow jcr:all on /content/dhl\nend",
-        "set ACL for discover-writer\nallow jcr:all on /content/dam\nend",
+        "set ACL for discover-writer\nallow rep:write on /content/dam\nend",
+        "set ACL for discover-writer\nallow rep:write on /content/dhl\nend",
+        "set ACL for discover-writer\nallow jcr:read on /var\nend",
+        "set ACL for discover-writer\nallow rep:write on /var/workflow/instances\nend",
+        "set ACL for discover-writer\nallow jcr:read on /jcr:system/jcr:versionStorage\nend",
 
         "set ACL for discover-user-manager\nallow jcr:all on /home/users\nend",
 
