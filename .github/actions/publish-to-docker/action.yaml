@@ -1,0 +1,69 @@
+name: 'Publish to Docker'
+description: 'Builds and pushes a Docker image to the registry.'
+inputs:
+  artifact-id:
+    description: 'Maven artifact ID'
+    required: true
+  artifact-version:
+    description: 'Maven artifact version'
+    required: true
+  environment-name:
+    description: 'Target environment name'
+    required: true
+  artifactory-docker-registry:
+    description: 'Artifactory Docker registry URL'
+    required: true
+  registry-repo:
+    description: 'Registry repository name'
+    required: false
+  artifactory-username:
+    description: 'Artifactory username'
+    required: true
+  artifactory-password:
+    description: 'Artifactory password'
+    required: true
+  dockerfile:
+    description: 'Path to the Dockerfile'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Download Maven Artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: application-jar
+        path: target/
+    - name: Login to Registry
+      shell: bash
+      run: |
+        docker login ${{ inputs.artifactory-docker-registry }} -u ${{ inputs.artifactory-username }} -p ${{ inputs.artifactory-password }}
+    - name: Build and Push Docker Container Image
+      id: build-and-push
+      uses: dhl-actions/build-push-action-external@v6
+      with:
+        push: true
+        tags: |
+          ${{ inputs.artifactory-docker-registry }}/${{ inputs.registry-repo && format('{0}/', inputs.registry-repo) || '' }}${{ inputs.artifact-id }}:latest
+          ${{ inputs.artifactory-docker-registry }}/${{ inputs.registry-repo && format('{0}/', inputs.registry-repo) || '' }}${{ inputs.artifact-id }}:${{ inputs.artifact-version }}
+        file: ${{ inputs.dockerfile }}
+        context: .
+    - name: Logout from Registry
+      shell: bash
+      run: |
+        docker logout ${{ inputs.artifactory-docker-registry }}
+    - name: Create Build Summary
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const url = "${{ inputs.artifactory-docker-registry }}";
+          const registryProj = url.substring(0, url.indexOf('.'));
+          const registryDomain = url.substring(url.indexOf('.') + 1);
+          const metadata = ${{ steps.build-and-push.outputs.metadata }};
+          core.summary
+            .addHeading('Build Summary', 2)
+            .addTable([
+              [{data: 'Image ID', header: true}, {data: 'Image Digest', header: true}, {data: 'Image Name', header: true}],
+              ['${{ steps.build-and-push.outputs.imageid }}', '${{ steps.build-and-push.outputs.digest }}', metadata["image.name"]]
+            ])
+            .addLink('View the image', `https://${registryDomain}/ui/repos/tree/General/${registryProj}/${{ inputs.registry-repo && format('{0}/', inputs.registry-repo) || '' }}${{ inputs.artifact-id }}/${{ inputs.artifact-version }}`)
+            .write()
