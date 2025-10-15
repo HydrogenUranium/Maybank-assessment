@@ -1,1 +1,12 @@
 css/animated-pages.css
+css/chemical-impact.css
+css/creative-campaigns.css
+css/death-of-the-double-bass.css
+css/dhl-boxes.css
+css/e-commerce-winning.css
+css/getting-certified.css
+css/larry-vs-harry.css
+css/men-jewelry.css
+css/smartwatches.css
+css/taking-fashion-home.css
+css/trending-in-grooming.css
