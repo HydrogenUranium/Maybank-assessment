@@ -260,6 +260,10 @@
       height: auto;
       margin-bottom: 0;
     }
+
+    &--block {
+      display: block;
+    }
   }
 
   &__statsValue {

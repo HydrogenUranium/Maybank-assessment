@@ -23,19 +23,9 @@
                       data-suffix="%">${properties.leftBlockPercent}%</div>
                   <div class="statsPanel__value statsPanel__value--light animatedPages__text-on-light-blue">${properties.leftBlockTitle}</div>
                 </div>
-                <div class="boxFill" aria-label="${properties.leftBlockTitle}">
+                <div class="boxFill" aria-label="${properties.leftBlockTitle}" data-fill-percent="${properties.leftBlockPercent}">
                   <div class="boxFill__shadow"></div>
-                  <div class="boxFill__fill boxFill__fillstat__${idModel.id} ">
-                    <style type="text/css">
-                        .boxFill--show .boxFill__fillstat__${idModel.id @ context='styleToken'} {
-                            height: calc((((100% - 32.4%) / 100) * ${properties.leftBlockPercent @ context='number'}) + 32.4%);
-                            transition: height 4000ms ease-out;
-                        }
-
-
-
-
-                    </style>
+                  <div class="boxFill__fill">
                     <div class="boxFill__fillTop"></div>
                   </div>
                   <div class="boxFill__front"></div>
@@ -51,19 +41,9 @@
                       data-duration="2.4">${properties.rightBlockPercent}%</div>
                   <div class="statsPanel__value statsPanel__value--light animatedPages__text-on-light-blue">${properties.rightBlockTitle}</div>
                 </div>
-                <div class="boxFill" aria-label="${properties.rightBlockTitle}">
+                <div class="boxFill" aria-label="${properties.rightBlockTitle}" data-fill-percent="${properties.rightBlockPercent}">
                   <div class="boxFill__shadow"></div>
-                  <div class="boxFill__fill boxFill__fillstat2__${idModel.id}">
-                    <style type="text/css">
-                    .boxFill--show .boxFill__fillstat2__${idModel.id @ context='styleToken'} {
-                        height: calc((((100% - 32.4%) / 100) * ${properties.rightBlockPercent @ context='number'}) + 32.4%);
-                        transition: height 4000ms ease-out;
-                    }
-
-
-
-
-                    </style>
+                  <div class="boxFill__fill">
                     <div class="boxFill__fillTop"></div>
                   </div>
                   <div class="boxFill__front"></div>

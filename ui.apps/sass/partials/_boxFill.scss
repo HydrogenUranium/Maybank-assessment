@@ -186,8 +186,7 @@
   &--show {
 
     #{$block}__fill {
-      height: ((calc((100 - 32.4) / 100) * 95) + 32.4%);
-      transition: height 4300ms ease-out;
+      transition: height 4000ms ease-out;
     }
 
      #{$block}__fillstat2 {
@@ -248,6 +247,13 @@
     #{$block}__fillstat13 {
       height: ((calc((100 - 32.4) / 100) * 47) + 32.4%);
       transition: height 3500ms ease-out;
+    }
+
+    @for $i from 0 through 100 {
+      #{$block}__fill--p-#{$i} {
+        height: calc((((100% - 32.4%) / 100) * #{$i}) + 32.4%);
+        transition: height 4000ms ease-out;
+      }
     }
   }
 }

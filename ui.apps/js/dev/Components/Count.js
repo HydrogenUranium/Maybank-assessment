@@ -12,8 +12,10 @@ class Counter {
     this.countUp = this.countUp.bind(this);
     this.runAnimations = this.runAnimations.bind(this);
     this.handleScrollOut = this.handleScrollOut.bind(this);
+    this.prepareFillHeights = this.prepareFillHeights.bind(this);
 
     this.countUp();
+    this.prepareFillHeights();
   }
 
   countUp() {
@@ -73,6 +75,7 @@ class Counter {
       if (($(window).scrollTop() + (window.innerHeight * 0.75)) >= this.$element.find(this.sel.trigger).offset().top) {
         document.removeEventListener('scroll', start, {passive: true}); // Stop event from triggering more than once
         this.isAnimated = true;
+        this.prepareFillHeights();
         for (let i = 0; i < this.animations.length; i++) {
           this.animations[i].start();
         }
@@ -116,6 +119,33 @@ class Counter {
       (top + height) > window.pageYOffset &&
       (left + width) > window.pageXOffset
     );
+  }
+
+  prepareFillHeights() {
+    const classPrefix = 'boxFill__fill--p-';
+    this.$element.find(this.sel.productFill).each((index, element) => {
+      const $box = $(element);
+      const $fill = $box.find('.boxFill__fill').first();
+      if (!$fill.length) {
+        return;
+      }
+      const percentAttr = $box.attr('data-fill-percent') || $fill.attr('data-fill-percent');
+      if (typeof percentAttr === 'undefined') {
+        return;
+      }
+      const percent = parseFloat(percentAttr);
+      if (Number.isNaN(percent)) {
+        return;
+      }
+      const clamped = Math.max(0, Math.min(100, Math.round(percent)));
+      const previousClass = $fill.data('boxFillClass');
+      if (previousClass) {
+        $fill.removeClass(previousClass);
+      }
+      const targetClass = `${classPrefix}${clamped}`;
+      $fill.addClass(targetClass);
+      $fill.data('boxFillClass', targetClass);
+    });
   }
 }
 
