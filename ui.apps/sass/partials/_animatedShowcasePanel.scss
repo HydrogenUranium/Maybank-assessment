@@ -473,6 +473,14 @@
 
     }
 
+    &--marginTop30 {
+      margin-top: 30px;
+    }
+
+    &--marginTop150 {
+      margin-top: 150px;
+    }
+
     &--music,
     &--music1,
     &--music2 {
@@ -685,6 +693,10 @@
       @include respond(lg) {
         margin-top: 8rem;
       }
+    }
+
+    &--noMarginBottom {
+      margin-bottom: 0;
     }
   }
 
