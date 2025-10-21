@@ -21,7 +21,10 @@
 				<h2 class="nextSteps__title"><span>${properties.guidance}</span></h2>
 			</div>
 			<div class="col-12 col-md-6" data-sly-test="${properties.image}">
-				<div  class="nextSteps__image" style="background-image: url('${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.image @ context='uri'}');"></div>
+                <sly data-sly-set.imageAlt="${properties.imageAltText ? properties.imageAltText : (properties.title ? properties.title : (properties.guidance ? properties.guidance : 'Article image'))}"></sly>
+				<div class="nextSteps__image">
+                    <img class="nextSteps__imageMedia" src="${!editmode ? accountactions.assetprefix : '' @ context='uri'}${properties.image @ context='uri'}" alt="${imageAlt @ context='text'}" loading="lazy"/>
+                </div>
 			</div>
 			<div class="col-12 col-md-6">
 				<div class="nextSteps__text">

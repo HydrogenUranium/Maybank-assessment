@@ -1,14 +1,19 @@
 <div class="articlePanel">
-	<a class="articlePanel__image" href="#" style="background-image: url(/etc.clientlibs/dhl/clientlibs/discover/resources/img/articlePanel.jpg);"><span class="sr-only">Image alt text</span></a>
+    <sly data-sly-set.articlePath="${item.path ? item.path : '#'}"></sly>
+    <sly data-sly-set.imagePath="${item.imagePath ? item.imagePath : (item.image ? item.image : (item.thumbnail ? item.thumbnail : '/etc.clientlibs/dhl/clientlibs/discover/resources/img/articlePanel.jpg'))}"></sly>
+    <sly data-sly-set.imageAlt="${item.imageAltText ? item.imageAltText : (item.title ? item.title : 'Article image')}"></sly>
+	<a class="articlePanel__image" href="${articlePath @ context='uri'}">
+        <img class="articlePanel__imageMedia" src="${imagePath @ context='uri'}" alt="${imageAlt @ context='text'}" loading="lazy"/>
+    </a>
 	<h4><a href="#">Business</a><i class="articlePanel__icon articlePanel__icon--gallery"><span class="sr-only">Movie</span></i></h4>
-	<a href="#">
+	<a href="${articlePath @ context='uri'}">
 		<h3>Is Central Asia the hidden gem in China&apos;s new Silk Road?</h3>
 	</a>
 	<time datetime="2016-11-24">24th November 2016</time>
-	<a href="${item.path}">
+	<a href="${articlePath @ context='uri'}">
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat egestas justo, et consequat sem porttitor vitae. Vivamus vitae ullamcorper magna.</p>
 	</a>
-	<a href="${item.path}">
+	<a href="${articlePath @ context='uri'}">
 		<p class="articlePanel__button">Find out more</p>
 	</a>
 	<ul class="articlePanel__tags">

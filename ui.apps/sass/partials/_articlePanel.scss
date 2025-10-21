@@ -32,6 +32,15 @@
     @include backgroundImage(cover);
     float: left;
     margin: 0 1rem 0 0;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     @include respond(md) {
       width: 11.4rem;
@@ -43,6 +52,16 @@
       height: 0;
       padding-bottom: 56.36%;
       margin: 0 0 1.3rem !important;
+
+      img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
@@ -364,5 +383,41 @@
     @include respond(md) {
       width: auto;
     }
+  }
+}
+
+.nextSteps__image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.4rem;
+
+  .nextSteps__imageMedia {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.nextSteps__imageMedia {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@supports not (aspect-ratio: 16 / 9) {
+  .nextSteps__image {
+    padding-bottom: 56.25%;
+  }
+
+  .nextSteps__imageMedia {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
