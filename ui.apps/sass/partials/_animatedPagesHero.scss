@@ -169,6 +169,7 @@
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
+    opacity: 0.2;
 
     @include respond(md) {
       width: 18rem;
@@ -176,6 +177,10 @@
       margin-left: -7.4rem;
       background-size: 18rem 24.6rem;
     }
+  }
+
+  &__shadowLines {
+    display: none;
   }
 
   &__parcel {
@@ -195,6 +200,31 @@
       width: 18rem;
       height: 24.6rem;
       background-size: 18rem 24.6rem;
+    }
+
+    #boxSkin {
+      opacity: 0;
+      animation-name: boxSkin;
+      animation-duration: 200ms;
+      animation-delay: 3260ms;
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+    }
+
+    #blankBox {
+      opacity: 1;
+      animation-name: blankBox;
+      animation-duration: 200ms;
+      animation-delay: 3260ms;
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+    }
+
+    #shadow {
+      position: absolute;
+      bottom: -73px;
+      left: 43%;
+      opacity: 0.1;
     }
   }
 
@@ -722,6 +752,26 @@
 
   100% {
     transform: translateY(80rem) translateX(27rem);
+  }
+}
+
+@keyframes boxSkin {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blankBox {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 

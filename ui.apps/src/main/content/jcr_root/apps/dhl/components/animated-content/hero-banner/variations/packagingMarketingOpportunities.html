@@ -7,7 +7,7 @@
      <div class="col-12">
       <div class="animatedPagesHero__animation">
          <div class="animatedPagesHero__van"></div>
-          <svg class="animatedPagesHero__shadow" xmlns="http://www.w3.org/2000/svg" width="119.33" height="51.592" style="opacity: 0.2;" viewBox="0 0 119.33 51.592">
+          <svg class="animatedPagesHero__shadow" xmlns="http://www.w3.org/2000/svg" width="119.33" height="51.592" viewBox="0 0 119.33 51.592">
             <g opacity="0.6">
               <path opacity=".01" fill="#161616" d="M57.583 12.484L77.291 1.092a3.945 3.945 0 0 1 3.88 0l35.844 20.693c2.982 1.722 3.136 6.118.154 7.84l-14.91 8.604-21.088 12.184a3.947 3.947 0 0 1-3.88.034l-42.767-24.7 23.059-13.263z"/>
               <path opacity=".02" fill="#161616" d="M56.893 12.484L76.641 1.092a4.022 4.022 0 0 1 3.867.08l35.797 20.666c2.922 1.682 3.23 6.078.308 7.767l-15.044 8.711-21.062 12.123a3.977 3.977 0 0 1-3.867.074l-42.807-24.72 23.06-13.309z"/>
@@ -65,49 +65,7 @@
               <description>${properties.imgAltText7}</description>
           </svg>
           <svg class="animatedPagesHero__parcel" xmlns="http://www.w3.org/2000/svg" width="120" height="165" viewBox="0 0 120 165">
-            <style>
-              #boxSkin {
-                opacity: 0;
-                animation-name: boxSkin;
-                animation-duration: 200ms;
-                animation-delay: 3260ms;
-                animation-iteration-count: 1;
-                animation-fill-mode: both;
-              }
-              #blankBox {
-                opacity: 1;
-                animation-name: blankBox;
-                animation-duration: 200ms;
-                animation-delay: 3260ms;
-                animation-iteration-count: 1;
-                animation-fill-mode: both;
-              }
-              #shadow {
-                position: absolute;
-                bottom: -73px;
-                left: 43%;
-                opacity: 0.1;
-              }
-              @keyframes boxSkin {
-                0% {
-                  opacity: 0;
-                }
-
-                100% {
-                  opacity: 1;
-                }
-              }
-              @keyframes blankBox {
-                0% {
-                  opacity: 1;
-                }
-
-                100% {
-                  opacity: 0;
-                }
-              }
-            </style>
-            <g opacity=".6" fill="#181818" style="display: none;">
+            <g class="animatedPagesHero__shadowLines" opacity=".6" fill="#181818">
               <path opacity=".012" d="M57.655 126.243l19.71-11.381c1.181-.682 2.699-.644 3.879.037l35.84 20.692c2.982 1.723 3.135 6.115.153 7.836l-14.907 8.608-21.085 12.177c-1.181.682-2.699.719-3.879.037l-42.769-24.695 23.058-13.311z"/>
               <path opacity=".023" d="M56.964 126.243l19.749-11.403c1.157-.668 2.711-.593 3.868.075l35.795 20.666c2.923 1.687 3.227 6.081.304 7.769l-15.043 8.686-21.059 12.161c-1.157.668-2.711.743-3.868.075l-42.804-24.719 23.058-13.31z"/>
               <path opacity=".035" d="M56.274 126.243l19.786-11.426c1.133-.654 2.723-.542 3.856.112l35.752 20.641c2.864 1.652 3.32 6.048.458 7.702l-15.176 8.763-21.032 12.145c-1.133.654-2.723.766-3.856.112l-42.845-24.738 23.057-13.311z"/>
