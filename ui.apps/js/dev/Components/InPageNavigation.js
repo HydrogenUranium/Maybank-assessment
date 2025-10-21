@@ -8,10 +8,9 @@ class InPageNavigation {
       listItems: '.inPageNavigation__item',
       links: '.inPageNavigation__link',
       sections: '.inPageNavigationSection',
-      sectionTitle: '.inPageNavigationSection__title',
-      template: '#inPageNavigation__template'
+      sectionTitle: '.inPageNavigationSection__title'
     };
-    this.$template = null;
+    this.templateMarkup = '<li class="inPageNavigation__item"><a class="inPageNavigation__link" href=""></a></li>';
     this.sectionOffsets = [];
     this.componentHeight = 0;
     this.bottomLimit = 0;
@@ -38,7 +37,7 @@ class InPageNavigation {
       let randomId = Strings.id();
         $(elm).attr('id', randomId);
 
-        let $item = $(this.$template.clone().html());
+        let $item = $(this.templateMarkup);
         let $link = $item.find('.inPageNavigation__link');
 
         $link.attr('href', '#' + randomId);
@@ -130,7 +129,6 @@ class InPageNavigation {
 
   init() {
     if ($(this.sel.component).length <= 0) return;
-    this.$template = $(this.sel.template);
     this.bindEvents();
     this.populateItems();
   }
