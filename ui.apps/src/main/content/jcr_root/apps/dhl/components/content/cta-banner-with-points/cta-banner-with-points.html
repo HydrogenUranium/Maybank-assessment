@@ -1,4 +1,4 @@
-<sly data-sly-use.model="com.dhl.discover.core.models.CtaBannerWithPoints"></sly>
+<sly data-sly-use.model="com.dhl.discover.core.models.CtaBannerWithPoints" data-sly-set.fallbackImage="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNDAwIDMwMCIgYXJpYS1oaWRkZW49InRydWUiIGZvY3VzYWJsZT0iZmFsc2UiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYXJ0aWNsZXBhbmVsR3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkNDA1MTEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmNiMDUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0idXJsKCNhcnRpY2xlcGFuZWxHcmFkaWVudCkiLz48ZyBmaWxsPSIjZmZmIj48Y2lyY2xlIGN4PSI4NSIgY3k9IjkwIiByPSIzOCIvPjxwYXRoIGQ9Ik84NSAxNDVjLTM1IDAtNjUgMjAtNjUgNDV2MjVoMTMwdi0yNWMwLTI1LTMwLTQ1LTY1LTQ1eiIvPjxyZWN0IHg9IjE2NSIgeT0iNzAiIHdpZHRoPSIxODAiIGhlaWdodD0iMjAiIHJ4PSI0Ii8+PHJlY3QgeD0iMTY1IiB5PSIxMTAiIHdpZHRoPSIxNDAiIGhlaWdodD0iMjAiIHJ4PSI0Ii8+PHJlY3QgeD0iMTY1IiB5PSIxNTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAiIHJ4PSI0Ii8+PHJlY3QgeD0iMTY1IiB5PSIyMDUiIHdpZHRoPSIxMTAiIGhlaWdodD0iNDAiIHJ4PSI4Ii8+PC9nPjwvc3ZnPg==" data-sly-set.fallbackAlt="${model.title ? model.title : 'CTA banner image'}"></sly>
 <sly data-sly-use.analytics="com.dhl.discover.core.models.TrackableComponent"></sly>
 
 <div class="cq-placeholder"
@@ -8,16 +8,11 @@
 
 <sly data-sly-test="${!isEmpty}">
     <article id="${properties.id}" class="cmp-cta-banner-with-points">
-        <div class="cmp-cta-banner-with-points__image" id="${model.id}">
-            <sly data-sly-use.template="/apps/dhl/htl/templates/background-image-styles.html"
-                 data-sly-call="${template.adaptiveBackground @ id=model.id, mobile=model.mobileBackgroundImage, tablet=model.tabletBackgroundImage, desktop=model.desktopBackgroundImage}"></sly>
-            <style type="text/css" data-sly-use.backgroundImage="${'com.dhl.discover.core.models.Picture' @ image = model.mobileBackgroundImage, forceMap = true}">
-                .short-banners {
-                    #${model.id @ context='styleToken'} {
-                    background-image: url('${backgroundImage.image @ context='uri'}');
-                  }
-                }
-            </style>
+        <div class="cmp-cta-banner-with-points__image">
+            <img class="cmp-cta-banner-with-points__imageMedia"
+                 src="${model.desktopBackgroundImage ? model.desktopBackgroundImage : (model.tabletBackgroundImage ? model.tabletBackgroundImage : (model.mobileBackgroundImage ? model.mobileBackgroundImage : fallbackImage)) @ context='uri'}"
+                 alt="${model.title ? model.title : fallbackAlt @ context='text'}"
+                 loading="lazy"/>
         </div>
         <div class="cmp-cta-banner-with-points__body text-on-image">
             <div class="cmp-cta-banner-with-points__title" data-sly-test="${model.title}">${model.title}</div>
