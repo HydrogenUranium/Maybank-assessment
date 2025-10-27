@@ -9,7 +9,7 @@ import AnimatedShowcasePanel from './Components/AnimatedShowcasePanel';
 import AnimatedPagesHero from './Components/AnimatedPagesHero';
 import InPageNavigation from './Components/InPageNavigation';
 import ShipNowTwoStepForm from './Components/ShipNowTwoStepForm';
-import SmoothScroll from './Components/SmoothScroll';
+import EmbedYoutube from "./Components/EmbedYoutube";
 
 
 $(document).ready(() => {
@@ -27,6 +27,7 @@ $(document).ready(() => {
   AnimatedShowcasePanel.init();
   InPageNavigation.init();
   ShipNowTwoStepForm.init();
+  EmbedYoutube.init();
 
 });
 

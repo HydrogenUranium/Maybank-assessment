@@ -15,6 +15,7 @@ import StickySidebar from "./Components/StickySidebar";
 import Chatbot from "./Components/Chatbot";
 import GoToTopButton from "./Components/GoToTopButton";
 import FloatingIconsWrapper from "./Components/FloatingIconsWrapper";
+import EmbedYoutube from "./Components/EmbedYoutube";
 
 $(document).ready(() => {
   try {
@@ -41,4 +42,5 @@ $(document).ready(() => {
   Chatbot.init();
   GoToTopButton.init();
   FloatingIconsWrapper.init();
+  EmbedYoutube.init();
 });

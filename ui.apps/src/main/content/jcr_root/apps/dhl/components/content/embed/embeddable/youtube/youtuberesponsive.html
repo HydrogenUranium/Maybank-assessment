@@ -16,7 +16,7 @@
 
 <sly data-sly-template.youtube="${@ youtube}">
     <div class="cmp-embed__youtube"
-         style="padding-bottom: ${youTube.iFrameAspectRatio || 56.25  @ context='styleString'}%">
+         data-aspect-ratio="${youTube.iFrameAspectRatio || 56.25 @ context='text'}">
         <iframe class="cmp-embed__youtube-iframe"
                 title="youtube video"
                 data-cmp-data-layer="${youtube.data.json}"
