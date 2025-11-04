@@ -2,6 +2,7 @@ package com.maybank.assessment.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+import java.net.URI;
 
 @RestController
 public class BookController {
@@ -38,9 +41,11 @@ public class BookController {
     @Value("${api.key}")
     private String apiKey;
 
-    final String API = "https://www.googleapis.com/books/v1/volumes?q=";
+    final String API = "https://www.googleapis.com/books/v1/volumes";
 
     private static final Logger logger = LoggerFactory.getLogger(BookController.class);
+
+    private static final Pattern SAFE_QUERY = Pattern.compile("^[A-Za-z0-9\\s\-]{1,100}$");
 
     // get all books in DB
     @RequestMapping("/books")
@@ -84,16 +89,43 @@ public class BookController {
     }
 
     // Request Google Book API by using id as book title
-    @RequestMapping(method = RequestMethod.GET, value = "/API/{id}")
-    public String getBookAPI(@PathVariable String id) throws JsonMappingException, JsonProcessingException {
-        ResponseEntity<String> response = restTemplate.getForEntity(API + id + "+inauthor:keyes&key=" + apiKey,
-                String.class);
+    /**
+     * Fetches book data from Google Books API by title.
+     *
+     * Endpoint: GET /API/{id}
+     * - Path variable 'id': book title (alphanumeric, space, hyphen, max 100 chars)
+     * - Produces: application/json
+     * - Success: 200 with JSON payload from Google Books
+     * - Client error: 400 for invalid input or blocked host/scheme
+     * - Upstream error: 502 when external API is unavailable
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/API/{id}", produces = "application/json")
+    public ResponseEntity<JsonNode> getBookAPI(@PathVariable String id) throws JsonMappingException, JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        if (!SAFE_QUERY.matcher(id).matches()) {
+            JsonNode error = mapper.createObjectNode().put("error", "Invalid input");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+        }
+
+        URI uri = UriComponentsBuilder.fromHttpUrl(API)
+                .queryParam("q", id)
+                .queryParam("inauthor", "keyes")
+                .queryParam("key", apiKey)
+                .build(true)
+                .toUri();
+
+        if (!"https".equalsIgnoreCase(uri.getScheme()) || !"www.googleapis.com".equalsIgnoreCase(uri.getHost())) {
+            JsonNode error = mapper.createObjectNode().put("error", "Blocked host or scheme");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+        }
+
+        ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
         if (response.getStatusCodeValue() == 200) {
-            ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(response.getBody());
-            return json.toString();
+            return ResponseEntity.ok(json);
         } else {
-            return "API is not available";
+            JsonNode error = mapper.createObjectNode().put("error", "API is not available");
+            return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(error);
         }
     }
 

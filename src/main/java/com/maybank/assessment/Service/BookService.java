@@ -1,6 +1,5 @@
 package com.maybank.assessment.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +20,7 @@ public class BookService {
     private BookRepo bookRepo;
 
     public List<Book> getAllBooks() {
-        List<Book> books = new ArrayList<>();
-        bookRepo.findAll().forEach(x -> books.add(x));
-        return books;
+        return bookRepo.findAll();
     }
 
     public Optional<Book> getBook(String id) {
